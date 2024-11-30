@@ -26,26 +26,56 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     nginx mariadb postgresql rabbitmq redis supervisor
 RUN pacman -Scc --noconfirm
 
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
+RUN useradd -s /bin/zsh -m deploy
+RUN passwd -l deploy
+RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
+USER deploy
 RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
 
 # https://pkl-lang.org/main/current/pkl-cli/index.html#linux-executable
 ENV PKL_VERSION="0.25.1"
 RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/download/$PKL_VERSION/pkl-linux-amd64 \
-    && mv $HOME/downloads/pkl /usr/local/bin/pkl \
-    && chmod +x /usr/local/bin/pkl
+    && sudo cp $HOME/downloads/pkl /usr/local/bin/ \
+    && sudo chmod +x /usr/local/bin/pkl
 
 
 # https://github.com/envoyproxy/envoy
 ENV ENVOY_VERSION "1.32.1"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
-    && mv $HOME/downloads/envoy /usr/local/bin/envoy \
-    && chmod +x /usr/local/bin/envoy
+    && sudo cp $HOME/downloads/envoy /usr/local/bin/ \
+    && sudo chmod +x /usr/local/bin/envoy
+
+# https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
+RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer
+RUN cd $HOME/downloads \
+    && php composer \
+    && sudo cp composer.phar /usr/local/bin/composer
+
+
+# https://github.com/bazelbuild/bazelisk
+ENV BAZEL_VERSION "v1.24.1"
+RUN wget -q -O $HOME/downloads/bazel \
+    https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64
+RUN sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
+
+
+# https://min.io/download#/linux
+RUN wget -q -O $HOME/downloads/minio https://dl.min.io/server/minio/release/linux-amd64/minio \
+    && sudo cp $HOME/downloads/minio /usr/local/bin/ \
+    && sudo chmod +x /usr/local/bin/minio
+
+# https://github.com/amacneil/dbmate
+RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64 \
+    && sudo cp $HOME/downloads/dbmate /usr/local/bin/ \
+    && sudo chmod +x /usr/local/bin/dbmate
 
 # https://aur.archlinux.org/packages/ttf-arphic-tex-extra
-RUN wget -q -P $HOME/downloads http://mirrors.ctan.org/fonts/arphic-ttf.zip \
-    && unzip -q -d $HOME/tmp $HOME/downloads/arphic-ttf.zip \
-    && cd $HOME/tmp/arphic-ttf \
-    && cp bkai00mp.ttf bsmi00lp.ttf gbsn00lp.ttf gkai00mp.ttf ARPHICPL.txt /usr/share/fonts/TTF/
+ENV ARPHIC_TTF_VERSION "20161212-1"
+RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
+    && cd $HOME/downloads/ttf-arphic-tex-extra/ \
+    && makepkg \
+    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
@@ -64,16 +94,16 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 
 # https://musl.cc/
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \
-    && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz $HOME/local \
+    && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz -C $HOME/local \
     && echo 'export PATH=$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz \
-    && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz $HOME/local \
+    && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz -C $HOME/local \
     && echo 'export PATH=$HOME/local/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/aarch64-linux-musl-cross.tgz \
-    && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz $HOME/local \
+    && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz -C $HOME/local \
     && echo 'export PATH=$HOME/local/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-linux-musl-cross.tgz \
-    && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz $HOME/local \
+    && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz -C $HOME/local \
     && echo 'export PATH=$HOME/local/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 
 
@@ -88,19 +118,6 @@ RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
     && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
 
-# https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
-RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer
-RUN cd $HOME/downloads \
-    && php composer \
-    && mkdir -p $HOME/.local/bin \
-    && mv composer.phar $HOME/.local/bin/composer
-
-
-# https://github.com/bazelbuild/bazelisk
-ENV BAZEL_VERSION "v1.24.1"
-RUN wget -q -O $HOME/.local/bin/bazel \
-    https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64
-RUN chmod +x $HOME/.local/bin/bazel
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
@@ -196,19 +213,8 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 ENV OPENSEARCH_VERSION "2.18.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
-RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C /opt \
-    && mv /opt/opensearch-${OPENSEARCH_VERSION} /opt/opensearch
-
-# https://min.io/download#/linux
-RUN wget -q -O $HOME/downloads/minio \
-    https://dl.min.io/server/minio/release/linux-amd64/minio \
-    && mv $HOME/downloads/minio /usr/local/bin/minio \
-    && chmod +x /usr/local/bin/minio
-
-# https://github.com/amacneil/dbmate
-RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64 \
-    && mv $HOME/downloads/dbmate /usr/local/bin/ \
-    && chmod +x /usr/local/bin/dbmate
+RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C $HOME/tmp \
+    && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch
 
 # https://github.com/grpc/grpc
 ENV GRPC_VERSION "v1.68.1"
@@ -251,8 +257,7 @@ RUN chmod +x $HOME/.local/bin/grpc_java_plugin
 
 # https://github.com/grpc/grpc-node
 # https://github.com/grpc/grpc-node/tree/master/examples/helloworld/static_codegen
-RUN zsh -c "source $HOME/.zshrc \
-    && npm install -g grpc-tools"
+RUN zsh -c "source $HOME/.zshrc && npm install -g grpc-tools"
 
 # https://grpc.io/docs/languages/go/quickstart/
 RUN zsh -c "source $HOME/.zshrc \
@@ -279,80 +284,79 @@ RUN zsh -c "source $HOME/.zshrc \
 RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
     && echo "discovery.type: single-node" >> /opt/opensearch/config/opensearch.yml \
     && echo "plugins.security.disabled: true" >> /opt/opensearch/config/opensearch.yml \
-    && chown -R nobody /opt/opensearch
+    && sudo chown -R nobody:nobody /opt/opensearch
 
-RUN mkdir -p /var/lib/minio/data \
-    && chown -R nobody /var/lib/minio
+RUN sudo mkdir -p /var/lib/minio/data && sudo chown -R nobody:nobody /var/lib/minio
 
 # https://www.rabbitmq.com/access-control.html#loopback-users
-RUN echo 'loopback_users = none' >> /etc/rabbitmq/rabbitmq.conf \
-    && sed -i "s/NODENAME.*/NODENAME=palm/g" /etc/rabbitmq/rabbitmq-env.conf \
-    && rabbitmq-plugins enable rabbitmq_mqtt \
-    && rabbitmq-plugins enable rabbitmq_management
+RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
+    && sudo sed -i "s/NODENAME.*/NODENAME=palm/g" /etc/rabbitmq/rabbitmq-env.conf \
+    && sudo rabbitmq-plugins enable rabbitmq_mqtt \
+    && sudo rabbitmq-plugins enable rabbitmq_management
 
 RUN cd /usr && mariadb-install-db --datadir=/var/lib/mysql --user=mysql
 
-RUN su - postgres -c "/usr/bin/initdb -D /var/lib/postgres/data"
-RUN echo "listen_addresses = '0.0.0.0'" >> /var/lib/postgres/data/postgresql.conf \
-    && echo "host  all  all 0.0.0.0/0 md5" >> /var/lib/postgres/data/pg_hba.conf \
-    && mkdir /run/postgresql \
-    && chown -R postgres:postgres /run/postgresql
+RUN sudo -s -u postgres /usr/bin/initdb -D /var/lib/postgres/data
+RUN echo "listen_addresses = '0.0.0.0'" | sudo tee -a /var/lib/postgres/data/postgresql.conf \
+    && echo "host  all  all 0.0.0.0/0 md5" | sudo tee -a /var/lib/postgres/data/pg_hba.conf \
+    && sudo mkdir /run/postgresql \
+    && sudo chown -R postgres:postgres /run/postgresql
 
 ADD etc/redis/* /etc/redis/
-RUN mkdir -p /var/lib/redis \
+RUN sudo mkdir -p /var/lib/redis \
     && cd /var/lib/redis \
-    && mkdir single node-1 node-2 node-3 node-4 node-5 node-6 \
-    && chown -R redis:redis /var/lib/redis \
-    && chmod 750 /var/lib/redis
+    && sudo mkdir single node-1 node-2 node-3 node-4 node-5 node-6 \
+    && sudo chown -R redis:redis /var/lib/redis \
+    && sudo chmod 750 /var/lib/redis
 
-RUN mkdir -p /var/www/html \
-    && echo "<?php phpinfo(); ?>" > /var/www/html/info.php \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf \
-    && sed -i '35,79d' /etc/nginx/nginx.conf \
-    && sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf \
-    && sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
+RUN sudo mkdir -p /var/www/html \
+    && echo "<?php phpinfo(); ?>" | tee /var/www/html/info.php \
+    && echo "daemon off;" | sudo tee -a /etc/nginx/nginx.conf \
+    && sudo sed -i '35,79d' /etc/nginx/nginx.conf \
+    && sudo sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf \
+    && sudo sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
 ADD etc/nginx/sites-enabled/localhost.conf /etc/nginx/sites-enabled/localhost.conf
 
-RUN sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
-    && sed -i 's/;extension=bz2/extension=bz2/' /etc/php/php.ini \
-    && sed -i 's/;extension=calendar/extension=calendar/' /etc/php/php.ini \
-    && sed -i 's/;extension=enchant/extension=enchant/' /etc/php/php.ini \
-    && sed -i 's/;extension=exif/extension=exif/' /etc/php/php.ini \
-    && sed -i 's/;extension=ftp/extension=ftp/' /etc/php/php.ini \
-    && sed -i 's/;extension=gd/extension=gd/' /etc/php/php.ini \
-    && sed -i 's/;extension=gettext/extension=gettext/' /etc/php/php.ini \
-    && sed -i 's/;extension=gmp/extension=gmp/' /etc/php/php.ini \
-    && sed -i 's/;extension=iconv/extension=iconv/' /etc/php/php.ini \
-    && sed -i 's/;extension=intl/extension=intl/' /etc/php/php.ini \
-    && sed -i 's/;extension=mysqli/extension=mysqli/' /etc/php/php.ini \
-    && sed -i 's/;extension=odbc/extension=odbc/' /etc/php/php.ini \
-    && sed -i 's/;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/php.ini \
-    && sed -i 's/;extension=pdo_odbc/extension=pdo_odbc/' /etc/php/php.ini \
-    && sed -i 's/;extension=pdo_pgsql/extension=pdo_pgsql/' /etc/php/php.ini \
-    && sed -i 's/;extension=pdo_sqlite/extension=pdo_sqlite/' /etc/php/php.ini \
-    && sed -i 's/;extension=pgsql/extension=pgsql/' /etc/php/php.ini \
-    && sed -i 's/;extension=pspell/extension=pspell/' /etc/php/php.ini \
-    && sed -i 's/;extension=snmp/extension=snmp/' /etc/php/php.ini \
-    && sed -i 's/;extension=soap/extension=soap/' /etc/php/php.ini \
-    && sed -i 's/;extension=sockets/extension=sockets/' /etc/php/php.ini \
-    && sed -i 's/;extension=sodium/extension=sodium/' /etc/php/php.ini \
-    && sed -i 's/;extension=sqlite3/extension=sqlite3/' /etc/php/php.ini \
-    && sed -i 's/;extension=tidy/extension=tidy/' /etc/php/php.ini \
-    && sed -i 's/;extension=xsl/extension=xsl/' /etc/php/php.ini \
-    && sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini 
+RUN sudo sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=bz2/extension=bz2/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=calendar/extension=calendar/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=enchant/extension=enchant/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=exif/extension=exif/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=ftp/extension=ftp/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=gd/extension=gd/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=gettext/extension=gettext/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=gmp/extension=gmp/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=iconv/extension=iconv/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=intl/extension=intl/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=mysqli/extension=mysqli/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=odbc/extension=odbc/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=pdo_odbc/extension=pdo_odbc/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=pdo_pgsql/extension=pdo_pgsql/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=pdo_sqlite/extension=pdo_sqlite/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=pgsql/extension=pgsql/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=pspell/extension=pspell/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=snmp/extension=snmp/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=soap/extension=soap/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=sockets/extension=sockets/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=sodium/extension=sodium/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=sqlite3/extension=sqlite3/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=tidy/extension=tidy/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=xsl/extension=xsl/' /etc/php/php.ini \
+    && sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini 
 
 RUN mkdir -p $HOME/.ssh \
     && touch $HOME/.ssh/authorized_keys \
-    && echo 'UseDNS no' >> /etc/ssh/sshd_config \
-    && echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config \
-    && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
-    && echo 'AllowUsers root' >> /etc/ssh/sshd_config
+    && echo 'UseDNS no' | sudo tee -a /etc/ssh/sshd_config \
+    && echo 'PasswordAuthentication no' | sudo tee -a /etc/ssh/sshd_config \
+    && echo 'PermitRootLogin no' | sudo tee -a /etc/ssh/sshd_config \
+    && echo 'AllowUsers deploy' | sudo tee -a /etc/ssh/sshd_config
 
 ADD etc/envoy.yaml /etc/
-RUN mkdir -p /var/log/envoy
+RUN sudo mkdir -p /var/log/envoy
 ADD etc/supervisor /etc/supervisor
 
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace
