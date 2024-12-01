@@ -6,6 +6,7 @@ pub mod grpc;
 pub mod handlers;
 pub mod iso4217;
 pub mod jwt;
+pub mod macros;
 pub mod network;
 pub mod opensearch;
 pub mod orm;

@@ -4,6 +4,7 @@ import zhCN from "antd/locale/zh_CN";
 import zhTW from "antd/locale/zh_TW";
 import dayjs from "dayjs";
 import type { ConfigProviderProps } from "antd";
+import { i18nChangeLanguage } from "@wangeditor/editor";
 
 import "dayjs/locale/zh-cn";
 
@@ -15,12 +16,15 @@ export const load = (lang: string): Locale => {
   switch (lang) {
     case "zh-Hans":
       dayjs.locale("zh-cn");
+      i18nChangeLanguage("zh-CN");
       return zhCN;
     case "zh-Hant":
       dayjs.locale("zh-tw");
+      i18nChangeLanguage("zh-CN");
       return zhTW;
     default:
       dayjs.locale("en");
+      i18nChangeLanguage("en");
       return enUS;
   }
 };

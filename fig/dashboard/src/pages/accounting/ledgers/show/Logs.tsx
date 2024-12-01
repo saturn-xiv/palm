@@ -17,7 +17,7 @@ const Widget = ({ ledger }: IProps) => {
   const ref = useRef<ActionType>();
   return (
     <>
-      <Typography.Title level={3}>
+      <Typography.Title level={4}>
         <FormattedMessage id="pages.users.logs.title" />
       </Typography.Title>
       <ProTable<ILog, IParams>

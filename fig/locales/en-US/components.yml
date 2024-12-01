@@ -1,0 +1,4 @@
+wang-editor:
+  upload:
+    succeed: "File {name} upload succeed"
+    failed: "File {name} upload failed"

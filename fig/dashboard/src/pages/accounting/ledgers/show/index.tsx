@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import { ILedger, show_ledger } from "../../../../api/hyacinth";
 import { IError } from "../../../../api";
 import Logs from "./Logs";
+import Accounts from "./accounts/Table";
+import Transactions from "./transactions/Table";
+import Merchants from "./merchants/Table";
+import Categories from "./categories/Table";
 
 const Widget = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -68,8 +72,38 @@ const Widget = () => {
           items={[
             {
               key: "logs",
-              label: <FormattedMessage id="pages.admin.site.tabs.info.label" />,
+              label: (
+                <FormattedMessage id="pages.accounting.ledgers.tabs.logs.title" />
+              ),
               children: <Logs ledger={item} />,
+            },
+            {
+              key: "accounts",
+              label: (
+                <FormattedMessage id="pages.accounting.ledgers.tabs.accounts.title" />
+              ),
+              children: <Accounts />,
+            },
+            {
+              key: "merchants",
+              label: (
+                <FormattedMessage id="pages.accounting.ledgers.tabs.merchants.title" />
+              ),
+              children: <Merchants />,
+            },
+            {
+              key: "categories",
+              label: (
+                <FormattedMessage id="pages.accounting.ledgers.tabs.categories.title" />
+              ),
+              children: <Categories />,
+            },
+            {
+              key: "transactions",
+              label: (
+                <FormattedMessage id="pages.accounting.ledgers.tabs.transactions.title" />
+              ),
+              children: <Transactions />,
             },
           ]}
         />

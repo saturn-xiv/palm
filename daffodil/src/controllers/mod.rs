@@ -1,5 +1,6 @@
 pub mod attachments;
 pub mod home;
+pub mod wang_editor;
 
 use actix_web::web;
 
@@ -21,7 +22,19 @@ pub fn register(config: &mut web::ServiceConfig) {
     }
 
     config.service(
-        web::scope("/api").service(web::scope("/attachments").service(attachments::upload)),
+        web::scope("/api")
+            .service(
+                web::scope("/attachments")
+                    .service(attachments::upload)
+                    .service(attachments::show),
+            )
+            .service(
+                web::scope("/wang-editor").service(
+                    web::scope("upload")
+                        .service(wang_editor::upload::image)
+                        .service(wang_editor::upload::video),
+                ),
+            ),
     );
     config.service(home::get);
 }

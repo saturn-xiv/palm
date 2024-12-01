@@ -182,3 +182,14 @@ accounting:
       title: "Ledgers"
     new:
       title: "Create a new ledger"
+    tabs:
+      logs:
+        title: "Logs"
+      accounts:
+        title: "Accounts"
+      merchants:
+        title: "Merchants"
+      transactions:
+        title: "Transactions"
+      categories:
+        title: "Categories"
