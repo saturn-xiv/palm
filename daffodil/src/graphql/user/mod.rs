@@ -29,8 +29,8 @@ use super::super::{
         user::{Dao as UserDao, Item as User},
     },
     session::current_user,
+    NAME,
 };
-use super::NAME;
 
 #[derive(GraphQLObject, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

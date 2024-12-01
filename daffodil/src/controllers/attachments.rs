@@ -1,3 +1,4 @@
+use std::fmt;
 use std::fs::File;
 use std::io::prelude::*;
 use std::ops::{Deref, DerefMut};
@@ -7,37 +8,37 @@ use std::str::FromStr;
 use actix_files::NamedFile;
 use actix_multipart::form::{json::Json as MPJson, tempfile::TempFile, MultipartForm};
 use actix_web::{get, post, web, Responder, Result as WebResult};
-use casbin::Enforcer;
+use data_encoding::BASE64_NOPAD;
 use diesel::Connection as DieselConnection;
 use futures_util::StreamExt;
 use petunia::{
-    graphql::Resource, jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool,
-    rbac::v1 as rbac_v1, s3::Client as S3, session::Session, try_web, Error, Result,
+    graphql::Resource,
+    jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
+    orm::postgresql::Pool as DbPool,
+    s3::Client as S3,
+    session::Session,
+    try_web, Error, Result,
 };
-use serde::Deserialize;
-use tokio::sync::Mutex;
+use serde::{Deserialize, Serialize};
 
 use super::super::{
-    graphql::NAME,
-    models::{
-        attachment::{Dao as AttachmentDao, Item as Attachment},
-        user::Item as User,
-    },
+    models::attachment::{Dao as AttachmentDao, Item as Attachment},
     session::current_user,
+    NAME,
 };
 
 #[derive(Debug, Deserialize)]
-pub struct Metadata {
-    pub resource: Resource,
-    pub public: bool,
-    pub expiration_days: Option<usize>,
+struct Metadata {
+    resource: Resource,
+    public: bool,
+    expiration_days: Option<usize>,
 }
 
 #[derive(Debug, MultipartForm)]
-pub struct UploadForm {
+struct UploadForm {
     #[multipart(limit = "512MB")]
-    pub file: TempFile,
-    pub json: MPJson<Metadata>,
+    file: TempFile,
+    json: MPJson<Metadata>,
 }
 
 #[post("/")]
@@ -107,26 +108,63 @@ impl UploadForm {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct Subject {
+    bucket: String,
+    object: String,
+}
+
+impl fmt::Display for Subject {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let s = {
+            let buf = flexbuffers::to_vec(self).map_err(|e| {
+                log::error!("{:?}", e);
+                fmt::Error
+            })?;
+            BASE64_NOPAD.encode(&buf)
+        };
+        write!(f, "{}", s)
+    }
+}
+
+impl FromStr for Subject {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        let buf = BASE64_NOPAD.decode(s.as_bytes())?;
+        let it = flexbuffers::from_slice(&buf[..])?;
+        Ok(it)
+    }
+}
+
+impl Subject {
+    pub const AUDIENCE: &str = "attachment.show";
+}
+
 #[get("/{token}")]
 pub async fn show(
-    ss: Session,
     db: web::Data<DbPool>,
     jwt: web::Data<Jwt>,
     s3: web::Data<S3>,
-    enforcer: web::Data<Mutex<Enforcer>>,
-    params: web::Path<(String, String, String)>,
+    params: web::Path<(String,)>,
 ) -> WebResult<impl Responder> {
-    let (resource, bucket, object) = params.into_inner();
+    let subject: Subject = {
+        let (token,) = params.into_inner();
+        let jwt = jwt.deref();
+        let jwt = jwt.deref();
+        let it = try_web!(jwt.verify(&token, Subject::AUDIENCE))?;
+        try_web!(it.parse())?
+    };
+
     let mut db = try_web!(db.get())?;
     let db = db.deref_mut();
-    let jwt = jwt.deref();
-    let jwt = jwt.deref();
-    let enf = enforcer.deref();
-    let enf = enf.deref();
-    let (_, user) = try_web!(current_user(&ss, db, jwt))?;
-    let item = try_web!(AttachmentDao::by_bucket_and_object(db, &bucket, &object))?;
 
-    try_web!(item.can_view(enf, &user, &resource).await)?;
+    let item = try_web!(AttachmentDao::by_bucket_and_object(
+        db,
+        &subject.bucket,
+        &subject.object
+    ))?;
+
     let tmp = try_web!(item.download(&s3).await)?;
 
     let content_type = try_web!(item.content_type.parse())?;
@@ -150,19 +188,14 @@ impl Attachment {
         }
         Ok(tmp)
     }
-
-    pub async fn can_view(&self, enf: &Mutex<Enforcer>, user: &User, resource: &str) -> Result<()> {
-        if user.id == self.user_id {
-            return Ok(());
+    pub fn token(&self, jwt: &Jwt, years: i32) -> Result<String> {
+        let (nbf, exp) = Jwt::years(years)?;
+        let subject = Subject {
+            bucket: self.bucket.clone(),
+            object: self.object.clone(),
         }
-        let resource = rbac_v1::policy_permissions_response::item::Resource::from_str(resource)?;
-        let mut enf = enf.lock().await;
-        let enf = enf.deref_mut();
-        user.can(
-            enf,
-            &rbac_v1::policy_permissions_response::item::Operation::read(),
-            &resource,
-        )?;
-        Ok(())
+        .to_string();
+        let it = jwt.sign(&subject, Subject::AUDIENCE, nbf, exp)?;
+        Ok(it)
     }
 }

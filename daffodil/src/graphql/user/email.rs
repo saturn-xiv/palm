@@ -36,8 +36,8 @@ use super::super::super::{
         },
     },
     session::current_user,
+    NAME,
 };
-use super::super::NAME;
 use super::{SignInResponse, UserAction};
 
 #[derive(GraphQLInputObject, Validate)]

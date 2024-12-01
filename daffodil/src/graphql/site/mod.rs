@@ -44,6 +44,7 @@ use super::super::{
         },
     },
     session::current_user,
+    NAME,
 };
 use super::user::CurrentUser;
 
@@ -278,7 +279,7 @@ impl Install {
             LogDao::create::<_, EmailUser>(
                 db,
                 user.id,
-                super::NAME,
+                NAME,
                 LogLevel::Info,
                 client_ip,
                 None,

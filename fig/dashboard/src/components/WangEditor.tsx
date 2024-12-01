@@ -6,6 +6,8 @@ import type { MessageInstance } from "antd/es/message/interface";
 
 import "@wangeditor/editor/dist/css/style.css";
 
+import { get as get_token } from "../reducers/current-user";
+
 export const EDITOR = "WANG";
 
 interface IProps {
@@ -15,6 +17,7 @@ interface IProps {
 }
 
 const Widget = ({ html, handleChange, messageApi }: IProps) => {
+  const token = get_token();
   const intl = useIntl();
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
@@ -30,6 +33,9 @@ const Widget = ({ html, handleChange, messageApi }: IProps) => {
         maxNumberOfFiles: 10,
         allowedFileTypes: ["image/*"],
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         // 20s
         timeout: 20 * 1000,
         onSuccess(file: File) {
@@ -56,24 +62,27 @@ const Widget = ({ html, handleChange, messageApi }: IProps) => {
         maxNumberOfFiles: 3,
         allowedFileTypes: ["video/*"],
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         // 20s
         timeout: 20 * 1000,
-      },
-      onSuccess(file: File) {
-        messageApi.success(
-          intl.formatMessage(
-            { id: "components.wang-editor.upload.succeed" },
-            { name: file.name }
-          )
-        );
-      },
-      onError(file: File) {
-        messageApi.success(
-          intl.formatMessage(
-            { id: "components.wang-editor.upload.succeed" },
-            { name: file.name }
-          )
-        );
+        onSuccess(file: File) {
+          messageApi.success(
+            intl.formatMessage(
+              { id: "components.wang-editor.upload.succeed" },
+              { name: file.name }
+            )
+          );
+        },
+        onError(file: File) {
+          messageApi.success(
+            intl.formatMessage(
+              { id: "components.wang-editor.upload.succeed" },
+              { name: file.name }
+            )
+          );
+        },
       },
     },
   };

@@ -10,5 +10,3 @@ pub mod session;
 pub mod site;
 pub mod tag;
 pub mod user;
-
-pub const NAME: &str = env!("CARGO_PKG_NAME");
