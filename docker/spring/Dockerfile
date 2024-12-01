@@ -8,7 +8,7 @@ RUN pacman -Syu --noconfirm
 RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     bzip2 bzip3 p7zip unarchiver \
     vim git cmake thrift capnproto wget zsh man-db man-pages \
-    pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio \
+    pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio net-tools bind-tools \
     clang llvm lld lldb mold bison flex ninja bazel \
     imagemagick ffmpeg xorg-font-util \
     wqy-bitmapfont wqy-microhei wqy-zenhei \
@@ -294,7 +294,7 @@ RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
     && sudo rabbitmq-plugins enable rabbitmq_mqtt \
     && sudo rabbitmq-plugins enable rabbitmq_management
 
-RUN cd /usr && mariadb-install-db --datadir=/var/lib/mysql --user=mysql
+RUN cd /usr && sudo mariadb-install-db --datadir=/var/lib/mysql --user=mysql
 
 RUN sudo -s -u postgres /usr/bin/initdb -D /var/lib/postgres/data
 RUN echo "listen_addresses = '0.0.0.0'" | sudo tee -a /var/lib/postgres/data/postgresql.conf \
@@ -304,13 +304,12 @@ RUN echo "listen_addresses = '0.0.0.0'" | sudo tee -a /var/lib/postgres/data/pos
 
 ADD etc/redis/* /etc/redis/
 RUN sudo mkdir -p /var/lib/redis \
-    && cd /var/lib/redis \
-    && sudo mkdir single node-1 node-2 node-3 node-4 node-5 node-6 \
+    && sudo mkdir /var/lib/redis/single /var/lib/redis/node-1 /var/lib/redis/node-2 /var/lib/redis/node-3 /var/lib/redis/node-4 /var/lib/redis/node-5 /var/lib/redis/node-6 \
     && sudo chown -R redis:redis /var/lib/redis \
     && sudo chmod 750 /var/lib/redis
 
 RUN sudo mkdir -p /var/www/html \
-    && echo "<?php phpinfo(); ?>" | tee /var/www/html/info.php \
+    && echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php \
     && echo "daemon off;" | sudo tee -a /etc/nginx/nginx.conf \
     && sudo sed -i '35,79d' /etc/nginx/nginx.conf \
     && sudo sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf \
@@ -350,7 +349,9 @@ RUN mkdir -p $HOME/.ssh \
     && echo 'UseDNS no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'PasswordAuthentication no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'PermitRootLogin no' | sudo tee -a /etc/ssh/sshd_config \
-    && echo 'AllowUsers deploy' | sudo tee -a /etc/ssh/sshd_config
+    && echo 'AllowUsers deploy' | sudo tee -a /etc/ssh/sshd_config \
+    && echo 'PrintLastLog no' | sudo tee -a /etc/ssh/sshd_config \
+    && sudo /usr/bin/ssh-keygen -A
 
 ADD etc/envoy.yaml /etc/
 RUN sudo mkdir -p /var/log/envoy
