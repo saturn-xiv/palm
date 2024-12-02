@@ -1,5 +1,47 @@
 import { IPager, IPagination, ISucceed, query } from ".";
-import { IPostalAddress, IPostalRecipient } from "./daffodil";
+import {
+  IPostalAddress,
+  IPostalAddressFormValue,
+  IPostalRecipient,
+  IPostalRecipientFormValue,
+} from "./daffodil";
+
+const SET_MERCHANT_CONTACT = `
+mutation call($id: Int!, $form: PostalRecipientForm!){
+    setBookkeepingMerchantContact(id: $id, form: $form){
+      createdAt
+    }
+}
+`;
+
+export const set_merchant_contact = async (
+  id: number,
+  form: IPostalRecipientFormValue
+): Promise<ISucceed> => {
+  const res: { setBookkeepingMerchantContact: ISucceed } = await query(
+    SET_MERCHANT_CONTACT,
+    { id, form }
+  );
+  return res.setBookkeepingMerchantContact;
+};
+const SET_MERCHANT_ADDRESS = `
+mutation call($id: Int!, $form: PostalAddressForm!){
+    setBookkeepingMerchantAddress(id: $id, form: $form){
+      createdAt
+    }
+}
+`;
+
+export const set_merchant_address = async (
+  id: number,
+  form: IPostalAddressFormValue
+): Promise<ISucceed> => {
+  const res: { setBookkeepingMerchantAddress: ISucceed } = await query(
+    SET_MERCHANT_ADDRESS,
+    { id, form }
+  );
+  return res.setBookkeepingMerchantAddress;
+};
 
 const CREATE_MERCHANT = `
 mutation call($ledger: Int!, $label: String!, $memo: String!){

@@ -5,25 +5,24 @@ wang-editor:
 postal:
   recipient-form:
     title: "Recipient"
-    wechat:
-      label: "WeChat"
   address-form:
     title: "Address"
-    unit:
-      label: "Unit"
-    building:
-      label: "Building"
-    street:
-      label: "Street"
-    city:
-      label: "City"
-    province:
-      label: "Province/State"
-    country:
-      label: "Country/Region"
-    zip-code:
-      label: "Zip"
-    passcode:
-      label: "Passcode for access"
-    google-map:
-      label: "Google map"
+    fields:
+      unit:
+        label: "Unit"
+      building:
+        label: "Building"
+      street:
+        label: "Street"
+      city:
+        label: "City"
+      province:
+        label: "Province/State"
+      country:
+        label: "Country/Region"
+      zip-code:
+        label: "Zip"
+      passcode:
+        label: "Passcode for access"
+      google-map:
+        label: "Google map"

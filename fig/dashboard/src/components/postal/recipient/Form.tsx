@@ -4,7 +4,10 @@ import { Button, Form } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import type { MessageInstance } from "antd/es/message/interface";
 
-import { IPostalRecipient } from "../../../api/daffodil";
+import {
+  IPostalRecipient,
+  IPostalRecipientFormValue,
+} from "../../../api/daffodil";
 import { IError } from "../../../api";
 import {
   EMAIL_MAX_LENGTH,
@@ -16,18 +19,9 @@ import {
 interface IProps {
   item?: IPostalRecipient;
   messageApi: MessageInstance;
-  handleSave: (it: IFormValue) => Promise<void>;
+  handleSave: (it: IPostalRecipientFormValue) => Promise<void>;
   handleReload: () => void;
   title: string;
-}
-
-interface IFormValue {
-  name: string;
-  email?: string;
-  phone?: string;
-  fax?: string;
-  whatsapp?: string;
-  wechat?: string;
 }
 
 const Widget = ({
@@ -37,20 +31,18 @@ const Widget = ({
   handleSave,
   handleReload,
 }: IProps) => {
-  const [form] = Form.useForm<IFormValue>();
+  const [form] = Form.useForm<IPostalRecipientFormValue>();
   const intl = useIntl();
 
   return (
-    <ModalForm<IFormValue>
+    <ModalForm<IPostalRecipientFormValue>
       title={title}
       trigger={
         <Button
           icon={item ? <EditOutlined /> : <PlusOutlined />}
           size="small"
           type="dashed"
-        >
-          <FormattedMessage id={`buttons.${item ? "edit" : "new"}`} />
-        </Button>
+        />
       }
       form={form}
       autoFocusFirstInput
@@ -100,10 +92,7 @@ const Widget = ({
       <ProFormText
         name="fax"
         label={<FormattedMessage id="form.fields.fax.label" />}
-        rules={[
-          { required: true },
-          { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH },
-        ]}
+        rules={[{ min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH }]}
       />
       <ProFormText
         name="email"

@@ -4,8 +4,8 @@ use casbin::Enforcer;
 use chrono::NaiveDateTime;
 use daffodil::{
     models::postal::{
-        address::{Dao as AddressDao, Item as Address},
-        recipient::{Dao as RecipientDao, Item as Recipient},
+        address::{Dao as AddressDao, Form as AddressForm, Item as Address},
+        recipient::{Dao as RecipientDao, Form as RecipientForm, Item as Recipient},
     },
     session::current_user,
 };
@@ -20,8 +20,11 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
+use crate::models::log::Action;
+
 use super::super::models::{
     ledger::Dao as LedgerDao,
+    log::Dao as LogDao,
     merchant::{Dao as MerchantDao, Item as Merchant},
 };
 
@@ -91,18 +94,27 @@ pub async fn disable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = MerchantDao::by_id(db, id)?;
 
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = MerchantDao::by_id(db, id)?;
-        {
-            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
-            ledger.can_append(&user, enforcer).await?;
-        }
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         MerchantDao::disable(db, id)?;
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::DisableMerchant,
+                &format!("disable merchant {}({})", it.label, it.id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -118,17 +130,27 @@ pub async fn enable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = MerchantDao::by_id(db, id)?;
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = MerchantDao::by_id(db, id)?;
-        {
-            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
-            ledger.can_append(&user, enforcer).await?;
-        }
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         MerchantDao::enable(db, id)?;
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::EnableMerchant,
+                &format!("disable merchant {}({})", it.label, it.id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -155,14 +177,26 @@ impl Form {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
+
+        let (si, user) = current_user(ss, db, jwt)?;
         {
-            let (_, user) = current_user(ss, db, jwt)?;
             let ledger = LedgerDao::by_id(db, ledger)?;
             ledger.can_append(&user, enforcer).await?;
         }
 
         db.transaction::<_, Error, _>(|db| {
-            MerchantDao::create(db, ledger, &self.label, &self.memo)?;
+            let id = MerchantDao::create(db, ledger, &self.label, &self.memo)?;
+            LogDao::create(
+                db,
+                ledger,
+                (user.id, &si.to_string()),
+                (
+                    Action::DisableMerchant,
+                    &format!("create merchant {} {}({})", self.label, self.memo, id),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
             Ok(())
         })?;
         Ok(())
@@ -178,16 +212,126 @@ impl Form {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
+
+        let (si, user) = current_user(ss, db, jwt)?;
+        let it = MerchantDao::by_id(db, id)?;
         {
-            let (_, user) = current_user(ss, db, jwt)?;
-            let it = MerchantDao::by_id(db, id)?;
             let ledger = LedgerDao::by_id(db, it.ledger_id)?;
             ledger.can_append(&user, enforcer).await?;
         }
         db.transaction::<_, Error, _>(|db| {
             MerchantDao::set_details(db, id, &self.label, &self.memo)?;
+            LogDao::create(
+                db,
+                it.ledger_id,
+                (user.id, &si.to_string()),
+                (
+                    Action::DisableMerchant,
+                    &format!("update merchant({}) =>{} {}", id, self.label, self.memo),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
             Ok(())
         })?;
         Ok(())
     }
+}
+
+pub async fn set_contact(
+    ss: &Session,
+    db: &DbPool,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    id: i32,
+    form: &RecipientForm,
+) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = MerchantDao::by_id(db, id)?;
+
+    {
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
+    }
+
+    db.transaction::<_, Error, _>(|db| {
+        MerchantDao::disable(db, id)?;
+        match it.contact {
+            Some(contact) => {
+                RecipientDao::update(db, contact, form)?;
+            }
+            None => {
+                let rid = RecipientDao::create(db, form)?;
+                MerchantDao::set_contact(db, id, rid)?;
+            }
+        }
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::UpdateMerchant,
+                &format!(
+                    "update merchant {}({})'s contact {:?}",
+                    it.label, it.id, form
+                ),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
+        Ok(())
+    })?;
+
+    Ok(())
+}
+
+pub async fn set_address(
+    ss: &Session,
+    db: &DbPool,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    id: i32,
+    form: &AddressForm,
+) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = MerchantDao::by_id(db, id)?;
+
+    {
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
+    }
+
+    db.transaction::<_, Error, _>(|db| {
+        MerchantDao::disable(db, id)?;
+        match it.address {
+            Some(address) => {
+                AddressDao::update(db, address, form)?;
+            }
+            None => {
+                let aid = AddressDao::create(db, form)?;
+                MerchantDao::set_address(db, id, aid)?;
+            }
+        }
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::UpdateMerchant,
+                &format!(
+                    "update merchant {}({})'s address {:?}",
+                    it.label, it.id, form
+                ),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
+        Ok(())
+    })?;
+
+    Ok(())
 }

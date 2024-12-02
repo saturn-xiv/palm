@@ -1131,6 +1131,29 @@ impl Mutation {
         form.update(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
+    async fn set_bookkeeping_merchant_contact(
+        context: &Context,
+        id: i32,
+        form: daffodil::models::postal::recipient::Form,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::merchant::set_contact(&context.session, db, jwt, enf, id, &form).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn set_bookkeeping_merchant_address(
+        context: &Context,
+        id: i32,
+        form: daffodil::models::postal::address::Form,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::merchant::set_address(&context.session, db, jwt, enf, id, &form).await?;
+        Ok(Succeed::default())
+    }
     async fn enable_bookkeeping_merchant(context: &Context, id: i32) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();

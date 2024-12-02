@@ -4,29 +4,16 @@ import { Button, Form } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import type { MessageInstance } from "antd/es/message/interface";
 
-import { IPostalAddress } from "../../../api/daffodil";
+import { IPostalAddress, IPostalAddressFormValue } from "../../../api/daffodil";
 import { IError } from "../../../api";
 import { URL_MAX_LENGTH, URL_MIN_LENGTH } from "../..";
 
 interface IProps {
   item?: IPostalAddress;
   messageApi: MessageInstance;
-  handleSave: (it: IFormValue) => Promise<void>;
+  handleSave: (it: IPostalAddressFormValue) => Promise<void>;
   handleReload: () => void;
   title: string;
-}
-
-interface IFormValue {
-  unit?: string;
-  building?: string;
-  street: string;
-  city: string;
-  province: string;
-  country: string;
-  zipCode: string;
-  passcode?: string;
-  googleMap?: string;
-  aMap?: string;
 }
 
 const Widget = ({
@@ -36,20 +23,18 @@ const Widget = ({
   handleSave,
   handleReload,
 }: IProps) => {
-  const [form] = Form.useForm<IFormValue>();
+  const [form] = Form.useForm<IPostalAddressFormValue>();
   const intl = useIntl();
 
   return (
-    <ModalForm<IFormValue>
+    <ModalForm<IPostalAddressFormValue>
       title={title}
       trigger={
         <Button
           icon={item ? <EditOutlined /> : <PlusOutlined />}
           size="small"
           type="dashed"
-        >
-          <FormattedMessage id={`buttons.${item ? "edit" : "new"}`} />
-        </Button>
+        />
       }
       form={form}
       autoFocusFirstInput
@@ -90,63 +75,63 @@ const Widget = ({
       <ProFormText
         name="unit"
         label={
-          <FormattedMessage id="components.address-form.fields.unit.label" />
+          <FormattedMessage id="components.postal.address-form.fields.unit.label" />
         }
         rules={[{ min: 1, max: 7 }]}
       />
       <ProFormText
         name="building"
         label={
-          <FormattedMessage id="components.address-form.fields.building.label" />
+          <FormattedMessage id="components.postal.address-form.fields.building.label" />
         }
         rules={[{ min: 1, max: 31 }]}
       />
       <ProFormText
         name="street"
         label={
-          <FormattedMessage id="components.address-form.fields.street.label" />
+          <FormattedMessage id="components.postal.address-form.fields.street.label" />
         }
         rules={[{ required: true }, { min: 1, max: 127 }]}
       />
       <ProFormText
         name="city"
         label={
-          <FormattedMessage id="components.address-form.fields.city.label" />
+          <FormattedMessage id="components.postal.address-form.fields.city.label" />
         }
         rules={[{ required: true }, { min: 1, max: 127 }]}
       />
       <ProFormText
         name="province"
         label={
-          <FormattedMessage id="components.address-form.fields.province.label" />
+          <FormattedMessage id="components.postal.address-form.fields.province.label" />
         }
         rules={[{ required: true }, { min: 1, max: 127 }]}
       />
       <ProFormText
         name="country"
         label={
-          <FormattedMessage id="components.address-form.fields.country.label" />
+          <FormattedMessage id="components.postal.address-form.fields.country.label" />
         }
         rules={[{ required: true }, { min: 1, max: 127 }]}
       />
       <ProFormText
         name="zipCode"
         label={
-          <FormattedMessage id="components.address-form.fields.zip-code.label" />
+          <FormattedMessage id="components.postal.address-form.fields.zip-code.label" />
         }
         rules={[{ required: true }, { min: 1, max: 15 }]}
       />
       <ProFormText
         name="passcode"
         label={
-          <FormattedMessage id="components.address-form.fields.passcode.label" />
+          <FormattedMessage id="components.postal.address-form.fields.passcode.label" />
         }
         rules={[{ min: 1, max: 15 }]}
       />
       <ProFormText
         name="googleMap"
         label={
-          <FormattedMessage id="components.address-form.fields.google-map.label" />
+          <FormattedMessage id="components.postal.address-form.fields.google-map.label" />
         }
         rules={[{ min: URL_MIN_LENGTH, max: URL_MAX_LENGTH }]}
       />

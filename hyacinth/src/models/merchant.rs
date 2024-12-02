@@ -21,7 +21,7 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn create(&mut self, ledger: i32, label: &str, memo: &str) -> Result<()>;
+    fn create(&mut self, ledger: i32, label: &str, memo: &str) -> Result<i32>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>>;
     fn set_details(&mut self, id: i32, label: &str, memo: &str) -> Result<()>;
@@ -32,17 +32,18 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn create(&mut self, ledger: i32, label: &str, memo: &str) -> Result<()> {
+    fn create(&mut self, ledger: i32, label: &str, memo: &str) -> Result<i32> {
         let now = Utc::now().naive_utc();
-        insert_into(bookkeeper_merchants::dsl::bookkeeper_merchants)
+        let id = insert_into(bookkeeper_merchants::dsl::bookkeeper_merchants)
             .values((
                 bookkeeper_merchants::dsl::ledger_id.eq(ledger),
                 bookkeeper_merchants::dsl::label.eq(label),
                 bookkeeper_merchants::dsl::memo.eq(memo),
                 bookkeeper_merchants::dsl::updated_at.eq(now),
             ))
-            .execute(self)?;
-        Ok(())
+            .returning(bookkeeper_merchants::dsl::id)
+            .get_result(self)?;
+        Ok(id)
     }
     fn by_id(&mut self, id: i32) -> Result<Item> {
         let it = bookkeeper_merchants::dsl::bookkeeper_merchants

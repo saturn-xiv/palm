@@ -1377,6 +1377,14 @@ export const index_locale_by_lang = async (
   return res.indexLocaleByLang;
 };
 
+export interface IPostalRecipientFormValue {
+  name: string;
+  email?: string;
+  phone?: string;
+  fax?: string;
+  whatsapp?: string;
+  wechat?: string;
+}
 export interface IPostalRecipient {
   id: number;
   name: string;
@@ -1387,6 +1395,19 @@ export interface IPostalRecipient {
   wechat?: string;
   deletedAt?: Date;
   updatedAt: Date;
+}
+
+export interface IPostalAddressFormValue {
+  unit?: string;
+  building?: string;
+  street: string;
+  city: string;
+  province: string;
+  country: string;
+  zipCode: string;
+  passcode?: string;
+  googleMap?: string;
+  aMap?: string;
 }
 export interface IPostalAddress {
   id: number;

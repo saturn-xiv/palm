@@ -103,5 +103,11 @@ fields:
     label: "Theme"
   action:
     label: "Action"
+  fax:
+    label: "Fax"
+  phone:
+    label: "Phone number"
+  wechat:
+    label: "WeChat"
 placeholder:
   type-here: "Type here..."

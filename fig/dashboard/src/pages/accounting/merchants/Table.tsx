@@ -1,5 +1,5 @@
 import { Space, Table, Typography } from "antd";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { useCallback, useEffect, useState } from "react";
 import type { MessageInstance } from "antd/es/message/interface";
 
@@ -8,11 +8,19 @@ import {
   ILedger,
   IMerchant,
   index_merchant_by_ledger,
+  set_merchant_address,
+  set_merchant_contact,
 } from "../../../api/hyacinth";
 import Memo from "../../../components/Memo";
 import Form from "./Form";
 import ShowAddress from "../../../components/postal/address/Show";
 import ShowRecipient from "../../../components/postal/recipient/Show";
+import SetAddress from "../../../components/postal/address/Form";
+import SetRecipient from "../../../components/postal/recipient/Form";
+import {
+  IPostalAddressFormValue,
+  IPostalRecipientFormValue,
+} from "../../../api/daffodil";
 
 interface IProps {
   ledger: ILedger;
@@ -20,6 +28,7 @@ interface IProps {
 }
 
 const Widget = ({ ledger, messageApi }: IProps) => {
+  const intl = useIntl();
   const [items, setItems] = useState<IMerchant[]>([]);
 
   const handleRefresh = useCallback(
@@ -71,15 +80,44 @@ const Widget = ({ ledger, messageApi }: IProps) => {
         {
           title: <FormattedMessage id="components.postal.address-form.title" />,
           key: "address",
-          render: (_, { address }) => address && <ShowAddress item={address} />,
+          render: (_, { id, address }) => (
+            <Space>
+              {address && <ShowAddress item={address} />}
+              <SetAddress
+                title={intl.formatMessage({
+                  id: "pages.accounting.merchants.set-contact.title",
+                })}
+                item={address}
+                messageApi={messageApi}
+                handleReload={() => handleRefresh(ledger.id)}
+                handleSave={async (values: IPostalAddressFormValue) => {
+                  await set_merchant_address(id, values);
+                }}
+              />
+            </Space>
+          ),
         },
         {
           title: (
             <FormattedMessage id="components.postal.recipient-form.title" />
           ),
           key: "contact",
-          render: (_, { contact }) =>
-            contact && <ShowRecipient item={contact} />,
+          render: (_, { id, contact }) => (
+            <Space>
+              {contact && <ShowRecipient item={contact} />}
+              <SetRecipient
+                title={intl.formatMessage({
+                  id: "pages.accounting.merchants.set-contact.title",
+                })}
+                item={contact}
+                messageApi={messageApi}
+                handleReload={() => handleRefresh(ledger.id)}
+                handleSave={async (values: IPostalRecipientFormValue) => {
+                  await set_merchant_contact(id, values);
+                }}
+              />
+            </Space>
+          ),
         },
         {
           title: <FormattedMessage id="form.fields.updated-at.label" />,

@@ -5,7 +5,6 @@ use diesel::{insert_into, prelude::*};
 use petunia::{orm::postgresql::Connection, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
-use uuid::Uuid;
 
 use super::super::schema::bookkeeper_logs;
 
@@ -30,8 +29,16 @@ pub struct Item {
 pub enum Action {
     #[default]
     CreateTransaction,
+
     UpdateLedge,
     CreateLedge,
+    DisableLedge,
+    EnableLedge,
+
+    CreateMerchant,
+    UpdateMerchant,
+    DisableMerchant,
+    EnableMerchant,
 }
 
 pub trait Dao {
@@ -41,7 +48,7 @@ pub trait Dao {
         user: (i32, &str),
         details: (Action, &str, Option<&str>),
         ip: &str,
-    ) -> Result<String>;
+    ) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn count_by_ledger(&mut self, ledger: i32) -> Result<i64>;
     fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
@@ -54,9 +61,7 @@ impl Dao for Connection {
         (user_id, username): (i32, &str),
         (action, memo, reason): (Action, &str, Option<&str>),
         ip: &str,
-    ) -> Result<String> {
-        let uid = Uuid::new_v4().to_string();
-
+    ) -> Result<()> {
         match reason {
             Some(reason) => {
                 insert_into(bookkeeper_logs::dsl::bookkeeper_logs)
@@ -85,7 +90,7 @@ impl Dao for Connection {
             }
         }
 
-        Ok(uid)
+        Ok(())
     }
     fn by_id(&mut self, id: i32) -> Result<Item> {
         let it = bookkeeper_logs::dsl::bookkeeper_logs

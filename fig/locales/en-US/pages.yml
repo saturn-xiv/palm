@@ -185,6 +185,10 @@ accounting:
       title: "Merchants"
     new:
       title: "Create a new merchant"
+    set-contact:
+      title: "Set contact"
+    set-address:
+      title: "Set address"
   ledgers:
     index:
       title: "Ledgers"

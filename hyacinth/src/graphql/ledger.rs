@@ -88,14 +88,24 @@ pub async fn disable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
-    let (_, user) = current_user(ss, db, jwt)?;
-    {
-        let it = LedgerDao::by_id(db, id)?;
-        it.can_write(&user, enforcer).await?;
-    }
+    let (si, user) = current_user(ss, db, jwt)?;
+
+    let it = LedgerDao::by_id(db, id)?;
+    it.can_write(&user, enforcer).await?;
 
     db.transaction::<_, Error, _>(|db| {
         LedgerDao::disable(db, id)?;
+        LogDao::create(
+            db,
+            it.id,
+            (user.id, &si.to_string()),
+            (
+                Action::DisableLedge,
+                &format!("disable {}({})", it.label, id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -111,14 +121,24 @@ pub async fn enable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
-    let (_, user) = current_user(ss, db, jwt)?;
-    {
-        let it = LedgerDao::by_id(db, id)?;
-        it.can_write(&user, enforcer).await?;
-    }
+    let (si, user) = current_user(ss, db, jwt)?;
+
+    let it = LedgerDao::by_id(db, id)?;
+    it.can_write(&user, enforcer).await?;
 
     db.transaction::<_, Error, _>(|db| {
         LedgerDao::enable(db, id)?;
+        LogDao::create(
+            db,
+            id,
+            (user.id, &si.to_string()),
+            (
+                Action::EnableLedge,
+                &format!("enable {}({})", it.label, id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
