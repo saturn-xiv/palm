@@ -6,6 +6,67 @@ import {
   IPostalRecipientFormValue,
 } from "./daffodil";
 
+export interface ICategory {
+  id: number;
+  parent?: string;
+  label: string;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+
+const INDEX_CATEGORY = `
+query call($id: Int!){
+    indexBookkeepingCategoryByLedger(id: $id){
+      id, parent, label, updatedAt, deletedAt
+    }
+}
+`;
+export const index_category_by_ledger = async (
+  id: number
+): Promise<ICategory[]> => {
+  const res: { indexBookkeepingCategoryByLedger: ICategory[] } = await query(
+    INDEX_CATEGORY,
+    { id }
+  );
+  return res.indexBookkeepingCategoryByLedger;
+};
+
+const UPDATE_CATEGORY = `
+mutation call($id: Int!, $label: String!){
+    updateBookkeepingCategory(id: $id, label: $label){
+      createdAt
+    }
+}
+`;
+export const update_category = async (
+  id: number,
+  label: string
+): Promise<ISucceed> => {
+  const res: { updateBookkeepingCategory: ISucceed } = await query(
+    UPDATE_CATEGORY,
+    { id, label }
+  );
+  return res.updateBookkeepingCategory;
+};
+const CREATE_CATEGORY = `
+mutation call($ledger: Int!, $parent: Int, $label: String!){
+    createBookkeepingCategory(ledger: $ledger, parent: $parent, label: $label){
+      createdAt
+    }
+}
+`;
+export const create_category = async (
+  ledger: number,
+  label: string,
+  parent?: number
+): Promise<ISucceed> => {
+  const res: { createBookkeepingCategory: ISucceed } = await query(
+    CREATE_CATEGORY,
+    { ledger, parent, label }
+  );
+  return res.createBookkeepingCategory;
+};
+
 const SET_MERCHANT_CONTACT = `
 mutation call($id: Int!, $form: PostalRecipientForm!){
     setBookkeepingMerchantContact(id: $id, form: $form){

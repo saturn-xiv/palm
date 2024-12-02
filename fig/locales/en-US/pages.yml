@@ -189,6 +189,11 @@ accounting:
       title: "Set contact"
     set-address:
       title: "Set address"
+  categories:
+    index:
+      title: "Categories"
+    new:
+      title: "Create a new category"
   ledgers:
     index:
       title: "Ledgers"

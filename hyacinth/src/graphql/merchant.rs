@@ -20,11 +20,9 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
-use crate::models::log::Action;
-
 use super::super::models::{
     ledger::Dao as LedgerDao,
-    log::Dao as LogDao,
+    log::{Action, Dao as LogDao},
     merchant::{Dao as MerchantDao, Item as Merchant},
 };
 

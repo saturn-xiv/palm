@@ -96,7 +96,7 @@ const Widget = () => {
               label: (
                 <FormattedMessage id="pages.accounting.ledgers.tabs.categories.title" />
               ),
-              children: <Categories />,
+              children: <Categories ledger={item} messageApi={messageApi} />,
             },
             {
               key: "transactions",

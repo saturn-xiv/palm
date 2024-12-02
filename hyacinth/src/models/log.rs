@@ -39,6 +39,11 @@ pub enum Action {
     UpdateMerchant,
     DisableMerchant,
     EnableMerchant,
+
+    CreateCategory,
+    UpdateCategory,
+    DisableCategory,
+    EnableCategory,
 }
 
 pub trait Dao {
