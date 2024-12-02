@@ -1,4 +1,74 @@
 import { IPager, IPagination, ISucceed, query } from ".";
+import { IPostalAddress, IPostalRecipient } from "./daffodil";
+
+const CREATE_MERCHANT = `
+mutation call($ledger: Int!, $label: String!, $memo: String!){
+    createBookkeepingMerchant(ledger: $ledger, label: $label, memo: $memo){
+      createdAt
+    }
+}
+`;
+
+export const create_merchant = async (
+  ledger: number,
+  label: string,
+  memo: string
+): Promise<ISucceed> => {
+  const res: { createBookkeepingMerchant: ISucceed } = await query(
+    CREATE_MERCHANT,
+    { ledger, label, memo }
+  );
+  return res.createBookkeepingMerchant;
+};
+
+const UPDATE_MERCHANT = `
+mutation call($id: Int!, $label: String!, $memo: String!){
+    updateBookkeepingMerchant(id: $id, label: $label, memo: $memo){
+      createdAt
+    }
+}
+`;
+
+export const update_merchant = async (
+  id: number,
+  label: string,
+  memo: string
+): Promise<ISucceed> => {
+  const res: { updateBookkeepingMerchant: ISucceed } = await query(
+    UPDATE_MERCHANT,
+    { id, label, memo }
+  );
+  return res.updateBookkeepingMerchant;
+};
+
+const INDEX_MERCHANT_BY_LEDGER = `
+query call($id: Int!){
+    indexBookkeepingMerchantByLedger(id: $id){
+      id, label, memo, deletedAt, updatedAt,
+      contact{id, name, email, fax, phone, whatsapp, wechat, updatedAt, deletedAt},
+      address{id, unit, building, street, city, province, country, passcode, zipCode, updatedAt, deletedAt}
+    }
+}
+`;
+export interface IMerchant {
+  id: number;
+  label: string;
+  memo: string;
+  contact?: IPostalRecipient;
+  address?: IPostalAddress;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+
+export const index_merchant_by_ledger = async (
+  id: number
+): Promise<IMerchant[]> => {
+  const res: { indexBookkeepingMerchantByLedger: IMerchant[] } = await query(
+    INDEX_MERCHANT_BY_LEDGER,
+    { id }
+  );
+  return res.indexBookkeepingMerchantByLedger;
+};
 
 const INDEX_LOG_BY_LEDGER = `
 query call($id: Int!, $pager: Pager!){

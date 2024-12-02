@@ -1376,3 +1376,30 @@ export const index_locale_by_lang = async (
   } = await query(INDEX_LOCALE_BY_LANG, { lang });
   return res.indexLocaleByLang;
 };
+
+export interface IPostalRecipient {
+  id: number;
+  name: string;
+  email?: string;
+  phone?: string;
+  fax?: string;
+  whatsapp?: string;
+  wechat?: string;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+export interface IPostalAddress {
+  id: number;
+  unit?: string;
+  building?: string;
+  street: string;
+  city: string;
+  province: string;
+  country: string;
+  zipCode: string;
+  passcode: string;
+  googleMap?: string;
+  aMap?: string;
+  deletedAt?: Date;
+  updatedAt: Date;
+}

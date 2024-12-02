@@ -2,11 +2,20 @@ use std::ops::DerefMut;
 
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
-use daffodil::session::current_user;
+use daffodil::{
+    models::postal::{
+        address::{Dao as AddressDao, Item as Address},
+        recipient::{Dao as RecipientDao, Item as Recipient},
+    },
+    session::current_user,
+};
 use diesel::Connection as DieselConnection;
 use juniper::GraphQLObject;
 use petunia::{
-    jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool, session::Session, Error, Result,
+    jwt::openssl::OpenSsl as Jwt,
+    orm::postgresql::{Connection as Db, Pool as DbPool},
+    session::Session,
+    Error, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -23,26 +32,32 @@ pub struct Item {
     pub ledger_id: i32,
     pub label: String,
     pub memo: String,
-    pub contact: Option<String>,
+    pub address: Option<Address>,
+    pub contact: Option<Recipient>,
     pub deleted_at: Option<NaiveDateTime>,
     pub updated_at: NaiveDateTime,
 }
 
-impl From<Merchant> for Item {
-    fn from(it: Merchant) -> Self {
-        Self {
+impl Item {
+    pub fn new(db: &mut Db, it: &Merchant) -> Result<Self> {
+        let it = Self {
             id: it.id,
             ledger_id: it.ledger_id,
             label: it.label.clone(),
             memo: it.memo.clone(),
-            contact: it.contact.clone(),
+            contact: match it.contact {
+                Some(id) => Some(RecipientDao::by_id(db, id)?),
+                None => None,
+            },
+            address: match it.address {
+                Some(id) => Some(AddressDao::by_id(db, id)?),
+                None => None,
+            },
             deleted_at: it.deleted_at,
             updated_at: it.updated_at,
-        }
+        };
+        Ok(it)
     }
-}
-
-impl Item {
     pub async fn by_ledger(
         ss: &Session,
         db: &DbPool,
@@ -60,8 +75,8 @@ impl Item {
 
         let mut items = Vec::new();
 
-        for it in MerchantDao::by_ledger(db, id)? {
-            items.push(it.into());
+        for it in MerchantDao::by_ledger(db, id)?.iter() {
+            items.push(Self::new(db, it)?);
         }
         Ok(items)
     }

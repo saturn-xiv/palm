@@ -222,16 +222,26 @@ diesel::table! {
 diesel::table! {
     postal_addresses (id) {
         id -> Int4,
+        #[max_length = 7]
+        unit -> Nullable<Varchar>,
+        #[max_length = 31]
+        building -> Nullable<Varchar>,
         #[max_length = 127]
         street -> Varchar,
         #[max_length = 63]
         city -> Varchar,
         #[max_length = 63]
-        state -> Varchar,
+        province -> Varchar,
         #[max_length = 63]
         country -> Varchar,
         #[max_length = 15]
         zip_code -> Varchar,
+        #[max_length = 15]
+        passcode -> Nullable<Varchar>,
+        #[max_length = 255]
+        google_map -> Nullable<Varchar>,
+        #[max_length = 255]
+        a_map -> Nullable<Varchar>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -242,12 +252,18 @@ diesel::table! {
 diesel::table! {
     postal_recipients (id) {
         id -> Int4,
-        #[max_length = 31]
+        #[max_length = 63]
         name -> Varchar,
-        #[max_length = 7]
-        country_code -> Varchar,
-        #[max_length = 15]
-        phone -> Varchar,
+        #[max_length = 31]
+        phone -> Nullable<Varchar>,
+        #[max_length = 31]
+        fax -> Nullable<Varchar>,
+        #[max_length = 127]
+        email -> Nullable<Varchar>,
+        #[max_length = 63]
+        whatsapp -> Nullable<Varchar>,
+        #[max_length = 63]
+        wechat -> Nullable<Varchar>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,

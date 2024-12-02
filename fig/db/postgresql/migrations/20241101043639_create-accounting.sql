@@ -46,11 +46,9 @@ CREATE TABLE bookkeeper_merchants(
     id SERIAL PRIMARY KEY,
     ledger_id INTEGER NOT NULL,    
     label VARCHAR(63) NOT NULL,
-    memo VARCHAR(1023) NOT NULL,
-    contact VARCHAR(127),
-    addresses BYTEA NOT NULL,
-    phones BYTEA NOT NULL,
-    maps BYTEA NOT NULL,   
+    memo VARCHAR(1023) NOT NULL,    
+    address INTEGER,
+    contact INTEGER,    
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     version INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
@@ -58,7 +56,6 @@ CREATE TABLE bookkeeper_merchants(
 );
 CREATE INDEX idx_bookkeeper_merchants_label ON bookkeeper_merchants(label);
 CREATE INDEX idx_bookkeeper_merchants_memo ON bookkeeper_merchants(memo);
-CREATE INDEX idx_bookkeeper_merchants_contact ON bookkeeper_merchants(contact) WHERE contact IS NOT NULL;
 
 CREATE TABLE bookkeeper_transactions(
     id SERIAL PRIMARY KEY,

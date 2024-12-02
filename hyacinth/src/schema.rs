@@ -94,11 +94,8 @@ diesel::table! {
         label -> Varchar,
         #[max_length = 1023]
         memo -> Varchar,
-        #[max_length = 127]
-        contact -> Nullable<Varchar>,
-        addresses -> Bytea,
-        phones -> Bytea,
-        maps -> Bytea,
+        address -> Nullable<Int4>,
+        contact -> Nullable<Int4>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,

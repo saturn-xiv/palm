@@ -1,12 +1,14 @@
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
+use juniper::GraphQLObject;
 use petunia::{orm::postgresql::Connection, Result};
 use serde::Serialize;
 
 use super::super::schema::currencies;
 
-#[derive(Queryable, Clone, Serialize)]
+#[derive(GraphQLObject, Queryable, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
+#[graphql(name = "Currency")]
 pub struct Item {
     pub id: i32,
     pub code: String,

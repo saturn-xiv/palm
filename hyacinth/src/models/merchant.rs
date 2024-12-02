@@ -12,10 +12,8 @@ pub struct Item {
     pub ledger_id: i32,
     pub label: String,
     pub memo: String,
-    pub contact: Option<String>,
-    pub addresses: Vec<u8>,
-    pub phones: Vec<u8>,
-    pub maps: Vec<u8>,
+    pub address: Option<i32>,
+    pub contact: Option<i32>,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
     pub updated_at: NaiveDateTime,
@@ -27,7 +25,8 @@ pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>>;
     fn set_details(&mut self, id: i32, label: &str, memo: &str) -> Result<()>;
-    fn set_contact(&mut self, id: i32, contact: &str) -> Result<()>;
+    fn set_contact(&mut self, id: i32, contact: i32) -> Result<()>;
+    fn set_address(&mut self, id: i32, address: i32) -> Result<()>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
 }
@@ -72,13 +71,25 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_contact(&mut self, id: i32, contact: &str) -> Result<()> {
+    fn set_contact(&mut self, id: i32, contact: i32) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = bookkeeper_merchants::dsl::bookkeeper_merchants
             .filter(bookkeeper_merchants::dsl::id.eq(id));
         update(it)
             .set((
                 bookkeeper_merchants::dsl::contact.eq(contact),
+                bookkeeper_merchants::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
+    fn set_address(&mut self, id: i32, address: i32) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        let it = bookkeeper_merchants::dsl::bookkeeper_merchants
+            .filter(bookkeeper_merchants::dsl::id.eq(id));
+        update(it)
+            .set((
+                bookkeeper_merchants::dsl::address.eq(address),
                 bookkeeper_merchants::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

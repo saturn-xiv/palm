@@ -1,5 +1,5 @@
 const Widget = () => {
-  return <>m</>;
+  return <>a</>;
 };
 
 export default Widget;

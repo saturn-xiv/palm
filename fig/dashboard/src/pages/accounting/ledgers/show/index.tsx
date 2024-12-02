@@ -8,10 +8,10 @@ import { useEffect, useState } from "react";
 import { ILedger, show_ledger } from "../../../../api/hyacinth";
 import { IError } from "../../../../api";
 import Logs from "./Logs";
-import Accounts from "./accounts/Table";
-import Transactions from "./transactions/Table";
-import Merchants from "./merchants/Table";
-import Categories from "./categories/Table";
+import Accounts from "../../accounts/Table";
+import Transactions from "../../transactions/Table";
+import Merchants from "../../merchants/Table";
+import Categories from "../../categories/Table";
 
 const Widget = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -89,7 +89,7 @@ const Widget = () => {
               label: (
                 <FormattedMessage id="pages.accounting.ledgers.tabs.merchants.title" />
               ),
-              children: <Merchants />,
+              children: <Merchants messageApi={messageApi} ledger={item} />,
             },
             {
               key: "categories",

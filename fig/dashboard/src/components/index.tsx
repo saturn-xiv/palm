@@ -13,6 +13,9 @@ export const TITLE_MAX_LENGTH = 127;
 export const SLUG_MIN_LENGTH = 1;
 export const SLUG_MAX_LENGTH = 127;
 
+export const URL_MIN_LENGTH = 5;
+export const URL_MAX_LENGTH = 255;
+
 export const DEFAULT_PAGE_SIZE = 60;
 
 export interface IAlert {

@@ -177,6 +177,14 @@ accounting:
   index:
     title: "Accounting"
     abbreviation: "Accounting"
+  logs:
+    index:
+      title: "Logs"
+  merchants:
+    index:
+      title: "Merchants"
+    new:
+      title: "Create a new merchant"
   ledgers:
     index:
       title: "Ledgers"
