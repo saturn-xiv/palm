@@ -1,39 +1,43 @@
 import type { MessageInstance } from "antd/es/message/interface";
-import { PlusOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 import { FormattedMessage, useIntl } from "react-intl";
 import {
   ModalForm,
-  ProFormSelect,
   ProFormText,
+  ProFormTextArea,
 } from "@ant-design/pro-components";
 import { Button, Form } from "antd";
 
-import { ILedger, create_category, ICategory } from "../../../api/hyacinth";
+import { IAccount, update_account } from "../../../api/hyacinth";
 import { IError } from "../../../api";
-import { TITLE_MAX_LENGTH, TITLE_MIN_LENGTH } from "../../../components";
+import {
+  MEMO_MAX_LENGTH,
+  MEMO_MIN_LENGTH,
+  TITLE_MAX_LENGTH,
+  TITLE_MIN_LENGTH,
+} from "../../../components";
 
 interface IProps {
   messageApi: MessageInstance;
   handleRefresh: () => void;
-  ledger: ILedger;
-  items: ICategory[];
+  item: IAccount;
 }
 
 interface IFormValue {
   label: string;
-  parent?: number;
+  memo: string;
 }
 
-const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
+const Widget = ({ messageApi, item, handleRefresh }: IProps) => {
   const [form] = Form.useForm<IFormValue>();
   const intl = useIntl();
 
   return (
     <ModalForm<IFormValue>
-      title={<FormattedMessage id="pages.accounting.categories.new.title" />}
+      title={item.label}
       trigger={
-        <Button icon={<PlusOutlined />} type="primary" size="small">
-          <FormattedMessage id="buttons.new" />
+        <Button icon={<EditOutlined />} variant="dashed" size="small">
+          <FormattedMessage id="buttons.edit" />
         </Button>
       }
       form={form}
@@ -42,12 +46,10 @@ const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
         destroyOnClose: true,
       }}
       request={async () => {
-        return {
-          label: "",
-        };
+        return { label: item.label, memo: item.memo };
       }}
       onFinish={async (values) => {
-        const ok = await create_category(ledger.id, values.label, values.parent)
+        const ok = await update_account(item.id, values.label, values.memo)
           .then(async () => {
             await messageApi
               .success(intl.formatMessage({ id: "flashes.succeed" }))
@@ -63,23 +65,21 @@ const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
         return ok;
       }}
     >
-      <ProFormSelect
-        width="md"
-        name="parent"
-        label={<FormattedMessage id="form.fields.parent.label" />}
-        options={items.map((x) => {
-          return {
-            label: x.label,
-            value: x.id,
-          };
-        })}
-      />
       <ProFormText
         name="label"
         label={<FormattedMessage id="form.fields.label.label" />}
         rules={[
           { required: true },
           { min: TITLE_MIN_LENGTH, max: TITLE_MAX_LENGTH },
+        ]}
+      />
+      <ProFormTextArea
+        colProps={{ span: 24 }}
+        name="memo"
+        label={<FormattedMessage id="form.fields.memo.label" />}
+        rules={[
+          { required: true },
+          { min: MEMO_MIN_LENGTH, max: MEMO_MAX_LENGTH },
         ]}
       />
     </ModalForm>

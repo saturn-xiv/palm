@@ -194,6 +194,14 @@ accounting:
       title: "Categories"
     new:
       title: "Create a new category"
+  accounts:
+    index:
+      title: "Accounts"
+    new:
+      main:
+        title: "Create a main-account"
+      sub:
+        title: "Create a sub-account"
   ledgers:
     index:
       title: "Ledgers"

@@ -12,8 +12,10 @@ import Accounts from "../../accounts/Table";
 import Transactions from "../../transactions/Table";
 import Merchants from "../../merchants/Table";
 import Categories from "../../categories/Table";
+import { ICurrency, index_currency } from "../../../../api/daffodil";
 
 const Widget = () => {
+  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -30,6 +32,12 @@ const Widget = () => {
           return false;
         });
     }
+    index_currency()
+      .then(setCurrencies)
+      .catch((reason: IError[]) => {
+        messageApi.error(reason.map((x) => x.message).join("\n"));
+        return false;
+      });
   }, [id, messageApi]);
   return item ? (
     <Row gutter={[24, 24]}>
@@ -82,7 +90,13 @@ const Widget = () => {
               label: (
                 <FormattedMessage id="pages.accounting.ledgers.tabs.accounts.title" />
               ),
-              children: <Accounts />,
+              children: (
+                <Accounts
+                  messageApi={messageApi}
+                  ledger={item}
+                  currencies={currencies}
+                />
+              ),
             },
             {
               key: "merchants",

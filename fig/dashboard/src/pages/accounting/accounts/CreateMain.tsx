@@ -5,32 +5,45 @@ import {
   ModalForm,
   ProFormSelect,
   ProFormText,
+  ProFormTextArea,
 } from "@ant-design/pro-components";
 import { Button, Form } from "antd";
 
-import { ILedger, create_category, ICategory } from "../../../api/hyacinth";
+import {
+  ILedger,
+  create_main_account,
+  ACCOUNT_TYPES,
+} from "../../../api/hyacinth";
 import { IError } from "../../../api";
-import { TITLE_MAX_LENGTH, TITLE_MIN_LENGTH } from "../../../components";
+import {
+  MEMO_MAX_LENGTH,
+  MEMO_MIN_LENGTH,
+  TITLE_MAX_LENGTH,
+  TITLE_MIN_LENGTH,
+} from "../../../components";
+import { ICurrency } from "../../../api/daffodil";
 
 interface IProps {
   messageApi: MessageInstance;
   handleRefresh: () => void;
   ledger: ILedger;
-  items: ICategory[];
+  currencies: ICurrency[];
 }
 
 interface IFormValue {
   label: string;
-  parent?: number;
+  memo: string;
+  currency: number;
+  type: string;
 }
 
-const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
+const Widget = ({ ledger, messageApi, currencies, handleRefresh }: IProps) => {
   const [form] = Form.useForm<IFormValue>();
   const intl = useIntl();
 
   return (
     <ModalForm<IFormValue>
-      title={<FormattedMessage id="pages.accounting.categories.new.title" />}
+      title={<FormattedMessage id="pages.accounting.accounts.new.main.title" />}
       trigger={
         <Button icon={<PlusOutlined />} type="primary" size="small">
           <FormattedMessage id="buttons.new" />
@@ -41,13 +54,14 @@ const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
       modalProps={{
         destroyOnClose: true,
       }}
-      request={async () => {
-        return {
-          label: "",
-        };
-      }}
       onFinish={async (values) => {
-        const ok = await create_category(ledger.id, values.label, values.parent)
+        const ok = await create_main_account(
+          ledger.id,
+          values.label,
+          values.memo,
+          values.type,
+          values.currency
+        )
           .then(async () => {
             await messageApi
               .success(intl.formatMessage({ id: "flashes.succeed" }))
@@ -63,17 +77,6 @@ const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
         return ok;
       }}
     >
-      <ProFormSelect
-        width="md"
-        name="parent"
-        label={<FormattedMessage id="form.fields.parent.label" />}
-        options={items.map((x) => {
-          return {
-            label: x.label,
-            value: x.id,
-          };
-        })}
-      />
       <ProFormText
         name="label"
         label={<FormattedMessage id="form.fields.label.label" />}
@@ -81,6 +84,39 @@ const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
           { required: true },
           { min: TITLE_MIN_LENGTH, max: TITLE_MAX_LENGTH },
         ]}
+      />
+      <ProFormTextArea
+        colProps={{ span: 24 }}
+        name="memo"
+        label={<FormattedMessage id="form.fields.memo.label" />}
+        rules={[
+          { required: true },
+          { min: MEMO_MIN_LENGTH, max: MEMO_MAX_LENGTH },
+        ]}
+      />
+      <ProFormSelect
+        width="md"
+        name="type"
+        label={<FormattedMessage id="form.fields.type.label" />}
+        options={ACCOUNT_TYPES.map((x) => {
+          return {
+            label: x,
+            value: x,
+          };
+        })}
+        rules={[{ required: true }]}
+      />
+      <ProFormSelect
+        width="md"
+        name="currency"
+        label={<FormattedMessage id="form.fields.currency.label" />}
+        options={currencies.map((x) => {
+          return {
+            label: `${x.code}-${x.name}`,
+            value: x.id,
+          };
+        })}
+        rules={[{ required: true }]}
       />
     </ModalForm>
   );

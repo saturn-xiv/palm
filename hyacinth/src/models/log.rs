@@ -44,6 +44,11 @@ pub enum Action {
     UpdateCategory,
     DisableCategory,
     EnableCategory,
+
+    CreateAccount,
+    UpdateAccount,
+    DisableAccount,
+    EnableAccount,
 }
 
 pub trait Dao {

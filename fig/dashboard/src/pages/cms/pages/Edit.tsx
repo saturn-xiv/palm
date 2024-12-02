@@ -100,7 +100,11 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
         ]}
       />
       <ProForm.Group>
-        <HtmlEditor html={body} handleChange={setBody} />
+        <HtmlEditor
+          messageApi={messageApi}
+          html={body}
+          handleChange={setBody}
+        />
       </ProForm.Group>
     </ModalForm>
   );

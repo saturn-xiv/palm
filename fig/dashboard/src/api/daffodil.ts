@@ -8,14 +8,7 @@ import {
 import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
-const INDEX_ATTACHMENT = `
-query call($pager: Pager!){
-    indexAttachment(pager: $pager){
-      items{id, bucket, object, title, size, contentType, uploadedAt, updatedAt, deletedAt},
-      pagination{total}
-    }
-}
-`;
+
 export interface IAttachment {
   id: number;
   bucket: string;
@@ -31,6 +24,14 @@ interface IIndexAttachmentResponse {
   items: IAttachment[];
   pagination: IPagination;
 }
+const INDEX_ATTACHMENT = `
+query call($pager: Pager!){
+    indexAttachment(pager: $pager){
+      items{id, bucket, object, title, size, contentType, uploadedAt, updatedAt, deletedAt},
+      pagination{total}
+    }
+}
+`;
 export const index_attachment = async (
   pager: IPager
 ): Promise<IIndexAttachmentResponse> => {
@@ -1424,3 +1425,22 @@ export interface IPostalAddress {
   deletedAt?: Date;
   updatedAt: Date;
 }
+
+export interface ICurrency {
+  id: number;
+  code: string;
+  name: string;
+  country: string;
+  units: number;
+}
+const INDEX_CURRENCY = `
+query call{
+  currencies{
+    id, code, name, country, units
+  }
+}
+`;
+export const index_currency = async (): Promise<ICurrency[]> => {
+  const res: { currencies: ICurrency[] } = await query(INDEX_CURRENCY, {});
+  return res.currencies;
+};

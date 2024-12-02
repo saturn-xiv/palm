@@ -7,13 +7,12 @@ use daffodil::{
     session::current_user,
 };
 use diesel::Connection as DieselConnection;
-use hyper::StatusCode;
 use juniper::GraphQLObject;
 use petunia::{
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::{Connection as Db, Pool as DbPool},
     session::Session,
-    Error, HttpError, Result,
+    Error, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -21,6 +20,7 @@ use validator::Validate;
 use super::super::models::{
     account::{Dao as AccountDao, Item as Account, Type},
     ledger::Dao as LedgerDao,
+    log::{Action, Dao as LogDao},
 };
 
 #[derive(GraphQLObject)]
@@ -28,7 +28,7 @@ use super::super::models::{
 pub struct Item {
     pub id: i32,
     pub ledger_id: i32,
-    pub parent_id: Option<i32>,
+    pub parent: Option<String>,
     pub label: String,
     pub memo: String,
     pub currency: Currency,
@@ -42,7 +42,13 @@ impl Item {
         let it = Self {
             id: it.id,
             ledger_id: it.ledger_id,
-            parent_id: it.parent_id,
+            parent: match it.parent_id {
+                Some(id) => {
+                    let it = AccountDao::by_id(db, id)?;
+                    Some(it.label)
+                }
+                None => None,
+            },
             label: it.label.clone(),
             memo: it.memo.clone(),
             currency: CurrencyDao::by_id(db, it.currency_id)?.into(),
@@ -88,15 +94,27 @@ pub async fn disable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = AccountDao::by_id(db, id)?;
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = AccountDao::by_id(db, id)?;
         let ledger = LedgerDao::by_id(db, it.ledger_id)?;
         ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         AccountDao::disable(db, id)?;
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::DisableAccount,
+                &format!("disable account {}({})", it.label, it.id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -112,15 +130,27 @@ pub async fn enable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = AccountDao::by_id(db, id)?;
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = AccountDao::by_id(db, id)?;
         let ledger = LedgerDao::by_id(db, it.ledger_id)?;
         ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         AccountDao::enable(db, id)?;
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::EnableAccount,
+                &format!("enable account {}({})", it.label, it.id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -136,31 +166,85 @@ pub struct Form {
 }
 
 impl Form {
-    pub async fn create(
+    pub async fn create_main(
         &self,
         ss: &Session,
         db: &DbPool,
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
-        (ledger, parent, currency, type_): (i32, Option<i32>, i32, Type),
+        (ledger, type_, currency): (i32, Type, i32),
     ) -> Result<()> {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
+
+        let (si, user) = current_user(ss, db, jwt)?;
         {
-            let (_, user) = current_user(ss, db, jwt)?;
             let ledger = LedgerDao::by_id(db, ledger)?;
             ledger.can_append(&user, enforcer).await?;
         }
-        if let Some(id) = parent {
-            let it = AccountDao::by_id(db, id)?;
-            if it.ledger_id != ledger {
-                return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
-            }
-        }
 
         db.transaction::<_, Error, _>(|db| {
-            AccountDao::create(db, ledger, parent, &self.label, &self.memo, type_, currency)?;
+            AccountDao::create(db, ledger, None, &self.label, &self.memo, type_, currency)?;
+            LogDao::create(
+                db,
+                ledger,
+                (user.id, &si.to_string()),
+                (
+                    Action::CreateAccount,
+                    &format!(
+                        "create main-account {}({}, {})",
+                        self.label, type_, self.memo
+                    ),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
+            Ok(())
+        })?;
+        Ok(())
+    }
+    pub async fn create_sub(
+        &self,
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enforcer: &Mutex<Enforcer>,
+        (parent, type_, currency): (i32, Type, i32),
+    ) -> Result<()> {
+        self.validate()?;
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (si, user) = current_user(ss, db, jwt)?;
+        let parent = AccountDao::by_id(db, parent)?;
+        {
+            let ledger = LedgerDao::by_id(db, parent.ledger_id)?;
+            ledger.can_append(&user, enforcer).await?;
+        }
+        db.transaction::<_, Error, _>(|db| {
+            AccountDao::create(
+                db,
+                parent.ledger_id,
+                Some(parent.id),
+                &self.label,
+                &self.memo,
+                type_,
+                currency,
+            )?;
+            LogDao::create(
+                db,
+                parent.ledger_id,
+                (user.id, &si.to_string()),
+                (
+                    Action::CreateAccount,
+                    &format!(
+                        "create sub-account {}({},{}) for {}({})",
+                        self.label, type_, self.memo, parent.label, parent.id
+                    ),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
             Ok(())
         })?;
         Ok(())

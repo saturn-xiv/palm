@@ -23,6 +23,7 @@ use super::super::schema::bookkeeper_accounts;
     Eq,
     Debug,
     Clone,
+    Copy,
 )]
 #[serde(rename_all = "camelCase")]
 #[graphql(name = "BookkeeperAccountType")]

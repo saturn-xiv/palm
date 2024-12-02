@@ -1054,27 +1054,36 @@ impl Mutation {
         Ok(Succeed::default())
     }
 
-    async fn create_bookkeeping_account(
+    async fn create_bookkeeping_main_account(
         context: &Context,
         ledger: i32,
-        parent: Option<i32>,
         label: String,
         memo: String,
-        currency: i32,
         r#type: hyacinth::models::account::Type,
+        currency: i32,
     ) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
         let form = hyacinth_graphql::account::Form { label, memo };
-        form.create(
-            &context.session,
-            db,
-            jwt,
-            enf,
-            (ledger, parent, currency, r#type),
-        )
-        .await?;
+        form.create_main(&context.session, db, jwt, enf, (ledger, r#type, currency))
+            .await?;
+        Ok(Succeed::default())
+    }
+    async fn create_bookkeeping_sub_account(
+        context: &Context,
+        parent: i32,
+        label: String,
+        memo: String,
+        r#type: hyacinth::models::account::Type,
+        currency: i32,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::account::Form { label, memo };
+        form.create_sub(&context.session, db, jwt, enf, (parent, r#type, currency))
+            .await?;
         Ok(Succeed::default())
     }
     async fn update_bookkeeping_account(

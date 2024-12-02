@@ -107,6 +107,10 @@ fields:
     label: "Fax"
   phone:
     label: "Phone number"
+  type:
+    label: "Type"
+  currency:
+    label: "Currency"
   wechat:
     label: "WeChat"
 placeholder:

@@ -27,6 +27,7 @@ CREATE TABLE bookkeeper_accounts(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_bookkeeper_accounts_ledger_label ON bookkeeper_accounts(ledger_id, label);
 CREATE INDEX idx_bookkeeper_accounts_label ON bookkeeper_accounts(label);
 CREATE INDEX idx_bookkeeper_accounts_type ON bookkeeper_accounts("type");
 
@@ -40,6 +41,7 @@ CREATE TABLE bookkeeper_categories(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_bookkeeper_categories_ledger_label ON bookkeeper_categories(ledger_id, label);
 CREATE INDEX idx_bookkeeper_categories_label ON bookkeeper_categories(label);
 
 CREATE TABLE bookkeeper_merchants(
@@ -54,6 +56,7 @@ CREATE TABLE bookkeeper_merchants(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_bookkeeper_merchants_ledger_label ON bookkeeper_merchants(ledger_id, label);
 CREATE INDEX idx_bookkeeper_merchants_label ON bookkeeper_merchants(label);
 CREATE INDEX idx_bookkeeper_merchants_memo ON bookkeeper_merchants(memo);
 

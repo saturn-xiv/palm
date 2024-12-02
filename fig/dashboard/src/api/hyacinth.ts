@@ -1,10 +1,130 @@
 import { IPager, IPagination, ISucceed, query } from ".";
 import {
+  ICurrency,
   IPostalAddress,
   IPostalAddressFormValue,
   IPostalRecipient,
   IPostalRecipientFormValue,
 } from "./daffodil";
+
+export const ACCOUNT_TYPE_CASH = "CASH";
+export const ACCOUNT_TYPE_BANK = "BANK";
+export const ACCOUNT_TYPE_STOCK = "STOCK";
+export const ACCOUNT_TYPE_MUTUAL_FUND = "MUTUAL_FUND";
+export const ACCOUNT_TYPE_ACCOUNTS_RECEIVABLE = "ACCOUNTS_RECEIVABLE";
+export const ACCOUNT_TYPE_OTHER_ASSETS = "OTHER_ASSETS";
+export const ACCOUNT_TYPE_CREDIT_CARD = "CREDIT_CARD";
+export const ACCOUNT_TYPE_ACCOUNTS_PAYABLE = "ACCOUNTS_PAYABLE";
+export const ACCOUNT_TYPE_LIABILITY = "LIABILITY";
+export const ACCOUNT_TYPE_EQUITY = "EQUITY";
+export const ACCOUNT_TYPE_INCOME = "INCOME";
+export const ACCOUNT_TYPE_EXPENSES = "EXPENSES";
+
+export const ACCOUNT_TYPES = [
+  ACCOUNT_TYPE_CASH,
+  ACCOUNT_TYPE_BANK,
+  ACCOUNT_TYPE_STOCK,
+  ACCOUNT_TYPE_MUTUAL_FUND,
+  ACCOUNT_TYPE_ACCOUNTS_RECEIVABLE,
+  ACCOUNT_TYPE_OTHER_ASSETS,
+
+  ACCOUNT_TYPE_CREDIT_CARD,
+  ACCOUNT_TYPE_ACCOUNTS_PAYABLE,
+
+  ACCOUNT_TYPE_LIABILITY,
+
+  ACCOUNT_TYPE_EQUITY,
+
+  ACCOUNT_TYPE_INCOME,
+
+  ACCOUNT_TYPE_EXPENSES,
+];
+
+export interface IAccount {
+  id: number;
+  label: string;
+  memo: string;
+  parent?: string;
+  currency: ICurrency;
+  type: string;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+const UPDATE_ACCOUNT = `
+mutation call($id: Int!, $label: String!, $memo: String!){
+    updateBookkeepingAccount(id: $id, label: $label, memo: $memo){
+      createdAt
+    }
+}
+`;
+export const update_account = async (
+  id: number,
+  label: string,
+  memo: string
+): Promise<ISucceed> => {
+  const res: { updateBookkeepingAccount: ISucceed } = await query(
+    UPDATE_ACCOUNT,
+    { id, label, memo }
+  );
+  return res.updateBookkeepingAccount;
+};
+const CREATE_MAIN_ACCOUNT = `
+mutation call($ledger: Int!, $label: String!, $memo: String!, $type: BookkeeperAccountType!, $currency: Int!){
+    createBookkeepingMainAccount(ledger: $ledger, label: $label, memo: $memo, type: $type, currency: $currency){
+      createdAt
+    }
+}
+`;
+export const create_main_account = async (
+  ledger: number,
+  label: string,
+  memo: string,
+  type: string,
+  currency: number
+): Promise<ISucceed> => {
+  const res: { createBookkeepingMainAccount: ISucceed } = await query(
+    CREATE_MAIN_ACCOUNT,
+    { ledger, label, memo, currency, type }
+  );
+  return res.createBookkeepingMainAccount;
+};
+const CREATE_SUB_ACCOUNT = `
+mutation call($parent: Int!, $label: String!, $memo: String!, $type: BookkeeperAccountType!, $currency: Int!){
+    createBookkeepingSubAccount(parent: $parent, label: $label, memo: $memo, type: $type, currency: $currency){
+      createdAt
+    }
+}
+`;
+export const create_sub_account = async (
+  parent: number,
+  label: string,
+  memo: string,
+  type: string,
+  currency: number
+): Promise<ISucceed> => {
+  const res: { createBookkeepingSubAccount: ISucceed } = await query(
+    CREATE_SUB_ACCOUNT,
+    { parent, label, memo, currency, type }
+  );
+  return res.createBookkeepingSubAccount;
+};
+const INDEX_ACCOUNT = `
+query call($id: Int!){
+    indexBookkeepingAccountByLedger(id: $id){
+      id, parent, label, memo, type, updatedAt, deletedAt,
+      currency{id, code, name, units}
+    }
+}
+`;
+export const index_account_by_ledger = async (
+  id: number
+): Promise<IAccount[]> => {
+  const res: { indexBookkeepingAccountByLedger: IAccount[] } = await query(
+    INDEX_ACCOUNT,
+    { id }
+  );
+  return res.indexBookkeepingAccountByLedger;
+};
 
 export interface ICategory {
   id: number;
