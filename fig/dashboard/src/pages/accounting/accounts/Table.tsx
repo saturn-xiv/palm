@@ -42,7 +42,7 @@ const Widget = ({ ledger, currencies, messageApi }: IProps) => {
     <Table<IAccount>
       rowKey="id"
       title={() => (
-        <Space>
+        <Space align="baseline">
           <Typography.Title level={4}>
             <FormattedMessage id="pages.accounting.accounts.index.title" />
           </Typography.Title>
@@ -69,6 +69,17 @@ const Widget = ({ ledger, currencies, messageApi }: IProps) => {
           title: <FormattedMessage id="form.fields.label.label" />,
           dataIndex: "label",
           key: "label",
+        },
+        {
+          title: <FormattedMessage id="form.fields.currency.label" />,
+
+          key: "currency",
+          render: (_, { currency }) => (
+            <Space>
+              {currency.code}
+              {currency.country}
+            </Space>
+          ),
         },
         {
           title: <FormattedMessage id="form.fields.updated-at.label" />,

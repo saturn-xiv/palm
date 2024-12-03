@@ -56,3 +56,8 @@ export interface IPager {
   page: number;
   size: number;
 }
+
+export interface IDateTimePicker {
+  datetime: string;
+  timezone: string;
+}

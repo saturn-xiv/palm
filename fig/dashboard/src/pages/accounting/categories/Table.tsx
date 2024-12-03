@@ -39,7 +39,7 @@ const Widget = ({ ledger, messageApi }: IProps) => {
     <Table<ICategory>
       rowKey="id"
       title={() => (
-        <Space>
+        <Space align="baseline">
           <Typography.Title level={4}>
             <FormattedMessage id="pages.accounting.categories.index.title" />
           </Typography.Title>

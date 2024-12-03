@@ -1,6 +1,55 @@
-use chrono::{NaiveDateTime, Utc};
+use std::str::FromStr;
+
+use chrono::{offset::LocalResult, NaiveDateTime, TimeZone, Utc};
+use chrono_tz::Tz;
+use hyper::StatusCode;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use serde::{Deserialize, Serialize};
+
+use super::{Error, HttpError, Result};
+
+#[derive(GraphQLObject, Debug, Serialize, Deserialize)]
+pub struct DateTimePicker {
+    // https://docs.rs/chrono/latest/chrono/format/strftime/index.html
+    // '2024-12-09 01:02:03'
+    pub datetime: String,
+    pub timezone: String,
+}
+
+impl DateTimePicker {
+    // "%Y-%m-%d %H:%M:%S"
+    const FORMAT: &str = "%F %T";
+}
+
+impl TryFrom<(NaiveDateTime, Tz)> for DateTimePicker {
+    type Error = Error;
+    fn try_from((value, tz): (NaiveDateTime, Tz)) -> Result<Self> {
+        let it = Self {
+            datetime: tz
+                .from_utc_datetime(&value)
+                .format(Self::FORMAT)
+                .to_string(),
+            timezone: tz.to_string(),
+        };
+        Ok(it)
+    }
+}
+
+impl TryFrom<DateTimePicker> for (NaiveDateTime, Tz) {
+    type Error = Error;
+
+    fn try_from(value: DateTimePicker) -> Result<Self> {
+        let tz = Tz::from_str(&value.timezone)?;
+
+        if let LocalResult::Single(it) =
+            NaiveDateTime::parse_from_str(&value.datetime, DateTimePicker::FORMAT)?
+                .and_local_timezone(tz)
+        {
+            return Ok((it.naive_utc(), tz));
+        }
+        Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))
+    }
+}
 
 #[derive(GraphQLObject, Debug, Serialize, Deserialize)]
 pub struct Succeed {

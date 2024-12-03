@@ -29,6 +29,14 @@ pub struct Item {
 pub enum Action {
     #[default]
     CreateTransaction,
+    UpdateTransaction,
+    EnableTransaction,
+    DisableTransaction,
+
+    CreateEntry,
+    UpdateEntry,
+    EnableEntry,
+    DisableEntry,
 
     UpdateLedge,
     CreateLedge,

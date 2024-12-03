@@ -45,7 +45,12 @@ diesel::table! {
         amount -> Int4,
         #[max_length = 1023]
         memo -> Varchar,
+        traded_at -> Timestamp,
+        #[max_length = 31]
+        timezone -> Varchar,
         deleted_at -> Nullable<Timestamp>,
+        version -> Int4,
+        updated_at -> Timestamp,
         created_at -> Timestamp,
     }
 }
@@ -75,7 +80,7 @@ diesel::table! {
         user_id -> Int4,
         #[max_length = 511]
         username -> Varchar,
-        #[max_length = 15]
+        #[max_length = 31]
         action -> Varchar,
         memo -> Text,
         #[max_length = 255]
@@ -111,7 +116,12 @@ diesel::table! {
         ledger_id -> Int4,
         #[max_length = 1023]
         memo -> Varchar,
+        traded_at -> Timestamp,
+        #[max_length = 31]
+        timezone -> Varchar,
         deleted_at -> Nullable<Timestamp>,
+        version -> Int4,
+        updated_at -> Timestamp,
         created_at -> Timestamp,
     }
 }

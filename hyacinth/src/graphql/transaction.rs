@@ -1,21 +1,23 @@
-use std::ops::DerefMut;
+use std::{ops::DerefMut, str::FromStr};
 
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
+use chrono_tz::Tz;
 use daffodil::session::current_user;
 use diesel::Connection as DieselConnection;
 use juniper::GraphQLObject;
 use petunia::{
-    jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool, session::Session, Error, Result,
+    graphql::DateTimePicker, jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool,
+    session::Session, Error, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
 
 use super::super::models::{
     ledger::Dao as LedgerDao,
+    log::{Action, Dao as LogDao},
     transaction::{Dao as TransactionDao, Item as Transaction},
 };
-use super::entry::New as NewEntryForm;
 
 #[derive(GraphQLObject)]
 #[graphql(name = "BookkeeperTransaction")]
@@ -24,20 +26,23 @@ pub struct Item {
     pub uid: String,
     pub ledger_id: i32,
     pub memo: String,
+    pub traded_at: DateTimePicker,
     pub deleted_at: Option<NaiveDateTime>,
-    pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
 }
 
-impl From<Transaction> for Item {
-    fn from(it: Transaction) -> Self {
-        Self {
+impl Item {
+    pub fn new(it: &Transaction) -> Result<Self> {
+        let it = Self {
             id: it.id,
             uid: it.uid.clone(),
             ledger_id: it.ledger_id,
             memo: it.memo.clone(),
+            traded_at: (it.traded_at, Tz::from_str(&it.timezone)?).try_into()?,
             deleted_at: it.deleted_at,
-            created_at: it.created_at,
-        }
+            updated_at: it.updated_at,
+        };
+        Ok(it)
     }
 }
 
@@ -59,8 +64,8 @@ impl Item {
 
         let mut items = Vec::new();
 
-        for it in TransactionDao::by_ledger(db, id)? {
-            items.push(it.into());
+        for it in TransactionDao::by_ledger(db, id)?.iter() {
+            items.push(Item::new(it)?);
         }
         Ok(items)
     }
@@ -80,26 +85,74 @@ impl Form {
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         ledger: i32,
-        entries: &[NewEntryForm],
+        (traded_at, timezone): (NaiveDateTime, Tz),
     ) -> Result<()> {
         self.validate()?;
-        for it in entries.iter() {
-            it.validate()?;
-        }
+
         let mut db = db.get()?;
         let db = db.deref_mut();
+
+        let (si, user) = current_user(ss, db, jwt)?;
         {
-            let (_, user) = current_user(ss, db, jwt)?;
             let ledger = LedgerDao::by_id(db, ledger)?;
             ledger.can_append(&user, enforcer).await?;
         }
 
         db.transaction::<_, Error, _>(|db| {
-            let uid = TransactionDao::create(db, ledger, &self.memo)?;
-            let it = TransactionDao::by_uid(db, &uid)?;
-            for ie in entries.iter() {
-                ie.save(db, &it)?;
-            }
+            TransactionDao::create(db, ledger, &self.memo, traded_at, timezone)?;
+            LogDao::create(
+                db,
+                ledger,
+                (user.id, &si.to_string()),
+                (
+                    Action::CreateTransaction,
+                    &format!("create transaction {}({})", self.memo, traded_at),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
+            Ok(())
+        })?;
+        Ok(())
+    }
+
+    pub async fn update(
+        &self,
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enforcer: &Mutex<Enforcer>,
+        id: i32,
+        (traded_at, timezone): (NaiveDateTime, Tz),
+    ) -> Result<()> {
+        self.validate()?;
+
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+
+        let (si, user) = current_user(ss, db, jwt)?;
+        let it = TransactionDao::by_id(db, id)?;
+        {
+            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+            ledger.can_append(&user, enforcer).await?;
+        }
+
+        db.transaction::<_, Error, _>(|db| {
+            TransactionDao::update(db, id, &self.memo, traded_at, timezone)?;
+            LogDao::create(
+                db,
+                it.ledger_id,
+                (user.id, &si.to_string()),
+                (
+                    Action::UpdateTransaction,
+                    &format!(
+                        "update transaction {}({}, {}) => {}({})",
+                        it.memo, it.id, it.traded_at, self.memo, traded_at
+                    ),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
             Ok(())
         })?;
         Ok(())
@@ -116,17 +169,27 @@ pub async fn disable(
     let mut db = db.get()?;
     let db = db.deref_mut();
 
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = TransactionDao::by_id(db, id)?;
+
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = TransactionDao::by_id(db, id)?;
-        {
-            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
-            ledger.can_append(&user, enforcer).await?;
-        }
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         TransactionDao::disable(db, id)?;
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::CreateTransaction,
+                &format!("disable transaction {}({})", it.memo, it.id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -142,17 +205,27 @@ pub async fn enable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = TransactionDao::by_id(db, id)?;
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = TransactionDao::by_id(db, id)?;
-        {
-            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
-            ledger.can_append(&user, enforcer).await?;
-        }
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         TransactionDao::enable(db, id)?;
+        LogDao::create(
+            db,
+            it.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::CreateTransaction,
+                &format!("enable transaction {}({})", it.memo, it.id),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 

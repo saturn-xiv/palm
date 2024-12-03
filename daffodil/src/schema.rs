@@ -53,7 +53,7 @@ diesel::table! {
         user_id -> Int4,
         #[max_length = 511]
         username -> Varchar,
-        #[max_length = 15]
+        #[max_length = 31]
         action -> Varchar,
         memo -> Text,
         #[max_length = 255]

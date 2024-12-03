@@ -202,6 +202,16 @@ accounting:
         title: "Create a main-account"
       sub:
         title: "Create a sub-account"
+  transactions:
+    index:
+      title: "Transactions"
+    new:
+      title: "Create a new transaction"
+  entries:
+    index:
+      title: "Entries for {name}"
+    new:
+      title: "Create a new entry for {name}"
   ledgers:
     index:
       title: "Ledgers"

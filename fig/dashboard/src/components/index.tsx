@@ -18,6 +18,8 @@ export const URL_MAX_LENGTH = 255;
 
 export const DEFAULT_PAGE_SIZE = 60;
 
+export const DATETIME_ISO_FORMAT = "YYYY-MM-DD HH:mm:ss";
+
 export interface IAlert {
   color: string;
   messages: string[];

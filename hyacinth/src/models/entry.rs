@@ -1,4 +1,5 @@
 use chrono::{NaiveDateTime, Utc};
+use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, update};
 use petunia::{orm::postgresql::Connection, Result};
 use serde::{Deserialize, Serialize};
@@ -16,7 +17,11 @@ pub struct Item {
     pub merchant_id: i32,
     pub amount: i32,
     pub memo: String,
+    pub traded_at: NaiveDateTime,
+    pub timezone: String,
     pub deleted_at: Option<NaiveDateTime>,
+    pub version: i32,
+    pub updated_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
 }
 
@@ -27,6 +32,15 @@ pub trait Dao {
         category: i32,
         accounts: (i32, i32),
         merchant: (i32, i32, &str),
+        traded_at: (NaiveDateTime, Tz),
+    ) -> Result<()>;
+    fn update(
+        &mut self,
+        id: i32,
+        category: i32,
+        accounts: (i32, i32),
+        merchant: (i32, i32, &str),
+        traded_at: (NaiveDateTime, Tz),
     ) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_transaction(&mut self, transaction: i32) -> Result<Vec<Item>>;
@@ -45,7 +59,9 @@ impl Dao for Connection {
         category: i32,
         (from_account, to_account): (i32, i32),
         (merchant, amount, memo): (i32, i32, &str),
+        (traded_at, timezone): (NaiveDateTime, Tz),
     ) -> Result<()> {
+        let now = Utc::now().naive_utc();
         insert_into(bookkeeper_entries::dsl::bookkeeper_entries)
             .values((
                 bookkeeper_entries::dsl::transaction_id.eq(transaction),
@@ -55,6 +71,35 @@ impl Dao for Connection {
                 bookkeeper_entries::dsl::merchant_id.eq(merchant),
                 bookkeeper_entries::dsl::amount.eq(amount),
                 bookkeeper_entries::dsl::memo.eq(memo),
+                bookkeeper_entries::dsl::traded_at.eq(traded_at),
+                bookkeeper_entries::dsl::timezone.eq(&timezone.to_string()),
+                bookkeeper_entries::dsl::updated_at.eq(now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
+    fn update(
+        &mut self,
+        id: i32,
+        category: i32,
+        (from_account, to_account): (i32, i32),
+        (merchant, amount, memo): (i32, i32, &str),
+        (traded_at, timezone): (NaiveDateTime, Tz),
+    ) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        let it =
+            bookkeeper_entries::dsl::bookkeeper_entries.filter(bookkeeper_entries::dsl::id.eq(id));
+        update(it)
+            .set((
+                bookkeeper_entries::dsl::category_id.eq(category),
+                bookkeeper_entries::dsl::from_account_id.eq(from_account),
+                bookkeeper_entries::dsl::to_account_id.eq(to_account),
+                bookkeeper_entries::dsl::merchant_id.eq(merchant),
+                bookkeeper_entries::dsl::amount.eq(amount),
+                bookkeeper_entries::dsl::memo.eq(memo),
+                bookkeeper_entries::dsl::traded_at.eq(traded_at),
+                bookkeeper_entries::dsl::timezone.eq(&timezone.to_string()),
+                bookkeeper_entries::dsl::updated_at.eq(now),
             ))
             .execute(self)?;
         Ok(())
@@ -111,15 +156,22 @@ impl Dao for Connection {
         let it =
             bookkeeper_entries::dsl::bookkeeper_entries.filter(bookkeeper_entries::dsl::id.eq(id));
         update(it)
-            .set((bookkeeper_entries::dsl::deleted_at.eq(&Some(now)),))
+            .set((
+                bookkeeper_entries::dsl::deleted_at.eq(&Some(now)),
+                bookkeeper_entries::dsl::updated_at.eq(now),
+            ))
             .execute(self)?;
         Ok(())
     }
     fn enable(&mut self, id: i32) -> Result<()> {
+        let now = Utc::now().naive_utc();
         let it =
             bookkeeper_entries::dsl::bookkeeper_entries.filter(bookkeeper_entries::dsl::id.eq(id));
         update(it)
-            .set((bookkeeper_entries::dsl::deleted_at.eq(&None::<NaiveDateTime>),))
+            .set((
+                bookkeeper_entries::dsl::deleted_at.eq(&None::<NaiveDateTime>),
+                bookkeeper_entries::dsl::updated_at.eq(now),
+            ))
             .execute(self)?;
         Ok(())
     }

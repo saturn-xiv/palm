@@ -33,7 +33,7 @@ features = ["cookie-session", "redis-session"]
 
 [dependencies.juniper]
 version = "0.16"
-features = ["chrono"]
+features = ["chrono", "chrono-tz", "uuid"]
 
 [dependencies.nix]
 version = "0.29"

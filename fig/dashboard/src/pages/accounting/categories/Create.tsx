@@ -32,7 +32,12 @@ const Widget = ({ ledger, messageApi, items, handleRefresh }: IProps) => {
     <ModalForm<IFormValue>
       title={<FormattedMessage id="pages.accounting.categories.new.title" />}
       trigger={
-        <Button icon={<PlusOutlined />} type="primary" size="small">
+        <Button
+          icon={<PlusOutlined />}
+          color="primary"
+          variant="filled"
+          size="small"
+        >
           <FormattedMessage id="buttons.new" />
         </Button>
       }

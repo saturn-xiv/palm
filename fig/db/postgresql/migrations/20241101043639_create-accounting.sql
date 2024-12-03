@@ -63,13 +63,18 @@ CREATE INDEX idx_bookkeeper_merchants_memo ON bookkeeper_merchants(memo);
 CREATE TABLE bookkeeper_transactions(
     id SERIAL PRIMARY KEY,
     "uid" VARCHAR(36) NOT NULL,
-    ledger_id INTEGER NOT NULL,
-    memo VARCHAR(1023) NOT NULL,
-    deleted_at TIMESTAMP WITHOUT TIME ZONE,    
+    ledger_id INTEGER NOT NULL,    
+    memo VARCHAR(1023) NOT NULL,    
+    traded_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',   
+    deleted_at TIMESTAMP WITHOUT TIME ZONE,
+    version INT NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_bookkeeper_transactions_uid ON bookkeeper_transactions("uid");
 CREATE INDEX idx_bookkeeper_transactions_memo ON bookkeeper_transactions(memo);
+CREATE INDEX idx_bookkeeper_transactions_timezone ON bookkeeper_transactions(timezone);
 
 CREATE TABLE bookkeeper_entries(
     id SERIAL PRIMARY KEY,
@@ -80,17 +85,22 @@ CREATE TABLE bookkeeper_entries(
     merchant_id INTEGER NOT NULL,
     amount INTEGER NOT NULL,
     memo VARCHAR(1023) NOT NULL,
+    traded_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
+    timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
+    version INT NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_bookkeeper_entries_memo ON bookkeeper_entries(memo);
+CREATE INDEX idx_bookkeeper_entries_timezone ON bookkeeper_entries(timezone);
 
 CREATE TABLE bookkeeper_logs(
     id SERIAL PRIMARY KEY,
     ledger_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     username VARCHAR(511) NOT NULL,
-    action VARCHAR(15) NOT NULL,
+    action VARCHAR(31) NOT NULL,
     memo TEXT NOT NULL,
     reason VARCHAR(255),
     ip VARCHAR(45) NOT NULL,       

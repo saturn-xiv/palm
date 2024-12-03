@@ -1,6 +1,8 @@
 use std::ops::{Deref, DerefMut};
 
 use carnation::graphql::page as cms_page;
+use chrono::NaiveDateTime;
+use chrono_tz::Tz;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     leave_word as daffodil_leave_word, locale as daffodil_locale, menu as daffodil_menu,
@@ -14,7 +16,11 @@ use daffodil::graphql::{
 use hibiscus::graphql as hibiscus_graphql;
 use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
-use petunia::{graphql::Succeed, themes::Layout, Editor};
+use petunia::{
+    graphql::{DateTimePicker, Succeed},
+    themes::Layout,
+    Editor,
+};
 use wisteria::graphql as wisteria_graphql;
 
 use super::super::layout::ExtraSideBarMenus;
@@ -1182,13 +1188,46 @@ impl Mutation {
         context: &Context,
         ledger: i32,
         memo: String,
-        entries: Vec<hyacinth_graphql::entry::New>,
+        traded_at: String,
+        timezone: String,
     ) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
         let form = hyacinth_graphql::transaction::Form { memo };
-        form.create(&context.session, db, jwt, enf, ledger, &entries)
+        let picker = DateTimePicker {
+            datetime: traded_at,
+            timezone,
+        };
+        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
+        form.create(
+            &context.session,
+            db,
+            jwt,
+            enf,
+            ledger,
+            (traded_at, timezone),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn update_bookkeeping_transaction(
+        context: &Context,
+        id: i32,
+        memo: String,
+        traded_at: String,
+        timezone: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::transaction::Form { memo };
+        let picker = DateTimePicker {
+            datetime: traded_at,
+            timezone,
+        };
+        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
+        form.update(&context.session, db, jwt, enf, id, (traded_at, timezone))
             .await?;
         Ok(Succeed::default())
     }
@@ -1211,11 +1250,46 @@ impl Mutation {
         context: &Context,
         transaction: i32,
         form: hyacinth_graphql::entry::New,
+        traded_at: String,
+        timezone: String,
     ) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        form.create(&context.session, db, jwt, enf, transaction)
+
+        let picker = DateTimePicker {
+            datetime: traded_at,
+            timezone,
+        };
+        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
+        form.create(
+            &context.session,
+            db,
+            jwt,
+            enf,
+            transaction,
+            (traded_at, timezone),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn update_bookkeeping_entry(
+        context: &Context,
+        id: i32,
+        form: hyacinth_graphql::entry::New,
+        traded_at: String,
+        timezone: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let picker = DateTimePicker {
+            datetime: traded_at,
+            timezone,
+        };
+        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
+        form.update(&context.session, db, jwt, enf, id, (traded_at, timezone))
             .await?;
         Ok(Succeed::default())
     }

@@ -1,4 +1,4 @@
-import { IPager, IPagination, ISucceed, query } from ".";
+import { IDateTimePicker, IPager, IPagination, ISucceed, query } from ".";
 import {
   ICurrency,
   IPostalAddress,
@@ -19,6 +19,70 @@ export const ACCOUNT_TYPE_LIABILITY = "LIABILITY";
 export const ACCOUNT_TYPE_EQUITY = "EQUITY";
 export const ACCOUNT_TYPE_INCOME = "INCOME";
 export const ACCOUNT_TYPE_EXPENSES = "EXPENSES";
+
+const CREATE_TRANSACTION = `
+mutation call($ledger: Int!, $memo: String!, $tradedAt: String!, $timezone: String!){
+    createBookkeepingTransaction(ledger: $ledger, memo: $memo, tradedAt: $tradedAt, timezone: $timezone){
+      createdAt
+    }
+}
+`;
+export const create_transaction = async (
+  ledger: number,
+  memo: string,
+  tradedAt: string,
+  timezone: string
+): Promise<ISucceed> => {
+  const res: { createBookkeepingTransaction: ISucceed } = await query(
+    CREATE_TRANSACTION,
+    { ledger, memo, tradedAt, timezone }
+  );
+  return res.createBookkeepingTransaction;
+};
+const UPDATE_TRANSACTION = `
+mutation call($id: Int!, $memo: String!, $tradedAt: String!, $timezone: String!){
+    updateBookkeepingTransaction(id: $id, memo: $memo, tradedAt: $tradedAt, timezone: $timezone){
+      createdAt
+    }
+}
+`;
+export const update_transaction = async (
+  id: number,
+  memo: string,
+  tradedAt: string,
+  timezone: string
+): Promise<ISucceed> => {
+  const res: { updateBookkeepingTransaction: ISucceed } = await query(
+    UPDATE_TRANSACTION,
+    { id, memo, tradedAt, timezone }
+  );
+  return res.updateBookkeepingTransaction;
+};
+export interface ITransaction {
+  id: number;
+  uid: string;
+  memo: string;
+  tradedAt: IDateTimePicker;
+  timezone: string;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+
+const INDEX_TRANSACTION_LEDGER = `
+query call($id: Int!){
+    indexBookkeepingTransactionByLedger(id: $id){
+      id, uid, memo, updatedAt, deletedAt,
+      tradedAt{datetime, timezone}
+    }
+}
+`;
+export const index_transaction_by_ledger = async (
+  id: number
+): Promise<ITransaction[]> => {
+  const res: { indexBookkeepingTransactionByLedger: ITransaction[] } =
+    await query(INDEX_TRANSACTION_LEDGER, { id });
+  return res.indexBookkeepingTransactionByLedger;
+};
 
 export const ACCOUNT_TYPES = [
   ACCOUNT_TYPE_CASH,
@@ -108,11 +172,11 @@ export const create_sub_account = async (
   );
   return res.createBookkeepingSubAccount;
 };
-const INDEX_ACCOUNT = `
+const INDEX_ACCOUNT_BY_LEDGER = `
 query call($id: Int!){
     indexBookkeepingAccountByLedger(id: $id){
       id, parent, label, memo, type, updatedAt, deletedAt,
-      currency{id, code, name, units}
+      currency{id, code, name, country, units}
     }
 }
 `;
@@ -120,7 +184,7 @@ export const index_account_by_ledger = async (
   id: number
 ): Promise<IAccount[]> => {
   const res: { indexBookkeepingAccountByLedger: IAccount[] } = await query(
-    INDEX_ACCOUNT,
+    INDEX_ACCOUNT_BY_LEDGER,
     { id }
   );
   return res.indexBookkeepingAccountByLedger;
@@ -134,7 +198,7 @@ export interface ICategory {
   updatedAt: Date;
 }
 
-const INDEX_CATEGORY = `
+const INDEX_CATEGORY_LEDGER = `
 query call($id: Int!){
     indexBookkeepingCategoryByLedger(id: $id){
       id, parent, label, updatedAt, deletedAt
@@ -145,7 +209,7 @@ export const index_category_by_ledger = async (
   id: number
 ): Promise<ICategory[]> => {
   const res: { indexBookkeepingCategoryByLedger: ICategory[] } = await query(
-    INDEX_CATEGORY,
+    INDEX_CATEGORY_LEDGER,
     { id }
   );
   return res.indexBookkeepingCategoryByLedger;

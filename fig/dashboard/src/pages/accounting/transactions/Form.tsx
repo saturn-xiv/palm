@@ -3,35 +3,38 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import { FormattedMessage, useIntl } from "react-intl";
 import {
   ModalForm,
-  ProFormText,
+  ProFormDateTimePicker,
+  ProFormSelect,
   ProFormTextArea,
 } from "@ant-design/pro-components";
-import { Button, Form } from "antd";
+import { Button, Form, Typography } from "antd";
+import dayjs from "dayjs";
 
 import {
-  create_merchant,
+  create_transaction,
   ILedger,
-  IMerchant,
-  update_merchant,
+  ITransaction,
+  update_transaction,
 } from "../../../api/hyacinth";
 import { IError } from "../../../api";
 import {
+  DATETIME_ISO_FORMAT,
   MEMO_MAX_LENGTH,
   MEMO_MIN_LENGTH,
-  TITLE_MAX_LENGTH,
-  TITLE_MIN_LENGTH,
 } from "../../../components";
+import { guess_timezone, timezones } from "../../../utils";
 
 interface IProps {
-  item?: IMerchant;
+  item?: ITransaction;
   messageApi: MessageInstance;
   handleRefresh: () => void;
   ledger: ILedger;
 }
 
 interface IFormValue {
-  label: string;
   memo: string;
+  tradedAt: string;
+  timezone: string;
 }
 
 const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
@@ -42,9 +45,17 @@ const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
     <ModalForm<IFormValue>
       title={
         item ? (
-          item.label
+          <Typography.Paragraph
+            ellipsis={{
+              rows: 1,
+              expandable: false,
+              expanded: false,
+            }}
+          >
+            {item.memo}
+          </Typography.Paragraph>
         ) : (
-          <FormattedMessage id="pages.accounting.merchants.new.title" />
+          <FormattedMessage id="pages.accounting.transactions.new.title" />
         )
       }
       trigger={
@@ -70,13 +81,21 @@ const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
       }}
       request={async () => {
         return {
-          label: item?.label || "",
           memo: item?.memo || "",
+          tradedAt:
+            item?.tradedAt.datetime ||
+            dayjs(new Date()).format(DATETIME_ISO_FORMAT),
+          timezone: item?.tradedAt.timezone || guess_timezone(),
         };
       }}
       onFinish={async (values) => {
         if (item) {
-          const ok = await update_merchant(item.id, values.label, values.memo)
+          const ok = await update_transaction(
+            item.id,
+            values.memo,
+            values.tradedAt,
+            values.timezone
+          )
             .then(async () => {
               await messageApi
                 .success(intl.formatMessage({ id: "flashes.succeed" }))
@@ -92,7 +111,12 @@ const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
           return ok;
         }
 
-        const ok = await create_merchant(ledger.id, values.label, values.memo)
+        const ok = await create_transaction(
+          ledger.id,
+          values.memo,
+          values.tradedAt,
+          values.timezone
+        )
           .then(async () => {
             await messageApi
               .success(intl.formatMessage({ id: "flashes.succeed" }))
@@ -108,15 +132,6 @@ const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
         return ok;
       }}
     >
-      <ProFormText
-        name="label"
-        label={<FormattedMessage id="form.fields.label.label" />}
-        rules={[
-          { required: true },
-          { min: TITLE_MIN_LENGTH, max: TITLE_MAX_LENGTH },
-        ]}
-      />
-
       <ProFormTextArea
         colProps={{ span: 24 }}
         name="memo"
@@ -125,6 +140,23 @@ const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
           { required: true },
           { min: MEMO_MIN_LENGTH, max: MEMO_MAX_LENGTH },
         ]}
+      />
+      <ProFormSelect
+        width="md"
+        name="timezone"
+        label={<FormattedMessage id="form.fields.timezone.label" />}
+        options={timezones().map((x) => {
+          return {
+            label: x,
+            value: x,
+          };
+        })}
+        rules={[{ required: true }]}
+      />
+      <ProFormDateTimePicker
+        name="tradedAt"
+        label={<FormattedMessage id="form.fields.traded-at.label" />}
+        rules={[{ required: true }]}
       />
     </ModalForm>
   );
