@@ -117,7 +117,7 @@ const Widget = ({ ledger, messageApi, currencies, handleRefresh }: IProps) => {
         label={<FormattedMessage id="form.fields.currency.label" />}
         options={currencies.map((x) => {
           return {
-            label: `${x.code}-${x.name}`,
+            label: `${x.code}-${x.country}`,
             value: x.id,
           };
         })}

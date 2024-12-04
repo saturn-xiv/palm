@@ -36,7 +36,8 @@ pub trait Dao {
         -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
-    fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>>;
+    fn count_by_ledger(&mut self, ledger: i32) -> Result<i64>;
+    fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
 }
@@ -95,10 +96,19 @@ impl Dao for Connection {
             .first(self)?;
         Ok(it)
     }
-    fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>> {
+    fn count_by_ledger(&mut self, ledger: i32) -> Result<i64> {
+        let it = bookkeeper_transactions::dsl::bookkeeper_transactions
+            .filter(bookkeeper_transactions::dsl::ledger_id.eq(ledger))
+            .count()
+            .first(self)?;
+        Ok(it)
+    }
+    fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = bookkeeper_transactions::dsl::bookkeeper_transactions
             .filter(bookkeeper_transactions::dsl::ledger_id.eq(ledger))
-            .order(bookkeeper_transactions::dsl::created_at.desc())
+            .order(bookkeeper_transactions::dsl::updated_at.desc())
+            .offset(offset)
+            .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
     }

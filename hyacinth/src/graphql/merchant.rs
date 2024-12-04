@@ -255,7 +255,6 @@ pub async fn set_contact(
     }
 
     db.transaction::<_, Error, _>(|db| {
-        MerchantDao::disable(db, id)?;
         match it.contact {
             Some(contact) => {
                 RecipientDao::update(db, contact, form)?;
@@ -304,7 +303,6 @@ pub async fn set_address(
     }
 
     db.transaction::<_, Error, _>(|db| {
-        MerchantDao::disable(db, id)?;
         match it.address {
             Some(address) => {
                 AddressDao::update(db, address, form)?;

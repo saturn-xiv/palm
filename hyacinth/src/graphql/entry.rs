@@ -101,7 +101,8 @@ pub struct New {
     pub amount: i32,
     #[validate(length(max = 1023))]
     pub memo: String,
-    pub traded_at: NaiveDateTime,
+    pub traded_at: String,
+    pub timezone: String,
 }
 
 impl New {
@@ -112,8 +113,12 @@ impl New {
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         transaction: i32,
-        traded_at: (NaiveDateTime, Tz),
     ) -> Result<()> {
+        let picker = DateTimePicker {
+            datetime: self.traded_at.clone(),
+            timezone: self.timezone.clone(),
+        };
+        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
         self.validate()?;
 
         let mut db = db.get()?;
@@ -136,7 +141,7 @@ impl New {
             self.save(
                 db,
                 &it,
-                traded_at,
+                (traded_at, timezone),
                 (user.id, &si.to_string()),
                 &ss.client_ip,
             )?;
@@ -147,6 +152,12 @@ impl New {
     }
 
     fn check(&self, db: &mut Db, transaction: &Transaction) -> Result<Currency> {
+        if self.from_account == self.to_account {
+            return Err(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("can't trade by self".to_string()),
+            )));
+        }
         let from = {
             let it = AccountDao::by_id(db, self.from_account)?;
             if it.deleted_at.is_some() {
@@ -185,6 +196,7 @@ impl New {
                 Some("accounts' currency not match".to_string()),
             )));
         }
+
         {
             let it = CategoryDao::by_id(db, self.category)?;
             if it.deleted_at.is_some() {
@@ -260,8 +272,12 @@ impl New {
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         id: i32,
-        (traded_at, timezone): (NaiveDateTime, Tz),
     ) -> Result<()> {
+        let picker = DateTimePicker {
+            datetime: self.traded_at.clone(),
+            timezone: self.timezone.clone(),
+        };
+        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
         self.validate()?;
 
         let mut db = db.get()?;

@@ -7,7 +7,7 @@ import {
   ProFormText,
   ProFormTextArea,
 } from "@ant-design/pro-components";
-import { Button, Form } from "antd";
+import { Button, Form, Tooltip } from "antd";
 
 import {
   IAccount,
@@ -45,9 +45,15 @@ const Widget = ({ messageApi, parent, currencies, handleRefresh }: IProps) => {
     <ModalForm<IFormValue>
       title={<FormattedMessage id="pages.accounting.accounts.new.sub.title" />}
       trigger={
-        <Button icon={<BranchesOutlined />} variant="dashed" size="small">
-          <FormattedMessage id="buttons.new" />
-        </Button>
+        <Tooltip
+          title={
+            <FormattedMessage id="pages.accounting.accounts.new.sub.title" />
+          }
+        >
+          <Button icon={<BranchesOutlined />} variant="dashed" size="small">
+            <FormattedMessage id="buttons.new" />
+          </Button>
+        </Tooltip>
       }
       form={form}
       autoFocusFirstInput
@@ -112,7 +118,7 @@ const Widget = ({ messageApi, parent, currencies, handleRefresh }: IProps) => {
         label={<FormattedMessage id="form.fields.currency.label" />}
         options={currencies.map((x) => {
           return {
-            label: `${x.code}-${x.name}`,
+            label: `${x.code}-${x.country}`,
             value: x.id,
           };
         })}

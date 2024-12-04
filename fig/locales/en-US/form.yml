@@ -113,6 +113,10 @@ fields:
     label: "Currency"
   traded-at:
     label: "Traded at"
+  merchant:
+    label: "Merchant"
+  amount:
+    label: "Amount"
   wechat:
     label: "WeChat"
 placeholder:

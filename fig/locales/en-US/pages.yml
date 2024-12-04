@@ -212,6 +212,12 @@ accounting:
       title: "Entries for {name}"
     new:
       title: "Create a new entry for {name}"
+    form:
+      fields:
+        from-account:
+          label: "From account"
+        to-account:
+          label: "To account"
   ledgers:
     index:
       title: "Ledgers"

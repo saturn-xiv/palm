@@ -3,6 +3,7 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import { FormattedMessage, useIntl } from "react-intl";
 import {
   ModalForm,
+  ProForm,
   ProFormDateTimePicker,
   ProFormSelect,
   ProFormTextArea,
@@ -141,23 +142,25 @@ const Widget = ({ ledger, messageApi, item, handleRefresh }: IProps) => {
           { min: MEMO_MIN_LENGTH, max: MEMO_MAX_LENGTH },
         ]}
       />
-      <ProFormSelect
-        width="md"
-        name="timezone"
-        label={<FormattedMessage id="form.fields.timezone.label" />}
-        options={timezones().map((x) => {
-          return {
-            label: x,
-            value: x,
-          };
-        })}
-        rules={[{ required: true }]}
-      />
-      <ProFormDateTimePicker
-        name="tradedAt"
-        label={<FormattedMessage id="form.fields.traded-at.label" />}
-        rules={[{ required: true }]}
-      />
+      <ProForm.Group>
+        <ProFormSelect
+          width="md"
+          name="timezone"
+          label={<FormattedMessage id="form.fields.timezone.label" />}
+          options={timezones().map((x) => {
+            return {
+              label: x,
+              value: x,
+            };
+          })}
+          rules={[{ required: true }]}
+        />
+        <ProFormDateTimePicker
+          name="tradedAt"
+          label={<FormattedMessage id="form.fields.traded-at.label" />}
+          rules={[{ required: true }]}
+        />
+      </ProForm.Group>
     </ModalForm>
   );
 };

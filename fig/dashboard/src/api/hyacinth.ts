@@ -20,6 +20,64 @@ export const ACCOUNT_TYPE_EQUITY = "EQUITY";
 export const ACCOUNT_TYPE_INCOME = "INCOME";
 export const ACCOUNT_TYPE_EXPENSES = "EXPENSES";
 
+const UPDATE_ENTRY = `
+mutation call($id: Int!, $form: NewBookkeeperEntryForm!){
+    updateBookkeepingEntry(id: $id, form: $form){
+      createdAt
+    }
+}
+`;
+export const update_entry = async (
+  id: number,
+  form: IEntryFormValue
+): Promise<ISucceed> => {
+  const res: { updateBookkeepingEntry: ISucceed } = await query(UPDATE_ENTRY, {
+    id,
+    form,
+  });
+  return res.updateBookkeepingEntry;
+};
+const CREATE_ENTRY = `
+mutation call($transaction: Int!, $form: NewBookkeeperEntryForm!){
+    createBookkeepingEntry(transaction: $transaction, form: $form){
+      createdAt
+    }
+}
+`;
+export const create_entry = async (
+  transaction: number,
+  form: IEntryFormValue
+): Promise<ISucceed> => {
+  const res: { createBookkeepingEntry: ISucceed } = await query(CREATE_ENTRY, {
+    transaction,
+    form,
+  });
+  return res.createBookkeepingEntry;
+};
+
+export interface IEntry {
+  id: number;
+  memo: string;
+  category: ICategory;
+  fromAccount: IAccount;
+  toAccount: IAccount;
+  currency: ICurrency;
+  merchant: IMerchant;
+  amount: number;
+  tradedAt: IDateTimePicker;
+}
+
+export interface IEntryFormValue {
+  memo: string;
+  fromAccount: number;
+  toAccount: number;
+  category: number;
+  merchant: number;
+  amount: number;
+  tradedAt: string;
+  timezone: string;
+}
+
 const CREATE_TRANSACTION = `
 mutation call($ledger: Int!, $memo: String!, $tradedAt: String!, $timezone: String!){
     createBookkeepingTransaction(ledger: $ledger, memo: $memo, tradedAt: $tradedAt, timezone: $timezone){
@@ -69,18 +127,28 @@ export interface ITransaction {
 }
 
 const INDEX_TRANSACTION_LEDGER = `
-query call($id: Int!){
-    indexBookkeepingTransactionByLedger(id: $id){
-      id, uid, memo, updatedAt, deletedAt,
-      tradedAt{datetime, timezone}
+query call($id: Int!, $pager: Pager!){
+    indexBookkeepingTransactionByLedger(id: $id, pager: $pager){
+      items{
+        id, uid, memo, updatedAt, deletedAt,
+        tradedAt{datetime, timezone}
+      },
+      pagination{total}
     }
 }
 `;
+
+interface IIndexTransactionResponse {
+  items: ITransaction[];
+  pagination: IPagination;
+}
 export const index_transaction_by_ledger = async (
-  id: number
-): Promise<ITransaction[]> => {
-  const res: { indexBookkeepingTransactionByLedger: ITransaction[] } =
-    await query(INDEX_TRANSACTION_LEDGER, { id });
+  id: number,
+  pager: IPager
+): Promise<IIndexTransactionResponse> => {
+  const res: {
+    indexBookkeepingTransactionByLedger: IIndexTransactionResponse;
+  } = await query(INDEX_TRANSACTION_LEDGER, { id, pager });
   return res.indexBookkeepingTransactionByLedger;
 };
 

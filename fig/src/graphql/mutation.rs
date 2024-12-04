@@ -1250,47 +1250,25 @@ impl Mutation {
         context: &Context,
         transaction: i32,
         form: hyacinth_graphql::entry::New,
-        traded_at: String,
-        timezone: String,
     ) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        let picker = DateTimePicker {
-            datetime: traded_at,
-            timezone,
-        };
-        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
-        form.create(
-            &context.session,
-            db,
-            jwt,
-            enf,
-            transaction,
-            (traded_at, timezone),
-        )
-        .await?;
+        form.create(&context.session, db, jwt, enf, transaction)
+            .await?;
         Ok(Succeed::default())
     }
     async fn update_bookkeeping_entry(
         context: &Context,
         id: i32,
         form: hyacinth_graphql::entry::New,
-        traded_at: String,
-        timezone: String,
     ) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        let picker = DateTimePicker {
-            datetime: traded_at,
-            timezone,
-        };
-        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
-        form.update(&context.session, db, jwt, enf, id, (traded_at, timezone))
-            .await?;
+        form.update(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
     async fn enable_bookkeeping_entry(context: &Context, id: i32) -> FieldResult<Succeed> {

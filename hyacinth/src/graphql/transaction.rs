@@ -7,8 +7,11 @@ use daffodil::session::current_user;
 use diesel::Connection as DieselConnection;
 use juniper::GraphQLObject;
 use petunia::{
-    graphql::DateTimePicker, jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool,
-    session::Session, Error, Result,
+    graphql::{DateTimePicker, Pager, Pagination},
+    jwt::openssl::OpenSsl as Jwt,
+    orm::postgresql::Pool as DbPool,
+    session::Session,
+    Error, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -46,14 +49,21 @@ impl Item {
     }
 }
 
-impl Item {
+#[derive(GraphQLObject)]
+#[graphql(name = "BookkeeperTransactionList")]
+pub struct List {
+    pub items: Vec<Item>,
+    pub pagination: Pagination,
+}
+impl List {
     pub async fn by_ledger(
         ss: &Session,
         db: &DbPool,
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         id: i32,
-    ) -> Result<Vec<Self>> {
+        pager: &Pager,
+    ) -> Result<Self> {
         let mut db = db.get()?;
         let db = db.deref_mut();
         {
@@ -62,12 +72,16 @@ impl Item {
             it.can_read(&user, enforcer).await?;
         }
 
+        let total = TransactionDao::count_by_ledger(db, id)?;
         let mut items = Vec::new();
 
-        for it in TransactionDao::by_ledger(db, id)?.iter() {
+        for it in TransactionDao::by_ledger(db, id, pager.offset(total), pager.size())?.iter() {
             items.push(Item::new(it)?);
         }
-        Ok(items)
+        Ok(Self {
+            items,
+            pagination: Pagination::new(pager, total),
+        })
     }
 }
 
