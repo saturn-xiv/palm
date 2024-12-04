@@ -505,7 +505,20 @@ impl Query {
         .await?;
         Ok(item)
     }
-    async fn index_bookkeeping_entries_by_transaction(
+    async fn index_bookkeeping_entry_by_ledger(
+        context: &Context,
+        id: i32,
+        pager: Pager,
+    ) -> FieldResult<hyacinth_graphql::entry::List> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let it =
+            hyacinth_graphql::entry::List::by_ledger(&context.session, db, jwt, enf, id, &pager)
+                .await?;
+        Ok(it)
+    }
+    async fn index_bookkeeping_entry_by_transaction(
         context: &Context,
         id: i32,
     ) -> FieldResult<Vec<hyacinth_graphql::entry::Item>> {

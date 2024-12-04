@@ -78,6 +78,7 @@ CREATE INDEX idx_bookkeeper_transactions_timezone ON bookkeeper_transactions(tim
 
 CREATE TABLE bookkeeper_entries(
     id SERIAL PRIMARY KEY,
+    ledger_id INTEGER NOT NULL,
     transaction_id INTEGER NOT NULL,
     from_account_id INTEGER NOT NULL,
     to_account_id INTEGER NOT NULL,

@@ -209,9 +209,11 @@ accounting:
       title: "Create a new transaction"
   entries:
     index:
-      title: "Entries for {name}"
+      title: "Entries"
     new:
       title: "Create a new entry for {name}"
+    edit:
+      title: "Edit entry {name}"
     form:
       fields:
         from-account:
@@ -234,3 +236,5 @@ accounting:
         title: "Transactions"
       categories:
         title: "Categories"
+      entries:
+        title: "Entries"

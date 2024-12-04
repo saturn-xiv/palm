@@ -37,6 +37,7 @@ diesel::table! {
 diesel::table! {
     bookkeeper_entries (id) {
         id -> Int4,
+        ledger_id -> Int4,
         transaction_id -> Int4,
         from_account_id -> Int4,
         to_account_id -> Int4,

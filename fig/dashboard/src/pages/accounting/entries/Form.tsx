@@ -1,4 +1,4 @@
-import { BranchesOutlined } from "@ant-design/icons";
+import { BranchesOutlined, EditOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 import {
   ModalForm,
@@ -26,8 +26,10 @@ import {
 } from "../../../api/hyacinth";
 import {
   DATETIME_ISO_FORMAT,
+  from_cents,
   MEMO_MAX_LENGTH,
   MEMO_MIN_LENGTH,
+  to_cents,
 } from "../../../components";
 import { ICurrency } from "../../../api/daffodil";
 import { guess_timezone, timezones } from "../../../utils";
@@ -50,7 +52,7 @@ const Widget = ({ ledger, currencies, title, handleSave, item }: IProps) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [merchants, setMerchants] = useState<IMerchant[]>([]);
   const [currency, setCurrency] = useState<ICurrency | undefined>(
-    item?.currency
+    item?.fromAccount.currency
   );
 
   useEffect(() => {
@@ -66,8 +68,12 @@ const Widget = ({ ledger, currencies, title, handleSave, item }: IProps) => {
       title={title}
       trigger={
         <Tooltip title={title}>
-          <Button icon={<BranchesOutlined />} variant="dashed" size="small">
-            <FormattedMessage id="buttons.new" />
+          <Button
+            icon={item ? <EditOutlined /> : <BranchesOutlined />}
+            variant="dashed"
+            size="small"
+          >
+            <FormattedMessage id={`buttons.${item ? "edit" : "new"}`} />
           </Button>
         </Tooltip>
       }
@@ -84,7 +90,7 @@ const Widget = ({ ledger, currencies, title, handleSave, item }: IProps) => {
             fromAccount: values.fromAccount,
             category: values.category,
             merchant: values.merchant,
-            amount: Math.trunc(values.amount * Math.pow(10, currency.units)),
+            amount: to_cents(currency, values.amount),
             tradedAt: values.tradedAt,
             timezone: values.timezone,
           });
@@ -97,13 +103,10 @@ const Widget = ({ ledger, currencies, title, handleSave, item }: IProps) => {
           toAccount: item?.toAccount.id || accounts[0].id,
           fromAccount: item?.fromAccount.id || accounts[1].id,
           category: item?.category.id || categories[0].id,
-          amount:
-            item && currency
-              ? (item.amount * 1.0) / Math.pow(10, currency.units)
-              : 0.0,
+          amount: item && currency ? from_cents(currency, item.amount) : 0.0,
           merchant: item?.merchant.id || merchants[0].id,
           currency: item
-            ? `${item.currency.code}-${item.currency.country}`
+            ? `${item.fromAccount.currency.code}-${item.fromAccount.currency.country}`
             : "",
           tradedAt:
             item?.tradedAt.datetime ||

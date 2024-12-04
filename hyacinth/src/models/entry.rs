@@ -10,6 +10,7 @@ use super::super::schema::bookkeeper_entries;
 #[serde(rename_all = "camelCase")]
 pub struct Item {
     pub id: i32,
+    pub ledger_id: i32,
     pub transaction_id: i32,
     pub from_account_id: i32,
     pub to_account_id: i32,
@@ -28,8 +29,7 @@ pub struct Item {
 pub trait Dao {
     fn create(
         &mut self,
-        transaction: i32,
-        category: i32,
+        bill: (i32, i32, i32),
         accounts: (i32, i32),
         merchant: (i32, i32, &str),
         traded_at: (NaiveDateTime, Tz),
@@ -44,6 +44,8 @@ pub trait Dao {
     ) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_transaction(&mut self, transaction: i32) -> Result<Vec<Item>>;
+    fn count_by_ledger(&mut self, ledger: i32) -> Result<i64>;
+    fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_account(&mut self, account: i32) -> Result<Vec<Item>>;
     fn by_from_account(&mut self, account: i32) -> Result<Vec<Item>>;
     fn by_to_account(&mut self, account: i32) -> Result<Vec<Item>>;
@@ -55,8 +57,7 @@ pub trait Dao {
 impl Dao for Connection {
     fn create(
         &mut self,
-        transaction: i32,
-        category: i32,
+        (ledger, transaction, category): (i32, i32, i32),
         (from_account, to_account): (i32, i32),
         (merchant, amount, memo): (i32, i32, &str),
         (traded_at, timezone): (NaiveDateTime, Tz),
@@ -64,6 +65,7 @@ impl Dao for Connection {
         let now = Utc::now().naive_utc();
         insert_into(bookkeeper_entries::dsl::bookkeeper_entries)
             .values((
+                bookkeeper_entries::dsl::ledger_id.eq(ledger),
                 bookkeeper_entries::dsl::transaction_id.eq(transaction),
                 bookkeeper_entries::dsl::category_id.eq(category),
                 bookkeeper_entries::dsl::from_account_id.eq(from_account),
@@ -114,7 +116,23 @@ impl Dao for Connection {
     fn by_transaction(&mut self, transaction: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
             .filter(bookkeeper_entries::dsl::transaction_id.eq(transaction))
-            .order(bookkeeper_entries::dsl::created_at.desc())
+            .order(bookkeeper_entries::dsl::updated_at.desc())
+            .load::<Item>(self)?;
+        Ok(items)
+    }
+    fn count_by_ledger(&mut self, ledger: i32) -> Result<i64> {
+        let cnt: i64 = bookkeeper_entries::dsl::bookkeeper_entries
+            .count()
+            .filter(bookkeeper_entries::dsl::ledger_id.eq(ledger))
+            .get_result(self)?;
+        Ok(cnt)
+    }
+    fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>> {
+        let items = bookkeeper_entries::dsl::bookkeeper_entries
+            .filter(bookkeeper_entries::dsl::ledger_id.eq(ledger))
+            .order(bookkeeper_entries::dsl::updated_at.desc())
+            .offset(offset)
+            .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
     }
@@ -125,28 +143,28 @@ impl Dao for Connection {
                     .eq(account)
                     .or(bookkeeper_entries::dsl::to_account_id.eq(account)),
             )
-            .order(bookkeeper_entries::dsl::created_at.desc())
+            .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)
     }
     fn by_from_account(&mut self, account: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
             .filter(bookkeeper_entries::dsl::from_account_id.eq(account))
-            .order(bookkeeper_entries::dsl::created_at.desc())
+            .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)
     }
     fn by_to_account(&mut self, account: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
             .filter(bookkeeper_entries::dsl::to_account_id.eq(account))
-            .order(bookkeeper_entries::dsl::created_at.desc())
+            .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)
     }
     fn by_merchant(&mut self, merchant: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
             .filter(bookkeeper_entries::dsl::merchant_id.eq(merchant))
-            .order(bookkeeper_entries::dsl::created_at.desc())
+            .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)
     }

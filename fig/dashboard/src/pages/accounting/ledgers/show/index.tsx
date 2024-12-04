@@ -12,6 +12,7 @@ import Accounts from "../../accounts/Table";
 import Transactions from "../../transactions/Table";
 import Merchants from "../../merchants/Table";
 import Categories from "../../categories/Table";
+import Entries from "../../entries/Table";
 import { ICurrency, index_currency } from "../../../../api/daffodil";
 
 const Widget = () => {
@@ -119,6 +120,19 @@ const Widget = () => {
               ),
               children: (
                 <Transactions
+                  messageApi={messageApi}
+                  ledger={item}
+                  currencies={currencies}
+                />
+              ),
+            },
+            {
+              key: "entries",
+              label: (
+                <FormattedMessage id="pages.accounting.ledgers.tabs.entries.title" />
+              ),
+              children: (
+                <Entries
                   messageApi={messageApi}
                   ledger={item}
                   currencies={currencies}

@@ -20,6 +20,69 @@ export const ACCOUNT_TYPE_EQUITY = "EQUITY";
 export const ACCOUNT_TYPE_INCOME = "INCOME";
 export const ACCOUNT_TYPE_EXPENSES = "EXPENSES";
 
+const INDEX_ENTRY_BY_LEDGER = `
+query call($id: Int!, $pager: Pager!){
+    indexBookkeepingEntryByLedger(id: $id, pager: $pager){
+      items{
+        id, memo, amount, updatedAt, deletedAt,
+        toAccount{
+          id, label, memo,
+          currency{id, code, name, country, units},
+        },
+        fromAccount{
+          id, label, memo,
+          currency{id, code, name, country, units},
+        },
+        category{id, label},
+        merchant{id, label, memo},        
+        transaction{id, uid, memo},
+        tradedAt{datetime, timezone}
+      },
+      pagination{total}
+    }
+}
+`;
+export const index_entries_by_ledger = async (
+  id: number,
+  pager: IPager
+): Promise<IIndexEntryResponse> => {
+  const res: {
+    indexBookkeepingEntryByLedger: IIndexEntryResponse;
+  } = await query(INDEX_ENTRY_BY_LEDGER, { id, pager });
+  return res.indexBookkeepingEntryByLedger;
+};
+
+interface IIndexEntryResponse {
+  items: IEntry[];
+  pagination: IPagination;
+}
+
+const INDEX_ENTRY_BY_TRANSACTION = `
+query call($id: Int!){
+    indexBookkeepingEntryByTransaction(id: $id){      
+      id, memo, updatedAt, deletedAt,
+      toAccount{
+        id, label, memo,
+        currency{id, code, name, country, units},
+      },
+      fromAccount{
+        id, label, memo,
+        currency{id, code, name, country, units},
+      },
+      category{id, label},
+      merchant{id, label, memo},      
+      tradedAt{datetime, timezone}      
+    }
+}
+`;
+export const index_entries_by_transaction = async (
+  id: number
+): Promise<IEntry[]> => {
+  const res: {
+    indexBookkeepingEntryByTransaction: IEntry[];
+  } = await query(INDEX_ENTRY_BY_TRANSACTION, { id });
+  return res.indexBookkeepingEntryByTransaction;
+};
 const UPDATE_ENTRY = `
 mutation call($id: Int!, $form: NewBookkeeperEntryForm!){
     updateBookkeepingEntry(id: $id, form: $form){
@@ -61,8 +124,8 @@ export interface IEntry {
   category: ICategory;
   fromAccount: IAccount;
   toAccount: IAccount;
-  currency: ICurrency;
   merchant: IMerchant;
+  transaction: ITransaction;
   amount: number;
   tradedAt: IDateTimePicker;
 }

@@ -12,7 +12,7 @@ use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use petunia::{
-    graphql::DateTimePicker,
+    graphql::{DateTimePicker, Pager, Pagination},
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::{Connection as Db, Pool as DbPool},
     session::Session,
@@ -35,11 +35,11 @@ use super::super::models::{
 #[graphql(name = "BookkeeperEntry")]
 pub struct Item {
     pub id: i32,
-    pub transaction: i32,
-    pub from_account: i32,
-    pub to_account: i32,
-    pub category: i32,
-    pub merchant: i32,
+    pub transaction: super::transaction::Item,
+    pub from_account: super::account::Item,
+    pub to_account: super::account::Item,
+    pub category: super::category::Item,
+    pub merchant: super::merchant::Item,
     pub amount: i32,
     pub memo: String,
     pub traded_at: DateTimePicker,
@@ -48,14 +48,29 @@ pub struct Item {
 }
 
 impl Item {
-    pub fn new(it: &Entry) -> Result<Self> {
+    pub fn new(db: &mut Db, it: &Entry) -> Result<Self> {
         let it = Self {
             id: it.id,
-            transaction: it.transaction_id,
-            from_account: it.from_account_id,
-            to_account: it.to_account_id,
-            category: it.category_id,
-            merchant: it.merchant_id,
+            transaction: {
+                let it = TransactionDao::by_id(db, it.transaction_id)?;
+                super::transaction::Item::new(&it)?
+            },
+            from_account: {
+                let it = AccountDao::by_id(db, it.from_account_id)?;
+                super::account::Item::new(db, &it)?
+            },
+            to_account: {
+                let it = AccountDao::by_id(db, it.to_account_id)?;
+                super::account::Item::new(db, &it)?
+            },
+            category: {
+                let it = CategoryDao::by_id(db, it.category_id)?;
+                super::category::Item::new(db, &it)?
+            },
+            merchant: {
+                let it = MerchantDao::by_id(db, it.merchant_id)?;
+                super::merchant::Item::new(db, &it)?
+            },
             memo: it.memo.clone(),
             amount: it.amount,
             traded_at: (it.traded_at, Tz::from_str(&it.timezone)?).try_into()?,
@@ -85,9 +100,45 @@ impl Item {
         let mut items = Vec::new();
 
         for it in EntryDao::by_transaction(db, id)?.iter() {
-            items.push(Item::new(it)?);
+            items.push(Item::new(db, it)?);
         }
         Ok(items)
+    }
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "BookkeeperList")]
+pub struct List {
+    pub items: Vec<Item>,
+    pub pagination: Pagination,
+}
+impl List {
+    pub async fn by_ledger(
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enforcer: &Mutex<Enforcer>,
+        id: i32,
+        pager: &Pager,
+    ) -> Result<Self> {
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        {
+            let (_, user) = current_user(ss, db, jwt)?;
+            let it = LedgerDao::by_id(db, id)?;
+            it.can_read(&user, enforcer).await?;
+        }
+
+        let mut items = Vec::new();
+
+        let total = EntryDao::count_by_ledger(db, id)?;
+        for it in EntryDao::by_ledger(db, id, pager.offset(total), pager.size())?.iter() {
+            items.push(Item::new(db, it)?);
+        }
+        Ok(Self {
+            items,
+            pagination: Pagination::new(pager, total),
+        })
     }
 }
 
@@ -242,8 +293,7 @@ impl New {
         let currency = self.check(db, transaction)?;
         EntryDao::create(
             db,
-            transaction.id,
-            self.category,
+            (transaction.ledger_id, transaction.id, self.category),
             (self.from_account, self.to_account),
             (self.merchant, self.amount, &self.memo),
             traded_at,

@@ -1,3 +1,5 @@
+import { ICurrency } from "../api/daffodil";
+
 export const PASSWORD_PLACEHOLDER = "••••••";
 export const PASSWORD_MIN_LENGTH = 6;
 export const PASSWORD_MAX_LENGTH = 31;
@@ -24,3 +26,9 @@ export interface IAlert {
   color: string;
   messages: string[];
 }
+
+export const from_cents = (c: ICurrency, a: number): number =>
+  (a * 1.0) / Math.pow(10, c.units);
+
+export const to_cents = (c: ICurrency, a: number): number =>
+  Math.trunc(a * Math.pow(10, c.units));
