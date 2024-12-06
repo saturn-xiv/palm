@@ -14,6 +14,7 @@ import Money from "../../../components/Money";
 import { ICurrency } from "../../../api/daffodil";
 import EntryForm from "../entries/Form";
 import { IError } from "../../../api";
+import Bills from "./Bills";
 
 interface IProps {
   ledger: ILedger;
@@ -104,6 +105,7 @@ const Widget = ({ ledger, currencies, messageApi }: IProps) => {
           key: "manage",
           render: (_, item) => (
             <Space>
+              <Bills item={item} />
               <EntryForm
                 item={item}
                 ledger={ledger}

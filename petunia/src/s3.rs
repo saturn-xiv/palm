@@ -19,6 +19,7 @@ use minio::s3::{
     creds::StaticProvider,
     http::BaseUrl,
     types::{Filter, LifecycleConfig, LifecycleRule, S3Api},
+    utils::Multimap,
     Client as MinioClient, ClientBuilder,
 };
 use prost::Message;
@@ -84,6 +85,8 @@ impl Client {
     }
     pub async fn get_object_url(
         &self,
+        title: &str,
+        content_type: &str,
         bucket: &str,
         object: &str,
         ttl: Option<Duration>,
@@ -111,9 +114,31 @@ impl Client {
             }
         };
 
+        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
+        // https://min.io/docs/minio/linux/developers/go/API.html#presignedgetobject-ctx-context-context-bucketname-objectname-string-expiry-time-duration-reqparams-url-values-url-url-error
+        let mut params = Multimap::new();
+        params.insert(
+            "response-content-type".to_string(),
+            content_type.to_string(),
+        );
+        if content_type.starts_with("image/")
+            || content_type.starts_with("video/")
+            || content_type == "application/pdf"
+        {
+            params.insert(
+                "response-content-disposition".to_string(),
+                "inline".to_string(),
+            );
+        } else {
+            params.insert(
+                "response-content-disposition".to_string(),
+                format!("attachment; filename=\"{title}\""),
+            );
+        };
         let args = {
             let mut it = GetPresignedObjectUrlArgs::new(bucket, object, Method::GET)?;
             it.expiry_seconds = Some(ttl.num_seconds() as u32);
+            it.extra_query_params = Some(&params);
             it
         };
         let res = self.client.get_presigned_object_url(&args).await?;

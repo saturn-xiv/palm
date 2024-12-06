@@ -49,7 +49,6 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
           expanded,
           onExpand: (_, info) => setExpanded(info.expanded),
         }}
-        copyable
       >
         {item.memo}
       </Typography.Paragraph>

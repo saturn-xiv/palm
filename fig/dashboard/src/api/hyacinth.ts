@@ -1,11 +1,14 @@
 import { IDateTimePicker, IPager, IPagination, ISucceed, query } from ".";
 import {
+  IAttachment,
   ICurrency,
   IPostalAddress,
   IPostalAddressFormValue,
   IPostalRecipient,
   IPostalRecipientFormValue,
 } from "./daffodil";
+
+export const TYPE_ENTRY = "hyacinth::models::entry::Item";
 
 export const ACCOUNT_TYPE_CASH = "CASH";
 export const ACCOUNT_TYPE_BANK = "BANK";
@@ -36,6 +39,7 @@ query call($id: Int!, $pager: Pager!){
         category{id, label},
         merchant{id, label, memo},        
         transaction{id, uid, memo},
+        bills{id, contentType, title, bucket, object, size},
         tradedAt{datetime, timezone}
       },
       pagination{total}
@@ -70,7 +74,8 @@ query call($id: Int!){
         currency{id, code, name, country, units},
       },
       category{id, label},
-      merchant{id, label, memo},      
+      merchant{id, label, memo},
+      bills{id, contentType, title, bucket, object, size},    
       tradedAt{datetime, timezone}      
     }
 }
@@ -126,6 +131,7 @@ export interface IEntry {
   toAccount: IAccount;
   merchant: IMerchant;
   transaction: ITransaction;
+  bills: IAttachment[];
   amount: number;
   tradedAt: IDateTimePicker;
 }

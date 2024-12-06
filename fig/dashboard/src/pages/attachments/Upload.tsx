@@ -9,7 +9,7 @@ const { Dragger } = Upload;
 
 interface IProps {
   resource: IResource;
-  public: boolean;
+  public?: boolean;
   expirationDays?: number;
 }
 

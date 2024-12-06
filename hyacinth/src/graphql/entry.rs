@@ -5,7 +5,11 @@ use casbin::Enforcer;
 use chrono::NaiveDateTime;
 use chrono_tz::Tz;
 use daffodil::{
-    models::currency::{Dao as CurrencyDao, Item as Currency},
+    graphql::attachment::Item as Attachment,
+    models::{
+        attachment::Dao as AttachmentDao,
+        currency::{Dao as CurrencyDao, Item as Currency},
+    },
     session::current_user,
 };
 use diesel::Connection as DieselConnection;
@@ -42,6 +46,7 @@ pub struct Item {
     pub merchant: super::merchant::Item,
     pub amount: i32,
     pub memo: String,
+    pub bills: Vec<Attachment>,
     pub traded_at: DateTimePicker,
     pub deleted_at: Option<NaiveDateTime>,
     pub updated_at: NaiveDateTime,
@@ -73,6 +78,10 @@ impl Item {
             },
             memo: it.memo.clone(),
             amount: it.amount,
+            bills: {
+                let items = AttachmentDao::by_resource::<Entry>(db, Some(it.id))?;
+                items.into_iter().map(|x| x.into()).collect()
+            },
             traded_at: (it.traded_at, Tz::from_str(&it.timezone)?).try_into()?,
             deleted_at: it.deleted_at,
             updated_at: it.updated_at,

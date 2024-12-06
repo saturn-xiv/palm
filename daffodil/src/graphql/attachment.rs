@@ -143,7 +143,9 @@ impl Show {
         if it.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::GONE, None)));
         }
-        let url = s3.get_object_url(&it.bucket, &it.object, ttl).await?;
+        let url = s3
+            .get_object_url(&it.title, &it.content_type, &it.bucket, &it.object, ttl)
+            .await?;
         Ok(Self {
             item: it.into(),
             url,

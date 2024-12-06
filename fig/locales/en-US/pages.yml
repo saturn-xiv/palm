@@ -214,6 +214,8 @@ accounting:
       title: "Create a new entry for {name}"
     edit:
       title: "Edit entry {name}"
+    bills:
+      title: "Bills"
     form:
       fields:
         from-account:

@@ -30,7 +30,7 @@ use super::super::{
 #[derive(Debug, Deserialize)]
 struct Metadata {
     resource: Resource,
-    public: bool,
+    public: Option<bool>,
     expiration_days: Option<usize>,
 }
 
@@ -81,7 +81,11 @@ impl UploadForm {
             None => "anonymous".to_string(),
         };
         let bucket = s3
-            .create_bucket(bucket, self.json.public, self.json.expiration_days)
+            .create_bucket(
+                bucket,
+                self.json.public.unwrap_or(false),
+                self.json.expiration_days,
+            )
             .await?;
         let object = s3
             .upload_object(&bucket, &title, self.file.file.path())
@@ -178,7 +182,7 @@ impl Attachment {
     pub async fn download(&self, s3: &S3) -> Result<PathBuf> {
         let tmp = Path::new("tmp").join(format!("{}-{}", self.bucket, self.object));
         if !tmp.exists() {
-            let url = s3.get_object_url(&self.bucket, &self.object, None).await?;
+            let url = self.url(s3, None).await?;
             let mut stream = reqwest::get(url).await?.bytes_stream();
             let mut file = File::create(&tmp)?;
             while let Some(chunk) = stream.next().await {

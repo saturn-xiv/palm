@@ -9,6 +9,26 @@ import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
 
+interface IShowAttachment {
+  url: string;
+  item: IAttachment;
+}
+const SHOW_ATTACHMENT = `
+query call($id: Int!){
+    showAttachment(id: $id){
+      item{id, bucket, object, title, size, contentType, uploadedAt, updatedAt, deletedAt},
+      url
+    }
+}
+`;
+export const show_attachment = async (id: number): Promise<IShowAttachment> => {
+  const res: { showAttachment: IShowAttachment } = await query(
+    SHOW_ATTACHMENT,
+    { id }
+  );
+  return res.showAttachment;
+};
+
 export interface IAttachment {
   id: number;
   bucket: string;

@@ -46,7 +46,14 @@ impl Item {
         self.content_type.starts_with("image/")
     }
     pub async fn url(&self, s3: &S3, ttl: Option<Duration>) -> Result<String> {
-        s3.get_object_url(&self.bucket, &self.object, ttl).await
+        s3.get_object_url(
+            &self.title,
+            &self.content_type,
+            &self.bucket,
+            &self.object,
+            ttl,
+        )
+        .await
     }
 }
 
