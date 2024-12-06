@@ -42,6 +42,7 @@ pub enum Action {
     CreateLedge,
     DisableLedge,
     EnableLedge,
+    ShareLedge,
 
     CreateMerchant,
     UpdateMerchant,

@@ -1,13 +1,56 @@
+use std::ops::{Deref, DerefMut};
+
+use actix_multipart::form::MultipartForm;
 use actix_web::{
     error::{ErrorBadRequest, ErrorInternalServerError},
-    get, web, Responder, Result as WebResult,
+    get, post, web, Responder, Result as WebResult,
 };
+
+use casbin::Enforcer;
 use chrono::{Datelike, Days, Months, NaiveDate, NaiveDateTime, NaiveTime};
+use daffodil::{controllers::attachments::UploadForm, session::current_user};
 use hyper::StatusCode;
 use petunia::{
+    jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::{Connection as Db, Pool as DbPool},
-    HttpError, Result,
+    s3::Client as S3,
+    session::Session,
+    try_web, HttpError, Result,
 };
+use tokio::sync::Mutex;
+
+use crate::graphql::ROLE_MANAGER;
+
+use super::super::{models::page::Item as Page, NAME};
+
+#[post("/upload")]
+pub async fn upload(
+    ss: Session,
+    db: web::Data<DbPool>,
+    jwt: web::Data<Jwt>,
+    s3: web::Data<S3>,
+    enforcer: web::Data<Mutex<Enforcer>>,
+    MultipartForm(form): MultipartForm<UploadForm>,
+) -> WebResult<impl Responder> {
+    let db = db.deref();
+    let db = db.deref();
+    let jwt = jwt.deref();
+    let s3 = s3.deref();
+
+    {
+        let mut db = try_web!(db.get())?;
+        let db = db.deref_mut();
+        let (_, user) = try_web!(current_user(&ss, db, jwt))?;
+        {
+            let mut enf = enforcer.lock().await;
+            let enf = enf.deref_mut();
+            try_web!(user.has(enf, ROLE_MANAGER))?;
+        }
+    }
+
+    let it = try_web!(form.save::<Page>(&ss, db, jwt, s3, NAME).await)?;
+    Ok(web::Json(it))
+}
 
 #[get("/latest")]
 pub async fn latest(db: web::Data<DbPool>) -> WebResult<impl Responder> {

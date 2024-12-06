@@ -32,6 +32,7 @@ use uuid::Uuid;
 use validator::Validate;
 
 use super::super::{
+    controllers::admin::site::Favicon,
     models::{
         attachment::Dao as AttachmentDao,
         currency::Dao as CurrencyDao,
@@ -91,7 +92,7 @@ impl Refresh {
         .await
     }
     async fn _favicon(db: &mut Db, s3: &S3) -> Result<String> {
-        for it in AttachmentDao::by_resource_(db, Layout::FAVICON, None)?.iter() {
+        for it in AttachmentDao::by_resource::<Favicon>(db, None)?.iter() {
             if it.deleted_at.is_none() && it.is_image() {
                 return it.url(s3, None).await;
             }

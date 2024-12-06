@@ -191,7 +191,17 @@ impl Command {
                 )
                 .configure(petunia::themes::register(&themes))
                 .configure(graphql::controllers::register)
-                .configure(daffodil_controllers::register)
+                .configure(daffodil_controllers::html)
+                .configure(carnation::controllers::html)
+                .configure(hibiscus::controllers::html)
+                .configure(hyacinth::controllers::html)
+                .service(
+                    web::scope("/api")
+                        .configure(daffodil_controllers::api)
+                        .configure(carnation::controllers::api)
+                        .configure(hibiscus::controllers::api)
+                        .configure(hyacinth::controllers::api),
+                )
         })
         .workers(self.threads)
         .bind(addr)?

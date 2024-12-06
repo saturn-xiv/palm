@@ -12,7 +12,7 @@ use petunia::{
     HttpError, Result,
 };
 
-#[get("/{uid}/{b_year}-{b_month}-{b_day}-{e_year}-{e_month}-{e_day}")]
+#[get("/{token}/{b_year}-{b_month}-{b_day}-{e_year}-{e_month}-{e_day}")]
 pub async fn by_date_range(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32, u32, u32, i32, u32, u32)>,
@@ -37,7 +37,7 @@ pub async fn by_date_range(
         .map_err(|e| ErrorInternalServerError(e.to_string()))?;
     Ok(web::Html::new(body))
 }
-#[get("/{uid}/{year}-{month}-{day}/daily")]
+#[get("/{token}/{year}-{month}-{day}/daily")]
 pub async fn daily_by_date(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32, u32, u32)>,
@@ -60,7 +60,7 @@ pub async fn daily_by_date(
         .map_err(|e| ErrorInternalServerError(e.to_string()))?;
     Ok(web::Html::new(body))
 }
-#[get("/{uid}/{year}-{month}-{day}/weekly")]
+#[get("/{token}/{year}-{month}-{day}/weekly")]
 pub async fn weekly_by_date(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32, u32, u32)>,
@@ -83,7 +83,7 @@ pub async fn weekly_by_date(
         .map_err(|e| ErrorInternalServerError(e.to_string()))?;
     Ok(web::Html::new(body))
 }
-#[get("/{uid}/{year}-{month}-{day}/monthly")]
+#[get("/{token}/{year}-{month}-{day}/monthly")]
 pub async fn monthly_by_date(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32, u32, u32)>,
@@ -108,7 +108,7 @@ pub async fn monthly_by_date(
         .map_err(|e| ErrorInternalServerError(e.to_string()))?;
     Ok(web::Html::new(body))
 }
-#[get("/{uid}/{year}-{month}-{day}/yearly")]
+#[get("/{token}/{year}-{month}-{day}/yearly")]
 pub async fn yearly_by_date(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32, u32, u32)>,
@@ -133,7 +133,7 @@ pub async fn yearly_by_date(
         .map_err(|e| ErrorInternalServerError(e.to_string()))?;
     Ok(web::Html::new(body))
 }
-#[get("/{uid}/{year}-{month}")]
+#[get("/{token}/{year}-{month}")]
 pub async fn by_year_month(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32, u32)>,
@@ -159,7 +159,7 @@ pub async fn by_year_month(
     Ok(web::Html::new(body))
 }
 
-#[get("/{uid}/{year}")]
+#[get("/{token}/{year}")]
 pub async fn by_year(
     (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String, i32)>,
@@ -198,6 +198,7 @@ async fn render(
             Some("end-time should after the begin-time".to_string()),
         )));
     }
+    log::debug!("ledger range {begin} {end}");
     let _uid = jwt.verify(token, AUDIENCE)?;
     // TODO
     todo!()

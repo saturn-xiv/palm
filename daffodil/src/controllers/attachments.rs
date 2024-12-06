@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::fmt;
 use std::fs::File;
 use std::io::prelude::*;
@@ -7,12 +8,11 @@ use std::str::FromStr;
 
 use actix_files::NamedFile;
 use actix_multipart::form::{json::Json as MPJson, tempfile::TempFile, MultipartForm};
-use actix_web::{get, post, web, Responder, Result as WebResult};
+use actix_web::{get, web, Responder, Result as WebResult};
 use data_encoding::BASE64_NOPAD;
 use diesel::Connection as DieselConnection;
 use futures_util::StreamExt;
 use petunia::{
-    graphql::Resource,
     jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
     orm::postgresql::Pool as DbPool,
     s3::Client as S3,
@@ -24,42 +24,25 @@ use serde::{Deserialize, Serialize};
 use super::super::{
     models::attachment::{Dao as AttachmentDao, Item as Attachment},
     session::current_user,
-    NAME,
 };
 
 #[derive(Debug, Deserialize)]
-struct Metadata {
-    resource: Resource,
-    public: Option<bool>,
-    expiration_days: Option<usize>,
+#[serde(rename_all = "camelCase")]
+pub struct Metadata {
+    pub resource_id: Option<i32>,
+    pub public: Option<bool>,
+    pub expiration_days: Option<usize>,
 }
 
 #[derive(Debug, MultipartForm)]
-struct UploadForm {
+pub struct UploadForm {
     #[multipart(limit = "512MB")]
-    file: TempFile,
-    json: MPJson<Metadata>,
-}
-
-#[post("/")]
-pub async fn upload(
-    ss: Session,
-    db: web::Data<DbPool>,
-    jwt: web::Data<Jwt>,
-    s3: web::Data<S3>,
-    MultipartForm(form): MultipartForm<UploadForm>,
-) -> WebResult<impl Responder> {
-    let db = db.deref();
-    let db = db.deref();
-    let jwt = jwt.deref();
-    let s3 = s3.deref();
-    log::debug!("{:?}", form);
-    let it = try_web!(form.execute(&ss, db, jwt, s3, NAME).await)?;
-    Ok(web::Json(it))
+    pub file: TempFile,
+    pub json: MPJson<Metadata>,
 }
 
 impl UploadForm {
-    pub async fn execute(
+    pub async fn save<T>(
         &self,
         ss: &Session,
         db: &DbPool,
@@ -100,12 +83,7 @@ impl UploadForm {
             )?;
             let it = AttachmentDao::by_bucket_and_object(db, &bucket, &object)?;
             AttachmentDao::set_upload_at(db, it.id)?;
-            AttachmentDao::associate_(
-                db,
-                it.id,
-                &self.json.resource.r#type,
-                self.json.resource.id,
-            )?;
+            AttachmentDao::associate_(db, it.id, type_name::<T>(), self.json.resource_id)?;
             Ok(it)
         })?;
         Ok(it)

@@ -1,10 +1,11 @@
+pub mod entries;
 pub mod ledgers;
 
 use actix_web::web;
 
-pub fn register(config: &mut web::ServiceConfig) {
+pub fn html(config: &mut web::ServiceConfig) {
     config.service(
-        web::scope("/bookkeeper").service(
+        web::scope("/accounting").service(
             web::scope("/ledgers")
                 .service(ledgers::by_year)
                 .service(ledgers::by_year_month)
@@ -14,5 +15,11 @@ pub fn register(config: &mut web::ServiceConfig) {
                 .service(ledgers::monthly_by_date)
                 .service(ledgers::yearly_by_date),
         ),
+    );
+}
+
+pub fn api(config: &mut web::ServiceConfig) {
+    config.service(
+        web::scope("/accounting").service(web::scope("/entries").service(entries::bills_upload)),
     );
 }

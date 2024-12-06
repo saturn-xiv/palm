@@ -229,6 +229,18 @@ impl Ledger {
         }
         Ok(())
     }
+    pub async fn can_credit(&self, user: &User, enforcer: &Mutex<Enforcer>) -> Result<()> {
+        if user.id == self.user_id {
+            return Ok(());
+        }
+        let mut enf = enforcer.lock().await;
+        let enf = enf.deref_mut();
+        {
+            user.has(enf, ROLE_MEMBER)?;
+            user.can(enf, &Operation::credit(), &Resource::by_id::<Self>(self.id))?;
+        }
+        Ok(())
+    }
     pub async fn can_read(&self, user: &User, enforcer: &Mutex<Enforcer>) -> Result<()> {
         if user.id == self.user_id {
             return Ok(());
@@ -256,4 +268,35 @@ impl Ledger {
         }
         Ok(())
     }
+}
+
+pub async fn share(
+    ss: &Session,
+    db: &DbPool,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    id: i32,
+    minutes: i32,
+) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+    let (si, user) = current_user(ss, db, jwt)?;
+    let it = LedgerDao::by_id(db, id)?;
+    it.can_credit(&user, enforcer).await?;
+
+    db.transaction::<_, Error, _>(|db| {
+        LogDao::create(
+            db,
+            id,
+            (user.id, &si.to_string()),
+            (
+                Action::ShareLedge,
+                &format!("share {}({}) for {} minutes", it.label, it.id, minutes),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
+        Ok(())
+    })?;
+    Ok(())
 }

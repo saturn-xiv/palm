@@ -2,25 +2,29 @@ import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IResource, get as get_token } from "../../reducers/current-user";
+import { get as get_token } from "../../reducers/current-user";
 import { IAttachment } from "../../api/daffodil";
 
 const { Dragger } = Upload;
 
-interface IProps {
-  resource: IResource;
+interface IFormValue {
+  resourceId?: number;
   public?: boolean;
   expirationDays?: number;
+}
+
+interface IProps extends IFormValue {
+  action: string;
 }
 
 const upload = async (
   action: string,
   data: FormData,
-  props: IProps
+  values: IFormValue
 ): Promise<IAttachment> => {
   data.append(
     "json",
-    new Blob([JSON.stringify(props)], {
+    new Blob([JSON.stringify(values)], {
       type: "application/json",
     })
   );
@@ -44,13 +48,17 @@ const Widget = (props: IProps) => {
       <Dragger
         name="file"
         multiple
-        action="/api/attachments/"
+        action={props.action}
         // https://github.com/react-component/upload#customrequest
         customRequest={(options) => {
           const data = new FormData();
           data.append("file", options.file);
 
-          upload(options.action, data, props)
+          upload(options.action, data, {
+            public: props.public,
+            resourceId: props.resourceId,
+            expirationDays: props.expirationDays,
+          })
             .then((res: IAttachment) => {
               console.log(res);
               if (options.onSuccess) {

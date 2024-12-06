@@ -8,8 +8,6 @@ import {
   IPostalRecipientFormValue,
 } from "./daffodil";
 
-export const TYPE_ENTRY = "hyacinth::models::entry::Item";
-
 export const ACCOUNT_TYPE_CASH = "CASH";
 export const ACCOUNT_TYPE_BANK = "BANK";
 export const ACCOUNT_TYPE_STOCK = "STOCK";

@@ -4,7 +4,7 @@ pub mod topics;
 
 use actix_web::web;
 
-pub fn register(config: &mut web::ServiceConfig) {
+pub fn html(config: &mut web::ServiceConfig) {
     config.service(
         web::scope("/bbs")
             .service(
@@ -29,3 +29,5 @@ pub fn register(config: &mut web::ServiceConfig) {
             ),
     );
 }
+
+pub fn api(_config: &mut web::ServiceConfig) {}

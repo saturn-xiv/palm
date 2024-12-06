@@ -9,7 +9,7 @@ const Widget = () => {
       <Typography.Title level={3}>
         <FormattedMessage id="pages.admin.site.favicon.title" />
       </Typography.Title>
-      <Upload public resource={{ type: "site.favicon" }} />
+      <Upload public action="/api/admin/site/favicon" />
     </>
   );
 };

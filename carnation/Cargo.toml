@@ -7,6 +7,7 @@ description = "A content management system focused on flexibility and user exper
 [dependencies]
 language-tags = "0.3"
 log = "0.4"
+actix-multipart = "0.7"
 askama = "0.12"
 casbin = "2"
 data-encoding = "2"

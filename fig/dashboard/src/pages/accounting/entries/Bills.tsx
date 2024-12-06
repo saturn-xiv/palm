@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FileImageOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 
-import { IEntry, TYPE_ENTRY } from "../../../api/hyacinth";
+import { IEntry } from "../../../api/hyacinth";
 import Memo from "../../../components/Memo";
 import Upload from "../../attachments/Upload";
 import ShowAttachment from "../../attachments/Show";
@@ -31,7 +31,12 @@ const Widget = ({ item }: IProps) => {
         <List
           size="small"
           header={<Memo text={item.memo} />}
-          footer={<Upload resource={{ type: TYPE_ENTRY, id: item.id }} />}
+          footer={
+            <Upload
+              action="/api/accounting/entries/bills-upload"
+              resourceId={item.id}
+            />
+          }
           bordered
           dataSource={item.bills}
           renderItem={(x) => (
