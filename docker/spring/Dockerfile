@@ -342,6 +342,11 @@ RUN sudo sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=sqlite3/extension=sqlite3/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=tidy/extension=tidy/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=xsl/extension=xsl/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=redis/extension=redis/' /etc/php/conf.d/redis.ini \
+    && sudo sed -i 's/;extension=igbinary/extension=igbinary/' /etc/php/conf.d/igbinary.ini \
+    && sudo sed -i 's/; extension = imagick/extension=imagick/' /etc/php/conf.d/imagick.ini \
+    && sudo sed -i 's/;zend_extension=xdebug/zend_extension=xdebug/' /etc/php/conf.d/xdebug.ini \
+    && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=debug/' /etc/php/conf.d/xdebug.ini \
     && sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini 
 
 RUN mkdir -p $HOME/.ssh \
