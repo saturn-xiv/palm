@@ -40,7 +40,7 @@
   redis-cli --cluster check 127.0.0.1:6371
   ```
 
-- Minio [dashboard](http://localhost:9001) (`admin:12345678`)
+- Minio [dashboard](http://localhost:9091) (`admin:12345678`)
 
 - RabbitMQ [dashboard](http://localhost:15672) (`guest:guest`)
 
