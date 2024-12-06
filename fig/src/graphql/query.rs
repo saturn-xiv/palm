@@ -434,6 +434,25 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    async fn share_bookkeeping_ledger(
+        context: &Context,
+        id: i32,
+        not_before: String,
+        expires_at: String,
+        timezone: String,
+    ) -> FieldResult<String> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let form = hyacinth_graphql::ledger::Share {
+            not_before,
+            expires_at,
+            timezone,
+        };
+        let it = form.execute(&context.session, db, jwt, enf, id).await?;
+        Ok(it)
+    }
     async fn show_bookkeeping_ledger(
         context: &Context,
         id: i32,

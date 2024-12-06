@@ -2,7 +2,7 @@ pub mod openssl;
 
 use std::ops::Add;
 
-use chrono::{Datelike, Duration, Utc};
+use chrono::{Datelike, Days, Duration, Months, Utc};
 use hyper::{header::AUTHORIZATION, http::StatusCode};
 use tonic::{
     metadata::{Ascii, MetadataKey, MetadataValue},
@@ -60,5 +60,28 @@ pub trait Jwt {
             StatusCode::BAD_REQUEST,
             Some("bad year gap!".to_string()),
         )))
+    }
+    fn months(m: u32) -> Result<(i64, i64)> {
+        let nbf = Utc::now();
+        let exp = nbf
+            .checked_add_months(Months::new(m))
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("bad month gap!".to_string()),
+            )))?;
+        Ok((nbf.timestamp(), exp.timestamp()))
+    }
+    fn weeks(w: u64) -> Result<(i64, i64)> {
+        Self::days(w * 7)
+    }
+    fn days(d: u64) -> Result<(i64, i64)> {
+        let nbf = Utc::now();
+        let exp = nbf
+            .checked_add_days(Days::new(d))
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("bad days gap!".to_string()),
+            )))?;
+        Ok((nbf.timestamp(), exp.timestamp()))
     }
 }

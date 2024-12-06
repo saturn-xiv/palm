@@ -55,6 +55,8 @@ fields:
     label: "Updated at"
   expires-at:
     label: "Expires at"
+  not-before:
+    label: "Not before"
   level:
     label: "Label"
   message:

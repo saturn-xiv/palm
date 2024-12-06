@@ -2,12 +2,14 @@ use std::ops::DerefMut;
 
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
+use chrono_tz::Tz;
 use daffodil::{models::user::Item as User, session::current_user};
 use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use juniper::GraphQLObject;
 use petunia::{
-    jwt::openssl::OpenSsl as Jwt,
+    graphql::DateTimePicker,
+    jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
     orm::postgresql::Pool as DbPool,
     rbac::v1::policy_permissions_response::item::{Operation, Resource},
     session::Session,
@@ -15,6 +17,8 @@ use petunia::{
 };
 use tokio::sync::Mutex;
 use validator::Validate;
+
+use crate::controllers::ledgers::AUDIENCE;
 
 use super::{
     super::models::{
@@ -270,33 +274,64 @@ impl Ledger {
     }
 }
 
-pub async fn share(
-    ss: &Session,
-    db: &DbPool,
-    jwt: &Jwt,
-    enforcer: &Mutex<Enforcer>,
-    id: i32,
-    minutes: i32,
-) -> Result<()> {
-    let mut db = db.get()?;
-    let db = db.deref_mut();
-    let (si, user) = current_user(ss, db, jwt)?;
-    let it = LedgerDao::by_id(db, id)?;
-    it.can_credit(&user, enforcer).await?;
+#[derive(Validate, Debug)]
+pub struct Share {
+    #[validate(length(equal = 19))]
+    pub not_before: String,
+    #[validate(length(equal = 19))]
+    pub expires_at: String,
+    #[validate(length(min = 3, max = 31))]
+    pub timezone: String,
+}
 
-    db.transaction::<_, Error, _>(|db| {
-        LogDao::create(
-            db,
-            id,
-            (user.id, &si.to_string()),
-            (
-                Action::ShareLedge,
-                &format!("share {}({}) for {} minutes", it.label, it.id, minutes),
-                None,
-            ),
-            &ss.client_ip,
-        )?;
-        Ok(())
-    })?;
-    Ok(())
+impl Share {
+    pub async fn execute(
+        self,
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enforcer: &Mutex<Enforcer>,
+        id: i32,
+    ) -> Result<String> {
+        let nbf = {
+            let p = DateTimePicker {
+                datetime: self.not_before.clone(),
+                timezone: self.timezone.clone(),
+            };
+            let (it, _): (NaiveDateTime, Tz) = TryFrom::try_from(p)?;
+            it.and_utc()
+        };
+        let exp = {
+            let p = DateTimePicker {
+                datetime: self.expires_at.clone(),
+                timezone: self.timezone.clone(),
+            };
+            let (it, _): (NaiveDateTime, Tz) = TryFrom::try_from(p)?;
+            it.and_utc()
+        };
+
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (si, user) = current_user(ss, db, jwt)?;
+        let it = LedgerDao::by_id(db, id)?;
+        it.can_credit(&user, enforcer).await?;
+
+        let url = jwt.sign(&it.uid, AUDIENCE, nbf.timestamp(), exp.timestamp())?;
+
+        db.transaction::<_, Error, _>(|db| {
+            LogDao::create(
+                db,
+                id,
+                (user.id, &si.to_string()),
+                (
+                    Action::ShareLedge,
+                    &format!("share {}({}) for ({:?}): {}", it.label, it.id, self, url),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
+            Ok(())
+        })?;
+        Ok(url)
+    }
 }

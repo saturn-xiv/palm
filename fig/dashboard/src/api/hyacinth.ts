@@ -606,3 +606,24 @@ export const index_ledger = async (): Promise<ILedger[]> => {
   );
   return res.indexBookkeepingLedger;
 };
+
+const SHARE_LEDGER = `
+query call($id: Int!, $notBefore: String!, $expiresAt: String!, $timezone: String!){
+    shareBookkeepingLedger(id: $id, notBefore: $notBefore, expiresAt: $expiresAt, timezone: $timezone)
+}
+`;
+
+export const share_ledger = async (
+  id: number,
+  notBefore: string,
+  expiresAt: string,
+  timezone: string
+): Promise<string> => {
+  const res: { shareBookkeepingLedger: string } = await query(SHARE_LEDGER, {
+    id,
+    notBefore,
+    expiresAt,
+    timezone,
+  });
+  return res.shareBookkeepingLedger;
+};

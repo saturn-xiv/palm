@@ -38,6 +38,8 @@ pub trait Dao {
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn count_by_ledger(&mut self, ledger: i32) -> Result<i64>;
     fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn first_by_ledger(&mut self, ledger: i32) -> Result<Item>;
+    fn last_by_ledger(&mut self, ledger: i32) -> Result<Item>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
 }
@@ -93,6 +95,20 @@ impl Dao for Connection {
     fn by_uid(&mut self, uid: &str) -> Result<Item> {
         let it = bookkeeper_transactions::dsl::bookkeeper_transactions
             .filter(bookkeeper_transactions::dsl::uid.eq(uid))
+            .first(self)?;
+        Ok(it)
+    }
+    fn first_by_ledger(&mut self, ledger: i32) -> Result<Item> {
+        let it = bookkeeper_transactions::dsl::bookkeeper_transactions
+            .filter(bookkeeper_transactions::dsl::ledger_id.eq(ledger))
+            .order(bookkeeper_transactions::dsl::traded_at.asc())
+            .first(self)?;
+        Ok(it)
+    }
+    fn last_by_ledger(&mut self, ledger: i32) -> Result<Item> {
+        let it = bookkeeper_transactions::dsl::bookkeeper_transactions
+            .filter(bookkeeper_transactions::dsl::ledger_id.eq(ledger))
+            .order(bookkeeper_transactions::dsl::traded_at.desc())
             .first(self)?;
         Ok(it)
     }

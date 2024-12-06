@@ -14,6 +14,7 @@ import Merchants from "../../merchants/Table";
 import Categories from "../../categories/Table";
 import Entries from "../../entries/Table";
 import { ICurrency, index_currency } from "../../../../api/daffodil";
+import ShareBox from "../Share";
 
 const Widget = () => {
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
@@ -71,7 +72,12 @@ const Widget = () => {
         />
       </Col>
       <Col md={24}>
-        <Typography.Title level={3}>{item.label}</Typography.Title>
+        <Typography.Title level={3}>
+          <Space>
+            {item.label}
+            <ShareBox item={item} messageApi={messageApi} />
+          </Space>
+        </Typography.Title>
         <Typography.Paragraph>{item.memo}</Typography.Paragraph>
         {contextHolder}
       </Col>
