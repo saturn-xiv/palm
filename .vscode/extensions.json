@@ -6,6 +6,7 @@
     "golang.go",
     "ms-python.python",
     "bmewburn.vscode-intelephense-client",
+    "xdebug.php-pack",
     "jakebecker.elixir-ls",
     "phoenixframework.phoenix",
     "ms-python.autopep8",
