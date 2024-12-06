@@ -44,7 +44,11 @@
 
 - RabbitMQ [dashboard](http://localhost:15672) (`guest:guest`)
 
-- Php [info.php](http://localhost:8080/info.php)
+- Php [info.php](http://localhost:8080/info.php) [XDebug](https://wiki.archlinux.org/index.php/PHP#XDebug) [XDebug mode](https://xdebug.org/docs/install#mode)
+
+  ```bash
+  php -r "var_dump(extension_loaded('xdebug'));"
+  ```
 
 - OpenSearch
 
