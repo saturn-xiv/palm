@@ -192,8 +192,8 @@ RUN zsh -c "source $HOME/.cargo/env \
     && rustup target add x86_64-unknown-linux-musl \
     && rustup target add aarch64-unknown-linux-musl \
     && rustup target add loongarch64-unknown-linux-gnu"
-# && cargo install --locked cargo-outdated \
 RUN zsh -c "source $HOME/.zshrc \
+    && cargo install --locked cargo-outdated \
     && cargo install diesel_cli \
     && cargo install mdbook"
 
