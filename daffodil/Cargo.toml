@@ -44,7 +44,7 @@ version = "0.16"
 features = ["chrono"]
 
 [dependencies.validator]
-version = "0.18"
+version = "0.19"
 features = ["derive"]
 
 [dependencies.strum]
