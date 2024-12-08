@@ -19,6 +19,7 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     ttf-dejavu nerd-fonts ttf-ubuntu-font-family \
     ttf-arphic-ukai ttf-arphic-uming \
     texlive texlive-lang graphviz pandoc \
+    hspell nuspell libvoikko hunspell hunspell-en_us \
     xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc php-pspell \
     dart haxe lua \
     erlang elixir rebar \
@@ -316,6 +317,9 @@ RUN sudo mkdir -p /var/www/html \
     && sudo sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
 ADD etc/nginx/sites-enabled/localhost.conf /etc/nginx/sites-enabled/localhost.conf
 
+# php -i
+# <?php php_info(); ?>
+# <?php xdebug_info(); ?>
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=bz2/extension=bz2/' /etc/php/php.ini \
@@ -349,11 +353,9 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
     && sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini \
     && sudo sed -i 's/;zend_extension=xdebug/zend_extension=xdebug/' /etc/php/conf.d/xdebug.ini \
     && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=develop,profile,coverage,debug/' /etc/php/conf.d/xdebug.ini \
-    && echo 'xdebug.remote_autostart=on' | sudo tee -a /etc/php/conf.d/xdebug.ini \
-    && echo 'xdebug.remote_enable=on' | sudo tee -a /etc/php/conf.d/xdebug.ini \
-    && echo 'xdebug.remote_host=0.0.0.0' | sudo tee -a /etc/php/conf.d/xdebug.ini \
-    && echo 'xdebug.remote_port=9000' | sudo tee -a /etc/php/conf.d/xdebug.ini \
-    && echo 'xdebug.remote_handler=dbgp' | sudo tee -a /etc/php/conf.d/xdebug.ini \
+    && echo 'xdebug.start_with_request=yes' | sudo tee -a /etc/php/conf.d/xdebug.ini \
+    && echo 'xdebug.client_host=0.0.0.0' | sudo tee -a /etc/php/conf.d/xdebug.ini \
+    && echo 'xdebug.client_port=9003' | sudo tee -a /etc/php/conf.d/xdebug.ini \
     && echo 'xdebug.cli_color = 2' | sudo tee -a /etc/php/conf.d/xdebug.ini
 
 
