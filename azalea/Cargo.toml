@@ -12,7 +12,7 @@ actix-cors = "0.7"
 actix-identity = "0.8"
 env_logger = "0.11"
 askama = "0.12"
-actix-web-lab = "0.22"
+actix-web-lab = "0.23"
 data-encoding = "2"
 opensearch = "2"
 
