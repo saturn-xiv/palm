@@ -316,7 +316,8 @@ RUN sudo mkdir -p /var/www/html \
     && sudo sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
 ADD etc/nginx/sites-enabled/localhost.conf /etc/nginx/sites-enabled/localhost.conf
 
-RUN sudo sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
+RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
+    && sudo sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=bz2/extension=bz2/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=calendar/extension=calendar/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=enchant/extension=enchant/' /etc/php/php.ini \
