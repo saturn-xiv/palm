@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    {% include "bootstrap5/header.html" %}
+  </head>
+  <body>
+    {% include "bootstrap5/nav-bar.html" %}
+    <main>
+      <div class="container">
+        {% for transaction in transactions %} {# transaction begin #}
+        <div class="row">
+          <div class="col-md-12">
+            <h2>
+              {{ transaction.memo }}
+              <small class="text-body-secondary">
+                {{ transaction.traded_at }}
+                <u>{{ transaction.timezone }}</u>
+              </small>
+            </h2>
+            <hr />
+          </div>
+        </div>
+        {% for entry in transaction.entries %} {# entry begin #}
+        <div class="row">
+          <div class="col-md-4">
+            <figure>
+              <blockquote class="blockquote">
+                <p>{{ entry.memo }}</p>
+              </blockquote>
+              <figcaption class="blockquote-footer">
+                {{ entry.traded_at }}
+                <cite title="Source Title">{{ entry.timezone }}</cite>
+              </figcaption>
+            </figure>
+            <ul>
+              <li>From account: {{ entry.from_account.label }}</li>
+              <li>To account: {{ entry.to_account.label }}</li>
+              <li>Category: {{ entry.category.label }}</li>
+              <li>Merchant: {{ entry.merchant.label }}</li>
+              <li>
+                Amount: {{ entry.amount.currency.code}}
+                <strong>{{ entry.amount.value }}</strong>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-8">
+            {% for invoice in entry.invoices %} {# invoice begin #}
+            <img
+              src="{{ invoice.url }}"
+              class="rounded img-thumbnail"
+              alt="{{ invoice.title }}"
+            />
+            {% endfor %} {# invoice end #}
+          </div>
+        </div>
+        {% endfor %} {# entry end #} {% endfor %} {# transaction end #}
+      </div>
+      {% include "bootstrap5/footer.html" %}
+    </main>
+  </body>
+</html>

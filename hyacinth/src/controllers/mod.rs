@@ -7,14 +7,14 @@ pub fn html(config: &mut web::ServiceConfig) {
     config.service(
         web::scope("/accounting").service(
             web::scope("/ledgers")
-                .service(ledgers::show)
-                .service(ledgers::by_date_range)
-                .service(ledgers::by_year_month)
-                .service(ledgers::by_year)
-                .service(ledgers::daily_by_date)
-                .service(ledgers::weekly_by_date)
-                .service(ledgers::monthly_by_date)
-                .service(ledgers::yearly_by_date),
+                .service(ledgers::show::get)
+                .service(ledgers::bills::by_date_range)
+                .service(ledgers::bills::by_year_month)
+                .service(ledgers::bills::by_year)
+                .service(ledgers::bills::daily_by_date)
+                .service(ledgers::bills::weekly_by_date)
+                .service(ledgers::bills::monthly_by_date)
+                .service(ledgers::bills::yearly_by_date),
         ),
     );
 }
