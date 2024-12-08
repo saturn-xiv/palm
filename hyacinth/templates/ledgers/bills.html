@@ -7,6 +7,20 @@
     {% include "bootstrap5/nav-bar.html" %}
     <main>
       <div class="container">
+        <div class="row">
+          <h1>{{ ledger.label }}</h1>
+          <figure class="text-end">
+            <blockquote class="blockquote">
+              <p>{{ ledger.memo }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              {% if let Some(s) =
+              layout.locales.get("form.fields.updated-at.label") %} {{ s }} {%
+              endif %} : {{ ledger.updated_at }}
+              <cite title="{{ ledger.uid }}">{{ ledger.uid }}</cite>
+            </figcaption>
+          </figure>
+        </div>
         {% for transaction in transactions %} {# transaction begin #}
         <div class="row">
           <div class="col-md-12">
@@ -28,17 +42,37 @@
                 <p>{{ entry.memo }}</p>
               </blockquote>
               <figcaption class="blockquote-footer">
-                {{ entry.traded_at }}
-                <cite title="Source Title">{{ entry.timezone }}</cite>
+                {% if let Some(s) =
+                layout.locales.get("form.fields.traded-at.label") %} {{ s }} {%
+                endif %}:{{ entry.traded_at }}
+                <cite title="{{ entry.timezone }}">{{ entry.timezone }}</cite>
               </figcaption>
             </figure>
             <ul>
-              <li>From account: {{ entry.from_account.label }}</li>
-              <li>To account: {{ entry.to_account.label }}</li>
-              <li>Category: {{ entry.category.label }}</li>
-              <li>Merchant: {{ entry.merchant.label }}</li>
               <li>
-                Amount: {{ entry.amount.currency.code}}
+                {% if let Some(s) =
+                layout.locales.get("pages.accounting.entries.form.fields.from-account.label")
+                %} {{ s }} {% endif %}: {{ entry.from_account.label }}
+              </li>
+              <li>
+                {% if let Some(s) =
+                layout.locales.get("pages.accounting.entries.form.fields.to-account.label")
+                %} {{ s }} {% endif %}: {{ entry.to_account.label }}
+              </li>
+              <li>
+                {% if let Some(s) =
+                layout.locales.get("form.fields.category.label") %} {{ s }} {%
+                endif %}: {{ entry.category.label }}
+              </li>
+              <li>
+                {% if let Some(s) =
+                layout.locales.get("form.fields.merchant.label") %} {{ s }} {%
+                endif %}: {{ entry.merchant.label }}
+              </li>
+              <li>
+                {% if let Some(s) =
+                layout.locales.get("form.fields.amount.label") %} {{ s }} {%
+                endif %}: {{ entry.amount.currency.code}}
                 <strong>{{ entry.amount.value }}</strong>
               </li>
             </ul>
@@ -49,6 +83,7 @@
               src="{{ invoice.url }}"
               class="rounded img-thumbnail"
               alt="{{ invoice.title }}"
+              onclick="window.open('{{ invoice.url }}', '_blank').focus();"
             />
             {% endfor %} {# invoice end #}
           </div>

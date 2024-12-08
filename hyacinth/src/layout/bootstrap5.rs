@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -6,6 +8,7 @@ pub struct Layout {
     pub title: String,
     pub home: String,
     pub nav_bar: NavBar,
+    pub locales: HashMap<String, String>,
 }
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

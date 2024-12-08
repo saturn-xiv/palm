@@ -10,6 +10,7 @@ use petunia::{
     jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
     orm::postgresql::{Connection as Db, Pool as DbPool},
     s3::Client as S3,
+    session::Session,
     try_web, HttpError, Result,
 };
 
@@ -18,7 +19,7 @@ use super::{home_url, AUDIENCE};
 
 #[get("/{token}/by-dates/{b_year}-{b_month}-{b_day}-{e_year}-{e_month}-{e_day}")]
 pub async fn by_date_range(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32, u32, u32, i32, u32, u32)>,
 ) -> WebResult<impl Responder> {
     let (token, b_year, b_month, b_day, e_year, e_month, e_day) = params.into_inner();
@@ -36,12 +37,12 @@ pub async fn by_date_range(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 #[get("/{token}/{year}-{month}-{day}/daily")]
 pub async fn daily_by_date(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32, u32, u32)>,
 ) -> WebResult<impl Responder> {
     let (token, year, month, day) = params.into_inner();
@@ -57,12 +58,12 @@ pub async fn daily_by_date(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 #[get("/{token}/{year}-{month}-{day}/weekly")]
 pub async fn weekly_by_date(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32, u32, u32)>,
 ) -> WebResult<impl Responder> {
     let (token, year, month, day) = params.into_inner();
@@ -78,12 +79,12 @@ pub async fn weekly_by_date(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 #[get("/{token}/{year}-{month}-{day}/monthly")]
 pub async fn monthly_by_date(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32, u32, u32)>,
 ) -> WebResult<impl Responder> {
     let (token, year, month, day) = params.into_inner();
@@ -101,12 +102,12 @@ pub async fn monthly_by_date(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 #[get("/{token}/{year}-{month}-{day}/yearly")]
 pub async fn yearly_by_date(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32, u32, u32)>,
 ) -> WebResult<impl Responder> {
     let (token, year, month, day) = params.into_inner();
@@ -124,12 +125,12 @@ pub async fn yearly_by_date(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 #[get("/{token}/by-month/{year}-{month}")]
 pub async fn by_year_month(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32, u32)>,
 ) -> WebResult<impl Responder> {
     let (token, year, month) = params.into_inner();
@@ -147,13 +148,13 @@ pub async fn by_year_month(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 
 #[get("/{token}/by-year/{year}")]
 pub async fn by_year(
-    (db, jwt, s3): (web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
+    (ss, db, jwt, s3): (Session, web::Data<DbPool>, web::Data<Jwt>, web::Data<S3>),
     params: web::Path<(String, i32)>,
 ) -> WebResult<impl Responder> {
     let (token, year) = params.into_inner();
@@ -171,7 +172,7 @@ pub async fn by_year(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let s3 = s3.deref();
-    let body = try_web!(render(db, s3, jwt, &token, begin, end).await)?;
+    let body = try_web!(render(db, s3, jwt, &ss.lang, &token, begin, end).await)?;
     Ok(web::Html::new(body))
 }
 
@@ -179,6 +180,7 @@ async fn render(
     db: &mut Db,
     s3: &S3,
     jwt: &Jwt,
+    lang: &str,
     token: &str,
     begin: NaiveDateTime,
     end: NaiveDateTime,
@@ -194,7 +196,7 @@ async fn render(
     let home = home_url(token);
     let ledger = LedgerDao::by_uid(db, &uid)?;
     let body = {
-        let it = tpl::Bills::new(db, s3, &ledger, &home, Duration::days(1)).await?;
+        let it = tpl::Bills::new(db, s3, &ledger, lang, &home, Duration::days(1)).await?;
         it.render()?
     };
 

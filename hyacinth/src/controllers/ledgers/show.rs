@@ -3,9 +3,11 @@ use std::ops::DerefMut;
 use actix_web::{get, web, Responder, Result as WebResult};
 use askama::Template;
 use chrono::{Datelike, Months, NaiveDate, NaiveDateTime, NaiveTime};
+use daffodil::models::locale::Dao as LocaleDao;
 use petunia::{
     jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
     orm::postgresql::{Connection as Db, Pool as DbPool},
+    session::Session,
     try_web,
 };
 
@@ -110,7 +112,7 @@ impl NavBar {
 
 #[get("/{token}/")]
 pub async fn get(
-    (db, jwt): (web::Data<DbPool>, web::Data<Jwt>),
+    (ss, db, jwt): (Session, web::Data<DbPool>, web::Data<Jwt>),
     params: web::Path<(String,)>,
 ) -> WebResult<impl Responder> {
     let (token,) = params.into_inner();
@@ -123,6 +125,7 @@ pub async fn get(
         layout: Layout {
             title: ledger.label.clone(),
             nav_bar: NavBar::by_ledger(db, &ledger, &home),
+            locales: try_web!(LocaleDao::map_by_lang(db, &ss.lang))?,
             home,
         },
         ledger,

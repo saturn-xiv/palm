@@ -4,7 +4,10 @@ use std::str::FromStr;
 use askama::Template;
 use chrono::{Duration, NaiveDateTime};
 use chrono_tz::Tz;
-use daffodil::schema::{attachment_resources, attachments, currencies};
+use daffodil::{
+    models::locale::Dao as LocaleDao,
+    schema::{attachment_resources, attachments, currencies},
+};
 use diesel::prelude::*;
 use petunia::{orm::postgresql::Connection as Db, s3::Client as S3, Result};
 use serde::{Deserialize, Serialize};
@@ -31,6 +34,7 @@ impl Bills {
         db: &mut Db,
         s3: &S3,
         ledger: &Ledger,
+        lang: &str,
         home: &str,
         ttl: Duration,
     ) -> Result<Self> {
@@ -39,6 +43,7 @@ impl Bills {
                 title: ledger.label.clone(),
                 nav_bar: NavBar::by_ledger(db, ledger, home),
                 home: home.to_string(),
+                locales: LocaleDao::map_by_lang(db, lang)?,
             },
             ledger: ledger.clone(),
             transactions: Transaction::by_ledger(db, s3, ledger.id, ttl).await?,

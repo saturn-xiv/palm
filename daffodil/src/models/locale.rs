@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::fs::{read_dir, read_to_string};
 use std::path::Path;
 
@@ -42,6 +43,7 @@ pub trait Dao {
     fn destroy(&mut self, id: i32) -> Result<()>;
     fn create(&mut self, lang: &str, code: &str, message: &str) -> Result<()>;
     fn update(&mut self, id: i32, message: &str) -> Result<()>;
+    fn map_by_lang(&mut self, lang: &str) -> Result<HashMap<String, String>>;
 }
 
 fn loop_yaml(
@@ -206,6 +208,18 @@ impl Dao for Connection {
             .order(locales::dsl::code.asc())
             .load::<Item>(self)?;
         Ok(items)
+    }
+    fn map_by_lang(&mut self, lang: &str) -> Result<HashMap<String, String>> {
+        let mut map = HashMap::new();
+        for (code, message) in locales::dsl::locales
+            .select((locales::dsl::code, locales::dsl::message))
+            .filter(locales::dsl::lang.eq(lang))
+            .order(locales::dsl::code.asc())
+            .load::<(String, String)>(self)?
+        {
+            map.insert(code, message);
+        }
+        Ok(map)
     }
     fn by_code(&mut self, code: &str) -> Result<Vec<Item>> {
         let items = locales::dsl::locales
