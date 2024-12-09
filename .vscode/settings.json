@@ -68,5 +68,6 @@
   "[ini]": {
     "editor.defaultFormatter": "lkrms.inifmt"
   },
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "ansible.python.interpreterPath": "/bin/python"
 }
