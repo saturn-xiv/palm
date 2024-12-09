@@ -1,4 +1,4 @@
 - name: Upload dashboard folder
-  ansible.builtin.copy:
-    src: "{{ app_workspace_dir }}/fig/dashboard/dist"
+  ansible.posix.synchronize:
+    src: "{{ app_workspace_dir }}/fig/dashboard/dist/"
     dest: "/var/lib/fig/{{ app_deploy_domain }}/{{ app_deploy_version }}/dashboard"

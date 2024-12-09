@@ -1,7 +1,7 @@
 - name: Create deploy bin dir
   ansible.builtin.file:
     path: "/var/lib/fig/{{ app_deploy_domain }}/{{ app_deploy_version }}/bin"
-    mode: "0750"
+    mode: "0755"
     state: directory
 
 - name: Upload fig
@@ -73,7 +73,7 @@
     dest: "/var/lib/fig/{{ app_deploy_domain }}/{{ app_deploy_version }}/config.toml"
     owner: www-data
     group: www-data
-    mode: "0440"
+    mode: "0400"
 
 - name: Upload nginx.conf
   ansible.builtin.template:
