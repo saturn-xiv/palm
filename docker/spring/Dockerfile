@@ -11,6 +11,7 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio net-tools bind-tools \
     clang llvm lld lldb mold bison flex ninja bazel \
     imagemagick ffmpeg xorg-font-util \
+    ansible ansible-lint \
     wqy-bitmapfont wqy-microhei wqy-zenhei \
     ttf-fira-code woff-fira-code woff2-fira-code \
     adobe-source-code-pro-fonts adobe-source-serif-fonts adobe-source-sans-fonts \
