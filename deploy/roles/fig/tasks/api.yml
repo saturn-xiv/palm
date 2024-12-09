@@ -1,0 +1,8 @@
+- name: Create work dir
+  become: true
+  ansible.builtin.file:
+    path: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}"
+    owner: www-data
+    group: www-data
+    mode: "0750"
+    state: directory

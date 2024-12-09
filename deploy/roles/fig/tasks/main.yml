@@ -1,0 +1,5 @@
+- name: Setup background service
+  ansible.builtin.include_tasks: api.yml
+
+- name: Setup frontend service
+  ansible.builtin.include_tasks: dashboard.yml
