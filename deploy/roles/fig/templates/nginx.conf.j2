@@ -13,7 +13,7 @@ server {
   client_max_body_size 128M;
 
   location /my/ {
-    alias /var/lib/fig/{{ app_deploy_domain }}-current/dashboard/;
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/dashboard/;
     try_files $uri $uri/ /my/index.html;
 
     location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
@@ -22,7 +22,7 @@ server {
     }
   }
   location /3rd/ {
-    alias /var/lib/fig/{{ app_deploy_domain }}-current/node_modules/;
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/node_modules/;
 
     location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
       access_log off;
@@ -30,7 +30,7 @@ server {
     }
   }
   location /assets/ {
-    alias /var/lib/fig/{{ app_deploy_domain }}-current/assets/;
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/assets/;
 
     location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
       access_log off;
@@ -38,7 +38,7 @@ server {
     }
   }
   location /themes/ {
-    alias /var/lib/fig/{{ app_deploy_domain }}-current/themes/;
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/themes/;
 
     location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
       access_log off;

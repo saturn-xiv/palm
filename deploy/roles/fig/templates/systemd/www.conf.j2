@@ -6,8 +6,8 @@ After=network.target
 Type=simple
 User=www-data
 Group=www-data
-WorkingDirectory=/var/lib/fig/{{ app_deploy_domain }}-current
-ExecStart=fig -c ../config.toml web -T themes
+WorkingDirectory=/var/lib/fig/{{ app_deploy_domain }}/{{ app_deploy_version }}
+ExecStart=./bin/fig -c ../config.toml web -T themes
 Restart=always
 TimeoutStartSec=120s
 Environment="RUST_LOG=info"
