@@ -1,13 +1,13 @@
 # https://opensearch.org/downloads.html#opensearch
 
-# - name: Download opensearch and unarchive it
-#   become: true
-#   ansible.builtin.unarchive:
-#     src: "https://artifacts.opensearch.org/releases/bundle/opensearch/{{ app_opensearch_version }}/opensearch-{{ app_opensearch_version }}-linux-{{ app_opensearch_arch }}.tar.gz"
-#     dest: /opt/
-#     owner: www-data
-#     group: www-data
-#     remote_src: true
+- name: Download opensearch and unarchive it
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://artifacts.opensearch.org/releases/bundle/opensearch/{{ app_opensearch_version }}/opensearch-{{ app_opensearch_version }}-linux-{{ app_opensearch_arch }}.tar.gz"
+    dest: /opt/
+    owner: www-data
+    group: www-data
+    remote_src: true
 
 - name: Setup listen address
   become: true

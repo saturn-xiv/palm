@@ -1,12 +1,15 @@
-env = "development"
+env = "production"
+theme = "x-corporation"
 
-secrets = "BKgXtwztUYy6vIwjhYEv5bDKXn1z2g5npo9pHG3Pvr0="
+secrets = "{{ app_fig_secrets }}"
+cookie-key = "{{ app_fig_cookie_key }}"
+jwt-key = "{{ app_fig_jwt_key }}"
 
 [postgresql]
 host = "{{ app_postgresql_host }}"
 port = {{ app_postgresql_port }}
-name = "{{ app_postgresql_user }}"
-user = "{{ app_postgresql_db }}"
+name = "{{ app_postgresql_name }}"
+user = "{{ app_postgresql_user }}"
 password = "{{ app_postgresql_password }}"
 
 [redis]

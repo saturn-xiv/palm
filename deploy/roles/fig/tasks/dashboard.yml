@@ -1,0 +1,8 @@
+- name: Upload dashboard folder
+  become: true
+  ansible.builtin.copy:
+    src: "{{ app_workspace_dir }}/fig/dashboard/dist"
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/dashboard"
+    owner: www-data
+    group: www-data
+    mode: "0750"

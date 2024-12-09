@@ -1,8 +1,86 @@
+- name: Upload fig
+  become: true
+  ansible.builtin.copy:
+    src: "{{ app_workspace_dir }}/target/{{ app_fig_arch }}-unknown-linux-gnu/release/fig"
+    dest: /usr/local/bin/fig
+    mode: "0755"
+
 - name: Create work dir
   become: true
   ansible.builtin.file:
-    path: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}"
+    path: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/tmp"
     owner: www-data
     group: www-data
     mode: "0750"
     state: directory
+
+- name: Upload locales folder
+  become: true
+  ansible.builtin.copy:
+    src: "{{ app_workspace_dir }}/fig/locales"
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/"
+    owner: www-data
+    group: www-data
+    mode: "0750"
+
+- name: Upload assets folder
+  become: true
+  ansible.builtin.copy:
+    src: "{{ app_workspace_dir }}/fig/assets"
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/"
+    owner: www-data
+    group: www-data
+    mode: "0750"
+
+- name: Upload themes folder
+  become: true
+  ansible.builtin.copy:
+    src: "{{ app_workspace_dir }}/petunia/themes"
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/"
+    owner: www-data
+    group: www-data
+    mode: "0750"
+
+- name: Upload config.toml
+  become: true
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/www.{{ app_deploy_domain }}.conf"
+    owner: www-data
+    group: www-data
+    mode: "0440"
+
+- name: Upload nginx.conf
+  become: true
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}/www.{{ app_deploy_domain }}.conf"
+    mode: "0644"
+
+- name: Upload www service
+  become: true
+  ansible.builtin.template:
+    src: systemd/www.conf.j2
+    dest: "/usr/lib/systemd/system/www.{{ app_deploy_domain }}.service"
+    mode: "0644"
+
+- name: Upload email-worker service
+  become: true
+  ansible.builtin.template:
+    src: systemd/email-worker.conf.j2
+    dest: "/usr/lib/systemd/system/email.worker.{{ app_deploy_domain }}.service"
+    mode: "0644"
+
+- name: Create a current link
+  become: true
+  ansible.builtin.file:
+    src: "/var/lib/fig/{{ app_deploy_domain }}-{{ app_deploy_version }}"
+    dest: "/var/lib/fig/{{ app_deploy_domain }}-current"
+    owner: www-data
+    group: www-data
+    state: link
+
+- name: Force systemd to reread configs
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
