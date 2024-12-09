@@ -43,7 +43,7 @@ RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/downloa
 
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION "1.32.1"
+ENV ENVOY_VERSION "1.32.2"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo cp $HOME/downloads/envoy /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/envoy
