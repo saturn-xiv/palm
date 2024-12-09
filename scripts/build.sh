@@ -230,6 +230,9 @@ mkdir -p $TARGET_DIR
 
 # ---------------------------------------------------------
 
+apt update
+apt -y upgrade
+
 # https://go.dev/src/internal/goarch/goarch.go
 declare -a go_targets=(
     "amd64"
