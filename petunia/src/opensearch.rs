@@ -16,8 +16,7 @@ pub struct Config {
     pub port: u16,
     pub user: String,
     pub password: String,
-    #[serde(rename = "index-prefix")]
-    pub index_prefix: String,
+    pub namespace: String,
 }
 impl Default for Config {
     fn default() -> Self {
@@ -26,7 +25,7 @@ impl Default for Config {
             port: 9200,
             user: "admin".to_string(),
             password: "admin".to_string(),
-            index_prefix: super::NAME.to_string(),
+            namespace: super::NAME.to_string(),
         }
     }
 }

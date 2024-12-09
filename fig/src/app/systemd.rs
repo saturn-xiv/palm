@@ -14,6 +14,7 @@ pub struct Command {
 }
 impl Command {
     pub fn launch(&self) -> Result<()> {
+        // TODO get username
         let user = &Uid::current().to_string();
         let group = &Gid::current().to_string();
         let root = Path::new("tmp").join("systemd");
