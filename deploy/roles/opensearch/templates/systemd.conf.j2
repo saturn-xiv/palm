@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenSearch(https://opensearch.org/docs/opensearch/index/)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/opensearch-{{ app_opensearch_version }}
+ExecStart=/opt/opensearch-{{ app_opensearch_version }}/bin/opensearch
+Restart=always
+TimeoutStartSec=120s
+Environment="OPENSEARCH_JAVA_HOME=/opt/opensearch-{{ app_opensearch_version }}/jdk"
+
+[Install]
+WantedBy=multi-user.target
