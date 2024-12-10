@@ -248,6 +248,7 @@ done
 # ---------------------------------------------------------
 
 cargo update
+cargo clean
 declare -a rust_projects=(
     "fig"
     "camelia"
