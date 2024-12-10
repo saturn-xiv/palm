@@ -290,26 +290,23 @@ impl Query {
     }
 
     // ------------------------------------------------------------------------
-    async fn show_attachment(
+    async fn index_attachment(
         context: &Context,
-        id: i32,
-        expiration_hours: Option<i32>,
-    ) -> FieldResult<daffodil_attachment::Show> {
-        let db = context.postgresql.deref();
-        let s3 = context.minio.deref();
-        let res = daffodil_attachment::Show::new(
-            db,
-            s3,
-            id,
-            expiration_hours.map(|x| Duration::hours(x as i64)),
-        )
-        .await?;
-        Ok(res)
-    }
-    fn index_attachment(context: &Context, pager: Pager) -> FieldResult<daffodil_attachment::List> {
+        pager: Pager,
+        expires_in_hours: i32,
+    ) -> FieldResult<daffodil_attachment::List> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
-        let res = daffodil_attachment::List::new(&context.session, db, jwt, &pager)?;
+        let s3 = context.minio.deref();
+        let res = daffodil_attachment::List::new(
+            &context.session,
+            db,
+            s3,
+            jwt,
+            &pager,
+            Some(Duration::hours(expires_in_hours as i64)),
+        )
+        .await?;
         Ok(res)
     }
     // ------------------------------------------------------------------------
@@ -456,20 +453,39 @@ impl Query {
     async fn show_bookkeeping_ledger(
         context: &Context,
         id: i32,
+        expires_in_hours: i32,
     ) -> FieldResult<hyacinth_graphql::ledger::Item> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        let item =
-            hyacinth_graphql::ledger::Item::by_id(&context.session, db, jwt, enf, id).await?;
+        let s3 = context.minio.deref();
+        let item = hyacinth_graphql::ledger::Item::by_id(
+            &context.session,
+            db,
+            s3,
+            jwt,
+            enf,
+            id,
+            Some(Duration::hours(expires_in_hours as i64)),
+        )
+        .await?;
         Ok(item)
     }
     async fn index_bookkeeping_ledger(
         context: &Context,
+        expires_in_hours: i32,
     ) -> FieldResult<Vec<hyacinth_graphql::ledger::Item>> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
-        let items = hyacinth_graphql::ledger::Item::all(&context.session, db, jwt).await?;
+        let s3 = context.minio.deref();
+        let items = hyacinth_graphql::ledger::Item::all(
+            &context.session,
+            db,
+            s3,
+            jwt,
+            Some(Duration::hours(expires_in_hours as i64)),
+        )
+        .await?;
         Ok(items)
     }
     async fn index_bookkeeping_category_by_ledger(
@@ -528,25 +544,42 @@ impl Query {
         context: &Context,
         id: i32,
         pager: Pager,
+        expires_in_hours: i32,
     ) -> FieldResult<hyacinth_graphql::entry::List> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        let it =
-            hyacinth_graphql::entry::List::by_ledger(&context.session, db, jwt, enf, id, &pager)
-                .await?;
+        let s3 = context.minio.deref();
+        let it = hyacinth_graphql::entry::List::by_ledger(
+            &context.session,
+            db,
+            s3,
+            jwt,
+            enf,
+            (id, &pager, Some(Duration::hours(expires_in_hours as i64))),
+        )
+        .await?;
         Ok(it)
     }
     async fn index_bookkeeping_entry_by_transaction(
         context: &Context,
         id: i32,
+        expires_in_hours: i32,
     ) -> FieldResult<Vec<hyacinth_graphql::entry::Item>> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        let items =
-            hyacinth_graphql::entry::Item::by_transaction(&context.session, db, jwt, enf, id)
-                .await?;
+        let s3 = context.minio.deref();
+        let items = hyacinth_graphql::entry::Item::by_transaction(
+            &context.session,
+            db,
+            s3,
+            jwt,
+            enf,
+            id,
+            Some(Duration::hours(expires_in_hours as i64)),
+        )
+        .await?;
         Ok(items)
     }
     async fn index_bookkeeping_log_by_ledger(

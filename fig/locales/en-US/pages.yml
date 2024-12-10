@@ -229,6 +229,8 @@ accounting:
       title: "Ledgers"
     new:
       title: "Create a new ledger"
+    set-cover:
+      title: "Set cover"
     tabs:
       logs:
         title: "Logs"

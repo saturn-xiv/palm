@@ -9,26 +9,6 @@ import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
 
-interface IShowAttachment {
-  url: string;
-  item: IAttachment;
-}
-const SHOW_ATTACHMENT = `
-query call($id: Int!){
-    showAttachment(id: $id){
-      item{id, bucket, object, title, size, contentType, uploadedAt, updatedAt, deletedAt},
-      url
-    }
-}
-`;
-export const show_attachment = async (id: number): Promise<IShowAttachment> => {
-  const res: { showAttachment: IShowAttachment } = await query(
-    SHOW_ATTACHMENT,
-    { id }
-  );
-  return res.showAttachment;
-};
-
 export interface IAttachment {
   id: number;
   bucket: string;
@@ -36,6 +16,7 @@ export interface IAttachment {
   title: string;
   size: number;
   contentType: string;
+  url: string;
   uploadedAt: Date;
   deletedAt: Date;
   updatedAt: Date;
@@ -45,9 +26,9 @@ interface IIndexAttachmentResponse {
   pagination: IPagination;
 }
 const INDEX_ATTACHMENT = `
-query call($pager: Pager!){
-    indexAttachment(pager: $pager){
-      items{id, bucket, object, title, size, contentType, uploadedAt, updatedAt, deletedAt},
+query call($pager: Pager!, $expiresInHours: Int!){
+    indexAttachment(pager: $pager, expiresInHours: $expiresInHours){
+      items{id, bucket, object, title, size, url, contentType, uploadedAt, updatedAt, deletedAt},
       pagination{total}
     }
 }
@@ -57,7 +38,7 @@ export const index_attachment = async (
 ): Promise<IIndexAttachmentResponse> => {
   const res: { indexAttachment: IIndexAttachmentResponse } = await query(
     INDEX_ATTACHMENT,
-    { pager }
+    { pager, expiresInHours: 1 }
   );
   return res.indexAttachment;
 };

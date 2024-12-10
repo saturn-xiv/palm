@@ -2,7 +2,7 @@ use std::ops::DerefMut;
 use std::str::FromStr;
 
 use casbin::Enforcer;
-use chrono::NaiveDateTime;
+use chrono::{Duration, NaiveDateTime};
 use chrono_tz::Tz;
 use daffodil::{
     graphql::attachment::Item as Attachment,
@@ -19,6 +19,7 @@ use petunia::{
     graphql::{DateTimePicker, Pager, Pagination},
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::{Connection as Db, Pool as DbPool},
+    s3::Client as S3,
     session::Session,
     Error, HttpError, Result,
 };
@@ -53,7 +54,7 @@ pub struct Item {
 }
 
 impl Item {
-    pub fn new(db: &mut Db, it: &Entry) -> Result<Self> {
+    pub async fn new(db: &mut Db, s3: &S3, it: &Entry, ttl: Option<Duration>) -> Result<Self> {
         let it = Self {
             id: it.id,
             transaction: {
@@ -79,8 +80,12 @@ impl Item {
             memo: it.memo.clone(),
             amount: it.amount,
             bills: {
-                let items = AttachmentDao::by_resource::<Entry>(db, Some(it.id))?;
-                items.into_iter().map(|x| x.into()).collect()
+                let mut items = Vec::new();
+                for it in AttachmentDao::by_resource::<Entry>(db, Some(it.id))?.iter() {
+                    let it = Attachment::new(s3, it, ttl).await?;
+                    items.push(it);
+                }
+                items
             },
             traded_at: (it.traded_at, Tz::from_str(&it.timezone)?).try_into()?,
             deleted_at: it.deleted_at,
@@ -94,9 +99,11 @@ impl Item {
     pub async fn by_transaction(
         ss: &Session,
         db: &DbPool,
+        s3: &S3,
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         id: i32,
+        ttl: Option<Duration>,
     ) -> Result<Vec<Self>> {
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -109,7 +116,7 @@ impl Item {
         let mut items = Vec::new();
 
         for it in EntryDao::by_transaction(db, id)?.iter() {
-            items.push(Item::new(db, it)?);
+            items.push(Item::new(db, s3, it, ttl).await?);
         }
         Ok(items)
     }
@@ -125,10 +132,10 @@ impl List {
     pub async fn by_ledger(
         ss: &Session,
         db: &DbPool,
+        s3: &S3,
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
-        id: i32,
-        pager: &Pager,
+        (id, pager, ttl): (i32, &Pager, Option<Duration>),
     ) -> Result<Self> {
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -142,7 +149,7 @@ impl List {
 
         let total = EntryDao::count_by_ledger(db, id)?;
         for it in EntryDao::by_ledger(db, id, pager.offset(total), pager.size())?.iter() {
-            items.push(Item::new(db, it)?);
+            items.push(Item::new(db, s3, it, ttl).await?);
         }
         Ok(Self {
             items,

@@ -22,8 +22,8 @@ export const ACCOUNT_TYPE_INCOME = "INCOME";
 export const ACCOUNT_TYPE_EXPENSES = "EXPENSES";
 
 const INDEX_ENTRY_BY_LEDGER = `
-query call($id: Int!, $pager: Pager!){
-    indexBookkeepingEntryByLedger(id: $id, pager: $pager){
+query call($id: Int!, $pager: Pager!, $expiresInHours: Int!){
+    indexBookkeepingEntryByLedger(id: $id, pager: $pager, expiresInHours: $expiresInHours){
       items{
         id, memo, amount, updatedAt, deletedAt,
         toAccount{
@@ -37,7 +37,7 @@ query call($id: Int!, $pager: Pager!){
         category{id, label},
         merchant{id, label, memo},        
         transaction{id, uid, memo},
-        bills{id, contentType, title, bucket, object, size},
+        bills{id, contentType, title, bucket, object, url, size},
         tradedAt{datetime, timezone}
       },
       pagination{total}
@@ -50,7 +50,7 @@ export const index_entries_by_ledger = async (
 ): Promise<IIndexEntryResponse> => {
   const res: {
     indexBookkeepingEntryByLedger: IIndexEntryResponse;
-  } = await query(INDEX_ENTRY_BY_LEDGER, { id, pager });
+  } = await query(INDEX_ENTRY_BY_LEDGER, { id, pager, expiresInHours: 1 });
   return res.indexBookkeepingEntryByLedger;
 };
 
@@ -60,8 +60,8 @@ interface IIndexEntryResponse {
 }
 
 const INDEX_ENTRY_BY_TRANSACTION = `
-query call($id: Int!){
-    indexBookkeepingEntryByTransaction(id: $id){      
+query call($id: Int!, $expiresInHours: Int!){
+    indexBookkeepingEntryByTransaction(id: $id, expiresInHours: $expiresInHours){      
       id, memo, updatedAt, deletedAt,
       toAccount{
         id, label, memo,
@@ -73,7 +73,7 @@ query call($id: Int!){
       },
       category{id, label},
       merchant{id, label, memo},
-      bills{id, contentType, title, bucket, object, size},    
+      bills{id, contentType, title, bucket, object, url, size},    
       tradedAt{datetime, timezone}      
     }
 }
@@ -83,7 +83,7 @@ export const index_entries_by_transaction = async (
 ): Promise<IEntry[]> => {
   const res: {
     indexBookkeepingEntryByTransaction: IEntry[];
-  } = await query(INDEX_ENTRY_BY_TRANSACTION, { id });
+  } = await query(INDEX_ENTRY_BY_TRANSACTION, { id, expiresInHours: 1 });
   return res.indexBookkeepingEntryByTransaction;
 };
 const UPDATE_ENTRY = `
@@ -527,9 +527,10 @@ export const index_log_by_ledger = async (
 };
 
 const SHOW_LEDGER = `
-query call($id: Int!){
-    showBookkeepingLedger(id: $id){
-      id, uid, label, memo, deletedAt, updatedAt
+query call($id: Int!, $expiresInHours: Int!){
+    showBookkeepingLedger(id: $id, expiresInHours: $expiresInHours){
+      id, uid, label, memo, deletedAt, updatedAt,
+      covers{id, bucket, object, title, size, url, contentType, uploadedAt, updatedAt, deletedAt}
     }
 }
 `;
@@ -537,6 +538,7 @@ query call($id: Int!){
 export const show_ledger = async (id: number): Promise<ILedger> => {
   const res: { showBookkeepingLedger: ILedger } = await query(SHOW_LEDGER, {
     id,
+    expiresInHours: 1,
   });
   return res.showBookkeepingLedger;
 };
@@ -584,9 +586,10 @@ export const create_ledger = async (
 };
 
 const INDEX_LEDGER = `
-query call{
-    indexBookkeepingLedger{
-      id, uid, label, memo, deletedAt, updatedAt
+query call($expiresInHours: Int!){
+    indexBookkeepingLedger(expiresInHours: $expiresInHours){
+      id, uid, label, memo, deletedAt, updatedAt,
+      covers{id, bucket, object, title, size, url, contentType, uploadedAt, updatedAt, deletedAt}
     }
 }
 `;
@@ -595,15 +598,15 @@ export interface ILedger {
   uid: string;
   label: string;
   memo: string;
+  covers: IAttachment[];
   deletedAt?: Date;
   updatedAt: Date;
 }
 
 export const index_ledger = async (): Promise<ILedger[]> => {
-  const res: { indexBookkeepingLedger: ILedger[] } = await query(
-    INDEX_LEDGER,
-    {}
-  );
+  const res: { indexBookkeepingLedger: ILedger[] } = await query(INDEX_LEDGER, {
+    expiresInHours: 1,
+  });
   return res.indexBookkeepingLedger;
 };
 

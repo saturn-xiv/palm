@@ -21,6 +21,8 @@ pub fn html(config: &mut web::ServiceConfig) {
 
 pub fn api(config: &mut web::ServiceConfig) {
     config.service(
-        web::scope("/accounting").service(web::scope("/entries").service(entries::bills_upload)),
+        web::scope("/accounting")
+            .service(web::scope("/ledgers").service(ledgers::cover::save))
+            .service(web::scope("/entries").service(entries::bills_upload)),
     );
 }

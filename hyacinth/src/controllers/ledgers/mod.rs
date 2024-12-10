@@ -1,4 +1,5 @@
 pub mod bills;
+pub mod cover;
 pub mod show;
 
 pub const AUDIENCE: &str = "ledger.show";

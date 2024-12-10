@@ -5,6 +5,7 @@ import { Typography } from "antd";
 
 import { IAttachment, index_attachment } from "../../api/daffodil";
 import Filesize from "../../components/Filesize";
+import Show from "./Show";
 
 interface IParams {
   key: string;
@@ -15,7 +16,7 @@ const Widget = () => {
   return (
     <>
       <Typography.Title level={3}>
-        <FormattedMessage id="pages.users.logs.title" />
+        <FormattedMessage id="pages.attachments.index.title" />
       </Typography.Title>
       <ProTable<IAttachment, IParams>
         bordered
@@ -30,8 +31,8 @@ const Widget = () => {
           },
           {
             title: <FormattedMessage id="form.fields.title.label" />,
-            dataIndex: "title",
             key: "title",
+            render: (_, item) => <Show item={item} />,
           },
           {
             title: <FormattedMessage id="form.fields.content-type.label" />,

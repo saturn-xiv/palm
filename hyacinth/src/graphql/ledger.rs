@@ -1,17 +1,22 @@
 use std::ops::DerefMut;
 
 use casbin::Enforcer;
-use chrono::NaiveDateTime;
+use chrono::{Duration, NaiveDateTime};
 use chrono_tz::Tz;
-use daffodil::{models::user::Item as User, session::current_user};
+use daffodil::{
+    graphql::attachment::Item as Attachment,
+    models::{attachment::Dao as AttachmentDao, user::Item as User},
+    session::current_user,
+};
 use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use juniper::GraphQLObject;
 use petunia::{
     graphql::DateTimePicker,
     jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
-    orm::postgresql::Pool as DbPool,
+    orm::postgresql::{Connection as Db, Pool as DbPool},
     rbac::v1::policy_permissions_response::item::{Operation, Resource},
+    s3::Client as S3,
     session::Session,
     Error, HttpError, Result,
 };
@@ -35,30 +40,41 @@ pub struct Item {
     pub uid: String,
     pub label: String,
     pub memo: String,
+    pub covers: Vec<Attachment>,
     pub deleted_at: Option<NaiveDateTime>,
     pub updated_at: NaiveDateTime,
 }
 
-impl From<Ledger> for Item {
-    fn from(it: Ledger) -> Self {
-        Self {
+impl Item {
+    pub async fn new(db: &mut Db, s3: &S3, it: &Ledger, ttl: Option<Duration>) -> Result<Self> {
+        let covers = {
+            let mut items = Vec::new();
+            for it in AttachmentDao::by_resource::<Ledger>(db, Some(it.id))?.iter() {
+                let it = Attachment::new(s3, it, ttl).await?;
+                items.push(it);
+            }
+            items
+        };
+        let it = Self {
             id: it.id,
             uid: it.uid.clone(),
             label: it.label.clone(),
+            covers,
             memo: it.memo.clone(),
             deleted_at: it.deleted_at,
             updated_at: it.updated_at,
-        }
+        };
+        Ok(it)
     }
-}
 
-impl Item {
     pub async fn by_id(
         ss: &Session,
         db: &DbPool,
+        s3: &S3,
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         id: i32,
+        ttl: Option<Duration>,
     ) -> Result<Self> {
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -67,17 +83,24 @@ impl Item {
         let it = LedgerDao::by_id(db, id)?;
         it.can_read(&user, enforcer).await?;
 
-        Ok(it.into())
+        Self::new(db, s3, &it, ttl).await
     }
-    pub async fn all(ss: &Session, db: &DbPool, jwt: &Jwt) -> Result<Vec<Self>> {
+    pub async fn all(
+        ss: &Session,
+        db: &DbPool,
+        s3: &S3,
+        jwt: &Jwt,
+        ttl: Option<Duration>,
+    ) -> Result<Vec<Self>> {
         let mut db = db.get()?;
         let db = db.deref_mut();
         let (_, user) = current_user(ss, db, jwt)?;
 
         let mut items = Vec::new();
 
-        for it in LedgerDao::by_user(db, user.id)? {
-            items.push(it.into());
+        for it in LedgerDao::by_user(db, user.id)?.iter() {
+            let it = Self::new(db, s3, it, ttl).await?;
+            items.push(it);
         }
         Ok(items)
     }
