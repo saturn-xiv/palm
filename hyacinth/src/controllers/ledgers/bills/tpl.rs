@@ -9,7 +9,7 @@ use daffodil::{
     schema::{attachment_resources, attachments, currencies},
 };
 use diesel::prelude::*;
-use petunia::{orm::postgresql::Connection as Db, s3::Client as S3, Result};
+use petunia::{orm::postgresql::Connection as Db, s3::Client as S3, Result, GIT_VERSION};
 use serde::{Deserialize, Serialize};
 
 use super::super::super::super::{
@@ -44,6 +44,7 @@ impl Bills {
                 nav_bar: NavBar::by_ledger(db, ledger, home),
                 home: home.to_string(),
                 locales: LocaleDao::map_by_lang(db, lang)?,
+                version: GIT_VERSION.to_string(),
             },
             ledger: ledger.clone(),
             transactions: Transaction::by_ledger(db, s3, ledger.id, ttl).await?,

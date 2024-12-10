@@ -14,6 +14,7 @@ export interface ISiteInfo {
   cnIcp?: ICnIcp;
   locale: string;
   languages: string[];
+  version: string;
 }
 
 export interface IAuthor {

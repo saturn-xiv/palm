@@ -78,6 +78,7 @@ pub struct Layout {
     pub cn_icp: Option<CnIcp>,
     pub locale: String,
     pub languages: Vec<String>,
+    pub version: String,
 }
 
 impl Layout {

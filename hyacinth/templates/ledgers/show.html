@@ -7,32 +7,56 @@
     {% include "bootstrap5/nav-bar.html" %}
     <main>
       <div class="container">
-        <hr />
         <div class="row">
+          <div class="col-md-12">
+            <h1>{{ ledger.label }}</h1>
+          </div>
           <div class="col-md-7 order-md-2">
             <h2 class="fw-normal lh-1">
-              {{ ledger.label }}
               <span class="text-body-secondary">{{ ledger.updated_at }}</span>
             </h2>
             <p class="lead">{{ ledger.memo }}</p>
           </div>
           <div class="col-md-5 order-md-1">
-            <svg
-              class="bd-placeholder-img bd-placeholder-img-lg img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
-              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-                500x500
-              </text>
-            </svg>
+            {# cover begin #}
+            <div id="carouselCover" class="carousel slide">
+              <div class="carousel-inner">
+                {% for it in covers %}
+                <div class="carousel-item{% if loop.first %} active{% endif %}">
+                  <img
+                    src="{{ it }}"
+                    class="d-block w-100"
+                    alt="{{ ledger.label }}"
+                  />
+                </div>
+                {% endfor %}
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselCover"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselCover"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            {# cover end #}
           </div>
         </div>
         <hr />

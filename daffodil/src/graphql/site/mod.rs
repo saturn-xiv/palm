@@ -24,7 +24,7 @@ use petunia::{
     s3::Client as S3,
     session::Session,
     themes::{Author, CnIcp, CnMps, Layout},
-    Error, HttpError, Result,
+    Error, HttpError, Result, GIT_VERSION,
 };
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use tokio::sync::Mutex;
@@ -138,6 +138,7 @@ impl Refresh {
             cn_icp,
             locale: ss.lang.clone(),
             languages: LocaleDao::languages(db)?,
+            version: GIT_VERSION.to_string(),
         };
         Ok(it)
     }

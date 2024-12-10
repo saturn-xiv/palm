@@ -42,7 +42,7 @@ const Widget = () => {
         </Space>
       </Col>
       {ledgers.map((x) => (
-        <Col key={x.id} md={8}>
+        <Col key={x.id} md={6}>
           <LedgerCard
             item={x}
             messageApi={messageApi}

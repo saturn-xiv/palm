@@ -11,10 +11,7 @@ use petunia::{
 use tokio::sync::Mutex;
 
 use super::super::super::{
-    models::{
-        entry::{Dao as EntryDao, Item as Entry},
-        ledger::Dao as LedgerDao,
-    },
+    models::ledger::{Dao as LedgerDao, Item as Ledger},
     NAME,
 };
 
@@ -41,14 +38,12 @@ pub async fn save(
             let id = form
                 .json
                 .resource_id
-                .ok_or(ErrorBadRequest("nil accounting entry id"))?;
-            let ie = try_web!(EntryDao::by_id(db, id))?;
-            let il = try_web!(LedgerDao::by_id(db, ie.ledger_id))?;
-
+                .ok_or(ErrorBadRequest("nil accounting ledger id"))?;
+            let il = try_web!(LedgerDao::by_id(db, id))?;
             try_web!(il.can_append(&user, enf).await)?;
         }
     }
 
-    let it = try_web!(form.save::<Entry>(&ss, db, jwt, s3, NAME).await)?;
+    let it = try_web!(form.save::<Ledger>(&ss, db, jwt, s3, NAME).await)?;
     Ok(web::Json(it))
 }

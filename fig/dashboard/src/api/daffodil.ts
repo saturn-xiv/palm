@@ -492,7 +492,7 @@ const REFRESH = `
 query call{
     refresh{
         siteInfo{
-          favicon, title, subhead, keywords, description, copyright, locale, languages,
+          favicon, title, subhead, keywords, description, copyright, locale, languages, version,
           author{name, email},
           cnIcp{code}, cnMps{code, name}
         }

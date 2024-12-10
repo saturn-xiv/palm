@@ -25,7 +25,11 @@ const Widget = () => {
         });
     }
   }, [site, dispatch, is_sign_in, token]);
-  return <>&copy;{site?.copyright}</>;
+  return (
+    <>
+      &copy;{site?.copyright}({site?.version})
+    </>
+  );
 };
 
 export default Widget;

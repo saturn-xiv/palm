@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 pub struct Layout {
     pub title: String,
     pub home: String,
+    pub version: String,
     pub nav_bar: NavBar,
     pub locales: HashMap<String, String>,
 }

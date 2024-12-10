@@ -1,14 +1,15 @@
-use std::ops::DerefMut;
+use std::ops::{Deref, DerefMut};
 
 use actix_web::{get, web, Responder, Result as WebResult};
 use askama::Template;
-use chrono::{Datelike, Months, NaiveDate, NaiveDateTime, NaiveTime};
-use daffodil::models::locale::Dao as LocaleDao;
+use chrono::{Datelike, Duration, Months, NaiveDate, NaiveDateTime, NaiveTime};
+use daffodil::models::{attachment::Dao as AttachmentDao, locale::Dao as LocaleDao};
 use petunia::{
     jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
     orm::postgresql::{Connection as Db, Pool as DbPool},
+    s3::Client as S3,
     session::Session,
-    try_web,
+    try_web, GIT_VERSION,
 };
 
 use super::super::super::{
@@ -24,6 +25,7 @@ use super::{home_url, AUDIENCE};
 #[template(path = "ledgers/show.html")]
 struct Show {
     ledger: Ledger,
+    covers: Vec<String>,
     layout: Layout,
 }
 
@@ -112,7 +114,7 @@ impl NavBar {
 
 #[get("/{token}/")]
 pub async fn get(
-    (ss, db, jwt): (Session, web::Data<DbPool>, web::Data<Jwt>),
+    (ss, db, s3, jwt): (Session, web::Data<DbPool>, web::Data<S3>, web::Data<Jwt>),
     params: web::Path<(String,)>,
 ) -> WebResult<impl Responder> {
     let (token,) = params.into_inner();
@@ -121,14 +123,28 @@ pub async fn get(
     let mut db = try_web!(db.get())?;
     let db = db.deref_mut();
     let ledger = try_web!(LedgerDao::by_uid(db, &uid))?;
+    let s3 = s3.deref();
+
+    let covers = {
+        let mut items = Vec::new();
+        for it in try_web!(AttachmentDao::by_resource::<Ledger>(db, Some(ledger.id)))?.iter() {
+            if it.is_image() {
+                let url = try_web!(it.url(s3, Some(Duration::hours(1))).await)?;
+                items.push(url);
+            }
+        }
+        items
+    };
     let body = try_web!(Show {
         layout: Layout {
             title: ledger.label.clone(),
             nav_bar: NavBar::by_ledger(db, &ledger, &home),
             locales: try_web!(LocaleDao::map_by_lang(db, &ss.lang))?,
             home,
+            version: GIT_VERSION.to_string()
         },
         ledger,
+        covers,
     }
     .render())?;
     Ok(web::Html::new(body))

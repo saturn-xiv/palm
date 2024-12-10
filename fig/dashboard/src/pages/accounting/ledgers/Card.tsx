@@ -9,6 +9,7 @@ import Timestamp from "../../../components/Timestamp";
 import EditForm from "./Edit";
 import SetCover from "./SetCover";
 import { ILedger } from "../../../api/hyacinth";
+import Cover from "../../attachments/Cover";
 
 interface IProps {
   item: ILedger;
@@ -23,7 +24,9 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <Card
+      hoverable
       title={item.label}
+      cover={<Cover items={item.covers} />}
       extra={
         <Space>
           <Button
