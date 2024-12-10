@@ -88,6 +88,8 @@ admin:
         title: "Users"
       relation-list:
         title: "Relations"
+      built-in:
+        title: "Built in roles"
     administrators:
       form:
         title: "Administrator"

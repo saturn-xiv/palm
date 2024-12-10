@@ -56,19 +56,19 @@ const Widget = ({ ledger, currencies, messageApi }: IProps) => {
       )}
       columns={[
         {
-          title: <FormattedMessage id="form.fields.id.label" />,
-          dataIndex: "id",
-          key: "id",
+          title: <FormattedMessage id="form.fields.label.label" />,
+          dataIndex: "label",
+          key: "label",
+        },
+        {
+          title: <FormattedMessage id="form.fields.type.label" />,
+          dataIndex: "type",
+          key: "type",
         },
         {
           title: <FormattedMessage id="form.fields.parent.label" />,
           dataIndex: "parent",
           key: "parent",
-        },
-        {
-          title: <FormattedMessage id="form.fields.label.label" />,
-          dataIndex: "label",
-          key: "label",
         },
         {
           title: <FormattedMessage id="form.fields.currency.label" />,

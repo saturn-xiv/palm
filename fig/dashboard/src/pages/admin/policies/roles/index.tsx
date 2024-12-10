@@ -7,6 +7,7 @@ import {
   IUserRoleRelation,
   policy_user_role_relations,
 } from "../../../../api/daffodil";
+import BuiltIn from "./BuiltIn";
 
 const Widget = () => {
   const [relations, setRelations] = useState<IUserRoleRelation[]>([]);
@@ -25,6 +26,9 @@ const Widget = () => {
       </Col>
       <Col md={18}>
         <Relations items={relations} />
+      </Col>
+      <Col md={6}>
+        <BuiltIn />
       </Col>
     </Row>
   );
