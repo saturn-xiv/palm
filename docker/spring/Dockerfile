@@ -362,6 +362,7 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
 
 RUN mkdir -p $HOME/.ssh \
     && touch $HOME/.ssh/authorized_keys \
+    && echo 'GSSAPIAuthentication no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'UseDNS no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'PasswordAuthentication no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'PermitRootLogin no' | sudo tee -a /etc/ssh/sshd_config \
