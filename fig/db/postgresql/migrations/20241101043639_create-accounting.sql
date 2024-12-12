@@ -79,22 +79,45 @@ CREATE INDEX idx_bookkeeper_transactions_timezone ON bookkeeper_transactions(tim
 CREATE TABLE bookkeeper_entries(
     id SERIAL PRIMARY KEY,
     ledger_id INTEGER NOT NULL,
+    sn CHAR(18) NOT NULL,
     transaction_id INTEGER NOT NULL,
     from_account_id INTEGER NOT NULL,
     to_account_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
     merchant_id INTEGER NOT NULL,
+    currency_id INTEGER NOT NULL,
     amount INTEGER NOT NULL,
-    memo VARCHAR(1023) NOT NULL,
+    memo VARCHAR(1023) NOT NULL,    
     traded_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',
+    "status" VARCHAR(31) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     version INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_bookkeeper_entries_ledger_sn ON bookkeeper_entries(ledger_id, sn);
 CREATE INDEX idx_bookkeeper_entries_memo ON bookkeeper_entries(memo);
 CREATE INDEX idx_bookkeeper_entries_timezone ON bookkeeper_entries(timezone);
+CREATE INDEX idx_bookkeeper_entries_status ON bookkeeper_entries("status");
+
+CREATE TABLE bookkeeper_statements(
+    id SERIAL PRIMARY KEY,
+    ledger_id INTEGER NOT NULL,    
+    account_id INTEGER NOT NULL,
+    transaction_id INTEGER NOT NULL,
+    entry_id INTEGER NOT NULL,    
+    currency_id INTEGER NOT NULL,
+    amount INTEGER NOT NULL,
+    "type" VARCHAR(7) NOT NULL, 
+    opening_balance INTEGER NOT NULL,
+    closing_balance INTEGER NOT NULL,     
+    traded_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
+    timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',   
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE UNIQUE INDEX idx_bookkeeper_statements_ledger_account_entry ON bookkeeper_statements(ledger_id, account_id, entry_id);
+CREATE INDEX idx_bookkeeper_statements_type ON bookkeeper_statements("type");
 
 CREATE TABLE bookkeeper_logs(
     id SERIAL PRIMARY KEY,
@@ -114,6 +137,7 @@ CREATE INDEX idx_bookkeeper_logs_reason ON bookkeeper_logs(reason) WHERE reason 
 
 -- migrate:down
 DROP TABLE bookkeeper_logs;
+DROP TABLE bookkeeper_statements;
 DROP TABLE bookkeeper_entries;
 DROP TABLE bookkeeper_transactions;
 DROP TABLE bookkeeper_merchants;

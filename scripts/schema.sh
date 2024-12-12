@@ -96,7 +96,7 @@ function generate_diesel_schema() {
     echo "generate database schema for wisteria"
     DATABASE_URL=$1 diesel print-schema -o questionnaire_forms questionnaire_fields questionnaire_polls >wisteria/src/schema.rs
     echo "generate database schema for hyacinth"
-    DATABASE_URL=$1 diesel print-schema -o bookkeeper_ledgers bookkeeper_accounts bookkeeper_categories bookkeeper_merchants bookkeeper_transactions bookkeeper_entries bookkeeper_logs >hyacinth/src/schema.rs
+    DATABASE_URL=$1 diesel print-schema -o bookkeeper_ledgers bookkeeper_accounts bookkeeper_categories bookkeeper_merchants bookkeeper_transactions bookkeeper_entries bookkeeper_statements bookkeeper_logs >hyacinth/src/schema.rs
 
 }
 

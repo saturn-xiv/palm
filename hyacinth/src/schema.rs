@@ -38,17 +38,22 @@ diesel::table! {
     bookkeeper_entries (id) {
         id -> Int4,
         ledger_id -> Int4,
+        #[max_length = 18]
+        sn -> Bpchar,
         transaction_id -> Int4,
         from_account_id -> Int4,
         to_account_id -> Int4,
         category_id -> Int4,
         merchant_id -> Int4,
+        currency_id -> Int4,
         amount -> Int4,
         #[max_length = 1023]
         memo -> Varchar,
         traded_at -> Timestamp,
         #[max_length = 31]
         timezone -> Varchar,
+        #[max_length = 31]
+        status -> Varchar,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -110,6 +115,27 @@ diesel::table! {
 }
 
 diesel::table! {
+    bookkeeper_statements (id) {
+        id -> Int4,
+        ledger_id -> Int4,
+        account_id -> Int4,
+        transaction_id -> Int4,
+        entry_id -> Int4,
+        currency_id -> Int4,
+        amount -> Int4,
+        #[sql_name = "type"]
+        #[max_length = 7]
+        type_ -> Varchar,
+        opening_balance -> Int4,
+        closing_balance -> Int4,
+        traded_at -> Timestamp,
+        #[max_length = 31]
+        timezone -> Varchar,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     bookkeeper_transactions (id) {
         id -> Int4,
         #[max_length = 36]
@@ -134,5 +160,6 @@ diesel::allow_tables_to_appear_in_same_query!(
     bookkeeper_ledgers,
     bookkeeper_logs,
     bookkeeper_merchants,
+    bookkeeper_statements,
     bookkeeper_transactions,
 );

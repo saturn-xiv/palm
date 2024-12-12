@@ -225,6 +225,12 @@ accounting:
         to-account:
           label: "To account"
   ledgers:
+    form:
+      fields:
+        opening-balance:
+          label: "Opening balance"
+        closing-balance:
+          label: "Closing balance"
     index:
       title: "Ledgers"
     new:

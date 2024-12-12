@@ -4,4 +4,5 @@ pub mod entry;
 pub mod ledger;
 pub mod log;
 pub mod merchant;
+pub mod statement;
 pub mod transaction;

@@ -26,6 +26,8 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
+use crate::models::{entry::Status, statement::Type};
+
 use super::super::models::{
     account::Dao as AccountDao,
     category::Dao as CategoryDao,
@@ -33,6 +35,7 @@ use super::super::models::{
     ledger::Dao as LedgerDao,
     log::{Action, Dao as LogDao},
     merchant::Dao as MerchantDao,
+    statement::Dao as StatementDao,
     transaction::{Dao as TransactionDao, Item as Transaction},
 };
 
@@ -40,6 +43,7 @@ use super::super::models::{
 #[graphql(name = "BookkeeperEntry")]
 pub struct Item {
     pub id: i32,
+    pub sn: String,
     pub transaction: super::transaction::Item,
     pub from_account: super::account::Item,
     pub to_account: super::account::Item,
@@ -57,6 +61,7 @@ impl Item {
     pub async fn new(db: &mut Db, s3: &S3, it: &Entry, ttl: Option<Duration>) -> Result<Self> {
         let it = Self {
             id: it.id,
+            sn: it.sn.clone(),
             transaction: {
                 let it = TransactionDao::by_id(db, it.transaction_id)?;
                 super::transaction::Item::new(&it)?
@@ -311,7 +316,7 @@ impl New {
             db,
             (transaction.ledger_id, transaction.id, self.category),
             (self.from_account, self.to_account),
-            (self.merchant, self.amount, &self.memo),
+            (self.merchant, currency.id, self.amount, &self.memo),
             traded_at,
         )?;
         LogDao::create(
@@ -351,6 +356,9 @@ impl New {
         let (si, user) = current_user(ss, db, jwt)?;
         let (entry, transaction, currency) = {
             let ie = EntryDao::by_id(db, id)?;
+            if Status::from_str(&ie.status)? == Status::Audited {
+                return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+            }
             if ie.deleted_at.is_some() {
                 return Err(Box::new(HttpError(
                     StatusCode::GONE,
@@ -372,7 +380,7 @@ impl New {
                 id,
                 self.category,
                 (self.from_account, self.to_account),
-                (self.merchant, self.amount, &self.memo),
+                (self.merchant, currency.id, self.amount, &self.memo),
                 (traded_at, timezone),
             )?;
             LogDao::create(
@@ -405,18 +413,30 @@ pub async fn disable(
     let mut db = db.get()?;
     let db = db.deref_mut();
 
+    let (si, user) = current_user(ss, db, jwt)?;
+    let entry = EntryDao::by_id(db, id)?;
+    if Status::from_str(&entry.status)? == Status::Audited {
+        return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+    }
+    let transaction = TransactionDao::by_id(db, entry.transaction_id)?;
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let ie = EntryDao::by_id(db, id)?;
-        let it = TransactionDao::by_id(db, ie.transaction_id)?;
-        {
-            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
-            ledger.can_append(&user, enforcer).await?;
-        }
+        let ledger = LedgerDao::by_id(db, transaction.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         EntryDao::disable(db, id)?;
+        LogDao::create(
+            db,
+            transaction.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::DisableEntry,
+                &format!("disable entry {}({})", entry.sn, entry.memo),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 
@@ -432,18 +452,113 @@ pub async fn enable(
 ) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+
+    let (si, user) = current_user(ss, db, jwt)?;
+    let entry = EntryDao::by_id(db, id)?;
+    if Status::from_str(&entry.status)? == Status::Audited {
+        return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+    }
+    let transaction = TransactionDao::by_id(db, entry.transaction_id)?;
     {
-        let (_, user) = current_user(ss, db, jwt)?;
-        let ie = EntryDao::by_id(db, id)?;
-        let it = TransactionDao::by_id(db, ie.transaction_id)?;
-        {
-            let ledger = LedgerDao::by_id(db, it.ledger_id)?;
-            ledger.can_append(&user, enforcer).await?;
-        }
+        let ledger = LedgerDao::by_id(db, transaction.ledger_id)?;
+        ledger.can_append(&user, enforcer).await?;
     }
 
     db.transaction::<_, Error, _>(|db| {
         EntryDao::enable(db, id)?;
+        LogDao::create(
+            db,
+            transaction.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::EnableEntry,
+                &format!("enable entry {}({})", entry.sn, entry.memo),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
+        Ok(())
+    })?;
+
+    Ok(())
+}
+
+pub async fn audit(
+    ss: &Session,
+    db: &DbPool,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    id: i32,
+) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+
+    let (si, user) = current_user(ss, db, jwt)?;
+    let entry = EntryDao::by_id(db, id)?;
+
+    if Status::from_str(&entry.status)? != Status::Pending {
+        return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+    }
+    if entry.amount < 0 {
+        return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+    }
+
+    let transaction = TransactionDao::by_id(db, entry.transaction_id)?;
+    {
+        let ledger = LedgerDao::by_id(db, transaction.ledger_id)?;
+        ledger.can_credit(&user, enforcer).await?;
+    }
+
+    db.transaction::<_, Error, _>(|db| {
+        let timezone = Tz::from_str(&entry.timezone)?;
+        {
+            let closing = match StatementDao::latest(db, entry.from_account_id)? {
+                Some(it) => it.closing_balance,
+                None => 0,
+            };
+            StatementDao::create(
+                db,
+                (
+                    entry.ledger_id,
+                    entry.from_account_id,
+                    entry.transaction_id,
+                    entry.id,
+                ),
+                (entry.current_id, entry.amount, Type::Debit),
+                (closing, closing - entry.amount),
+                (entry.traded_at, timezone),
+            )?;
+        }
+        {
+            let closing = match StatementDao::latest(db, entry.to_account_id)? {
+                Some(it) => it.closing_balance,
+                None => 0,
+            };
+            StatementDao::create(
+                db,
+                (
+                    entry.ledger_id,
+                    entry.to_account_id,
+                    entry.transaction_id,
+                    entry.id,
+                ),
+                (entry.current_id, entry.amount, Type::Debit),
+                (closing, closing + entry.amount),
+                (entry.traded_at, timezone),
+            )?;
+        }
+        EntryDao::set_status(db, entry.id, Status::Audited)?;
+        LogDao::create(
+            db,
+            transaction.ledger_id,
+            (user.id, &si.to_string()),
+            (
+                Action::AuditEntry,
+                &format!("audit entry {}({})", entry.sn, entry.memo),
+                None,
+            ),
+            &ss.client_ip,
+        )?;
         Ok(())
     })?;
 

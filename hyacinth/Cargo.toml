@@ -2,7 +2,7 @@
 name = "hyacinth"
 version = "2024.11.1"
 edition = "2021"
-description = "A personal and small-business financial-accounting software."
+description = "A personal and small-business financial-accounting software(Double entry bookkeeping)."
 
 [dependencies]
 log = "0.4"

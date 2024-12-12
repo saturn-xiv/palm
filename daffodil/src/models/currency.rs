@@ -8,6 +8,14 @@ use super::super::schema::currencies;
 
 #[derive(GraphQLObject, Queryable, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
+#[graphql(name = "Amount")]
+pub struct Amount {
+    pub value: i32,
+    pub currency: Item,
+}
+
+#[derive(GraphQLObject, Queryable, Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
 #[graphql(name = "Currency")]
 pub struct Item {
     pub id: i32,

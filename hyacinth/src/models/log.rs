@@ -37,6 +37,7 @@ pub enum Action {
     UpdateEntry,
     EnableEntry,
     DisableEntry,
+    AuditEntry,
 
     UpdateLedge,
     CreateLedge,
