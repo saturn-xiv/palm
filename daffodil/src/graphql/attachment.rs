@@ -12,6 +12,7 @@ use petunia::{
     session::Session,
     Error, HttpError, Result,
 };
+use serde::{Deserialize, Serialize};
 use validator::Validate;
 
 use super::super::{
@@ -19,7 +20,7 @@ use super::super::{
     session::current_user,
 };
 
-#[derive(GraphQLObject)]
+#[derive(GraphQLObject, Deserialize, Serialize, Debug, Clone)]
 #[graphql(name = "Attachment")]
 pub struct Item {
     pub id: i32,

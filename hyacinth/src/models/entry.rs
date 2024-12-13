@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
 use super::super::schema::bookkeeper_entries;
+use super::transaction::Item as Transaction;
 
 #[derive(EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -23,8 +24,8 @@ pub struct Item {
     pub ledger_id: i32,
     pub sn: String,
     pub transaction_id: i32,
-    pub from_account_id: i32,
-    pub to_account_id: i32,
+    pub debtor_id: i32,
+    pub creditor_id: i32,
     pub category_id: i32,
     pub merchant_id: i32,
     pub current_id: i32,
@@ -39,8 +40,51 @@ pub struct Item {
     pub created_at: NaiveDateTime,
 }
 
-impl Item {
-    fn next_sn(db: &mut Connection, ledger: i32) -> Result<String> {
+#[derive(Insertable)]
+#[diesel(table_name = bookkeeper_entries)]
+pub struct New<'a> {
+    pub ledger_id: i32,
+    pub sn: &'a str,
+    pub transaction_id: i32,
+    pub debtor_id: i32,
+    pub creditor_id: i32,
+    pub category_id: i32,
+    pub merchant_id: i32,
+    pub currency_id: i32,
+    pub amount: i32,
+    pub memo: &'a str,
+    pub traded_at: NaiveDateTime,
+    pub timezone: String,
+    pub status: String,
+    pub updated_at: NaiveDateTime,
+}
+
+impl<'a> New<'a> {
+    pub fn generate(
+        transaction: &Transaction,
+        (debtor_id, creditor_id): (i32, i32),
+        (category_id, merchant_id): (i32, i32),
+        (sn, amount, memo, currency_id): (&'a str, i32, &'a str, i32),
+        (traded_at, timezone): (NaiveDateTime, Tz),
+    ) -> New<'a> {
+        Self {
+            ledger_id: transaction.ledger_id,
+            transaction_id: transaction.id,
+            sn,
+            traded_at,
+            amount,
+            memo,
+            debtor_id,
+            creditor_id,
+            category_id,
+            merchant_id,
+            currency_id,
+            timezone: timezone.to_string(),
+            updated_at: Utc::now().naive_utc(),
+            status: Status::Pending.to_string(),
+        }
+    }
+    pub fn next_sn(db: &mut Connection, ledger: i32) -> Result<String> {
         let today = Utc::now().naive_utc().date();
         let nbf = today.and_time(NaiveTime::MIN);
         if let Some(exp) = nbf.checked_add_days(Days::new(1)) {
@@ -60,29 +104,52 @@ impl Item {
     }
 }
 
+#[derive(AsChangeset)]
+#[diesel(table_name = bookkeeper_entries)]
+pub struct Update<'a> {
+    pub debtor_id: i32,
+    pub creditor_id: i32,
+    pub category_id: i32,
+    pub merchant_id: i32,
+    pub currency_id: i32,
+    pub amount: i32,
+    pub memo: &'a str,
+    pub traded_at: NaiveDateTime,
+    pub timezone: String,
+    pub updated_at: NaiveDateTime,
+}
+
+impl<'a> Update<'a> {
+    pub fn new(
+        (debtor_id, creditor_id): (i32, i32),
+        (category_id, merchant_id): (i32, i32),
+        (amount, memo, currency_id): (i32, &'a str, i32),
+        (traded_at, timezone): (NaiveDateTime, Tz),
+    ) -> Update<'a> {
+        Self {
+            traded_at,
+            amount,
+            memo,
+            debtor_id,
+            creditor_id,
+            category_id,
+            merchant_id,
+            currency_id,
+            timezone: timezone.to_string(),
+            updated_at: Utc::now().naive_utc(),
+        }
+    }
+}
 pub trait Dao {
-    fn create(
-        &mut self,
-        bill: (i32, i32, i32),
-        accounts: (i32, i32),
-        merchant: (i32, i32, i32, &str),
-        traded_at: (NaiveDateTime, Tz),
-    ) -> Result<()>;
-    fn update(
-        &mut self,
-        id: i32,
-        category: i32,
-        accounts: (i32, i32),
-        merchant: (i32, i32, i32, &str),
-        traded_at: (NaiveDateTime, Tz),
-    ) -> Result<()>;
+    fn create(&mut self, form: &New) -> Result<()>;
+    fn update(&mut self, id: i32, form: &Update) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_transaction(&mut self, transaction: i32) -> Result<Vec<Item>>;
     fn count_by_ledger(&mut self, ledger: i32) -> Result<i64>;
     fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_account(&mut self, account: i32) -> Result<Vec<Item>>;
-    fn by_from_account(&mut self, account: i32) -> Result<Vec<Item>>;
-    fn by_to_account(&mut self, account: i32) -> Result<Vec<Item>>;
+    fn by_debtor(&mut self, account: i32) -> Result<Vec<Item>>;
+    fn by_creditor(&mut self, account: i32) -> Result<Vec<Item>>;
     fn by_merchant(&mut self, merchant: i32) -> Result<Vec<Item>>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
@@ -90,60 +157,16 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn create(
-        &mut self,
-        (ledger, transaction, category): (i32, i32, i32),
-        (from_account, to_account): (i32, i32),
-        (merchant, currency, amount, memo): (i32, i32, i32, &str),
-        (traded_at, timezone): (NaiveDateTime, Tz),
-    ) -> Result<()> {
-        let sn = Item::next_sn(self, ledger)?;
-        let now = Utc::now().naive_utc();
+    fn create(&mut self, form: &New) -> Result<()> {
         insert_into(bookkeeper_entries::dsl::bookkeeper_entries)
-            .values((
-                bookkeeper_entries::dsl::ledger_id.eq(ledger),
-                bookkeeper_entries::dsl::sn.eq(&sn),
-                bookkeeper_entries::dsl::transaction_id.eq(transaction),
-                bookkeeper_entries::dsl::category_id.eq(category),
-                bookkeeper_entries::dsl::from_account_id.eq(from_account),
-                bookkeeper_entries::dsl::to_account_id.eq(to_account),
-                bookkeeper_entries::dsl::merchant_id.eq(merchant),
-                bookkeeper_entries::dsl::currency_id.eq(currency),
-                bookkeeper_entries::dsl::amount.eq(amount),
-                bookkeeper_entries::dsl::memo.eq(memo),
-                bookkeeper_entries::dsl::traded_at.eq(traded_at),
-                bookkeeper_entries::dsl::timezone.eq(&timezone.to_string()),
-                bookkeeper_entries::dsl::status.eq(&Status::Pending.to_string()),
-                bookkeeper_entries::dsl::updated_at.eq(now),
-            ))
+            .values(form)
             .execute(self)?;
         Ok(())
     }
-    fn update(
-        &mut self,
-        id: i32,
-        category: i32,
-        (from_account, to_account): (i32, i32),
-        (merchant, currency, amount, memo): (i32, i32, i32, &str),
-        (traded_at, timezone): (NaiveDateTime, Tz),
-    ) -> Result<()> {
-        let now = Utc::now().naive_utc();
+    fn update(&mut self, id: i32, form: &Update) -> Result<()> {
         let it =
             bookkeeper_entries::dsl::bookkeeper_entries.filter(bookkeeper_entries::dsl::id.eq(id));
-        update(it)
-            .set((
-                bookkeeper_entries::dsl::category_id.eq(category),
-                bookkeeper_entries::dsl::from_account_id.eq(from_account),
-                bookkeeper_entries::dsl::to_account_id.eq(to_account),
-                bookkeeper_entries::dsl::merchant_id.eq(merchant),
-                bookkeeper_entries::dsl::currency_id.eq(currency),
-                bookkeeper_entries::dsl::amount.eq(amount),
-                bookkeeper_entries::dsl::memo.eq(memo),
-                bookkeeper_entries::dsl::traded_at.eq(traded_at),
-                bookkeeper_entries::dsl::timezone.eq(&timezone.to_string()),
-                bookkeeper_entries::dsl::updated_at.eq(now),
-            ))
-            .execute(self)?;
+        update(it).set(form).execute(self)?;
         Ok(())
     }
     fn by_id(&mut self, id: i32) -> Result<Item> {
@@ -179,24 +202,24 @@ impl Dao for Connection {
     fn by_account(&mut self, account: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
             .filter(
-                bookkeeper_entries::dsl::from_account_id
+                bookkeeper_entries::dsl::debtor_id
                     .eq(account)
-                    .or(bookkeeper_entries::dsl::to_account_id.eq(account)),
+                    .or(bookkeeper_entries::dsl::creditor_id.eq(account)),
             )
             .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_from_account(&mut self, account: i32) -> Result<Vec<Item>> {
+    fn by_debtor(&mut self, account: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
-            .filter(bookkeeper_entries::dsl::from_account_id.eq(account))
+            .filter(bookkeeper_entries::dsl::debtor_id.eq(account))
             .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_to_account(&mut self, account: i32) -> Result<Vec<Item>> {
+    fn by_creditor(&mut self, account: i32) -> Result<Vec<Item>> {
         let items = bookkeeper_entries::dsl::bookkeeper_entries
-            .filter(bookkeeper_entries::dsl::to_account_id.eq(account))
+            .filter(bookkeeper_entries::dsl::creditor_id.eq(account))
             .order(bookkeeper_entries::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)

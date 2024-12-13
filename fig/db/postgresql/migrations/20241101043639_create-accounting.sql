@@ -81,8 +81,8 @@ CREATE TABLE bookkeeper_entries(
     ledger_id INTEGER NOT NULL,
     sn CHAR(18) NOT NULL,
     transaction_id INTEGER NOT NULL,
-    from_account_id INTEGER NOT NULL,
-    to_account_id INTEGER NOT NULL,
+    debtor_id INTEGER NOT NULL,
+    creditor_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
     merchant_id INTEGER NOT NULL,
     currency_id INTEGER NOT NULL,
@@ -103,21 +103,43 @@ CREATE INDEX idx_bookkeeper_entries_status ON bookkeeper_entries("status");
 
 CREATE TABLE bookkeeper_statements(
     id SERIAL PRIMARY KEY,
-    ledger_id INTEGER NOT NULL,    
-    account_id INTEGER NOT NULL,
+    ledger_id INTEGER NOT NULL,        
     transaction_id INTEGER NOT NULL,
-    entry_id INTEGER NOT NULL,    
+    transaction_memo VARCHAR(1023) NOT NULL,
+    entry_id INTEGER NOT NULL,
+    entry_memo VARCHAR(1023) NOT NULL,
+    entry_sn CHAR(18) NOT NULL,    
+    category_id INTEGER NOT NULL,
+    category_label VARCHAR(63) NOT NULL,
+    merchant_id INTEGER NOT NULL,
+    merchant_label VARCHAR(63) NOT NULL,
+    debtor_id INTEGER NOT NULL,
+    debtor_label VARCHAR(63) NOT NULL,
+    debtor_opening_balance INTEGER NOT NULL,
+    debtor_closing_balance INTEGER NOT NULL,   
+    creditor_id INTEGER NOT NULL,
+    creditor_label VARCHAR(63) NOT NULL,
+    creditor_opening_balance INTEGER NOT NULL,
+    creditor_closing_balance INTEGER NOT NULL, 
     currency_id INTEGER NOT NULL,
+    currency_code CHAR(3) NOT NULL,
+    currency_name VARCHAR(127) NOT NULL,
+    currency_country VARCHAR(127) NOT NULL,
+    currency_units INTEGER NOT NULL,    
     amount INTEGER NOT NULL,
-    "type" VARCHAR(7) NOT NULL, 
-    opening_balance INTEGER NOT NULL,
-    closing_balance INTEGER NOT NULL,     
     traded_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',   
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE UNIQUE INDEX idx_bookkeeper_statements_ledger_account_entry ON bookkeeper_statements(ledger_id, account_id, entry_id);
-CREATE INDEX idx_bookkeeper_statements_type ON bookkeeper_statements("type");
+CREATE UNIQUE INDEX idx_bookkeeper_statements_entry_sn ON bookkeeper_statements(entry_sn);
+CREATE INDEX idx_bookkeeper_statements_debtor_label ON bookkeeper_statements(debtor_label);
+CREATE INDEX idx_bookkeeper_statements_creditor_label ON bookkeeper_statements(creditor_label);
+CREATE INDEX idx_bookkeeper_statements_category_label ON bookkeeper_statements(category_label);
+CREATE INDEX idx_bookkeeper_statements_merchant_label ON bookkeeper_statements(merchant_label);
+CREATE INDEX idx_bookkeeper_statements_currency_code ON bookkeeper_statements(currency_code);
+CREATE INDEX idx_bookkeeper_statements_currency_name ON bookkeeper_statements(currency_name);
+CREATE INDEX idx_bookkeeper_statements_currency_country ON bookkeeper_statements(currency_country);
+CREATE INDEX idx_bookkeeper_statements_timezone ON bookkeeper_statements(timezone);
 
 CREATE TABLE bookkeeper_logs(
     id SERIAL PRIMARY KEY,

@@ -41,8 +41,8 @@ diesel::table! {
         #[max_length = 18]
         sn -> Bpchar,
         transaction_id -> Int4,
-        from_account_id -> Int4,
-        to_account_id -> Int4,
+        debtor_id -> Int4,
+        creditor_id -> Int4,
         category_id -> Int4,
         merchant_id -> Int4,
         currency_id -> Int4,
@@ -118,16 +118,39 @@ diesel::table! {
     bookkeeper_statements (id) {
         id -> Int4,
         ledger_id -> Int4,
-        account_id -> Int4,
         transaction_id -> Int4,
+        #[max_length = 1023]
+        transaction_memo -> Varchar,
         entry_id -> Int4,
+        #[max_length = 1023]
+        entry_memo -> Varchar,
+        #[max_length = 18]
+        entry_sn -> Bpchar,
+        category_id -> Int4,
+        #[max_length = 63]
+        category_label -> Varchar,
+        merchant_id -> Int4,
+        #[max_length = 63]
+        merchant_label -> Varchar,
+        debtor_id -> Int4,
+        #[max_length = 63]
+        debtor_label -> Varchar,
+        debtor_opening_balance -> Int4,
+        debtor_closing_balance -> Int4,
+        creditor_id -> Int4,
+        #[max_length = 63]
+        creditor_label -> Varchar,
+        creditor_opening_balance -> Int4,
+        creditor_closing_balance -> Int4,
         currency_id -> Int4,
+        #[max_length = 3]
+        currency_code -> Bpchar,
+        #[max_length = 127]
+        currency_name -> Varchar,
+        #[max_length = 127]
+        currency_country -> Varchar,
+        currency_units -> Int4,
         amount -> Int4,
-        #[sql_name = "type"]
-        #[max_length = 7]
-        type_ -> Varchar,
-        opening_balance -> Int4,
-        closing_balance -> Int4,
         traded_at -> Timestamp,
         #[max_length = 31]
         timezone -> Varchar,

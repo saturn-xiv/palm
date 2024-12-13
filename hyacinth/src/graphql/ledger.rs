@@ -23,7 +23,7 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
-use crate::controllers::ledgers::AUDIENCE;
+use crate::controllers::statements::AUDIENCE;
 
 use super::{
     super::models::{

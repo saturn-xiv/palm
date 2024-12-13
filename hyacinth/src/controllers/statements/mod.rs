@@ -14,8 +14,13 @@ use petunia::{
     try_web, HttpError, Result,
 };
 
-use super::super::super::models::ledger::Dao as LedgerDao;
-use super::{home_url, AUDIENCE};
+use super::super::models::ledger::Dao as LedgerDao;
+
+pub const AUDIENCE: &str = "bookkeeper.statement.show";
+
+pub fn home_url(token: &str) -> String {
+    format!("/accounting/statements/{token}/")
+}
 
 #[get("/{token}/by-dates/{b_year}-{b_month}-{b_day}-{e_year}-{e_month}-{e_day}")]
 pub async fn by_date_range(
@@ -196,7 +201,15 @@ async fn render(
     let home = home_url(token);
     let ledger = LedgerDao::by_uid(db, &uid)?;
     let body = {
-        let it = tpl::Bills::new(db, s3, &ledger, lang, &home, Duration::days(1)).await?;
+        let it = tpl::Index::new(
+            db,
+            s3,
+            &ledger,
+            lang,
+            &home,
+            (begin, end, Some(Duration::hours(1))),
+        )
+        .await?;
         it.render()?
     };
 

@@ -2,7 +2,7 @@ use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
 use juniper::GraphQLObject;
 use petunia::{orm::postgresql::Connection, Result};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use super::super::schema::currencies;
 
@@ -14,7 +14,7 @@ pub struct Amount {
     pub currency: Item,
 }
 
-#[derive(GraphQLObject, Queryable, Clone, Serialize)]
+#[derive(GraphQLObject, Queryable, Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 #[graphql(name = "Currency")]
 pub struct Item {

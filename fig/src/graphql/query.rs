@@ -594,6 +594,30 @@ impl Query {
             .await?;
         Ok(it)
     }
+    async fn index_bookkeeping_statement_by_ledger(
+        context: &Context,
+        id: i32,
+        begin: String,
+        end: String,
+        timezone: String,
+        hours: i32,
+        pager: Pager,
+    ) -> FieldResult<hyacinth_graphql::statement::List> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let s3 = context.minio.deref();
+        let form = hyacinth_graphql::statement::ByLedger {
+            begin,
+            end,
+            timezone,
+            hours,
+        };
+        let it = form
+            .execute(&context.session, (db, s3, jwt, enf), id, &pager)
+            .await?;
+        Ok(it)
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

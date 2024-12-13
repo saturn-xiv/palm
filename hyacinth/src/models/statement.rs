@@ -1,47 +1,76 @@
 use chrono::NaiveDateTime;
-use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, result::Error::NotFound};
 use hyper::StatusCode;
 use petunia::{orm::postgresql::Connection, HttpError, Result};
 use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
 
 use super::super::schema::bookkeeper_statements;
-
-#[derive(EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub enum Type {
-    #[default]
-    Credit,
-    Debit,
-}
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
     pub id: i32,
     pub ledger_id: i32,
-    pub account_id: i32,
     pub transaction_id: i32,
+    pub transaction_memo: String,
     pub entry_id: i32,
+    pub entry_memo: String,
+    pub entry_sn: String,
+    pub category_id: i32,
+    pub category_label: String,
+    pub merchant_id: i32,
+    pub merchant_label: String,
+    pub debtor_id: i32,
+    pub debtor_label: String,
+    pub debtor_opening_balance: i32,
+    pub debtor_closing_balance: i32,
+    pub creditor_id: i32,
+    pub creditor_label: String,
+    pub creditor_opening_balance: i32,
+    pub creditor_closing_balance: i32,
     pub currency_id: i32,
+    pub currency_code: String,
+    pub currency_name: String,
+    pub currency_country: String,
+    pub currency_units: i32,
     pub amount: i32,
-    pub r#type: String,
-    pub opening_balance: i32,
-    pub closing_balance: i32,
     pub traded_at: NaiveDateTime,
     pub timezone: String,
     pub created_at: NaiveDateTime,
 }
 
+#[derive(Insertable)]
+#[diesel(table_name = bookkeeper_statements)]
+pub struct New<'a> {
+    pub ledger_id: i32,
+    pub transaction_id: i32,
+    pub transaction_memo: &'a str,
+    pub entry_id: i32,
+    pub entry_memo: &'a str,
+    pub entry_sn: &'a str,
+    pub category_id: i32,
+    pub category_label: &'a str,
+    pub merchant_id: i32,
+    pub merchant_label: &'a str,
+    pub debtor_id: i32,
+    pub debtor_label: &'a str,
+    pub debtor_opening_balance: i32,
+    pub debtor_closing_balance: i32,
+    pub creditor_id: i32,
+    pub creditor_label: &'a str,
+    pub creditor_opening_balance: i32,
+    pub creditor_closing_balance: i32,
+    pub currency_id: i32,
+    pub currency_code: &'a str,
+    pub currency_name: &'a str,
+    pub currency_country: &'a str,
+    pub currency_units: i32,
+    pub amount: i32,
+    pub traded_at: NaiveDateTime,
+    pub timezone: &'a str,
+}
 pub trait Dao {
-    fn create(
-        &mut self,
-        transaction: (i32, i32, i32, i32),
-        amount: (i32, i32, Type),
-        balances: (i32, i32),
-        traded: (NaiveDateTime, Tz),
-    ) -> Result<()>;
+    fn create(&mut self, form: &New) -> Result<()>;
     fn latest(&mut self, account: i32) -> Result<Option<Item>>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_transaction(&mut self, transaction: i32) -> Result<Vec<Item>>;
@@ -62,34 +91,20 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn create(
-        &mut self,
-        (ledger, account, transaction, entry): (i32, i32, i32, i32),
-        (currency, amount, type_): (i32, i32, Type),
-        (opening_balance, closing_balance): (i32, i32),
-        (traded_at, timezone): (NaiveDateTime, Tz),
-    ) -> Result<()> {
+    fn create(&mut self, form: &New) -> Result<()> {
         insert_into(bookkeeper_statements::dsl::bookkeeper_statements)
-            .values((
-                bookkeeper_statements::dsl::ledger_id.eq(ledger),
-                bookkeeper_statements::dsl::account_id.eq(account),
-                bookkeeper_statements::dsl::transaction_id.eq(transaction),
-                bookkeeper_statements::dsl::entry_id.eq(entry),
-                bookkeeper_statements::dsl::currency_id.eq(currency),
-                bookkeeper_statements::dsl::amount.eq(amount),
-                bookkeeper_statements::dsl::type_.eq(&type_.to_string()),
-                bookkeeper_statements::dsl::opening_balance.eq(opening_balance),
-                bookkeeper_statements::dsl::closing_balance.eq(closing_balance),
-                bookkeeper_statements::dsl::traded_at.eq(traded_at),
-                bookkeeper_statements::dsl::timezone.eq(&timezone.to_string()),
-            ))
+            .values(form)
             .execute(self)?;
         Ok(())
     }
 
     fn latest(&mut self, account: i32) -> Result<Option<Item>> {
         match bookkeeper_statements::dsl::bookkeeper_statements
-            .filter(bookkeeper_statements::dsl::account_id.eq(account))
+            .filter(
+                bookkeeper_statements::dsl::debtor_id
+                    .eq(account)
+                    .or(bookkeeper_statements::dsl::creditor_id.eq(account)),
+            )
             .order(bookkeeper_statements::dsl::created_at.desc())
             .first(self)
         {

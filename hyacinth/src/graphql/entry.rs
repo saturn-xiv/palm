@@ -8,7 +8,7 @@ use daffodil::{
     graphql::attachment::Item as Attachment,
     models::{
         attachment::Dao as AttachmentDao,
-        currency::{Dao as CurrencyDao, Item as Currency},
+        currency::{Amount, Dao as CurrencyDao},
     },
     session::current_user,
 };
@@ -26,16 +26,17 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
-use crate::models::{entry::Status, statement::Type};
-
 use super::super::models::{
     account::Dao as AccountDao,
     category::Dao as CategoryDao,
-    entry::{Dao as EntryDao, Item as Entry},
+    entry::{
+        Dao as EntryDao, Item as Entry, New as NewEntry, Status as EntryStatus,
+        Update as UpdateEntry,
+    },
     ledger::Dao as LedgerDao,
     log::{Action, Dao as LogDao},
     merchant::Dao as MerchantDao,
-    statement::Dao as StatementDao,
+    statement::{Dao as StatementDao, New as NewStatement},
     transaction::{Dao as TransactionDao, Item as Transaction},
 };
 
@@ -45,11 +46,11 @@ pub struct Item {
     pub id: i32,
     pub sn: String,
     pub transaction: super::transaction::Item,
-    pub from_account: super::account::Item,
-    pub to_account: super::account::Item,
+    pub debtor: super::account::Item,
+    pub creditor: super::account::Item,
     pub category: super::category::Item,
     pub merchant: super::merchant::Item,
-    pub amount: i32,
+    pub amount: Amount,
     pub memo: String,
     pub bills: Vec<Attachment>,
     pub traded_at: DateTimePicker,
@@ -66,12 +67,12 @@ impl Item {
                 let it = TransactionDao::by_id(db, it.transaction_id)?;
                 super::transaction::Item::new(&it)?
             },
-            from_account: {
-                let it = AccountDao::by_id(db, it.from_account_id)?;
+            debtor: {
+                let it = AccountDao::by_id(db, it.debtor_id)?;
                 super::account::Item::new(db, &it)?
             },
-            to_account: {
-                let it = AccountDao::by_id(db, it.to_account_id)?;
+            creditor: {
+                let it = AccountDao::by_id(db, it.creditor_id)?;
                 super::account::Item::new(db, &it)?
             },
             category: {
@@ -83,7 +84,10 @@ impl Item {
                 super::merchant::Item::new(db, &it)?
             },
             memo: it.memo.clone(),
-            amount: it.amount,
+            amount: Amount {
+                currency: CurrencyDao::by_id(db, it.current_id)?,
+                value: it.amount,
+            },
             bills: {
                 let mut items = Vec::new();
                 for it in AttachmentDao::by_resource::<Entry>(db, Some(it.id))?.iter() {
@@ -166,8 +170,8 @@ impl List {
 #[derive(GraphQLInputObject, Validate)]
 #[graphql(name = "NewBookkeeperEntryForm")]
 pub struct New {
-    pub from_account: i32,
-    pub to_account: i32,
+    pub debtor: i32,
+    pub creditor: i32,
     pub category: i32,
     pub merchant: i32,
     pub amount: i32,
@@ -223,19 +227,25 @@ impl New {
         Ok(())
     }
 
-    fn check(&self, db: &mut Db, transaction: &Transaction) -> Result<Currency> {
-        if self.from_account == self.to_account {
+    fn check(&self, db: &mut Db, transaction: &Transaction) -> Result<i32> {
+        if self.amount <= 0 {
+            return Err(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("amount couldn't be less than 0".to_string()),
+            )));
+        }
+        if self.debtor == self.creditor {
             return Err(Box::new(HttpError(
                 StatusCode::BAD_REQUEST,
                 Some("can't trade by self".to_string()),
             )));
         }
-        let from = {
-            let it = AccountDao::by_id(db, self.from_account)?;
+        let debtor = {
+            let it = AccountDao::by_id(db, self.debtor)?;
             if it.deleted_at.is_some() {
                 return Err(Box::new(HttpError(
                     StatusCode::GONE,
-                    Some("from account is disabled".to_string()),
+                    Some("debtor account is disabled".to_string()),
                 )));
             }
             if it.ledger_id != transaction.ledger_id {
@@ -246,12 +256,12 @@ impl New {
             }
             it
         };
-        let to = {
-            let it = AccountDao::by_id(db, self.to_account)?;
+        let creditor = {
+            let it = AccountDao::by_id(db, self.creditor)?;
             if it.deleted_at.is_some() {
                 return Err(Box::new(HttpError(
                     StatusCode::GONE,
-                    Some("to account is disabled".to_string()),
+                    Some("creditor is disabled".to_string()),
                 )));
             }
             if it.ledger_id != transaction.ledger_id {
@@ -262,7 +272,7 @@ impl New {
             }
             it
         };
-        if from.currency_id != to.currency_id {
+        if debtor.currency_id != creditor.currency_id {
             return Err(Box::new(HttpError(
                 StatusCode::BAD_REQUEST,
                 Some("accounts' currency not match".to_string()),
@@ -300,10 +310,9 @@ impl New {
             }
         }
 
-        let ic = CurrencyDao::by_id(db, from.currency_id)?;
-        Ok(ic)
+        Ok(debtor.currency_id)
     }
-    pub fn save(
+    fn save(
         &self,
         db: &mut Db,
         transaction: &Transaction,
@@ -311,13 +320,20 @@ impl New {
         user: (i32, &str),
         client_ip: &str,
     ) -> Result<()> {
-        let currency = self.check(db, transaction)?;
+        let currency = {
+            let ic = self.check(db, transaction)?;
+            CurrencyDao::by_id(db, ic)?
+        };
+        let sn = NewEntry::next_sn(db, transaction.ledger_id)?;
         EntryDao::create(
             db,
-            (transaction.ledger_id, transaction.id, self.category),
-            (self.from_account, self.to_account),
-            (self.merchant, currency.id, self.amount, &self.memo),
-            traded_at,
+            &NewEntry::generate(
+                transaction,
+                (self.debtor, self.creditor),
+                (self.category, self.merchant),
+                (&sn, self.amount, &self.memo, currency.id),
+                traded_at,
+            ),
         )?;
         LogDao::create(
             db,
@@ -348,7 +364,7 @@ impl New {
             datetime: self.traded_at.clone(),
             timezone: self.timezone.clone(),
         };
-        let (traded_at, timezone): (NaiveDateTime, Tz) = TryFrom::try_from(picker)?;
+        let traded_at = TryFrom::try_from(picker)?;
         self.validate()?;
 
         let mut db = db.get()?;
@@ -356,7 +372,7 @@ impl New {
         let (si, user) = current_user(ss, db, jwt)?;
         let (entry, transaction, currency) = {
             let ie = EntryDao::by_id(db, id)?;
-            if Status::from_str(&ie.status)? == Status::Audited {
+            if EntryStatus::from_str(&ie.status)? == EntryStatus::Audited {
                 return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
             }
             if ie.deleted_at.is_some() {
@@ -367,7 +383,10 @@ impl New {
             }
 
             let it = TransactionDao::by_id(db, ie.transaction_id)?;
-            let ic = self.check(db, &it)?;
+            let ic = {
+                let ic = self.check(db, &it)?;
+                CurrencyDao::by_id(db, ic)?
+            };
             let ledger = LedgerDao::by_id(db, it.ledger_id)?;
             ledger.can_append(&user, enforcer).await?;
 
@@ -378,10 +397,12 @@ impl New {
             EntryDao::update(
                 db,
                 id,
-                self.category,
-                (self.from_account, self.to_account),
-                (self.merchant, currency.id, self.amount, &self.memo),
-                (traded_at, timezone),
+                &UpdateEntry::new(
+                    (self.debtor, self.creditor),
+                    (self.category, self.merchant),
+                    (self.amount, &self.memo, currency.id),
+                    traded_at,
+                ),
             )?;
             LogDao::create(
                 db,
@@ -390,7 +411,7 @@ impl New {
                 (
                     Action::CreateEntry,
                     &format!(
-                        "update entry {:?} => {}({},{},{})",
+                        "update entry {:?} => {}({:?},{},{})",
                         entry, self.memo, traded_at, currency.code, self.amount,
                     ),
                     None,
@@ -415,7 +436,7 @@ pub async fn disable(
 
     let (si, user) = current_user(ss, db, jwt)?;
     let entry = EntryDao::by_id(db, id)?;
-    if Status::from_str(&entry.status)? == Status::Audited {
+    if EntryStatus::from_str(&entry.status)? == EntryStatus::Audited {
         return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
     }
     let transaction = TransactionDao::by_id(db, entry.transaction_id)?;
@@ -455,7 +476,7 @@ pub async fn enable(
 
     let (si, user) = current_user(ss, db, jwt)?;
     let entry = EntryDao::by_id(db, id)?;
-    if Status::from_str(&entry.status)? == Status::Audited {
+    if EntryStatus::from_str(&entry.status)? == EntryStatus::Audited {
         return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
     }
     let transaction = TransactionDao::by_id(db, entry.transaction_id)?;
@@ -496,7 +517,7 @@ pub async fn audit(
     let (si, user) = current_user(ss, db, jwt)?;
     let entry = EntryDao::by_id(db, id)?;
 
-    if Status::from_str(&entry.status)? != Status::Pending {
+    if EntryStatus::from_str(&entry.status)? != EntryStatus::Pending {
         return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
     }
     if entry.amount < 0 {
@@ -508,46 +529,56 @@ pub async fn audit(
         let ledger = LedgerDao::by_id(db, transaction.ledger_id)?;
         ledger.can_credit(&user, enforcer).await?;
     }
+    let category = CategoryDao::by_id(db, entry.category_id)?;
+    let merchant = MerchantDao::by_id(db, entry.merchant_id)?;
+    let debtor = AccountDao::by_id(db, entry.debtor_id)?;
+    let creditor = AccountDao::by_id(db, entry.creditor_id)?;
+    let currency = CurrencyDao::by_id(db, entry.current_id)?;
 
     db.transaction::<_, Error, _>(|db| {
-        let timezone = Tz::from_str(&entry.timezone)?;
         {
-            let closing = match StatementDao::latest(db, entry.from_account_id)? {
-                Some(it) => it.closing_balance,
+            let debtor_closing = match StatementDao::latest(db, entry.debtor_id)? {
+                Some(it) => it.debtor_closing_balance,
+                None => 0,
+            };
+            let creditor_closing = match StatementDao::latest(db, entry.creditor_id)? {
+                Some(it) => it.creditor_closing_balance,
                 None => 0,
             };
             StatementDao::create(
                 db,
-                (
-                    entry.ledger_id,
-                    entry.from_account_id,
-                    entry.transaction_id,
-                    entry.id,
-                ),
-                (entry.current_id, entry.amount, Type::Debit),
-                (closing, closing - entry.amount),
-                (entry.traded_at, timezone),
+                &NewStatement {
+                    ledger_id: entry.ledger_id,
+                    transaction_id: transaction.id,
+                    transaction_memo: &transaction.memo,
+                    category_id: category.id,
+                    category_label: &category.label,
+                    merchant_id: merchant.id,
+                    merchant_label: &merchant.label,
+                    entry_id: entry.id,
+                    entry_memo: &entry.memo,
+                    entry_sn: &entry.sn,
+                    debtor_id: debtor.id,
+                    debtor_label: &debtor.label,
+                    debtor_opening_balance: debtor_closing,
+                    debtor_closing_balance: debtor_closing - entry.amount,
+                    creditor_id: creditor.id,
+                    creditor_label: &creditor.label,
+                    creditor_opening_balance: creditor_closing,
+                    creditor_closing_balance: creditor_closing + entry.amount,
+                    currency_id: currency.id,
+                    currency_code: &currency.code,
+                    currency_name: &currency.name,
+                    currency_country: &currency.country,
+                    currency_units: currency.units,
+                    traded_at: entry.traded_at,
+                    timezone: &entry.timezone,
+                    amount: entry.amount,
+                },
             )?;
         }
-        {
-            let closing = match StatementDao::latest(db, entry.to_account_id)? {
-                Some(it) => it.closing_balance,
-                None => 0,
-            };
-            StatementDao::create(
-                db,
-                (
-                    entry.ledger_id,
-                    entry.to_account_id,
-                    entry.transaction_id,
-                    entry.id,
-                ),
-                (entry.current_id, entry.amount, Type::Debit),
-                (closing, closing + entry.amount),
-                (entry.traded_at, timezone),
-            )?;
-        }
-        EntryDao::set_status(db, entry.id, Status::Audited)?;
+
+        EntryDao::set_status(db, entry.id, EntryStatus::Audited)?;
         LogDao::create(
             db,
             transaction.ledger_id,
