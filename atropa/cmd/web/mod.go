@@ -7,6 +7,7 @@ import (
 )
 
 type Config struct {
+	Theme    string        `toml:"theme"`
 	KeysDir  string        `toml:"keys-dir"`
 	Redis    redis.Cluster `toml:"redis"`
 	Minio    minio.Config  `toml:"minio"`

@@ -4,10 +4,11 @@ import (
 	"embed"
 	"io/fs"
 	"log/slog"
+	"path"
 )
 
 func LoadTemplates(node *embed.FS, theme string) error {
-	return fs.WalkDir(node, theme, func(path string, it fs.DirEntry, err error) error {
+	return fs.WalkDir(node, path.Join("templates", theme), func(path string, it fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}

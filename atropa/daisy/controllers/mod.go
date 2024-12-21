@@ -12,7 +12,7 @@ import (
 
 func Mount(router *mux.Router, db *gorm.DB, jwt *crypto.Jwt) error {
 	{
-		group := router.PathPrefix("/api/twilio").Subrouter()
+		group := router.PathPrefix("/twilio").Subrouter()
 		callback := TwilioSmsStatusCallback(db, jwt)
 		group.HandleFunc("/sms-status-callback/{token}", hibiscus.Wrap(callback)).Methods(http.MethodGet, http.MethodPost)
 	}

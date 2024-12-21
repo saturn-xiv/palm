@@ -2,6 +2,7 @@ package web
 
 import (
 	"context"
+	"embed"
 	"errors"
 	"fmt"
 	"log/slog"
@@ -12,19 +13,22 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
-	"gorm.io/gorm"
 
-	daisy_controllers "github.com/saturn-xiv/palm/atropa/daisy/controllers"
+	"github.com/saturn-xiv/palm/atropa/controllers"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
+
+//go:embed assets/*/* templates/*/*
+var gl_content embed.FS
 
 func Launch(port uint16, config_file string, version string, debug bool) error {
 	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+	if err := hibiscus.LoadTemplates(&gl_content, config.Theme); err != nil {
 		return err
 	}
 	_, _, jwt, err := crypto.Open(config.KeysDir)
@@ -36,7 +40,7 @@ func Launch(port uint16, config_file string, version string, debug bool) error {
 		return err
 	}
 
-	router, err := mount(db, jwt)
+	router, err := controllers.Mount(db, jwt)
 	if err != nil {
 		return err
 	}
@@ -70,23 +74,4 @@ func Launch(port uint16, config_file string, version string, debug bool) error {
 
 	slog.Info("http server exiting")
 	return nil
-}
-
-func mount(db *gorm.DB, jwt *crypto.Jwt) (http.Handler, error) {
-	router := mux.NewRouter()
-
-	if err := daisy_controllers.Mount(router, db, jwt); err != nil {
-		return nil, err
-	}
-
-	handler := handlers.CORS(
-		handlers.MaxAge(int(time.Minute*3)),
-		handlers.AllowedHeaders([]string{hibiscus.HTTP_COOKIE_HEADER, hibiscus.HTTP_AUTHORIZATION_HEADER, hibiscus.HTTP_FORWARDED_FOR_HEADER}),
-		handlers.AllowCredentials(),
-		handlers.AllowedMethods([]string{http.MethodGet, http.MethodPost, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodDelete}),
-	)(router)
-	handler = handlers.CombinedLoggingHandler(os.Stdout, handler)
-	handler = handlers.RecoveryHandler()(handler)
-
-	return handler, nil
 }

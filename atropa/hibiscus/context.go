@@ -56,11 +56,17 @@ func (p *Context) JSON(status int, value any) {
 }
 func (p *Context) String(status int, body string) {
 	p.write_header(status, TEXT_PLAIN_UTF8)
-	io.WriteString(p.responseWriter, body)
+	if _, err := io.WriteString(p.responseWriter, body); err != nil {
+		p.Abort(http.StatusInternalServerError, err)
+	}
+
 }
 func (p *Context) Data(status int, content_type string, body []byte) {
 	p.write_header(status, content_type)
-	p.responseWriter.Write(body)
+	if _, err := p.responseWriter.Write(body); err != nil {
+		p.Abort(http.StatusInternalServerError, err)
+	}
+
 }
 func (p *Context) write_header(status int, content_type string) {
 	p.responseWriter.WriteHeader(status)
