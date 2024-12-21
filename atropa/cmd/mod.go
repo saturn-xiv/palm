@@ -41,8 +41,9 @@ var (
 	gl_debug  bool
 	gl_config string
 
-	gl_rpc_port uint16
-	gl_web_port uint16
+	gl_rpc_port         uint16
+	gl_web_port         uint16
+	gl_web_third_assets string
 
 	gl_etc_domain string
 
@@ -61,11 +62,12 @@ func init() {
 			Short: "Start a HTTP server",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return web.Launch(gl_web_port, gl_config, git_version, gl_debug)
+				return web.Launch(gl_web_port, gl_config, gl_web_third_assets, git_version, gl_debug)
 			},
 		}
 
 		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
+		cmd.Flags().StringVarP(&gl_web_third_assets, "static-assets", "s", "node_modules", "static assets folder")
 		root_cmd.AddCommand(cmd)
 	}
 	{

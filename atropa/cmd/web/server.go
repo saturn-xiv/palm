@@ -22,7 +22,7 @@ import (
 //go:embed assets/*/* templates/*/*
 var gl_content embed.FS
 
-func Launch(port uint16, config_file string, version string, debug bool) error {
+func Launch(port uint16, config_file string, third_assets string, version string, debug bool) error {
 	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
@@ -40,7 +40,7 @@ func Launch(port uint16, config_file string, version string, debug bool) error {
 		return err
 	}
 
-	router, err := controllers.Mount(db, jwt)
+	router, err := controllers.Mount(&gl_content, third_assets, config.Theme, db, jwt)
 	if err != nil {
 		return err
 	}

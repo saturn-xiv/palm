@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"embed"
+	"io/fs"
 	"net/http"
 	"os"
+	"path"
 	"time"
 
 	"github.com/gorilla/handlers"
@@ -17,8 +20,16 @@ import (
 	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
-func Mount(db *gorm.DB, jwt *crypto.Jwt) (http.Handler, error) {
+func Mount(node *embed.FS, third_assets string, theme string, db *gorm.DB, jwt *crypto.Jwt) (http.Handler, error) {
 	router := mux.NewRouter().StrictSlash(true)
+	router.PathPrefix("/3rd/").Handler(http.StripPrefix("/3rd/", http.FileServer(http.Dir(third_assets))))
+	{
+		dir, err := fs.Sub(node, path.Join("assets", theme))
+		if err != nil {
+			return nil, err
+		}
+		router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.FS(dir))))
+	}
 
 	if err := cms.Mount(router, db, jwt); err != nil {
 		return nil, err
