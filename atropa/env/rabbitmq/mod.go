@@ -9,6 +9,8 @@ import (
 	"github.com/google/uuid"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"google.golang.org/protobuf/proto"
+
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
 type Consumer interface {
@@ -75,13 +77,13 @@ func (p *Config) declare_queue(ch *amqp.Channel, name string) error {
 	return err
 }
 
-//	func (p *Config) send_protobuf_message(ctx context.Context, ch *amqp.Channel, exchange string, routing_key string, message proto.Message) error {
-//		buf, err := proto.Marshal(message)
-//		if err != nil {
-//			return err
-//		}
-//		return p.send(ctx, ch, exchange, routing_key, hibiscus.APPLICATION_GRPC_PROTO, buf)
-//	}
+func (p *Config) send_protobuf_message(ctx context.Context, ch *amqp.Channel, exchange string, routing_key string, message proto.Message) error {
+	buf, err := proto.Marshal(message)
+	if err != nil {
+		return err
+	}
+	return p.send(ctx, ch, exchange, routing_key, hibiscus.APPLICATION_GRPC_PROTO, buf)
+}
 func (p *Config) send(ctx context.Context, ch *amqp.Channel, exchange string, routing_key string, content_type string, message []byte) error {
 	message_id := uuid.New().String()
 	slog.Info(fmt.Sprintf("publish message(%s) to (%s,%s)", message_id, exchange, routing_key))

@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.balsam.v1";
-option go_package = "github.com/saturn-xiv/palm/atropa/balsam/services/v2";
+option go_package = "./;v2";
 package palm.balsam.v1;
 
 import "google/protobuf/empty.proto";
@@ -13,7 +13,9 @@ service Aes {
   rpc Encrypt(AesPlainMessage) returns (AesCodeMessage) {}
   rpc Decrypt(AesCodeMessage) returns (AesPlainMessage) {}
 }
-message AesPlainMessage { bytes payload = 1; }
+message AesPlainMessage {
+  bytes payload = 1;
+}
 message AesCodeMessage {
   bytes payload = 1;
   bytes salt = 2;
@@ -36,7 +38,9 @@ message JwtSignRequest {
 
   optional string extra = 99;
 }
-message JwtSignResponse { string token = 1; }
+message JwtSignResponse {
+  string token = 1;
+}
 message JwtVerifyRequest {
   string token = 1;
   string issuer = 2;
@@ -56,7 +60,9 @@ service HMac {
   rpc Sign(HMacSignRequest) returns (HMacSignResponse) {}
   rpc Verify(HMacVerifyRequest) returns (google.protobuf.Empty) {}
 }
-message HMacSignRequest { bytes plain = 1; }
+message HMacSignRequest {
+  bytes plain = 1;
+}
 message HMacSignResponse {
   bytes code = 1;
   bytes salt = 2;

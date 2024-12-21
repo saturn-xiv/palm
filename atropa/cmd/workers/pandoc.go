@@ -5,6 +5,7 @@ import (
 
 	"github.com/saturn-xiv/palm/atropa/env/minio"
 	"github.com/saturn-xiv/palm/atropa/env/rabbitmq"
+	"github.com/saturn-xiv/palm/atropa/lily/workers"
 )
 
 type Pandoc struct {
@@ -18,7 +19,7 @@ func (p *Pandoc) Execute(ctx context.Context, consumer_name string, queue_name s
 		return err
 	}
 
-	// worker := workers.NewTeXLiveWorker(s3)
+	worker := workers.NewTeXLiveWorker(s3)
 	if err := p.RabbitMq.Consume(ctx, consumer_name, queue_name, worker); err != nil {
 		return err
 	}

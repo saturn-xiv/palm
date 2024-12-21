@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.wechat.v1";
-option go_package = "github.com/saturn-xiv/palm/atropa/wechat/services/v2";
+option go_package = "./;v2";
 package palm.wechat.v1;
 
 import "google/protobuf/empty.proto";
@@ -21,7 +21,9 @@ message Oauth2QrConnectUrlRequest {
   }
   Lang lang = 9;
 }
-message Oauth2QrConnectUrlResponse { string url = 1; }
+message Oauth2QrConnectUrlResponse {
+  string url = 1;
+}
 message Oauth2SignInRequest {
   string code = 1;
   string state = 2;
@@ -50,7 +52,9 @@ service MiniProgram {
   rpc Code2Session(MiniProgramCode2SessionRequest)
       returns (MiniProgramCode2SessionResponse) {}
 }
-message MiniProgramCode2SessionRequest { string code = 1; }
+message MiniProgramCode2SessionRequest {
+  string code = 1;
+}
 message MiniProgramCode2SessionResponse {
   optional string union_id = 1;
   string open_id = 2;
@@ -106,8 +110,12 @@ message PayTradeResponse {
   string trade_state_desc = 2;
 }
 
-message PayQueryOrderByIdRequest { string transaction_id = 1; }
-message PayQueryOrderByOutTradeNoRequest { string out_trade_no = 1; }
+message PayQueryOrderByIdRequest {
+  string transaction_id = 1;
+}
+message PayQueryOrderByOutTradeNoRequest {
+  string out_trade_no = 1;
+}
 
 // ----------------------------------------------------------------------------
 
@@ -147,7 +155,9 @@ message PayBillDate {
   int32 day = 3;
 }
 
-message PayBillResponse { bytes content = 1; }
+message PayBillResponse {
+  bytes content = 1;
+}
 message PayTradeBillRequest {
   enum BillType {
     ALL = 0;
@@ -186,7 +196,9 @@ message PayCreateRefundRequest {
   Amount amount = 3;
   string notify_host = 11;
 }
-message PayQueryRefundRequest { string out_refund_no = 1; }
+message PayQueryRefundRequest {
+  string out_refund_no = 1;
+}
 message PayRefundResponse {
   string out_refund_no = 1;
   string channel = 2;
@@ -221,9 +233,13 @@ message PayTransferGetElectronicReceiptRequest {
   string out_detail_no = 3;
 }
 
-message PayTransferGetReceiptResponse { bytes payload = 1; }
+message PayTransferGetReceiptResponse {
+  bytes payload = 1;
+}
 
-message PayTransferGetBillReceiptRequest { string out_batch_no = 1; }
+message PayTransferGetBillReceiptRequest {
+  string out_batch_no = 1;
+}
 
 message PayExecuteBatchTransferRequest {
   message Batch {

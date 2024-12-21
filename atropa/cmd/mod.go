@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
+	"github.com/saturn-xiv/palm/atropa/cmd/web"
 	"github.com/saturn-xiv/palm/atropa/cmd/workers"
 )
 
@@ -25,7 +26,7 @@ var (
 var root_cmd = &cobra.Command{
 	Use:     "atropa",
 	Short:   "Atropa",
-	Long:    fmt.Sprintf("A total free education & translation solution.(%s).", repo_url),
+	Long:    fmt.Sprintf("A collection of gRpc services & controllers.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -48,10 +49,6 @@ var (
 	gl_worker_consumer_name string
 	gl_worker_queue_name    string
 	gl_worker_task_name     string
-
-	gl_generate_token_years     uint8
-	gl_generate_token_subject   string
-	gl_generate_token_audiences []string
 )
 
 func init() {
@@ -84,44 +81,10 @@ func init() {
 		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
 		root_cmd.AddCommand(cmd)
 	}
-	{
-		var cmd = &cobra.Command{
-			Use:   "etc",
-			Short: "Generate systemd & nginx configuration file",
-			RunE: func(cmd *cobra.Command, args []string) error {
-				set_log(gl_debug)
-
-				if err := etc.RpcSystemdConf(gl_etc_domain, gl_rpc_port); err != nil {
-					return err
-				}
-				if err := etc.WwwSystemdConf(gl_etc_domain, gl_web_port); err != nil {
-					return err
-				}
-				if err := etc.SmsSendWorkerSystemdConf(gl_etc_domain); err != nil {
-					return err
-				}
-				if err := etc.EmailSendWorkerSystemdConf(gl_etc_domain); err != nil {
-					return err
-				}
-				if err := etc.MinioSystemdConf(gl_etc_domain); err != nil {
-					return err
-				}
-				if err := etc.MinioNginxConf(gl_etc_domain); err != nil {
-					return err
-				}
-				return nil
-			},
-		}
-
-		cmd.Flags().StringVarP(&gl_etc_domain, "domain", "D", "change-me.org", "domain name")
-		cmd.Flags().Uint16Var(&gl_rpc_port, "rpc-port", 9999, "gRPC server port")
-		cmd.Flags().Uint16Var(&gl_web_port, "web-port", 8080, "http server port")
-		root_cmd.AddCommand(cmd)
-	}
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "queue-consumer",
+			Use:   "worker",
 			Short: "Start a queue consumer",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
@@ -168,22 +131,6 @@ func init() {
 		root_cmd.AddCommand(cmd)
 	}
 
-	{
-		var cmd = &cobra.Command{
-			Use:   "generate-token",
-			Short: "Generate a jwt token",
-			RunE: func(cmd *cobra.Command, args []string) error {
-				set_log(gl_debug)
-				return generate_token.Launch(gl_config, gl_generate_token_subject, gl_generate_token_audiences, int(gl_generate_token_years))
-			},
-		}
-
-		cmd.Flags().StringVar(&gl_generate_token_subject, "subject", "", "subject")
-		cmd.Flags().Uint8Var(&gl_generate_token_years, "years", 10, "years")
-		cmd.Flags().StringSliceVar(&gl_generate_token_audiences, "audience", []string{}, "audiences")
-
-		root_cmd.AddCommand(cmd)
-	}
 }
 
 func set_log(debug bool) {

@@ -3,6 +3,7 @@ package workers
 import (
 	"context"
 
+	"github.com/saturn-xiv/palm/atropa/daisy/workers"
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/rabbitmq"
 )
@@ -13,7 +14,7 @@ type SmsSend struct {
 }
 
 func (p *SmsSend) Execute(ctx context.Context, consumer_name string, queue_name string) error {
-	// worker := workers.NewSendSmsWorker(&p.Twilio)
+	worker := workers.NewSendSmsWorker(&p.Twilio)
 	if err := p.RabbitMq.Consume(ctx, consumer_name, queue_name, worker); err != nil {
 		return err
 	}

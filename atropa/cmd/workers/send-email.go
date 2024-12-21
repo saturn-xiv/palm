@@ -3,6 +3,7 @@ package workers
 import (
 	"context"
 
+	"github.com/saturn-xiv/palm/atropa/daisy/workers"
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/rabbitmq"
 )

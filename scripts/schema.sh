@@ -102,13 +102,14 @@ function generate_diesel_schema() {
 
 # ---------------------------------------------------------
 
-# generate_grpc_for_go balsam atropa/balsam/services/v2
-# generate_grpc_for_go daisy atropa/daisy/services/v2
-# generate_grpc_for_go s3 atropa/s3/services/v2
-# generate_grpc_for_go google atropa/google/services/v2
-# generate_grpc_for_go wechat atropa/wechat/services/v2
-# generate_grpc_for_go lily atropa/lily/services/v2
-# generate_grpc_for_go morus atropa/morus/services/v2
+generate_grpc_for_go balsam atropa/balsam/services/v2
+generate_grpc_for_go daisy atropa/daisy/services/v2
+generate_grpc_for_go s3 atropa/s3/services/v2
+generate_grpc_for_go google atropa/google/services/v2
+generate_grpc_for_go wechat atropa/wechat/services/v2
+generate_grpc_for_go lily atropa/lily/services/v2
+generate_grpc_for_go morus atropa/morus/services/v2
+generate_grpc_for_go rbac atropa/rbac/services/v2
 
 # generate_grpc_for_js morus morus/src/protocols
 
