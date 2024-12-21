@@ -4,9 +4,12 @@ use std::path::{Path, PathBuf};
 
 use google_youtube3::{
     api::{Caption, CaptionSnippet},
-    hyper::{client::connect::HttpConnector, Client as YouTubeClient},
     hyper_rustls::{HttpsConnector, HttpsConnectorBuilder},
-    oauth2::{read_application_secret, InstalledFlowAuthenticator, InstalledFlowReturnMethod},
+    hyper_util::{
+        client::legacy::{connect::HttpConnector, Client as YouTubeClient},
+        rt::TokioExecutor,
+    },
+    yup_oauth2::{read_application_secret, InstalledFlowAuthenticator, InstalledFlowReturnMethod},
     Error as YoutubeError, Result as YoutubeResult, YouTube,
 };
 use serde::{Deserialize, Serialize};
@@ -115,7 +118,7 @@ impl Client {
                 .build()
                 .await?;
         let hub = YouTube::new(
-            YouTubeClient::builder().build(
+            YouTubeClient::builder(TokioExecutor::new()).build(
                 HttpsConnectorBuilder::new()
                     .with_native_roots()?
                     .https_or_http()

@@ -35,7 +35,7 @@ opensearch = "2"
 percent-encoding = "2"
 url = "2"
 tempfile = "3"
-google-youtube3 = "5"
+google-youtube3 = "6"
 amq-protocol-uri = "7"
 jsonwebtoken = "9"
 
