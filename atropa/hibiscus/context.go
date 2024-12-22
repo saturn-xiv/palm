@@ -1,12 +1,15 @@
 package hibiscus
 
 import (
+	"bytes"
+	"embed"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io"
 	"log/slog"
 	"net/http"
+	text_template "text/template"
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
@@ -33,48 +36,54 @@ func (p *Context) ParseForm(form interface{}) error {
 }
 
 func (p *Context) HTML(status int, name string, data any) {
-	if err := gl_html_template.ExecuteTemplate(p.responseWriter, name, data); err != nil {
+	var buf bytes.Buffer
+	if err := gl_html_template.ExecuteTemplate(&buf, name, data); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
 		return
 	}
-	p.write_header(status, TEXT_HTML_UTF8)
+	p.Data(status, TEXT_HTML_UTF8, buf.Bytes())
 }
 func (p *Context) Abort(status int, err error) {
 	msg := err.Error()
 	slog.Error(msg)
-	p.PlainText(status, msg)
+	p.write_header(status, TEXT_PLAIN_UTF8)
+	io.WriteString(p.responseWriter, msg)
 }
 func (p *Context) XML(status int, value any) {
-	if _, err := fmt.Fprintln(p.responseWriter, XML_HEADER); err != nil {
-		p.Abort(http.StatusInternalServerError, err)
-		return
-	}
-
-	if err := xml.NewEncoder(p.responseWriter).Encode(value); err != nil {
+	var buf bytes.Buffer
+	if err := xml.NewEncoder(&buf).Encode(value); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
 		return
 	}
 	p.write_header(status, APPLICATION_XML)
+	fmt.Fprintln(p.responseWriter, XML_HEADER)
+	p.responseWriter.Write(buf.Bytes())
 }
 func (p *Context) JSON(status int, value any) {
-	if err := json.NewEncoder(p.responseWriter).Encode(value); err != nil {
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(value); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
 		return
 	}
-	p.write_header(status, APPLICATION_JSON)
-}
-func (p *Context) PlainText(status int, body string) {
-	p.write_header(status, TEXT_PLAIN_UTF8)
-	if _, err := io.WriteString(p.responseWriter, body); err != nil {
-		p.Abort(http.StatusInternalServerError, err)
-	}
+	p.Data(status, APPLICATION_JSON, buf.Bytes())
 
+}
+func (p *Context) PlainText(status int, fs *embed.FS, name string, value any) {
+	tpl, err := text_template.New("").ParseFS(fs, name)
+	if err != nil {
+		p.Abort(http.StatusInternalServerError, err)
+		return
+	}
+	var buf bytes.Buffer
+	if err := tpl.ExecuteTemplate(&buf, name, value); err != nil {
+		p.Abort(http.StatusInternalServerError, err)
+		return
+	}
+	p.Data(status, TEXT_PLAIN_UTF8, buf.Bytes())
 }
 func (p *Context) Data(status int, content_type string, body []byte) {
 	p.write_header(status, content_type)
-	if _, err := p.responseWriter.Write(body); err != nil {
-		p.Abort(http.StatusInternalServerError, err)
-	}
+	p.responseWriter.Write(body)
 
 }
 func (p *Context) write_header(status int, content_type string) {

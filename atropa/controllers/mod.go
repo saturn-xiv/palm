@@ -42,13 +42,7 @@ func Mount(node *embed.FS, third_assets string, theme string, db *gorm.DB, jwt *
 		router.HandleFunc("/{lang}/rss.xml", hibiscus.Wrap(RssByLang(db, jwt))).Methods(http.MethodGet)
 		router.HandleFunc("/{lang}/sitemap.xml", hibiscus.Wrap(SitemapXmlByLang(db, jwt))).Methods(http.MethodGet)
 		router.HandleFunc("/sitemap.xml", hibiscus.Wrap(SitemapXml(db, jwt))).Methods(http.MethodGet)
-		{
-			it, err := RobotsTxt(db, jwt)
-			if err != nil {
-				return nil, err
-			}
-			router.HandleFunc("/robots.txt", hibiscus.Wrap(it)).Methods(http.MethodGet)
-		}
+		router.HandleFunc("/robots.txt", hibiscus.Wrap(RobotsTxt())).Methods(http.MethodGet)
 		router.HandleFunc("/", hibiscus.Wrap(Home(db, jwt))).Methods(http.MethodGet)
 	}
 
