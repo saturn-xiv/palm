@@ -3,6 +3,7 @@ package hibiscus
 import (
 	"encoding/json"
 	"encoding/xml"
+	"fmt"
 	"io"
 	"log/slog"
 	"net/http"
@@ -16,6 +17,9 @@ type Context struct {
 	request        *http.Request
 }
 
+func (p *Context) Host() string {
+	return p.request.Host
+}
 func (p *Context) Vars() map[string]string {
 	return mux.Vars(p.request)
 }
@@ -38,9 +42,14 @@ func (p *Context) HTML(status int, name string, data any) {
 func (p *Context) Abort(status int, err error) {
 	msg := err.Error()
 	slog.Error(msg)
-	p.String(status, msg)
+	p.PlainText(status, msg)
 }
 func (p *Context) XML(status int, value any) {
+	if _, err := fmt.Fprintln(p.responseWriter, XML_HEADER); err != nil {
+		p.Abort(http.StatusInternalServerError, err)
+		return
+	}
+
 	if err := xml.NewEncoder(p.responseWriter).Encode(value); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
 		return
@@ -54,7 +63,7 @@ func (p *Context) JSON(status int, value any) {
 	}
 	p.write_header(status, APPLICATION_JSON)
 }
-func (p *Context) String(status int, body string) {
+func (p *Context) PlainText(status int, body string) {
 	p.write_header(status, TEXT_PLAIN_UTF8)
 	if _, err := io.WriteString(p.responseWriter, body); err != nil {
 		p.Abort(http.StatusInternalServerError, err)

@@ -26,7 +26,7 @@ var (
 var root_cmd = &cobra.Command{
 	Use:     "atropa",
 	Short:   "Atropa",
-	Long:    fmt.Sprintf("A collection of gRpc services & controllers.(%s).", repo_url),
+	Long:    fmt.Sprintf("A collection of gRpc services & http controllers.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()

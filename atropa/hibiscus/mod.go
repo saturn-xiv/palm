@@ -27,6 +27,8 @@ const (
 	TEXT_PLAIN_UTF8        = "text/plain; charset=utf-8"
 	TEXT_HTML_UTF8         = "text/html; charset=utf-8"
 
+	XML_HEADER = `<?xml version="1.0" encoding="UTF-8"?>`
+
 	JWT_ISSUER = "palm.atropa"
 	JWT_BEARER = "Bearer "
 
