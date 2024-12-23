@@ -133,6 +133,10 @@ RUN zsh -c "source $HOME/.cargo/env \
     && rustup target add aarch64-unknown-linux-musl \
     && rustup target add riscv64gc-unknown-linux-gnu"
 
+# https://xmake.io/#/guide/installation?id=via-curl
+RUN curl -fsSL https://xmake.io/shget.text | bash
+RUN echo 'export XMAKE_ROOT=y' >> $HOME/.zshrc
+
 # https://github.com/microsoft/vcpkg
 RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \

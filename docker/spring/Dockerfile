@@ -205,11 +205,14 @@ RUN wget -q -P $HOME/downloads https://download.swift.org/swift-${SWIFT_VERSION}
     && tar xf $HOME/downloads/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz -C $HOME/local \
     && echo "export PATH=\$HOME/local/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04/bin:\$PATH" >> $HOME/.zshrc
 
+
+# https://xmake.io/#/guide/installation?id=via-curl
+RUN curl -fsSL https://xmake.io/shget.text | bash
+
 # https://github.com/microsoft/vcpkg
 RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
-
 
 # https://opensearch.org/downloads.html#opensearch
 ENV OPENSEARCH_VERSION "2.18.0"
