@@ -1,0 +1,16 @@
+{
+  "name": "marguerite",
+  "version": "2025.1.30",
+  "homepage": "https://github.com/saturn-xiv/palm",
+  "license": "MIT",
+  "dependencies": [
+    "spdlog",
+    "openssl",
+    "zlib",
+    "libsodium",
+    "cppcodec",
+    "minio-cpp",
+    "tomlplusplus",
+    { "name": "abseil", "features": ["cxx17"] }
+  ]
+}

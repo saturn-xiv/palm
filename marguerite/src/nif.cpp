@@ -1,6 +1,8 @@
 #include "marguerite/env.hpp"
 #include "marguerite/version.hpp"
 
+#include <curl/curl.h>
+#include <sodium.h>
 #include <tink/config/tink_config.h>
 #include <tink/jwt/jwt_mac_config.h>
 #include <tink/version.h>
@@ -132,8 +134,17 @@ static ERL_NIF_TERM version_nif(ErlNifEnv* env, int argc,
 
 static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   spdlog::set_level(spdlog::level::debug);
+  spdlog::debug("curl {}", curl_version());
   spdlog::debug("ERL NIF {}", ERL_NIF_MIN_ERTS_VERSION);
   spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
+
+  {
+    if (sodium_init() < 0) {
+      spdlog::error("failed to init sodium library");
+    }
+    spdlog::debug("sodium {}", SODIUM_VERSION_STRING);
+  }
+
   spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
   spdlog::debug(
       "Protocol Buffers v{}",

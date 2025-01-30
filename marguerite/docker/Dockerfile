@@ -9,11 +9,13 @@ RUN apt install -y lsb-release apt-utils \
 RUN add-apt-repository -y ppa:rabbitmq/rabbitmq-erlang
 RUN apt -y upgrade
 RUN apt install -y git zip \
-    build-essential pkg-config g++-12 cmake flex bison ninja-build \
-    linux-libc-dev libssl-dev zlib1g-dev \
+    build-essential pkg-config g++-12 cmake flex bison ninja-build autoconf libtool \
+    linux-libc-dev \
     erlang elixir
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
+# RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
+# RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
+
+# libssl-dev zlib1g-dev
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 

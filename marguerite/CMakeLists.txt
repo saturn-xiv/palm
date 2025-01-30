@@ -29,18 +29,18 @@ string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/marguerite/version.h.in ${PROJECT_SOURCE_DIR}/include/marguerite/version.hpp)
 
 # ---------------------------------------------------------
-find_package(ZLIB REQUIRED)
-find_package(OpenSSL REQUIRED)
+# find_package(ZLIB CONFIG REQUIRED)
+find_package(OpenSSL CONFIG REQUIRED)
+find_package(miniocpp CONFIG REQUIRED)
+find_package(unofficial-sodium CONFIG REQUIRED)
 
-FetchContent_Declare(spdlog
-  GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
-  GIT_TAG         "v1.15.0"
-)
+find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
+
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.3.0"
 )
-FetchContent_MakeAvailable(spdlog tink)
+FetchContent_MakeAvailable(tink)
 
 # ---------------------------------------------------------
 
@@ -53,6 +53,7 @@ set_target_properties(marguerite PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(marguerite
   ZLIB::ZLIB OpenSSL::SSL OpenSSL::Crypto
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
+  unofficial-sodium::sodium miniocpp::miniocpp
 )
 
 
@@ -60,6 +61,5 @@ target_include_directories(marguerite PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
     
   ${spdlog_SOURCE_DIR}/include
-  
 )
 
