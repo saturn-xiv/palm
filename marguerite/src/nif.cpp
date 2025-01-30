@@ -34,10 +34,50 @@ static inline std::optional<std::string> get_binary(ErlNifEnv* env,
 }  // namespace erlang
 }  // namespace marguerite
 
-static ERL_NIF_TERM version_nif(ErlNifEnv* env, int argc,
-                                const ERL_NIF_TERM argv[]) {
-  return enif_make_string(env, marguerite::GIT_VERSION.c_str(), ERL_NIF_UTF8);
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+static ERL_NIF_TERM aes_encrypt_nif(ErlNifEnv* env, int argc,
+                                    const ERL_NIF_TERM argv[]) {
+  const auto plain = marguerite::erlang::get_binary(env, argv[0]);
+  if (!plain.has_value()) {
+    return enif_make_badarg(env);
+  }
+
+  std::string buf(plain->begin(), plain->end());
+  marguerite::Aes aes;
+  const auto code = aes.encrypt(buf);
+
+  ErlNifBinary bin;
+  enif_alloc_binary(code.size(), &bin);
+  std::strcpy((char*)bin.data, code.c_str());
+  bin.size = code.size();
+  return enif_make_binary(env, &bin);
 }
+
+static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
+                                    const ERL_NIF_TERM argv[]) {
+  const auto code = marguerite::erlang::get_binary(env, argv[0]);
+  if (!code.has_value()) {
+    return enif_make_badarg(env);
+  }
+
+  std::string buf(code->begin(), code->end());
+
+  marguerite::Aes aes;
+  try {
+    const auto plain = aes.decrypt(buf);
+
+    ErlNifBinary bin;
+    enif_alloc_binary(plain.size(), &bin);
+    std::strcpy((char*)bin.data, plain.c_str());
+    bin.size = plain.size();
+    return enif_make_binary(env, &bin);
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
+}
+// ----------------------------------------------------------------------------
 
 static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
                                   const ERL_NIF_TERM argv[]) {
@@ -81,9 +121,18 @@ static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
   return enif_make_atom(env, "false");
 }
 
+// ----------------------------------------------------------------------------
+
+static ERL_NIF_TERM version_nif(ErlNifEnv* env, int argc,
+                                const ERL_NIF_TERM argv[]) {
+  return enif_make_string(env, marguerite::GIT_VERSION.c_str(), ERL_NIF_UTF8);
+}
+
+// ----------------------------------------------------------------------------
+
 static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   spdlog::set_level(spdlog::level::debug);
-  spdlog::debug("ERL NIF ", ERL_NIF_MIN_ERTS_VERSION);
+  spdlog::debug("ERL NIF {}", ERL_NIF_MIN_ERTS_VERSION);
   spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
   spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
   spdlog::debug(
@@ -107,7 +156,11 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   return EXIT_SUCCESS;
 }
 
+// ----------------------------------------------------------------------------
+
 static ErlNifFunc nif_funcs[] = {{"version", 0, version_nif},
+                                 {"aes_encrypt", 1, aes_encrypt_nif},
+                                 {"aes_decrypt", 1, aes_decrypt_nif},
                                  {"hmac_sign", 1, hmac_sign_nif},
                                  {"hmac_verify", 2, hmac_verify_nif}};
 

@@ -3,11 +3,11 @@
 ## Usage
 
 ```bash
+./marguerite/docker/start.sh
+$ cd /workspace/marguerite/
 $ ./build.sh
 $ cd build/Release
 $ erl
 > c(marguerite).
-> plain = fun() ->  end.
-> code = marguerite:hmac_sign("Hi, Marguerite!").
 > marguerite:hmac_verify(marguerite:hmac_sign("Hi, Marguerite!"), "Hi, Marguerite!").
 ```
