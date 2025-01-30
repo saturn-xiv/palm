@@ -109,7 +109,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && nvm install --lts"
 
 
-ENV JDK_VERSION "23-open"
+ENV JDK_VERSION "23.0.1-open"
 # https://docs.gradle.org/current/userguide/compatibility.html
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
@@ -119,7 +119,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.23.4"
+ENV GO_VERSION "1.23.5"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -150,7 +150,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.68.2"
+ENV GRPC_VERSION "v1.70.0"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN apt install -y libssl-dev
 RUN zsh -c "source $HOME/.zshrc \

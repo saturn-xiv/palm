@@ -123,7 +123,7 @@ RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION "3.3.7"
+ENV RUBY_VERSION "3.4.1"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
@@ -135,7 +135,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.23.4"
+ENV GO_VERSION "1.23.5"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -149,8 +149,8 @@ RUN zsh -c "source $HOME/.zshrc \
 
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION "23-open"
-ENV GRADLE_VERSION "8.11.1"
+ENV JDK_VERSION "23.0.1-open"
+ENV GRADLE_VERSION "8.12.1"
 ENV THRIFT_JAVA_VERSION "19.0.2-open"
 ENV THRIFT_GRADLE_VERSION "7.6.4"
 RUN curl -s "https://get.sdkman.io" | bash
@@ -200,7 +200,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && cargo install mdbook"
 
 # https://www.swift.org/download/#releases
-ENV SWIFT_VERSION "6.0.2"
+ENV SWIFT_VERSION "6.0.3"
 RUN wget -q -P $HOME/downloads https://download.swift.org/swift-${SWIFT_VERSION}-release/ubuntu2404/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz \
     && tar xf $HOME/downloads/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz -C $HOME/local \
     && echo "export PATH=\$HOME/local/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04/bin:\$PATH" >> $HOME/.zshrc
@@ -222,7 +222,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
     && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.68.2"
+ENV GRPC_VERSION "v1.70.0"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 # ENV PROTOBUF_VERSION "v3.21.8"
 # RUN cd $HOME/downloads/grpc/third_party/protobuf \
@@ -255,7 +255,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION "1.68.2"
+ENV GRPC_JAVA_PLUGIN_VERSION "1.70.0"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
@@ -274,7 +274,7 @@ RUN zsh -c "source $HOME/.zshrc \
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
 
 # https://github.com/google/flatbuffers
-ENV FLATBUFFERS_VERSION "v24.3.25"
+ENV FLATBUFFERS_VERSION "v25.1.24"
 RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git $HOME/downloads/flatbuffers
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
