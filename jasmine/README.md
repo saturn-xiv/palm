@@ -1,18 +1,22 @@
-# Jasmine
+# JASMINE - backend services
 
-To start your Phoenix server:
+## Development
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+```bash
+$ sudo pacman -S elixir inotify-tools
+$ elixir -v
+$ mix archive.install hex phx_new
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+$ psql -U postgres -h localhost
+> CREATE USER www WITH PASSWORD 'change-me';
+> CREATE DATABASE jasmine_dev WITH OWNER www;
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+$ mix setup
+# Now you can visit http://localhost:4000 from your browser.
+$ mix phx.server
+```
 
 ## Learn more
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- [Phoenix](https://hexdocs.pm/phoenix/installation.html)
+- [Tink Cryptographic Library](https://developers.google.com/tink/getting-started)
