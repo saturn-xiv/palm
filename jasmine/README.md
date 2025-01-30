@@ -11,6 +11,11 @@ $ psql -U postgres -h localhost
 > CREATE USER www WITH PASSWORD 'change-me';
 > CREATE DATABASE jasmine_dev WITH OWNER www;
 
+# create migration
+$ mix ecto.gen.migration create_xxx
+$ mix ecto.migrate
+$ mix ecto.rollback
+
 $ mix setup
 # Now you can visit http://localhost:4000 from your browser.
 $ mix phx.server
@@ -19,4 +24,5 @@ $ mix phx.server
 ## Learn more
 
 - [Phoenix](https://hexdocs.pm/phoenix/installation.html)
+- [Ecto](https://hexdocs.pm/ecto/getting-started.html)
 - [Tink Cryptographic Library](https://developers.google.com/tink/getting-started)
