@@ -7,8 +7,8 @@ defmodule Jasmine.Repo.Migrations.CreateLocales do
       add :code, :string, size: 255, null: false
       add :message, :text, null: false
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:locales, [:lang, :code], unique: true)

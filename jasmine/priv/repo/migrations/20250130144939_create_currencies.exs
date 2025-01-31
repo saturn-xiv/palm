@@ -8,7 +8,7 @@ defmodule Jasmine.Repo.Migrations.CreateCurrencies do
       add :name, :string, size: 127, null: false
       add :country, :string, size: 127, null: false
       add :units, :integer, null: false, default: 0
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:currencies, [:code])
