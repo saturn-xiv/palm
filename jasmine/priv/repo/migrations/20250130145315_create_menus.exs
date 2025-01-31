@@ -12,8 +12,8 @@ defmodule Jasmine.Repo.Migrations.CreateMenus do
       add :is_extra, :boolean, null: false, default: false
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:menus, [:href], where: "href IS NOT NULL")

@@ -11,8 +11,8 @@ defmodule Jasmine.Repo.Migrations.CreateWechatUsers do
       add :avatar_url, :string, size: 255
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:wechat_mini_program_users, [:union_id], unique: true)
@@ -36,8 +36,8 @@ defmodule Jasmine.Repo.Migrations.CreateWechatUsers do
       add :lang, :string, size: 7, null: false
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:wechat_oauth2_users, [:union_id], unique: true)

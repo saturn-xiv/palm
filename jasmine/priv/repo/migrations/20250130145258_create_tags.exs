@@ -7,8 +7,8 @@ defmodule Jasmine.Repo.Migrations.CreateTags do
       add :priority, :integer, null: false, default: 0
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:tags, [:name], unique: true)
@@ -18,7 +18,7 @@ defmodule Jasmine.Repo.Migrations.CreateTags do
       add :resource_type, :string, size: 255, null: false
       add :resource_id, :bigint
       add :priority, :integer, null: false, default: 0
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:tag_resources, [:tag_id, :resource_type, :resource_id],

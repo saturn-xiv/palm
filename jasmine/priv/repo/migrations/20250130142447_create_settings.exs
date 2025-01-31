@@ -8,8 +8,8 @@ defmodule Jasmine.Repo.Migrations.CreateSettings do
       add :value, :binary, null: false
       add :nonce, :binary
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:settings, [:key, :user_id], unique: true, where: "user_id IS NOT NULL")

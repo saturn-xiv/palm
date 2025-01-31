@@ -10,8 +10,8 @@ defmodule Jasmine.Repo.Migrations.CreateAccounting do
       add :status, :string, size: 15, null: false
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:accounting_books, [:uid], unique: true)

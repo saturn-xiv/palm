@@ -8,8 +8,8 @@ defmodule Jasmine.Repo.Migrations.CreateCategories do
       add :left, :integer, null: false
       add :right, :integer, null: false
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:categories, [:tree])
@@ -21,7 +21,7 @@ defmodule Jasmine.Repo.Migrations.CreateCategories do
       add :resource_type, :string, size: 255, null: false
       add :resource_id, :bigint
       add :priority, :integer, null: false, default: 0
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:category_resources, [:category_id, :resource_type, :resource_id],

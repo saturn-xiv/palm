@@ -12,8 +12,8 @@ defmodule Jasmine.Repo.Migrations.CreateGoogleUsers do
       add :locale, :string, size: 15
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:google_oauth2_users, [:subject], unique: true)

@@ -7,12 +7,12 @@ defmodule Jasmine.Repo.Migrations.CreateQuestionnaires do
       add :uid, :string, size: 36, null: false
       add :title, :string, size: 127, null: false
       add :memo, :string, size: 511, null: false
-      add :not_before, :utc_datetime, null: false
-      add :expires_at, :utc_datetime, null: false
+      add :not_before, :utc_datetime_usec, null: false
+      add :expires_at, :utc_datetime_usec, null: false
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:questionnaire_forms, [:uid], unique: true)
@@ -29,8 +29,8 @@ defmodule Jasmine.Repo.Migrations.CreateQuestionnaires do
       add :profile, :binary, null: false
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:questionnaire_fields, [:uid], unique: true)
@@ -44,8 +44,8 @@ defmodule Jasmine.Repo.Migrations.CreateQuestionnaires do
       add :value, :binary, null: false
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:questionnaire_values, [:batch], unique: true)

@@ -13,8 +13,8 @@ defmodule Jasmine.Repo.Migrations.CreateUsers do
       add :last_sign_in_ip, :string, size: 45
       add :deleted_at, :utc_datetime
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:users, [:uid], unique: true)
@@ -31,7 +31,7 @@ defmodule Jasmine.Repo.Migrations.CreateUsers do
       add :resource_type, :string, size: 255, null: false
       add :resource_id, :bigint
       add :message, :text, null: false
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:logs, [:plugin])
@@ -46,9 +46,9 @@ defmodule Jasmine.Repo.Migrations.CreateUsers do
       add :provider_type, :string, size: 31, null: false
       add :provider_id, :bigint, null: false
       add :ip, :string, size: 45, null: false
-      add :expires_at, :utc_datetime, null: false
+      add :expires_at, :utc_datetime_usec, null: false
       add :deleted_at, :utc_datetime
-      add :created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP")
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP")
     end
 
     create index(:sessions, [:uid], unique: true)
