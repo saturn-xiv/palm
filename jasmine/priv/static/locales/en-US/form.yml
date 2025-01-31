@@ -1,0 +1,125 @@
+fields:
+  email:
+    label: "Email"
+  name:
+    label: "Name"
+  nickname:
+    label: "Nickname"
+  username:
+    label: "Username"
+  real-name:
+    label: "Real name"
+  password:
+    label: "Password"
+  current-password:
+    label: "Current password"
+  new-password:
+    label: "New password"
+  password-confirmation:
+    label: "Password confirmation"
+    errors:
+      not-match: "The new password that you entered do not match!"
+  content:
+    label: "Content"
+  body:
+    label: "Body"
+  title:
+    label: "Title"
+  slug:
+    label: "Slug"
+  memo:
+    label: "Memo"
+  description:
+    label: "Description"
+  details:
+    label: "Details"
+  label:
+    label: "Label"
+  reason:
+    label: "Reason"
+  lang:
+    label: "Lang"
+  timezone:
+    label: "Timezone"
+  id:
+    label: "ID"
+  ip:
+    label: "IP"
+  created-at:
+    label: "Created at"
+  deleted-at:
+    label: "Deleted at"
+  locked-at:
+    label: "Locked at"
+  updated-at:
+    label: "Updated at"
+  expires-at:
+    label: "Expires at"
+  not-before:
+    label: "Not before"
+  level:
+    label: "Label"
+  message:
+    label: "Message"
+  resource:
+    label: "Resource"
+  plugin:
+    label: "Plugin"
+  status:
+    label: "Status"
+  code:
+    label: "Code"
+  user:
+    label: "User"
+  uid:
+    label: "UID"
+  key:
+    label: "Key"
+  host:
+    label: "Host"
+  account:
+    label: "Account"
+  port:
+    label: "Port"
+  role:
+    label: "Role"
+  tags:
+    label: "Tags"
+  category:
+    label: "Category"
+  parent:
+    label: "Parent"
+  left-of:
+    label: "Left of"
+  right-of:
+    label: "Right of"
+  content-type:
+    label: "Content type"
+  size:
+    label: "Size"
+  template:
+    label: "Template"
+  style:
+    label: "style"
+  theme:
+    label: "Theme"
+  action:
+    label: "Action"
+  fax:
+    label: "Fax"
+  phone:
+    label: "Phone number"
+  type:
+    label: "Type"
+  currency:
+    label: "Currency"
+  traded-at:
+    label: "Traded at"
+  merchant:
+    label: "Merchant"
+  amount:
+    label: "Amount"
+  wechat:
+    label: "WeChat"
+placeholder:
+  type-here: "Type here..."

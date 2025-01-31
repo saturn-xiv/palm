@@ -1,0 +1,252 @@
+install:
+  title: "Site installation"
+  site-info:
+    title: "Site information"
+    description: "Setup a website"
+  administrator:
+    title: "User profile"
+    description: "Setup the first administrator"
+not-found:
+  title: "Not found"
+users:
+  sign-in:
+    title: "Already have an account? Sign in"
+    succeed: "Signed in successfully."
+    form:
+      email-or-nickname:
+        label: "Email or nickname"
+      remember-me:
+        label: "Remember me"
+  sign-up:
+    title: "Don't have an account? Sign up"
+    instruction: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+    succeed: "Welcome! You have signed up successfully."
+  confirm:
+    title: "Didn't receive confirmation instructions?"
+    succeed: "Your email address has been successfully confirmed."
+    submit: "Resend confirmation instructions"
+    instruction: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+  unlock:
+    title: "Didn't receive unlock instructions?"
+    submit: "Resend unlock instructions"
+    instruction: "You will receive an email with instructions for how to unlock your account in a few minutes."
+    succeed: "Your account has been unlocked successfully. Please sign in to continue."
+  forgot-password:
+    title: "Forgot your password?"
+    submit: "Send me reset password instructions"
+    instruction: "You will receive an email with instructions on how to reset your password in a few minutes."
+  reset-password:
+    title: "Reset my password"
+    succeed: "Your password has been changed successfully. Please sign in to continue."
+  change-password:
+    title: "Change my password"
+    succeed: "Your password has been changed successfully."
+  update-profile:
+    title: "Update profile"
+  sign-out:
+    succeed: "Signed out successfully."
+    title: "Are you sure to sign out?"
+    description: "You will sign out from this system."
+  cancel:
+    title: "Cancel my account"
+    succeed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+    instruction: "we need your current password to confirm your changes"
+  logs:
+    title: "Logs"
+leave-words:
+  new:
+    title: "Leave us a message"
+personal:
+  index:
+    title: "Personal"
+attachments:
+  index:
+    title: "Attachments"
+  upload:
+    help: "Click or drag file to this area to upload"
+    hint: "Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned files."
+    done: "File { name } uploaded successfully."
+    failed: "File { name } upload failed."
+admin:
+  index:
+    title: "Settings"
+  locales:
+    index:
+      title: "Locales"
+  users:
+    index:
+      title: "Users"
+    by-email:
+      title: "By email"
+  policies:
+    index:
+      title: "Policies"
+    roles:
+      form:
+        title: "Role"
+      user-list:
+        title: "Users"
+      relation-list:
+        title: "Relations"
+      built-in:
+        title: "Built in roles"
+    administrators:
+      form:
+        title: "Administrator"
+      user-list:
+        title: "Users"
+    tabs:
+      roles:
+        label: "Roles"
+      administrators:
+        label: "Administrators"
+  leave-words:
+    index:
+      title: "Leave words"
+  sessions:
+    index:
+      title: "Sessions"
+  tags:
+    index:
+      title: "Tags"
+    list:
+      title: "Tags"
+  categories:
+    index:
+      title: "Categories"
+    list:
+      title: "Categories"
+  site:
+    index:
+      title: "Website"
+    base:
+      title: "Base info"
+      form:
+        copyright:
+          label: "Copyright"
+        subhead:
+          label: "Subhead"
+    keywords:
+      title: "Keywords"
+    author:
+      title: "Author"
+    favicon:
+      title: "Favicon"
+    cn-icp:
+      title: "ICP license"
+      homage:
+        label: "Internet Content Provider Registration Record"
+    cn-mps:
+      title: "MPS license"
+      homage:
+        label: "National Internet Security Management Service Platform"
+    google:
+      ownership-verifying:
+        title: "Verify your website ownership for Google"
+    index-now:
+      ownership-verifying:
+        title: "Verify your website ownership for IndexNow"
+    smtp:
+      title: "SMTP"
+    tabs:
+      info:
+        label: "Information"
+      china:
+        label: "China"
+      seo:
+        label: "SEO"
+      maintenance:
+        label: "Maintenance"
+      status:
+        label: "Status"
+cms:
+  index:
+    title: "Content management system"
+    abbreviation: "CMS"
+  pages:
+    new:
+      title: "Create a new page"
+  page-templates:
+    blog:
+      label: "Blog"
+    archive:
+      label: "Archive"
+bbs:
+  index:
+    title: "Bulletin board system"
+    abbreviation: "BBS"
+accounting:
+  index:
+    title: "Accounting"
+    abbreviation: "Accounting"
+  logs:
+    index:
+      title: "Logs"
+  merchants:
+    index:
+      title: "Merchants"
+    new:
+      title: "Create a new merchant"
+    set-contact:
+      title: "Set contact"
+    set-address:
+      title: "Set address"
+  categories:
+    index:
+      title: "Categories"
+    new:
+      title: "Create a new category"
+  accounts:
+    index:
+      title: "Accounts"
+    new:
+      main:
+        title: "Create a main-account"
+      sub:
+        title: "Create a sub-account"
+  transactions:
+    index:
+      title: "Transactions"
+    new:
+      title: "Create a new transaction"
+  entries:
+    index:
+      title: "Entries"
+    new:
+      title: "Create a new entry for {name}"
+    edit:
+      title: "Edit entry {name}"
+    bills:
+      title: "Bills"
+    form:
+      fields:
+        from-account:
+          label: "From account"
+        to-account:
+          label: "To account"
+  ledgers:
+    form:
+      fields:
+        opening-balance:
+          label: "Opening balance"
+        closing-balance:
+          label: "Closing balance"
+    index:
+      title: "Ledgers"
+    new:
+      title: "Create a new ledger"
+    set-cover:
+      title: "Set cover"
+    tabs:
+      logs:
+        title: "Logs"
+      accounts:
+        title: "Accounts"
+      merchants:
+        title: "Merchants"
+      transactions:
+        title: "Transactions"
+      categories:
+        title: "Categories"
+      entries:
+        title: "Entries"

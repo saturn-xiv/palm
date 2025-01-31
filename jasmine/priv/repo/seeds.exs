@@ -12,13 +12,75 @@
 require Logger
 require Ecto.Query
 
-load_locales = fn ->
+defmodule(Locales) do
+  def load(lang, file) do
+    namespace = file |> Path.rootname() |> Path.basename()
+
+    case Path.extname(file) do
+      ".json" ->
+        Logger.info("load locales(#{lang}, #{namespace}) from #{file}")
+        file |> File.read!() |> Jason.decode!() |> parse(lang, namespace)
+
+      _ ->
+        Logger.warning("unsupported #{file}")
+    end
+  end
+
+  def parse(doc, lng, ns) when is_map(doc) do
+    Enum.each(doc, fn {k, v} ->
+      k = "#{ns}.#{k}"
+
+      if is_map(v) do
+        parse(v, lng, k)
+      else
+        Logger.debug("found item #{lng}.#{k} => #{v}")
+
+        %Jasmine.Locale{
+          lang: lng,
+          code: k,
+          message: v,
+          updated_at: DateTime.utc_now()
+        }
+        |> Jasmine.Repo.insert!()
+      end
+    end)
+  end
+end
+
+load_locales = fn root ->
   count = Jasmine.Repo.one!(Ecto.Query.from(p in Jasmine.Locale, select: count()))
 
   if count == 0 do
-    Logger.info("load locales from filesystem")
+    Enum.each(File.ls!(root), fn node ->
+      file = Path.join(root, node)
+
+      if File.dir?(file) do
+        Logger.info("find language #{node}")
+
+        Enum.each(File.ls!(file), fn name ->
+          file = Path.join(file, name)
+
+          if File.regular?(file) do
+            Locales.load(node, file)
+          end
+        end)
+      end
+    end)
+
+    languages =
+      Jasmine.Repo.all(Ecto.Query.from(p in Jasmine.Locale, distinct: p.lang, select: p.lang))
+
+    Enum.each(File.ls!(root), fn node ->
+      file = Path.join(root, node)
+
+      if File.regular?(file) do
+        Enum.each(languages, fn lang ->
+          Locales.load(lang, file)
+        end)
+      end
+    end)
   else
-    Logger.info("#{count} locale items")
+    Logger.info("found #{count} locale items")
   end
 end
 
@@ -32,7 +94,6 @@ load_currencies = fn file ->
     items = :xmerl_xpath.string(~c'/ISO_4217/CcyTbl/CcyNtry', doc)
 
     Enum.each(items, fn node ->
-      # Logger.info("found item #{inspect(node)}")
       [{:xmlText, _, _, _, country, :text}] = :xmerl_xpath.string(~c'./CtryNm/text()', node)
       [{:xmlText, _, _, _, name, :text}] = :xmerl_xpath.string(~c'./CcyNm/text()', node)
 
@@ -66,16 +127,11 @@ load_currencies = fn file ->
         _ ->
           nil
       end
-
-      # [{:xmlText, _, _, _, code, :text}] = :xmerl_xpath.string(~c'./Ccy/text()', node)
-      # [{:xmlText, _, _, _, number, :text}] = :xmerl_xpath.string(~c'./CcyNbr/text()', node)
-      # [{:xmlText, _, _, _, units, :text}] = :xmerl_xpath.string(~c'./CcyMnrUnts/text()', node)
-      # Logger.info("found item #{country}")
     end)
   else
-    Logger.info("#{count} currencies items")
+    Logger.info("found #{count} currencies items")
   end
 end
 
-load_locales.()
+load_locales.("priv/static/locales")
 load_currencies.("priv/static/iso4217/list-one.xml")
