@@ -11,9 +11,9 @@ $ psql -U postgres -h localhost
 > CREATE USER www WITH PASSWORD 'change-me';
 > CREATE DATABASE jasmine_dev WITH OWNER www;
 
-# create migration
 $ mix ecto.gen.migration create_xxx
 $ mix ecto.migrate
+$ mix ecto.migrations
 $ mix ecto.rollback
 
 $ mix setup
