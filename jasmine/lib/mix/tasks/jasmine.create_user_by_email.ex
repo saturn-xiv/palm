@@ -18,7 +18,7 @@ defmodule Mix.Tasks.Jasmine.CreateUserByEmail do
     {:ok, name} = Jasmine.Utils.Validator.name(name)
     {:ok, email} = Jasmine.Utils.Validator.email(email)
     {:ok, password} = Jasmine.Utils.Validator.password(password)
-    password = Jasmine.Utils.HMac.sign(password)
+    password = Marguerite.NIF.hmac_sign(password)
 
     if Jasmine.Models.EmailUser.email?(email) do
       Logger.error("user already exists!")
@@ -35,7 +35,7 @@ defmodule Mix.Tasks.Jasmine.CreateUserByEmail do
           "console",
           "127.0.0.1",
           "mix.task",
-          nil,
+           nil,
           "create by system"
         )
       end)

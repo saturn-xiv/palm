@@ -4,9 +4,9 @@
   "homepage": "https://github.com/saturn-xiv/palm",
   "license": "MIT",
   "dependencies": [
+    "zlib",
     "spdlog",
     "openssl",
-    "zlib",
     "libsodium",
     "cppcodec",
     "minio-cpp",

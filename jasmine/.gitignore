@@ -37,3 +37,5 @@ npm-debug.log
 
 # my add
 /mix.lock
+/*.bin
+/priv/libmarguerite.so

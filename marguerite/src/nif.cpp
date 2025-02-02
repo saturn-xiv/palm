@@ -37,7 +37,49 @@ static inline std::optional<std::string> get_binary(ErlNifEnv* env,
 }  // namespace marguerite
 
 // ----------------------------------------------------------------------------
+// TODO
+static ERL_NIF_TERM jwt_sign_nif(ErlNifEnv* env, int argc,
+                                 const ERL_NIF_TERM argv[]) {
+  unsigned plain_len;
+  if (!enif_get_string_length(env, argv[0], &plain_len, ERL_NIF_UTF8)) {
+    return enif_make_badarg(env);
+  }
+  const auto plain = marguerite::erlang::get_string(env, argv[0]);
+  if (!plain.has_value()) {
+    return enif_make_badarg(env);
+  }
 
+  marguerite::HMac hmac;
+  const auto code = hmac.sign(plain.value());
+
+  ErlNifBinary bin;
+  enif_alloc_binary(code.size(), &bin);
+  std::strcpy((char*)bin.data, code.c_str());
+  bin.size = code.size();
+  return enif_make_binary(env, &bin);
+}
+
+// TODO
+static ERL_NIF_TERM jwt_verify_nif(ErlNifEnv* env, int argc,
+                                   const ERL_NIF_TERM argv[]) {
+  const auto code = marguerite::erlang::get_binary(env, argv[0]);
+  if (!code.has_value()) {
+    return enif_make_badarg(env);
+  }
+
+  const auto plain = marguerite::erlang::get_string(env, argv[1]);
+  if (!plain.has_value()) {
+    return enif_make_badarg(env);
+  }
+
+  marguerite::HMac hmac;
+  try {
+    hmac.verify(code.value(), plain.value());
+    return enif_make_atom(env, "true");
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
+}
 // ----------------------------------------------------------------------------
 static ERL_NIF_TERM aes_encrypt_nif(ErlNifEnv* env, int argc,
                                     const ERL_NIF_TERM argv[]) {
@@ -83,11 +125,7 @@ static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
 
 static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
                                   const ERL_NIF_TERM argv[]) {
-  unsigned plain_len;
-  if (!enif_get_string_length(env, argv[0], &plain_len, ERL_NIF_UTF8)) {
-    return enif_make_badarg(env);
-  }
-  const auto plain = marguerite::erlang::get_string(env, argv[0]);
+  const auto plain = marguerite::erlang::get_binary(env, argv[0]);
   if (!plain.has_value()) {
     return enif_make_badarg(env);
   }
@@ -109,7 +147,7 @@ static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  const auto plain = marguerite::erlang::get_string(env, argv[1]);
+  const auto plain = marguerite::erlang::get_binary(env, argv[1]);
   if (!plain.has_value()) {
     return enif_make_badarg(env);
   }
@@ -169,10 +207,11 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
 
 // ----------------------------------------------------------------------------
 
-static ErlNifFunc nif_funcs[] = {{"version", 0, version_nif},
-                                 {"aes_encrypt", 1, aes_encrypt_nif},
-                                 {"aes_decrypt", 1, aes_decrypt_nif},
-                                 {"hmac_sign", 1, hmac_sign_nif},
-                                 {"hmac_verify", 2, hmac_verify_nif}};
+static ErlNifFunc nif_funcs[] = {
+    {"version", 0, version_nif},         {"aes_encrypt", 1, aes_encrypt_nif},
+    {"aes_decrypt", 1, aes_decrypt_nif}, {"hmac_sign", 1, hmac_sign_nif},
+    {"hmac_verify", 2, hmac_verify_nif}, {"jwt_sign", 6, jwt_sign_nif},
+    {"jwt_verify", 3, jwt_verify_nif}};
 
-ERL_NIF_INIT(marguerite, nif_funcs, load, NULL, NULL, NULL)
+// marguerite
+ERL_NIF_INIT(Elixir.Marguerite.NIF, nif_funcs, load, NULL, NULL, NULL)

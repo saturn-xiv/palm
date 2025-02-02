@@ -28,6 +28,8 @@ $ mix setup
 $ mix phx.server
 
 $ mix help --search jasmine
+
+$ mix test test/jasmine/
 ```
 
 ## Learn more

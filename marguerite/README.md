@@ -9,5 +9,6 @@ $ ./build.sh
 $ cd build/Release
 $ erl
 > c(marguerite).
+> marguerite:version().
 > marguerite:hmac_verify(marguerite:hmac_sign("Hi, Marguerite!"), "Hi, Marguerite!").
 ```

@@ -3,8 +3,8 @@ include(FetchContent)
 
 project(
   marguerite
-  VERSION 2025.1.17
-  DESCRIPTION "NIFs for Thistle."
+  VERSION 2025.2.2
+  DESCRIPTION "NIFs for Jasmine."
   LANGUAGES CXX
 )
 
@@ -29,10 +29,10 @@ string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/marguerite/version.h.in ${PROJECT_SOURCE_DIR}/include/marguerite/version.hpp)
 
 # ---------------------------------------------------------
-# find_package(ZLIB CONFIG REQUIRED)
 find_package(OpenSSL CONFIG REQUIRED)
 find_package(miniocpp CONFIG REQUIRED)
 find_package(unofficial-sodium CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 
@@ -53,7 +53,8 @@ set_target_properties(marguerite PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(marguerite
   ZLIB::ZLIB OpenSSL::SSL OpenSSL::Crypto
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  unofficial-sodium::sodium miniocpp::miniocpp
+  unofficial-sodium::sodium miniocpp::miniocpp 
+  spdlog::spdlog_header_only
 )
 
 

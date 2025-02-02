@@ -11,7 +11,7 @@ RUN apt -y upgrade
 RUN apt install -y git zip \
     build-essential pkg-config g++-12 cmake flex bison ninja-build autoconf libtool \
     linux-libc-dev \
-    erlang elixir
+    erlang elixir inotify-tools
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
