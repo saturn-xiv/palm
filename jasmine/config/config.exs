@@ -61,6 +61,11 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# my add
+# openssl rand -base64 64
+config :jasmine, HMac,
+  key: "U7+UlNKR8AeWdB8O/njMjacbgN55tIDv0PMUf1iteln5AMENaAB1GstVixvT8Ya1HTkRs53305r7PlfMqXLtQQ=="
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

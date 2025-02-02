@@ -17,12 +17,17 @@ $ mix ecto.migrate
 $ mix ecto.migrations
 $ mix ecto.rollback
 
+# generates a secret
+$ mix phx.gen.secret 128
+
 # populating the database
 $ mix run priv/repo/seeds.exs
 
 $ mix setup
-# Now you can visit http://localhost:4000 from your browser.
+# now you can visit http://localhost:4000 from your browser.
 $ mix phx.server
+
+$ mix help --search jasmine
 ```
 
 ## Learn more

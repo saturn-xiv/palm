@@ -48,7 +48,7 @@ defmodule(Locales) do
 end
 
 load_locales = fn root ->
-  count = Jasmine.Repo.one!(Ecto.Query.from(p in Jasmine.Locale, select: count()))
+  count = Jasmine.Models.Locale.count()
 
   if count == 0 do
     Enum.each(File.ls!(root), fn node ->
@@ -67,8 +67,7 @@ load_locales = fn root ->
       end
     end)
 
-    languages =
-      Jasmine.Repo.all(Ecto.Query.from(p in Jasmine.Locale, distinct: p.lang, select: p.lang))
+    languages = Jasmine.Models.Locale.languages()
 
     Enum.each(File.ls!(root), fn node ->
       file = Path.join(root, node)
@@ -86,7 +85,7 @@ end
 
 # https://www.iso.org/iso-4217-currency-codes.html
 load_currencies = fn file ->
-  count = Jasmine.Repo.one!(Ecto.Query.from(p in Jasmine.Currency, select: count()))
+  count = Jasmine.Models.Currency.count()
 
   if count == 0 do
     Logger.info("load iso4217 from #{file}")
@@ -133,5 +132,7 @@ load_currencies = fn file ->
   end
 end
 
-load_locales.("priv/static/locales")
-load_currencies.("priv/static/iso4217/list-one.xml")
+Jasmine.Repo.transaction(fn ->
+  load_locales.("priv/static/locales")
+  load_currencies.("priv/static/iso4217/list-one.xml")
+end)
