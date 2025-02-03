@@ -4,13 +4,17 @@
   "homepage": "https://github.com/saturn-xiv/palm",
   "license": "MIT",
   "dependencies": [
+    "boost-uuid",
+    "boost-date-time",
     "zlib",
+    "fmt",
     "spdlog",
     "openssl",
     "libsodium",
     "cppcodec",
     "minio-cpp",
     "tomlplusplus",
+    "inja",
     { "name": "abseil", "features": ["cxx17"] }
   ]
 }

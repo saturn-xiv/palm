@@ -1,4 +1,4 @@
-#include "marguerite/env.hpp"
+#include "marguerite/tink.hpp"
 
 #include <tink/aead.h>
 #include <tink/aead/aead_config.h>
@@ -26,8 +26,7 @@ std::string marguerite::Jwt::sign(
     const absl::Time& issued_at, const absl::Time& not_before,
     const absl::Time& expired_at, const std::optional<std::string> payload) {
   spdlog::debug(
-      "sign token for jwt-id({}) key-id({}) issuer({}) subject({}) "
-      "audiences({})",
+      R"LOG(sign token for jwt-id({}) key-id({}) issuer({}) subject({}) audiences({}))LOG",
       jwt_id.value_or(""), key_id.value_or(""), issuer, subject,
       absl::StrJoin(audiences, ","));
   // https://github.com/tink-crypto/tink-cc/blob/main/tink/jwt/raw_jwt.h#L101

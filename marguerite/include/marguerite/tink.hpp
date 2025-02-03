@@ -38,7 +38,6 @@
 #include <tink/internal/ssl_unique_ptr.h>
 #pragma GCC diagnostic pop
 
-#include <miniocpp/client.h>
 #include <spdlog/spdlog.h>
 #include <tink/aead/aead_key_templates.h>
 #include <tink/jwt/jwt_mac.h>
@@ -125,9 +124,6 @@ class Aes final : public Keyset {
   std::unique_ptr<crypto::tink::Aead> load();
 };
 
-// https://min.io/docs/minio/linux/developers/javascript/API.html#presignedPutObject
-class S3 {
- private:
-};
+
 
 }  // namespace marguerite

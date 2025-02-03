@@ -1,8 +1,9 @@
-#include "marguerite/env.hpp"
+#include "marguerite/minio.hpp"
+#include "marguerite/sodium.hpp"
+#include "marguerite/tink.hpp"
 #include "marguerite/version.hpp"
 
 #include <curl/curl.h>
-#include <sodium.h>
 #include <tink/config/tink_config.h>
 #include <tink/jwt/jwt_mac_config.h>
 #include <tink/version.h>
@@ -51,6 +52,11 @@ static inline ERL_NIF_TERM new_binary(ErlNifEnv* env, const std::string& s) {
 }  // namespace marguerite
 
 // ----------------------------------------------------------------------------
+static std::shared_ptr<marguerite::Minio> gl_minio;
+static std::shared_ptr<marguerite::Jwt> gl_jwt;
+static std::shared_ptr<marguerite::Aes> gl_aes;
+static std::shared_ptr<marguerite::HMac> gl_hmac;
+// ----------------------------------------------------------------------------
 
 static ERL_NIF_TERM jwt_sign_nif(ErlNifEnv* env, int argc,
                                  const ERL_NIF_TERM argv[]) {
@@ -76,13 +82,12 @@ static ERL_NIF_TERM jwt_sign_nif(ErlNifEnv* env, int argc,
   }
   const auto payload = marguerite::erlang::get_binary(env, argv[5]);
 
-  marguerite::Jwt jwt;
   std::set<std::string> audiences = {audience.value()};
   const auto now = absl::Now();
-  const auto token =
-      jwt.sign("", "", issuer.value(), subject.value(), audiences, now,
-               absl::FromUnixSeconds(not_before.value()),
-               absl::FromUnixSeconds(expires_at.value()), payload);
+  const auto token = gl_jwt->sign(
+      "", "", issuer.value(), subject.value(), audiences, now,
+      absl::FromUnixSeconds(static_cast<int64_t>(not_before.value())),
+      absl::FromUnixSeconds(static_cast<int64_t>(expires_at.value())), payload);
 
   return marguerite::erlang::new_binary(env, token);
 }
@@ -102,26 +107,18 @@ static ERL_NIF_TERM jwt_verify_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  marguerite::Jwt jwt;
   try {
     const auto [_jwt_id, _key_id, subject, payload] =
-        jwt.verify(token.value(), issuer.value(), audience.value());
+        gl_jwt->verify(token.value(), issuer.value(), audience.value());
 
-    ErlNifBinary subject_bin;
-    enif_alloc_binary(subject.size(), &subject_bin);
-    std::strcpy((char*)subject_bin.data, subject.c_str());
-    subject_bin.size = subject.size();
+    auto subject_bin = marguerite::erlang::new_binary(env, subject);
 
     if (payload) {
-      ErlNifBinary payload_bin;
-      enif_alloc_binary(payload->size(), &payload_bin);
-      std::strcpy((char*)payload_bin.data, payload->c_str());
-      payload_bin.size = payload->size();
-      return enif_make_tuple2(env, enif_make_binary(env, &subject_bin),
-                              enif_make_binary(env, &payload_bin));
+      auto payload_bin = marguerite::erlang::new_binary(env, payload.value());
+      return enif_make_tuple2(env, subject_bin, payload_bin);
     }
 
-    return enif_make_tuple1(env, enif_make_binary(env, &subject_bin));
+    return enif_make_tuple1(env, subject_bin);
   } catch (...) {
   }
   return enif_make_atom(env, "false");
@@ -134,11 +131,13 @@ static ERL_NIF_TERM aes_encrypt_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  std::string buf(plain->begin(), plain->end());
-  marguerite::Aes aes;
-  const auto code = aes.encrypt(buf);
-
-  return marguerite::erlang::new_binary(env, code);
+  try {
+    std::string buf(plain->begin(), plain->end());
+    const auto code = gl_aes->encrypt(buf);
+    return marguerite::erlang::new_binary(env, code);
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
 }
 
 static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
@@ -148,17 +147,16 @@ static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  std::string buf(code->begin(), code->end());
-
-  marguerite::Aes aes;
   try {
-    const auto plain = aes.decrypt(buf);
+    std::string buf(code->begin(), code->end());
 
+    const auto plain = gl_aes->decrypt(buf);
     return marguerite::erlang::new_binary(env, plain);
   } catch (...) {
   }
   return enif_make_atom(env, "false");
 }
+
 // ----------------------------------------------------------------------------
 
 static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
@@ -168,9 +166,12 @@ static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  marguerite::HMac hmac;
-  const auto code = hmac.sign(plain.value());
-  return marguerite::erlang::new_binary(env, code);
+  try {
+    const auto code = gl_hmac->sign(plain.value());
+    return marguerite::erlang::new_binary(env, code);
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
 }
 
 static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
@@ -185,15 +186,98 @@ static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  marguerite::HMac hmac;
   try {
-    hmac.verify(code.value(), plain.value());
+    gl_hmac->verify(code.value(), plain.value());
     return enif_make_atom(env, "true");
   } catch (...) {
   }
   return enif_make_atom(env, "false");
 }
 
+// ----------------------------------------------------------------------------
+
+static ERL_NIF_TERM s3_create_bucket_nif(ErlNifEnv* env, int argc,
+                                         const ERL_NIF_TERM argv[]) {
+  const auto name = marguerite::erlang::get_binary(env, argv[0]);
+  if (!name.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto is_public = marguerite::erlang::get_uint(env, argv[1]);
+  const auto expiration_days = marguerite::erlang::get_uint(env, argv[2]);
+
+  try {
+    if (!gl_minio->bucket_exist(name.value())) {
+      gl_minio->create_bucket(
+          name.value(), is_public.value_or(0) == 1,
+          expiration_days
+              ? std::optional<std::chrono::days>{expiration_days.value()}
+              : std::nullopt);
+    }
+    return enif_make_atom(env, "true");
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
+}
+
+static ERL_NIF_TERM s3_get_presigned_object_url_nif(ErlNifEnv* env, int argc,
+                                                    const ERL_NIF_TERM argv[]) {
+  const auto bucket = marguerite::erlang::get_binary(env, argv[0]);
+  if (!bucket.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto object = marguerite::erlang::get_binary(env, argv[1]);
+  if (!object.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto expiry_seconds = marguerite::erlang::get_uint(env, argv[2]);
+  try {
+    const auto url = gl_minio->get_presigned_object_url(
+        bucket.value(), object.value(),
+        expiry_seconds ? std::chrono::seconds{expiry_seconds.value()}
+                       : std::chrono::duration_cast<std::chrono::seconds>(
+                             std::chrono::days{7}));
+    return marguerite::erlang::new_binary(env, url);
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
+}
+static ERL_NIF_TERM s3_get_permanent_object_url_nif(ErlNifEnv* env, int argc,
+                                                    const ERL_NIF_TERM argv[]) {
+  const auto bucket = marguerite::erlang::get_binary(env, argv[0]);
+  if (!bucket.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto object = marguerite::erlang::get_binary(env, argv[1]);
+  if (!object.has_value()) {
+    return enif_make_badarg(env);
+  }
+  try {
+    const auto url =
+        gl_minio->get_permanent_object_url(bucket.value(), object.value());
+    return marguerite::erlang::new_binary(env, url);
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
+}
+static ERL_NIF_TERM s3_put_object_nif(ErlNifEnv* env, int argc,
+                                      const ERL_NIF_TERM argv[]) {
+  const auto bucket = marguerite::erlang::get_binary(env, argv[0]);
+  if (!bucket.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto file = marguerite::erlang::get_binary(env, argv[1]);
+  if (!file.has_value()) {
+    return enif_make_badarg(env);
+  }
+  try {
+    const auto [object, size] =
+        gl_minio->put_object(bucket.value(), file.value());
+    auto object_bin = marguerite::erlang::new_binary(env, object);
+    return enif_make_tuple2(env, object_bin, enif_make_uint64(env, size));
+  } catch (...) {
+  }
+  return enif_make_atom(env, "false");
+}
 // ----------------------------------------------------------------------------
 
 static ERL_NIF_TERM version_nif(ErlNifEnv* env, int argc,
@@ -207,7 +291,7 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   spdlog::set_level(spdlog::level::debug);
   spdlog::debug("curl {}", curl_version());
   spdlog::debug("ERL NIF {}", ERL_NIF_MIN_ERTS_VERSION);
-  spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
+  // spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
 
   {
     if (sodium_init() < 0) {
@@ -235,15 +319,35 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
     }
   }
 
+  const auto config = toml::parse_file("marguerite.toml");
+  {
+    auto node = config["minio"].as_table();
+    gl_minio = std::make_shared<marguerite::Minio>(*node);
+  }
+  gl_hmac = std::make_shared<marguerite::HMac>();
+  gl_aes = std::make_shared<marguerite::Aes>();
+  gl_jwt = std::make_shared<marguerite::Jwt>();
+
   return EXIT_SUCCESS;
 }
 
 // ----------------------------------------------------------------------------
 
 static ErlNifFunc nif_funcs[] = {
-    {"version", 0, version_nif},         {"aes_encrypt", 1, aes_encrypt_nif},
-    {"aes_decrypt", 1, aes_decrypt_nif}, {"hmac_sign", 1, hmac_sign_nif},
-    {"hmac_verify", 2, hmac_verify_nif}, {"jwt_sign", 6, jwt_sign_nif},
+    {"version", 0, version_nif},
+    {"s3_create_bucket", 1, s3_create_bucket_nif},
+    {"s3_create_bucket", 2, s3_create_bucket_nif},
+    {"s3_create_bucket", 3, s3_create_bucket_nif},
+    {"s3_put_object", 2, s3_put_object_nif},
+    {"s3_get_presigned_object_url", 2, s3_get_presigned_object_url_nif},
+    {"s3_get_presigned_object_url", 3, s3_get_presigned_object_url_nif},
+    {"s3_get_permanent_object_url", 2, s3_get_permanent_object_url_nif},
+    {"aes_encrypt", 1, aes_encrypt_nif},
+    {"aes_decrypt", 1, aes_decrypt_nif},
+    {"hmac_sign", 1, hmac_sign_nif},
+    {"hmac_verify", 2, hmac_verify_nif},
+    {"jwt_sign", 5, jwt_sign_nif},
+    {"jwt_sign", 6, jwt_sign_nif},
     {"jwt_verify", 3, jwt_verify_nif}};
 
 // marguerite
