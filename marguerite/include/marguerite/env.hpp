@@ -85,6 +85,9 @@ class Jwt final : public Keyset {
  public:
   Jwt() : Keyset("jwt") {}
 
+  /*
+  jwt_id, key_id, subject, payload
+  */
   std::tuple<std::optional<std::string>, std::optional<std::string>,
              std::string, std::optional<std::string>>
   verify(const std::string& token, const std::string& issuer,

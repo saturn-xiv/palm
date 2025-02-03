@@ -4,7 +4,19 @@ defmodule Marguerite.TinkTest do
   require Logger
 
   test "jwt" do
-    assert 1+1 == 2
+    issuer = "iii"
+    subject = "sss"
+    audience = "aaa"
+    payload = "{\"id\":1}"
+    not_before = DateTime.utc_now() |> DateTime.to_unix()
+    expires_at = not_before + 60*5
+
+    token = Marguerite.NIF.jwt_sign(issuer, subject, audience, not_before, expires_at, payload)
+    Logger.info("jwt token: #{token}")
+
+    {subject1, payload1} = Marguerite.NIF.jwt_verify(token, issuer, audience)
+    assert subject1 == subject
+    assert payload1 == payload
   end
 
   test "hmac" do
@@ -16,6 +28,11 @@ defmodule Marguerite.TinkTest do
   end
 
   test "aes" do
-    assert 1+1 == 2
+    hi = "Hello, jasmine!"
+    code = Marguerite.NIF.aes_encrypt(hi)
+    Logger.info("aes(#{hi}): #{code |> Base.encode64(padding: false)}")
+
+    tmp = Marguerite.NIF.aes_decrypt(code)
+    assert tmp == hi
   end
 end

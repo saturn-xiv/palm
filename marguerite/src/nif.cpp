@@ -23,7 +23,14 @@ static inline std::optional<std::string> get_string(ErlNifEnv* env,
   }
   return {it};
 }
-
+static inline std::optional<unsigned int> get_uint(ErlNifEnv* env,
+                                                   ERL_NIF_TERM buf) {
+  unsigned int it;
+  if (!enif_get_uint(env, buf, &it)) {
+    return std::nullopt;
+  }
+  return {it};
+}
 static inline std::optional<std::string> get_binary(ErlNifEnv* env,
                                                     ERL_NIF_TERM buf) {
   ErlNifBinary bin;
@@ -33,49 +40,88 @@ static inline std::optional<std::string> get_binary(ErlNifEnv* env,
   std::string it((char*)bin.data, bin.size);
   return {it};
 }
+static inline ERL_NIF_TERM new_binary(ErlNifEnv* env, const std::string& s) {
+  ErlNifBinary bin;
+  enif_alloc_binary(s.size(), &bin);
+  std::strcpy((char*)bin.data, s.c_str());
+  bin.size = s.size();
+  return enif_make_binary(env, &bin);
+}
 }  // namespace erlang
 }  // namespace marguerite
 
 // ----------------------------------------------------------------------------
-// TODO
+
 static ERL_NIF_TERM jwt_sign_nif(ErlNifEnv* env, int argc,
                                  const ERL_NIF_TERM argv[]) {
-  unsigned plain_len;
-  if (!enif_get_string_length(env, argv[0], &plain_len, ERL_NIF_UTF8)) {
+  const auto issuer = marguerite::erlang::get_binary(env, argv[0]);
+  if (!issuer.has_value()) {
     return enif_make_badarg(env);
   }
-  const auto plain = marguerite::erlang::get_string(env, argv[0]);
-  if (!plain.has_value()) {
+  const auto subject = marguerite::erlang::get_binary(env, argv[1]);
+  if (!subject.has_value()) {
     return enif_make_badarg(env);
   }
+  const auto audience = marguerite::erlang::get_binary(env, argv[2]);
+  if (!audience.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto not_before = marguerite::erlang::get_uint(env, argv[3]);
+  if (!not_before.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto expires_at = marguerite::erlang::get_uint(env, argv[4]);
+  if (!expires_at.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto payload = marguerite::erlang::get_binary(env, argv[5]);
 
-  marguerite::HMac hmac;
-  const auto code = hmac.sign(plain.value());
+  marguerite::Jwt jwt;
+  std::set<std::string> audiences = {audience.value()};
+  const auto now = absl::Now();
+  const auto token =
+      jwt.sign("", "", issuer.value(), subject.value(), audiences, now,
+               absl::FromUnixSeconds(not_before.value()),
+               absl::FromUnixSeconds(expires_at.value()), payload);
 
-  ErlNifBinary bin;
-  enif_alloc_binary(code.size(), &bin);
-  std::strcpy((char*)bin.data, code.c_str());
-  bin.size = code.size();
-  return enif_make_binary(env, &bin);
+  return marguerite::erlang::new_binary(env, token);
 }
 
-// TODO
 static ERL_NIF_TERM jwt_verify_nif(ErlNifEnv* env, int argc,
                                    const ERL_NIF_TERM argv[]) {
-  const auto code = marguerite::erlang::get_binary(env, argv[0]);
-  if (!code.has_value()) {
+  const auto token = marguerite::erlang::get_binary(env, argv[0]);
+  if (!token.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto issuer = marguerite::erlang::get_binary(env, argv[1]);
+  if (!issuer.has_value()) {
+    return enif_make_badarg(env);
+  }
+  const auto audience = marguerite::erlang::get_binary(env, argv[2]);
+  if (!audience.has_value()) {
     return enif_make_badarg(env);
   }
 
-  const auto plain = marguerite::erlang::get_string(env, argv[1]);
-  if (!plain.has_value()) {
-    return enif_make_badarg(env);
-  }
-
-  marguerite::HMac hmac;
+  marguerite::Jwt jwt;
   try {
-    hmac.verify(code.value(), plain.value());
-    return enif_make_atom(env, "true");
+    const auto [_jwt_id, _key_id, subject, payload] =
+        jwt.verify(token.value(), issuer.value(), audience.value());
+
+    ErlNifBinary subject_bin;
+    enif_alloc_binary(subject.size(), &subject_bin);
+    std::strcpy((char*)subject_bin.data, subject.c_str());
+    subject_bin.size = subject.size();
+
+    if (payload) {
+      ErlNifBinary payload_bin;
+      enif_alloc_binary(payload->size(), &payload_bin);
+      std::strcpy((char*)payload_bin.data, payload->c_str());
+      payload_bin.size = payload->size();
+      return enif_make_tuple2(env, enif_make_binary(env, &subject_bin),
+                              enif_make_binary(env, &payload_bin));
+    }
+
+    return enif_make_tuple1(env, enif_make_binary(env, &subject_bin));
   } catch (...) {
   }
   return enif_make_atom(env, "false");
@@ -92,11 +138,7 @@ static ERL_NIF_TERM aes_encrypt_nif(ErlNifEnv* env, int argc,
   marguerite::Aes aes;
   const auto code = aes.encrypt(buf);
 
-  ErlNifBinary bin;
-  enif_alloc_binary(code.size(), &bin);
-  std::strcpy((char*)bin.data, code.c_str());
-  bin.size = code.size();
-  return enif_make_binary(env, &bin);
+  return marguerite::erlang::new_binary(env, code);
 }
 
 static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
@@ -112,11 +154,7 @@ static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
   try {
     const auto plain = aes.decrypt(buf);
 
-    ErlNifBinary bin;
-    enif_alloc_binary(plain.size(), &bin);
-    std::strcpy((char*)bin.data, plain.c_str());
-    bin.size = plain.size();
-    return enif_make_binary(env, &bin);
+    return marguerite::erlang::new_binary(env, plain);
   } catch (...) {
   }
   return enif_make_atom(env, "false");
@@ -132,12 +170,7 @@ static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
 
   marguerite::HMac hmac;
   const auto code = hmac.sign(plain.value());
-
-  ErlNifBinary bin;
-  enif_alloc_binary(code.size(), &bin);
-  std::strcpy((char*)bin.data, code.c_str());
-  bin.size = code.size();
-  return enif_make_binary(env, &bin);
+  return marguerite::erlang::new_binary(env, code);
 }
 
 static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
