@@ -13,9 +13,10 @@ RUN wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.
 # https://wiki.debian.org/ToolChain/Cross
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN add-apt-repository -y ppa:rabbitmq/rabbitmq-erlang
+RUN apt update
 RUN apt -y upgrade
 RUN apt install -y git zip \
-    build-essential pkg-config cmake flex bison ninja-build autoconf libtool \
+    build-essential pkg-config cmake flex bison ninja-build autoconf libtool mold \
     g++-13 \
     clang-${CLANG_VERSION} clangd-${CLANG_VERSION} clang-tools-${CLANG_VERSION} clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
     linux-libc-dev \
