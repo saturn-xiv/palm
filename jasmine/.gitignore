@@ -39,4 +39,4 @@ npm-debug.log
 /mix.lock
 /*.bin
 /*.toml
-/priv/libmarguerite.so
+/priv/lib*.so

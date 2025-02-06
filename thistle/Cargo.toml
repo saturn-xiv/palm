@@ -1,0 +1,22 @@
+[package]
+name = "thistle"
+version = "2015.2.6"
+edition = "2021"
+description = "NIFs for Jasmine."
+
+[lib]
+crate-type = ["cdylib"]
+bench = false
+
+[dependencies]
+toml = "0.8"
+rustler = "0.36"
+casbin = "2"
+
+[dependencies.diesel-adapter]
+version = "1"
+features = ["postgres"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
