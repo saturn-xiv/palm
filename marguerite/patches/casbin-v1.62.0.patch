@@ -1,0 +1,93 @@
+diff --git a/cmake/modules/FindExtPackages.cmake b/cmake/modules/FindExtPackages.cmake
+index 974d83c..814d558 100644
+--- a/cmake/modules/FindExtPackages.cmake
++++ b/cmake/modules/FindExtPackages.cmake
+@@ -24,7 +24,7 @@ set(CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY ON CACHE BOOL
+ ###############################################################################
+ ### Packages and versions ###
+ 
+-find_package(json 3.10.1 REQUIRED)
++# find_package(json 3.10.1 REQUIRED)
+ 
+ if(CASBIN_BUILD_TEST)
+     # googletest
+diff --git a/include/casbin/exception/casbin_adapter_exception.h b/include/casbin/exception/casbin_adapter_exception.h
+index 969acc9..e855d3c 100644
+--- a/include/casbin/exception/casbin_adapter_exception.h
++++ b/include/casbin/exception/casbin_adapter_exception.h
+@@ -17,6 +17,8 @@
+ #ifndef CASBIN_CPP_EXCEPTION_CASBIN_ADAPTER_EXCEPTION
+ #define CASBIN_CPP_EXCEPTION_CASBIN_ADAPTER_EXCEPTION
+ 
++#include <stdexcept>
++
+ namespace casbin {
+ 
+ // Exception class for Casbin Adapter Exception.
+@@ -27,4 +29,4 @@ public:
+ 
+ } // namespace casbin
+ 
+-#endif
+\ No newline at end of file
++#endif
+diff --git a/include/casbin/exception/io_exception.h b/include/casbin/exception/io_exception.h
+index 7aea164..bca9db4 100644
+--- a/include/casbin/exception/io_exception.h
++++ b/include/casbin/exception/io_exception.h
+@@ -17,6 +17,8 @@
+ #ifndef CASBIN_CPP_EXCEPTION_IO_EXCEPTION
+ #define CASBIN_CPP_EXCEPTION_IO_EXCEPTION
+ 
++#include <stdexcept>
++
+ namespace casbin {
+ 
+ // Exception class for I/O operations.
+@@ -27,4 +29,4 @@ public:
+ 
+ } // namespace casbin
+ 
+-#endif
+\ No newline at end of file
++#endif
+diff --git a/include/casbin/exception/unsupported_operation_exception.h b/include/casbin/exception/unsupported_operation_exception.h
+index a85f24c..c8c1ac7 100644
+--- a/include/casbin/exception/unsupported_operation_exception.h
++++ b/include/casbin/exception/unsupported_operation_exception.h
+@@ -17,6 +17,8 @@
+ #ifndef CASBIN_CPP_EXCEPTION_UNSUPPORTED_OPERATION_EXCEPTION
+ #define CASBIN_CPP_EXCEPTION_UNSUPPORTED_OPERATION_EXCEPTION
+ 
++#include <stdexcept>
++
+ namespace casbin {
+ 
+ // Exception class for unsupported operations.
+@@ -27,4 +29,4 @@ public:
+ 
+ } // namespace casbin
+ 
+-#endif
+\ No newline at end of file
++#endif
+diff --git a/include/casbin/persist/file_adapter/file_adapter.h b/include/casbin/persist/file_adapter/file_adapter.h
+index 04e2700..6147f93 100644
+--- a/include/casbin/persist/file_adapter/file_adapter.h
++++ b/include/casbin/persist/file_adapter/file_adapter.h
+@@ -3,6 +3,8 @@
+ 
+ #include "../adapter.h"
+ 
++#include <functional>
++
+ namespace casbin {
+ 
+ // Adapter is the file adapter for Casbin.
+@@ -44,4 +46,4 @@ public:
+ 
+ }; // namespace casbin
+ 
+-#endif
+\ No newline at end of file
++#endif

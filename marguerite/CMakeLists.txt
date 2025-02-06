@@ -3,8 +3,8 @@ include(FetchContent)
 
 project(
   marguerite
-  VERSION 2025.2.3
-  DESCRIPTION "NIFs for Jasmine."
+  VERSION 2025.2.6
+  DESCRIPTION "NIFs for Jasmine(tink/casbin/minio)."
   LANGUAGES CXX
 )
 
@@ -49,6 +49,14 @@ FetchContent_Declare(tink
 )
 FetchContent_MakeAvailable(tink)
 
+FetchContent_Declare(casbin
+  GIT_REPOSITORY      "https://github.com/casbin/casbin-cpp.git"
+  GIT_TAG             "v1.62.0"
+  PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/patches/casbin-v1.62.0.patch
+  UPDATE_DISCONNECTED 1
+)
+FetchContent_MakeAvailable(casbin)
+
 # ---------------------------------------------------------
 
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
@@ -58,6 +66,7 @@ set_target_properties(marguerite PROPERTIES LINK_FLAGS_RELEASE -s)
 
 target_link_libraries(marguerite
   ZLIB::ZLIB OpenSSL::SSL OpenSSL::Crypto
+  casbin
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
   unofficial-sodium::sodium miniocpp::miniocpp 
   fmt::fmt-header-only spdlog::spdlog_header_only
@@ -69,6 +78,6 @@ target_link_libraries(marguerite
 target_include_directories(marguerite PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
     
-  ${spdlog_SOURCE_DIR}/include
+  ${casbin_SOURCE_DIR}/include
 )
 
