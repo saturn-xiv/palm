@@ -1,3 +1,4 @@
+#include "marguerite/casbin.hpp"
 #include "marguerite/minio.hpp"
 #include "marguerite/sodium.hpp"
 #include "marguerite/tink.hpp"
@@ -52,10 +53,13 @@ static inline ERL_NIF_TERM new_binary(ErlNifEnv* env, const std::string& s) {
 }  // namespace marguerite
 
 // ----------------------------------------------------------------------------
+
 static std::shared_ptr<marguerite::Minio> gl_minio;
 static std::shared_ptr<marguerite::Jwt> gl_jwt;
 static std::shared_ptr<marguerite::Aes> gl_aes;
 static std::shared_ptr<marguerite::HMac> gl_hmac;
+static std::shared_ptr<marguerite::casbin::PostgreSqlAdapter> gl_casbin_postgresql_adapter;
+
 // ----------------------------------------------------------------------------
 
 static ERL_NIF_TERM jwt_sign_nif(ErlNifEnv* env, int argc,
@@ -323,6 +327,10 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   {
     auto node = config["minio"].as_table();
     gl_minio = std::make_shared<marguerite::Minio>(*node);
+  }
+  {
+    auto node = config["postgresql"].as_table();
+    gl_casbin_postgresql_adapter=std::make_shared<marguerite::casbin::PostgreSqlAdapter>(*node);
   }
   gl_hmac = std::make_shared<marguerite::HMac>();
   gl_aes = std::make_shared<marguerite::Aes>();

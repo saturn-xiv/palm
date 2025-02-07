@@ -37,6 +37,8 @@ find_package(spdlog CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS date_time uuid)
 find_package(inja CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
+find_package(PostgreSQL REQUIRED)
+find_package(libpqxx CONFIG REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
@@ -72,6 +74,7 @@ target_link_libraries(marguerite
   fmt::fmt-header-only spdlog::spdlog_header_only
   Boost::uuid Boost::date_time
   nlohmann_json::nlohmann_json pantor::inja PkgConfig::tomlplusplus
+  PostgreSQL::PostgreSQL libpqxx::pqxx
 )
 
 

@@ -15,6 +15,7 @@
     "minio-cpp",
     "tomlplusplus",
     "inja",
-    { "name": "abseil", "features": ["cxx17"] }
+    { "name": "abseil", "features": ["cxx17"] },
+    "libpqxx"
   ]
 }
