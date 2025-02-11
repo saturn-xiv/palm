@@ -65,7 +65,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && make source"
 
 # https://github.com/openwrt/openwrt
-ENV OPENWRT_VERSION "v23.05.5"
+ENV OPENWRT_VERSION "24.10.0"
 RUN git clone -b ${OPENWRT_VERSION} https://git.openwrt.org/openwrt/openwrt.git $HOME/downloads/openwrt
 RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/downloads/openwrt \

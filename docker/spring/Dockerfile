@@ -255,7 +255,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION "1.70.0"
+ENV GRPC_JAVA_PLUGIN_VERSION "1.70.1"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
@@ -274,7 +274,7 @@ RUN zsh -c "source $HOME/.zshrc \
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
 
 # https://github.com/google/flatbuffers
-ENV FLATBUFFERS_VERSION "v25.1.24"
+ENV FLATBUFFERS_VERSION "v25.2.10"
 RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git $HOME/downloads/flatbuffers
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
