@@ -15,7 +15,9 @@ marguerite::casbin::PostgreSqlAdapter::PostgreSqlAdapter(
   ss << "host=" << host << " port=" << port << " dbname=" << db_name
      << " user=" << user;
   if (password) {
+    spdlog::debug("######### 1.1");
     ss << " password=" << password.value();
+    spdlog::debug("######### 1.2");
   }
   ss << " sslmode=disable";
   this->_connection = pqxx::connection(ss.str());

@@ -4,7 +4,9 @@
 #include "marguerite/tink.hpp"
 #include "marguerite/version.hpp"
 
+#include <casbin/casbin.h>
 #include <curl/curl.h>
+#include <libpq-fe.h>
 #include <tink/config/tink_config.h>
 #include <tink/jwt/jwt_mac_config.h>
 #include <tink/version.h>
@@ -58,7 +60,7 @@ static std::shared_ptr<marguerite::Minio> gl_minio;
 static std::shared_ptr<marguerite::Jwt> gl_jwt;
 static std::shared_ptr<marguerite::Aes> gl_aes;
 static std::shared_ptr<marguerite::HMac> gl_hmac;
-static std::shared_ptr<marguerite::casbin::PostgreSqlAdapter> gl_casbin_postgresql_adapter;
+static std::shared_ptr<casbin::Enforcer> gl_casbin_enforcer;
 
 // ----------------------------------------------------------------------------
 
@@ -304,6 +306,12 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
     spdlog::debug("sodium {}", SODIUM_VERSION_STRING);
   }
 
+  {
+    const auto v = PQlibVersion();
+    spdlog::debug("libpq v{}.{}.{}", v / (100 * 100), (v / 100) % 100,
+                  v % (100 * 100));
+  }
+
   spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
   spdlog::debug(
       "Protocol Buffers v{}",
@@ -329,8 +337,29 @@ static int load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
     gl_minio = std::make_shared<marguerite::Minio>(*node);
   }
   {
+    const auto model = casbin::Model::NewModelFromString(R"INI(
+[request_definition]
+r = sub, obj, act
+
+[policy_definition]
+p = sub, obj, act
+
+[role_definition]
+g = _, _
+
+[policy_effect]
+e = some(where (p.eft == allow))
+
+[matchers]
+m = g(r.sub, p.sub) && r.obj == p.obj && r.act == p.act
+)INI");
+
     auto node = config["postgresql"].as_table();
-    gl_casbin_postgresql_adapter=std::make_shared<marguerite::casbin::PostgreSqlAdapter>(*node);
+    std::shared_ptr<marguerite::casbin::PostgreSqlAdapter> adapter =
+        std::make_shared<marguerite::casbin::PostgreSqlAdapter>(*node);
+
+    gl_casbin_enforcer = std::make_shared<casbin::Enforcer>(
+        model, std::dynamic_pointer_cast<casbin::Adapter>(adapter));
   }
   gl_hmac = std::make_shared<marguerite::HMac>();
   gl_aes = std::make_shared<marguerite::Aes>();
