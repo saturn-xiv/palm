@@ -4,12 +4,13 @@ set -e
 
 export VERSION=$(date "+%4Y%m%d%H%M%S")
 export CODE="palm-alpine"
+export TAR="$CODE-$(uname -m)"
 
 podman pull alpine:latest
 podman build -t $CODE .
-podman save --format=oci-archive -o $CODE-$VERSION.tar $CODE
-md5sum $CODE-$VERSION.tar >$CODE-$VERSION.md5
+podman save --format=oci-archive -o $TAR.tar $CODE
+md5sum $TAR.tar >$TAR.md5
 
-echo "done($CODE-$VERSION.tar)."
+echo "done($TAR.tar)."
 
 exit 0
