@@ -2,7 +2,7 @@
 <DATABASE>
     <LANGUAGE>EN</LANGUAGE>
     <TIME_ZONE>+00:00</TIME_ZONE>
-    <KEY>/dm.key</KEY>
+    <KEY>/etc/dm.key</KEY>
     <INSTALL_TYPE>0</INSTALL_TYPE>
     <INSTALL_PATH>/opt/dmdbms</INSTALL_PATH>
     <INIT_DB>y</INIT_DB>
