@@ -2,13 +2,14 @@
 <DATABASE>
     <LANGUAGE>EN</LANGUAGE>
     <TIME_ZONE>+00:00</TIME_ZONE>
+    <KEY>/dm.key</KEY>
     <INSTALL_TYPE>0</INSTALL_TYPE>
     <INSTALL_PATH>/opt/dmdbms</INSTALL_PATH>
     <INIT_DB>y</INIT_DB>
     <DB_PARAMS>
         <PATH>/var/lib/dm8</PATH>
         <DBNAME>demo</DBNAME>
-        <EXTENT_SIZE>64</EXTENT_SIZE>
+        <EXTENT_SIZE>32</EXTENT_SIZE>
         <PAGE_SIZE>32</PAGE_SIZE>
         <LOG_SIZE>2048</LOG_SIZE>
         <CASE_SENSITIVE>y</CASE_SENSITIVE>
