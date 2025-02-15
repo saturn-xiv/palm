@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class DahliaApplication
 
 fun main(args: Array<String>) {
-	runApplication<DahliaApplication>(*args)
+    runApplication<DahliaApplication>(*args)
 }

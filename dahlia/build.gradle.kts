@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.saturn_siv.palm"
-version = "0.0.1-SNAPSHOT"
+version = "2025.2.15-SNAPSHOT"
 
 java {
 	toolchain {

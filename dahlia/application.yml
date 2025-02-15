@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 5000
+      minimum-pool-size: 8
+      maximum-pool-size: 32
+    url: "jdbc:postgresql://127.0.0.1:5432/dahlia_dev"
+    username: "www"
+    password: "change-me"
