@@ -2,6 +2,7 @@ package com.github.saturn_siv.palm.dahlia.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -20,8 +21,27 @@ class SecurityConfig {
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeHttpRequests {
-                authorize("/vendors/**", permitAll)
-                authorize("/user/**", hasAuthority("ROLE_USER"))
+                authorize(HttpMethod.GET, "/users/sign-in", permitAll)
+                authorize(HttpMethod.POST, "/users/sign-in", permitAll)
+                authorize(HttpMethod.POST, "/graphql", permitAll)
+
+                authorize(HttpMethod.GET, "/cms/**", permitAll)
+                authorize(HttpMethod.GET, "/bbs/**", permitAll)
+                authorize(HttpMethod.GET, "/accounting/**", permitAll)
+                authorize(HttpMethod.GET, "/monitor/**", permitAll)
+
+                authorize(HttpMethod.GET, "/vendors/**", permitAll)
+                authorize(HttpMethod.GET, "/assets/**", permitAll)
+
+                authorize(HttpMethod.GET, "/rss/*", permitAll)
+                authorize(HttpMethod.GET, "/sitemap/*", permitAll)
+                authorize(HttpMethod.GET, "/sitemap.xml", permitAll)
+                authorize(HttpMethod.GET, "/robots.txt", permitAll)
+
+//                TODO
+                authorize("/admin/**", hasAuthority("ROLE_ADMINISTRATOR"))
+
+                authorize(HttpMethod.GET, "/", permitAll)
             }
             formLogin {
                 loginPage = "/users/sign-in"
