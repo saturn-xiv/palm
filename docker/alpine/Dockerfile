@@ -3,11 +3,14 @@ LABEL maintainer="Jeremy Zheng"
 
 RUN apk update
 RUN apk upgrade
-# nodejs npm gradle maven
+
 RUN apk add vim wget curl bash zsh pwgen openssl git tmux rsync \
+    tar zip unzip bzip2 bzip3 xz \
     inetutils-telnet bind-tools \
     openssh-client sshpass \
     build-base cmake pkgconf \
+    nodejs npm yarn \
+    openjdk21 gradle maven \
     python3 py3-pip python3-dev \
     openssl-dev
 
