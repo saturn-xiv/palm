@@ -1,0 +1,92 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.dahlia.v1";
+option go_package = "./;v2";
+package palm.dahlia.v1;
+
+// ----------------------------------------------------------------------------
+message File {
+  string bucket = 1;
+  string object = 2;
+}
+// ----------------------------------------------------------------------------
+message SmsTask {
+  repeated string to = 1;
+  string body = 2;
+  optional string callback_uri = 3;
+}
+
+// ----------------------------------------------------------------------------
+
+message EmailTask {
+  message Address {
+    string name = 1;
+    string email = 2;
+  }
+
+  message Body {
+    string text = 1;
+    bool html = 2;
+  }
+
+  message Attachment {
+    string title = 1;
+    string content_type = 2;
+    bool inline = 3;
+    bytes body = 9;
+  }
+
+  string subject = 1;
+  Body body = 2;
+  Address to = 3;
+  repeated Address cc = 4;
+  repeated Address bcc = 5;
+  repeated Attachment attachments = 9;
+}
+
+// ----------------------------------------------------------------------------
+
+// https://owl.purdue.edu/owl/general_writing/general_writing_faqs.html
+message TeXLiveTask {
+  // https://apastyle.apa.org/
+  // https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html
+  // https://www.ilc.cuhk.edu.hk/Chinese/APAMLA/APA/APAlayout.aspx
+  message Apa7 {}
+  // https://www.mla.org/MLA-Style
+  // https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_and_style_guide.html#:~:text=MLA%20(Modern%20Language%20Association)%20style,the%20liberal%20arts%20and%20humanities.
+  message Mla8 {}
+  // https://www.chicagomanualofstyle.org/home.html
+  // https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/cmos_formatting_and_style_guide/chicago_manual_of_style_17th_edition.html
+  message Cmos {}
+
+  File output = 1;
+  oneof content {
+    Apa7 apa7 = 11;
+    Mla8 mla8 = 12;
+    Cmos cmos = 13;
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+// https://pandoc.org/MANUAL.html
+message PandocTask {
+  enum Format {
+    Plain = 0;
+    Markdown = 1;
+    Pdf = 2;
+    Docx = 3;
+  }
+  message Input {
+    bytes content = 1;
+    Format format = 2;
+  }
+  message Output {
+    File file = 1;
+    Format format = 2;
+  }
+  Input input = 1;
+  Output output = 2;
+}
+
+// ----------------------------------------------------------------------------

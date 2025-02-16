@@ -41,4 +41,4 @@ var MarkdownService = exports.MarkdownService = {
   },
 };
 
-exports.MarkdownClient = grpc.makeGenericClientConstructor(MarkdownService);
+exports.MarkdownClient = grpc.makeGenericClientConstructor(MarkdownService, 'Markdown');
