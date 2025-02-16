@@ -56,10 +56,11 @@ dependencies {
     implementation("io.minio:minio:8.5.17")
     // https://mvnrepository.com/artifact/org.opensearch.client/opensearch-java
     implementation("org.opensearch.client:opensearch-java:2.21.0")
+
     // https://mvnrepository.com/artifact/org.casbin/jcasbin
     implementation("org.casbin:jcasbin:1.79.0")
-    // https://mvnrepository.com/artifact/org.casbin/hibernate-adapter
-    implementation("org.casbin:hibernate-adapter:1.3.0")
+    // https://mvnrepository.com/artifact/org.casbin/jdbc-adapter
+    implementation("org.casbin:jdbc-adapter:2.10.0")
     // https://mvnrepository.com/artifact/org.casbin/jcasbin-redis-watcher
     implementation("org.casbin:jcasbin-redis-watcher:1.8.0")
 
