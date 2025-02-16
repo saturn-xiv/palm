@@ -1,0 +1,8 @@
+{
+  "port": 9999,
+  "ssl": {
+    "ca-file": "tmp/ca.crt",
+    "key-file": "tmp/server.key",
+    "cert-file": "tmp/server.crt"
+  }
+}
