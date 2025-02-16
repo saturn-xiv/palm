@@ -7,8 +7,8 @@
 - Create a database
 
 ```sql
-CREATE USER user-name WITH PASSWORD 'change-me';
-CREATE DATABASE db-name WITH ENCODING = 'UTF8' OWNER user-name;
+CREATE USER www WITH PASSWORD 'change-me';
+CREATE DATABASE dahlia_dev WITH ENCODING = 'UTF8' OWNER www;
 ```
 
 ```bash
@@ -19,4 +19,5 @@ CREATE DATABASE db-name WITH ENCODING = 'UTF8' OWNER user-name;
 
 ```bash
 gradle build -x test
+java -jar build/libs/dahlia-2025.2.15-SNAPSHOT.jar
 ```
