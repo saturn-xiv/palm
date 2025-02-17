@@ -1,11 +1,11 @@
-package com.github.saturn_siv.palm.dahlia.controllers
+package com.github.saturn_siv.palm.dahlia.plugins.cms.controllers
 
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.servlet.ModelAndView
 
-@Controller("dahlia.c.home")
+@Controller("dahlia.cms.c.home")
 class HomeController {
 
     @PreAuthorize("permitAll()")

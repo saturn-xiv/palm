@@ -1,4 +1,4 @@
-package com.github.saturn_siv.palm.dahlia.controllers
+package com.github.saturn_siv.palm.dahlia.plugins.cms.controllers
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.ModelAndView
 
-@Controller("dahlia.c.users-sign-in")
+@Controller("dahlia.cms.c.users-sign-in")
 @RequestMapping("/users")
 class UsersSignInController {
     @GetMapping("/sign-in")

@@ -1,4 +1,4 @@
-package com.github.saturn_siv.palm.dahlia.models
+package com.github.saturn_siv.palm.dahlia.plugins.cms.models
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
