@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- https://wiki.gnucash.org/wiki/SQL -->
+    <!-- https://wiki.gnucash.org/wiki/images/8/86/Gnucash_erd.png -->
+    <changeSet author="Jeremy Zheng" id="20250217172450.create-bookkeeper">
+
+
+        <rollback>
+
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
