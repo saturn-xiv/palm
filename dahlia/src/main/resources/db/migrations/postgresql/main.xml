@@ -1,0 +1,12 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="20250217082641-CreateCasbinRule.xml" relativeToChangelogFile="true"/>
+    <!--    <include file="20250217082731-CreateCMS.xml" relativeToChangelogFile="true"/>-->
+    <!--    <include file="20250217082742-CreateBBS.xml" relativeToChangelogFile="true"/>-->
+    <!--    <include file="20250217082749-CreateBookkeeper.xml" relativeToChangelogFile="true"/>-->
+
+</databaseChangeLog>

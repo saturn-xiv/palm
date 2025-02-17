@@ -12,7 +12,8 @@ CREATE DATABASE dahlia_dev WITH ENCODING = 'UTF8' OWNER www;
 ```
 
 ```bash
-~/local/flyway-11.3.2/flyway -configFiles=flyway-postgresql.conf info
+~/local/liquibase-4.29.2/liquibase --version
+~/local/liquibase-4.29.2/liquibase --defaults-file=liquibase-postgresql.properties connect | status | rollback-count --count 1 | history
 ```
 
 ### Build
