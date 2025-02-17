@@ -7,5 +7,6 @@
 /build/
 
 /*.log
+/*.bin
 /tmp/
 /application.yaml

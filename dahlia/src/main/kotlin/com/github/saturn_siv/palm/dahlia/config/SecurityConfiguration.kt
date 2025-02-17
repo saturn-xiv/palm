@@ -1,5 +1,6 @@
 package com.github.saturn_siv.palm.dahlia.config
 
+import com.github.saturn_siv.palm.dahlia.services.JwtService
 import org.casbin.jcasbin.main.Enforcer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -88,4 +89,7 @@ class SecurityConfiguration {
 
     @Autowired
     private lateinit var enforcer: Enforcer;
+
+    @Autowired
+    private lateinit var jwt: JwtService
 }

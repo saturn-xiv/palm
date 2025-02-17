@@ -17,8 +17,8 @@ class CasbinConfiguration {
     fun enforcer(): Enforcer {
         val model =
             Model.newModelFromString(this::class.java.classLoader.getResource("/casbin/rbac_model.conf")?.readText());
-        val adapter = JDBCAdapter(datasource)
-        val watcher = RedisWatcher(redisHost, redisPort.toInt(), "casbin.topic")
+        val adapter = JDBCAdapter(this.datasource)
+        val watcher = RedisWatcher(this.redisHost, this.redisPort.toInt(), "casbin.topic")
         val enforcer = SyncedEnforcer(model, adapter)
         enforcer.setWatcher(watcher);
         enforcer.loadPolicy();
