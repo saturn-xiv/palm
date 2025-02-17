@@ -4,25 +4,150 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet author="Jeremy Zheng" id="20250217142037">
-        <!-- https://github.com/jcasbin/jdbc-adapter/blob/master/src/main/java/org/casbin/adapter/JDBCBaseAdapter.java#L176 -->
-        <createTable tableName="casbin_rule">
-            <column name="ptype" type="varchar(255)">
+    <changeSet author="Jeremy Zheng" id="20250217170259.create-bbs">
+        <createTable tableName="bbs_forums">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="slug" type="varchar(31)">
                 <constraints nullable="false"/>
             </column>
-            <column name="v0" type="varchar(255)"/>
-            <column name="v1" type="varchar(255)"/>
-            <column name="v2" type="varchar(255)"/>
-            <column name="v3" type="varchar(255)"/>
-            <column name="v4" type="varchar(255)"/>
-            <column name="v5" type="varchar(255)"/>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(1023)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-        <createIndex indexName="idx_casbin_rule_ptype" tableName="casbin_rule">
-            <column name="ptype"/>
+        <createIndex indexName="idx_bbs_forums_slug" tableName="bbs_forums" unique="true">
+            <column name="slug"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_forums_title" tableName="bbs_forums">
+            <column name="title"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_forums_description" tableName="bbs_forums">
+            <column name="description"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_forums_status" tableName="bbs_forums">
+            <column name="status"/>
+        </createIndex>
+
+        <createTable tableName="bbs_topics">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="forum_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slug" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bbs_topics_slug" tableName="bbs_topics" unique="true">
+            <column name="slug"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_topics_title" tableName="bbs_topics">
+            <column name="title"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_topics_body_editor" tableName="bbs_topics">
+            <column name="body_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_topics_status" tableName="bbs_topics">
+            <column name="status"/>
+        </createIndex>
+
+        <createTable tableName="bbs_posts">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="forum_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="topic_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="integer"/>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bbs_posts_body_editor" tableName="bbs_posts">
+            <column name="body_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_bbs_posts_status" tableName="bbs_posts">
+            <column name="status"/>
         </createIndex>
 
         <rollback>
-            <dropTable tableName="casbin_rule"/>
+            <dropTable tableName="bbs_posts"/>
+            <dropTable tableName="bbs_topics"/>
+            <dropTable tableName="bbs_forums"/>
         </rollback>
     </changeSet>
 

@@ -1009,4 +1009,48 @@
             <dropTable tableName="pages"/>
         </rollback>
     </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217171623.create-trash_bin">
+        <createTable tableName="trash_bin">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reason" type="varchar(1023)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_trash_bin_resource_version" tableName="trash_bin" unique="true">
+            <column name="resource_type"/>
+            <column name="resource_id"/>
+            <column name="version"/>
+        </createIndex>
+        <createIndex indexName="idx_trash_bin_resource_type" tableName="trash_bin">
+            <column name="resource_type"/>
+        </createIndex>
+        <createIndex indexName="idx_trash_bin_reason" tableName="trash_bin">
+            <column name="reason"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="trash_bin"/>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>

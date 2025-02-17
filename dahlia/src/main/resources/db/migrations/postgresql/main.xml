@@ -34,7 +34,7 @@
 
     <include file="001-casbin.xml" relativeToChangelogFile="true"/>
     <include file="002-cms.xml" relativeToChangelogFile="true"/>
-    <!--    <include file="003-bbs.xml" relativeToChangelogFile="true"/>-->
+    <include file="003-bbs.xml" relativeToChangelogFile="true"/>
     <!--    <include file="004-bookkeeper.xml" relativeToChangelogFile="true"/>-->
 
 </databaseChangeLog>
