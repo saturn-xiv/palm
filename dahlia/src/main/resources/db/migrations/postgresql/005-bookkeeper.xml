@@ -7,10 +7,404 @@
     <!-- https://wiki.gnucash.org/wiki/SQL -->
     <!-- https://wiki.gnucash.org/wiki/images/8/86/Gnucash_erd.png -->
     <changeSet author="Jeremy Zheng" id="20250217172450.create-bookkeeper">
+        <createTable tableName="bookkeeper_teams">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_id" type="integer"/>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_teams_name" tableName="bookkeeper_teams">
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_teams_status" tableName="bookkeeper_teams">
+            <column name="status"/>
+        </createIndex>
 
+        <createTable tableName="bookkeeper_books">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="team_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uid" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_books_team_name" tableName="bookkeeper_books" unique="true">
+            <column name="team_id"/>
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_books_uid" tableName="bookkeeper_books" unique="true">
+            <column name="uid"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_books_name" tableName="bookkeeper_books">
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_books_template" tableName="bookkeeper_books">
+            <column name="template"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_books_memo_editor" tableName="bookkeeper_books">
+            <column name="memo_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_books_status" tableName="bookkeeper_books">
+            <column name="status"/>
+        </createIndex>
+
+
+        <createTable tableName="bookkeeper_vendors">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="team_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postal_address_id" type="integer"/>
+            <column name="postal_recipient_id" type="integer"/>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_vendors_team_name" tableName="bookkeeper_vendors" unique="true">
+            <column name="team_id"/>
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_vendors_name" tableName="bookkeeper_vendors">
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_vendors_memo_editor" tableName="bookkeeper_vendors">
+            <column name="memo_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_vendors_status" tableName="bookkeeper_vendors">
+            <column name="status"/>
+        </createIndex>
+
+        <createTable tableName="bookkeeper_accounts">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="team_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="integer"/>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_accounts_book_name" tableName="bookkeeper_accounts" unique="true">
+            <column name="book_id"/>
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_accounts_name" tableName="bookkeeper_accounts">
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_accounts_type" tableName="bookkeeper_accounts">
+            <column name="type"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_accounts_status" tableName="bookkeeper_accounts">
+            <column name="status"/>
+        </createIndex>
+
+        <createTable tableName="bookkeeper_orders">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="team_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sn" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="debtor_account_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creditor_account_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="placed_at" type="timestamp without time zone"/>
+            <column name="placed_by" type="integer"/>
+            <column name="paid_at" type="timestamp without time zone"/>
+            <column name="paid_by" type="integer"/>
+            <column name="confirmed_at" type="timestamp without time zone"/>
+            <column name="confirmed_by" type="integer"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_orders_book_sn" tableName="bookkeeper_orders" unique="true">
+            <column name="book_id"/>
+            <column name="sn"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_orders_sn" tableName="bookkeeper_orders">
+            <column name="sn"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_orders_memo_editor" tableName="bookkeeper_orders">
+            <column name="memo_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_orders_status" tableName="bookkeeper_orders">
+            <column name="status"/>
+        </createIndex>
+
+        <createTable tableName="bookkeeper_commodities">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="book_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vendor_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit_price" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_commodities_label" tableName="bookkeeper_commodities">
+            <column name="label"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_commodities_memo_editor" tableName="bookkeeper_commodities">
+            <column name="memo_editor"/>
+        </createIndex>
+
+        <createTable tableName="bookkeeper_transactions">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="team_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_transactions_order" tableName="bookkeeper_transactions" unique="true">
+            <column name="order_id"/>
+        </createIndex>
+
+        <createTable tableName="bookkeeper_logs">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="team_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="varchar(511)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_bookkeeper_logs_username" tableName="bookkeeper_logs">
+            <column name="username"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_logs_type" tableName="bookkeeper_logs">
+            <column name="type"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_logs_ip" tableName="bookkeeper_logs">
+            <column name="ip"/>
+        </createIndex>
+        <createIndex indexName="idx_bookkeeper_logs_message" tableName="bookkeeper_logs">
+            <column name="message"/>
+        </createIndex>
 
         <rollback>
-
+            <dropTable tableName="bookkeeper_logs"/>
+            <dropTable tableName="bookkeeper_transactions"/>
+            <dropTable tableName="bookkeeper_commodities"/>
+            <dropTable tableName="bookkeeper_orders"/>
+            <dropTable tableName="bookkeeper_accounts"/>
+            <dropTable tableName="bookkeeper_vendors"/>
+            <dropTable tableName="bookkeeper_books"/>
+            <dropTable tableName="bookkeeper_teams"/>
         </rollback>
     </changeSet>
 
