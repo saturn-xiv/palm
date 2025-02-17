@@ -4,9 +4,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet author="Jeremy Zheng" id="create-casbin-rule">
+    <changeSet author="Jeremy Zheng" id="20250217082641.create-casbin">
         <!-- https://github.com/jcasbin/jdbc-adapter/blob/master/src/main/java/org/casbin/adapter/JDBCBaseAdapter.java#L176 -->
         <createTable tableName="casbin_rule">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
             <column name="ptype" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
@@ -20,6 +23,10 @@
         <createIndex indexName="idx_casbin_rule_ptype" tableName="casbin_rule">
             <column name="ptype"/>
         </createIndex>
+
+        <rollback>
+            <dropTable tableName="casbin_rule"/>
+        </rollback>
     </changeSet>
 
 </databaseChangeLog>

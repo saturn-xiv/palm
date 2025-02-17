@@ -1,0 +1,1012 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="Jeremy Zheng" id="20250217142003.create-postal">
+        <createTable tableName="postal_recipients">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(15)"/>
+            <column name="fax" type="varchar(15)"/>
+            <column name="email" type="varchar(127)"/>
+            <column name="whatsapp" type="varchar(63)"/>
+            <column name="wechat" type="varchar(63)"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_postal_recipients_name" tableName="postal_recipients">
+            <column name="name"/>
+        </createIndex>
+
+        <createTable tableName="postal_addresses">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="unit" type="varchar(7)"/>
+            <column name="building" type="varchar(31)"/>
+            <column name="street" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="province" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zip_code" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passcode" type="varchar(15)"/>
+            <column name="google_map" type="varchar(255)"/>
+            <column name="a_map" type="varchar(255)"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_postal_addresses_street" tableName="postal_addresses">
+            <column name="street"/>
+        </createIndex>
+        <createIndex indexName="idx_postal_addresses_city" tableName="postal_addresses">
+            <column name="city"/>
+        </createIndex>
+        <createIndex indexName="idx_postal_addresses_province" tableName="postal_addresses">
+            <column name="province"/>
+        </createIndex>
+        <createIndex indexName="idx_postal_addresses_country" tableName="postal_addresses">
+            <column name="country"/>
+        </createIndex>
+        <createIndex indexName="idx_postal_addresses_zip_code" tableName="postal_addresses">
+            <column name="zip_code"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="postal_addresses"/>
+            <dropTable tableName="postal_recipients"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217144934.create-currencies">
+        <createTable tableName="currencies">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="char(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="char(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="units" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_currencies_code" tableName="currencies">
+            <column name="code"/>
+        </createIndex>
+        <createIndex indexName="idx_currencies_number" tableName="currencies">
+            <column name="number"/>
+        </createIndex>
+        <createIndex indexName="idx_currencies_name" tableName="currencies">
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_currencies_country" tableName="currencies">
+            <column name="country"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="currencies"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217145621.create-locales">
+        <createTable tableName="locales">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="lang" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_locales" tableName="locales" unique="true">
+            <column name="lang"/>
+            <column name="code"/>
+        </createIndex>
+        <createIndex indexName="idx_locales_lang" tableName="locales">
+            <column name="lang"/>
+        </createIndex>
+        <createIndex indexName="idx_locales_code" tableName="locales">
+            <column name="code"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="locales"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217150254.create-settings">
+        <createTable tableName="settings">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer"/>
+            <column name="key" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nonce" type="bytea"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_settings_key" tableName="settings">
+            <column name="key"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="settings"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217150659.create-users">
+        <createTable tableName="users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uid" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lang" type="varchar(15)" defaultValue="en-US">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timezone" type="varchar(31)" defaultValue="UTC">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sign_in_count" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_sign_in_at" type="timestamp without time zone"/>
+            <column name="current_sign_in_ip" type="varchar(45)"/>
+            <column name="last_sign_in_at" type="timestamp without time zone"/>
+            <column name="last_sign_in_ip" type="varchar(45)"/>
+            <column name="locked_at" type="timestamp without time zone"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_users_uid" tableName="users" unique="true">
+            <column name="uid"/>
+        </createIndex>
+        <createIndex indexName="idx_users_lang" tableName="users">
+            <column name="lang"/>
+        </createIndex>
+        <createIndex indexName="idx_users_timezone" tableName="users">
+            <column name="timezone"/>
+        </createIndex>
+
+        <createTable tableName="logs">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="plugin" type="varchar(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level" type="varchar(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer"/>
+            <column name="message" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_logs_plugin" tableName="logs">
+            <column name="plugin"/>
+        </createIndex>
+        <createIndex indexName="idx_logs_ip" tableName="logs">
+            <column name="ip"/>
+        </createIndex>
+        <createIndex indexName="idx_logs_level" tableName="logs">
+            <column name="level"/>
+        </createIndex>
+        <createIndex indexName="idx_logs_resource_type" tableName="logs">
+            <column name="resource_type"/>
+        </createIndex>
+
+        <createTable tableName="sessions">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uid" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="real_name" type="varchar(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expires_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_sessions_uid" tableName="sessions" unique="true">
+            <column name="uid"/>
+        </createIndex>
+        <createIndex indexName="idx_sessions_real_name" tableName="sessions">
+            <column name="real_name"/>
+        </createIndex>
+        <createIndex indexName="idx_sessions_provider_type" tableName="sessions">
+            <column name="provider_type"/>
+        </createIndex>
+        <createIndex indexName="idx_sessions_ip" tableName="sessions">
+            <column name="ip"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="sessions"/>
+            <dropTable tableName="logs"/>
+            <dropTable tableName="users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217152048.create-email_users">
+        <createTable tableName="email_users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="real_name" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salt" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avatar" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="confirmed_at" type="timestamp without time zone"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_email_users_real_name" tableName="email_users">
+            <column name="real_name"/>
+        </createIndex>
+        <createIndex indexName="idx_email_users_email" tableName="email_users" unique="true">
+            <column name="email"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="email_users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217152504.create-google_oauth2_users">
+        <createTable tableName="google_oauth2_users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(127)"/>
+            <column name="email_verified" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(63)"/>
+            <column name="picture" type="varchar(255)"/>
+            <column name="locale" type="varchar(15)"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_google_oauth2_users_subject" tableName="google_oauth2_users" unique="true">
+            <column name="subject"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="google_oauth2_users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217153002.create-wechat-users">
+        <createTable tableName="wechat_oauth2_users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="union_id" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_id" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="open_id" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nickname" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sex" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="province" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="head_img_url" type="varchar(255)"/>
+            <column name="privilege" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lang" type="varchar(7)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_wechat_oauth2_users_union_id" tableName="wechat_oauth2_users" unique="true">
+            <column name="union_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_app_open_ids" tableName="wechat_oauth2_users" unique="true">
+            <column name="app_id"/>
+            <column name="open_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_app_id" tableName="wechat_oauth2_users">
+            <column name="app_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_open_id" tableName="wechat_oauth2_users">
+            <column name="open_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_nickname" tableName="wechat_oauth2_users">
+            <column name="nickname"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_city" tableName="wechat_oauth2_users">
+            <column name="city"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_province" tableName="wechat_oauth2_users">
+            <column name="province"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_country" tableName="wechat_oauth2_users">
+            <column name="country"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_oauth2_users_lang" tableName="wechat_oauth2_users">
+            <column name="lang"/>
+        </createIndex>
+
+        <createTable tableName="wechat_mini_program_users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="union_id" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_id" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="open_id" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nickname" type="varchar(63)"/>
+            <column name="avatar_url" type="varchar(255)"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_wechat_mini_program_users_union_id" tableName="wechat_mini_program_users"
+                     unique="true">
+            <column name="union_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_mini_program_users_app_open_ids" tableName="wechat_mini_program_users"
+                     unique="true">
+            <column name="app_id"/>
+            <column name="open_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_mini_program_users_app_id" tableName="wechat_mini_program_users">
+            <column name="app_id"/>
+        </createIndex>
+        <createIndex indexName="idx_wechat_mini_program_users_open_id" tableName="wechat_mini_program_users">
+            <column name="open_id"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="wechat_mini_program_users"/>
+            <dropTable tableName="wechat_oauth2_users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217154649.create-attachments">
+        <createTable tableName="attachments">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bucket" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="object" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uploaded_at" type="timestamp without time zone"/>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_attachments_bucket_object" tableName="attachments" unique="true">
+            <column name="bucket"/>
+            <column name="object"/>
+        </createIndex>
+        <createIndex indexName="idx_attachments_bucket" tableName="attachments">
+            <column name="bucket"/>
+        </createIndex>
+        <createIndex indexName="idx_attachments_object" tableName="attachments">
+            <column name="object"/>
+        </createIndex>
+        <createIndex indexName="idx_attachments_title" tableName="attachments">
+            <column name="title"/>
+        </createIndex>
+        <createIndex indexName="idx_attachments_content_type" tableName="attachments">
+            <column name="content_type"/>
+        </createIndex>
+
+        <createTable tableName="attachment_resources">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="attachment_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer"/>
+            <column name="sort_order" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_attachment_resources_resource_type" tableName="attachment_resources">
+            <column name="resource_type"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="attachment_resources"/>
+            <dropTable tableName="attachments"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217155321.create-leave-words">
+        <createTable tableName="leave_words">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="lang" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer"/>
+            <column name="body" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_leave_words_lang" tableName="leave_words">
+            <column name="lang"/>
+        </createIndex>
+        <createIndex indexName="idx_leave_words_ip" tableName="leave_words">
+            <column name="ip"/>
+        </createIndex>
+        <createIndex indexName="idx_leave_words_resource_type" tableName="leave_words">
+            <column name="resource_type"/>
+        </createIndex>
+        <createIndex indexName="idx_leave_words_body_editor" tableName="leave_words">
+            <column name="body_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_leave_words_status" tableName="leave_words">
+            <column name="status"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="leave_words"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217155730.create-menus">
+        <createTable tableName="menus">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="lang" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="varchar(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link" type="varchar(255)"/>
+            <column name="extra" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="left" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="right" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_menus_lang" tableName="menus">
+            <column name="lang"/>
+        </createIndex>
+        <createIndex indexName="idx_menus_location" tableName="menus">
+            <column name="location"/>
+        </createIndex>
+        <createIndex indexName="idx_menus_label" tableName="menus">
+            <column name="label"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="menus"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217155732.create-tags">
+        <createTable tableName="tags">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_tags_code" tableName="tags" unique="true">
+            <column name="code"/>
+        </createIndex>
+
+        <createTable tableName="tag_resources">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="tag_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer"/>
+            <column name="sort_order" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_tag_resources_resource_type" tableName="tag_resources">
+            <column name="resource_type"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="tag_resources"/>
+            <dropTable tableName="tags"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217162107.create-categories">
+        <createTable tableName="categories">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="left" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="right" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_categories_code" tableName="categories" unique="true">
+            <column name="code"/>
+        </createIndex>
+
+        <createTable tableName="category_resources">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="category_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer"/>
+            <column name="sort_order" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_category_resources_resource_type" tableName="category_resources">
+            <column name="resource_type"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="category_resources"/>
+            <dropTable tableName="categories"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217163533.create-votes">
+        <createTable tableName="vote_logs">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="resource_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="integer"/>
+            <column name="name" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="memo_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="star" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_vote_logs_resource_type" tableName="vote_logs">
+            <column name="resource_type"/>
+        </createIndex>
+        <createIndex indexName="idx_vote_logs_name" tableName="vote_logs">
+            <column name="name"/>
+        </createIndex>
+        <createIndex indexName="idx_vote_logs_ip" tableName="vote_logs">
+            <column name="ip"/>
+        </createIndex>
+        <createIndex indexName="idx_vote_logs_memo_editor" tableName="vote_logs">
+            <column name="memo_editor"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="vote_logs"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217163541.create-short_links">
+        <createTable tableName="short_links">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="label" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_short_links_label" tableName="short_links">
+            <column name="label"/>
+        </createIndex>
+        <createIndex indexName="idx_short_links_url" tableName="short_links" unique="true">
+            <column name="url"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="short_links"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="Jeremy Zheng" id="20250217165402.create-pages">
+        <createTable tableName="pages">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lang" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slug" type="varchar(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(127)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="varchar(511)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body_editor" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="timestamp without time zone"/>
+            <column name="version" type="integer" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_pages_lang_slug" tableName="pages" unique="true">
+            <column name="lang"/>
+            <column name="slug"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_lang" tableName="pages">
+            <column name="lang"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_slug" tableName="pages">
+            <column name="slug"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_title" tableName="pages">
+            <column name="title"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_summary" tableName="pages">
+            <column name="summary"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_body_editor" tableName="pages">
+            <column name="body_editor"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_template" tableName="pages">
+            <column name="template"/>
+        </createIndex>
+        <createIndex indexName="idx_pages_status" tableName="pages">
+            <column name="status"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="pages"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

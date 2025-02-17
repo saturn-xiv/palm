@@ -4,9 +4,37 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <include file="20250217082641-CreateCasbinRule.xml" relativeToChangelogFile="true"/>
-    <!--    <include file="20250217082731-CreateCMS.xml" relativeToChangelogFile="true"/>-->
-    <!--    <include file="20250217082742-CreateBBS.xml" relativeToChangelogFile="true"/>-->
-    <!--    <include file="20250217082749-CreateBookkeeper.xml" relativeToChangelogFile="true"/>-->
+    <!--    <changeSet author="Jeremy Zheng" id=".create-">-->
+    <!--        <createTable tableName="">-->
+    <!--            <column name="id" type="serial" autoIncrement="true">-->
+    <!--                <constraints primaryKey="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="" type="varchar(255)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="deleted_at" type="timestamp without time zone"/>-->
+    <!--            <column name="version" type="integer" defaultValue="0">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="updated_at" type="timestamp without time zone">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="created_at" type="timestamp without time zone" defaultValueComputed="current_timestamp">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--        </createTable>-->
+    <!--        <createIndex indexName="idx_" tableName="">-->
+    <!--            <column name=""/>-->
+    <!--        </createIndex>-->
+
+    <!--        <rollback>-->
+    <!--            <dropTable tableName=""/>-->
+    <!--        </rollback>-->
+    <!--    </changeSet>-->
+
+    <include file="001-casbin.xml" relativeToChangelogFile="true"/>
+    <include file="002-cms.xml" relativeToChangelogFile="true"/>
+    <!--    <include file="003-bbs.xml" relativeToChangelogFile="true"/>-->
+    <!--    <include file="004-bookkeeper.xml" relativeToChangelogFile="true"/>-->
 
 </databaseChangeLog>
