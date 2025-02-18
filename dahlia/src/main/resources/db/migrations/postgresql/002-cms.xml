@@ -36,7 +36,9 @@
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="unit" type="varchar(7)"/>
+            <column name="unit" type="varchar(7)">
+                <constraints nullable="false"/>
+            </column>
             <column name="building" type="varchar(31)"/>
             <column name="street" type="varchar(127)">
                 <constraints nullable="false"/>
@@ -94,10 +96,10 @@
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="code" type="char(3)">
+            <column name="code" type="varchar(3)">
                 <constraints nullable="false"/>
             </column>
-            <column name="number" type="char(3)">
+            <column name="number" type="varchar(3)">
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(127)">
