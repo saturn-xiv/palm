@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-@Service("dahlia.cms.s.bookkeeper")
+@Service("dahlia.bookkeeper.s.bookkeeper")
 class BookkeeperService {
     @Autowired
     private lateinit var accountRepository: AccountRepository

@@ -299,10 +299,7 @@
             <column name="uid" type="varchar(36)">
                 <constraints nullable="false"/>
             </column>
-            <column name="real_name" type="varchar(31)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="provider_type" type="varchar(255)">
+            <column name="provider_type" type="varchar(31)">
                 <constraints nullable="false"/>
             </column>
             <column name="provider_id" type="integer">
@@ -321,9 +318,6 @@
         </createTable>
         <createIndex indexName="idx_sessions_uid" tableName="sessions" unique="true">
             <column name="uid"/>
-        </createIndex>
-        <createIndex indexName="idx_sessions_real_name" tableName="sessions">
-            <column name="real_name"/>
         </createIndex>
         <createIndex indexName="idx_sessions_provider_type" tableName="sessions">
             <column name="provider_type"/>
@@ -658,7 +652,6 @@
             <column name="status" type="varchar(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="deleted_at" type="timestamp without time zone"/>
             <column name="version" type="integer" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
@@ -744,7 +737,7 @@
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="code" type="varchar(63)">
+            <column name="name" type="varchar(63)">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="integer" defaultValue="0">
@@ -757,8 +750,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex indexName="idx_tags_code" tableName="tags" unique="true">
-            <column name="code"/>
+        <createIndex indexName="idx_tags_name" tableName="tags" unique="true">
+            <column name="name"/>
         </createIndex>
 
         <createTable tableName="tag_resources">
@@ -794,7 +787,13 @@
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="code" type="varchar(63)">
+            <column name="lang" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="varchar(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="varchar(63)">
                 <constraints nullable="false"/>
             </column>
             <column name="left" type="integer">
@@ -813,8 +812,14 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createIndex indexName="idx_categories_code" tableName="categories" unique="true">
-            <column name="code"/>
+        <createIndex indexName="idx_categories_lang" tableName="categories">
+            <column name="lang"/>
+        </createIndex>
+        <createIndex indexName="idx_categories_location" tableName="categories">
+            <column name="location"/>
+        </createIndex>
+        <createIndex indexName="idx_categories_label" tableName="categories">
+            <column name="label"/>
         </createIndex>
 
         <createTable tableName="category_resources">
@@ -857,7 +862,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="integer"/>
-            <column name="name" type="varchar(63)">
+            <column name="username" type="varchar(63)">
                 <constraints nullable="false"/>
             </column>
             <column name="ip" type="varchar(45)">
@@ -886,8 +891,8 @@
         <createIndex indexName="idx_vote_logs_resource_type" tableName="vote_logs">
             <column name="resource_type"/>
         </createIndex>
-        <createIndex indexName="idx_vote_logs_name" tableName="vote_logs">
-            <column name="name"/>
+        <createIndex indexName="idx_vote_logs_username" tableName="vote_logs">
+            <column name="username"/>
         </createIndex>
         <createIndex indexName="idx_vote_logs_ip" tableName="vote_logs">
             <column name="ip"/>
@@ -970,7 +975,6 @@
             <column name="status" type="varchar(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="deleted_at" type="timestamp without time zone"/>
             <column name="version" type="integer" defaultValue="0">
                 <constraints nullable="false"/>
             </column>

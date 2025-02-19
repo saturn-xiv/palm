@@ -7,50 +7,39 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bookkeeper_vendors")
-@Entity
-class Vendor {
-    enum class Status {}
-
+@Entity(name = "bookkeeper.vendor")
+class Vendor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var name: String? = null
-
+    var name: String,
     @Column(nullable = false)
-    var memo: String? = null
-
+    var memo: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var memoEditor: Editor? = null
-
+    var memoEditor: Editor,
     @Column(nullable = false)
-    var profile: ByteArray? = null
-
+    var profile: ByteArray,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var status: Status? = null
-
+    var status: Status,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "team_id")
-    val team: Team? = null
-
+    var team: Team,
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "postal_address_id")
-    val address: Address? = null
-
+    var address: Address?,
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "postal_recipient_id")
-    val recipient: Recipient? = null
+    var recipient: Recipient?,
+) {
+    enum class Status {}
 }

@@ -1,43 +1,35 @@
 package com.github.saturn_siv.palm.dahlia.plugins.cms.models
 
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.userdetails.UserDetails
+import jakarta.persistence.*
+import java.time.Instant
 
-class Session : UserDetails {
-    private lateinit var uid: String
-
-
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-//        TODO
-        val items = mutableListOf<GrantedAuthority>()
-        return items
-    }
-
-    override fun getPassword(): String {
-        return "change-me"
-    }
-
-    override fun getUsername(): String {
-        return this.uid
-    }
-
-    override fun isAccountNonExpired(): Boolean {
-//        TODO
-        return true
-    }
-
-    override fun isAccountNonLocked(): Boolean {
-//        TODO
-        return true
-    }
-
-    override fun isCredentialsNonExpired(): Boolean {
-//        TODO
-        return true
-    }
-
-    override fun isEnabled(): Boolean {
-//        TODO
-        return true
+@Table(name = "sessions")
+@Entity(name = "session")
+class Session(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    var id: Int,
+    @Column(nullable = false)
+    var uid: String,
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    var providerType: Type,
+    @Column(nullable = false)
+    var providerId: Int,
+    @Column(nullable = false)
+    var ip: String,
+    @Column(nullable = false)
+    var expiresAt: Instant,
+    @Column
+    var deletedAt: Instant?,
+    @Column(nullable = false)
+    var createdAt: Instant,
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
+    var user: User,
+) {
+    enum class Type {
+        EMAIL, GOOGLE_OAUTH2, WECHAT_OAUTH2, WECHAT_MINI_PROGRAM
     }
 }

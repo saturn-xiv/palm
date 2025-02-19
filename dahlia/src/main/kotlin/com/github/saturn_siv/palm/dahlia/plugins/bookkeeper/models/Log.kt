@@ -5,42 +5,34 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bookkeeper_logs")
-@Entity
-class Log {
-    enum class Type {
-
-    }
-
+@Entity(name = "bookkeeper.log")
+class Log(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var operator: String? = null
-
+    var operator: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var type: Type? = null
-
+    var type: Type,
     @Column(nullable = false)
-    var ip: String? = null
-
+    var ip: String,
     @Column(nullable = false)
-    var message: String? = null
-
+    var message: String,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "team_id")
-    val team: Team? = null
-
+    var team: Team,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "book_id")
-    val book: Book? = null
-
+    var book: Book,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
-    val user: User? = null
+    val user: User,
+) {
+    enum class Type {
+
+    }
 }

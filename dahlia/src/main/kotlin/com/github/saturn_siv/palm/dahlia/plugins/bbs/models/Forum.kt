@@ -4,44 +4,33 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bbs_forums")
-@Entity
-class Forum {
-    enum class Status {
-        OPENING, LOCKED, DISABLED
-    }
-
+@Entity(name = "bbs.forum")
+class Forum(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var slug: String? = null
-
+    var slug: String,
     @Column(nullable = false)
-    var title: String? = null
-
+    var title: String,
     @Column(nullable = false)
-    var description: String? = null
-
+    var description: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var status: Status? = null
-
+    var status: Status,
     @Column(nullable = false)
-    var profile: ByteArray? = null
-
+    var profile: ByteArray,
     @Column
-    var deletedAt: Instant? = null
-
+    var deletedAt: Instant?,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
-
+    var createdAt: Instant,
+) {
+    enum class Status {
+        OPENING, LOCKED, DISABLED
+    }
 }

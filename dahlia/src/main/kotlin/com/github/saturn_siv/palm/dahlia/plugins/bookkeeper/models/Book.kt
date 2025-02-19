@@ -5,50 +5,40 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bookkeeper_books")
-@Entity
-class Book {
-    enum class Status {}
-    enum class Template {}
-
+@Entity(name = "bookkeeper.book")
+class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
-
+    var id: Int,
     @Column(nullable = false)
-    var uid: String? = null
-
+    var uid: String,
     @Column(nullable = false)
-    var template: String? = null
-
+    var template: String,
     @Column(nullable = false)
-    var name: String? = null
-
+    var name: String,
     @Column(nullable = false)
-    var memo: String? = null
-
+    var memo: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var memoEditor: Editor? = null
-
+    var memoEditor: Editor,
     @Column(nullable = false)
-    var profile: ByteArray? = null
-
+    var profile: ByteArray,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var status: Status? = null
-
+    var status: Status,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "team_id")
-    val team: Team? = null
+    var team: Team,
+) {
+    enum class Status {}
+    enum class Template {}
+
+
 }

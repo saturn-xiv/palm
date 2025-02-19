@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-@Service("dahlia.bbs.s")
+@Service("dahlia.bbs.s.bbs")
 class BbsService {
     @Autowired
     private lateinit var forumRepository: ForumRepository

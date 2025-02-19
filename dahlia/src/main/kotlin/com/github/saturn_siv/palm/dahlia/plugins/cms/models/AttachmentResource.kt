@@ -5,26 +5,21 @@ import java.time.Instant
 
 
 @Table(name = "attachment_resources")
-@Entity
-class AttachmentResource {
+@Entity(name = "attachment.resource")
+class AttachmentResource(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var resourceType: String? = null
-
+    var resourceType: String,
     @Column
-    var resourceId: Int? = null
-
+    var resourceId: Int?,
     @Column(nullable = false)
-    var sortOrder: Int? = null
-
+    var sortOrder: Int,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "attachment_id")
-    val attachment: Attachment? = null
-}
+    var attachment: Attachment,
+)

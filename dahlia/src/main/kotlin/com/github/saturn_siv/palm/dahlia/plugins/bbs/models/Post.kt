@@ -6,56 +6,44 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bbs_posts")
-@Entity
-class Post {
-    enum class Status {
-        OPENING, LOCKED
-    }
-
+@Entity(name = "bbs.post")
+class Post(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var body: String? = null
-
+    var body: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var bodyEditor: Editor? = null
-
+    var bodyEditor: Editor,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var status: Status? = null
-
+    var status: Status,
     @Column(nullable = false)
-    var profile: ByteArray? = null
-
+    var profile: ByteArray,
     @Column
-    var deletedAt: Instant? = null
-
+    var deletedAt: Instant?,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
-    val user: User? = null
-
+    var user: User,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "forum_id")
-    val forum: Forum? = null
-
+    var forum: Forum,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "topic_id")
-    val topic: Topic? = null
-
+    var topic: Topic,
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "parent_id")
-    val parent: Post? = null
+    var parent: Post?
+) {
+    enum class Status {
+        OPENING, LOCKED
+    }
 }

@@ -4,28 +4,22 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "currencies")
-@Entity
-class Currency {
+@Entity(name = "currency")
+class Currency(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var code: String? = null
-
+    var code: String,
     @Column(nullable = false)
-    var number: String? = null
-
+    var number: String,
     @Column(nullable = false)
-    var name: String? = null
-
+    var name: String,
     @Column(nullable = false)
-    var country: String? = null
-
+    var country: String,
     @Column(nullable = false)
-    var units: Int? = null
-
+    var units: Int,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-}
+    var createdAt: Instant,
+)

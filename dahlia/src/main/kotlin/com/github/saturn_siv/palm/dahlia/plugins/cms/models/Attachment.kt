@@ -4,47 +4,36 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "attachments")
-@Entity
-class Attachment {
+@Entity(name = "attachment")
+class Attachment(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var bucket: String? = null
-
+    var bucket: String,
     @Column(name = "object", nullable = false)
-    var object_: String? = null
-
+    var object_: String,
     @Column(nullable = false)
-    var title: String? = null
-
+    var title: String,
     @Column(nullable = false)
-    var size: Int? = null
-
+    var size: Int,
     @Column(nullable = false)
-    var contentType: String? = null
-
+    var contentType: String,
     @Column
-    var uploadedAt: Instant? = null
-
+    var uploadedAt: Instant?,
     @Column
-    var deletedAt: Instant? = null
-
+    var deletedAt: Instant?,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
-    @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY, mappedBy = "attachment")
-    val resources = mutableListOf<AttachmentResource>()
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
-    val user: User? = null
+    var user: User,
+) {
+    @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY, mappedBy = "attachment")
+    var resources = mutableSetOf<AttachmentResource>()
 }

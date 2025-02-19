@@ -4,37 +4,28 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "postal_recipients")
-@Entity
-class Recipient {
+@Entity(name = "postal.recipient")
+class Recipient(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column
-    var phone: String? = null
-
+    var phone: String?,
     @Column
-    var fax: String? = null
-
+    var fax: String?,
     @Column
-    var email: String? = null
-
+    var email: String?,
     @Column
-    var whatsapp: String? = null
-
+    var whatsapp: String?,
     @Column
-    var wechat: String? = null
-
+    var wechat: String?,
     @Column
-    var deletedAt: Instant? = null
-
+    var deletedAt: Instant?,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-}
+    var createdAt: Instant,
+)

@@ -5,54 +5,41 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bookkeeper_commodities")
-@Entity
-class Commodity {
+@Entity(name = "bookkeeper.commodity")
+class Commodity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var name: String? = null
-
+    var name: String,
     @Column(nullable = false)
-    var amount: Int? = null
-
+    var amount: Int,
     @Column(nullable = false)
-    var unitPrice: Int? = null
-
+    var unitPrice: Int,
     @Column(nullable = false)
-    var totalPrice: Int? = null
-
+    var totalPrice: Int,
     @Column(nullable = false)
-    var memo: String? = null
-
+    var memo: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    var memoEditor: Editor? = null
-
+    var memoEditor: Editor,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "team_id")
-    val team: Team? = null
-
+    var team: Team,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "book_id")
-    val book: Book? = null
-
+    var book: Book,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id")
-    val order: Order? = null
-
+    var order: Order,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "vendor_id")
-    val vendor: Vendor? = null
-}
+    var vendor: Vendor,
+)

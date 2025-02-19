@@ -4,28 +4,23 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "bookkeeper_transactions")
-@Entity
-class Transaction {
+@Entity(name = "bookkeeper,transaction")
+class Transaction(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var content: ByteArray? = null
-
+    var content: ByteArray,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-
+    var createdAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "team_id")
-    val team: Team? = null
-
+    var team: Team,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "book_id")
-    val book: Book? = null
-
+    var book: Book,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id")
-    val order: Order? = null
-}
+    var order: Order,
+)

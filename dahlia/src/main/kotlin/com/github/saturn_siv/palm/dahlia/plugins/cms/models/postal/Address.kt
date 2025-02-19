@@ -4,52 +4,38 @@ import jakarta.persistence.*
 import java.time.Instant
 
 @Table(name = "postal_addresses")
-@Entity
-class Address {
+@Entity(name = "postal.address")
+class Address(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int? = null
-
+    var id: Int,
     @Column(nullable = false)
-    var unit: String? = null;
-
+    var unit: String,
     @Column
-    var building: String? = null;
-
+    var building: String?,
     @Column(nullable = false)
-    var street: String? = null;
-
+    var street: String,
     @Column(nullable = false)
-    var city: String? = null;
-
+    var city: String,
     @Column(nullable = false)
-    var province: String? = null;
-
+    var province: String,
     @Column(nullable = false)
-    var country: String? = null;
-
+    var country: String,
     @Column(nullable = false)
-    var zipCode: String? = null;
-
+    var zipCode: String,
     @Column
-    var passcode: String? = null;
-
+    var passcode: String?,
     @Column
-    var googleMap: String? = null;
-
+    var googleMap: String?,
     @Column
-    var aMap: String? = null;
-
+    var aMap: String?,
     @Column
-    var deletedAt: Instant? = null
-
+    var deletedAt: Instant?,
     @Column(nullable = false)
-    var version: Int? = null
-
+    var version: Int,
     @Column(nullable = false)
-    var updatedAt: Instant? = null
-
+    var updatedAt: Instant,
     @Column(nullable = false)
-    var createdAt: Instant? = null
-}
+    var createdAt: Instant,
+)

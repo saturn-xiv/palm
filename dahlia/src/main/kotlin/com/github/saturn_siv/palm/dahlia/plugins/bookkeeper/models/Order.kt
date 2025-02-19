@@ -86,6 +86,7 @@ class Order {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "creditor_id")
     val creditor: Account? = null
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "vendor_id")
     val vendor: Vendor? = null
