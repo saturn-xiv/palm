@@ -30,7 +30,6 @@
             <column name="status" type="varchar(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="deleted_at" type="timestamp without time zone"/>
             <column name="version" type="integer" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
