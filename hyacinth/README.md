@@ -1,0 +1,7 @@
+# HYACINTH
+
+## Usage
+
+```bash
+xmake
+```
