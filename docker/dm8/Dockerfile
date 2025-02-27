@@ -18,8 +18,9 @@ USER dmdba
 RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
 
 # Install dm8 server
-COPY downloads/DMInstall.bin /opt/
+COPY downloads/DMInstall.bin downloads/DMInstall.bin.md5 /opt/
 RUN sudo chmod 555 /opt/DMInstall.bin
+RUN sudo chmod 444 /opt/DMInstall.bin.md5
 
 COPY downloads/dm.key /etc/
 RUN sudo chmod 400 /etc/dm.key
