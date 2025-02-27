@@ -2,10 +2,12 @@ package com.github.saturn_siv.palm.dahlia.plugins.cms.models
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.time.Instant
 
 
 class CurrentUser : UserDetails {
-    private lateinit var uid: String;
+    private lateinit var user: User
+    private lateinit var expiresAt: Instant
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
 //        TODO
@@ -18,26 +20,22 @@ class CurrentUser : UserDetails {
     }
 
     override fun getUsername(): String {
-        return this.uid
+        return this.user.uid
     }
 
     override fun isAccountNonExpired(): Boolean {
-//        TODO
         return true
     }
 
     override fun isAccountNonLocked(): Boolean {
-//        TODO
-        return true
+        return this.user.lockedAt != null
     }
 
     override fun isCredentialsNonExpired(): Boolean {
-//        TODO
-        return true
+        return this.expiresAt.isAfter(Instant.now())
     }
 
     override fun isEnabled(): Boolean {
-//        TODO
-        return true
+        return this.user.deletedAt != null
     }
 }
