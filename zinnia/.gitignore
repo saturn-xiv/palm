@@ -1,4 +1,6 @@
 /tmp/
+/config.toml
+/.pid
 
 __pycache__/
 /*.egg-info/

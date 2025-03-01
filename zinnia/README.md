@@ -10,9 +10,12 @@ $ ./saturn-xiv/palm/zinnia/docker/start.sh
 > source $HOME/local/python3/bin/activate
 > pip install -U pip setuptools
 > pip install -e .
+> pip list
 
 # start web server
-> gunicorn -b 127.0.0.1:8080 -k gevent 'zinnia.web:create_app()'
+> FLASK_ASSETS_VERSION=20250301 gunicorn -k gevent -w 4 -b 127.0.0.1:8080 -p .pid 'zinnia.web:create_app(debug=True, config_file="config.toml")'
+# stop web server
+> kill -15 $(cat /tmp/zinnia.pid)
 ```
 
 ## Documents
@@ -20,6 +23,9 @@ $ ./saturn-xiv/palm/zinnia/docker/start.sh
 - [Tink Cryptographic Library](https://developers.google.com/tink)
 - [Casbin](https://casbin.org/docs/get-started)
 - [Protobuf 3](https://protobuf.dev/programming-guides/proto3/)
+- [Sitemaps XML format](https://www.sitemaps.org/protocol.html)
+- [Introduction to robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
+- [IndexNow.org](https://www.indexnow.org/documentation)
 
 ### Frontend
 
