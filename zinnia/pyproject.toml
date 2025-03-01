@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zinnia"
-version = "2025.3.1"
+version = "2025.3.2"
 dependencies = [
     "tink",
     "redis[hiredis]",
@@ -23,8 +23,7 @@ dependencies = [
 
     "graphene>=3.1",
     "Flask",
-    "gevent",
-    "gunicorn",
+    "gunicorn[gevent]",
 ]
 
 [project.scripts]

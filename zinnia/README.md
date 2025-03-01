@@ -26,6 +26,7 @@ $ ./saturn-xiv/palm/zinnia/docker/start.sh
 - [Sitemaps XML format](https://www.sitemaps.org/protocol.html)
 - [Introduction to robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
 - [IndexNow.org](https://www.indexnow.org/documentation)
+- [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
 
 ### Frontend
 

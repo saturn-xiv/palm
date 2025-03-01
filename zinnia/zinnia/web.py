@@ -2,24 +2,18 @@ import os
 import logging
 
 from flask import Flask
+import gunicorn.app.base
 
-from . import bbs, cms, questionnaire, bookkeeper
-
-app = Flask(__name__)
+from . import bbs, cms, questionnaire, bookkeeper, HTTP_STATUS_NOT_FOUND, HTTP_STATUS_INTERNAL_SERVER_ERROR
 
 
 def create_app(debug, config_file):
     app = Flask(__name__, instance_relative_config=True)
-    app.logger.info("aaa")
 
+    app.debug = debug
     app.logger.setLevel(logging.DEBUG if debug else logging.INFO)
-    if debug:
-        app.logger.debug("run on debug mode")
-    else:
-        app.logger.setLevel(logging.INFO)
-
     app.logger.info("load configuration from %s", config_file)
-    app.config.from_prefixed_env()
+    # app.config.from_prefixed_env()
 
     try:
         os.makedirs(app.instance_path)
@@ -35,9 +29,28 @@ def create_app(debug, config_file):
     app.add_url_rule('/<lang>/sitemap.xml', view_func=cms.sitemap_xml_by_lang)
     app.add_url_rule('/sitemap.xml', view_func=cms.sitemap_xml)
     app.add_url_rule('/robots.txt', view_func=cms.robots_txt)
+    app.add_url_rule('/nginx.conf', view_func=cms.nginx_conf)
     app.add_url_rule('/', view_func=cms.home)
 
-    app.register_error_handler(404, cms.not_found)
-    app.register_error_handler(500, cms.internal_server)
+    app.register_error_handler(HTTP_STATUS_NOT_FOUND, cms.not_found)
+    app.register_error_handler(
+        HTTP_STATUS_INTERNAL_SERVER_ERROR, cms.internal_server)
 
     return app
+
+
+class StandaloneApplication(gunicorn.app.base.BaseApplication):
+
+    def __init__(self, app, options=None):
+        self.options = options or {}
+        self.application = app
+        super().__init__()
+
+    def load_config(self):
+        config = {key: value for key, value in self.options.items()
+                  if key in self.cfg.settings and value is not None}
+        for key, value in config.items():
+            self.cfg.set(key.lower(), value)
+
+    def load(self):
+        return self.application
