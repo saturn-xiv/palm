@@ -4,7 +4,28 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zinnia"
-version = "1.0.0"
+version = "2025.3.1"
+dependencies = [
+    "tink",
+    "redis[hiredis]",
+    "pika",
+    "minio",
+    "opensearch-dsl",
+    "twilio",
+
+    "mariadb",
+    "psycopg[binary,pool]",
+    "SQLAlchemy",
+
+    "casbin",
+    "sqlalchemy_adapter",
+    "casbin-rabbitmq-watcher",
+
+    "graphene>=3.1",
+    "Flask",
+    "gevent",
+    "gunicorn",
+]
 
 [project.scripts]
 phlox = "zinnia.__main__:main"

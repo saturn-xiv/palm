@@ -5,7 +5,6 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    # filename='zinnia.log',
     logging.basicConfig(level=logging.DEBUG)
     logger.info("start")
 
