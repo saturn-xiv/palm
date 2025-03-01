@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zinnia"
+version = "1.0.0"
+
+[project.scripts]
+phlox = "zinnia.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
