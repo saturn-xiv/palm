@@ -5,7 +5,7 @@ import multiprocessing
 import importlib.metadata
 
 
-from . import web, is_stopped
+from . import web, rpc, is_stopped
 
 logger = logging.getLogger(__name__)
 
@@ -16,20 +16,16 @@ def launch_web_server(args):
         logger.error(
             f"num of workers must too small(at last {MINIMAL_NUM_OF_WORKERS})")
         return
-
-    web.StandaloneApplication(
-        web.create_app(args.debug, args.config),
-        {
-            'bind': '%s:%s' % (args.host, args.port),
-            'workers': args.workers,
-            # 'worker_class': 'sync',
-        }
-    ).run()
+    web.launch(args.debug, args.host, args.port, args.workers, args.config)
 
 
 def launch_rpc_server(args):
-    logger.info("start a gRPC server listening on tcp://127.0.0.1:%d", args.port)
-    # TODO
+    MINIMAL_NUM_OF_WORKERS = 2
+    if args.workers < MINIMAL_NUM_OF_WORKERS:
+        logger.error(
+            f"num of workers must too small(at last {MINIMAL_NUM_OF_WORKERS})")
+        return
+    rpc.launch(args.host, args.port, args.workers)
 
 
 def launch_queue_consumer(args):
@@ -78,7 +74,7 @@ def main():
     subparsers = parser.add_subparsers(required=True, help='sub-commands help')
 
     parser_web = subparsers.add_parser(
-        'launch-web-server', help='start a http server')    
+        'launch-web-server', help='start a http server')
     parser_web.add_argument('-H', '--host',  default='127.0.0.1')
     parser_web.add_argument('-p', '--port', type=int, default=8080)
     parser_web.add_argument('-w', '--workers', type=int,
@@ -89,6 +85,8 @@ def main():
         'launch-rpc-server', help='start a gRPC server')
     parser_rpc.add_argument('-H', '--host',  default='127.0.0.1')
     parser_rpc.add_argument('-p', '--port', type=int, default=8080)
+    parser_rpc.add_argument('-w', '--workers', type=int,
+                            default=(multiprocessing.cpu_count() * 2) + 1)
     parser_rpc.set_defaults(func=launch_rpc_server)
 
     parser_consumer = subparsers.add_parser(

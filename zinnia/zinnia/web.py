@@ -6,6 +6,21 @@ import gunicorn.app.base
 
 from . import bbs, cms, questionnaire, bookkeeper, HTTP_STATUS_NOT_FOUND, HTTP_STATUS_INTERNAL_SERVER_ERROR
 
+logger = logging.getLogger(__name__)
+
+
+def launch(debug, host, port, num_of_workers, config_file):
+    # https://docs.gunicorn.org/en/latest/settings.html#worker-class
+    StandaloneApplication(
+        create_app(debug, config_file),
+        {
+            'bind': '%s:%d' % (host, port),
+            'workers': num_of_workers,
+            'worker_class': 'sync',
+            'loglevel': 'debug' if debug else 'info',
+        }
+    ).run()
+
 
 def create_app(debug, config_file):
     app = Flask(__name__, instance_relative_config=True)

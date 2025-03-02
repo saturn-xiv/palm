@@ -2,10 +2,19 @@
 
 set -e
 
+export WORKDIR=$PWD
+
 function generate_for_zinnia() {
-    python -m grpc_tools.protoc -Igrpc/example/custom/path=../../protos \
+    echo 'generate protocols for zinnia'
+
+    cd $WORKDIR
+    python -m grpc_tools.protoc \
+        -I/usr/local/include \
+        -Izinnia/protocols=$WORKDIR/protocols \
         --python_out=. --grpc_python_out=. \
-        ../../protos/route_guide.proto
+        $WORKDIR/protocols/*.proto
 }
+
+generate_for_zinnia
 
 echo 'done.'
