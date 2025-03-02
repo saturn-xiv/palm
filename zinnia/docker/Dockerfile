@@ -15,7 +15,7 @@ RUN apt -y autoremove
 RUN apt -y clean
 
 # https://grpc.io/docs/protoc-installation/
-ARG PROTOBUF_VERSION="v25.6"
+ARG PROTOBUF_VERSION="25.6"
 # aarch_64
 ARG PROTOBUF_ARCH="x86_64" 
 RUN wget -q -P $HOME/downloads \
@@ -28,7 +28,7 @@ RUN npm install -g @bazel/bazelisk
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 RUN locale-gen
 
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace

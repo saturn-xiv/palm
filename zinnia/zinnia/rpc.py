@@ -1,6 +1,7 @@
 import logging
 import threading
 import signal
+import os
 from time import sleep
 from concurrent import futures
 
@@ -15,8 +16,11 @@ from .cms.rpc import CmsServer
 logger = logging.getLogger(__name__)
 
 
-def launch(host, port, max_workers):
+def launch(host, port, max_workers, tls, config_file):
     addr = '%s:%s' % (host, port)
+
+    logger.info("load configuration from %s", config_file)
+
     server = grpc.server(futures.ThreadPoolExecutor(max_workers))
     zinnia_pb2_grpc.add_CmsServicer_to_server(CmsServer(), server)
     SERVICE_NAMES = (
@@ -24,7 +28,17 @@ def launch(host, port, max_workers):
         reflection.SERVICE_NAME,
     )
     reflection.enable_server_reflection(SERVICE_NAMES, server)
-    server.add_insecure_port(addr)
+    if tls:
+        ca_cert = open(os.path.join(tls, 'ca.crt')).read()
+        server_key = open(os.path.join(tls, 'server.key')).read()
+        server_cert = open(os.path.join(tls, 'server.crt')).read()
+        server.add_secure_port(
+            addr,
+            grpc.ssl_server_credentials(
+                [(server_key, server_cert)], root_certificates=ca_cert, require_client_auth=False)
+        )
+    else:
+        server.add_insecure_port(addr)
     _configure_health_server(server, max_workers)
     server.start()
     logger.info(

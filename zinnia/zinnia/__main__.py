@@ -25,7 +25,7 @@ def launch_rpc_server(args):
         logger.error(
             f"num of workers must too small(at last {MINIMAL_NUM_OF_WORKERS})")
         return
-    rpc.launch(args.host, args.port, args.workers)
+    rpc.launch(args.host, args.port, args.workers, args.tls, args.config)
 
 
 def launch_queue_consumer(args):
@@ -75,7 +75,7 @@ def main():
 
     parser_web = subparsers.add_parser(
         'launch-web-server', help='start a http server')
-    parser_web.add_argument('-H', '--host',  default='127.0.0.1')
+    parser_web.add_argument('-H', '--host', default='127.0.0.1')
     parser_web.add_argument('-p', '--port', type=int, default=8080)
     parser_web.add_argument('-w', '--workers', type=int,
                             default=(multiprocessing.cpu_count() * 2) + 1)
@@ -83,8 +83,10 @@ def main():
 
     parser_rpc = subparsers.add_parser(
         'launch-rpc-server', help='start a gRPC server')
-    parser_rpc.add_argument('-H', '--host',  default='127.0.0.1')
+    parser_rpc.add_argument('-H', '--host', default='127.0.0.1')
     parser_rpc.add_argument('-p', '--port', type=int, default=8080)
+    parser_rpc.add_argument(
+        '-S', '--tls', help="load tls(ca.crt, server.crt, server.key) from this folder")
     parser_rpc.add_argument('-w', '--workers', type=int,
                             default=(multiprocessing.cpu_count() * 2) + 1)
     parser_rpc.set_defaults(func=launch_rpc_server)
