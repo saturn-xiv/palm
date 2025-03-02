@@ -4,25 +4,25 @@ import argparse
 import multiprocessing
 import importlib.metadata
 
-from . import web
+
+from . import web, is_stopped
 
 logger = logging.getLogger(__name__)
 
 
 def launch_web_server(args):
-    if args.workers < 4:
-        logger.error("num of workers must too small(at last 4)")
+    MINIMAL_NUM_OF_WORKERS = 2
+    if args.workers < MINIMAL_NUM_OF_WORKERS:
+        logger.error(
+            f"num of workers must too small(at last {MINIMAL_NUM_OF_WORKERS})")
         return
-    addr = '%s:%s' % ('127.0.0.1', args.port)
-    logger.info("start a http server listening on http://%s with %d workers",
-                addr, args.workers)
 
     web.StandaloneApplication(
         web.create_app(args.debug, args.config),
         {
-            'bind': addr,
+            'bind': '%s:%s' % (args.host, args.port),
             'workers': args.workers,
-            'worker_class': 'gevent',
+            # 'worker_class': 'sync',
         }
     ).run()
 
@@ -33,6 +33,7 @@ def launch_rpc_server(args):
 
 
 def launch_queue_consumer(args):
+    _check_stopped()
     logger.info("start a queue consumer(%s) for job %s with %ds task intervals",
                 args.name, args.job, args.interval)
     # TODO
@@ -58,6 +59,12 @@ def delete_roles_for_user(args):
     # TODO
 
 
+def _check_stopped():
+    if is_stopped():
+        logger.warning(".stop file exists, exit...")
+        sys.exit()
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='A total free education & translation solution.',
@@ -70,18 +77,22 @@ def main():
                         version='%(prog)s ({version})'.format(version=importlib.metadata.version('zinnia')))
     subparsers = parser.add_subparsers(required=True, help='sub-commands help')
 
-    parser_web = subparsers.add_parser('web', help='start a http server')
+    parser_web = subparsers.add_parser(
+        'launch-web-server', help='start a http server')    
+    parser_web.add_argument('-H', '--host',  default='127.0.0.1')
     parser_web.add_argument('-p', '--port', type=int, default=8080)
     parser_web.add_argument('-w', '--workers', type=int,
                             default=(multiprocessing.cpu_count() * 2) + 1)
     parser_web.set_defaults(func=launch_web_server)
 
-    parser_rpc = subparsers.add_parser('rpc', help='start a gRPC server')
+    parser_rpc = subparsers.add_parser(
+        'launch-rpc-server', help='start a gRPC server')
+    parser_rpc.add_argument('-H', '--host',  default='127.0.0.1')
     parser_rpc.add_argument('-p', '--port', type=int, default=8080)
     parser_rpc.set_defaults(func=launch_rpc_server)
 
     parser_consumer = subparsers.add_parser(
-        'consumer', help='start a queue consumer')
+        'launch-queue-consumer', help='start a queue consumer')
     parser_consumer.add_argument('-i', '--interval', type=int,
                                  default=1, help='intervals between tasks(in seconds)')
     parser_consumer.add_argument('-n', '--name', required=True)

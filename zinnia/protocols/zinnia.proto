@@ -1,0 +1,73 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.zinnia.v1";
+option go_package = "./;v2";
+package palm.zinnia.v1;
+
+import "google/protobuf/empty.proto";
+// ----------------------------------------------------------------------------
+
+service Cms {
+  rpc Measure(google.protobuf.Empty) returns (CmsMeasureResponse) {}
+}
+
+message CmsMeasureResponse {
+  string version = 99;
+}
+
+// ----------------------------------------------------------------------------
+
+message TexToPdfTask {
+  message Output {
+    string bucket = 1;
+    string object = 2;
+  }
+  message Input {
+    enum Type {
+      Book = 0;
+      Slideshow = 2;
+    }
+    string entry = 1;
+    map<string, string> files = 2;
+    Type type = 9;
+  }
+
+  Input input = 1;
+  Output output = 2;
+}
+
+// ----------------------------------------------------------------------------
+
+message EmailTask {
+  message Address {
+    string name = 1;
+    string email = 2;
+  }
+  message Body {
+    string content = 1;
+    bool html = 2;
+  }
+  message File {
+    string name = 1;
+    bytes body = 2;
+    string content_type = 3;
+  }
+
+  string subject = 1;
+  Body body = 2;
+  repeated File attachments = 9;
+
+  Address to = 11;
+  repeated Address cc = 12;
+  repeated Address bcc = 13;
+}
+
+// ----------------------------------------------------------------------------
+
+message SmsTask {
+  string message = 1;
+  repeated string to = 2;
+  optional string callback = 9;
+}
+
+// ----------------------------------------------------------------------------

@@ -23,6 +23,7 @@ $ ./saturn-xiv/palm/zinnia/docker/start.sh
 - [Tink Cryptographic Library](https://developers.google.com/tink)
 - [Casbin](https://casbin.org/docs/get-started)
 - [Protobuf 3](https://protobuf.dev/programming-guides/proto3/)
+- [Protocol Buffers Version Support](https://protobuf.dev/support/version-support/)
 - [Sitemaps XML format](https://www.sitemaps.org/protocol.html)
 - [Introduction to robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
 - [IndexNow.org](https://www.indexnow.org/documentation)

@@ -1,3 +1,7 @@
+import logging
+from pathlib import Path
+
+
 HTTP_HEADER_CONTENT_TYPE = "Content-Type"
 
 CONTENT_TYPE_TEXT_PLAIN_UTF8 = "text/plain; charset=utf-8"
@@ -7,3 +11,11 @@ CONTENT_TYPE_APPLICATION_XML = "application/xml"
 HTTP_STATUS_OK = 200
 HTTP_STATUS_NOT_FOUND = 400
 HTTP_STATUS_INTERNAL_SERVER_ERROR = 500
+
+
+logger = logging.getLogger(__name__)
+
+
+def is_stopped():
+    it = Path(".stop")
+    return it.is_file()
