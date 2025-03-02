@@ -27,6 +27,7 @@ dependencies = [
 
     "grpcio == 1.62.3",
     "grpcio-tools == 1.62.3",
+    "grpcio-reflection == 1.62.3",
 ]
 
 [project.scripts]
