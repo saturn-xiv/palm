@@ -1,5 +1,6 @@
 import logging
 import threading
+import signal
 from time import sleep
 from concurrent import futures
 
@@ -28,7 +29,18 @@ def launch(host, port, max_workers):
     server.start()
     logger.info(
         "rpc server started, listening on tcp://%s with %d workers", addr, max_workers)
-    server.wait_for_termination()
+    # server.wait_for_termination()
+    done = threading.Event()
+
+    def on_done(signum, frame):
+        logger.warning('got signal {}'.format(signum))
+        done.set()
+    signal.signal(signal.SIGTERM, on_done)
+    signal.signal(signal.SIGINT, on_done)
+    done.wait()
+    logger.info('stopped RPC server, waiting for RPCs to complete...')
+    server.stop(3).wait()
+    logger.info('done stopping server')
 
 
 def _health_server(health_servicer: health.HealthServicer, service: str):
