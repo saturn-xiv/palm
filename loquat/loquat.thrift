@@ -2,25 +2,42 @@ namespace cpp loquat.v1
 namespace java com.github.saturn_xiv.palm.plugins.loquat.v1
 
 struct JwtVerifyResponse{
-    1:string subject,
-    2:string payload,
+    1:optional string jwt_id,
+    2:optional string key_id,
+    8:required string subject,
+    9:optional binary payload,
+}
+
+struct JwtSignRequest{
+    1:optional string jwt_id,
+    2:optional string key_id,
+
+    11:required string issuer,
+    12:required string subject,
+    13:required set<string> audiences,
+
+    21:required i64 issued_at,
+    22:required i64 not_before,
+    23:required i64 expired_at,
+
+    99:optional binary payload,
 }
 
 service Jwt {
-    string sign(1:string app_id, 2:string issuer, 3:string subject, 4:string audience, 5:i64 ttl, 6: string payload);
-    JwtVerifyResponse verify(1:string app_id, 2:string token, 3:string issuer, 4:string audience);
+    string sign(1:JwtSignRequest request);
+    JwtVerifyResponse verify(1:string token, 2:string issuer, 3:string audience);
 }
 
 service HMac {
-    binary sign(1:string app_id, 2:binary plain);
-    void verify(1:string app_id, 2:binary code, 3:binary plain);
+    binary sign(1:binary plain);
+    void verify(1:binary code, 2:binary plain);
 }
 
 service Aes {
-    binary encrypt(1:string app_id, 2:binary plain);
-    binary decrypt(1:string app_id, 2:binary code);
+    binary encrypt(1:binary plain);
+    binary decrypt(1:binary code);
 }
 
 service Health {
-  void check();
+  map<string,string> check();
 }

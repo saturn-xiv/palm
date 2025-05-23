@@ -22,8 +22,8 @@ namespace loquat { namespace v1 {
 class HMacIf {
  public:
   virtual ~HMacIf() {}
-  virtual void sign(std::string& _return, const std::string& app_id, const std::string& plain) = 0;
-  virtual void verify(const std::string& app_id, const std::string& code, const std::string& plain) = 0;
+  virtual void sign(std::string& _return, const std::string& plain) = 0;
+  virtual void verify(const std::string& code, const std::string& plain) = 0;
 };
 
 class HMacIfFactory {
@@ -53,17 +53,16 @@ class HMacIfSingletonFactory : virtual public HMacIfFactory {
 class HMacNull : virtual public HMacIf {
  public:
   virtual ~HMacNull() {}
-  void sign(std::string& /* _return */, const std::string& /* app_id */, const std::string& /* plain */) override {
+  void sign(std::string& /* _return */, const std::string& /* plain */) override {
     return;
   }
-  void verify(const std::string& /* app_id */, const std::string& /* code */, const std::string& /* plain */) override {
+  void verify(const std::string& /* code */, const std::string& /* plain */) override {
     return;
   }
 };
 
 typedef struct _HMac_sign_args__isset {
-  _HMac_sign_args__isset() : app_id(false), plain(false) {}
-  bool app_id :1;
+  _HMac_sign_args__isset() : plain(false) {}
   bool plain :1;
 } _HMac_sign_args__isset;
 
@@ -75,12 +74,9 @@ class HMac_sign_args {
   HMac_sign_args() noexcept;
 
   virtual ~HMac_sign_args() noexcept;
-  std::string app_id;
   std::string plain;
 
   _HMac_sign_args__isset __isset;
-
-  void __set_app_id(const std::string& val);
 
   void __set_plain(const std::string& val);
 
@@ -102,7 +98,6 @@ class HMac_sign_pargs {
 
 
   virtual ~HMac_sign_pargs() noexcept;
-  const std::string* app_id;
   const std::string* plain;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -159,8 +154,7 @@ class HMac_sign_presult {
 };
 
 typedef struct _HMac_verify_args__isset {
-  _HMac_verify_args__isset() : app_id(false), code(false), plain(false) {}
-  bool app_id :1;
+  _HMac_verify_args__isset() : code(false), plain(false) {}
   bool code :1;
   bool plain :1;
 } _HMac_verify_args__isset;
@@ -173,13 +167,10 @@ class HMac_verify_args {
   HMac_verify_args() noexcept;
 
   virtual ~HMac_verify_args() noexcept;
-  std::string app_id;
   std::string code;
   std::string plain;
 
   _HMac_verify_args__isset __isset;
-
-  void __set_app_id(const std::string& val);
 
   void __set_code(const std::string& val);
 
@@ -203,7 +194,6 @@ class HMac_verify_pargs {
 
 
   virtual ~HMac_verify_pargs() noexcept;
-  const std::string* app_id;
   const std::string* code;
   const std::string* plain;
 
@@ -269,11 +259,11 @@ class HMacClient : virtual public HMacIf {
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void sign(std::string& _return, const std::string& app_id, const std::string& plain) override;
-  void send_sign(const std::string& app_id, const std::string& plain);
+  void sign(std::string& _return, const std::string& plain) override;
+  void send_sign(const std::string& plain);
   void recv_sign(std::string& _return);
-  void verify(const std::string& app_id, const std::string& code, const std::string& plain) override;
-  void send_verify(const std::string& app_id, const std::string& code, const std::string& plain);
+  void verify(const std::string& code, const std::string& plain) override;
+  void send_verify(const std::string& code, const std::string& plain);
   void recv_verify();
  protected:
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
@@ -325,23 +315,23 @@ class HMacMultiface : virtual public HMacIf {
     ifaces_.push_back(iface);
   }
  public:
-  void sign(std::string& _return, const std::string& app_id, const std::string& plain) override {
+  void sign(std::string& _return, const std::string& plain) override {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->sign(_return, app_id, plain);
+      ifaces_[i]->sign(_return, plain);
     }
-    ifaces_[i]->sign(_return, app_id, plain);
+    ifaces_[i]->sign(_return, plain);
     return;
   }
 
-  void verify(const std::string& app_id, const std::string& code, const std::string& plain) override {
+  void verify(const std::string& code, const std::string& plain) override {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->verify(app_id, code, plain);
+      ifaces_[i]->verify(code, plain);
     }
-    ifaces_[i]->verify(app_id, code, plain);
+    ifaces_[i]->verify(code, plain);
   }
 
 };
@@ -376,11 +366,11 @@ class HMacConcurrentClient : virtual public HMacIf {
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void sign(std::string& _return, const std::string& app_id, const std::string& plain) override;
-  int32_t send_sign(const std::string& app_id, const std::string& plain);
+  void sign(std::string& _return, const std::string& plain) override;
+  int32_t send_sign(const std::string& plain);
   void recv_sign(std::string& _return, const int32_t seqid);
-  void verify(const std::string& app_id, const std::string& code, const std::string& plain) override;
-  int32_t send_verify(const std::string& app_id, const std::string& code, const std::string& plain);
+  void verify(const std::string& code, const std::string& plain) override;
+  int32_t send_verify(const std::string& code, const std::string& plain);
   void recv_verify(const int32_t seqid);
  protected:
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;

@@ -22,7 +22,7 @@ namespace loquat { namespace v1 {
 class HealthIf {
  public:
   virtual ~HealthIf() {}
-  virtual void check() = 0;
+  virtual void check(std::map<std::string, std::string> & _return) = 0;
 };
 
 class HealthIfFactory {
@@ -52,7 +52,7 @@ class HealthIfSingletonFactory : virtual public HealthIfFactory {
 class HealthNull : virtual public HealthIf {
  public:
   virtual ~HealthNull() {}
-  void check() override {
+  void check(std::map<std::string, std::string> & /* _return */) override {
     return;
   }
 };
@@ -90,17 +90,26 @@ class Health_check_pargs {
 
 };
 
+typedef struct _Health_check_result__isset {
+  _Health_check_result__isset() : success(false) {}
+  bool success :1;
+} _Health_check_result__isset;
 
 class Health_check_result {
  public:
 
-  Health_check_result(const Health_check_result&) noexcept;
-  Health_check_result& operator=(const Health_check_result&) noexcept;
+  Health_check_result(const Health_check_result&);
+  Health_check_result& operator=(const Health_check_result&);
   Health_check_result() noexcept;
 
   virtual ~Health_check_result() noexcept;
+  std::map<std::string, std::string>  success;
 
-  bool operator == (const Health_check_result & /* rhs */) const;
+  _Health_check_result__isset __isset;
+
+  void __set_success(const std::map<std::string, std::string> & val);
+
+  bool operator == (const Health_check_result & rhs) const;
   bool operator != (const Health_check_result &rhs) const {
     return !(*this == rhs);
   }
@@ -112,12 +121,19 @@ class Health_check_result {
 
 };
 
+typedef struct _Health_check_presult__isset {
+  _Health_check_presult__isset() : success(false) {}
+  bool success :1;
+} _Health_check_presult__isset;
 
 class Health_check_presult {
  public:
 
 
   virtual ~Health_check_presult() noexcept;
+  std::map<std::string, std::string> * success;
+
+  _Health_check_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
@@ -148,9 +164,9 @@ class HealthClient : virtual public HealthIf {
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void check() override;
+  void check(std::map<std::string, std::string> & _return) override;
   void send_check();
-  void recv_check();
+  void recv_check(std::map<std::string, std::string> & _return);
  protected:
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -199,13 +215,14 @@ class HealthMultiface : virtual public HealthIf {
     ifaces_.push_back(iface);
   }
  public:
-  void check() override {
+  void check(std::map<std::string, std::string> & _return) override {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->check();
+      ifaces_[i]->check(_return);
     }
-    ifaces_[i]->check();
+    ifaces_[i]->check(_return);
+    return;
   }
 
 };
@@ -240,9 +257,9 @@ class HealthConcurrentClient : virtual public HealthIf {
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void check() override;
+  void check(std::map<std::string, std::string> & _return) override;
   int32_t send_check();
-  void recv_check(const int32_t seqid);
+  void recv_check(std::map<std::string, std::string> & _return, const int32_t seqid);
  protected:
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;

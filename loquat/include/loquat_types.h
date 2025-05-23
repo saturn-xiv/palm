@@ -23,9 +23,12 @@ namespace loquat { namespace v1 {
 
 class JwtVerifyResponse;
 
+class JwtSignRequest;
+
 typedef struct _JwtVerifyResponse__isset {
-  _JwtVerifyResponse__isset() : subject(false), payload(false) {}
-  bool subject :1;
+  _JwtVerifyResponse__isset() : jwt_id(false), key_id(false), payload(false) {}
+  bool jwt_id :1;
+  bool key_id :1;
   bool payload :1;
 } _JwtVerifyResponse__isset;
 
@@ -37,10 +40,16 @@ class JwtVerifyResponse : public virtual ::apache::thrift::TBase {
   JwtVerifyResponse() noexcept;
 
   virtual ~JwtVerifyResponse() noexcept;
+  std::string jwt_id;
+  std::string key_id;
   std::string subject;
   std::string payload;
 
   _JwtVerifyResponse__isset __isset;
+
+  void __set_jwt_id(const std::string& val);
+
+  void __set_key_id(const std::string& val);
 
   void __set_subject(const std::string& val);
 
@@ -62,6 +71,68 @@ class JwtVerifyResponse : public virtual ::apache::thrift::TBase {
 void swap(JwtVerifyResponse &a, JwtVerifyResponse &b);
 
 std::ostream& operator<<(std::ostream& out, const JwtVerifyResponse& obj);
+
+typedef struct _JwtSignRequest__isset {
+  _JwtSignRequest__isset() : jwt_id(false), key_id(false), payload(false) {}
+  bool jwt_id :1;
+  bool key_id :1;
+  bool payload :1;
+} _JwtSignRequest__isset;
+
+class JwtSignRequest : public virtual ::apache::thrift::TBase {
+ public:
+
+  JwtSignRequest(const JwtSignRequest&);
+  JwtSignRequest& operator=(const JwtSignRequest&);
+  JwtSignRequest() noexcept;
+
+  virtual ~JwtSignRequest() noexcept;
+  std::string jwt_id;
+  std::string key_id;
+  std::string issuer;
+  std::string subject;
+  std::set<std::string>  audiences;
+  int64_t issued_at;
+  int64_t not_before;
+  int64_t expired_at;
+  std::string payload;
+
+  _JwtSignRequest__isset __isset;
+
+  void __set_jwt_id(const std::string& val);
+
+  void __set_key_id(const std::string& val);
+
+  void __set_issuer(const std::string& val);
+
+  void __set_subject(const std::string& val);
+
+  void __set_audiences(const std::set<std::string> & val);
+
+  void __set_issued_at(const int64_t val);
+
+  void __set_not_before(const int64_t val);
+
+  void __set_expired_at(const int64_t val);
+
+  void __set_payload(const std::string& val);
+
+  bool operator == (const JwtSignRequest & rhs) const;
+  bool operator != (const JwtSignRequest &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const JwtSignRequest & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot) override;
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const override;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(JwtSignRequest &a, JwtSignRequest &b);
+
+std::ostream& operator<<(std::ostream& out, const JwtSignRequest& obj);
 
 }} // namespace
 

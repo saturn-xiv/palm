@@ -12,13 +12,7 @@ namespace loquat { namespace v1 {
 Jwt_sign_args::~Jwt_sign_args() noexcept {
 }
 
-Jwt_sign_args::Jwt_sign_args() noexcept
-   : app_id(),
-     issuer(),
-     subject(),
-     audience(),
-     ttl(0),
-     payload() {
+Jwt_sign_args::Jwt_sign_args() noexcept {
 }
 
 uint32_t Jwt_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
@@ -43,49 +37,9 @@ uint32_t Jwt_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->app_id);
-          this->__isset.app_id = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->issuer);
-          this->__isset.issuer = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->subject);
-          this->__isset.subject = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->audience);
-          this->__isset.audience = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 5:
-        if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->ttl);
-          this->__isset.ttl = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 6:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->payload);
-          this->__isset.payload = true;
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->request.read(iprot);
+          this->__isset.request = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -107,28 +61,8 @@ uint32_t Jwt_sign_args::write(::apache::thrift::protocol::TProtocol* oprot) cons
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("Jwt_sign_args");
 
-  xfer += oprot->writeFieldBegin("app_id", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->app_id);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->issuer);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString(this->subject);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 4);
-  xfer += oprot->writeString(this->audience);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 5);
-  xfer += oprot->writeI64(this->ttl);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 6);
-  xfer += oprot->writeString(this->payload);
+  xfer += oprot->writeFieldBegin("request", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->request.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -146,28 +80,8 @@ uint32_t Jwt_sign_pargs::write(::apache::thrift::protocol::TProtocol* oprot) con
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("Jwt_sign_pargs");
 
-  xfer += oprot->writeFieldBegin("app_id", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->app_id)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->issuer)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString((*(this->subject)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 4);
-  xfer += oprot->writeString((*(this->audience)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 5);
-  xfer += oprot->writeI64((*(this->ttl)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 6);
-  xfer += oprot->writeString((*(this->payload)));
+  xfer += oprot->writeFieldBegin("request", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += (*(this->request)).write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -291,8 +205,7 @@ Jwt_verify_args::~Jwt_verify_args() noexcept {
 }
 
 Jwt_verify_args::Jwt_verify_args() noexcept
-   : app_id(),
-     token(),
+   : token(),
      issuer(),
      audience() {
 }
@@ -320,21 +233,13 @@ uint32_t Jwt_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->app_id);
-          this->__isset.app_id = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->token);
           this->__isset.token = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
-      case 3:
+      case 2:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->issuer);
           this->__isset.issuer = true;
@@ -342,7 +247,7 @@ uint32_t Jwt_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
           xfer += iprot->skip(ftype);
         }
         break;
-      case 4:
+      case 3:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->audience);
           this->__isset.audience = true;
@@ -367,19 +272,15 @@ uint32_t Jwt_verify_args::write(::apache::thrift::protocol::TProtocol* oprot) co
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("Jwt_verify_args");
 
-  xfer += oprot->writeFieldBegin("app_id", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->app_id);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->token);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString(this->issuer);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 4);
+  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 3);
   xfer += oprot->writeString(this->audience);
   xfer += oprot->writeFieldEnd();
 
@@ -398,19 +299,15 @@ uint32_t Jwt_verify_pargs::write(::apache::thrift::protocol::TProtocol* oprot) c
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("Jwt_verify_pargs");
 
-  xfer += oprot->writeFieldBegin("app_id", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->app_id)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->token)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString((*(this->issuer)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 4);
+  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 3);
   xfer += oprot->writeString((*(this->audience)));
   xfer += oprot->writeFieldEnd();
 
@@ -529,24 +426,19 @@ uint32_t Jwt_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot) 
   return xfer;
 }
 
-void JwtClient::sign(std::string& _return, const std::string& app_id, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::string& payload)
+void JwtClient::sign(std::string& _return, const JwtSignRequest& request)
 {
-  send_sign(app_id, issuer, subject, audience, ttl, payload);
+  send_sign(request);
   recv_sign(_return);
 }
 
-void JwtClient::send_sign(const std::string& app_id, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::string& payload)
+void JwtClient::send_sign(const JwtSignRequest& request)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Jwt_sign_pargs args;
-  args.app_id = &app_id;
-  args.issuer = &issuer;
-  args.subject = &subject;
-  args.audience = &audience;
-  args.ttl = &ttl;
-  args.payload = &payload;
+  args.request = &request;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -592,19 +484,18 @@ void JwtClient::recv_sign(std::string& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "sign failed: unknown result");
 }
 
-void JwtClient::verify(JwtVerifyResponse& _return, const std::string& app_id, const std::string& token, const std::string& issuer, const std::string& audience)
+void JwtClient::verify(JwtVerifyResponse& _return, const std::string& token, const std::string& issuer, const std::string& audience)
 {
-  send_verify(app_id, token, issuer, audience);
+  send_verify(token, issuer, audience);
   recv_verify(_return);
 }
 
-void JwtClient::send_verify(const std::string& app_id, const std::string& token, const std::string& issuer, const std::string& audience)
+void JwtClient::send_verify(const std::string& token, const std::string& issuer, const std::string& audience)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Jwt_verify_pargs args;
-  args.app_id = &app_id;
   args.token = &token;
   args.issuer = &issuer;
   args.audience = &audience;
@@ -695,7 +586,7 @@ void JwtProcessor::process_sign(int32_t seqid, ::apache::thrift::protocol::TProt
 
   Jwt_sign_result result;
   try {
-    iface_->sign(result.success, args.app_id, args.issuer, args.subject, args.audience, args.ttl, args.payload);
+    iface_->sign(result.success, args.request);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
@@ -749,7 +640,7 @@ void JwtProcessor::process_verify(int32_t seqid, ::apache::thrift::protocol::TPr
 
   Jwt_verify_result result;
   try {
-    iface_->verify(result.success, args.app_id, args.token, args.issuer, args.audience);
+    iface_->verify(result.success, args.token, args.issuer, args.audience);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
@@ -787,25 +678,20 @@ void JwtProcessor::process_verify(int32_t seqid, ::apache::thrift::protocol::TPr
   return processor;
 }
 
-void JwtConcurrentClient::sign(std::string& _return, const std::string& app_id, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::string& payload)
+void JwtConcurrentClient::sign(std::string& _return, const JwtSignRequest& request)
 {
-  int32_t seqid = send_sign(app_id, issuer, subject, audience, ttl, payload);
+  int32_t seqid = send_sign(request);
   recv_sign(_return, seqid);
 }
 
-int32_t JwtConcurrentClient::send_sign(const std::string& app_id, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::string& payload)
+int32_t JwtConcurrentClient::send_sign(const JwtSignRequest& request)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
   oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Jwt_sign_pargs args;
-  args.app_id = &app_id;
-  args.issuer = &issuer;
-  args.subject = &subject;
-  args.audience = &audience;
-  args.ttl = &ttl;
-  args.payload = &payload;
+  args.request = &request;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -876,20 +762,19 @@ void JwtConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
   } // end while(true)
 }
 
-void JwtConcurrentClient::verify(JwtVerifyResponse& _return, const std::string& app_id, const std::string& token, const std::string& issuer, const std::string& audience)
+void JwtConcurrentClient::verify(JwtVerifyResponse& _return, const std::string& token, const std::string& issuer, const std::string& audience)
 {
-  int32_t seqid = send_verify(app_id, token, issuer, audience);
+  int32_t seqid = send_verify(token, issuer, audience);
   recv_verify(_return, seqid);
 }
 
-int32_t JwtConcurrentClient::send_verify(const std::string& app_id, const std::string& token, const std::string& issuer, const std::string& audience)
+int32_t JwtConcurrentClient::send_verify(const std::string& token, const std::string& issuer, const std::string& audience)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
   oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Jwt_verify_pargs args;
-  args.app_id = &app_id;
   args.token = &token;
   args.issuer = &issuer;
   args.audience = &audience;

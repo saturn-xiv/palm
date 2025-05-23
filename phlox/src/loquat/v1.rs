@@ -30,16 +30,20 @@ use thrift::server::TProcessor;
 // JwtVerifyResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct JwtVerifyResponse {
-  pub subject: Option<String>,
-  pub payload: Option<String>,
+  pub jwt_id: Option<String>,
+  pub key_id: Option<String>,
+  pub subject: String,
+  pub payload: Option<Vec<u8>>,
 }
 
 impl JwtVerifyResponse {
-  pub fn new<F1, F2>(subject: F1, payload: F2) -> JwtVerifyResponse where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new<F1, F2, F9>(jwt_id: F1, key_id: F2, subject: String, payload: F9) -> JwtVerifyResponse where F1: Into<Option<String>>, F2: Into<Option<String>>, F9: Into<Option<Vec<u8>>> {
     JwtVerifyResponse {
-      subject: subject.into(),
+      jwt_id: jwt_id.into(),
+      key_id: key_id.into(),
+      subject,
       payload: payload.into(),
     }
   }
@@ -48,8 +52,10 @@ impl JwtVerifyResponse {
 impl TSerializable for JwtVerifyResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<JwtVerifyResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_8: Option<String> = None;
+    let mut f_9: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -65,6 +71,14 @@ impl TSerializable for JwtVerifyResponse {
           let val = i_prot.read_string()?;
           f_2 = Some(val);
         },
+        8 => {
+          let val = i_prot.read_string()?;
+          f_8 = Some(val);
+        },
+        9 => {
+          let val = i_prot.read_bytes()?;
+          f_9 = Some(val);
+        },
         _ => {
           i_prot.skip(field_ident.field_type)?;
         },
@@ -72,23 +86,199 @@ impl TSerializable for JwtVerifyResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("JwtVerifyResponse.subject", &f_8)?;
     let ret = JwtVerifyResponse {
-      subject: f_1,
-      payload: f_2,
+      jwt_id: f_1,
+      key_id: f_2,
+      subject: f_8.expect("auto-generated code should have checked for presence of required fields"),
+      payload: f_9,
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("JwtVerifyResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.subject {
-      o_prot.write_field_begin(&TFieldIdentifier::new("subject", TType::String, 1))?;
+    if let Some(ref fld_var) = self.jwt_id {
+      o_prot.write_field_begin(&TFieldIdentifier::new("jwt_id", TType::String, 1))?;
       o_prot.write_string(fld_var)?;
       o_prot.write_field_end()?
     }
-    if let Some(ref fld_var) = self.payload {
-      o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 2))?;
+    if let Some(ref fld_var) = self.key_id {
+      o_prot.write_field_begin(&TFieldIdentifier::new("key_id", TType::String, 2))?;
       o_prot.write_string(fld_var)?;
+      o_prot.write_field_end()?
+    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("subject", TType::String, 8))?;
+    o_prot.write_string(&self.subject)?;
+    o_prot.write_field_end()?;
+    if let Some(ref fld_var) = self.payload {
+      o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 9))?;
+      o_prot.write_bytes(fld_var)?;
+      o_prot.write_field_end()?
+    }
+    o_prot.write_field_stop()?;
+    o_prot.write_struct_end()
+  }
+}
+
+//
+// JwtSignRequest
+//
+
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct JwtSignRequest {
+  pub jwt_id: Option<String>,
+  pub key_id: Option<String>,
+  pub issuer: String,
+  pub subject: String,
+  pub audiences: BTreeSet<String>,
+  pub issued_at: i64,
+  pub not_before: i64,
+  pub expired_at: i64,
+  pub payload: Option<Vec<u8>>,
+}
+
+impl JwtSignRequest {
+  pub fn new<F1, F2, F99>(jwt_id: F1, key_id: F2, issuer: String, subject: String, audiences: BTreeSet<String>, issued_at: i64, not_before: i64, expired_at: i64, payload: F99) -> JwtSignRequest where F1: Into<Option<String>>, F2: Into<Option<String>>, F99: Into<Option<Vec<u8>>> {
+    JwtSignRequest {
+      jwt_id: jwt_id.into(),
+      key_id: key_id.into(),
+      issuer,
+      subject,
+      audiences,
+      issued_at,
+      not_before,
+      expired_at,
+      payload: payload.into(),
+    }
+  }
+}
+
+impl TSerializable for JwtSignRequest {
+  fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<JwtSignRequest> {
+    i_prot.read_struct_begin()?;
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_11: Option<String> = None;
+    let mut f_12: Option<String> = None;
+    let mut f_13: Option<BTreeSet<String>> = None;
+    let mut f_21: Option<i64> = None;
+    let mut f_22: Option<i64> = None;
+    let mut f_23: Option<i64> = None;
+    let mut f_99: Option<Vec<u8>> = None;
+    loop {
+      let field_ident = i_prot.read_field_begin()?;
+      if field_ident.field_type == TType::Stop {
+        break;
+      }
+      let field_id = field_id(&field_ident)?;
+      match field_id {
+        1 => {
+          let val = i_prot.read_string()?;
+          f_1 = Some(val);
+        },
+        2 => {
+          let val = i_prot.read_string()?;
+          f_2 = Some(val);
+        },
+        11 => {
+          let val = i_prot.read_string()?;
+          f_11 = Some(val);
+        },
+        12 => {
+          let val = i_prot.read_string()?;
+          f_12 = Some(val);
+        },
+        13 => {
+          let set_ident = i_prot.read_set_begin()?;
+          let mut val: BTreeSet<String> = BTreeSet::new();
+          for _ in 0..set_ident.size {
+            let set_elem_0 = i_prot.read_string()?;
+            val.insert(set_elem_0);
+          }
+          i_prot.read_set_end()?;
+          f_13 = Some(val);
+        },
+        21 => {
+          let val = i_prot.read_i64()?;
+          f_21 = Some(val);
+        },
+        22 => {
+          let val = i_prot.read_i64()?;
+          f_22 = Some(val);
+        },
+        23 => {
+          let val = i_prot.read_i64()?;
+          f_23 = Some(val);
+        },
+        99 => {
+          let val = i_prot.read_bytes()?;
+          f_99 = Some(val);
+        },
+        _ => {
+          i_prot.skip(field_ident.field_type)?;
+        },
+      };
+      i_prot.read_field_end()?;
+    }
+    i_prot.read_struct_end()?;
+    verify_required_field_exists("JwtSignRequest.issuer", &f_11)?;
+    verify_required_field_exists("JwtSignRequest.subject", &f_12)?;
+    verify_required_field_exists("JwtSignRequest.audiences", &f_13)?;
+    verify_required_field_exists("JwtSignRequest.issued_at", &f_21)?;
+    verify_required_field_exists("JwtSignRequest.not_before", &f_22)?;
+    verify_required_field_exists("JwtSignRequest.expired_at", &f_23)?;
+    let ret = JwtSignRequest {
+      jwt_id: f_1,
+      key_id: f_2,
+      issuer: f_11.expect("auto-generated code should have checked for presence of required fields"),
+      subject: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      audiences: f_13.expect("auto-generated code should have checked for presence of required fields"),
+      issued_at: f_21.expect("auto-generated code should have checked for presence of required fields"),
+      not_before: f_22.expect("auto-generated code should have checked for presence of required fields"),
+      expired_at: f_23.expect("auto-generated code should have checked for presence of required fields"),
+      payload: f_99,
+    };
+    Ok(ret)
+  }
+  fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
+    let struct_ident = TStructIdentifier::new("JwtSignRequest");
+    o_prot.write_struct_begin(&struct_ident)?;
+    if let Some(ref fld_var) = self.jwt_id {
+      o_prot.write_field_begin(&TFieldIdentifier::new("jwt_id", TType::String, 1))?;
+      o_prot.write_string(fld_var)?;
+      o_prot.write_field_end()?
+    }
+    if let Some(ref fld_var) = self.key_id {
+      o_prot.write_field_begin(&TFieldIdentifier::new("key_id", TType::String, 2))?;
+      o_prot.write_string(fld_var)?;
+      o_prot.write_field_end()?
+    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("issuer", TType::String, 11))?;
+    o_prot.write_string(&self.issuer)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("subject", TType::String, 12))?;
+    o_prot.write_string(&self.subject)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("audiences", TType::Set, 13))?;
+    o_prot.write_set_begin(&TSetIdentifier::new(TType::String, self.audiences.len() as i32))?;
+    for e in &self.audiences {
+      o_prot.write_string(e)?;
+    }
+    o_prot.write_set_end()?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("issued_at", TType::I64, 21))?;
+    o_prot.write_i64(self.issued_at)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("not_before", TType::I64, 22))?;
+    o_prot.write_i64(self.not_before)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("expired_at", TType::I64, 23))?;
+    o_prot.write_i64(self.expired_at)?;
+    o_prot.write_field_end()?;
+    if let Some(ref fld_var) = self.payload {
+      o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 99))?;
+      o_prot.write_bytes(fld_var)?;
       o_prot.write_field_end()?
     }
     o_prot.write_field_stop()?;
@@ -101,8 +291,8 @@ impl TSerializable for JwtVerifyResponse {
 //
 
 pub trait TJwtSyncClient {
-  fn sign(&mut self, app_id: String, issuer: String, subject: String, audience: String, ttl: i64, payload: String) -> thrift::Result<String>;
-  fn verify(&mut self, app_id: String, token: String, issuer: String, audience: String) -> thrift::Result<JwtVerifyResponse>;
+  fn sign(&mut self, request: JwtSignRequest) -> thrift::Result<String>;
+  fn verify(&mut self, token: String, issuer: String, audience: String) -> thrift::Result<JwtVerifyResponse>;
 }
 
 pub trait TJwtSyncClientMarker {}
@@ -129,12 +319,12 @@ impl <IP, OP> TThriftClient for JwtSyncClient<IP, OP> where IP: TInputProtocol, 
 impl <IP, OP> TJwtSyncClientMarker for JwtSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + TJwtSyncClientMarker> TJwtSyncClient for C {
-  fn sign(&mut self, app_id: String, issuer: String, subject: String, audience: String, ttl: i64, payload: String) -> thrift::Result<String> {
+  fn sign(&mut self, request: JwtSignRequest) -> thrift::Result<String> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("sign", TMessageType::Call, self.sequence_number());
-        let call_args = JwtSignArgs { app_id, issuer, subject, audience, ttl, payload };
+        let call_args = JwtSignArgs { request };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -156,12 +346,12 @@ impl <C: TThriftClient + TJwtSyncClientMarker> TJwtSyncClient for C {
       result.ok_or()
     }
   }
-  fn verify(&mut self, app_id: String, token: String, issuer: String, audience: String) -> thrift::Result<JwtVerifyResponse> {
+  fn verify(&mut self, token: String, issuer: String, audience: String) -> thrift::Result<JwtVerifyResponse> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("verify", TMessageType::Call, self.sequence_number());
-        let call_args = JwtVerifyArgs { app_id, token, issuer, audience };
+        let call_args = JwtVerifyArgs { token, issuer, audience };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -190,8 +380,8 @@ impl <C: TThriftClient + TJwtSyncClientMarker> TJwtSyncClient for C {
 //
 
 pub trait JwtSyncHandler {
-  fn handle_sign(&self, app_id: String, issuer: String, subject: String, audience: String, ttl: i64, payload: String) -> thrift::Result<String>;
-  fn handle_verify(&self, app_id: String, token: String, issuer: String, audience: String) -> thrift::Result<JwtVerifyResponse>;
+  fn handle_sign(&self, request: JwtSignRequest) -> thrift::Result<String>;
+  fn handle_verify(&self, token: String, issuer: String, audience: String) -> thrift::Result<JwtVerifyResponse>;
 }
 
 pub struct JwtSyncProcessor<H: JwtSyncHandler> {
@@ -217,7 +407,7 @@ pub struct TJwtProcessFunctions;
 impl TJwtProcessFunctions {
   pub fn process_sign<H: JwtSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = JwtSignArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_sign(args.app_id, args.issuer, args.subject, args.audience, args.ttl, args.payload) {
+    match handler.handle_sign(args.request) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("sign", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -254,7 +444,7 @@ impl TJwtProcessFunctions {
   }
   pub fn process_verify<H: JwtSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = JwtVerifyArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_verify(args.app_id, args.token, args.issuer, args.audience) {
+    match handler.handle_verify(args.token, args.issuer, args.audience) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("verify", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -322,23 +512,13 @@ impl <H: JwtSyncHandler> TProcessor for JwtSyncProcessor<H> {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct JwtSignArgs {
-  app_id: String,
-  issuer: String,
-  subject: String,
-  audience: String,
-  ttl: i64,
-  payload: String,
+  request: JwtSignRequest,
 }
 
 impl JwtSignArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<JwtSignArgs> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = None;
-    let mut f_2: Option<String> = None;
-    let mut f_3: Option<String> = None;
-    let mut f_4: Option<String> = None;
-    let mut f_5: Option<i64> = None;
-    let mut f_6: Option<String> = None;
+    let mut f_1: Option<JwtSignRequest> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -347,28 +527,8 @@ impl JwtSignArgs {
       let field_id = field_id(&field_ident)?;
       match field_id {
         1 => {
-          let val = i_prot.read_string()?;
+          let val = JwtSignRequest::read_from_in_protocol(i_prot)?;
           f_1 = Some(val);
-        },
-        2 => {
-          let val = i_prot.read_string()?;
-          f_2 = Some(val);
-        },
-        3 => {
-          let val = i_prot.read_string()?;
-          f_3 = Some(val);
-        },
-        4 => {
-          let val = i_prot.read_string()?;
-          f_4 = Some(val);
-        },
-        5 => {
-          let val = i_prot.read_i64()?;
-          f_5 = Some(val);
-        },
-        6 => {
-          let val = i_prot.read_string()?;
-          f_6 = Some(val);
         },
         _ => {
           i_prot.skip(field_ident.field_type)?;
@@ -377,42 +537,17 @@ impl JwtSignArgs {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    verify_required_field_exists("JwtSignArgs.app_id", &f_1)?;
-    verify_required_field_exists("JwtSignArgs.issuer", &f_2)?;
-    verify_required_field_exists("JwtSignArgs.subject", &f_3)?;
-    verify_required_field_exists("JwtSignArgs.audience", &f_4)?;
-    verify_required_field_exists("JwtSignArgs.ttl", &f_5)?;
-    verify_required_field_exists("JwtSignArgs.payload", &f_6)?;
+    verify_required_field_exists("JwtSignArgs.request", &f_1)?;
     let ret = JwtSignArgs {
-      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
-      issuer: f_2.expect("auto-generated code should have checked for presence of required fields"),
-      subject: f_3.expect("auto-generated code should have checked for presence of required fields"),
-      audience: f_4.expect("auto-generated code should have checked for presence of required fields"),
-      ttl: f_5.expect("auto-generated code should have checked for presence of required fields"),
-      payload: f_6.expect("auto-generated code should have checked for presence of required fields"),
+      request: f_1.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("sign_args");
     o_prot.write_struct_begin(&struct_ident)?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-    o_prot.write_string(&self.app_id)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("issuer", TType::String, 2))?;
-    o_prot.write_string(&self.issuer)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("subject", TType::String, 3))?;
-    o_prot.write_string(&self.subject)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("audience", TType::String, 4))?;
-    o_prot.write_string(&self.audience)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("ttl", TType::I64, 5))?;
-    o_prot.write_i64(self.ttl)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 6))?;
-    o_prot.write_string(&self.payload)?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("request", TType::Struct, 1))?;
+    self.request.write_to_out_protocol(o_prot)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
@@ -488,7 +623,6 @@ impl JwtSignResult {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct JwtVerifyArgs {
-  app_id: String,
   token: String,
   issuer: String,
   audience: String,
@@ -500,7 +634,6 @@ impl JwtVerifyArgs {
     let mut f_1: Option<String> = None;
     let mut f_2: Option<String> = None;
     let mut f_3: Option<String> = None;
-    let mut f_4: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -520,10 +653,6 @@ impl JwtVerifyArgs {
           let val = i_prot.read_string()?;
           f_3 = Some(val);
         },
-        4 => {
-          let val = i_prot.read_string()?;
-          f_4 = Some(val);
-        },
         _ => {
           i_prot.skip(field_ident.field_type)?;
         },
@@ -531,31 +660,26 @@ impl JwtVerifyArgs {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    verify_required_field_exists("JwtVerifyArgs.app_id", &f_1)?;
-    verify_required_field_exists("JwtVerifyArgs.token", &f_2)?;
-    verify_required_field_exists("JwtVerifyArgs.issuer", &f_3)?;
-    verify_required_field_exists("JwtVerifyArgs.audience", &f_4)?;
+    verify_required_field_exists("JwtVerifyArgs.token", &f_1)?;
+    verify_required_field_exists("JwtVerifyArgs.issuer", &f_2)?;
+    verify_required_field_exists("JwtVerifyArgs.audience", &f_3)?;
     let ret = JwtVerifyArgs {
-      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
-      token: f_2.expect("auto-generated code should have checked for presence of required fields"),
-      issuer: f_3.expect("auto-generated code should have checked for presence of required fields"),
-      audience: f_4.expect("auto-generated code should have checked for presence of required fields"),
+      token: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      issuer: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      audience: f_3.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("verify_args");
     o_prot.write_struct_begin(&struct_ident)?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-    o_prot.write_string(&self.app_id)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("token", TType::String, 2))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("token", TType::String, 1))?;
     o_prot.write_string(&self.token)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("issuer", TType::String, 3))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("issuer", TType::String, 2))?;
     o_prot.write_string(&self.issuer)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("audience", TType::String, 4))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("audience", TType::String, 3))?;
     o_prot.write_string(&self.audience)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
@@ -631,8 +755,8 @@ impl JwtVerifyResult {
 //
 
 pub trait THMacSyncClient {
-  fn sign(&mut self, app_id: String, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
-  fn verify(&mut self, app_id: String, code: Vec<u8>, plain: Vec<u8>) -> thrift::Result<()>;
+  fn sign(&mut self, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn verify(&mut self, code: Vec<u8>, plain: Vec<u8>) -> thrift::Result<()>;
 }
 
 pub trait THMacSyncClientMarker {}
@@ -659,12 +783,12 @@ impl <IP, OP> TThriftClient for HMacSyncClient<IP, OP> where IP: TInputProtocol,
 impl <IP, OP> THMacSyncClientMarker for HMacSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + THMacSyncClientMarker> THMacSyncClient for C {
-  fn sign(&mut self, app_id: String, plain: Vec<u8>) -> thrift::Result<Vec<u8>> {
+  fn sign(&mut self, plain: Vec<u8>) -> thrift::Result<Vec<u8>> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("sign", TMessageType::Call, self.sequence_number());
-        let call_args = HMacSignArgs { app_id, plain };
+        let call_args = HMacSignArgs { plain };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -686,12 +810,12 @@ impl <C: TThriftClient + THMacSyncClientMarker> THMacSyncClient for C {
       result.ok_or()
     }
   }
-  fn verify(&mut self, app_id: String, code: Vec<u8>, plain: Vec<u8>) -> thrift::Result<()> {
+  fn verify(&mut self, code: Vec<u8>, plain: Vec<u8>) -> thrift::Result<()> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("verify", TMessageType::Call, self.sequence_number());
-        let call_args = HMacVerifyArgs { app_id, code, plain };
+        let call_args = HMacVerifyArgs { code, plain };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -720,8 +844,8 @@ impl <C: TThriftClient + THMacSyncClientMarker> THMacSyncClient for C {
 //
 
 pub trait HMacSyncHandler {
-  fn handle_sign(&self, app_id: String, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
-  fn handle_verify(&self, app_id: String, code: Vec<u8>, plain: Vec<u8>) -> thrift::Result<()>;
+  fn handle_sign(&self, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn handle_verify(&self, code: Vec<u8>, plain: Vec<u8>) -> thrift::Result<()>;
 }
 
 pub struct HMacSyncProcessor<H: HMacSyncHandler> {
@@ -747,7 +871,7 @@ pub struct THMacProcessFunctions;
 impl THMacProcessFunctions {
   pub fn process_sign<H: HMacSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = HMacSignArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_sign(args.app_id, args.plain) {
+    match handler.handle_sign(args.plain) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("sign", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -784,7 +908,7 @@ impl THMacProcessFunctions {
   }
   pub fn process_verify<H: HMacSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = HMacVerifyArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_verify(args.app_id, args.code, args.plain) {
+    match handler.handle_verify(args.code, args.plain) {
       Ok(_) => {
         let message_ident = TMessageIdentifier::new("verify", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -852,15 +976,13 @@ impl <H: HMacSyncHandler> TProcessor for HMacSyncProcessor<H> {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct HMacSignArgs {
-  app_id: String,
   plain: Vec<u8>,
 }
 
 impl HMacSignArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<HMacSignArgs> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = None;
-    let mut f_2: Option<Vec<u8>> = None;
+    let mut f_1: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -869,12 +991,8 @@ impl HMacSignArgs {
       let field_id = field_id(&field_ident)?;
       match field_id {
         1 => {
-          let val = i_prot.read_string()?;
-          f_1 = Some(val);
-        },
-        2 => {
           let val = i_prot.read_bytes()?;
-          f_2 = Some(val);
+          f_1 = Some(val);
         },
         _ => {
           i_prot.skip(field_ident.field_type)?;
@@ -883,21 +1001,16 @@ impl HMacSignArgs {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    verify_required_field_exists("HMacSignArgs.app_id", &f_1)?;
-    verify_required_field_exists("HMacSignArgs.plain", &f_2)?;
+    verify_required_field_exists("HMacSignArgs.plain", &f_1)?;
     let ret = HMacSignArgs {
-      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
-      plain: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      plain: f_1.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("sign_args");
     o_prot.write_struct_begin(&struct_ident)?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-    o_prot.write_string(&self.app_id)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 2))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 1))?;
     o_prot.write_bytes(&self.plain)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
@@ -974,7 +1087,6 @@ impl HMacSignResult {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct HMacVerifyArgs {
-  app_id: String,
   code: Vec<u8>,
   plain: Vec<u8>,
 }
@@ -982,9 +1094,8 @@ struct HMacVerifyArgs {
 impl HMacVerifyArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<HMacVerifyArgs> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = None;
+    let mut f_1: Option<Vec<u8>> = None;
     let mut f_2: Option<Vec<u8>> = None;
-    let mut f_3: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -993,16 +1104,12 @@ impl HMacVerifyArgs {
       let field_id = field_id(&field_ident)?;
       match field_id {
         1 => {
-          let val = i_prot.read_string()?;
+          let val = i_prot.read_bytes()?;
           f_1 = Some(val);
         },
         2 => {
           let val = i_prot.read_bytes()?;
           f_2 = Some(val);
-        },
-        3 => {
-          let val = i_prot.read_bytes()?;
-          f_3 = Some(val);
         },
         _ => {
           i_prot.skip(field_ident.field_type)?;
@@ -1011,26 +1118,21 @@ impl HMacVerifyArgs {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    verify_required_field_exists("HMacVerifyArgs.app_id", &f_1)?;
-    verify_required_field_exists("HMacVerifyArgs.code", &f_2)?;
-    verify_required_field_exists("HMacVerifyArgs.plain", &f_3)?;
+    verify_required_field_exists("HMacVerifyArgs.code", &f_1)?;
+    verify_required_field_exists("HMacVerifyArgs.plain", &f_2)?;
     let ret = HMacVerifyArgs {
-      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
-      code: f_2.expect("auto-generated code should have checked for presence of required fields"),
-      plain: f_3.expect("auto-generated code should have checked for presence of required fields"),
+      code: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      plain: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("verify_args");
     o_prot.write_struct_begin(&struct_ident)?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-    o_prot.write_string(&self.app_id)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 2))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
     o_prot.write_bytes(&self.code)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 3))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 2))?;
     o_prot.write_bytes(&self.plain)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
@@ -1077,8 +1179,8 @@ impl HMacVerifyResult {
 //
 
 pub trait TAesSyncClient {
-  fn encrypt(&mut self, app_id: String, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
-  fn decrypt(&mut self, app_id: String, code: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn encrypt(&mut self, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn decrypt(&mut self, code: Vec<u8>) -> thrift::Result<Vec<u8>>;
 }
 
 pub trait TAesSyncClientMarker {}
@@ -1105,12 +1207,12 @@ impl <IP, OP> TThriftClient for AesSyncClient<IP, OP> where IP: TInputProtocol, 
 impl <IP, OP> TAesSyncClientMarker for AesSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + TAesSyncClientMarker> TAesSyncClient for C {
-  fn encrypt(&mut self, app_id: String, plain: Vec<u8>) -> thrift::Result<Vec<u8>> {
+  fn encrypt(&mut self, plain: Vec<u8>) -> thrift::Result<Vec<u8>> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("encrypt", TMessageType::Call, self.sequence_number());
-        let call_args = AesEncryptArgs { app_id, plain };
+        let call_args = AesEncryptArgs { plain };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -1132,12 +1234,12 @@ impl <C: TThriftClient + TAesSyncClientMarker> TAesSyncClient for C {
       result.ok_or()
     }
   }
-  fn decrypt(&mut self, app_id: String, code: Vec<u8>) -> thrift::Result<Vec<u8>> {
+  fn decrypt(&mut self, code: Vec<u8>) -> thrift::Result<Vec<u8>> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("decrypt", TMessageType::Call, self.sequence_number());
-        let call_args = AesDecryptArgs { app_id, code };
+        let call_args = AesDecryptArgs { code };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -1166,8 +1268,8 @@ impl <C: TThriftClient + TAesSyncClientMarker> TAesSyncClient for C {
 //
 
 pub trait AesSyncHandler {
-  fn handle_encrypt(&self, app_id: String, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
-  fn handle_decrypt(&self, app_id: String, code: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn handle_encrypt(&self, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn handle_decrypt(&self, code: Vec<u8>) -> thrift::Result<Vec<u8>>;
 }
 
 pub struct AesSyncProcessor<H: AesSyncHandler> {
@@ -1193,7 +1295,7 @@ pub struct TAesProcessFunctions;
 impl TAesProcessFunctions {
   pub fn process_encrypt<H: AesSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = AesEncryptArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_encrypt(args.app_id, args.plain) {
+    match handler.handle_encrypt(args.plain) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("encrypt", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -1230,7 +1332,7 @@ impl TAesProcessFunctions {
   }
   pub fn process_decrypt<H: AesSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = AesDecryptArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_decrypt(args.app_id, args.code) {
+    match handler.handle_decrypt(args.code) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("decrypt", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -1298,15 +1400,13 @@ impl <H: AesSyncHandler> TProcessor for AesSyncProcessor<H> {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct AesEncryptArgs {
-  app_id: String,
   plain: Vec<u8>,
 }
 
 impl AesEncryptArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<AesEncryptArgs> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = None;
-    let mut f_2: Option<Vec<u8>> = None;
+    let mut f_1: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1315,12 +1415,8 @@ impl AesEncryptArgs {
       let field_id = field_id(&field_ident)?;
       match field_id {
         1 => {
-          let val = i_prot.read_string()?;
-          f_1 = Some(val);
-        },
-        2 => {
           let val = i_prot.read_bytes()?;
-          f_2 = Some(val);
+          f_1 = Some(val);
         },
         _ => {
           i_prot.skip(field_ident.field_type)?;
@@ -1329,21 +1425,16 @@ impl AesEncryptArgs {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    verify_required_field_exists("AesEncryptArgs.app_id", &f_1)?;
-    verify_required_field_exists("AesEncryptArgs.plain", &f_2)?;
+    verify_required_field_exists("AesEncryptArgs.plain", &f_1)?;
     let ret = AesEncryptArgs {
-      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
-      plain: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      plain: f_1.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("encrypt_args");
     o_prot.write_struct_begin(&struct_ident)?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-    o_prot.write_string(&self.app_id)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 2))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 1))?;
     o_prot.write_bytes(&self.plain)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
@@ -1420,15 +1511,13 @@ impl AesEncryptResult {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct AesDecryptArgs {
-  app_id: String,
   code: Vec<u8>,
 }
 
 impl AesDecryptArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<AesDecryptArgs> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = None;
-    let mut f_2: Option<Vec<u8>> = None;
+    let mut f_1: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1437,12 +1526,8 @@ impl AesDecryptArgs {
       let field_id = field_id(&field_ident)?;
       match field_id {
         1 => {
-          let val = i_prot.read_string()?;
-          f_1 = Some(val);
-        },
-        2 => {
           let val = i_prot.read_bytes()?;
-          f_2 = Some(val);
+          f_1 = Some(val);
         },
         _ => {
           i_prot.skip(field_ident.field_type)?;
@@ -1451,21 +1536,16 @@ impl AesDecryptArgs {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    verify_required_field_exists("AesDecryptArgs.app_id", &f_1)?;
-    verify_required_field_exists("AesDecryptArgs.code", &f_2)?;
+    verify_required_field_exists("AesDecryptArgs.code", &f_1)?;
     let ret = AesDecryptArgs {
-      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
-      code: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      code: f_1.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("decrypt_args");
     o_prot.write_struct_begin(&struct_ident)?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-    o_prot.write_string(&self.app_id)?;
-    o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 2))?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
     o_prot.write_bytes(&self.code)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
@@ -1541,7 +1621,7 @@ impl AesDecryptResult {
 //
 
 pub trait THealthSyncClient {
-  fn check(&mut self) -> thrift::Result<()>;
+  fn check(&mut self) -> thrift::Result<BTreeMap<String, String>>;
 }
 
 pub trait THealthSyncClientMarker {}
@@ -1568,7 +1648,7 @@ impl <IP, OP> TThriftClient for HealthSyncClient<IP, OP> where IP: TInputProtoco
 impl <IP, OP> THealthSyncClientMarker for HealthSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + THealthSyncClientMarker> THealthSyncClient for C {
-  fn check(&mut self) -> thrift::Result<()> {
+  fn check(&mut self) -> thrift::Result<BTreeMap<String, String>> {
     (
       {
         self.increment_sequence_number();
@@ -1602,7 +1682,7 @@ impl <C: TThriftClient + THealthSyncClientMarker> THealthSyncClient for C {
 //
 
 pub trait HealthSyncHandler {
-  fn handle_check(&self) -> thrift::Result<()>;
+  fn handle_check(&self) -> thrift::Result<BTreeMap<String, String>>;
 }
 
 pub struct HealthSyncProcessor<H: HealthSyncHandler> {
@@ -1626,10 +1706,10 @@ impl THealthProcessFunctions {
   pub fn process_check<H: HealthSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let _ = HealthCheckArgs::read_from_in_protocol(i_prot)?;
     match handler.handle_check() {
-      Ok(_) => {
+      Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("check", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
-        let ret = HealthCheckResult {  };
+        let ret = HealthCheckResult { result_value: Some(handler_return) };
         ret.write_to_out_protocol(o_prot)?;
         o_prot.write_message_end()?;
         o_prot.flush()
@@ -1721,29 +1801,70 @@ impl HealthCheckArgs {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct HealthCheckResult {
+  result_value: Option<BTreeMap<String, String>>,
 }
 
 impl HealthCheckResult {
-  fn ok_or(self) -> thrift::Result<()> {
-    Ok(())
+  fn ok_or(self) -> thrift::Result<BTreeMap<String, String>> {
+    if self.result_value.is_some() {
+      Ok(self.result_value.unwrap())
+    } else {
+      Err(
+        thrift::Error::Application(
+          ApplicationError::new(
+            ApplicationErrorKind::MissingResult,
+            "no result received for HealthCheck"
+          )
+        )
+      )
+    }
   }
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<HealthCheckResult> {
     i_prot.read_struct_begin()?;
+    let mut f_0: Option<BTreeMap<String, String>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
         break;
       }
-      i_prot.skip(field_ident.field_type)?;
+      let field_id = field_id(&field_ident)?;
+      match field_id {
+        0 => {
+          let map_ident = i_prot.read_map_begin()?;
+          let mut val: BTreeMap<String, String> = BTreeMap::new();
+          for _ in 0..map_ident.size {
+            let map_key_1 = i_prot.read_string()?;
+            let map_val_2 = i_prot.read_string()?;
+            val.insert(map_key_1, map_val_2);
+          }
+          i_prot.read_map_end()?;
+          f_0 = Some(val);
+        },
+        _ => {
+          i_prot.skip(field_ident.field_type)?;
+        },
+      };
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
-    let ret = HealthCheckResult {};
+    let ret = HealthCheckResult {
+      result_value: f_0,
+    };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("HealthCheckResult");
     o_prot.write_struct_begin(&struct_ident)?;
+    if let Some(ref fld_var) = self.result_value {
+      o_prot.write_field_begin(&TFieldIdentifier::new("result_value", TType::Map, 0))?;
+      o_prot.write_map_begin(&TMapIdentifier::new(TType::String, TType::String, fld_var.len() as i32))?;
+      for (k, v) in fld_var {
+        o_prot.write_string(k)?;
+        o_prot.write_string(v)?;
+      }
+      o_prot.write_map_end()?;
+      o_prot.write_field_end()?
+    }
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
