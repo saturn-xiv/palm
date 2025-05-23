@@ -1,0 +1,110 @@
+[package]
+name = "fig"
+version = "2025.5.23"
+edition = "2024"
+
+[dependencies]
+language-tags = "0.3"
+mime = "0.3"
+log = "0.4"
+bs58 = "0.5"
+actix-files = "0.6"
+r2d2 = "0.8"
+toml = "0.8"
+chrono-tz = "0.10"
+paho-mqtt = "0.13"
+prost = "0.13"
+prost-types = "0.13"
+tonic-health = "0.13"
+tonic-reflection = "0.13"
+askama = "0.14"
+byteorder = "1"
+lazy_static = "1"
+serde_json = "1"
+data-encoding = "2"
+ipnet = "2"
+lapin = "2"
+opensearch = "2"
+percent-encoding = "2"
+url = "2"
+tempfile = "3"
+google-youtube3 = "6"
+amq-protocol-uri = "8"
+jsonwebtoken = "9"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
+
+[dependencies.rand]
+version = "0.9"
+features = ["small_rng"]
+
+[dependencies.reqwest]
+version = "0.12"
+features = ["json"]
+
+[dependencies.tonic]
+version = "0.13"
+
+[dependencies.juniper]
+version = "0.16"
+features = ["chrono"]
+
+[dependencies.validator]
+version = "0.20"
+features = ["derive"]
+
+[dependencies.strum]
+version = "0.27"
+features = ["derive"]
+
+[dependencies.nix]
+version = "0.30"
+features = ["process", "hostname", "user"]
+
+[dependencies.redis]
+version = "0.31"
+features = ["cluster", "r2d2"]
+
+[dependencies.quick-xml]
+version = "0.37"
+features = ["serialize"]
+
+[dependencies.hyper]
+version = "1"
+features = ["full"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher"]
+
+[dependencies.actix-web]
+version = "4"
+features = ["cookies"]
+
+[dependencies.flexbuffers]
+version = "25"
+
+[dependencies.minio]
+git = "https://github.com/minio/minio-rs.git"
+rev = "621669c"
+
+[dependencies.thrift]
+git = "https://github.com/apache/thrift.git"
+tag = "v0.21.0"
+
+[build-dependencies]
+tonic-build = "0.13"

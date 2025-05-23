@@ -1,0 +1,17 @@
+[package]
+name = "aloe"
+version = "2025.5.23"
+edition = "2024"
+description = "A smart router system based on Linux operating system targeting embedded devices."
+
+[dependencies]
+env_logger = "0.11"
+clap = "4"
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = ["sqlite", "extras", "huge-tables"]
+
+[dependencies.fig]
+path = "../fig"
