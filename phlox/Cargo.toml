@@ -13,5 +13,9 @@ version = "2"
 default-features = false
 features = ["postgres", "extras", "huge-tables"]
 
+[dependencies.thrift]
+git = "https://github.com/apache/thrift.git"
+tag = "v0.21.0"
+
 [dependencies.fig]
 path = "../fig"
