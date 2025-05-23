@@ -58,9 +58,9 @@ void loquat::application::launch_rpc_server(
   std::shared_ptr<v1::AesProcessor> aesProcessor =
       std::make_shared<v1::AesProcessor>(aesHandler);
 
-  std::shared_ptr<HmacHandler> hmacHandler = std::make_shared<HmacHandler>();
-  std::shared_ptr<v1::HmacProcessor> hmacProcessor =
-      std::make_shared<v1::HmacProcessor>(hmacHandler);
+  std::shared_ptr<HMacHandler> hmacHandler = std::make_shared<HMacHandler>();
+  std::shared_ptr<v1::HMacProcessor> hmacProcessor =
+      std::make_shared<v1::HMacProcessor>(hmacHandler);
 
   std::shared_ptr<JwtHandler> jwtHandler = std::make_shared<JwtHandler>();
   std::shared_ptr<v1::JwtProcessor> jwtProcessor =
@@ -80,7 +80,7 @@ void loquat::application::launch_rpc_server(
     multiplexedProcessor->registerProcessor(name, aesProcessor);
   }
   {
-    const auto name = typeid(v1::HmacIf).name();
+    const auto name = typeid(v1::HMacIf).name();
     spdlog::info("register hmac service {}", name);
     multiplexedProcessor->registerProcessor(name, hmacProcessor);
   }
@@ -164,13 +164,13 @@ void loquat::AesHandler::decrypt(std::string& plain, const std::string& code) {
   plain = aes.decrypt(code);
 }
 
-void loquat::HmacHandler::sign(std::string& code, const std::string& plain) {
+void loquat::HMacHandler::sign(std::string& code, const std::string& plain) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::HMac mac;
   code = mac.sign(plain);
 }
 
-void loquat::HmacHandler::verify(const std::string& code,
+void loquat::HMacHandler::verify(const std::string& code,
                                  const std::string& plain) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::HMac mac;
@@ -198,7 +198,7 @@ void loquat::JwtHandler::sign(std::string& token,
                    absl::FromUnixSeconds(request.expired_at), payload);
 }
 
-void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
+void loquat::JwtHandler::verify(loquat::v1::JwtVerifyResponse& response,
                                 const std::string& token,
                                 const std::string& issuer,
                                 const std::string& audience) {

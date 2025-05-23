@@ -8,10 +8,10 @@
 #include <thrift/Thrift.h>
 #pragma GCC diagnostic pop
 
-#include "petunia/Aes.h"
-#include "petunia/Health.h"
-#include "petunia/Hmac.h"
-#include "petunia/Jwt.h"
+#include "Aes.h"
+#include "HMac.h"
+#include "Health.h"
+#include "Jwt.h"
 
 namespace loquat {
 
@@ -38,9 +38,9 @@ class AesHandler final : public v1::AesIf {
   void decrypt(std::string& plain, const std::string& code) override;
 };
 
-class HmacHandler final : public v1::HmacIf {
+class HMacHandler final : public v1::HMacIf {
  public:
-  HmacHandler() = default;
+  HMacHandler() = default;
 
   void sign(std::string& code, const std::string& plain) override;
   void verify(const std::string& code, const std::string& plain) override;
@@ -52,9 +52,8 @@ class JwtHandler final : public v1::JwtIf {
 
   void sign(std::string& token,
             const loquat::v1::JwtSignRequest& request) override;
-  void verify(loquat::v1::JwtVerfifyResponse& response,
-              const std::string& token, const std::string& issuer,
-              const std::string& audience) override;
+  void verify(loquat::v1::JwtVerifyResponse& response, const std::string& token,
+              const std::string& issuer, const std::string& audience) override;
 };
 
 class HealthHandler final : public v1::HealthIf {
