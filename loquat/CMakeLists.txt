@@ -67,6 +67,7 @@ FetchContent_MakeAvailable(spdlog argparse tomlplusplus inja tink libevent thrif
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.cc")
 
 add_executable(loquat ${SOURCE_LIST})
+target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 
 target_link_libraries(loquat

@@ -34,8 +34,14 @@
 
 // TODO
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-requires"
+#include <google/protobuf/port.h>
+#pragma GCC diagnostic pop
+
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include <tink/internal/ssl_unique_ptr.h>
+#include <tink/util/secret_proto.h>
 #pragma GCC diagnostic pop
 
 #include <spdlog/spdlog.h>
