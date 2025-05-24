@@ -1,2 +1,1 @@
-pub mod loquat;
 pub mod schema;
