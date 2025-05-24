@@ -49,12 +49,18 @@ FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.4.0"
 )
+FetchContent_Declare(libevent
+  GIT_REPOSITORY  "https://github.com/libevent/libevent.git"
+  GIT_TAG         "release-2.1.12-stable"
+)
 FetchContent_Declare(thrift
-  GIT_REPOSITORY    "https://github.com/apache/thrift.git"
-  GIT_TAG           "v0.21.0"
+  GIT_REPOSITORY      "https://github.com/apache/thrift.git"
+  GIT_TAG             "v0.21.0"
+  PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/patches/thrift.patch
+  UPDATE_DISCONNECTED 1
 )
 
-FetchContent_MakeAvailable(spdlog argparse tomlplusplus inja tink thrift)
+FetchContent_MakeAvailable(spdlog argparse tomlplusplus inja tink libevent thrift)
 
 # --------------------------------------------------------
 
@@ -66,6 +72,7 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(loquat
   ${OPENSSL_LIBRARIES}
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
+  event_core event_openssl
   thrift thriftnb thriftz
 )
 

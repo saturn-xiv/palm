@@ -1,0 +1,11 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 78969f275..517c91a92 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -129,6 +129,5 @@ if(BUILD_PYTHON)
+ endif()
+ 
+ # Create the uninstall target
+-add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${PROJECT_SOURCE_DIR}/build/cmake/uninstall.cmake")
+ 
+ PRINT_CONFIG_SUMMARY()
