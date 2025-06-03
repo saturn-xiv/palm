@@ -1,24 +1,33 @@
 [package]
 name = "fig"
-version = "2025.5.23"
+version = "2025.6.3"
 edition = "2024"
 
 [dependencies]
+futures = "0.3"
 language-tags = "0.3"
 mime = "0.3"
 log = "0.4"
+sitemap = "0.4"
 bs58 = "0.5"
 actix-files = "0.6"
 r2d2 = "0.8"
 toml = "0.8"
+xml-rs = "0.8"
 chrono-tz = "0.10"
+openssl = "0.10"
+zmq = "0.10"
+lettre = "0.11"
 paho-mqtt = "0.13"
 prost = "0.13"
 prost-types = "0.13"
 tonic-health = "0.13"
 tonic-reflection = "0.13"
 askama = "0.14"
+aws-credential-types = "1"
+aws-sdk-s3 = "1"
 byteorder = "1"
+eui48 = "1"
 lazy_static = "1"
 serde_json = "1"
 data-encoding = "2"
@@ -26,10 +35,11 @@ ipnet = "2"
 lapin = "2"
 opensearch = "2"
 percent-encoding = "2"
+rss = "2"
 url = "2"
 tempfile = "3"
 google-youtube3 = "6"
-amq-protocol-uri = "8"
+amq-protocol-uri = "7"
 jsonwebtoken = "9"
 
 [dependencies.chrono]
@@ -67,9 +77,9 @@ features = ["process", "hostname", "user"]
 version = "0.31"
 features = ["cluster", "r2d2"]
 
-[dependencies.quick-xml]
-version = "0.37"
-features = ["serialize"]
+[dependencies.aws-config]
+version = "1"
+features = ["behavior-version-latest"]
 
 [dependencies.hyper]
 version = "1"

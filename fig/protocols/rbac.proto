@@ -1,0 +1,35 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
+package palm.rbac.v1;
+
+import "google/protobuf/empty.proto";
+
+service Policy {
+  rpc ListUser(google.protobuf.Empty) returns (PolicyListUserResponse) {}
+  rpc ListRole(google.protobuf.Empty) returns (PolicyListRoleResponse) {}
+}
+
+message PolicyListUserResponse {
+  repeated User items = 1;
+}
+
+message PolicyListRoleResponse {
+  repeated Role items = 1;
+}
+
+message Role {
+  message Root {}
+  message Administrator {}
+  oneof by {
+    Root root = 1;
+    Administrator administrator = 2;
+    string member = 3;
+  }
+}
+message User {
+  oneof by {
+    int32 id = 1;
+    string code = 2;
+  }
+}

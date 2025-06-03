@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.sms.v1";
+package palm.sms.v1;
+
+message SmsTask {
+  repeated string to = 1;
+  string message = 2;
+  optional string callback_url = 9;
+}
