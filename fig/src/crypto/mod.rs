@@ -2,7 +2,7 @@ pub mod random;
 pub mod sha1;
 pub mod ssha512;
 
-use data_encoding::BASE64;
+use data_encoding::BASE64_NOPAD;
 use openssl::{
     hash::MessageDigest,
     memcmp,
@@ -29,26 +29,26 @@ pub struct Key(pub String);
 
 impl Default for Key {
     fn default() -> Self {
-        Self(BASE64.encode(&random::bytes(32)))
+        Self(BASE64_NOPAD.encode(&random::bytes(32)))
     }
 }
 
 impl From<Key> for Result<Vec<u8>> {
     fn from(it: Key) -> Self {
-        let buf = BASE64.decode(it.0.as_bytes())?;
+        let buf = BASE64_NOPAD.decode(it.0.as_bytes())?;
         Ok(buf)
     }
 }
 
 #[derive(Clone)]
-pub struct Hmac {
+pub struct HMac {
     key: PKey<Private>,
     digest: MessageDigest,
 }
 
-impl Hmac {
+impl HMac {
     pub fn new(key: &str) -> Result<Self> {
-        let key = BASE64.decode(key.as_bytes())?;
+        let key = BASE64_NOPAD.decode(key.as_bytes())?;
         Ok(Self {
             key: PKey::hmac(&key)?,
             digest: MessageDigest::sha512(),
@@ -56,7 +56,7 @@ impl Hmac {
     }
 }
 
-impl Password for Hmac {
+impl Password for HMac {
     fn sign(&self, plain: &[u8]) -> Result<Vec<u8>> {
         let mut signer = Signer::new(self.digest, &self.key)?;
         signer.update(plain)?;
@@ -80,7 +80,7 @@ pub struct Aes {
 
 impl Aes {
     pub fn new(key: &str) -> Result<Self> {
-        let key = BASE64.decode(key.as_bytes())?;
+        let key = BASE64_NOPAD.decode(key.as_bytes())?;
         Ok(Self {
             key,
             cipher: Cipher::aes_256_cbc(),

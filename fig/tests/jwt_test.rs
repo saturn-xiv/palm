@@ -1,5 +1,3 @@
-extern crate fig;
-
 use chrono::Duration;
 use fig::jwt::{Jwt as JwtProvider, openssl::Jwt};
 use uuid::Uuid;

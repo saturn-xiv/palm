@@ -1,12 +1,10 @@
-extern crate palm;
-
-use data_encoding::BASE64;
-use palm::crypto::{Aes, Hmac, Password, Secret, random, ssha512};
+use data_encoding::BASE64_NOPAD as BASE64;
+use fig::crypto::{Aes, HMac, Password, Secret, random, ssha512};
 
 #[test]
 fn rand() {
     for _ in 0..3 {
-        println!("random bytes: {:?}", random::bytes(8));
+        println!("random bytes: {}", BASE64.encode(&random::bytes(8)));
         println!("random string: {}", random::string(8));
         println!("random uuid: {}", random::uuid());
     }
@@ -17,8 +15,8 @@ fn ssha512() {
     let salt = random::bytes(8);
     let plain = random::bytes(128);
 
-    println!("ssha512 salt: {:?}", salt);
-    println!("ssha512 plain: {:?}", plain);
+    println!("ssha512 salt: {}", BASE64.encode(&salt));
+    println!("ssha512 plain: {}", BASE64.encode(&plain));
 
     let cipher = ssha512::sum(&plain, &salt);
     println!("ssha512 cipher: {}", cipher);
@@ -30,11 +28,11 @@ fn hmac() {
     let key = random::bytes(24);
     let plain = random::bytes(128);
 
-    let hmac = Hmac::new(&BASE64.encode(&key)).unwrap();
+    let hmac = HMac::new(&BASE64.encode(&key)).unwrap();
 
-    println!("hmac plain: {:?}", plain);
-    let cipher = hmac.sum(&plain).unwrap();
-    println!("hmac cipher: {:?}", cipher);
+    println!("hmac plain: {}", BASE64.encode(&plain));
+    let cipher = hmac.sign(&plain).unwrap();
+    println!("hmac cipher: {}", BASE64.encode(&cipher));
     assert!(hmac.verify(&cipher, &plain));
 }
 
@@ -49,8 +47,8 @@ fn aes() {
             println!("######## {} ########", i);
             println!("aes plain: {:?}", plain);
             let (cipher, salt) = aes.encrypt(&plain.as_bytes()).unwrap();
-            println!("aes cipher: {:?}", cipher);
-            println!("aes salt: {:?}", salt);
+            println!("aes cipher: {}", BASE64.encode(&cipher));
+            println!("aes salt: {}", BASE64.encode(&salt));
 
             let value = aes.decrypt(&cipher, &salt).unwrap();
             let value = String::from_utf8(value).unwrap();
