@@ -279,21 +279,25 @@ pub trait ToXml {
     fn write<W: Write>(&self, wrt: &mut EventWriter<W>) -> XmlWriterResult<()>;
 }
 
-// pub mod gardenia {
-//     #[allow(clippy::match_single_binding, clippy::derive_partial_eq_without_eq)]
-//     pub mod v1 {
-//         tonic::include_proto!("palm.sms.v1");
-//     }
-// }
-// pub mod lily {
-//     #[allow(clippy::match_single_binding, clippy::derive_partial_eq_without_eq)]
-//     pub mod v1 {
-//         tonic::include_proto!("palm.email.v1");
-//     }
-// }
-// pub mod morus {
-//     #[allow(clippy::match_single_binding, clippy::derive_partial_eq_without_eq)]
-//     pub mod v1 {
-//         tonic::include_proto!("palm.rbac.v1");
-//     }
-// }
+pub mod palm {
+    pub mod email {
+        pub mod v1 {
+            tonic::include_proto!("palm.email.v1");
+        }
+    }
+    pub mod sms {
+        pub mod v1 {
+            tonic::include_proto!("palm.sms.v1");
+        }
+    }
+    pub mod rbac {
+        pub mod v1 {
+            tonic::include_proto!("palm.rbac.v1");
+        }
+    }
+    pub mod s3 {
+        pub mod v1 {
+            tonic::include_proto!("palm.s3.v1");
+        }
+    }
+}
