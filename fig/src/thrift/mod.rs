@@ -1,5 +1,3 @@
-pub mod loquat;
-
 use ::thrift::{
     protocol::{TBinaryInputProtocol, TBinaryOutputProtocol, TMultiplexedOutputProtocol},
     transport::{
@@ -14,6 +12,20 @@ use super::Result;
 pub struct Thrift {
     pub host: String,
     pub port: u16,
+    pub tls: Option<Tls>,
+}
+
+impl Default for Thrift {
+    fn default() -> Self {
+        Self {
+            host: "127.0.0.1".to_string(),
+            port: 8080,
+            tls: None,
+        }
+    }
+}
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Tls {
     #[serde(rename = "ca-file")]
     pub ca_file: String,
     #[serde(rename = "cert-file")]
@@ -22,11 +34,9 @@ pub struct Thrift {
     pub key_file: String,
 }
 
-impl Default for Thrift {
+impl Default for Tls {
     fn default() -> Self {
         Self {
-            host: "127.0.0.1".to_string(),
-            port: 8080,
             ca_file: "ca.crt".to_string(),
             cert_file: "client.crt".to_string(),
             key_file: "client.key".to_string(),

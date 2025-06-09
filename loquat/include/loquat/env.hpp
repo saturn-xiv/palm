@@ -42,6 +42,8 @@
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include <tink/internal/ssl_unique_ptr.h>
 #include <tink/util/secret_proto.h>
+
+#include <thrift/Thrift.h>
 #pragma GCC diagnostic pop
 
 #include <spdlog/spdlog.h>

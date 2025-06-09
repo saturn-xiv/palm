@@ -134,12 +134,12 @@ pub struct JwtSignRequest {
   pub audiences: BTreeSet<String>,
   pub issued_at: i64,
   pub not_before: i64,
-  pub expired_at: i64,
+  pub expires_at: i64,
   pub payload: Option<Vec<u8>>,
 }
 
 impl JwtSignRequest {
-  pub fn new<F1, F2, F99>(jwt_id: F1, key_id: F2, issuer: String, subject: String, audiences: BTreeSet<String>, issued_at: i64, not_before: i64, expired_at: i64, payload: F99) -> JwtSignRequest where F1: Into<Option<String>>, F2: Into<Option<String>>, F99: Into<Option<Vec<u8>>> {
+  pub fn new<F1, F2, F99>(jwt_id: F1, key_id: F2, issuer: String, subject: String, audiences: BTreeSet<String>, issued_at: i64, not_before: i64, expires_at: i64, payload: F99) -> JwtSignRequest where F1: Into<Option<String>>, F2: Into<Option<String>>, F99: Into<Option<Vec<u8>>> {
     JwtSignRequest {
       jwt_id: jwt_id.into(),
       key_id: key_id.into(),
@@ -148,7 +148,7 @@ impl JwtSignRequest {
       audiences,
       issued_at,
       not_before,
-      expired_at,
+      expires_at,
       payload: payload.into(),
     }
   }
@@ -227,7 +227,7 @@ impl TSerializable for JwtSignRequest {
     verify_required_field_exists("JwtSignRequest.audiences", &f_13)?;
     verify_required_field_exists("JwtSignRequest.issued_at", &f_21)?;
     verify_required_field_exists("JwtSignRequest.not_before", &f_22)?;
-    verify_required_field_exists("JwtSignRequest.expired_at", &f_23)?;
+    verify_required_field_exists("JwtSignRequest.expires_at", &f_23)?;
     let ret = JwtSignRequest {
       jwt_id: f_1,
       key_id: f_2,
@@ -236,7 +236,7 @@ impl TSerializable for JwtSignRequest {
       audiences: f_13.expect("auto-generated code should have checked for presence of required fields"),
       issued_at: f_21.expect("auto-generated code should have checked for presence of required fields"),
       not_before: f_22.expect("auto-generated code should have checked for presence of required fields"),
-      expired_at: f_23.expect("auto-generated code should have checked for presence of required fields"),
+      expires_at: f_23.expect("auto-generated code should have checked for presence of required fields"),
       payload: f_99,
     };
     Ok(ret)
@@ -273,8 +273,8 @@ impl TSerializable for JwtSignRequest {
     o_prot.write_field_begin(&TFieldIdentifier::new("not_before", TType::I64, 22))?;
     o_prot.write_i64(self.not_before)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("expired_at", TType::I64, 23))?;
-    o_prot.write_i64(self.expired_at)?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("expires_at", TType::I64, 23))?;
+    o_prot.write_i64(self.expires_at)?;
     o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.payload {
       o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 99))?;

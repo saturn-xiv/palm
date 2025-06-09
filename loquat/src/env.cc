@@ -25,7 +25,7 @@ std::string loquat::Jwt::sign(
     const std::optional<std::string> key_id, const std::string& issuer,
     const std::string& subject, const std::set<std::string> audiences,
     const absl::Time& issued_at, const absl::Time& not_before,
-    const absl::Time& expired_at, const std::optional<std::string> payload) {
+    const absl::Time& expires_at, const std::optional<std::string> payload) {
   spdlog::debug(
       "sign token for jwt-id({}) key-id({}) issuer({}) subject({}) "
       "audiences({})",
@@ -37,7 +37,7 @@ std::string loquat::Jwt::sign(
                     .SetSubject(subject)
                     .SetNotBefore(not_before)
                     .SetIssuedAt(issued_at)
-                    .SetExpiration(expired_at);
+                    .SetExpiration(expires_at);
   if (jwt_id) {
     raw_rb = raw_rb.SetJwtId(jwt_id.value());
   }

@@ -18,7 +18,7 @@ struct JwtSignRequest{
 
     21:required i64 issued_at,
     22:required i64 not_before,
-    23:required i64 expired_at,
+    23:required i64 expires_at,
 
     99:optional binary payload,
 }

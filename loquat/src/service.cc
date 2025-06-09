@@ -53,7 +53,8 @@ WantedBy=multi-user.target
 }
 
 void loquat::application::launch_rpc_server(
-    const uint16_t port, std::optional<loquat::application::Ssl> ssl) {
+    const uint16_t port, std::optional<loquat::application::Ssl> ssl,
+    size_t threads) {
   std::shared_ptr<AesHandler> aesHandler = std::make_shared<AesHandler>();
   std::shared_ptr<v1::AesProcessor> aesProcessor =
       std::make_shared<v1::AesProcessor>(aesHandler);
@@ -99,13 +100,10 @@ void loquat::application::launch_rpc_server(
       std::dynamic_pointer_cast<apache::thrift::TProcessor>(
           multiplexedProcessor);
 
-  auto threads_count = std::thread::hardware_concurrency();
-
   std::shared_ptr<apache::thrift::concurrency::ThreadFactory> threadFactory =
       std::make_shared<apache::thrift::concurrency::ThreadFactory>();
   std::shared_ptr<apache::thrift::concurrency::ThreadManager> threadManager =
-      apache::thrift::concurrency::ThreadManager::newSimpleThreadManager(
-          threads_count * 4 + 1);
+      apache::thrift::concurrency::ThreadManager::newSimpleThreadManager();
   threadManager->threadFactory(threadFactory);
   threadManager->start();
 
@@ -122,7 +120,8 @@ void loquat::application::launch_rpc_server(
         sslSocketFactory =
             std::make_shared<apache::thrift::transport::TSSLSocketFactory>();
     {
-      spdlog::info("listening on tcps://0.0.0.0:{}", port);
+      spdlog::info("listening on tcps://0.0.0.0:{} with {} threads", port,
+                   threads);
       spdlog::debug("load cert from {}, key from {}, ca from {}",
                     ssl->cert_file, ssl->key_file, ssl->ca_file);
       sslSocketFactory->loadCertificate(ssl->cert_file.c_str());
@@ -140,7 +139,8 @@ void loquat::application::launch_rpc_server(
     server = std::make_shared<apache::thrift::server::TNonblockingServer>(
         multiplexedProcessor, protocolFactory, serverSocket, threadManager);
   } else {
-    spdlog::info("listening on tcp://0.0.0.0:{}", port);
+    spdlog::info("listening on tcp://0.0.0.0:{} with {} threads", port,
+                 threads);
     std::shared_ptr<apache::thrift::transport::TNonblockingServerSocket>
         serverSocket = std::make_shared<
             apache::thrift::transport::TNonblockingServerSocket>(port);
@@ -148,7 +148,7 @@ void loquat::application::launch_rpc_server(
         multiplexedProcessor, protocolFactory, serverSocket, threadManager);
   }
 
-  server->setNumIOThreads(threads_count * 2 + 1);
+  server->setNumIOThreads(threads);
   server->serve();
 }
 
@@ -195,7 +195,7 @@ void loquat::JwtHandler::sign(std::string& token,
   token = jwt.sign(jwt_id, key_id, request.issuer, request.subject,
                    request.audiences, absl::FromUnixSeconds(request.issued_at),
                    absl::FromUnixSeconds(request.not_before),
-                   absl::FromUnixSeconds(request.expired_at), payload);
+                   absl::FromUnixSeconds(request.expires_at), payload);
 }
 
 void loquat::JwtHandler::verify(loquat::v1::JwtVerifyResponse& response,

@@ -26,7 +26,8 @@ struct Ssl {
   std::string ca_file;
 };
 
-void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl);
+void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl,
+                       size_t threads);
 void generate_systemd_config(const std::string& name, const uint16_t port);
 }  // namespace application
 

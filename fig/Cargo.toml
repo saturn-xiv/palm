@@ -74,7 +74,7 @@ version = "0.30"
 features = ["process", "hostname", "user"]
 
 [dependencies.redis]
-version = "0.31"
+version = "0.32"
 features = ["cluster", "r2d2"]
 
 [dependencies.aws-config]

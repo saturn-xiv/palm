@@ -107,6 +107,7 @@ pub mod env;
 pub mod google;
 pub mod jwt;
 pub mod line;
+pub mod loquat;
 pub mod minio;
 pub mod network;
 pub mod parser;

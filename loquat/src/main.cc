@@ -35,9 +35,13 @@ int main(int argc, char** argv) {
   }
 
   argparse::ArgumentParser rpc_command("rpc");
+  int threads = std::thread::hardware_concurrency();
   {
     rpc_command.add_argument("-p", "--port")
         .default_value(9999)
+        .scan<'i', int>();
+    rpc_command.add_argument("-t", "--threads")
+        .default_value(threads)
         .scan<'i', int>();
     rpc_command.add_argument("-s", "--ssl")
         .default_value(false)
@@ -103,6 +107,7 @@ int main(int argc, char** argv) {
 
   if (program.is_subcommand_used(rpc_command)) {
     const int port = rpc_command.get<int>("--port");
+    const int threads = rpc_command.get<int>("--threads");
     const std::string cert_file = rpc_command.get<std::string>("--cert-file");
     const std::string key_file = rpc_command.get<std::string>("--key-file");
     const std::string ca_file = rpc_command.get<std::string>("--ca-file");
@@ -113,7 +118,8 @@ int main(int argc, char** argv) {
 
     loquat::application::launch_rpc_server(
         static_cast<uint16_t>(port),
-        rpc_command.get<bool>("--ssl") ? ssl : std::nullopt);
+        rpc_command.get<bool>("--ssl") ? ssl : std::nullopt,
+        static_cast<size_t>(threads));
 
   } else if (program.is_subcommand_used(generate_token_command)) {
     const int years = generate_token_command.get<int>("--years");

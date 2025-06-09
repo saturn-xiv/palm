@@ -94,7 +94,7 @@ class JwtSignRequest : public virtual ::apache::thrift::TBase {
   std::set<std::string>  audiences;
   int64_t issued_at;
   int64_t not_before;
-  int64_t expired_at;
+  int64_t expires_at;
   std::string payload;
 
   _JwtSignRequest__isset __isset;
@@ -113,7 +113,7 @@ class JwtSignRequest : public virtual ::apache::thrift::TBase {
 
   void __set_not_before(const int64_t val);
 
-  void __set_expired_at(const int64_t val);
+  void __set_expires_at(const int64_t val);
 
   void __set_payload(const std::string& val);
 

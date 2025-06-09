@@ -210,7 +210,7 @@ JwtSignRequest::JwtSignRequest() noexcept
      subject(),
      issued_at(0),
      not_before(0),
-     expired_at(0),
+     expires_at(0),
      payload() {
 }
 
@@ -244,8 +244,8 @@ void JwtSignRequest::__set_not_before(const int64_t val) {
   this->not_before = val;
 }
 
-void JwtSignRequest::__set_expired_at(const int64_t val) {
-  this->expired_at = val;
+void JwtSignRequest::__set_expires_at(const int64_t val) {
+  this->expires_at = val;
 }
 
 void JwtSignRequest::__set_payload(const std::string& val) {
@@ -276,7 +276,7 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
   bool isset_audiences = false;
   bool isset_issued_at = false;
   bool isset_not_before = false;
-  bool isset_expired_at = false;
+  bool isset_expires_at = false;
 
   while (true)
   {
@@ -357,8 +357,8 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 23:
         if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->expired_at);
-          isset_expired_at = true;
+          xfer += iprot->readI64(this->expires_at);
+          isset_expires_at = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -390,7 +390,7 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
     throw TProtocolException(TProtocolException::INVALID_DATA);
   if (!isset_not_before)
     throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_expired_at)
+  if (!isset_expires_at)
     throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
@@ -438,8 +438,8 @@ uint32_t JwtSignRequest::write(::apache::thrift::protocol::TProtocol* oprot) con
   xfer += oprot->writeI64(this->not_before);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("expired_at", ::apache::thrift::protocol::T_I64, 23);
-  xfer += oprot->writeI64(this->expired_at);
+  xfer += oprot->writeFieldBegin("expires_at", ::apache::thrift::protocol::T_I64, 23);
+  xfer += oprot->writeI64(this->expires_at);
   xfer += oprot->writeFieldEnd();
 
   if (this->__isset.payload) {
@@ -461,7 +461,7 @@ void swap(JwtSignRequest &a, JwtSignRequest &b) {
   swap(a.audiences, b.audiences);
   swap(a.issued_at, b.issued_at);
   swap(a.not_before, b.not_before);
-  swap(a.expired_at, b.expired_at);
+  swap(a.expires_at, b.expires_at);
   swap(a.payload, b.payload);
   swap(a.__isset, b.__isset);
 }
@@ -486,7 +486,7 @@ bool JwtSignRequest::operator==(const JwtSignRequest & rhs) const
     return false;
   if (!(not_before == rhs.not_before))
     return false;
-  if (!(expired_at == rhs.expired_at))
+  if (!(expires_at == rhs.expires_at))
     return false;
   if (__isset.payload != rhs.__isset.payload)
     return false;
@@ -503,7 +503,7 @@ JwtSignRequest::JwtSignRequest(const JwtSignRequest& other9) {
   audiences = other9.audiences;
   issued_at = other9.issued_at;
   not_before = other9.not_before;
-  expired_at = other9.expired_at;
+  expires_at = other9.expires_at;
   payload = other9.payload;
   __isset = other9.__isset;
 }
@@ -515,7 +515,7 @@ JwtSignRequest& JwtSignRequest::operator=(const JwtSignRequest& other10) {
   audiences = other10.audiences;
   issued_at = other10.issued_at;
   not_before = other10.not_before;
-  expired_at = other10.expired_at;
+  expires_at = other10.expires_at;
   payload = other10.payload;
   __isset = other10.__isset;
   return *this;
@@ -530,7 +530,7 @@ void JwtSignRequest::printTo(std::ostream& out) const {
   out << ", " << "audiences=" << to_string(audiences);
   out << ", " << "issued_at=" << to_string(issued_at);
   out << ", " << "not_before=" << to_string(not_before);
-  out << ", " << "expired_at=" << to_string(expired_at);
+  out << ", " << "expires_at=" << to_string(expires_at);
   out << ", " << "payload="; (__isset.payload ? (out << to_string(payload)) : (out << "<null>"));
   out << ")";
 }

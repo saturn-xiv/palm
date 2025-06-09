@@ -8,19 +8,39 @@ description = "A total free online education solution."
 env_logger = "0.11"
 clap = "4"
 
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
 
 [dependencies.diesel-adapter]
 version = "1"
 features = ["postgres"]
+
+[dependencies.hyper]
+version = "1"
+features = ["full"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher"]
 
 [dependencies.diesel]
 version = "2"
 default-features = false
 features = ["postgres", "extras", "huge-tables"]
 
-[dependencies.thrift]
-git = "https://github.com/apache/thrift.git"
-tag = "v0.21.0"
 
 [dependencies.fig]
 path = "../fig"

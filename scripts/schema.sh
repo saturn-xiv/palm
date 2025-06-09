@@ -25,17 +25,22 @@ function generate_aloe() {
 function generate_phlox() {
     local target=$WORK_DIR/phlox
 
-    echo "generate protocols for phlox"
-    thrift -out $target --gen rs -r $WORK_DIR/loquat/loquat.thrift
-    mv $target/loquat.rs $target/src/loquat/v1.rs
-
     echo "generate db schema for phlox"
     DATABASE_URL="postgres://www:change-me@127.0.0.1:5432/phlox?sslmode=disable" diesel print-schema >$target/src/schema.rs
+}
+
+function generate_fig() {
+    local target=$WORK_DIR/fig
+
+    echo "generate loquat protocol for fig"
+    thrift -out $target --gen rs -r $WORK_DIR/loquat/loquat.thrift
+    mv $target/loquat.rs $target/src/loquat/v1.rs
 }
 
 generate_loquat
 generate_aloe
 generate_phlox
+generate_fig
 
 cargo fmt
 
