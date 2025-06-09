@@ -86,19 +86,24 @@ impl Default for Config {
 
 // https://redis.io/commands
 impl super::Provider for ClusterConnection {
-    fn version(&mut self) -> Result<String> {
+    fn version(&mut self) -> Result<Vec<(String, String)>> {
         let val: Value = cmd("info").query(self)?;
+
         let mut items = Vec::new();
 
-        if let Value::Array(ref it) = val {
-            for it in it {
-                if let Value::SimpleString(it) = it {
-                    items.push(it.clone());
+        if let Value::Map(ref it) = val {
+            for (key, val) in it {
+                if let Value::BulkString(key) = key {
+                    if let Value::BulkString(val) = val {
+                        let key = std::str::from_utf8(key)?;
+                        let val = std::str::from_utf8(val)?;
+                        items.push((key.to_string(), val.to_string()));
+                    }
                 }
             }
         }
 
-        Ok(items.join("\n"))
+        Ok(items)
     }
     fn keys(&mut self) -> Result<Vec<(String, i64)>> {
         let mut items = Vec::new();
@@ -106,9 +111,10 @@ impl super::Provider for ClusterConnection {
         let keys: Vec<Value> = Commands::keys(self, "*")?;
 
         for it in keys.iter() {
-            if let Value::SimpleString(key) = it {
+            if let Value::BulkString(key) = it {
+                let key = std::str::from_utf8(key)?;
                 let ttl: i64 = self.ttl(key)?;
-                items.push((key.clone(), ttl));
+                items.push((key.to_string(), ttl));
             }
         }
         Ok(items)
@@ -137,16 +143,7 @@ impl super::Provider for ClusterConnection {
         )?;
         Ok(())
     }
-    // #[cfg(debug_assertions)]
-    // fn get<K, V, F>(&mut self, _key: &K, fun: F, _ttl: Duration) -> Result<V>
-    // where
-    //     F: FnOnce() -> Result<V>,
-    //     K: Display,
-    //     V: DeserializeOwned + Serialize,
-    // {
-    //     fun()
-    // }
-    // #[cfg(not(debug_assertions))]
+
     fn get<K, V, F>(&mut self, key: &K, fun: F, ttl: Duration) -> Result<V>
     where
         F: FnOnce() -> Result<V>,
