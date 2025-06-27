@@ -6,11 +6,9 @@
 #include <tink/binary_keyset_reader.h>
 #include <tink/binary_keyset_writer.h>
 #include <tink/cleartext_keyset_handle.h>
-#include <tink/config/tink_config.h>
 #include <tink/jwt/internal/jwt_mac_impl.h>
 #include <tink/jwt/internal/jwt_mac_internal.h>
 #include <tink/jwt/jwt_key_templates.h>
-#include <tink/jwt/jwt_mac_config.h>
 #include <tink/jwt/jwt_signature_config.h>
 #include <tink/jwt/jwt_validator.h>
 #include <tink/jwt/raw_jwt.h>
@@ -20,7 +18,6 @@
 #include <tink/signature/signature_key_templates.h>
 #include <tink/tink_config.h>
 #include <tink/util/status.h>
-#include <tink/version.h>
 
 std::string loquat::Jwt::sign(
     const std::optional<std::string> jwt_id,

@@ -13,6 +13,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 # --------------------------------------------------------
 
 execute_process(COMMAND git describe --tags --always --dirty
@@ -42,7 +44,6 @@ FetchContent_MakeAvailable(spdlog tink)
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.cc")
 
 add_library(loquat SHARED ${SOURCE_LIST})
-set_property(TARGET loquat PROPERTY POSITION_INDEPENDENT_CODE ON)
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 
 target_link_libraries(loquat
