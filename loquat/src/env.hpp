@@ -12,6 +12,7 @@
 #include <deque>
 #include <exception>
 #include <filesystem>
+#include <format>
 #include <fstream>
 #include <functional>
 #include <iomanip>
@@ -64,7 +65,7 @@ class Keyset {
     // std::filesystem::path it(this->_name);
     // it.replace_extension("bin");
     // return it;
-    return this->_name + ".bin";
+    return std::format("{}.bin", this->_name);
   }
 
   template <class T>
@@ -88,7 +89,7 @@ class Keyset {
 // https://github.com/google/tink/blob/master/docs/JWT-HOWTO.md
 class Jwt final : public Keyset {
  public:
-  Jwt() : Keyset("jwt") {}
+  Jwt(const std::string& name) : Keyset(name) {}
 
   std::tuple<std::optional<std::string>, std::optional<std::string>,
              std::string, std::optional<std::string>>
@@ -109,7 +110,7 @@ class Jwt final : public Keyset {
 
 class HMac final : public Keyset {
  public:
-  HMac() : Keyset("hmac") {}
+  HMac(const std::string& name) : Keyset(name) {}
   std::string sign(const std::string& plain);
   void verify(const std::string& code, const std::string& plain);
 
@@ -119,7 +120,7 @@ class HMac final : public Keyset {
 
 class Aes final : public Keyset {
  public:
-  Aes() : Keyset("aes") {}
+  Aes(const std::string& name) : Keyset(name) {}
   std::string encrypt(const std::string& plain);
   std::string decrypt(const std::string& code);
 

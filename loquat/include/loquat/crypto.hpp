@@ -10,30 +10,28 @@
 
 namespace loquat {
 
-int init(bool debug);
+int init(const std::string& namespace_, bool debug);
 
 namespace aes {
-LOQUATLIB_API std::string encrypt(const std::string& plain);
-LOQUATLIB_API std::string decrypt(const std::string& code);
+LOQUAT_LIB_API std::string encrypt(const std::string& plain);
+LOQUAT_LIB_API std::string decrypt(const std::string& code);
 }  // namespace aes
 
 namespace hmac {
-LOQUATLIB_API std::string sign(const std::string& plain);
-LOQUATLIB_API void verify(const std::string& code, const std::string& plain);
+LOQUAT_LIB_API std::string sign(const std::string& plain);
+LOQUAT_LIB_API void verify(const std::string& code, const std::string& plain);
 }  // namespace hmac
 
 namespace jwt {
-LOQUATLIB_API std::tuple<std::optional<std::string>, std::optional<std::string>,
-                         std::string, std::optional<std::string>>
+LOQUAT_LIB_API
+std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
+           std::optional<std::string>>
 verify(const std::string& token, const std::string& issuer,
        const std::string& audience);
-LOQUATLIB_API std::string sign(const std::optional<std::string> jwt_id,
-                               const std::optional<std::string> key_id,
-                               const std::string& issuer,
-                               const std::string& subject,
-                               const std::set<std::string> audiences,
-                               uint32_t ttl,
-                               const std::optional<std::string> payload);
+LOQUAT_LIB_API std::string sign(
+    const std::string& issuer, const std::string& subject,
+    const std::set<std::string> audiences, uint32_t ttl = 5,
+    const std::optional<std::string> payload = std::nullopt);
 }  // namespace jwt
 
 }  // namespace loquat
