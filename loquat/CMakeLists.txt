@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 # --------------------------------------------------------
 
@@ -45,6 +46,7 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PRO
 
 add_library(loquat SHARED ${SOURCE_LIST})
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
+# set_target_properties(loquat PROPERTIES CXX_VISIBILITY_PRESET hidden)
 
 target_link_libraries(loquat
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config

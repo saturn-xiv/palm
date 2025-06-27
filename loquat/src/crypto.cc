@@ -7,7 +7,7 @@
 #include <tink/jwt/jwt_mac_config.h>
 #include <tink/version.h>
 
-int loquat::init(bool debug) {
+int LOQUATLIB_API loquat::init(bool debug) {
   {
     spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
     spdlog::debug("run on debug mode {}", loquat::GIT_VERSION);
