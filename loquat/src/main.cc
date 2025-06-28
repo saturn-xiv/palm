@@ -1,3 +1,4 @@
+#include "loquat/service.hpp"
 #include "loquat/tink.hpp"
 #include "loquat/version.hpp"
 
@@ -22,6 +23,7 @@ int main(int argc, char** argv) {
       .default_value(false)
       .help("run on debug mode")
       .implicit_value(true);
+  program.add_argument("-n", "--name").default_value(loquat::PROJECT_NAME);
 
   argparse::ArgumentParser generate_token_command("generate-token");
   {
@@ -61,9 +63,6 @@ int main(int argc, char** argv) {
     systemd_config_command.add_argument("-p", "--port")
         .default_value(9999)
         .scan<'i', int>();
-    systemd_config_command.add_argument("-n", "--name")
-        .default_value(loquat::PROJECT_NAME)
-        .required();
   }
 
   program.add_subparser(rpc_command);
@@ -105,6 +104,8 @@ int main(int argc, char** argv) {
     }
   }
 
+  const std::string name = program.get<std::string>("--name");
+
   if (program.is_subcommand_used(rpc_command)) {
     const int port = rpc_command.get<int>("--port");
     const int threads = rpc_command.get<int>("--threads");
@@ -117,7 +118,7 @@ int main(int argc, char** argv) {
     apache::thrift::GlobalOutput.setOutputFunction(loquat::set_thrift_logger);
 
     loquat::application::launch_rpc_server(
-        static_cast<uint16_t>(port),
+        name, static_cast<uint16_t>(port),
         rpc_command.get<bool>("--ssl") ? ssl : std::nullopt,
         static_cast<size_t>(threads));
 
@@ -136,7 +137,7 @@ int main(int argc, char** argv) {
 
     const auto ttl = std::chrono::duration_cast<std::chrono::seconds>(
         std::chrono::years(years));
-    loquat::Jwt jwt;
+    loquat::Jwt jwt(name);
     std::set<std::string> audiences{audience};
 
     auto now = absl::Now();
@@ -148,7 +149,6 @@ int main(int argc, char** argv) {
     std::cout << token << std::endl;
   } else if (program.is_subcommand_used(systemd_config_command)) {
     const int port = systemd_config_command.get<int>("--port");
-    const std::string name = systemd_config_command.get<std::string>("--name");
     loquat::application::generate_systemd_config(name, port);
   }
 

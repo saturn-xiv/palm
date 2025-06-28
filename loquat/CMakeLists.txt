@@ -37,6 +37,10 @@ FetchContent_Declare(argparse
   GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
   GIT_TAG         "v3.2"
 )
+FetchContent_Declare(inja
+  GIT_REPOSITORY  "https://github.com/pantor/inja.git"
+  GIT_TAG         "v3.4.0"
+)
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.4.0"
@@ -47,18 +51,18 @@ FetchContent_Declare(libevent
 )
 FetchContent_Declare(thrift
   GIT_REPOSITORY      "https://github.com/apache/thrift.git"
-  GIT_TAG             "v0.21.0"
+  GIT_TAG             "v0.22.0"
   PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/patches/thrift.patch
   UPDATE_DISCONNECTED 1
 )
 
-FetchContent_MakeAvailable(spdlog argparse tink libevent thrift)
+FetchContent_MakeAvailable(spdlog argparse inja tink libevent thrift)
 
 # --------------------------------------------------------
 
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.cc")
 
-add_executable()(loquat SHARED ${SOURCE_LIST})
+add_executable(loquat ${SOURCE_LIST})
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 
@@ -74,6 +78,8 @@ target_include_directories(loquat PUBLIC
     
   ${spdlog_SOURCE_DIR}/include
   ${argparse_SOURCE_DIR}/include
+  ${inja_SOURCE_DIR}/single_include
+  ${inja_SOURCE_DIR}/third_party/include
   ${thrift_SOURCE_DIR}/lib/cpp/src
   ${thrift_SOURCE_DIR}/compiler/cpp/src
   ${thrift_BINARY_DIR}
