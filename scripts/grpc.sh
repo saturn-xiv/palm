@@ -34,7 +34,8 @@ function build_grpc() {
         rm -r $BUILD_ROOT
     fi
 
-    CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
+    CC=clang CXX=clang++ \
+    cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
         -DABSL_PROPAGATE_CXX_STD=ON \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -B $BUILD_ROOT -S $SOURCE_ROOT \
@@ -48,7 +49,8 @@ function build_grpc() {
 #     exit 1
 # fi
 
-build_grpc v1.69.0 v31.1
+# vcpkg 2025.06.13
+build_grpc v1.71.0 v5.29.3
 echo "done."
 
 exit 0
