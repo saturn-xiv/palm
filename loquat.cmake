@@ -4,8 +4,8 @@ include(FetchContent)
 
 project(
     loquat
-    VERSION 2025.6.28
-    DESCRIPTION "A cryptographic rpc service(by Google Tink)."
+    VERSION 2025.6.29
+    DESCRIPTION "A cryptographic thrift service(by Google Tink)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
 
@@ -21,7 +21,7 @@ execute_process(COMMAND git describe --tags --always --dirty
 )
 string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
-configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/version.hpp)
+configure_file(loquat/include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/loquat/include/loquat/version.hpp)
 
 # --------------------------------------------------------
 
@@ -52,7 +52,7 @@ FetchContent_Declare(libevent
 FetchContent_Declare(thrift
   GIT_REPOSITORY      "https://github.com/apache/thrift.git"
   GIT_TAG             "v0.22.0"
-  PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/patches/thrift.patch
+  PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/gourd/patches/thrift.patch
   UPDATE_DISCONNECTED 1
 )
 
@@ -60,7 +60,7 @@ FetchContent_MakeAvailable(spdlog argparse inja tink libevent thrift)
 
 # --------------------------------------------------------
 
-file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.cc")
+file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/gourd/src/*.cpp" "${PROJECT_SOURCE_DIR}/loquat/src/*.cc")
 
 add_executable(loquat ${SOURCE_LIST})
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
@@ -74,7 +74,8 @@ target_link_libraries(loquat
 )
 
 target_include_directories(loquat PUBLIC
-  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/gourd/include
+  ${PROJECT_SOURCE_DIR}/loquat/include
     
   ${spdlog_SOURCE_DIR}/include
   ${argparse_SOURCE_DIR}/include
