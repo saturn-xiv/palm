@@ -4,7 +4,7 @@ include(FetchContent)
 
 project(
     loquat
-    VERSION 2025.6.27
+    VERSION 2025.6.28
     DESCRIPTION "A cryptographic rpc service(by Google Tink)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
@@ -12,9 +12,6 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 # --------------------------------------------------------
 
@@ -28,32 +25,56 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 
 # --------------------------------------------------------
 
+find_package(OpenSSL REQUIRED)
+
+# --------------------------------------------------------
+
 FetchContent_Declare(spdlog
   GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
   GIT_TAG         "v1.15.3"
+)
+FetchContent_Declare(argparse
+  GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
+  GIT_TAG         "v3.2"
 )
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.4.0"
 )
+FetchContent_Declare(libevent
+  GIT_REPOSITORY  "https://github.com/libevent/libevent.git"
+  GIT_TAG         "release-2.1.12-stable"
+)
+FetchContent_Declare(thrift
+  GIT_REPOSITORY      "https://github.com/apache/thrift.git"
+  GIT_TAG             "v0.21.0"
+  PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/patches/thrift.patch
+  UPDATE_DISCONNECTED 1
+)
 
-
-FetchContent_MakeAvailable(spdlog tink)
+FetchContent_MakeAvailable(spdlog argparse tink libevent thrift)
 
 # --------------------------------------------------------
 
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.cc")
 
-add_library(loquat SHARED ${SOURCE_LIST})
+add_executable()(loquat SHARED ${SOURCE_LIST})
+target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
-# set_target_properties(loquat PROPERTIES CXX_VISIBILITY_PRESET hidden)
 
 target_link_libraries(loquat
+  ${OPENSSL_LIBRARIES}
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
+  event_core event_openssl
+  thrift thriftnb thriftz
 )
 
 target_include_directories(loquat PUBLIC
   ${PROJECT_SOURCE_DIR}/include
     
   ${spdlog_SOURCE_DIR}/include
+  ${argparse_SOURCE_DIR}/include
+  ${thrift_SOURCE_DIR}/lib/cpp/src
+  ${thrift_SOURCE_DIR}/compiler/cpp/src
+  ${thrift_BINARY_DIR}
 )
