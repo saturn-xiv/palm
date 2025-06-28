@@ -21,10 +21,10 @@ function generate_gourd_grpc() {
     echo "generate grpc protocols(cpp) for gourd..."
     local target=$WORK_DIR/gourd
 
-    $PROTOBUF_HOME/bin/protoc -I $PROTOCOLS_HOME/protocols \
+    $PROTOBUF_HOME/bin/protoc -I $PROTOCOLS_HOME \
         -I $PROTOBUF_HOME/include/google/protobuf \
         --cpp_out=$target --grpc_out=$target \
-        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_cpp_plugin \
+        --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_cpp_plugin \
         $PROTOCOLS_HOME/*.proto
     mv $target/*.h $target/include/
     mv $target/*.cc $target/src/
