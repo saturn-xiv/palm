@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.mail.v1";
+package palm.mail.v1;
+
+message EmailSendTask {
+  message Address {
+    string name = 1;
+    string email = 2;
+  }
+  message Body {
+    bool html = 1;
+    string content = 2;
+  }
+  message Attachment {
+    string title = 1;
+    string content_type = 2;
+    bytes body = 9;
+  }
+  Address from = 1;
+  Address to = 2;
+  string subject = 3;
+  Body body = 4;
+  repeated Address cc = 7;
+  repeated Address bcc = 8;
+  repeated Attachment attachments = 9;
+}

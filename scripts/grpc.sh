@@ -8,7 +8,7 @@ export SOURCE_ROOT=$HOME/downloads/grpc
 export BUILD_ROOT=$HOME/build/grpc
 export INSTALL_ROOT=$HOME/.local
 
-# pip install cmake==3.31.6
+# FIXME: pip install cmake==3.31.6
 
 function build_grpc() {
     # https://grpc.io/docs/languages/cpp/quickstart/
@@ -33,8 +33,8 @@ function build_grpc() {
     if [ -d $BUILD_ROOT ]; then
         rm -r $BUILD_ROOT
     fi
-    # https://github.com/abseil/abseil-cpp/pull/1536
-    CC=/usr/lib/llvm18/bin/clang CXX=/usr/lib/llvm18/bin/clang++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 \
+
+    CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
         -DABSL_PROPAGATE_CXX_STD=ON \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -B $BUILD_ROOT -S $SOURCE_ROOT \

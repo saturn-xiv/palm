@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.bbs.v1";
+option go_package = "./;v2";
+package palm.bbs.v1;
+
+service Forum {}
+
+service Topic {}
+
+service Post {}
