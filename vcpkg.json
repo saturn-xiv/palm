@@ -6,7 +6,6 @@
     "boost-algorithm",
     "boost-uuid",
     "boost-url",
-    "boost-test",
     "argparse",
     "spdlog",
     "catch2",
@@ -20,10 +19,7 @@
     "cpr",
     "libsodium",
     "jwt-cpp",
-    "libpqxx",
-    "libmariadb",
-    "sqlitecpp",
-    { "name": "soci", "features": ["postgresql", "mysql", "sqlite3", "boost"] },
+    { "name": "soci", "features": ["postgresql", "sqlite3", "boost"] },
     {
       "name": "redis-plus-plus",
       "features": ["cxx17"]
@@ -31,7 +27,6 @@
     "mongo-cxx-driver",
     "minio-cpp",
     "librabbitmq",
-    "paho-mqttpp3",
 
     {
       "name": "abseil",

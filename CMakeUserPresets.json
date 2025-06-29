@@ -2,15 +2,11 @@
   "version": 2,
   "configurePresets": [
     {
-      "name": "x86_64",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/x86_64",
+      "name": "default",
+      "inherits": "vcpkg",
+
       "environment": {
         "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
-      },
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-        "VCPKG_DEFAULT_TRIPLET": "x64-linux-release"
       }
     },
     {
@@ -18,11 +14,11 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/aarch64",
       "environment": {
-        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg",
+        "VCPKG_DEFAULT_TRIPLET": ""
       },
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-        "VCPKG_DEFAULT_TRIPLET": "arm64-linux-release"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
