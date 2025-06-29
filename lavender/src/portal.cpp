@@ -1,28 +1,28 @@
 
-#include "palm/wisteria.hpp"
+#include "palm/portal.hpp"
 
 #include <boost/current_function.hpp>
 
-grpc::Status palm::wisteria::services::UserServiceImpl::SignInByEmail(
+grpc::Status palm::portal::services::UserServiceImpl::SignInByEmail(
     grpc::ServerContext* context,
-    const palm::wisteria::v1::UserSignInByEmailRequest* request,
-    palm::wisteria::v1::UserSignInResponse* reply) {
+    const palm::portal::v1::UserSignInByEmailRequest* request,
+    palm::portal::v1::UserSignInResponse* reply) {
   // TODO
   reply->set_token("ttt");
   return grpc::Status::OK;
 }
 
-std::shared_ptr<palm::wisteria::v1::UserSignInResponse>
-palm::wisteria::rpc::UserClient::sign_in(const std::string& email,
-                                         const std::string& password) {
-  palm::wisteria::v1::UserSignInByEmailRequest request;
+std::shared_ptr<palm::portal::v1::UserSignInResponse>
+palm::portal::rpc::UserClient::sign_in(const std::string& email,
+                                       const std::string& password) {
+  palm::portal::v1::UserSignInByEmailRequest request;
   //   TODO check email
   request.set_email(email);
   //   TODO check password
   request.set_password(password);
 
-  std::shared_ptr<palm::wisteria::v1::UserSignInResponse> reply =
-      std::make_shared<palm::wisteria::v1::UserSignInResponse>();
+  std::shared_ptr<palm::portal::v1::UserSignInResponse> reply =
+      std::make_shared<palm::portal::v1::UserSignInResponse>();
 
   grpc::ClientContext context;
   grpc::Status status =
@@ -36,21 +36,21 @@ palm::wisteria::rpc::UserClient::sign_in(const std::string& email,
   return reply;
 }
 
-void palm::wisteria::workers::EmailSendQueueConsumer::execute(
+void palm::portal::workers::EmailSendQueueConsumer::execute(
     const std::string& id, const std::string& content_type,
     const std::vector<uint8_t> payload) {
   // TODO
 }
 
-void palm::wisteria::workers::SmsSendQueueConsumer::execute(
+void palm::portal::workers::SmsSendQueueConsumer::execute(
     const std::string& id, const std::string& content_type,
     const std::vector<uint8_t> payload) {
   // TODO
 }
 
-void palm::wisteria::mount(httplib::Server& server, palm::GrpcClient& rpc,
-                           palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
-                           std::shared_ptr<palm::Minio> s3) {
+void palm::portal::mount(httplib::Server& server, palm::GrpcClient& rpc,
+                         palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
+                         std::shared_ptr<palm::Minio> s3) {
   BOOST_LOG_TRIVIAL(debug) << BOOST_CURRENT_FUNCTION;
   server.Get("/", [&](const auto& req, auto& res) {
     nlohmann::json data;

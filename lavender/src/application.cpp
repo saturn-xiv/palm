@@ -1,8 +1,8 @@
-#include "palm/hibiscus.hpp"
 #include "palm/bbs.hpp"
 #include "palm/blog.hpp"
 #include "palm/bookkeeper.hpp"
 #include "palm/cms.hpp"
+#include "palm/lavender.hpp"
 #include "palm/questionnaire.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
@@ -52,7 +52,7 @@ static std::shared_ptr<palm::opensearch::Client> open_opensearch(
   const auto node = config.get_child("opensearch");
   std::shared_ptr<palm::opensearch::Client> it =
       std::make_shared<palm::opensearch::Client>(node.get<std::string>("host"),
-                                                  node.get<uint16_t>("port"));
+                                                 node.get<uint16_t>("port"));
   {
     const auto res = it->cluster_health();
     BOOST_LOG_TRIVIAL(debug)
@@ -114,9 +114,9 @@ static void start_sms_send_worker(bool debug, const std::string& name,
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
   std::shared_ptr<palm::QueueConsumer> consumer =
-      std::make_shared<palm::wisteria::workers::SmsSendQueueConsumer>(name,
-                                                                       twilio);
-  cli->consume(palm::wisteria::workers::SmsSendQueueConsumer::QUEUE, consumer);
+      std::make_shared<palm::portal::workers::SmsSendQueueConsumer>(name,
+                                                                    twilio);
+  cli->consume(palm::portal::workers::SmsSendQueueConsumer::QUEUE, consumer);
 }
 
 static void start_email_send_worker(bool debug, const std::string& name,
@@ -127,18 +127,16 @@ static void start_email_send_worker(bool debug, const std::string& name,
       .name = smtp_node.get<std::string>("user-name"),
       .email = smtp_node.get<std::string>("user-email"),
   };
-  std::shared_ptr<palm::email::Smtp> smtp =
-      std::make_shared<palm::email::Smtp>(
-          smtp_node.get<std::string>("host"), smtp_node.get<uint16_t>("port"),
-          from, smtp_node.get<std::string>("password"));
+  std::shared_ptr<palm::email::Smtp> smtp = std::make_shared<palm::email::Smtp>(
+      smtp_node.get<std::string>("host"), smtp_node.get<uint16_t>("port"), from,
+      smtp_node.get<std::string>("password"));
 
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
   std::shared_ptr<palm::QueueConsumer> consumer =
-      std::make_shared<palm::wisteria::workers::EmailSendQueueConsumer>(name,
-                                                                         smtp);
-  cli->consume(palm::wisteria::workers::EmailSendQueueConsumer::QUEUE,
-               consumer);
+      std::make_shared<palm::portal::workers::EmailSendQueueConsumer>(name,
+                                                                      smtp);
+  cli->consume(palm::portal::workers::EmailSendQueueConsumer::QUEUE, consumer);
 }
 
 static void start_http_server(const std::string& host, uint16_t port,
@@ -155,7 +153,7 @@ static void start_http_server(const std::string& host, uint16_t port,
 
   const auto rpc_node = config.get_child("rpc");
   palm::GrpcClient rpc = palm::GrpcClient(rpc_node.get<std::string>("host"),
-                                            rpc_node.get<uint16_t>("port"));
+                                          rpc_node.get<uint16_t>("port"));
   BOOST_LOG_TRIVIAL(debug) << "connect to backend tcp://" << rpc.target();
 
   nlohmann::json global;
@@ -187,7 +185,7 @@ static void start_http_server(const std::string& host, uint16_t port,
                             << req.path << " " << params.str();
   });
 
-  palm::wisteria::mount(server, rpc, theme, jwt, s3);
+  palm::portal::mount(server, rpc, theme, jwt, s3);
 
   BOOST_LOG_TRIVIAL(info) << "listen a HTTP server on tcp://" << host << ":"
                           << port << " with theme " << theme_folder;
@@ -209,10 +207,10 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   auto hmac = open_hmac(config);
   auto aes = open_aes(config);
 
-  palm::wisteria::services::UserServiceImpl wisteria_user_service(
-      cache, queue, s3, aes, hmac, jwt);
-  palm::wisteria::services::PolicyServiceImpl wisteria_policy_service;
-  palm::wisteria::services::SiteServiceImpl wisteria_site_service(search);
+  palm::portal::services::UserServiceImpl portal_user_service(cache, queue, s3,
+                                                              aes, hmac, jwt);
+  palm::portal::services::PolicyServiceImpl portal_policy_service;
+  palm::portal::services::SiteServiceImpl portal_site_service(search);
   palm::cms::services::PageServiceImpl cms_page_service;
   palm::bbs::services::ForumServiceImpl bbs_forum_service;
   palm::bbs::services::TopicServiceImpl bbs_topic_service;
@@ -229,9 +227,9 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   builder.AddListeningPort(address, grpc::InsecureServerCredentials());
 
   {
-    builder.RegisterService(&wisteria_user_service);
-    builder.RegisterService(&wisteria_policy_service);
-    builder.RegisterService(&wisteria_site_service);
+    builder.RegisterService(&portal_user_service);
+    builder.RegisterService(&portal_policy_service);
+    builder.RegisterService(&portal_site_service);
     builder.RegisterService(&cms_page_service);
     builder.RegisterService(&bbs_forum_service);
     builder.RegisterService(&bbs_topic_service);
@@ -249,7 +247,7 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   server->Wait();
 }
 
-void palm::hibiscus::Application::launch(int argc, char* argv[]) {
+void palm::lavender::Application::launch(int argc, char* argv[]) {
   boost::program_options::options_description generic("Generic options");
   generic.add_options()("help,h", "print help message")(
       "debug,d", "run on debug mode")("version,v", "print version info")(

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bbs.grpc.pb.h"
-#include "palm/wisteria.hpp"
+#include "palm/portal.hpp"
 
 namespace palm {
 namespace bbs {

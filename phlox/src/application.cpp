@@ -1,4 +1,4 @@
-#include "palm/phlox.hpp"
+#include "palm/application.hpp"
 #include "palm/monitor.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"

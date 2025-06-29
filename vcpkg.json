@@ -1,7 +1,5 @@
 {
   "dependencies": [
-    "boost-log",
-    "boost-program-options",
     "boost-property-tree",
     "boost-date-time",
     "boost-chrono",
@@ -10,6 +8,8 @@
     "boost-url",
     "boost-test",
     "argparse",
+    "spdlog",
+    "catch2",
     "yaml-cpp",
     "tomlplusplus",
     "mailio",
@@ -19,11 +19,11 @@
     "cpp-httplib",
     "cpr",
     "libsodium",
-    "jwt-cpp",    
+    "jwt-cpp",
     "libpqxx",
     "libmariadb",
     "sqlitecpp",
-    {"name": "soci","features":["postgresql", "mysql", "sqlite3", "boost"]},
+    { "name": "soci", "features": ["postgresql", "mysql", "sqlite3", "boost"] },
     {
       "name": "redis-plus-plus",
       "features": ["cxx17"]

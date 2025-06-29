@@ -1,7 +1,7 @@
 #pragma once
 
-#include "palm/wisteria.hpp"
-#include "questionnaire.grpc.pb.h"
+#include "palm/portal.hpp"
+#include "survey.grpc.pb.h"
 
 namespace palm {
 namespace questionnaire {

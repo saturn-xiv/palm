@@ -12,7 +12,7 @@
 
 namespace palm {
 
-namespace monitor {
+namespace monitoring {
 void mount(httplib::Server& server, palm::Theme& theme,
            std::shared_ptr<palm::Jwt> jwt,
            std::shared_ptr<palm::opensearch::Client> search);
@@ -97,7 +97,7 @@ class FilesystemNotify : public Source {
     std::string line;
     int pos = it->second;
     while (std::getline(ss, line)) {
-      items.push_back({p, line, palm::monitor::logging::Item::now()});
+      items.push_back({p, line, palm::monitoring::logging::Item::now()});
       pos += line.length() + 1;
     }
 
@@ -176,13 +176,13 @@ class LoggingScratcher {
  public:
   void launch(std::shared_ptr<palm::opensearch::Client> search,
               std::chrono::seconds sleep = std::chrono::seconds{1});
-  inline void register_(std::shared_ptr<palm::monitor::logging::Source> item) {
+  inline void register_(std::shared_ptr<palm::monitoring::logging::Source> item) {
     std::lock_guard<std::mutex> lock(this->_mutex);
     this->_nodes.push_back(item);
   }
 
  private:
-  std::vector<std::shared_ptr<palm::monitor::logging::Source>> _nodes;
+  std::vector<std::shared_ptr<palm::monitoring::logging::Source>> _nodes;
   std::mutex _mutex;
 };
 class HealthCheckWorker {
@@ -191,15 +191,15 @@ class HealthCheckWorker {
                   std::chrono::duration_cast<std::chrono::seconds>(
                       std::chrono::minutes{1}));
   inline void register_(
-      std::shared_ptr<palm::monitor::health_checkers::HealthChecker> item) {
+      std::shared_ptr<palm::monitoring::health_checkers::HealthChecker> item) {
     std::lock_guard<std::mutex> lock(this->_mutex);
     this->_nodes.push_back(item);
   }
 
  private:
-  std::vector<std::shared_ptr<palm::monitor::health_checkers::HealthChecker>>
+  std::vector<std::shared_ptr<palm::monitoring::health_checkers::HealthChecker>>
       _nodes;
   std::mutex _mutex;
 };
-}  // namespace monitor
+}  // namespace monitoring
 }  // namespace palm

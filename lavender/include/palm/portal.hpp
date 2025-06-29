@@ -11,7 +11,7 @@
 #include "palm/theme.hpp"
 #include "palm/twilio.hpp"
 #include "palm/validator.hpp"
-#include "wisteria.grpc.pb.h"
+#include "portal.grpc.pb.h"
 
 #include <format>
 
@@ -30,7 +30,7 @@ class GrpcClient {
   uint16_t _port;
 };
 
-namespace wisteria {
+namespace portal {
 
 void mount(httplib::Server& server, palm::GrpcClient& rpc, palm::Theme& theme,
            std::shared_ptr<palm::Jwt> jwt, std::shared_ptr<palm::Minio> s3);
@@ -71,7 +71,7 @@ class EmailSendQueueConsumer : public palm::QueueConsumer {
 }  // namespace workers
 
 namespace services {
-class UserServiceImpl final : public palm::wisteria::v1::User::Service {
+class UserServiceImpl final : public palm::portal::v1::User::Service {
  public:
   UserServiceImpl(std::shared_ptr<sw::redis::Redis> cache,
                   std::shared_ptr<palm::rabbitmq::Config> queue,
@@ -88,8 +88,8 @@ class UserServiceImpl final : public palm::wisteria::v1::User::Service {
 
   grpc::Status SignInByEmail(
       grpc::ServerContext* context,
-      const palm::wisteria::v1::UserSignInByEmailRequest* request,
-      palm::wisteria::v1::UserSignInResponse* reply) override;
+      const palm::portal::v1::UserSignInByEmailRequest* request,
+      palm::portal::v1::UserSignInResponse* reply) override;
 
  private:
   std::shared_ptr<palm::rabbitmq::Config> _queue;
@@ -99,8 +99,8 @@ class UserServiceImpl final : public palm::wisteria::v1::User::Service {
   std::shared_ptr<palm::Jwt> _jwt;
   std::shared_ptr<palm::HMac> _hmac;
 };
-class PolicyServiceImpl final : public palm::wisteria::v1::Policy::Service {};
-class SiteServiceImpl final : public palm::wisteria::v1::Site::Service {
+class PolicyServiceImpl final : public palm::portal::v1::Policy::Service {};
+class SiteServiceImpl final : public palm::portal::v1::Site::Service {
  public:
   SiteServiceImpl(std::shared_ptr<palm::opensearch::Client> search)
       : _search(search) {}
@@ -114,14 +114,14 @@ namespace rpc {
 class UserClient {
  public:
   UserClient(std::shared_ptr<grpc::Channel> channel)
-      : _stub(palm::wisteria::v1::User::NewStub(channel)) {}
+      : _stub(palm::portal::v1::User::NewStub(channel)) {}
 
-  std::shared_ptr<palm::wisteria::v1::UserSignInResponse> sign_in(
+  std::shared_ptr<palm::portal::v1::UserSignInResponse> sign_in(
       const std::string& email, const std::string& password);
 
  private:
-  std::unique_ptr<palm::wisteria::v1::User::Stub> _stub;
+  std::unique_ptr<palm::portal::v1::User::Stub> _stub;
 };
 }  // namespace rpc
-}  // namespace wisteria
+}  // namespace portal
 }  // namespace palm

@@ -29,5 +29,5 @@ configure_file(begonia/include/palm/version.h.in ${PROJECT_SOURCE_DIR}/begonia/i
 add_subdirectory(begonia)
 add_subdirectory(bamboo)
 add_subdirectory(lavender)
-add_subdirectory(apps)
+add_subdirectory(phlox)
 add_subdirectory(tests)

@@ -1,12 +1,12 @@
 #pragma once
 
 namespace palm {
-namespace hibiscus {
+namespace lavender {
 class Application {
  public:
   Application() {}
   void launch(int argc, char* argv[]);
 };
 
-}  // namespace hibiscus
+}  // namespace lavender
 }  // namespace palm
