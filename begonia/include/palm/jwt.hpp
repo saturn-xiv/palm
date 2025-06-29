@@ -1,6 +1,6 @@
 #pragma once
 
-#include "basil/http.hpp"
+#include "palm/http.hpp"
 
 #include <chrono>
 #include <optional>
@@ -13,7 +13,7 @@
 #include <grpcpp/grpcpp.h>
 #include <httplib.h>
 
-namespace basil {
+namespace palm {
 class Jwt {
  public:
   Jwt(const std::string& key) : _key(key) {}
@@ -49,16 +49,16 @@ class Jwt {
 
   static inline std::optional<std::string> token(grpc::ServerContext* context) {
     static const std::string auth =
-        boost::algorithm::to_lower_copy(basil::http::headers::AUTHORIZATION);
+        boost::algorithm::to_lower_copy(palm::http::headers::AUTHORIZATION);
     const auto metadata = context->client_metadata();
 
     auto items =
         metadata | std::views::filter([](auto& v) { return v.first == auth; });
 
     for (auto it : items) {
-      if (it.second.starts_with(basil::http::headers::BEARER)) {
+      if (it.second.starts_with(palm::http::headers::BEARER)) {
         const std::string s(it.second.begin(), it.second.end());
-        return s.substr(basil::http::headers::BEARER.size());
+        return s.substr(palm::http::headers::BEARER.size());
       }
     }
 
@@ -67,11 +67,11 @@ class Jwt {
 
   static inline std::optional<std::string> token(
       const httplib::Request& request) {
-    if (request.has_header(basil::http::headers::AUTHORIZATION)) {
+    if (request.has_header(palm::http::headers::AUTHORIZATION)) {
       const auto it =
-          request.get_header_value(basil::http::headers::AUTHORIZATION);
-      if (it.starts_with(basil::http::headers::BEARER)) {
-        return it.substr(basil::http::headers::BEARER.size());
+          request.get_header_value(palm::http::headers::AUTHORIZATION);
+      if (it.starts_with(palm::http::headers::BEARER)) {
+        return it.substr(palm::http::headers::BEARER.size());
       }
     }
     return std::nullopt;
@@ -81,4 +81,4 @@ class Jwt {
   std::string _key;
   inline static const std::string PAYLOAD_CLAIM_KEY = "ext";
 };
-}  // namespace basil
+}  // namespace palm

@@ -1,8 +1,8 @@
-#include "basil/cache.hpp"
+#include "palm/cache.hpp"
 
 #include <boost/log/trivial.hpp>
 
-std::shared_ptr<sw::redis::Redis> basil::redis::Node::open() const {
+std::shared_ptr<sw::redis::Redis> palm::redis::Node::open() const {
   BOOST_LOG_TRIVIAL(debug) << "open redis tcp://" << this->_host << ":"
                            << this->_port << "/" << +(this->_db);
 

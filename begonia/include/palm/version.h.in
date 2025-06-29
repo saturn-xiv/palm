@@ -3,7 +3,7 @@
 #include <string>
 
 // clang-format off
-namespace basil {
+namespace palm {
 
 inline static const std::string VERSION = "v@gourd_VERSION_MAJOR@.@gourd_VERSION_MINOR@.@gourd_VERSION_PATCH@";
 

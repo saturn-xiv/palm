@@ -1,4 +1,4 @@
-#include "basil/jwt.hpp"
+#include "palm/jwt.hpp"
 
 #include <algorithm>
 
@@ -7,7 +7,7 @@
 #include <jwt-cpp/jwt.h>
 #include <nlohmann/json.hpp>
 
-std::string basil::Jwt::sign(
+std::string palm::Jwt::sign(
     const std::optional<std::string> jwt_id,
     const std::optional<std::string> key_id, const std::string& issuer,
     const std::string& subject, const std::set<std::string> audiences,
@@ -58,7 +58,7 @@ static bool has_audience(const std::set<std::string> audiences,
 
 std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
            std::optional<std::string>>
-basil::Jwt::verify(const std::string& token, const std::string& issuer,
+palm::Jwt::verify(const std::string& token, const std::string& issuer,
                    const std::string& audience) const {
   auto decoded = jwt::decode(token);
   auto verifier = jwt::verify()

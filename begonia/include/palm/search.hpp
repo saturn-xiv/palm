@@ -1,7 +1,7 @@
 #pragma once
 
-#include "basil/http.hpp"
-#include "basil/utils.hpp"
+#include "palm/http.hpp"
+#include "palm/utils.hpp"
 
 #include <algorithm>
 #include <cstdint>
@@ -12,7 +12,7 @@
 #include <nlohmann/json.hpp>
 #include <toml++/toml.hpp>
 
-namespace basil {
+namespace palm {
 namespace opensearch {
 namespace requests {
 namespace create_index {
@@ -177,11 +177,11 @@ class Client {
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "GET " << url;
     cpr::Response res = cpr::Get(cpr::Url{url});
-    if (res.status_code != basil::http::status::OK) {
+    if (res.status_code != palm::http::status::OK) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -191,17 +191,17 @@ class Client {
 
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "POST " << url << "\n"
-                             << basil::truncate(body.dump(2), MESSAGE_SIZE);
+                             << palm::truncate(body.dump(2), MESSAGE_SIZE);
     cpr::Response res = cpr::Post(
         cpr::Url{url}, cpr::Body{body.dump()},
-        cpr::Header{{basil::http::headers::CONTENT_TYPE,
-                     basil::http::content_type::APPLICATION_JSON_UTF8}});
-    if (res.status_code != basil::http::status::OK &&
-        res.status_code != basil::http::status::CREATED) {
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
+    if (res.status_code != palm::http::status::OK &&
+        res.status_code != palm::http::status::CREATED) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -210,11 +210,11 @@ class Client {
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "PUT " << url;
     cpr::Response res = cpr::Put(cpr::Url{url});
-    if (res.status_code != basil::http::status::OK) {
+    if (res.status_code != palm::http::status::OK) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -224,16 +224,16 @@ class Client {
 
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "PUT " << url << "\n"
-                             << basil::truncate(body.dump(2), MESSAGE_SIZE);
+                             << palm::truncate(body.dump(2), MESSAGE_SIZE);
     cpr::Response res = cpr::Put(
         cpr::Url{url}, cpr::Body{body.dump()},
-        cpr::Header{{basil::http::headers::CONTENT_TYPE,
-                     basil::http::content_type::APPLICATION_JSON_UTF8}});
-    if (res.status_code != basil::http::status::OK) {
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
+    if (res.status_code != palm::http::status::OK) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -241,11 +241,11 @@ class Client {
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "HEAD " << url;
     cpr::Response res = cpr::Head(cpr::Url{url});
-    if (res.status_code != basil::http::status::OK) {
+    if (res.status_code != palm::http::status::OK) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return false;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     return true;
   }
   template <class R>
@@ -253,11 +253,11 @@ class Client {
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "HEAD " << url;
     cpr::Response res = cpr::Head(cpr::Url{url});
-    if (res.status_code != basil::http::status::OK) {
+    if (res.status_code != palm::http::status::OK) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -266,11 +266,11 @@ class Client {
     const auto url = this->url(path);
     BOOST_LOG_TRIVIAL(debug) << "DELETE " << url;
     cpr::Response res = cpr::Delete(cpr::Url{url});
-    if (res.status_code != basil::http::status::OK) {
+    if (res.status_code != palm::http::status::OK) {
       BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << basil::truncate(res.text, MESSAGE_SIZE);
+    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -287,4 +287,4 @@ class Client {
 };
 }  // namespace opensearch
 
-}  // namespace basil
+}  // namespace palm

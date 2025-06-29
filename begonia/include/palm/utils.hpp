@@ -8,7 +8,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/log/trivial.hpp>
 
-namespace basil {
+namespace palm {
 
 inline std::string truncate(const std::string& s, uint l,
                             const std::string& ellipse = "...") {
@@ -46,4 +46,4 @@ inline std::string profile(const std::string& email) {
 }
 }  // namespace gravatar
 
-}  // namespace basil
+}  // namespace palm

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace basil {
+namespace palm {
 
 class Aes {
  public:
@@ -99,7 +99,7 @@ namespace ssha512 {
 std::string sign(const std::vector<uint8_t> plain,
                  const std::vector<uint8_t> salt);
 inline std::string sign(const std::vector<uint8_t> plain, size_t salt_len) {
-  const auto salt = basil::random::bytes(salt_len);
+  const auto salt = palm::random::bytes(salt_len);
   return sign(plain, salt);
 }
 inline std::string sign(const std::string& plain, size_t salt_len) {
@@ -119,4 +119,4 @@ inline bool verify(const std::string& code, const std::string& plain) {
 inline static const std::string HEADER = "{SSHA512}";
 }  // namespace ssha512
 
-}  // namespace basil
+}  // namespace palm

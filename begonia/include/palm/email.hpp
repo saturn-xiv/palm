@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-namespace basil {
+namespace palm {
 namespace email {
 struct Account {
   std::string name;
@@ -37,4 +37,4 @@ class Smtp {
   std::string _password;
 };
 }  // namespace email
-}  // namespace basil
+}  // namespace palm

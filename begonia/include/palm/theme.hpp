@@ -1,12 +1,12 @@
 #pragma once
 
-#include "basil/http.hpp"
+#include "palm/http.hpp"
 
 #include <format>
 
 #include <inja/inja.hpp>
 
-namespace basil {
+namespace palm {
 
 class Theme {
  public:
@@ -22,4 +22,4 @@ class Theme {
   inja::Environment _env;
   nlohmann::json _global;
 };
-}  // namespace basil
+}  // namespace palm

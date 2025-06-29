@@ -1,11 +1,11 @@
-#include "basil/hibiscus.hpp"
-#include "basil/bbs.hpp"
-#include "basil/blog.hpp"
-#include "basil/bookkeeper.hpp"
-#include "basil/cms.hpp"
-#include "basil/questionnaire.hpp"
-#include "basil/utils.hpp"
-#include "basil/version.hpp"
+#include "palm/hibiscus.hpp"
+#include "palm/bbs.hpp"
+#include "palm/blog.hpp"
+#include "palm/bookkeeper.hpp"
+#include "palm/cms.hpp"
+#include "palm/questionnaire.hpp"
+#include "palm/utils.hpp"
+#include "palm/version.hpp"
 
 #include <unistd.h>
 #include <iostream>
@@ -26,32 +26,32 @@
 #include <mysql/mariadb_version.h>
 #include <openssl/opensslv.h>
 
-static std::shared_ptr<basil::Jwt> open_jwt(
+static std::shared_ptr<palm::Jwt> open_jwt(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("jwt");
-  std::shared_ptr<basil::Jwt> it =
-      std::make_shared<basil::Jwt>(node.get<std::string>("key"));
+  std::shared_ptr<palm::Jwt> it =
+      std::make_shared<palm::Jwt>(node.get<std::string>("key"));
   return it;
 }
-static std::shared_ptr<basil::Aes> open_aes(
+static std::shared_ptr<palm::Aes> open_aes(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("aes");
-  std::shared_ptr<basil::Aes> it = std::make_shared<basil::Aes>(
+  std::shared_ptr<palm::Aes> it = std::make_shared<palm::Aes>(
       node.get<std::string>("key"), node.get<std::string>("iv"));
   return it;
 }
-static std::shared_ptr<basil::HMac> open_hmac(
+static std::shared_ptr<palm::HMac> open_hmac(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("hmac");
-  std::shared_ptr<basil::HMac> it =
-      std::make_shared<basil::HMac>(node.get<std::string>("key"));
+  std::shared_ptr<palm::HMac> it =
+      std::make_shared<palm::HMac>(node.get<std::string>("key"));
   return it;
 }
-static std::shared_ptr<basil::opensearch::Client> open_opensearch(
+static std::shared_ptr<palm::opensearch::Client> open_opensearch(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("opensearch");
-  std::shared_ptr<basil::opensearch::Client> it =
-      std::make_shared<basil::opensearch::Client>(node.get<std::string>("host"),
+  std::shared_ptr<palm::opensearch::Client> it =
+      std::make_shared<palm::opensearch::Client>(node.get<std::string>("host"),
                                                   node.get<uint16_t>("port"));
   {
     const auto res = it->cluster_health();
@@ -61,10 +61,10 @@ static std::shared_ptr<basil::opensearch::Client> open_opensearch(
   }
   return it;
 }
-static std::shared_ptr<basil::Minio> open_minio(
+static std::shared_ptr<palm::Minio> open_minio(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("minio");
-  std::shared_ptr<basil::Minio> it = std::make_shared<basil::Minio>(
+  std::shared_ptr<palm::Minio> it = std::make_shared<palm::Minio>(
       node.get<std::string>("base-url"), node.get<std::string>("access-key"),
       node.get<std::string>("secret-key"));
   {
@@ -78,7 +78,7 @@ static std::shared_ptr<sw::redis::Redis> open_redis(
   const auto node = config.get_child("redis");
   boost::optional<std::string> password =
       node.get_optional<std::string>("password");
-  basil::redis::Node cfg(
+  palm::redis::Node cfg(
       node.get<std::string>("host"), node.get<uint16_t>("port"),
       (password ? std::optional<std::string>{password.value()} : std::nullopt),
       node.get<uint8_t>("db"), node.get<size_t>("pool-size"));
@@ -86,11 +86,11 @@ static std::shared_ptr<sw::redis::Redis> open_redis(
   return it;
 }
 
-static std::shared_ptr<basil::rabbitmq::Config> open_rabbitmq(
+static std::shared_ptr<palm::rabbitmq::Config> open_rabbitmq(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("rabbitmq");
-  std::shared_ptr<basil::rabbitmq::Config> it =
-      std::make_shared<basil::rabbitmq::Config>(
+  std::shared_ptr<palm::rabbitmq::Config> it =
+      std::make_shared<palm::rabbitmq::Config>(
           node.get<std::string>("host"), node.get<uint16_t>("port"),
           node.get<std::string>("user"), node.get<std::string>("password"),
           node.get<std::string>("virtual-host"));
@@ -107,37 +107,37 @@ static void start_sms_send_worker(bool debug, const std::string& name,
                                   const boost::property_tree::ptree& config,
                                   uint interval) {
   const auto twilio_node = config.get_child("twilio");
-  std::shared_ptr<basil::Twilio> twilio = std::make_shared<basil::Twilio>(
+  std::shared_ptr<palm::Twilio> twilio = std::make_shared<palm::Twilio>(
       twilio_node.get<std::string>("account-sid"),
       twilio_node.get<std::string>("auth-token"));
 
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
-  std::shared_ptr<basil::QueueConsumer> consumer =
-      std::make_shared<basil::wisteria::workers::SmsSendQueueConsumer>(name,
+  std::shared_ptr<palm::QueueConsumer> consumer =
+      std::make_shared<palm::wisteria::workers::SmsSendQueueConsumer>(name,
                                                                        twilio);
-  cli->consume(basil::wisteria::workers::SmsSendQueueConsumer::QUEUE, consumer);
+  cli->consume(palm::wisteria::workers::SmsSendQueueConsumer::QUEUE, consumer);
 }
 
 static void start_email_send_worker(bool debug, const std::string& name,
                                     const boost::property_tree::ptree& config,
                                     uint interval) {
   const auto smtp_node = config.get_child("smtp");
-  basil::email::Account from{
+  palm::email::Account from{
       .name = smtp_node.get<std::string>("user-name"),
       .email = smtp_node.get<std::string>("user-email"),
   };
-  std::shared_ptr<basil::email::Smtp> smtp =
-      std::make_shared<basil::email::Smtp>(
+  std::shared_ptr<palm::email::Smtp> smtp =
+      std::make_shared<palm::email::Smtp>(
           smtp_node.get<std::string>("host"), smtp_node.get<uint16_t>("port"),
           from, smtp_node.get<std::string>("password"));
 
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
-  std::shared_ptr<basil::QueueConsumer> consumer =
-      std::make_shared<basil::wisteria::workers::EmailSendQueueConsumer>(name,
+  std::shared_ptr<palm::QueueConsumer> consumer =
+      std::make_shared<palm::wisteria::workers::EmailSendQueueConsumer>(name,
                                                                          smtp);
-  cli->consume(basil::wisteria::workers::EmailSendQueueConsumer::QUEUE,
+  cli->consume(palm::wisteria::workers::EmailSendQueueConsumer::QUEUE,
                consumer);
 }
 
@@ -145,7 +145,7 @@ static void start_http_server(const std::string& host, uint16_t port,
                               bool debug,
                               const boost::property_tree::ptree& config,
                               const std::string& theme_folder) {
-  if (basil::is_stopped()) {
+  if (palm::is_stopped()) {
     return;
   }
 
@@ -154,16 +154,16 @@ static void start_http_server(const std::string& host, uint16_t port,
   auto jwt = open_jwt(config);
 
   const auto rpc_node = config.get_child("rpc");
-  basil::GrpcClient rpc = basil::GrpcClient(rpc_node.get<std::string>("host"),
+  palm::GrpcClient rpc = palm::GrpcClient(rpc_node.get<std::string>("host"),
                                             rpc_node.get<uint16_t>("port"));
   BOOST_LOG_TRIVIAL(debug) << "connect to backend tcp://" << rpc.target();
 
   nlohmann::json global;
   {
-    global["version"] = basil::GIT_VERSION;
-    global["build_time"] = basil::BUILD_TIME;
+    global["version"] = palm::GIT_VERSION;
+    global["build_time"] = palm::BUILD_TIME;
   }
-  basil::Theme theme(theme_folder, global);
+  palm::Theme theme(theme_folder, global);
 
   httplib::Server server;
 
@@ -187,7 +187,7 @@ static void start_http_server(const std::string& host, uint16_t port,
                             << req.path << " " << params.str();
   });
 
-  basil::wisteria::mount(server, rpc, theme, jwt, s3);
+  palm::wisteria::mount(server, rpc, theme, jwt, s3);
 
   BOOST_LOG_TRIVIAL(info) << "listen a HTTP server on tcp://" << host << ":"
                           << port << " with theme " << theme_folder;
@@ -196,7 +196,7 @@ static void start_http_server(const std::string& host, uint16_t port,
 
 static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
                              const boost::property_tree::ptree& config) {
-  if (basil::is_stopped()) {
+  if (palm::is_stopped()) {
     return;
   }
 
@@ -209,18 +209,18 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   auto hmac = open_hmac(config);
   auto aes = open_aes(config);
 
-  basil::wisteria::services::UserServiceImpl wisteria_user_service(
+  palm::wisteria::services::UserServiceImpl wisteria_user_service(
       cache, queue, s3, aes, hmac, jwt);
-  basil::wisteria::services::PolicyServiceImpl wisteria_policy_service;
-  basil::wisteria::services::SiteServiceImpl wisteria_site_service(search);
-  basil::cms::services::PageServiceImpl cms_page_service;
-  basil::bbs::services::ForumServiceImpl bbs_forum_service;
-  basil::bbs::services::TopicServiceImpl bbs_topic_service;
-  basil::bbs::services::PostServiceImpl bbs_post_service;
-  basil::bookkeeper::services::BookServiceImpl bookkeeper_book_service;
-  basil::questionnaire::services::FormServiceImpl questionnaire_form_service;
-  basil::blog::services::PageServiceImpl blog_page_service;
-  basil::blog::services::PostServiceImpl blog_post_service;
+  palm::wisteria::services::PolicyServiceImpl wisteria_policy_service;
+  palm::wisteria::services::SiteServiceImpl wisteria_site_service(search);
+  palm::cms::services::PageServiceImpl cms_page_service;
+  palm::bbs::services::ForumServiceImpl bbs_forum_service;
+  palm::bbs::services::TopicServiceImpl bbs_topic_service;
+  palm::bbs::services::PostServiceImpl bbs_post_service;
+  palm::bookkeeper::services::BookServiceImpl bookkeeper_book_service;
+  palm::questionnaire::services::FormServiceImpl questionnaire_form_service;
+  palm::blog::services::PageServiceImpl blog_page_service;
+  palm::blog::services::PostServiceImpl blog_post_service;
 
   grpc::EnableDefaultHealthCheckService(true);
   grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -249,7 +249,7 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   server->Wait();
 }
 
-void basil::hibiscus::Application::launch(int argc, char* argv[]) {
+void palm::hibiscus::Application::launch(int argc, char* argv[]) {
   boost::program_options::options_description generic("Generic options");
   generic.add_options()("help,h", "print help message")(
       "debug,d", "run on debug mode")("version,v", "print version info")(
@@ -280,7 +280,7 @@ void basil::hibiscus::Application::launch(int argc, char* argv[]) {
   services.add_options()("email-send-consumer",
                          "launch an email-send consumer processs");
 
-  boost::program_options::options_description all(basil::PROJECT_DESCRIPTION);
+  boost::program_options::options_description all(palm::PROJECT_DESCRIPTION);
   all.add(generic).add(services);
 
   boost::program_options::variables_map vm;
@@ -292,7 +292,7 @@ void basil::hibiscus::Application::launch(int argc, char* argv[]) {
     return;
   }
   if (vm.count("version")) {
-    std::cout << basil::GIT_VERSION << "(" << basil::BUILD_TIME << ")"
+    std::cout << palm::GIT_VERSION << "(" << palm::BUILD_TIME << ")"
               << std::endl;
     return;
   }
@@ -303,7 +303,7 @@ void basil::hibiscus::Application::launch(int argc, char* argv[]) {
       (debug ? boost::log::trivial::debug : boost::log::trivial::info));
   {
     BOOST_LOG_TRIVIAL(debug)
-        << "run on debug mode(" << basil::GIT_VERSION << ")";
+        << "run on debug mode(" << palm::GIT_VERSION << ")";
     BOOST_LOG_TRIVIAL(debug) << OPENSSL_VERSION_TEXT;
     {
       const auto v = PQlibVersion();

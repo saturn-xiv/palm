@@ -1,4 +1,4 @@
-#include "basil/crypto.hpp"
+#include "palm/crypto.hpp"
 
 #include <boost/algorithm/hex.hpp>
 #include <boost/log/trivial.hpp>
@@ -8,9 +8,9 @@
 #include <openssl/sha.h>
 #include <cppcodec/base64_rfc4648.hpp>
 
-basil::HMac::HMac(const std::string &key)
+palm::HMac::HMac(const std::string &key)
     : _key(cppcodec::base64_rfc4648::decode(key)) {}
-std::vector<uint8_t> basil::HMac::sign(const std::vector<uint8_t> plain) const {
+std::vector<uint8_t> palm::HMac::sign(const std::vector<uint8_t> plain) const {
   uint8_t digest[SHA512_DIGEST_LENGTH];
   unsigned int digest_len = 0;
   if (!HMAC(EVP_sha512(), this->_key.data(), this->_key.size(), plain.data(),
@@ -22,18 +22,18 @@ std::vector<uint8_t> basil::HMac::sign(const std::vector<uint8_t> plain) const {
   return it;
 }
 
-std::string basil::ssha512::sign(const std::vector<uint8_t> plain,
+std::string palm::ssha512::sign(const std::vector<uint8_t> plain,
                                  const std::vector<uint8_t> salt) {
   std::vector<uint8_t> buf;
   buf.insert(buf.end(), plain.begin(), plain.end());
   buf.insert(buf.end(), salt.begin(), salt.end());
 
-  auto digest = basil::sha512::sign(buf);
+  auto digest = palm::sha512::sign(buf);
   digest.insert(digest.end(), salt.begin(), salt.end());
   return HEADER + cppcodec::base64_rfc4648::encode(digest);
 }
 
-bool basil::ssha512::verify(const std::string &code,
+bool palm::ssha512::verify(const std::string &code,
                             const std::vector<uint8_t> plain) {
   if (!code.starts_with(HEADER)) {
     return false;
@@ -50,7 +50,7 @@ bool basil::ssha512::verify(const std::string &code,
 }
 
 // https://wiki.openssl.org/index.php/EVP_Message_Digests
-std::vector<uint8_t> basil::sha256::sign(const std::vector<uint8_t> plain) {
+std::vector<uint8_t> palm::sha256::sign(const std::vector<uint8_t> plain) {
   EVP_MD_CTX *ctx = EVP_MD_CTX_new();
   if (ctx == nullptr) {
     BOOST_LOG_TRIVIAL(error) << "new openssl evp context";
@@ -87,7 +87,7 @@ std::vector<uint8_t> basil::sha256::sign(const std::vector<uint8_t> plain) {
   return it;
 }
 
-std::vector<uint8_t> basil::sha512::sign(const std::vector<uint8_t> plain) {
+std::vector<uint8_t> palm::sha512::sign(const std::vector<uint8_t> plain) {
   EVP_MD_CTX *ctx = EVP_MD_CTX_new();
   if (ctx == nullptr) {
     BOOST_LOG_TRIVIAL(error) << "new openssl evp context";

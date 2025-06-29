@@ -1,8 +1,8 @@
-#include "basil/orm.hpp"
+#include "palm/orm.hpp"
 
 #include <sstream>
 
-std::string basil::PostgreSql::uri() {
+std::string palm::PostgreSql::uri() {
   std::stringstream ss;
   ss << "host=" << this->_host << " port=" << this->_port
      << " user=" << this->_user;

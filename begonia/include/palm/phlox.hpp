@@ -1,6 +1,6 @@
 #pragma once
 
-namespace basil {
+namespace palm {
 namespace phlox {
 class Application {
  public:
@@ -8,4 +8,4 @@ class Application {
   void launch(int argc, char* argv[]);
 };
 }  // namespace phlox
-}  // namespace basil
+}  // namespace palm

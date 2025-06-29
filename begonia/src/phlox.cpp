@@ -1,7 +1,7 @@
-#include "basil/phlox.hpp"
-#include "basil/monitor.hpp"
-#include "basil/utils.hpp"
-#include "basil/version.hpp"
+#include "palm/phlox.hpp"
+#include "palm/monitor.hpp"
+#include "palm/utils.hpp"
+#include "palm/version.hpp"
 
 #include <unistd.h>
 #include <format>
@@ -20,22 +20,22 @@
 
 #include <argparse/argparse.hpp>
 
-#define BASIL_CONFIG_KEY_OPENSEARCH "opensearch"
+#define PALM_CONFIG_KEY_OPENSEARCH "opensearch"
 
-static std::shared_ptr<basil::Jwt> open_jwt(
+static std::shared_ptr<palm::Jwt> open_jwt(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("jwt");
-  std::shared_ptr<basil::Jwt> it =
-      std::make_shared<basil::Jwt>(node.get<std::string>("key"));
+  std::shared_ptr<palm::Jwt> it =
+      std::make_shared<palm::Jwt>(node.get<std::string>("key"));
   return it;
 }
 
-static std::shared_ptr<basil::opensearch::Client> open_opensearch(
+static std::shared_ptr<palm::opensearch::Client> open_opensearch(
     const boost::property_tree::ptree& config) {
   const auto node = config.get_child("opensearch");
-  std::shared_ptr<basil::opensearch::Client> it =
-      std::make_shared<basil::opensearch::Client>(node.get<std::string>("host"),
-                                                  node.get<uint16_t>("port"));
+  std::shared_ptr<palm::opensearch::Client> it =
+      std::make_shared<palm::opensearch::Client>(node.get<std::string>("host"),
+                                                 node.get<uint16_t>("port"));
   {
     const auto res = it->cluster_health();
     BOOST_LOG_TRIVIAL(debug)
@@ -50,7 +50,7 @@ static std::shared_ptr<sw::redis::Redis> open_redis(
   const auto node = config.get_child("redis");
   boost::optional<std::string> password =
       node.get_optional<std::string>("password");
-  basil::redis::Node cfg(
+  palm::redis::Node cfg(
       node.get<std::string>("host"), node.get<uint16_t>("port"),
       (password ? std::optional<std::string>{password.value()} : std::nullopt),
       node.get<uint8_t>("db"), node.get<size_t>("pool-size"));
@@ -60,32 +60,32 @@ static std::shared_ptr<sw::redis::Redis> open_redis(
 
 static void start_log_watcher(bool debug, const toml::table& config, bool stdin,
                               const std::vector<std::string>& original_files) {
-  if (basil::is_stopped()) {
+  if (palm::is_stopped()) {
     return;
   }
 
-  std::shared_ptr<basil::opensearch::Client> search =
-      std::make_shared<basil::opensearch::Client>(
-          config[BASIL_CONFIG_KEY_OPENSEARCH].as_table());
+  std::shared_ptr<palm::opensearch::Client> search =
+      std::make_shared<palm::opensearch::Client>(
+          config[PALM_CONFIG_KEY_OPENSEARCH].as_table());
   {
     auto res = search->cluster_health();
     BOOST_LOG_TRIVIAL(debug) << res->cluster_name << " " << res->status;
   }
-  if (!search->index_exists<basil::monitor::logging::Item>()) {
-    const auto props = basil::monitor::logging::Item::properties();
-    search->create_index<basil::monitor::logging::Item>(2, 1, props);
+  if (!search->index_exists<palm::monitor::logging::Item>()) {
+    const auto props = palm::monitor::logging::Item::properties();
+    search->create_index<palm::monitor::logging::Item>(2, 1, props);
   }
-  basil::monitor::LoggingScratcher scratcher;
+  palm::monitor::LoggingScratcher scratcher;
 
   if (stdin) {
     BOOST_LOG_TRIVIAL(info) << "listen from STDIN stream";
-    std::shared_ptr<basil::monitor::logging::Source> it =
-        std::make_shared<basil::monitor::logging::StdinSource>();
+    std::shared_ptr<palm::monitor::logging::Source> it =
+        std::make_shared<palm::monitor::logging::StdinSource>();
     scratcher.register_(it);
   }
   {
-    std::shared_ptr<basil::monitor::logging::FilesystemNotify> it =
-        std::make_shared<basil::monitor::logging::FilesystemNotify>();
+    std::shared_ptr<palm::monitor::logging::FilesystemNotify> it =
+        std::make_shared<palm::monitor::logging::FilesystemNotify>();
     const std::set<std::string> items(original_files.begin(),
                                       original_files.end());
     for (const auto& file : items) {
@@ -100,16 +100,16 @@ static void start_log_watcher(bool debug, const toml::table& config, bool stdin,
 static void start_http_server(const std::string& host, uint16_t port,
                               bool debug, const toml::table& config,
                               const std::string& theme_folder) {
-  if (basil::is_stopped()) {
+  if (palm::is_stopped()) {
     return;
   }
 
   nlohmann::json global;
   {
-    global["version"] = basil::GIT_VERSION;
-    global["build_time"] = basil::BUILD_TIME;
+    global["version"] = palm::GIT_VERSION;
+    global["build_time"] = palm::BUILD_TIME;
   }
-  basil::Theme theme(theme_folder, global);
+  palm::Theme theme(theme_folder, global);
 
   httplib::Server server;
 
@@ -133,14 +133,14 @@ static void start_http_server(const std::string& host, uint16_t port,
                             << req.path << " " << params.str();
   });
 
-  // basil::monitor::mount(server, theme, jwt, search);
+  // palm::monitor::mount(server, theme, jwt, search);
 
   BOOST_LOG_TRIVIAL(info) << "listen a HTTP server on tcp://" << host << ":"
                           << port << " with theme " << theme_folder;
   server.listen(host, port);
 }
 
-void basil::phlox::Application::launch(int argc, char* argv[]) {
+void palm::phlox::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
   std::string http_listen_host;
@@ -151,7 +151,7 @@ void basil::phlox::Application::launch(int argc, char* argv[]) {
 
   argparse::ArgumentParser program("phlox", GIT_VERSION);
   program.add_description("Centralize, transform & stash your logging data.");
-  program.add_epilog("https://github.com/saturn-xiv/basil");
+  program.add_epilog("https://github.com/saturn-xiv/palm");
   program.add_argument("-c", "--config")
       .default_value("config.toml")
       .store_into(config_file)
@@ -196,7 +196,7 @@ void basil::phlox::Application::launch(int argc, char* argv[]) {
         boost::log::trivial::severity >=
         (debug ? boost::log::trivial::debug : boost::log::trivial::info));
     BOOST_LOG_TRIVIAL(debug)
-        << "run on debug mode(" << basil::GIT_VERSION << ")";
+        << "run on debug mode(" << palm::GIT_VERSION << ")";
   }
   BOOST_LOG_TRIVIAL(info) << "load configuration from " << config_file;
   toml::table config = toml::parse_file(config_file);

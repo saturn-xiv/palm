@@ -3,7 +3,7 @@
 #include <sw/redis++/redis++.h>
 #include <toml++/toml.hpp>
 
-namespace basil {
+namespace palm {
 
 namespace redis {
 class Node {
@@ -27,4 +27,4 @@ class Node {
 };
 }  // namespace redis
 
-}  // namespace basil
+}  // namespace palm

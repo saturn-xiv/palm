@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace basil {
+namespace palm {
 namespace http {
 namespace status {
 const static int OK = 200;
@@ -31,4 +31,4 @@ inline static const std::string APPLICATION_X_PROTOBUF =
 inline static const std::string XML_HEADER_UTF8 =
     R"(<?xml version="1.0" encoding="UTF-8"?>)";
 }  // namespace http
-}  // namespace basil
+}  // namespace palm

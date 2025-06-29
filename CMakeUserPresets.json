@@ -2,17 +2,6 @@
   "version": 2,
   "configurePresets": [
     {
-      "name": "aarch64",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/aarch64",
-      "environment": {
-        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
-      },
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      }
-    },
-    {
       "name": "x86_64",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/x86_64",
@@ -20,7 +9,44 @@
         "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
       },
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_DEFAULT_TRIPLET": "x64-linux-release"
+      }
+    },
+    {
+      "name": "aarch64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/aarch64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_DEFAULT_TRIPLET": "arm64-linux-release"
+      }
+    },
+    {
+      "name": "riscv64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/riscv64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_DEFAULT_TRIPLET": "riscv64-linux-release"
+      }
+    },
+    {
+      "name": "loongarch64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/loongarch64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_DEFAULT_TRIPLET": "loongarch64-linux-release"
       }
     }
   ]

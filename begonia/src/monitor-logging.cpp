@@ -1,4 +1,4 @@
-#include "basil/monitor.hpp"
+#include "palm/monitor.hpp"
 
 #include <boost/asio/ip/host_name.hpp>
 #include <boost/exception/diagnostic_information.hpp>
@@ -7,11 +7,11 @@
 #include <sys/types.h>
 #include <cerrno>
 
-basil::monitor::logging::Source::Source()
+palm::monitor::logging::Source::Source()
     : _hostname(boost::asio::ip::host_name()) {}
 
 // https://developer.ibm.com/tutorials/l-ubuntu-inotify/
-basil::monitor::logging::FilesystemNotify::FilesystemNotify() : Source() {
+palm::monitor::logging::FilesystemNotify::FilesystemNotify() : Source() {
   this->_notify_id = inotify_init();
   if (this->_notify_id < 0) {
     BOOST_LOG_TRIVIAL(error)
@@ -19,7 +19,7 @@ basil::monitor::logging::FilesystemNotify::FilesystemNotify() : Source() {
     throw std::runtime_error("init inotify");
   }
 }
-basil::monitor::logging::FilesystemNotify::~FilesystemNotify() {
+palm::monitor::logging::FilesystemNotify::~FilesystemNotify() {
   for (auto [wd, file] : this->_targets) {
     BOOST_LOG_TRIVIAL(info) << "remove watch of " << file.string();
     inotify_rm_watch(this->_notify_id, wd);
@@ -27,7 +27,7 @@ basil::monitor::logging::FilesystemNotify::~FilesystemNotify() {
   BOOST_LOG_TRIVIAL(info) << "close notify";
   close(this->_notify_id);
 }
-void basil::monitor::logging::FilesystemNotify::register_(
+void palm::monitor::logging::FilesystemNotify::register_(
     const std::filesystem::path& file) {
   std::lock_guard<std::mutex> lock(this->_mutex);
 
@@ -56,8 +56,8 @@ void basil::monitor::logging::FilesystemNotify::register_(
   this->_targets[wd] = file;
 }
 
-void basil::monitor::logging::FilesystemNotify::execute(
-    std::shared_ptr<basil::opensearch::Client> search) {
+void palm::monitor::logging::FilesystemNotify::execute(
+    std::shared_ptr<palm::opensearch::Client> search) {
   const auto event_size = sizeof(struct inotify_event);
   const auto buf_len = 1024 * (event_size + 16);
   char buffer[buf_len];
@@ -101,7 +101,7 @@ void basil::monitor::logging::FilesystemNotify::execute(
   }
 
   {
-    basil::monitor::logging::Item log = {.host = this->_hostname};
+    palm::monitor::logging::Item log = {.host = this->_hostname};
     for (const auto [f, m, c] : items) {
       log.file = f.string();
       log.message = m;
@@ -114,21 +114,21 @@ void basil::monitor::logging::FilesystemNotify::execute(
   }
 }
 
-void basil::monitor::logging::StdinSource::execute(
-    std::shared_ptr<basil::opensearch::Client> search) {
-  basil::monitor::logging::Item it = {.host = this->_hostname, .file = "stdin"};
+void palm::monitor::logging::StdinSource::execute(
+    std::shared_ptr<palm::opensearch::Client> search) {
+  palm::monitor::logging::Item it = {.host = this->_hostname, .file = "stdin"};
   std::string line;
   while (std::getline(std::cin, it.message)) {
     boost::algorithm::trim(it.message);
-    it.created_at = basil::monitor::logging::Item::now();
+    it.created_at = palm::monitor::logging::Item::now();
     if (!it.message.empty()) {
       search->index_document(it);
     }
   }
 }
 
-void basil::monitor::LoggingScratcher::launch(
-    std::shared_ptr<basil::opensearch::Client> search,
+void palm::monitor::LoggingScratcher::launch(
+    std::shared_ptr<palm::opensearch::Client> search,
     std::chrono::seconds ttl) {
   std::vector<std::shared_ptr<std::thread>> pool;
   {

@@ -2,6 +2,6 @@
 
 /tmp/
 /build/
-/begonia/include/basil/version.hpp
+/begonia/include/palm/version.hpp
 
 /*.toml

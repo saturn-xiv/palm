@@ -1,5 +1,5 @@
-#include "basil/crypto.hpp"
-#include "basil/s3.hpp"
+#include "palm/crypto.hpp"
+#include "palm/s3.hpp"
 
 #include <filesystem>
 #include <format>
@@ -8,14 +8,14 @@
 
 #include <inja/inja.hpp>
 
-#define BASIL_OPEN_MINIO_CLIENT(x)                                         \
+#define PALM_OPEN_MINIO_CLIENT(x)                                          \
   BOOST_LOG_TRIVIAL(debug) << "connect https://" << x->_base_url;          \
   ::minio::s3::BaseUrl base_url(x->_base_url);                             \
   ::minio::creds::StaticProvider provider(x->_access_key, x->_secret_key); \
   ::minio::s3::Client client(base_url, &provider)
 
-std::vector<std::string> basil::Minio::list_buckets() {
-  BASIL_OPEN_MINIO_CLIENT(this);
+std::vector<std::string> palm::Minio::list_buckets() {
+  PALM_OPEN_MINIO_CLIENT(this);
   const auto res = client.ListBuckets();
   if (!res) {
     BOOST_LOG_TRIVIAL(error) << res.Error();
@@ -29,8 +29,8 @@ std::vector<std::string> basil::Minio::list_buckets() {
   return items;
 }
 
-bool basil::Minio::bucket_exists(const std::string& name) {
-  BASIL_OPEN_MINIO_CLIENT(this);
+bool palm::Minio::bucket_exists(const std::string& name) {
+  PALM_OPEN_MINIO_CLIENT(this);
   ::minio::s3::BucketExistsArgs args;
   args.bucket = name;
 
@@ -41,9 +41,9 @@ bool basil::Minio::bucket_exists(const std::string& name) {
   }
   return res.exist;
 }
-void basil::Minio::create_bucket(const std::string& name, bool is_public,
-                                 std::optional<uint> expiration_days) {
-  BASIL_OPEN_MINIO_CLIENT(this);
+void palm::Minio::create_bucket(const std::string& name, bool is_public,
+                                std::optional<uint> expiration_days) {
+  PALM_OPEN_MINIO_CLIENT(this);
   // https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
   {
     BOOST_LOG_TRIVIAL(info) << "create bucket " << name;
@@ -123,12 +123,12 @@ void basil::Minio::create_bucket(const std::string& name, bool is_public,
     }
   }
 }
-std::optional<std::string> basil::Minio::upload(const std::string& bucket,
-                                                const std::string& filename) {
-  BASIL_OPEN_MINIO_CLIENT(this);
+std::optional<std::string> palm::Minio::upload(const std::string& bucket,
+                                               const std::string& filename) {
+  PALM_OPEN_MINIO_CLIENT(this);
   std::filesystem::path file(filename);
   const std::string object =
-      std::format("{}{}", basil::uuid(), file.extension().string());
+      std::format("{}{}", palm::uuid(), file.extension().string());
   BOOST_LOG_TRIVIAL(info) << "upload " << filename << " to (" << bucket << ","
                           << object << ")";
   ::minio::s3::UploadObjectArgs args;
@@ -144,7 +144,7 @@ std::optional<std::string> basil::Minio::upload(const std::string& bucket,
   }
   return object;
 }
-std::optional<std::string> basil::Minio::get_presigned_object_url(
+std::optional<std::string> palm::Minio::get_presigned_object_url(
     const std::string& bucket, const std::string& object,
     const std::string& title, const std::string& content_type,
     const std::chrono::seconds ttl) {
@@ -152,7 +152,7 @@ std::optional<std::string> basil::Minio::get_presigned_object_url(
     BOOST_LOG_TRIVIAL(error) << "bad ttl " << ttl;
     return std::nullopt;
   }
-  BASIL_OPEN_MINIO_CLIENT(this);
+  PALM_OPEN_MINIO_CLIENT(this);
 
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
   // https://min.io/docs/minio/linux/developers/go/API.html#presignedgetobject-ctx-context-context-bucketname-objectname-string-expiry-time-duration-reqparams-url-values-url-url-error
@@ -179,7 +179,7 @@ std::optional<std::string> basil::Minio::get_presigned_object_url(
   return res.url;
 }
 
-std::string basil::Minio::get_object(const std::string& bucket,
-                                     const std::string& object) {
+std::string palm::Minio::get_object(const std::string& bucket,
+                                    const std::string& object) {
   return std::format("https://{}/{}/{}", this->_base_url, bucket, object);
 }

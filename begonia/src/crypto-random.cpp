@@ -1,4 +1,4 @@
-#include "basil/crypto.hpp"
+#include "palm/crypto.hpp"
 
 #include <algorithm>
 #include <climits>
@@ -17,14 +17,14 @@
 #include <cppcodec/base32_crockford.hpp>
 #include <cppcodec/base64_rfc4648.hpp>
 
-std::string basil::base64::to_string(const std::vector<uint8_t> buf) {
+std::string palm::base64::to_string(const std::vector<uint8_t> buf) {
   return cppcodec::base64_rfc4648::encode(buf);
 }
-std::vector<uint8_t> basil::base64::from_string(const std::string& str) {
+std::vector<uint8_t> palm::base64::from_string(const std::string& str) {
   return cppcodec::base64_rfc4648::decode(str);
 }
 
-std::vector<uint8_t> basil::random::bytes(size_t len) {
+std::vector<uint8_t> palm::random::bytes(size_t len) {
   static std::mt19937 rng(std::time(nullptr));
   std::uniform_int_distribution<uint8_t> dist(
       std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max());
@@ -35,7 +35,7 @@ std::vector<uint8_t> basil::random::bytes(size_t len) {
   }
   return buf;
 }
-std::string basil::random::alphanumeric(size_t len) {
+std::string palm::random::alphanumeric(size_t len) {
   static std::mt19937 rng(std::time(nullptr));
   static const char CHARSET[] =
       "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -47,14 +47,14 @@ std::string basil::random::alphanumeric(size_t len) {
   return it;
 }
 
-std::string basil::uuid() {
+std::string palm::uuid() {
   static boost::uuids::random_generator gen;
   boost::uuids::uuid it = gen();
   return boost::lexical_cast<std::string>(it);
 }
 
 // https://cplusplus.com/reference/iomanip/put_time/
-std::string basil::timestamp(std::time_t it) {
+std::string palm::timestamp(std::time_t it) {
   std::stringstream ss;
   struct std::tm* tm = std::localtime(&it);
   ss << std::put_time(tm, "%Y%m%d%H%M%S");

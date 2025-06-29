@@ -1,21 +1,21 @@
 #pragma once
 
-#include "basil/cache.hpp"
-#include "basil/jwt.hpp"
-#include "basil/orm.hpp"
-#include "basil/queue.hpp"
-#include "basil/search.hpp"
-#include "basil/theme.hpp"
+#include "palm/cache.hpp"
+#include "palm/jwt.hpp"
+#include "palm/orm.hpp"
+#include "palm/queue.hpp"
+#include "palm/search.hpp"
+#include "palm/theme.hpp"
 
 #include <mutex>
 #include <thread>
 
-namespace basil {
+namespace palm {
 
 namespace monitor {
-void mount(httplib::Server& server, basil::Theme& theme,
-           std::shared_ptr<basil::Jwt> jwt,
-           std::shared_ptr<basil::opensearch::Client> search);
+void mount(httplib::Server& server, palm::Theme& theme,
+           std::shared_ptr<palm::Jwt> jwt,
+           std::shared_ptr<palm::opensearch::Client> search);
 
 namespace logging {
 struct Item {
@@ -58,7 +58,7 @@ struct Item {
 class Source {
  public:
   Source();
-  virtual void execute(std::shared_ptr<basil::opensearch::Client> search) = 0;
+  virtual void execute(std::shared_ptr<palm::opensearch::Client> search) = 0;
 
  protected:
   std::string _hostname;
@@ -66,7 +66,7 @@ class Source {
 class StdinSource final : public Source {
  public:
   StdinSource() : Source() {}
-  void execute(std::shared_ptr<basil::opensearch::Client> search) override;
+  void execute(std::shared_ptr<palm::opensearch::Client> search) override;
 
  private:
 };
@@ -75,7 +75,7 @@ class FilesystemNotify : public Source {
   FilesystemNotify();
   ~FilesystemNotify();
   void register_(const std::filesystem::path& file);
-  void execute(std::shared_ptr<basil::opensearch::Client> search) override;
+  void execute(std::shared_ptr<palm::opensearch::Client> search) override;
 
  private:
   inline std::vector<std::tuple<std::filesystem::path, std::string, uint64_t>>
@@ -97,7 +97,7 @@ class FilesystemNotify : public Source {
     std::string line;
     int pos = it->second;
     while (std::getline(ss, line)) {
-      items.push_back({p, line, basil::monitor::logging::Item::now()});
+      items.push_back({p, line, palm::monitor::logging::Item::now()});
       pos += line.length() + 1;
     }
 
@@ -174,15 +174,15 @@ class Http final : public HealthChecker {
 
 class LoggingScratcher {
  public:
-  void launch(std::shared_ptr<basil::opensearch::Client> search,
+  void launch(std::shared_ptr<palm::opensearch::Client> search,
               std::chrono::seconds sleep = std::chrono::seconds{1});
-  inline void register_(std::shared_ptr<basil::monitor::logging::Source> item) {
+  inline void register_(std::shared_ptr<palm::monitor::logging::Source> item) {
     std::lock_guard<std::mutex> lock(this->_mutex);
     this->_nodes.push_back(item);
   }
 
  private:
-  std::vector<std::shared_ptr<basil::monitor::logging::Source>> _nodes;
+  std::vector<std::shared_ptr<palm::monitor::logging::Source>> _nodes;
   std::mutex _mutex;
 };
 class HealthCheckWorker {
@@ -191,15 +191,15 @@ class HealthCheckWorker {
                   std::chrono::duration_cast<std::chrono::seconds>(
                       std::chrono::minutes{1}));
   inline void register_(
-      std::shared_ptr<basil::monitor::health_checkers::HealthChecker> item) {
+      std::shared_ptr<palm::monitor::health_checkers::HealthChecker> item) {
     std::lock_guard<std::mutex> lock(this->_mutex);
     this->_nodes.push_back(item);
   }
 
  private:
-  std::vector<std::shared_ptr<basil::monitor::health_checkers::HealthChecker>>
+  std::vector<std::shared_ptr<palm::monitor::health_checkers::HealthChecker>>
       _nodes;
   std::mutex _mutex;
 };
 }  // namespace monitor
-}  // namespace basil
+}  // namespace palm

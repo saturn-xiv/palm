@@ -1,15 +1,15 @@
-#include "basil/crypto.hpp"
-#include "basil/queue.hpp"
-#include "basil/utils.hpp"
+#include "palm/crypto.hpp"
+#include "palm/queue.hpp"
+#include "palm/utils.hpp"
 
 #include <thread>
 
 #include <boost/exception/diagnostic_information.hpp>
 
-std::shared_ptr<basil::rabbitmq::Client> basil::rabbitmq::Config::open(
+std::shared_ptr<palm::rabbitmq::Client> palm::rabbitmq::Config::open(
     int channel) const {
-  std::shared_ptr<basil::rabbitmq::Client> it =
-      std::make_shared<basil::rabbitmq::Client>();
+  std::shared_ptr<palm::rabbitmq::Client> it =
+      std::make_shared<palm::rabbitmq::Client>();
   it->_connection = amqp_new_connection();
   it->_socket = amqp_tcp_socket_new(it->_connection);
   it->_channel = channel;
@@ -41,14 +41,14 @@ std::shared_ptr<basil::rabbitmq::Client> basil::rabbitmq::Config::open(
   }
   return it;
 }
-void basil::rabbitmq::Client::ping() {
+void palm::rabbitmq::Client::ping() {
   const auto max = amqp_get_channel_max(this->_connection);
   BOOST_LOG_TRIVIAL(debug) << "max " << max << " channels";
 }
-void basil::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
-                                     std::shared_ptr<QueueConsumer> consumer,
-                                     std::chrono::seconds interval) {
-  if (basil::is_stopped()) {
+void palm::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
+                                    std::shared_ptr<QueueConsumer> consumer,
+                                    std::chrono::seconds interval) {
+  if (palm::is_stopped()) {
     return;
   }
 
@@ -100,7 +100,7 @@ void basil::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
 
     amqp_destroy_envelope(&envelope);
 
-    if (basil::is_stopped()) {
+    if (palm::is_stopped()) {
       break;
     }
     if (interval.count() > 0) {
@@ -109,7 +109,7 @@ void basil::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
   }
 }
 
-std::optional<std::string> basil::rabbitmq::Client::declare_queue(
+std::optional<std::string> palm::rabbitmq::Client::declare_queue(
     bool durable, bool exclusive, bool auto_delete) {
   BOOST_LOG_TRIVIAL(debug) << "declare an anonymous queue";
   const auto queue = amqp_queue_declare(
@@ -123,18 +123,18 @@ std::optional<std::string> basil::rabbitmq::Client::declare_queue(
   std::string name((char *)queue->queue.bytes, queue->queue.len);
   return name;
 }
-void basil::rabbitmq::Client::declare_queue(const std::string &name,
-                                            bool durable, bool exclusive,
-                                            bool auto_delete) {
+void palm::rabbitmq::Client::declare_queue(const std::string &name,
+                                           bool durable, bool exclusive,
+                                           bool auto_delete) {
   BOOST_LOG_TRIVIAL(debug) << "declare queue " << name;
   amqp_queue_declare(this->_connection, this->_channel,
                      amqp_cstring_bytes(name.c_str()), 0, durable ? 1 : 0,
                      exclusive ? 1 : 0, auto_delete ? 1 : 0, amqp_empty_table);
   this->check(amqp_get_rpc_reply(this->_connection), "declaring a queue");
 }
-void basil::rabbitmq::Client::declare_exchange(const std::string &name,
-                                               const std::string &type,
-                                               bool durable, bool auto_delete) {
+void palm::rabbitmq::Client::declare_exchange(const std::string &name,
+                                              const std::string &type,
+                                              bool durable, bool auto_delete) {
   BOOST_LOG_TRIVIAL(debug) << "declare exchange (" << name << "," << type
                            << ")";
   amqp_exchange_declare(this->_connection, this->_channel,
@@ -144,9 +144,9 @@ void basil::rabbitmq::Client::declare_exchange(const std::string &name,
   this->check(amqp_get_rpc_reply(this->_connection), "declaring an exchange");
 }
 
-void basil::rabbitmq::Client::bind(const std::string &queue,
-                                   const std::string &exchange,
-                                   const std::string &binding_key) {
+void palm::rabbitmq::Client::bind(const std::string &queue,
+                                  const std::string &exchange,
+                                  const std::string &binding_key) {
   BOOST_LOG_TRIVIAL(debug) << "bind " << queue << " to " << exchange << " with "
                            << binding_key;
   amqp_queue_bind(this->_connection, this->_channel,
@@ -156,11 +156,11 @@ void basil::rabbitmq::Client::bind(const std::string &queue,
   this->check(amqp_get_rpc_reply(this->_connection), "bind");
 }
 
-void basil::rabbitmq::Client::send(const std::string &exchange,
-                                   const std::string &routing_key,
-                                   const std::string &content_type,
-                                   const std::vector<uint8_t> payload) {
-  const auto id = basil::uuid();
+void palm::rabbitmq::Client::send(const std::string &exchange,
+                                  const std::string &routing_key,
+                                  const std::string &content_type,
+                                  const std::vector<uint8_t> payload) {
+  const auto id = palm::uuid();
   BOOST_LOG_TRIVIAL(info) << "send message(" << id << "," << content_type << ","
                           << payload.size() << ") to (" << exchange << ","
                           << routing_key << ")";
@@ -178,7 +178,7 @@ void basil::rabbitmq::Client::send(const std::string &exchange,
               "basic publish");
 }
 
-basil::rabbitmq::Client::~Client() {
+palm::rabbitmq::Client::~Client() {
   this->check(
       amqp_channel_close(this->_connection, this->_channel, AMQP_REPLY_SUCCESS),
       "closing channel");
@@ -187,15 +187,15 @@ basil::rabbitmq::Client::~Client() {
   this->check(amqp_destroy_connection(this->_connection), "ending connection");
 }
 
-bool basil::rabbitmq::Client::check(int status, const std::string &context) {
+bool palm::rabbitmq::Client::check(int status, const std::string &context) {
   if (status == AMQP_STATUS_OK) {
     return true;
   }
   BOOST_LOG_TRIVIAL(error) << context << ": " << amqp_error_string2(status);
   return false;
 }
-bool basil::rabbitmq::Client::check(amqp_rpc_reply_t x,
-                                    const std::string &context) {
+bool palm::rabbitmq::Client::check(amqp_rpc_reply_t x,
+                                   const std::string &context) {
   switch (x.reply_type) {
     case AMQP_RESPONSE_NORMAL:
       return true;

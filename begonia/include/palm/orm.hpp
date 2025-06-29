@@ -13,7 +13,7 @@
 #include <sqlite3.h>
 #include <toml++/toml.hpp>
 
-namespace basil {
+namespace palm {
 
 // https://www.postgresql.org/docs/current/libpq.html
 class PostgreSql {
@@ -66,4 +66,4 @@ class Sqlite3 {
  private:
   std::string _file;
 };
-}  // namespace basil
+}  // namespace palm

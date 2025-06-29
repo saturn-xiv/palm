@@ -22,7 +22,7 @@ execute_process(COMMAND git describe --tags --always --dirty
 )
 string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
-configure_file(begonia/include/basil/version.h.in ${PROJECT_SOURCE_DIR}/begonia/include/basil/version.hpp)
+configure_file(begonia/include/palm/version.h.in ${PROJECT_SOURCE_DIR}/begonia/include/palm/version.hpp)
 
 # ---------------------------------------------------------
 

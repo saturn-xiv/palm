@@ -1,4 +1,4 @@
-#include "basil/email.hpp"
+#include "palm/email.hpp"
 
 #include <list>
 
@@ -7,7 +7,7 @@
 #include <mailio/message.hpp>
 #include <mailio/smtp.hpp>
 
-void basil::email::Smtp::send(const Account& to, const std::vector<Account> cc,
+void palm::email::Smtp::send(const Account& to, const std::vector<Account> cc,
                               const std::vector<Account> bcc,
                               const std::string& subject, const Body& body,
                               const std::vector<Attachment> attachments) const {

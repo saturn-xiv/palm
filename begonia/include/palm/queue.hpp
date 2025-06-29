@@ -11,7 +11,7 @@
 #include <rabbitmq-c/tcp_socket.h>
 #include <toml++/toml.hpp>
 
-namespace basil {
+namespace palm {
 
 class QueueConsumer {
  public:
@@ -108,4 +108,4 @@ class Config {
 };
 }  // namespace rabbitmq
 
-}  // namespace basil
+}  // namespace palm

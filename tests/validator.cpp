@@ -1,8 +1,8 @@
 #define BOOST_TEST_MODULE validator
 #include <boost/test/included/unit_test.hpp>
 
-#include "basil/queue.hpp"
-#include "basil/validator.hpp"
+#include "palm/queue.hpp"
+#include "palm/validator.hpp"
 
 #include <boost/type_index.hpp>
 
@@ -18,16 +18,15 @@ BOOST_AUTO_TEST_CASE(types) {
   std::cout << "STD String: "
             << boost::typeindex::type_id<std::string>().pretty_name()
             << std::endl;
-  std::cout
-      << "RabbitMQ Client: "
-      << boost::typeindex::type_id<basil::rabbitmq::Client>().pretty_name()
-      << std::endl;
+  std::cout << "RabbitMQ Client: "
+            << boost::typeindex::type_id<palm::rabbitmq::Client>().pretty_name()
+            << std::endl;
   std::cout
       << "RabbitMQ Client(*): "
-      << boost::typeindex::type_id<basil::rabbitmq::Client*>().pretty_name()
+      << boost::typeindex::type_id<palm::rabbitmq::Client*>().pretty_name()
       << std::endl;
   std::cout
       << "RabbitMQ Client(&): "
-      << boost::typeindex::type_id<basil::rabbitmq::Client&>().pretty_name()
+      << boost::typeindex::type_id<palm::rabbitmq::Client&>().pretty_name()
       << std::endl;
 }

@@ -5,7 +5,7 @@
 #include <cpr/cpr.h>
 #include <toml++/toml.hpp>
 
-namespace basil {
+namespace palm {
 // https://www.twilio.com/docs/usage/api
 class Twilio {
  public:
@@ -17,4 +17,4 @@ class Twilio {
   std::string _auth_token;
   inline static const std::string HOST = "https://api.twilio.com/2010-04-01/";
 };
-}  // namespace basil
+}  // namespace palm

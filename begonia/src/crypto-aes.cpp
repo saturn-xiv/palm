@@ -1,4 +1,4 @@
-#include "basil/crypto.hpp"
+#include "palm/crypto.hpp"
 
 #include <boost/log/trivial.hpp>
 
@@ -7,7 +7,7 @@
 
 // https://developers.google.com/tink/key-concepts
 // https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption
-basil::Aes::Aes(const std::string &key, const std::string &iv)
+palm::Aes::Aes(const std::string &key, const std::string &iv)
     : _key(cppcodec::base64_rfc4648::decode(key)),
       _iv(cppcodec::base64_rfc4648::decode(iv)) {
   if (this->_key.size() != 256 / 8) {
@@ -19,7 +19,7 @@ basil::Aes::Aes(const std::string &key, const std::string &iv)
   EVP_add_cipher(EVP_aes_256_cbc());
 }
 
-std::vector<uint8_t> basil::Aes::encrypt(
+std::vector<uint8_t> palm::Aes::encrypt(
     const std::vector<uint8_t> plain) const {
   EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
   if (ctx == nullptr) {
@@ -62,7 +62,7 @@ std::vector<uint8_t> basil::Aes::encrypt(
   const std::vector<uint8_t> cipher = {buf.begin(), buf.begin() + cipher_len};
   return cipher;
 }
-std::vector<uint8_t> basil::Aes::decrypt(
+std::vector<uint8_t> palm::Aes::decrypt(
     const std::vector<uint8_t> code) const {
   EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
 

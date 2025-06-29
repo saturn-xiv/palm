@@ -1,73 +1,73 @@
 #define BOOST_TEST_MODULE encrypt
 #include <boost/test/included/unit_test.hpp>
 
-#include "basil/crypto.hpp"
-#include "basil/jwt.hpp"
-#include "basil/utils.hpp"
+#include "palm/crypto.hpp"
+#include "palm/jwt.hpp"
+#include "palm/utils.hpp"
 
 #include <jwt-cpp/jwt.h>
 
-#define BASIL_SALT_SIZE 12
-#define BASIL_LOOP_SIZE 6
+#define PALM_SALT_SIZE 12
+#define PALM_LOOP_SIZE 6
 
 BOOST_AUTO_TEST_CASE(random_) {
   {
-    const auto it = basil::timestamp();
+    const auto it = palm::timestamp();
     std::cout << "Current Timestamp: " << it << std::endl;
     BOOST_CHECK_EQUAL(it.size(), 14);
   }
 
-  for (int i = 1; i < BASIL_LOOP_SIZE; i++) {
-    std::cout << "UUID(" << i << "): " << basil::uuid() << std::endl;
+  for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+    std::cout << "UUID(" << i << "): " << palm::uuid() << std::endl;
   }
   {
-    for (int i = 1; i < BASIL_LOOP_SIZE; i++) {
-      const auto buf = basil::random::bytes(BASIL_SALT_SIZE);
-      BOOST_CHECK_EQUAL(buf.size(), BASIL_SALT_SIZE);
-      const auto it = basil::base64::to_string(buf);
+    for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+      const auto buf = palm::random::bytes(PALM_SALT_SIZE);
+      BOOST_CHECK_EQUAL(buf.size(), PALM_SALT_SIZE);
+      const auto it = palm::base64::to_string(buf);
       std::cout << "random bytes(" << i << "): " << it << std::endl;
       {
-        const auto tmp = basil::base64::from_string(it);
+        const auto tmp = palm::base64::from_string(it);
         BOOST_CHECK_EQUAL_COLLECTIONS(buf.begin(), buf.end(), tmp.begin(),
                                       tmp.end());
       }
     }
   }
   {
-    for (int i = 1; i < BASIL_LOOP_SIZE; i++) {
-      const auto it = basil::random::alphanumeric(BASIL_SALT_SIZE);
+    for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+      const auto it = palm::random::alphanumeric(PALM_SALT_SIZE);
       std::cout << "rand alphanumeric(" << i << "): " << it << std::endl;
-      BOOST_CHECK_EQUAL(it.size(), BASIL_SALT_SIZE);
+      BOOST_CHECK_EQUAL(it.size(), PALM_SALT_SIZE);
     }
   }
 }
 
 BOOST_AUTO_TEST_CASE(sha) {
-  const std::string hi = "Hello, basil!";
+  const std::string hi = "Hello, palm!";
   {
-    const auto val = basil::sha256::sign(hi);
+    const auto val = palm::sha256::sign(hi);
     {
-      const auto tmp = basil::sha256::sign(hi);
+      const auto tmp = palm::sha256::sign(hi);
       BOOST_CHECK_EQUAL_COLLECTIONS(val.begin(), val.end(), tmp.begin(),
                                     tmp.end());
     }
 
     {
-      const auto hash = basil::base64::to_string(val);
+      const auto hash = palm::base64::to_string(val);
       std::cout << "sha256('" << hi << "'): " << hash << std::endl;
       BOOST_CHECK_NE(hash, "");
       BOOST_CHECK_NE(hash, hi);
     }
   }
   {
-    const auto val = basil::sha512::sign(hi);
+    const auto val = palm::sha512::sign(hi);
     {
-      const auto tmp = basil::sha512::sign(hi);
+      const auto tmp = palm::sha512::sign(hi);
       BOOST_CHECK_EQUAL_COLLECTIONS(val.begin(), val.end(), tmp.begin(),
                                     tmp.end());
     }
     {
-      const auto hash = basil::base64::to_string(val);
+      const auto hash = palm::base64::to_string(val);
       std::cout << "sha512('" << hi << "'): " << hash << std::endl;
       BOOST_CHECK_NE(hash, "");
       BOOST_CHECK_NE(hash, hi);
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(gravatar) {
        {" MyEmailAddress@example.com", "MyEmailAddress@example.com ",
         " MyEmailAddress@example.com ", "MyEmailAddress@example.com",
         "myemailaddress@example.com"}) {
-    const auto iv = basil::gravatar::hash(it);
+    const auto iv = palm::gravatar::hash(it);
     BOOST_CHECK_EQUAL(
         iv, "84059b07d4be67b806386c0aad8070a23f18836bbaae342275dc0a83414c32ee");
   }
@@ -90,25 +90,25 @@ BOOST_AUTO_TEST_CASE(gravatar) {
 // https://mad9scientist.com/dovecot-password-creation-php/
 // https://wiki.archlinux.org/title/Dovecot
 BOOST_AUTO_TEST_CASE(ssha512) {
-  const std::string hi = "Hello, basil!";
+  const std::string hi = "Hello, palm!";
   const size_t salt_len = 8;
-  const auto hash = basil::ssha512::sign(hi, salt_len);
+  const auto hash = palm::ssha512::sign(hi, salt_len);
 
   BOOST_CHECK_NE(hash, "");
   BOOST_CHECK_NE(hash, hi);
-  BOOST_CHECK_NE(hash, basil::ssha512::sign(hi, salt_len));
+  BOOST_CHECK_NE(hash, palm::ssha512::sign(hi, salt_len));
 
   std::cout << "doveadm pw -t '" << hash << "' -p '" << hi << "'" << std::endl;
-  BOOST_CHECK(basil::ssha512::verify(hash, hi));
+  BOOST_CHECK(palm::ssha512::verify(hash, hi));
 }
 
 BOOST_AUTO_TEST_CASE(hmac) {
-  const basil::HMac mac("N1wwoQI4JFBgc4H1a54eaehu3LMAg7aaUssQm1bIbV8=");
-  const std::string hi = "Hello, basil!";
+  const palm::HMac mac("N1wwoQI4JFBgc4H1a54eaehu3LMAg7aaUssQm1bIbV8=");
+  const std::string hi = "Hello, palm!";
   {
     const auto val = mac.sign(hi);
     {
-      const auto hash = basil::base64::to_string(val);
+      const auto hash = palm::base64::to_string(val);
       BOOST_CHECK_NE(hash, "");
       BOOST_CHECK_NE(hash, hi);
       std::cout << "hmac('" << hi << "'): " << hash << std::endl;
@@ -123,13 +123,13 @@ BOOST_AUTO_TEST_CASE(hmac) {
 }
 
 BOOST_AUTO_TEST_CASE(aes) {
-  const basil::Aes aes("CHPQawkOBdyOecCeT3CTkQCp4/4sJ6F3rXoqwc3XOD8=",
-                       "vLKjAvdMAO5th+6ytUKCWQ==");
-  const std::string hi = "Hello, basil!";
+  const palm::Aes aes("CHPQawkOBdyOecCeT3CTkQCp4/4sJ6F3rXoqwc3XOD8=",
+                      "vLKjAvdMAO5th+6ytUKCWQ==");
+  const std::string hi = "Hello, palm!";
   {
     const auto val = aes.encrypt(hi);
     {
-      const auto code = basil::base64::to_string(val);
+      const auto code = palm::base64::to_string(val);
       BOOST_CHECK_NE(code, "");
       BOOST_CHECK_NE(code, hi);
       std::cout << "aes('" << hi << "'): " << code << std::endl;
@@ -158,14 +158,14 @@ BOOST_AUTO_TEST_CASE(jwt_) {
   const std::string subject = "sss";
   const std::string payload = "ppp";
 
-  basil::Jwt jwt(
+  palm::Jwt jwt(
       "ieyeZo1thohc3oojaidoh3Aik1iDaht4iuX4ahvoh3mungah8iechahf2eim0noo");
   {
     const auto token = jwt.sign(issuer, subject, audiences, payload);
     std::cout << "jwt token: " << token << std::endl;
 
     {
-      basil::Jwt tmp(
+      palm::Jwt tmp(
           "pheefeepah9phieme0JohP7soh6phah7aefohPaicei6oom1eidooghoSuno2aSo");
 
       BOOST_REQUIRE_THROW(tmp.verify(token, issuer, audience_1),

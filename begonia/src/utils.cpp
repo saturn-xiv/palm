@@ -1,5 +1,5 @@
-#include "basil/utils.hpp"
-#include "basil/crypto.hpp"
+#include "palm/utils.hpp"
+#include "palm/crypto.hpp"
 
 #include <fstream>
 
@@ -8,10 +8,10 @@
 #include <boost/algorithm/string/join.hpp>
 
 // https://docs.gravatar.com/api/avatars/hash/
-std::string basil::gravatar::hash(const std::string& email) {
+std::string palm::gravatar::hash(const std::string& email) {
   std::string e = boost::trim_copy(email);
   boost::algorithm::to_lower(e);
-  auto d = basil::sha256::sign(e);
+  auto d = palm::sha256::sign(e);
 
   std::string h;
   boost::algorithm::hex(d.begin(), d.end(), std::back_inserter(h));
@@ -19,7 +19,7 @@ std::string basil::gravatar::hash(const std::string& email) {
   return h;
 }
 
-void basil::load(const std::filesystem::path& f, std::string& s) {
+void palm::load(const std::filesystem::path& f, std::string& s) {
   std::ifstream file;
   file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
   file.open(f, std::ios_base::binary);
@@ -27,7 +27,7 @@ void basil::load(const std::filesystem::path& f, std::string& s) {
   s.resize(size, '\0');
   file.read(&s[0], size);
 }
-void basil::load(const std::filesystem::path& f, std::vector<uint8_t> b) {
+void palm::load(const std::filesystem::path& f, std::vector<uint8_t> b) {
   std::ifstream file(f, std::ios::binary);
   b.reserve(static_cast<std::size_t>(std::filesystem::file_size(f)));
   std::copy(std::istream_iterator<uint8_t>(file),

@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE queue
 #include <boost/test/included/unit_test.hpp>
 
-#include "basil/queue.hpp"
+#include "palm/queue.hpp"
 
 #include <format>
 #include <thread>
@@ -13,7 +13,7 @@
 #define RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE "ex.pub-sub"
 #define RABBITMQ_CONTENT_TYPE "text/plain"
 
-class EchoQueueConsumer final : public basil::QueueConsumer {
+class EchoQueueConsumer final : public palm::QueueConsumer {
  public:
   EchoQueueConsumer(const std::string& name) : _name(name) {}
   std::string name() override { return this->_name; }
@@ -28,7 +28,7 @@ class EchoQueueConsumer final : public basil::QueueConsumer {
 };
 
 BOOST_AUTO_TEST_CASE(rabbitmq_producer) {
-  basil::rabbitmq::Config cfg;
+  palm::rabbitmq::Config cfg;
   cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
   cfg.set_user(RABBITMQ_VIRTUAL_USER);
   cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
@@ -46,20 +46,20 @@ BOOST_AUTO_TEST_CASE(rabbitmq_producer) {
   }
 }
 BOOST_AUTO_TEST_CASE(rabbitmq_consumer) {
-  basil::rabbitmq::Config cfg;
+  palm::rabbitmq::Config cfg;
   cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
   cfg.set_user(RABBITMQ_VIRTUAL_USER);
   cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
   auto cli = cfg.open();
   BOOST_REQUIRE(cli);
 
-  std::shared_ptr<basil::QueueConsumer> consumer =
+  std::shared_ptr<palm::QueueConsumer> consumer =
       std::make_shared<EchoQueueConsumer>("echo.consumer");
   cli->consume(RABBITMQ_PRODUCER_CONSUMER_QUEUE, consumer);
 }
 
 BOOST_AUTO_TEST_CASE(rabbitmq_publisher) {
-  basil::rabbitmq::Config cfg;
+  palm::rabbitmq::Config cfg;
   cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
   cfg.set_user(RABBITMQ_VIRTUAL_USER);
   cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
@@ -77,14 +77,14 @@ BOOST_AUTO_TEST_CASE(rabbitmq_publisher) {
   }
 }
 BOOST_AUTO_TEST_CASE(rabbitmq_subscriber) {
-  basil::rabbitmq::Config cfg;
+  palm::rabbitmq::Config cfg;
   cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
   cfg.set_user(RABBITMQ_VIRTUAL_USER);
   cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
   auto cli = cfg.open();
   BOOST_REQUIRE(cli);
 
-  std::shared_ptr<basil::QueueConsumer> consumer =
+  std::shared_ptr<palm::QueueConsumer> consumer =
       std::make_shared<EchoQueueConsumer>("echo.subscriber");
   cli->subscribe(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE, consumer);
 }

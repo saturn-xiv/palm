@@ -9,7 +9,7 @@
 #include <miniocpp/client.h>
 #include <toml++/toml.hpp>
 
-namespace basil {
+namespace palm {
 
 class Minio {
  public:
@@ -38,4 +38,4 @@ class Minio {
   std::string _secret_key;
 };
 
-}  // namespace basil
+}  // namespace palm

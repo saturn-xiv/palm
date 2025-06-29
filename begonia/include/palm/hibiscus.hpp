@@ -1,6 +1,6 @@
 #pragma once
 
-namespace basil {
+namespace palm {
 namespace hibiscus {
 class Application {
  public:
@@ -9,4 +9,4 @@ class Application {
 };
 
 }  // namespace hibiscus
-}  // namespace basil
+}  // namespace palm
