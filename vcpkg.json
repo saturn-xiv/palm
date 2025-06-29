@@ -1,0 +1,46 @@
+{
+  "dependencies": [
+    "boost-log",
+    "boost-program-options",
+    "boost-property-tree",
+    "boost-date-time",
+    "boost-chrono",
+    "boost-algorithm",
+    "boost-uuid",
+    "boost-url",
+    "boost-test",
+    "argparse",
+    "yaml-cpp",
+    "tomlplusplus",
+    "mailio",
+    "cppcodec",
+    "inja",
+    "mstch",
+    "cpp-httplib",
+    "cpr",
+    "libsodium",
+    "jwt-cpp",    
+    "libpqxx",
+    "libmariadb",
+    "sqlitecpp",
+    {"name": "soci","features":["postgresql", "mysql", "sqlite3", "boost"]},
+    {
+      "name": "redis-plus-plus",
+      "features": ["cxx17"]
+    },
+    "mongo-cxx-driver",
+    "minio-cpp",
+    "librabbitmq",
+    "paho-mqttpp3",
+
+    {
+      "name": "abseil",
+      "features": ["cxx17"]
+    },
+    "protobuf",
+    {
+      "name": "grpc",
+      "features": ["codegen"]
+    }
+  ]
+}

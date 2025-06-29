@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "aarch64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/aarch64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "x86_64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x86_64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ]
+}
