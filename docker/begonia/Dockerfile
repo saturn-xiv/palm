@@ -4,7 +4,6 @@ LABEL maintainer="Jeremy Zheng"
 ENV DEBIAN_FRONTEND noninteractive
 
 ENV GCC_VERSION 14
-# https://apt.llvm.org/
 RUN apt update
 RUN apt -y upgrade
 RUN apt -y install lsb-release wget software-properties-common gnupg \
@@ -16,7 +15,10 @@ RUN apt -y install lsb-release wget software-properties-common gnupg \
     cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio mold \
     bison flex ninja-build \
     python3-full python3-dev
+
+# https://apt.llvm.org/
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -39,6 +41,14 @@ RUN bash -c ". $HOME/.nvm/nvm.sh && nvm install --lts"
 RUN curl -fsSL https://xmake.io/shget.text | bash
 RUN echo 'source $HOME/.xmake/profile' >> $HOME/.bashrc
 RUN echo 'export XMAKE_ROOT=y' >> $HOME/.bashrc
+
+# https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash 
+RUN git clone -b 2025.06.13 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
+RUN echo 'export VCPKG_ROOT=$HOME/local/vcpkg' >> $HOME/.bashrc
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
+ADD vcpkg.patch /opt/
+RUN cd $HOME/local/vcpkg && git apply /opt/vcpkg.patch
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 

@@ -1,6 +1,6 @@
 /.vscode/
-/tmp/
-/*.toml
 
-/.xmake/
+/tmp/
 /build/
+
+/*.toml
