@@ -14,15 +14,15 @@ std::shared_ptr<palm::rabbitmq::Client> palm::rabbitmq::Config::open(
   it->_socket = amqp_tcp_socket_new(it->_connection);
   it->_channel = channel;
   if (it->_socket == nullptr) {
-    BOOST_LOG_TRIVIAL(error) << "creating TCP socket";
+    spdlog::error("creating TCP socket");
     return nullptr;
   }
 
-  BOOST_LOG_TRIVIAL(debug) << "open " << this->_user << "@" << this->_host
-                           << ":" << this->_port << "/" << this->_virtual_host;
+  spdlog::debug("open {}@{}:{}/{}", this->_user, this->_host, this->_port,
+                this->_virtual_host);
   if (amqp_socket_open(it->_socket, this->_host.c_str(), this->_port) !=
       AMQP_STATUS_OK) {
-    BOOST_LOG_TRIVIAL(error) << "opening TCP socket";
+    spdlog::error("opening TCP socket");
     return nullptr;
   }
 
@@ -43,7 +43,7 @@ std::shared_ptr<palm::rabbitmq::Client> palm::rabbitmq::Config::open(
 }
 void palm::rabbitmq::Client::ping() {
   const auto max = amqp_get_channel_max(this->_connection);
-  BOOST_LOG_TRIVIAL(debug) << "max " << max << " channels";
+  spdlog::debug("max {} channels", max);
 }
 void palm::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
                                     std::shared_ptr<QueueConsumer> consumer,
@@ -52,8 +52,7 @@ void palm::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
     return;
   }
 
-  BOOST_LOG_TRIVIAL(info) << "listen on queue " << queue << " with consumer "
-                          << consumer->name();
+  spdlog::info("listen on queue {} with consumer {}", queue, consumer->name());
   amqp_basic_consume(this->_connection, this->_channel,
                      amqp_cstring_bytes(queue.c_str()), amqp_empty_bytes, 0, 1,
                      exclusive ? 1 : 0, amqp_empty_table);
@@ -70,11 +69,11 @@ void palm::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
       break;
     }
 
-    BOOST_LOG_TRIVIAL(debug)
-        << "delivery(" << envelope.delivery_tag << ") exchange("
-        << envelope.exchange.len << " bytes," << (char *)envelope.exchange.bytes
-        << ") routing key(" << envelope.routing_key.len << " bytes,"
-        << (char *)envelope.routing_key.bytes << ")";
+    spdlog::debug(
+        "delivery({}) exchange({} bytes, {}) routing key({} bytes, {})",
+        envelope.delivery_tag, envelope.exchange.len,
+        (char *)envelope.exchange.bytes, envelope.routing_key.len,
+        (char *)envelope.routing_key.bytes);
 
     if ((envelope.message.properties._flags & AMQP_BASIC_CONTENT_TYPE_FLAG) &&
         (envelope.message.properties._flags & AMQP_BASIC_MESSAGE_ID_FLAG)) {
@@ -87,14 +86,12 @@ void palm::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
       std::vector<uint8_t> payload(
           (uint8_t *)envelope.message.body.bytes,
           (uint8_t *)envelope.message.body.bytes + envelope.message.body.len);
-      BOOST_LOG_TRIVIAL(info)
-          << "received (" << message_id << "," << content_type << ") "
-          << payload.size() << " bytes";
+      spdlog::info("received ({}, {}) {} bytes", message_id, content_type,
+                   payload.size());
       try {
         consumer->execute(message_id, content_type, payload);
       } catch (...) {
-        BOOST_LOG_TRIVIAL(error)
-            << boost::current_exception_diagnostic_information();
+        spdlog::error(boost::current_exception_diagnostic_information());
       }
     }
 
@@ -111,7 +108,7 @@ void palm::rabbitmq::Client::listen(const std::string &queue, bool exclusive,
 
 std::optional<std::string> palm::rabbitmq::Client::declare_queue(
     bool durable, bool exclusive, bool auto_delete) {
-  BOOST_LOG_TRIVIAL(debug) << "declare an anonymous queue";
+  spdlog::debug("declare an anonymous queue");
   const auto queue = amqp_queue_declare(
       this->_connection, this->_channel, amqp_empty_bytes, 0, durable ? 1 : 0,
       exclusive ? 1 : 0, auto_delete ? 1 : 0, amqp_empty_table);
@@ -126,7 +123,7 @@ std::optional<std::string> palm::rabbitmq::Client::declare_queue(
 void palm::rabbitmq::Client::declare_queue(const std::string &name,
                                            bool durable, bool exclusive,
                                            bool auto_delete) {
-  BOOST_LOG_TRIVIAL(debug) << "declare queue " << name;
+  spdlog::debug("declare queue {}", name);
   amqp_queue_declare(this->_connection, this->_channel,
                      amqp_cstring_bytes(name.c_str()), 0, durable ? 1 : 0,
                      exclusive ? 1 : 0, auto_delete ? 1 : 0, amqp_empty_table);
@@ -135,8 +132,7 @@ void palm::rabbitmq::Client::declare_queue(const std::string &name,
 void palm::rabbitmq::Client::declare_exchange(const std::string &name,
                                               const std::string &type,
                                               bool durable, bool auto_delete) {
-  BOOST_LOG_TRIVIAL(debug) << "declare exchange (" << name << "," << type
-                           << ")";
+  spdlog::debug("declare exchange ({}, {})", name, type);
   amqp_exchange_declare(this->_connection, this->_channel,
                         amqp_cstring_bytes(name.c_str()),
                         amqp_cstring_bytes(type.c_str()), 0, durable ? 1 : 0,
@@ -147,8 +143,7 @@ void palm::rabbitmq::Client::declare_exchange(const std::string &name,
 void palm::rabbitmq::Client::bind(const std::string &queue,
                                   const std::string &exchange,
                                   const std::string &binding_key) {
-  BOOST_LOG_TRIVIAL(debug) << "bind " << queue << " to " << exchange << " with "
-                           << binding_key;
+  spdlog::debug("bind {} to {} with {}", queue, exchange, binding_key);
   amqp_queue_bind(this->_connection, this->_channel,
                   amqp_cstring_bytes(queue.c_str()),
                   amqp_cstring_bytes(exchange.c_str()),
@@ -161,9 +156,8 @@ void palm::rabbitmq::Client::send(const std::string &exchange,
                                   const std::string &content_type,
                                   const std::vector<uint8_t> payload) {
   const auto id = palm::uuid();
-  BOOST_LOG_TRIVIAL(info) << "send message(" << id << "," << content_type << ","
-                          << payload.size() << ") to (" << exchange << ","
-                          << routing_key << ")";
+  spdlog::info("send message({}, {}, {} bytes) to ({}, {})", id, content_type,
+               payload.size(), exchange, routing_key);
   amqp_basic_properties_t props;
   props._flags = AMQP_BASIC_CONTENT_TYPE_FLAG | AMQP_BASIC_DELIVERY_MODE_FLAG |
                  AMQP_BASIC_MESSAGE_ID_FLAG;
@@ -191,7 +185,7 @@ bool palm::rabbitmq::Client::check(int status, const std::string &context) {
   if (status == AMQP_STATUS_OK) {
     return true;
   }
-  BOOST_LOG_TRIVIAL(error) << context << ": " << amqp_error_string2(status);
+  spdlog::error("{}: {}", context, amqp_error_string2(status));
   return false;
 }
 bool palm::rabbitmq::Client::check(amqp_rpc_reply_t x,
@@ -201,12 +195,11 @@ bool palm::rabbitmq::Client::check(amqp_rpc_reply_t x,
       return true;
 
     case AMQP_RESPONSE_NONE:
-      BOOST_LOG_TRIVIAL(error) << context << ": missing RPC reply type";
+      spdlog::error("{}: {}", context, " missing RPC reply type");
       break;
 
     case AMQP_RESPONSE_LIBRARY_EXCEPTION:
-      BOOST_LOG_TRIVIAL(error)
-          << context << ": " << amqp_error_string2(x.library_error);
+      spdlog::error("{}: {}", context, amqp_error_string2(x.library_error));
       break;
 
     case AMQP_RESPONSE_SERVER_EXCEPTION:
@@ -214,21 +207,21 @@ bool palm::rabbitmq::Client::check(amqp_rpc_reply_t x,
         case AMQP_CONNECTION_CLOSE_METHOD: {
           amqp_connection_close_t *m =
               (amqp_connection_close_t *)x.reply.decoded;
-          BOOST_LOG_TRIVIAL(error) << context << ": server connection error("
-                                   << m->reply_code << ") " << m->reply_text.len
-                                   << " bytes " << (char *)m->reply_text.bytes;
+          spdlog::error("{}: server connection error({}, {} bytes) {}", context,
+                        m->reply_code, m->reply_text.len,
+                        (char *)m->reply_text.bytes);
           break;
         }
         case AMQP_CHANNEL_CLOSE_METHOD: {
           amqp_channel_close_t *m = (amqp_channel_close_t *)x.reply.decoded;
-          BOOST_LOG_TRIVIAL(error)
-              << context << ": server channel error(" << m->reply_code << ") "
-              << m->reply_text.len << " bytes " << (char *)m->reply_text.bytes;
+          spdlog::error("{}: server channel error({}, {} bytes) {}", context,
+                        m->reply_code, m->reply_text.len,
+                        (char *)m->reply_text.bytes);
           break;
         }
         default:
-          BOOST_LOG_TRIVIAL(error)
-              << context << ": unknown server error, method id " << x.reply.id;
+          spdlog::error("{}: unknown server error method id {}", context,
+                        x.reply.id);
           break;
       }
       break;

@@ -11,10 +11,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/asio/ip/host_name.hpp>
-#include <boost/log/core.hpp>
-#include <boost/log/expressions.hpp>
 #include <boost/optional/optional.hpp>
-#include <boost/program_options.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/range/iterator_range.hpp>
 

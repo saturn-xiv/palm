@@ -8,6 +8,8 @@
 #include <format>
 #include <string>
 
+#include <boost/type_index.hpp>
+
 #include <cpr/cpr.h>
 #include <nlohmann/json.hpp>
 #include <toml++/toml.hpp>
@@ -136,7 +138,7 @@ class Client {
       // https://docs.opensearch.org/docs/latest/field-types/
       const nlohmann::json& properties) const {
     const auto name = this->index_name<T>();
-    BOOST_LOG_TRIVIAL(warning) << "create index " << name;
+    spdlog::warn("create index {}", name);
     requests::create_index::Item req = {
         .settings = {.index = {.number_of_shards = number_of_shards,
                                .number_of_replicas = number_of_replicas}},
@@ -154,7 +156,7 @@ class Client {
   template <class T>
   void delete_index() const {
     const auto name = this->index_name<T>();
-    BOOST_LOG_TRIVIAL(warning) << "delete index " << name;
+    spdlog::warn("delete index {}", name);
     this->delete_<responses::delete_index::Item>(name);
   }
 
@@ -175,13 +177,13 @@ class Client {
   template <class R>
   std::optional<R> get(const std::string& path) const {
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "GET " << url;
+    spdlog::debug("GET {}", url);
     cpr::Response res = cpr::Get(cpr::Url{url});
     if (res.status_code != palm::http::status::OK) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -190,31 +192,31 @@ class Client {
     nlohmann::json body = request;
 
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "POST " << url << "\n"
-                             << palm::truncate(body.dump(2), MESSAGE_SIZE);
+    spdlog::debug("POST {}:\n{}", url,
+                  palm::truncate(body.dump(2), MESSAGE_SIZE));
     cpr::Response res = cpr::Post(
         cpr::Url{url}, cpr::Body{body.dump()},
         cpr::Header{{palm::http::headers::CONTENT_TYPE,
                      palm::http::content_type::APPLICATION_JSON_UTF8}});
     if (res.status_code != palm::http::status::OK &&
         res.status_code != palm::http::status::CREATED) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
   template <class R>
   std::optional<R> put(const std::string& path) const {
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "PUT " << url;
+    spdlog::debug("PUT {}", url);
     cpr::Response res = cpr::Put(cpr::Url{url});
     if (res.status_code != palm::http::status::OK) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
@@ -223,54 +225,54 @@ class Client {
     nlohmann::json body = request;
 
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "PUT " << url << "\n"
-                             << palm::truncate(body.dump(2), MESSAGE_SIZE);
+    spdlog::debug("PUT {}:\n{}", url,
+                  palm::truncate(body.dump(2), MESSAGE_SIZE));
     cpr::Response res = cpr::Put(
         cpr::Url{url}, cpr::Body{body.dump()},
         cpr::Header{{palm::http::headers::CONTENT_TYPE,
                      palm::http::content_type::APPLICATION_JSON_UTF8}});
     if (res.status_code != palm::http::status::OK) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
   bool head(const std::string& path) const {
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "HEAD " << url;
+    spdlog::debug("HEAD: {}", url);
     cpr::Response res = cpr::Head(cpr::Url{url});
     if (res.status_code != palm::http::status::OK) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{}: {}", res.status_code, res.text);
       return false;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     return true;
   }
   template <class R>
   std::optional<R> head(const std::string& path) const {
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "HEAD " << url;
+    spdlog::debug("HEAD {}", url);
     cpr::Response res = cpr::Head(cpr::Url{url});
     if (res.status_code != palm::http::status::OK) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
   template <class R>
   std::optional<R> delete_(const std::string& path) const {
     const auto url = this->url(path);
-    BOOST_LOG_TRIVIAL(debug) << "DELETE " << url;
+    spdlog::debug("DELETE {}", url);
     cpr::Response res = cpr::Delete(cpr::Url{url});
     if (res.status_code != palm::http::status::OK) {
-      BOOST_LOG_TRIVIAL(error) << res.status_code << " " << res.text;
+      spdlog::error("{} {}", res.status_code, res.text);
       return std::nullopt;
     }
-    BOOST_LOG_TRIVIAL(debug) << palm::truncate(res.text, MESSAGE_SIZE);
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }

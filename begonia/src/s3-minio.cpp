@@ -4,12 +4,11 @@
 #include <filesystem>
 #include <format>
 
-#include <boost/log/trivial.hpp>
-
+#include <spdlog/spdlog.h>
 #include <inja/inja.hpp>
 
 #define PALM_OPEN_MINIO_CLIENT(x)                                          \
-  BOOST_LOG_TRIVIAL(debug) << "connect https://" << x->_base_url;          \
+  spdlog::debug("connect https://{}", x->_base_url);                       \
   ::minio::s3::BaseUrl base_url(x->_base_url);                             \
   ::minio::creds::StaticProvider provider(x->_access_key, x->_secret_key); \
   ::minio::s3::Client client(base_url, &provider)
@@ -18,7 +17,7 @@ std::vector<std::string> palm::Minio::list_buckets() {
   PALM_OPEN_MINIO_CLIENT(this);
   const auto res = client.ListBuckets();
   if (!res) {
-    BOOST_LOG_TRIVIAL(error) << res.Error();
+    spdlog::error("{}", res.Error().String());
     return {};
   }
 
@@ -36,7 +35,7 @@ bool palm::Minio::bucket_exists(const std::string& name) {
 
   const auto res = client.BucketExists(args);
   if (!res) {
-    BOOST_LOG_TRIVIAL(error) << res.Error();
+    spdlog::error("{}", res.Error().String());
     return false;
   }
   return res.exist;
@@ -46,13 +45,13 @@ void palm::Minio::create_bucket(const std::string& name, bool is_public,
   PALM_OPEN_MINIO_CLIENT(this);
   // https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
   {
-    BOOST_LOG_TRIVIAL(info) << "create bucket " << name;
+    spdlog::info("create bucket {}", name);
     ::minio::s3::MakeBucketArgs args;
     args.bucket = name;
 
     ::minio::s3::MakeBucketResponse res = client.MakeBucket(args);
     if (!res) {
-      BOOST_LOG_TRIVIAL(error) << res.Error();
+      spdlog::error("{}", res.Error().String());
       return;
     }
   }
@@ -64,7 +63,7 @@ void palm::Minio::create_bucket(const std::string& name, bool is_public,
   // mc anonymous get-json my-minio/downloads > /tmp/policy.json
   // mc rb my-minio/downloads
   if (is_public) {
-    BOOST_LOG_TRIVIAL(info) << "set bucket public access";
+    spdlog::info("set bucket public access");
     const std::string POLICY = R"(
 {
   "Statement": [
@@ -90,17 +89,17 @@ void palm::Minio::create_bucket(const std::string& name, bool is_public,
     ::minio::s3::SetBucketPolicyArgs args;
     args.bucket = name;
     args.policy = inja::render(POLICY, data);
-    BOOST_LOG_TRIVIAL(debug) << args.policy;
+    spdlog::debug(args.policy);
     ::minio::s3::SetBucketPolicyResponse res = client.SetBucketPolicy(args);
     if (!res) {
-      BOOST_LOG_TRIVIAL(error) << res.Error();
+      spdlog::error("{}", res.Error().String());
       return;
     }
   }
 
   if (expiration_days && expiration_days.value() > 0) {
-    BOOST_LOG_TRIVIAL(info) << "set expires in " << expiration_days.value()
-                            << " days for bucket " << name;
+    spdlog::info("set expires in {} days for bucket {}",
+                 expiration_days.value(), name);
     ::minio::s3::LifecycleConfig config;
 
     {
@@ -118,7 +117,7 @@ void palm::Minio::create_bucket(const std::string& name, bool is_public,
     ::minio::s3::SetBucketLifecycleResponse res =
         client.SetBucketLifecycle(args);
     if (!res) {
-      BOOST_LOG_TRIVIAL(error) << res.Error();
+      spdlog::error("{}", res.Error().String());
       return;
     }
   }
@@ -129,8 +128,7 @@ std::optional<std::string> palm::Minio::upload(const std::string& bucket,
   std::filesystem::path file(filename);
   const std::string object =
       std::format("{}{}", palm::uuid(), file.extension().string());
-  BOOST_LOG_TRIVIAL(info) << "upload " << filename << " to (" << bucket << ","
-                          << object << ")";
+  spdlog::info("upload {} to ({}, {})", filename, bucket, object);
   ::minio::s3::UploadObjectArgs args;
 
   args.bucket = bucket;
@@ -139,7 +137,7 @@ std::optional<std::string> palm::Minio::upload(const std::string& bucket,
 
   ::minio::s3::UploadObjectResponse res = client.UploadObject(args);
   if (!res) {
-    BOOST_LOG_TRIVIAL(error) << res.Error();
+    spdlog::error("{}", res.Error().String());
     return nullptr;
   }
   return object;
@@ -149,7 +147,7 @@ std::optional<std::string> palm::Minio::get_presigned_object_url(
     const std::string& title, const std::string& content_type,
     const std::chrono::seconds ttl) {
   if (ttl < std::chrono::minutes(1) || ttl > std::chrono::days(7)) {
-    BOOST_LOG_TRIVIAL(error) << "bad ttl " << ttl;
+    spdlog::error("bad ttl {}", ttl.count());
     return std::nullopt;
   }
   PALM_OPEN_MINIO_CLIENT(this);
@@ -173,7 +171,7 @@ std::optional<std::string> palm::Minio::get_presigned_object_url(
   ::minio::s3::GetPresignedObjectUrlResponse res =
       client.GetPresignedObjectUrl(args);
   if (!res) {
-    BOOST_LOG_TRIVIAL(error) << res.Error();
+    spdlog::error("{}", res.Error().String());
     return nullptr;
   }
   return res.url;

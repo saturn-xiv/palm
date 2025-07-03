@@ -29,13 +29,13 @@ find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 
 add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
 
-target_link_libraries(begonia PUBLIC gourd
+target_link_libraries(begonia PUBLIC
   argparse::argparse spdlog::spdlog_header_only
   SOCI::soci_core_static SOCI::soci_sqlite3_static SOCI::soci_postgresql_static
   redis++::redis++_static 
   miniocpp::miniocpp
   rabbitmq::rabbitmq-static
-  unofficial-sodium::sodium mailio cpr::cpr jwt-cpp::jwt-cpp
+  unofficial-sodium::sodium mailio::mailio cpr::cpr jwt-cpp::jwt-cpp
   httplib::httplib nlohmann_json::nlohmann_json pantor::inja
   PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch
   Boost::uuid Boost::url Boost::property_tree Boost::algorithm

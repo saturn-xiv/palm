@@ -6,7 +6,8 @@
 #include <vector>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/log/trivial.hpp>
+
+#include <spdlog/spdlog.h>
 
 namespace palm {
 
@@ -26,8 +27,7 @@ inline bool is_stopped() {
   static const std::string file = ".stop";
   const auto ok = std::filesystem::exists(file);
   if (ok) {
-    BOOST_LOG_TRIVIAL(warning)
-        << "file " << file << " exists, will be exited...";
+    spdlog::warn("file {} exists, will be exited...", file);
   }
   return ok;
 }

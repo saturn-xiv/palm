@@ -10,9 +10,4 @@ set(CMAKE_CXX_COMPILER_TARGET ${target})
 # https://github.com/abseil/abseil-cpp/issues/1747#issuecomment-2308667626
 set(CMAKE_CXX_FLAGS "-stdlib=libstdc++ -fclang-abi-compat=17")
 
-# set(CMAKE_C_COMPILER gcc)
-# set(CMAKE_C_COMPILER_TARGET ${target})
-# set(CMAKE_CXX_COMPILER g++)
-# set(CMAKE_CXX_COMPILER_TARGET ${target})
-
 set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=mold -s -Wl,--build-id=sha1")

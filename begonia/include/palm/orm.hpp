@@ -6,10 +6,9 @@
 #include <string>
 #include <utility>
 
-#include <boost/log/trivial.hpp>
-
 #include <libpq-fe.h>
 #include <mysql/mysql.h>
+#include <spdlog/spdlog.h>
 #include <sqlite3.h>
 #include <toml++/toml.hpp>
 

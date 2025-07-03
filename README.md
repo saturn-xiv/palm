@@ -10,9 +10,9 @@ $ ./docker/begonia/start.sh
 > cd /workspace/palm
 > git submodule update --init --recursive
 
-> cmake --preset=default -DVCPKG_TARGET_TRIPLET=x64-linux-release
+> cmake --preset=default -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/clang/x86_64.cmake
 > cmake --build
 
-> cmake --preset=default -DVCPKG_TARGET_TRIPLET=arm64-linux-release
+> cmake --preset=default -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/clang/aarch64.cmake
 > cmake --build
 ```

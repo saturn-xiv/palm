@@ -1,10 +1,10 @@
 #include "palm/cache.hpp"
 
-#include <boost/log/trivial.hpp>
+#include <spdlog/spdlog.h>
 
 std::shared_ptr<sw::redis::Redis> palm::redis::Node::open() const {
-  BOOST_LOG_TRIVIAL(debug) << "open redis tcp://" << this->_host << ":"
-                           << this->_port << "/" << +(this->_db);
+  spdlog::debug("open redis tcp://{}:{}/{}", this->_host, this->_port,
+                this->_db);
 
   sw::redis::ConnectionOptions connection_options;
   connection_options.host = this->_host;
@@ -24,7 +24,7 @@ std::shared_ptr<sw::redis::Redis> palm::redis::Node::open() const {
       std::make_shared<sw::redis::Redis>(connection_options, pool_options);
   {
     const auto v = it->ping();
-    BOOST_LOG_TRIVIAL(debug) << v;
+    spdlog::debug("PING: {}", v);
   }
   return it;
 }

@@ -2,9 +2,8 @@
 
 #include <algorithm>
 
-#include <boost/log/trivial.hpp>
-
 #include <jwt-cpp/jwt.h>
+#include <spdlog/spdlog.h>
 #include <nlohmann/json.hpp>
 
 std::string palm::Jwt::sign(
@@ -15,8 +14,7 @@ std::string palm::Jwt::sign(
     const std::chrono::time_point<std::chrono::system_clock>& not_before,
     const std::chrono::time_point<std::chrono::system_clock>& expired_at,
     const std::optional<std::string> payload) const {
-  BOOST_LOG_TRIVIAL(debug) << "generate token for (" << issuer << "," << subject
-                           << ")";
+  spdlog::debug("generate token for ({}, {})", issuer, subject);
 
   auto builder = jwt::create()
                      .set_type("JWS")
@@ -59,7 +57,7 @@ static bool has_audience(const std::set<std::string> audiences,
 std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
            std::optional<std::string>>
 palm::Jwt::verify(const std::string& token, const std::string& issuer,
-                   const std::string& audience) const {
+                  const std::string& audience) const {
   auto decoded = jwt::decode(token);
   auto verifier = jwt::verify()
                       .with_issuer(issuer)
@@ -78,7 +76,7 @@ palm::Jwt::verify(const std::string& token, const std::string& issuer,
   //     const std::string v = it.at;
 
   //     // for (const auto it : decoded.get_audience()) {
-  //     //   BOOST_LOG_TRIVIAL(debug) << "------- " << it;
+  //     //   spdlog::debug( "------- {}", it);
   //     // }
   //     // if (!.contains(audience)) {
   //     //   // throw jwt::error::signature_verification_exception();

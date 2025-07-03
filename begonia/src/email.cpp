@@ -2,15 +2,14 @@
 
 #include <list>
 
-#include <boost/log/trivial.hpp>
-
+#include <spdlog/spdlog.h>
 #include <mailio/message.hpp>
 #include <mailio/smtp.hpp>
 
 void palm::email::Smtp::send(const Account& to, const std::vector<Account> cc,
-                              const std::vector<Account> bcc,
-                              const std::string& subject, const Body& body,
-                              const std::vector<Attachment> attachments) const {
+                             const std::vector<Account> bcc,
+                             const std::string& subject, const Body& body,
+                             const std::vector<Attachment> attachments) const {
   mailio::message msg;
   msg.from(mailio::mail_address(this->_user.name, this->_user.email));
   msg.add_recipient(mailio::mail_address(to.name, to.email));
@@ -53,9 +52,8 @@ void palm::email::Smtp::send(const Account& to, const std::vector<Account> cc,
                        it.content_type.second);
       att.content_disposition(mailio::mime::content_disposition_t::INLINE);
     } else {
-      BOOST_LOG_TRIVIAL(warning)
-          << "undetected content-type " << it.content_type.first << "/"
-          << it.content_type.second;
+      spdlog::warn("undetected content-type {}/{}", it.content_type.first,
+                   it.content_type.second);
       att.content_type(mailio::message::media_type_t::APPLICATION,
                        "octet-stream");
       att.content_disposition(mailio::mime::content_disposition_t::ATTACHMENT);
@@ -72,8 +70,7 @@ void palm::email::Smtp::send(const Account& to, const std::vector<Account> cc,
 
     msg.add_part(att);
   }
-  BOOST_LOG_TRIVIAL(info) << "send email to " << to.name << "<" << to.email
-                          << ">: " << subject;
+  spdlog::info("send email to {}/{}: {}", to.name, to.email, subject);
   mailio::smtps con(this->_host, this->_port);
 
   con.authenticate(this->_user.email, this->_password,

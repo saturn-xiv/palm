@@ -1,11 +1,11 @@
 #include "palm/crypto.hpp"
 
 #include <boost/algorithm/hex.hpp>
-#include <boost/log/trivial.hpp>
 
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 #include <openssl/sha.h>
+#include <spdlog/spdlog.h>
 #include <cppcodec/base64_rfc4648.hpp>
 
 palm::HMac::HMac(const std::string &key)
@@ -15,7 +15,7 @@ std::vector<uint8_t> palm::HMac::sign(const std::vector<uint8_t> plain) const {
   unsigned int digest_len = 0;
   if (!HMAC(EVP_sha512(), this->_key.data(), this->_key.size(), plain.data(),
             plain.size(), digest, &digest_len)) {
-    BOOST_LOG_TRIVIAL(error) << "sign hmac";
+    spdlog::error("sign hmac");
     return {};
   }
   std::vector<uint8_t> it(std::begin(digest), std::end(digest));
@@ -23,7 +23,7 @@ std::vector<uint8_t> palm::HMac::sign(const std::vector<uint8_t> plain) const {
 }
 
 std::string palm::ssha512::sign(const std::vector<uint8_t> plain,
-                                 const std::vector<uint8_t> salt) {
+                                const std::vector<uint8_t> salt) {
   std::vector<uint8_t> buf;
   buf.insert(buf.end(), plain.begin(), plain.end());
   buf.insert(buf.end(), salt.begin(), salt.end());
@@ -34,7 +34,7 @@ std::string palm::ssha512::sign(const std::vector<uint8_t> plain,
 }
 
 bool palm::ssha512::verify(const std::string &code,
-                            const std::vector<uint8_t> plain) {
+                           const std::vector<uint8_t> plain) {
   if (!code.starts_with(HEADER)) {
     return false;
   }
@@ -53,30 +53,30 @@ bool palm::ssha512::verify(const std::string &code,
 std::vector<uint8_t> palm::sha256::sign(const std::vector<uint8_t> plain) {
   EVP_MD_CTX *ctx = EVP_MD_CTX_new();
   if (ctx == nullptr) {
-    BOOST_LOG_TRIVIAL(error) << "new openssl evp context";
+    spdlog::error("new openssl evp context");
     return {};
   }
 
   auto md = EVP_sha256();
   if (md == nullptr) {
-    BOOST_LOG_TRIVIAL(error) << "init openssl sha256 evp";
+    spdlog::error("init openssl sha256 evp");
     return {};
   }
 
   if (1 != EVP_DigestInit_ex(ctx, md, nullptr)) {
-    BOOST_LOG_TRIVIAL(error) << "init openssl digest";
+    spdlog::error("init openssl digest");
     return {};
   };
 
   if (1 != EVP_DigestUpdate(ctx, plain.data(), plain.size())) {
-    BOOST_LOG_TRIVIAL(error) << "update openssl digest";
+    spdlog::error("update openssl digest");
     return {};
   };
 
   uint8_t digest[SHA256_DIGEST_LENGTH];
   unsigned int digest_len = 0;
   if (1 != EVP_DigestFinal_ex(ctx, digest, &digest_len)) {
-    BOOST_LOG_TRIVIAL(error) << "final openssl digest";
+    spdlog::error("final openssl digest");
     return {};
   };
 
@@ -90,30 +90,30 @@ std::vector<uint8_t> palm::sha256::sign(const std::vector<uint8_t> plain) {
 std::vector<uint8_t> palm::sha512::sign(const std::vector<uint8_t> plain) {
   EVP_MD_CTX *ctx = EVP_MD_CTX_new();
   if (ctx == nullptr) {
-    BOOST_LOG_TRIVIAL(error) << "new openssl evp context";
+    spdlog::error("new openssl evp context");
     return {};
   }
 
   auto md = EVP_sha512();
   if (md == nullptr) {
-    BOOST_LOG_TRIVIAL(error) << "init openssl sha512 evp";
+    spdlog::error("init openssl sha512 evp");
     return {};
   }
 
   if (1 != EVP_DigestInit_ex(ctx, md, nullptr)) {
-    BOOST_LOG_TRIVIAL(error) << "init openssl digest";
+    spdlog::error("init openssl digest");
     return {};
   };
 
   if (1 != EVP_DigestUpdate(ctx, plain.data(), plain.size())) {
-    BOOST_LOG_TRIVIAL(error) << "update openssl digest";
+    spdlog::error("update openssl digest");
     return {};
   };
 
   uint8_t digest[SHA512_DIGEST_LENGTH];
   unsigned int digest_len = 0;
   if (1 != EVP_DigestFinal_ex(ctx, digest, &digest_len)) {
-    BOOST_LOG_TRIVIAL(error) << "final openssl digest";
+    spdlog::error("final openssl digest");
     return {};
   };
 
