@@ -60,8 +60,8 @@ static std::shared_ptr<palm::Minio> open_minio(toml::table* config) {
   return it;
 }
 static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
-  palm::redis::Node cfg(config);
-  auto it = cfg.open();
+  palm::redis::Node node(config);
+  auto it = node.open();
   {
     const auto v = it->ping();
     spdlog::debug("PING: {}", v);
@@ -140,14 +140,7 @@ static void start_http_server(const std::string& host, uint16_t port,
     return;
   }
 
-  server.set_logger([&](const auto& req, const auto& res) {
-    std::stringstream params;
-    for (auto const& [k, v] : req.params) {
-      params << k << "=" << v << " ";
-    }
-    spdlog::info("{} {} {} {}", req.method, res.status, req.path, params.str());
-  });
-
+  palm::set_logger(server);
   palm::portal::mount(server, rpc, theme, jwt, s3);
 
   spdlog::info("listen a HTTP server on tcp://{}:{} with theme {}", host, port,
@@ -281,6 +274,9 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
 
   program.add_subparser(http_command);
   program.add_subparser(rpc_command);
+  program.add_subparser(db_seed_command);
+  program.add_subparser(sms_send_consumer_command);
+  program.add_subparser(email_send_consumer_command);
   program.parse_args(argc, argv);
 
   palm::init(debug);

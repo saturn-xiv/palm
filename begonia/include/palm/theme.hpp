@@ -4,6 +4,7 @@
 
 #include <format>
 
+#include <httplib.h>
 #include <inja/inja.hpp>
 
 namespace palm {
@@ -22,4 +23,6 @@ class Theme {
   inja::Environment _env;
   nlohmann::json _global;
 };
+
+void set_logger(httplib::Server& server);
 }  // namespace palm

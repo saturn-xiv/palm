@@ -1,6 +1,18 @@
-#include <iostream>
+#include "palm/application.hpp"
+
+#include <cstdlib>
+
+#include <boost/exception/diagnostic_information.hpp>
+
+#include <spdlog/spdlog.h>
 
 int main(int argc, char** argv) {
-    std::cout << "hello world!" << std::endl;
-    return 0;
+  palm::phlox::Application app;
+  try {
+    app.launch(argc, argv);
+    return EXIT_SUCCESS;
+  } catch (...) {
+    spdlog::error("{}", boost::current_exception_diagnostic_information());
+    return EXIT_FAILURE;
+  }
 }
