@@ -11,6 +11,8 @@
 
 namespace palm {
 
+void init(bool debug);
+
 inline std::string truncate(const std::string& s, uint l,
                             const std::string& ellipse = "...") {
   int c = l - ellipse.length();

@@ -10,6 +10,8 @@
 #include <mysql/mysql.h>
 #include <spdlog/spdlog.h>
 #include <sqlite3.h>
+
+#define TOML_EXCEPTIONS 1
 #include <toml++/toml.hpp>
 
 namespace palm {

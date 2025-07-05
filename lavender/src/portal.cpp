@@ -29,8 +29,8 @@ palm::portal::rpc::UserClient::sign_in(const std::string& email,
       this->_stub->SignInByEmail(&context, request, reply.get());
 
   if (!status.ok()) {
-    BOOST_LOG_TRIVIAL(error)
-        << status.error_code() << ": " << status.error_message();
+    spdlog::error("{} {}", static_cast<int>(status.error_code()),
+                  status.error_message());
     return nullptr;
   }
   return reply;
@@ -51,7 +51,7 @@ void palm::portal::workers::SmsSendQueueConsumer::execute(
 void palm::portal::mount(httplib::Server& server, palm::GrpcClient& rpc,
                          palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
                          std::shared_ptr<palm::Minio> s3) {
-  BOOST_LOG_TRIVIAL(debug) << BOOST_CURRENT_FUNCTION;
+  spdlog::debug("{}", BOOST_CURRENT_FUNCTION);
   server.Get("/", [&](const auto& req, auto& res) {
     nlohmann::json data;
     data["title"] = "hi";

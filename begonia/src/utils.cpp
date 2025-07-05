@@ -1,11 +1,42 @@
 #include "palm/utils.hpp"
+#include "palm/cache.hpp"
 #include "palm/crypto.hpp"
+#include "palm/orm.hpp"
+#include "palm/queue.hpp"
+#include "palm/s3.hpp"
+#include "palm/version.hpp"
 
 #include <fstream>
 
 #include <boost/algorithm/hex.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/join.hpp>
+
+#include <google/protobuf/stubs/common.h>
+#include <grpcpp/grpcpp.h>
+#include <mysql/mariadb_version.h>
+#include <openssl/opensslv.h>
+
+void palm::init(bool debug) {
+  spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
+
+  spdlog::debug("run on debug mode({})", palm::GIT_VERSION);
+  spdlog::debug("{}", OPENSSL_VERSION_TEXT);
+  {
+    const auto v = PQlibVersion();
+    spdlog::debug("PostgreSQL v{}.{}.{}", v / (100 * 100), (v / 100) % 100,
+                  v % (100 * 100));
+  }
+  spdlog::debug("MySQL v{}", MARIADB_CLIENT_VERSION_STR);
+  spdlog::debug("Sqlite v{}", SQLITE_VERSION);
+  spdlog::debug("rabbitmq-c v{}", AMQ_VERSION_STRING);
+  spdlog::debug("hiredis v{}.{}.{}", HIREDIS_MAJOR, HIREDIS_MINOR,
+                HIREDIS_PATCH);
+  spdlog::debug("miniocpp v{}", MINIO_CPP_VERSION);
+  spdlog::debug("protobuf {}", google::protobuf::internal::VersionString(
+                                   GOOGLE_PROTOBUF_VERSION));
+  spdlog::debug("gRpc {}", grpc::Version());
+}
 
 // https://docs.gravatar.com/api/avatars/hash/
 std::string palm::gravatar::hash(const std::string& email) {

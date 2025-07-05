@@ -22,9 +22,6 @@ std::shared_ptr<sw::redis::Redis> palm::redis::Node::open() const {
 
   std::shared_ptr<sw::redis::Redis> it =
       std::make_shared<sw::redis::Redis>(connection_options, pool_options);
-  {
-    const auto v = it->ping();
-    spdlog::debug("PING: {}", v);
-  }
+
   return it;
 }

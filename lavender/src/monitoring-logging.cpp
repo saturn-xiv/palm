@@ -1,4 +1,4 @@
-#include "palm/monitor.hpp"
+#include "palm/monitoring.hpp"
 
 #include <boost/asio/ip/host_name.hpp>
 #include <boost/exception/diagnostic_information.hpp>
@@ -7,35 +7,34 @@
 #include <sys/types.h>
 #include <cerrno>
 
-palm::monitor::logging::Source::Source()
+palm::monitoring::logging::Source::Source()
     : _hostname(boost::asio::ip::host_name()) {}
 
 // https://developer.ibm.com/tutorials/l-ubuntu-inotify/
-palm::monitor::logging::FilesystemNotify::FilesystemNotify() : Source() {
+palm::monitoring::logging::FilesystemNotify::FilesystemNotify() : Source() {
   this->_notify_id = inotify_init();
   if (this->_notify_id < 0) {
-    BOOST_LOG_TRIVIAL(error)
-        << "init inotify(" << errno << ") " << ": " << strerror(errno);
+    spdlog::error("init inotify({}): {}", errno, strerror(errno));
     throw std::runtime_error("init inotify");
   }
 }
-palm::monitor::logging::FilesystemNotify::~FilesystemNotify() {
+palm::monitoring::logging::FilesystemNotify::~FilesystemNotify() {
   for (auto [wd, file] : this->_targets) {
-    BOOST_LOG_TRIVIAL(info) << "remove watch of " << file.string();
+    spdlog::info("remove watch of {}", file.string());
     inotify_rm_watch(this->_notify_id, wd);
   }
-  BOOST_LOG_TRIVIAL(info) << "close notify";
+  spdlog::info("close notify");
   close(this->_notify_id);
 }
-void palm::monitor::logging::FilesystemNotify::register_(
+void palm::monitoring::logging::FilesystemNotify::register_(
     const std::filesystem::path& file) {
   std::lock_guard<std::mutex> lock(this->_mutex);
 
   auto wd = inotify_add_watch(this->_notify_id, file.c_str(),
                               IN_MODIFY | IN_CREATE | IN_DELETE);
   if (wd < 0) {
-    BOOST_LOG_TRIVIAL(error)
-        << "file watch(" << errno << ") " << file << ": " << strerror(errno);
+    spdlog::error("file watch({}, {}): {}", errno, file.string(),
+                  strerror(errno));
     return;
   }
 
@@ -50,13 +49,13 @@ void palm::monitor::logging::FilesystemNotify::register_(
       }
     }
   } else {
-    BOOST_LOG_TRIVIAL(error) << "unknown file type: " << file.string();
+    spdlog::error("unknown file type: {}", file.string());
     return;
   }
   this->_targets[wd] = file;
 }
 
-void palm::monitor::logging::FilesystemNotify::execute(
+void palm::monitoring::logging::FilesystemNotify::execute(
     std::shared_ptr<palm::opensearch::Client> search) {
   const auto event_size = sizeof(struct inotify_event);
   const auto buf_len = 1024 * (event_size + 16);
@@ -67,8 +66,7 @@ void palm::monitor::logging::FilesystemNotify::execute(
   std::vector<std::tuple<std::filesystem::path, std::string, uint64_t>> items;
 
   if (length < 0) {
-    BOOST_LOG_TRIVIAL(error)
-        << "read notify buffer(" << errno << "): " << strerror(errno);
+    spdlog::error("read notify buffer({}): {}", errno, strerror(errno));
     return;
   }
   auto i = 0;
@@ -77,10 +75,10 @@ void palm::monitor::logging::FilesystemNotify::execute(
     const auto file = this->_targets.at(event->wd);
     if (event->len == 0) {
       if (event->mask & IN_CREATE) {
-        BOOST_LOG_TRIVIAL(debug) << "created file " << file.string();
+        spdlog::debug("created file {}", file.string());
         this->load(file);
       } else if (event->mask & IN_MODIFY) {
-        BOOST_LOG_TRIVIAL(debug) << "modified file " << file.string();
+        spdlog::debug("modified file {}", file.string());
         auto buf = this->load(file);
         items.insert(items.end(), buf.begin(), buf.end());
       }
@@ -88,10 +86,10 @@ void palm::monitor::logging::FilesystemNotify::execute(
     } else if (event->len > 0 && !(event->mask & IN_ISDIR)) {
       auto it = file / event->name;
       if (event->mask & IN_CREATE) {
-        BOOST_LOG_TRIVIAL(debug) << "created file " << file.string();
+        spdlog::debug("created file {}", file.string());
         this->load(it);
       } else if (event->mask & IN_MODIFY) {
-        BOOST_LOG_TRIVIAL(debug) << "modified file " << it.string();
+        spdlog::debug("modified file {}", it.string());
         auto buf = this->load(it);
         items.insert(items.end(), buf.begin(), buf.end());
       }
@@ -101,7 +99,7 @@ void palm::monitor::logging::FilesystemNotify::execute(
   }
 
   {
-    palm::monitor::logging::Item log = {.host = this->_hostname};
+    palm::monitoring::logging::Item log = {.host = this->_hostname};
     for (const auto [f, m, c] : items) {
       log.file = f.string();
       log.message = m;
@@ -114,20 +112,21 @@ void palm::monitor::logging::FilesystemNotify::execute(
   }
 }
 
-void palm::monitor::logging::StdinSource::execute(
+void palm::monitoring::logging::StdinSource::execute(
     std::shared_ptr<palm::opensearch::Client> search) {
-  palm::monitor::logging::Item it = {.host = this->_hostname, .file = "stdin"};
+  palm::monitoring::logging::Item it = {.host = this->_hostname,
+                                        .file = "stdin"};
   std::string line;
   while (std::getline(std::cin, it.message)) {
     boost::algorithm::trim(it.message);
-    it.created_at = palm::monitor::logging::Item::now();
+    it.created_at = palm::monitoring::logging::Item::now();
     if (!it.message.empty()) {
       search->index_document(it);
     }
   }
 }
 
-void palm::monitor::LoggingScratcher::launch(
+void palm::monitoring::LoggingScratcher::launch(
     std::shared_ptr<palm::opensearch::Client> search,
     std::chrono::seconds ttl) {
   std::vector<std::shared_ptr<std::thread>> pool;
@@ -139,8 +138,8 @@ void palm::monitor::LoggingScratcher::launch(
           try {
             it->execute(search);
           } catch (...) {
-            BOOST_LOG_TRIVIAL(error)
-                << boost::current_exception_diagnostic_information();
+            spdlog::error("{}",
+                          boost::current_exception_diagnostic_information());
           }
           std::this_thread::sleep_for(ttl);
         }
@@ -148,7 +147,7 @@ void palm::monitor::LoggingScratcher::launch(
       pool.push_back(t);
     }
   }
-  BOOST_LOG_TRIVIAL(info) << "start a logging scratcher progress";
+  spdlog::info("start a logging scratcher progress");
   for (auto& it : pool) {
     it->join();
   }

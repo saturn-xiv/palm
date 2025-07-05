@@ -21,6 +21,8 @@ find_package(miniocpp CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 find_package(pugixml CONFIG REQUIRED)
 find_package(mstch CONFIG REQUIRED)
+find_package(protobuf CONFIG REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
 find_package(PkgConfig REQUIRED)
 
 pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
@@ -39,6 +41,7 @@ target_link_libraries(begonia PUBLIC
   httplib::httplib nlohmann_json::nlohmann_json pantor::inja
   PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch
   Boost::uuid Boost::url Boost::property_tree Boost::algorithm
+  protobuf::libprotobuf gRPC::grpc++
 )
 
 target_include_directories(begonia PUBLIC

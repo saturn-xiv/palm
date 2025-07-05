@@ -5,6 +5,6 @@ target_link_libraries(lavender PRIVATE begonia)
 target_link_options(lavender PRIVATE -static-libgcc -static-libstdc++)
 set_target_properties(lavender PROPERTIES LINK_FLAGS_RELEASE -s)    
 
-target_include_directories(bamboo PUBLIC
+target_include_directories(lavender PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

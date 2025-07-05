@@ -12,6 +12,8 @@
 
 #include <cpr/cpr.h>
 #include <nlohmann/json.hpp>
+
+#define TOML_EXCEPTIONS 1
 #include <toml++/toml.hpp>
 
 namespace palm {
@@ -105,9 +107,9 @@ struct ClusterHealth {
 // https://opensearch.org/docs/latest/api-reference/
 class Client {
  public:
-  Client(const toml::table* config)
+  Client(toml::table* config)
       : _host(config->get("host")->value_or<std::string>("127.0.0.1")),
-        _port(config->get("port")->value_or<int>(9200)),
+        _port(config->get("port")->value_or<uint16_t>(9200)),
         _auth(std::nullopt) {}
   Client(const std::string& host = "127.0.0.1", uint16_t port = 9200,
          std::optional<std::pair<std::string, std::string>> auth = std::nullopt)

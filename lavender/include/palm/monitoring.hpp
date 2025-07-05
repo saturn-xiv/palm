@@ -87,8 +87,7 @@ class FilesystemNotify : public Source {
       std::ifstream ss(key);
       ss.seekg(0L, std::ios::end);
       const int pos = ss.tellg();
-      BOOST_LOG_TRIVIAL(debug)
-          << "jump file " << key.string() << " to the end(" << pos << ")";
+      spdlog::debug("jump file {} to the end({})", key.string(), pos);
       this->_positions[key] = pos;
       return items;
     }
@@ -101,8 +100,7 @@ class FilesystemNotify : public Source {
       pos += line.length() + 1;
     }
 
-    BOOST_LOG_TRIVIAL(debug) << "read file " << key.string() << " from "
-                             << it->second << " to " << pos;
+    spdlog::debug("read file {} from {} to {}", key.string(), it->second, pos);
     this->_positions[key] = pos;
     return items;
   }
@@ -176,7 +174,8 @@ class LoggingScratcher {
  public:
   void launch(std::shared_ptr<palm::opensearch::Client> search,
               std::chrono::seconds sleep = std::chrono::seconds{1});
-  inline void register_(std::shared_ptr<palm::monitoring::logging::Source> item) {
+  inline void register_(
+      std::shared_ptr<palm::monitoring::logging::Source> item) {
     std::lock_guard<std::mutex> lock(this->_mutex);
     this->_nodes.push_back(item);
   }

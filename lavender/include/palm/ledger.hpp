@@ -1,12 +1,12 @@
 #pragma once
 
+#include "ledger.grpc.pb.h"
 #include "palm/portal.hpp"
-#include "bookkeeper.grpc.pb.h"
 
 namespace palm {
-namespace bookkeeper {
+namespace ledger {
 namespace services {
-class BookServiceImpl final : public palm::bookkeeper::v1::Book::Service {};
+class BookServiceImpl final : public palm::ledger::v1::Book::Service {};
 }  // namespace services
-}  // namespace bookkeeper
+}  // namespace ledger
 }  // namespace palm
