@@ -6,6 +6,7 @@
     "boost-algorithm",
     "boost-uuid",
     "boost-url",
+    "boost-locale",
     "argparse",
     "spdlog",
     "catch2",
@@ -27,7 +28,6 @@
     "mongo-cxx-driver",
     "minio-cpp",
     "librabbitmq",
-
     {
       "name": "abseil",
       "features": ["cxx17"]

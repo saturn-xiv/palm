@@ -6,10 +6,15 @@
 #include <string>
 #include <utility>
 
+#include <boost/predef.h>
+
 #include <libpq-fe.h>
-#include <mysql/mysql.h>
 #include <spdlog/spdlog.h>
 #include <sqlite3.h>
+
+#if BOOST_ARCH_X86_64
+#include <mysql/mysql.h>
+#endif
 
 #define TOML_EXCEPTIONS 1
 #include <toml++/toml.hpp>

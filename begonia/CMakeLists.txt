@@ -14,6 +14,7 @@ find_package(boost_uuid CONFIG REQUIRED)
 find_package(boost_url CONFIG REQUIRED)
 find_package(boost_property_tree CONFIG REQUIRED)
 find_package(boost_algorithm CONFIG REQUIRED)
+find_package(boost_locale CONFIG REQUIRED)
 find_package(jwt-cpp CONFIG REQUIRED)
 find_package(mailio CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
@@ -29,6 +30,17 @@ pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 
+# -----------------------------------------------------------------------------
+FetchContent_Declare(thrift
+  GIT_REPOSITORY      "https://github.com/apache/thrift.git"
+  GIT_TAG             "v0.22.0"
+  PATCH_COMMAND       git apply ${PROJECT_SOURCE_DIR}/loquat/patches/thrift.patch
+  UPDATE_DISCONNECTED 1
+)
+
+FetchContent_MakeAvailable(thrift)
+# -----------------------------------------------------------------------------
+
 add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
 
 target_link_libraries(begonia PUBLIC
@@ -40,8 +52,9 @@ target_link_libraries(begonia PUBLIC
   unofficial-sodium::sodium mailio::mailio cpr::cpr jwt-cpp::jwt-cpp
   httplib::httplib nlohmann_json::nlohmann_json pantor::inja
   PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch
-  Boost::uuid Boost::url Boost::property_tree Boost::algorithm
+  Boost::uuid Boost::url Boost::property_tree Boost::algorithm Boost::locale
   protobuf::libprotobuf gRPC::grpc++
+  thrift thriftnb thriftz
 )
 
 target_include_directories(begonia PUBLIC
@@ -49,4 +62,8 @@ target_include_directories(begonia PUBLIC
   ${PROJECT_SOURCE_DIR}/gourd/include
 
   ${CPPCODEC_INCLUDE_DIRS}
+
+  ${thrift_SOURCE_DIR}/lib/cpp/src
+  ${thrift_SOURCE_DIR}/compiler/cpp/src
+  ${thrift_BINARY_DIR}
 )

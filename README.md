@@ -10,9 +10,12 @@ $ ./docker/begonia/start.sh
 > cd /workspace/palm
 > git submodule update --init --recursive
 
-> cmake --preset=default -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/clang/x86_64.cmake
+# FIXME https://github.com/gabime/spdlog/issues/3306
+> cmake --preset=default -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/clang/x86_64.cmake \
+
 > cmake --build
 
-> cmake --preset=default -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/clang/aarch64.cmake
+> cmake --preset=default -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/gcc/aarch64.cmake \
+    -DCMAKE_BUILD_TYPE=Release -DBUILD_COMPILER=OFF -DWITH_OPENSSL=ON -DBUILD_JAVA=OFF -DBUILD_JAVASCRIPT=OFF -DBUILD_NODEJS=OFF -DBUILD_PYTHON=OFF
 > cmake --build
 ```

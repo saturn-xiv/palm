@@ -35,7 +35,7 @@ function build_grpc() {
     fi
 
     CC=clang CXX=clang++ \
-    cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
         -DABSL_PROPAGATE_CXX_STD=ON \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -B $BUILD_ROOT -S $SOURCE_ROOT \
@@ -45,7 +45,7 @@ function build_grpc() {
 }
 
 # if [ "$#" -ne 2 ]; then
-#     echo "USAGE: $0 $GRPC_VERSION PROTOBUF_VERSION"
+#     echo "USAGE: $0 GRPC_VERSION PROTOBUF_VERSION"
 #     exit 1
 # fi
 

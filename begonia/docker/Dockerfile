@@ -3,11 +3,14 @@ LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV GCC_VERSION 14
 RUN apt update
+RUN apt install -y lsb-release apt-utils \
+    debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
+ENV GCC_VERSION 14
+# https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt -y upgrade
-RUN apt -y install lsb-release wget software-properties-common gnupg \
-    curl git locales locales-all vim tzdata zip unzip tree tmux \
+RUN apt -y install git locales locales-all vim tzdata zip unzip tree tmux \
     build-essential g++-${GCC_VERSION} \
     crossbuild-essential-arm64 g++-${GCC_VERSION}-aarch64-linux-gnu \
     crossbuild-essential-armhf g++-${GCC_VERSION}-arm-linux-gnueabihf \
@@ -36,6 +39,13 @@ RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bashrc
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.bashrc
 RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.bashrc
 RUN bash -c ". $HOME/.nvm/nvm.sh && nvm install --lts"
+
+RUN python3 -m venv $HOME/python3
+RUN echo 'source $HOME/python3/bin/activate' >> $HOME/.bashrc
+# https://pip.pypa.io/en/stable/installation/#get-pip-py
+ADD https://bootstrap.pypa.io/get-pip.py /tmp/
+RUN bash -c ". $HOME/python3/bin/activate && python3 /tmp/get-pip.py"
+RUN bash -c ". $HOME/python3/bin/activate && pip install cmake==3.31.6"
 
 # https://xmake.io/#/guide/installation?id=via-curl
 RUN curl -fsSL https://xmake.io/shget.text | bash
