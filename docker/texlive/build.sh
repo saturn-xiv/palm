@@ -3,9 +3,8 @@
 set -e
 
 export VERSION=$(date "+%4Y%m%d%H%M%S")
-export CODE="begonia"
+export CODE="palm-texlive"
 
-# https://ubuntu.com/about/release-cycle
 podman pull ubuntu:latest
 podman build -t $CODE .
 podman save --format=oci-archive -o $CODE-$VERSION.tar $CODE

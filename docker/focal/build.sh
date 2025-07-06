@@ -3,10 +3,9 @@
 set -e
 
 export VERSION=$(date "+%4Y%m%d%H%M%S")
-export CODE="begonia"
+export CODE="palm-focal"
 
-# https://ubuntu.com/about/release-cycle
-podman pull ubuntu:latest
+podman pull ubuntu:focal
 podman build -t $CODE .
 podman save --format=oci-archive -o $CODE-$VERSION.tar $CODE
 md5sum $CODE-$VERSION.tar >$CODE-$VERSION.md5
