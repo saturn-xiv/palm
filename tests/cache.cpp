@@ -1,9 +1,10 @@
-#define BOOST_TEST_MODULE cache
-#include <boost/test/included/unit_test.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include "palm/cache.hpp"
 
-BOOST_AUTO_TEST_CASE(redis) {
+#include <iostream>
+
+TEST_CASE("redis cache", "[redis]") {
   palm::redis::Node config;
   auto pool = config.open();
   {
@@ -17,8 +18,8 @@ BOOST_AUTO_TEST_CASE(redis) {
     pool->setex(key, std::chrono::minutes(1), hi);
     {
       const auto val = pool->get(key);
-      BOOST_REQUIRE(val.has_value());
-      BOOST_CHECK_EQUAL(val.value(), hi);
+      REQUIRE(val.has_value());
+      REQUIRE(val.value() == hi);
     }
   }
 }

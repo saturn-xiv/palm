@@ -15,6 +15,7 @@ struct Account {
   std::string name;
   std::string email;
 
+  Account() {}
   Account(toml::table* config)
       : name(config->get("name")->value<std::string>().value()),
         email(config->get("email")->value<std::string>().value()) {}

@@ -1,9 +1,9 @@
-#define BOOST_TEST_MODULE queue
-#include <boost/test/included/unit_test.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include "palm/queue.hpp"
 
 #include <format>
+#include <iostream>
 #include <thread>
 
 #define RABBITMQ_VIRTUAL_HOST "vh.testing"
@@ -27,64 +27,48 @@ class EchoQueueConsumer final : public palm::QueueConsumer {
   std::string _name;
 };
 
-BOOST_AUTO_TEST_CASE(rabbitmq_producer) {
+TEST_CASE("by rabbitmq", "[rabbitmq]") {
   palm::rabbitmq::Config cfg;
   cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
   cfg.set_user(RABBITMQ_VIRTUAL_USER);
   cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
 
   auto cli = cfg.open();
-  BOOST_REQUIRE(cli);
-  std::chrono::seconds span(2);
-  for (int i = 0;; i++) {
-    const std::string msg = std::format("message {} from producer", i);
-    std::cout << "produce " << msg << std::endl;
-    std::vector<uint8_t> payload(msg.begin(), msg.end());
-    cli->produce(RABBITMQ_PRODUCER_CONSUMER_QUEUE, RABBITMQ_CONTENT_TYPE,
-                 payload);
-    std::this_thread::sleep_for(span);
+  REQUIRE(cli != nullptr);
+
+  SECTION("producer") {
+    std::chrono::seconds span(2);
+    for (int i = 0;; i++) {
+      const std::string msg = std::format("message {} from producer", i);
+      std::cout << "produce " << msg << std::endl;
+      std::vector<uint8_t> payload(msg.begin(), msg.end());
+      cli->produce(RABBITMQ_PRODUCER_CONSUMER_QUEUE, RABBITMQ_CONTENT_TYPE,
+                   payload);
+      std::this_thread::sleep_for(span);
+    }
   }
-}
-BOOST_AUTO_TEST_CASE(rabbitmq_consumer) {
-  palm::rabbitmq::Config cfg;
-  cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
-  cfg.set_user(RABBITMQ_VIRTUAL_USER);
-  cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
-  auto cli = cfg.open();
-  BOOST_REQUIRE(cli);
 
-  std::shared_ptr<palm::QueueConsumer> consumer =
-      std::make_shared<EchoQueueConsumer>("echo.consumer");
-  cli->consume(RABBITMQ_PRODUCER_CONSUMER_QUEUE, consumer);
-}
-
-BOOST_AUTO_TEST_CASE(rabbitmq_publisher) {
-  palm::rabbitmq::Config cfg;
-  cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
-  cfg.set_user(RABBITMQ_VIRTUAL_USER);
-  cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
-  auto cli = cfg.open();
-  BOOST_REQUIRE(cli);
-
-  std::chrono::seconds span(2);
-  for (int i = 0;; i++) {
-    const std::string msg = std::format("message {} from publisher", i);
-    std::cout << "publish " << msg << std::endl;
-    std::vector<uint8_t> payload(msg.begin(), msg.end());
-    cli->publish(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE, RABBITMQ_CONTENT_TYPE,
-                 payload);
-    std::this_thread::sleep_for(span);
+  SECTION("consumer") {
+    std::shared_ptr<palm::QueueConsumer> consumer =
+        std::make_shared<EchoQueueConsumer>("echo.consumer");
+    cli->consume(RABBITMQ_PRODUCER_CONSUMER_QUEUE, consumer);
   }
-}
-BOOST_AUTO_TEST_CASE(rabbitmq_subscriber) {
-  palm::rabbitmq::Config cfg;
-  cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
-  cfg.set_user(RABBITMQ_VIRTUAL_USER);
-  cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
-  auto cli = cfg.open();
-  BOOST_REQUIRE(cli);
 
-  std::shared_ptr<palm::QueueConsumer> consumer =
-      std::make_shared<EchoQueueConsumer>("echo.subscriber");
-  cli->subscribe(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE, consumer);
+  SECTION("publisher") {
+    std::chrono::seconds span(2);
+    for (int i = 0;; i++) {
+      const std::string msg = std::format("message {} from publisher", i);
+      std::cout << "publish " << msg << std::endl;
+      std::vector<uint8_t> payload(msg.begin(), msg.end());
+      cli->publish(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE,
+                   RABBITMQ_CONTENT_TYPE, payload);
+      std::this_thread::sleep_for(span);
+    }
+  }
+
+  SECTION("subscriber") {
+    std::shared_ptr<palm::QueueConsumer> consumer =
+        std::make_shared<EchoQueueConsumer>("echo.subscriber");
+    cli->subscribe(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE, consumer);
+  }
 }
