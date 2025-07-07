@@ -6,6 +6,7 @@
 
 #include <boost/type_index.hpp>
 
+#include <casbin/casbin.h>
 #include <google/protobuf/arena.h>
 #include <cppcodec/base64_url_unpadded.hpp>
 
@@ -30,9 +31,48 @@ m = g(r.sub, p.sub) && r.obj == p.obj && r.act == p.act
 )RBAC";
 
 // https://github.com/casbin/gorm-adapter-ex
-class PostgreSQLAdapter {};
+class PostgreSQLAdapter : public ::casbin::Adapter {
+ public:
+  PostgreSQLAdapter(std::shared_ptr<soci::connection_pool> pool)
+      : _pool(pool), _is_filtered(false) {}
+
+  void LoadPolicy(const std::shared_ptr<::casbin::Model>& model) override;
+  void SavePolicy(const std::shared_ptr<::casbin::Model>& model) override;
+  void AddPolicy(std::string sec, std::string p_type,
+                 std::vector<std::string> rule) override;
+  void RemovePolicy(std::string sec, std::string p_type,
+                    std::vector<std::string> rule) override;
+  void RemoveFilteredPolicy(std::string sec, std::string ptype, int field_index,
+                            std::vector<std::string> field_values) override;
+  bool IsFiltered() override;
+  bool IsValid() override;
+
+ private:
+  std::shared_ptr<soci::connection_pool> _pool;
+  bool _is_filtered;
+};
+
 // https://github.com/casbin/redis-watcher
-class RabbitMQWatcher {};
+class RabbitMQWatcher : public ::casbin::Watcher {
+ public:
+  RabbitMQWatcher(const std::string& local_id, const std::string& channel,
+                  const palm::rabbitmq::Config& queue)
+      : _local_id(local_id),
+        _channel(channel),
+        _publisher(queue.open()),
+        _subscriber(queue.open()) {}
+
+  void Update() override;
+  void Close() override;
+
+  void subscribe(std::shared_ptr<::casbin::Enforcer> enforcer);
+
+ private:
+  std::string _local_id;
+  std::string _channel;
+  std::shared_ptr<palm::rabbitmq::Client> _publisher;
+  std::shared_ptr<palm::rabbitmq::Client> _subscriber;
+};
 
 namespace user {
 std::string to_subject(int32_t id);

@@ -5,6 +5,8 @@
 #include <iostream>
 
 TEST_CASE("by soci", "[postgresql]") {
+  spdlog::set_level(spdlog::level::debug);
+
   palm::PostgreSql config("127.0.0.1", 5432, "www", "change-me", "lavender");
   auto pool = config.open();
   SECTION("version") {
@@ -18,6 +20,7 @@ TEST_CASE("by soci", "[postgresql]") {
 TEST_CASE("by soci", "[mysql]") {}
 
 TEST_CASE("by soci", "[sqlite3]") {
+  spdlog::set_level(spdlog::level::debug);
   palm::Sqlite3 config("db.sqlite3");
 
   auto db = config.open();

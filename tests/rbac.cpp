@@ -4,7 +4,46 @@
 
 #include <iostream>
 
-TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {}
+TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {
+  spdlog::set_level(spdlog::level::debug);
+
+  palm::PostgreSql pgsql("127.0.0.1", 5432, "www", "change-me", "lavender");
+  auto pool = pgsql.open();
+
+  palm::rabbitmq::Config rabbitmq;
+  rabbitmq.set_virtual_host("vh.testing");
+  rabbitmq.set_user("www");
+  rabbitmq.set_password("change-me");
+  const std::string WATCHER_CHANNEL = "casbin.watcher";
+
+  std::shared_ptr<casbin::Watcher> watcher =
+      std::make_shared<palm::casbin::RabbitMQWatcher>(
+          "testing.casbin.watcher.worker", WATCHER_CHANNEL, rabbitmq);
+
+  auto model = casbin::Model::NewModelFromString(palm::casbin::RBAC_MODEL);
+  std::shared_ptr<casbin::Adapter> adapter =
+      std::make_shared<palm::casbin::PostgreSQLAdapter>(pool);
+
+  std::shared_ptr<casbin::Enforcer> enforcer =
+      std::make_shared<casbin::Enforcer>(model, adapter);
+  enforcer->EnableLog(true);
+  enforcer->EnableAutoSave(true);
+  enforcer->SetWatcher(watcher);
+  enforcer->LoadPolicy();
+
+  //   https://github.com/casbin/casbin-cpp/blob/master/examples/rbac_policy.csv
+  SECTION("alice") {
+    std::string sub = "alice";
+    std::string obj = "data.1";
+    std::string act = "read";
+
+    REQUIRE(!enforcer->Enforce({sub, obj, act}));
+    enforcer->AddPermissionForUser(sub, {obj, act});
+    REQUIRE(enforcer->Enforce({sub, obj, act}));
+    enforcer->DeletePermissionForUser(sub, {obj, act});
+    REQUIRE(!enforcer->Enforce({sub, obj, act}));
+  }
+}
 
 TEST_CASE("object/subject/permission", "[models]") {
   SECTION("user subject") {

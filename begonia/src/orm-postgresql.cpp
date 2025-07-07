@@ -21,6 +21,7 @@ std::shared_ptr<soci::connection_pool> palm::PostgreSql::open(
   for (size_t i = 0; i != pool_size; ++i) {
     soci::session& it = pool->at(i);
     it.open(soci::postgresql, url);
+    it.set_logger(new palm::SociLogger());
   }
   return pool;
 }

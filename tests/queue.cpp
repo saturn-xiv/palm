@@ -1,17 +1,11 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include "palm/http.hpp"
 #include "palm/queue.hpp"
 
 #include <format>
 #include <iostream>
 #include <thread>
-
-#define RABBITMQ_VIRTUAL_HOST "vh.testing"
-#define RABBITMQ_VIRTUAL_USER "www"
-#define RABBITMQ_VIRTUAL_PASSWORD "change-me"
-#define RABBITMQ_PRODUCER_CONSUMER_QUEUE "qu.p-c"
-#define RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE "ex.pub-sub"
-#define RABBITMQ_CONTENT_TYPE "text/plain"
 
 class EchoQueueConsumer final : public palm::QueueConsumer {
  public:
@@ -28,10 +22,13 @@ class EchoQueueConsumer final : public palm::QueueConsumer {
 };
 
 TEST_CASE("by rabbitmq", "[rabbitmq]") {
+  const std::string PRODUCER_CONSUMER_QUEUE = "qu.p-c";
+  const std::string PUBLISHER_SUBSCRIBER_EXCHANGE = "ex.pub-sub";
+
   palm::rabbitmq::Config cfg;
-  cfg.set_virtual_host(RABBITMQ_VIRTUAL_HOST);
-  cfg.set_user(RABBITMQ_VIRTUAL_USER);
-  cfg.set_password(RABBITMQ_VIRTUAL_PASSWORD);
+  cfg.set_virtual_host("vh.testing");
+  cfg.set_user("www");
+  cfg.set_password("change-me");
 
   auto cli = cfg.open();
   REQUIRE(cli != nullptr);
@@ -42,8 +39,8 @@ TEST_CASE("by rabbitmq", "[rabbitmq]") {
       const std::string msg = std::format("message {} from producer", i);
       std::cout << "produce " << msg << std::endl;
       std::vector<uint8_t> payload(msg.begin(), msg.end());
-      cli->produce(RABBITMQ_PRODUCER_CONSUMER_QUEUE, RABBITMQ_CONTENT_TYPE,
-                   payload);
+      cli->produce(PRODUCER_CONSUMER_QUEUE,
+                   palm::http::content_type::TEXT_PLAIN_UTF8, payload);
       std::this_thread::sleep_for(span);
     }
   }
@@ -51,7 +48,7 @@ TEST_CASE("by rabbitmq", "[rabbitmq]") {
   SECTION("consumer") {
     std::shared_ptr<palm::QueueConsumer> consumer =
         std::make_shared<EchoQueueConsumer>("echo.consumer");
-    cli->consume(RABBITMQ_PRODUCER_CONSUMER_QUEUE, consumer);
+    cli->consume(PRODUCER_CONSUMER_QUEUE, consumer);
   }
 
   SECTION("publisher") {
@@ -60,8 +57,8 @@ TEST_CASE("by rabbitmq", "[rabbitmq]") {
       const std::string msg = std::format("message {} from publisher", i);
       std::cout << "publish " << msg << std::endl;
       std::vector<uint8_t> payload(msg.begin(), msg.end());
-      cli->publish(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE,
-                   RABBITMQ_CONTENT_TYPE, payload);
+      cli->publish(PUBLISHER_SUBSCRIBER_EXCHANGE,
+                   palm::http::content_type::TEXT_PLAIN_UTF8, payload);
       std::this_thread::sleep_for(span);
     }
   }
@@ -69,6 +66,6 @@ TEST_CASE("by rabbitmq", "[rabbitmq]") {
   SECTION("subscriber") {
     std::shared_ptr<palm::QueueConsumer> consumer =
         std::make_shared<EchoQueueConsumer>("echo.subscriber");
-    cli->subscribe(RABBITMQ_PUBLISHER_SUBSCRIBER_EXCHANGE, consumer);
+    cli->subscribe(PUBLISHER_SUBSCRIBER_EXCHANGE, consumer);
   }
 }

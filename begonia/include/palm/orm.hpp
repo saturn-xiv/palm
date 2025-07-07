@@ -8,13 +8,10 @@
 
 #include <boost/predef.h>
 
-#include <soci/boost-fusion.h>
-#include <soci/boost-gregorian-date.h>
-#include <soci/boost-optional.h>
-#include <soci/boost-tuple.h>
-#include <soci/connection-pool.h>
+#define SOCI_USE_BOOST
+#include <soci/soci.h>
+
 #include <soci/postgresql/soci-postgresql.h>
-#include <soci/session.h>
 #include <soci/sqlite3/soci-sqlite3.h>
 #include <spdlog/spdlog.h>
 
@@ -26,6 +23,14 @@
 #include <toml++/toml.hpp>
 
 namespace palm {
+
+class SociLogger : public soci::logger_impl {
+ public:
+  void start_query(std::string const& query) { spdlog::debug("{}", query); }
+
+ private:
+  SociLogger* do_clone() const { return new SociLogger(); }
+};
 
 // https://www.postgresql.org/docs/current/libpq.html
 class PostgreSql {
