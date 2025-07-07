@@ -2,10 +2,14 @@
   "version": 2,
   "configurePresets": [
     {
-      "name": "default",
-      "inherits": "vcpkg",
+      "name": "arch",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/arch",
       "environment": {
         "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
@@ -30,7 +34,6 @@
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     },
-
     {
       "name": "riscv64",
       "generator": "Ninja",
@@ -39,8 +42,7 @@
         "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
       },
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-        "VCPKG_DEFAULT_TRIPLET": "riscv64-linux-release"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
@@ -51,8 +53,7 @@
         "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
       },
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-        "VCPKG_DEFAULT_TRIPLET": "loongarch64-linux-release"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     }
   ]

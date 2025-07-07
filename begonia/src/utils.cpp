@@ -16,9 +16,9 @@
 #include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
 
-#if BOOST_ARCH_X86_64
-#include <mysql/mariadb_version.h>
-#endif
+// #if BOOST_ARCH_X86_64
+// #include <mysql/mariadb_version.h>
+// #endif
 
 void palm::init(bool debug) {
   spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
@@ -30,9 +30,9 @@ void palm::init(bool debug) {
     spdlog::debug("PostgreSQL v{}.{}.{}", v / (100 * 100), (v / 100) % 100,
                   v % (100 * 100));
   }
-#if BOOST_ARCH_X86_64
-  spdlog::debug("MySQL v{}", MARIADB_CLIENT_VERSION_STR);
-#endif
+  // #if BOOST_ARCH_X86_64
+  //   spdlog::debug("MySQL v{}", MARIADB_CLIENT_VERSION_STR);
+  // #endif
   spdlog::debug("Sqlite v{}", SQLITE_VERSION);
   spdlog::debug("rabbitmq-c v{}", AMQ_VERSION_STRING);
   spdlog::debug("hiredis v{}.{}.{}", HIREDIS_MAJOR, HIREDIS_MINOR,

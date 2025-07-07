@@ -19,6 +19,7 @@
     "cpp-httplib",
     "cpr",
     "libsodium",
+    { "name": "libevent", "features": ["openssl", "thread"] },
     "jwt-cpp",
     { "name": "soci", "features": ["postgresql", "sqlite3", "boost"] },
     {

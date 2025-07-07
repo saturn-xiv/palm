@@ -3,27 +3,24 @@
 set -e
 
 export THRIFT_FLAGS="-DCMAKE_BUILD_TYPE=Release -DBUILD_COMPILER=OFF -DWITH_OPENSSL=ON -DBUILD_JAVA=OFF -DBUILD_JAVASCRIPT=OFF -DBUILD_NODEJS=OFF -DBUILD_PYTHON=OFF"
-
-function build_for_x64() {
-    cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release $THRIFT_FLAGS
-    cmake --build
-}
-
-function build_for_arm64() {
-    cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$PWD/toolchains/gcc/aarch64.cmake $THRIFT_FLAGS
-    cmake --build
-}
+export WORK_DIR=$PWD
 
 . /etc/os-release
-if [ $ID == "arch"]; then
-    # lib32-glibc
-    build_for_x64
-elif [$ID == "ubuntu"]; then
-    build_for_x64
-    build_for_arm64
+
+if [ $ID == "arch" ]; then
+    cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/arch/clang.cmake $THRIFT_FLAGS
+    cmake --build $WORK_DIR/build/arch
+elif [ $ID == "ubuntu" ]; then
+    cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release $THRIFT_FLAGS
+    cmake --build $WORK_DIR/build/x86_64
+    # cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/clang/x86_64.cmake $THRIFT_FLAGS
+    # cmake --build $WORK_DIR/build/x86_64
+
+    cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/gcc/aarch64.cmake $THRIFT_FLAGS
+    cmake --build $WORK_DIR/build/aarch64
 else
-    echo "unsupported arch $ID"
+    echo "unsupported os $PRETTY_NAME"
 fi
 
-echo "done($1)"
+echo "done($PRETTY_NAME)"
 exit 0
