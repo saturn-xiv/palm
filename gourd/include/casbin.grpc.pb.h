@@ -30,6 +30,8 @@ namespace palm {
 namespace casbin {
 namespace v1 {
 
+// ----------------------------------------------------------------------------
+//
 // https://github.com/casbin/casbin-server/blob/master/proto/casbin.proto
 // 8d7fda9
 class Casbin final {

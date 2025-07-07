@@ -5,7 +5,76 @@ option java_package = "com.github.saturn_xiv.palm.plugins.casbin.v1";
 option go_package = "./;v2";
 package palm.casbin.v1;
 
-message WatcherMessage {}
+// ----------------------------------------------------------------------------
+
+message User {
+  oneof by {
+    int32 id = 1;
+    string code = 2;
+  }
+}
+
+message Role {
+  message Root {}
+  message Administrator {}
+  message Other {
+    string code = 1;
+  }
+  oneof by {
+    Root root = 1;
+    Administrator administrator = 2;
+    Other other = 9;
+  }
+}
+
+message Resource {
+  string type = 1;
+  oneof by {
+    int32 id = 11;
+    string code = 21;
+  }
+}
+
+message Permission {
+  message Read {}
+  message Write {}
+  message Append {}
+  message Execute {}
+  message Credit {}
+  message Debit {}
+  message Inquiry {}
+  message Other {
+    string code = 1;
+  }
+  oneof by {
+    Read read = 1;
+    Write write = 2;
+    Append append = 3;
+    Execute execute = 4;
+    Credit credit = 5;
+    Debit debit = 6;
+    Inquiry inquiry = 7;
+    Other other = 9;
+  }
+}
+
+message WatcherMessage {
+  enum Method {
+    Update = 0;
+    UpdateForSavePolicy = 1;
+    UpdateForAddPolicy = 2;
+    UpdateForAddPolicies = 3;
+    UpdateForRemovePolicy = 4;
+    UpdateForRemoveFilteredPolicy = 5;
+    UpdateForRemovePolicies = 6;
+    UpdateForUpdatePolicy = 7;
+    UpdateForUpdatePolicies = 8;
+  }
+  string id = 1;
+  Method method = 2;
+}
+
+// ----------------------------------------------------------------------------
 
 // https://github.com/casbin/casbin-server/blob/master/proto/casbin.proto
 // 8d7fda9

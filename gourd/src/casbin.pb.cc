@@ -27,14 +27,24 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace casbin {
 namespace v1 {
-              template <typename>
+
+inline constexpr WatcherMessage::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        method_{static_cast< ::palm::casbin::v1::WatcherMessage_Method >(0)},
+        _cached_size_{0} {}
+
+template <typename>
 PROTOBUF_CONSTEXPR WatcherMessage::WatcherMessage(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+    : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
 struct WatcherMessageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR WatcherMessageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~WatcherMessageDefaultTypeInternal() {}
@@ -78,6 +88,32 @@ struct UserRoleRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserRoleRequestDefaultTypeInternal _UserRoleRequest_default_instance_;
 
+inline constexpr User::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR User::User(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserDefaultTypeInternal() {}
+  union {
+    User _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDefaultTypeInternal _User_default_instance_;
+
 inline constexpr SimpleGetRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : ptype_(
@@ -105,6 +141,98 @@ struct SimpleGetRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SimpleGetRequestDefaultTypeInternal _SimpleGetRequest_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Role_Root::Role_Root(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Role_RootDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Role_RootDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Role_RootDefaultTypeInternal() {}
+  union {
+    Role_Root _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Role_RootDefaultTypeInternal _Role_Root_default_instance_;
+
+inline constexpr Role_Other::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : code_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Role_Other::Role_Other(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Role_OtherDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Role_OtherDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Role_OtherDefaultTypeInternal() {}
+  union {
+    Role_Other _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Role_OtherDefaultTypeInternal _Role_Other_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Role_Administrator::Role_Administrator(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Role_AdministratorDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Role_AdministratorDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Role_AdministratorDefaultTypeInternal() {}
+  union {
+    Role_Administrator _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Role_AdministratorDefaultTypeInternal _Role_Administrator_default_instance_;
+
+inline constexpr Resource::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Resource::Resource(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct ResourceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResourceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResourceDefaultTypeInternal() {}
+  union {
+    Resource _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceDefaultTypeInternal _Resource_default_instance_;
 
 inline constexpr PolicyRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -164,6 +292,159 @@ struct PermissionRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PermissionRequestDefaultTypeInternal _PermissionRequest_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Write::Permission_Write(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_WriteDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_WriteDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_WriteDefaultTypeInternal() {}
+  union {
+    Permission_Write _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_WriteDefaultTypeInternal _Permission_Write_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Read::Permission_Read(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_ReadDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_ReadDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_ReadDefaultTypeInternal() {}
+  union {
+    Permission_Read _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_ReadDefaultTypeInternal _Permission_Read_default_instance_;
+
+inline constexpr Permission_Other::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : code_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Permission_Other::Permission_Other(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Permission_OtherDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_OtherDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_OtherDefaultTypeInternal() {}
+  union {
+    Permission_Other _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_OtherDefaultTypeInternal _Permission_Other_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Inquiry::Permission_Inquiry(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_InquiryDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_InquiryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_InquiryDefaultTypeInternal() {}
+  union {
+    Permission_Inquiry _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_InquiryDefaultTypeInternal _Permission_Inquiry_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Execute::Permission_Execute(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_ExecuteDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_ExecuteDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_ExecuteDefaultTypeInternal() {}
+  union {
+    Permission_Execute _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_ExecuteDefaultTypeInternal _Permission_Execute_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Debit::Permission_Debit(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_DebitDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_DebitDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_DebitDefaultTypeInternal() {}
+  union {
+    Permission_Debit _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_DebitDefaultTypeInternal _Permission_Debit_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Credit::Permission_Credit(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_CreditDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_CreditDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_CreditDefaultTypeInternal() {}
+  union {
+    Permission_Credit _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_CreditDefaultTypeInternal _Permission_Credit_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Permission_Append::Permission_Append(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Permission_AppendDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Permission_AppendDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Permission_AppendDefaultTypeInternal() {}
+  union {
+    Permission_Append _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Permission_AppendDefaultTypeInternal _Permission_Append_default_instance_;
 
 inline constexpr NewEnforcerRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -452,6 +733,58 @@ struct Array2DReply_dDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Array2DReply_dDefaultTypeInternal _Array2DReply_d_default_instance_;
 
+inline constexpr Role::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Role::Role(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct RoleDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RoleDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RoleDefaultTypeInternal() {}
+  union {
+    Role _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoleDefaultTypeInternal _Role_default_instance_;
+
+inline constexpr Permission::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Permission::Permission(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PermissionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PermissionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PermissionDefaultTypeInternal() {}
+  union {
+    Permission _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PermissionDefaultTypeInternal _Permission_default_instance_;
+
 inline constexpr Array2DReply::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : d2_{},
@@ -479,13 +812,154 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace v1
 }  // namespace casbin
 }  // namespace palm
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_casbin_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_casbin_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_casbin_2eproto = nullptr;
 const ::uint32_t
     TableStruct_casbin_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::User, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::User, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::User, _impl_.by_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role_Root, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role_Administrator, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role_Other, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role_Other, _impl_.code_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role, _impl_.by_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Resource, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Resource, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Resource, _impl_.type_),
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Resource, _impl_.by_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Read, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Write, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Append, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Execute, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Credit, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Debit, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Inquiry, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Other, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission_Other, _impl_.code_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission, _impl_.by_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::WatcherMessage, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -494,6 +968,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::WatcherMessage, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::WatcherMessage, _impl_.method_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::NewEnforcerRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -659,25 +1135,55 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::palm::casbin::v1::WatcherMessage)},
-        {8, -1, -1, sizeof(::palm::casbin::v1::NewEnforcerRequest)},
-        {19, -1, -1, sizeof(::palm::casbin::v1::NewEnforcerReply)},
-        {28, -1, -1, sizeof(::palm::casbin::v1::NewAdapterRequest)},
-        {40, -1, -1, sizeof(::palm::casbin::v1::NewAdapterReply)},
-        {49, -1, -1, sizeof(::palm::casbin::v1::EnforceRequest)},
-        {59, -1, -1, sizeof(::palm::casbin::v1::BoolReply)},
-        {68, -1, -1, sizeof(::palm::casbin::v1::EmptyRequest)},
-        {77, -1, -1, sizeof(::palm::casbin::v1::EmptyReply)},
-        {85, -1, -1, sizeof(::palm::casbin::v1::PolicyRequest)},
-        {96, -1, -1, sizeof(::palm::casbin::v1::SimpleGetRequest)},
-        {106, -1, -1, sizeof(::palm::casbin::v1::ArrayReply)},
-        {115, -1, -1, sizeof(::palm::casbin::v1::FilteredPolicyRequest)},
-        {127, -1, -1, sizeof(::palm::casbin::v1::UserRoleRequest)},
-        {139, -1, -1, sizeof(::palm::casbin::v1::PermissionRequest)},
-        {151, -1, -1, sizeof(::palm::casbin::v1::Array2DReply_d)},
-        {160, -1, -1, sizeof(::palm::casbin::v1::Array2DReply)},
+        {0, -1, -1, sizeof(::palm::casbin::v1::User)},
+        {11, -1, -1, sizeof(::palm::casbin::v1::Role_Root)},
+        {19, -1, -1, sizeof(::palm::casbin::v1::Role_Administrator)},
+        {27, -1, -1, sizeof(::palm::casbin::v1::Role_Other)},
+        {36, -1, -1, sizeof(::palm::casbin::v1::Role)},
+        {48, -1, -1, sizeof(::palm::casbin::v1::Resource)},
+        {60, -1, -1, sizeof(::palm::casbin::v1::Permission_Read)},
+        {68, -1, -1, sizeof(::palm::casbin::v1::Permission_Write)},
+        {76, -1, -1, sizeof(::palm::casbin::v1::Permission_Append)},
+        {84, -1, -1, sizeof(::palm::casbin::v1::Permission_Execute)},
+        {92, -1, -1, sizeof(::palm::casbin::v1::Permission_Credit)},
+        {100, -1, -1, sizeof(::palm::casbin::v1::Permission_Debit)},
+        {108, -1, -1, sizeof(::palm::casbin::v1::Permission_Inquiry)},
+        {116, -1, -1, sizeof(::palm::casbin::v1::Permission_Other)},
+        {125, -1, -1, sizeof(::palm::casbin::v1::Permission)},
+        {142, -1, -1, sizeof(::palm::casbin::v1::WatcherMessage)},
+        {152, -1, -1, sizeof(::palm::casbin::v1::NewEnforcerRequest)},
+        {163, -1, -1, sizeof(::palm::casbin::v1::NewEnforcerReply)},
+        {172, -1, -1, sizeof(::palm::casbin::v1::NewAdapterRequest)},
+        {184, -1, -1, sizeof(::palm::casbin::v1::NewAdapterReply)},
+        {193, -1, -1, sizeof(::palm::casbin::v1::EnforceRequest)},
+        {203, -1, -1, sizeof(::palm::casbin::v1::BoolReply)},
+        {212, -1, -1, sizeof(::palm::casbin::v1::EmptyRequest)},
+        {221, -1, -1, sizeof(::palm::casbin::v1::EmptyReply)},
+        {229, -1, -1, sizeof(::palm::casbin::v1::PolicyRequest)},
+        {240, -1, -1, sizeof(::palm::casbin::v1::SimpleGetRequest)},
+        {250, -1, -1, sizeof(::palm::casbin::v1::ArrayReply)},
+        {259, -1, -1, sizeof(::palm::casbin::v1::FilteredPolicyRequest)},
+        {271, -1, -1, sizeof(::palm::casbin::v1::UserRoleRequest)},
+        {283, -1, -1, sizeof(::palm::casbin::v1::PermissionRequest)},
+        {295, -1, -1, sizeof(::palm::casbin::v1::Array2DReply_d)},
+        {304, -1, -1, sizeof(::palm::casbin::v1::Array2DReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::palm::casbin::v1::_User_default_instance_._instance,
+    &::palm::casbin::v1::_Role_Root_default_instance_._instance,
+    &::palm::casbin::v1::_Role_Administrator_default_instance_._instance,
+    &::palm::casbin::v1::_Role_Other_default_instance_._instance,
+    &::palm::casbin::v1::_Role_default_instance_._instance,
+    &::palm::casbin::v1::_Resource_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Read_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Write_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Append_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Execute_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Credit_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Debit_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Inquiry_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_Other_default_instance_._instance,
+    &::palm::casbin::v1::_Permission_default_instance_._instance,
     &::palm::casbin::v1::_WatcherMessage_default_instance_._instance,
     &::palm::casbin::v1::_NewEnforcerRequest_default_instance_._instance,
     &::palm::casbin::v1::_NewEnforcerReply_default_instance_._instance,
@@ -698,159 +1204,188 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_casbin_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\014casbin.proto\022\016palm.casbin.v1\"\020\n\016Watche"
-    "rMessage\"_\n\022NewEnforcerRequest\022\021\n\tmodelT"
-    "ext\030\001 \001(\t\022\025\n\radapterHandle\030\002 \001(\005\022\037\n\027enab"
-    "leAcceptJsonRequest\030\003 \001(\010\"#\n\020NewEnforcer"
-    "Reply\022\017\n\007handler\030\001 \001(\005\"h\n\021NewAdapterRequ"
-    "est\022\023\n\013adapterName\030\001 \001(\t\022\022\n\ndriverName\030\002"
-    " \001(\t\022\025\n\rconnectString\030\003 \001(\t\022\023\n\013dbSpecifi"
-    "ed\030\004 \001(\010\"\"\n\017NewAdapterReply\022\017\n\007handler\030\001"
-    " \001(\005\"9\n\016EnforceRequest\022\027\n\017enforcerHandle"
-    "r\030\001 \001(\005\022\016\n\006params\030\002 \003(\t\"\030\n\tBoolReply\022\013\n\003"
-    "res\030\001 \001(\010\"\037\n\014EmptyRequest\022\017\n\007handler\030\001 \001"
-    "(\005\"\014\n\nEmptyReply\"G\n\rPolicyRequest\022\027\n\017enf"
-    "orcerHandler\030\001 \001(\005\022\r\n\005pType\030\002 \001(\t\022\016\n\006par"
-    "ams\030\003 \003(\t\":\n\020SimpleGetRequest\022\027\n\017enforce"
-    "rHandler\030\001 \001(\005\022\r\n\005pType\030\002 \001(\t\"\033\n\nArrayRe"
-    "ply\022\r\n\005array\030\001 \003(\t\"h\n\025FilteredPolicyRequ"
-    "est\022\027\n\017enforcerHandler\030\001 \001(\005\022\r\n\005pType\030\002 "
-    "\001(\t\022\022\n\nfieldIndex\030\003 \001(\005\022\023\n\013fieldValues\030\004"
-    " \003(\t\"V\n\017UserRoleRequest\022\027\n\017enforcerHandl"
-    "er\030\001 \001(\005\022\014\n\004user\030\002 \001(\t\022\014\n\004role\030\003 \001(\t\022\016\n\006"
-    "domain\030\004 \003(\t\"_\n\021PermissionRequest\022\027\n\017enf"
-    "orcerHandler\030\001 \001(\005\022\014\n\004user\030\002 \001(\t\022\023\n\013perm"
-    "issions\030\003 \003(\t\022\016\n\006domain\030\004 \003(\t\"K\n\014Array2D"
-    "Reply\022*\n\002d2\030\001 \003(\0132\036.palm.casbin.v1.Array"
-    "2DReply.d\032\017\n\001d\022\n\n\002d1\030\001 \003(\t2\341#\n\006Casbin\022U\n"
-    "\013NewEnforcer\022\".palm.casbin.v1.NewEnforce"
-    "rRequest\032 .palm.casbin.v1.NewEnforcerRep"
-    "ly\"\000\022R\n\nNewAdapter\022!.palm.casbin.v1.NewA"
-    "dapterRequest\032\037.palm.casbin.v1.NewAdapte"
-    "rReply\"\000\022F\n\007Enforce\022\036.palm.casbin.v1.Enf"
-    "orceRequest\032\031.palm.casbin.v1.BoolReply\"\000"
-    "\022H\n\nLoadPolicy\022\034.palm.casbin.v1.EmptyReq"
-    "uest\032\032.palm.casbin.v1.EmptyReply\"\000\022H\n\nSa"
-    "vePolicy\022\034.palm.casbin.v1.EmptyRequest\032\032"
-    ".palm.casbin.v1.EmptyReply\"\000\022G\n\tAddPolic"
-    "y\022\035.palm.casbin.v1.PolicyRequest\032\031.palm."
-    "casbin.v1.BoolReply\"\000\022L\n\016AddNamedPolicy\022"
-    "\035.palm.casbin.v1.PolicyRequest\032\031.palm.ca"
-    "sbin.v1.BoolReply\"\000\022J\n\014RemovePolicy\022\035.pa"
-    "lm.casbin.v1.PolicyRequest\032\031.palm.casbin"
-    ".v1.BoolReply\"\000\022O\n\021RemoveNamedPolicy\022\035.p"
+    "\n\014casbin.proto\022\016palm.casbin.v1\"*\n\004User\022\014"
+    "\n\002id\030\001 \001(\005H\000\022\016\n\004code\030\002 \001(\tH\000B\004\n\002by\"\321\001\n\004R"
+    "ole\022)\n\004root\030\001 \001(\0132\031.palm.casbin.v1.Role."
+    "RootH\000\022;\n\radministrator\030\002 \001(\0132\".palm.cas"
+    "bin.v1.Role.AdministratorH\000\022+\n\005other\030\t \001"
+    "(\0132\032.palm.casbin.v1.Role.OtherH\000\032\006\n\004Root"
+    "\032\017\n\rAdministrator\032\025\n\005Other\022\014\n\004code\030\001 \001(\t"
+    "B\004\n\002by\"<\n\010Resource\022\014\n\004type\030\001 \001(\t\022\014\n\002id\030\013"
+    " \001(\005H\000\022\016\n\004code\030\025 \001(\tH\000B\004\n\002by\"\217\004\n\nPermiss"
+    "ion\022/\n\004read\030\001 \001(\0132\037.palm.casbin.v1.Permi"
+    "ssion.ReadH\000\0221\n\005write\030\002 \001(\0132 .palm.casbi"
+    "n.v1.Permission.WriteH\000\0223\n\006append\030\003 \001(\0132"
+    "!.palm.casbin.v1.Permission.AppendH\000\0225\n\007"
+    "execute\030\004 \001(\0132\".palm.casbin.v1.Permissio"
+    "n.ExecuteH\000\0223\n\006credit\030\005 \001(\0132!.palm.casbi"
+    "n.v1.Permission.CreditH\000\0221\n\005debit\030\006 \001(\0132"
+    " .palm.casbin.v1.Permission.DebitH\000\0225\n\007i"
+    "nquiry\030\007 \001(\0132\".palm.casbin.v1.Permission"
+    ".InquiryH\000\0221\n\005other\030\t \001(\0132 .palm.casbin."
+    "v1.Permission.OtherH\000\032\006\n\004Read\032\007\n\005Write\032\010"
+    "\n\006Append\032\t\n\007Execute\032\010\n\006Credit\032\007\n\005Debit\032\t"
+    "\n\007Inquiry\032\025\n\005Other\022\014\n\004code\030\001 \001(\tB\004\n\002by\"\310"
+    "\002\n\016WatcherMessage\022\n\n\002id\030\001 \001(\t\0225\n\006method\030"
+    "\002 \001(\0162%.palm.casbin.v1.WatcherMessage.Me"
+    "thod\"\362\001\n\006Method\022\n\n\006Update\020\000\022\027\n\023UpdateFor"
+    "SavePolicy\020\001\022\026\n\022UpdateForAddPolicy\020\002\022\030\n\024"
+    "UpdateForAddPolicies\020\003\022\031\n\025UpdateForRemov"
+    "ePolicy\020\004\022!\n\035UpdateForRemoveFilteredPoli"
+    "cy\020\005\022\033\n\027UpdateForRemovePolicies\020\006\022\031\n\025Upd"
+    "ateForUpdatePolicy\020\007\022\033\n\027UpdateForUpdateP"
+    "olicies\020\010\"_\n\022NewEnforcerRequest\022\021\n\tmodel"
+    "Text\030\001 \001(\t\022\025\n\radapterHandle\030\002 \001(\005\022\037\n\027ena"
+    "bleAcceptJsonRequest\030\003 \001(\010\"#\n\020NewEnforce"
+    "rReply\022\017\n\007handler\030\001 \001(\005\"h\n\021NewAdapterReq"
+    "uest\022\023\n\013adapterName\030\001 \001(\t\022\022\n\ndriverName\030"
+    "\002 \001(\t\022\025\n\rconnectString\030\003 \001(\t\022\023\n\013dbSpecif"
+    "ied\030\004 \001(\010\"\"\n\017NewAdapterReply\022\017\n\007handler\030"
+    "\001 \001(\005\"9\n\016EnforceRequest\022\027\n\017enforcerHandl"
+    "er\030\001 \001(\005\022\016\n\006params\030\002 \003(\t\"\030\n\tBoolReply\022\013\n"
+    "\003res\030\001 \001(\010\"\037\n\014EmptyRequest\022\017\n\007handler\030\001 "
+    "\001(\005\"\014\n\nEmptyReply\"G\n\rPolicyRequest\022\027\n\017en"
+    "forcerHandler\030\001 \001(\005\022\r\n\005pType\030\002 \001(\t\022\016\n\006pa"
+    "rams\030\003 \003(\t\":\n\020SimpleGetRequest\022\027\n\017enforc"
+    "erHandler\030\001 \001(\005\022\r\n\005pType\030\002 \001(\t\"\033\n\nArrayR"
+    "eply\022\r\n\005array\030\001 \003(\t\"h\n\025FilteredPolicyReq"
+    "uest\022\027\n\017enforcerHandler\030\001 \001(\005\022\r\n\005pType\030\002"
+    " \001(\t\022\022\n\nfieldIndex\030\003 \001(\005\022\023\n\013fieldValues\030"
+    "\004 \003(\t\"V\n\017UserRoleRequest\022\027\n\017enforcerHand"
+    "ler\030\001 \001(\005\022\014\n\004user\030\002 \001(\t\022\014\n\004role\030\003 \001(\t\022\016\n"
+    "\006domain\030\004 \003(\t\"_\n\021PermissionRequest\022\027\n\017en"
+    "forcerHandler\030\001 \001(\005\022\014\n\004user\030\002 \001(\t\022\023\n\013per"
+    "missions\030\003 \003(\t\022\016\n\006domain\030\004 \003(\t\"K\n\014Array2"
+    "DReply\022*\n\002d2\030\001 \003(\0132\036.palm.casbin.v1.Arra"
+    "y2DReply.d\032\017\n\001d\022\n\n\002d1\030\001 \003(\t2\341#\n\006Casbin\022U"
+    "\n\013NewEnforcer\022\".palm.casbin.v1.NewEnforc"
+    "erRequest\032 .palm.casbin.v1.NewEnforcerRe"
+    "ply\"\000\022R\n\nNewAdapter\022!.palm.casbin.v1.New"
+    "AdapterRequest\032\037.palm.casbin.v1.NewAdapt"
+    "erReply\"\000\022F\n\007Enforce\022\036.palm.casbin.v1.En"
+    "forceRequest\032\031.palm.casbin.v1.BoolReply\""
+    "\000\022H\n\nLoadPolicy\022\034.palm.casbin.v1.EmptyRe"
+    "quest\032\032.palm.casbin.v1.EmptyReply\"\000\022H\n\nS"
+    "avePolicy\022\034.palm.casbin.v1.EmptyRequest\032"
+    "\032.palm.casbin.v1.EmptyReply\"\000\022G\n\tAddPoli"
+    "cy\022\035.palm.casbin.v1.PolicyRequest\032\031.palm"
+    ".casbin.v1.BoolReply\"\000\022L\n\016AddNamedPolicy"
+    "\022\035.palm.casbin.v1.PolicyRequest\032\031.palm.c"
+    "asbin.v1.BoolReply\"\000\022J\n\014RemovePolicy\022\035.p"
     "alm.casbin.v1.PolicyRequest\032\031.palm.casbi"
-    "n.v1.BoolReply\"\000\022Z\n\024RemoveFilteredPolicy"
-    "\022%.palm.casbin.v1.FilteredPolicyRequest\032"
-    "\031.palm.casbin.v1.BoolReply\"\000\022_\n\031RemoveFi"
-    "lteredNamedPolicy\022%.palm.casbin.v1.Filte"
-    "redPolicyRequest\032\031.palm.casbin.v1.BoolRe"
-    "ply\"\000\022I\n\tGetPolicy\022\034.palm.casbin.v1.Empt"
-    "yRequest\032\034.palm.casbin.v1.Array2DReply\"\000"
-    "\022O\n\016GetNamedPolicy\022\035.palm.casbin.v1.Poli"
-    "cyRequest\032\034.palm.casbin.v1.Array2DReply\""
-    "\000\022Z\n\021GetFilteredPolicy\022%.palm.casbin.v1."
-    "FilteredPolicyRequest\032\034.palm.casbin.v1.A"
-    "rray2DReply\"\000\022_\n\026GetFilteredNamedPolicy\022"
-    "%.palm.casbin.v1.FilteredPolicyRequest\032\034"
-    ".palm.casbin.v1.Array2DReply\"\000\022O\n\021AddGro"
-    "upingPolicy\022\035.palm.casbin.v1.PolicyReque"
-    "st\032\031.palm.casbin.v1.BoolReply\"\000\022T\n\026AddNa"
-    "medGroupingPolicy\022\035.palm.casbin.v1.Polic"
-    "yRequest\032\031.palm.casbin.v1.BoolReply\"\000\022R\n"
-    "\024RemoveGroupingPolicy\022\035.palm.casbin.v1.P"
-    "olicyRequest\032\031.palm.casbin.v1.BoolReply\""
-    "\000\022W\n\031RemoveNamedGroupingPolicy\022\035.palm.ca"
-    "sbin.v1.PolicyRequest\032\031.palm.casbin.v1.B"
-    "oolReply\"\000\022b\n\034RemoveFilteredGroupingPoli"
-    "cy\022%.palm.casbin.v1.FilteredPolicyReques"
-    "t\032\031.palm.casbin.v1.BoolReply\"\000\022g\n!Remove"
-    "FilteredNamedGroupingPolicy\022%.palm.casbi"
-    "n.v1.FilteredPolicyRequest\032\031.palm.casbin"
-    ".v1.BoolReply\"\000\022Q\n\021GetGroupingPolicy\022\034.p"
-    "alm.casbin.v1.EmptyRequest\032\034.palm.casbin"
-    ".v1.Array2DReply\"\000\022W\n\026GetNamedGroupingPo"
-    "licy\022\035.palm.casbin.v1.PolicyRequest\032\034.pa"
-    "lm.casbin.v1.Array2DReply\"\000\022b\n\031GetFilter"
-    "edGroupingPolicy\022%.palm.casbin.v1.Filter"
-    "edPolicyRequest\032\034.palm.casbin.v1.Array2D"
-    "Reply\"\000\022g\n\036GetFilteredNamedGroupingPolic"
+    "n.v1.BoolReply\"\000\022O\n\021RemoveNamedPolicy\022\035."
+    "palm.casbin.v1.PolicyRequest\032\031.palm.casb"
+    "in.v1.BoolReply\"\000\022Z\n\024RemoveFilteredPolic"
     "y\022%.palm.casbin.v1.FilteredPolicyRequest"
-    "\032\034.palm.casbin.v1.Array2DReply\"\000\022L\n\016GetA"
-    "llSubjects\022\034.palm.casbin.v1.EmptyRequest"
-    "\032\032.palm.casbin.v1.ArrayReply\"\000\022U\n\023GetAll"
-    "NamedSubjects\022 .palm.casbin.v1.SimpleGet"
-    "Request\032\032.palm.casbin.v1.ArrayReply\"\000\022K\n"
-    "\rGetAllObjects\022\034.palm.casbin.v1.EmptyReq"
-    "uest\032\032.palm.casbin.v1.ArrayReply\"\000\022T\n\022Ge"
-    "tAllNamedObjects\022 .palm.casbin.v1.Simple"
-    "GetRequest\032\032.palm.casbin.v1.ArrayReply\"\000"
-    "\022K\n\rGetAllActions\022\034.palm.casbin.v1.Empty"
-    "Request\032\032.palm.casbin.v1.ArrayReply\"\000\022T\n"
-    "\022GetAllNamedActions\022 .palm.casbin.v1.Sim"
+    "\032\031.palm.casbin.v1.BoolReply\"\000\022_\n\031RemoveF"
+    "ilteredNamedPolicy\022%.palm.casbin.v1.Filt"
+    "eredPolicyRequest\032\031.palm.casbin.v1.BoolR"
+    "eply\"\000\022I\n\tGetPolicy\022\034.palm.casbin.v1.Emp"
+    "tyRequest\032\034.palm.casbin.v1.Array2DReply\""
+    "\000\022O\n\016GetNamedPolicy\022\035.palm.casbin.v1.Pol"
+    "icyRequest\032\034.palm.casbin.v1.Array2DReply"
+    "\"\000\022Z\n\021GetFilteredPolicy\022%.palm.casbin.v1"
+    ".FilteredPolicyRequest\032\034.palm.casbin.v1."
+    "Array2DReply\"\000\022_\n\026GetFilteredNamedPolicy"
+    "\022%.palm.casbin.v1.FilteredPolicyRequest\032"
+    "\034.palm.casbin.v1.Array2DReply\"\000\022O\n\021AddGr"
+    "oupingPolicy\022\035.palm.casbin.v1.PolicyRequ"
+    "est\032\031.palm.casbin.v1.BoolReply\"\000\022T\n\026AddN"
+    "amedGroupingPolicy\022\035.palm.casbin.v1.Poli"
+    "cyRequest\032\031.palm.casbin.v1.BoolReply\"\000\022R"
+    "\n\024RemoveGroupingPolicy\022\035.palm.casbin.v1."
+    "PolicyRequest\032\031.palm.casbin.v1.BoolReply"
+    "\"\000\022W\n\031RemoveNamedGroupingPolicy\022\035.palm.c"
+    "asbin.v1.PolicyRequest\032\031.palm.casbin.v1."
+    "BoolReply\"\000\022b\n\034RemoveFilteredGroupingPol"
+    "icy\022%.palm.casbin.v1.FilteredPolicyReque"
+    "st\032\031.palm.casbin.v1.BoolReply\"\000\022g\n!Remov"
+    "eFilteredNamedGroupingPolicy\022%.palm.casb"
+    "in.v1.FilteredPolicyRequest\032\031.palm.casbi"
+    "n.v1.BoolReply\"\000\022Q\n\021GetGroupingPolicy\022\034."
+    "palm.casbin.v1.EmptyRequest\032\034.palm.casbi"
+    "n.v1.Array2DReply\"\000\022W\n\026GetNamedGroupingP"
+    "olicy\022\035.palm.casbin.v1.PolicyRequest\032\034.p"
+    "alm.casbin.v1.Array2DReply\"\000\022b\n\031GetFilte"
+    "redGroupingPolicy\022%.palm.casbin.v1.Filte"
+    "redPolicyRequest\032\034.palm.casbin.v1.Array2"
+    "DReply\"\000\022g\n\036GetFilteredNamedGroupingPoli"
+    "cy\022%.palm.casbin.v1.FilteredPolicyReques"
+    "t\032\034.palm.casbin.v1.Array2DReply\"\000\022L\n\016Get"
+    "AllSubjects\022\034.palm.casbin.v1.EmptyReques"
+    "t\032\032.palm.casbin.v1.ArrayReply\"\000\022U\n\023GetAl"
+    "lNamedSubjects\022 .palm.casbin.v1.SimpleGe"
+    "tRequest\032\032.palm.casbin.v1.ArrayReply\"\000\022K"
+    "\n\rGetAllObjects\022\034.palm.casbin.v1.EmptyRe"
+    "quest\032\032.palm.casbin.v1.ArrayReply\"\000\022T\n\022G"
+    "etAllNamedObjects\022 .palm.casbin.v1.Simpl"
+    "eGetRequest\032\032.palm.casbin.v1.ArrayReply\""
+    "\000\022K\n\rGetAllActions\022\034.palm.casbin.v1.Empt"
+    "yRequest\032\032.palm.casbin.v1.ArrayReply\"\000\022T"
+    "\n\022GetAllNamedActions\022 .palm.casbin.v1.Si"
+    "mpleGetRequest\032\032.palm.casbin.v1.ArrayRep"
+    "ly\"\000\022I\n\013GetAllRoles\022\034.palm.casbin.v1.Emp"
+    "tyRequest\032\032.palm.casbin.v1.ArrayReply\"\000\022"
+    "R\n\020GetAllNamedRoles\022 .palm.casbin.v1.Sim"
     "pleGetRequest\032\032.palm.casbin.v1.ArrayRepl"
-    "y\"\000\022I\n\013GetAllRoles\022\034.palm.casbin.v1.Empt"
-    "yRequest\032\032.palm.casbin.v1.ArrayReply\"\000\022R"
-    "\n\020GetAllNamedRoles\022 .palm.casbin.v1.Simp"
-    "leGetRequest\032\032.palm.casbin.v1.ArrayReply"
-    "\"\000\022G\n\tHasPolicy\022\035.palm.casbin.v1.PolicyR"
-    "equest\032\031.palm.casbin.v1.BoolReply\"\000\022L\n\016H"
-    "asNamedPolicy\022\035.palm.casbin.v1.PolicyReq"
-    "uest\032\031.palm.casbin.v1.BoolReply\"\000\022O\n\021Has"
-    "GroupingPolicy\022\035.palm.casbin.v1.PolicyRe"
-    "quest\032\031.palm.casbin.v1.BoolReply\"\000\022T\n\026Ha"
-    "sNamedGroupingPolicy\022\035.palm.casbin.v1.Po"
-    "licyRequest\032\031.palm.casbin.v1.BoolReply\"\000"
-    "\022K\n\nGetDomains\022\037.palm.casbin.v1.UserRole"
-    "Request\032\032.palm.casbin.v1.ArrayReply\"\000\022P\n"
-    "\017GetRolesForUser\022\037.palm.casbin.v1.UserRo"
-    "leRequest\032\032.palm.casbin.v1.ArrayReply\"\000\022"
-    "X\n\027GetImplicitRolesForUser\022\037.palm.casbin"
-    ".v1.UserRoleRequest\032\032.palm.casbin.v1.Arr"
-    "ayReply\"\000\022P\n\017GetUsersForRole\022\037.palm.casb"
-    "in.v1.UserRoleRequest\032\032.palm.casbin.v1.A"
-    "rrayReply\"\000\022N\n\016HasRoleForUser\022\037.palm.cas"
-    "bin.v1.UserRoleRequest\032\031.palm.casbin.v1."
-    "BoolReply\"\000\022N\n\016AddRoleForUser\022\037.palm.cas"
-    "bin.v1.UserRoleRequest\032\031.palm.casbin.v1."
-    "BoolReply\"\000\022Q\n\021DeleteRoleForUser\022\037.palm."
-    "casbin.v1.UserRoleRequest\032\031.palm.casbin."
-    "v1.BoolReply\"\000\022R\n\022DeleteRolesForUser\022\037.p"
-    "alm.casbin.v1.UserRoleRequest\032\031.palm.cas"
-    "bin.v1.BoolReply\"\000\022J\n\nDeleteUser\022\037.palm."
-    "casbin.v1.UserRoleRequest\032\031.palm.casbin."
-    "v1.BoolReply\"\000\022K\n\nDeleteRole\022\037.palm.casb"
-    "in.v1.UserRoleRequest\032\032.palm.casbin.v1.E"
-    "mptyReply\"\000\022Z\n\025GetPermissionsForUser\022!.p"
-    "alm.casbin.v1.PermissionRequest\032\034.palm.c"
-    "asbin.v1.Array2DReply\"\000\022b\n\035GetImplicitPe"
-    "rmissionsForUser\022!.palm.casbin.v1.Permis"
-    "sionRequest\032\034.palm.casbin.v1.Array2DRepl"
-    "y\"\000\022R\n\020DeletePermission\022!.palm.casbin.v1"
+    "y\"\000\022G\n\tHasPolicy\022\035.palm.casbin.v1.Policy"
+    "Request\032\031.palm.casbin.v1.BoolReply\"\000\022L\n\016"
+    "HasNamedPolicy\022\035.palm.casbin.v1.PolicyRe"
+    "quest\032\031.palm.casbin.v1.BoolReply\"\000\022O\n\021Ha"
+    "sGroupingPolicy\022\035.palm.casbin.v1.PolicyR"
+    "equest\032\031.palm.casbin.v1.BoolReply\"\000\022T\n\026H"
+    "asNamedGroupingPolicy\022\035.palm.casbin.v1.P"
+    "olicyRequest\032\031.palm.casbin.v1.BoolReply\""
+    "\000\022K\n\nGetDomains\022\037.palm.casbin.v1.UserRol"
+    "eRequest\032\032.palm.casbin.v1.ArrayReply\"\000\022P"
+    "\n\017GetRolesForUser\022\037.palm.casbin.v1.UserR"
+    "oleRequest\032\032.palm.casbin.v1.ArrayReply\"\000"
+    "\022X\n\027GetImplicitRolesForUser\022\037.palm.casbi"
+    "n.v1.UserRoleRequest\032\032.palm.casbin.v1.Ar"
+    "rayReply\"\000\022P\n\017GetUsersForRole\022\037.palm.cas"
+    "bin.v1.UserRoleRequest\032\032.palm.casbin.v1."
+    "ArrayReply\"\000\022N\n\016HasRoleForUser\022\037.palm.ca"
+    "sbin.v1.UserRoleRequest\032\031.palm.casbin.v1"
+    ".BoolReply\"\000\022N\n\016AddRoleForUser\022\037.palm.ca"
+    "sbin.v1.UserRoleRequest\032\031.palm.casbin.v1"
+    ".BoolReply\"\000\022Q\n\021DeleteRoleForUser\022\037.palm"
+    ".casbin.v1.UserRoleRequest\032\031.palm.casbin"
+    ".v1.BoolReply\"\000\022R\n\022DeleteRolesForUser\022\037."
+    "palm.casbin.v1.UserRoleRequest\032\031.palm.ca"
+    "sbin.v1.BoolReply\"\000\022J\n\nDeleteUser\022\037.palm"
+    ".casbin.v1.UserRoleRequest\032\031.palm.casbin"
+    ".v1.BoolReply\"\000\022K\n\nDeleteRole\022\037.palm.cas"
+    "bin.v1.UserRoleRequest\032\032.palm.casbin.v1."
+    "EmptyReply\"\000\022Z\n\025GetPermissionsForUser\022!."
+    "palm.casbin.v1.PermissionRequest\032\034.palm."
+    "casbin.v1.Array2DReply\"\000\022b\n\035GetImplicitP"
+    "ermissionsForUser\022!.palm.casbin.v1.Permi"
+    "ssionRequest\032\034.palm.casbin.v1.Array2DRep"
+    "ly\"\000\022R\n\020DeletePermission\022!.palm.casbin.v"
+    "1.PermissionRequest\032\031.palm.casbin.v1.Boo"
+    "lReply\"\000\022V\n\024AddPermissionForUser\022!.palm."
+    "casbin.v1.PermissionRequest\032\031.palm.casbi"
+    "n.v1.BoolReply\"\000\022Y\n\027DeletePermissionForU"
+    "ser\022!.palm.casbin.v1.PermissionRequest\032\031"
+    ".palm.casbin.v1.BoolReply\"\000\022Z\n\030DeletePer"
+    "missionsForUser\022!.palm.casbin.v1.Permiss"
+    "ionRequest\032\031.palm.casbin.v1.BoolReply\"\000\022"
+    "V\n\024HasPermissionForUser\022!.palm.casbin.v1"
     ".PermissionRequest\032\031.palm.casbin.v1.Bool"
-    "Reply\"\000\022V\n\024AddPermissionForUser\022!.palm.c"
-    "asbin.v1.PermissionRequest\032\031.palm.casbin"
-    ".v1.BoolReply\"\000\022Y\n\027DeletePermissionForUs"
-    "er\022!.palm.casbin.v1.PermissionRequest\032\031."
-    "palm.casbin.v1.BoolReply\"\000\022Z\n\030DeletePerm"
-    "issionsForUser\022!.palm.casbin.v1.Permissi"
-    "onRequest\032\031.palm.casbin.v1.BoolReply\"\000\022V"
-    "\n\024HasPermissionForUser\022!.palm.casbin.v1."
-    "PermissionRequest\032\031.palm.casbin.v1.BoolR"
-    "eply\"\000B7\n,com.github.saturn_xiv.palm.plu"
-    "gins.casbin.v1P\001Z\005./;v2b\006proto3"
+    "Reply\"\000B7\n,com.github.saturn_xiv.palm.pl"
+    "ugins.casbin.v1P\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_casbin_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_casbin_2eproto = {
     false,
     false,
-    5631,
+    6792,
     descriptor_table_protodef_casbin_2eproto,
     "casbin.proto",
     &descriptor_table_casbin_2eproto_once,
     nullptr,
     0,
-    17,
+    32,
     schemas,
     file_default_instances,
     TableStruct_casbin_2eproto::offsets,
@@ -860,73 +1395,410 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_casbin_2eproto
 namespace palm {
 namespace casbin {
 namespace v1 {
+const ::google::protobuf::EnumDescriptor* WatcherMessage_Method_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_casbin_2eproto);
+  return file_level_enum_descriptors_casbin_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t WatcherMessage_Method_internal_data_[] = {
+    589824u, 0u, };
+bool WatcherMessage_Method_IsValid(int value) {
+  return 0 <= value && value <= 8;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr WatcherMessage_Method WatcherMessage::Update;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForSavePolicy;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForAddPolicy;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForAddPolicies;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForRemovePolicy;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForRemoveFilteredPolicy;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForRemovePolicies;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForUpdatePolicy;
+constexpr WatcherMessage_Method WatcherMessage::UpdateForUpdatePolicies;
+constexpr WatcherMessage_Method WatcherMessage::Method_MIN;
+constexpr WatcherMessage_Method WatcherMessage::Method_MAX;
+constexpr int WatcherMessage::Method_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 // ===================================================================
 
-class WatcherMessage::_Internal {
+class User::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::User, _impl_._oneof_case_);
 };
 
-WatcherMessage::WatcherMessage(::google::protobuf::Arena* arena)
+User::User(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.WatcherMessage)
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.User)
 }
-WatcherMessage::WatcherMessage(
+inline PROTOBUF_NDEBUG_INLINE User::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::User& from_msg)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+User::User(
     ::google::protobuf::Arena* arena,
-    const WatcherMessage& from)
+    const User& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  WatcherMessage* const _this = this;
+  User* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (by_case()) {
+    case BY_NOT_SET:
+      break;
+      case kId:
+        _impl_.by_.id_ = from._impl_.by_.id_;
+        break;
+      case kCode:
+        new (&_impl_.by_.code_) decltype(_impl_.by_.code_){arena, from._impl_.by_.code_};
+        break;
+  }
 
-  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.WatcherMessage)
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.User)
+}
+inline PROTOBUF_NDEBUG_INLINE User::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void User::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+User::~User() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.User)
+  SharedDtor(*this);
+}
+inline void User::SharedDtor(MessageLite& self) {
+  User& this_ = static_cast<User&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  if (this_.has_by()) {
+    this_.clear_by();
+  }
+  this_._impl_.~Impl_();
 }
 
-inline void* WatcherMessage::PlacementNew_(const void*, void* mem,
+void User::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.casbin.v1.User)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (by_case()) {
+    case kId: {
+      // No need to clear
+      break;
+    }
+    case kCode: {
+      _impl_.by_.code_.Destroy();
+      break;
+    }
+    case BY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+
+
+inline void* User::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) WatcherMessage(arena);
+  return ::new (mem) User(arena);
 }
-constexpr auto WatcherMessage::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(WatcherMessage),
-                                            alignof(WatcherMessage));
+constexpr auto User::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(User),
+                                            alignof(User));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull WatcherMessage::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull User::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_WatcherMessage_default_instance_._instance,
+        &_User_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &WatcherMessage::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<WatcherMessage>(),
+        &User::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<User>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &WatcherMessage::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<WatcherMessage>(), &WatcherMessage::ByteSizeLong,
-            &WatcherMessage::_InternalSerialize,
+        &User::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<User>(), &User::ByteSizeLong,
+            &User::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(WatcherMessage, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(User, _impl_._cached_size_),
         false,
     },
-    &WatcherMessage::kDescriptorMethods,
+    &User::kDescriptorMethods,
     &descriptor_table_casbin_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* WatcherMessage::GetClassData() const {
+const ::google::protobuf::internal::ClassData* User::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> WatcherMessage::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 0, 32, 2> User::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::User>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 id = 1;
+    {PROTOBUF_FIELD_OFFSET(User, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
+    // string code = 2;
+    {PROTOBUF_FIELD_OFFSET(User, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\23\0\4\0\0\0\0\0"
+    "palm.casbin.v1.User"
+    "code"
+  }},
+};
+
+PROTOBUF_NOINLINE void User::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.User)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_by();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* User::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const User& this_ = static_cast<const User&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* User::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const User& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.User)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            case kId: {
+              target = ::google::protobuf::internal::WireFormatLite::
+                  WriteInt32ToArrayWithField<1>(
+                      stream, this_._internal_id(), target);
+              break;
+            }
+            case kCode: {
+              const std::string& _s = this_._internal_code();
+              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.casbin.v1.User.code");
+              target = stream->WriteStringMaybeAliased(2, _s, target);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.User)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t User::ByteSizeLong(const MessageLite& base) {
+          const User& this_ = static_cast<const User&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t User::ByteSizeLong() const {
+          const User& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.User)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            // int32 id = 1;
+            case kId: {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_id());
+              break;
+            }
+            // string code = 2;
+            case kCode: {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_code());
+              break;
+            }
+            case BY_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void User::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<User*>(&to_msg);
+  auto& from = static_cast<const User&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.User)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_by();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kId: {
+        _this->_impl_.by_.id_ = from._impl_.by_.id_;
+        break;
+      }
+      case kCode: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.code_.InitDefault();
+        }
+        _this->_impl_.by_.code_.Set(from._internal_code(), arena);
+        break;
+      }
+      case BY_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void User::CopyFrom(const User& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.User)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void User::InternalSwap(User* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.by_, other->_impl_.by_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata User::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Role_Root::_Internal {
+ public:
+};
+
+Role_Root::Role_Root(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Role.Root)
+}
+Role_Root::Role_Root(
+    ::google::protobuf::Arena* arena,
+    const Role_Root& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Role_Root* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Role.Root)
+}
+
+inline void* Role_Root::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Role_Root(arena);
+}
+constexpr auto Role_Root::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Role_Root),
+                                            alignof(Role_Root));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Role_Root::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Role_Root_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Role_Root::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Role_Root>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Role_Root::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Role_Root>(), &Role_Root::ByteSizeLong,
+            &Role_Root::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Role_Root, _impl_._cached_size_),
+        false,
+    },
+    &Role_Root::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Role_Root::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Role_Root::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -941,7 +1813,7 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> WatcherMessage::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::casbin::v1::WatcherMessage>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Role_Root>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
@@ -960,8 +1832,2931 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> WatcherMessage::_table_ = {
 
 
 
-::google::protobuf::Metadata WatcherMessage::GetMetadata() const {
+::google::protobuf::Metadata Role_Root::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Role_Administrator::_Internal {
+ public:
+};
+
+Role_Administrator::Role_Administrator(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Role.Administrator)
+}
+Role_Administrator::Role_Administrator(
+    ::google::protobuf::Arena* arena,
+    const Role_Administrator& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Role_Administrator* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Role.Administrator)
+}
+
+inline void* Role_Administrator::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Role_Administrator(arena);
+}
+constexpr auto Role_Administrator::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Role_Administrator),
+                                            alignof(Role_Administrator));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Role_Administrator::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Role_Administrator_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Role_Administrator::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Role_Administrator>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Role_Administrator::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Role_Administrator>(), &Role_Administrator::ByteSizeLong,
+            &Role_Administrator::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Role_Administrator, _impl_._cached_size_),
+        false,
+    },
+    &Role_Administrator::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Role_Administrator::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Role_Administrator::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Role_Administrator>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Role_Administrator::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Role_Other::_Internal {
+ public:
+};
+
+Role_Other::Role_Other(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Role.Other)
+}
+inline PROTOBUF_NDEBUG_INLINE Role_Other::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::Role_Other& from_msg)
+      : code_(arena, from.code_),
+        _cached_size_{0} {}
+
+Role_Other::Role_Other(
+    ::google::protobuf::Arena* arena,
+    const Role_Other& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Role_Other* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Role.Other)
+}
+inline PROTOBUF_NDEBUG_INLINE Role_Other::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : code_(arena),
+        _cached_size_{0} {}
+
+inline void Role_Other::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Role_Other::~Role_Other() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.Role.Other)
+  SharedDtor(*this);
+}
+inline void Role_Other::SharedDtor(MessageLite& self) {
+  Role_Other& this_ = static_cast<Role_Other&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.code_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Role_Other::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Role_Other(arena);
+}
+constexpr auto Role_Other::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Role_Other),
+                                            alignof(Role_Other));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Role_Other::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Role_Other_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Role_Other::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Role_Other>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Role_Other::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Role_Other>(), &Role_Other::ByteSizeLong,
+            &Role_Other::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Role_Other, _impl_._cached_size_),
+        false,
+    },
+    &Role_Other::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Role_Other::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 38, 2> Role_Other::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Role_Other>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string code = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Role_Other, _impl_.code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string code = 1;
+    {PROTOBUF_FIELD_OFFSET(Role_Other, _impl_.code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\4\0\0\0\0\0\0"
+    "palm.casbin.v1.Role.Other"
+    "code"
+  }},
+};
+
+PROTOBUF_NOINLINE void Role_Other::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.Role.Other)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.code_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Role_Other::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Role_Other& this_ = static_cast<const Role_Other&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Role_Other::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Role_Other& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.Role.Other)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string code = 1;
+          if (!this_._internal_code().empty()) {
+            const std::string& _s = this_._internal_code();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.casbin.v1.Role.Other.code");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.Role.Other)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Role_Other::ByteSizeLong(const MessageLite& base) {
+          const Role_Other& this_ = static_cast<const Role_Other&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Role_Other::ByteSizeLong() const {
+          const Role_Other& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.Role.Other)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string code = 1;
+            if (!this_._internal_code().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_code());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Role_Other::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Role_Other*>(&to_msg);
+  auto& from = static_cast<const Role_Other&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.Role.Other)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Role_Other::CopyFrom(const Role_Other& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.Role.Other)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Role_Other::InternalSwap(Role_Other* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.code_, &other->_impl_.code_, arena);
+}
+
+::google::protobuf::Metadata Role_Other::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Role::_Internal {
+ public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Role, _impl_._oneof_case_);
+};
+
+void Role::set_allocated_root(::palm::casbin::v1::Role_Root* root) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (root) {
+    ::google::protobuf::Arena* submessage_arena = root->GetArena();
+    if (message_arena != submessage_arena) {
+      root = ::google::protobuf::internal::GetOwnedMessage(message_arena, root, submessage_arena);
+    }
+    set_has_root();
+    _impl_.by_.root_ = root;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Role.root)
+}
+void Role::set_allocated_administrator(::palm::casbin::v1::Role_Administrator* administrator) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (administrator) {
+    ::google::protobuf::Arena* submessage_arena = administrator->GetArena();
+    if (message_arena != submessage_arena) {
+      administrator = ::google::protobuf::internal::GetOwnedMessage(message_arena, administrator, submessage_arena);
+    }
+    set_has_administrator();
+    _impl_.by_.administrator_ = administrator;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Role.administrator)
+}
+void Role::set_allocated_other(::palm::casbin::v1::Role_Other* other) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (other) {
+    ::google::protobuf::Arena* submessage_arena = other->GetArena();
+    if (message_arena != submessage_arena) {
+      other = ::google::protobuf::internal::GetOwnedMessage(message_arena, other, submessage_arena);
+    }
+    set_has_other();
+    _impl_.by_.other_ = other;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Role.other)
+}
+Role::Role(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Role)
+}
+inline PROTOBUF_NDEBUG_INLINE Role::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::Role& from_msg)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+Role::Role(
+    ::google::protobuf::Arena* arena,
+    const Role& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Role* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (by_case()) {
+    case BY_NOT_SET:
+      break;
+      case kRoot:
+        _impl_.by_.root_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Role_Root>(arena, *from._impl_.by_.root_);
+        break;
+      case kAdministrator:
+        _impl_.by_.administrator_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Role_Administrator>(arena, *from._impl_.by_.administrator_);
+        break;
+      case kOther:
+        _impl_.by_.other_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Role_Other>(arena, *from._impl_.by_.other_);
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Role)
+}
+inline PROTOBUF_NDEBUG_INLINE Role::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void Role::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Role::~Role() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.Role)
+  SharedDtor(*this);
+}
+inline void Role::SharedDtor(MessageLite& self) {
+  Role& this_ = static_cast<Role&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  if (this_.has_by()) {
+    this_.clear_by();
+  }
+  this_._impl_.~Impl_();
+}
+
+void Role::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.casbin.v1.Role)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (by_case()) {
+    case kRoot: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.root_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.root_);
+      }
+      break;
+    }
+    case kAdministrator: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.administrator_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.administrator_);
+      }
+      break;
+    }
+    case kOther: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.other_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.other_);
+      }
+      break;
+    }
+    case BY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+
+
+inline void* Role::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Role(arena);
+}
+constexpr auto Role::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Role),
+                                            alignof(Role));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Role::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Role_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Role::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Role>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Role::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Role>(), &Role::ByteSizeLong,
+            &Role::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Role, _impl_._cached_size_),
+        false,
+    },
+    &Role::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Role::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 3, 3, 0, 2> Role::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    3,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Role>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.casbin.v1.Role.Root root = 1;
+    {PROTOBUF_FIELD_OFFSET(Role, _impl_.by_.root_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Role.Administrator administrator = 2;
+    {PROTOBUF_FIELD_OFFSET(Role, _impl_.by_.administrator_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Role.Other other = 9;
+    {PROTOBUF_FIELD_OFFSET(Role, _impl_.by_.other_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Role_Root>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Role_Administrator>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Role_Other>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Role::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.Role)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_by();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Role::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Role& this_ = static_cast<const Role&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Role::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Role& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.Role)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            case kRoot: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.by_.root_, this_._impl_.by_.root_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kAdministrator: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  2, *this_._impl_.by_.administrator_, this_._impl_.by_.administrator_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kOther: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  9, *this_._impl_.by_.other_, this_._impl_.by_.other_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.Role)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Role::ByteSizeLong(const MessageLite& base) {
+          const Role& this_ = static_cast<const Role&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Role::ByteSizeLong() const {
+          const Role& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.Role)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            // .palm.casbin.v1.Role.Root root = 1;
+            case kRoot: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.root_);
+              break;
+            }
+            // .palm.casbin.v1.Role.Administrator administrator = 2;
+            case kAdministrator: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.administrator_);
+              break;
+            }
+            // .palm.casbin.v1.Role.Other other = 9;
+            case kOther: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.other_);
+              break;
+            }
+            case BY_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Role::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Role*>(&to_msg);
+  auto& from = static_cast<const Role&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.Role)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_by();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kRoot: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.root_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Role_Root>(arena, *from._impl_.by_.root_);
+        } else {
+          _this->_impl_.by_.root_->MergeFrom(from._internal_root());
+        }
+        break;
+      }
+      case kAdministrator: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.administrator_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Role_Administrator>(arena, *from._impl_.by_.administrator_);
+        } else {
+          _this->_impl_.by_.administrator_->MergeFrom(from._internal_administrator());
+        }
+        break;
+      }
+      case kOther: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.other_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Role_Other>(arena, *from._impl_.by_.other_);
+        } else {
+          _this->_impl_.by_.other_->MergeFrom(from._internal_other());
+        }
+        break;
+      }
+      case BY_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Role::CopyFrom(const Role& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.Role)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Role::InternalSwap(Role* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.by_, other->_impl_.by_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata Role::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Resource::_Internal {
+ public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Resource, _impl_._oneof_case_);
+};
+
+Resource::Resource(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Resource)
+}
+inline PROTOBUF_NDEBUG_INLINE Resource::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::Resource& from_msg)
+      : type_(arena, from.type_),
+        by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+Resource::Resource(
+    ::google::protobuf::Arena* arena,
+    const Resource& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Resource* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (by_case()) {
+    case BY_NOT_SET:
+      break;
+      case kId:
+        _impl_.by_.id_ = from._impl_.by_.id_;
+        break;
+      case kCode:
+        new (&_impl_.by_.code_) decltype(_impl_.by_.code_){arena, from._impl_.by_.code_};
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Resource)
+}
+inline PROTOBUF_NDEBUG_INLINE Resource::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : type_(arena),
+        by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void Resource::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Resource::~Resource() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.Resource)
+  SharedDtor(*this);
+}
+inline void Resource::SharedDtor(MessageLite& self) {
+  Resource& this_ = static_cast<Resource&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.type_.Destroy();
+  if (this_.has_by()) {
+    this_.clear_by();
+  }
+  this_._impl_.~Impl_();
+}
+
+void Resource::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.casbin.v1.Resource)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (by_case()) {
+    case kId: {
+      // No need to clear
+      break;
+    }
+    case kCode: {
+      _impl_.by_.code_.Destroy();
+      break;
+    }
+    case BY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+
+
+inline void* Resource::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Resource(arena);
+}
+constexpr auto Resource::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Resource),
+                                            alignof(Resource));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Resource::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Resource_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Resource::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Resource>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Resource::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Resource>(), &Resource::ByteSizeLong,
+            &Resource::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Resource, _impl_._cached_size_),
+        false,
+    },
+    &Resource::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Resource::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 3, 0, 40, 2> Resource::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    21, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4293917694,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Resource>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string type = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Resource, _impl_.type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string type = 1;
+    {PROTOBUF_FIELD_OFFSET(Resource, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 id = 11;
+    {PROTOBUF_FIELD_OFFSET(Resource, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
+    // string code = 21;
+    {PROTOBUF_FIELD_OFFSET(Resource, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\27\4\0\4\0\0\0\0"
+    "palm.casbin.v1.Resource"
+    "type"
+    "code"
+  }},
+};
+
+PROTOBUF_NOINLINE void Resource::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.Resource)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.type_.ClearToEmpty();
+  clear_by();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Resource::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Resource& this_ = static_cast<const Resource&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Resource::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Resource& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.Resource)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string type = 1;
+          if (!this_._internal_type().empty()) {
+            const std::string& _s = this_._internal_type();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.casbin.v1.Resource.type");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          switch (this_.by_case()) {
+            case kId: {
+              target = ::google::protobuf::internal::WireFormatLite::
+                  WriteInt32ToArrayWithField<11>(
+                      stream, this_._internal_id(), target);
+              break;
+            }
+            case kCode: {
+              const std::string& _s = this_._internal_code();
+              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.casbin.v1.Resource.code");
+              target = stream->WriteStringMaybeAliased(21, _s, target);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.Resource)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Resource::ByteSizeLong(const MessageLite& base) {
+          const Resource& this_ = static_cast<const Resource&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Resource::ByteSizeLong() const {
+          const Resource& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.Resource)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string type = 1;
+            if (!this_._internal_type().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_type());
+            }
+          }
+          switch (this_.by_case()) {
+            // int32 id = 11;
+            case kId: {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_id());
+              break;
+            }
+            // string code = 21;
+            case kCode: {
+              total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_code());
+              break;
+            }
+            case BY_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Resource::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Resource*>(&to_msg);
+  auto& from = static_cast<const Resource&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.Resource)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_type().empty()) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_by();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kId: {
+        _this->_impl_.by_.id_ = from._impl_.by_.id_;
+        break;
+      }
+      case kCode: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.code_.InitDefault();
+        }
+        _this->_impl_.by_.code_.Set(from._internal_code(), arena);
+        break;
+      }
+      case BY_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Resource::CopyFrom(const Resource& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.Resource)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Resource::InternalSwap(Resource* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
+  swap(_impl_.by_, other->_impl_.by_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata Resource::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Read::_Internal {
+ public:
+};
+
+Permission_Read::Permission_Read(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Read)
+}
+Permission_Read::Permission_Read(
+    ::google::protobuf::Arena* arena,
+    const Permission_Read& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Read* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Read)
+}
+
+inline void* Permission_Read::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Read(arena);
+}
+constexpr auto Permission_Read::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Read),
+                                            alignof(Permission_Read));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Read::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Read_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Read::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Read>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Read::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Read>(), &Permission_Read::ByteSizeLong,
+            &Permission_Read::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Read, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Read::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Read::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Read::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Read>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Read::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Write::_Internal {
+ public:
+};
+
+Permission_Write::Permission_Write(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Write)
+}
+Permission_Write::Permission_Write(
+    ::google::protobuf::Arena* arena,
+    const Permission_Write& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Write* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Write)
+}
+
+inline void* Permission_Write::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Write(arena);
+}
+constexpr auto Permission_Write::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Write),
+                                            alignof(Permission_Write));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Write::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Write_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Write::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Write>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Write::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Write>(), &Permission_Write::ByteSizeLong,
+            &Permission_Write::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Write, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Write::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Write::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Write::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Write>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Write::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Append::_Internal {
+ public:
+};
+
+Permission_Append::Permission_Append(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Append)
+}
+Permission_Append::Permission_Append(
+    ::google::protobuf::Arena* arena,
+    const Permission_Append& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Append* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Append)
+}
+
+inline void* Permission_Append::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Append(arena);
+}
+constexpr auto Permission_Append::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Append),
+                                            alignof(Permission_Append));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Append::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Append_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Append::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Append>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Append::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Append>(), &Permission_Append::ByteSizeLong,
+            &Permission_Append::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Append, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Append::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Append::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Append::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Append>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Append::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Execute::_Internal {
+ public:
+};
+
+Permission_Execute::Permission_Execute(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Execute)
+}
+Permission_Execute::Permission_Execute(
+    ::google::protobuf::Arena* arena,
+    const Permission_Execute& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Execute* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Execute)
+}
+
+inline void* Permission_Execute::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Execute(arena);
+}
+constexpr auto Permission_Execute::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Execute),
+                                            alignof(Permission_Execute));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Execute::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Execute_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Execute::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Execute>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Execute::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Execute>(), &Permission_Execute::ByteSizeLong,
+            &Permission_Execute::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Execute, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Execute::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Execute::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Execute::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Execute>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Execute::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Credit::_Internal {
+ public:
+};
+
+Permission_Credit::Permission_Credit(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Credit)
+}
+Permission_Credit::Permission_Credit(
+    ::google::protobuf::Arena* arena,
+    const Permission_Credit& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Credit* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Credit)
+}
+
+inline void* Permission_Credit::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Credit(arena);
+}
+constexpr auto Permission_Credit::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Credit),
+                                            alignof(Permission_Credit));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Credit::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Credit_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Credit::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Credit>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Credit::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Credit>(), &Permission_Credit::ByteSizeLong,
+            &Permission_Credit::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Credit, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Credit::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Credit::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Credit::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Credit>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Credit::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Debit::_Internal {
+ public:
+};
+
+Permission_Debit::Permission_Debit(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Debit)
+}
+Permission_Debit::Permission_Debit(
+    ::google::protobuf::Arena* arena,
+    const Permission_Debit& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Debit* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Debit)
+}
+
+inline void* Permission_Debit::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Debit(arena);
+}
+constexpr auto Permission_Debit::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Debit),
+                                            alignof(Permission_Debit));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Debit::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Debit_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Debit::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Debit>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Debit::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Debit>(), &Permission_Debit::ByteSizeLong,
+            &Permission_Debit::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Debit, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Debit::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Debit::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Debit::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Debit>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Debit::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Inquiry::_Internal {
+ public:
+};
+
+Permission_Inquiry::Permission_Inquiry(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Inquiry)
+}
+Permission_Inquiry::Permission_Inquiry(
+    ::google::protobuf::Arena* arena,
+    const Permission_Inquiry& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Inquiry* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Inquiry)
+}
+
+inline void* Permission_Inquiry::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Inquiry(arena);
+}
+constexpr auto Permission_Inquiry::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission_Inquiry),
+                                            alignof(Permission_Inquiry));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Inquiry::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Inquiry_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Inquiry::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Permission_Inquiry>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Inquiry::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Permission_Inquiry>(), &Permission_Inquiry::ByteSizeLong,
+            &Permission_Inquiry::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Inquiry, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Inquiry::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Inquiry::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Permission_Inquiry::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Inquiry>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Permission_Inquiry::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission_Other::_Internal {
+ public:
+};
+
+Permission_Other::Permission_Other(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission.Other)
+}
+inline PROTOBUF_NDEBUG_INLINE Permission_Other::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::Permission_Other& from_msg)
+      : code_(arena, from.code_),
+        _cached_size_{0} {}
+
+Permission_Other::Permission_Other(
+    ::google::protobuf::Arena* arena,
+    const Permission_Other& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission_Other* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission.Other)
+}
+inline PROTOBUF_NDEBUG_INLINE Permission_Other::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : code_(arena),
+        _cached_size_{0} {}
+
+inline void Permission_Other::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Permission_Other::~Permission_Other() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.Permission.Other)
+  SharedDtor(*this);
+}
+inline void Permission_Other::SharedDtor(MessageLite& self) {
+  Permission_Other& this_ = static_cast<Permission_Other&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.code_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Permission_Other::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission_Other(arena);
+}
+constexpr auto Permission_Other::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Permission_Other),
+                                            alignof(Permission_Other));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission_Other::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_Other_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission_Other::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Permission_Other>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission_Other::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Permission_Other>(), &Permission_Other::ByteSizeLong,
+            &Permission_Other::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission_Other, _impl_._cached_size_),
+        false,
+    },
+    &Permission_Other::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission_Other::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 44, 2> Permission_Other::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Other>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string code = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Permission_Other, _impl_.code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string code = 1;
+    {PROTOBUF_FIELD_OFFSET(Permission_Other, _impl_.code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\4\0\0\0\0\0\0"
+    "palm.casbin.v1.Permission.Other"
+    "code"
+  }},
+};
+
+PROTOBUF_NOINLINE void Permission_Other::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.Permission.Other)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.code_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Permission_Other::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Permission_Other& this_ = static_cast<const Permission_Other&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Permission_Other::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Permission_Other& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.Permission.Other)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string code = 1;
+          if (!this_._internal_code().empty()) {
+            const std::string& _s = this_._internal_code();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.casbin.v1.Permission.Other.code");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.Permission.Other)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Permission_Other::ByteSizeLong(const MessageLite& base) {
+          const Permission_Other& this_ = static_cast<const Permission_Other&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Permission_Other::ByteSizeLong() const {
+          const Permission_Other& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.Permission.Other)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string code = 1;
+            if (!this_._internal_code().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_code());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Permission_Other::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Permission_Other*>(&to_msg);
+  auto& from = static_cast<const Permission_Other&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.Permission.Other)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Permission_Other::CopyFrom(const Permission_Other& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.Permission.Other)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Permission_Other::InternalSwap(Permission_Other* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.code_, &other->_impl_.code_, arena);
+}
+
+::google::protobuf::Metadata Permission_Other::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Permission::_Internal {
+ public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::Permission, _impl_._oneof_case_);
+};
+
+void Permission::set_allocated_read(::palm::casbin::v1::Permission_Read* read) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (read) {
+    ::google::protobuf::Arena* submessage_arena = read->GetArena();
+    if (message_arena != submessage_arena) {
+      read = ::google::protobuf::internal::GetOwnedMessage(message_arena, read, submessage_arena);
+    }
+    set_has_read();
+    _impl_.by_.read_ = read;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.read)
+}
+void Permission::set_allocated_write(::palm::casbin::v1::Permission_Write* write) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (write) {
+    ::google::protobuf::Arena* submessage_arena = write->GetArena();
+    if (message_arena != submessage_arena) {
+      write = ::google::protobuf::internal::GetOwnedMessage(message_arena, write, submessage_arena);
+    }
+    set_has_write();
+    _impl_.by_.write_ = write;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.write)
+}
+void Permission::set_allocated_append(::palm::casbin::v1::Permission_Append* append) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (append) {
+    ::google::protobuf::Arena* submessage_arena = append->GetArena();
+    if (message_arena != submessage_arena) {
+      append = ::google::protobuf::internal::GetOwnedMessage(message_arena, append, submessage_arena);
+    }
+    set_has_append();
+    _impl_.by_.append_ = append;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.append)
+}
+void Permission::set_allocated_execute(::palm::casbin::v1::Permission_Execute* execute) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (execute) {
+    ::google::protobuf::Arena* submessage_arena = execute->GetArena();
+    if (message_arena != submessage_arena) {
+      execute = ::google::protobuf::internal::GetOwnedMessage(message_arena, execute, submessage_arena);
+    }
+    set_has_execute();
+    _impl_.by_.execute_ = execute;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.execute)
+}
+void Permission::set_allocated_credit(::palm::casbin::v1::Permission_Credit* credit) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (credit) {
+    ::google::protobuf::Arena* submessage_arena = credit->GetArena();
+    if (message_arena != submessage_arena) {
+      credit = ::google::protobuf::internal::GetOwnedMessage(message_arena, credit, submessage_arena);
+    }
+    set_has_credit();
+    _impl_.by_.credit_ = credit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.credit)
+}
+void Permission::set_allocated_debit(::palm::casbin::v1::Permission_Debit* debit) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (debit) {
+    ::google::protobuf::Arena* submessage_arena = debit->GetArena();
+    if (message_arena != submessage_arena) {
+      debit = ::google::protobuf::internal::GetOwnedMessage(message_arena, debit, submessage_arena);
+    }
+    set_has_debit();
+    _impl_.by_.debit_ = debit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.debit)
+}
+void Permission::set_allocated_inquiry(::palm::casbin::v1::Permission_Inquiry* inquiry) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (inquiry) {
+    ::google::protobuf::Arena* submessage_arena = inquiry->GetArena();
+    if (message_arena != submessage_arena) {
+      inquiry = ::google::protobuf::internal::GetOwnedMessage(message_arena, inquiry, submessage_arena);
+    }
+    set_has_inquiry();
+    _impl_.by_.inquiry_ = inquiry;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.inquiry)
+}
+void Permission::set_allocated_other(::palm::casbin::v1::Permission_Other* other) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (other) {
+    ::google::protobuf::Arena* submessage_arena = other->GetArena();
+    if (message_arena != submessage_arena) {
+      other = ::google::protobuf::internal::GetOwnedMessage(message_arena, other, submessage_arena);
+    }
+    set_has_other();
+    _impl_.by_.other_ = other;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.other)
+}
+Permission::Permission(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.Permission)
+}
+inline PROTOBUF_NDEBUG_INLINE Permission::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::Permission& from_msg)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+Permission::Permission(
+    ::google::protobuf::Arena* arena,
+    const Permission& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Permission* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (by_case()) {
+    case BY_NOT_SET:
+      break;
+      case kRead:
+        _impl_.by_.read_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Read>(arena, *from._impl_.by_.read_);
+        break;
+      case kWrite:
+        _impl_.by_.write_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Write>(arena, *from._impl_.by_.write_);
+        break;
+      case kAppend:
+        _impl_.by_.append_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Append>(arena, *from._impl_.by_.append_);
+        break;
+      case kExecute:
+        _impl_.by_.execute_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Execute>(arena, *from._impl_.by_.execute_);
+        break;
+      case kCredit:
+        _impl_.by_.credit_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Credit>(arena, *from._impl_.by_.credit_);
+        break;
+      case kDebit:
+        _impl_.by_.debit_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Debit>(arena, *from._impl_.by_.debit_);
+        break;
+      case kInquiry:
+        _impl_.by_.inquiry_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Inquiry>(arena, *from._impl_.by_.inquiry_);
+        break;
+      case kOther:
+        _impl_.by_.other_ = ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Other>(arena, *from._impl_.by_.other_);
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.Permission)
+}
+inline PROTOBUF_NDEBUG_INLINE Permission::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void Permission::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Permission::~Permission() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.Permission)
+  SharedDtor(*this);
+}
+inline void Permission::SharedDtor(MessageLite& self) {
+  Permission& this_ = static_cast<Permission&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  if (this_.has_by()) {
+    this_.clear_by();
+  }
+  this_._impl_.~Impl_();
+}
+
+void Permission::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.casbin.v1.Permission)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (by_case()) {
+    case kRead: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.read_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.read_);
+      }
+      break;
+    }
+    case kWrite: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.write_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.write_);
+      }
+      break;
+    }
+    case kAppend: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.append_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.append_);
+      }
+      break;
+    }
+    case kExecute: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.execute_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.execute_);
+      }
+      break;
+    }
+    case kCredit: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.credit_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.credit_);
+      }
+      break;
+    }
+    case kDebit: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.debit_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.debit_);
+      }
+      break;
+    }
+    case kInquiry: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.inquiry_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.inquiry_);
+      }
+      break;
+    }
+    case kOther: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.other_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.other_);
+      }
+      break;
+    }
+    case BY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+
+
+inline void* Permission::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Permission(arena);
+}
+constexpr auto Permission::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Permission),
+                                            alignof(Permission));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Permission::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Permission_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Permission::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Permission>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Permission::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Permission>(), &Permission::ByteSizeLong,
+            &Permission::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Permission, _impl_._cached_size_),
+        false,
+    },
+    &Permission::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Permission::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 8, 8, 0, 2> Permission::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294966912,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    8,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.casbin.v1.Permission.Read read = 1;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.read_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Write write = 2;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.write_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Append append = 3;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.append_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Execute execute = 4;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.execute_), _Internal::kOneofCaseOffset + 0, 3,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Credit credit = 5;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.credit_), _Internal::kOneofCaseOffset + 0, 4,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Debit debit = 6;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.debit_), _Internal::kOneofCaseOffset + 0, 5,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Inquiry inquiry = 7;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.inquiry_), _Internal::kOneofCaseOffset + 0, 6,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Permission.Other other = 9;
+    {PROTOBUF_FIELD_OFFSET(Permission, _impl_.by_.other_), _Internal::kOneofCaseOffset + 0, 7,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Read>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Write>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Append>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Execute>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Credit>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Debit>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Inquiry>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Permission_Other>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Permission::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.Permission)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_by();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Permission::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Permission& this_ = static_cast<const Permission&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Permission::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Permission& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.Permission)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            case kRead: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.by_.read_, this_._impl_.by_.read_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kWrite: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  2, *this_._impl_.by_.write_, this_._impl_.by_.write_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kAppend: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  3, *this_._impl_.by_.append_, this_._impl_.by_.append_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kExecute: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  4, *this_._impl_.by_.execute_, this_._impl_.by_.execute_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kCredit: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  5, *this_._impl_.by_.credit_, this_._impl_.by_.credit_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kDebit: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  6, *this_._impl_.by_.debit_, this_._impl_.by_.debit_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kInquiry: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  7, *this_._impl_.by_.inquiry_, this_._impl_.by_.inquiry_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kOther: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  9, *this_._impl_.by_.other_, this_._impl_.by_.other_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.Permission)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Permission::ByteSizeLong(const MessageLite& base) {
+          const Permission& this_ = static_cast<const Permission&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Permission::ByteSizeLong() const {
+          const Permission& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.Permission)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            // .palm.casbin.v1.Permission.Read read = 1;
+            case kRead: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.read_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Write write = 2;
+            case kWrite: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.write_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Append append = 3;
+            case kAppend: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.append_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Execute execute = 4;
+            case kExecute: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.execute_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Credit credit = 5;
+            case kCredit: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.credit_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Debit debit = 6;
+            case kDebit: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.debit_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Inquiry inquiry = 7;
+            case kInquiry: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.inquiry_);
+              break;
+            }
+            // .palm.casbin.v1.Permission.Other other = 9;
+            case kOther: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.other_);
+              break;
+            }
+            case BY_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Permission::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Permission*>(&to_msg);
+  auto& from = static_cast<const Permission&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.Permission)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_by();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kRead: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.read_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Read>(arena, *from._impl_.by_.read_);
+        } else {
+          _this->_impl_.by_.read_->MergeFrom(from._internal_read());
+        }
+        break;
+      }
+      case kWrite: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.write_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Write>(arena, *from._impl_.by_.write_);
+        } else {
+          _this->_impl_.by_.write_->MergeFrom(from._internal_write());
+        }
+        break;
+      }
+      case kAppend: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.append_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Append>(arena, *from._impl_.by_.append_);
+        } else {
+          _this->_impl_.by_.append_->MergeFrom(from._internal_append());
+        }
+        break;
+      }
+      case kExecute: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.execute_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Execute>(arena, *from._impl_.by_.execute_);
+        } else {
+          _this->_impl_.by_.execute_->MergeFrom(from._internal_execute());
+        }
+        break;
+      }
+      case kCredit: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.credit_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Credit>(arena, *from._impl_.by_.credit_);
+        } else {
+          _this->_impl_.by_.credit_->MergeFrom(from._internal_credit());
+        }
+        break;
+      }
+      case kDebit: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.debit_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Debit>(arena, *from._impl_.by_.debit_);
+        } else {
+          _this->_impl_.by_.debit_->MergeFrom(from._internal_debit());
+        }
+        break;
+      }
+      case kInquiry: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.inquiry_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Inquiry>(arena, *from._impl_.by_.inquiry_);
+        } else {
+          _this->_impl_.by_.inquiry_->MergeFrom(from._internal_inquiry());
+        }
+        break;
+      }
+      case kOther: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.other_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Permission_Other>(arena, *from._impl_.by_.other_);
+        } else {
+          _this->_impl_.by_.other_->MergeFrom(from._internal_other());
+        }
+        break;
+      }
+      case BY_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Permission::CopyFrom(const Permission& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.Permission)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Permission::InternalSwap(Permission* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.by_, other->_impl_.by_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata Permission::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class WatcherMessage::_Internal {
+ public:
+};
+
+WatcherMessage::WatcherMessage(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.WatcherMessage)
+}
+inline PROTOBUF_NDEBUG_INLINE WatcherMessage::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::WatcherMessage& from_msg)
+      : id_(arena, from.id_),
+        _cached_size_{0} {}
+
+WatcherMessage::WatcherMessage(
+    ::google::protobuf::Arena* arena,
+    const WatcherMessage& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  WatcherMessage* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.method_ = from._impl_.method_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.WatcherMessage)
+}
+inline PROTOBUF_NDEBUG_INLINE WatcherMessage::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : id_(arena),
+        _cached_size_{0} {}
+
+inline void WatcherMessage::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.method_ = {};
+}
+WatcherMessage::~WatcherMessage() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.WatcherMessage)
+  SharedDtor(*this);
+}
+inline void WatcherMessage::SharedDtor(MessageLite& self) {
+  WatcherMessage& this_ = static_cast<WatcherMessage&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* WatcherMessage::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) WatcherMessage(arena);
+}
+constexpr auto WatcherMessage::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(WatcherMessage),
+                                            alignof(WatcherMessage));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull WatcherMessage::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_WatcherMessage_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &WatcherMessage::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<WatcherMessage>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &WatcherMessage::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<WatcherMessage>(), &WatcherMessage::ByteSizeLong,
+            &WatcherMessage::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(WatcherMessage, _impl_._cached_size_),
+        false,
+    },
+    &WatcherMessage::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* WatcherMessage::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 40, 2> WatcherMessage::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::WatcherMessage>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.casbin.v1.WatcherMessage.Method method = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WatcherMessage, _impl_.method_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(WatcherMessage, _impl_.method_)}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WatcherMessage, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(WatcherMessage, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.casbin.v1.WatcherMessage.Method method = 2;
+    {PROTOBUF_FIELD_OFFSET(WatcherMessage, _impl_.method_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+    "\35\2\0\0\0\0\0\0"
+    "palm.casbin.v1.WatcherMessage"
+    "id"
+  }},
+};
+
+PROTOBUF_NOINLINE void WatcherMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.WatcherMessage)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.id_.ClearToEmpty();
+  _impl_.method_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* WatcherMessage::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const WatcherMessage& this_ = static_cast<const WatcherMessage&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* WatcherMessage::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const WatcherMessage& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.WatcherMessage)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string id = 1;
+          if (!this_._internal_id().empty()) {
+            const std::string& _s = this_._internal_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.casbin.v1.WatcherMessage.id");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // .palm.casbin.v1.WatcherMessage.Method method = 2;
+          if (this_._internal_method() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                2, this_._internal_method(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.WatcherMessage)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t WatcherMessage::ByteSizeLong(const MessageLite& base) {
+          const WatcherMessage& this_ = static_cast<const WatcherMessage&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t WatcherMessage::ByteSizeLong() const {
+          const WatcherMessage& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.WatcherMessage)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string id = 1;
+            if (!this_._internal_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_id());
+            }
+            // .palm.casbin.v1.WatcherMessage.Method method = 2;
+            if (this_._internal_method() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_method());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void WatcherMessage::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<WatcherMessage*>(&to_msg);
+  auto& from = static_cast<const WatcherMessage&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.WatcherMessage)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_method() != 0) {
+    _this->_impl_.method_ = from._impl_.method_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WatcherMessage::CopyFrom(const WatcherMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.WatcherMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void WatcherMessage::InternalSwap(WatcherMessage* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  swap(_impl_.method_, other->_impl_.method_);
+}
+
+::google::protobuf::Metadata WatcherMessage::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
