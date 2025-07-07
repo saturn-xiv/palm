@@ -2,7 +2,7 @@
 
 ```sql
 CREATE USER www WITH PASSWORD 'change-me';
-CREATE DATABASE phlox WITH ENCODING = 'UTF8' OWNER www;
+CREATE DATABASE lavender WITH ENCODING = 'UTF8' OWNER www;
 ```
 
 ## Documents
