@@ -1,4 +1,5 @@
 #include "palm/application.hpp"
+#include "palm/babel.hpp"
 #include "palm/bbs.hpp"
 #include "palm/blog.hpp"
 #include "palm/cms.hpp"

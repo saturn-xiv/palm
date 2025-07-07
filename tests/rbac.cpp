@@ -4,7 +4,9 @@
 
 #include <iostream>
 
-TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {
+TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {}
+
+TEST_CASE("object/subject/permission", "[models]") {
   SECTION("user subject") {
     {
       int32_t id = 123;

@@ -6,6 +6,7 @@
 #include "palm/s3.hpp"
 #include "palm/version.hpp"
 
+#include <cstdlib>
 #include <fstream>
 
 #include <boost/algorithm/hex.hpp>
@@ -15,6 +16,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
+#include <sodium.h>
 #include <thrift/version.h>
 
 // #if BOOST_ARCH_X86_64
@@ -39,10 +41,17 @@ void palm::init(bool debug) {
   spdlog::debug("hiredis v{}.{}.{}", HIREDIS_MAJOR, HIREDIS_MINOR,
                 HIREDIS_PATCH);
   spdlog::debug("miniocpp v{}", MINIO_CPP_VERSION);
-  spdlog::debug("protobuf {}", google::protobuf::internal::VersionString(
-                                   GOOGLE_PROTOBUF_VERSION));
-  spdlog::debug("gRpc {}", grpc::Version());
+  spdlog::debug("protobuf v{}", google::protobuf::internal::VersionString(
+                                    GOOGLE_PROTOBUF_VERSION));
+  spdlog::debug("gRpc v{}", grpc::Version());
   spdlog::debug("thrift v{}", THRIFT_VERSION);
+  {
+    if (sodium_init() < 0) {
+      spdlog::error("the sodium library couldn't be initialized");
+      std::exit(EXIT_FAILURE);
+    }
+    spdlog::debug("sodium v{}", SODIUM_VERSION_STRING);
+  }
 }
 
 // https://docs.gravatar.com/api/avatars/hash/
