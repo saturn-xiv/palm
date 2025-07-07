@@ -15,6 +15,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
+#include <thrift/version.h>
 
 // #if BOOST_ARCH_X86_64
 // #include <mysql/mariadb_version.h>
@@ -41,6 +42,7 @@ void palm::init(bool debug) {
   spdlog::debug("protobuf {}", google::protobuf::internal::VersionString(
                                    GOOGLE_PROTOBUF_VERSION));
   spdlog::debug("gRpc {}", grpc::Version());
+  spdlog::debug("thrift v{}", THRIFT_VERSION);
 }
 
 // https://docs.gravatar.com/api/avatars/hash/

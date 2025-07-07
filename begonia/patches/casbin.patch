@@ -1,0 +1,19 @@
+diff --git a/cmake/modules/Findjson.cmake b/cmake/modules/Findjson.cmake
+index 68788f0..b00ed22 100644
+--- a/cmake/modules/Findjson.cmake
++++ b/cmake/modules/Findjson.cmake
+@@ -13,14 +13,3 @@
+ #  See the License for the specific language governing permissions and
+ #  limitations under the License.
+ include(FetchContent)
+-
+-set(JSON_Install ON)
+-
+-FetchContent_Declare(
+-  json
+-  GIT_REPOSITORY https://github.com/nlohmann/json.git
+-  GIT_TAG v3.11.2
+-  DOWNLOAD_EXTRACT_TIMESTAMP FALSE
+-)
+-
+-FetchContent_MakeAvailable(json)

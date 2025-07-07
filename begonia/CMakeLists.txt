@@ -38,7 +38,14 @@ FetchContent_Declare(thrift
   UPDATE_DISCONNECTED 1
 )
 
-FetchContent_MakeAvailable(thrift)
+FetchContent_Declare(casbin
+  GIT_REPOSITORY      "https://github.com/casbin/casbin-cpp.git"
+  GIT_TAG             "v1.62.0"
+  PATCH_COMMAND       git apply ${PROJECT_SOURCE_DIR}/begonia/patches/casbin.patch
+  UPDATE_DISCONNECTED 1
+)
+
+FetchContent_MakeAvailable(thrift casbin)
 # -----------------------------------------------------------------------------
 
 add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
@@ -54,7 +61,7 @@ target_link_libraries(begonia PUBLIC
   PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch
   Boost::uuid Boost::url Boost::property_tree Boost::algorithm Boost::locale
   protobuf::libprotobuf gRPC::grpc++
-  thrift thriftnb thriftz
+  thrift thriftnb thriftz casbin
 )
 
 target_include_directories(begonia PUBLIC
@@ -66,4 +73,5 @@ target_include_directories(begonia PUBLIC
   ${thrift_SOURCE_DIR}/lib/cpp/src
   ${thrift_SOURCE_DIR}/compiler/cpp/src
   ${thrift_BINARY_DIR}
+  ${casbin_SOURCE_DIR}/include
 )
