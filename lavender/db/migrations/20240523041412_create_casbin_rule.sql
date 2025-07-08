@@ -17,6 +17,5 @@ CREATE INDEX idx_casbin_rule_2 ON casbin_rule(v2);
 CREATE INDEX idx_casbin_rule_3 ON casbin_rule(v3);
 CREATE INDEX idx_casbin_rule_4 ON casbin_rule(v4);
 CREATE INDEX idx_casbin_rule_5 ON casbin_rule(v5);
-
 -- migrate:down
 DROP TABLE casbin_rule;

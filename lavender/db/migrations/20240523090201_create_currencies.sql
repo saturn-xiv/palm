@@ -13,6 +13,5 @@ CREATE INDEX idx_currencies_code ON currencies("code");
 CREATE INDEX idx_currencies_name ON currencies("name");
 CREATE INDEX idx_currencies_number ON currencies("number");
 CREATE INDEX idx_currencies_country ON currencies(country);
-
 -- migrate:down
 DROP TABLE currencies;
