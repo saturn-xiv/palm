@@ -847,15 +847,15 @@ class User final : public ::google::protobuf::Message
     kIdFieldNumber = 1,
     kCodeFieldNumber = 2,
   };
-  // int32 id = 1;
+  // uint32 id = 1;
   bool has_id() const;
   void clear_id() ;
-  ::int32_t id() const;
-  void set_id(::int32_t value);
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
 
   private:
-  ::int32_t _internal_id() const;
-  void _internal_set_id(::int32_t value);
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
 
   public:
   // string code = 2;
@@ -907,7 +907,7 @@ class User final : public ::google::protobuf::Message
     union ByUnion {
       constexpr ByUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::int32_t id_;
+      ::uint32_t id_;
       ::google::protobuf::internal::ArenaStringPtr code_;
     } by_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1784,15 +1784,15 @@ class Resource final : public ::google::protobuf::Message
   std::string* _internal_mutable_type();
 
   public:
-  // int32 id = 11;
+  // uint32 id = 11;
   bool has_id() const;
   void clear_id() ;
-  ::int32_t id() const;
-  void set_id(::int32_t value);
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
 
   private:
-  ::int32_t _internal_id() const;
-  void _internal_set_id(::int32_t value);
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
 
   public:
   // string code = 21;
@@ -1845,7 +1845,7 @@ class Resource final : public ::google::protobuf::Message
     union ByUnion {
       constexpr ByUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::int32_t id_;
+      ::uint32_t id_;
       ::google::protobuf::internal::ArenaStringPtr code_;
     } by_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -6644,7 +6644,7 @@ class Array2DReply final : public ::google::protobuf::Message
 
 // User
 
-// int32 id = 1;
+// uint32 id = 1;
 inline bool User::has_id() const {
   return by_case() == kId;
 }
@@ -6654,15 +6654,15 @@ inline void User::set_has_id() {
 inline void User::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kId) {
-    _impl_.by_.id_ = 0;
+    _impl_.by_.id_ = 0u;
     clear_has_by();
   }
 }
-inline ::int32_t User::id() const {
+inline ::uint32_t User::id() const {
   // @@protoc_insertion_point(field_get:palm.casbin.v1.User.id)
   return _internal_id();
 }
-inline void User::set_id(::int32_t value) {
+inline void User::set_id(::uint32_t value) {
   if (by_case() != kId) {
     clear_by();
     set_has_id();
@@ -6670,11 +6670,11 @@ inline void User::set_id(::int32_t value) {
   _impl_.by_.id_ = value;
   // @@protoc_insertion_point(field_set:palm.casbin.v1.User.id)
 }
-inline ::int32_t User::_internal_id() const {
+inline ::uint32_t User::_internal_id() const {
   if (by_case() == kId) {
     return _impl_.by_.id_;
   }
-  return 0;
+  return 0u;
 }
 
 // string code = 2;
@@ -7133,7 +7133,7 @@ inline void Resource::set_allocated_type(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Resource.type)
 }
 
-// int32 id = 11;
+// uint32 id = 11;
 inline bool Resource::has_id() const {
   return by_case() == kId;
 }
@@ -7143,15 +7143,15 @@ inline void Resource::set_has_id() {
 inline void Resource::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kId) {
-    _impl_.by_.id_ = 0;
+    _impl_.by_.id_ = 0u;
     clear_has_by();
   }
 }
-inline ::int32_t Resource::id() const {
+inline ::uint32_t Resource::id() const {
   // @@protoc_insertion_point(field_get:palm.casbin.v1.Resource.id)
   return _internal_id();
 }
-inline void Resource::set_id(::int32_t value) {
+inline void Resource::set_id(::uint32_t value) {
   if (by_case() != kId) {
     clear_by();
     set_has_id();
@@ -7159,11 +7159,11 @@ inline void Resource::set_id(::int32_t value) {
   _impl_.by_.id_ = value;
   // @@protoc_insertion_point(field_set:palm.casbin.v1.Resource.id)
 }
-inline ::int32_t Resource::_internal_id() const {
+inline ::uint32_t Resource::_internal_id() const {
   if (by_case() == kId) {
     return _impl_.by_.id_;
   }
-  return 0;
+  return 0u;
 }
 
 // string code = 21;

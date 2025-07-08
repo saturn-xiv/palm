@@ -1205,14 +1205,14 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_casbin_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\014casbin.proto\022\016palm.casbin.v1\"*\n\004User\022\014"
-    "\n\002id\030\001 \001(\005H\000\022\016\n\004code\030\002 \001(\tH\000B\004\n\002by\"\321\001\n\004R"
+    "\n\002id\030\001 \001(\rH\000\022\016\n\004code\030\002 \001(\tH\000B\004\n\002by\"\321\001\n\004R"
     "ole\022)\n\004root\030\001 \001(\0132\031.palm.casbin.v1.Role."
     "RootH\000\022;\n\radministrator\030\002 \001(\0132\".palm.cas"
     "bin.v1.Role.AdministratorH\000\022+\n\005other\030\t \001"
     "(\0132\032.palm.casbin.v1.Role.OtherH\000\032\006\n\004Root"
     "\032\017\n\rAdministrator\032\025\n\005Other\022\014\n\004code\030\001 \001(\t"
     "B\004\n\002by\"<\n\010Resource\022\014\n\004type\030\001 \001(\t\022\014\n\002id\030\013"
-    " \001(\005H\000\022\016\n\004code\030\025 \001(\tH\000B\004\n\002by\"\217\004\n\nPermiss"
+    " \001(\rH\000\022\016\n\004code\030\025 \001(\tH\000B\004\n\002by\"\217\004\n\nPermiss"
     "ion\022/\n\004read\030\001 \001(\0132\037.palm.casbin.v1.Permi"
     "ssion.ReadH\000\0221\n\005write\030\002 \001(\0132 .palm.casbi"
     "n.v1.Permission.WriteH\000\0223\n\006append\030\003 \001(\0132"
@@ -1574,9 +1574,9 @@ const ::_pbi::TcParseTable<0, 2, 0, 32, 2> User::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // int32 id = 1;
+    // uint32 id = 1;
     {PROTOBUF_FIELD_OFFSET(User, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
+    (0 | ::_fl::kFcOneof | ::_fl::kUInt32)},
     // string code = 2;
     {PROTOBUF_FIELD_OFFSET(User, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -1617,9 +1617,9 @@ PROTOBUF_NOINLINE void User::Clear() {
 
           switch (this_.by_case()) {
             case kId: {
-              target = ::google::protobuf::internal::WireFormatLite::
-                  WriteInt32ToArrayWithField<1>(
-                      stream, this_._internal_id(), target);
+              target = stream->EnsureSpace(target);
+              target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                  1, this_._internal_id(), target);
               break;
             }
             case kCode: {
@@ -1656,9 +1656,9 @@ PROTOBUF_NOINLINE void User::Clear() {
           (void)cached_has_bits;
 
           switch (this_.by_case()) {
-            // int32 id = 1;
+            // uint32 id = 1;
             case kId: {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_id());
               break;
             }
@@ -2726,9 +2726,9 @@ const ::_pbi::TcParseTable<0, 3, 0, 40, 2> Resource::_table_ = {
     // string type = 1;
     {PROTOBUF_FIELD_OFFSET(Resource, _impl_.type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // int32 id = 11;
+    // uint32 id = 11;
     {PROTOBUF_FIELD_OFFSET(Resource, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
+    (0 | ::_fl::kFcOneof | ::_fl::kUInt32)},
     // string code = 21;
     {PROTOBUF_FIELD_OFFSET(Resource, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -2779,9 +2779,9 @@ PROTOBUF_NOINLINE void Resource::Clear() {
 
           switch (this_.by_case()) {
             case kId: {
-              target = ::google::protobuf::internal::WireFormatLite::
-                  WriteInt32ToArrayWithField<11>(
-                      stream, this_._internal_id(), target);
+              target = stream->EnsureSpace(target);
+              target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                  11, this_._internal_id(), target);
               break;
             }
             case kCode: {
@@ -2825,9 +2825,9 @@ PROTOBUF_NOINLINE void Resource::Clear() {
             }
           }
           switch (this_.by_case()) {
-            // int32 id = 11;
+            // uint32 id = 11;
             case kId: {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_id());
               break;
             }

@@ -1,6 +1,6 @@
 #include "palm/rbac.hpp"
 
-std::string palm::casbin::user::to_subject(int32_t id) {
+std::string palm::casbin::user::to_subject(uint32_t id) {
   google::protobuf::Arena arena;
   palm::casbin::v1::User* user =
       google::protobuf::Arena::Create<palm::casbin::v1::User>(&arena);
@@ -128,7 +128,7 @@ std::string palm::casbin::permission::other(const std::string& code) {
 }
 
 std::string palm::casbin::resource::to_object(const std::string& type,
-                                              int32_t id) {
+                                              uint32_t id) {
   google::protobuf::Arena arena;
   palm::casbin::v1::Resource* resource =
       google::protobuf::Arena::Create<palm::casbin::v1::Resource>(&arena);

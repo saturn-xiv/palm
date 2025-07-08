@@ -9,7 +9,7 @@ package palm.casbin.v1;
 
 message User {
   oneof by {
-    int32 id = 1;
+    uint32 id = 1;
     string code = 2;
   }
 }
@@ -30,7 +30,7 @@ message Role {
 message Resource {
   string type = 1;
   oneof by {
-    int32 id = 11;
+    uint32 id = 11;
     string code = 21;
   }
 }

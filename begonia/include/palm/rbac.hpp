@@ -12,6 +12,16 @@
 
 namespace palm {
 namespace casbin {
+struct Rule {
+  int id;
+  std::string p_type;
+  std::string v0;
+  std::string v1;
+  std::string v2;
+  std::string v3;
+  std::string v4;
+  std::string v5;
+};
 // https://github.com/casbin/casbin/blob/master/examples/rbac_model.conf
 inline static const std::string RBAC_MODEL = R"RBAC(
 [request_definition]
@@ -100,7 +110,7 @@ class RabbitMQWatcher : public ::casbin::Watcher {
 // };
 
 namespace user {
-std::string to_subject(int32_t id);
+std::string to_subject(uint32_t id);
 std::string to_subject(const std::string& code);
 }  // namespace user
 
@@ -122,10 +132,42 @@ std::string other(const std::string& code);
 }  // namespace permission
 
 namespace resource {
-std::string to_object(const std::string& type, int32_t id);
+std::string to_object(const std::string& type, uint32_t id);
 std::string to_object(const std::string& type, const std::string& code);
 std::string to_object(const std::string& type);
 }  // namespace resource
 
 }  // namespace casbin
 }  // namespace palm
+
+namespace soci {
+template <>
+struct type_conversion<palm::casbin::Rule> {
+  typedef soci::values base_type;
+
+  static void from_base(soci::values const& v, soci::indicator /* ind */,
+                        palm::casbin::Rule& p) {
+    p.id = v.get<int>("id");
+    p.p_type = v.get<std::string>("ptype");
+    p.v0 = v.get<std::string>("v0");
+    p.v1 = v.get<std::string>("v1");
+    p.v2 = v.get<std::string>("v2");
+    p.v3 = v.get<std::string>("v3");
+    p.v4 = v.get<std::string>("v4");
+    p.v5 = v.get<std::string>("v5");
+  }
+
+  static void to_base(const palm::casbin::Rule& p, soci::values& v,
+                      soci::indicator& ind) {
+    v.set("id", p.id);
+    v.set("ptype", p.p_type);
+    v.set("v0", p.v0);
+    v.set("v1", p.v1);
+    v.set("v2", p.v2);
+    v.set("v3", p.v3);
+    v.set("v4", p.v4);
+    v.set("v5", p.v5);
+    ind = i_ok;
+  }
+};
+}  // namespace soci

@@ -35,6 +35,29 @@ class GrpcClient {
 
 namespace portal {
 
+namespace dao {
+
+std::pair<uint32_t, uint32_t> paginate(palm::portal::v1::Page* page,
+                                       palm::portal::v1::Pagination* pagination,
+                                       uint32_t total);
+namespace locales {
+struct Item {
+  uint32_t id;
+  std::string lang;
+  std::string code;
+  std::string message;
+  std::tm updated_at;
+};
+std::vector<std::string> languages(soci::session& db);
+void create(soci::session& db, const std::string& lang, const std::string& code,
+            const std::string& message);
+void update(soci::session& db, uint32_t id, const std::string& message);
+uint32_t count(soci::session& db);
+std::vector<Item> index(soci::session& db, uint32_t offset, uint32_t limit);
+std::vector<Item> by_lang(soci::session& db, const std::string& lang);
+}  // namespace locales
+}  // namespace dao
+
 void mount(httplib::Server& server, palm::GrpcClient& rpc, palm::Theme& theme,
            std::shared_ptr<palm::Jwt> jwt, std::shared_ptr<palm::Minio> s3);
 
