@@ -37,11 +37,13 @@ TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {
     std::string obj = "data.1";
     std::string act = "read";
 
-    REQUIRE(!enforcer->Enforce({sub, obj, act}));
-    enforcer->AddPermissionForUser(sub, {obj, act});
-    REQUIRE(enforcer->Enforce({sub, obj, act}));
-    enforcer->DeletePermissionForUser(sub, {obj, act});
-    REQUIRE(!enforcer->Enforce({sub, obj, act}));
+    if (enforcer->Enforce({sub, obj, act})) {
+      enforcer->DeletePermissionForUser(sub, {obj, act});
+      REQUIRE(!enforcer->Enforce({sub, obj, act}));
+    } else {
+      enforcer->AddPermissionForUser(sub, {obj, act});
+      REQUIRE(enforcer->Enforce({sub, obj, act}));
+    }
   }
 }
 

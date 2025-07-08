@@ -21,6 +21,11 @@ class EchoQueueConsumer final : public palm::QueueConsumer {
   std::string _name;
 };
 
+/*
+sudo rabbitmqctl add_vhost vh.testing
+sudo rabbitmqctl add_user www 'change-me'
+sudo rabbitmqctl set_permissions -p vh.testing www ".*" ".*" ".*"
+*/
 TEST_CASE("by rabbitmq", "[rabbitmq]") {
   const std::string PRODUCER_CONSUMER_QUEUE = "qu.p-c";
   const std::string PUBLISHER_SUBSCRIBER_EXCHANGE = "ex.pub-sub";

@@ -74,6 +74,31 @@ class RabbitMQWatcher : public ::casbin::Watcher {
   std::shared_ptr<palm::rabbitmq::Client> _subscriber;
 };
 
+// class Logger : public ::casbin::Logger {
+//  public:
+//   void EnableLog(bool enable) { m_enable = enable; }
+
+//   bool IsEnabled() { return m_enable; }
+
+//   template <typename... Object>
+//   void Print(Object... objects) {
+//     if (m_enable) {
+//       std::stringstream ss;
+//       for (auto& it : objects) {
+//         ss << " " << it;
+//       }
+//       spdlog::debug("{}", ss.str());
+//     }
+//   }
+
+//   template <typename... Object>
+//   void Print(std::string format, Object... objects) {
+//     if (m_enable) {
+//       spdlog::debug(format, objects...);
+//     }
+//   }
+// };
+
 namespace user {
 std::string to_subject(int32_t id);
 std::string to_subject(const std::string& code);

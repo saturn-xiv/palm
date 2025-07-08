@@ -4,10 +4,10 @@ CREATE TABLE casbin_rule (
     ptype VARCHAR(127) NOT NULL,
     v0 VARCHAR(127) NOT NULL,
     v1 VARCHAR(127) NOT NULL,
-    v2 VARCHAR(127) NOT NULL,
-    v3 VARCHAR(127) NOT NULL,
-    v4 VARCHAR(127) NOT NULL,
-    v5 VARCHAR(127) NOT NULL
+    v2 VARCHAR(127) NOT NULL DEFAULT '',
+    v3 VARCHAR(127) NOT NULL DEFAULT '',
+    v4 VARCHAR(127) NOT NULL DEFAULT '',
+    v5 VARCHAR(127) NOT NULL DEFAULT ''
 );
 CREATE UNIQUE INDEX idx_casbin_rule ON casbin_rule(ptype, v0, v1, v2, v3, v4, v5);
 CREATE INDEX idx_casbin_rule_ptype ON casbin_rule(ptype);

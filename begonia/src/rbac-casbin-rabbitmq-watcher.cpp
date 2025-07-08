@@ -1,13 +1,17 @@
 #include "palm/http.hpp"
 #include "palm/rbac.hpp"
 
+#include <unistd.h>
+
+#include <boost/asio/ip/host_name.hpp>
+
 namespace palm {
 namespace casbin {
 class WatcherConsumer final : public palm::QueueConsumer {
  public:
-  WatcherConsumer(const std::string& name,
+  WatcherConsumer(const std::string& name, const std::string& local_id,
                   std::shared_ptr<::casbin::Enforcer> enforcer)
-      : _name(name), _enforcer(enforcer) {}
+      : _name(name), _local_id(local_id), _enforcer(enforcer) {}
   std::string name() override { return this->_name; }
   void execute(const std::string& id, const std::string& content_type,
                const std::vector<uint8_t> payload) override {
@@ -20,12 +24,17 @@ class WatcherConsumer final : public palm::QueueConsumer {
       spdlog::error("failed to parse message");
       return;
     }
+    if (message.id() == this->_local_id) {
+      spdlog::debug("ignore refresh message");
+      return;
+    }
     spdlog::debug("reload casbin policies");
     this->_enforcer->LoadPolicy();
   }
 
  private:
   std::string _name;
+  std::string _local_id;
   std::shared_ptr<::casbin::Enforcer> _enforcer;
 };
 }  // namespace casbin
@@ -34,8 +43,10 @@ class WatcherConsumer final : public palm::QueueConsumer {
 void palm::casbin::RabbitMQWatcher::subscribe(
     std::shared_ptr<::casbin::Enforcer> enforcer) {
   std::shared_ptr<palm::casbin::WatcherConsumer> consumer =
-      std::make_shared<palm::casbin::WatcherConsumer>(this->_local_id,
-                                                      enforcer);
+      std::make_shared<palm::casbin::WatcherConsumer>(
+          std::format("casbin-watcher.{}-{}", boost::asio::ip::host_name(),
+                      getpid()),
+          this->_local_id, enforcer);
   this->_subscriber->subscribe(this->_channel, consumer);
 }
 
@@ -49,8 +60,9 @@ void palm::casbin::RabbitMQWatcher::Update() {
     message->set_id(this->_local_id);
     message->set_method(palm::casbin::v1::WatcherMessage_Method_Update);
 
-    buffer.reserve(message->ByteSizeLong());
-    if (!message->SerializeToArray(buffer.data(), buffer.size())) {
+    const auto len = message->ByteSizeLong();
+    buffer.reserve(len);
+    if (!message->SerializeToArray(buffer.data(), len)) {
       spdlog::error("failed to serial casbin watcher message");
       return;
     }
