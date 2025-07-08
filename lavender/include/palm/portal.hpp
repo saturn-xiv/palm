@@ -37,12 +37,9 @@ namespace portal {
 
 namespace dao {
 
-std::pair<uint32_t, uint32_t> paginate(palm::portal::v1::Page* page,
-                                       palm::portal::v1::Pagination* pagination,
-                                       uint32_t total);
 namespace locales {
 struct Item {
-  uint32_t id;
+  int id;
   std::string lang;
   std::string code;
   std::string message;
@@ -51,10 +48,13 @@ struct Item {
 std::vector<std::string> languages(soci::session& db);
 void create(soci::session& db, const std::string& lang, const std::string& code,
             const std::string& message);
-void update(soci::session& db, uint32_t id, const std::string& message);
-uint32_t count(soci::session& db);
-std::vector<Item> index(soci::session& db, uint32_t offset, uint32_t limit);
-std::vector<Item> by_lang(soci::session& db, const std::string& lang);
+void update(soci::session& db, int id, const std::string& message);
+int count(soci::session& db);
+boost::optional<Item> get(soci::session& db, int id);
+boost::optional<Item> get(soci::session& db, const std::string& lang,
+                          const std::string& code);
+boost::fusion::vector<Item> index(soci::session& db, int offset, int limit);
+boost::fusion::vector<Item> by_lang(soci::session& db, const std::string& lang);
 }  // namespace locales
 }  // namespace dao
 
@@ -151,3 +151,29 @@ class UserClient {
 }  // namespace rpc
 }  // namespace portal
 }  // namespace palm
+
+namespace soci {
+template <>
+struct type_conversion<palm::portal::dao::locales::Item> {
+  typedef soci::values base_type;
+
+  static void from_base(soci::values const& v, soci::indicator /* ind */,
+                        palm::portal::dao::locales::Item& p) {
+    p.id = v.get<int>("id");
+    p.lang = v.get<std::string>("lang");
+    p.code = v.get<std::string>("code");
+    p.message = v.get<std::string>("message");
+    p.updated_at = v.get<std::tm>("updated_at");
+  }
+
+  static void to_base(const palm::portal::dao::locales::Item& p,
+                      soci::values& v, soci::indicator& ind) {
+    v.set("id", p.id);
+    v.set("lang", p.lang);
+    v.set("code", p.code);
+    v.set("message", p.message);
+    v.set("updated_at", p.updated_at);
+    ind = i_ok;
+  }
+};
+}  // namespace soci
