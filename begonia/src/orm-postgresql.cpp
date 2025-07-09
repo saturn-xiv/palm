@@ -15,6 +15,8 @@ std::string palm::PostgreSql::uri() const {
 
 std::shared_ptr<soci::connection_pool> palm::PostgreSql::open(
     size_t pool_size) const {
+  spdlog::debug("open postgresql://{}@{}:{}/{}", this->_user, this->_host,
+                this->_port, this->_db_name);
   const auto url = this->uri();
   std::shared_ptr<soci::connection_pool> pool =
       std::make_shared<soci::connection_pool>(pool_size);

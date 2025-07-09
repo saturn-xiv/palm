@@ -164,6 +164,7 @@ boost::optional<Item> get(soci::session& db, const std::string& lang,
                           const std::string& code);
 boost::fusion::vector<Item> index(soci::session& db, int offset, int limit);
 boost::fusion::vector<Item> by_lang(soci::session& db, const std::string& lang);
+void load(soci::session& db, const std::filesystem::path& folder);
 }  // namespace locales
 }  // namespace dao
 

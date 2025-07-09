@@ -3,6 +3,7 @@
 #include "palm/bbs.hpp"
 #include "palm/blog.hpp"
 #include "palm/cms.hpp"
+#include "palm/iso4217.hpp"
 #include "palm/ledger.hpp"
 #include "palm/portal.hpp"
 #include "palm/survey.hpp"
@@ -25,26 +26,44 @@
 #include <argparse/argparse.hpp>
 
 static std::shared_ptr<palm::Jwt> open_jwt(toml::table* config) {
-  std::optional<std::string> key = config->get("key")->value<std::string>();
+  auto node = config->get("jwt")->as_table();
+  std::optional<std::string> key = node->get("key")->value<std::string>();
   std::shared_ptr<palm::Jwt> it = std::make_shared<palm::Jwt>(key.value());
   return it;
 }
 static std::shared_ptr<palm::Aes> open_aes(toml::table* config) {
-  std::optional<std::string> key = config->get("key")->value<std::string>();
-  std::optional<std::string> iv = config->get("iv")->value<std::string>();
+  auto node = config->get("aes")->as_table();
+  // TODO
+  std::optional<std::string> key = node->get("key")->value<std::string>();
+  std::optional<std::string> iv = node->get("iv")->value<std::string>();
   std::shared_ptr<palm::Aes> it =
       std::make_shared<palm::Aes>(key.value(), iv.value());
   return it;
 }
 static std::shared_ptr<palm::HMac> open_hmac(toml::table* config) {
-  std::optional<std::string> key = config->get("key")->value<std::string>();
+  auto node = config->get("hmac")->as_table();
+  std::optional<std::string> key = node->get("key")->value<std::string>();
   std::shared_ptr<palm::HMac> it = std::make_shared<palm::HMac>(key.value());
+  return it;
+}
+static std::shared_ptr<soci::connection_pool> open_postgresql(
+    toml::table* config) {
+  auto node = config->get("postgresql")->as_table();
+  palm::PostgreSql cfg(node);
+  auto it = cfg.open(node->get("pool-size")->value_or<size_t>(1 << 5));
+  {
+    soci::session db(*it);
+    std::string version;
+    db << "SELECT VERSION()", soci::into(version);
+    spdlog::debug("{}", version);
+  }
   return it;
 }
 static std::shared_ptr<palm::opensearch::Client> open_opensearch(
     toml::table* config) {
   std::shared_ptr<palm::opensearch::Client> it =
-      std::make_shared<palm::opensearch::Client>(config);
+      std::make_shared<palm::opensearch::Client>(
+          config->get("opensearch")->as_table());
   {
     const auto res = it->cluster_health();
     spdlog::debug("cluster {}({} nodes) {}", res->cluster_name,
@@ -53,7 +72,8 @@ static std::shared_ptr<palm::opensearch::Client> open_opensearch(
   return it;
 }
 static std::shared_ptr<palm::Minio> open_minio(toml::table* config) {
-  std::shared_ptr<palm::Minio> it = std::make_shared<palm::Minio>(config);
+  std::shared_ptr<palm::Minio> it =
+      std::make_shared<palm::Minio>(config->get("minio")->as_table());
   {
     const auto items = it->list_buckets();
     spdlog::debug("total {} buckets", items.size());
@@ -61,7 +81,7 @@ static std::shared_ptr<palm::Minio> open_minio(toml::table* config) {
   return it;
 }
 static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
-  palm::redis::Node node(config);
+  palm::redis::Node node(config->get("redis")->as_table());
   auto it = node.open();
   {
     const auto v = it->ping();
@@ -73,15 +93,47 @@ static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
 static std::shared_ptr<palm::rabbitmq::Config> open_rabbitmq(
     toml::table* config) {
   std::shared_ptr<palm::rabbitmq::Config> it =
-      std::make_shared<palm::rabbitmq::Config>(config);
+      std::make_shared<palm::rabbitmq::Config>(
+          config->get("rabbitmq")->as_table());
   {
     auto con = it->open();
     con->ping();
   }
   return it;
 }
-static void db_seed(bool debug, toml::table* config) {
+static void create_email_user(toml::table* config, const std::string& real_name,
+                              const std::string& email,
+                              const std::string& password) {
   // TODO
+}
+static void set_email_user_password(toml::table* config,
+                                    const std::string& email,
+                                    const std::string& password) {
+  // TODO
+}
+static void add_role_for_email_user(toml::table* config,
+                                    const std::string& email,
+                                    const std::string& role) {
+  // TODO
+}
+static void delete_role_for_email_user(toml::table* config,
+                                       const std::string& email,
+                                       const std::string& role) {
+  // TODO
+}
+static void generate_etc(toml::table* config, const std::string& domain) {
+  // TODO generate chatting/email/www/assets/s3 nginx files
+  // TODO generate api/rpc/minio systemd services
+}
+static void db_seed(toml::table* config) {
+  auto db_pool = open_postgresql(config);
+  soci::session db(*db_pool);
+  {
+    soci::transaction tr(db);
+    palm::portal::dao::locales::load(db, "locales");
+    palm::iso4217::load(db, "iso4217/list-one.xml");
+    tr.commit();
+  }
 }
 static void start_sms_send_worker(bool debug, const std::string& name,
                                   toml::table* config, uint interval) {
@@ -156,13 +208,13 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   }
 
   const std::string address = std::format("{}:{}", host, port);
-  auto queue = open_rabbitmq(config->get("rabbitmq")->as_table());
-  auto cache = open_redis(config->get("redis")->as_table());
-  auto s3 = open_minio(config->get("minio")->as_table());
-  auto search = open_opensearch(config->get("opensearch")->as_table());
-  auto jwt = open_jwt(config->get("jwt")->as_table());
-  auto hmac = open_hmac(config->get("hmac")->as_table());
-  auto aes = open_aes(config->get("aes")->as_table());
+  auto queue = open_rabbitmq(config);
+  auto cache = open_redis(config);
+  auto s3 = open_minio(config);
+  auto search = open_opensearch(config);
+  auto jwt = open_jwt(config);
+  auto hmac = open_hmac(config);
+  auto aes = open_aes(config);
 
   palm::portal::services::UserServiceImpl portal_user_service(cache, queue, s3,
                                                               aes, hmac, jwt);
@@ -294,7 +346,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   }
   if (program.is_subcommand_used(db_seed_command)) {
     toml::table config = toml::parse_file(config_file);
-    db_seed(debug, &config);
+    db_seed(&config);
     return;
   }
   if (program.is_subcommand_used(sms_send_consumer_command)) {

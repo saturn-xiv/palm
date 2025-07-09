@@ -200,4 +200,13 @@ palm::portal::dao::locales::get(soci::session& db, const std::string& lang,
   return it;
 }
 
+static std::vector<std::tuple<std::string, std::string, std::string>>
+parse_locales_from_toml_folder(const std::filesystem::path& root) {
+  // TODO
+}
+void palm::portal::dao::locales::load(soci::session& db,
+                                      const std::filesystem::path& folder) {
+  const auto items = parse_locales_from_toml_folder(folder);
+  // TODO
+}
 // ----------------------------------------------------------------------------
