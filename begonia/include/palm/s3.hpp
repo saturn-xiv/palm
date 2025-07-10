@@ -15,10 +15,10 @@ namespace palm {
 
 class Minio {
  public:
-  Minio(toml::table* config)
-      : _base_url(config->get("base-url")->value<std::string>().value()),
-        _access_key(config->get("access-key")->value<std::string>().value()),
-        _secret_key(config->get("secret-key")->value<std::string>().value()) {}
+  Minio(const toml::table& config)
+      : _base_url(config["base-url"].value<std::string>().value()),
+        _access_key(config["access-key"].value<std::string>().value()),
+        _secret_key(config["secret-key"].value<std::string>().value()) {}
   Minio(const std::string& base_url, const std::string& access_key,
         const std::string& secret_key)
       : _base_url(base_url), _access_key(access_key), _secret_key(secret_key) {}

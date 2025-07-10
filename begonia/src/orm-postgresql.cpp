@@ -13,14 +13,14 @@ std::string palm::PostgreSql::uri() const {
   return ss.str();
 }
 
-std::shared_ptr<soci::connection_pool> palm::PostgreSql::open(
-    size_t pool_size) const {
-  spdlog::debug("open postgresql://{}@{}:{}/{}", this->_user, this->_host,
-                this->_port, this->_db_name);
+std::shared_ptr<soci::connection_pool> palm::PostgreSql::open() const {
+  spdlog::debug("open postgresql://{}@{}:{}/{} with {} connections",
+                this->_user, this->_host, this->_port, this->_db_name,
+                this->_pool_size);
   const auto url = this->uri();
   std::shared_ptr<soci::connection_pool> pool =
-      std::make_shared<soci::connection_pool>(pool_size);
-  for (size_t i = 0; i != pool_size; ++i) {
+      std::make_shared<soci::connection_pool>(this->_pool_size);
+  for (size_t i = 0; i < this->_pool_size; ++i) {
     soci::session& it = pool->at(i);
     it.open(soci::postgresql, url);
     it.set_logger(new palm::SociLogger());

@@ -25,14 +25,14 @@
 #include <grpcpp/health_check_service_interface.h>
 #include <argparse/argparse.hpp>
 
-static std::shared_ptr<palm::Jwt> open_jwt(toml::table* config) {
-  auto node = config->get("jwt")->as_table();
+static std::shared_ptr<palm::Jwt> open_jwt(const toml::table& config) {
+  auto node = config["jwt"].as_table();
   std::optional<std::string> key = node->get("key")->value<std::string>();
   std::shared_ptr<palm::Jwt> it = std::make_shared<palm::Jwt>(key.value());
   return it;
 }
-static std::shared_ptr<palm::Aes> open_aes(toml::table* config) {
-  auto node = config->get("aes")->as_table();
+static std::shared_ptr<palm::Aes> open_aes(const toml::table& config) {
+  auto node = config["aes"].as_table();
   // TODO
   std::optional<std::string> key = node->get("key")->value<std::string>();
   std::optional<std::string> iv = node->get("iv")->value<std::string>();
@@ -40,17 +40,16 @@ static std::shared_ptr<palm::Aes> open_aes(toml::table* config) {
       std::make_shared<palm::Aes>(key.value(), iv.value());
   return it;
 }
-static std::shared_ptr<palm::HMac> open_hmac(toml::table* config) {
-  auto node = config->get("hmac")->as_table();
+static std::shared_ptr<palm::HMac> open_hmac(const toml::table& config) {
+  auto node = config["hmac"].as_table();
   std::optional<std::string> key = node->get("key")->value<std::string>();
   std::shared_ptr<palm::HMac> it = std::make_shared<palm::HMac>(key.value());
   return it;
 }
 static std::shared_ptr<soci::connection_pool> open_postgresql(
-    toml::table* config) {
-  auto node = config->get("postgresql")->as_table();
-  palm::PostgreSql cfg(node);
-  auto it = cfg.open(node->get("pool-size")->value_or<size_t>(1 << 5));
+    const toml::table& config) {
+  palm::PostgreSql cfg(*(config["postgresql"].as_table()));
+  auto it = cfg.open();
   {
     soci::session db(*it);
     std::string version;
@@ -60,10 +59,10 @@ static std::shared_ptr<soci::connection_pool> open_postgresql(
   return it;
 }
 static std::shared_ptr<palm::opensearch::Client> open_opensearch(
-    toml::table* config) {
+    const toml::table& config) {
+  auto cfg = config["opensearch"].as_table();
   std::shared_ptr<palm::opensearch::Client> it =
-      std::make_shared<palm::opensearch::Client>(
-          config->get("opensearch")->as_table());
+      std::make_shared<palm::opensearch::Client>(*cfg);
   {
     const auto res = it->cluster_health();
     spdlog::debug("cluster {}({} nodes) {}", res->cluster_name,
@@ -71,17 +70,18 @@ static std::shared_ptr<palm::opensearch::Client> open_opensearch(
   }
   return it;
 }
-static std::shared_ptr<palm::Minio> open_minio(toml::table* config) {
-  std::shared_ptr<palm::Minio> it =
-      std::make_shared<palm::Minio>(config->get("minio")->as_table());
+static std::shared_ptr<palm::Minio> open_minio(const toml::table& config) {
+  auto cfg = config["minio"].as_table();
+  std::shared_ptr<palm::Minio> it = std::make_shared<palm::Minio>(*cfg);
   {
     const auto items = it->list_buckets();
     spdlog::debug("total {} buckets", items.size());
   }
   return it;
 }
-static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
-  palm::redis::Node node(config->get("redis")->as_table());
+static std::shared_ptr<sw::redis::Redis> open_redis(const toml::table& config) {
+  auto cfg = config["redis"].as_table();
+  palm::redis::Node node(*cfg);
   auto it = node.open();
   {
     const auto v = it->ping();
@@ -91,10 +91,10 @@ static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
 }
 
 static std::shared_ptr<palm::rabbitmq::Config> open_rabbitmq(
-    toml::table* config) {
+    const toml::table& config) {
+  auto cfg = config["rabbitmq"].as_table();
   std::shared_ptr<palm::rabbitmq::Config> it =
-      std::make_shared<palm::rabbitmq::Config>(
-          config->get("rabbitmq")->as_table());
+      std::make_shared<palm::rabbitmq::Config>(*cfg);
   {
     auto con = it->open();
     con->ping();
@@ -121,23 +121,30 @@ static void delete_role_for_email_user(toml::table* config,
                                        const std::string& role) {
   // TODO
 }
-static void generate_etc(toml::table* config, const std::string& domain) {
+static void generate_etc(const toml::table& config, const std::string& domain) {
   // TODO generate chatting/email/www/assets/s3 nginx files
   // TODO generate api/rpc/minio systemd services
 }
-static void db_seed(toml::table* config) {
+static void db_seed(const toml::table& config) {
   auto db_pool = open_postgresql(config);
-  soci::session db(*db_pool);
+
   {
-    soci::transaction tr(db);
-    palm::portal::dao::locales::load(db, "locales");
-    palm::iso4217::load(db, "iso4217/list-one.xml");
-    tr.commit();
+    soci::session db(*db_pool);
+
+    {
+      soci::transaction tr(db);
+      palm::portal::dao::locales::load(db, "locales");
+      palm::iso4217::load(db, "iso4217/list-one.xml");
+      tr.commit();
+    }
   }
+  spdlog::info("done.");
 }
-static void start_sms_send_worker(bool debug, const std::string& name,
-                                  toml::table* config, uint interval) {
-  std::shared_ptr<palm::Twilio> twilio = std::make_shared<palm::Twilio>(config);
+static void start_sms_send_worker(const std::string& name,
+                                  const toml::table& config, uint interval) {
+  auto twilio_config = config["twilio"].as_table();
+  std::shared_ptr<palm::Twilio> twilio =
+      std::make_shared<palm::Twilio>(*twilio_config);
 
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
@@ -147,10 +154,11 @@ static void start_sms_send_worker(bool debug, const std::string& name,
   cli->consume(palm::portal::workers::SmsSendQueueConsumer::QUEUE, consumer);
 }
 
-static void start_email_send_worker(bool debug, const std::string& name,
-                                    toml::table* config, uint interval) {
+static void start_email_send_worker(const std::string& name,
+                                    const toml::table& config, uint interval) {
+  auto smtp_config = config["smtp"].as_table();
   std::shared_ptr<palm::email::Smtp> smtp =
-      std::make_shared<palm::email::Smtp>(config);
+      std::make_shared<palm::email::Smtp>(*smtp_config);
 
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
@@ -161,17 +169,17 @@ static void start_email_send_worker(bool debug, const std::string& name,
 }
 
 static void start_http_server(const std::string& host, uint16_t port,
-                              bool debug, toml::table* config,
+                              bool debug, const toml::table& config,
                               const std::string& theme_folder) {
   if (palm::is_stopped()) {
     return;
   }
 
-  auto s3 = open_minio(config->get("minio")->as_table());
-  auto search = open_opensearch(config->get("opensearch")->as_table());
-  auto jwt = open_jwt(config->get("jwt")->as_table());
+  auto s3 = open_minio(config);
+  auto search = open_opensearch(config);
+  auto jwt = open_jwt(config);
 
-  palm::GrpcClient rpc = palm::GrpcClient(config->get("backend")->as_table());
+  palm::GrpcClient rpc = palm::GrpcClient(*(config["backend"].as_table()));
   spdlog::debug("connect to backend tcp://{}", rpc.target());
 
   nlohmann::json global;
@@ -202,7 +210,7 @@ static void start_http_server(const std::string& host, uint16_t port,
 }
 
 static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
-                             toml::table* config) {
+                             const toml::table& config) {
   if (palm::is_stopped()) {
     return;
   }
@@ -332,34 +340,39 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   program.add_subparser(email_send_consumer_command);
   program.parse_args(argc, argv);
 
-  palm::init(debug);
-  if (program.is_subcommand_used(http_command)) {
+  if (program.is_subcommand_used(http_command) ||
+      program.is_subcommand_used(rpc_command) ||
+      program.is_subcommand_used(db_seed_command) ||
+      program.is_subcommand_used(sms_send_consumer_command) ||
+      program.is_subcommand_used(email_send_consumer_command)) {
+    palm::init(debug);
+    spdlog::debug("load configuration from {}", config_file);
     toml::table config = toml::parse_file(config_file);
-    start_http_server(http_listen_host, http_listen_port, debug, &config,
-                      http_theme_folder);
-    return;
-  }
-  if (program.is_subcommand_used(rpc_command)) {
-    toml::table config = toml::parse_file(config_file);
-    start_rpc_server(rpc_listen_host, rpc_listen_port, debug, &config);
-    return;
-  }
-  if (program.is_subcommand_used(db_seed_command)) {
-    toml::table config = toml::parse_file(config_file);
-    db_seed(&config);
-    return;
-  }
-  if (program.is_subcommand_used(sms_send_consumer_command)) {
-    toml::table config = toml::parse_file(config_file);
-    start_sms_send_worker(debug, sms_send_consumer_name, &config,
-                          sms_send_job_interval);
-    return;
-  }
-  if (program.is_subcommand_used(email_send_consumer_command)) {
-    toml::table config = toml::parse_file(config_file);
-    start_email_send_worker(debug, email_send_consumer_name, &config,
-                            email_send_job_interval);
-    return;
+
+    if (program.is_subcommand_used(http_command)) {
+      start_http_server(http_listen_host, http_listen_port, debug, config,
+                        http_theme_folder);
+      return;
+    }
+    if (program.is_subcommand_used(rpc_command)) {
+      start_rpc_server(rpc_listen_host, rpc_listen_port, debug, config);
+      return;
+    }
+    if (program.is_subcommand_used(db_seed_command)) {
+      db_seed(config);
+      return;
+    }
+    if (program.is_subcommand_used(sms_send_consumer_command)) {
+      toml::table config = toml::parse_file(config_file);
+      start_sms_send_worker(sms_send_consumer_name, config,
+                            sms_send_job_interval);
+      return;
+    }
+    if (program.is_subcommand_used(email_send_consumer_command)) {
+      start_email_send_worker(email_send_consumer_name, config,
+                              email_send_job_interval);
+      return;
+    }
   }
   std::cout << program << std::endl;
 }

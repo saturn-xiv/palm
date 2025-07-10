@@ -3,7 +3,9 @@
 static std::vector<palm::iso4217::Currency> parse_list_one_xml(
     const std::filesystem::path& file) {
   spdlog::info("load iso4217 from {}", file.string());
+  std::vector<palm::iso4217::Currency> items;
   // TODO
+  return items;
 }
 void palm::iso4217::load(soci::session& db,
                          const std::filesystem::path& list_one_xml) {

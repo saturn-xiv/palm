@@ -10,12 +10,12 @@ namespace palm {
 namespace redis {
 class Node {
  public:
-  Node(toml::table* config)
-      : _host(config->get("host")->value_or<std::string>("127.0.0.1")),
-        _port(config->get("port")->value_or<uint16_t>(6379)),
-        _password(config->get("password")->value<std::string>()),
-        _db(config->get("db")->value_or<uint8_t>(0)),
-        _pool_size(config->get("pool-size")->value_or<size_t>(1 << 5)) {}
+  Node(const toml::table& config)
+      : _host(config["host"].value_or<std::string>("127.0.0.1")),
+        _port(config["port"].value_or<uint16_t>(6379)),
+        _password(config["password"].value<std::string>()),
+        _db(config["db"].value_or<uint8_t>(0)),
+        _pool_size(config["pool-size"].value_or<size_t>(1 << 5)) {}
   Node(const std::string& host = "127.0.0.1", uint16_t port = 6379,
        std::optional<std::string> password = std::nullopt, uint8_t db = 0,
        size_t pool_size = 1 << 5)

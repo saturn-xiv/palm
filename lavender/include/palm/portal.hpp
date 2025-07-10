@@ -18,9 +18,9 @@
 namespace palm {
 class GrpcClient {
  public:
-  GrpcClient(toml::table* config)
-      : _host(config->get("host")->value<std::string>().value()),
-        _port(config->get("port")->value<uint16_t>().value()) {}
+  GrpcClient(const toml::table& config)
+      : _host(config["host"].value<std::string>().value()),
+        _port(config["port"].value<uint16_t>().value()) {}
   GrpcClient(const std::string& host, uint16_t port)
       : _host(host), _port(port) {}
 

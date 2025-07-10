@@ -16,16 +16,17 @@
 
 #include <argparse/argparse.hpp>
 
-static std::shared_ptr<palm::Jwt> open_jwt(toml::table* config) {
-  std::shared_ptr<palm::Jwt> it = std::make_shared<palm::Jwt>(
-      config->get("key")->value<std::string>().value());
+static std::shared_ptr<palm::Jwt> open_jwt(const toml::table& config) {
+  std::shared_ptr<palm::Jwt> it =
+      std::make_shared<palm::Jwt>(config["key"].value<std::string>().value());
   return it;
 }
 
 static std::shared_ptr<palm::opensearch::Client> open_opensearch(
-    toml::table* config) {
+    const toml::table& config) {
   std::shared_ptr<palm::opensearch::Client> it =
-      std::make_shared<palm::opensearch::Client>(config);
+      std::make_shared<palm::opensearch::Client>(
+          *(config["opensearch"].as_table()));
   {
     const auto res = it->cluster_health();
     spdlog::debug("cluster {} ({} nodes) {}", res->cluster_name,
@@ -34,8 +35,8 @@ static std::shared_ptr<palm::opensearch::Client> open_opensearch(
   return it;
 }
 
-static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
-  palm::redis::Node node(config);
+static std::shared_ptr<sw::redis::Redis> open_redis(const toml::table& config) {
+  palm::redis::Node node(*(config["redis"].as_table()));
   auto it = node.open();
   {
     const auto v = it->ping();
@@ -44,15 +45,14 @@ static std::shared_ptr<sw::redis::Redis> open_redis(toml::table* config) {
   return it;
 }
 
-static void start_log_watcher(bool debug, toml::table* config, bool stdin,
+static void start_log_watcher(const toml::table& config, bool stdin,
                               const std::vector<std::string>& original_files) {
   if (palm::is_stopped()) {
     return;
   }
 
   std::shared_ptr<palm::opensearch::Client> search =
-      std::make_shared<palm::opensearch::Client>(
-          config->get("opensearch")->as_table());
+      std::make_shared<palm::opensearch::Client>(config);
   {
     auto res = search->cluster_health();
     spdlog::debug("{} {}", res->cluster_name, res->status);
@@ -84,7 +84,7 @@ static void start_log_watcher(bool debug, toml::table* config, bool stdin,
 }
 
 static void start_http_server(const std::string& host, uint16_t port,
-                              bool debug, toml::table* config,
+                              const toml::table& config,
                               const std::string& theme_folder) {
   if (palm::is_stopped()) {
     return;
@@ -170,17 +170,20 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   program.add_subparser(watcher_command);
   program.parse_args(argc, argv);
 
-  palm::init(debug);
-  spdlog::info("load configuration from {}", config_file);
-  toml::table config = toml::parse_file(config_file);
-  if (program.is_subcommand_used(http_command)) {
-    start_http_server(http_listen_host, http_listen_port, debug, &config,
-                      http_theme_folder);
-    return;
-  }
-  if (program.is_subcommand_used(watcher_command)) {
-    start_log_watcher(debug, &config, watcher_stdin, watcher_files);
-    return;
+  if (program.is_subcommand_used(http_command) ||
+      program.is_subcommand_used(watcher_command)) {
+    palm::init(debug);
+    spdlog::info("load configuration from {}", config_file);
+    toml::table config = toml::parse_file(config_file);
+    if (program.is_subcommand_used(http_command)) {
+      start_http_server(http_listen_host, http_listen_port, config,
+                        http_theme_folder);
+      return;
+    }
+    if (program.is_subcommand_used(watcher_command)) {
+      start_log_watcher(config, watcher_stdin, watcher_files);
+      return;
+    }
   }
   std::cout << program << std::endl;
 }

@@ -11,9 +11,9 @@ namespace palm {
 // https://www.twilio.com/docs/usage/api
 class Twilio {
  public:
-  Twilio(toml::table* config)
-      : _account_sid(config->get("account-sid")->value<std::string>().value()),
-        _auth_token(config->get("auth-token")->value<std::string>().value()) {}
+  Twilio(const toml::table& config)
+      : _account_sid(config["account-sid"].value<std::string>().value()),
+        _auth_token(config["auth-token"].value<std::string>().value()) {}
   Twilio(const std::string& account_sid, const std::string& auth_token)
       : _account_sid(account_sid), _auth_token(auth_token) {}
 

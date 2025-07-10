@@ -83,13 +83,12 @@ class Client {
 
 class Config {
  public:
-  Config(toml::table* config)
-      : _host(config->get("host")->value_or<std::string>("127.0.0.1")),
-        _port(config->get("port")->value_or<uint16_t>(5672)),
-        _user(config->get("user")->value_or<std::string>("guest")),
-        _password(config->get("password")->value_or<std::string>("guest")),
-        _virtual_host(config->get("virtual-host")->value_or<std::string>("/")) {
-  }
+  Config(const toml::table& config)
+      : _host(config["host"].value_or<std::string>("127.0.0.1")),
+        _port(config["port"].value_or<uint16_t>(5672)),
+        _user(config["user"].value_or<std::string>("guest")),
+        _password(config["password"].value_or<std::string>("guest")),
+        _virtual_host(config["virtual-host"].value_or<std::string>("/")) {}
   Config(const std::string& host = "127.0.0.1", uint16_t port = 5672,
          const std::string& user = "guest",
          const std::string& password = "password",

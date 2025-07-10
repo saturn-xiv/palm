@@ -107,9 +107,9 @@ struct ClusterHealth {
 // https://opensearch.org/docs/latest/api-reference/
 class Client {
  public:
-  Client(toml::table* config)
-      : _host(config->get("host")->value_or<std::string>("127.0.0.1")),
-        _port(config->get("port")->value_or<uint16_t>(9200)),
+  Client(const toml::table& config)
+      : _host(config["host"].value_or<std::string>("127.0.0.1")),
+        _port(config["port"].value_or<uint16_t>(9200)),
         _auth(std::nullopt) {}
   Client(const std::string& host = "127.0.0.1", uint16_t port = 9200,
          std::optional<std::pair<std::string, std::string>> auth = std::nullopt)
