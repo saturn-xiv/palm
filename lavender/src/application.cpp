@@ -127,10 +127,8 @@ static void generate_etc(const toml::table& config, const std::string& domain) {
 }
 static void db_seed(const toml::table& config) {
   auto db_pool = open_postgresql(config);
-
   {
     soci::session db(*db_pool);
-
     {
       soci::transaction tr(db);
       palm::portal::dao::locales::load(db, "locales");

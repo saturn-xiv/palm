@@ -151,7 +151,7 @@ void palm::portal::dao::locales::create(soci::session& db,
                                         const std::string& lang,
                                         const std::string& code,
                                         const std::string& message) {
-  db << R"SQL(INSERT INTO locales(lang, code, message) VALUES(:lang, :code, :message, CURRENT_TIMESTAMP))SQL",
+  db << R"SQL(INSERT INTO locales(lang, code, message, updated_at) VALUES(:lang, :code, :message, CURRENT_TIMESTAMP))SQL",
       soci::use(code, "code"), soci::use(lang, "lang"),
       soci::use(message, "message");
 }
@@ -200,13 +200,76 @@ palm::portal::dao::locales::get(soci::session& db, const std::string& lang,
   return it;
 }
 
-static std::vector<std::tuple<std::string, std::string, std::string>>
-parse_locales_from_toml_folder(const std::filesystem::path& root) {
-  // TODO
+inline static void load_locales_from_toml(
+    std::vector<std::tuple<std::string, std::string, std::string>>& items,
+    const std::string& lang, const std::string& zone,
+    const toml::table& table) {
+  for (auto&& [key, val] : table) {
+    const std::string code = std::format("{}.{}", zone, key.str());
+    if (val.is_string()) {
+      const std::string message = val.as_string()->get();
+      items.push_back({lang, code, message});
+      continue;
+    }
+    if (val.is_table()) {
+      load_locales_from_toml(items, lang, code, *(val.as_table()));
+      continue;
+    }
+    spdlog::warn("unknown field {}", code);
+  }
+}
+
+inline static void load_locales_from_toml_file(
+    std::vector<std::tuple<std::string, std::string, std::string>>& items,
+    const std::string& lang, const std::filesystem::path& file) {
+  spdlog::debug("load locales for {} from {}", lang, file.string());
+  toml::table root = toml::parse_file(file.string());
+  load_locales_from_toml(items, lang, file.stem().string(), root);
+}
+
+inline static std::vector<std::tuple<std::string, std::string, std::string>>
+load_locales_from_toml_folder(const std::filesystem::path& root) {
+  spdlog::info("load locales from {}", root.string());
+  std::vector<std::tuple<std::string, std::string, std::string>> items;
+
+  std::vector<std::string> languages;
+  for (const auto& entry : std::filesystem::directory_iterator(root)) {
+    auto it = entry.path();
+    if (std::filesystem::is_directory(it)) {
+      const auto lang = it.filename().string();
+      spdlog::debug("find language {}", lang);
+      languages.push_back(lang);
+    }
+  }
+  for (const auto& entry : std::filesystem::directory_iterator(root)) {
+    auto it = entry.path();
+    if (std::filesystem::is_regular_file(it)) {
+      for (const auto& lang : languages) {
+        load_locales_from_toml_file(items, lang, it);
+      }
+    }
+  }
+  for (const auto& lang : languages) {
+    for (const auto& entry : std::filesystem::directory_iterator(root / lang)) {
+      auto it = entry.path();
+      if (std::filesystem::is_regular_file(it)) {
+        load_locales_from_toml_file(items, lang, it);
+      }
+    }
+  }
+  return items;
 }
 void palm::portal::dao::locales::load(soci::session& db,
                                       const std::filesystem::path& folder) {
-  const auto items = parse_locales_from_toml_folder(folder);
-  // TODO
+  const auto items = load_locales_from_toml_folder(folder);
+  int inserted = 0;
+  for (const auto& [lang, code, message] : items) {
+    auto it = palm::portal::dao::locales::get(db, lang, code);
+    if (!it.is_initialized()) {
+      palm::portal::dao::locales::create(db, lang, code, message);
+      inserted++;
+    }
+  }
+  spdlog::info("found {} items, insert {} items", items.size(), inserted);
 }
 // ----------------------------------------------------------------------------
