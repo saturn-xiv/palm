@@ -18,6 +18,8 @@ struct Currency {
 // https://www.iso.org/iso-4217-currency-codes.html
 void load(soci::session& db, const std::filesystem::path& list_one_xml);
 boost::fusion::vector<Currency> all(soci::session& db);
+boost::optional<Currency> get(soci::session& db, int id);
+int total(soci::session& db);
 }  // namespace iso4217
 }  // namespace palm
 

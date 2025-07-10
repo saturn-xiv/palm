@@ -164,7 +164,7 @@ void palm::portal::dao::locales::destroy(soci::session& db, int id) {
   db << R"SQL(DELETE FROM locales WHERE id = :id)SQL", soci::use(id, "id");
 }
 int palm::portal::dao::locales::count(soci::session& db) {
-  int c;
+  int c = 0;
   db << R"SQL(SELECT COUNT(*) FROM locales)SQL", soci::into(c);
   return c;
 }

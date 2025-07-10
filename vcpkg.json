@@ -12,6 +12,7 @@
     "catch2",
     "yaml-cpp",
     "tomlplusplus",
+    "pugixml",
     "mailio",
     "cppcodec",
     "inja",
