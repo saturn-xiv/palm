@@ -37,12 +37,16 @@ std::vector<uint8_t> palm::random::bytes(size_t len) {
 }
 std::string palm::random::alphanumeric(size_t len) {
   static std::mt19937 rng(std::time(nullptr));
-  static const char CHARSET[] =
+  // static const char CHARSET[] =
+  //     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  static const std::string CHARSET =
       "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   std::string it;
   it.resize(len);
-  std::sample(std::cbegin(CHARSET), std::cend(CHARSET), std::begin(it),
+  // std::sample(std::cbegin(CHARSET), std::cend(CHARSET), std::begin(it),
+  //             std::intptr_t(len), std::forward<std::mt19937>(rng));
+  std::sample(std::begin(CHARSET), std::end(CHARSET), std::begin(it),
               std::intptr_t(len), std::forward<std::mt19937>(rng));
   return it;
 }

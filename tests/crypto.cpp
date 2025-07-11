@@ -34,10 +34,12 @@ TEST_CASE("random data", "[random]") {
     }
   }
   {
+    // FIXME 128
+    const size_t len = 32;
     for (int i = 1; i < PALM_LOOP_SIZE; i++) {
-      const auto it = palm::random::alphanumeric(PALM_SALT_SIZE);
+      const auto it = palm::random::alphanumeric(len);
       std::cout << "rand alphanumeric(" << i << "): " << it << std::endl;
-      REQUIRE(it.size() == PALM_SALT_SIZE);
+      REQUIRE(it.size() == len);
     }
   }
 }

@@ -122,8 +122,345 @@ static void delete_role_for_email_user(toml::table* config,
   // TODO
 }
 static void generate_etc(const toml::table& config, const std::string& domain) {
-  // TODO generate chatting/email/www/assets/s3 nginx files
-  // TODO generate api/rpc/minio systemd services
+  const auto etc = std::filesystem::path("etc") / domain;
+  if (std::filesystem::exists(etc)) {
+    spdlog::warn("folder {} exists", etc.string());
+    return;
+  }
+
+  spdlog::debug("generate folder {}", etc.string());
+  std::filesystem::create_directories(etc);
+
+  {
+    auto file = etc / "nginx.conf";
+    spdlog::info("generate file {}", file.string());
+    std::vector<std::string> prefixes = {"chatting", "mail", "www"};
+    nlohmann::json data = {
+        {"domain", domain},
+        {"prefixes", {"chatting", "mail", "www"}},
+        {"minio",
+         {{"hosts", {"192.168.21", "192.168.22", "192.168.23"}},
+          {"port", 9000},
+          {"console_port", 9001}}},
+        {
+            "api",
+            {{"hosts", {"192.168.21", "192.168.22", "192.168.23"}},
+             {"port", 8080}},
+        },
+    };
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"NGINX(
+# -----------------------------------------------------------------------------
+
+# https://nginx.org/en/docs/http/ngx_http_upstream_module.html
+upstream api_{{ domain }} {
+## for host in api.hosts
+  server {{ host }}:{{ api.port }};
+## endfor
+}
+
+# https://pro.ant.design/docs/deploy/#use-nginx
+## for prefix in prefixes
+server {
+  listen 80;
+
+  server_name {{ prefix }}.{{ domain }};
+  access_log /var/log/nginx/{{ prefix }}.{{ domain }}.access.log;
+  error_log  /var/log/nginx/{{ prefix }}.{{ domain }}.error.log;
+
+  gzip on;
+  gzip_comp_level 9;
+  gzip_min_length 1k;
+  gzip_types text/plain text/css application/xml application/javascript;
+  gzip_vary on;
+  client_max_body_size 128M;
+
+  location /my/ {
+    alias /usr/local/share/lavender/{{ prefix }}/dashboard/;
+    try_files $uri $uri/ /my/index.html;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+  location /3rd/ {
+    alias /user/local/share/lavender/node_modules/;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+  location /assets/ {
+    alias /user/local/share/{{ domain }}/assets/;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+
+  location / {
+    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://api_{{ domain }};
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+}
+## endfor
+
+# -----------------------------------------------------------------------------
+
+# https://min.io/docs/minio/linux/integrations/setup-nginx-proxy-with-minio.html
+upstream assets_{{ domain }} {
+  least_conn;
+## for host in minio.hosts
+  server {{ host }}:{{ minio.port }};
+## endfor
+}
+
+upstream s3_{{ domain }} {
+  least_conn;
+## for host in minio.hosts
+  server {{ host }}:{{ minio.console_port }};
+## endfor
+}
+
+server {
+  listen 80;   
+  server_name assets.{{ domain }};
+  access_log /var/log/nginx/assets.{{ domain }}.access.log;
+  error_log  /var/log/nginx/assets.{{ domain }}.error.log;
+
+  # Allow special characters in headers
+  ignore_invalid_headers off;
+  # Allow any size file to be uploaded.
+  # Set to a value such as 1000m; to restrict file size to a specific value
+  client_max_body_size 0;
+  # Disable buffering
+  proxy_buffering off;
+  proxy_request_buffering off;
+
+  location / {
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_connect_timeout 300;
+    # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+    chunked_transfer_encoding off;
+
+    proxy_pass http://assets_{{ domain }};
+  }
+}
+
+server {
+  listen 80;
+  server_name  s3.{{ domain }};
+  access_log /var/log/nginx/s3.{{ domain }}.access.log;
+  error_log  /var/log/nginx/s3.{{ domain }}.error.log;
+
+  # Allow special characters in headers
+  ignore_invalid_headers off;
+  # Allow any size file to be uploaded.
+  # Set to a value such as 1000m; to restrict file size to a specific value
+  client_max_body_size 0;
+  # Disable buffering
+  proxy_buffering off;
+  proxy_request_buffering off;
+
+  location / {
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-NginX-Proxy true;
+
+    # This is necessary to pass the correct IP to be hashed
+    real_ip_header X-Real-IP;
+
+    proxy_connect_timeout 300;
+
+    # To support websocket
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    chunked_transfer_encoding off;
+
+    proxy_pass http://s3_{{ domain }}; 
+  }
+}
+
+# -----------------------------------------------------------------------------
+
+server {
+  listen 80;
+  root /var/lib/ftp.{{ domain }};
+  index index.html;
+  server_name ftp.{{ domain }};
+  access_log /var/log/nginx/ftp.{{ domain }}.access.log;
+  error_log  /var/log/nginx/ftp.{{ domain }}.error.log;
+  charset utf-8;
+
+  location / {
+    autoindex on;
+  }
+}
+
+# -----------------------------------------------------------------------------
+)NGINX";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+
+  {
+    const auto file = etc / std::format("api.{}.conf", domain);
+    spdlog::info("generate file {}", file.string());
+
+    nlohmann::json data = {{"domain", domain}, {"port", 8080}};
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"SYSTEMD(
+[Unit]
+Description=HTTP api service for {{ domain }}
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/{{ domain }}
+ExecStart=/usr/bin/local/lavender -c http.toml -p {{ port }}
+# or always, on-abort, on-failure, etc
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+)SYSTEMD";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+
+  {
+    const auto file = etc / std::format("rpc.{}.conf", domain);
+    spdlog::info("generate file {}", file.string());
+
+    nlohmann::json data = {{"domain", domain}, {"port", 9090}};
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"SYSTEMD(
+[Unit]
+Description=gRPC service for {{ domain }}
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/{{ domain }}
+ExecStart=/usr/local/bin/lavender -c rpc.toml -p {{ port }}
+# or always, on-abort, on-failure, etc
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+)SYSTEMD";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+
+  {
+    const std::vector<std::string> consumers = {"sms-send", "email-send"};
+    for (const auto& name : consumers) {
+      const auto file = etc / std::format("{}.consumer.{}.conf", name, domain);
+      spdlog::info("generate file {}", file.string());
+
+      nlohmann::json data = {{"domain", domain}, {"name", name}};
+
+      spdlog::debug("args:\n{}", data.dump(4));
+      const std::string tpl = R"SYSTEMD(
+[Unit]
+Description={{ name }} consumer worker for {{ domain }}
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/{{ domain }}
+ExecStart=/usr/bin/local/lavender -c {{ name }}-consumer -i 3
+# or always, on-abort, on-failure, etc
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+)SYSTEMD";
+      std::ofstream out(file);
+      inja::render_to(out, tpl, data);
+    }
+  }
+
+  // https://min.io/docs/minio/linux/operations/installation.html
+  {
+    const auto file = etc / std::format("s3.{}.conf", domain);
+    spdlog::info("generate file {}", file.string());
+
+    const std::string password = palm::random::alphanumeric(32);
+    nlohmann::json data = {{"domain", domain},
+                           {"port", 9000},
+                           {"console_port", 9001},
+                           {"user", "root"},
+                           {"password", password}};
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"SYSTEMD(
+[Unit]
+Description=minio service for {{ domain }}
+Documentation=https://min.io/docs/minio/linux/index.html
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/s3.{{ domain }}
+ExecStart=/usr/local/bin/minio server --address :{{ port }} --console-address :{{ console_port }} data
+# or always, on-abort, on-failure, etc
+Restart=always
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Specifies the maximum number of threads this process can create
+TasksMax=infinity
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=infinity
+SendSIGKILL=no
+
+Environment="MINIO_ROOT_USER={{ user }}"
+Environment="MINIO_ROOT_PASSWORD={{ password }}"
+
+[Install]
+WantedBy=multi-user.target
+)SYSTEMD";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+  spdlog::info("done.");
 }
 static void db_seed(const toml::table& config) {
   auto db_pool = open_postgresql(config);
@@ -278,6 +615,8 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   int email_send_job_interval;
   std::string email_send_consumer_name;
 
+  std::string generate_etc_domain;
+
   argparse::ArgumentParser program(
       "lavender", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
   program.add_description(palm::PROJECT_DESCRIPTION);
@@ -285,14 +624,14 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   program.add_argument("-c", "--config")
       .default_value("config.toml")
       .store_into(config_file)
-      .help("Configuration file");
+      .help("configuration file");
   program.add_argument("-d", "--debug")
       .flag()
       .store_into(debug)
-      .help("Run on debug mode");
+      .help("run on debug mode");
 
   argparse::ArgumentParser http_command("http");
-  http_command.add_description("Start a HTTP server");
+  http_command.add_description("start a HTTP server");
   http_command.add_argument("-H", "--host")
       .default_value("127.0.0.1")
       .store_into(http_listen_host)
@@ -300,14 +639,14 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   http_command.add_argument("-p", "--port")
       .default_value(8080)
       .store_into(http_listen_port)
-      .help("Port to listen");
+      .help("port to listen");
   http_command.add_argument("-t", "--theme")
       .default_value("bootstrap")
       .store_into(http_theme_folder)
-      .help("Folder to load theme");
+      .help("folder to load theme");
 
   argparse::ArgumentParser rpc_command("rpc");
-  rpc_command.add_description("Start a gRPC server");
+  rpc_command.add_description("start a gRPC server");
   rpc_command.add_argument("-H", "--host")
       .default_value("127.0.0.1")
       .store_into(rpc_listen_host)
@@ -315,25 +654,36 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   rpc_command.add_argument("-p", "--port")
       .default_value(8080)
       .store_into(rpc_listen_port)
-      .help("Port to listen");
+      .help("port to listen");
 
   argparse::ArgumentParser db_seed_command("db-seed");
+  db_seed_command.add_description("initialize with the seed data");
+
+  argparse::ArgumentParser generate_etc_command("generate-etc");
+  generate_etc_command.add_description("generate system configuration files");
+  generate_etc_command.add_argument("-n", "--domain-name")
+      .required()
+      .store_into(generate_etc_domain);
 
   argparse::ArgumentParser sms_send_consumer_command("sms-send-consumer");
+  sms_send_consumer_command.add_description("start a sms-send consumer worker");
   sms_send_consumer_command.add_argument("-i", "--interval")
       .default_value(3)
       .store_into(sms_send_job_interval)
       .help("SMS task interval(s)");
 
   argparse::ArgumentParser email_send_consumer_command("email-send-consumer");
+  email_send_consumer_command.add_description(
+      "start an email-send consumer worker");
   email_send_consumer_command.add_argument("-i", "--interval")
       .default_value(3)
       .store_into(email_send_job_interval)
-      .help("Email task interval(s)");
+      .help("email task interval(s)");
 
   program.add_subparser(http_command);
   program.add_subparser(rpc_command);
   program.add_subparser(db_seed_command);
+  program.add_subparser(generate_etc_command);
   program.add_subparser(sms_send_consumer_command);
   program.add_subparser(email_send_consumer_command);
   program.parse_args(argc, argv);
@@ -341,6 +691,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   if (program.is_subcommand_used(http_command) ||
       program.is_subcommand_used(rpc_command) ||
       program.is_subcommand_used(db_seed_command) ||
+      program.is_subcommand_used(generate_etc_command) ||
       program.is_subcommand_used(sms_send_consumer_command) ||
       program.is_subcommand_used(email_send_consumer_command)) {
     palm::init(debug);
@@ -358,6 +709,10 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
     }
     if (program.is_subcommand_used(db_seed_command)) {
       db_seed(config);
+      return;
+    }
+    if (program.is_subcommand_used(generate_etc_command)) {
+      generate_etc(config, generate_etc_domain);
       return;
     }
     if (program.is_subcommand_used(sms_send_consumer_command)) {
