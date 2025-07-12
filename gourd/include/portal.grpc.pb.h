@@ -881,11 +881,20 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserSignInResponse>> PrepareAsyncSignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserSignInResponse>>(PrepareAsyncSignInByEmailRaw(context, request, cq));
     }
+    virtual ::grpc::Status IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexLogResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexLogResponse>> AsyncIndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexLogResponse>>(AsyncIndexLogRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexLogResponse>> PrepareAsyncIndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexLogResponse>>(PrepareAsyncIndexLogRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -893,6 +902,8 @@ class User final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserSignInResponse>* AsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserSignInResponse>* PrepareAsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexLogResponse>* AsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexLogResponse>* PrepareAsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -904,11 +915,20 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>> PrepareAsyncSignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>>(PrepareAsyncSignInByEmailRaw(context, request, cq));
     }
+    ::grpc::Status IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexLogResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>> AsyncIndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>>(AsyncIndexLogRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>> PrepareAsyncIndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>>(PrepareAsyncIndexLogRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
       void SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response, std::function<void(::grpc::Status)>) override;
       void SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, std::function<void(::grpc::Status)>) override;
+      void IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -922,7 +942,10 @@ class User final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>* AsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>* PrepareAsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>* AsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>* PrepareAsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SignInByEmail_;
+    const ::grpc::internal::RpcMethod rpcmethod_IndexLog_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -931,6 +954,7 @@ class User final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status SignInByEmail(::grpc::ServerContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response);
+    virtual ::grpc::Status IndexLog(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SignInByEmail : public BaseClass {
@@ -952,7 +976,27 @@ class User final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SignInByEmail<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_IndexLog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_IndexLog() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_IndexLog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexLog(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndexLog(::grpc::ServerContext* context, ::palm::portal::v1::Page* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::UserIndexLogResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SignInByEmail<WithAsyncMethod_IndexLog<Service > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SignInByEmail : public BaseClass {
    private:
@@ -980,7 +1024,34 @@ class User final {
     virtual ::grpc::ServerUnaryReactor* SignInByEmail(
       ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::UserSignInByEmailRequest* /*request*/, ::palm::portal::v1::UserSignInResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SignInByEmail<Service > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_IndexLog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_IndexLog() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response) { return this->IndexLog(context, request, response); }));}
+    void SetMessageAllocatorFor_IndexLog(
+        ::grpc::MessageAllocator< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_IndexLog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexLog(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IndexLog(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SignInByEmail<WithCallbackMethod_IndexLog<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SignInByEmail : public BaseClass {
@@ -995,6 +1066,23 @@ class User final {
     }
     // disable synchronous version of this method
     ::grpc::Status SignInByEmail(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSignInByEmailRequest* /*request*/, ::palm::portal::v1::UserSignInResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_IndexLog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_IndexLog() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_IndexLog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexLog(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1020,6 +1108,26 @@ class User final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_IndexLog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_IndexLog() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_IndexLog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexLog(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndexLog(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_SignInByEmail : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1039,6 +1147,28 @@ class User final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SignInByEmail(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_IndexLog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_IndexLog() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IndexLog(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_IndexLog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexLog(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IndexLog(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1068,9 +1198,36 @@ class User final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedSignInByEmail(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::UserSignInByEmailRequest,::palm::portal::v1::UserSignInResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SignInByEmail<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_IndexLog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_IndexLog() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse>* streamer) {
+                       return this->StreamedIndexLog(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_IndexLog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status IndexLog(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexLogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIndexLog(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::Page,::palm::portal::v1::UserIndexLogResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SignInByEmail<WithStreamedUnaryMethod_IndexLog<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SignInByEmail<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_SignInByEmail<WithStreamedUnaryMethod_IndexLog<Service > > StreamedService;
 };
 
 class Policy final {

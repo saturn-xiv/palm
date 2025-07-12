@@ -10,10 +10,11 @@ TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {
   palm::PostgreSql pgsql("127.0.0.1", 5432, "www", "change-me", "lavender");
   auto pool = pgsql.open();
 
-  palm::rabbitmq::Config rabbitmq;
-  rabbitmq.set_virtual_host("vh.testing");
-  rabbitmq.set_user("www");
-  rabbitmq.set_password("change-me");
+  std::shared_ptr<palm::rabbitmq::Config> rabbitmq =
+      std::make_shared<palm::rabbitmq::Config>();
+  rabbitmq->set_virtual_host("vh.testing");
+  rabbitmq->set_user("www");
+  rabbitmq->set_password("change-me");
   const std::string WATCHER_CHANNEL = "casbin.watcher";
 
   std::shared_ptr<casbin::Watcher> watcher =

@@ -1,5 +1,7 @@
 #include "palm/portal.hpp"
 
+#include <sodium.h>
+
 // ----------------------------------------------------------------------------
 
 boost::optional<palm::portal::dao::users::Item> palm::portal::dao::users::get(
@@ -16,6 +18,13 @@ boost::optional<palm::portal::dao::users::Item> palm::portal::dao::users::get(
       soci::use(uid, "uid"), soci::into(it);
   return it;
 }
+boost::fusion::vector<palm::portal::dao::users::Item>
+palm::portal::dao::users::all(soci::session& db) {
+  boost::fusion::vector<palm::portal::dao::users::Item> items;
+  db << R"SQL(SELECT id, uid, lang, timezone, sign_in_count, current_sign_in_at, current_sign_in_ip, last_sign_in_at, last_sign_in_ip, locked_at, deleted_at, version, updated_at FROM users ORDER BY updated_at DESC)SQL",
+      soci::into(items);
+  return items;
+}
 void palm::portal::dao::users::enable(soci::session& db, int id) {
   db << R"SQL(UPDATE users SET deleted_at = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = :id)SQL",
       soci::use(id, "id");
@@ -24,7 +33,57 @@ void palm::portal::dao::users::disable(soci::session& db, int id) {
   db << R"SQL(UPDATE users SET deleted_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP WHERE id = :id)SQL",
       soci::use(id, "id");
 }
+void palm::portal::dao::users::create(soci::session& db, const std::string& uid,
+                                      const std::string& lang,
+                                      const std::string& timezone) {
+  db << R"SQL(INSERT INTO users(uid, lang, timezone, updated_at) VALUES(:uid, :lang, :timezone, CURRENT_TIMESTAMP))SQL",
+      soci::use(uid, "uid"), soci::use(lang, "lang"),
+      soci::use(timezone, "timezone");
+}
 // ----------------------------------------------------------------------------
+
+static inline bool verify_email_user_password(const std::string& code,
+                                              const std::string& plain) {
+  if (code.length() != crypto_pwhash_STRBYTES) {
+    return false;
+  }
+  return crypto_pwhash_str_verify(code.c_str(), plain.c_str(),
+                                  plain.length()) == 0;
+}
+static inline std::optional<std::string> build_email_user_password(
+    const std::string& plain) {
+  char code[crypto_pwhash_STRBYTES];
+
+  if (crypto_pwhash_str(code, plain.c_str(), plain.length(),
+                        crypto_pwhash_OPSLIMIT_SENSITIVE,
+                        crypto_pwhash_MEMLIMIT_SENSITIVE) != 0) {
+    spdlog::error("failed to hash password");
+    return std::nullopt;
+  }
+  return std::string(code);
+}
+
+void palm::portal::dao::users::email::create(soci::session& db, int user_id,
+                                             const std::string& real_name,
+                                             const std::string& email,
+                                             const std::string& password) {
+  const auto code = build_email_user_password(password);
+  const auto avatar = palm::gravatar::image(email);
+  db << R"SQL(INSERT INTO email_users(user_id, real_name, email, password, avatar, updated_at) VALUES(:user_id, :real_name, :email, :password, :avatar, CURRENT_TIMESTAMP))SQL",
+      soci::use(user_id, "user_id"), soci::use(real_name, "real_name"),
+      soci::use(email, "email"), soci::use(code.value(), "password"),
+      soci::use(avatar, "avatar");
+}
+void palm::portal::dao::users::email::set_password(
+    soci::session& db, int id, const std::string& password) {
+  const auto code = build_email_user_password(password);
+  db << R"SQL(UPDATE email_users SET password = :password, updated_at = CURRENT_TIMESTAMP WHERE id = :id)SQL",
+      soci::use(id, "id"), soci::use(code.value(), "password");
+}
+void palm::portal::dao::users::email::confirm(soci::session& db, int id) {
+  db << R"SQL(UPDATE email_users SET confirmed_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP WHERE id = :id)SQL",
+      soci::use(id, "id");
+}
 
 boost::optional<palm::portal::dao::users::email::Item>
 palm::portal::dao::users::email::get(soci::session& db, int id) {
@@ -49,6 +108,13 @@ void palm::portal::dao::users::email::disable(soci::session& db, int id) {
   db << R"SQL(UPDATE email_users SET deleted_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP WHERE id = :id)SQL",
       soci::use(id, "id");
 }
+boost::fusion::vector<palm::portal::dao::users::email::Item>
+palm::portal::dao::users::email::all(soci::session& db) {
+  boost::fusion::vector<palm::portal::dao::users::email::Item> items;
+  db << R"SQL(SELECT id, user_id, real_name, email, password, avatar, confirmed_at, deleted_at, version, updated_at FROM email_users ORDER BY real_name ASC)SQL",
+      soci::into(items);
+  return items;
+}
 // ----------------------------------------------------------------------------
 
 boost::optional<palm::portal::dao::users::wechat::mini_program::Item>
@@ -57,6 +123,14 @@ palm::portal::dao::users::wechat::mini_program::get(soci::session& db, int id) {
   db << R"SQL(SELECT id, user_id, union_id, app_id, open_id, nickname, avatar_url, deleted_at, version, updated_at FROM wechat_mini_program_users WHERE id = :id LIMIT 1)SQL",
       soci::use(id, "id"), soci::into(it);
   return it;
+}
+boost::fusion::vector<palm::portal::dao::users::wechat::mini_program::Item>
+palm::portal::dao::users::wechat::mini_program::all(soci::session& db) {
+  boost::fusion::vector<palm::portal::dao::users::wechat::mini_program::Item>
+      items;
+  db << R"SQL(SELECT id, user_id, union_id, app_id, open_id, nickname, avatar_url, deleted_at, version, updated_at FROM wechat_mini_program_users ORDER BY nickname ASC)SQL",
+      soci::into(items);
+  return items;
 }
 void palm::portal::dao::users::wechat::mini_program::enable(soci::session& db,
                                                             int id) {
@@ -94,6 +168,13 @@ palm::portal::dao::users::wechat::oauth2::get(soci::session& db, int id) {
       soci::use(id, "id"), soci::into(it);
   return it;
 }
+boost::fusion::vector<palm::portal::dao::users::wechat::oauth2::Item>
+palm::portal::dao::users::wechat::oauth2::all(soci::session& db) {
+  boost::fusion::vector<palm::portal::dao::users::wechat::oauth2::Item> items;
+  db << R"SQL(SELECT id, user_id, union_id, app_id, open_id, nickname, sex, city, province, country, head_img_url, privilege, lang, deleted_at, version, updated_at FROM wechat_oauth2_users ORDER BY nickname ASC)SQL",
+      soci::into(items);
+  return items;
+}
 boost::optional<palm::portal::dao::users::wechat::oauth2::Item>
 palm::portal::dao::users::wechat::oauth2::get(soci::session& db,
                                               const std::string& union_id) {
@@ -129,6 +210,13 @@ palm::portal::dao::users::google::oauth2::get(soci::session& db, int id) {
   db << R"SQL(SELECT id, user_id, subject, email, email_verified, name, picture, locale, deleted_at, version, updated_at FROM google_oauth2_users WHERE id = :id LIMIT 1)SQL",
       soci::use(id, "id"), soci::into(it);
   return it;
+}
+boost::fusion::vector<palm::portal::dao::users::google::oauth2::Item>
+palm::portal::dao::users::google::oauth2::all(soci::session& db) {
+  boost::fusion::vector<palm::portal::dao::users::google::oauth2::Item> items;
+  db << R"SQL(SELECT id, user_id, subject, email, email_verified, name, picture, locale, deleted_at, version, updated_at FROM google_oauth2_users ORDER BY updated_at DESC)SQL",
+      soci::into(items);
+  return items;
 }
 void palm::portal::dao::users::google::oauth2::enable(soci::session& db,
                                                       int id) {
@@ -271,5 +359,20 @@ void palm::portal::dao::locales::load(soci::session& db,
     }
   }
   spdlog::info("found {} items, insert {} items", items.size(), inserted);
+}
+// ----------------------------------------------------------------------------
+void palm::portal::dao::logs::create(
+    soci::session& db, int user, const std::string& plugin,
+    const std::string& ip,
+    palm::portal::v1::UserIndexLogResponse_Item_Level level,
+    const std::string& resource_type, boost::optional<int> resource_id,
+    const std::string& message) {
+  const std::string level_name =
+      palm::portal::v1::UserIndexLogResponse_Item_Level_Name(level);
+  db << R"SQL(INSERT INTO logs(user_id, plugin, ip, level, resource_type, resource_id, message) VALUES(:user_id, :plugin, :ip, :level, :resource_type, :resource_id, :message))SQL",
+      soci::use(user, "user_id"), soci::use(plugin, "plugin"),
+      soci::use(ip, "ip"), soci::use(level_name, "level"),
+      soci::use(resource_type, "resource_type"),
+      soci::use(resource_id, "resource_id"), soci::use(message, "message");
 }
 // ----------------------------------------------------------------------------

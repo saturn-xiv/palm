@@ -101,26 +101,181 @@ static std::shared_ptr<palm::rabbitmq::Config> open_rabbitmq(
   }
   return it;
 }
-static void create_email_user(toml::table* config, const std::string& real_name,
-                              const std::string& email,
-                              const std::string& password) {
-  // TODO
+static std::shared_ptr<casbin::Enforcer> open_casbin_enforcer(
+    std::shared_ptr<soci::connection_pool> postgresql,
+    std::shared_ptr<palm::rabbitmq::Config> rabbitmq) {
+  std::shared_ptr<casbin::Watcher> watcher =
+      std::make_shared<palm::casbin::RabbitMQWatcher>(
+          std::format("casbin.watcher.worker.{}.{}",
+                      boost::asio::ip::host_name(), getpid()),
+          boost::typeindex::type_id<palm::casbin::v1::WatcherMessage>()
+              .pretty_name(),
+          rabbitmq);
+
+  auto model = casbin::Model::NewModelFromString(palm::casbin::RBAC_MODEL);
+  std::shared_ptr<casbin::Adapter> adapter =
+      std::make_shared<palm::casbin::PostgreSQLAdapter>(postgresql);
+
+  std::shared_ptr<casbin::Enforcer> enforcer =
+      std::make_shared<casbin::Enforcer>(model, adapter);
+
+  enforcer->EnableAutoSave(true);
+  enforcer->SetWatcher(watcher);
+  enforcer->LoadPolicy();
+  return enforcer;
 }
-static void set_email_user_password(toml::table* config,
-                                    const std::string& email,
-                                    const std::string& password) {
-  // TODO
+static void list_user(const toml::table& config) {
+  auto db_pool = open_postgresql(config);
+  {
+    soci::session db(*db_pool);
+    // TODO FORMAT the output
+    // TODO left join
+    const auto users = palm::portal::dao::users::all(db);
+    {
+      const auto items = palm::portal::dao::users::email::all(db);
+      std::cout << "UID EMAIL\tREAL NAME" << std::endl;
+      boost::fusion::for_each(items, [&](auto const& it) {
+        boost::fusion::for_each(users, [&](auto const& jt) {
+          if (it.user_id == jt.id) {
+            std::cout << jt.uid << " " << it.email << "\t" << it.real_name
+                      << std::endl;
+          }
+        });
+      });
+    }
+    {
+      const auto items = palm::portal::dao::users::google::oauth2::all(db);
+      std::cout << "UID SUBJECT\tEMAIL\tNAME" << std::endl;
+      boost::fusion::for_each(items, [&](auto const& it) {
+        boost::fusion::for_each(users, [&](auto const& jt) {
+          if (it.user_id == jt.id) {
+            std::cout << jt.uid << " " << it.subject << "\t"
+                      << it.email.value_or("") << "\t" << it.name.value_or("")
+                      << std::endl;
+          }
+        });
+      });
+    }
+    {
+      const auto items = palm::portal::dao::users::wechat::oauth2::all(db);
+      std::cout << "UID OPENID\tNICKNAME\tCITY\tCOUNTRY" << std::endl;
+      boost::fusion::for_each(items, [&](auto const& it) {
+        boost::fusion::for_each(users, [&](auto const& jt) {
+          if (it.user_id == jt.id) {
+            std::cout << jt.uid << " " << it.open_id << " " << it.nickname
+                      << "\t" << it.city << "\t" << it.country << std::endl;
+          }
+        });
+      });
+    }
+    {
+      const auto items =
+          palm::portal::dao::users::wechat::mini_program::all(db);
+      std::cout << "UID OPENID\tNICKNAME" << std::endl;
+      boost::fusion::for_each(items, [&](auto const& it) {
+        boost::fusion::for_each(users, [&](auto const& jt) {
+          if (it.user_id == jt.id) {
+            std::cout << jt.uid << " " << it.open_id << "\t"
+                      << it.nickname.value_or("") << std::endl;
+          }
+        });
+      });
+    }
+  }
 }
-static void add_role_for_email_user(toml::table* config,
-                                    const std::string& email,
-                                    const std::string& role) {
-  // TODO
+static void create_email_user(const toml::table& config,
+                              const std::string& real_name_,
+                              const std::string& email_,
+                              const std::string& password_) {
+  auto db_pool = open_postgresql(config);
+  {
+    const std::string hostname = boost::asio::ip::host_name();
+    const auto uid = palm::uuid();
+    const auto email = palm::validator::email(email_);
+    const auto real_name = palm::validator::name(real_name_);
+    const auto password = palm::validator::password(password_);
+    if (!email || !real_name || !password) {
+      spdlog::error("invalid input");
+      return;
+    }
+    soci::session db(*db_pool);
+    {
+      soci::transaction tr(db);
+      spdlog::debug("create user {}<{}>", real_name.value(), email.value());
+      palm::portal::dao::users::create(db, uid);
+      const auto user = palm::portal::dao::users::get(db, uid);
+      palm::portal::dao::users::email::create(db, user->id, real_name.value(),
+                                              email.value(), password.value());
+      const auto email_user =
+          palm::portal::dao::users::email::get(db, email.value());
+      spdlog::debug("confirm it's email");
+      palm::portal::dao::users::email::confirm(db, email_user->id);
+      palm::portal::dao::logs::create<palm::portal::dao::users::email::Item>(
+          db, user->id, palm::portal::PLUGIN_NAME, hostname,
+          palm::portal::v1::UserIndexLogResponse_Item_Level_INFO, boost::none,
+          "created by system manager");
+      tr.commit();
+    }
+  }
+  spdlog::info("done");
 }
-static void delete_role_for_email_user(toml::table* config,
-                                       const std::string& email,
-                                       const std::string& role) {
-  // TODO
+static void set_password_for_email_user(const toml::table& config,
+                                        const std::string& email_,
+                                        const std::string& password_) {
+  auto db_pool = open_postgresql(config);
+  {
+    const std::string hostname = boost::asio::ip::host_name();
+    const auto email = palm::validator::email(email_);
+    const auto password = palm::validator::password(password_);
+    if (!email || !password) {
+      spdlog::error("invalid input");
+      return;
+    }
+    soci::session db(*db_pool);
+    {
+      soci::transaction tr(db);
+      const auto email_user =
+          palm::portal::dao::users::email::get(db, email.value());
+      spdlog::debug("reset user {}<{}>'s password", email_user->real_name,
+                    email_user->email);
+      palm::portal::dao::users::email::set_password(db, email_user->id,
+                                                    password.value());
+      palm::portal::dao::logs::create<palm::portal::dao::users::email::Item>(
+          db, email_user->user_id, palm::portal::PLUGIN_NAME, hostname,
+          palm::portal::v1::UserIndexLogResponse_Item_Level_WARNING,
+          boost::none, "reset password by system manager");
+      tr.commit();
+    }
+  }
+  spdlog::info("done");
 }
+static void role_for_user(const toml::table& config,
+                          const std::string& user_uid,
+                          const std::string& role_code, bool enable) {
+  std::string role;
+  if (role_code == "root") {
+    role = palm::casbin::role::root();
+  } else if (role_code == "administrator") {
+    role = palm::casbin::role::administrator();
+  } else {
+    role = palm::casbin::role::other(role_code);
+  }
+  auto db_pool = open_postgresql(config);
+  auto queue = open_rabbitmq(config);
+  auto enforcer = open_casbin_enforcer(db_pool, queue);
+  {
+    soci::session db(*db_pool);
+    const auto user = palm::portal::dao::users::get(db, user_uid);
+    const std::string subject = palm::casbin::user::to_subject(user->id);
+    if (enable) {
+      enforcer->AddRoleForUser(subject, role);
+    } else {
+      enforcer->DeleteRoleForUser(subject, role);
+    }
+  }
+  spdlog::info("done");
+}
+
 static void generate_etc(const toml::table& config, const std::string& domain) {
   const auto etc = std::filesystem::path("etc") / domain;
   if (std::filesystem::exists(etc)) {
@@ -617,6 +772,19 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
 
   std::string generate_etc_domain;
 
+  std::string create_email_user_email;
+  std::string create_email_user_name;
+  std::string create_email_user_password;
+
+  std::string add_role_for_user_user;
+  std::string add_role_for_user_role;
+
+  std::string delete_role_for_user_user;
+  std::string delete_role_for_user_role;
+
+  std::string set_password_for_email_user_email;
+  std::string set_password_for_email_user_password;
+
   argparse::ArgumentParser program(
       "lavender", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
   program.add_description(palm::PROJECT_DESCRIPTION);
@@ -665,6 +833,52 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
       .required()
       .store_into(generate_etc_domain);
 
+  argparse::ArgumentParser list_user_command("list_user");
+  list_user_command.add_description("list all users");
+
+  argparse::ArgumentParser create_email_user_command("create-email-user");
+  create_email_user_command.add_description("create a new email account");
+  create_email_user_command.add_argument("-n", "--name")
+      .required()
+      .store_into(create_email_user_name);
+  create_email_user_command.add_argument("-e", "--email")
+      .required()
+      .store_into(create_email_user_email);
+  create_email_user_command.add_argument("-p", "--password")
+      .required()
+      .store_into(create_email_user_password);
+
+  argparse::ArgumentParser set_password_for_email_user_command(
+      "set-password-for-email-user");
+  set_password_for_email_user_command.add_description(
+      "set password for an email user");
+  set_password_for_email_user_command.add_argument("-e", "--email")
+      .required()
+      .store_into(set_password_for_email_user_password);
+  set_password_for_email_user_command.add_argument("-p", "--password")
+      .required()
+      .store_into(set_password_for_email_user_password);
+
+  argparse::ArgumentParser add_role_for_user_command("add-role-for-user");
+  add_role_for_user_command.add_description("adds a role for a user");
+  add_role_for_user_command.add_argument("-u", "--user-uid")
+      .required()
+      .store_into(add_role_for_user_user);
+  add_role_for_user_command.add_argument("-r", "--role-name")
+      .help("root,administrator...etc")
+      .required()
+      .store_into(add_role_for_user_role);
+
+  argparse::ArgumentParser delete_role_for_user_command("delete-role-for-user");
+  delete_role_for_user_command.add_description("deletes a role for a user");
+  delete_role_for_user_command.add_argument("-u", "--user-uid")
+      .required()
+      .store_into(delete_role_for_user_user);
+  delete_role_for_user_command.add_argument("-r", "--role-name")
+      .help("root,administrator...etc")
+      .required()
+      .store_into(delete_role_for_user_role);
+
   argparse::ArgumentParser sms_send_consumer_command("sms-send-consumer");
   sms_send_consumer_command.add_description("start a sms-send consumer worker");
   sms_send_consumer_command.add_argument("-i", "--interval")
@@ -684,6 +898,10 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   program.add_subparser(rpc_command);
   program.add_subparser(db_seed_command);
   program.add_subparser(generate_etc_command);
+  program.add_subparser(list_user_command);
+  program.add_subparser(create_email_user_command);
+  program.add_subparser(add_role_for_user_command);
+  program.add_subparser(delete_role_for_user_command);
   program.add_subparser(sms_send_consumer_command);
   program.add_subparser(email_send_consumer_command);
   program.parse_args(argc, argv);
@@ -692,6 +910,11 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
       program.is_subcommand_used(rpc_command) ||
       program.is_subcommand_used(db_seed_command) ||
       program.is_subcommand_used(generate_etc_command) ||
+      program.is_subcommand_used(list_user_command) ||
+      program.is_subcommand_used(create_email_user_command) ||
+      program.is_subcommand_used(set_password_for_email_user_password) ||
+      program.is_subcommand_used(add_role_for_user_command) ||
+      program.is_subcommand_used(delete_role_for_user_command) ||
       program.is_subcommand_used(sms_send_consumer_command) ||
       program.is_subcommand_used(email_send_consumer_command)) {
     palm::init(debug);
@@ -709,6 +932,30 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
     }
     if (program.is_subcommand_used(db_seed_command)) {
       db_seed(config);
+      return;
+    }
+    if (program.is_subcommand_used(list_user_command)) {
+      list_user(config);
+      return;
+    }
+    if (program.is_subcommand_used(create_email_user_command)) {
+      create_email_user(config, create_email_user_name, create_email_user_email,
+                        create_email_user_password);
+      return;
+    }
+    if (program.is_subcommand_used(set_password_for_email_user_command)) {
+      set_password_for_email_user(config, set_password_for_email_user_email,
+                                  set_password_for_email_user_password);
+      return;
+    }
+    if (program.is_subcommand_used(add_role_for_user_command)) {
+      role_for_user(config, add_role_for_user_user, add_role_for_user_role,
+                    true);
+      return;
+    }
+    if (program.is_subcommand_used(delete_role_for_user_command)) {
+      role_for_user(config, delete_role_for_user_user,
+                    delete_role_for_user_role, false);
       return;
     }
     if (program.is_subcommand_used(generate_etc_command)) {

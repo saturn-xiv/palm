@@ -66,11 +66,11 @@ class PostgreSQLAdapter : public ::casbin::Adapter {
 class RabbitMQWatcher : public ::casbin::Watcher {
  public:
   RabbitMQWatcher(const std::string& local_id, const std::string& channel,
-                  const palm::rabbitmq::Config& queue)
+                  std::shared_ptr<palm::rabbitmq::Config> queue)
       : _local_id(local_id),
         _channel(channel),
-        _publisher(queue.open()),
-        _subscriber(queue.open()) {}
+        _publisher(queue->open()),
+        _subscriber(queue->open()) {}
 
   void Update() override;
   void Close() override;

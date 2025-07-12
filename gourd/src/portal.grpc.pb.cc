@@ -254,6 +254,7 @@ Locale::Service::~Service() {
 
 static const char* User_method_names[] = {
   "/palm.portal.v1.User/SignInByEmail",
+  "/palm.portal.v1.User/IndexLog",
 };
 
 std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -264,6 +265,7 @@ std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::Channe
 
 User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SignInByEmail_(User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IndexLog_(User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status User::Stub::SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::palm::portal::v1::UserSignInResponse* response) {
@@ -289,6 +291,29 @@ void User::Stub::async::SignInByEmail(::grpc::ClientContext* context, const ::pa
   return result;
 }
 
+::grpc::Status User::Stub::IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexLogResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IndexLog_, context, request, response);
+}
+
+void User::Stub::async::IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexLog_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexLog_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>* User::Stub::PrepareAsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserIndexLogResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IndexLog_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>* User::Stub::AsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexLogRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[0],
@@ -300,12 +325,29 @@ User::Service::Service() {
              ::palm::portal::v1::UserSignInResponse* resp) {
                return service->SignInByEmail(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::Page* req,
+             ::palm::portal::v1::UserIndexLogResponse* resp) {
+               return service->IndexLog(ctx, req, resp);
+             }, this)));
 }
 
 User::Service::~Service() {
 }
 
 ::grpc::Status User::Service::SignInByEmail(::grpc::ServerContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::IndexLog(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -5,6 +5,7 @@
 #include "palm/email.hpp"
 #include "palm/orm.hpp"
 #include "palm/queue.hpp"
+#include "palm/rbac.hpp"
 #include "palm/s3.hpp"
 #include "palm/search.hpp"
 #include "palm/session.hpp"
@@ -35,8 +36,25 @@ class GrpcClient {
 
 namespace portal {
 
-namespace dao {
+inline static const std::string PLUGIN_NAME = "portal";
 
+namespace dao {
+namespace logs {
+void create(soci::session& db, int user, const std::string& plugin,
+            const std::string& ip,
+            palm::portal::v1::UserIndexLogResponse_Item_Level level,
+            const std::string& resource_type, boost::optional<int> resource_id,
+            const std::string& message);
+template <typename T>
+void create(soci::session& db, int user, const std::string& plugin,
+            const std::string& ip,
+            palm::portal::v1::UserIndexLogResponse_Item_Level level,
+            boost::optional<int> resource_id, const std::string& message) {
+  const std::string resource_type =
+      boost::typeindex::type_id<T>().pretty_name();
+  create(db, user, plugin, ip, level, resource_type, resource_id, message);
+}
+}  // namespace logs
 namespace users {
 struct Item {
   int id;
@@ -53,8 +71,12 @@ struct Item {
   int version;
   std::tm updated_at;
 };
+void create(soci::session& db, const std::string& uid,
+            const std::string& lang = "en-US",
+            const std::string& timezone = "UTC");
 boost::optional<Item> get(soci::session& db, int id);
 boost::optional<Item> get(soci::session& db, const std::string& uid);
+boost::fusion::vector<Item> all(soci::session& db);
 void enable(soci::session& db, int id);
 void disable(soci::session& db, int id);
 namespace email {
@@ -70,8 +92,13 @@ struct Item {
   int version;
   std::tm updated_at;
 };
+void create(soci::session& db, int user_id, const std::string& real_name,
+            const std::string& email, const std::string& password);
+void set_password(soci::session& db, int id, const std::string& password);
+void confirm(soci::session& db, int id);
 boost::optional<Item> get(soci::session& db, int id);
 boost::optional<Item> get(soci::session& db, const std::string& email);
+boost::fusion::vector<Item> all(soci::session& db);
 void enable(soci::session& db, int id);
 void disable(soci::session& db, int id);
 }  // namespace email
@@ -95,6 +122,7 @@ void disable(soci::session& db, int id);
 boost::optional<Item> get(soci::session& db, const std::string& union_id);
 boost::optional<Item> get(soci::session& db, const std::string& app_id,
                           const std::string& open_id);
+boost::fusion::vector<Item> all(soci::session& db);
 }  // namespace mini_program
 namespace oauth2 {
 struct Item {
@@ -119,6 +147,7 @@ boost::optional<Item> get(soci::session& db, int id);
 boost::optional<Item> get(soci::session& db, const std::string& union_id);
 boost::optional<Item> get(soci::session& db, const std::string& app_id,
                           const std::string& open_id);
+boost::fusion::vector<Item> all(soci::session& db);
 void enable(soci::session& db, int id);
 void disable(soci::session& db, int id);
 }  // namespace oauth2
@@ -139,6 +168,7 @@ struct Item {
   std::tm updated_at;
 };
 boost::optional<Item> get(soci::session& db, int id);
+boost::fusion::vector<Item> all(soci::session& db);
 void enable(soci::session& db, int id);
 void disable(soci::session& db, int id);
 }  // namespace oauth2
