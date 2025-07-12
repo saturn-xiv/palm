@@ -134,61 +134,116 @@ static void list_user(const toml::table& config) {
     // TODO left join
     // email user
     {
+      std::cout << "UID EMAIL\tREAL NAME" << std::endl;
+      soci::rowset<boost::tuple<std::string, std::string, std::string>> rs =
+          (db.prepare
+           << R"SQL(SELECT u.uid, eu.email, eu.real_name FROM email_users eu LEFT JOIN users u ON eu.user_id = u.id ORDER BY eu.email ASC)SQL");
+      for (auto it = rs.begin(); it != rs.end(); ++it) {
+        std::string uid, email, real_name;
+        boost::tie(uid, email, real_name) = *it;
+        std::cout << uid << " " << email << "\t" << real_name << std::endl;
+      }
     }
     // wechat oauth2 user
+    {
+      std::cout << "UID OPENID NICKNAME\tCITY\tCOUNTRY" << std::endl;
+      soci::rowset<boost::tuple<std::string, std::string, std::string,
+                                std::string, std::string>>
+          rs =
+              (db.prepare
+               << R"SQL(SELECT u.uid, wu.open_id, wu.nickname, wu.city, wu.country FROM wechat_oauth2_users wu LEFT JOIN users u ON wu.user_id = u.id ORDER BY wu.nickname ASC)SQL");
+      for (auto it = rs.begin(); it != rs.end(); ++it) {
+        std::string uid, open_id, nickname, city, country;
+        boost::tie(uid, open_id, nickname, city, country) = *it;
+        std::cout << uid << " " << open_id << " " << nickname << "\t" << city
+                  << "\t" << country << std::endl;
+      }
+    }
     // wechat mini-program user
+    {
+      std::cout << "UID OPENID NICKNAME" << std::endl;
+      soci::rowset<
+          boost::tuple<std::string, std::string, boost::optional<std::string>>>
+          rs =
+              (db.prepare
+               << R"SQL(SELECT u.uid, wu.open_id, wu.nickname FROM wechat_mini_program_users wu LEFT JOIN users u ON wu.user_id = u.id ORDER BY wu.nickname ASC)SQL");
+      for (auto it = rs.begin(); it != rs.end(); ++it) {
+        std::string uid, open_id;
+        boost::optional<std::string> nickname;
+        boost::tie(uid, open_id, nickname) = *it;
+        std::cout << uid << " " << open_id << " " << nickname.value_or("")
+                  << std::endl;
+      }
+    }
     // google oauth2 user
-    const auto users = palm::portal::dao::users::all(db);
     {
-      const auto items = palm::portal::dao::users::email::all(db);
-      std::cout << "UID EMAIL\tREAL NAME" << std::endl;
-      boost::fusion::for_each(items, [&](auto const& it) {
-        boost::fusion::for_each(users, [&](auto const& jt) {
-          if (it.user_id == jt.id) {
-            std::cout << jt.uid << " " << it.email << "\t" << it.real_name
-                      << std::endl;
-          }
-        });
-      });
+      std::cout << "UID SUBJECT EMAIL\tNAME" << std::endl;
+      soci::rowset<
+          boost::tuple<std::string, std::string, boost::optional<std::string>,
+                       boost::optional<std::string>>>
+          rs =
+              (db.prepare
+               << R"SQL(SELECT u.uid, gu.subject, gu.email, gu.name FROM google_oauth2_users gu LEFT JOIN users u ON gu.user_id = u.id WHERE gu.email IS NOT NULL ORDER BY gu.email ASC)SQL");
+      for (auto it = rs.begin(); it != rs.end(); ++it) {
+        std::string uid, subject;
+        boost::optional<std::string> email, name;
+        boost::tie(uid, subject, email, name) = *it;
+        std::cout << uid << " " << subject << " " << email.value_or("") << "\t"
+                  << name.value_or("") << std::endl;
+      }
     }
-    {
-      const auto items = palm::portal::dao::users::google::oauth2::all(db);
-      std::cout << "UID SUBJECT\tEMAIL\tNAME" << std::endl;
-      boost::fusion::for_each(items, [&](auto const& it) {
-        boost::fusion::for_each(users, [&](auto const& jt) {
-          if (it.user_id == jt.id) {
-            std::cout << jt.uid << " " << it.subject << "\t"
-                      << it.email.value_or("") << "\t" << it.name.value_or("")
-                      << std::endl;
-          }
-        });
-      });
-    }
-    {
-      const auto items = palm::portal::dao::users::wechat::oauth2::all(db);
-      std::cout << "UID OPENID\tNICKNAME\tCITY\tCOUNTRY" << std::endl;
-      boost::fusion::for_each(items, [&](auto const& it) {
-        boost::fusion::for_each(users, [&](auto const& jt) {
-          if (it.user_id == jt.id) {
-            std::cout << jt.uid << " " << it.open_id << " " << it.nickname
-                      << "\t" << it.city << "\t" << it.country << std::endl;
-          }
-        });
-      });
-    }
-    {
-      const auto items =
-          palm::portal::dao::users::wechat::mini_program::all(db);
-      std::cout << "UID OPENID\tNICKNAME" << std::endl;
-      boost::fusion::for_each(items, [&](auto const& it) {
-        boost::fusion::for_each(users, [&](auto const& jt) {
-          if (it.user_id == jt.id) {
-            std::cout << jt.uid << " " << it.open_id << "\t"
-                      << it.nickname.value_or("") << std::endl;
-          }
-        });
-      });
-    }
+    // const auto users = palm::portal::dao::users::all(db);
+    // {
+    //   const auto items = palm::portal::dao::users::email::all(db);
+    //   std::cout << "UID EMAIL\tREAL NAME" << std::endl;
+    //   boost::fusion::for_each(items, [&](auto const& it) {
+    //     boost::fusion::for_each(users, [&](auto const& jt) {
+    //       if (it.user_id == jt.id) {
+    //         std::cout << jt.uid << " " << it.email << "\t" << it.real_name
+    //                   << std::endl;
+    //       }
+    //     });
+    //   });
+    // }
+    // {
+    //   const auto items = palm::portal::dao::users::google::oauth2::all(db);
+    //   std::cout << "UID SUBJECT\tEMAIL\tNAME" << std::endl;
+    //   boost::fusion::for_each(items, [&](auto const& it) {
+    //     boost::fusion::for_each(users, [&](auto const& jt) {
+    //       if (it.user_id == jt.id) {
+    //         std::cout << jt.uid << " " << it.subject << "\t"
+    //                   << it.email.value_or("") << "\t" <<
+    //                   it.name.value_or("")
+    //                   << std::endl;
+    //       }
+    //     });
+    //   });
+    // }
+    // {
+    //   const auto items = palm::portal::dao::users::wechat::oauth2::all(db);
+    //   std::cout << "UID OPENID\tNICKNAME\tCITY\tCOUNTRY" << std::endl;
+    //   boost::fusion::for_each(items, [&](auto const& it) {
+    //     boost::fusion::for_each(users, [&](auto const& jt) {
+    //       if (it.user_id == jt.id) {
+    //         std::cout << jt.uid << " " << it.open_id << " " << it.nickname
+    //                   << "\t" << it.city << "\t" << it.country << std::endl;
+    //       }
+    //     });
+    //   });
+    // }
+    // {
+    //   const auto items =
+    //       palm::portal::dao::users::wechat::mini_program::all(db);
+    //   std::cout << "UID OPENID\tNICKNAME" << std::endl;
+    //   boost::fusion::for_each(items, [&](auto const& it) {
+    //     boost::fusion::for_each(users, [&](auto const& jt) {
+    //       if (it.user_id == jt.id) {
+    //         std::cout << jt.uid << " " << it.open_id << "\t"
+    //                   << it.nickname.value_or("") << std::endl;
+    //       }
+    //     });
+    //   });
+    // }
   }
 }
 static void create_email_user(const toml::table& config,
