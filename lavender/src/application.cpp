@@ -104,13 +104,15 @@ static std::shared_ptr<palm::rabbitmq::Config> open_rabbitmq(
 static std::shared_ptr<casbin::Enforcer> open_casbin_enforcer(
     std::shared_ptr<soci::connection_pool> postgresql,
     std::shared_ptr<palm::rabbitmq::Config> rabbitmq) {
+  const std::string consumer = std::format(
+      "casbin.watcher.worker.{}.{}", boost::asio::ip::host_name(), getpid());
+  const std::string channel =
+      boost::typeindex::type_id<palm::casbin::v1::WatcherMessage>()
+          .pretty_name();
+  spdlog::debug("open rabbitmq watcher({},{})", consumer, channel);
   std::shared_ptr<casbin::Watcher> watcher =
-      std::make_shared<palm::casbin::RabbitMQWatcher>(
-          std::format("casbin.watcher.worker.{}.{}",
-                      boost::asio::ip::host_name(), getpid()),
-          boost::typeindex::type_id<palm::casbin::v1::WatcherMessage>()
-              .pretty_name(),
-          rabbitmq);
+      std::make_shared<palm::casbin::RabbitMQWatcher>(consumer, channel,
+                                                      rabbitmq);
 
   auto model = casbin::Model::NewModelFromString(palm::casbin::RBAC_MODEL);
   std::shared_ptr<casbin::Adapter> adapter =
@@ -121,7 +123,7 @@ static std::shared_ptr<casbin::Enforcer> open_casbin_enforcer(
 
   enforcer->EnableAutoSave(true);
   enforcer->SetWatcher(watcher);
-  enforcer->LoadPolicy();
+
   return enforcer;
 }
 static void list_user(const toml::table& config) {
@@ -201,6 +203,10 @@ static void create_email_user(const toml::table& config,
     soci::session db(*db_pool);
     {
       soci::transaction tr(db);
+      if (palm::portal::dao::users::email::get(db, email.value())) {
+        spdlog::error("email user({}) already exists", email.value());
+        return;
+      }
       spdlog::debug("create user {}<{}>", real_name.value(), email.value());
       palm::portal::dao::users::create(db, uid);
       const auto user = palm::portal::dao::users::get(db, uid);
@@ -236,6 +242,10 @@ static void set_password_for_email_user(const toml::table& config,
       soci::transaction tr(db);
       const auto email_user =
           palm::portal::dao::users::email::get(db, email.value());
+      if (!email_user) {
+        spdlog::error("can't find email user {}", email.value());
+        return;
+      }
       spdlog::debug("reset user {}<{}>'s password", email_user->real_name,
                     email_user->email);
       palm::portal::dao::users::email::set_password(db, email_user->id,
@@ -266,6 +276,10 @@ static void role_for_user(const toml::table& config,
   {
     soci::session db(*db_pool);
     const auto user = palm::portal::dao::users::get(db, user_uid);
+    if (!user) {
+      spdlog::error("couldn't find user {}", user_uid);
+      return;
+    }
     const std::string subject = palm::casbin::user::to_subject(user->id);
     if (enable) {
       enforcer->AddRoleForUser(subject, role);
@@ -833,7 +847,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
       .required()
       .store_into(generate_etc_domain);
 
-  argparse::ArgumentParser list_user_command("list_user");
+  argparse::ArgumentParser list_user_command("list-user");
   list_user_command.add_description("list all users");
 
   argparse::ArgumentParser create_email_user_command("create-email-user");
@@ -854,7 +868,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
       "set password for an email user");
   set_password_for_email_user_command.add_argument("-e", "--email")
       .required()
-      .store_into(set_password_for_email_user_password);
+      .store_into(set_password_for_email_user_email);
   set_password_for_email_user_command.add_argument("-p", "--password")
       .required()
       .store_into(set_password_for_email_user_password);
@@ -900,6 +914,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   program.add_subparser(generate_etc_command);
   program.add_subparser(list_user_command);
   program.add_subparser(create_email_user_command);
+  program.add_subparser(set_password_for_email_user_command);
   program.add_subparser(add_role_for_user_command);
   program.add_subparser(delete_role_for_user_command);
   program.add_subparser(sms_send_consumer_command);
@@ -912,7 +927,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
       program.is_subcommand_used(generate_etc_command) ||
       program.is_subcommand_used(list_user_command) ||
       program.is_subcommand_used(create_email_user_command) ||
-      program.is_subcommand_used(set_password_for_email_user_password) ||
+      program.is_subcommand_used(set_password_for_email_user_command) ||
       program.is_subcommand_used(add_role_for_user_command) ||
       program.is_subcommand_used(delete_role_for_user_command) ||
       program.is_subcommand_used(sms_send_consumer_command) ||
