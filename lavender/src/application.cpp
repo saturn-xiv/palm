@@ -132,6 +132,12 @@ static void list_user(const toml::table& config) {
     soci::session db(*db_pool);
     // TODO FORMAT the output
     // TODO left join
+    // email user
+    {
+    }
+    // wechat oauth2 user
+    // wechat mini-program user
+    // google oauth2 user
     const auto users = palm::portal::dao::users::all(db);
     {
       const auto items = palm::portal::dao::users::email::all(db);

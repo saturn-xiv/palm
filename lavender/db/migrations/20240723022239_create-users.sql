@@ -27,7 +27,7 @@ CREATE TABLE logs(
     user_id INT NOT NULL,
     plugin VARCHAR(31) NOT NULL,
     ip VARCHAR(45) NOT NULL,
-    level VARCHAR(8) NOT NULL,
+    level SMALLINT NOT NULL,
     resource_type VARCHAR(127) NOT NULL,
     resource_id INT,
     message TEXT NOT NULL,    
@@ -35,7 +35,6 @@ CREATE TABLE logs(
 );
 CREATE INDEX idx_logs_plugin ON logs(plugin);
 CREATE INDEX idx_logs_ip ON logs(ip);
-CREATE INDEX idx_logs_level ON logs(level);
 CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 
 

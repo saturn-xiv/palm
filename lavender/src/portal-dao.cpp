@@ -367,12 +367,21 @@ void palm::portal::dao::logs::create(
     palm::portal::v1::UserIndexLogResponse_Item_Level level,
     const std::string& resource_type, boost::optional<int> resource_id,
     const std::string& message) {
-  const std::string level_name =
-      palm::portal::v1::UserIndexLogResponse_Item_Level_Name(level);
+  // const std::string level_name =
+  //     palm::portal::v1::UserIndexLogResponse_Item_Level_Name(level);
   db << R"SQL(INSERT INTO logs(user_id, plugin, ip, level, resource_type, resource_id, message) VALUES(:user_id, :plugin, :ip, :level, :resource_type, :resource_id, :message))SQL",
       soci::use(user, "user_id"), soci::use(plugin, "plugin"),
-      soci::use(ip, "ip"), soci::use(level_name, "level"),
+      soci::use(ip, "ip"), soci::use(static_cast<int>(level), "level"),
       soci::use(resource_type, "resource_type"),
       soci::use(resource_id, "resource_id"), soci::use(message, "message");
+}
+boost::fusion::vector<palm::portal::dao::logs::Item>
+palm::portal::dao::logs::index(soci::session& db, int user, int offset,
+                               int limit) {
+  boost::fusion::vector<palm::portal::dao::logs::Item> items;
+  db << R"SQL(SELECT id, user_id, plugin, ip, level, resource_type, resource_id, message, created_at FROM logs WHERE user_id = :user_id ORDER BY created_at DESC OFFSET :offset LIMIT :limit)SQL",
+      soci::into(items), soci::use(user, "user_id"),
+      soci::use(offset, "offset"), soci::use(limit, "limit");
+  return items;
 }
 // ----------------------------------------------------------------------------

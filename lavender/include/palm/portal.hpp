@@ -40,6 +40,19 @@ inline static const std::string PLUGIN_NAME = "portal";
 
 namespace dao {
 namespace logs {
+struct Item {
+  int id;
+  int user_id;
+  std::string plugin;
+  std::string ip;
+  int level;
+  std::string resource_type;
+  boost::optional<int> resource_id;
+  std::string message;
+  std::tm created_at;
+};
+boost::fusion::vector<Item> index(soci::session& db, int user, int offset,
+                                  int limit);
 void create(soci::session& db, int user, const std::string& plugin,
             const std::string& ip,
             palm::portal::v1::UserIndexLogResponse_Item_Level level,
@@ -510,4 +523,37 @@ struct type_conversion<palm::portal::dao::users::google::oauth2::Item> {
     ind = i_ok;
   }
 };
+
+template <>
+struct type_conversion<palm::portal::dao::logs::Item> {
+  typedef soci::values base_type;
+
+  static void from_base(soci::values const& v, soci::indicator /* ind */,
+                        palm::portal::dao::logs::Item& p) {
+    p.id = v.get<int>("id");
+    p.user_id = v.get<int>("user_id");
+    p.plugin = v.get<std::string>("plugin");
+    p.ip = v.get<std::string>("ip");
+    p.level = v.get<int>("level");
+    p.resource_type = v.get<std::string>("resource_type");
+    p.resource_id = v.get<boost::optional<int>>("resource_id");
+    p.message = v.get<std::string>("message");
+    p.created_at = v.get<std::tm>("created_at");
+  }
+
+  static void to_base(const palm::portal::dao::logs::Item& p, soci::values& v,
+                      soci::indicator& ind) {
+    v.set("id", p.id);
+    v.set("user_id", p.user_id);
+    v.set("plugin", p.plugin);
+    v.set("ip", p.ip);
+    v.set("level", p.level);
+    v.set("resource_type", p.resource_type);
+    v.set("resource_id", p.resource_id);
+    v.set("message", p.message);
+    v.set("created_at", p.created_at);
+    ind = i_ok;
+  }
+};
+
 }  // namespace soci
