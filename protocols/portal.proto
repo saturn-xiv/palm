@@ -99,6 +99,32 @@ message UserSignInResponse {
   string token = 1;
 }
 
+// ----------------------------------------------------------------------------
 service Policy {}
 
-service Site {}
+// ----------------------------------------------------------------------------
+service Site {
+  rpc Timezones(google.protobuf.Empty) returns (SiteTimezonesResponse) {}
+  rpc Currencies(google.protobuf.Empty) returns (SiteCurrenciesResponse) {}
+  rpc Languages(google.protobuf.Empty) returns (SiteLanguagesResponse) {}
+}
+message SiteTimezonesResponse {
+  message Item {}
+  repeated Item items = 1;
+}
+message SiteLanguagesResponse {
+  repeated string items = 1;
+}
+message SiteCurrenciesResponse {
+  message Item {
+    uint32 id = 1;
+    string name = 2;
+    string code = 3;
+    string country = 4;
+    optional uint32 units = 5;
+    optional bool fund = 6;
+  }
+  repeated Item items = 1;
+}
+
+// ----------------------------------------------------------------------------

@@ -131,7 +131,7 @@ static void list_user(const toml::table& config) {
   {
     soci::session db(*db_pool);
     // TODO FORMAT the output
-    // TODO left join
+
     // email user
     {
       std::cout << "UID EMAIL\tREAL NAME" << std::endl;
@@ -699,7 +699,7 @@ static void db_seed(const toml::table& config) {
     {
       soci::transaction tr(db);
       palm::portal::dao::locales::load(db, "locales");
-      palm::iso4217::load(db, "iso4217/list-one.xml");
+      palm::iso4217::load(db, "vendors/iso4217/list-one.xml");
       tr.commit();
     }
   }

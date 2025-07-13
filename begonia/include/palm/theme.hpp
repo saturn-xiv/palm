@@ -2,8 +2,10 @@
 
 #include "palm/http.hpp"
 
-#include <format>
+#include <date/date.h>
 
+#include <google/protobuf/util/json_util.h>
+#include <google/protobuf/util/time_util.h>
 #include <httplib.h>
 #include <inja/inja.hpp>
 
@@ -25,4 +27,11 @@ class Theme {
 };
 
 void set_logger(httplib::Server& server);
+void tm2ts(std::tm* time, google::protobuf::Timestamp* timestamp);
+void str2ts(const std::string& time, google::protobuf::Timestamp* timestamp);
+/*
+PostgreSQL: timestamp without time zone
+2025-07-13 10:49:04.782031+00
+*/
+std::optional<std::string> to_json(const google::protobuf::Message& message);
 }  // namespace palm

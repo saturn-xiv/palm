@@ -371,6 +371,12 @@ Policy::Service::~Service() {
 }
 
 
+static const char* Site_method_names[] = {
+  "/palm.portal.v1.Site/Timezones",
+  "/palm.portal.v1.Site/Currencies",
+  "/palm.portal.v1.Site/Languages",
+};
+
 std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
   std::unique_ptr< Site::Stub> stub(new Site::Stub(channel, options));
@@ -378,12 +384,135 @@ std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 Site::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel){}
+  : channel_(channel), rpcmethod_Timezones_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Currencies_(Site_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Languages_(Site_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Site::Stub::Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteTimezonesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Timezones_, context, request, response);
+}
+
+void Site::Stub::async::Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Timezones_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Timezones_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>* Site::Stub::PrepareAsyncTimezonesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteTimezonesResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Timezones_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>* Site::Stub::AsyncTimezonesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncTimezonesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteCurrenciesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Currencies_, context, request, response);
+}
+
+void Site::Stub::async::Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Currencies_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Currencies_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>* Site::Stub::PrepareAsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteCurrenciesResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Currencies_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>* Site::Stub::AsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCurrenciesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteLanguagesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Languages_, context, request, response);
+}
+
+void Site::Stub::async::Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Languages_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Languages_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>* Site::Stub::PrepareAsyncLanguagesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteLanguagesResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Languages_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>* Site::Stub::AsyncLanguagesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLanguagesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 Site::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteTimezonesResponse* resp) {
+               return service->Timezones(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteCurrenciesResponse* resp) {
+               return service->Currencies(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteLanguagesResponse* resp) {
+               return service->Languages(ctx, req, resp);
+             }, this)));
 }
 
 Site::Service::~Service() {
+}
+
+::grpc::Status Site::Service::Timezones(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::Currencies(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::Languages(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 

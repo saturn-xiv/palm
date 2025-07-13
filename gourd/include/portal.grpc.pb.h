@@ -1230,6 +1230,7 @@ class User final {
   typedef WithStreamedUnaryMethod_SignInByEmail<WithStreamedUnaryMethod_IndexLog<Service > > StreamedService;
 };
 
+// ----------------------------------------------------------------------------
 class Policy final {
  public:
   static constexpr char const* service_full_name() {
@@ -1280,6 +1281,7 @@ class Policy final {
   typedef Service StreamedService;
 };
 
+// ----------------------------------------------------------------------------
 class Site final {
  public:
   static constexpr char const* service_full_name() {
@@ -1288,21 +1290,81 @@ class Site final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
+    virtual ::grpc::Status Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteTimezonesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteTimezonesResponse>> AsyncTimezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteTimezonesResponse>>(AsyncTimezonesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteTimezonesResponse>> PrepareAsyncTimezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteTimezonesResponse>>(PrepareAsyncTimezonesRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteCurrenciesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteCurrenciesResponse>> AsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteCurrenciesResponse>>(AsyncCurrenciesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteCurrenciesResponse>> PrepareAsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteCurrenciesResponse>>(PrepareAsyncCurrenciesRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteLanguagesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteLanguagesResponse>> AsyncLanguages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteLanguagesResponse>>(AsyncLanguagesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteLanguagesResponse>> PrepareAsyncLanguages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteLanguagesResponse>>(PrepareAsyncLanguagesRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
+      virtual void Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteTimezonesResponse>* AsyncTimezonesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteTimezonesResponse>* PrepareAsyncTimezonesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteCurrenciesResponse>* AsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteCurrenciesResponse>* PrepareAsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteLanguagesResponse>* AsyncLanguagesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteLanguagesResponse>* PrepareAsyncLanguagesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteTimezonesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>> AsyncTimezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>>(AsyncTimezonesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>> PrepareAsyncTimezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>>(PrepareAsyncTimezonesRaw(context, request, cq));
+    }
+    ::grpc::Status Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteCurrenciesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>> AsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>>(AsyncCurrenciesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>> PrepareAsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>>(PrepareAsyncCurrenciesRaw(context, request, cq));
+    }
+    ::grpc::Status Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteLanguagesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>> AsyncLanguages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>>(AsyncLanguagesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>> PrepareAsyncLanguages(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>>(PrepareAsyncLanguagesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
+      void Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response, std::function<void(::grpc::Status)>) override;
+      void Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response, std::function<void(::grpc::Status)>) override;
+      void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response, std::function<void(::grpc::Status)>) override;
+      void Languages(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -1314,6 +1376,15 @@ class Site final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>* AsyncTimezonesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteTimezonesResponse>* PrepareAsyncTimezonesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>* AsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteCurrenciesResponse>* PrepareAsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>* AsyncLanguagesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteLanguagesResponse>* PrepareAsyncLanguagesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Timezones_;
+    const ::grpc::internal::RpcMethod rpcmethod_Currencies_;
+    const ::grpc::internal::RpcMethod rpcmethod_Languages_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -1321,13 +1392,415 @@ class Site final {
    public:
     Service();
     virtual ~Service();
+    virtual ::grpc::Status Timezones(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response);
+    virtual ::grpc::Status Currencies(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response);
+    virtual ::grpc::Status Languages(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response);
   };
-  typedef Service AsyncService;
-  typedef Service CallbackService;
+  template <class BaseClass>
+  class WithAsyncMethod_Timezones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Timezones() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Timezones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Timezones(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTimezones(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::SiteTimezonesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Currencies() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCurrencies(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::SiteCurrenciesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Languages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Languages() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Languages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Languages(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLanguages(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::SiteLanguagesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Timezones<WithAsyncMethod_Currencies<WithAsyncMethod_Languages<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Timezones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Timezones() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response) { return this->Timezones(context, request, response); }));}
+    void SetMessageAllocatorFor_Timezones(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Timezones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Timezones(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Timezones(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Currencies() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteCurrenciesResponse* response) { return this->Currencies(context, request, response); }));}
+    void SetMessageAllocatorFor_Currencies(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Currencies(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Languages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Languages() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteLanguagesResponse* response) { return this->Languages(context, request, response); }));}
+    void SetMessageAllocatorFor_Languages(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Languages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Languages(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Languages(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Timezones<WithCallbackMethod_Currencies<WithCallbackMethod_Languages<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class WithGenericMethod_Timezones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Timezones() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Timezones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Timezones(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Currencies() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Languages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Languages() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Languages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Languages(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Timezones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Timezones() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Timezones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Timezones(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTimezones(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Currencies() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCurrencies(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Languages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Languages() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Languages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Languages(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Timezones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Timezones() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Timezones(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Timezones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Timezones(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Timezones(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Currencies() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Currencies(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Currencies(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Languages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Languages() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Languages(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Languages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Languages(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Languages(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Timezones : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Timezones() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse>* streamer) {
+                       return this->StreamedTimezones(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Timezones() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Timezones(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteTimezonesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedTimezones(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::portal::v1::SiteTimezonesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Currencies() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse>* streamer) {
+                       return this->StreamedCurrencies(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteCurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCurrencies(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::portal::v1::SiteCurrenciesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Languages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Languages() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse>* streamer) {
+                       return this->StreamedLanguages(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Languages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Languages(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteLanguagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::portal::v1::SiteLanguagesResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Timezones<WithStreamedUnaryMethod_Currencies<WithStreamedUnaryMethod_Languages<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef Service StreamedService;
+  typedef WithStreamedUnaryMethod_Timezones<WithStreamedUnaryMethod_Currencies<WithStreamedUnaryMethod_Languages<Service > > > StreamedService;
 };
 
 }  // namespace v1
