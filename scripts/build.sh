@@ -18,8 +18,8 @@ function build_on_arch() {
 
 function build_x86_64_on_ubuntu() {
     cd $WORK_DIR/
-    # cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
-    # cmake --build $WORK_DIR/build/x86_64
+    cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
+    cmake --build $WORK_DIR/build/x86_64
 
     # cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/clang/x86_64.cmake $THRIFT_FLAGS
     # cmake --build $WORK_DIR/build/x86_64
@@ -28,8 +28,8 @@ function build_x86_64_on_ubuntu() {
 }
 
 function build_aarch64_on_ubuntu() {
-    # cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/gcc/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
-    # cmake --build $WORK_DIR/build/aarch64
+    cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/gcc/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
+    cmake --build $WORK_DIR/build/aarch64
 
     build_deb aarch64 arm64
 }
@@ -62,10 +62,12 @@ EOF
 
     mkdir -p $target/var/lib/palm/lavender
     cd $WORK_DIR/lavender/
-    cp -rv locales vendors $target/var/lib/palm/lavender/
+    cp -rv views locales vendors $target/var/lib/palm/lavender/
     mkdir -p $target/var/lib/palm/lavender/db
     cd $WORK_DIR/lavender/db
     cp -rv README.md migrations $target/var/lib/palm/lavender/db/
+
+    build_assets $target
 
     cd $(dirname $target)
     # dpkg-deb -x xxx.deb xxx
@@ -87,6 +89,16 @@ function build_assets() {
     if [ ! -d node_modules ]; then
         npm install
     fi
+
+    local -a assets=(
+        "bootstrap/dist"
+        "bulma/css/bulma.min.css"
+        "marked/lib/marked.umd.js"
+    )
+    for i in "${assets[@]}"; do
+        mkdir -p $target/usr/share/palm/node_modules/$(dirname $i)
+        cp -rv node_modules/$i $target/usr/share/palm/node_modules/$(dirname $i)/
+    done
 }
 
 . /etc/os-release

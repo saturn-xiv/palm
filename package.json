@@ -1,0 +1,11 @@
+{
+  "name": "lavender",
+  "version": "2024.7.14",
+  "license": "MIT",
+  "author": "Jeremy",
+  "dependencies": {
+    "bootstrap": "^5.3.7",
+    "bulma": "^1.0.4",
+    "marked": "^16.0.0"
+  }
+}
