@@ -10,7 +10,6 @@
     "argparse",
     "spdlog",
     "catch2",
-    "date",
     "yaml-cpp",
     "tomlplusplus",
     "pugixml",

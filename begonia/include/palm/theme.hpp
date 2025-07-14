@@ -2,8 +2,6 @@
 
 #include "palm/http.hpp"
 
-#include <date/date.h>
-
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/time_util.h>
 #include <httplib.h>

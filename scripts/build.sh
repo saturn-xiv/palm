@@ -9,19 +9,30 @@ export THRIFT_FLAGS="-DCMAKE_BUILD_TYPE=Release -DBUILD_COMPILER=OFF -DWITH_OPEN
 export BOOST_FLAGS=""
 export WORK_DIR=$PWD
 
-. /etc/os-release
-
-if [ $ID == "arch" ]; then
+function build_on_arch() {
     cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/arch/clang.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/arch
-elif [ $ID == "ubuntu" ]; then
+}
+
+function build_x86_64_on_ubuntu() {
     cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/x86_64
     # cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/clang/x86_64.cmake $THRIFT_FLAGS
     # cmake --build $WORK_DIR/build/x86_64
+}
 
+function build_aarch64_on_ubuntu() {
     cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/gcc/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/aarch64
+}
+
+. /etc/os-release
+
+if [ $ID == "arch" ]; then
+    build_on_arch
+elif [ $ID == "ubuntu" ]; then
+    build_x86_64_on_ubuntu
+    build_aarch64_on_ubuntu
 else
     echo "unsupported os $PRETTY_NAME"
 fi
