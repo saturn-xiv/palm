@@ -302,6 +302,20 @@ class UserClient {
   std::unique_ptr<palm::portal::v1::User::Stub> _stub;
 };
 }  // namespace rpc
+
+namespace services {
+class SiteService final : public v1::Site::Service {
+  grpc::Status Timezones(grpc::ServerContext* context,
+                         const google::protobuf::Empty* request,
+                         v1::SiteTimezonesResponse* reply) override;
+  grpc::Status Languages(grpc::ServerContext* context,
+                         const google::protobuf::Empty* request,
+                         v1::SiteLanguagesResponse* reply) override;
+  grpc::Status Currencies(grpc::ServerContext* context,
+                          const google::protobuf::Empty* request,
+                          v1::SiteCurrenciesResponse* reply) override;
+};
+}  // namespace services
 }  // namespace portal
 }  // namespace palm
 

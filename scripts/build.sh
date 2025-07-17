@@ -62,10 +62,18 @@ EOF
 
     mkdir -p $target/var/lib/palm/lavender
     cd $WORK_DIR/lavender/
-    cp -rv views locales vendors $target/var/lib/palm/lavender/
+    cp -rv README.md assets views locales vendors $target/var/lib/palm/lavender/
     mkdir -p $target/var/lib/palm/lavender/db
     cd $WORK_DIR/lavender/db
     cp -rv README.md migrations $target/var/lib/palm/lavender/db/
+
+    mkdir -p $target/var/lib/palm/bamboo
+    cd $WORK_DIR/bamboo/
+    cp -rv README.md assets views locales $target/var/lib/palm/bamboo/
+
+    mkdir -p $target/var/lib/palm/phlox
+    cd $WORK_DIR/phlox/
+    cp -rv README.md assets views locales $target/var/lib/palm/phlox/
 
     build_assets $target
 
