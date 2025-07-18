@@ -27,6 +27,245 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace monitoring {
 namespace v1 {
+
+inline constexpr PodmanLogsResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : host_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        created_at_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PodmanLogsResponse_Item::PodmanLogsResponse_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PodmanLogsResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanLogsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanLogsResponse_ItemDefaultTypeInternal() {}
+  union {
+    PodmanLogsResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanLogsResponse_ItemDefaultTypeInternal _PodmanLogsResponse_Item_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR PodmanContainersResponse_Item_LabelsEntry_DoNotUse::PodmanContainersResponse_Item_LabelsEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : PodmanContainersResponse_Item_LabelsEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : PodmanContainersResponse_Item_LabelsEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct PodmanContainersResponse_Item_LabelsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanContainersResponse_Item_LabelsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanContainersResponse_Item_LabelsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    PodmanContainersResponse_Item_LabelsEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanContainersResponse_Item_LabelsEntry_DoNotUseDefaultTypeInternal _PodmanContainersResponse_Item_LabelsEntry_DoNotUse_default_instance_;
+
+inline constexpr PodmanStatisticsResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        host_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        cpu_time_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        cpu_percent_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        avg_cpu_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        mem_usage_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        mem_percent_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        net_io_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        block_io_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        pids_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        created_at_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PodmanStatisticsResponse_Item::PodmanStatisticsResponse_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PodmanStatisticsResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanStatisticsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanStatisticsResponse_ItemDefaultTypeInternal() {}
+  union {
+    PodmanStatisticsResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanStatisticsResponse_ItemDefaultTypeInternal _PodmanStatisticsResponse_Item_default_instance_;
+
+inline constexpr PodmanLogsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PodmanLogsResponse::PodmanLogsResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PodmanLogsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanLogsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanLogsResponseDefaultTypeInternal() {}
+  union {
+    PodmanLogsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanLogsResponseDefaultTypeInternal _PodmanLogsResponse_default_instance_;
+
+inline constexpr PodmanContainersResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        labels_{},
+        mounts_{},
+        names_{},
+        command_{},
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        image_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        image_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        state_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        created_at_{nullptr},
+        pid_{0},
+        started_at_{0},
+        exited_{false},
+        exited_at_{0},
+        exit_code_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PodmanContainersResponse_Item::PodmanContainersResponse_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PodmanContainersResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanContainersResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanContainersResponse_ItemDefaultTypeInternal() {}
+  union {
+    PodmanContainersResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanContainersResponse_ItemDefaultTypeInternal _PodmanContainersResponse_Item_default_instance_;
+
+inline constexpr PodmanStatisticsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PodmanStatisticsResponse::PodmanStatisticsResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PodmanStatisticsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanStatisticsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanStatisticsResponseDefaultTypeInternal() {}
+  union {
+    PodmanStatisticsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanStatisticsResponseDefaultTypeInternal _PodmanStatisticsResponse_default_instance_;
+
+inline constexpr PodmanContainersResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PodmanContainersResponse::PodmanContainersResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PodmanContainersResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PodmanContainersResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PodmanContainersResponseDefaultTypeInternal() {}
+  union {
+    PodmanContainersResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanContainersResponseDefaultTypeInternal _PodmanContainersResponse_default_instance_;
 }  // namespace v1
 }  // namespace monitoring
 }  // namespace palm
@@ -34,26 +273,217 @@ static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_monitoring_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_monitoring_2eproto = nullptr;
-const ::uint32_t TableStruct_monitoring_2eproto::offsets[1] = {};
-static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
-static constexpr ::_pb::Message* const* file_default_instances = nullptr;
+const ::uint32_t
+    TableStruct_monitoring_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
+        protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.host_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.created_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse, _impl_.pagination_),
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.image_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.image_id_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.labels_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.mounts_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.names_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.command_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.pid_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.state_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.started_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.exited_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.exited_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.exit_code_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse_Item, _impl_.created_at_),
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanContainersResponse, _impl_.pagination_),
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.host_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.cpu_time_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.cpu_percent_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.avg_cpu_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.mem_usage_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.mem_percent_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.net_io_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.block_io_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.pids_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse_Item, _impl_.created_at_),
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanStatisticsResponse, _impl_.pagination_),
+        ~0u,
+        0,
+};
+
+static const ::_pbi::MigrationSchema
+    schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {13, 23, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {25, 35, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {37, 59, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {73, 83, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {85, 105, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {117, 127, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+};
+static const ::_pb::Message* const file_default_instances[] = {
+    &::palm::monitoring::v1::_PodmanLogsResponse_Item_default_instance_._instance,
+    &::palm::monitoring::v1::_PodmanLogsResponse_default_instance_._instance,
+    &::palm::monitoring::v1::_PodmanContainersResponse_Item_LabelsEntry_DoNotUse_default_instance_._instance,
+    &::palm::monitoring::v1::_PodmanContainersResponse_Item_default_instance_._instance,
+    &::palm::monitoring::v1::_PodmanContainersResponse_default_instance_._instance,
+    &::palm::monitoring::v1::_PodmanStatisticsResponse_Item_default_instance_._instance,
+    &::palm::monitoring::v1::_PodmanStatisticsResponse_default_instance_._instance,
+};
 const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\020monitoring.proto\022\022palm.monitoring.v12\021"
-    "\n\017HealthCheckNodeB4\n0com.github.saturn_x"
-    "iv.palm.plugins.monitoring.v1P\001b\006proto3"
+    "\n\020monitoring.proto\022\022palm.monitoring.v1\032\037"
+    "google/protobuf/timestamp.proto\032\014portal."
+    "proto\"\325\001\n\022PodmanLogsResponse\022:\n\005items\030\001 "
+    "\003(\0132+.palm.monitoring.v1.PodmanLogsRespo"
+    "nse.Item\022.\n\npagination\030\t \001(\0132\032.palm.port"
+    "al.v1.Pagination\032S\n\004Item\022\014\n\004host\030\001 \001(\t\022\n"
+    "\n\002id\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\017\n\007message\030\004 \001("
+    "\t\022\022\n\ncreated_at\030\t \001(\t\"\206\004\n\030PodmanContaine"
+    "rsResponse\022@\n\005items\030\001 \003(\01321.palm.monitor"
+    "ing.v1.PodmanContainersResponse.Item\022.\n\n"
+    "pagination\030\t \001(\0132\032.palm.portal.v1.Pagina"
+    "tion\032\367\002\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n\005image\030\002 \001(\t"
+    "\022\020\n\010image_id\030\003 \001(\t\022M\n\006labels\030\004 \003(\0132=.pal"
+    "m.monitoring.v1.PodmanContainersResponse"
+    ".Item.LabelsEntry\022\016\n\006mounts\030\005 \003(\t\022\r\n\005nam"
+    "es\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n\003pid\030\013 \001(\005\022\r"
+    "\n\005state\030\014 \001(\t\022\022\n\nstarted_at\030\r \001(\005\022\016\n\006exi"
+    "ted\030\025 \001(\010\022\021\n\texited_at\030\026 \001(\005\022\021\n\texit_cod"
+    "e\030\027 \001(\005\022.\n\ncreated_at\030c \001(\0132\032.google.pro"
+    "tobuf.Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 "
+    "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatist"
+    "icsResponse\022@\n\005items\030\001 \003(\01321.palm.monito"
+    "ring.v1.PodmanStatisticsResponse.Item\022.\n"
+    "\npagination\030\t \001(\0132\032.palm.portal.v1.Pagin"
+    "ation\032\356\001\n\004Item\022\014\n\004host\030\001 \001(\t\022\n\n\002id\030\002 \001(\t"
+    "\022\014\n\004name\030\003 \001(\t\022\020\n\010cpu_time\030\004 \001(\t\022\023\n\013cpu_"
+    "percent\030\005 \001(\t\022\017\n\007avg_cpu\030\006 \001(\t\022\021\n\tmem_us"
+    "age\030\007 \001(\t\022\023\n\013mem_percent\030\010 \001(\t\022\016\n\006net_io"
+    "\030\t \001(\t\022\020\n\010block_io\030\n \001(\t\022\014\n\004pids\030\013 \001(\t\022."
+    "\n\ncreated_at\030c \001(\0132\032.google.protobuf.Tim"
+    "estamp2\021\n\017HealthCheckNode2\370\001\n\006Podman\022F\n\004"
+    "Logs\022\024.palm.portal.v1.Page\032&.palm.monito"
+    "ring.v1.PodmanLogsResponse\"\000\022R\n\nContaine"
+    "rs\022\024.palm.portal.v1.Page\032,.palm.monitori"
+    "ng.v1.PodmanContainersResponse\"\000\022R\n\nStat"
+    "istics\022\024.palm.portal.v1.Page\032,.palm.moni"
+    "toring.v1.PodmanStatisticsResponse\"\000B4\n0"
+    "com.github.saturn_xiv.palm.plugins.monit"
+    "oring.v1P\001b\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
+    {
+        &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+        &::descriptor_table_portal_2eproto,
 };
 static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    119,
+    1538,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
-    nullptr,
-    0,
-    0,
+    descriptor_table_monitoring_2eproto_deps,
+    2,
+    7,
     schemas,
     file_default_instances,
     TableStruct_monitoring_2eproto::offsets,
@@ -63,6 +493,2576 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2ep
 namespace palm {
 namespace monitoring {
 namespace v1 {
+// ===================================================================
+
+class PodmanLogsResponse_Item::_Internal {
+ public:
+};
+
+PodmanLogsResponse_Item::PodmanLogsResponse_Item(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.PodmanLogsResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanLogsResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::PodmanLogsResponse_Item& from_msg)
+      : host_(arena, from.host_),
+        id_(arena, from.id_),
+        name_(arena, from.name_),
+        message_(arena, from.message_),
+        created_at_(arena, from.created_at_),
+        _cached_size_{0} {}
+
+PodmanLogsResponse_Item::PodmanLogsResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const PodmanLogsResponse_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PodmanLogsResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.PodmanLogsResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanLogsResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : host_(arena),
+        id_(arena),
+        name_(arena),
+        message_(arena),
+        created_at_(arena),
+        _cached_size_{0} {}
+
+inline void PodmanLogsResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+PodmanLogsResponse_Item::~PodmanLogsResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.PodmanLogsResponse.Item)
+  SharedDtor(*this);
+}
+inline void PodmanLogsResponse_Item::SharedDtor(MessageLite& self) {
+  PodmanLogsResponse_Item& this_ = static_cast<PodmanLogsResponse_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.host_.Destroy();
+  this_._impl_.id_.Destroy();
+  this_._impl_.name_.Destroy();
+  this_._impl_.message_.Destroy();
+  this_._impl_.created_at_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PodmanLogsResponse_Item::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PodmanLogsResponse_Item(arena);
+}
+constexpr auto PodmanLogsResponse_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(PodmanLogsResponse_Item),
+                                            alignof(PodmanLogsResponse_Item));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PodmanLogsResponse_Item::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PodmanLogsResponse_Item_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PodmanLogsResponse_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PodmanLogsResponse_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PodmanLogsResponse_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PodmanLogsResponse_Item>(), &PodmanLogsResponse_Item::ByteSizeLong,
+            &PodmanLogsResponse_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_._cached_size_),
+        false,
+    },
+    &PodmanLogsResponse_Item::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PodmanLogsResponse_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 5, 0, 78, 2> PodmanLogsResponse_Item::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967024,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanLogsResponse_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string message = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.message_)}},
+    // string host = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.host_)}},
+    // string id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.id_)}},
+    // string name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string host = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.host_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string id = 2;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string name = 3;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string message = 4;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string created_at = 9;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.created_at_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\52\4\2\4\7\12\0\0"
+    "palm.monitoring.v1.PodmanLogsResponse.Item"
+    "host"
+    "id"
+    "name"
+    "message"
+    "created_at"
+  }},
+};
+
+PROTOBUF_NOINLINE void PodmanLogsResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.PodmanLogsResponse.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.host_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  _impl_.created_at_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PodmanLogsResponse_Item::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PodmanLogsResponse_Item& this_ = static_cast<const PodmanLogsResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PodmanLogsResponse_Item::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PodmanLogsResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.PodmanLogsResponse.Item)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string host = 1;
+          if (!this_._internal_host().empty()) {
+            const std::string& _s = this_._internal_host();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.host");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string id = 2;
+          if (!this_._internal_id().empty()) {
+            const std::string& _s = this_._internal_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string name = 3;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.name");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // string message = 4;
+          if (!this_._internal_message().empty()) {
+            const std::string& _s = this_._internal_message();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.message");
+            target = stream->WriteStringMaybeAliased(4, _s, target);
+          }
+
+          // string created_at = 9;
+          if (!this_._internal_created_at().empty()) {
+            const std::string& _s = this_._internal_created_at();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.created_at");
+            target = stream->WriteStringMaybeAliased(9, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.PodmanLogsResponse.Item)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PodmanLogsResponse_Item::ByteSizeLong(const MessageLite& base) {
+          const PodmanLogsResponse_Item& this_ = static_cast<const PodmanLogsResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PodmanLogsResponse_Item::ByteSizeLong() const {
+          const PodmanLogsResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.PodmanLogsResponse.Item)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string host = 1;
+            if (!this_._internal_host().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_host());
+            }
+            // string id = 2;
+            if (!this_._internal_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_id());
+            }
+            // string name = 3;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+            // string message = 4;
+            if (!this_._internal_message().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_message());
+            }
+            // string created_at = 9;
+            if (!this_._internal_created_at().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_created_at());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PodmanLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PodmanLogsResponse_Item*>(&to_msg);
+  auto& from = static_cast<const PodmanLogsResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.PodmanLogsResponse.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_host().empty()) {
+    _this->_internal_set_host(from._internal_host());
+  }
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (!from._internal_created_at().empty()) {
+    _this->_internal_set_created_at(from._internal_created_at());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PodmanLogsResponse_Item::CopyFrom(const PodmanLogsResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.PodmanLogsResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PodmanLogsResponse_Item::InternalSwap(PodmanLogsResponse_Item* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.created_at_, &other->_impl_.created_at_, arena);
+}
+
+::google::protobuf::Metadata PodmanLogsResponse_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PodmanLogsResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PodmanLogsResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_._has_bits_);
+};
+
+void PodmanLogsResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PodmanLogsResponse::PodmanLogsResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.PodmanLogsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanLogsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::PodmanLogsResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+PodmanLogsResponse::PodmanLogsResponse(
+    ::google::protobuf::Arena* arena,
+    const PodmanLogsResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PodmanLogsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pagination_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(
+                              arena, *from._impl_.pagination_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.PodmanLogsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanLogsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void PodmanLogsResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.pagination_ = {};
+}
+PodmanLogsResponse::~PodmanLogsResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.PodmanLogsResponse)
+  SharedDtor(*this);
+}
+inline void PodmanLogsResponse::SharedDtor(MessageLite& self) {
+  PodmanLogsResponse& this_ = static_cast<PodmanLogsResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.pagination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PodmanLogsResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PodmanLogsResponse(arena);
+}
+constexpr auto PodmanLogsResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_.items_) +
+          decltype(PodmanLogsResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(PodmanLogsResponse), alignof(PodmanLogsResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&PodmanLogsResponse::PlacementNew_,
+                                 sizeof(PodmanLogsResponse),
+                                 alignof(PodmanLogsResponse));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PodmanLogsResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PodmanLogsResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PodmanLogsResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PodmanLogsResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PodmanLogsResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PodmanLogsResponse>(), &PodmanLogsResponse::ByteSizeLong,
+            &PodmanLogsResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_._cached_size_),
+        false,
+    },
+    &PodmanLogsResponse::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PodmanLogsResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> PodmanLogsResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967038,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanLogsResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.monitoring.v1.PodmanLogsResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.monitoring.v1.PodmanLogsResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_.items_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Pagination pagination = 9;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanLogsResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PodmanLogsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.PodmanLogsResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pagination_ != nullptr);
+    _impl_.pagination_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PodmanLogsResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PodmanLogsResponse& this_ = static_cast<const PodmanLogsResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PodmanLogsResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PodmanLogsResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.PodmanLogsResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .palm.monitoring.v1.PodmanLogsResponse.Item items = 1;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_items_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_items().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    1, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Pagination pagination = 9;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                9, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.PodmanLogsResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PodmanLogsResponse::ByteSizeLong(const MessageLite& base) {
+          const PodmanLogsResponse& this_ = static_cast<const PodmanLogsResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PodmanLogsResponse::ByteSizeLong() const {
+          const PodmanLogsResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.PodmanLogsResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .palm.monitoring.v1.PodmanLogsResponse.Item items = 1;
+            {
+              total_size += 1UL * this_._internal_items_size();
+              for (const auto& msg : this_._internal_items()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // .palm.portal.v1.Pagination pagination = 9;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pagination_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PodmanLogsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PodmanLogsResponse*>(&to_msg);
+  auto& from = static_cast<const PodmanLogsResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.PodmanLogsResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.pagination_ != nullptr);
+    if (_this->_impl_.pagination_ == nullptr) {
+      _this->_impl_.pagination_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(arena, *from._impl_.pagination_);
+    } else {
+      _this->_impl_.pagination_->MergeFrom(*from._impl_.pagination_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PodmanLogsResponse::CopyFrom(const PodmanLogsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.PodmanLogsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PodmanLogsResponse::InternalSwap(PodmanLogsResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.pagination_, other->_impl_.pagination_);
+}
+
+::google::protobuf::Metadata PodmanLogsResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              PodmanContainersResponse_Item_LabelsEntry_DoNotUse::PodmanContainersResponse_Item_LabelsEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              PodmanContainersResponse_Item_LabelsEntry_DoNotUse::PodmanContainersResponse_Item_LabelsEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              PodmanContainersResponse_Item_LabelsEntry_DoNotUse::PodmanContainersResponse_Item_LabelsEntry_DoNotUse() : SuperType() {}
+              PodmanContainersResponse_Item_LabelsEntry_DoNotUse::PodmanContainersResponse_Item_LabelsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* PodmanContainersResponse_Item_LabelsEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) PodmanContainersResponse_Item_LabelsEntry_DoNotUse(arena);
+              }
+              constexpr auto PodmanContainersResponse_Item_LabelsEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(PodmanContainersResponse_Item_LabelsEntry_DoNotUse),
+                                                          alignof(PodmanContainersResponse_Item_LabelsEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull PodmanContainersResponse_Item_LabelsEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_PodmanContainersResponse_Item_LabelsEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &PodmanContainersResponse_Item_LabelsEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<PodmanContainersResponse_Item_LabelsEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &PodmanContainersResponse_Item_LabelsEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &PodmanContainersResponse_Item_LabelsEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &PodmanContainersResponse_Item_LabelsEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_monitoring_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* PodmanContainersResponse_Item_LabelsEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 77, 2> PodmanContainersResponse_Item_LabelsEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string value = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string value = 2;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item_LabelsEntry_DoNotUse, _impl_.value_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\74\3\5\0\0\0\0\0"
+    "palm.monitoring.v1.PodmanContainersResponse.Item.LabelsEntry"
+    "key"
+    "value"
+  }},
+};
+
+// ===================================================================
+
+class PodmanContainersResponse_Item::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PodmanContainersResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_._has_bits_);
+};
+
+void PodmanContainersResponse_Item::clear_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ != nullptr) _impl_.created_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PodmanContainersResponse_Item::PodmanContainersResponse_Item(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.PodmanContainersResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanContainersResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::PodmanContainersResponse_Item& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        labels_{visibility, arena, from.labels_},
+        mounts_{visibility, arena, from.mounts_},
+        names_{visibility, arena, from.names_},
+        command_{visibility, arena, from.command_},
+        id_(arena, from.id_),
+        image_(arena, from.image_),
+        image_id_(arena, from.image_id_),
+        state_(arena, from.state_) {}
+
+PodmanContainersResponse_Item::PodmanContainersResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const PodmanContainersResponse_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PodmanContainersResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.created_at_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
+                              arena, *from._impl_.created_at_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, pid_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, pid_),
+           offsetof(Impl_, exit_code_) -
+               offsetof(Impl_, pid_) +
+               sizeof(Impl_::exit_code_));
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.PodmanContainersResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanContainersResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        labels_{visibility, arena},
+        mounts_{visibility, arena},
+        names_{visibility, arena},
+        command_{visibility, arena},
+        id_(arena),
+        image_(arena),
+        image_id_(arena),
+        state_(arena) {}
+
+inline void PodmanContainersResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, created_at_),
+           0,
+           offsetof(Impl_, exit_code_) -
+               offsetof(Impl_, created_at_) +
+               sizeof(Impl_::exit_code_));
+}
+PodmanContainersResponse_Item::~PodmanContainersResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.PodmanContainersResponse.Item)
+  SharedDtor(*this);
+}
+inline void PodmanContainersResponse_Item::SharedDtor(MessageLite& self) {
+  PodmanContainersResponse_Item& this_ = static_cast<PodmanContainersResponse_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.image_.Destroy();
+  this_._impl_.image_id_.Destroy();
+  this_._impl_.state_.Destroy();
+  delete this_._impl_.created_at_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PodmanContainersResponse_Item::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PodmanContainersResponse_Item(arena);
+}
+constexpr auto PodmanContainersResponse_Item::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.labels_) +
+          decltype(PodmanContainersResponse_Item::_impl_.labels_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.labels_) +
+          decltype(PodmanContainersResponse_Item::_impl_.labels_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.mounts_) +
+          decltype(PodmanContainersResponse_Item::_impl_.mounts_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.names_) +
+          decltype(PodmanContainersResponse_Item::_impl_.names_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.command_) +
+          decltype(PodmanContainersResponse_Item::_impl_.command_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(PodmanContainersResponse_Item), alignof(PodmanContainersResponse_Item), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&PodmanContainersResponse_Item::PlacementNew_,
+                                 sizeof(PodmanContainersResponse_Item),
+                                 alignof(PodmanContainersResponse_Item));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PodmanContainersResponse_Item::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PodmanContainersResponse_Item_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PodmanContainersResponse_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PodmanContainersResponse_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PodmanContainersResponse_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PodmanContainersResponse_Item>(), &PodmanContainersResponse_Item::ByteSizeLong,
+            &PodmanContainersResponse_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_._cached_size_),
+        false,
+    },
+    &PodmanContainersResponse_Item::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PodmanContainersResponse_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 14, 2, 109, 7> PodmanContainersResponse_Item::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4287619968,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    14,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanContainersResponse_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.id_)}},
+    // string image = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.image_)}},
+    // string image_id = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.image_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated string mounts = 5;
+    {::_pbi::TcParser::FastUR1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.mounts_)}},
+    // repeated string names = 6;
+    {::_pbi::TcParser::FastUR1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.names_)}},
+    // repeated string command = 7;
+    {::_pbi::TcParser::FastUR1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.command_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 pid = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PodmanContainersResponse_Item, _impl_.pid_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.pid_)}},
+    // string state = 12;
+    {::_pbi::TcParser::FastUS1,
+     {98, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.state_)}},
+    // int32 started_at = 13;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PodmanContainersResponse_Item, _impl_.started_at_), 63>(),
+     {104, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.started_at_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    99, 0, 1,
+    65534, 13,
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string image = 2;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.image_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string image_id = 3;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.image_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // map<string, string> labels = 4;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.labels_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // repeated string mounts = 5;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.mounts_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // repeated string names = 6;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.names_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // repeated string command = 7;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.command_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // int32 pid = 11;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.pid_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string state = 12;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.state_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 started_at = 13;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.started_at_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bool exited = 21;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.exited_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 exited_at = 22;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.exited_at_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 exit_code = 23;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.exit_code_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // .google.protobuf.Timestamp created_at = 99;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.created_at_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(PodmanContainersResponse_Item()._impl_.labels_)>(
+        1, 0, 0, 9,
+        9)},
+  }}, {{
+    "\60\2\5\10\6\6\5\7\0\5\0\0\0\0\0\0"
+    "palm.monitoring.v1.PodmanContainersResponse.Item"
+    "id"
+    "image"
+    "image_id"
+    "labels"
+    "mounts"
+    "names"
+    "command"
+    "state"
+  }},
+};
+
+PROTOBUF_NOINLINE void PodmanContainersResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.PodmanContainersResponse.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.labels_.Clear();
+  _impl_.mounts_.Clear();
+  _impl_.names_.Clear();
+  _impl_.command_.Clear();
+  _impl_.id_.ClearToEmpty();
+  _impl_.image_.ClearToEmpty();
+  _impl_.image_id_.ClearToEmpty();
+  _impl_.state_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.created_at_ != nullptr);
+    _impl_.created_at_->Clear();
+  }
+  ::memset(&_impl_.pid_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.exit_code_) -
+      reinterpret_cast<char*>(&_impl_.pid_)) + sizeof(_impl_.exit_code_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PodmanContainersResponse_Item::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PodmanContainersResponse_Item& this_ = static_cast<const PodmanContainersResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PodmanContainersResponse_Item::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PodmanContainersResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.PodmanContainersResponse.Item)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string id = 1;
+          if (!this_._internal_id().empty()) {
+            const std::string& _s = this_._internal_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.id");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string image = 2;
+          if (!this_._internal_image().empty()) {
+            const std::string& _s = this_._internal_image();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.image");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string image_id = 3;
+          if (!this_._internal_image_id().empty()) {
+            const std::string& _s = this_._internal_image_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.image_id");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // map<string, string> labels = 4;
+          if (!this_._internal_labels().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, std::string>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_STRING>;
+            const auto& field = this_._internal_labels();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    4, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.labels");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.labels");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    4, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.labels");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.labels");
+              }
+            }
+          }
+
+          // repeated string mounts = 5;
+          for (int i = 0, n = this_._internal_mounts_size(); i < n; ++i) {
+            const auto& s = this_._internal_mounts().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.mounts");
+            target = stream->WriteString(5, s, target);
+          }
+
+          // repeated string names = 6;
+          for (int i = 0, n = this_._internal_names_size(); i < n; ++i) {
+            const auto& s = this_._internal_names().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.names");
+            target = stream->WriteString(6, s, target);
+          }
+
+          // repeated string command = 7;
+          for (int i = 0, n = this_._internal_command_size(); i < n; ++i) {
+            const auto& s = this_._internal_command().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.command");
+            target = stream->WriteString(7, s, target);
+          }
+
+          // int32 pid = 11;
+          if (this_._internal_pid() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<11>(
+                    stream, this_._internal_pid(), target);
+          }
+
+          // string state = 12;
+          if (!this_._internal_state().empty()) {
+            const std::string& _s = this_._internal_state();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanContainersResponse.Item.state");
+            target = stream->WriteStringMaybeAliased(12, _s, target);
+          }
+
+          // int32 started_at = 13;
+          if (this_._internal_started_at() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<13>(
+                    stream, this_._internal_started_at(), target);
+          }
+
+          // bool exited = 21;
+          if (this_._internal_exited() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                21, this_._internal_exited(), target);
+          }
+
+          // int32 exited_at = 22;
+          if (this_._internal_exited_at() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+                22, this_._internal_exited_at(), target);
+          }
+
+          // int32 exit_code = 23;
+          if (this_._internal_exit_code() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+                23, this_._internal_exit_code(), target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .google.protobuf.Timestamp created_at = 99;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                99, *this_._impl_.created_at_, this_._impl_.created_at_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.PodmanContainersResponse.Item)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PodmanContainersResponse_Item::ByteSizeLong(const MessageLite& base) {
+          const PodmanContainersResponse_Item& this_ = static_cast<const PodmanContainersResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PodmanContainersResponse_Item::ByteSizeLong() const {
+          const PodmanContainersResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.PodmanContainersResponse.Item)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // map<string, string> labels = 4;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_labels_size());
+              for (const auto& entry : this_._internal_labels()) {
+                total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+            // repeated string mounts = 5;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_mounts().size());
+              for (int i = 0, n = this_._internal_mounts().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_mounts().Get(i));
+              }
+            }
+            // repeated string names = 6;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_names().size());
+              for (int i = 0, n = this_._internal_names().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_names().Get(i));
+              }
+            }
+            // repeated string command = 7;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_command().size());
+              for (int i = 0, n = this_._internal_command().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_command().Get(i));
+              }
+            }
+          }
+           {
+            // string id = 1;
+            if (!this_._internal_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_id());
+            }
+            // string image = 2;
+            if (!this_._internal_image().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_image());
+            }
+            // string image_id = 3;
+            if (!this_._internal_image_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_image_id());
+            }
+            // string state = 12;
+            if (!this_._internal_state().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_state());
+            }
+          }
+           {
+            // .google.protobuf.Timestamp created_at = 99;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 2 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.created_at_);
+            }
+          }
+           {
+            // int32 pid = 11;
+            if (this_._internal_pid() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_pid());
+            }
+            // int32 started_at = 13;
+            if (this_._internal_started_at() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_started_at());
+            }
+            // bool exited = 21;
+            if (this_._internal_exited() != 0) {
+              total_size += 3;
+            }
+            // int32 exited_at = 22;
+            if (this_._internal_exited_at() != 0) {
+              total_size += 2 + ::_pbi::WireFormatLite::Int32Size(
+                                              this_._internal_exited_at());
+            }
+            // int32 exit_code = 23;
+            if (this_._internal_exit_code() != 0) {
+              total_size += 2 + ::_pbi::WireFormatLite::Int32Size(
+                                              this_._internal_exit_code());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PodmanContainersResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PodmanContainersResponse_Item*>(&to_msg);
+  auto& from = static_cast<const PodmanContainersResponse_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.PodmanContainersResponse.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.labels_.MergeFrom(from._impl_.labels_);
+  _this->_internal_mutable_mounts()->MergeFrom(from._internal_mounts());
+  _this->_internal_mutable_names()->MergeFrom(from._internal_names());
+  _this->_internal_mutable_command()->MergeFrom(from._internal_command());
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (!from._internal_image().empty()) {
+    _this->_internal_set_image(from._internal_image());
+  }
+  if (!from._internal_image_id().empty()) {
+    _this->_internal_set_image_id(from._internal_image_id());
+  }
+  if (!from._internal_state().empty()) {
+    _this->_internal_set_state(from._internal_state());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.created_at_ != nullptr);
+    if (_this->_impl_.created_at_ == nullptr) {
+      _this->_impl_.created_at_ =
+          ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.created_at_);
+    } else {
+      _this->_impl_.created_at_->MergeFrom(*from._impl_.created_at_);
+    }
+  }
+  if (from._internal_pid() != 0) {
+    _this->_impl_.pid_ = from._impl_.pid_;
+  }
+  if (from._internal_started_at() != 0) {
+    _this->_impl_.started_at_ = from._impl_.started_at_;
+  }
+  if (from._internal_exited() != 0) {
+    _this->_impl_.exited_ = from._impl_.exited_;
+  }
+  if (from._internal_exited_at() != 0) {
+    _this->_impl_.exited_at_ = from._impl_.exited_at_;
+  }
+  if (from._internal_exit_code() != 0) {
+    _this->_impl_.exit_code_ = from._impl_.exit_code_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PodmanContainersResponse_Item::CopyFrom(const PodmanContainersResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.PodmanContainersResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PodmanContainersResponse_Item::InternalSwap(PodmanContainersResponse_Item* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.labels_.InternalSwap(&other->_impl_.labels_);
+  _impl_.mounts_.InternalSwap(&other->_impl_.mounts_);
+  _impl_.names_.InternalSwap(&other->_impl_.names_);
+  _impl_.command_.InternalSwap(&other->_impl_.command_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.image_, &other->_impl_.image_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.image_id_, &other->_impl_.image_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.state_, &other->_impl_.state_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.exit_code_)
+      + sizeof(PodmanContainersResponse_Item::_impl_.exit_code_)
+      - PROTOBUF_FIELD_OFFSET(PodmanContainersResponse_Item, _impl_.created_at_)>(
+          reinterpret_cast<char*>(&_impl_.created_at_),
+          reinterpret_cast<char*>(&other->_impl_.created_at_));
+}
+
+::google::protobuf::Metadata PodmanContainersResponse_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PodmanContainersResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PodmanContainersResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_._has_bits_);
+};
+
+void PodmanContainersResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PodmanContainersResponse::PodmanContainersResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.PodmanContainersResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanContainersResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::PodmanContainersResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+PodmanContainersResponse::PodmanContainersResponse(
+    ::google::protobuf::Arena* arena,
+    const PodmanContainersResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PodmanContainersResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pagination_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(
+                              arena, *from._impl_.pagination_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.PodmanContainersResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanContainersResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void PodmanContainersResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.pagination_ = {};
+}
+PodmanContainersResponse::~PodmanContainersResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.PodmanContainersResponse)
+  SharedDtor(*this);
+}
+inline void PodmanContainersResponse::SharedDtor(MessageLite& self) {
+  PodmanContainersResponse& this_ = static_cast<PodmanContainersResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.pagination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PodmanContainersResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PodmanContainersResponse(arena);
+}
+constexpr auto PodmanContainersResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_.items_) +
+          decltype(PodmanContainersResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(PodmanContainersResponse), alignof(PodmanContainersResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&PodmanContainersResponse::PlacementNew_,
+                                 sizeof(PodmanContainersResponse),
+                                 alignof(PodmanContainersResponse));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PodmanContainersResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PodmanContainersResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PodmanContainersResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PodmanContainersResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PodmanContainersResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PodmanContainersResponse>(), &PodmanContainersResponse::ByteSizeLong,
+            &PodmanContainersResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_._cached_size_),
+        false,
+    },
+    &PodmanContainersResponse::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PodmanContainersResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> PodmanContainersResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967038,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanContainersResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.monitoring.v1.PodmanContainersResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.monitoring.v1.PodmanContainersResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_.items_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Pagination pagination = 9;
+    {PROTOBUF_FIELD_OFFSET(PodmanContainersResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanContainersResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PodmanContainersResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.PodmanContainersResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pagination_ != nullptr);
+    _impl_.pagination_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PodmanContainersResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PodmanContainersResponse& this_ = static_cast<const PodmanContainersResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PodmanContainersResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PodmanContainersResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.PodmanContainersResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .palm.monitoring.v1.PodmanContainersResponse.Item items = 1;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_items_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_items().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    1, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Pagination pagination = 9;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                9, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.PodmanContainersResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PodmanContainersResponse::ByteSizeLong(const MessageLite& base) {
+          const PodmanContainersResponse& this_ = static_cast<const PodmanContainersResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PodmanContainersResponse::ByteSizeLong() const {
+          const PodmanContainersResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.PodmanContainersResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .palm.monitoring.v1.PodmanContainersResponse.Item items = 1;
+            {
+              total_size += 1UL * this_._internal_items_size();
+              for (const auto& msg : this_._internal_items()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // .palm.portal.v1.Pagination pagination = 9;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pagination_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PodmanContainersResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PodmanContainersResponse*>(&to_msg);
+  auto& from = static_cast<const PodmanContainersResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.PodmanContainersResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.pagination_ != nullptr);
+    if (_this->_impl_.pagination_ == nullptr) {
+      _this->_impl_.pagination_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(arena, *from._impl_.pagination_);
+    } else {
+      _this->_impl_.pagination_->MergeFrom(*from._impl_.pagination_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PodmanContainersResponse::CopyFrom(const PodmanContainersResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.PodmanContainersResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PodmanContainersResponse::InternalSwap(PodmanContainersResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.pagination_, other->_impl_.pagination_);
+}
+
+::google::protobuf::Metadata PodmanContainersResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PodmanStatisticsResponse_Item::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PodmanStatisticsResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_._has_bits_);
+};
+
+void PodmanStatisticsResponse_Item::clear_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ != nullptr) _impl_.created_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PodmanStatisticsResponse_Item::PodmanStatisticsResponse_Item(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanStatisticsResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::PodmanStatisticsResponse_Item& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        host_(arena, from.host_),
+        id_(arena, from.id_),
+        name_(arena, from.name_),
+        cpu_time_(arena, from.cpu_time_),
+        cpu_percent_(arena, from.cpu_percent_),
+        avg_cpu_(arena, from.avg_cpu_),
+        mem_usage_(arena, from.mem_usage_),
+        mem_percent_(arena, from.mem_percent_),
+        net_io_(arena, from.net_io_),
+        block_io_(arena, from.block_io_),
+        pids_(arena, from.pids_) {}
+
+PodmanStatisticsResponse_Item::PodmanStatisticsResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const PodmanStatisticsResponse_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PodmanStatisticsResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.created_at_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
+                              arena, *from._impl_.created_at_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanStatisticsResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        host_(arena),
+        id_(arena),
+        name_(arena),
+        cpu_time_(arena),
+        cpu_percent_(arena),
+        avg_cpu_(arena),
+        mem_usage_(arena),
+        mem_percent_(arena),
+        net_io_(arena),
+        block_io_(arena),
+        pids_(arena) {}
+
+inline void PodmanStatisticsResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.created_at_ = {};
+}
+PodmanStatisticsResponse_Item::~PodmanStatisticsResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+  SharedDtor(*this);
+}
+inline void PodmanStatisticsResponse_Item::SharedDtor(MessageLite& self) {
+  PodmanStatisticsResponse_Item& this_ = static_cast<PodmanStatisticsResponse_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.host_.Destroy();
+  this_._impl_.id_.Destroy();
+  this_._impl_.name_.Destroy();
+  this_._impl_.cpu_time_.Destroy();
+  this_._impl_.cpu_percent_.Destroy();
+  this_._impl_.avg_cpu_.Destroy();
+  this_._impl_.mem_usage_.Destroy();
+  this_._impl_.mem_percent_.Destroy();
+  this_._impl_.net_io_.Destroy();
+  this_._impl_.block_io_.Destroy();
+  this_._impl_.pids_.Destroy();
+  delete this_._impl_.created_at_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PodmanStatisticsResponse_Item::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PodmanStatisticsResponse_Item(arena);
+}
+constexpr auto PodmanStatisticsResponse_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(PodmanStatisticsResponse_Item),
+                                            alignof(PodmanStatisticsResponse_Item));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PodmanStatisticsResponse_Item::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PodmanStatisticsResponse_Item_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PodmanStatisticsResponse_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PodmanStatisticsResponse_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PodmanStatisticsResponse_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PodmanStatisticsResponse_Item>(), &PodmanStatisticsResponse_Item::ByteSizeLong,
+            &PodmanStatisticsResponse_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_._cached_size_),
+        false,
+    },
+    &PodmanStatisticsResponse_Item::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PodmanStatisticsResponse_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 12, 1, 139, 7> PodmanStatisticsResponse_Item::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294965248,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    12,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanStatisticsResponse_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string host = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.host_)}},
+    // string id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.id_)}},
+    // string name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.name_)}},
+    // string cpu_time = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.cpu_time_)}},
+    // string cpu_percent = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.cpu_percent_)}},
+    // string avg_cpu = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.avg_cpu_)}},
+    // string mem_usage = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.mem_usage_)}},
+    // string mem_percent = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.mem_percent_)}},
+    // string net_io = 9;
+    {::_pbi::TcParser::FastUS1,
+     {74, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.net_io_)}},
+    // string block_io = 10;
+    {::_pbi::TcParser::FastUS1,
+     {82, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.block_io_)}},
+    // string pids = 11;
+    {::_pbi::TcParser::FastUS1,
+     {90, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.pids_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    99, 0, 1,
+    65534, 11,
+    65535, 65535
+  }}, {{
+    // string host = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.host_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string id = 2;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string name = 3;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string cpu_time = 4;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.cpu_time_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string cpu_percent = 5;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.cpu_percent_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string avg_cpu = 6;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.avg_cpu_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string mem_usage = 7;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.mem_usage_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string mem_percent = 8;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.mem_percent_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string net_io = 9;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.net_io_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string block_io = 10;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.block_io_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string pids = 11;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.pids_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp created_at = 99;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse_Item, _impl_.created_at_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }}, {{
+    "\60\4\2\4\10\13\7\11\13\6\10\4\0\0\0\0"
+    "palm.monitoring.v1.PodmanStatisticsResponse.Item"
+    "host"
+    "id"
+    "name"
+    "cpu_time"
+    "cpu_percent"
+    "avg_cpu"
+    "mem_usage"
+    "mem_percent"
+    "net_io"
+    "block_io"
+    "pids"
+  }},
+};
+
+PROTOBUF_NOINLINE void PodmanStatisticsResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.host_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _impl_.cpu_time_.ClearToEmpty();
+  _impl_.cpu_percent_.ClearToEmpty();
+  _impl_.avg_cpu_.ClearToEmpty();
+  _impl_.mem_usage_.ClearToEmpty();
+  _impl_.mem_percent_.ClearToEmpty();
+  _impl_.net_io_.ClearToEmpty();
+  _impl_.block_io_.ClearToEmpty();
+  _impl_.pids_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.created_at_ != nullptr);
+    _impl_.created_at_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PodmanStatisticsResponse_Item::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PodmanStatisticsResponse_Item& this_ = static_cast<const PodmanStatisticsResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PodmanStatisticsResponse_Item::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PodmanStatisticsResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string host = 1;
+          if (!this_._internal_host().empty()) {
+            const std::string& _s = this_._internal_host();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.host");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string id = 2;
+          if (!this_._internal_id().empty()) {
+            const std::string& _s = this_._internal_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string name = 3;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.name");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // string cpu_time = 4;
+          if (!this_._internal_cpu_time().empty()) {
+            const std::string& _s = this_._internal_cpu_time();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.cpu_time");
+            target = stream->WriteStringMaybeAliased(4, _s, target);
+          }
+
+          // string cpu_percent = 5;
+          if (!this_._internal_cpu_percent().empty()) {
+            const std::string& _s = this_._internal_cpu_percent();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.cpu_percent");
+            target = stream->WriteStringMaybeAliased(5, _s, target);
+          }
+
+          // string avg_cpu = 6;
+          if (!this_._internal_avg_cpu().empty()) {
+            const std::string& _s = this_._internal_avg_cpu();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.avg_cpu");
+            target = stream->WriteStringMaybeAliased(6, _s, target);
+          }
+
+          // string mem_usage = 7;
+          if (!this_._internal_mem_usage().empty()) {
+            const std::string& _s = this_._internal_mem_usage();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.mem_usage");
+            target = stream->WriteStringMaybeAliased(7, _s, target);
+          }
+
+          // string mem_percent = 8;
+          if (!this_._internal_mem_percent().empty()) {
+            const std::string& _s = this_._internal_mem_percent();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.mem_percent");
+            target = stream->WriteStringMaybeAliased(8, _s, target);
+          }
+
+          // string net_io = 9;
+          if (!this_._internal_net_io().empty()) {
+            const std::string& _s = this_._internal_net_io();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.net_io");
+            target = stream->WriteStringMaybeAliased(9, _s, target);
+          }
+
+          // string block_io = 10;
+          if (!this_._internal_block_io().empty()) {
+            const std::string& _s = this_._internal_block_io();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.block_io");
+            target = stream->WriteStringMaybeAliased(10, _s, target);
+          }
+
+          // string pids = 11;
+          if (!this_._internal_pids().empty()) {
+            const std::string& _s = this_._internal_pids();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanStatisticsResponse.Item.pids");
+            target = stream->WriteStringMaybeAliased(11, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .google.protobuf.Timestamp created_at = 99;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                99, *this_._impl_.created_at_, this_._impl_.created_at_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PodmanStatisticsResponse_Item::ByteSizeLong(const MessageLite& base) {
+          const PodmanStatisticsResponse_Item& this_ = static_cast<const PodmanStatisticsResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PodmanStatisticsResponse_Item::ByteSizeLong() const {
+          const PodmanStatisticsResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string host = 1;
+            if (!this_._internal_host().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_host());
+            }
+            // string id = 2;
+            if (!this_._internal_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_id());
+            }
+            // string name = 3;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+            // string cpu_time = 4;
+            if (!this_._internal_cpu_time().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_cpu_time());
+            }
+            // string cpu_percent = 5;
+            if (!this_._internal_cpu_percent().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_cpu_percent());
+            }
+            // string avg_cpu = 6;
+            if (!this_._internal_avg_cpu().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_avg_cpu());
+            }
+            // string mem_usage = 7;
+            if (!this_._internal_mem_usage().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_mem_usage());
+            }
+            // string mem_percent = 8;
+            if (!this_._internal_mem_percent().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_mem_percent());
+            }
+            // string net_io = 9;
+            if (!this_._internal_net_io().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_net_io());
+            }
+            // string block_io = 10;
+            if (!this_._internal_block_io().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_block_io());
+            }
+            // string pids = 11;
+            if (!this_._internal_pids().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_pids());
+            }
+          }
+           {
+            // .google.protobuf.Timestamp created_at = 99;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 2 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.created_at_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PodmanStatisticsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PodmanStatisticsResponse_Item*>(&to_msg);
+  auto& from = static_cast<const PodmanStatisticsResponse_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_host().empty()) {
+    _this->_internal_set_host(from._internal_host());
+  }
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_cpu_time().empty()) {
+    _this->_internal_set_cpu_time(from._internal_cpu_time());
+  }
+  if (!from._internal_cpu_percent().empty()) {
+    _this->_internal_set_cpu_percent(from._internal_cpu_percent());
+  }
+  if (!from._internal_avg_cpu().empty()) {
+    _this->_internal_set_avg_cpu(from._internal_avg_cpu());
+  }
+  if (!from._internal_mem_usage().empty()) {
+    _this->_internal_set_mem_usage(from._internal_mem_usage());
+  }
+  if (!from._internal_mem_percent().empty()) {
+    _this->_internal_set_mem_percent(from._internal_mem_percent());
+  }
+  if (!from._internal_net_io().empty()) {
+    _this->_internal_set_net_io(from._internal_net_io());
+  }
+  if (!from._internal_block_io().empty()) {
+    _this->_internal_set_block_io(from._internal_block_io());
+  }
+  if (!from._internal_pids().empty()) {
+    _this->_internal_set_pids(from._internal_pids());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.created_at_ != nullptr);
+    if (_this->_impl_.created_at_ == nullptr) {
+      _this->_impl_.created_at_ =
+          ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.created_at_);
+    } else {
+      _this->_impl_.created_at_->MergeFrom(*from._impl_.created_at_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PodmanStatisticsResponse_Item::CopyFrom(const PodmanStatisticsResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.PodmanStatisticsResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PodmanStatisticsResponse_Item::InternalSwap(PodmanStatisticsResponse_Item* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.cpu_time_, &other->_impl_.cpu_time_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.cpu_percent_, &other->_impl_.cpu_percent_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.avg_cpu_, &other->_impl_.avg_cpu_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mem_usage_, &other->_impl_.mem_usage_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mem_percent_, &other->_impl_.mem_percent_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.net_io_, &other->_impl_.net_io_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.block_io_, &other->_impl_.block_io_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.pids_, &other->_impl_.pids_, arena);
+  swap(_impl_.created_at_, other->_impl_.created_at_);
+}
+
+::google::protobuf::Metadata PodmanStatisticsResponse_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PodmanStatisticsResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PodmanStatisticsResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_._has_bits_);
+};
+
+void PodmanStatisticsResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PodmanStatisticsResponse::PodmanStatisticsResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.PodmanStatisticsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanStatisticsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::PodmanStatisticsResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+PodmanStatisticsResponse::PodmanStatisticsResponse(
+    ::google::protobuf::Arena* arena,
+    const PodmanStatisticsResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PodmanStatisticsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pagination_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(
+                              arena, *from._impl_.pagination_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.PodmanStatisticsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE PodmanStatisticsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void PodmanStatisticsResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.pagination_ = {};
+}
+PodmanStatisticsResponse::~PodmanStatisticsResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.PodmanStatisticsResponse)
+  SharedDtor(*this);
+}
+inline void PodmanStatisticsResponse::SharedDtor(MessageLite& self) {
+  PodmanStatisticsResponse& this_ = static_cast<PodmanStatisticsResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.pagination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PodmanStatisticsResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PodmanStatisticsResponse(arena);
+}
+constexpr auto PodmanStatisticsResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_.items_) +
+          decltype(PodmanStatisticsResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(PodmanStatisticsResponse), alignof(PodmanStatisticsResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&PodmanStatisticsResponse::PlacementNew_,
+                                 sizeof(PodmanStatisticsResponse),
+                                 alignof(PodmanStatisticsResponse));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PodmanStatisticsResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PodmanStatisticsResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PodmanStatisticsResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PodmanStatisticsResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PodmanStatisticsResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PodmanStatisticsResponse>(), &PodmanStatisticsResponse::ByteSizeLong,
+            &PodmanStatisticsResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_._cached_size_),
+        false,
+    },
+    &PodmanStatisticsResponse::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PodmanStatisticsResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> PodmanStatisticsResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967038,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanStatisticsResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.monitoring.v1.PodmanStatisticsResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.monitoring.v1.PodmanStatisticsResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_.items_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Pagination pagination = 9;
+    {PROTOBUF_FIELD_OFFSET(PodmanStatisticsResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanStatisticsResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PodmanStatisticsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.PodmanStatisticsResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pagination_ != nullptr);
+    _impl_.pagination_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PodmanStatisticsResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PodmanStatisticsResponse& this_ = static_cast<const PodmanStatisticsResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PodmanStatisticsResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PodmanStatisticsResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.PodmanStatisticsResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .palm.monitoring.v1.PodmanStatisticsResponse.Item items = 1;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_items_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_items().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    1, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Pagination pagination = 9;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                9, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.PodmanStatisticsResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PodmanStatisticsResponse::ByteSizeLong(const MessageLite& base) {
+          const PodmanStatisticsResponse& this_ = static_cast<const PodmanStatisticsResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PodmanStatisticsResponse::ByteSizeLong() const {
+          const PodmanStatisticsResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.PodmanStatisticsResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .palm.monitoring.v1.PodmanStatisticsResponse.Item items = 1;
+            {
+              total_size += 1UL * this_._internal_items_size();
+              for (const auto& msg : this_._internal_items()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // .palm.portal.v1.Pagination pagination = 9;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pagination_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PodmanStatisticsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PodmanStatisticsResponse*>(&to_msg);
+  auto& from = static_cast<const PodmanStatisticsResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.PodmanStatisticsResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.pagination_ != nullptr);
+    if (_this->_impl_.pagination_ == nullptr) {
+      _this->_impl_.pagination_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(arena, *from._impl_.pagination_);
+    } else {
+      _this->_impl_.pagination_->MergeFrom(*from._impl_.pagination_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PodmanStatisticsResponse::CopyFrom(const PodmanStatisticsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.PodmanStatisticsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PodmanStatisticsResponse::InternalSwap(PodmanStatisticsResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.pagination_, other->_impl_.pagination_);
+}
+
+::google::protobuf::Metadata PodmanStatisticsResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace monitoring

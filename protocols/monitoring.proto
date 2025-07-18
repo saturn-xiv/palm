@@ -4,4 +4,71 @@ option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.monitoring.v1";
 package palm.monitoring.v1;
 
+import "google/protobuf/timestamp.proto";
+
+import "portal.proto";
+
+// ----------------------------------------------------------------------------
+
 service HealthCheckNode {}
+
+// ----------------------------------------------------------------------------
+
+service Podman {
+  rpc Logs(palm.portal.v1.Page) returns (PodmanLogsResponse) {}
+  rpc Containers(palm.portal.v1.Page) returns (PodmanContainersResponse) {}
+  rpc Statistics(palm.portal.v1.Page) returns (PodmanStatisticsResponse) {}
+}
+
+message PodmanLogsResponse {
+  message Item {
+    string host = 1;
+    string id = 2;
+    string name = 3;
+    string message = 4;
+    string created_at = 9;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+message PodmanContainersResponse {
+  message Item {
+    string id = 1;
+    string image = 2;
+    string image_id = 3;
+    map<string, string> labels = 4;
+    repeated string mounts = 5;
+    repeated string names = 6;
+    repeated string command = 7;
+    int32 pid = 11;
+    string state = 12;
+    int32 started_at = 13;
+    bool exited = 21;
+    int32 exited_at = 22;
+    int32 exit_code = 23;
+
+    google.protobuf.Timestamp created_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+message PodmanStatisticsResponse {
+  message Item {
+    string host = 1;
+    string id = 2;
+    string name = 3;
+    string cpu_time = 4;
+    string cpu_percent = 5;
+    string avg_cpu = 6;
+    string mem_usage = 7;
+    string mem_percent = 8;
+    string net_io = 9;
+    string block_io = 10;
+    string pids = 11;
+    google.protobuf.Timestamp created_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+
+// ----------------------------------------------------------------------------
