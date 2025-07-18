@@ -2,6 +2,8 @@
 
 #include "palm/http.hpp"
 
+#include <boost/optional.hpp>
+
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/time_util.h>
 #include <httplib.h>
@@ -33,3 +35,43 @@ PostgreSQL: timestamp without time zone
 */
 std::optional<std::string> to_json(const google::protobuf::Message& message);
 }  // namespace palm
+
+namespace nlohmann {
+template <typename T>
+struct adl_serializer<boost::optional<T>> {
+  static void to_json(json& j, const boost::optional<T>& opt) {
+    if (opt == boost::none) {
+      j = nullptr;
+    } else {
+      j = *opt;
+    }
+  }
+
+  static void from_json(const json& j, boost::optional<T>& opt) {
+    if (j.is_null()) {
+      opt = boost::none;
+    } else {
+      opt = j.template get<T>();
+    }
+  }
+};
+
+template <typename T>
+struct adl_serializer<std::optional<T>> {
+  static void to_json(json& j, const std::optional<T>& opt) {
+    if (opt == std::nullopt) {
+      j = nullptr;
+    } else {
+      j = *opt;
+    }
+  }
+
+  static void from_json(const json& j, std::optional<T>& opt) {
+    if (j.is_null()) {
+      opt = std::nullopt;
+    } else {
+      opt = j.template get<T>();
+    }
+  }
+};
+}  // namespace nlohmann

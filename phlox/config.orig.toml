@@ -1,0 +1,8 @@
+db-file = "db.sqlite3"
+[jwt]
+# openssl rand -base64 128
+key = "QMf72qeEQ9YVwuZK94B+dE9ZPaw0xGe94rSvIjzkwibuTZeEPUNcrgOjw7s+2smsXo18MmbO/sO+/4DdWpKqc+pWFvmwpnNFGfOBT5rgz0rTtTSpPdKCpF4tDE6iqw83QVxHvn7l+OqykUn/4jjYgXpVhhG0rqQ3DUjmlWXSXhU="
+
+[opensearch]
+host = "127.0.0.1"
+port = 9200

@@ -28,6 +28,7 @@ function build_x86_64_on_ubuntu() {
 }
 
 function build_aarch64_on_ubuntu() {
+    cd $WORK_DIR/
     cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/gcc/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/aarch64
 

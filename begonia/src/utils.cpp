@@ -13,6 +13,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/join.hpp>
 
+#include <curl/curl.h>
 #include <google/protobuf/stubs/common.h>
 #include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
@@ -37,6 +38,7 @@ void palm::init(bool debug) {
   //   spdlog::debug("MySQL v{}", MARIADB_CLIENT_VERSION_STR);
   // #endif
   spdlog::debug("Sqlite v{}", SQLITE_VERSION);
+  spdlog::debug("{}", curl_version());
   spdlog::debug("rabbitmq-c v{}", AMQ_VERSION_STRING);
   spdlog::debug("hiredis v{}.{}.{}", HIREDIS_MAJOR, HIREDIS_MINOR,
                 HIREDIS_PATCH);
