@@ -39,6 +39,67 @@ HealthCheckNode::Service::~Service() {
 }
 
 
+static const char* FileSystem_method_names[] = {
+  "/palm.monitoring.v1.FileSystem/Logs",
+};
+
+std::unique_ptr< FileSystem::Stub> FileSystem::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< FileSystem::Stub> stub(new FileSystem::Stub(channel, options));
+  return stub;
+}
+
+FileSystem::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Logs_(FileSystem_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status FileSystem::Stub::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::palm::monitoring::v1::FileLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+}
+
+void FileSystem::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+}
+
+void FileSystem::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* FileSystem::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::FileLogsResponse, ::palm::monitoring::v1::FileSystemQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* FileSystem::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLogsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+FileSystem::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileSystem_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileSystem::Service, ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileSystem::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::monitoring::v1::FileSystemQueryRequest* req,
+             ::palm::monitoring::v1::FileLogsResponse* resp) {
+               return service->Logs(ctx, req, resp);
+             }, this)));
+}
+
+FileSystem::Service::~Service() {
+}
+
+::grpc::Status FileSystem::Service::Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 static const char* Podman_method_names[] = {
   "/palm.monitoring.v1.Podman/Logs",
   "/palm.monitoring.v1.Podman/Containers",
@@ -57,69 +118,69 @@ Podman::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_Statistics_(Podman_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Podman::Stub::Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanLogsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+::grpc::Status Podman::Stub::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
 }
 
-void Podman::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+void Podman::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
 }
 
-void Podman::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Podman::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* Podman::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanLogsResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* Podman::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanLogsResponse, ::palm::monitoring::v1::PodmanQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* Podman::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* Podman::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncLogsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Podman::Stub::Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanContainersResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Containers_, context, request, response);
+::grpc::Status Podman::Stub::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanContainersResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Containers_, context, request, response);
 }
 
-void Podman::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Containers_, context, request, response, std::move(f));
+void Podman::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Containers_, context, request, response, std::move(f));
 }
 
-void Podman::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Podman::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Containers_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* Podman::Stub::PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanContainersResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Containers_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* Podman::Stub::PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanContainersResponse, ::palm::monitoring::v1::PodmanQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Containers_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* Podman::Stub::AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* Podman::Stub::AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncContainersRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Podman::Stub::Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Statistics_, context, request, response);
+::grpc::Status Podman::Stub::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Statistics_, context, request, response);
 }
 
-void Podman::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Statistics_, context, request, response, std::move(f));
+void Podman::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Statistics_, context, request, response, std::move(f));
 }
 
-void Podman::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Podman::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Statistics_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* Podman::Stub::PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanStatisticsResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Statistics_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* Podman::Stub::PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanStatisticsResponse, ::palm::monitoring::v1::PodmanQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Statistics_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* Podman::Stub::AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* Podman::Stub::AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncStatisticsRaw(context, request, cq);
   result->StartCall();
@@ -130,30 +191,30 @@ Podman::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Podman_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Podman::Service, ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Podman::Service, ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Podman::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::portal::v1::Page* req,
+             const ::palm::monitoring::v1::PodmanQueryRequest* req,
              ::palm::monitoring::v1::PodmanLogsResponse* resp) {
                return service->Logs(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Podman_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Podman::Service, ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Podman::Service, ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Podman::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::portal::v1::Page* req,
+             const ::palm::monitoring::v1::PodmanQueryRequest* req,
              ::palm::monitoring::v1::PodmanContainersResponse* resp) {
                return service->Containers(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Podman_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Podman::Service, ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Podman::Service, ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Podman::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::portal::v1::Page* req,
+             const ::palm::monitoring::v1::PodmanQueryRequest* req,
              ::palm::monitoring::v1::PodmanStatisticsResponse* resp) {
                return service->Statistics(ctx, req, resp);
              }, this)));
@@ -162,21 +223,21 @@ Podman::Service::Service() {
 Podman::Service::~Service() {
 }
 
-::grpc::Status Podman::Service::Logs(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response) {
+::grpc::Status Podman::Service::Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Podman::Service::Containers(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response) {
+::grpc::Status Podman::Service::Containers(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Podman::Service::Statistics(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) {
+::grpc::Status Podman::Service::Statistics(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

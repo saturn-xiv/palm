@@ -30,6 +30,22 @@ function generate_gourd_grpc() {
     mv $target/*.cc $target/src/
 }
 
+
+function generate_phlox_dashboard() {
+    echo "generate grpc protocols(typescript) for phlox..."
+    local target=$WORK_DIR/phlox/dashboard/src/protocols
+    if [ -d $target ]
+    then
+        rm -r $target
+    fi
+    mkdir -p $target
+    $PROTOBUF_HOME/bin/protoc -I $PROTOCOLS_HOME \
+        -I $PROTOBUF_HOME/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$target \
+        --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
+        portal.proto monitoring.proto
+}
+
 echo "clean gourd project"
 if [ -d $WORK_DIR/gourd ]; then
     rm -r $WORK_DIR/gourd
@@ -37,6 +53,8 @@ fi
 mkdir -p $WORK_DIR/gourd/include $WORK_DIR/gourd/src
 generate_gourd_thrift
 generate_gourd_grpc
+
+generate_phlox_dashboard
 
 echo 'done.'
 exit 0

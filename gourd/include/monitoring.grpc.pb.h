@@ -83,90 +83,49 @@ class HealthCheckNode final {
 };
 
 // ----------------------------------------------------------------------------
-//
-class Podman final {
+class FileSystem final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.monitoring.v1.Podman";
+    return "palm.monitoring.v1.FileSystem";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanLogsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>>(AsyncLogsRaw(context, request, cq));
+    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::palm::monitoring::v1::FileLogsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>>(AsyncLogsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanContainersResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>> AsyncContainers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>>(AsyncContainersRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>> PrepareAsyncContainers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>>(PrepareAsyncContainersRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>> AsyncStatistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>>(AsyncStatisticsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>> PrepareAsyncStatistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>>(PrepareAsyncStatisticsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>* AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>* PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>* AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>* PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanLogsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>>(AsyncLogsRaw(context, request, cq));
+    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::palm::monitoring::v1::FileLogsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>>(AsyncLogsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
-    }
-    ::grpc::Status Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanContainersResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>> AsyncContainers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>>(AsyncContainersRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>> PrepareAsyncContainers(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>>(PrepareAsyncContainersRaw(context, request, cq));
-    }
-    ::grpc::Status Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>> AsyncStatistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>>(AsyncStatisticsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>> PrepareAsyncStatistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>>(PrepareAsyncStatisticsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)>) override;
-      void Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response, std::function<void(::grpc::Status)>) override;
-      void Containers(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, std::function<void(::grpc::Status)>) override;
-      void Statistics(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -178,15 +137,9 @@ class Podman final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Logs_;
-    const ::grpc::internal::RpcMethod rpcmethod_Containers_;
-    const ::grpc::internal::RpcMethod rpcmethod_Statistics_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -194,9 +147,7 @@ class Podman final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response);
-    virtual ::grpc::Status Containers(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response);
-    virtual ::grpc::Status Statistics(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response);
+    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Logs : public BaseClass {
@@ -210,55 +161,15 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestLogs(::grpc::ServerContext* context, ::palm::portal::v1::Page* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::PodmanLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestLogs(::grpc::ServerContext* context, ::palm::monitoring::v1::FileSystemQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::FileLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  template <class BaseClass>
-  class WithAsyncMethod_Containers : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Containers() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_Containers() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestContainers(::grpc::ServerContext* context, ::palm::portal::v1::Page* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::PodmanContainersResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Statistics : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Statistics() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_Statistics() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestStatistics(::grpc::ServerContext* context, ::palm::portal::v1::Page* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::PodmanStatisticsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_Logs<WithAsyncMethod_Containers<WithAsyncMethod_Statistics<Service > > > AsyncService;
+  typedef WithAsyncMethod_Logs<Service > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Logs : public BaseClass {
    private:
@@ -266,81 +177,27 @@ class Podman final {
    public:
     WithCallbackMethod_Logs() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanLogsResponse* response) { return this->Logs(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response) { return this->Logs(context, request, response); }));}
     void SetMessageAllocatorFor_Logs(
-        ::grpc::MessageAllocator< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Logs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Logs(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_Containers : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Containers() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanContainersResponse* response) { return this->Containers(context, request, response); }));}
-    void SetMessageAllocatorFor_Containers(
-        ::grpc::MessageAllocator< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Containers() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Containers(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Statistics : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Statistics() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::Page* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) { return this->Statistics(context, request, response); }));}
-    void SetMessageAllocatorFor_Statistics(
-        ::grpc::MessageAllocator< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Statistics() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Statistics(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_Logs<WithCallbackMethod_Containers<WithCallbackMethod_Statistics<Service > > > CallbackService;
+  typedef WithCallbackMethod_Logs<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Logs : public BaseClass {
@@ -354,41 +211,7 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Containers : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Containers() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_Containers() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Statistics : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Statistics() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_Statistics() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -405,7 +228,390 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Logs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Logs() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Logs(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Logs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Logs(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Logs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Logs() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>* streamer) {
+                       return this->StreamedLogs(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Logs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::FileSystemQueryRequest,::palm::monitoring::v1::FileLogsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Logs<Service > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Logs<Service > StreamedService;
+};
+
+class Podman final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.monitoring.v1.Podman";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanLogsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>>(AsyncLogsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanContainersResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>> AsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>>(AsyncContainersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>> PrepareAsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>>(PrepareAsyncContainersRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>> AsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>>(AsyncStatisticsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>> PrepareAsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>>(PrepareAsyncStatisticsRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>* AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanContainersResponse>* PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>* AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::PodmanStatisticsResponse>* PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanLogsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>>(AsyncLogsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
+    }
+    ::grpc::Status Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanContainersResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>> AsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>>(AsyncContainersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>> PrepareAsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>>(PrepareAsyncContainersRaw(context, request, cq));
+    }
+    ::grpc::Status Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>> AsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>>(AsyncStatisticsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>> PrepareAsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>>(PrepareAsyncStatisticsRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response, std::function<void(::grpc::Status)>) override;
+      void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanContainersResponse>* PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanStatisticsResponse>* PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Logs_;
+    const ::grpc::internal::RpcMethod rpcmethod_Containers_;
+    const ::grpc::internal::RpcMethod rpcmethod_Statistics_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response);
+    virtual ::grpc::Status Containers(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response);
+    virtual ::grpc::Status Statistics(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Logs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Logs() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Logs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogs(::grpc::ServerContext* context, ::palm::monitoring::v1::PodmanQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::PodmanLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Containers() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestContainers(::grpc::ServerContext* context, ::palm::monitoring::v1::PodmanQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::PodmanContainersResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Statistics() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatistics(::grpc::ServerContext* context, ::palm::monitoring::v1::PodmanQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::PodmanStatisticsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Logs<WithAsyncMethod_Containers<WithAsyncMethod_Statistics<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Logs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Logs() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response) { return this->Logs(context, request, response); }));}
+    void SetMessageAllocatorFor_Logs(
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Logs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Logs(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Containers() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanContainersResponse* response) { return this->Containers(context, request, response); }));}
+    void SetMessageAllocatorFor_Containers(
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Containers(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Statistics() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanStatisticsResponse* response) { return this->Statistics(context, request, response); }));}
+    void SetMessageAllocatorFor_Statistics(
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Statistics(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Logs<WithCallbackMethod_Containers<WithCallbackMethod_Statistics<Service > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Logs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Logs() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Logs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Containers() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Statistics() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Logs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Logs() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Logs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -425,7 +631,7 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -445,7 +651,7 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -468,7 +674,7 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -490,7 +696,7 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -512,7 +718,7 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -527,10 +733,10 @@ class Podman final {
     WithStreamedUnaryMethod_Logs() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse>(
+          ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanLogsResponse>* streamer) {
+                     ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse>* streamer) {
                        return this->StreamedLogs(context,
                          streamer);
                   }));
@@ -539,12 +745,12 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::Page,::palm::monitoring::v1::PodmanLogsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::PodmanQueryRequest,::palm::monitoring::v1::PodmanLogsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Containers : public BaseClass {
@@ -554,10 +760,10 @@ class Podman final {
     WithStreamedUnaryMethod_Containers() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse>(
+          ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanContainersResponse>* streamer) {
+                     ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanContainersResponse>* streamer) {
                        return this->StreamedContainers(context,
                          streamer);
                   }));
@@ -566,12 +772,12 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanContainersResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedContainers(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::Page,::palm::monitoring::v1::PodmanContainersResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedContainers(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::PodmanQueryRequest,::palm::monitoring::v1::PodmanContainersResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Statistics : public BaseClass {
@@ -581,10 +787,10 @@ class Podman final {
     WithStreamedUnaryMethod_Statistics() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse>(
+          ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::portal::v1::Page, ::palm::monitoring::v1::PodmanStatisticsResponse>* streamer) {
+                     ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanStatisticsResponse>* streamer) {
                        return this->StreamedStatistics(context,
                          streamer);
                   }));
@@ -593,12 +799,12 @@ class Podman final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::PodmanQueryRequest* /*request*/, ::palm::monitoring::v1::PodmanStatisticsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedStatistics(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::Page,::palm::monitoring::v1::PodmanStatisticsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedStatistics(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::PodmanQueryRequest,::palm::monitoring::v1::PodmanStatisticsResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Logs<WithStreamedUnaryMethod_Containers<WithStreamedUnaryMethod_Statistics<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;

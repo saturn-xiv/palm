@@ -11,7 +11,7 @@
 
 // podman stats -a --format json --no-stream
 // podman ps -a --format json
-// podman logs --since "2025-07-17T01:00:00" --until "2025-07-18T02:00:00" -t
+// podman logs --since "2025-07-17T01:00:00" --until "2025-07-18T02:00:00" -n -t
 // 091c84e9e812
 
 std::vector<palm::podman::models::Log> palm::podman::logs(
