@@ -1,2 +1,1 @@
-#include "monitoring.grpc.pb.h"
-#include "palm/search.hpp"
+#include "palm/services.hpp"

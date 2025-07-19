@@ -1,6 +1,8 @@
 #include "palm/application.hpp"
+#include "palm/controllers.hpp"
 #include "palm/filesystem.hpp"
 #include "palm/podman.hpp"
+#include "palm/services.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
 
@@ -169,12 +171,20 @@ static void start_http_server(const std::string& host, uint16_t port,
                theme_folder);
   server.listen(host, port);
 }
-
+static void start_rpc_server(const std::string& host, uint16_t port,
+                             const toml::table& config) {
+  if (palm::is_stopped()) {
+    return;
+  }
+  // TODO
+}
 void palm::phlox::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
   std::string http_listen_host;
   int http_listen_port;
+  std::string rpc_listen_host;
+  int rpc_listen_port;
   std::string http_theme_folder;
   std::vector<std::string> watcher_files;
   bool watcher_stdin;
@@ -193,19 +203,26 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       .help("run on debug mode");
 
   argparse::ArgumentParser http_command("http");
-  http_command.add_description("Start a HTTP server");
+  http_command.add_description("start a HTTP server");
   http_command.add_argument("-H", "--host")
       .default_value("127.0.0.1")
-      .store_into(http_listen_host)
-      .help("ip address to listen");
+      .store_into(http_listen_host);
   http_command.add_argument("-p", "--port")
       .default_value(8080)
-      .store_into(http_listen_port)
-      .help("port to listen");
+      .store_into(http_listen_port);
   http_command.add_argument("-t", "--theme")
       .default_value("bootstrap")
       .store_into(http_theme_folder)
       .help("folder to load theme");
+
+  argparse::ArgumentParser rpc_command("rpc");
+  rpc_command.add_description("start a gRPC server");
+  rpc_command.add_argument("-H", "--host")
+      .default_value("127.0.0.1")
+      .store_into(rpc_listen_host);
+  rpc_command.add_argument("-p", "--port")
+      .default_value(8080)
+      .store_into(rpc_listen_port);
 
   argparse::ArgumentParser podman_logs_command("podman-logs");
   podman_logs_command.add_description("fetch the logs of podman containers");
@@ -227,6 +244,7 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       .help("input from stdin");
 
   program.add_subparser(http_command);
+  program.add_subparser(rpc_command);
   program.add_subparser(podman_logs_command);
   program.add_subparser(podman_stats_command);
   program.add_subparser(podman_ps_command);
@@ -234,6 +252,7 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   program.parse_args(argc, argv);
 
   if (program.is_subcommand_used(http_command) ||
+      program.is_subcommand_used(rpc_command) ||
       program.is_subcommand_used(watcher_command) ||
       program.is_subcommand_used(podman_logs_command) ||
       program.is_subcommand_used(podman_stats_command) ||
@@ -244,6 +263,10 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
     if (program.is_subcommand_used(http_command)) {
       start_http_server(http_listen_host, http_listen_port, config,
                         http_theme_folder);
+      return;
+    }
+    if (program.is_subcommand_used(rpc_command)) {
+      start_rpc_server(rpc_listen_host, rpc_listen_port, config);
       return;
     }
     if (program.is_subcommand_used(watcher_command)) {

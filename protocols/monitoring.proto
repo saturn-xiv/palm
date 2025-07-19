@@ -10,13 +10,13 @@ import "portal.proto";
 
 // ----------------------------------------------------------------------------
 service Site {
-  rpc LayoutByLang(SiteLayoutByLangRequest) returns (SiteLayoutByLangResponse) {
-  }
+  rpc Layout(SiteLayoutRequest) returns (SiteLayoutResponse) {}
 }
-message SiteLayoutByLangRequest {
+message SiteLayoutRequest {
   string lang = 1;
 }
-message SiteLayoutByLangResponse {
+message SiteLayoutResponse {
+  string user = 1;
   string locale = 8;
   repeated string available_languages = 9;
   string git_version = 11;

@@ -24,7 +24,7 @@ namespace monitoring {
 namespace v1 {
 
 static const char* Site_method_names[] = {
-  "/palm.monitoring.v1.Site/LayoutByLang",
+  "/palm.monitoring.v1.Site/Layout",
 };
 
 std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -34,28 +34,28 @@ std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 Site::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_LayoutByLang_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Layout_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Site::Stub::LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_LayoutByLang_, context, request, response);
+::grpc::Status Site::Stub::Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::palm::monitoring::v1::SiteLayoutResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Layout_, context, request, response);
 }
 
-void Site::Stub::async::LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_LayoutByLang_, context, request, response, std::move(f));
+void Site::Stub::async::Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Layout_, context, request, response, std::move(f));
 }
 
-void Site::Stub::async::LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_LayoutByLang_, context, request, response, reactor);
+void Site::Stub::async::Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Layout_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>* Site::Stub::PrepareAsyncLayoutByLangRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::SiteLayoutByLangResponse, ::palm::monitoring::v1::SiteLayoutByLangRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_LayoutByLang_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>* Site::Stub::PrepareAsyncLayoutRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::SiteLayoutResponse, ::palm::monitoring::v1::SiteLayoutRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Layout_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>* Site::Stub::AsyncLayoutByLangRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>* Site::Stub::AsyncLayoutRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncLayoutByLangRaw(context, request, cq);
+    this->PrepareAsyncLayoutRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -64,19 +64,19 @@ Site::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Site_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Site::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::monitoring::v1::SiteLayoutByLangRequest* req,
-             ::palm::monitoring::v1::SiteLayoutByLangResponse* resp) {
-               return service->LayoutByLang(ctx, req, resp);
+             const ::palm::monitoring::v1::SiteLayoutRequest* req,
+             ::palm::monitoring::v1::SiteLayoutResponse* resp) {
+               return service->Layout(ctx, req, resp);
              }, this)));
 }
 
 Site::Service::~Service() {
 }
 
-::grpc::Status Site::Service::LayoutByLang(::grpc::ServerContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response) {
+::grpc::Status Site::Service::Layout(::grpc::ServerContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response) {
   (void) context;
   (void) request;
   (void) response;

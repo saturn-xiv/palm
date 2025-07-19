@@ -73,8 +73,7 @@ RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
 ADD vcpkg.patch /opt/
 RUN cd $HOME/local/vcpkg && git apply /opt/vcpkg.patch
 
-RUN mkdir $HOME/workspace/palm/
-ADD https://raw.githubusercontent.com/saturn-xiv/palm/refs/heads/c%2B%2B/vcpkg.json $HOME/workspace/palm/
+RUN git clone -b c++ https://github.com/saturn-xiv/palm.git $HOME/workspace/palm
 RUN cd $HOME/workspace/palm/ && $HOME/local/vcpkg/vcpkg install --triplet=x64-linux-release
 RUN cd $HOME/workspace/palm/ && $HOME/local/vcpkg/vcpkg install --triplet=arm64-linux-release
 

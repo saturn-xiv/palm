@@ -4,49 +4,53 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 import * as portal_pb from './portal_pb'; // proto import: "portal.proto"
 
 
-export class SiteLayoutByLangRequest extends jspb.Message {
+export class SiteLayoutRequest extends jspb.Message {
   getLang(): string;
-  setLang(value: string): SiteLayoutByLangRequest;
+  setLang(value: string): SiteLayoutRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SiteLayoutByLangRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: SiteLayoutByLangRequest): SiteLayoutByLangRequest.AsObject;
-  static serializeBinaryToWriter(message: SiteLayoutByLangRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SiteLayoutByLangRequest;
-  static deserializeBinaryFromReader(message: SiteLayoutByLangRequest, reader: jspb.BinaryReader): SiteLayoutByLangRequest;
+  toObject(includeInstance?: boolean): SiteLayoutRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SiteLayoutRequest): SiteLayoutRequest.AsObject;
+  static serializeBinaryToWriter(message: SiteLayoutRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SiteLayoutRequest;
+  static deserializeBinaryFromReader(message: SiteLayoutRequest, reader: jspb.BinaryReader): SiteLayoutRequest;
 }
 
-export namespace SiteLayoutByLangRequest {
+export namespace SiteLayoutRequest {
   export type AsObject = {
     lang: string,
   }
 }
 
-export class SiteLayoutByLangResponse extends jspb.Message {
+export class SiteLayoutResponse extends jspb.Message {
+  getUser(): string;
+  setUser(value: string): SiteLayoutResponse;
+
   getLocale(): string;
-  setLocale(value: string): SiteLayoutByLangResponse;
+  setLocale(value: string): SiteLayoutResponse;
 
   getAvailableLanguagesList(): Array<string>;
-  setAvailableLanguagesList(value: Array<string>): SiteLayoutByLangResponse;
-  clearAvailableLanguagesList(): SiteLayoutByLangResponse;
-  addAvailableLanguages(value: string, index?: number): SiteLayoutByLangResponse;
+  setAvailableLanguagesList(value: Array<string>): SiteLayoutResponse;
+  clearAvailableLanguagesList(): SiteLayoutResponse;
+  addAvailableLanguages(value: string, index?: number): SiteLayoutResponse;
 
   getGitVersion(): string;
-  setGitVersion(value: string): SiteLayoutByLangResponse;
+  setGitVersion(value: string): SiteLayoutResponse;
 
   getBuildTime(): string;
-  setBuildTime(value: string): SiteLayoutByLangResponse;
+  setBuildTime(value: string): SiteLayoutResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SiteLayoutByLangResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: SiteLayoutByLangResponse): SiteLayoutByLangResponse.AsObject;
-  static serializeBinaryToWriter(message: SiteLayoutByLangResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SiteLayoutByLangResponse;
-  static deserializeBinaryFromReader(message: SiteLayoutByLangResponse, reader: jspb.BinaryReader): SiteLayoutByLangResponse;
+  toObject(includeInstance?: boolean): SiteLayoutResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SiteLayoutResponse): SiteLayoutResponse.AsObject;
+  static serializeBinaryToWriter(message: SiteLayoutResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SiteLayoutResponse;
+  static deserializeBinaryFromReader(message: SiteLayoutResponse, reader: jspb.BinaryReader): SiteLayoutResponse;
 }
 
-export namespace SiteLayoutByLangResponse {
+export namespace SiteLayoutResponse {
   export type AsObject = {
+    user: string,
     locale: string,
     availableLanguagesList: Array<string>,
     gitVersion: string,

@@ -39,47 +39,47 @@ export class SiteClient {
     this.options_ = options;
   }
 
-  methodDescriptorLayoutByLang = new grpcWeb.MethodDescriptor(
-    '/palm.monitoring.v1.Site/LayoutByLang',
+  methodDescriptorLayout = new grpcWeb.MethodDescriptor(
+    '/palm.monitoring.v1.Site/Layout',
     grpcWeb.MethodType.UNARY,
-    monitoring_pb.SiteLayoutByLangRequest,
-    monitoring_pb.SiteLayoutByLangResponse,
-    (request: monitoring_pb.SiteLayoutByLangRequest) => {
+    monitoring_pb.SiteLayoutRequest,
+    monitoring_pb.SiteLayoutResponse,
+    (request: monitoring_pb.SiteLayoutRequest) => {
       return request.serializeBinary();
     },
-    monitoring_pb.SiteLayoutByLangResponse.deserializeBinary
+    monitoring_pb.SiteLayoutResponse.deserializeBinary
   );
 
-  layoutByLang(
-    request: monitoring_pb.SiteLayoutByLangRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.SiteLayoutByLangResponse>;
+  layout(
+    request: monitoring_pb.SiteLayoutRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.SiteLayoutResponse>;
 
-  layoutByLang(
-    request: monitoring_pb.SiteLayoutByLangRequest,
+  layout(
+    request: monitoring_pb.SiteLayoutRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: monitoring_pb.SiteLayoutByLangResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.SiteLayoutByLangResponse>;
+               response: monitoring_pb.SiteLayoutResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.SiteLayoutResponse>;
 
-  layoutByLang(
-    request: monitoring_pb.SiteLayoutByLangRequest,
+  layout(
+    request: monitoring_pb.SiteLayoutRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: monitoring_pb.SiteLayoutByLangResponse) => void) {
+               response: monitoring_pb.SiteLayoutResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/palm.monitoring.v1.Site/LayoutByLang',
+          '/palm.monitoring.v1.Site/Layout',
         request,
         metadata || {},
-        this.methodDescriptorLayoutByLang,
+        this.methodDescriptorLayout,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/palm.monitoring.v1.Site/LayoutByLang',
+      '/palm.monitoring.v1.Site/Layout',
     request,
     metadata || {},
-    this.methodDescriptorLayoutByLang);
+    this.methodDescriptorLayout);
   }
 
 }

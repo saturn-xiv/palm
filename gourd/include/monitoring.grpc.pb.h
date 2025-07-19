@@ -39,41 +39,41 @@ class Site final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutByLangResponse>> AsyncLayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutByLangResponse>>(AsyncLayoutByLangRaw(context, request, cq));
+    virtual ::grpc::Status Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::palm::monitoring::v1::SiteLayoutResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutResponse>> AsyncLayout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutResponse>>(AsyncLayoutRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutByLangResponse>> PrepareAsyncLayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutByLangResponse>>(PrepareAsyncLayoutByLangRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutResponse>> PrepareAsyncLayout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutResponse>>(PrepareAsyncLayoutRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutByLangResponse>* AsyncLayoutByLangRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutByLangResponse>* PrepareAsyncLayoutByLangRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutResponse>* AsyncLayoutRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::SiteLayoutResponse>* PrepareAsyncLayoutRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>> AsyncLayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>>(AsyncLayoutByLangRaw(context, request, cq));
+    ::grpc::Status Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::palm::monitoring::v1::SiteLayoutResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>> AsyncLayout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>>(AsyncLayoutRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>> PrepareAsyncLayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>>(PrepareAsyncLayoutByLangRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>> PrepareAsyncLayout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>>(PrepareAsyncLayoutRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response, std::function<void(::grpc::Status)>) override;
-      void LayoutByLang(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response, std::function<void(::grpc::Status)>) override;
+      void Layout(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -85,9 +85,9 @@ class Site final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>* AsyncLayoutByLangRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutByLangResponse>* PrepareAsyncLayoutByLangRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_LayoutByLang_;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>* AsyncLayoutRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SiteLayoutResponse>* PrepareAsyncLayoutRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SiteLayoutRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Layout_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -95,147 +95,147 @@ class Site final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status LayoutByLang(::grpc::ServerContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response);
+    virtual ::grpc::Status Layout(::grpc::ServerContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_LayoutByLang : public BaseClass {
+  class WithAsyncMethod_Layout : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_LayoutByLang() {
+    WithAsyncMethod_Layout() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_LayoutByLang() override {
+    ~WithAsyncMethod_Layout() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status LayoutByLang(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/) override {
+    ::grpc::Status Layout(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestLayoutByLang(::grpc::ServerContext* context, ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::SiteLayoutByLangResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestLayout(::grpc::ServerContext* context, ::palm::monitoring::v1::SiteLayoutRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::SiteLayoutResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_LayoutByLang<Service > AsyncService;
+  typedef WithAsyncMethod_Layout<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_LayoutByLang : public BaseClass {
+  class WithCallbackMethod_Layout : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_LayoutByLang() {
+    WithCallbackMethod_Layout() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::SiteLayoutByLangRequest* request, ::palm::monitoring::v1::SiteLayoutByLangResponse* response) { return this->LayoutByLang(context, request, response); }));}
-    void SetMessageAllocatorFor_LayoutByLang(
-        ::grpc::MessageAllocator< ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::SiteLayoutRequest* request, ::palm::monitoring::v1::SiteLayoutResponse* response) { return this->Layout(context, request, response); }));}
+    void SetMessageAllocatorFor_Layout(
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_LayoutByLang() override {
+    ~WithCallbackMethod_Layout() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status LayoutByLang(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/) override {
+    ::grpc::Status Layout(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* LayoutByLang(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Layout(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_LayoutByLang<Service > CallbackService;
+  typedef WithCallbackMethod_Layout<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_LayoutByLang : public BaseClass {
+  class WithGenericMethod_Layout : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_LayoutByLang() {
+    WithGenericMethod_Layout() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_LayoutByLang() override {
+    ~WithGenericMethod_Layout() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status LayoutByLang(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/) override {
+    ::grpc::Status Layout(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_LayoutByLang : public BaseClass {
+  class WithRawMethod_Layout : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_LayoutByLang() {
+    WithRawMethod_Layout() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_LayoutByLang() override {
+    ~WithRawMethod_Layout() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status LayoutByLang(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/) override {
+    ::grpc::Status Layout(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestLayoutByLang(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestLayout(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_LayoutByLang : public BaseClass {
+  class WithRawCallbackMethod_Layout : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_LayoutByLang() {
+    WithRawCallbackMethod_Layout() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->LayoutByLang(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Layout(context, request, response); }));
     }
-    ~WithRawCallbackMethod_LayoutByLang() override {
+    ~WithRawCallbackMethod_Layout() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status LayoutByLang(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/) override {
+    ::grpc::Status Layout(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* LayoutByLang(
+    virtual ::grpc::ServerUnaryReactor* Layout(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_LayoutByLang : public BaseClass {
+  class WithStreamedUnaryMethod_Layout : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_LayoutByLang() {
+    WithStreamedUnaryMethod_Layout() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse>(
+          ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::monitoring::v1::SiteLayoutByLangRequest, ::palm::monitoring::v1::SiteLayoutByLangResponse>* streamer) {
-                       return this->StreamedLayoutByLang(context,
+                     ::palm::monitoring::v1::SiteLayoutRequest, ::palm::monitoring::v1::SiteLayoutResponse>* streamer) {
+                       return this->StreamedLayout(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_LayoutByLang() override {
+    ~WithStreamedUnaryMethod_Layout() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status LayoutByLang(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutByLangRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutByLangResponse* /*response*/) override {
+    ::grpc::Status Layout(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::SiteLayoutRequest* /*request*/, ::palm::monitoring::v1::SiteLayoutResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedLayoutByLang(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::SiteLayoutByLangRequest,::palm::monitoring::v1::SiteLayoutByLangResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedLayout(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::SiteLayoutRequest,::palm::monitoring::v1::SiteLayoutResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_LayoutByLang<Service > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Layout<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_LayoutByLang<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Layout<Service > StreamedService;
 };
 
 // ----------------------------------------------------------------------------

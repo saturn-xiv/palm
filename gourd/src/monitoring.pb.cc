@@ -28,9 +28,12 @@ namespace palm {
 namespace monitoring {
 namespace v1 {
 
-inline constexpr SiteLayoutByLangResponse::Impl_::Impl_(
+inline constexpr SiteLayoutResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : available_languages_{},
+        user_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         locale_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -43,7 +46,7 @@ inline constexpr SiteLayoutByLangResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR SiteLayoutByLangResponse::SiteLayoutByLangResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR SiteLayoutResponse::SiteLayoutResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -51,18 +54,18 @@ PROTOBUF_CONSTEXPR SiteLayoutByLangResponse::SiteLayoutByLangResponse(::_pbi::Co
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct SiteLayoutByLangResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SiteLayoutByLangResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SiteLayoutByLangResponseDefaultTypeInternal() {}
+struct SiteLayoutResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponseDefaultTypeInternal() {}
   union {
-    SiteLayoutByLangResponse _instance;
+    SiteLayoutResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutByLangResponseDefaultTypeInternal _SiteLayoutByLangResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponseDefaultTypeInternal _SiteLayoutResponse_default_instance_;
 
-inline constexpr SiteLayoutByLangRequest::Impl_::Impl_(
+inline constexpr SiteLayoutRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : lang_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -70,7 +73,7 @@ inline constexpr SiteLayoutByLangRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR SiteLayoutByLangRequest::SiteLayoutByLangRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR SiteLayoutRequest::SiteLayoutRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -78,16 +81,16 @@ PROTOBUF_CONSTEXPR SiteLayoutByLangRequest::SiteLayoutByLangRequest(::_pbi::Cons
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct SiteLayoutByLangRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SiteLayoutByLangRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SiteLayoutByLangRequestDefaultTypeInternal() {}
+struct SiteLayoutRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutRequestDefaultTypeInternal() {}
   union {
-    SiteLayoutByLangRequest _instance;
+    SiteLayoutRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutByLangRequestDefaultTypeInternal _SiteLayoutByLangRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutRequestDefaultTypeInternal _SiteLayoutRequest_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR PodmanQueryRequest_All::PodmanQueryRequest_All(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -643,26 +646,27 @@ const ::uint32_t
     TableStruct_monitoring_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangRequest, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutRequest, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangRequest, _impl_.lang_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutRequest, _impl_.lang_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.locale_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.available_languages_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.git_version_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.build_time_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.user_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.locale_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.available_languages_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.git_version_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.build_time_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Http, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -943,32 +947,32 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutByLangRequest)},
-        {9, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutByLangResponse)},
-        {21, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
-        {30, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
-        {38, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
-        {46, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
-        {54, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
-        {65, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
-        {73, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
-        {88, -1, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest_All)},
-        {96, 109, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest)},
-        {113, -1, -1, sizeof(::palm::monitoring::v1::FileLogsResponse_Item)},
-        {124, 134, -1, sizeof(::palm::monitoring::v1::FileLogsResponse)},
-        {136, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {144, 160, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {167, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {179, 189, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {191, 201, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {203, 226, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {241, 251, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {253, 273, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {285, 295, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {0, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutRequest)},
+        {9, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse)},
+        {22, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
+        {31, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
+        {39, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
+        {47, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
+        {55, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
+        {66, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
+        {74, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
+        {89, -1, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest_All)},
+        {97, 110, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest)},
+        {114, -1, -1, sizeof(::palm::monitoring::v1::FileLogsResponse_Item)},
+        {125, 135, -1, sizeof(::palm::monitoring::v1::FileLogsResponse)},
+        {137, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {145, 161, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {168, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {180, 190, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {192, 202, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {204, 227, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {242, 252, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {254, 274, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {286, 296, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::palm::monitoring::v1::_SiteLayoutByLangRequest_default_instance_._instance,
-    &::palm::monitoring::v1::_SiteLayoutByLangResponse_default_instance_._instance,
+    &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
+    &::palm::monitoring::v1::_SiteLayoutResponse_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_Http_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_MySql_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_PostgreSql_default_instance_._instance,
@@ -994,81 +998,81 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     protodesc_cold) = {
     "\n\020monitoring.proto\022\022palm.monitoring.v1\032\037"
     "google/protobuf/timestamp.proto\032\014portal."
-    "proto\"\'\n\027SiteLayoutByLangRequest\022\014\n\004lang"
-    "\030\001 \001(\t\"p\n\030SiteLayoutByLangResponse\022\016\n\006lo"
-    "cale\030\010 \001(\t\022\033\n\023available_languages\030\t \003(\t\022"
-    "\023\n\013git_version\030\013 \001(\t\022\022\n\nbuild_time\030\014 \001(\t"
-    "\"\332\003\n\tHeartbeat\0222\n\004http\030\001 \001(\0132\".palm.moni"
-    "toring.v1.Heartbeat.HttpH\000\0224\n\005mysql\030\002 \001("
-    "\0132#.palm.monitoring.v1.Heartbeat.MySqlH\000"
-    "\022>\n\npostgresql\030\003 \001(\0132(.palm.monitoring.v"
-    "1.Heartbeat.PostgreSqlH\000\022:\n\010rabbitmq\030\004 \001"
-    "(\0132&.palm.monitoring.v1.Heartbeat.Rabbit"
-    "MQH\000\0224\n\005redis\030\005 \001(\0132#.palm.monitoring.v1"
-    ".Heartbeat.RedisH\000\0224\n\005minio\030\006 \001(\0132#.palm"
-    ".monitoring.v1.Heartbeat.MinioH\000\032\023\n\004Http"
-    "\022\013\n\003url\030\001 \001(\t\032\007\n\005MySql\032\014\n\nPostgreSql\032\n\n\010"
-    "RabbitMQ\0324\n\005Redis\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030"
-    "\002 \001(\005\022\017\n\007cluster\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\"\250\001"
-    "\n\026FileSystemQueryRequest\022=\n\003all\030\001 \001(\0132.."
-    "palm.monitoring.v1.FileSystemQueryReques"
-    "t.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH\000\022"
-    "\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032\005\n\003A"
-    "llB\004\n\002by\"\261\001\n\020FileLogsResponse\0228\n\005items\030\001"
-    " \003(\0132).palm.monitoring.v1.FileLogsRespon"
-    "se.Item\022.\n\npagination\030\t \001(\0132\032.palm.porta"
-    "l.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n"
-    "\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n\022PodmanQ"
-    "ueryRequest\0229\n\003all\030\001 \001(\0132*.palm.monitori"
-    "ng.v1.PodmanQueryRequest.AllH\000\022\016\n\004host\030\002"
-    " \001(\tH\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030\n\016contai"
-    "ner_name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.google."
-    "protobuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.google."
-    "protobuf.Timestamp\022\"\n\004page\030c \001(\0132\024.palm."
-    "portal.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022PodmanLo"
-    "gsResponse\022:\n\005items\030\001 \003(\0132+.palm.monitor"
-    "ing.v1.PodmanLogsResponse.Item\022.\n\npagina"
-    "tion\030\t \001(\0132\032.palm.portal.v1.Pagination\032O"
-    "\n\004Item\022\014\n\004host\030\001 \001(\t\022\024\n\014container_id\030\002 \001"
-    "(\t\022\017\n\007message\030\003 \001(\t\022\022\n\ncreated_at\030\t \001(\t\""
-    "\224\004\n\030PodmanContainersResponse\022@\n\005items\030\001 "
-    "\003(\01321.palm.monitoring.v1.PodmanContainer"
-    "sResponse.Item\022.\n\npagination\030\t \001(\0132\032.pal"
-    "m.portal.v1.Pagination\032\205\003\n\004Item\022\n\n\002id\030\001 "
-    "\001(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006"
-    "labels\030\004 \003(\0132=.palm.monitoring.v1.Podman"
-    "ContainersResponse.Item.LabelsEntry\022\016\n\006m"
-    "ounts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 "
-    "\003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstart"
-    "ed_at\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_at"
-    "\030\026 \001(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022"
-    ".\n\ncreated_at\030c \001(\0132\032.google.protobuf.Ti"
-    "mestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005v"
-    "alue\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsRespo"
-    "nse\022@\n\005items\030\001 \003(\01321.palm.monitoring.v1."
-    "PodmanStatisticsResponse.Item\022.\n\npaginat"
-    "ion\030\t \001(\0132\032.palm.portal.v1.Pagination\032\356\001"
-    "\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_"
-    "time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_c"
-    "pu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_perce"
-    "nt\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001"
-    "(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreate"
-    "d_at\030c \001(\0132\032.google.protobuf.Timestamp2s"
-    "\n\004Site\022k\n\014LayoutByLang\022+.palm.monitoring"
-    ".v1.SiteLayoutByLangRequest\032,.palm.monit"
-    "oring.v1.SiteLayoutByLangResponse\"\0002h\n\nF"
-    "ileSystem\022Z\n\004Logs\022*.palm.monitoring.v1.F"
-    "ileSystemQueryRequest\032$.palm.monitoring."
-    "v1.FileLogsResponse\"\0002\256\002\n\006Podman\022X\n\004Logs"
+    "proto\"!\n\021SiteLayoutRequest\022\014\n\004lang\030\001 \001(\t"
+    "\"x\n\022SiteLayoutResponse\022\014\n\004user\030\001 \001(\t\022\016\n\006"
+    "locale\030\010 \001(\t\022\033\n\023available_languages\030\t \003("
+    "\t\022\023\n\013git_version\030\013 \001(\t\022\022\n\nbuild_time\030\014 \001"
+    "(\t\"\332\003\n\tHeartbeat\0222\n\004http\030\001 \001(\0132\".palm.mo"
+    "nitoring.v1.Heartbeat.HttpH\000\0224\n\005mysql\030\002 "
+    "\001(\0132#.palm.monitoring.v1.Heartbeat.MySql"
+    "H\000\022>\n\npostgresql\030\003 \001(\0132(.palm.monitoring"
+    ".v1.Heartbeat.PostgreSqlH\000\022:\n\010rabbitmq\030\004"
+    " \001(\0132&.palm.monitoring.v1.Heartbeat.Rabb"
+    "itMQH\000\0224\n\005redis\030\005 \001(\0132#.palm.monitoring."
+    "v1.Heartbeat.RedisH\000\0224\n\005minio\030\006 \001(\0132#.pa"
+    "lm.monitoring.v1.Heartbeat.MinioH\000\032\023\n\004Ht"
+    "tp\022\013\n\003url\030\001 \001(\t\032\007\n\005MySql\032\014\n\nPostgreSql\032\n"
+    "\n\010RabbitMQ\0324\n\005Redis\022\014\n\004host\030\001 \001(\t\022\014\n\004por"
+    "t\030\002 \001(\005\022\017\n\007cluster\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\""
+    "\250\001\n\026FileSystemQueryRequest\022=\n\003all\030\001 \001(\0132"
+    "..palm.monitoring.v1.FileSystemQueryRequ"
+    "est.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH"
+    "\000\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032\005\n"
+    "\003AllB\004\n\002by\"\261\001\n\020FileLogsResponse\0228\n\005items"
+    "\030\001 \003(\0132).palm.monitoring.v1.FileLogsResp"
+    "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por"
+    "tal.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022"
+    "\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n\022Podma"
+    "nQueryRequest\0229\n\003all\030\001 \001(\0132*.palm.monito"
+    "ring.v1.PodmanQueryRequest.AllH\000\022\016\n\004host"
+    "\030\002 \001(\tH\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030\n\016cont"
+    "ainer_name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.googl"
+    "e.protobuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.googl"
+    "e.protobuf.Timestamp\022\"\n\004page\030c \001(\0132\024.pal"
+    "m.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022Podman"
+    "LogsResponse\022:\n\005items\030\001 \003(\0132+.palm.monit"
+    "oring.v1.PodmanLogsResponse.Item\022.\n\npagi"
+    "nation\030\t \001(\0132\032.palm.portal.v1.Pagination"
+    "\032O\n\004Item\022\014\n\004host\030\001 \001(\t\022\024\n\014container_id\030\002"
+    " \001(\t\022\017\n\007message\030\003 \001(\t\022\022\n\ncreated_at\030\t \001("
+    "\t\"\224\004\n\030PodmanContainersResponse\022@\n\005items\030"
+    "\001 \003(\01321.palm.monitoring.v1.PodmanContain"
+    "ersResponse.Item\022.\n\npagination\030\t \001(\0132\032.p"
+    "alm.portal.v1.Pagination\032\205\003\n\004Item\022\n\n\002id\030"
+    "\001 \001(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M"
+    "\n\006labels\030\004 \003(\0132=.palm.monitoring.v1.Podm"
+    "anContainersResponse.Item.LabelsEntry\022\016\n"
+    "\006mounts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030"
+    "\007 \003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nsta"
+    "rted_at\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_"
+    "at\030\026 \001(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001("
+    "\t\022.\n\ncreated_at\030c \001(\0132\032.google.protobuf."
+    "Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
+    "\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsRes"
+    "ponse\022@\n\005items\030\001 \003(\01321.palm.monitoring.v"
+    "1.PodmanStatisticsResponse.Item\022.\n\npagin"
+    "ation\030\t \001(\0132\032.palm.portal.v1.Pagination\032"
+    "\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cp"
+    "u_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg"
+    "_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_per"
+    "cent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t"
+    " \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncrea"
+    "ted_at\030c \001(\0132\032.google.protobuf.Timestamp"
+    "2a\n\004Site\022Y\n\006Layout\022%.palm.monitoring.v1."
+    "SiteLayoutRequest\032&.palm.monitoring.v1.S"
+    "iteLayoutResponse\"\0002h\n\nFileSystem\022Z\n\004Log"
+    "s\022*.palm.monitoring.v1.FileSystemQueryRe"
+    "quest\032$.palm.monitoring.v1.FileLogsRespo"
+    "nse\"\0002\256\002\n\006Podman\022X\n\004Logs\022&.palm.monitori"
+    "ng.v1.PodmanQueryRequest\032&.palm.monitori"
+    "ng.v1.PodmanLogsResponse\"\000\022d\n\nContainers"
     "\022&.palm.monitoring.v1.PodmanQueryRequest"
-    "\032&.palm.monitoring.v1.PodmanLogsResponse"
-    "\"\000\022d\n\nContainers\022&.palm.monitoring.v1.Po"
-    "dmanQueryRequest\032,.palm.monitoring.v1.Po"
-    "dmanContainersResponse\"\000\022d\n\nStatistics\022&"
-    ".palm.monitoring.v1.PodmanQueryRequest\032,"
-    ".palm.monitoring.v1.PodmanStatisticsResp"
-    "onse\"\000B4\n0com.github.saturn_xiv.palm.plu"
-    "gins.monitoring.v1P\001b\006proto3"
+    "\032,.palm.monitoring.v1.PodmanContainersRe"
+    "sponse\"\000\022d\n\nStatistics\022&.palm.monitoring"
+    ".v1.PodmanQueryRequest\032,.palm.monitoring"
+    ".v1.PodmanStatisticsResponse\"\000B4\n0com.gi"
+    "thub.saturn_xiv.palm.plugins.monitoring."
+    "v1P\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1079,7 +1083,7 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    3068,
+    3052,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
@@ -1097,99 +1101,99 @@ namespace monitoring {
 namespace v1 {
 // ===================================================================
 
-class SiteLayoutByLangRequest::_Internal {
+class SiteLayoutRequest::_Internal {
  public:
 };
 
-SiteLayoutByLangRequest::SiteLayoutByLangRequest(::google::protobuf::Arena* arena)
+SiteLayoutRequest::SiteLayoutRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutByLangRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutByLangRequest& from_msg)
+    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutRequest& from_msg)
       : lang_(arena, from.lang_),
         _cached_size_{0} {}
 
-SiteLayoutByLangRequest::SiteLayoutByLangRequest(
+SiteLayoutRequest::SiteLayoutRequest(
     ::google::protobuf::Arena* arena,
-    const SiteLayoutByLangRequest& from)
+    const SiteLayoutRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  SiteLayoutByLangRequest* const _this = this;
+  SiteLayoutRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutByLangRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : lang_(arena),
         _cached_size_{0} {}
 
-inline void SiteLayoutByLangRequest::SharedCtor(::_pb::Arena* arena) {
+inline void SiteLayoutRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-SiteLayoutByLangRequest::~SiteLayoutByLangRequest() {
-  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutByLangRequest)
+SiteLayoutRequest::~SiteLayoutRequest() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutRequest)
   SharedDtor(*this);
 }
-inline void SiteLayoutByLangRequest::SharedDtor(MessageLite& self) {
-  SiteLayoutByLangRequest& this_ = static_cast<SiteLayoutByLangRequest&>(self);
+inline void SiteLayoutRequest::SharedDtor(MessageLite& self) {
+  SiteLayoutRequest& this_ = static_cast<SiteLayoutRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.lang_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* SiteLayoutByLangRequest::PlacementNew_(const void*, void* mem,
+inline void* SiteLayoutRequest::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) SiteLayoutByLangRequest(arena);
+  return ::new (mem) SiteLayoutRequest(arena);
 }
-constexpr auto SiteLayoutByLangRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SiteLayoutByLangRequest),
-                                            alignof(SiteLayoutByLangRequest));
+constexpr auto SiteLayoutRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SiteLayoutRequest),
+                                            alignof(SiteLayoutRequest));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull SiteLayoutByLangRequest::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull SiteLayoutRequest::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_SiteLayoutByLangRequest_default_instance_._instance,
+        &_SiteLayoutRequest_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &SiteLayoutByLangRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<SiteLayoutByLangRequest>(),
+        &SiteLayoutRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SiteLayoutRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &SiteLayoutByLangRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<SiteLayoutByLangRequest>(), &SiteLayoutByLangRequest::ByteSizeLong,
-            &SiteLayoutByLangRequest::_InternalSerialize,
+        &SiteLayoutRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SiteLayoutRequest>(), &SiteLayoutRequest::ByteSizeLong,
+            &SiteLayoutRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(SiteLayoutByLangRequest, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(SiteLayoutRequest, _impl_._cached_size_),
         false,
     },
-    &SiteLayoutByLangRequest::kDescriptorMethods,
+    &SiteLayoutRequest::kDescriptorMethods,
     &descriptor_table_monitoring_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* SiteLayoutByLangRequest::GetClassData() const {
+const ::google::protobuf::internal::ClassData* SiteLayoutRequest::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 55, 2> SiteLayoutByLangRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 49, 2> SiteLayoutRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1204,29 +1208,29 @@ const ::_pbi::TcParseTable<0, 1, 0, 55, 2> SiteLayoutByLangRequest::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutByLangRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string lang = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangRequest, _impl_.lang_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutRequest, _impl_.lang_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string lang = 1;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangRequest, _impl_.lang_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutRequest, _impl_.lang_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\52\4\0\0\0\0\0\0"
-    "palm.monitoring.v1.SiteLayoutByLangRequest"
+    "\44\4\0\0\0\0\0\0"
+    "palm.monitoring.v1.SiteLayoutRequest"
     "lang"
   }},
 };
 
-PROTOBUF_NOINLINE void SiteLayoutByLangRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+PROTOBUF_NOINLINE void SiteLayoutRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1237,17 +1241,17 @@ PROTOBUF_NOINLINE void SiteLayoutByLangRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* SiteLayoutByLangRequest::_InternalSerialize(
+        ::uint8_t* SiteLayoutRequest::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const SiteLayoutByLangRequest& this_ = static_cast<const SiteLayoutByLangRequest&>(base);
+          const SiteLayoutRequest& this_ = static_cast<const SiteLayoutRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* SiteLayoutByLangRequest::_InternalSerialize(
+        ::uint8_t* SiteLayoutRequest::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const SiteLayoutByLangRequest& this_ = *this;
+          const SiteLayoutRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutRequest)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -1255,7 +1259,7 @@ PROTOBUF_NOINLINE void SiteLayoutByLangRequest::Clear() {
           if (!this_._internal_lang().empty()) {
             const std::string& _s = this_._internal_lang();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangRequest.lang");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutRequest.lang");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
@@ -1264,18 +1268,18 @@ PROTOBUF_NOINLINE void SiteLayoutByLangRequest::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutByLangRequest)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutRequest)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t SiteLayoutByLangRequest::ByteSizeLong(const MessageLite& base) {
-          const SiteLayoutByLangRequest& this_ = static_cast<const SiteLayoutByLangRequest&>(base);
+        ::size_t SiteLayoutRequest::ByteSizeLong(const MessageLite& base) {
+          const SiteLayoutRequest& this_ = static_cast<const SiteLayoutRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t SiteLayoutByLangRequest::ByteSizeLong() const {
-          const SiteLayoutByLangRequest& this_ = *this;
+        ::size_t SiteLayoutRequest::ByteSizeLong() const {
+          const SiteLayoutRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutRequest)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1293,10 +1297,10 @@ PROTOBUF_NOINLINE void SiteLayoutByLangRequest::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void SiteLayoutByLangRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<SiteLayoutByLangRequest*>(&to_msg);
-  auto& from = static_cast<const SiteLayoutByLangRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+void SiteLayoutRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SiteLayoutRequest*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1307,15 +1311,15 @@ void SiteLayoutByLangRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void SiteLayoutByLangRequest::CopyFrom(const SiteLayoutByLangRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+void SiteLayoutRequest::CopyFrom(const SiteLayoutRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void SiteLayoutByLangRequest::InternalSwap(SiteLayoutByLangRequest* PROTOBUF_RESTRICT other) {
+void SiteLayoutRequest::InternalSwap(SiteLayoutRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1323,177 +1327,184 @@ void SiteLayoutByLangRequest::InternalSwap(SiteLayoutByLangRequest* PROTOBUF_RES
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.lang_, &other->_impl_.lang_, arena);
 }
 
-::google::protobuf::Metadata SiteLayoutByLangRequest::GetMetadata() const {
+::google::protobuf::Metadata SiteLayoutRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class SiteLayoutByLangResponse::_Internal {
+class SiteLayoutResponse::_Internal {
  public:
 };
 
-SiteLayoutByLangResponse::SiteLayoutByLangResponse(::google::protobuf::Arena* arena)
+SiteLayoutResponse::SiteLayoutResponse(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutByLangResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutByLangResponse& from_msg)
+    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutResponse& from_msg)
       : available_languages_{visibility, arena, from.available_languages_},
+        user_(arena, from.user_),
         locale_(arena, from.locale_),
         git_version_(arena, from.git_version_),
         build_time_(arena, from.build_time_),
         _cached_size_{0} {}
 
-SiteLayoutByLangResponse::SiteLayoutByLangResponse(
+SiteLayoutResponse::SiteLayoutResponse(
     ::google::protobuf::Arena* arena,
-    const SiteLayoutByLangResponse& from)
+    const SiteLayoutResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  SiteLayoutByLangResponse* const _this = this;
+  SiteLayoutResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutByLangResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : available_languages_{visibility, arena},
+        user_(arena),
         locale_(arena),
         git_version_(arena),
         build_time_(arena),
         _cached_size_{0} {}
 
-inline void SiteLayoutByLangResponse::SharedCtor(::_pb::Arena* arena) {
+inline void SiteLayoutResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-SiteLayoutByLangResponse::~SiteLayoutByLangResponse() {
-  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutByLangResponse)
+SiteLayoutResponse::~SiteLayoutResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutResponse)
   SharedDtor(*this);
 }
-inline void SiteLayoutByLangResponse::SharedDtor(MessageLite& self) {
-  SiteLayoutByLangResponse& this_ = static_cast<SiteLayoutByLangResponse&>(self);
+inline void SiteLayoutResponse::SharedDtor(MessageLite& self) {
+  SiteLayoutResponse& this_ = static_cast<SiteLayoutResponse&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.user_.Destroy();
   this_._impl_.locale_.Destroy();
   this_._impl_.git_version_.Destroy();
   this_._impl_.build_time_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* SiteLayoutByLangResponse::PlacementNew_(const void*, void* mem,
+inline void* SiteLayoutResponse::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) SiteLayoutByLangResponse(arena);
+  return ::new (mem) SiteLayoutResponse(arena);
 }
-constexpr auto SiteLayoutByLangResponse::InternalNewImpl_() {
+constexpr auto SiteLayoutResponse::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.available_languages_) +
-          decltype(SiteLayoutByLangResponse::_impl_.available_languages_)::
+      PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.available_languages_) +
+          decltype(SiteLayoutResponse::_impl_.available_languages_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
     return ::google::protobuf::internal::MessageCreator::CopyInit(
-        sizeof(SiteLayoutByLangResponse), alignof(SiteLayoutByLangResponse), *arena_bits);
+        sizeof(SiteLayoutResponse), alignof(SiteLayoutResponse), *arena_bits);
   } else {
-    return ::google::protobuf::internal::MessageCreator(&SiteLayoutByLangResponse::PlacementNew_,
-                                 sizeof(SiteLayoutByLangResponse),
-                                 alignof(SiteLayoutByLangResponse));
+    return ::google::protobuf::internal::MessageCreator(&SiteLayoutResponse::PlacementNew_,
+                                 sizeof(SiteLayoutResponse),
+                                 alignof(SiteLayoutResponse));
   }
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull SiteLayoutByLangResponse::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull SiteLayoutResponse::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_SiteLayoutByLangResponse_default_instance_._instance,
+        &_SiteLayoutResponse_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &SiteLayoutByLangResponse::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<SiteLayoutByLangResponse>(),
+        &SiteLayoutResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SiteLayoutResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &SiteLayoutByLangResponse::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<SiteLayoutByLangResponse>(), &SiteLayoutByLangResponse::ByteSizeLong,
-            &SiteLayoutByLangResponse::_InternalSerialize,
+        &SiteLayoutResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SiteLayoutResponse>(), &SiteLayoutResponse::ByteSizeLong,
+            &SiteLayoutResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_._cached_size_),
         false,
     },
-    &SiteLayoutByLangResponse::kDescriptorMethods,
+    &SiteLayoutResponse::kDescriptorMethods,
     &descriptor_table_monitoring_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* SiteLayoutByLangResponse::GetClassData() const {
+const ::google::protobuf::internal::ClassData* SiteLayoutResponse::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 4, 0, 98, 2> SiteLayoutByLangResponse::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 96, 2> SiteLayoutResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
     12, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294963839,  // skipmap
+    4294963838,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutByLangResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string locale = 8;
     {::_pbi::TcParser::FastUS1,
-     {66, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.locale_)}},
-    // repeated string available_languages = 9;
-    {::_pbi::TcParser::FastUR1,
-     {74, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.available_languages_)}},
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.locale_)}},
+    // string user = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // string git_version = 11;
     {::_pbi::TcParser::FastUS1,
-     {90, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.git_version_)}},
+     {90, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.git_version_)}},
     // string build_time = 12;
     {::_pbi::TcParser::FastUS1,
-     {98, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.build_time_)}},
+     {98, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.build_time_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
+    // string user = 1;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string locale = 8;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.locale_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.locale_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated string available_languages = 9;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.available_languages_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.available_languages_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     // string git_version = 11;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.git_version_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.git_version_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string build_time = 12;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.build_time_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.build_time_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\53\6\23\13\12\0\0\0"
-    "palm.monitoring.v1.SiteLayoutByLangResponse"
+    "\45\4\6\23\13\12\0\0"
+    "palm.monitoring.v1.SiteLayoutResponse"
+    "user"
     "locale"
     "available_languages"
     "git_version"
@@ -1501,14 +1512,15 @@ const ::_pbi::TcParseTable<3, 4, 0, 98, 2> SiteLayoutByLangResponse::_table_ = {
   }},
 };
 
-PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.available_languages_.Clear();
+  _impl_.user_.ClearToEmpty();
   _impl_.locale_.ClearToEmpty();
   _impl_.git_version_.ClearToEmpty();
   _impl_.build_time_.ClearToEmpty();
@@ -1516,25 +1528,33 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* SiteLayoutByLangResponse::_InternalSerialize(
+        ::uint8_t* SiteLayoutResponse::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const SiteLayoutByLangResponse& this_ = static_cast<const SiteLayoutByLangResponse&>(base);
+          const SiteLayoutResponse& this_ = static_cast<const SiteLayoutResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* SiteLayoutByLangResponse::_InternalSerialize(
+        ::uint8_t* SiteLayoutResponse::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const SiteLayoutByLangResponse& this_ = *this;
+          const SiteLayoutResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutResponse)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
+
+          // string user = 1;
+          if (!this_._internal_user().empty()) {
+            const std::string& _s = this_._internal_user();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.user");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
 
           // string locale = 8;
           if (!this_._internal_locale().empty()) {
             const std::string& _s = this_._internal_locale();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.locale");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.locale");
             target = stream->WriteStringMaybeAliased(8, _s, target);
           }
 
@@ -1542,7 +1562,7 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
           for (int i = 0, n = this_._internal_available_languages_size(); i < n; ++i) {
             const auto& s = this_._internal_available_languages().Get(i);
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.available_languages");
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.available_languages");
             target = stream->WriteString(9, s, target);
           }
 
@@ -1550,7 +1570,7 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
           if (!this_._internal_git_version().empty()) {
             const std::string& _s = this_._internal_git_version();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.git_version");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.git_version");
             target = stream->WriteStringMaybeAliased(11, _s, target);
           }
 
@@ -1558,7 +1578,7 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
           if (!this_._internal_build_time().empty()) {
             const std::string& _s = this_._internal_build_time();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.build_time");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.build_time");
             target = stream->WriteStringMaybeAliased(12, _s, target);
           }
 
@@ -1567,18 +1587,18 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutByLangResponse)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutResponse)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t SiteLayoutByLangResponse::ByteSizeLong(const MessageLite& base) {
-          const SiteLayoutByLangResponse& this_ = static_cast<const SiteLayoutByLangResponse&>(base);
+        ::size_t SiteLayoutResponse::ByteSizeLong(const MessageLite& base) {
+          const SiteLayoutResponse& this_ = static_cast<const SiteLayoutResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t SiteLayoutByLangResponse::ByteSizeLong() const {
-          const SiteLayoutByLangResponse& this_ = *this;
+        ::size_t SiteLayoutResponse::ByteSizeLong() const {
+          const SiteLayoutResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutResponse)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1598,6 +1618,11 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
             }
           }
            {
+            // string user = 1;
+            if (!this_._internal_user().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_user());
+            }
             // string locale = 8;
             if (!this_._internal_locale().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1618,15 +1643,18 @@ PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void SiteLayoutByLangResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<SiteLayoutByLangResponse*>(&to_msg);
-  auto& from = static_cast<const SiteLayoutByLangResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+void SiteLayoutResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SiteLayoutResponse*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   _this->_internal_mutable_available_languages()->MergeFrom(from._internal_available_languages());
+  if (!from._internal_user().empty()) {
+    _this->_internal_set_user(from._internal_user());
+  }
   if (!from._internal_locale().empty()) {
     _this->_internal_set_locale(from._internal_locale());
   }
@@ -1639,26 +1667,27 @@ void SiteLayoutByLangResponse::MergeImpl(::google::protobuf::MessageLite& to_msg
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void SiteLayoutByLangResponse::CopyFrom(const SiteLayoutByLangResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+void SiteLayoutResponse::CopyFrom(const SiteLayoutResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void SiteLayoutByLangResponse::InternalSwap(SiteLayoutByLangResponse* PROTOBUF_RESTRICT other) {
+void SiteLayoutResponse::InternalSwap(SiteLayoutResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.available_languages_.InternalSwap(&other->_impl_.available_languages_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.user_, &other->_impl_.user_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locale_, &other->_impl_.locale_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.git_version_, &other->_impl_.git_version_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.build_time_, &other->_impl_.build_time_, arena);
 }
 
-::google::protobuf::Metadata SiteLayoutByLangResponse::GetMetadata() const {
+::google::protobuf::Metadata SiteLayoutResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

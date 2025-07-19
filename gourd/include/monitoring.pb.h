@@ -120,12 +120,12 @@ extern PodmanStatisticsResponseDefaultTypeInternal _PodmanStatisticsResponse_def
 class PodmanStatisticsResponse_Item;
 struct PodmanStatisticsResponse_ItemDefaultTypeInternal;
 extern PodmanStatisticsResponse_ItemDefaultTypeInternal _PodmanStatisticsResponse_Item_default_instance_;
-class SiteLayoutByLangRequest;
-struct SiteLayoutByLangRequestDefaultTypeInternal;
-extern SiteLayoutByLangRequestDefaultTypeInternal _SiteLayoutByLangRequest_default_instance_;
-class SiteLayoutByLangResponse;
-struct SiteLayoutByLangResponseDefaultTypeInternal;
-extern SiteLayoutByLangResponseDefaultTypeInternal _SiteLayoutByLangResponse_default_instance_;
+class SiteLayoutRequest;
+struct SiteLayoutRequestDefaultTypeInternal;
+extern SiteLayoutRequestDefaultTypeInternal _SiteLayoutRequest_default_instance_;
+class SiteLayoutResponse;
+struct SiteLayoutResponseDefaultTypeInternal;
+extern SiteLayoutResponseDefaultTypeInternal _SiteLayoutResponse_default_instance_;
 }  // namespace v1
 }  // namespace monitoring
 }  // namespace palm
@@ -143,31 +143,31 @@ namespace v1 {
 
 // -------------------------------------------------------------------
 
-class SiteLayoutByLangResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SiteLayoutByLangResponse) */ {
+class SiteLayoutResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SiteLayoutResponse) */ {
  public:
-  inline SiteLayoutByLangResponse() : SiteLayoutByLangResponse(nullptr) {}
-  ~SiteLayoutByLangResponse() PROTOBUF_FINAL;
+  inline SiteLayoutResponse() : SiteLayoutResponse(nullptr) {}
+  ~SiteLayoutResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(SiteLayoutByLangResponse* msg, std::destroying_delete_t) {
+  void operator delete(SiteLayoutResponse* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteLayoutByLangResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteLayoutResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR SiteLayoutByLangResponse(
+  explicit PROTOBUF_CONSTEXPR SiteLayoutResponse(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline SiteLayoutByLangResponse(const SiteLayoutByLangResponse& from) : SiteLayoutByLangResponse(nullptr, from) {}
-  inline SiteLayoutByLangResponse(SiteLayoutByLangResponse&& from) noexcept
-      : SiteLayoutByLangResponse(nullptr, std::move(from)) {}
-  inline SiteLayoutByLangResponse& operator=(const SiteLayoutByLangResponse& from) {
+  inline SiteLayoutResponse(const SiteLayoutResponse& from) : SiteLayoutResponse(nullptr, from) {}
+  inline SiteLayoutResponse(SiteLayoutResponse&& from) noexcept
+      : SiteLayoutResponse(nullptr, std::move(from)) {}
+  inline SiteLayoutResponse& operator=(const SiteLayoutResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SiteLayoutByLangResponse& operator=(SiteLayoutByLangResponse&& from) noexcept {
+  inline SiteLayoutResponse& operator=(SiteLayoutResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -195,16 +195,16 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SiteLayoutByLangResponse& default_instance() {
+  static const SiteLayoutResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SiteLayoutByLangResponse* internal_default_instance() {
-    return reinterpret_cast<const SiteLayoutByLangResponse*>(
-        &_SiteLayoutByLangResponse_default_instance_);
+  static inline const SiteLayoutResponse* internal_default_instance() {
+    return reinterpret_cast<const SiteLayoutResponse*>(
+        &_SiteLayoutResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(SiteLayoutByLangResponse& a, SiteLayoutByLangResponse& b) { a.Swap(&b); }
-  inline void Swap(SiteLayoutByLangResponse* other) {
+  friend void swap(SiteLayoutResponse& a, SiteLayoutResponse& b) { a.Swap(&b); }
+  inline void Swap(SiteLayoutResponse* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -212,7 +212,7 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SiteLayoutByLangResponse* other) {
+  void UnsafeArenaSwap(SiteLayoutResponse* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -220,13 +220,13 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  SiteLayoutByLangResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<SiteLayoutByLangResponse>(arena);
+  SiteLayoutResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SiteLayoutResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SiteLayoutByLangResponse& from);
+  void CopyFrom(const SiteLayoutResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const SiteLayoutByLangResponse& from) { SiteLayoutByLangResponse::MergeImpl(*this, from); }
+  void MergeFrom(const SiteLayoutResponse& from) { SiteLayoutResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -263,18 +263,18 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(SiteLayoutByLangResponse* other);
+  void InternalSwap(SiteLayoutResponse* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SiteLayoutByLangResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SiteLayoutResponse"; }
 
  protected:
-  explicit SiteLayoutByLangResponse(::google::protobuf::Arena* arena);
-  SiteLayoutByLangResponse(::google::protobuf::Arena* arena, const SiteLayoutByLangResponse& from);
-  SiteLayoutByLangResponse(::google::protobuf::Arena* arena, SiteLayoutByLangResponse&& from) noexcept
-      : SiteLayoutByLangResponse(arena) {
+  explicit SiteLayoutResponse(::google::protobuf::Arena* arena);
+  SiteLayoutResponse(::google::protobuf::Arena* arena, const SiteLayoutResponse& from);
+  SiteLayoutResponse(::google::protobuf::Arena* arena, SiteLayoutResponse&& from) noexcept
+      : SiteLayoutResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -290,6 +290,7 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kAvailableLanguagesFieldNumber = 9,
+    kUserFieldNumber = 1,
     kLocaleFieldNumber = 8,
     kGitVersionFieldNumber = 11,
     kBuildTimeFieldNumber = 12,
@@ -314,6 +315,22 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
   private:
   const ::google::protobuf::RepeatedPtrField<std::string>& _internal_available_languages() const;
   ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_available_languages();
+
+  public:
+  // string user = 1;
+  void clear_user() ;
+  const std::string& user() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_user(Arg_&& arg, Args_... args);
+  std::string* mutable_user();
+  PROTOBUF_NODISCARD std::string* release_user();
+  void set_allocated_user(std::string* value);
+
+  private:
+  const std::string& _internal_user() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user(
+      const std::string& value);
+  std::string* _internal_mutable_user();
 
   public:
   // string locale = 8;
@@ -364,13 +381,13 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
   std::string* _internal_mutable_build_time();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutByLangResponse)
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 4, 0,
-      98, 2>
+      3, 5, 0,
+      96, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -386,8 +403,9 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const SiteLayoutByLangResponse& from_msg);
+                          const SiteLayoutResponse& from_msg);
     ::google::protobuf::RepeatedPtrField<std::string> available_languages_;
+    ::google::protobuf::internal::ArenaStringPtr user_;
     ::google::protobuf::internal::ArenaStringPtr locale_;
     ::google::protobuf::internal::ArenaStringPtr git_version_;
     ::google::protobuf::internal::ArenaStringPtr build_time_;
@@ -399,31 +417,31 @@ class SiteLayoutByLangResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class SiteLayoutByLangRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SiteLayoutByLangRequest) */ {
+class SiteLayoutRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SiteLayoutRequest) */ {
  public:
-  inline SiteLayoutByLangRequest() : SiteLayoutByLangRequest(nullptr) {}
-  ~SiteLayoutByLangRequest() PROTOBUF_FINAL;
+  inline SiteLayoutRequest() : SiteLayoutRequest(nullptr) {}
+  ~SiteLayoutRequest() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(SiteLayoutByLangRequest* msg, std::destroying_delete_t) {
+  void operator delete(SiteLayoutRequest* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteLayoutByLangRequest));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteLayoutRequest));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR SiteLayoutByLangRequest(
+  explicit PROTOBUF_CONSTEXPR SiteLayoutRequest(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline SiteLayoutByLangRequest(const SiteLayoutByLangRequest& from) : SiteLayoutByLangRequest(nullptr, from) {}
-  inline SiteLayoutByLangRequest(SiteLayoutByLangRequest&& from) noexcept
-      : SiteLayoutByLangRequest(nullptr, std::move(from)) {}
-  inline SiteLayoutByLangRequest& operator=(const SiteLayoutByLangRequest& from) {
+  inline SiteLayoutRequest(const SiteLayoutRequest& from) : SiteLayoutRequest(nullptr, from) {}
+  inline SiteLayoutRequest(SiteLayoutRequest&& from) noexcept
+      : SiteLayoutRequest(nullptr, std::move(from)) {}
+  inline SiteLayoutRequest& operator=(const SiteLayoutRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SiteLayoutByLangRequest& operator=(SiteLayoutByLangRequest&& from) noexcept {
+  inline SiteLayoutRequest& operator=(SiteLayoutRequest&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -451,16 +469,16 @@ class SiteLayoutByLangRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SiteLayoutByLangRequest& default_instance() {
+  static const SiteLayoutRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SiteLayoutByLangRequest* internal_default_instance() {
-    return reinterpret_cast<const SiteLayoutByLangRequest*>(
-        &_SiteLayoutByLangRequest_default_instance_);
+  static inline const SiteLayoutRequest* internal_default_instance() {
+    return reinterpret_cast<const SiteLayoutRequest*>(
+        &_SiteLayoutRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 0;
-  friend void swap(SiteLayoutByLangRequest& a, SiteLayoutByLangRequest& b) { a.Swap(&b); }
-  inline void Swap(SiteLayoutByLangRequest* other) {
+  friend void swap(SiteLayoutRequest& a, SiteLayoutRequest& b) { a.Swap(&b); }
+  inline void Swap(SiteLayoutRequest* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -468,7 +486,7 @@ class SiteLayoutByLangRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SiteLayoutByLangRequest* other) {
+  void UnsafeArenaSwap(SiteLayoutRequest* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -476,13 +494,13 @@ class SiteLayoutByLangRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  SiteLayoutByLangRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<SiteLayoutByLangRequest>(arena);
+  SiteLayoutRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SiteLayoutRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SiteLayoutByLangRequest& from);
+  void CopyFrom(const SiteLayoutRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const SiteLayoutByLangRequest& from) { SiteLayoutByLangRequest::MergeImpl(*this, from); }
+  void MergeFrom(const SiteLayoutRequest& from) { SiteLayoutRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -519,18 +537,18 @@ class SiteLayoutByLangRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(SiteLayoutByLangRequest* other);
+  void InternalSwap(SiteLayoutRequest* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SiteLayoutByLangRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SiteLayoutRequest"; }
 
  protected:
-  explicit SiteLayoutByLangRequest(::google::protobuf::Arena* arena);
-  SiteLayoutByLangRequest(::google::protobuf::Arena* arena, const SiteLayoutByLangRequest& from);
-  SiteLayoutByLangRequest(::google::protobuf::Arena* arena, SiteLayoutByLangRequest&& from) noexcept
-      : SiteLayoutByLangRequest(arena) {
+  explicit SiteLayoutRequest(::google::protobuf::Arena* arena);
+  SiteLayoutRequest(::google::protobuf::Arena* arena, const SiteLayoutRequest& from);
+  SiteLayoutRequest(::google::protobuf::Arena* arena, SiteLayoutRequest&& from) noexcept
+      : SiteLayoutRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -563,13 +581,13 @@ class SiteLayoutByLangRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_lang();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutByLangRequest)
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      55, 2>
+      49, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -585,7 +603,7 @@ class SiteLayoutByLangRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const SiteLayoutByLangRequest& from_msg);
+                          const SiteLayoutRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr lang_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -5048,266 +5066,314 @@ class PodmanContainersResponse final : public ::google::protobuf::Message
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// SiteLayoutByLangRequest
+// SiteLayoutRequest
 
 // string lang = 1;
-inline void SiteLayoutByLangRequest::clear_lang() {
+inline void SiteLayoutRequest::clear_lang() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.lang_.ClearToEmpty();
 }
-inline const std::string& SiteLayoutByLangRequest::lang() const
+inline const std::string& SiteLayoutRequest::lang() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutRequest.lang)
   return _internal_lang();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangRequest::set_lang(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutRequest::set_lang(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutRequest.lang)
 }
-inline std::string* SiteLayoutByLangRequest::mutable_lang() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* SiteLayoutRequest::mutable_lang() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_lang();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutRequest.lang)
   return _s;
 }
-inline const std::string& SiteLayoutByLangRequest::_internal_lang() const {
+inline const std::string& SiteLayoutRequest::_internal_lang() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.lang_.Get();
 }
-inline void SiteLayoutByLangRequest::_internal_set_lang(const std::string& value) {
+inline void SiteLayoutRequest::_internal_set_lang(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.lang_.Set(value, GetArena());
 }
-inline std::string* SiteLayoutByLangRequest::_internal_mutable_lang() {
+inline std::string* SiteLayoutRequest::_internal_mutable_lang() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.lang_.Mutable( GetArena());
 }
-inline std::string* SiteLayoutByLangRequest::release_lang() {
+inline std::string* SiteLayoutRequest::release_lang() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutRequest.lang)
   return _impl_.lang_.Release();
 }
-inline void SiteLayoutByLangRequest::set_allocated_lang(std::string* value) {
+inline void SiteLayoutRequest::set_allocated_lang(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.lang_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
     _impl_.lang_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutRequest.lang)
 }
 
 // -------------------------------------------------------------------
 
-// SiteLayoutByLangResponse
+// SiteLayoutResponse
+
+// string user = 1;
+inline void SiteLayoutResponse::clear_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_.ClearToEmpty();
+}
+inline const std::string& SiteLayoutResponse::user() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutResponse.user)
+  return _internal_user();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutResponse::set_user(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutResponse.user)
+}
+inline std::string* SiteLayoutResponse::mutable_user() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutResponse.user)
+  return _s;
+}
+inline const std::string& SiteLayoutResponse::_internal_user() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.user_.Get();
+}
+inline void SiteLayoutResponse::_internal_set_user(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_.Set(value, GetArena());
+}
+inline std::string* SiteLayoutResponse::_internal_mutable_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.user_.Mutable( GetArena());
+}
+inline std::string* SiteLayoutResponse::release_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutResponse.user)
+  return _impl_.user_.Release();
+}
+inline void SiteLayoutResponse::set_allocated_user(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.user_.IsDefault()) {
+    _impl_.user_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutResponse.user)
+}
 
 // string locale = 8;
-inline void SiteLayoutByLangResponse::clear_locale() {
+inline void SiteLayoutResponse::clear_locale() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.locale_.ClearToEmpty();
 }
-inline const std::string& SiteLayoutByLangResponse::locale() const
+inline const std::string& SiteLayoutResponse::locale() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutResponse.locale)
   return _internal_locale();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangResponse::set_locale(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutResponse::set_locale(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.locale_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutResponse.locale)
 }
-inline std::string* SiteLayoutByLangResponse::mutable_locale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* SiteLayoutResponse::mutable_locale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_locale();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutResponse.locale)
   return _s;
 }
-inline const std::string& SiteLayoutByLangResponse::_internal_locale() const {
+inline const std::string& SiteLayoutResponse::_internal_locale() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.locale_.Get();
 }
-inline void SiteLayoutByLangResponse::_internal_set_locale(const std::string& value) {
+inline void SiteLayoutResponse::_internal_set_locale(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.locale_.Set(value, GetArena());
 }
-inline std::string* SiteLayoutByLangResponse::_internal_mutable_locale() {
+inline std::string* SiteLayoutResponse::_internal_mutable_locale() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.locale_.Mutable( GetArena());
 }
-inline std::string* SiteLayoutByLangResponse::release_locale() {
+inline std::string* SiteLayoutResponse::release_locale() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutResponse.locale)
   return _impl_.locale_.Release();
 }
-inline void SiteLayoutByLangResponse::set_allocated_locale(std::string* value) {
+inline void SiteLayoutResponse::set_allocated_locale(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.locale_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.locale_.IsDefault()) {
     _impl_.locale_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutResponse.locale)
 }
 
 // repeated string available_languages = 9;
-inline int SiteLayoutByLangResponse::_internal_available_languages_size() const {
+inline int SiteLayoutResponse::_internal_available_languages_size() const {
   return _internal_available_languages().size();
 }
-inline int SiteLayoutByLangResponse::available_languages_size() const {
+inline int SiteLayoutResponse::available_languages_size() const {
   return _internal_available_languages_size();
 }
-inline void SiteLayoutByLangResponse::clear_available_languages() {
+inline void SiteLayoutResponse::clear_available_languages() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.available_languages_.Clear();
 }
-inline std::string* SiteLayoutByLangResponse::add_available_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* SiteLayoutResponse::add_available_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   std::string* _s = _internal_mutable_available_languages()->Add();
-  // @@protoc_insertion_point(field_add_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  // @@protoc_insertion_point(field_add_mutable:palm.monitoring.v1.SiteLayoutResponse.available_languages)
   return _s;
 }
-inline const std::string& SiteLayoutByLangResponse::available_languages(int index) const
+inline const std::string& SiteLayoutResponse::available_languages(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutResponse.available_languages)
   return _internal_available_languages().Get(index);
 }
-inline std::string* SiteLayoutByLangResponse::mutable_available_languages(int index)
+inline std::string* SiteLayoutResponse::mutable_available_languages(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutResponse.available_languages)
   return _internal_mutable_available_languages()->Mutable(index);
 }
 template <typename Arg_, typename... Args_>
-inline void SiteLayoutByLangResponse::set_available_languages(int index, Arg_&& value, Args_... args) {
+inline void SiteLayoutResponse::set_available_languages(int index, Arg_&& value, Args_... args) {
   ::google::protobuf::internal::AssignToString(
       *_internal_mutable_available_languages()->Mutable(index),
       std::forward<Arg_>(value), args... );
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutResponse.available_languages)
 }
 template <typename Arg_, typename... Args_>
-inline void SiteLayoutByLangResponse::add_available_languages(Arg_&& value, Args_... args) {
+inline void SiteLayoutResponse::add_available_languages(Arg_&& value, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_available_languages(),
                                std::forward<Arg_>(value),
                                args... );
-  // @@protoc_insertion_point(field_add:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  // @@protoc_insertion_point(field_add:palm.monitoring.v1.SiteLayoutResponse.available_languages)
 }
 inline const ::google::protobuf::RepeatedPtrField<std::string>&
-SiteLayoutByLangResponse::available_languages() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+SiteLayoutResponse::available_languages() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.monitoring.v1.SiteLayoutResponse.available_languages)
   return _internal_available_languages();
 }
 inline ::google::protobuf::RepeatedPtrField<std::string>*
-SiteLayoutByLangResponse::mutable_available_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+SiteLayoutResponse::mutable_available_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.monitoring.v1.SiteLayoutResponse.available_languages)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_available_languages();
 }
 inline const ::google::protobuf::RepeatedPtrField<std::string>&
-SiteLayoutByLangResponse::_internal_available_languages() const {
+SiteLayoutResponse::_internal_available_languages() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.available_languages_;
 }
 inline ::google::protobuf::RepeatedPtrField<std::string>*
-SiteLayoutByLangResponse::_internal_mutable_available_languages() {
+SiteLayoutResponse::_internal_mutable_available_languages() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.available_languages_;
 }
 
 // string git_version = 11;
-inline void SiteLayoutByLangResponse::clear_git_version() {
+inline void SiteLayoutResponse::clear_git_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.git_version_.ClearToEmpty();
 }
-inline const std::string& SiteLayoutByLangResponse::git_version() const
+inline const std::string& SiteLayoutResponse::git_version() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutResponse.git_version)
   return _internal_git_version();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangResponse::set_git_version(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutResponse::set_git_version(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.git_version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutResponse.git_version)
 }
-inline std::string* SiteLayoutByLangResponse::mutable_git_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* SiteLayoutResponse::mutable_git_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_git_version();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutResponse.git_version)
   return _s;
 }
-inline const std::string& SiteLayoutByLangResponse::_internal_git_version() const {
+inline const std::string& SiteLayoutResponse::_internal_git_version() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.git_version_.Get();
 }
-inline void SiteLayoutByLangResponse::_internal_set_git_version(const std::string& value) {
+inline void SiteLayoutResponse::_internal_set_git_version(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.git_version_.Set(value, GetArena());
 }
-inline std::string* SiteLayoutByLangResponse::_internal_mutable_git_version() {
+inline std::string* SiteLayoutResponse::_internal_mutable_git_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.git_version_.Mutable( GetArena());
 }
-inline std::string* SiteLayoutByLangResponse::release_git_version() {
+inline std::string* SiteLayoutResponse::release_git_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutResponse.git_version)
   return _impl_.git_version_.Release();
 }
-inline void SiteLayoutByLangResponse::set_allocated_git_version(std::string* value) {
+inline void SiteLayoutResponse::set_allocated_git_version(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.git_version_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.git_version_.IsDefault()) {
     _impl_.git_version_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutResponse.git_version)
 }
 
 // string build_time = 12;
-inline void SiteLayoutByLangResponse::clear_build_time() {
+inline void SiteLayoutResponse::clear_build_time() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.build_time_.ClearToEmpty();
 }
-inline const std::string& SiteLayoutByLangResponse::build_time() const
+inline const std::string& SiteLayoutResponse::build_time() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutResponse.build_time)
   return _internal_build_time();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangResponse::set_build_time(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutResponse::set_build_time(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.build_time_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutResponse.build_time)
 }
-inline std::string* SiteLayoutByLangResponse::mutable_build_time() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* SiteLayoutResponse::mutable_build_time() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_build_time();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutResponse.build_time)
   return _s;
 }
-inline const std::string& SiteLayoutByLangResponse::_internal_build_time() const {
+inline const std::string& SiteLayoutResponse::_internal_build_time() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.build_time_.Get();
 }
-inline void SiteLayoutByLangResponse::_internal_set_build_time(const std::string& value) {
+inline void SiteLayoutResponse::_internal_set_build_time(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.build_time_.Set(value, GetArena());
 }
-inline std::string* SiteLayoutByLangResponse::_internal_mutable_build_time() {
+inline std::string* SiteLayoutResponse::_internal_mutable_build_time() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.build_time_.Mutable( GetArena());
 }
-inline std::string* SiteLayoutByLangResponse::release_build_time() {
+inline std::string* SiteLayoutResponse::release_build_time() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutResponse.build_time)
   return _impl_.build_time_.Release();
 }
-inline void SiteLayoutByLangResponse::set_allocated_build_time(std::string* value) {
+inline void SiteLayoutResponse::set_allocated_build_time(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.build_time_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.build_time_.IsDefault()) {
     _impl_.build_time_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutResponse.build_time)
 }
 
 // -------------------------------------------------------------------
