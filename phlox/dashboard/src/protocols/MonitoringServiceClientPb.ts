@@ -20,7 +20,7 @@ import * as grpcWeb from 'grpc-web';
 import * as monitoring_pb from './monitoring_pb'; // proto import: "monitoring.proto"
 
 
-export class HealthCheckNodeClient {
+export class SiteClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -37,6 +37,49 @@ export class HealthCheckNodeClient {
     this.hostname_ = hostname.replace(/\/+$/, '');
     this.credentials_ = credentials;
     this.options_ = options;
+  }
+
+  methodDescriptorLayoutByLang = new grpcWeb.MethodDescriptor(
+    '/palm.monitoring.v1.Site/LayoutByLang',
+    grpcWeb.MethodType.UNARY,
+    monitoring_pb.SiteLayoutByLangRequest,
+    monitoring_pb.SiteLayoutByLangResponse,
+    (request: monitoring_pb.SiteLayoutByLangRequest) => {
+      return request.serializeBinary();
+    },
+    monitoring_pb.SiteLayoutByLangResponse.deserializeBinary
+  );
+
+  layoutByLang(
+    request: monitoring_pb.SiteLayoutByLangRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.SiteLayoutByLangResponse>;
+
+  layoutByLang(
+    request: monitoring_pb.SiteLayoutByLangRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: monitoring_pb.SiteLayoutByLangResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.SiteLayoutByLangResponse>;
+
+  layoutByLang(
+    request: monitoring_pb.SiteLayoutByLangRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: monitoring_pb.SiteLayoutByLangResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.monitoring.v1.Site/LayoutByLang',
+        request,
+        metadata || {},
+        this.methodDescriptorLayoutByLang,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.monitoring.v1.Site/LayoutByLang',
+    request,
+    metadata || {},
+    this.methodDescriptorLayoutByLang);
   }
 
 }

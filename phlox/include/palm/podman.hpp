@@ -2,20 +2,10 @@
 
 #include "palm/theme.hpp"
 
-// #include <chrono>
-// #include <cstdint>
-// #include <ctime>
-// #include <map>
-// #include <string>
-// #include <vector>
-
-// #include <nlohmann/json.hpp>
-
 namespace palm {
 namespace podman {
 namespace models {
 struct Log {
-  // 2025-07-17T15:15:08.301003000Z
   std::string timestamp;
   std::string message;
 };

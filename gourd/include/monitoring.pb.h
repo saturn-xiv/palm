@@ -72,6 +72,27 @@ extern FileSystemQueryRequestDefaultTypeInternal _FileSystemQueryRequest_default
 class FileSystemQueryRequest_All;
 struct FileSystemQueryRequest_AllDefaultTypeInternal;
 extern FileSystemQueryRequest_AllDefaultTypeInternal _FileSystemQueryRequest_All_default_instance_;
+class Heartbeat;
+struct HeartbeatDefaultTypeInternal;
+extern HeartbeatDefaultTypeInternal _Heartbeat_default_instance_;
+class Heartbeat_Http;
+struct Heartbeat_HttpDefaultTypeInternal;
+extern Heartbeat_HttpDefaultTypeInternal _Heartbeat_Http_default_instance_;
+class Heartbeat_Minio;
+struct Heartbeat_MinioDefaultTypeInternal;
+extern Heartbeat_MinioDefaultTypeInternal _Heartbeat_Minio_default_instance_;
+class Heartbeat_MySql;
+struct Heartbeat_MySqlDefaultTypeInternal;
+extern Heartbeat_MySqlDefaultTypeInternal _Heartbeat_MySql_default_instance_;
+class Heartbeat_PostgreSql;
+struct Heartbeat_PostgreSqlDefaultTypeInternal;
+extern Heartbeat_PostgreSqlDefaultTypeInternal _Heartbeat_PostgreSql_default_instance_;
+class Heartbeat_RabbitMQ;
+struct Heartbeat_RabbitMQDefaultTypeInternal;
+extern Heartbeat_RabbitMQDefaultTypeInternal _Heartbeat_RabbitMQ_default_instance_;
+class Heartbeat_Redis;
+struct Heartbeat_RedisDefaultTypeInternal;
+extern Heartbeat_RedisDefaultTypeInternal _Heartbeat_Redis_default_instance_;
 class PodmanContainersResponse;
 struct PodmanContainersResponseDefaultTypeInternal;
 extern PodmanContainersResponseDefaultTypeInternal _PodmanContainersResponse_default_instance_;
@@ -99,6 +120,12 @@ extern PodmanStatisticsResponseDefaultTypeInternal _PodmanStatisticsResponse_def
 class PodmanStatisticsResponse_Item;
 struct PodmanStatisticsResponse_ItemDefaultTypeInternal;
 extern PodmanStatisticsResponse_ItemDefaultTypeInternal _PodmanStatisticsResponse_Item_default_instance_;
+class SiteLayoutByLangRequest;
+struct SiteLayoutByLangRequestDefaultTypeInternal;
+extern SiteLayoutByLangRequestDefaultTypeInternal _SiteLayoutByLangRequest_default_instance_;
+class SiteLayoutByLangResponse;
+struct SiteLayoutByLangResponseDefaultTypeInternal;
+extern SiteLayoutByLangResponseDefaultTypeInternal _SiteLayoutByLangResponse_default_instance_;
 }  // namespace v1
 }  // namespace monitoring
 }  // namespace palm
@@ -114,6 +141,458 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class SiteLayoutByLangResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SiteLayoutByLangResponse) */ {
+ public:
+  inline SiteLayoutByLangResponse() : SiteLayoutByLangResponse(nullptr) {}
+  ~SiteLayoutByLangResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SiteLayoutByLangResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteLayoutByLangResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SiteLayoutByLangResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SiteLayoutByLangResponse(const SiteLayoutByLangResponse& from) : SiteLayoutByLangResponse(nullptr, from) {}
+  inline SiteLayoutByLangResponse(SiteLayoutByLangResponse&& from) noexcept
+      : SiteLayoutByLangResponse(nullptr, std::move(from)) {}
+  inline SiteLayoutByLangResponse& operator=(const SiteLayoutByLangResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SiteLayoutByLangResponse& operator=(SiteLayoutByLangResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SiteLayoutByLangResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SiteLayoutByLangResponse* internal_default_instance() {
+    return reinterpret_cast<const SiteLayoutByLangResponse*>(
+        &_SiteLayoutByLangResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(SiteLayoutByLangResponse& a, SiteLayoutByLangResponse& b) { a.Swap(&b); }
+  inline void Swap(SiteLayoutByLangResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SiteLayoutByLangResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SiteLayoutByLangResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SiteLayoutByLangResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SiteLayoutByLangResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SiteLayoutByLangResponse& from) { SiteLayoutByLangResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SiteLayoutByLangResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SiteLayoutByLangResponse"; }
+
+ protected:
+  explicit SiteLayoutByLangResponse(::google::protobuf::Arena* arena);
+  SiteLayoutByLangResponse(::google::protobuf::Arena* arena, const SiteLayoutByLangResponse& from);
+  SiteLayoutByLangResponse(::google::protobuf::Arena* arena, SiteLayoutByLangResponse&& from) noexcept
+      : SiteLayoutByLangResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAvailableLanguagesFieldNumber = 9,
+    kLocaleFieldNumber = 8,
+    kGitVersionFieldNumber = 11,
+    kBuildTimeFieldNumber = 12,
+  };
+  // repeated string available_languages = 9;
+  int available_languages_size() const;
+  private:
+  int _internal_available_languages_size() const;
+
+  public:
+  void clear_available_languages() ;
+  const std::string& available_languages(int index) const;
+  std::string* mutable_available_languages(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_available_languages(int index, Arg_&& value, Args_... args);
+  std::string* add_available_languages();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_available_languages(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& available_languages() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_available_languages();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_available_languages() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_available_languages();
+
+  public:
+  // string locale = 8;
+  void clear_locale() ;
+  const std::string& locale() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_locale(Arg_&& arg, Args_... args);
+  std::string* mutable_locale();
+  PROTOBUF_NODISCARD std::string* release_locale();
+  void set_allocated_locale(std::string* value);
+
+  private:
+  const std::string& _internal_locale() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_locale(
+      const std::string& value);
+  std::string* _internal_mutable_locale();
+
+  public:
+  // string git_version = 11;
+  void clear_git_version() ;
+  const std::string& git_version() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_git_version(Arg_&& arg, Args_... args);
+  std::string* mutable_git_version();
+  PROTOBUF_NODISCARD std::string* release_git_version();
+  void set_allocated_git_version(std::string* value);
+
+  private:
+  const std::string& _internal_git_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_git_version(
+      const std::string& value);
+  std::string* _internal_mutable_git_version();
+
+  public:
+  // string build_time = 12;
+  void clear_build_time() ;
+  const std::string& build_time() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_build_time(Arg_&& arg, Args_... args);
+  std::string* mutable_build_time();
+  PROTOBUF_NODISCARD std::string* release_build_time();
+  void set_allocated_build_time(std::string* value);
+
+  private:
+  const std::string& _internal_build_time() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_build_time(
+      const std::string& value);
+  std::string* _internal_mutable_build_time();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutByLangResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 4, 0,
+      98, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SiteLayoutByLangResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField<std::string> available_languages_;
+    ::google::protobuf::internal::ArenaStringPtr locale_;
+    ::google::protobuf::internal::ArenaStringPtr git_version_;
+    ::google::protobuf::internal::ArenaStringPtr build_time_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SiteLayoutByLangRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SiteLayoutByLangRequest) */ {
+ public:
+  inline SiteLayoutByLangRequest() : SiteLayoutByLangRequest(nullptr) {}
+  ~SiteLayoutByLangRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SiteLayoutByLangRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteLayoutByLangRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SiteLayoutByLangRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SiteLayoutByLangRequest(const SiteLayoutByLangRequest& from) : SiteLayoutByLangRequest(nullptr, from) {}
+  inline SiteLayoutByLangRequest(SiteLayoutByLangRequest&& from) noexcept
+      : SiteLayoutByLangRequest(nullptr, std::move(from)) {}
+  inline SiteLayoutByLangRequest& operator=(const SiteLayoutByLangRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SiteLayoutByLangRequest& operator=(SiteLayoutByLangRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SiteLayoutByLangRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SiteLayoutByLangRequest* internal_default_instance() {
+    return reinterpret_cast<const SiteLayoutByLangRequest*>(
+        &_SiteLayoutByLangRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(SiteLayoutByLangRequest& a, SiteLayoutByLangRequest& b) { a.Swap(&b); }
+  inline void Swap(SiteLayoutByLangRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SiteLayoutByLangRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SiteLayoutByLangRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SiteLayoutByLangRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SiteLayoutByLangRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SiteLayoutByLangRequest& from) { SiteLayoutByLangRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SiteLayoutByLangRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SiteLayoutByLangRequest"; }
+
+ protected:
+  explicit SiteLayoutByLangRequest(::google::protobuf::Arena* arena);
+  SiteLayoutByLangRequest(::google::protobuf::Arena* arena, const SiteLayoutByLangRequest& from);
+  SiteLayoutByLangRequest(::google::protobuf::Arena* arena, SiteLayoutByLangRequest&& from) noexcept
+      : SiteLayoutByLangRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLangFieldNumber = 1,
+  };
+  // string lang = 1;
+  void clear_lang() ;
+  const std::string& lang() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_lang(Arg_&& arg, Args_... args);
+  std::string* mutable_lang();
+  PROTOBUF_NODISCARD std::string* release_lang();
+  void set_allocated_lang(std::string* value);
+
+  private:
+  const std::string& _internal_lang() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_lang(
+      const std::string& value);
+  std::string* _internal_mutable_lang();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutByLangRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      55, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SiteLayoutByLangRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr lang_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
 // -------------------------------------------------------------------
 
 class PodmanQueryRequest_All final : public ::google::protobuf::internal::ZeroFieldsBase
@@ -174,7 +653,7 @@ class PodmanQueryRequest_All final : public ::google::protobuf::internal::ZeroFi
     return reinterpret_cast<const PodmanQueryRequest_All*>(
         &_PodmanQueryRequest_All_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(PodmanQueryRequest_All& a, PodmanQueryRequest_All& b) { a.Swap(&b); }
   inline void Swap(PodmanQueryRequest_All* other) {
     if (other == this) return;
@@ -320,7 +799,7 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanLogsResponse_Item*>(
         &_PodmanLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(PodmanLogsResponse_Item& a, PodmanLogsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanLogsResponse_Item* other) {
     if (other == this) return;
@@ -550,6 +1029,1002 @@ class PodmanContainersResponse_Item_LabelsEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
+class Heartbeat_Redis final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat.Redis) */ {
+ public:
+  inline Heartbeat_Redis() : Heartbeat_Redis(nullptr) {}
+  ~Heartbeat_Redis() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat_Redis* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat_Redis));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat_Redis(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat_Redis(const Heartbeat_Redis& from) : Heartbeat_Redis(nullptr, from) {}
+  inline Heartbeat_Redis(Heartbeat_Redis&& from) noexcept
+      : Heartbeat_Redis(nullptr, std::move(from)) {}
+  inline Heartbeat_Redis& operator=(const Heartbeat_Redis& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat_Redis& operator=(Heartbeat_Redis&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat_Redis& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Heartbeat_Redis* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat_Redis*>(
+        &_Heartbeat_Redis_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(Heartbeat_Redis& a, Heartbeat_Redis& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat_Redis* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat_Redis* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat_Redis* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Heartbeat_Redis>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Heartbeat_Redis& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Heartbeat_Redis& from) { Heartbeat_Redis::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Heartbeat_Redis* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat.Redis"; }
+
+ protected:
+  explicit Heartbeat_Redis(::google::protobuf::Arena* arena);
+  Heartbeat_Redis(::google::protobuf::Arena* arena, const Heartbeat_Redis& from);
+  Heartbeat_Redis(::google::protobuf::Arena* arena, Heartbeat_Redis&& from) noexcept
+      : Heartbeat_Redis(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kHostFieldNumber = 1,
+    kPortFieldNumber = 2,
+    kClusterFieldNumber = 3,
+  };
+  // string host = 1;
+  void clear_host() ;
+  const std::string& host() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_host(Arg_&& arg, Args_... args);
+  std::string* mutable_host();
+  PROTOBUF_NODISCARD std::string* release_host();
+  void set_allocated_host(std::string* value);
+
+  private:
+  const std::string& _internal_host() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_host(
+      const std::string& value);
+  std::string* _internal_mutable_host();
+
+  public:
+  // int32 port = 2;
+  void clear_port() ;
+  ::int32_t port() const;
+  void set_port(::int32_t value);
+
+  private:
+  ::int32_t _internal_port() const;
+  void _internal_set_port(::int32_t value);
+
+  public:
+  // bool cluster = 3;
+  void clear_cluster() ;
+  bool cluster() const;
+  void set_cluster(bool value);
+
+  private:
+  bool _internal_cluster() const;
+  void _internal_set_cluster(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat.Redis)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      47, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat_Redis& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr host_;
+    ::int32_t port_;
+    bool cluster_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Heartbeat_RabbitMQ final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat.RabbitMQ) */ {
+ public:
+  inline Heartbeat_RabbitMQ() : Heartbeat_RabbitMQ(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat_RabbitMQ* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat_RabbitMQ));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat_RabbitMQ(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat_RabbitMQ(const Heartbeat_RabbitMQ& from) : Heartbeat_RabbitMQ(nullptr, from) {}
+  inline Heartbeat_RabbitMQ(Heartbeat_RabbitMQ&& from) noexcept
+      : Heartbeat_RabbitMQ(nullptr, std::move(from)) {}
+  inline Heartbeat_RabbitMQ& operator=(const Heartbeat_RabbitMQ& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat_RabbitMQ& operator=(Heartbeat_RabbitMQ&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat_RabbitMQ& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Heartbeat_RabbitMQ* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat_RabbitMQ*>(
+        &_Heartbeat_RabbitMQ_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(Heartbeat_RabbitMQ& a, Heartbeat_RabbitMQ& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat_RabbitMQ* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat_RabbitMQ* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat_RabbitMQ* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Heartbeat_RabbitMQ>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Heartbeat_RabbitMQ& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Heartbeat_RabbitMQ& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat.RabbitMQ"; }
+
+ protected:
+  explicit Heartbeat_RabbitMQ(::google::protobuf::Arena* arena);
+  Heartbeat_RabbitMQ(::google::protobuf::Arena* arena, const Heartbeat_RabbitMQ& from);
+  Heartbeat_RabbitMQ(::google::protobuf::Arena* arena, Heartbeat_RabbitMQ&& from) noexcept
+      : Heartbeat_RabbitMQ(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat.RabbitMQ)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat_RabbitMQ& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Heartbeat_PostgreSql final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat.PostgreSql) */ {
+ public:
+  inline Heartbeat_PostgreSql() : Heartbeat_PostgreSql(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat_PostgreSql* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat_PostgreSql));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat_PostgreSql(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat_PostgreSql(const Heartbeat_PostgreSql& from) : Heartbeat_PostgreSql(nullptr, from) {}
+  inline Heartbeat_PostgreSql(Heartbeat_PostgreSql&& from) noexcept
+      : Heartbeat_PostgreSql(nullptr, std::move(from)) {}
+  inline Heartbeat_PostgreSql& operator=(const Heartbeat_PostgreSql& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat_PostgreSql& operator=(Heartbeat_PostgreSql&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat_PostgreSql& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Heartbeat_PostgreSql* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat_PostgreSql*>(
+        &_Heartbeat_PostgreSql_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(Heartbeat_PostgreSql& a, Heartbeat_PostgreSql& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat_PostgreSql* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat_PostgreSql* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat_PostgreSql* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Heartbeat_PostgreSql>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Heartbeat_PostgreSql& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Heartbeat_PostgreSql& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat.PostgreSql"; }
+
+ protected:
+  explicit Heartbeat_PostgreSql(::google::protobuf::Arena* arena);
+  Heartbeat_PostgreSql(::google::protobuf::Arena* arena, const Heartbeat_PostgreSql& from);
+  Heartbeat_PostgreSql(::google::protobuf::Arena* arena, Heartbeat_PostgreSql&& from) noexcept
+      : Heartbeat_PostgreSql(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat.PostgreSql)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat_PostgreSql& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Heartbeat_MySql final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat.MySql) */ {
+ public:
+  inline Heartbeat_MySql() : Heartbeat_MySql(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat_MySql* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat_MySql));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat_MySql(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat_MySql(const Heartbeat_MySql& from) : Heartbeat_MySql(nullptr, from) {}
+  inline Heartbeat_MySql(Heartbeat_MySql&& from) noexcept
+      : Heartbeat_MySql(nullptr, std::move(from)) {}
+  inline Heartbeat_MySql& operator=(const Heartbeat_MySql& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat_MySql& operator=(Heartbeat_MySql&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat_MySql& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Heartbeat_MySql* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat_MySql*>(
+        &_Heartbeat_MySql_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(Heartbeat_MySql& a, Heartbeat_MySql& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat_MySql* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat_MySql* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat_MySql* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Heartbeat_MySql>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Heartbeat_MySql& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Heartbeat_MySql& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat.MySql"; }
+
+ protected:
+  explicit Heartbeat_MySql(::google::protobuf::Arena* arena);
+  Heartbeat_MySql(::google::protobuf::Arena* arena, const Heartbeat_MySql& from);
+  Heartbeat_MySql(::google::protobuf::Arena* arena, Heartbeat_MySql&& from) noexcept
+      : Heartbeat_MySql(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat.MySql)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat_MySql& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Heartbeat_Minio final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat.Minio) */ {
+ public:
+  inline Heartbeat_Minio() : Heartbeat_Minio(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat_Minio* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat_Minio));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat_Minio(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat_Minio(const Heartbeat_Minio& from) : Heartbeat_Minio(nullptr, from) {}
+  inline Heartbeat_Minio(Heartbeat_Minio&& from) noexcept
+      : Heartbeat_Minio(nullptr, std::move(from)) {}
+  inline Heartbeat_Minio& operator=(const Heartbeat_Minio& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat_Minio& operator=(Heartbeat_Minio&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat_Minio& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Heartbeat_Minio* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat_Minio*>(
+        &_Heartbeat_Minio_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(Heartbeat_Minio& a, Heartbeat_Minio& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat_Minio* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat_Minio* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat_Minio* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Heartbeat_Minio>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Heartbeat_Minio& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Heartbeat_Minio& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat.Minio"; }
+
+ protected:
+  explicit Heartbeat_Minio(::google::protobuf::Arena* arena);
+  Heartbeat_Minio(::google::protobuf::Arena* arena, const Heartbeat_Minio& from);
+  Heartbeat_Minio(::google::protobuf::Arena* arena, Heartbeat_Minio&& from) noexcept
+      : Heartbeat_Minio(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat.Minio)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat_Minio& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Heartbeat_Http final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat.Http) */ {
+ public:
+  inline Heartbeat_Http() : Heartbeat_Http(nullptr) {}
+  ~Heartbeat_Http() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat_Http* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat_Http));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat_Http(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat_Http(const Heartbeat_Http& from) : Heartbeat_Http(nullptr, from) {}
+  inline Heartbeat_Http(Heartbeat_Http&& from) noexcept
+      : Heartbeat_Http(nullptr, std::move(from)) {}
+  inline Heartbeat_Http& operator=(const Heartbeat_Http& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat_Http& operator=(Heartbeat_Http&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat_Http& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Heartbeat_Http* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat_Http*>(
+        &_Heartbeat_Http_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(Heartbeat_Http& a, Heartbeat_Http& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat_Http* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat_Http* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat_Http* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Heartbeat_Http>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Heartbeat_Http& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Heartbeat_Http& from) { Heartbeat_Http::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Heartbeat_Http* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat.Http"; }
+
+ protected:
+  explicit Heartbeat_Http(::google::protobuf::Arena* arena);
+  Heartbeat_Http(::google::protobuf::Arena* arena, const Heartbeat_Http& from);
+  Heartbeat_Http(::google::protobuf::Arena* arena, Heartbeat_Http&& from) noexcept
+      : Heartbeat_Http(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUrlFieldNumber = 1,
+  };
+  // string url = 1;
+  void clear_url() ;
+  const std::string& url() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_url(Arg_&& arg, Args_... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* value);
+
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(
+      const std::string& value);
+  std::string* _internal_mutable_url();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat.Http)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      45, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat_Http& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr url_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
 class FileSystemQueryRequest_All final : public ::google::protobuf::internal::ZeroFieldsBase
 /* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemQueryRequest.All) */ {
  public:
@@ -608,7 +2083,7 @@ class FileSystemQueryRequest_All final : public ::google::protobuf::internal::Ze
     return reinterpret_cast<const FileSystemQueryRequest_All*>(
         &_FileSystemQueryRequest_All_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(FileSystemQueryRequest_All& a, FileSystemQueryRequest_All& b) { a.Swap(&b); }
   inline void Swap(FileSystemQueryRequest_All* other) {
     if (other == this) return;
@@ -754,7 +2229,7 @@ class FileLogsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const FileLogsResponse_Item*>(
         &_FileLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(FileLogsResponse_Item& a, FileLogsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(FileLogsResponse_Item* other) {
     if (other == this) return;
@@ -986,7 +2461,7 @@ class PodmanStatisticsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanStatisticsResponse_Item*>(
         &_PodmanStatisticsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(PodmanStatisticsResponse_Item& a, PodmanStatisticsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanStatisticsResponse_Item* other) {
     if (other == this) return;
@@ -1387,7 +2862,7 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanQueryRequest*>(
         &_PodmanQueryRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(PodmanQueryRequest& a, PodmanQueryRequest& b) { a.Swap(&b); }
   inline void Swap(PodmanQueryRequest* other) {
     if (other == this) return;
@@ -1709,7 +3184,7 @@ class PodmanLogsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanLogsResponse*>(
         &_PodmanLogsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(PodmanLogsResponse& a, PodmanLogsResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanLogsResponse* other) {
     if (other == this) return;
@@ -1925,7 +3400,7 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanContainersResponse_Item*>(
         &_PodmanContainersResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(PodmanContainersResponse_Item& a, PodmanContainersResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanContainersResponse_Item* other) {
     if (other == this) return;
@@ -2304,6 +3779,340 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Heartbeat final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.Heartbeat) */ {
+ public:
+  inline Heartbeat() : Heartbeat(nullptr) {}
+  ~Heartbeat() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Heartbeat* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Heartbeat));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Heartbeat(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Heartbeat(const Heartbeat& from) : Heartbeat(nullptr, from) {}
+  inline Heartbeat(Heartbeat&& from) noexcept
+      : Heartbeat(nullptr, std::move(from)) {}
+  inline Heartbeat& operator=(const Heartbeat& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Heartbeat& operator=(Heartbeat&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Heartbeat& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ByCase {
+    kHttp = 1,
+    kMysql = 2,
+    kPostgresql = 3,
+    kRabbitmq = 4,
+    kRedis = 5,
+    kMinio = 6,
+    BY_NOT_SET = 0,
+  };
+  static inline const Heartbeat* internal_default_instance() {
+    return reinterpret_cast<const Heartbeat*>(
+        &_Heartbeat_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(Heartbeat& a, Heartbeat& b) { a.Swap(&b); }
+  inline void Swap(Heartbeat* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Heartbeat* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Heartbeat* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Heartbeat>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Heartbeat& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Heartbeat& from) { Heartbeat::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Heartbeat* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.Heartbeat"; }
+
+ protected:
+  explicit Heartbeat(::google::protobuf::Arena* arena);
+  Heartbeat(::google::protobuf::Arena* arena, const Heartbeat& from);
+  Heartbeat(::google::protobuf::Arena* arena, Heartbeat&& from) noexcept
+      : Heartbeat(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Http = Heartbeat_Http;
+  using MySql = Heartbeat_MySql;
+  using PostgreSql = Heartbeat_PostgreSql;
+  using RabbitMQ = Heartbeat_RabbitMQ;
+  using Redis = Heartbeat_Redis;
+  using Minio = Heartbeat_Minio;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kHttpFieldNumber = 1,
+    kMysqlFieldNumber = 2,
+    kPostgresqlFieldNumber = 3,
+    kRabbitmqFieldNumber = 4,
+    kRedisFieldNumber = 5,
+    kMinioFieldNumber = 6,
+  };
+  // .palm.monitoring.v1.Heartbeat.Http http = 1;
+  bool has_http() const;
+  private:
+  bool _internal_has_http() const;
+
+  public:
+  void clear_http() ;
+  const ::palm::monitoring::v1::Heartbeat_Http& http() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::Heartbeat_Http* release_http();
+  ::palm::monitoring::v1::Heartbeat_Http* mutable_http();
+  void set_allocated_http(::palm::monitoring::v1::Heartbeat_Http* value);
+  void unsafe_arena_set_allocated_http(::palm::monitoring::v1::Heartbeat_Http* value);
+  ::palm::monitoring::v1::Heartbeat_Http* unsafe_arena_release_http();
+
+  private:
+  const ::palm::monitoring::v1::Heartbeat_Http& _internal_http() const;
+  ::palm::monitoring::v1::Heartbeat_Http* _internal_mutable_http();
+
+  public:
+  // .palm.monitoring.v1.Heartbeat.MySql mysql = 2;
+  bool has_mysql() const;
+  private:
+  bool _internal_has_mysql() const;
+
+  public:
+  void clear_mysql() ;
+  const ::palm::monitoring::v1::Heartbeat_MySql& mysql() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::Heartbeat_MySql* release_mysql();
+  ::palm::monitoring::v1::Heartbeat_MySql* mutable_mysql();
+  void set_allocated_mysql(::palm::monitoring::v1::Heartbeat_MySql* value);
+  void unsafe_arena_set_allocated_mysql(::palm::monitoring::v1::Heartbeat_MySql* value);
+  ::palm::monitoring::v1::Heartbeat_MySql* unsafe_arena_release_mysql();
+
+  private:
+  const ::palm::monitoring::v1::Heartbeat_MySql& _internal_mysql() const;
+  ::palm::monitoring::v1::Heartbeat_MySql* _internal_mutable_mysql();
+
+  public:
+  // .palm.monitoring.v1.Heartbeat.PostgreSql postgresql = 3;
+  bool has_postgresql() const;
+  private:
+  bool _internal_has_postgresql() const;
+
+  public:
+  void clear_postgresql() ;
+  const ::palm::monitoring::v1::Heartbeat_PostgreSql& postgresql() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::Heartbeat_PostgreSql* release_postgresql();
+  ::palm::monitoring::v1::Heartbeat_PostgreSql* mutable_postgresql();
+  void set_allocated_postgresql(::palm::monitoring::v1::Heartbeat_PostgreSql* value);
+  void unsafe_arena_set_allocated_postgresql(::palm::monitoring::v1::Heartbeat_PostgreSql* value);
+  ::palm::monitoring::v1::Heartbeat_PostgreSql* unsafe_arena_release_postgresql();
+
+  private:
+  const ::palm::monitoring::v1::Heartbeat_PostgreSql& _internal_postgresql() const;
+  ::palm::monitoring::v1::Heartbeat_PostgreSql* _internal_mutable_postgresql();
+
+  public:
+  // .palm.monitoring.v1.Heartbeat.RabbitMQ rabbitmq = 4;
+  bool has_rabbitmq() const;
+  private:
+  bool _internal_has_rabbitmq() const;
+
+  public:
+  void clear_rabbitmq() ;
+  const ::palm::monitoring::v1::Heartbeat_RabbitMQ& rabbitmq() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::Heartbeat_RabbitMQ* release_rabbitmq();
+  ::palm::monitoring::v1::Heartbeat_RabbitMQ* mutable_rabbitmq();
+  void set_allocated_rabbitmq(::palm::monitoring::v1::Heartbeat_RabbitMQ* value);
+  void unsafe_arena_set_allocated_rabbitmq(::palm::monitoring::v1::Heartbeat_RabbitMQ* value);
+  ::palm::monitoring::v1::Heartbeat_RabbitMQ* unsafe_arena_release_rabbitmq();
+
+  private:
+  const ::palm::monitoring::v1::Heartbeat_RabbitMQ& _internal_rabbitmq() const;
+  ::palm::monitoring::v1::Heartbeat_RabbitMQ* _internal_mutable_rabbitmq();
+
+  public:
+  // .palm.monitoring.v1.Heartbeat.Redis redis = 5;
+  bool has_redis() const;
+  private:
+  bool _internal_has_redis() const;
+
+  public:
+  void clear_redis() ;
+  const ::palm::monitoring::v1::Heartbeat_Redis& redis() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::Heartbeat_Redis* release_redis();
+  ::palm::monitoring::v1::Heartbeat_Redis* mutable_redis();
+  void set_allocated_redis(::palm::monitoring::v1::Heartbeat_Redis* value);
+  void unsafe_arena_set_allocated_redis(::palm::monitoring::v1::Heartbeat_Redis* value);
+  ::palm::monitoring::v1::Heartbeat_Redis* unsafe_arena_release_redis();
+
+  private:
+  const ::palm::monitoring::v1::Heartbeat_Redis& _internal_redis() const;
+  ::palm::monitoring::v1::Heartbeat_Redis* _internal_mutable_redis();
+
+  public:
+  // .palm.monitoring.v1.Heartbeat.Minio minio = 6;
+  bool has_minio() const;
+  private:
+  bool _internal_has_minio() const;
+
+  public:
+  void clear_minio() ;
+  const ::palm::monitoring::v1::Heartbeat_Minio& minio() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::Heartbeat_Minio* release_minio();
+  ::palm::monitoring::v1::Heartbeat_Minio* mutable_minio();
+  void set_allocated_minio(::palm::monitoring::v1::Heartbeat_Minio* value);
+  void unsafe_arena_set_allocated_minio(::palm::monitoring::v1::Heartbeat_Minio* value);
+  ::palm::monitoring::v1::Heartbeat_Minio* unsafe_arena_release_minio();
+
+  private:
+  const ::palm::monitoring::v1::Heartbeat_Minio& _internal_minio() const;
+  ::palm::monitoring::v1::Heartbeat_Minio* _internal_mutable_minio();
+
+  public:
+  void clear_by();
+  ByCase by_case() const;
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.Heartbeat)
+ private:
+  class _Internal;
+  void set_has_http();
+  void set_has_mysql();
+  void set_has_postgresql();
+  void set_has_rabbitmq();
+  void set_has_redis();
+  void set_has_minio();
+  inline bool has_by() const;
+  inline void clear_has_by();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 6, 6,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Heartbeat& from_msg);
+    union ByUnion {
+      constexpr ByUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::palm::monitoring::v1::Heartbeat_Http* http_;
+      ::palm::monitoring::v1::Heartbeat_MySql* mysql_;
+      ::palm::monitoring::v1::Heartbeat_PostgreSql* postgresql_;
+      ::palm::monitoring::v1::Heartbeat_RabbitMQ* rabbitmq_;
+      ::palm::monitoring::v1::Heartbeat_Redis* redis_;
+      ::palm::monitoring::v1::Heartbeat_Minio* minio_;
+    } by_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
 class FileSystemQueryRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemQueryRequest) */ {
  public:
@@ -2369,7 +4178,7 @@ class FileSystemQueryRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const FileSystemQueryRequest*>(
         &_FileSystemQueryRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(FileSystemQueryRequest& a, FileSystemQueryRequest& b) { a.Swap(&b); }
   inline void Swap(FileSystemQueryRequest* other) {
     if (other == this) return;
@@ -2637,7 +4446,7 @@ class FileLogsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const FileLogsResponse*>(
         &_FileLogsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(FileLogsResponse& a, FileLogsResponse& b) { a.Swap(&b); }
   inline void Swap(FileLogsResponse* other) {
     if (other == this) return;
@@ -2853,7 +4662,7 @@ class PodmanStatisticsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanStatisticsResponse*>(
         &_PodmanStatisticsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(PodmanStatisticsResponse& a, PodmanStatisticsResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanStatisticsResponse* other) {
     if (other == this) return;
@@ -3069,7 +4878,7 @@ class PodmanContainersResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanContainersResponse*>(
         &_PodmanContainersResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(PodmanContainersResponse& a, PodmanContainersResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanContainersResponse* other) {
     if (other == this) return;
@@ -3237,6 +5046,921 @@ class PodmanContainersResponse final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// SiteLayoutByLangRequest
+
+// string lang = 1;
+inline void SiteLayoutByLangRequest::clear_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.ClearToEmpty();
+}
+inline const std::string& SiteLayoutByLangRequest::lang() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  return _internal_lang();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangRequest::set_lang(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+}
+inline std::string* SiteLayoutByLangRequest::mutable_lang() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  return _s;
+}
+inline const std::string& SiteLayoutByLangRequest::_internal_lang() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lang_.Get();
+}
+inline void SiteLayoutByLangRequest::_internal_set_lang(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.Set(value, GetArena());
+}
+inline std::string* SiteLayoutByLangRequest::_internal_mutable_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.lang_.Mutable( GetArena());
+}
+inline std::string* SiteLayoutByLangRequest::release_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+  return _impl_.lang_.Release();
+}
+inline void SiteLayoutByLangRequest::set_allocated_lang(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangRequest.lang)
+}
+
+// -------------------------------------------------------------------
+
+// SiteLayoutByLangResponse
+
+// string locale = 8;
+inline void SiteLayoutByLangResponse::clear_locale() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.ClearToEmpty();
+}
+inline const std::string& SiteLayoutByLangResponse::locale() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  return _internal_locale();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangResponse::set_locale(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+}
+inline std::string* SiteLayoutByLangResponse::mutable_locale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_locale();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  return _s;
+}
+inline const std::string& SiteLayoutByLangResponse::_internal_locale() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.locale_.Get();
+}
+inline void SiteLayoutByLangResponse::_internal_set_locale(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.Set(value, GetArena());
+}
+inline std::string* SiteLayoutByLangResponse::_internal_mutable_locale() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.locale_.Mutable( GetArena());
+}
+inline std::string* SiteLayoutByLangResponse::release_locale() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+  return _impl_.locale_.Release();
+}
+inline void SiteLayoutByLangResponse::set_allocated_locale(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.locale_.IsDefault()) {
+    _impl_.locale_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangResponse.locale)
+}
+
+// repeated string available_languages = 9;
+inline int SiteLayoutByLangResponse::_internal_available_languages_size() const {
+  return _internal_available_languages().size();
+}
+inline int SiteLayoutByLangResponse::available_languages_size() const {
+  return _internal_available_languages_size();
+}
+inline void SiteLayoutByLangResponse::clear_available_languages() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.available_languages_.Clear();
+}
+inline std::string* SiteLayoutByLangResponse::add_available_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_available_languages()->Add();
+  // @@protoc_insertion_point(field_add_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  return _s;
+}
+inline const std::string& SiteLayoutByLangResponse::available_languages(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  return _internal_available_languages().Get(index);
+}
+inline std::string* SiteLayoutByLangResponse::mutable_available_languages(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  return _internal_mutable_available_languages()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void SiteLayoutByLangResponse::set_available_languages(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_available_languages()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+}
+template <typename Arg_, typename... Args_>
+inline void SiteLayoutByLangResponse::add_available_languages(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_available_languages(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+SiteLayoutByLangResponse::available_languages() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  return _internal_available_languages();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SiteLayoutByLangResponse::mutable_available_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.monitoring.v1.SiteLayoutByLangResponse.available_languages)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_available_languages();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+SiteLayoutByLangResponse::_internal_available_languages() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.available_languages_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SiteLayoutByLangResponse::_internal_mutable_available_languages() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.available_languages_;
+}
+
+// string git_version = 11;
+inline void SiteLayoutByLangResponse::clear_git_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.git_version_.ClearToEmpty();
+}
+inline const std::string& SiteLayoutByLangResponse::git_version() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  return _internal_git_version();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangResponse::set_git_version(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.git_version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+}
+inline std::string* SiteLayoutByLangResponse::mutable_git_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_git_version();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  return _s;
+}
+inline const std::string& SiteLayoutByLangResponse::_internal_git_version() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.git_version_.Get();
+}
+inline void SiteLayoutByLangResponse::_internal_set_git_version(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.git_version_.Set(value, GetArena());
+}
+inline std::string* SiteLayoutByLangResponse::_internal_mutable_git_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.git_version_.Mutable( GetArena());
+}
+inline std::string* SiteLayoutByLangResponse::release_git_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+  return _impl_.git_version_.Release();
+}
+inline void SiteLayoutByLangResponse::set_allocated_git_version(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.git_version_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.git_version_.IsDefault()) {
+    _impl_.git_version_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangResponse.git_version)
+}
+
+// string build_time = 12;
+inline void SiteLayoutByLangResponse::clear_build_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.ClearToEmpty();
+}
+inline const std::string& SiteLayoutByLangResponse::build_time() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  return _internal_build_time();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SiteLayoutByLangResponse::set_build_time(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+}
+inline std::string* SiteLayoutByLangResponse::mutable_build_time() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_build_time();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  return _s;
+}
+inline const std::string& SiteLayoutByLangResponse::_internal_build_time() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.build_time_.Get();
+}
+inline void SiteLayoutByLangResponse::_internal_set_build_time(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.Set(value, GetArena());
+}
+inline std::string* SiteLayoutByLangResponse::_internal_mutable_build_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.build_time_.Mutable( GetArena());
+}
+inline std::string* SiteLayoutByLangResponse::release_build_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+  return _impl_.build_time_.Release();
+}
+inline void SiteLayoutByLangResponse::set_allocated_build_time(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.build_time_.IsDefault()) {
+    _impl_.build_time_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutByLangResponse.build_time)
+}
+
+// -------------------------------------------------------------------
+
+// Heartbeat_Http
+
+// string url = 1;
+inline void Heartbeat_Http::clear_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.url_.ClearToEmpty();
+}
+inline const std::string& Heartbeat_Http::url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.Http.url)
+  return _internal_url();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Heartbeat_Http::set_url(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.Heartbeat.Http.url)
+}
+inline std::string* Heartbeat_Http::mutable_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.Http.url)
+  return _s;
+}
+inline const std::string& Heartbeat_Http::_internal_url() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.url_.Get();
+}
+inline void Heartbeat_Http::_internal_set_url(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.url_.Set(value, GetArena());
+}
+inline std::string* Heartbeat_Http::_internal_mutable_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.url_.Mutable( GetArena());
+}
+inline std::string* Heartbeat_Http::release_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.Http.url)
+  return _impl_.url_.Release();
+}
+inline void Heartbeat_Http::set_allocated_url(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.url_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.url_.IsDefault()) {
+    _impl_.url_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.Http.url)
+}
+
+// -------------------------------------------------------------------
+
+// Heartbeat_MySql
+
+// -------------------------------------------------------------------
+
+// Heartbeat_PostgreSql
+
+// -------------------------------------------------------------------
+
+// Heartbeat_RabbitMQ
+
+// -------------------------------------------------------------------
+
+// Heartbeat_Redis
+
+// string host = 1;
+inline void Heartbeat_Redis::clear_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.ClearToEmpty();
+}
+inline const std::string& Heartbeat_Redis::host() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.Redis.host)
+  return _internal_host();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Heartbeat_Redis::set_host(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.Heartbeat.Redis.host)
+}
+inline std::string* Heartbeat_Redis::mutable_host() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_host();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.Redis.host)
+  return _s;
+}
+inline const std::string& Heartbeat_Redis::_internal_host() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.host_.Get();
+}
+inline void Heartbeat_Redis::_internal_set_host(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.Set(value, GetArena());
+}
+inline std::string* Heartbeat_Redis::_internal_mutable_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.host_.Mutable( GetArena());
+}
+inline std::string* Heartbeat_Redis::release_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.Redis.host)
+  return _impl_.host_.Release();
+}
+inline void Heartbeat_Redis::set_allocated_host(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.host_.IsDefault()) {
+    _impl_.host_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.Redis.host)
+}
+
+// int32 port = 2;
+inline void Heartbeat_Redis::clear_port() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.port_ = 0;
+}
+inline ::int32_t Heartbeat_Redis::port() const {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.Redis.port)
+  return _internal_port();
+}
+inline void Heartbeat_Redis::set_port(::int32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.Heartbeat.Redis.port)
+}
+inline ::int32_t Heartbeat_Redis::_internal_port() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.port_;
+}
+inline void Heartbeat_Redis::_internal_set_port(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.port_ = value;
+}
+
+// bool cluster = 3;
+inline void Heartbeat_Redis::clear_cluster() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cluster_ = false;
+}
+inline bool Heartbeat_Redis::cluster() const {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.Redis.cluster)
+  return _internal_cluster();
+}
+inline void Heartbeat_Redis::set_cluster(bool value) {
+  _internal_set_cluster(value);
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.Heartbeat.Redis.cluster)
+}
+inline bool Heartbeat_Redis::_internal_cluster() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.cluster_;
+}
+inline void Heartbeat_Redis::_internal_set_cluster(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cluster_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// Heartbeat_Minio
+
+// -------------------------------------------------------------------
+
+// Heartbeat
+
+// .palm.monitoring.v1.Heartbeat.Http http = 1;
+inline bool Heartbeat::has_http() const {
+  return by_case() == kHttp;
+}
+inline bool Heartbeat::_internal_has_http() const {
+  return by_case() == kHttp;
+}
+inline void Heartbeat::set_has_http() {
+  _impl_._oneof_case_[0] = kHttp;
+}
+inline void Heartbeat::clear_http() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kHttp) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.http_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.http_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::Heartbeat_Http* Heartbeat::release_http() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.http)
+  if (by_case() == kHttp) {
+    clear_has_by();
+    auto* temp = _impl_.by_.http_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.http_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::Heartbeat_Http& Heartbeat::_internal_http() const {
+  return by_case() == kHttp ? *_impl_.by_.http_ : reinterpret_cast<::palm::monitoring::v1::Heartbeat_Http&>(::palm::monitoring::v1::_Heartbeat_Http_default_instance_);
+}
+inline const ::palm::monitoring::v1::Heartbeat_Http& Heartbeat::http() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.http)
+  return _internal_http();
+}
+inline ::palm::monitoring::v1::Heartbeat_Http* Heartbeat::unsafe_arena_release_http() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.Heartbeat.http)
+  if (by_case() == kHttp) {
+    clear_has_by();
+    auto* temp = _impl_.by_.http_;
+    _impl_.by_.http_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Heartbeat::unsafe_arena_set_allocated_http(::palm::monitoring::v1::Heartbeat_Http* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_http();
+    _impl_.by_.http_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.Heartbeat.http)
+}
+inline ::palm::monitoring::v1::Heartbeat_Http* Heartbeat::_internal_mutable_http() {
+  if (by_case() != kHttp) {
+    clear_by();
+    set_has_http();
+    _impl_.by_.http_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::Heartbeat_Http>(GetArena());
+  }
+  return _impl_.by_.http_;
+}
+inline ::palm::monitoring::v1::Heartbeat_Http* Heartbeat::mutable_http() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::Heartbeat_Http* _msg = _internal_mutable_http();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.http)
+  return _msg;
+}
+
+// .palm.monitoring.v1.Heartbeat.MySql mysql = 2;
+inline bool Heartbeat::has_mysql() const {
+  return by_case() == kMysql;
+}
+inline bool Heartbeat::_internal_has_mysql() const {
+  return by_case() == kMysql;
+}
+inline void Heartbeat::set_has_mysql() {
+  _impl_._oneof_case_[0] = kMysql;
+}
+inline void Heartbeat::clear_mysql() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kMysql) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.mysql_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.mysql_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::Heartbeat_MySql* Heartbeat::release_mysql() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.mysql)
+  if (by_case() == kMysql) {
+    clear_has_by();
+    auto* temp = _impl_.by_.mysql_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.mysql_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::Heartbeat_MySql& Heartbeat::_internal_mysql() const {
+  return by_case() == kMysql ? *_impl_.by_.mysql_ : reinterpret_cast<::palm::monitoring::v1::Heartbeat_MySql&>(::palm::monitoring::v1::_Heartbeat_MySql_default_instance_);
+}
+inline const ::palm::monitoring::v1::Heartbeat_MySql& Heartbeat::mysql() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.mysql)
+  return _internal_mysql();
+}
+inline ::palm::monitoring::v1::Heartbeat_MySql* Heartbeat::unsafe_arena_release_mysql() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.Heartbeat.mysql)
+  if (by_case() == kMysql) {
+    clear_has_by();
+    auto* temp = _impl_.by_.mysql_;
+    _impl_.by_.mysql_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Heartbeat::unsafe_arena_set_allocated_mysql(::palm::monitoring::v1::Heartbeat_MySql* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_mysql();
+    _impl_.by_.mysql_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.Heartbeat.mysql)
+}
+inline ::palm::monitoring::v1::Heartbeat_MySql* Heartbeat::_internal_mutable_mysql() {
+  if (by_case() != kMysql) {
+    clear_by();
+    set_has_mysql();
+    _impl_.by_.mysql_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::Heartbeat_MySql>(GetArena());
+  }
+  return _impl_.by_.mysql_;
+}
+inline ::palm::monitoring::v1::Heartbeat_MySql* Heartbeat::mutable_mysql() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::Heartbeat_MySql* _msg = _internal_mutable_mysql();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.mysql)
+  return _msg;
+}
+
+// .palm.monitoring.v1.Heartbeat.PostgreSql postgresql = 3;
+inline bool Heartbeat::has_postgresql() const {
+  return by_case() == kPostgresql;
+}
+inline bool Heartbeat::_internal_has_postgresql() const {
+  return by_case() == kPostgresql;
+}
+inline void Heartbeat::set_has_postgresql() {
+  _impl_._oneof_case_[0] = kPostgresql;
+}
+inline void Heartbeat::clear_postgresql() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kPostgresql) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.postgresql_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.postgresql_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::Heartbeat_PostgreSql* Heartbeat::release_postgresql() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.postgresql)
+  if (by_case() == kPostgresql) {
+    clear_has_by();
+    auto* temp = _impl_.by_.postgresql_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.postgresql_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::Heartbeat_PostgreSql& Heartbeat::_internal_postgresql() const {
+  return by_case() == kPostgresql ? *_impl_.by_.postgresql_ : reinterpret_cast<::palm::monitoring::v1::Heartbeat_PostgreSql&>(::palm::monitoring::v1::_Heartbeat_PostgreSql_default_instance_);
+}
+inline const ::palm::monitoring::v1::Heartbeat_PostgreSql& Heartbeat::postgresql() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.postgresql)
+  return _internal_postgresql();
+}
+inline ::palm::monitoring::v1::Heartbeat_PostgreSql* Heartbeat::unsafe_arena_release_postgresql() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.Heartbeat.postgresql)
+  if (by_case() == kPostgresql) {
+    clear_has_by();
+    auto* temp = _impl_.by_.postgresql_;
+    _impl_.by_.postgresql_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Heartbeat::unsafe_arena_set_allocated_postgresql(::palm::monitoring::v1::Heartbeat_PostgreSql* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_postgresql();
+    _impl_.by_.postgresql_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.Heartbeat.postgresql)
+}
+inline ::palm::monitoring::v1::Heartbeat_PostgreSql* Heartbeat::_internal_mutable_postgresql() {
+  if (by_case() != kPostgresql) {
+    clear_by();
+    set_has_postgresql();
+    _impl_.by_.postgresql_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::Heartbeat_PostgreSql>(GetArena());
+  }
+  return _impl_.by_.postgresql_;
+}
+inline ::palm::monitoring::v1::Heartbeat_PostgreSql* Heartbeat::mutable_postgresql() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::Heartbeat_PostgreSql* _msg = _internal_mutable_postgresql();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.postgresql)
+  return _msg;
+}
+
+// .palm.monitoring.v1.Heartbeat.RabbitMQ rabbitmq = 4;
+inline bool Heartbeat::has_rabbitmq() const {
+  return by_case() == kRabbitmq;
+}
+inline bool Heartbeat::_internal_has_rabbitmq() const {
+  return by_case() == kRabbitmq;
+}
+inline void Heartbeat::set_has_rabbitmq() {
+  _impl_._oneof_case_[0] = kRabbitmq;
+}
+inline void Heartbeat::clear_rabbitmq() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kRabbitmq) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.rabbitmq_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.rabbitmq_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::Heartbeat_RabbitMQ* Heartbeat::release_rabbitmq() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.rabbitmq)
+  if (by_case() == kRabbitmq) {
+    clear_has_by();
+    auto* temp = _impl_.by_.rabbitmq_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.rabbitmq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::Heartbeat_RabbitMQ& Heartbeat::_internal_rabbitmq() const {
+  return by_case() == kRabbitmq ? *_impl_.by_.rabbitmq_ : reinterpret_cast<::palm::monitoring::v1::Heartbeat_RabbitMQ&>(::palm::monitoring::v1::_Heartbeat_RabbitMQ_default_instance_);
+}
+inline const ::palm::monitoring::v1::Heartbeat_RabbitMQ& Heartbeat::rabbitmq() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.rabbitmq)
+  return _internal_rabbitmq();
+}
+inline ::palm::monitoring::v1::Heartbeat_RabbitMQ* Heartbeat::unsafe_arena_release_rabbitmq() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.Heartbeat.rabbitmq)
+  if (by_case() == kRabbitmq) {
+    clear_has_by();
+    auto* temp = _impl_.by_.rabbitmq_;
+    _impl_.by_.rabbitmq_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Heartbeat::unsafe_arena_set_allocated_rabbitmq(::palm::monitoring::v1::Heartbeat_RabbitMQ* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_rabbitmq();
+    _impl_.by_.rabbitmq_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.Heartbeat.rabbitmq)
+}
+inline ::palm::monitoring::v1::Heartbeat_RabbitMQ* Heartbeat::_internal_mutable_rabbitmq() {
+  if (by_case() != kRabbitmq) {
+    clear_by();
+    set_has_rabbitmq();
+    _impl_.by_.rabbitmq_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::Heartbeat_RabbitMQ>(GetArena());
+  }
+  return _impl_.by_.rabbitmq_;
+}
+inline ::palm::monitoring::v1::Heartbeat_RabbitMQ* Heartbeat::mutable_rabbitmq() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::Heartbeat_RabbitMQ* _msg = _internal_mutable_rabbitmq();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.rabbitmq)
+  return _msg;
+}
+
+// .palm.monitoring.v1.Heartbeat.Redis redis = 5;
+inline bool Heartbeat::has_redis() const {
+  return by_case() == kRedis;
+}
+inline bool Heartbeat::_internal_has_redis() const {
+  return by_case() == kRedis;
+}
+inline void Heartbeat::set_has_redis() {
+  _impl_._oneof_case_[0] = kRedis;
+}
+inline void Heartbeat::clear_redis() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kRedis) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.redis_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.redis_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::Heartbeat_Redis* Heartbeat::release_redis() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.redis)
+  if (by_case() == kRedis) {
+    clear_has_by();
+    auto* temp = _impl_.by_.redis_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.redis_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::Heartbeat_Redis& Heartbeat::_internal_redis() const {
+  return by_case() == kRedis ? *_impl_.by_.redis_ : reinterpret_cast<::palm::monitoring::v1::Heartbeat_Redis&>(::palm::monitoring::v1::_Heartbeat_Redis_default_instance_);
+}
+inline const ::palm::monitoring::v1::Heartbeat_Redis& Heartbeat::redis() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.redis)
+  return _internal_redis();
+}
+inline ::palm::monitoring::v1::Heartbeat_Redis* Heartbeat::unsafe_arena_release_redis() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.Heartbeat.redis)
+  if (by_case() == kRedis) {
+    clear_has_by();
+    auto* temp = _impl_.by_.redis_;
+    _impl_.by_.redis_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Heartbeat::unsafe_arena_set_allocated_redis(::palm::monitoring::v1::Heartbeat_Redis* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_redis();
+    _impl_.by_.redis_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.Heartbeat.redis)
+}
+inline ::palm::monitoring::v1::Heartbeat_Redis* Heartbeat::_internal_mutable_redis() {
+  if (by_case() != kRedis) {
+    clear_by();
+    set_has_redis();
+    _impl_.by_.redis_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::Heartbeat_Redis>(GetArena());
+  }
+  return _impl_.by_.redis_;
+}
+inline ::palm::monitoring::v1::Heartbeat_Redis* Heartbeat::mutable_redis() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::Heartbeat_Redis* _msg = _internal_mutable_redis();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.redis)
+  return _msg;
+}
+
+// .palm.monitoring.v1.Heartbeat.Minio minio = 6;
+inline bool Heartbeat::has_minio() const {
+  return by_case() == kMinio;
+}
+inline bool Heartbeat::_internal_has_minio() const {
+  return by_case() == kMinio;
+}
+inline void Heartbeat::set_has_minio() {
+  _impl_._oneof_case_[0] = kMinio;
+}
+inline void Heartbeat::clear_minio() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kMinio) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.minio_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.minio_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::Heartbeat_Minio* Heartbeat::release_minio() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.Heartbeat.minio)
+  if (by_case() == kMinio) {
+    clear_has_by();
+    auto* temp = _impl_.by_.minio_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.minio_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::Heartbeat_Minio& Heartbeat::_internal_minio() const {
+  return by_case() == kMinio ? *_impl_.by_.minio_ : reinterpret_cast<::palm::monitoring::v1::Heartbeat_Minio&>(::palm::monitoring::v1::_Heartbeat_Minio_default_instance_);
+}
+inline const ::palm::monitoring::v1::Heartbeat_Minio& Heartbeat::minio() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.Heartbeat.minio)
+  return _internal_minio();
+}
+inline ::palm::monitoring::v1::Heartbeat_Minio* Heartbeat::unsafe_arena_release_minio() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.Heartbeat.minio)
+  if (by_case() == kMinio) {
+    clear_has_by();
+    auto* temp = _impl_.by_.minio_;
+    _impl_.by_.minio_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Heartbeat::unsafe_arena_set_allocated_minio(::palm::monitoring::v1::Heartbeat_Minio* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_minio();
+    _impl_.by_.minio_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.Heartbeat.minio)
+}
+inline ::palm::monitoring::v1::Heartbeat_Minio* Heartbeat::_internal_mutable_minio() {
+  if (by_case() != kMinio) {
+    clear_by();
+    set_has_minio();
+    _impl_.by_.minio_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::Heartbeat_Minio>(GetArena());
+  }
+  return _impl_.by_.minio_;
+}
+inline ::palm::monitoring::v1::Heartbeat_Minio* Heartbeat::mutable_minio() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::Heartbeat_Minio* _msg = _internal_mutable_minio();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.Heartbeat.minio)
+  return _msg;
+}
+
+inline bool Heartbeat::has_by() const {
+  return by_case() != BY_NOT_SET;
+}
+inline void Heartbeat::clear_has_by() {
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+inline Heartbeat::ByCase Heartbeat::by_case() const {
+  return Heartbeat::ByCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // FileSystemQueryRequest_All

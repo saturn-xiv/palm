@@ -9,8 +9,44 @@ import "google/protobuf/timestamp.proto";
 import "portal.proto";
 
 // ----------------------------------------------------------------------------
+service Site {
+  rpc LayoutByLang(SiteLayoutByLangRequest) returns (SiteLayoutByLangResponse) {
+  }
+}
+message SiteLayoutByLangRequest {
+  string lang = 1;
+}
+message SiteLayoutByLangResponse {
+  string locale = 8;
+  repeated string available_languages = 9;
+  string git_version = 11;
+  string build_time = 12;
+}
+// ----------------------------------------------------------------------------
 
-service HealthCheckNode {}
+message Heartbeat {
+  message Http {
+    string url = 1;
+  }
+  message MySql {}
+  message PostgreSql {}
+  message RabbitMQ {}
+  message Redis {
+    string host = 1;
+    int32 port = 2;
+    bool cluster = 3;
+  }
+  message Minio {}
+
+  oneof by {
+    Http http = 1;
+    MySql mysql = 2;
+    PostgreSql postgresql = 3;
+    RabbitMQ rabbitmq = 4;
+    Redis redis = 5;
+    Minio minio = 6;
+  }
+}
 
 // ----------------------------------------------------------------------------
 service FileSystem {

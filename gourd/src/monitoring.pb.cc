@@ -27,6 +27,67 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace monitoring {
 namespace v1 {
+
+inline constexpr SiteLayoutByLangResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : available_languages_{},
+        locale_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        git_version_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        build_time_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SiteLayoutByLangResponse::SiteLayoutByLangResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SiteLayoutByLangResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutByLangResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutByLangResponseDefaultTypeInternal() {}
+  union {
+    SiteLayoutByLangResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutByLangResponseDefaultTypeInternal _SiteLayoutByLangResponse_default_instance_;
+
+inline constexpr SiteLayoutByLangRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : lang_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SiteLayoutByLangRequest::SiteLayoutByLangRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SiteLayoutByLangRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutByLangRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutByLangRequestDefaultTypeInternal() {}
+  union {
+    SiteLayoutByLangRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutByLangRequestDefaultTypeInternal _SiteLayoutByLangRequest_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR PodmanQueryRequest_All::PodmanQueryRequest_All(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -99,6 +160,134 @@ struct PodmanContainersResponse_Item_LabelsEntry_DoNotUseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanContainersResponse_Item_LabelsEntry_DoNotUseDefaultTypeInternal _PodmanContainersResponse_Item_LabelsEntry_DoNotUse_default_instance_;
+
+inline constexpr Heartbeat_Redis::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : host_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        port_{0},
+        cluster_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Heartbeat_Redis::Heartbeat_Redis(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Heartbeat_RedisDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Heartbeat_RedisDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Heartbeat_RedisDefaultTypeInternal() {}
+  union {
+    Heartbeat_Redis _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_RedisDefaultTypeInternal _Heartbeat_Redis_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Heartbeat_RabbitMQ::Heartbeat_RabbitMQ(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Heartbeat_RabbitMQDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Heartbeat_RabbitMQDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Heartbeat_RabbitMQDefaultTypeInternal() {}
+  union {
+    Heartbeat_RabbitMQ _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_RabbitMQDefaultTypeInternal _Heartbeat_RabbitMQ_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Heartbeat_PostgreSql::Heartbeat_PostgreSql(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Heartbeat_PostgreSqlDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Heartbeat_PostgreSqlDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Heartbeat_PostgreSqlDefaultTypeInternal() {}
+  union {
+    Heartbeat_PostgreSql _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_PostgreSqlDefaultTypeInternal _Heartbeat_PostgreSql_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Heartbeat_MySql::Heartbeat_MySql(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Heartbeat_MySqlDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Heartbeat_MySqlDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Heartbeat_MySqlDefaultTypeInternal() {}
+  union {
+    Heartbeat_MySql _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_MySqlDefaultTypeInternal _Heartbeat_MySql_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Heartbeat_Minio::Heartbeat_Minio(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Heartbeat_MinioDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Heartbeat_MinioDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Heartbeat_MinioDefaultTypeInternal() {}
+  union {
+    Heartbeat_Minio _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_MinioDefaultTypeInternal _Heartbeat_Minio_default_instance_;
+
+inline constexpr Heartbeat_Http::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : url_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Heartbeat_Http::Heartbeat_Http(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Heartbeat_HttpDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Heartbeat_HttpDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Heartbeat_HttpDefaultTypeInternal() {}
+  union {
+    Heartbeat_Http _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_HttpDefaultTypeInternal _Heartbeat_Http_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR FileSystemQueryRequest_All::FileSystemQueryRequest_All(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -313,6 +502,32 @@ struct PodmanContainersResponse_ItemDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanContainersResponse_ItemDefaultTypeInternal _PodmanContainersResponse_Item_default_instance_;
 
+inline constexpr Heartbeat::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Heartbeat::Heartbeat(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct HeartbeatDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HeartbeatDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HeartbeatDefaultTypeInternal() {}
+  union {
+    Heartbeat _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatDefaultTypeInternal _Heartbeat_default_instance_;
+
 inline constexpr FileSystemQueryRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -427,6 +642,94 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_monitoring_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangRequest, _impl_.lang_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.locale_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.available_languages_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.git_version_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutByLangResponse, _impl_.build_time_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Http, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Http, _impl_.url_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_MySql, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_PostgreSql, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_RabbitMQ, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Redis, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Redis, _impl_.host_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Redis, _impl_.port_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Redis, _impl_.cluster_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Minio, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat, _impl_.by_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest_All, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -640,21 +943,39 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest_All)},
-        {8, 21, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest)},
-        {25, -1, -1, sizeof(::palm::monitoring::v1::FileLogsResponse_Item)},
-        {36, 46, -1, sizeof(::palm::monitoring::v1::FileLogsResponse)},
-        {48, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {56, 72, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {79, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {91, 101, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {103, 113, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {115, 138, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {153, 163, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {165, 185, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {197, 207, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {0, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutByLangRequest)},
+        {9, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutByLangResponse)},
+        {21, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
+        {30, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
+        {38, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
+        {46, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
+        {54, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
+        {65, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
+        {73, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
+        {88, -1, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest_All)},
+        {96, 109, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest)},
+        {113, -1, -1, sizeof(::palm::monitoring::v1::FileLogsResponse_Item)},
+        {124, 134, -1, sizeof(::palm::monitoring::v1::FileLogsResponse)},
+        {136, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {144, 160, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {167, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {179, 189, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {191, 201, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {203, 226, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {241, 251, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {253, 273, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {285, 295, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::palm::monitoring::v1::_SiteLayoutByLangRequest_default_instance_._instance,
+    &::palm::monitoring::v1::_SiteLayoutByLangResponse_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_Http_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_MySql_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_PostgreSql_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_RabbitMQ_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_Redis_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_Minio_default_instance_._instance,
+    &::palm::monitoring::v1::_Heartbeat_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemQueryRequest_All_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemQueryRequest_default_instance_._instance,
     &::palm::monitoring::v1::_FileLogsResponse_Item_default_instance_._instance,
@@ -673,63 +994,81 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     protodesc_cold) = {
     "\n\020monitoring.proto\022\022palm.monitoring.v1\032\037"
     "google/protobuf/timestamp.proto\032\014portal."
-    "proto\"\250\001\n\026FileSystemQueryRequest\022=\n\003all\030"
-    "\001 \001(\0132..palm.monitoring.v1.FileSystemQue"
-    "ryRequest.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030"
-    "\003 \001(\tH\000\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.P"
-    "age\032\005\n\003AllB\004\n\002by\"\261\001\n\020FileLogsResponse\0228\n"
-    "\005items\030\001 \003(\0132).palm.monitoring.v1.FileLo"
-    "gsResponse.Item\022.\n\npagination\030\t \001(\0132\032.pa"
-    "lm.portal.v1.Pagination\0323\n\004Item\022\014\n\004host\030"
-    "\001 \001(\t\022\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n"
-    "\022PodmanQueryRequest\0229\n\003all\030\001 \001(\0132*.palm."
-    "monitoring.v1.PodmanQueryRequest.AllH\000\022\016"
-    "\n\004host\030\002 \001(\tH\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030"
-    "\n\016container_name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032"
-    ".google.protobuf.Timestamp\022&\n\002to\030\\ \001(\0132\032"
-    ".google.protobuf.Timestamp\022\"\n\004page\030c \001(\013"
-    "2\024.palm.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022"
-    "PodmanLogsResponse\022:\n\005items\030\001 \003(\0132+.palm"
-    ".monitoring.v1.PodmanLogsResponse.Item\022."
-    "\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pagi"
-    "nation\032O\n\004Item\022\014\n\004host\030\001 \001(\t\022\024\n\014containe"
-    "r_id\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\022\022\n\ncreated_a"
-    "t\030\t \001(\t\"\224\004\n\030PodmanContainersResponse\022@\n\005"
-    "items\030\001 \003(\01321.palm.monitoring.v1.PodmanC"
-    "ontainersResponse.Item\022.\n\npagination\030\t \001"
-    "(\0132\032.palm.portal.v1.Pagination\032\205\003\n\004Item\022"
-    "\n\n\002id\030\001 \001(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003"
-    " \001(\t\022M\n\006labels\030\004 \003(\0132=.palm.monitoring.v"
-    "1.PodmanContainersResponse.Item.LabelsEn"
-    "try\022\016\n\006mounts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007co"
-    "mmand\030\007 \003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022"
-    "\022\n\nstarted_at\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\te"
-    "xited_at\030\026 \001(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004hos"
-    "t\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032.google.pro"
-    "tobuf.Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 "
-    "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatist"
-    "icsResponse\022@\n\005items\030\001 \003(\01321.palm.monito"
-    "ring.v1.PodmanStatisticsResponse.Item\022.\n"
-    "\npagination\030\t \001(\0132\032.palm.portal.v1.Pagin"
-    "ation\032\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t"
-    "\022\020\n\010cpu_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022"
-    "\017\n\007avg_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013m"
-    "em_percent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010bloc"
-    "k_io\030\t \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022."
-    "\n\ncreated_at\030c \001(\0132\032.google.protobuf.Tim"
-    "estamp2\021\n\017HealthCheckNode2h\n\nFileSystem\022"
-    "Z\n\004Logs\022*.palm.monitoring.v1.FileSystemQ"
-    "ueryRequest\032$.palm.monitoring.v1.FileLog"
-    "sResponse\"\0002\256\002\n\006Podman\022X\n\004Logs\022&.palm.mo"
-    "nitoring.v1.PodmanQueryRequest\032&.palm.mo"
-    "nitoring.v1.PodmanLogsResponse\"\000\022d\n\nCont"
-    "ainers\022&.palm.monitoring.v1.PodmanQueryR"
-    "equest\032,.palm.monitoring.v1.PodmanContai"
-    "nersResponse\"\000\022d\n\nStatistics\022&.palm.moni"
-    "toring.v1.PodmanQueryRequest\032,.palm.moni"
-    "toring.v1.PodmanStatisticsResponse\"\000B4\n0"
-    "com.github.saturn_xiv.palm.plugins.monit"
-    "oring.v1P\001b\006proto3"
+    "proto\"\'\n\027SiteLayoutByLangRequest\022\014\n\004lang"
+    "\030\001 \001(\t\"p\n\030SiteLayoutByLangResponse\022\016\n\006lo"
+    "cale\030\010 \001(\t\022\033\n\023available_languages\030\t \003(\t\022"
+    "\023\n\013git_version\030\013 \001(\t\022\022\n\nbuild_time\030\014 \001(\t"
+    "\"\332\003\n\tHeartbeat\0222\n\004http\030\001 \001(\0132\".palm.moni"
+    "toring.v1.Heartbeat.HttpH\000\0224\n\005mysql\030\002 \001("
+    "\0132#.palm.monitoring.v1.Heartbeat.MySqlH\000"
+    "\022>\n\npostgresql\030\003 \001(\0132(.palm.monitoring.v"
+    "1.Heartbeat.PostgreSqlH\000\022:\n\010rabbitmq\030\004 \001"
+    "(\0132&.palm.monitoring.v1.Heartbeat.Rabbit"
+    "MQH\000\0224\n\005redis\030\005 \001(\0132#.palm.monitoring.v1"
+    ".Heartbeat.RedisH\000\0224\n\005minio\030\006 \001(\0132#.palm"
+    ".monitoring.v1.Heartbeat.MinioH\000\032\023\n\004Http"
+    "\022\013\n\003url\030\001 \001(\t\032\007\n\005MySql\032\014\n\nPostgreSql\032\n\n\010"
+    "RabbitMQ\0324\n\005Redis\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030"
+    "\002 \001(\005\022\017\n\007cluster\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\"\250\001"
+    "\n\026FileSystemQueryRequest\022=\n\003all\030\001 \001(\0132.."
+    "palm.monitoring.v1.FileSystemQueryReques"
+    "t.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH\000\022"
+    "\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032\005\n\003A"
+    "llB\004\n\002by\"\261\001\n\020FileLogsResponse\0228\n\005items\030\001"
+    " \003(\0132).palm.monitoring.v1.FileLogsRespon"
+    "se.Item\022.\n\npagination\030\t \001(\0132\032.palm.porta"
+    "l.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n"
+    "\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n\022PodmanQ"
+    "ueryRequest\0229\n\003all\030\001 \001(\0132*.palm.monitori"
+    "ng.v1.PodmanQueryRequest.AllH\000\022\016\n\004host\030\002"
+    " \001(\tH\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030\n\016contai"
+    "ner_name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.google."
+    "protobuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.google."
+    "protobuf.Timestamp\022\"\n\004page\030c \001(\0132\024.palm."
+    "portal.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022PodmanLo"
+    "gsResponse\022:\n\005items\030\001 \003(\0132+.palm.monitor"
+    "ing.v1.PodmanLogsResponse.Item\022.\n\npagina"
+    "tion\030\t \001(\0132\032.palm.portal.v1.Pagination\032O"
+    "\n\004Item\022\014\n\004host\030\001 \001(\t\022\024\n\014container_id\030\002 \001"
+    "(\t\022\017\n\007message\030\003 \001(\t\022\022\n\ncreated_at\030\t \001(\t\""
+    "\224\004\n\030PodmanContainersResponse\022@\n\005items\030\001 "
+    "\003(\01321.palm.monitoring.v1.PodmanContainer"
+    "sResponse.Item\022.\n\npagination\030\t \001(\0132\032.pal"
+    "m.portal.v1.Pagination\032\205\003\n\004Item\022\n\n\002id\030\001 "
+    "\001(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006"
+    "labels\030\004 \003(\0132=.palm.monitoring.v1.Podman"
+    "ContainersResponse.Item.LabelsEntry\022\016\n\006m"
+    "ounts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 "
+    "\003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstart"
+    "ed_at\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_at"
+    "\030\026 \001(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022"
+    ".\n\ncreated_at\030c \001(\0132\032.google.protobuf.Ti"
+    "mestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005v"
+    "alue\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsRespo"
+    "nse\022@\n\005items\030\001 \003(\01321.palm.monitoring.v1."
+    "PodmanStatisticsResponse.Item\022.\n\npaginat"
+    "ion\030\t \001(\0132\032.palm.portal.v1.Pagination\032\356\001"
+    "\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_"
+    "time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_c"
+    "pu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_perce"
+    "nt\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001"
+    "(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreate"
+    "d_at\030c \001(\0132\032.google.protobuf.Timestamp2s"
+    "\n\004Site\022k\n\014LayoutByLang\022+.palm.monitoring"
+    ".v1.SiteLayoutByLangRequest\032,.palm.monit"
+    "oring.v1.SiteLayoutByLangResponse\"\0002h\n\nF"
+    "ileSystem\022Z\n\004Logs\022*.palm.monitoring.v1.F"
+    "ileSystemQueryRequest\032$.palm.monitoring."
+    "v1.FileLogsResponse\"\0002\256\002\n\006Podman\022X\n\004Logs"
+    "\022&.palm.monitoring.v1.PodmanQueryRequest"
+    "\032&.palm.monitoring.v1.PodmanLogsResponse"
+    "\"\000\022d\n\nContainers\022&.palm.monitoring.v1.Po"
+    "dmanQueryRequest\032,.palm.monitoring.v1.Po"
+    "dmanContainersResponse\"\000\022d\n\nStatistics\022&"
+    ".palm.monitoring.v1.PodmanQueryRequest\032,"
+    ".palm.monitoring.v1.PodmanStatisticsResp"
+    "onse\"\000B4\n0com.github.saturn_xiv.palm.plu"
+    "gins.monitoring.v1P\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -740,13 +1079,13 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    2338,
+    3068,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
     descriptor_table_monitoring_2eproto_deps,
     2,
-    13,
+    22,
     schemas,
     file_default_instances,
     TableStruct_monitoring_2eproto::offsets,
@@ -756,6 +1095,2055 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2ep
 namespace palm {
 namespace monitoring {
 namespace v1 {
+// ===================================================================
+
+class SiteLayoutByLangRequest::_Internal {
+ public:
+};
+
+SiteLayoutByLangRequest::SiteLayoutByLangRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutByLangRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutByLangRequest& from_msg)
+      : lang_(arena, from.lang_),
+        _cached_size_{0} {}
+
+SiteLayoutByLangRequest::SiteLayoutByLangRequest(
+    ::google::protobuf::Arena* arena,
+    const SiteLayoutByLangRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SiteLayoutByLangRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutByLangRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : lang_(arena),
+        _cached_size_{0} {}
+
+inline void SiteLayoutByLangRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+SiteLayoutByLangRequest::~SiteLayoutByLangRequest() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutByLangRequest)
+  SharedDtor(*this);
+}
+inline void SiteLayoutByLangRequest::SharedDtor(MessageLite& self) {
+  SiteLayoutByLangRequest& this_ = static_cast<SiteLayoutByLangRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.lang_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* SiteLayoutByLangRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SiteLayoutByLangRequest(arena);
+}
+constexpr auto SiteLayoutByLangRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SiteLayoutByLangRequest),
+                                            alignof(SiteLayoutByLangRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SiteLayoutByLangRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SiteLayoutByLangRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SiteLayoutByLangRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SiteLayoutByLangRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SiteLayoutByLangRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SiteLayoutByLangRequest>(), &SiteLayoutByLangRequest::ByteSizeLong,
+            &SiteLayoutByLangRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SiteLayoutByLangRequest, _impl_._cached_size_),
+        false,
+    },
+    &SiteLayoutByLangRequest::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SiteLayoutByLangRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 55, 2> SiteLayoutByLangRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutByLangRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string lang = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangRequest, _impl_.lang_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string lang = 1;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangRequest, _impl_.lang_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\52\4\0\0\0\0\0\0"
+    "palm.monitoring.v1.SiteLayoutByLangRequest"
+    "lang"
+  }},
+};
+
+PROTOBUF_NOINLINE void SiteLayoutByLangRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SiteLayoutByLangRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SiteLayoutByLangRequest& this_ = static_cast<const SiteLayoutByLangRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SiteLayoutByLangRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SiteLayoutByLangRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string lang = 1;
+          if (!this_._internal_lang().empty()) {
+            const std::string& _s = this_._internal_lang();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangRequest.lang");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutByLangRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SiteLayoutByLangRequest::ByteSizeLong(const MessageLite& base) {
+          const SiteLayoutByLangRequest& this_ = static_cast<const SiteLayoutByLangRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SiteLayoutByLangRequest::ByteSizeLong() const {
+          const SiteLayoutByLangRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string lang = 1;
+            if (!this_._internal_lang().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_lang());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SiteLayoutByLangRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SiteLayoutByLangRequest*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutByLangRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutByLangRequest::CopyFrom(const SiteLayoutByLangRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutByLangRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SiteLayoutByLangRequest::InternalSwap(SiteLayoutByLangRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.lang_, &other->_impl_.lang_, arena);
+}
+
+::google::protobuf::Metadata SiteLayoutByLangRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SiteLayoutByLangResponse::_Internal {
+ public:
+};
+
+SiteLayoutByLangResponse::SiteLayoutByLangResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutByLangResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutByLangResponse& from_msg)
+      : available_languages_{visibility, arena, from.available_languages_},
+        locale_(arena, from.locale_),
+        git_version_(arena, from.git_version_),
+        build_time_(arena, from.build_time_),
+        _cached_size_{0} {}
+
+SiteLayoutByLangResponse::SiteLayoutByLangResponse(
+    ::google::protobuf::Arena* arena,
+    const SiteLayoutByLangResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SiteLayoutByLangResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutByLangResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutByLangResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : available_languages_{visibility, arena},
+        locale_(arena),
+        git_version_(arena),
+        build_time_(arena),
+        _cached_size_{0} {}
+
+inline void SiteLayoutByLangResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+SiteLayoutByLangResponse::~SiteLayoutByLangResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutByLangResponse)
+  SharedDtor(*this);
+}
+inline void SiteLayoutByLangResponse::SharedDtor(MessageLite& self) {
+  SiteLayoutByLangResponse& this_ = static_cast<SiteLayoutByLangResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.locale_.Destroy();
+  this_._impl_.git_version_.Destroy();
+  this_._impl_.build_time_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* SiteLayoutByLangResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SiteLayoutByLangResponse(arena);
+}
+constexpr auto SiteLayoutByLangResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.available_languages_) +
+          decltype(SiteLayoutByLangResponse::_impl_.available_languages_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(SiteLayoutByLangResponse), alignof(SiteLayoutByLangResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&SiteLayoutByLangResponse::PlacementNew_,
+                                 sizeof(SiteLayoutByLangResponse),
+                                 alignof(SiteLayoutByLangResponse));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SiteLayoutByLangResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SiteLayoutByLangResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SiteLayoutByLangResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SiteLayoutByLangResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SiteLayoutByLangResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SiteLayoutByLangResponse>(), &SiteLayoutByLangResponse::ByteSizeLong,
+            &SiteLayoutByLangResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_._cached_size_),
+        false,
+    },
+    &SiteLayoutByLangResponse::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SiteLayoutByLangResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 4, 0, 98, 2> SiteLayoutByLangResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    12, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294963839,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutByLangResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string locale = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.locale_)}},
+    // repeated string available_languages = 9;
+    {::_pbi::TcParser::FastUR1,
+     {74, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.available_languages_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // string git_version = 11;
+    {::_pbi::TcParser::FastUS1,
+     {90, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.git_version_)}},
+    // string build_time = 12;
+    {::_pbi::TcParser::FastUS1,
+     {98, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.build_time_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string locale = 8;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.locale_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string available_languages = 9;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.available_languages_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // string git_version = 11;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.git_version_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string build_time = 12;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutByLangResponse, _impl_.build_time_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\53\6\23\13\12\0\0\0"
+    "palm.monitoring.v1.SiteLayoutByLangResponse"
+    "locale"
+    "available_languages"
+    "git_version"
+    "build_time"
+  }},
+};
+
+PROTOBUF_NOINLINE void SiteLayoutByLangResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.available_languages_.Clear();
+  _impl_.locale_.ClearToEmpty();
+  _impl_.git_version_.ClearToEmpty();
+  _impl_.build_time_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SiteLayoutByLangResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SiteLayoutByLangResponse& this_ = static_cast<const SiteLayoutByLangResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SiteLayoutByLangResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SiteLayoutByLangResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string locale = 8;
+          if (!this_._internal_locale().empty()) {
+            const std::string& _s = this_._internal_locale();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.locale");
+            target = stream->WriteStringMaybeAliased(8, _s, target);
+          }
+
+          // repeated string available_languages = 9;
+          for (int i = 0, n = this_._internal_available_languages_size(); i < n; ++i) {
+            const auto& s = this_._internal_available_languages().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.available_languages");
+            target = stream->WriteString(9, s, target);
+          }
+
+          // string git_version = 11;
+          if (!this_._internal_git_version().empty()) {
+            const std::string& _s = this_._internal_git_version();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.git_version");
+            target = stream->WriteStringMaybeAliased(11, _s, target);
+          }
+
+          // string build_time = 12;
+          if (!this_._internal_build_time().empty()) {
+            const std::string& _s = this_._internal_build_time();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutByLangResponse.build_time");
+            target = stream->WriteStringMaybeAliased(12, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutByLangResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SiteLayoutByLangResponse::ByteSizeLong(const MessageLite& base) {
+          const SiteLayoutByLangResponse& this_ = static_cast<const SiteLayoutByLangResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SiteLayoutByLangResponse::ByteSizeLong() const {
+          const SiteLayoutByLangResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated string available_languages = 9;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_available_languages().size());
+              for (int i = 0, n = this_._internal_available_languages().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_available_languages().Get(i));
+              }
+            }
+          }
+           {
+            // string locale = 8;
+            if (!this_._internal_locale().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_locale());
+            }
+            // string git_version = 11;
+            if (!this_._internal_git_version().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_git_version());
+            }
+            // string build_time = 12;
+            if (!this_._internal_build_time().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_build_time());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SiteLayoutByLangResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SiteLayoutByLangResponse*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutByLangResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_available_languages()->MergeFrom(from._internal_available_languages());
+  if (!from._internal_locale().empty()) {
+    _this->_internal_set_locale(from._internal_locale());
+  }
+  if (!from._internal_git_version().empty()) {
+    _this->_internal_set_git_version(from._internal_git_version());
+  }
+  if (!from._internal_build_time().empty()) {
+    _this->_internal_set_build_time(from._internal_build_time());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutByLangResponse::CopyFrom(const SiteLayoutByLangResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutByLangResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SiteLayoutByLangResponse::InternalSwap(SiteLayoutByLangResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.available_languages_.InternalSwap(&other->_impl_.available_languages_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locale_, &other->_impl_.locale_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.git_version_, &other->_impl_.git_version_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.build_time_, &other->_impl_.build_time_, arena);
+}
+
+::google::protobuf::Metadata SiteLayoutByLangResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat_Http::_Internal {
+ public:
+};
+
+Heartbeat_Http::Heartbeat_Http(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat.Http)
+}
+inline PROTOBUF_NDEBUG_INLINE Heartbeat_Http::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::Heartbeat_Http& from_msg)
+      : url_(arena, from.url_),
+        _cached_size_{0} {}
+
+Heartbeat_Http::Heartbeat_Http(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat_Http& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat_Http* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat.Http)
+}
+inline PROTOBUF_NDEBUG_INLINE Heartbeat_Http::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : url_(arena),
+        _cached_size_{0} {}
+
+inline void Heartbeat_Http::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Heartbeat_Http::~Heartbeat_Http() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.Heartbeat.Http)
+  SharedDtor(*this);
+}
+inline void Heartbeat_Http::SharedDtor(MessageLite& self) {
+  Heartbeat_Http& this_ = static_cast<Heartbeat_Http&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.url_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Heartbeat_Http::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat_Http(arena);
+}
+constexpr auto Heartbeat_Http::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Heartbeat_Http),
+                                            alignof(Heartbeat_Http));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat_Http::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_Http_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat_Http::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Heartbeat_Http>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat_Http::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Heartbeat_Http>(), &Heartbeat_Http::ByteSizeLong,
+            &Heartbeat_Http::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat_Http, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat_Http::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat_Http::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 45, 2> Heartbeat_Http::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_Http>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string url = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Heartbeat_Http, _impl_.url_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string url = 1;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat_Http, _impl_.url_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\41\3\0\0\0\0\0\0"
+    "palm.monitoring.v1.Heartbeat.Http"
+    "url"
+  }},
+};
+
+PROTOBUF_NOINLINE void Heartbeat_Http::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.Heartbeat.Http)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.url_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Heartbeat_Http::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Heartbeat_Http& this_ = static_cast<const Heartbeat_Http&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Heartbeat_Http::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Heartbeat_Http& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.Heartbeat.Http)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string url = 1;
+          if (!this_._internal_url().empty()) {
+            const std::string& _s = this_._internal_url();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.Heartbeat.Http.url");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.Heartbeat.Http)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Heartbeat_Http::ByteSizeLong(const MessageLite& base) {
+          const Heartbeat_Http& this_ = static_cast<const Heartbeat_Http&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Heartbeat_Http::ByteSizeLong() const {
+          const Heartbeat_Http& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.Heartbeat.Http)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string url = 1;
+            if (!this_._internal_url().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_url());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Heartbeat_Http::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Heartbeat_Http*>(&to_msg);
+  auto& from = static_cast<const Heartbeat_Http&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.Heartbeat.Http)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_url().empty()) {
+    _this->_internal_set_url(from._internal_url());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Heartbeat_Http::CopyFrom(const Heartbeat_Http& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.Heartbeat.Http)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Heartbeat_Http::InternalSwap(Heartbeat_Http* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
+}
+
+::google::protobuf::Metadata Heartbeat_Http::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat_MySql::_Internal {
+ public:
+};
+
+Heartbeat_MySql::Heartbeat_MySql(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat.MySql)
+}
+Heartbeat_MySql::Heartbeat_MySql(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat_MySql& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat_MySql* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat.MySql)
+}
+
+inline void* Heartbeat_MySql::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat_MySql(arena);
+}
+constexpr auto Heartbeat_MySql::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Heartbeat_MySql),
+                                            alignof(Heartbeat_MySql));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat_MySql::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_MySql_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat_MySql::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Heartbeat_MySql>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat_MySql::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Heartbeat_MySql>(), &Heartbeat_MySql::ByteSizeLong,
+            &Heartbeat_MySql::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat_MySql, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat_MySql::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat_MySql::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Heartbeat_MySql::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_MySql>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Heartbeat_MySql::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat_PostgreSql::_Internal {
+ public:
+};
+
+Heartbeat_PostgreSql::Heartbeat_PostgreSql(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat.PostgreSql)
+}
+Heartbeat_PostgreSql::Heartbeat_PostgreSql(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat_PostgreSql& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat_PostgreSql* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat.PostgreSql)
+}
+
+inline void* Heartbeat_PostgreSql::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat_PostgreSql(arena);
+}
+constexpr auto Heartbeat_PostgreSql::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Heartbeat_PostgreSql),
+                                            alignof(Heartbeat_PostgreSql));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat_PostgreSql::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_PostgreSql_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat_PostgreSql::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Heartbeat_PostgreSql>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat_PostgreSql::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Heartbeat_PostgreSql>(), &Heartbeat_PostgreSql::ByteSizeLong,
+            &Heartbeat_PostgreSql::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat_PostgreSql, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat_PostgreSql::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat_PostgreSql::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Heartbeat_PostgreSql::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_PostgreSql>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Heartbeat_PostgreSql::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat_RabbitMQ::_Internal {
+ public:
+};
+
+Heartbeat_RabbitMQ::Heartbeat_RabbitMQ(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat.RabbitMQ)
+}
+Heartbeat_RabbitMQ::Heartbeat_RabbitMQ(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat_RabbitMQ& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat_RabbitMQ* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat.RabbitMQ)
+}
+
+inline void* Heartbeat_RabbitMQ::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat_RabbitMQ(arena);
+}
+constexpr auto Heartbeat_RabbitMQ::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Heartbeat_RabbitMQ),
+                                            alignof(Heartbeat_RabbitMQ));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat_RabbitMQ::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_RabbitMQ_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat_RabbitMQ::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Heartbeat_RabbitMQ>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat_RabbitMQ::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Heartbeat_RabbitMQ>(), &Heartbeat_RabbitMQ::ByteSizeLong,
+            &Heartbeat_RabbitMQ::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat_RabbitMQ, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat_RabbitMQ::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat_RabbitMQ::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Heartbeat_RabbitMQ::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_RabbitMQ>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Heartbeat_RabbitMQ::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat_Redis::_Internal {
+ public:
+};
+
+Heartbeat_Redis::Heartbeat_Redis(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat.Redis)
+}
+inline PROTOBUF_NDEBUG_INLINE Heartbeat_Redis::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::Heartbeat_Redis& from_msg)
+      : host_(arena, from.host_),
+        _cached_size_{0} {}
+
+Heartbeat_Redis::Heartbeat_Redis(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat_Redis& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat_Redis* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, port_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, port_),
+           offsetof(Impl_, cluster_) -
+               offsetof(Impl_, port_) +
+               sizeof(Impl_::cluster_));
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat.Redis)
+}
+inline PROTOBUF_NDEBUG_INLINE Heartbeat_Redis::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : host_(arena),
+        _cached_size_{0} {}
+
+inline void Heartbeat_Redis::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, port_),
+           0,
+           offsetof(Impl_, cluster_) -
+               offsetof(Impl_, port_) +
+               sizeof(Impl_::cluster_));
+}
+Heartbeat_Redis::~Heartbeat_Redis() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.Heartbeat.Redis)
+  SharedDtor(*this);
+}
+inline void Heartbeat_Redis::SharedDtor(MessageLite& self) {
+  Heartbeat_Redis& this_ = static_cast<Heartbeat_Redis&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.host_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Heartbeat_Redis::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat_Redis(arena);
+}
+constexpr auto Heartbeat_Redis::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Heartbeat_Redis),
+                                            alignof(Heartbeat_Redis));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat_Redis::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_Redis_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat_Redis::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Heartbeat_Redis>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat_Redis::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Heartbeat_Redis>(), &Heartbeat_Redis::ByteSizeLong,
+            &Heartbeat_Redis::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat_Redis::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat_Redis::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 47, 2> Heartbeat_Redis::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_Redis>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string host = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.host_)}},
+    // int32 port = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat_Redis, _impl_.port_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.port_)}},
+    // bool cluster = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Heartbeat_Redis, _impl_.cluster_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.cluster_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string host = 1;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.host_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 port = 2;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bool cluster = 3;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.cluster_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\42\4\0\0\0\0\0\0"
+    "palm.monitoring.v1.Heartbeat.Redis"
+    "host"
+  }},
+};
+
+PROTOBUF_NOINLINE void Heartbeat_Redis::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.Heartbeat.Redis)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.host_.ClearToEmpty();
+  ::memset(&_impl_.port_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.cluster_) -
+      reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.cluster_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Heartbeat_Redis::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Heartbeat_Redis& this_ = static_cast<const Heartbeat_Redis&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Heartbeat_Redis::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Heartbeat_Redis& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.Heartbeat.Redis)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string host = 1;
+          if (!this_._internal_host().empty()) {
+            const std::string& _s = this_._internal_host();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.Heartbeat.Redis.host");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // int32 port = 2;
+          if (this_._internal_port() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<2>(
+                    stream, this_._internal_port(), target);
+          }
+
+          // bool cluster = 3;
+          if (this_._internal_cluster() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                3, this_._internal_cluster(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.Heartbeat.Redis)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Heartbeat_Redis::ByteSizeLong(const MessageLite& base) {
+          const Heartbeat_Redis& this_ = static_cast<const Heartbeat_Redis&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Heartbeat_Redis::ByteSizeLong() const {
+          const Heartbeat_Redis& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.Heartbeat.Redis)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string host = 1;
+            if (!this_._internal_host().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_host());
+            }
+            // int32 port = 2;
+            if (this_._internal_port() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_port());
+            }
+            // bool cluster = 3;
+            if (this_._internal_cluster() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Heartbeat_Redis::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Heartbeat_Redis*>(&to_msg);
+  auto& from = static_cast<const Heartbeat_Redis&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.Heartbeat.Redis)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_host().empty()) {
+    _this->_internal_set_host(from._internal_host());
+  }
+  if (from._internal_port() != 0) {
+    _this->_impl_.port_ = from._impl_.port_;
+  }
+  if (from._internal_cluster() != 0) {
+    _this->_impl_.cluster_ = from._impl_.cluster_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Heartbeat_Redis::CopyFrom(const Heartbeat_Redis& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.Heartbeat.Redis)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Heartbeat_Redis::InternalSwap(Heartbeat_Redis* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.cluster_)
+      + sizeof(Heartbeat_Redis::_impl_.cluster_)
+      - PROTOBUF_FIELD_OFFSET(Heartbeat_Redis, _impl_.port_)>(
+          reinterpret_cast<char*>(&_impl_.port_),
+          reinterpret_cast<char*>(&other->_impl_.port_));
+}
+
+::google::protobuf::Metadata Heartbeat_Redis::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat_Minio::_Internal {
+ public:
+};
+
+Heartbeat_Minio::Heartbeat_Minio(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat.Minio)
+}
+Heartbeat_Minio::Heartbeat_Minio(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat_Minio& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat_Minio* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat.Minio)
+}
+
+inline void* Heartbeat_Minio::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat_Minio(arena);
+}
+constexpr auto Heartbeat_Minio::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Heartbeat_Minio),
+                                            alignof(Heartbeat_Minio));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat_Minio::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_Minio_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat_Minio::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Heartbeat_Minio>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat_Minio::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Heartbeat_Minio>(), &Heartbeat_Minio::ByteSizeLong,
+            &Heartbeat_Minio::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat_Minio, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat_Minio::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat_Minio::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Heartbeat_Minio::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_Minio>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Heartbeat_Minio::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Heartbeat::_Internal {
+ public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat, _impl_._oneof_case_);
+};
+
+void Heartbeat::set_allocated_http(::palm::monitoring::v1::Heartbeat_Http* http) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (http) {
+    ::google::protobuf::Arena* submessage_arena = http->GetArena();
+    if (message_arena != submessage_arena) {
+      http = ::google::protobuf::internal::GetOwnedMessage(message_arena, http, submessage_arena);
+    }
+    set_has_http();
+    _impl_.by_.http_ = http;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.http)
+}
+void Heartbeat::set_allocated_mysql(::palm::monitoring::v1::Heartbeat_MySql* mysql) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (mysql) {
+    ::google::protobuf::Arena* submessage_arena = mysql->GetArena();
+    if (message_arena != submessage_arena) {
+      mysql = ::google::protobuf::internal::GetOwnedMessage(message_arena, mysql, submessage_arena);
+    }
+    set_has_mysql();
+    _impl_.by_.mysql_ = mysql;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.mysql)
+}
+void Heartbeat::set_allocated_postgresql(::palm::monitoring::v1::Heartbeat_PostgreSql* postgresql) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (postgresql) {
+    ::google::protobuf::Arena* submessage_arena = postgresql->GetArena();
+    if (message_arena != submessage_arena) {
+      postgresql = ::google::protobuf::internal::GetOwnedMessage(message_arena, postgresql, submessage_arena);
+    }
+    set_has_postgresql();
+    _impl_.by_.postgresql_ = postgresql;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.postgresql)
+}
+void Heartbeat::set_allocated_rabbitmq(::palm::monitoring::v1::Heartbeat_RabbitMQ* rabbitmq) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (rabbitmq) {
+    ::google::protobuf::Arena* submessage_arena = rabbitmq->GetArena();
+    if (message_arena != submessage_arena) {
+      rabbitmq = ::google::protobuf::internal::GetOwnedMessage(message_arena, rabbitmq, submessage_arena);
+    }
+    set_has_rabbitmq();
+    _impl_.by_.rabbitmq_ = rabbitmq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.rabbitmq)
+}
+void Heartbeat::set_allocated_redis(::palm::monitoring::v1::Heartbeat_Redis* redis) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (redis) {
+    ::google::protobuf::Arena* submessage_arena = redis->GetArena();
+    if (message_arena != submessage_arena) {
+      redis = ::google::protobuf::internal::GetOwnedMessage(message_arena, redis, submessage_arena);
+    }
+    set_has_redis();
+    _impl_.by_.redis_ = redis;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.redis)
+}
+void Heartbeat::set_allocated_minio(::palm::monitoring::v1::Heartbeat_Minio* minio) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (minio) {
+    ::google::protobuf::Arena* submessage_arena = minio->GetArena();
+    if (message_arena != submessage_arena) {
+      minio = ::google::protobuf::internal::GetOwnedMessage(message_arena, minio, submessage_arena);
+    }
+    set_has_minio();
+    _impl_.by_.minio_ = minio;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.Heartbeat.minio)
+}
+Heartbeat::Heartbeat(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.Heartbeat)
+}
+inline PROTOBUF_NDEBUG_INLINE Heartbeat::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::Heartbeat& from_msg)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+Heartbeat::Heartbeat(
+    ::google::protobuf::Arena* arena,
+    const Heartbeat& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Heartbeat* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (by_case()) {
+    case BY_NOT_SET:
+      break;
+      case kHttp:
+        _impl_.by_.http_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_Http>(arena, *from._impl_.by_.http_);
+        break;
+      case kMysql:
+        _impl_.by_.mysql_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_MySql>(arena, *from._impl_.by_.mysql_);
+        break;
+      case kPostgresql:
+        _impl_.by_.postgresql_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_PostgreSql>(arena, *from._impl_.by_.postgresql_);
+        break;
+      case kRabbitmq:
+        _impl_.by_.rabbitmq_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_RabbitMQ>(arena, *from._impl_.by_.rabbitmq_);
+        break;
+      case kRedis:
+        _impl_.by_.redis_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_Redis>(arena, *from._impl_.by_.redis_);
+        break;
+      case kMinio:
+        _impl_.by_.minio_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_Minio>(arena, *from._impl_.by_.minio_);
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.Heartbeat)
+}
+inline PROTOBUF_NDEBUG_INLINE Heartbeat::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void Heartbeat::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Heartbeat::~Heartbeat() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.Heartbeat)
+  SharedDtor(*this);
+}
+inline void Heartbeat::SharedDtor(MessageLite& self) {
+  Heartbeat& this_ = static_cast<Heartbeat&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  if (this_.has_by()) {
+    this_.clear_by();
+  }
+  this_._impl_.~Impl_();
+}
+
+void Heartbeat::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.monitoring.v1.Heartbeat)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (by_case()) {
+    case kHttp: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.http_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.http_);
+      }
+      break;
+    }
+    case kMysql: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.mysql_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.mysql_);
+      }
+      break;
+    }
+    case kPostgresql: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.postgresql_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.postgresql_);
+      }
+      break;
+    }
+    case kRabbitmq: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.rabbitmq_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.rabbitmq_);
+      }
+      break;
+    }
+    case kRedis: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.redis_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.redis_);
+      }
+      break;
+    }
+    case kMinio: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.minio_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.minio_);
+      }
+      break;
+    }
+    case BY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+
+
+inline void* Heartbeat::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Heartbeat(arena);
+}
+constexpr auto Heartbeat::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Heartbeat),
+                                            alignof(Heartbeat));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Heartbeat::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Heartbeat_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Heartbeat::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Heartbeat>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Heartbeat::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Heartbeat>(), &Heartbeat::ByteSizeLong,
+            &Heartbeat::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_._cached_size_),
+        false,
+    },
+    &Heartbeat::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Heartbeat::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 6, 6, 0, 2> Heartbeat::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    6, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    6,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.monitoring.v1.Heartbeat.Http http = 1;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.by_.http_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.monitoring.v1.Heartbeat.MySql mysql = 2;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.by_.mysql_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.monitoring.v1.Heartbeat.PostgreSql postgresql = 3;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.by_.postgresql_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.monitoring.v1.Heartbeat.RabbitMQ rabbitmq = 4;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.by_.rabbitmq_), _Internal::kOneofCaseOffset + 0, 3,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.monitoring.v1.Heartbeat.Redis redis = 5;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.by_.redis_), _Internal::kOneofCaseOffset + 0, 4,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.monitoring.v1.Heartbeat.Minio minio = 6;
+    {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.by_.minio_), _Internal::kOneofCaseOffset + 0, 5,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_Http>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_MySql>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_PostgreSql>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_RabbitMQ>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_Redis>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::Heartbeat_Minio>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Heartbeat::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.Heartbeat)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_by();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Heartbeat::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Heartbeat& this_ = static_cast<const Heartbeat&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Heartbeat::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Heartbeat& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.Heartbeat)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            case kHttp: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.by_.http_, this_._impl_.by_.http_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kMysql: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  2, *this_._impl_.by_.mysql_, this_._impl_.by_.mysql_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kPostgresql: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  3, *this_._impl_.by_.postgresql_, this_._impl_.by_.postgresql_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kRabbitmq: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  4, *this_._impl_.by_.rabbitmq_, this_._impl_.by_.rabbitmq_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kRedis: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  5, *this_._impl_.by_.redis_, this_._impl_.by_.redis_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kMinio: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  6, *this_._impl_.by_.minio_, this_._impl_.by_.minio_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.Heartbeat)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Heartbeat::ByteSizeLong(const MessageLite& base) {
+          const Heartbeat& this_ = static_cast<const Heartbeat&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Heartbeat::ByteSizeLong() const {
+          const Heartbeat& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.Heartbeat)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            // .palm.monitoring.v1.Heartbeat.Http http = 1;
+            case kHttp: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.http_);
+              break;
+            }
+            // .palm.monitoring.v1.Heartbeat.MySql mysql = 2;
+            case kMysql: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.mysql_);
+              break;
+            }
+            // .palm.monitoring.v1.Heartbeat.PostgreSql postgresql = 3;
+            case kPostgresql: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.postgresql_);
+              break;
+            }
+            // .palm.monitoring.v1.Heartbeat.RabbitMQ rabbitmq = 4;
+            case kRabbitmq: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.rabbitmq_);
+              break;
+            }
+            // .palm.monitoring.v1.Heartbeat.Redis redis = 5;
+            case kRedis: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.redis_);
+              break;
+            }
+            // .palm.monitoring.v1.Heartbeat.Minio minio = 6;
+            case kMinio: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.minio_);
+              break;
+            }
+            case BY_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Heartbeat::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Heartbeat*>(&to_msg);
+  auto& from = static_cast<const Heartbeat&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.Heartbeat)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_by();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kHttp: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.http_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_Http>(arena, *from._impl_.by_.http_);
+        } else {
+          _this->_impl_.by_.http_->MergeFrom(from._internal_http());
+        }
+        break;
+      }
+      case kMysql: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.mysql_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_MySql>(arena, *from._impl_.by_.mysql_);
+        } else {
+          _this->_impl_.by_.mysql_->MergeFrom(from._internal_mysql());
+        }
+        break;
+      }
+      case kPostgresql: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.postgresql_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_PostgreSql>(arena, *from._impl_.by_.postgresql_);
+        } else {
+          _this->_impl_.by_.postgresql_->MergeFrom(from._internal_postgresql());
+        }
+        break;
+      }
+      case kRabbitmq: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.rabbitmq_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_RabbitMQ>(arena, *from._impl_.by_.rabbitmq_);
+        } else {
+          _this->_impl_.by_.rabbitmq_->MergeFrom(from._internal_rabbitmq());
+        }
+        break;
+      }
+      case kRedis: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.redis_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_Redis>(arena, *from._impl_.by_.redis_);
+        } else {
+          _this->_impl_.by_.redis_->MergeFrom(from._internal_redis());
+        }
+        break;
+      }
+      case kMinio: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.minio_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::Heartbeat_Minio>(arena, *from._impl_.by_.minio_);
+        } else {
+          _this->_impl_.by_.minio_->MergeFrom(from._internal_minio());
+        }
+        break;
+      }
+      case BY_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Heartbeat::CopyFrom(const Heartbeat& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.Heartbeat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Heartbeat::InternalSwap(Heartbeat* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.by_, other->_impl_.by_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata Heartbeat::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
 // ===================================================================
 
 class FileSystemQueryRequest_All::_Internal {

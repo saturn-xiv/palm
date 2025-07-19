@@ -4,6 +4,224 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 import * as portal_pb from './portal_pb'; // proto import: "portal.proto"
 
 
+export class SiteLayoutByLangRequest extends jspb.Message {
+  getLang(): string;
+  setLang(value: string): SiteLayoutByLangRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SiteLayoutByLangRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SiteLayoutByLangRequest): SiteLayoutByLangRequest.AsObject;
+  static serializeBinaryToWriter(message: SiteLayoutByLangRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SiteLayoutByLangRequest;
+  static deserializeBinaryFromReader(message: SiteLayoutByLangRequest, reader: jspb.BinaryReader): SiteLayoutByLangRequest;
+}
+
+export namespace SiteLayoutByLangRequest {
+  export type AsObject = {
+    lang: string,
+  }
+}
+
+export class SiteLayoutByLangResponse extends jspb.Message {
+  getLocale(): string;
+  setLocale(value: string): SiteLayoutByLangResponse;
+
+  getAvailableLanguagesList(): Array<string>;
+  setAvailableLanguagesList(value: Array<string>): SiteLayoutByLangResponse;
+  clearAvailableLanguagesList(): SiteLayoutByLangResponse;
+  addAvailableLanguages(value: string, index?: number): SiteLayoutByLangResponse;
+
+  getGitVersion(): string;
+  setGitVersion(value: string): SiteLayoutByLangResponse;
+
+  getBuildTime(): string;
+  setBuildTime(value: string): SiteLayoutByLangResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SiteLayoutByLangResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SiteLayoutByLangResponse): SiteLayoutByLangResponse.AsObject;
+  static serializeBinaryToWriter(message: SiteLayoutByLangResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SiteLayoutByLangResponse;
+  static deserializeBinaryFromReader(message: SiteLayoutByLangResponse, reader: jspb.BinaryReader): SiteLayoutByLangResponse;
+}
+
+export namespace SiteLayoutByLangResponse {
+  export type AsObject = {
+    locale: string,
+    availableLanguagesList: Array<string>,
+    gitVersion: string,
+    buildTime: string,
+  }
+}
+
+export class Heartbeat extends jspb.Message {
+  getHttp(): Heartbeat.Http | undefined;
+  setHttp(value?: Heartbeat.Http): Heartbeat;
+  hasHttp(): boolean;
+  clearHttp(): Heartbeat;
+
+  getMysql(): Heartbeat.MySql | undefined;
+  setMysql(value?: Heartbeat.MySql): Heartbeat;
+  hasMysql(): boolean;
+  clearMysql(): Heartbeat;
+
+  getPostgresql(): Heartbeat.PostgreSql | undefined;
+  setPostgresql(value?: Heartbeat.PostgreSql): Heartbeat;
+  hasPostgresql(): boolean;
+  clearPostgresql(): Heartbeat;
+
+  getRabbitmq(): Heartbeat.RabbitMQ | undefined;
+  setRabbitmq(value?: Heartbeat.RabbitMQ): Heartbeat;
+  hasRabbitmq(): boolean;
+  clearRabbitmq(): Heartbeat;
+
+  getRedis(): Heartbeat.Redis | undefined;
+  setRedis(value?: Heartbeat.Redis): Heartbeat;
+  hasRedis(): boolean;
+  clearRedis(): Heartbeat;
+
+  getMinio(): Heartbeat.Minio | undefined;
+  setMinio(value?: Heartbeat.Minio): Heartbeat;
+  hasMinio(): boolean;
+  clearMinio(): Heartbeat;
+
+  getByCase(): Heartbeat.ByCase;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Heartbeat.AsObject;
+  static toObject(includeInstance: boolean, msg: Heartbeat): Heartbeat.AsObject;
+  static serializeBinaryToWriter(message: Heartbeat, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Heartbeat;
+  static deserializeBinaryFromReader(message: Heartbeat, reader: jspb.BinaryReader): Heartbeat;
+}
+
+export namespace Heartbeat {
+  export type AsObject = {
+    http?: Heartbeat.Http.AsObject,
+    mysql?: Heartbeat.MySql.AsObject,
+    postgresql?: Heartbeat.PostgreSql.AsObject,
+    rabbitmq?: Heartbeat.RabbitMQ.AsObject,
+    redis?: Heartbeat.Redis.AsObject,
+    minio?: Heartbeat.Minio.AsObject,
+  }
+
+  export class Http extends jspb.Message {
+    getUrl(): string;
+    setUrl(value: string): Http;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Http.AsObject;
+    static toObject(includeInstance: boolean, msg: Http): Http.AsObject;
+    static serializeBinaryToWriter(message: Http, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Http;
+    static deserializeBinaryFromReader(message: Http, reader: jspb.BinaryReader): Http;
+  }
+
+  export namespace Http {
+    export type AsObject = {
+      url: string,
+    }
+  }
+
+
+  export class MySql extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MySql.AsObject;
+    static toObject(includeInstance: boolean, msg: MySql): MySql.AsObject;
+    static serializeBinaryToWriter(message: MySql, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MySql;
+    static deserializeBinaryFromReader(message: MySql, reader: jspb.BinaryReader): MySql;
+  }
+
+  export namespace MySql {
+    export type AsObject = {
+    }
+  }
+
+
+  export class PostgreSql extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): PostgreSql.AsObject;
+    static toObject(includeInstance: boolean, msg: PostgreSql): PostgreSql.AsObject;
+    static serializeBinaryToWriter(message: PostgreSql, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): PostgreSql;
+    static deserializeBinaryFromReader(message: PostgreSql, reader: jspb.BinaryReader): PostgreSql;
+  }
+
+  export namespace PostgreSql {
+    export type AsObject = {
+    }
+  }
+
+
+  export class RabbitMQ extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RabbitMQ.AsObject;
+    static toObject(includeInstance: boolean, msg: RabbitMQ): RabbitMQ.AsObject;
+    static serializeBinaryToWriter(message: RabbitMQ, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RabbitMQ;
+    static deserializeBinaryFromReader(message: RabbitMQ, reader: jspb.BinaryReader): RabbitMQ;
+  }
+
+  export namespace RabbitMQ {
+    export type AsObject = {
+    }
+  }
+
+
+  export class Redis extends jspb.Message {
+    getHost(): string;
+    setHost(value: string): Redis;
+
+    getPort(): number;
+    setPort(value: number): Redis;
+
+    getCluster(): boolean;
+    setCluster(value: boolean): Redis;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Redis.AsObject;
+    static toObject(includeInstance: boolean, msg: Redis): Redis.AsObject;
+    static serializeBinaryToWriter(message: Redis, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Redis;
+    static deserializeBinaryFromReader(message: Redis, reader: jspb.BinaryReader): Redis;
+  }
+
+  export namespace Redis {
+    export type AsObject = {
+      host: string,
+      port: number,
+      cluster: boolean,
+    }
+  }
+
+
+  export class Minio extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Minio.AsObject;
+    static toObject(includeInstance: boolean, msg: Minio): Minio.AsObject;
+    static serializeBinaryToWriter(message: Minio, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Minio;
+    static deserializeBinaryFromReader(message: Minio, reader: jspb.BinaryReader): Minio;
+  }
+
+  export namespace Minio {
+    export type AsObject = {
+    }
+  }
+
+
+  export enum ByCase { 
+    BY_NOT_SET = 0,
+    HTTP = 1,
+    MYSQL = 2,
+    POSTGRESQL = 3,
+    RABBITMQ = 4,
+    REDIS = 5,
+    MINIO = 6,
+  }
+}
+
 export class FileSystemQueryRequest extends jspb.Message {
   getAll(): FileSystemQueryRequest.All | undefined;
   setAll(value?: FileSystemQueryRequest.All): FileSystemQueryRequest;
