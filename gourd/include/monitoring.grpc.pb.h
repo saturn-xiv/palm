@@ -247,41 +247,41 @@ class FileSystem final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::palm::monitoring::v1::FileLogsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>>(AsyncLogsRaw(context, request, cq));
+    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::palm::monitoring::v1::FileSystemLogsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileSystemLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileSystemLogsResponse>>(AsyncLogsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileSystemLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileSystemLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileSystemLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::FileSystemLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::palm::monitoring::v1::FileLogsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>>(AsyncLogsRaw(context, request, cq));
+    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::palm::monitoring::v1::FileSystemLogsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>>(AsyncLogsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, std::function<void(::grpc::Status)>) override;
-      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -293,8 +293,8 @@ class FileSystem final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Logs_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -303,7 +303,7 @@ class FileSystem final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response);
+    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Logs : public BaseClass {
@@ -317,11 +317,11 @@ class FileSystem final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestLogs(::grpc::ServerContext* context, ::palm::monitoring::v1::FileSystemQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::FileLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestLogs(::grpc::ServerContext* context, ::palm::monitoring::v1::FileSystemLogsRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::FileSystemLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -333,25 +333,25 @@ class FileSystem final {
    public:
     WithCallbackMethod_Logs() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response) { return this->Logs(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response) { return this->Logs(context, request, response); }));}
     void SetMessageAllocatorFor_Logs(
-        ::grpc::MessageAllocator< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Logs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Logs(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Logs<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -367,7 +367,7 @@ class FileSystem final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -384,7 +384,7 @@ class FileSystem final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -407,7 +407,7 @@ class FileSystem final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -422,10 +422,10 @@ class FileSystem final {
     WithStreamedUnaryMethod_Logs() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>(
+          ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse>* streamer) {
+                     ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse>* streamer) {
                        return this->StreamedLogs(context,
                          streamer);
                   }));
@@ -434,12 +434,12 @@ class FileSystem final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemQueryRequest* /*request*/, ::palm::monitoring::v1::FileLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::FileSystemLogsRequest* /*request*/, ::palm::monitoring::v1::FileSystemLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::FileSystemQueryRequest,::palm::monitoring::v1::FileLogsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::FileSystemLogsRequest,::palm::monitoring::v1::FileSystemLogsResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Logs<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;

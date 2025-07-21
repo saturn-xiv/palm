@@ -28,25 +28,15 @@ namespace palm {
 namespace monitoring {
 namespace v1 {
 
-inline constexpr SiteLayoutResponse::Impl_::Impl_(
+inline constexpr SiteLayoutResponse_CurrentUser::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : available_languages_{},
-        user_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        locale_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        git_version_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        build_time_(
+      : name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR SiteLayoutResponse::SiteLayoutResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR SiteLayoutResponse_CurrentUser::SiteLayoutResponse_CurrentUser(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -54,16 +44,16 @@ PROTOBUF_CONSTEXPR SiteLayoutResponse::SiteLayoutResponse(::_pbi::ConstantInitia
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct SiteLayoutResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SiteLayoutResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SiteLayoutResponseDefaultTypeInternal() {}
+struct SiteLayoutResponse_CurrentUserDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponse_CurrentUserDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponse_CurrentUserDefaultTypeInternal() {}
   union {
-    SiteLayoutResponse _instance;
+    SiteLayoutResponse_CurrentUser _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponseDefaultTypeInternal _SiteLayoutResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponse_CurrentUserDefaultTypeInternal _SiteLayoutResponse_CurrentUser_default_instance_;
 
 inline constexpr SiteLayoutRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -291,26 +281,8 @@ struct Heartbeat_HttpDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_HttpDefaultTypeInternal _Heartbeat_Http_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR FileSystemQueryRequest_All::FileSystemQueryRequest_All(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
-#endif  // PROTOBUF_CUSTOM_VTABLE
-struct FileSystemQueryRequest_AllDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileSystemQueryRequest_AllDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileSystemQueryRequest_AllDefaultTypeInternal() {}
-  union {
-    FileSystemQueryRequest_All _instance;
-  };
-};
 
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemQueryRequest_AllDefaultTypeInternal _FileSystemQueryRequest_All_default_instance_;
-
-inline constexpr FileLogsResponse_Item::Impl_::Impl_(
+inline constexpr FileSystemLogsResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : host_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -324,7 +296,7 @@ inline constexpr FileLogsResponse_Item::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR FileLogsResponse_Item::FileLogsResponse_Item(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -332,16 +304,69 @@ PROTOBUF_CONSTEXPR FileLogsResponse_Item::FileLogsResponse_Item(::_pbi::Constant
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct FileLogsResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileLogsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileLogsResponse_ItemDefaultTypeInternal() {}
+struct FileSystemLogsResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileSystemLogsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileSystemLogsResponse_ItemDefaultTypeInternal() {}
   union {
-    FileLogsResponse_Item _instance;
+    FileSystemLogsResponse_Item _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileLogsResponse_ItemDefaultTypeInternal _FileLogsResponse_Item_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsResponse_ItemDefaultTypeInternal _FileSystemLogsResponse_Item_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR FileSystemLogsRequest_All::FileSystemLogsRequest_All(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct FileSystemLogsRequest_AllDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileSystemLogsRequest_AllDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileSystemLogsRequest_AllDefaultTypeInternal() {}
+  union {
+    FileSystemLogsRequest_All _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsRequest_AllDefaultTypeInternal _FileSystemLogsRequest_All_default_instance_;
+
+inline constexpr SiteLayoutResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        available_languages_{},
+        locale_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        git_version_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        build_time_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        user_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SiteLayoutResponse::SiteLayoutResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SiteLayoutResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponseDefaultTypeInternal() {}
+  union {
+    SiteLayoutResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponseDefaultTypeInternal _SiteLayoutResponse_default_instance_;
 
 inline constexpr PodmanStatisticsResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -531,7 +556,33 @@ struct HeartbeatDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatDefaultTypeInternal _Heartbeat_default_instance_;
 
-inline constexpr FileSystemQueryRequest::Impl_::Impl_(
+inline constexpr FileSystemLogsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR FileSystemLogsResponse::FileSystemLogsResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct FileSystemLogsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileSystemLogsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileSystemLogsResponseDefaultTypeInternal() {}
+  union {
+    FileSystemLogsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsResponseDefaultTypeInternal _FileSystemLogsResponse_default_instance_;
+
+inline constexpr FileSystemLogsRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         page_{nullptr},
@@ -539,7 +590,7 @@ inline constexpr FileSystemQueryRequest::Impl_::Impl_(
         _oneof_case_{} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR FileSystemQueryRequest::FileSystemQueryRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR FileSystemLogsRequest::FileSystemLogsRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -547,42 +598,16 @@ PROTOBUF_CONSTEXPR FileSystemQueryRequest::FileSystemQueryRequest(::_pbi::Consta
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct FileSystemQueryRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileSystemQueryRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileSystemQueryRequestDefaultTypeInternal() {}
+struct FileSystemLogsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileSystemLogsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileSystemLogsRequestDefaultTypeInternal() {}
   union {
-    FileSystemQueryRequest _instance;
+    FileSystemLogsRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemQueryRequestDefaultTypeInternal _FileSystemQueryRequest_default_instance_;
-
-inline constexpr FileLogsResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        items_{},
-        pagination_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR FileLogsResponse::FileLogsResponse(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct FileLogsResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileLogsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileLogsResponseDefaultTypeInternal() {}
-  union {
-    FileLogsResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileLogsResponseDefaultTypeInternal _FileLogsResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsRequestDefaultTypeInternal _FileSystemLogsRequest_default_instance_;
 
 inline constexpr PodmanStatisticsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -655,6 +680,15 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutRequest, _impl_.lang_),
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse_CurrentUser, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse_CurrentUser, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -667,6 +701,11 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.available_languages_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.git_version_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.build_time_),
+        0,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Http, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -735,17 +774,17 @@ const ::uint32_t
         ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat, _impl_.by_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest_All, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest_All, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest, _internal_metadata_),
         ~0u,  // no _extensions_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest, _impl_._oneof_case_[0]),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest, _impl_._oneof_case_[0]),
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
@@ -753,33 +792,33 @@ const ::uint32_t
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest, _impl_.page_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest, _impl_.by_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest, _impl_.page_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest, _impl_.by_),
         ~0u,
         ~0u,
         ~0u,
         0,
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse_Item, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse_Item, _impl_.host_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse_Item, _impl_.file_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse_Item, _impl_.message_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.host_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.file_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse, _impl_.items_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileLogsResponse, _impl_.pagination_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _impl_.pagination_),
         ~0u,
         0,
         ~0u,  // no _has_bits_
@@ -948,30 +987,32 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutRequest)},
-        {9, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse)},
-        {22, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
-        {31, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
-        {39, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
-        {47, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
-        {55, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
-        {66, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
-        {74, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
-        {89, -1, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest_All)},
-        {97, 110, -1, sizeof(::palm::monitoring::v1::FileSystemQueryRequest)},
-        {114, -1, -1, sizeof(::palm::monitoring::v1::FileLogsResponse_Item)},
-        {125, 135, -1, sizeof(::palm::monitoring::v1::FileLogsResponse)},
-        {137, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {145, 161, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {168, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {180, 190, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {192, 202, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {204, 227, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {242, 252, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {254, 274, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {286, 296, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {9, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse_CurrentUser)},
+        {18, 31, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse)},
+        {36, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
+        {45, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
+        {53, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
+        {61, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
+        {69, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
+        {80, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
+        {88, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
+        {103, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest_All)},
+        {111, 124, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
+        {128, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
+        {139, 149, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
+        {151, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {159, 175, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {182, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {194, 204, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {206, 216, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {218, 241, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {256, 266, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {268, 288, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {300, 310, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
+    &::palm::monitoring::v1::_SiteLayoutResponse_CurrentUser_default_instance_._instance,
     &::palm::monitoring::v1::_SiteLayoutResponse_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_Http_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_MySql_default_instance_._instance,
@@ -980,10 +1021,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_Heartbeat_Redis_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_Minio_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_default_instance_._instance,
-    &::palm::monitoring::v1::_FileSystemQueryRequest_All_default_instance_._instance,
-    &::palm::monitoring::v1::_FileSystemQueryRequest_default_instance_._instance,
-    &::palm::monitoring::v1::_FileLogsResponse_Item_default_instance_._instance,
-    &::palm::monitoring::v1::_FileLogsResponse_default_instance_._instance,
+    &::palm::monitoring::v1::_FileSystemLogsRequest_All_default_instance_._instance,
+    &::palm::monitoring::v1::_FileSystemLogsRequest_default_instance_._instance,
+    &::palm::monitoring::v1::_FileSystemLogsResponse_Item_default_instance_._instance,
+    &::palm::monitoring::v1::_FileSystemLogsResponse_default_instance_._instance,
     &::palm::monitoring::v1::_PodmanQueryRequest_All_default_instance_._instance,
     &::palm::monitoring::v1::_PodmanQueryRequest_default_instance_._instance,
     &::palm::monitoring::v1::_PodmanLogsResponse_Item_default_instance_._instance,
@@ -999,80 +1040,83 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     "\n\020monitoring.proto\022\022palm.monitoring.v1\032\037"
     "google/protobuf/timestamp.proto\032\014portal."
     "proto\"!\n\021SiteLayoutRequest\022\014\n\004lang\030\001 \001(\t"
-    "\"x\n\022SiteLayoutResponse\022\014\n\004user\030\001 \001(\t\022\016\n\006"
-    "locale\030\010 \001(\t\022\033\n\023available_languages\030\t \003("
-    "\t\022\023\n\013git_version\030\013 \001(\t\022\022\n\nbuild_time\030\014 \001"
-    "(\t\"\332\003\n\tHeartbeat\0222\n\004http\030\001 \001(\0132\".palm.mo"
-    "nitoring.v1.Heartbeat.HttpH\000\0224\n\005mysql\030\002 "
-    "\001(\0132#.palm.monitoring.v1.Heartbeat.MySql"
-    "H\000\022>\n\npostgresql\030\003 \001(\0132(.palm.monitoring"
-    ".v1.Heartbeat.PostgreSqlH\000\022:\n\010rabbitmq\030\004"
-    " \001(\0132&.palm.monitoring.v1.Heartbeat.Rabb"
-    "itMQH\000\0224\n\005redis\030\005 \001(\0132#.palm.monitoring."
-    "v1.Heartbeat.RedisH\000\0224\n\005minio\030\006 \001(\0132#.pa"
-    "lm.monitoring.v1.Heartbeat.MinioH\000\032\023\n\004Ht"
-    "tp\022\013\n\003url\030\001 \001(\t\032\007\n\005MySql\032\014\n\nPostgreSql\032\n"
-    "\n\010RabbitMQ\0324\n\005Redis\022\014\n\004host\030\001 \001(\t\022\014\n\004por"
-    "t\030\002 \001(\005\022\017\n\007cluster\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\""
-    "\250\001\n\026FileSystemQueryRequest\022=\n\003all\030\001 \001(\0132"
-    "..palm.monitoring.v1.FileSystemQueryRequ"
-    "est.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH"
-    "\000\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032\005\n"
-    "\003AllB\004\n\002by\"\261\001\n\020FileLogsResponse\0228\n\005items"
-    "\030\001 \003(\0132).palm.monitoring.v1.FileLogsResp"
-    "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por"
-    "tal.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022"
-    "\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n\022Podma"
-    "nQueryRequest\0229\n\003all\030\001 \001(\0132*.palm.monito"
-    "ring.v1.PodmanQueryRequest.AllH\000\022\016\n\004host"
-    "\030\002 \001(\tH\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030\n\016cont"
-    "ainer_name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.googl"
-    "e.protobuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.googl"
-    "e.protobuf.Timestamp\022\"\n\004page\030c \001(\0132\024.pal"
-    "m.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022Podman"
-    "LogsResponse\022:\n\005items\030\001 \003(\0132+.palm.monit"
-    "oring.v1.PodmanLogsResponse.Item\022.\n\npagi"
-    "nation\030\t \001(\0132\032.palm.portal.v1.Pagination"
-    "\032O\n\004Item\022\014\n\004host\030\001 \001(\t\022\024\n\014container_id\030\002"
-    " \001(\t\022\017\n\007message\030\003 \001(\t\022\022\n\ncreated_at\030\t \001("
-    "\t\"\224\004\n\030PodmanContainersResponse\022@\n\005items\030"
-    "\001 \003(\01321.palm.monitoring.v1.PodmanContain"
-    "ersResponse.Item\022.\n\npagination\030\t \001(\0132\032.p"
-    "alm.portal.v1.Pagination\032\205\003\n\004Item\022\n\n\002id\030"
-    "\001 \001(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M"
-    "\n\006labels\030\004 \003(\0132=.palm.monitoring.v1.Podm"
-    "anContainersResponse.Item.LabelsEntry\022\016\n"
-    "\006mounts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030"
-    "\007 \003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nsta"
-    "rted_at\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_"
-    "at\030\026 \001(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001("
-    "\t\022.\n\ncreated_at\030c \001(\0132\032.google.protobuf."
-    "Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
-    "\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsRes"
-    "ponse\022@\n\005items\030\001 \003(\01321.palm.monitoring.v"
-    "1.PodmanStatisticsResponse.Item\022.\n\npagin"
-    "ation\030\t \001(\0132\032.palm.portal.v1.Pagination\032"
-    "\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cp"
-    "u_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg"
-    "_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_per"
-    "cent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t"
-    " \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncrea"
-    "ted_at\030c \001(\0132\032.google.protobuf.Timestamp"
-    "2a\n\004Site\022Y\n\006Layout\022%.palm.monitoring.v1."
-    "SiteLayoutRequest\032&.palm.monitoring.v1.S"
-    "iteLayoutResponse\"\0002h\n\nFileSystem\022Z\n\004Log"
-    "s\022*.palm.monitoring.v1.FileSystemQueryRe"
-    "quest\032$.palm.monitoring.v1.FileLogsRespo"
-    "nse\"\0002\256\002\n\006Podman\022X\n\004Logs\022&.palm.monitori"
-    "ng.v1.PodmanQueryRequest\032&.palm.monitori"
-    "ng.v1.PodmanLogsResponse\"\000\022d\n\nContainers"
-    "\022&.palm.monitoring.v1.PodmanQueryRequest"
-    "\032,.palm.monitoring.v1.PodmanContainersRe"
-    "sponse\"\000\022d\n\nStatistics\022&.palm.monitoring"
-    ".v1.PodmanQueryRequest\032,.palm.monitoring"
-    ".v1.PodmanStatisticsResponse\"\000B4\n0com.gi"
-    "thub.saturn_xiv.palm.plugins.monitoring."
-    "v1P\001b\006proto3"
+    "\"\327\001\n\022SiteLayoutResponse\022E\n\004user\030\001 \001(\01322."
+    "palm.monitoring.v1.SiteLayoutResponse.Cu"
+    "rrentUserH\000\210\001\001\022\016\n\006locale\030\010 \001(\t\022\033\n\023availa"
+    "ble_languages\030\t \003(\t\022\023\n\013git_version\030\013 \001(\t"
+    "\022\022\n\nbuild_time\030\014 \001(\t\032\033\n\013CurrentUser\022\014\n\004n"
+    "ame\030\001 \001(\tB\007\n\005_user\"\332\003\n\tHeartbeat\0222\n\004http"
+    "\030\001 \001(\0132\".palm.monitoring.v1.Heartbeat.Ht"
+    "tpH\000\0224\n\005mysql\030\002 \001(\0132#.palm.monitoring.v1"
+    ".Heartbeat.MySqlH\000\022>\n\npostgresql\030\003 \001(\0132("
+    ".palm.monitoring.v1.Heartbeat.PostgreSql"
+    "H\000\022:\n\010rabbitmq\030\004 \001(\0132&.palm.monitoring.v"
+    "1.Heartbeat.RabbitMQH\000\0224\n\005redis\030\005 \001(\0132#."
+    "palm.monitoring.v1.Heartbeat.RedisH\000\0224\n\005"
+    "minio\030\006 \001(\0132#.palm.monitoring.v1.Heartbe"
+    "at.MinioH\000\032\023\n\004Http\022\013\n\003url\030\001 \001(\t\032\007\n\005MySql"
+    "\032\014\n\nPostgreSql\032\n\n\010RabbitMQ\0324\n\005Redis\022\014\n\004h"
+    "ost\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\022\017\n\007cluster\030\003 \001(\010"
+    "\032\007\n\005MinioB\004\n\002by\"\246\001\n\025FileSystemLogsReques"
+    "t\022<\n\003all\030\001 \001(\0132-.palm.monitoring.v1.File"
+    "SystemLogsRequest.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022"
+    "\016\n\004file\030\003 \001(\tH\000\022\"\n\004page\030c \001(\0132\024.palm.por"
+    "tal.v1.Page\032\005\n\003AllB\004\n\002by\"\275\001\n\026FileSystemL"
+    "ogsResponse\022>\n\005items\030\001 \003(\0132/.palm.monito"
+    "ring.v1.FileSystemLogsResponse.Item\022.\n\np"
+    "agination\030\t \001(\0132\032.palm.portal.v1.Paginat"
+    "ion\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n\004file\030\002 \001(\t\022"
+    "\017\n\007message\030\003 \001(\t\"\224\002\n\022PodmanQueryRequest\022"
+    "9\n\003all\030\001 \001(\0132*.palm.monitoring.v1.Podman"
+    "QueryRequest.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\026\n\014co"
+    "ntainer_id\030\003 \001(\tH\000\022\030\n\016container_name\030\004 \001"
+    "(\tH\000\022(\n\004from\030[ \001(\0132\032.google.protobuf.Tim"
+    "estamp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Tim"
+    "estamp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Pa"
+    "ge\032\005\n\003AllB\004\n\002by\"\321\001\n\022PodmanLogsResponse\022:"
+    "\n\005items\030\001 \003(\0132+.palm.monitoring.v1.Podma"
+    "nLogsResponse.Item\022.\n\npagination\030\t \001(\0132\032"
+    ".palm.portal.v1.Pagination\032O\n\004Item\022\014\n\004ho"
+    "st\030\001 \001(\t\022\024\n\014container_id\030\002 \001(\t\022\017\n\007messag"
+    "e\030\003 \001(\t\022\022\n\ncreated_at\030\t \001(\t\"\224\004\n\030PodmanCo"
+    "ntainersResponse\022@\n\005items\030\001 \003(\01321.palm.m"
+    "onitoring.v1.PodmanContainersResponse.It"
+    "em\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1."
+    "Pagination\032\205\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n\005image"
+    "\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labels\030\004 \003(\013"
+    "2=.palm.monitoring.v1.PodmanContainersRe"
+    "sponse.Item.LabelsEntry\022\016\n\006mounts\030\005 \003(\t\022"
+    "\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n\003pid\030\013"
+    " \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_at\030\r \001(\005\022"
+    "\016\n\006exited\030\025 \001(\010\022\021\n\texited_at\030\026 \001(\005\022\021\n\tex"
+    "it_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022.\n\ncreated_a"
+    "t\030c \001(\0132\032.google.protobuf.Timestamp\032-\n\013L"
+    "abelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002"
+    "8\001\"\375\002\n\030PodmanStatisticsResponse\022@\n\005items"
+    "\030\001 \003(\01321.palm.monitoring.v1.PodmanStatis"
+    "ticsResponse.Item\022.\n\npagination\030\t \001(\0132\032."
+    "palm.portal.v1.Pagination\032\356\001\n\004Item\022\n\n\002id"
+    "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_time\030\003 \001(\t\022\023"
+    "\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_cpu\030\005 \001(\t\022\021\n\t"
+    "mem_usage\030\006 \001(\t\022\023\n\013mem_percent\030\007 \001(\t\022\016\n\006"
+    "net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001(\t\022\014\n\004pids\030\n"
+    " \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032"
+    ".google.protobuf.Timestamp2a\n\004Site\022Y\n\006La"
+    "yout\022%.palm.monitoring.v1.SiteLayoutRequ"
+    "est\032&.palm.monitoring.v1.SiteLayoutRespo"
+    "nse\"\0002m\n\nFileSystem\022_\n\004Logs\022).palm.monit"
+    "oring.v1.FileSystemLogsRequest\032*.palm.mo"
+    "nitoring.v1.FileSystemLogsResponse\"\0002\256\002\n"
+    "\006Podman\022X\n\004Logs\022&.palm.monitoring.v1.Pod"
+    "manQueryRequest\032&.palm.monitoring.v1.Pod"
+    "manLogsResponse\"\000\022d\n\nContainers\022&.palm.m"
+    "onitoring.v1.PodmanQueryRequest\032,.palm.m"
+    "onitoring.v1.PodmanContainersResponse\"\000\022"
+    "d\n\nStatistics\022&.palm.monitoring.v1.Podma"
+    "nQueryRequest\032,.palm.monitoring.v1.Podma"
+    "nStatisticsResponse\"\000B4\n0com.github.satu"
+    "rn_xiv.palm.plugins.monitoring.v1P\001b\006pro"
+    "to3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1083,13 +1127,13 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    3052,
+    3163,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
     descriptor_table_monitoring_2eproto_deps,
     2,
-    22,
+    23,
     schemas,
     file_default_instances,
     TableStruct_monitoring_2eproto::offsets,
@@ -1332,8 +1376,243 @@ void SiteLayoutRequest::InternalSwap(SiteLayoutRequest* PROTOBUF_RESTRICT other)
 }
 // ===================================================================
 
+class SiteLayoutResponse_CurrentUser::_Internal {
+ public:
+};
+
+SiteLayoutResponse_CurrentUser::SiteLayoutResponse_CurrentUser(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+}
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse_CurrentUser::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::SiteLayoutResponse_CurrentUser& from_msg)
+      : name_(arena, from.name_),
+        _cached_size_{0} {}
+
+SiteLayoutResponse_CurrentUser::SiteLayoutResponse_CurrentUser(
+    ::google::protobuf::Arena* arena,
+    const SiteLayoutResponse_CurrentUser& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SiteLayoutResponse_CurrentUser* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+}
+inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse_CurrentUser::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        _cached_size_{0} {}
+
+inline void SiteLayoutResponse_CurrentUser::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+SiteLayoutResponse_CurrentUser::~SiteLayoutResponse_CurrentUser() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+  SharedDtor(*this);
+}
+inline void SiteLayoutResponse_CurrentUser::SharedDtor(MessageLite& self) {
+  SiteLayoutResponse_CurrentUser& this_ = static_cast<SiteLayoutResponse_CurrentUser&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.name_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* SiteLayoutResponse_CurrentUser::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SiteLayoutResponse_CurrentUser(arena);
+}
+constexpr auto SiteLayoutResponse_CurrentUser::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SiteLayoutResponse_CurrentUser),
+                                            alignof(SiteLayoutResponse_CurrentUser));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SiteLayoutResponse_CurrentUser::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SiteLayoutResponse_CurrentUser_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SiteLayoutResponse_CurrentUser::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SiteLayoutResponse_CurrentUser>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SiteLayoutResponse_CurrentUser::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SiteLayoutResponse_CurrentUser>(), &SiteLayoutResponse_CurrentUser::ByteSizeLong,
+            &SiteLayoutResponse_CurrentUser::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SiteLayoutResponse_CurrentUser, _impl_._cached_size_),
+        false,
+    },
+    &SiteLayoutResponse_CurrentUser::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SiteLayoutResponse_CurrentUser::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 62, 2> SiteLayoutResponse_CurrentUser::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse_CurrentUser, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse_CurrentUser, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\61\4\0\0\0\0\0\0"
+    "palm.monitoring.v1.SiteLayoutResponse.CurrentUser"
+    "name"
+  }},
+};
+
+PROTOBUF_NOINLINE void SiteLayoutResponse_CurrentUser::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SiteLayoutResponse_CurrentUser::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SiteLayoutResponse_CurrentUser& this_ = static_cast<const SiteLayoutResponse_CurrentUser&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SiteLayoutResponse_CurrentUser::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SiteLayoutResponse_CurrentUser& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string name = 1;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.CurrentUser.name");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SiteLayoutResponse_CurrentUser::ByteSizeLong(const MessageLite& base) {
+          const SiteLayoutResponse_CurrentUser& this_ = static_cast<const SiteLayoutResponse_CurrentUser&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SiteLayoutResponse_CurrentUser::ByteSizeLong() const {
+          const SiteLayoutResponse_CurrentUser& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string name = 1;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SiteLayoutResponse_CurrentUser::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SiteLayoutResponse_CurrentUser*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutResponse_CurrentUser&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutResponse_CurrentUser::CopyFrom(const SiteLayoutResponse_CurrentUser& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SiteLayoutResponse.CurrentUser)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SiteLayoutResponse_CurrentUser::InternalSwap(SiteLayoutResponse_CurrentUser* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+}
+
+::google::protobuf::Metadata SiteLayoutResponse_CurrentUser::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class SiteLayoutResponse::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<SiteLayoutResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_._has_bits_);
 };
 
 SiteLayoutResponse::SiteLayoutResponse(::google::protobuf::Arena* arena)
@@ -1348,12 +1627,12 @@ SiteLayoutResponse::SiteLayoutResponse(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::monitoring::v1::SiteLayoutResponse& from_msg)
-      : available_languages_{visibility, arena, from.available_languages_},
-        user_(arena, from.user_),
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        available_languages_{visibility, arena, from.available_languages_},
         locale_(arena, from.locale_),
         git_version_(arena, from.git_version_),
-        build_time_(arena, from.build_time_),
-        _cached_size_{0} {}
+        build_time_(arena, from.build_time_) {}
 
 SiteLayoutResponse::SiteLayoutResponse(
     ::google::protobuf::Arena* arena,
@@ -1368,21 +1647,25 @@ SiteLayoutResponse::SiteLayoutResponse(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.user_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>(
+                              arena, *from._impl_.user_)
+                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : available_languages_{visibility, arena},
-        user_(arena),
+      : _cached_size_{0},
+        available_languages_{visibility, arena},
         locale_(arena),
         git_version_(arena),
-        build_time_(arena),
-        _cached_size_{0} {}
+        build_time_(arena) {}
 
 inline void SiteLayoutResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.user_ = {};
 }
 SiteLayoutResponse::~SiteLayoutResponse() {
   // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutResponse)
@@ -1392,10 +1675,10 @@ inline void SiteLayoutResponse::SharedDtor(MessageLite& self) {
   SiteLayoutResponse& this_ = static_cast<SiteLayoutResponse&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.user_.Destroy();
   this_._impl_.locale_.Destroy();
   this_._impl_.git_version_.Destroy();
   this_._impl_.build_time_.Destroy();
+  delete this_._impl_.user_;
   this_._impl_.~Impl_();
 }
 
@@ -1447,17 +1730,17 @@ const ::google::protobuf::internal::ClassData* SiteLayoutResponse::GetClassData(
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 0, 96, 2> SiteLayoutResponse::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 1, 92, 2> SiteLayoutResponse::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_._has_bits_),
     0, // no _extensions_
     12, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     4294963838,  // skipmap
     offsetof(decltype(_table_), field_entries),
     5,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1468,9 +1751,9 @@ const ::_pbi::TcParseTable<3, 5, 0, 96, 2> SiteLayoutResponse::_table_ = {
     // string locale = 8;
     {::_pbi::TcParser::FastUS1,
      {66, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.locale_)}},
-    // string user = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_)}},
+    // optional .palm.monitoring.v1.SiteLayoutResponse.CurrentUser user = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // string git_version = 11;
     {::_pbi::TcParser::FastUS1,
@@ -1484,27 +1767,26 @@ const ::_pbi::TcParseTable<3, 5, 0, 96, 2> SiteLayoutResponse::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // string user = 1;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional .palm.monitoring.v1.SiteLayoutResponse.CurrentUser user = 1;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string locale = 8;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.locale_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.locale_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated string available_languages = 9;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.available_languages_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.available_languages_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     // string git_version = 11;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.git_version_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.git_version_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string build_time = 12;
-    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.build_time_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.build_time_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\45\4\6\23\13\12\0\0"
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>()},
+  }}, {{
+    "\45\0\6\23\13\12\0\0"
     "palm.monitoring.v1.SiteLayoutResponse"
-    "user"
     "locale"
     "available_languages"
     "git_version"
@@ -1520,10 +1802,15 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
   (void) cached_has_bits;
 
   _impl_.available_languages_.Clear();
-  _impl_.user_.ClearToEmpty();
   _impl_.locale_.ClearToEmpty();
   _impl_.git_version_.ClearToEmpty();
   _impl_.build_time_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.user_ != nullptr);
+    _impl_.user_->Clear();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1542,12 +1829,12 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string user = 1;
-          if (!this_._internal_user().empty()) {
-            const std::string& _s = this_._internal_user();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SiteLayoutResponse.user");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional .palm.monitoring.v1.SiteLayoutResponse.CurrentUser user = 1;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                1, *this_._impl_.user_, this_._impl_.user_->GetCachedSize(), target,
+                stream);
           }
 
           // string locale = 8;
@@ -1618,11 +1905,6 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
             }
           }
            {
-            // string user = 1;
-            if (!this_._internal_user().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_user());
-            }
             // string locale = 8;
             if (!this_._internal_locale().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1639,6 +1921,14 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
                                               this_._internal_build_time());
             }
           }
+           {
+            // optional .palm.monitoring.v1.SiteLayoutResponse.CurrentUser user = 1;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.user_);
+            }
+          }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
@@ -1646,15 +1936,13 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
 void SiteLayoutResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<SiteLayoutResponse*>(&to_msg);
   auto& from = static_cast<const SiteLayoutResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SiteLayoutResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   _this->_internal_mutable_available_languages()->MergeFrom(from._internal_available_languages());
-  if (!from._internal_user().empty()) {
-    _this->_internal_set_user(from._internal_user());
-  }
   if (!from._internal_locale().empty()) {
     _this->_internal_set_locale(from._internal_locale());
   }
@@ -1664,6 +1952,17 @@ void SiteLayoutResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
   if (!from._internal_build_time().empty()) {
     _this->_internal_set_build_time(from._internal_build_time());
   }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.user_ != nullptr);
+    if (_this->_impl_.user_ == nullptr) {
+      _this->_impl_.user_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>(arena, *from._impl_.user_);
+    } else {
+      _this->_impl_.user_->MergeFrom(*from._impl_.user_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1680,11 +1979,12 @@ void SiteLayoutResponse::InternalSwap(SiteLayoutResponse* PROTOBUF_RESTRICT othe
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.available_languages_.InternalSwap(&other->_impl_.available_languages_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.user_, &other->_impl_.user_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locale_, &other->_impl_.locale_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.git_version_, &other->_impl_.git_version_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.build_time_, &other->_impl_.build_time_, arena);
+  swap(_impl_.user_, other->_impl_.user_);
 }
 
 ::google::protobuf::Metadata SiteLayoutResponse::GetMetadata() const {
@@ -3175,71 +3475,71 @@ void Heartbeat::InternalSwap(Heartbeat* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class FileSystemQueryRequest_All::_Internal {
+class FileSystemLogsRequest_All::_Internal {
  public:
 };
 
-FileSystemQueryRequest_All::FileSystemQueryRequest_All(::google::protobuf::Arena* arena)
+FileSystemLogsRequest_All::FileSystemLogsRequest_All(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::internal::ZeroFieldsBase(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileSystemQueryRequest.All)
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileSystemLogsRequest.All)
 }
-FileSystemQueryRequest_All::FileSystemQueryRequest_All(
+FileSystemLogsRequest_All::FileSystemLogsRequest_All(
     ::google::protobuf::Arena* arena,
-    const FileSystemQueryRequest_All& from)
+    const FileSystemLogsRequest_All& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::internal::ZeroFieldsBase(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  FileSystemQueryRequest_All* const _this = this;
+  FileSystemLogsRequest_All* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
 
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemQueryRequest.All)
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemLogsRequest.All)
 }
 
-inline void* FileSystemQueryRequest_All::PlacementNew_(const void*, void* mem,
+inline void* FileSystemLogsRequest_All::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) FileSystemQueryRequest_All(arena);
+  return ::new (mem) FileSystemLogsRequest_All(arena);
 }
-constexpr auto FileSystemQueryRequest_All::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(FileSystemQueryRequest_All),
-                                            alignof(FileSystemQueryRequest_All));
+constexpr auto FileSystemLogsRequest_All::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(FileSystemLogsRequest_All),
+                                            alignof(FileSystemLogsRequest_All));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull FileSystemQueryRequest_All::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull FileSystemLogsRequest_All::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_FileSystemQueryRequest_All_default_instance_._instance,
+        &_FileSystemLogsRequest_All_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &FileSystemQueryRequest_All::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<FileSystemQueryRequest_All>(),
+        &FileSystemLogsRequest_All::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<FileSystemLogsRequest_All>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &FileSystemQueryRequest_All::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<FileSystemQueryRequest_All>(), &FileSystemQueryRequest_All::ByteSizeLong,
-            &FileSystemQueryRequest_All::_InternalSerialize,
+        &FileSystemLogsRequest_All::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<FileSystemLogsRequest_All>(), &FileSystemLogsRequest_All::ByteSizeLong,
+            &FileSystemLogsRequest_All::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest_All, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest_All, _impl_._cached_size_),
         false,
     },
-    &FileSystemQueryRequest_All::kDescriptorMethods,
+    &FileSystemLogsRequest_All::kDescriptorMethods,
     &descriptor_table_monitoring_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* FileSystemQueryRequest_All::GetClassData() const {
+const ::google::protobuf::internal::ClassData* FileSystemLogsRequest_All::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> FileSystemQueryRequest_All::_table_ = {
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> FileSystemLogsRequest_All::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -3254,7 +3554,7 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> FileSystemQueryRequest_All::_table_ = 
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemQueryRequest_All>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemLogsRequest_All>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
@@ -3273,22 +3573,22 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> FileSystemQueryRequest_All::_table_ = 
 
 
 
-::google::protobuf::Metadata FileSystemQueryRequest_All::GetMetadata() const {
+::google::protobuf::Metadata FileSystemLogsRequest_All::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class FileSystemQueryRequest::_Internal {
+class FileSystemLogsRequest::_Internal {
  public:
   using HasBits =
-      decltype(std::declval<FileSystemQueryRequest>()._impl_._has_bits_);
+      decltype(std::declval<FileSystemLogsRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_._has_bits_);
   static constexpr ::int32_t kOneofCaseOffset =
-      PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemQueryRequest, _impl_._oneof_case_);
+      PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest, _impl_._oneof_case_);
 };
 
-void FileSystemQueryRequest::set_allocated_all(::palm::monitoring::v1::FileSystemQueryRequest_All* all) {
+void FileSystemLogsRequest::set_allocated_all(::palm::monitoring::v1::FileSystemLogsRequest_All* all) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (all) {
@@ -3299,39 +3599,39 @@ void FileSystemQueryRequest::set_allocated_all(::palm::monitoring::v1::FileSyste
     set_has_all();
     _impl_.by_.all_ = all;
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemQueryRequest.all)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemLogsRequest.all)
 }
-void FileSystemQueryRequest::clear_page() {
+void FileSystemLogsRequest::clear_page() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.page_ != nullptr) _impl_.page_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-FileSystemQueryRequest::FileSystemQueryRequest(::google::protobuf::Arena* arena)
+FileSystemLogsRequest::FileSystemLogsRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileSystemQueryRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileSystemLogsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE FileSystemQueryRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE FileSystemLogsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::monitoring::v1::FileSystemQueryRequest& from_msg)
+    const Impl_& from, const ::palm::monitoring::v1::FileSystemLogsRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         by_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
-FileSystemQueryRequest::FileSystemQueryRequest(
+FileSystemLogsRequest::FileSystemLogsRequest(
     ::google::protobuf::Arena* arena,
-    const FileSystemQueryRequest& from)
+    const FileSystemLogsRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  FileSystemQueryRequest* const _this = this;
+  FileSystemLogsRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -3344,7 +3644,7 @@ FileSystemQueryRequest::FileSystemQueryRequest(
     case BY_NOT_SET:
       break;
       case kAll:
-        _impl_.by_.all_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::FileSystemQueryRequest_All>(arena, *from._impl_.by_.all_);
+        _impl_.by_.all_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::FileSystemLogsRequest_All>(arena, *from._impl_.by_.all_);
         break;
       case kHost:
         new (&_impl_.by_.host_) decltype(_impl_.by_.host_){arena, from._impl_.by_.host_};
@@ -3354,25 +3654,25 @@ FileSystemQueryRequest::FileSystemQueryRequest(
         break;
   }
 
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemQueryRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemLogsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE FileSystemQueryRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE FileSystemLogsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
         by_{},
         _oneof_case_{} {}
 
-inline void FileSystemQueryRequest::SharedCtor(::_pb::Arena* arena) {
+inline void FileSystemLogsRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.page_ = {};
 }
-FileSystemQueryRequest::~FileSystemQueryRequest() {
-  // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileSystemQueryRequest)
+FileSystemLogsRequest::~FileSystemLogsRequest() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileSystemLogsRequest)
   SharedDtor(*this);
 }
-inline void FileSystemQueryRequest::SharedDtor(MessageLite& self) {
-  FileSystemQueryRequest& this_ = static_cast<FileSystemQueryRequest&>(self);
+inline void FileSystemLogsRequest::SharedDtor(MessageLite& self) {
+  FileSystemLogsRequest& this_ = static_cast<FileSystemLogsRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   delete this_._impl_.page_;
@@ -3382,8 +3682,8 @@ inline void FileSystemQueryRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-void FileSystemQueryRequest::clear_by() {
-// @@protoc_insertion_point(one_of_clear_start:palm.monitoring.v1.FileSystemQueryRequest)
+void FileSystemLogsRequest::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.monitoring.v1.FileSystemLogsRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   switch (by_case()) {
     case kAll: {
@@ -3410,45 +3710,45 @@ void FileSystemQueryRequest::clear_by() {
 }
 
 
-inline void* FileSystemQueryRequest::PlacementNew_(const void*, void* mem,
+inline void* FileSystemLogsRequest::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) FileSystemQueryRequest(arena);
+  return ::new (mem) FileSystemLogsRequest(arena);
 }
-constexpr auto FileSystemQueryRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(FileSystemQueryRequest),
-                                            alignof(FileSystemQueryRequest));
+constexpr auto FileSystemLogsRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(FileSystemLogsRequest),
+                                            alignof(FileSystemLogsRequest));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull FileSystemQueryRequest::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull FileSystemLogsRequest::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_FileSystemQueryRequest_default_instance_._instance,
+        &_FileSystemLogsRequest_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &FileSystemQueryRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<FileSystemQueryRequest>(),
+        &FileSystemLogsRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<FileSystemLogsRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &FileSystemQueryRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<FileSystemQueryRequest>(), &FileSystemQueryRequest::ByteSizeLong,
-            &FileSystemQueryRequest::_InternalSerialize,
+        &FileSystemLogsRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<FileSystemLogsRequest>(), &FileSystemLogsRequest::ByteSizeLong,
+            &FileSystemLogsRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_._cached_size_),
         false,
     },
-    &FileSystemQueryRequest::kDescriptorMethods,
+    &FileSystemLogsRequest::kDescriptorMethods,
     &descriptor_table_monitoring_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* FileSystemQueryRequest::GetClassData() const {
+const ::google::protobuf::internal::ClassData* FileSystemLogsRequest::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 4, 2, 58, 7> FileSystemQueryRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 4, 2, 57, 7> FileSystemLogsRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_._has_bits_),
     0, // no _extensions_
     99, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -3461,42 +3761,42 @@ const ::_pbi::TcParseTable<0, 4, 2, 58, 7> FileSystemQueryRequest::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemQueryRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemLogsRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // .palm.portal.v1.Page page = 99;
     {::_pbi::TcParser::FastMtS2,
-     {1690, 0, 1, PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_.page_)}},
+     {1690, 0, 1, PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_.page_)}},
   }}, {{
     99, 0, 1,
     65534, 3,
     65535, 65535
   }}, {{
-    // .palm.monitoring.v1.FileSystemQueryRequest.All all = 1;
-    {PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_.by_.all_), _Internal::kOneofCaseOffset + 0, 0,
+    // .palm.monitoring.v1.FileSystemLogsRequest.All all = 1;
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_.by_.all_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // string host = 2;
-    {PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_.by_.host_), _Internal::kOneofCaseOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_.by_.host_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string file = 3;
-    {PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_.by_.file_), _Internal::kOneofCaseOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_.by_.file_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .palm.portal.v1.Page page = 99;
-    {PROTOBUF_FIELD_OFFSET(FileSystemQueryRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 1,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemQueryRequest_All>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemLogsRequest_All>()},
     {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
   }}, {{
-    "\51\0\4\4\0\0\0\0"
-    "palm.monitoring.v1.FileSystemQueryRequest"
+    "\50\0\4\4\0\0\0\0"
+    "palm.monitoring.v1.FileSystemLogsRequest"
     "host"
     "file"
   }},
 };
 
-PROTOBUF_NOINLINE void FileSystemQueryRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.FileSystemQueryRequest)
+PROTOBUF_NOINLINE void FileSystemLogsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.FileSystemLogsRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -3513,17 +3813,17 @@ PROTOBUF_NOINLINE void FileSystemQueryRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* FileSystemQueryRequest::_InternalSerialize(
+        ::uint8_t* FileSystemLogsRequest::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const FileSystemQueryRequest& this_ = static_cast<const FileSystemQueryRequest&>(base);
+          const FileSystemLogsRequest& this_ = static_cast<const FileSystemLogsRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* FileSystemQueryRequest::_InternalSerialize(
+        ::uint8_t* FileSystemLogsRequest::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const FileSystemQueryRequest& this_ = *this;
+          const FileSystemLogsRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.FileSystemQueryRequest)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.FileSystemLogsRequest)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -3537,14 +3837,14 @@ PROTOBUF_NOINLINE void FileSystemQueryRequest::Clear() {
             case kHost: {
               const std::string& _s = this_._internal_host();
               ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemQueryRequest.host");
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsRequest.host");
               target = stream->WriteStringMaybeAliased(2, _s, target);
               break;
             }
             case kFile: {
               const std::string& _s = this_._internal_file();
               ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemQueryRequest.file");
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsRequest.file");
               target = stream->WriteStringMaybeAliased(3, _s, target);
               break;
             }
@@ -3564,18 +3864,18 @@ PROTOBUF_NOINLINE void FileSystemQueryRequest::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.FileSystemQueryRequest)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.FileSystemLogsRequest)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t FileSystemQueryRequest::ByteSizeLong(const MessageLite& base) {
-          const FileSystemQueryRequest& this_ = static_cast<const FileSystemQueryRequest&>(base);
+        ::size_t FileSystemLogsRequest::ByteSizeLong(const MessageLite& base) {
+          const FileSystemLogsRequest& this_ = static_cast<const FileSystemLogsRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t FileSystemQueryRequest::ByteSizeLong() const {
-          const FileSystemQueryRequest& this_ = *this;
+        ::size_t FileSystemLogsRequest::ByteSizeLong() const {
+          const FileSystemLogsRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.FileSystemQueryRequest)
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.FileSystemLogsRequest)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -3591,7 +3891,7 @@ PROTOBUF_NOINLINE void FileSystemQueryRequest::Clear() {
             }
           }
           switch (this_.by_case()) {
-            // .palm.monitoring.v1.FileSystemQueryRequest.All all = 1;
+            // .palm.monitoring.v1.FileSystemLogsRequest.All all = 1;
             case kAll: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.all_);
@@ -3617,11 +3917,11 @@ PROTOBUF_NOINLINE void FileSystemQueryRequest::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void FileSystemQueryRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<FileSystemQueryRequest*>(&to_msg);
-  auto& from = static_cast<const FileSystemQueryRequest&>(from_msg);
+void FileSystemLogsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<FileSystemLogsRequest*>(&to_msg);
+  auto& from = static_cast<const FileSystemLogsRequest&>(from_msg);
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileSystemQueryRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileSystemLogsRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -3651,7 +3951,7 @@ void FileSystemQueryRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, 
       case kAll: {
         if (oneof_needs_init) {
           _this->_impl_.by_.all_ =
-              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::FileSystemQueryRequest_All>(arena, *from._impl_.by_.all_);
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::FileSystemLogsRequest_All>(arena, *from._impl_.by_.all_);
         } else {
           _this->_impl_.by_.all_->MergeFrom(from._internal_all());
         }
@@ -3678,15 +3978,15 @@ void FileSystemQueryRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, 
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void FileSystemQueryRequest::CopyFrom(const FileSystemQueryRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.FileSystemQueryRequest)
+void FileSystemLogsRequest::CopyFrom(const FileSystemLogsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.FileSystemLogsRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void FileSystemQueryRequest::InternalSwap(FileSystemQueryRequest* PROTOBUF_RESTRICT other) {
+void FileSystemLogsRequest::InternalSwap(FileSystemLogsRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
@@ -3695,49 +3995,49 @@ void FileSystemQueryRequest::InternalSwap(FileSystemQueryRequest* PROTOBUF_RESTR
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::google::protobuf::Metadata FileSystemQueryRequest::GetMetadata() const {
+::google::protobuf::Metadata FileSystemLogsRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class FileLogsResponse_Item::_Internal {
+class FileSystemLogsResponse_Item::_Internal {
  public:
 };
 
-FileLogsResponse_Item::FileLogsResponse_Item(::google::protobuf::Arena* arena)
+FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileLogsResponse.Item)
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileSystemLogsResponse.Item)
 }
-inline PROTOBUF_NDEBUG_INLINE FileLogsResponse_Item::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE FileSystemLogsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::monitoring::v1::FileLogsResponse_Item& from_msg)
+    const Impl_& from, const ::palm::monitoring::v1::FileSystemLogsResponse_Item& from_msg)
       : host_(arena, from.host_),
         file_(arena, from.file_),
         message_(arena, from.message_),
         _cached_size_{0} {}
 
-FileLogsResponse_Item::FileLogsResponse_Item(
+FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(
     ::google::protobuf::Arena* arena,
-    const FileLogsResponse_Item& from)
+    const FileSystemLogsResponse_Item& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  FileLogsResponse_Item* const _this = this;
+  FileSystemLogsResponse_Item* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileLogsResponse.Item)
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemLogsResponse.Item)
 }
-inline PROTOBUF_NDEBUG_INLINE FileLogsResponse_Item::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE FileSystemLogsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : host_(arena),
@@ -3745,15 +4045,15 @@ inline PROTOBUF_NDEBUG_INLINE FileLogsResponse_Item::Impl_::Impl_(
         message_(arena),
         _cached_size_{0} {}
 
-inline void FileLogsResponse_Item::SharedCtor(::_pb::Arena* arena) {
+inline void FileSystemLogsResponse_Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-FileLogsResponse_Item::~FileLogsResponse_Item() {
-  // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileLogsResponse.Item)
+FileSystemLogsResponse_Item::~FileSystemLogsResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileSystemLogsResponse.Item)
   SharedDtor(*this);
 }
-inline void FileLogsResponse_Item::SharedDtor(MessageLite& self) {
-  FileLogsResponse_Item& this_ = static_cast<FileLogsResponse_Item&>(self);
+inline void FileSystemLogsResponse_Item::SharedDtor(MessageLite& self) {
+  FileSystemLogsResponse_Item& this_ = static_cast<FileSystemLogsResponse_Item&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.host_.Destroy();
@@ -3762,43 +4062,43 @@ inline void FileLogsResponse_Item::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* FileLogsResponse_Item::PlacementNew_(const void*, void* mem,
+inline void* FileSystemLogsResponse_Item::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) FileLogsResponse_Item(arena);
+  return ::new (mem) FileSystemLogsResponse_Item(arena);
 }
-constexpr auto FileLogsResponse_Item::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(FileLogsResponse_Item),
-                                            alignof(FileLogsResponse_Item));
+constexpr auto FileSystemLogsResponse_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(FileSystemLogsResponse_Item),
+                                            alignof(FileSystemLogsResponse_Item));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull FileLogsResponse_Item::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull FileSystemLogsResponse_Item::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_FileLogsResponse_Item_default_instance_._instance,
+        &_FileSystemLogsResponse_Item_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &FileLogsResponse_Item::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<FileLogsResponse_Item>(),
+        &FileSystemLogsResponse_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<FileSystemLogsResponse_Item>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &FileLogsResponse_Item::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<FileLogsResponse_Item>(), &FileLogsResponse_Item::ByteSizeLong,
-            &FileLogsResponse_Item::_InternalSerialize,
+        &FileSystemLogsResponse_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<FileSystemLogsResponse_Item>(), &FileSystemLogsResponse_Item::ByteSizeLong,
+            &FileSystemLogsResponse_Item::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_._cached_size_),
         false,
     },
-    &FileLogsResponse_Item::kDescriptorMethods,
+    &FileSystemLogsResponse_Item::kDescriptorMethods,
     &descriptor_table_monitoring_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* FileLogsResponse_Item::GetClassData() const {
+const ::google::protobuf::internal::ClassData* FileSystemLogsResponse_Item::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 64, 2> FileLogsResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 70, 2> FileSystemLogsResponse_Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -3813,44 +4113,44 @@ const ::_pbi::TcParseTable<2, 3, 0, 64, 2> FileLogsResponse_Item::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileLogsResponse_Item>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemLogsResponse_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // string host = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_.host_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.host_)}},
     // string file = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_.file_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.file_)}},
     // string message = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_.message_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.message_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string host = 1;
-    {PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_.host_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.host_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string file = 2;
-    {PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_.file_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.file_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string message = 3;
-    {PROTOBUF_FIELD_OFFSET(FileLogsResponse_Item, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\50\4\4\7\0\0\0\0"
-    "palm.monitoring.v1.FileLogsResponse.Item"
+    "\56\4\4\7\0\0\0\0"
+    "palm.monitoring.v1.FileSystemLogsResponse.Item"
     "host"
     "file"
     "message"
   }},
 };
 
-PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.FileLogsResponse.Item)
+PROTOBUF_NOINLINE void FileSystemLogsResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.FileSystemLogsResponse.Item)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -3863,17 +4163,17 @@ PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* FileLogsResponse_Item::_InternalSerialize(
+        ::uint8_t* FileSystemLogsResponse_Item::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const FileLogsResponse_Item& this_ = static_cast<const FileLogsResponse_Item&>(base);
+          const FileSystemLogsResponse_Item& this_ = static_cast<const FileSystemLogsResponse_Item&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* FileLogsResponse_Item::_InternalSerialize(
+        ::uint8_t* FileSystemLogsResponse_Item::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const FileLogsResponse_Item& this_ = *this;
+          const FileSystemLogsResponse_Item& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.FileLogsResponse.Item)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.FileSystemLogsResponse.Item)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -3881,7 +4181,7 @@ PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
           if (!this_._internal_host().empty()) {
             const std::string& _s = this_._internal_host();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileLogsResponse.Item.host");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsResponse.Item.host");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
@@ -3889,7 +4189,7 @@ PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
           if (!this_._internal_file().empty()) {
             const std::string& _s = this_._internal_file();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileLogsResponse.Item.file");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsResponse.Item.file");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -3897,7 +4197,7 @@ PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
           if (!this_._internal_message().empty()) {
             const std::string& _s = this_._internal_message();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileLogsResponse.Item.message");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsResponse.Item.message");
             target = stream->WriteStringMaybeAliased(3, _s, target);
           }
 
@@ -3906,18 +4206,18 @@ PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.FileLogsResponse.Item)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.FileSystemLogsResponse.Item)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t FileLogsResponse_Item::ByteSizeLong(const MessageLite& base) {
-          const FileLogsResponse_Item& this_ = static_cast<const FileLogsResponse_Item&>(base);
+        ::size_t FileSystemLogsResponse_Item::ByteSizeLong(const MessageLite& base) {
+          const FileSystemLogsResponse_Item& this_ = static_cast<const FileSystemLogsResponse_Item&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t FileLogsResponse_Item::ByteSizeLong() const {
-          const FileLogsResponse_Item& this_ = *this;
+        ::size_t FileSystemLogsResponse_Item::ByteSizeLong() const {
+          const FileSystemLogsResponse_Item& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.FileLogsResponse.Item)
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.FileSystemLogsResponse.Item)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -3946,10 +4246,10 @@ PROTOBUF_NOINLINE void FileLogsResponse_Item::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void FileLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<FileLogsResponse_Item*>(&to_msg);
-  auto& from = static_cast<const FileLogsResponse_Item&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileLogsResponse.Item)
+void FileSystemLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<FileSystemLogsResponse_Item*>(&to_msg);
+  auto& from = static_cast<const FileSystemLogsResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileSystemLogsResponse.Item)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -3966,15 +4266,15 @@ void FileLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, c
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void FileLogsResponse_Item::CopyFrom(const FileLogsResponse_Item& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.FileLogsResponse.Item)
+void FileSystemLogsResponse_Item::CopyFrom(const FileSystemLogsResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.FileSystemLogsResponse.Item)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void FileLogsResponse_Item::InternalSwap(FileLogsResponse_Item* PROTOBUF_RESTRICT other) {
+void FileSystemLogsResponse_Item::InternalSwap(FileSystemLogsResponse_Item* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -3984,49 +4284,49 @@ void FileLogsResponse_Item::InternalSwap(FileLogsResponse_Item* PROTOBUF_RESTRIC
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
 }
 
-::google::protobuf::Metadata FileLogsResponse_Item::GetMetadata() const {
+::google::protobuf::Metadata FileSystemLogsResponse_Item::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class FileLogsResponse::_Internal {
+class FileSystemLogsResponse::_Internal {
  public:
   using HasBits =
-      decltype(std::declval<FileLogsResponse>()._impl_._has_bits_);
+      decltype(std::declval<FileSystemLogsResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_._has_bits_);
 };
 
-void FileLogsResponse::clear_pagination() {
+void FileSystemLogsResponse::clear_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-FileLogsResponse::FileLogsResponse(::google::protobuf::Arena* arena)
+FileSystemLogsResponse::FileSystemLogsResponse(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileLogsResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.FileSystemLogsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE FileLogsResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE FileSystemLogsResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::monitoring::v1::FileLogsResponse& from_msg)
+    const Impl_& from, const ::palm::monitoring::v1::FileSystemLogsResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         items_{visibility, arena, from.items_} {}
 
-FileLogsResponse::FileLogsResponse(
+FileSystemLogsResponse::FileSystemLogsResponse(
     ::google::protobuf::Arena* arena,
-    const FileLogsResponse& from)
+    const FileSystemLogsResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  FileLogsResponse* const _this = this;
+  FileSystemLogsResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -4036,81 +4336,81 @@ FileLogsResponse::FileLogsResponse(
                               arena, *from._impl_.pagination_)
                         : nullptr;
 
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileLogsResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemLogsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE FileLogsResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE FileSystemLogsResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
         items_{visibility, arena} {}
 
-inline void FileLogsResponse::SharedCtor(::_pb::Arena* arena) {
+inline void FileSystemLogsResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.pagination_ = {};
 }
-FileLogsResponse::~FileLogsResponse() {
-  // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileLogsResponse)
+FileSystemLogsResponse::~FileSystemLogsResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileSystemLogsResponse)
   SharedDtor(*this);
 }
-inline void FileLogsResponse::SharedDtor(MessageLite& self) {
-  FileLogsResponse& this_ = static_cast<FileLogsResponse&>(self);
+inline void FileSystemLogsResponse::SharedDtor(MessageLite& self) {
+  FileSystemLogsResponse& this_ = static_cast<FileSystemLogsResponse&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   delete this_._impl_.pagination_;
   this_._impl_.~Impl_();
 }
 
-inline void* FileLogsResponse::PlacementNew_(const void*, void* mem,
+inline void* FileSystemLogsResponse::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) FileLogsResponse(arena);
+  return ::new (mem) FileSystemLogsResponse(arena);
 }
-constexpr auto FileLogsResponse::InternalNewImpl_() {
+constexpr auto FileSystemLogsResponse::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_.items_) +
-          decltype(FileLogsResponse::_impl_.items_)::
+      PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_.items_) +
+          decltype(FileSystemLogsResponse::_impl_.items_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
     return ::google::protobuf::internal::MessageCreator::ZeroInit(
-        sizeof(FileLogsResponse), alignof(FileLogsResponse), *arena_bits);
+        sizeof(FileSystemLogsResponse), alignof(FileSystemLogsResponse), *arena_bits);
   } else {
-    return ::google::protobuf::internal::MessageCreator(&FileLogsResponse::PlacementNew_,
-                                 sizeof(FileLogsResponse),
-                                 alignof(FileLogsResponse));
+    return ::google::protobuf::internal::MessageCreator(&FileSystemLogsResponse::PlacementNew_,
+                                 sizeof(FileSystemLogsResponse),
+                                 alignof(FileSystemLogsResponse));
   }
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull FileLogsResponse::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull FileSystemLogsResponse::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_FileLogsResponse_default_instance_._instance,
+        &_FileSystemLogsResponse_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &FileLogsResponse::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<FileLogsResponse>(),
+        &FileSystemLogsResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<FileSystemLogsResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &FileLogsResponse::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<FileLogsResponse>(), &FileLogsResponse::ByteSizeLong,
-            &FileLogsResponse::_InternalSerialize,
+        &FileSystemLogsResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<FileSystemLogsResponse>(), &FileSystemLogsResponse::ByteSizeLong,
+            &FileSystemLogsResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_._cached_size_),
         false,
     },
-    &FileLogsResponse::kDescriptorMethods,
+    &FileSystemLogsResponse::kDescriptorMethods,
     &descriptor_table_monitoring_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* FileLogsResponse::GetClassData() const {
+const ::google::protobuf::internal::ClassData* FileSystemLogsResponse::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 2, 2, 0, 2> FileLogsResponse::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> FileSystemLogsResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_._has_bits_),
     0, // no _extensions_
     9, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -4123,30 +4423,30 @@ const ::_pbi::TcParseTable<0, 2, 2, 0, 2> FileLogsResponse::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileLogsResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemLogsResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated .palm.monitoring.v1.FileLogsResponse.Item items = 1;
+    // repeated .palm.monitoring.v1.FileSystemLogsResponse.Item items = 1;
     {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_.items_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_.items_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .palm.monitoring.v1.FileLogsResponse.Item items = 1;
-    {PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_.items_), -1, 0,
+    // repeated .palm.monitoring.v1.FileSystemLogsResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_.items_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // .palm.portal.v1.Pagination pagination = 9;
-    {PROTOBUF_FIELD_OFFSET(FileLogsResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileLogsResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::FileSystemLogsResponse_Item>()},
     {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
   }}, {{
   }},
 };
 
-PROTOBUF_NOINLINE void FileLogsResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.FileLogsResponse)
+PROTOBUF_NOINLINE void FileSystemLogsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.FileSystemLogsResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -4163,21 +4463,21 @@ PROTOBUF_NOINLINE void FileLogsResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* FileLogsResponse::_InternalSerialize(
+        ::uint8_t* FileSystemLogsResponse::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const FileLogsResponse& this_ = static_cast<const FileLogsResponse&>(base);
+          const FileSystemLogsResponse& this_ = static_cast<const FileSystemLogsResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* FileLogsResponse::_InternalSerialize(
+        ::uint8_t* FileSystemLogsResponse::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const FileLogsResponse& this_ = *this;
+          const FileSystemLogsResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.FileLogsResponse)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.FileSystemLogsResponse)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // repeated .palm.monitoring.v1.FileLogsResponse.Item items = 1;
+          // repeated .palm.monitoring.v1.FileSystemLogsResponse.Item items = 1;
           for (unsigned i = 0, n = static_cast<unsigned>(
                                    this_._internal_items_size());
                i < n; i++) {
@@ -4201,18 +4501,18 @@ PROTOBUF_NOINLINE void FileLogsResponse::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.FileLogsResponse)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.FileSystemLogsResponse)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t FileLogsResponse::ByteSizeLong(const MessageLite& base) {
-          const FileLogsResponse& this_ = static_cast<const FileLogsResponse&>(base);
+        ::size_t FileSystemLogsResponse::ByteSizeLong(const MessageLite& base) {
+          const FileSystemLogsResponse& this_ = static_cast<const FileSystemLogsResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t FileLogsResponse::ByteSizeLong() const {
-          const FileLogsResponse& this_ = *this;
+        ::size_t FileSystemLogsResponse::ByteSizeLong() const {
+          const FileSystemLogsResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.FileLogsResponse)
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.FileSystemLogsResponse)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -4221,7 +4521,7 @@ PROTOBUF_NOINLINE void FileLogsResponse::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .palm.monitoring.v1.FileLogsResponse.Item items = 1;
+            // repeated .palm.monitoring.v1.FileSystemLogsResponse.Item items = 1;
             {
               total_size += 1UL * this_._internal_items_size();
               for (const auto& msg : this_._internal_items()) {
@@ -4241,11 +4541,11 @@ PROTOBUF_NOINLINE void FileLogsResponse::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void FileLogsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<FileLogsResponse*>(&to_msg);
-  auto& from = static_cast<const FileLogsResponse&>(from_msg);
+void FileSystemLogsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<FileSystemLogsResponse*>(&to_msg);
+  auto& from = static_cast<const FileSystemLogsResponse&>(from_msg);
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileLogsResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileSystemLogsResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -4266,15 +4566,15 @@ void FileLogsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const 
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void FileLogsResponse::CopyFrom(const FileLogsResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.FileLogsResponse)
+void FileSystemLogsResponse::CopyFrom(const FileSystemLogsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.FileSystemLogsResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void FileLogsResponse::InternalSwap(FileLogsResponse* PROTOBUF_RESTRICT other) {
+void FileSystemLogsResponse::InternalSwap(FileSystemLogsResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
@@ -4282,7 +4582,7 @@ void FileLogsResponse::InternalSwap(FileLogsResponse* PROTOBUF_RESTRICT other) {
   swap(_impl_.pagination_, other->_impl_.pagination_);
 }
 
-::google::protobuf::Metadata FileLogsResponse::GetMetadata() const {
+::google::protobuf::Metadata FileSystemLogsResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

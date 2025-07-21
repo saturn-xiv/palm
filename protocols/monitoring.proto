@@ -16,7 +16,10 @@ message SiteLayoutRequest {
   string lang = 1;
 }
 message SiteLayoutResponse {
-  string user = 1;
+  message CurrentUser {
+    string name = 1;
+  }
+  optional CurrentUser user = 1;
   string locale = 8;
   repeated string available_languages = 9;
   string git_version = 11;
@@ -50,9 +53,9 @@ message Heartbeat {
 
 // ----------------------------------------------------------------------------
 service FileSystem {
-  rpc Logs(FileSystemQueryRequest) returns (FileLogsResponse) {}
+  rpc Logs(FileSystemLogsRequest) returns (FileSystemLogsResponse) {}
 }
-message FileSystemQueryRequest {
+message FileSystemLogsRequest {
   message All {}
   oneof by {
     All all = 1;
@@ -61,7 +64,7 @@ message FileSystemQueryRequest {
   }
   palm.portal.v1.Page page = 99;
 }
-message FileLogsResponse {
+message FileSystemLogsResponse {
   message Item {
     string host = 1;
     string file = 2;

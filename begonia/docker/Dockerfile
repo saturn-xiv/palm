@@ -74,8 +74,9 @@ ADD vcpkg.patch /opt/
 RUN cd $HOME/local/vcpkg && git apply /opt/vcpkg.patch
 
 RUN git clone -b c++ https://github.com/saturn-xiv/palm.git $HOME/workspace/palm
-RUN cd $HOME/workspace/palm/ && $HOME/local/vcpkg/vcpkg install --triplet=x64-linux-release
-RUN cd $HOME/workspace/palm/ && $HOME/local/vcpkg/vcpkg install --triplet=arm64-linux-release
+RUN cd $HOME/workspace/palm/ && ./scripts/build.sh
+# RUN cd $HOME/workspace/palm/ && $HOME/local/vcpkg/vcpkg install --triplet=x64-linux-release
+# RUN cd $HOME/workspace/palm/ && $HOME/local/vcpkg/vcpkg install --triplet=arm64-linux-release
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 

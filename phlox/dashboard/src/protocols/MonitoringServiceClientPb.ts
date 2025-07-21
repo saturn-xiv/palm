@@ -106,29 +106,29 @@ export class FileSystemClient {
   methodDescriptorLogs = new grpcWeb.MethodDescriptor(
     '/palm.monitoring.v1.FileSystem/Logs',
     grpcWeb.MethodType.UNARY,
-    monitoring_pb.FileSystemQueryRequest,
-    monitoring_pb.FileLogsResponse,
-    (request: monitoring_pb.FileSystemQueryRequest) => {
+    monitoring_pb.FileSystemLogsRequest,
+    monitoring_pb.FileSystemLogsResponse,
+    (request: monitoring_pb.FileSystemLogsRequest) => {
       return request.serializeBinary();
     },
-    monitoring_pb.FileLogsResponse.deserializeBinary
+    monitoring_pb.FileSystemLogsResponse.deserializeBinary
   );
 
   logs(
-    request: monitoring_pb.FileSystemQueryRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.FileLogsResponse>;
+    request: monitoring_pb.FileSystemLogsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.FileSystemLogsResponse>;
 
   logs(
-    request: monitoring_pb.FileSystemQueryRequest,
+    request: monitoring_pb.FileSystemLogsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: monitoring_pb.FileLogsResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.FileLogsResponse>;
+               response: monitoring_pb.FileSystemLogsResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.FileSystemLogsResponse>;
 
   logs(
-    request: monitoring_pb.FileSystemQueryRequest,
+    request: monitoring_pb.FileSystemLogsRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: monitoring_pb.FileLogsResponse) => void) {
+               response: monitoring_pb.FileSystemLogsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +

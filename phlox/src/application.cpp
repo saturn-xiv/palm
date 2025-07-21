@@ -17,6 +17,7 @@
 #include <boost/optional/optional.hpp>
 #include <boost/range/iterator_range.hpp>
 
+#include <grpcpp/health_check_service_interface.h>
 #include <argparse/argparse.hpp>
 
 static std::shared_ptr<soci::session> open_db(const toml::table& config) {
@@ -47,8 +48,13 @@ CREATE INDEX IF NOT EXISTS idx_containers_status ON containers(status);
 }
 
 static std::shared_ptr<palm::Jwt> open_jwt(const toml::table& config) {
+  auto cfg = config["jwt"].as_table();
+  if (cfg == nullptr) {
+    spdlog::error("missing jwt part");
+    return nullptr;
+  }
   std::shared_ptr<palm::Jwt> it =
-      std::make_shared<palm::Jwt>(config["key"].value<std::string>().value());
+      std::make_shared<palm::Jwt>((*cfg)["key"].value<std::string>().value());
   return it;
 }
 
@@ -176,8 +182,47 @@ static void start_rpc_server(const std::string& host, uint16_t port,
   if (palm::is_stopped()) {
     return;
   }
+
+  const std::string address = std::format("{}:{}", host, port);
+
+  auto search = open_opensearch(config);
+  auto jwt = open_jwt(config);
+
+  palm::monitoring::services::SiteServiceImpl site_service(jwt, search);
+  palm::monitoring::services::PodmanServiceImpl podman_service(jwt, search);
+  palm::monitoring::services::FileSystemServiceImpl file_system_service(jwt,
+                                                                        search);
+
+  grpc::EnableDefaultHealthCheckService(true);
   // TODO
+  // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+
+  grpc::ServerBuilder builder;
+  builder.AddListeningPort(address, grpc::InsecureServerCredentials());
+
+  {
+    builder.RegisterService(&site_service);
+    builder.RegisterService(&podman_service);
+    builder.RegisterService(&file_system_service);
+  }
+
+  std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+  spdlog::info("listen a gRPC server on tcp://{}:{}", host, port);
+
+  server->Wait();
 }
+static void generate_token_for_user(const toml::table& config,
+                                    const std::string& username,
+                                    uint8_t years) {
+  spdlog::info("generate token for user {} with {} years", username, years);
+  auto jwt = open_jwt(config);
+  const auto token = jwt->sign(palm::CurrentUser::ISSUER, username,
+                               {palm::CurrentUser::WEB_AUDIENCE}, std::nullopt,
+                               std::chrono::years{years});
+  std::cout << token << std::endl;
+  spdlog::info("done.");
+}
+
 void palm::phlox::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
@@ -188,6 +233,9 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   std::string http_theme_folder;
   std::vector<std::string> watcher_files;
   bool watcher_stdin;
+
+  std::string generate_token_username;
+  int generate_token_years;
 
   argparse::ArgumentParser program(
       "phlox", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
@@ -224,6 +272,15 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       .default_value(8080)
       .store_into(rpc_listen_port);
 
+  argparse::ArgumentParser generate_token_command("generate-token");
+  generate_token_command.add_description("generate a token for user");
+  generate_token_command.add_argument("-u", "--username")
+      .store_into(generate_token_username)
+      .required();
+  generate_token_command.add_argument("-y", "--years")
+      .default_value(1)
+      .store_into(generate_token_years);
+
   argparse::ArgumentParser podman_logs_command("podman-logs");
   podman_logs_command.add_description("fetch the logs of podman containers");
   argparse::ArgumentParser podman_stats_command("podman-stats");
@@ -232,28 +289,30 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   argparse::ArgumentParser podman_ps_command("podman-ps");
   podman_ps_command.add_description("fetch podman containers");
 
-  argparse::ArgumentParser watcher_command("watcher");
-  watcher_command.add_description("start a log files watcher");
-  watcher_command.add_argument("-f", "--files")
+  argparse::ArgumentParser fs_watcher_command("fs-watcher");
+  fs_watcher_command.add_description("start a log files watcher");
+  fs_watcher_command.add_argument("-f", "--files")
       .append()
       .store_into(watcher_files)
       .help("log files to watch");
-  watcher_command.add_argument("-s", "--stdin")
+  fs_watcher_command.add_argument("-s", "--stdin")
       .flag()
       .store_into(watcher_stdin)
       .help("input from stdin");
 
   program.add_subparser(http_command);
   program.add_subparser(rpc_command);
+  program.add_subparser(generate_token_command);
   program.add_subparser(podman_logs_command);
   program.add_subparser(podman_stats_command);
   program.add_subparser(podman_ps_command);
-  program.add_subparser(watcher_command);
+  program.add_subparser(fs_watcher_command);
   program.parse_args(argc, argv);
 
   if (program.is_subcommand_used(http_command) ||
       program.is_subcommand_used(rpc_command) ||
-      program.is_subcommand_used(watcher_command) ||
+      program.is_subcommand_used(generate_token_command) ||
+      program.is_subcommand_used(fs_watcher_command) ||
       program.is_subcommand_used(podman_logs_command) ||
       program.is_subcommand_used(podman_stats_command) ||
       program.is_subcommand_used(podman_ps_command)) {
@@ -269,7 +328,12 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       start_rpc_server(rpc_listen_host, rpc_listen_port, config);
       return;
     }
-    if (program.is_subcommand_used(watcher_command)) {
+    if (program.is_subcommand_used(generate_token_command)) {
+      generate_token_for_user(config, generate_token_username,
+                              static_cast<uint8_t>(generate_token_years));
+      return;
+    }
+    if (program.is_subcommand_used(fs_watcher_command)) {
       start_log_watcher(config, watcher_stdin, watcher_files);
       return;
     }

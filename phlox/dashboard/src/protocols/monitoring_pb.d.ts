@@ -23,8 +23,10 @@ export namespace SiteLayoutRequest {
 }
 
 export class SiteLayoutResponse extends jspb.Message {
-  getUser(): string;
-  setUser(value: string): SiteLayoutResponse;
+  getUser(): SiteLayoutResponse.CurrentUser | undefined;
+  setUser(value?: SiteLayoutResponse.CurrentUser): SiteLayoutResponse;
+  hasUser(): boolean;
+  clearUser(): SiteLayoutResponse;
 
   getLocale(): string;
   setLocale(value: string): SiteLayoutResponse;
@@ -50,11 +52,35 @@ export class SiteLayoutResponse extends jspb.Message {
 
 export namespace SiteLayoutResponse {
   export type AsObject = {
-    user: string,
+    user?: SiteLayoutResponse.CurrentUser.AsObject,
     locale: string,
     availableLanguagesList: Array<string>,
     gitVersion: string,
     buildTime: string,
+  }
+
+  export class CurrentUser extends jspb.Message {
+    getName(): string;
+    setName(value: string): CurrentUser;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CurrentUser.AsObject;
+    static toObject(includeInstance: boolean, msg: CurrentUser): CurrentUser.AsObject;
+    static serializeBinaryToWriter(message: CurrentUser, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CurrentUser;
+    static deserializeBinaryFromReader(message: CurrentUser, reader: jspb.BinaryReader): CurrentUser;
+  }
+
+  export namespace CurrentUser {
+    export type AsObject = {
+      name: string,
+    }
+  }
+
+
+  export enum UserCase { 
+    _USER_NOT_SET = 0,
+    USER = 1,
   }
 }
 
@@ -226,36 +252,36 @@ export namespace Heartbeat {
   }
 }
 
-export class FileSystemQueryRequest extends jspb.Message {
-  getAll(): FileSystemQueryRequest.All | undefined;
-  setAll(value?: FileSystemQueryRequest.All): FileSystemQueryRequest;
+export class FileSystemLogsRequest extends jspb.Message {
+  getAll(): FileSystemLogsRequest.All | undefined;
+  setAll(value?: FileSystemLogsRequest.All): FileSystemLogsRequest;
   hasAll(): boolean;
-  clearAll(): FileSystemQueryRequest;
+  clearAll(): FileSystemLogsRequest;
 
   getHost(): string;
-  setHost(value: string): FileSystemQueryRequest;
+  setHost(value: string): FileSystemLogsRequest;
 
   getFile(): string;
-  setFile(value: string): FileSystemQueryRequest;
+  setFile(value: string): FileSystemLogsRequest;
 
   getPage(): portal_pb.Page | undefined;
-  setPage(value?: portal_pb.Page): FileSystemQueryRequest;
+  setPage(value?: portal_pb.Page): FileSystemLogsRequest;
   hasPage(): boolean;
-  clearPage(): FileSystemQueryRequest;
+  clearPage(): FileSystemLogsRequest;
 
-  getByCase(): FileSystemQueryRequest.ByCase;
+  getByCase(): FileSystemLogsRequest.ByCase;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FileSystemQueryRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FileSystemQueryRequest): FileSystemQueryRequest.AsObject;
-  static serializeBinaryToWriter(message: FileSystemQueryRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FileSystemQueryRequest;
-  static deserializeBinaryFromReader(message: FileSystemQueryRequest, reader: jspb.BinaryReader): FileSystemQueryRequest;
+  toObject(includeInstance?: boolean): FileSystemLogsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: FileSystemLogsRequest): FileSystemLogsRequest.AsObject;
+  static serializeBinaryToWriter(message: FileSystemLogsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FileSystemLogsRequest;
+  static deserializeBinaryFromReader(message: FileSystemLogsRequest, reader: jspb.BinaryReader): FileSystemLogsRequest;
 }
 
-export namespace FileSystemQueryRequest {
+export namespace FileSystemLogsRequest {
   export type AsObject = {
-    all?: FileSystemQueryRequest.All.AsObject,
+    all?: FileSystemLogsRequest.All.AsObject,
     host: string,
     file: string,
     page?: portal_pb.Page.AsObject,
@@ -284,28 +310,28 @@ export namespace FileSystemQueryRequest {
   }
 }
 
-export class FileLogsResponse extends jspb.Message {
-  getItemsList(): Array<FileLogsResponse.Item>;
-  setItemsList(value: Array<FileLogsResponse.Item>): FileLogsResponse;
-  clearItemsList(): FileLogsResponse;
-  addItems(value?: FileLogsResponse.Item, index?: number): FileLogsResponse.Item;
+export class FileSystemLogsResponse extends jspb.Message {
+  getItemsList(): Array<FileSystemLogsResponse.Item>;
+  setItemsList(value: Array<FileSystemLogsResponse.Item>): FileSystemLogsResponse;
+  clearItemsList(): FileSystemLogsResponse;
+  addItems(value?: FileSystemLogsResponse.Item, index?: number): FileSystemLogsResponse.Item;
 
   getPagination(): portal_pb.Pagination | undefined;
-  setPagination(value?: portal_pb.Pagination): FileLogsResponse;
+  setPagination(value?: portal_pb.Pagination): FileSystemLogsResponse;
   hasPagination(): boolean;
-  clearPagination(): FileLogsResponse;
+  clearPagination(): FileSystemLogsResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FileLogsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: FileLogsResponse): FileLogsResponse.AsObject;
-  static serializeBinaryToWriter(message: FileLogsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FileLogsResponse;
-  static deserializeBinaryFromReader(message: FileLogsResponse, reader: jspb.BinaryReader): FileLogsResponse;
+  toObject(includeInstance?: boolean): FileSystemLogsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: FileSystemLogsResponse): FileSystemLogsResponse.AsObject;
+  static serializeBinaryToWriter(message: FileSystemLogsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FileSystemLogsResponse;
+  static deserializeBinaryFromReader(message: FileSystemLogsResponse, reader: jspb.BinaryReader): FileSystemLogsResponse;
 }
 
-export namespace FileLogsResponse {
+export namespace FileSystemLogsResponse {
   export type AsObject = {
-    itemsList: Array<FileLogsResponse.Item.AsObject>,
+    itemsList: Array<FileSystemLogsResponse.Item.AsObject>,
     pagination?: portal_pb.Pagination.AsObject,
   }
 

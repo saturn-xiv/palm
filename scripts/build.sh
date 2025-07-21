@@ -68,13 +68,14 @@ EOF
     cd $WORK_DIR/lavender/db
     cp -rv README.md migrations $target/var/lib/palm/lavender/db/
 
-    mkdir -p $target/var/lib/palm/bamboo
+    mkdir -p $target/var/lib/palm/bamboo $target/usr/share/palm/bamboo
     cd $WORK_DIR/bamboo/
-    cp -rv README.md assets views locales $target/var/lib/palm/bamboo/
+    cp -rv README.md $target/usr/share/palm/bamboo/
 
-    mkdir -p $target/var/lib/palm/phlox
+    mkdir -p $target/var/lib/palm/phlox $target/usr/share/palm/phlox
     cd $WORK_DIR/phlox/
-    cp -rv README.md assets views locales $target/var/lib/palm/phlox/
+    cp -rv README.md $target/usr/share/palm/phlox/    
+    build_dashboard $WORK_DIR/phlox/dashboard $target/usr/share/palm/phlox/dashboard
 
     build_assets $target
 
@@ -91,6 +92,7 @@ function build_dashboard() {
         npm install
     fi
     npm run build
+    cp -rv dist $2
 }
 
 function build_assets() {

@@ -98,23 +98,23 @@ FileSystem::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   : channel_(channel), rpcmethod_Logs_(FileSystem_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status FileSystem::Stub::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::palm::monitoring::v1::FileLogsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+::grpc::Status FileSystem::Stub::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::palm::monitoring::v1::FileSystemLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
 }
 
-void FileSystem::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+void FileSystem::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
 }
 
-void FileSystem::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void FileSystem::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* FileSystem::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::FileLogsResponse, ::palm::monitoring::v1::FileSystemQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>* FileSystem::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::FileSystemLogsResponse, ::palm::monitoring::v1::FileSystemLogsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileLogsResponse>* FileSystem::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::FileSystemLogsResponse>* FileSystem::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncLogsRaw(context, request, cq);
   result->StartCall();
@@ -125,11 +125,11 @@ FileSystem::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileSystem_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< FileSystem::Service, ::palm::monitoring::v1::FileSystemQueryRequest, ::palm::monitoring::v1::FileLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< FileSystem::Service, ::palm::monitoring::v1::FileSystemLogsRequest, ::palm::monitoring::v1::FileSystemLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](FileSystem::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::monitoring::v1::FileSystemQueryRequest* req,
-             ::palm::monitoring::v1::FileLogsResponse* resp) {
+             const ::palm::monitoring::v1::FileSystemLogsRequest* req,
+             ::palm::monitoring::v1::FileSystemLogsResponse* resp) {
                return service->Logs(ctx, req, resp);
              }, this)));
 }
@@ -137,7 +137,7 @@ FileSystem::Service::Service() {
 FileSystem::Service::~Service() {
 }
 
-::grpc::Status FileSystem::Service::Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::FileSystemQueryRequest* request, ::palm::monitoring::v1::FileLogsResponse* response) {
+::grpc::Status FileSystem::Service::Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::FileSystemLogsRequest* request, ::palm::monitoring::v1::FileSystemLogsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
