@@ -685,7 +685,8 @@ user: (f = msg.getUser()) && proto.palm.monitoring.v1.SiteLayoutResponse.Current
 locale: jspb.Message.getFieldWithDefault(msg, 8, ""),
 availableLanguagesList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
 gitVersion: jspb.Message.getFieldWithDefault(msg, 11, ""),
-buildTime: jspb.Message.getFieldWithDefault(msg, 12, "")
+buildTime: jspb.Message.getFieldWithDefault(msg, 12, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -742,6 +743,11 @@ proto.palm.monitoring.v1.SiteLayoutResponse.deserializeBinaryFromReader = functi
     case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.setBuildTime(value);
+      break;
+    case 99:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAt(value);
       break;
     default:
       reader.skipField();
@@ -806,6 +812,14 @@ proto.palm.monitoring.v1.SiteLayoutResponse.serializeBinaryToWriter = function(m
     writer.writeString(
       12,
       f
+    );
+  }
+  f = message.getCreatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -1066,6 +1080,43 @@ proto.palm.monitoring.v1.SiteLayoutResponse.prototype.getBuildTime = function() 
  */
 proto.palm.monitoring.v1.SiteLayoutResponse.prototype.setBuildTime = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_at = 99;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.palm.monitoring.v1.SiteLayoutResponse.prototype.getCreatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.palm.monitoring.v1.SiteLayoutResponse} returns this
+*/
+proto.palm.monitoring.v1.SiteLayoutResponse.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.palm.monitoring.v1.SiteLayoutResponse} returns this
+ */
+proto.palm.monitoring.v1.SiteLayoutResponse.prototype.clearCreatedAt = function() {
+  return this.setCreatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.palm.monitoring.v1.SiteLayoutResponse.prototype.hasCreatedAt = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 

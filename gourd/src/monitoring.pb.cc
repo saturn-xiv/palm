@@ -346,7 +346,8 @@ inline constexpr SiteLayoutResponse::Impl_::Impl_(
         build_time_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        user_{nullptr} {}
+        user_{nullptr},
+        created_at_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR SiteLayoutResponse::SiteLayoutResponse(::_pbi::ConstantInitialized)
@@ -701,11 +702,13 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.available_languages_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.git_version_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.build_time_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SiteLayoutResponse, _impl_.created_at_),
         0,
         ~0u,
         ~0u,
         ~0u,
         ~0u,
+        1,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat_Http, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -988,27 +991,27 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutRequest)},
         {9, -1, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse_CurrentUser)},
-        {18, 31, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse)},
-        {36, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
-        {45, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
-        {53, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
-        {61, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
-        {69, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
-        {80, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
-        {88, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
-        {103, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest_All)},
-        {111, 124, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
-        {128, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
-        {139, 149, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
-        {151, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {159, 175, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {182, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {194, 204, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {206, 216, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {218, 241, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {256, 266, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {268, 288, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {300, 310, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {18, 32, -1, sizeof(::palm::monitoring::v1::SiteLayoutResponse)},
+        {38, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Http)},
+        {47, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_MySql)},
+        {55, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_PostgreSql)},
+        {63, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_RabbitMQ)},
+        {71, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
+        {82, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
+        {90, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
+        {105, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest_All)},
+        {113, 126, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
+        {130, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
+        {141, 151, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
+        {153, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {161, 177, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {184, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {196, 206, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {208, 218, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {220, 243, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {258, 268, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {270, 290, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {302, 312, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
@@ -1040,83 +1043,84 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     "\n\020monitoring.proto\022\022palm.monitoring.v1\032\037"
     "google/protobuf/timestamp.proto\032\014portal."
     "proto\"!\n\021SiteLayoutRequest\022\014\n\004lang\030\001 \001(\t"
-    "\"\327\001\n\022SiteLayoutResponse\022E\n\004user\030\001 \001(\01322."
+    "\"\207\002\n\022SiteLayoutResponse\022E\n\004user\030\001 \001(\01322."
     "palm.monitoring.v1.SiteLayoutResponse.Cu"
     "rrentUserH\000\210\001\001\022\016\n\006locale\030\010 \001(\t\022\033\n\023availa"
     "ble_languages\030\t \003(\t\022\023\n\013git_version\030\013 \001(\t"
-    "\022\022\n\nbuild_time\030\014 \001(\t\032\033\n\013CurrentUser\022\014\n\004n"
-    "ame\030\001 \001(\tB\007\n\005_user\"\332\003\n\tHeartbeat\0222\n\004http"
-    "\030\001 \001(\0132\".palm.monitoring.v1.Heartbeat.Ht"
-    "tpH\000\0224\n\005mysql\030\002 \001(\0132#.palm.monitoring.v1"
-    ".Heartbeat.MySqlH\000\022>\n\npostgresql\030\003 \001(\0132("
-    ".palm.monitoring.v1.Heartbeat.PostgreSql"
-    "H\000\022:\n\010rabbitmq\030\004 \001(\0132&.palm.monitoring.v"
-    "1.Heartbeat.RabbitMQH\000\0224\n\005redis\030\005 \001(\0132#."
-    "palm.monitoring.v1.Heartbeat.RedisH\000\0224\n\005"
-    "minio\030\006 \001(\0132#.palm.monitoring.v1.Heartbe"
-    "at.MinioH\000\032\023\n\004Http\022\013\n\003url\030\001 \001(\t\032\007\n\005MySql"
-    "\032\014\n\nPostgreSql\032\n\n\010RabbitMQ\0324\n\005Redis\022\014\n\004h"
-    "ost\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\022\017\n\007cluster\030\003 \001(\010"
-    "\032\007\n\005MinioB\004\n\002by\"\246\001\n\025FileSystemLogsReques"
-    "t\022<\n\003all\030\001 \001(\0132-.palm.monitoring.v1.File"
-    "SystemLogsRequest.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022"
-    "\016\n\004file\030\003 \001(\tH\000\022\"\n\004page\030c \001(\0132\024.palm.por"
-    "tal.v1.Page\032\005\n\003AllB\004\n\002by\"\275\001\n\026FileSystemL"
-    "ogsResponse\022>\n\005items\030\001 \003(\0132/.palm.monito"
-    "ring.v1.FileSystemLogsResponse.Item\022.\n\np"
-    "agination\030\t \001(\0132\032.palm.portal.v1.Paginat"
-    "ion\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n\004file\030\002 \001(\t\022"
-    "\017\n\007message\030\003 \001(\t\"\224\002\n\022PodmanQueryRequest\022"
-    "9\n\003all\030\001 \001(\0132*.palm.monitoring.v1.Podman"
-    "QueryRequest.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\026\n\014co"
-    "ntainer_id\030\003 \001(\tH\000\022\030\n\016container_name\030\004 \001"
-    "(\tH\000\022(\n\004from\030[ \001(\0132\032.google.protobuf.Tim"
-    "estamp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Tim"
-    "estamp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Pa"
-    "ge\032\005\n\003AllB\004\n\002by\"\321\001\n\022PodmanLogsResponse\022:"
-    "\n\005items\030\001 \003(\0132+.palm.monitoring.v1.Podma"
-    "nLogsResponse.Item\022.\n\npagination\030\t \001(\0132\032"
-    ".palm.portal.v1.Pagination\032O\n\004Item\022\014\n\004ho"
-    "st\030\001 \001(\t\022\024\n\014container_id\030\002 \001(\t\022\017\n\007messag"
-    "e\030\003 \001(\t\022\022\n\ncreated_at\030\t \001(\t\"\224\004\n\030PodmanCo"
-    "ntainersResponse\022@\n\005items\030\001 \003(\01321.palm.m"
-    "onitoring.v1.PodmanContainersResponse.It"
-    "em\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1."
-    "Pagination\032\205\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n\005image"
-    "\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labels\030\004 \003(\013"
-    "2=.palm.monitoring.v1.PodmanContainersRe"
-    "sponse.Item.LabelsEntry\022\016\n\006mounts\030\005 \003(\t\022"
-    "\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n\003pid\030\013"
-    " \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_at\030\r \001(\005\022"
-    "\016\n\006exited\030\025 \001(\010\022\021\n\texited_at\030\026 \001(\005\022\021\n\tex"
-    "it_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022.\n\ncreated_a"
-    "t\030c \001(\0132\032.google.protobuf.Timestamp\032-\n\013L"
-    "abelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002"
-    "8\001\"\375\002\n\030PodmanStatisticsResponse\022@\n\005items"
-    "\030\001 \003(\01321.palm.monitoring.v1.PodmanStatis"
-    "ticsResponse.Item\022.\n\npagination\030\t \001(\0132\032."
-    "palm.portal.v1.Pagination\032\356\001\n\004Item\022\n\n\002id"
-    "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_time\030\003 \001(\t\022\023"
-    "\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_cpu\030\005 \001(\t\022\021\n\t"
-    "mem_usage\030\006 \001(\t\022\023\n\013mem_percent\030\007 \001(\t\022\016\n\006"
-    "net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001(\t\022\014\n\004pids\030\n"
-    " \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032"
-    ".google.protobuf.Timestamp2a\n\004Site\022Y\n\006La"
-    "yout\022%.palm.monitoring.v1.SiteLayoutRequ"
-    "est\032&.palm.monitoring.v1.SiteLayoutRespo"
-    "nse\"\0002m\n\nFileSystem\022_\n\004Logs\022).palm.monit"
-    "oring.v1.FileSystemLogsRequest\032*.palm.mo"
-    "nitoring.v1.FileSystemLogsResponse\"\0002\256\002\n"
-    "\006Podman\022X\n\004Logs\022&.palm.monitoring.v1.Pod"
-    "manQueryRequest\032&.palm.monitoring.v1.Pod"
-    "manLogsResponse\"\000\022d\n\nContainers\022&.palm.m"
-    "onitoring.v1.PodmanQueryRequest\032,.palm.m"
-    "onitoring.v1.PodmanContainersResponse\"\000\022"
-    "d\n\nStatistics\022&.palm.monitoring.v1.Podma"
-    "nQueryRequest\032,.palm.monitoring.v1.Podma"
-    "nStatisticsResponse\"\000B4\n0com.github.satu"
-    "rn_xiv.palm.plugins.monitoring.v1P\001b\006pro"
-    "to3"
+    "\022\022\n\nbuild_time\030\014 \001(\t\022.\n\ncreated_at\030c \001(\013"
+    "2\032.google.protobuf.Timestamp\032\033\n\013CurrentU"
+    "ser\022\014\n\004name\030\001 \001(\tB\007\n\005_user\"\332\003\n\tHeartbeat"
+    "\0222\n\004http\030\001 \001(\0132\".palm.monitoring.v1.Hear"
+    "tbeat.HttpH\000\0224\n\005mysql\030\002 \001(\0132#.palm.monit"
+    "oring.v1.Heartbeat.MySqlH\000\022>\n\npostgresql"
+    "\030\003 \001(\0132(.palm.monitoring.v1.Heartbeat.Po"
+    "stgreSqlH\000\022:\n\010rabbitmq\030\004 \001(\0132&.palm.moni"
+    "toring.v1.Heartbeat.RabbitMQH\000\0224\n\005redis\030"
+    "\005 \001(\0132#.palm.monitoring.v1.Heartbeat.Red"
+    "isH\000\0224\n\005minio\030\006 \001(\0132#.palm.monitoring.v1"
+    ".Heartbeat.MinioH\000\032\023\n\004Http\022\013\n\003url\030\001 \001(\t\032"
+    "\007\n\005MySql\032\014\n\nPostgreSql\032\n\n\010RabbitMQ\0324\n\005Re"
+    "dis\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\022\017\n\007clust"
+    "er\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\"\246\001\n\025FileSystemLo"
+    "gsRequest\022<\n\003all\030\001 \001(\0132-.palm.monitoring"
+    ".v1.FileSystemLogsRequest.AllH\000\022\016\n\004host\030"
+    "\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH\000\022\"\n\004page\030c \001(\0132\024."
+    "palm.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\275\001\n\026Fil"
+    "eSystemLogsResponse\022>\n\005items\030\001 \003(\0132/.pal"
+    "m.monitoring.v1.FileSystemLogsResponse.I"
+    "tem\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1"
+    ".Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n\004fil"
+    "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n\022PodmanQuery"
+    "Request\0229\n\003all\030\001 \001(\0132*.palm.monitoring.v"
+    "1.PodmanQueryRequest.AllH\000\022\016\n\004host\030\002 \001(\t"
+    "H\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030\n\016container_"
+    "name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.google.prot"
+    "obuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.google.prot"
+    "obuf.Timestamp\022\"\n\004page\030c \001(\0132\024.palm.port"
+    "al.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022PodmanLogsRe"
+    "sponse\022:\n\005items\030\001 \003(\0132+.palm.monitoring."
+    "v1.PodmanLogsResponse.Item\022.\n\npagination"
+    "\030\t \001(\0132\032.palm.portal.v1.Pagination\032O\n\004It"
+    "em\022\014\n\004host\030\001 \001(\t\022\024\n\014container_id\030\002 \001(\t\022\017"
+    "\n\007message\030\003 \001(\t\022\022\n\ncreated_at\030\t \001(\t\"\224\004\n\030"
+    "PodmanContainersResponse\022@\n\005items\030\001 \003(\0132"
+    "1.palm.monitoring.v1.PodmanContainersRes"
+    "ponse.Item\022.\n\npagination\030\t \001(\0132\032.palm.po"
+    "rtal.v1.Pagination\032\205\003\n\004Item\022\n\n\002id\030\001 \001(\t\022"
+    "\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labe"
+    "ls\030\004 \003(\0132=.palm.monitoring.v1.PodmanCont"
+    "ainersResponse.Item.LabelsEntry\022\016\n\006mount"
+    "s\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022"
+    "\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_a"
+    "t\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_at\030\026 \001"
+    "(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022.\n\nc"
+    "reated_at\030c \001(\0132\032.google.protobuf.Timest"
+    "amp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value"
+    "\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsResponse\022"
+    "@\n\005items\030\001 \003(\01321.palm.monitoring.v1.Podm"
+    "anStatisticsResponse.Item\022.\n\npagination\030"
+    "\t \001(\0132\032.palm.portal.v1.Pagination\032\356\001\n\004It"
+    "em\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_time"
+    "\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_cpu\030\005"
+    " \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_percent\030\007"
+    " \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001(\t\022\014"
+    "\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at"
+    "\030c \001(\0132\032.google.protobuf.Timestamp2a\n\004Si"
+    "te\022Y\n\006Layout\022%.palm.monitoring.v1.SiteLa"
+    "youtRequest\032&.palm.monitoring.v1.SiteLay"
+    "outResponse\"\0002m\n\nFileSystem\022_\n\004Logs\022).pa"
+    "lm.monitoring.v1.FileSystemLogsRequest\032*"
+    ".palm.monitoring.v1.FileSystemLogsRespon"
+    "se\"\0002\256\002\n\006Podman\022X\n\004Logs\022&.palm.monitorin"
+    "g.v1.PodmanQueryRequest\032&.palm.monitorin"
+    "g.v1.PodmanLogsResponse\"\000\022d\n\nContainers\022"
+    "&.palm.monitoring.v1.PodmanQueryRequest\032"
+    ",.palm.monitoring.v1.PodmanContainersRes"
+    "ponse\"\000\022d\n\nStatistics\022&.palm.monitoring."
+    "v1.PodmanQueryRequest\032,.palm.monitoring."
+    "v1.PodmanStatisticsResponse\"\000B4\n0com.git"
+    "hub.saturn_xiv.palm.plugins.monitoring.v"
+    "1P\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1127,7 +1131,7 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    3163,
+    3211,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
@@ -1615,6 +1619,11 @@ class SiteLayoutResponse::_Internal {
       8 * PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_._has_bits_);
 };
 
+void SiteLayoutResponse::clear_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ != nullptr) _impl_.created_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
 SiteLayoutResponse::SiteLayoutResponse(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
@@ -1651,6 +1660,9 @@ SiteLayoutResponse::SiteLayoutResponse(
   _impl_.user_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>(
                               arena, *from._impl_.user_)
                         : nullptr;
+  _impl_.created_at_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
+                              arena, *from._impl_.created_at_)
+                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SiteLayoutResponse)
 }
@@ -1665,7 +1677,12 @@ inline PROTOBUF_NDEBUG_INLINE SiteLayoutResponse::Impl_::Impl_(
 
 inline void SiteLayoutResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.user_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, user_),
+           0,
+           offsetof(Impl_, created_at_) -
+               offsetof(Impl_, user_) +
+               sizeof(Impl_::created_at_));
 }
 SiteLayoutResponse::~SiteLayoutResponse() {
   // @@protoc_insertion_point(destructor:palm.monitoring.v1.SiteLayoutResponse)
@@ -1679,6 +1696,7 @@ inline void SiteLayoutResponse::SharedDtor(MessageLite& self) {
   this_._impl_.git_version_.Destroy();
   this_._impl_.build_time_.Destroy();
   delete this_._impl_.user_;
+  delete this_._impl_.created_at_;
   this_._impl_.~Impl_();
 }
 
@@ -1730,16 +1748,16 @@ const ::google::protobuf::internal::ClassData* SiteLayoutResponse::GetClassData(
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 1, 92, 2> SiteLayoutResponse::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 2, 92, 7> SiteLayoutResponse::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_._has_bits_),
     0, // no _extensions_
-    12, 56,  // max_field_number, fast_idx_mask
+    99, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     4294963838,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    1,  // num_aux_entries
+    6,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1765,6 +1783,8 @@ const ::_pbi::TcParseTable<3, 5, 1, 92, 2> SiteLayoutResponse::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
+    99, 0, 1,
+    65534, 5,
     65535, 65535
   }}, {{
     // optional .palm.monitoring.v1.SiteLayoutResponse.CurrentUser user = 1;
@@ -1782,8 +1802,12 @@ const ::_pbi::TcParseTable<3, 5, 1, 92, 2> SiteLayoutResponse::_table_ = {
     // string build_time = 12;
     {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.build_time_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp created_at = 99;
+    {PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.created_at_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>()},
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
   }}, {{
     "\45\0\6\23\13\12\0\0"
     "palm.monitoring.v1.SiteLayoutResponse"
@@ -1806,9 +1830,15 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
   _impl_.git_version_.ClearToEmpty();
   _impl_.build_time_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.user_ != nullptr);
-    _impl_.user_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.user_ != nullptr);
+      _impl_.user_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.created_at_ != nullptr);
+      _impl_.created_at_->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -1869,6 +1899,13 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
             target = stream->WriteStringMaybeAliased(12, _s, target);
           }
 
+          // .google.protobuf.Timestamp created_at = 99;
+          if (cached_has_bits & 0x00000002u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                99, *this_._impl_.created_at_, this_._impl_.created_at_->GetCachedSize(), target,
+                stream);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1921,12 +1958,17 @@ PROTOBUF_NOINLINE void SiteLayoutResponse::Clear() {
                                               this_._internal_build_time());
             }
           }
-           {
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000003u) {
             // optional .palm.monitoring.v1.SiteLayoutResponse.CurrentUser user = 1;
-            cached_has_bits = this_._impl_._has_bits_[0];
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.user_);
+            }
+            // .google.protobuf.Timestamp created_at = 99;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 2 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.created_at_);
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1953,13 +1995,24 @@ void SiteLayoutResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
     _this->_internal_set_build_time(from._internal_build_time());
   }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.user_ != nullptr);
-    if (_this->_impl_.user_ == nullptr) {
-      _this->_impl_.user_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>(arena, *from._impl_.user_);
-    } else {
-      _this->_impl_.user_->MergeFrom(*from._impl_.user_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.user_ != nullptr);
+      if (_this->_impl_.user_ == nullptr) {
+        _this->_impl_.user_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SiteLayoutResponse_CurrentUser>(arena, *from._impl_.user_);
+      } else {
+        _this->_impl_.user_->MergeFrom(*from._impl_.user_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.created_at_ != nullptr);
+      if (_this->_impl_.created_at_ == nullptr) {
+        _this->_impl_.created_at_ =
+            ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.created_at_);
+      } else {
+        _this->_impl_.created_at_->MergeFrom(*from._impl_.created_at_);
+      }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -1984,7 +2037,12 @@ void SiteLayoutResponse::InternalSwap(SiteLayoutResponse* PROTOBUF_RESTRICT othe
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locale_, &other->_impl_.locale_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.git_version_, &other->_impl_.git_version_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.build_time_, &other->_impl_.build_time_, arena);
-  swap(_impl_.user_, other->_impl_.user_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.created_at_)
+      + sizeof(SiteLayoutResponse::_impl_.created_at_)
+      - PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.user_)>(
+          reinterpret_cast<char*>(&_impl_.user_),
+          reinterpret_cast<char*>(&other->_impl_.user_));
 }
 
 ::google::protobuf::Metadata SiteLayoutResponse::GetMetadata() const {

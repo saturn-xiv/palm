@@ -1,5 +1,6 @@
 #include "palm/services.hpp"
 #include "palm/session.hpp"
+#include "palm/theme.hpp"
 #include "palm/version.hpp"
 
 grpc::Status palm::monitoring::services::SiteServiceImpl ::Layout(
@@ -12,5 +13,7 @@ grpc::Status palm::monitoring::services::SiteServiceImpl ::Layout(
   reply->add_available_languages(en_us);
   reply->set_build_time(palm::BUILD_TIME);
   reply->set_git_version(palm::GIT_VERSION);
+  const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
+  reply->mutable_created_at()->CopyFrom(now);
   return grpc::Status::OK;
 }

@@ -24,6 +24,7 @@ message SiteLayoutResponse {
   repeated string available_languages = 9;
   string git_version = 11;
   string build_time = 12;
+  google.protobuf.Timestamp created_at = 99;
 }
 // ----------------------------------------------------------------------------
 

@@ -42,6 +42,11 @@ export class SiteLayoutResponse extends jspb.Message {
   getBuildTime(): string;
   setBuildTime(value: string): SiteLayoutResponse;
 
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): SiteLayoutResponse;
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): SiteLayoutResponse;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SiteLayoutResponse.AsObject;
   static toObject(includeInstance: boolean, msg: SiteLayoutResponse): SiteLayoutResponse.AsObject;
@@ -57,6 +62,7 @@ export namespace SiteLayoutResponse {
     availableLanguagesList: Array<string>,
     gitVersion: string,
     buildTime: string,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 
   export class CurrentUser extends jspb.Message {

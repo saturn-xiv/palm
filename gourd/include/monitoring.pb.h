@@ -2497,6 +2497,7 @@ class SiteLayoutResponse final : public ::google::protobuf::Message
     kGitVersionFieldNumber = 11,
     kBuildTimeFieldNumber = 12,
     kUserFieldNumber = 1,
+    kCreatedAtFieldNumber = 99,
   };
   // repeated string available_languages = 9;
   int available_languages_size() const;
@@ -2583,13 +2584,28 @@ class SiteLayoutResponse final : public ::google::protobuf::Message
   ::palm::monitoring::v1::SiteLayoutResponse_CurrentUser* _internal_mutable_user();
 
   public:
+  // .google.protobuf.Timestamp created_at = 99;
+  bool has_created_at() const;
+  void clear_created_at() ;
+  const ::google::protobuf::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_created_at();
+  ::google::protobuf::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_created_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_created_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_created_at();
+
+  public:
   // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SiteLayoutResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 1,
-      92, 2>
+      3, 6, 2,
+      92, 7>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2613,6 +2629,7 @@ class SiteLayoutResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr git_version_;
     ::google::protobuf::internal::ArenaStringPtr build_time_;
     ::palm::monitoring::v1::SiteLayoutResponse_CurrentUser* user_;
+    ::google::protobuf::Timestamp* created_at_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5674,6 +5691,97 @@ inline void SiteLayoutResponse::set_allocated_build_time(std::string* value) {
     _impl_.build_time_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutResponse.build_time)
+}
+
+// .google.protobuf.Timestamp created_at = 99;
+inline bool SiteLayoutResponse::has_created_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.created_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& SiteLayoutResponse::_internal_created_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& SiteLayoutResponse::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SiteLayoutResponse.created_at)
+  return _internal_created_at();
+}
+inline void SiteLayoutResponse::unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.SiteLayoutResponse.created_at)
+}
+inline ::google::protobuf::Timestamp* SiteLayoutResponse::release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* released = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* SiteLayoutResponse::unsafe_arena_release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SiteLayoutResponse.created_at)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* SiteLayoutResponse::_internal_mutable_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.created_at_;
+}
+inline ::google::protobuf::Timestamp* SiteLayoutResponse::mutable_created_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SiteLayoutResponse.created_at)
+  return _msg;
+}
+inline void SiteLayoutResponse::set_allocated_created_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SiteLayoutResponse.created_at)
 }
 
 // -------------------------------------------------------------------

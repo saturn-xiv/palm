@@ -114,6 +114,143 @@ static void launch_podman_ps(const toml::table& config) {
   // TODO
 }
 
+static void generate_etc(const std::string& domain) {
+  const auto etc = std::filesystem::path("etc") / domain;
+  if (std::filesystem::exists(etc)) {
+    spdlog::warn("folder {} exists", etc.string());
+    return;
+  }
+
+  spdlog::debug("generate folder {}", etc.string());
+  std::filesystem::create_directories(etc);
+
+  {
+    auto file = etc / "nginx.conf";
+    spdlog::info("generate file {}", file.string());
+    nlohmann::json data = {
+        {"domain", domain},
+        {
+            "api",
+            {{"hosts", {"192.168.21", "192.168.22", "192.168.23"}},
+             {"port", 8080}},
+        },
+    };
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"NGINX(
+# -----------------------------------------------------------------------------
+
+# https://nginx.org/en/docs/http/ngx_http_upstream_module.html
+upstream api_{{ domain }} {
+## for host in api.hosts
+  server {{ host }}:{{ api.port }};
+## endfor
+}
+
+# https://pro.ant.design/docs/deploy/#use-nginx
+server {
+  listen 80;
+
+  server_name {{ domain }};
+  access_log /var/log/nginx/{{ domain }}.access.log;
+  error_log  /var/log/nginx/{{ domain }}.error.log;
+
+  gzip on;
+  gzip_comp_level 9;
+  gzip_min_length 1k;
+  gzip_types text/plain text/css application/xml application/javascript;
+  gzip_vary on;
+  client_max_body_size 128M;
+
+  location /my/ {
+    alias /usr/share/palm/phlox/dashboard/;
+    try_files $uri $uri/ /my/index.html;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+  
+  location / {
+    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://api_{{ domain }};
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+}
+
+# -----------------------------------------------------------------------------
+)NGINX";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+
+  {
+    const auto file = etc / std::format("api.{}.conf", domain);
+    spdlog::info("generate file {}", file.string());
+
+    nlohmann::json data = {{"domain", domain}, {"port", 8080}};
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"SYSTEMD(
+[Unit]
+Description=HTTP api service for {{ domain }}
+After=rpc.{{ domain }}.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/{{ domain }}
+ExecStart=/usr/bin/phlox -c /etc/palm/{{ domain }}-http.toml -p {{ port }}
+# or always, on-abort, on-failure, etc
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+)SYSTEMD";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+
+  {
+    const auto file = etc / std::format("rpc.{}.conf", domain);
+    spdlog::info("generate file {}", file.string());
+
+    nlohmann::json data = {{"domain", domain}, {"port", 9090}};
+
+    spdlog::debug("args:\n{}", data.dump(4));
+    const std::string tpl = R"SYSTEMD(
+[Unit]
+Description=gRPC service for {{ domain }}
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/{{ domain }}
+ExecStart=/usr/bin/phlox -c /etc/{{ domain }}-rpc.toml rpc -p {{ port }}
+# or always, on-abort, on-failure, etc
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+)SYSTEMD";
+    std::ofstream out(file);
+    inja::render_to(out, tpl, data);
+  }
+
+  spdlog::info("done.");
+}
+
 static void start_log_watcher(const toml::table& config, bool stdin,
                               const std::vector<std::string>& original_files) {
   if (palm::is_stopped()) {
@@ -217,8 +354,10 @@ static void generate_token_for_user(const toml::table& config,
 void palm::phlox::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
+
   std::string http_listen_host;
   int http_listen_port;
+
   std::string rpc_listen_host;
   int rpc_listen_port;
 
@@ -227,6 +366,8 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
 
   std::string generate_token_username;
   int generate_token_years;
+
+  std::string generate_etc_domain;
 
   argparse::ArgumentParser program(
       "phlox", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
@@ -259,6 +400,12 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       .default_value(8080)
       .store_into(rpc_listen_port);
 
+  argparse::ArgumentParser generate_etc_command("generate-etc");
+  generate_etc_command.add_description("generate system configuration files");
+  generate_etc_command.add_argument("-n", "--domain-name")
+      .required()
+      .store_into(generate_etc_domain);
+
   argparse::ArgumentParser generate_token_command("generate-token");
   generate_token_command.add_description("generate a token for user");
   generate_token_command.add_argument("-u", "--username")
@@ -289,12 +436,18 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
 
   program.add_subparser(http_command);
   program.add_subparser(rpc_command);
+  program.add_subparser(generate_etc_command);
   program.add_subparser(generate_token_command);
   program.add_subparser(podman_logs_command);
   program.add_subparser(podman_stats_command);
   program.add_subparser(podman_ps_command);
   program.add_subparser(fs_watcher_command);
   program.parse_args(argc, argv);
+
+  if (program.is_subcommand_used(generate_etc_command)) {
+    generate_etc(generate_etc_domain);
+    return;
+  }
 
   if (program.is_subcommand_used(http_command) ||
       program.is_subcommand_used(rpc_command) ||

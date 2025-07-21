@@ -351,7 +351,7 @@ static void role_for_user(const toml::table& config,
   spdlog::info("done");
 }
 
-static void generate_etc(const toml::table& config, const std::string& domain) {
+static void generate_etc(const std::string& domain) {
   const auto etc = std::filesystem::path("etc") / domain;
   if (std::filesystem::exists(etc)) {
     spdlog::warn("folder {} exists", etc.string());
@@ -563,14 +563,14 @@ server {
     const std::string tpl = R"SYSTEMD(
 [Unit]
 Description=HTTP api service for {{ domain }}
-After=network.target
+After=rpc.{{ domain }}.target
 
 [Service]
 Type=simple
 User=www-data
 Group=www-data
 WorkingDirectory=/var/lib/{{ domain }}
-ExecStart=/usr/bin/local/lavender -c http.toml -p {{ port }}
+ExecStart=/usr/bin/lavender -c /etc/palm/{{ domain }}-http.toml -p {{ port }}
 # or always, on-abort, on-failure, etc
 Restart=always
 RestartSec=10s
@@ -599,7 +599,7 @@ Type=simple
 User=www-data
 Group=www-data
 WorkingDirectory=/var/lib/{{ domain }}
-ExecStart=/usr/local/bin/lavender -c rpc.toml -p {{ port }}
+ExecStart=/usr/bin/lavender -c /etc/palm/{{ domain }}-rpc.toml rpc -p {{ port }}
 # or always, on-abort, on-failure, etc
 Restart=always
 RestartSec=10s
@@ -630,7 +630,7 @@ Type=simple
 User=www-data
 Group=www-data
 WorkingDirectory=/var/lib/{{ domain }}
-ExecStart=/usr/bin/local/lavender -c {{ name }}-consumer -i 3
+ExecStart=/usr/bin/lavender -c /etc/palm/{{ domain }}-consumer-{{ name }}.toml -i 3
 # or always, on-abort, on-failure, etc
 Restart=always
 RestartSec=10s
@@ -982,10 +982,13 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
   program.add_subparser(email_send_consumer_command);
   program.parse_args(argc, argv);
 
+  if (program.is_subcommand_used(generate_etc_command)) {
+    generate_etc(generate_etc_domain);
+    return;
+  }
   if (program.is_subcommand_used(http_command) ||
       program.is_subcommand_used(rpc_command) ||
       program.is_subcommand_used(db_seed_command) ||
-      program.is_subcommand_used(generate_etc_command) ||
       program.is_subcommand_used(list_user_command) ||
       program.is_subcommand_used(create_email_user_command) ||
       program.is_subcommand_used(set_password_for_email_user_command) ||
@@ -1034,10 +1037,7 @@ void palm::lavender::Application::launch(int argc, char* argv[]) {
                     delete_role_for_user_role, false);
       return;
     }
-    if (program.is_subcommand_used(generate_etc_command)) {
-      generate_etc(config, generate_etc_domain);
-      return;
-    }
+
     if (program.is_subcommand_used(sms_send_consumer_command)) {
       toml::table config = toml::parse_file(config_file);
       start_sms_send_worker(sms_send_consumer_name, config,
