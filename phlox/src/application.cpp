@@ -2,6 +2,7 @@
 #include "palm/controllers.hpp"
 #include "palm/filesystem.hpp"
 #include "palm/podman.hpp"
+#include "palm/rpc.hpp"
 #include "palm/services.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
@@ -57,7 +58,15 @@ static std::shared_ptr<palm::Jwt> open_jwt(const toml::table& config) {
       std::make_shared<palm::Jwt>((*cfg)["key"].value<std::string>().value());
   return it;
 }
-
+static std::shared_ptr<grpc::Channel> open_backend(const toml::table& config) {
+  auto node = config["backend"].as_table();
+  if (node == nullptr) {
+    spdlog::error("missing backend part");
+    return nullptr;
+  }
+  palm::GRpcClient cfg(*node);
+  return cfg.open();
+}
 static std::shared_ptr<palm::opensearch::Client> open_opensearch(
     const toml::table& config) {
   std::shared_ptr<palm::opensearch::Client> it =
@@ -144,37 +153,19 @@ static void start_log_watcher(const toml::table& config, bool stdin,
 }
 
 static void start_http_server(const std::string& host, uint16_t port,
-                              const toml::table& config,
-                              const std::string& theme_folder) {
+                              const toml::table& config) {
   if (palm::is_stopped()) {
     return;
   }
 
-  nlohmann::json global;
-  {
-    global["version"] = palm::GIT_VERSION;
-    global["build_time"] = palm::BUILD_TIME;
-  }
-  palm::Theme theme(theme_folder, global);
+  auto jwt = open_jwt(config);
+  auto channel = open_backend(config);
 
   httplib::Server server;
-
-  if (!server.set_mount_point("/3rd", "./vendors")) {
-    spdlog::error("failed to mount third-party assets");
-    return;
-  }
-  if (!server.set_mount_point("/assets",
-                              std::format("{}/assets", theme_folder))) {
-    spdlog::error("failed to mount assets for theme {}", theme_folder);
-    return;
-  }
-
   palm::set_logger(server);
+  palm::mount(server, jwt, channel);
 
-  // palm::monitor::mount(server, theme, jwt, search);
-
-  spdlog::info("listen a HTTP server on tcp://{}:{} with theme {}", host, port,
-               theme_folder);
+  spdlog::info("listen a HTTP server on tcp://{}:{}", host, port);
   server.listen(host, port);
 }
 static void start_rpc_server(const std::string& host, uint16_t port,
@@ -230,7 +221,7 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   int http_listen_port;
   std::string rpc_listen_host;
   int rpc_listen_port;
-  std::string http_theme_folder;
+
   std::vector<std::string> watcher_files;
   bool watcher_stdin;
 
@@ -258,10 +249,6 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   http_command.add_argument("-p", "--port")
       .default_value(8080)
       .store_into(http_listen_port);
-  http_command.add_argument("-t", "--theme")
-      .default_value("bootstrap")
-      .store_into(http_theme_folder)
-      .help("folder to load theme");
 
   argparse::ArgumentParser rpc_command("rpc");
   rpc_command.add_description("start a gRPC server");
@@ -320,8 +307,7 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
     spdlog::info("load configuration from {}", config_file);
     toml::table config = toml::parse_file(config_file);
     if (program.is_subcommand_used(http_command)) {
-      start_http_server(http_listen_host, http_listen_port, config,
-                        http_theme_folder);
+      start_http_server(http_listen_host, http_listen_port, config);
       return;
     }
     if (program.is_subcommand_used(rpc_command)) {

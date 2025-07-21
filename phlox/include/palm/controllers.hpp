@@ -2,13 +2,11 @@
 
 #include "monitoring.grpc.pb.h"
 #include "palm/jwt.hpp"
-#include "palm/search.hpp"
-#include "palm/theme.hpp"
+#include "palm/rpc.hpp"
 
 namespace palm {
-void mount(httplib::Server& server, palm::Theme& theme,
-           std::shared_ptr<palm::Jwt> jwt,
-           std::shared_ptr<palm::opensearch::Client> search);
+void mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
+           std::shared_ptr<grpc::Channel> channel);
 struct CurrentUser {
   inline static const std::string ISSUER = "phlox";
   inline static const std::string WEB_AUDIENCE = "web";

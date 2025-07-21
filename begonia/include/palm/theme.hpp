@@ -6,7 +6,9 @@
 
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/time_util.h>
+#include <grpcpp/support/status.h>
 #include <httplib.h>
+#include <spdlog/spdlog.h>
 #include <inja/inja.hpp>
 
 namespace palm {
@@ -34,6 +36,40 @@ PostgreSQL: timestamp without time zone
 2025-07-13 10:49:04.782031+00
 */
 std::optional<std::string> to_json(const google::protobuf::Message& message);
+
+namespace http {
+inline void abort(httplib::Response& response, const std::string& content,
+                  int status = httplib::StatusCode::InternalServerError_500) {
+  response.set_content(content, palm::http::content_type::TEXT_PLAIN_UTF8);
+  response.status = status;
+}
+inline void abort(httplib::Response& response, const grpc::Status& status,
+                  int code = httplib::StatusCode::InternalServerError_500) {
+  const std::string content = status.error_message();
+  spdlog::error("{}", content);
+  abort(response, content, code);
+}
+inline void abort(httplib::Response& response, const absl::Status& status,
+                  int code = httplib::StatusCode::InternalServerError_500) {
+  const std::string content(status.message());
+  spdlog::error("{} {}", status.raw_code(), content);
+  abort(response, content, code);
+}
+inline void json(httplib::Response& response,
+                 const google::protobuf::Message& message,
+                 int status = httplib::StatusCode::OK_200) {
+  std::string content;
+  const auto it =
+      google::protobuf::util::MessageToJsonString(message, &content);
+  if (it.ok()) {
+    response.set_content(content,
+                         palm::http::content_type::APPLICATION_JSON_UTF8);
+    response.status = status;
+  } else {
+    abort(response, it);
+  }
+}
+}  // namespace http
 }  // namespace palm
 
 namespace nlohmann {

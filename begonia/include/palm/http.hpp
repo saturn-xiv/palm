@@ -5,10 +5,6 @@
 
 namespace palm {
 namespace http {
-namespace status {
-const static int OK = 200;
-const static int CREATED = 201;
-}  // namespace status
 namespace headers {
 inline static const std::string CONTENT_TYPE = "Content-Type";
 

@@ -11,6 +11,7 @@
 #include <boost/type_index.hpp>
 
 #include <cpr/cpr.h>
+#include <httplib.h>
 #include <nlohmann/json.hpp>
 
 #define TOML_EXCEPTIONS 1
@@ -181,7 +182,7 @@ class Client {
     const auto url = this->url(path);
     spdlog::debug("GET {}", url);
     cpr::Response res = cpr::Get(cpr::Url{url});
-    if (res.status_code != palm::http::status::OK) {
+    if (res.status_code != httplib::StatusCode::OK_200) {
       spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
@@ -200,8 +201,8 @@ class Client {
         cpr::Url{url}, cpr::Body{body.dump()},
         cpr::Header{{palm::http::headers::CONTENT_TYPE,
                      palm::http::content_type::APPLICATION_JSON_UTF8}});
-    if (res.status_code != palm::http::status::OK &&
-        res.status_code != palm::http::status::CREATED) {
+    if (res.status_code != httplib::StatusCode::OK_200 &&
+        res.status_code != httplib::StatusCode::Created_201) {
       spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
@@ -214,7 +215,7 @@ class Client {
     const auto url = this->url(path);
     spdlog::debug("PUT {}", url);
     cpr::Response res = cpr::Put(cpr::Url{url});
-    if (res.status_code != palm::http::status::OK) {
+    if (res.status_code != httplib::StatusCode::OK_200) {
       spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
@@ -233,7 +234,7 @@ class Client {
         cpr::Url{url}, cpr::Body{body.dump()},
         cpr::Header{{palm::http::headers::CONTENT_TYPE,
                      palm::http::content_type::APPLICATION_JSON_UTF8}});
-    if (res.status_code != palm::http::status::OK) {
+    if (res.status_code != httplib::StatusCode::OK_200) {
       spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
@@ -245,7 +246,7 @@ class Client {
     const auto url = this->url(path);
     spdlog::debug("HEAD: {}", url);
     cpr::Response res = cpr::Head(cpr::Url{url});
-    if (res.status_code != palm::http::status::OK) {
+    if (res.status_code != httplib::StatusCode::OK_200) {
       spdlog::error("{}: {}", res.status_code, res.text);
       return false;
     }
@@ -257,7 +258,7 @@ class Client {
     const auto url = this->url(path);
     spdlog::debug("HEAD {}", url);
     cpr::Response res = cpr::Head(cpr::Url{url});
-    if (res.status_code != palm::http::status::OK) {
+    if (res.status_code != httplib::StatusCode::OK_200) {
       spdlog::error("{}: {}", res.status_code, res.text);
       return std::nullopt;
     }
@@ -270,7 +271,7 @@ class Client {
     const auto url = this->url(path);
     spdlog::debug("DELETE {}", url);
     cpr::Response res = cpr::Delete(cpr::Url{url});
-    if (res.status_code != palm::http::status::OK) {
+    if (res.status_code != httplib::StatusCode::OK_200) {
       spdlog::error("{} {}", res.status_code, res.text);
       return std::nullopt;
     }

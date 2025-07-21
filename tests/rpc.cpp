@@ -1,9 +1,15 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include "palm/rpc.hpp"
+#include "portal.grpc.pb.h"
+
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/time_util.h>
 
-#include "portal.grpc.pb.h"
+TEST_CASE("phlox client", "[grpc]") {
+  palm::GRpcClient config("127.0.0.0", 18080);
+  auto channel = config.open();
+}
 
 TEST_CASE("grpc client", "[grpc]") {
   google::protobuf::Arena arena;
