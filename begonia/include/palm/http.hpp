@@ -8,10 +8,6 @@ namespace http {
 namespace headers {
 inline static const std::string CONTENT_TYPE = "Content-Type";
 
-//   https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md
-//   https://jwt.io/introduction
-inline static const std::string AUTHORIZATION = "Authorization";
-inline static const std::string BEARER = "Bearer ";
 }  // namespace headers
 namespace content_type {
 inline static const std::string TEXT_HTML_UTF8 = "text/html; charset=utf-8";

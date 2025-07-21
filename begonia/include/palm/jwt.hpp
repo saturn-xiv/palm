@@ -8,11 +8,6 @@
 #include <set>
 #include <vector>
 
-#include <boost/algorithm/string.hpp>
-
-#include <grpcpp/grpcpp.h>
-#include <httplib.h>
-
 namespace palm {
 class Jwt {
  public:
@@ -46,36 +41,6 @@ class Jwt {
              std::string, std::optional<std::string>>
   verify(const std::string& token, const std::string& issuer,
          const std::string& audience) const;
-
-  static inline std::optional<std::string> token(grpc::ServerContext* context) {
-    static const std::string auth =
-        boost::algorithm::to_lower_copy(palm::http::headers::AUTHORIZATION);
-    const auto metadata = context->client_metadata();
-
-    auto items =
-        metadata | std::views::filter([](auto& v) { return v.first == auth; });
-
-    for (auto it : items) {
-      if (it.second.starts_with(palm::http::headers::BEARER)) {
-        const std::string s(it.second.begin(), it.second.end());
-        return s.substr(palm::http::headers::BEARER.size());
-      }
-    }
-
-    return std::nullopt;
-  }
-
-  static inline std::optional<std::string> token(
-      const httplib::Request& request) {
-    if (request.has_header(palm::http::headers::AUTHORIZATION)) {
-      const auto it =
-          request.get_header_value(palm::http::headers::AUTHORIZATION);
-      if (it.starts_with(palm::http::headers::BEARER)) {
-        return it.substr(palm::http::headers::BEARER.size());
-      }
-    }
-    return std::nullopt;
-  }
 
  private:
   std::string _key;

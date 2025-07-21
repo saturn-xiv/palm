@@ -23,6 +23,7 @@
 // TODO
 // #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/health_check_service_interface.h>
+#include <grpcpp/security/server_credentials.h>
 #include <argparse/argparse.hpp>
 
 static std::shared_ptr<palm::Jwt> open_jwt(const toml::table& config) {

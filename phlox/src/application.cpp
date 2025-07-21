@@ -19,6 +19,7 @@
 #include <boost/range/iterator_range.hpp>
 
 #include <grpcpp/health_check_service_interface.h>
+#include <grpcpp/security/server_credentials.h>
 #include <argparse/argparse.hpp>
 
 static std::shared_ptr<soci::session> open_db(const toml::table& config) {

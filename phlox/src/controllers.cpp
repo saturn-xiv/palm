@@ -7,6 +7,7 @@ void palm::mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
              [&](const httplib::Request& request, httplib::Response& response) {
                auto stub = palm::monitoring::v1::Site::NewStub(channel);
                grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
                palm::monitoring::v1::SiteLayoutRequest req;
                palm::monitoring::v1::SiteLayoutResponse res;
                auto status = stub->Layout(&ctx, req, &res);
