@@ -14,6 +14,7 @@
     "yaml-cpp",
     "tomlplusplus",
     "pugixml",
+    { "name": "msgpack", "features": ["boost"] },
     "mailio",
     "cppcodec",
     "inja",

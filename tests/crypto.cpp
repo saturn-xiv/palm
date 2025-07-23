@@ -6,22 +6,49 @@
 #include "palm/jwt.hpp"
 #include "palm/utils.hpp"
 
+#include <chrono>
+#include <thread>
+
 #include <jwt-cpp/jwt.h>
 
 #define PALM_SALT_SIZE 12
 #define PALM_LOOP_SIZE 6
 
+TEST_CASE("salted password", "[password]") {
+  const std::string hi = "hello, palm!";
+  for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+    const auto code = palm::salted_password::sign(hi);
+    REQUIRE(hi != code);
+    const auto it = palm::salted_password::verify(code);
+    REQUIRE(hi == it.first);
+    REQUIRE(code != it.first);
+    std::cout << "salted password(" << i << ", " << it.second << "): " << code
+              << std::endl;
+  }
+}
+
 TEST_CASE("random data", "[random]") {
-  {
-    const auto it = palm::timestamp();
-    std::cout << "Current Timestamp: " << it << std::endl;
-    REQUIRE(it.size() == 14);
+  SECTION("double") {
+    for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+      std::cout << "double(" << i << "): " << palm::random::double_()
+                << std::endl;
+    }
+  }
+  SECTION("timestamp") {
+    for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+      const auto it = palm::timestamp();
+      std::cout << "Current Timestamp: " << it << std::endl;
+      REQUIRE(it.size() == 14);
+      std::this_thread::sleep_for(std::chrono::milliseconds(1200));
+    }
   }
 
-  for (int i = 1; i < PALM_LOOP_SIZE; i++) {
-    std::cout << "UUID(" << i << "): " << palm::uuid() << std::endl;
+  SECTION("uuid") {
+    for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+      std::cout << "UUID(" << i << "): " << palm::uuid() << std::endl;
+    }
   }
-  {
+  SECTION("bytes") {
     for (int i = 1; i < PALM_LOOP_SIZE; i++) {
       const auto buf = palm::random::bytes(PALM_SALT_SIZE);
       REQUIRE(buf.size() == PALM_SALT_SIZE);
@@ -33,7 +60,7 @@ TEST_CASE("random data", "[random]") {
       }
     }
   }
-  {
+  SECTION("alphanumeric") {
     // FIXME 128
     const size_t len = 32;
     for (int i = 1; i < PALM_LOOP_SIZE; i++) {

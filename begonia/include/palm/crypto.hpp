@@ -86,6 +86,7 @@ std::vector<uint8_t> from_string(const std::string& str);
 namespace random {
 std::vector<uint8_t> bytes(size_t len);
 std::string alphanumeric(size_t len);
+double double_(double min = 0.0, double max = 1.0);
 }  // namespace random
 
 std::string uuid();
@@ -119,4 +120,11 @@ inline bool verify(const std::string& code, const std::string& plain) {
 inline static const std::string HEADER = "{SSHA512}";
 }  // namespace ssha512
 
+namespace salted_password {
+std::pair<std::string, double> verify(const std::string& code);
+/*
+js: Math.random()
+*/
+std::string sign(const std::string& plain);
+}  // namespace salted_password
 }  // namespace palm
