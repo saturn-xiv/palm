@@ -239,7 +239,8 @@ static void launch_podman_ps(const toml::table& config) {
   const auto index_name =
       search->index_name<palm::monitoring::v1::PodmanContainersResponse_Item>();
 
-  palm::opensearch::requests::bulk::Create create{._index = index_name};
+  palm::opensearch::requests::bulk_index::Action bulk{
+      .index = {._index = index_name}};
 
   std::stringstream body;
   {
@@ -285,22 +286,22 @@ static void launch_podman_ps(const toml::table& config) {
         y->set_nanos(0);
       }
 
-      create._id = std::format("{}://{}", hostname, it.Id);
-      nlohmann::json act = create;
+      bulk.index._id = std::format("{}.{}", hostname, it.Id);
+      nlohmann::json act = bulk;
       body << act.dump() << "\n";
 
       const auto buf = palm::to_json(x);
       body << buf.value() << "\n";
     }
   }
-  spdlog::debug("{}", body.str());
-  // const auto res =
-  //     search->post(std::format("/{}/_bulk", index_name), body.str());
-  // if (res) {
-  //   const auto it =
-  //       search->count<palm::monitoring::v1::PodmanContainersResponse_Item>();
-  //   spdlog::info("{} total has {} items", index_name, it.value());
-  // }
+  // spdlog::debug("{}", body.str());
+  const auto res = search->post("_bulk", body.str());
+  // TODO check error
+  if (res) {
+    const auto it =
+        search->count<palm::monitoring::v1::PodmanContainersResponse_Item>();
+    spdlog::info("{} total has {} items", index_name, it.value());
+  }
 }
 
 static void generate_etc(const std::string& domain) {

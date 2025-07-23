@@ -23,6 +23,7 @@ find_package(miniocpp CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 find_package(pugixml CONFIG REQUIRED)
 find_package(mstch CONFIG REQUIRED)
+find_package(msgpack-cxx CONFIG REQUIRED)
 find_package(protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -59,7 +60,7 @@ target_link_libraries(begonia PUBLIC
   rabbitmq::rabbitmq-static
   unofficial-sodium::sodium mailio::mailio cpr::cpr jwt-cpp::jwt-cpp
   httplib::httplib nlohmann_json::nlohmann_json pantor::inja
-  PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch
+  PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch msgpack-cxx
   Boost::uuid Boost::url Boost::property_tree Boost::algorithm Boost::locale Boost::process
   protobuf::libprotobuf gRPC::grpc++
   thrift thriftnb thriftz casbin

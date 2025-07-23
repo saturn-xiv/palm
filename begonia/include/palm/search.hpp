@@ -20,28 +20,58 @@
 namespace palm {
 namespace opensearch {
 namespace requests {
-namespace bulk {
-struct Create {
+namespace bulk_create {
+struct Params {
   std::string _index;
   std::optional<std::string> _id;
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Create, _index, _id);
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Params, _index, _id);
 };
-struct Delete {
+struct Action {
+  Params create;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Action, create);
+};
+}  // namespace bulk_create
+namespace bulk_delete {
+struct Params {
   std::string _index;
   std::string _id;
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Delete, _index, _id);
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Params, _index, _id);
 };
-struct Index {
+
+// FIXME
+// struct Action {
+//   Params delete_;
+//   NLOHMANN_DEFINE_TYPE_INTRUSIVE(Action, delete);
+// };
+
+}  // namespace bulk_delete
+namespace bulk_index {
+
+struct Params {
   std::string _index;
   std::string _id;
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Index, _index, _id);
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Params, _index, _id);
 };
-struct Update {
+
+struct Action {
+  Params index;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Action, index);
+};
+}  // namespace bulk_index
+namespace bulk_update {
+// FIXME doc args
+struct Params {
   std::string _index;
   std::string _id;
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Update, _index, _id);
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Params, _index, _id);
 };
-}  // namespace bulk
+
+struct Action {
+  Params update;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Action, update);
+};
+}  // namespace bulk_update
+
 namespace create_index {
 struct SettingsIndex {
   uint16_t number_of_shards;
