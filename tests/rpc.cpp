@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include "monitoring.grpc.pb.h"
 #include "palm/rpc.hpp"
 #include "portal.grpc.pb.h"
 
@@ -9,6 +10,44 @@
 TEST_CASE("phlox client", "[grpc]") {
   palm::GRpcClient config("127.0.0.0", 18080);
   auto channel = config.open();
+}
+
+TEST_CASE("protobuf map", "[grpc]") {
+  // FIXME clang-20 segmentation fault (core dumped)
+  SECTION("std") {
+    palm::monitoring::v1::PodmanContainersResponse_Item it;
+    {
+      auto x = it.mutable_labels();
+      (*x)["111"] = "abc";
+      (*x)["222"] = "xyz";
+    }
+    {
+      std::cout << "map size " << it.labels().size() << std::endl;
+      for (const auto& [k, v] : it.labels()) {
+        std::cout << k << "=" << v << std::endl;
+      }
+    }
+    std::string buf;
+
+    const auto status = google::protobuf::util::MessageToJsonString(it, &buf);
+    REQUIRE(status.ok());
+    std::cout << "map(std): " << buf << std::endl;
+  }
+  SECTION("arena") {
+    google::protobuf::Arena arena;
+    auto it = google::protobuf::Arena::Create<
+        palm::monitoring::v1::PodmanContainersResponse_Item>(&arena);
+    {
+      auto x = it->mutable_labels();
+      (*x)["111"] = "abc";
+      (*x)["222"] = "xyz";
+    }
+
+    std::string buf;
+    const auto status = google::protobuf::util::MessageToJsonString(*it, &buf);
+    REQUIRE(status.ok());
+    std::cout << "map(arena): " << buf << std::endl;
+  }
 }
 
 TEST_CASE("grpc client", "[grpc]") {

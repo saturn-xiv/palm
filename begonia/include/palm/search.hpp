@@ -1,6 +1,6 @@
 #pragma once
 
-#include "palm/http.hpp"
+#include "palm/theme.hpp"
 #include "palm/utils.hpp"
 
 #include <algorithm>
@@ -20,6 +20,28 @@
 namespace palm {
 namespace opensearch {
 namespace requests {
+namespace bulk {
+struct Create {
+  std::string _index;
+  std::optional<std::string> _id;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Create, _index, _id);
+};
+struct Delete {
+  std::string _index;
+  std::string _id;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Delete, _index, _id);
+};
+struct Index {
+  std::string _index;
+  std::string _id;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Index, _index, _id);
+};
+struct Update {
+  std::string _index;
+  std::string _id;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Update, _index, _id);
+};
+}  // namespace bulk
 namespace create_index {
 struct SettingsIndex {
   uint16_t number_of_shards;
@@ -175,6 +197,22 @@ class Client {
     boost::algorithm::to_lower(it);
     return it;
   }
+  std::optional<std::string> post(const std::string& path,
+                                  const std::string& body) const {
+    const auto url = this->url(path);
+    spdlog::debug("POST {}:\n{}", url, palm::truncate(body, MESSAGE_SIZE));
+    cpr::Response res = cpr::Post(
+        cpr::Url{url}, cpr::Body{body},
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
+    if (res.status_code != httplib::StatusCode::OK_200 &&
+        res.status_code != httplib::StatusCode::Created_201) {
+      spdlog::error("{}: {}", res.status_code, res.text);
+      return std::nullopt;
+    }
+    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
+    return res.text;
+  }
 
  private:
   template <class R>
@@ -190,25 +228,16 @@ class Client {
     auto js = nlohmann::json::parse(res.text);
     return js.template get<R>();
   }
+
   template <class Q, class R>
   std::optional<R> post(const std::string& path, const Q& request) const {
     nlohmann::json body = request;
-
-    const auto url = this->url(path);
-    spdlog::debug("POST {}:\n{}", url,
-                  palm::truncate(body.dump(2), MESSAGE_SIZE));
-    cpr::Response res = cpr::Post(
-        cpr::Url{url}, cpr::Body{body.dump()},
-        cpr::Header{{palm::http::headers::CONTENT_TYPE,
-                     palm::http::content_type::APPLICATION_JSON_UTF8}});
-    if (res.status_code != httplib::StatusCode::OK_200 &&
-        res.status_code != httplib::StatusCode::Created_201) {
-      spdlog::error("{}: {}", res.status_code, res.text);
-      return std::nullopt;
+    const auto res = this->post(path, body.dump());
+    if (res) {
+      auto js = nlohmann::json::parse(res.value());
+      return js.template get<R>();
     }
-    spdlog::debug("{}", palm::truncate(res.text, MESSAGE_SIZE));
-    auto js = nlohmann::json::parse(res.text);
-    return js.template get<R>();
+    return std::nullopt;
   }
   template <class R>
   std::optional<R> put(const std::string& path) const {

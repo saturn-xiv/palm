@@ -87,8 +87,8 @@ message PodmanQueryRequest {
   oneof by {
     All all = 1;
     string host = 2;
-    string container_id = 3;
-    string container_name = 4;
+    string id = 3;
+    string name = 4;
   }
   google.protobuf.Timestamp from = 91;
   google.protobuf.Timestamp to = 92;
@@ -98,8 +98,9 @@ message PodmanQueryRequest {
 message PodmanLogsResponse {
   message Item {
     string host = 1;
-    string container_id = 2;
-    string message = 3;
+    string id = 2;
+    string name = 3;
+    string message = 4;
     string created_at = 9;
   }
   repeated Item items = 1;

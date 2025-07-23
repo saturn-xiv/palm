@@ -378,11 +378,11 @@ export class PodmanQueryRequest extends jspb.Message {
   getHost(): string;
   setHost(value: string): PodmanQueryRequest;
 
-  getContainerId(): string;
-  setContainerId(value: string): PodmanQueryRequest;
+  getId(): string;
+  setId(value: string): PodmanQueryRequest;
 
-  getContainerName(): string;
-  setContainerName(value: string): PodmanQueryRequest;
+  getName(): string;
+  setName(value: string): PodmanQueryRequest;
 
   getFrom(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setFrom(value?: google_protobuf_timestamp_pb.Timestamp): PodmanQueryRequest;
@@ -413,8 +413,8 @@ export namespace PodmanQueryRequest {
   export type AsObject = {
     all?: PodmanQueryRequest.All.AsObject,
     host: string,
-    containerId: string,
-    containerName: string,
+    id: string,
+    name: string,
     from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     page?: portal_pb.Page.AsObject,
@@ -439,8 +439,8 @@ export namespace PodmanQueryRequest {
     BY_NOT_SET = 0,
     ALL = 1,
     HOST = 2,
-    CONTAINER_ID = 3,
-    CONTAINER_NAME = 4,
+    ID = 3,
+    NAME = 4,
   }
 }
 
@@ -473,8 +473,11 @@ export namespace PodmanLogsResponse {
     getHost(): string;
     setHost(value: string): Item;
 
-    getContainerId(): string;
-    setContainerId(value: string): Item;
+    getId(): string;
+    setId(value: string): Item;
+
+    getName(): string;
+    setName(value: string): Item;
 
     getMessage(): string;
     setMessage(value: string): Item;
@@ -493,7 +496,8 @@ export namespace PodmanLogsResponse {
   export namespace Item {
     export type AsObject = {
       host: string,
-      containerId: string,
+      id: string,
+      name: string,
       message: string,
       createdAt: string,
     }

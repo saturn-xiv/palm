@@ -35,7 +35,18 @@ void str2ts(const std::string& time, google::protobuf::Timestamp* timestamp);
 PostgreSQL: timestamp without time zone
 2025-07-13 10:49:04.782031+00
 */
-std::optional<std::string> to_json(const google::protobuf::Message& message);
+inline std::optional<std::string> to_json(
+    const google::protobuf::Message& message) {
+  std::string buf;
+  const auto status =
+      google::protobuf::util::MessageToJsonString(message, &buf);
+  if (status.ok()) {
+    return buf;
+  }
+  spdlog::error("failed to serialize google message to json {}",
+                status.message());
+  return std::nullopt;
+}
 
 namespace http {
 inline void abort(httplib::Response& response, const std::string& content,

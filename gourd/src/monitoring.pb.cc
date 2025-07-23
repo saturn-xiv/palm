@@ -105,7 +105,10 @@ inline constexpr PodmanLogsResponse_Item::Impl_::Impl_(
       : host_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        container_id_(
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         message_(
@@ -864,7 +867,8 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.host_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.container_id_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.message_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse_Item, _impl_.created_at_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::PodmanLogsResponse, _impl_._has_bits_),
@@ -1006,12 +1010,12 @@ static const ::_pbi::MigrationSchema
         {153, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
         {161, 177, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
         {184, -1, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {196, 206, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {208, 218, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {220, 243, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {258, 268, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {270, 290, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {302, 312, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {197, 207, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {209, 219, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {221, 244, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {259, 269, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {271, 291, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {303, 313, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
@@ -1070,57 +1074,56 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     "m.monitoring.v1.FileSystemLogsResponse.I"
     "tem\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1"
     ".Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n\004fil"
-    "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\224\002\n\022PodmanQuery"
+    "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\200\002\n\022PodmanQuery"
     "Request\0229\n\003all\030\001 \001(\0132*.palm.monitoring.v"
     "1.PodmanQueryRequest.AllH\000\022\016\n\004host\030\002 \001(\t"
-    "H\000\022\026\n\014container_id\030\003 \001(\tH\000\022\030\n\016container_"
-    "name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.google.prot"
-    "obuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.google.prot"
-    "obuf.Timestamp\022\"\n\004page\030c \001(\0132\024.palm.port"
-    "al.v1.Page\032\005\n\003AllB\004\n\002by\"\321\001\n\022PodmanLogsRe"
-    "sponse\022:\n\005items\030\001 \003(\0132+.palm.monitoring."
-    "v1.PodmanLogsResponse.Item\022.\n\npagination"
-    "\030\t \001(\0132\032.palm.portal.v1.Pagination\032O\n\004It"
-    "em\022\014\n\004host\030\001 \001(\t\022\024\n\014container_id\030\002 \001(\t\022\017"
-    "\n\007message\030\003 \001(\t\022\022\n\ncreated_at\030\t \001(\t\"\224\004\n\030"
-    "PodmanContainersResponse\022@\n\005items\030\001 \003(\0132"
-    "1.palm.monitoring.v1.PodmanContainersRes"
-    "ponse.Item\022.\n\npagination\030\t \001(\0132\032.palm.po"
-    "rtal.v1.Pagination\032\205\003\n\004Item\022\n\n\002id\030\001 \001(\t\022"
-    "\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labe"
-    "ls\030\004 \003(\0132=.palm.monitoring.v1.PodmanCont"
-    "ainersResponse.Item.LabelsEntry\022\016\n\006mount"
-    "s\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022"
-    "\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_a"
-    "t\030\r \001(\005\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_at\030\026 \001"
-    "(\005\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022.\n\nc"
-    "reated_at\030c \001(\0132\032.google.protobuf.Timest"
-    "amp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value"
-    "\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsResponse\022"
-    "@\n\005items\030\001 \003(\01321.palm.monitoring.v1.Podm"
-    "anStatisticsResponse.Item\022.\n\npagination\030"
-    "\t \001(\0132\032.palm.portal.v1.Pagination\032\356\001\n\004It"
-    "em\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_time"
-    "\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_cpu\030\005"
-    " \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_percent\030\007"
-    " \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001(\t\022\014"
-    "\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at"
-    "\030c \001(\0132\032.google.protobuf.Timestamp2a\n\004Si"
-    "te\022Y\n\006Layout\022%.palm.monitoring.v1.SiteLa"
-    "youtRequest\032&.palm.monitoring.v1.SiteLay"
-    "outResponse\"\0002m\n\nFileSystem\022_\n\004Logs\022).pa"
-    "lm.monitoring.v1.FileSystemLogsRequest\032*"
-    ".palm.monitoring.v1.FileSystemLogsRespon"
-    "se\"\0002\256\002\n\006Podman\022X\n\004Logs\022&.palm.monitorin"
-    "g.v1.PodmanQueryRequest\032&.palm.monitorin"
-    "g.v1.PodmanLogsResponse\"\000\022d\n\nContainers\022"
-    "&.palm.monitoring.v1.PodmanQueryRequest\032"
-    ",.palm.monitoring.v1.PodmanContainersRes"
-    "ponse\"\000\022d\n\nStatistics\022&.palm.monitoring."
-    "v1.PodmanQueryRequest\032,.palm.monitoring."
-    "v1.PodmanStatisticsResponse\"\000B4\n0com.git"
-    "hub.saturn_xiv.palm.plugins.monitoring.v"
-    "1P\001b\006proto3"
+    "H\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 \001(\tH\000\022(\n\004from"
+    "\030[ \001(\0132\032.google.protobuf.Timestamp\022&\n\002to"
+    "\030\\ \001(\0132\032.google.protobuf.Timestamp\022\"\n\004pa"
+    "ge\030c \001(\0132\024.palm.portal.v1.Page\032\005\n\003AllB\004\n"
+    "\002by\"\325\001\n\022PodmanLogsResponse\022:\n\005items\030\001 \003("
+    "\0132+.palm.monitoring.v1.PodmanLogsRespons"
+    "e.Item\022.\n\npagination\030\t \001(\0132\032.palm.portal"
+    ".v1.Pagination\032S\n\004Item\022\014\n\004host\030\001 \001(\t\022\n\n\002"
+    "id\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\017\n\007message\030\004 \001(\t\022"
+    "\022\n\ncreated_at\030\t \001(\t\"\224\004\n\030PodmanContainers"
+    "Response\022@\n\005items\030\001 \003(\01321.palm.monitorin"
+    "g.v1.PodmanContainersResponse.Item\022.\n\npa"
+    "gination\030\t \001(\0132\032.palm.portal.v1.Paginati"
+    "on\032\205\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n\005image\030\002 \001(\t\022\020"
+    "\n\010image_id\030\003 \001(\t\022M\n\006labels\030\004 \003(\0132=.palm."
+    "monitoring.v1.PodmanContainersResponse.I"
+    "tem.LabelsEntry\022\016\n\006mounts\030\005 \003(\t\022\r\n\005names"
+    "\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005"
+    "state\030\014 \001(\t\022\022\n\nstarted_at\030\r \001(\005\022\016\n\006exite"
+    "d\030\025 \001(\010\022\021\n\texited_at\030\026 \001(\005\022\021\n\texit_code\030"
+    "\027 \001(\005\022\014\n\004host\030b \001(\t\022.\n\ncreated_at\030c \001(\0132"
+    "\032.google.protobuf.Timestamp\032-\n\013LabelsEnt"
+    "ry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030P"
+    "odmanStatisticsResponse\022@\n\005items\030\001 \003(\01321"
+    ".palm.monitoring.v1.PodmanStatisticsResp"
+    "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por"
+    "tal.v1.Pagination\032\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014"
+    "\n\004name\030\002 \001(\t\022\020\n\010cpu_time\030\003 \001(\t\022\023\n\013cpu_pe"
+    "rcent\030\004 \001(\t\022\017\n\007avg_cpu\030\005 \001(\t\022\021\n\tmem_usag"
+    "e\030\006 \001(\t\022\023\n\013mem_percent\030\007 \001(\t\022\016\n\006net_io\030\010"
+    " \001(\t\022\020\n\010block_io\030\t \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004"
+    "host\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032.google."
+    "protobuf.Timestamp2a\n\004Site\022Y\n\006Layout\022%.p"
+    "alm.monitoring.v1.SiteLayoutRequest\032&.pa"
+    "lm.monitoring.v1.SiteLayoutResponse\"\0002m\n"
+    "\nFileSystem\022_\n\004Logs\022).palm.monitoring.v1"
+    ".FileSystemLogsRequest\032*.palm.monitoring"
+    ".v1.FileSystemLogsResponse\"\0002\256\002\n\006Podman\022"
+    "X\n\004Logs\022&.palm.monitoring.v1.PodmanQuery"
+    "Request\032&.palm.monitoring.v1.PodmanLogsR"
+    "esponse\"\000\022d\n\nContainers\022&.palm.monitorin"
+    "g.v1.PodmanQueryRequest\032,.palm.monitorin"
+    "g.v1.PodmanContainersResponse\"\000\022d\n\nStati"
+    "stics\022&.palm.monitoring.v1.PodmanQueryRe"
+    "quest\032,.palm.monitoring.v1.PodmanStatist"
+    "icsResponse\"\000B4\n0com.github.saturn_xiv.p"
+    "alm.plugins.monitoring.v1P\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1131,7 +1134,7 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    3211,
+    3195,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
@@ -4835,11 +4838,11 @@ PodmanQueryRequest::PodmanQueryRequest(
       case kHost:
         new (&_impl_.by_.host_) decltype(_impl_.by_.host_){arena, from._impl_.by_.host_};
         break;
-      case kContainerId:
-        new (&_impl_.by_.container_id_) decltype(_impl_.by_.container_id_){arena, from._impl_.by_.container_id_};
+      case kId:
+        new (&_impl_.by_.id_) decltype(_impl_.by_.id_){arena, from._impl_.by_.id_};
         break;
-      case kContainerName:
-        new (&_impl_.by_.container_name_) decltype(_impl_.by_.container_name_){arena, from._impl_.by_.container_name_};
+      case kName:
+        new (&_impl_.by_.name_) decltype(_impl_.by_.name_){arena, from._impl_.by_.name_};
         break;
   }
 
@@ -4894,12 +4897,12 @@ void PodmanQueryRequest::clear_by() {
       _impl_.by_.host_.Destroy();
       break;
     }
-    case kContainerId: {
-      _impl_.by_.container_id_.Destroy();
+    case kId: {
+      _impl_.by_.id_.Destroy();
       break;
     }
-    case kContainerName: {
-      _impl_.by_.container_name_.Destroy();
+    case kName: {
+      _impl_.by_.name_.Destroy();
       break;
     }
     case BY_NOT_SET: {
@@ -4946,7 +4949,7 @@ const ::google::protobuf::internal::ClassData* PodmanQueryRequest::GetClassData(
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 7, 4, 76, 7> PodmanQueryRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 7, 4, 56, 7> PodmanQueryRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_._has_bits_),
     0, // no _extensions_
@@ -4981,11 +4984,11 @@ const ::_pbi::TcParseTable<1, 7, 4, 76, 7> PodmanQueryRequest::_table_ = {
     // string host = 2;
     {PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_.by_.host_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string container_id = 3;
-    {PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_.by_.container_id_), _Internal::kOneofCaseOffset + 0, 0,
+    // string id = 3;
+    {PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string container_name = 4;
-    {PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_.by_.container_name_), _Internal::kOneofCaseOffset + 0, 0,
+    // string name = 4;
+    {PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_.by_.name_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .google.protobuf.Timestamp from = 91;
     {PROTOBUF_FIELD_OFFSET(PodmanQueryRequest, _impl_.from_), _Internal::kHasBitsOffset + 0, 1,
@@ -5002,11 +5005,11 @@ const ::_pbi::TcParseTable<1, 7, 4, 76, 7> PodmanQueryRequest::_table_ = {
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
   }}, {{
-    "\45\0\4\14\16\0\0\0"
+    "\45\0\4\2\4\0\0\0"
     "palm.monitoring.v1.PodmanQueryRequest"
     "host"
-    "container_id"
-    "container_name"
+    "id"
+    "name"
   }},
 };
 
@@ -5066,17 +5069,17 @@ PROTOBUF_NOINLINE void PodmanQueryRequest::Clear() {
               target = stream->WriteStringMaybeAliased(2, _s, target);
               break;
             }
-            case kContainerId: {
-              const std::string& _s = this_._internal_container_id();
+            case kId: {
+              const std::string& _s = this_._internal_id();
               ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanQueryRequest.container_id");
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanQueryRequest.id");
               target = stream->WriteStringMaybeAliased(3, _s, target);
               break;
             }
-            case kContainerName: {
-              const std::string& _s = this_._internal_container_name();
+            case kName: {
+              const std::string& _s = this_._internal_name();
               ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanQueryRequest.container_name");
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanQueryRequest.name");
               target = stream->WriteStringMaybeAliased(4, _s, target);
               break;
             }
@@ -5160,16 +5163,16 @@ PROTOBUF_NOINLINE void PodmanQueryRequest::Clear() {
                                               this_._internal_host());
               break;
             }
-            // string container_id = 3;
-            case kContainerId: {
+            // string id = 3;
+            case kId: {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_container_id());
+                                              this_._internal_id());
               break;
             }
-            // string container_name = 4;
-            case kContainerName: {
+            // string name = 4;
+            case kName: {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_container_name());
+                                              this_._internal_name());
               break;
             }
             case BY_NOT_SET: {
@@ -5247,18 +5250,18 @@ void PodmanQueryRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
         _this->_impl_.by_.host_.Set(from._internal_host(), arena);
         break;
       }
-      case kContainerId: {
+      case kId: {
         if (oneof_needs_init) {
-          _this->_impl_.by_.container_id_.InitDefault();
+          _this->_impl_.by_.id_.InitDefault();
         }
-        _this->_impl_.by_.container_id_.Set(from._internal_container_id(), arena);
+        _this->_impl_.by_.id_.Set(from._internal_id(), arena);
         break;
       }
-      case kContainerName: {
+      case kName: {
         if (oneof_needs_init) {
-          _this->_impl_.by_.container_name_.InitDefault();
+          _this->_impl_.by_.name_.InitDefault();
         }
-        _this->_impl_.by_.container_name_.Set(from._internal_container_name(), arena);
+        _this->_impl_.by_.name_.Set(from._internal_name(), arena);
         break;
       }
       case BY_NOT_SET:
@@ -5312,7 +5315,8 @@ inline PROTOBUF_NDEBUG_INLINE PodmanLogsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::monitoring::v1::PodmanLogsResponse_Item& from_msg)
       : host_(arena, from.host_),
-        container_id_(arena, from.container_id_),
+        id_(arena, from.id_),
+        name_(arena, from.name_),
         message_(arena, from.message_),
         created_at_(arena, from.created_at_),
         _cached_size_{0} {}
@@ -5337,7 +5341,8 @@ inline PROTOBUF_NDEBUG_INLINE PodmanLogsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : host_(arena),
-        container_id_(arena),
+        id_(arena),
+        name_(arena),
         message_(arena),
         created_at_(arena),
         _cached_size_{0} {}
@@ -5354,7 +5359,8 @@ inline void PodmanLogsResponse_Item::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.host_.Destroy();
-  this_._impl_.container_id_.Destroy();
+  this_._impl_.id_.Destroy();
+  this_._impl_.name_.Destroy();
   this_._impl_.message_.Destroy();
   this_._impl_.created_at_.Destroy();
   this_._impl_.~Impl_();
@@ -5396,15 +5402,15 @@ const ::google::protobuf::internal::ClassData* PodmanLogsResponse_Item::GetClass
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 84, 2> PodmanLogsResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<2, 5, 0, 78, 2> PodmanLogsResponse_Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
     9, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967032,  // skipmap
+    4294967024,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -5414,26 +5420,31 @@ const ::_pbi::TcParseTable<2, 4, 0, 84, 2> PodmanLogsResponse_Item::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::monitoring::v1::PodmanLogsResponse_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // string message = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.message_)}},
     // string host = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.host_)}},
-    // string container_id = 2;
+    // string id = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.container_id_)}},
-    // string message = 3;
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.id_)}},
+    // string name = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.message_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.name_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string host = 1;
     {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.host_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string container_id = 2;
-    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.container_id_), 0, 0,
+    // string id = 2;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string message = 3;
+    // string name = 3;
+    {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string message = 4;
     {PROTOBUF_FIELD_OFFSET(PodmanLogsResponse_Item, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string created_at = 9;
@@ -5442,10 +5453,11 @@ const ::_pbi::TcParseTable<2, 4, 0, 84, 2> PodmanLogsResponse_Item::_table_ = {
   }},
   // no aux_entries
   {{
-    "\52\4\14\7\12\0\0\0"
+    "\52\4\2\4\7\12\0\0"
     "palm.monitoring.v1.PodmanLogsResponse.Item"
     "host"
-    "container_id"
+    "id"
+    "name"
     "message"
     "created_at"
   }},
@@ -5459,7 +5471,8 @@ PROTOBUF_NOINLINE void PodmanLogsResponse_Item::Clear() {
   (void) cached_has_bits;
 
   _impl_.host_.ClearToEmpty();
-  _impl_.container_id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
   _impl_.message_.ClearToEmpty();
   _impl_.created_at_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -5488,20 +5501,28 @@ PROTOBUF_NOINLINE void PodmanLogsResponse_Item::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // string container_id = 2;
-          if (!this_._internal_container_id().empty()) {
-            const std::string& _s = this_._internal_container_id();
+          // string id = 2;
+          if (!this_._internal_id().empty()) {
+            const std::string& _s = this_._internal_id();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.container_id");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.id");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // string message = 3;
+          // string name = 3;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.name");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // string message = 4;
           if (!this_._internal_message().empty()) {
             const std::string& _s = this_._internal_message();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.PodmanLogsResponse.Item.message");
-            target = stream->WriteStringMaybeAliased(3, _s, target);
+            target = stream->WriteStringMaybeAliased(4, _s, target);
           }
 
           // string created_at = 9;
@@ -5542,12 +5563,17 @@ PROTOBUF_NOINLINE void PodmanLogsResponse_Item::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_host());
             }
-            // string container_id = 2;
-            if (!this_._internal_container_id().empty()) {
+            // string id = 2;
+            if (!this_._internal_id().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_container_id());
+                                              this_._internal_id());
             }
-            // string message = 3;
+            // string name = 3;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+            // string message = 4;
             if (!this_._internal_message().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_message());
@@ -5573,8 +5599,11 @@ void PodmanLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg,
   if (!from._internal_host().empty()) {
     _this->_internal_set_host(from._internal_host());
   }
-  if (!from._internal_container_id().empty()) {
-    _this->_internal_set_container_id(from._internal_container_id());
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_message().empty()) {
     _this->_internal_set_message(from._internal_message());
@@ -5599,7 +5628,8 @@ void PodmanLogsResponse_Item::InternalSwap(PodmanLogsResponse_Item* PROTOBUF_RES
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.container_id_, &other->_impl_.container_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.created_at_, &other->_impl_.created_at_, arena);
 }

@@ -19,19 +19,6 @@ void palm::tm2ts(std::tm* time, google::protobuf::Timestamp* timestamp) {
   timestamp->set_nanos(0);
 }
 
-std::optional<std::string> palm::to_json(
-    const google::protobuf::Message& message) {
-  std::string buf;
-  const auto status =
-      google::protobuf::util::MessageToJsonString(message, &buf);
-  if (status.ok()) {
-    return buf;
-  }
-  spdlog::error("failed to serialize google message to json {}",
-                status.message());
-  return std::nullopt;
-}
-
 // https://protobuf.dev/reference/cpp/api-docs/google.protobuf.util.time_util/#TimeUtil.ToString.details
 // https://en.cppreference.com/w/cpp/chrono/parse.html
 // https://www.epochconverter.com/

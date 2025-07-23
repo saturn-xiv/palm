@@ -830,8 +830,9 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kHostFieldNumber = 1,
-    kContainerIdFieldNumber = 2,
-    kMessageFieldNumber = 3,
+    kIdFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kMessageFieldNumber = 4,
     kCreatedAtFieldNumber = 9,
   };
   // string host = 1;
@@ -850,23 +851,39 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_host();
 
   public:
-  // string container_id = 2;
-  void clear_container_id() ;
-  const std::string& container_id() const;
+  // string id = 2;
+  void clear_id() ;
+  const std::string& id() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_container_id(Arg_&& arg, Args_... args);
-  std::string* mutable_container_id();
-  PROTOBUF_NODISCARD std::string* release_container_id();
-  void set_allocated_container_id(std::string* value);
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
 
   private:
-  const std::string& _internal_container_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_container_id(
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
       const std::string& value);
-  std::string* _internal_mutable_container_id();
+  std::string* _internal_mutable_id();
 
   public:
-  // string message = 3;
+  // string name = 3;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string message = 4;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -903,8 +920,8 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
-      84, 2>
+      2, 5, 0,
+      78, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -922,7 +939,8 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const PodmanLogsResponse_Item& from_msg);
     ::google::protobuf::internal::ArenaStringPtr host_;
-    ::google::protobuf::internal::ArenaStringPtr container_id_;
+    ::google::protobuf::internal::ArenaStringPtr id_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     ::google::protobuf::internal::ArenaStringPtr created_at_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -3089,8 +3107,8 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
   enum ByCase {
     kAll = 1,
     kHost = 2,
-    kContainerId = 3,
-    kContainerName = 4,
+    kId = 3,
+    kName = 4,
     BY_NOT_SET = 0,
   };
   static inline const PodmanQueryRequest* internal_default_instance() {
@@ -3190,8 +3208,8 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
     kPageFieldNumber = 99,
     kAllFieldNumber = 1,
     kHostFieldNumber = 2,
-    kContainerIdFieldNumber = 3,
-    kContainerNameFieldNumber = 4,
+    kIdFieldNumber = 3,
+    kNameFieldNumber = 4,
   };
   // .google.protobuf.Timestamp from = 91;
   bool has_from() const;
@@ -3274,38 +3292,38 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_host();
 
   public:
-  // string container_id = 3;
-  bool has_container_id() const;
-  void clear_container_id() ;
-  const std::string& container_id() const;
+  // string id = 3;
+  bool has_id() const;
+  void clear_id() ;
+  const std::string& id() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_container_id(Arg_&& arg, Args_... args);
-  std::string* mutable_container_id();
-  PROTOBUF_NODISCARD std::string* release_container_id();
-  void set_allocated_container_id(std::string* value);
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
 
   private:
-  const std::string& _internal_container_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_container_id(
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
       const std::string& value);
-  std::string* _internal_mutable_container_id();
+  std::string* _internal_mutable_id();
 
   public:
-  // string container_name = 4;
-  bool has_container_name() const;
-  void clear_container_name() ;
-  const std::string& container_name() const;
+  // string name = 4;
+  bool has_name() const;
+  void clear_name() ;
+  const std::string& name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_container_name(Arg_&& arg, Args_... args);
-  std::string* mutable_container_name();
-  PROTOBUF_NODISCARD std::string* release_container_name();
-  void set_allocated_container_name(std::string* value);
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
 
   private:
-  const std::string& _internal_container_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_container_name(
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
       const std::string& value);
-  std::string* _internal_mutable_container_name();
+  std::string* _internal_mutable_name();
 
   public:
   void clear_by();
@@ -3315,14 +3333,14 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
   class _Internal;
   void set_has_all();
   void set_has_host();
-  void set_has_container_id();
-  void set_has_container_name();
+  void set_has_id();
+  void set_has_name();
   inline bool has_by() const;
   inline void clear_has_by();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 7, 4,
-      76, 7>
+      56, 7>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3349,8 +3367,8 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::palm::monitoring::v1::PodmanQueryRequest_All* all_;
       ::google::protobuf::internal::ArenaStringPtr host_;
-      ::google::protobuf::internal::ArenaStringPtr container_id_;
-      ::google::protobuf::internal::ArenaStringPtr container_name_;
+      ::google::protobuf::internal::ArenaStringPtr id_;
+      ::google::protobuf::internal::ArenaStringPtr name_;
     } by_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -7256,174 +7274,174 @@ inline void PodmanQueryRequest::set_allocated_host(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanQueryRequest.host)
 }
 
-// string container_id = 3;
-inline bool PodmanQueryRequest::has_container_id() const {
-  return by_case() == kContainerId;
+// string id = 3;
+inline bool PodmanQueryRequest::has_id() const {
+  return by_case() == kId;
 }
-inline void PodmanQueryRequest::set_has_container_id() {
-  _impl_._oneof_case_[0] = kContainerId;
+inline void PodmanQueryRequest::set_has_id() {
+  _impl_._oneof_case_[0] = kId;
 }
-inline void PodmanQueryRequest::clear_container_id() {
+inline void PodmanQueryRequest::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() == kContainerId) {
-    _impl_.by_.container_id_.Destroy();
+  if (by_case() == kId) {
+    _impl_.by_.id_.Destroy();
     clear_has_by();
   }
 }
-inline const std::string& PodmanQueryRequest::container_id() const
+inline const std::string& PodmanQueryRequest::id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanQueryRequest.container_id)
-  return _internal_container_id();
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanQueryRequest.id)
+  return _internal_id();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PodmanQueryRequest::set_container_id(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void PodmanQueryRequest::set_id(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kContainerId) {
+  if (by_case() != kId) {
     clear_by();
 
-    set_has_container_id();
-    _impl_.by_.container_id_.InitDefault();
+    set_has_id();
+    _impl_.by_.id_.InitDefault();
   }
-  _impl_.by_.container_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanQueryRequest.container_id)
+  _impl_.by_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanQueryRequest.id)
 }
-inline std::string* PodmanQueryRequest::mutable_container_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_container_id();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanQueryRequest.container_id)
+inline std::string* PodmanQueryRequest::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanQueryRequest.id)
   return _s;
 }
-inline const std::string& PodmanQueryRequest::_internal_container_id() const {
+inline const std::string& PodmanQueryRequest::_internal_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  if (by_case() != kContainerId) {
+  if (by_case() != kId) {
     return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
   }
-  return _impl_.by_.container_id_.Get();
+  return _impl_.by_.id_.Get();
 }
-inline void PodmanQueryRequest::_internal_set_container_id(const std::string& value) {
+inline void PodmanQueryRequest::_internal_set_id(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kContainerId) {
+  if (by_case() != kId) {
     clear_by();
 
-    set_has_container_id();
-    _impl_.by_.container_id_.InitDefault();
+    set_has_id();
+    _impl_.by_.id_.InitDefault();
   }
-  _impl_.by_.container_id_.Set(value, GetArena());
+  _impl_.by_.id_.Set(value, GetArena());
 }
-inline std::string* PodmanQueryRequest::_internal_mutable_container_id() {
+inline std::string* PodmanQueryRequest::_internal_mutable_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kContainerId) {
+  if (by_case() != kId) {
     clear_by();
 
-    set_has_container_id();
-    _impl_.by_.container_id_.InitDefault();
+    set_has_id();
+    _impl_.by_.id_.InitDefault();
   }
-  return _impl_.by_.container_id_.Mutable( GetArena());
+  return _impl_.by_.id_.Mutable( GetArena());
 }
-inline std::string* PodmanQueryRequest::release_container_id() {
+inline std::string* PodmanQueryRequest::release_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanQueryRequest.container_id)
-  if (by_case() != kContainerId) {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanQueryRequest.id)
+  if (by_case() != kId) {
     return nullptr;
   }
   clear_has_by();
-  return _impl_.by_.container_id_.Release();
+  return _impl_.by_.id_.Release();
 }
-inline void PodmanQueryRequest::set_allocated_container_id(std::string* value) {
+inline void PodmanQueryRequest::set_allocated_id(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (has_by()) {
     clear_by();
   }
   if (value != nullptr) {
-    set_has_container_id();
-    _impl_.by_.container_id_.InitAllocated(value, GetArena());
+    set_has_id();
+    _impl_.by_.id_.InitAllocated(value, GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanQueryRequest.container_id)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanQueryRequest.id)
 }
 
-// string container_name = 4;
-inline bool PodmanQueryRequest::has_container_name() const {
-  return by_case() == kContainerName;
+// string name = 4;
+inline bool PodmanQueryRequest::has_name() const {
+  return by_case() == kName;
 }
-inline void PodmanQueryRequest::set_has_container_name() {
-  _impl_._oneof_case_[0] = kContainerName;
+inline void PodmanQueryRequest::set_has_name() {
+  _impl_._oneof_case_[0] = kName;
 }
-inline void PodmanQueryRequest::clear_container_name() {
+inline void PodmanQueryRequest::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() == kContainerName) {
-    _impl_.by_.container_name_.Destroy();
+  if (by_case() == kName) {
+    _impl_.by_.name_.Destroy();
     clear_has_by();
   }
 }
-inline const std::string& PodmanQueryRequest::container_name() const
+inline const std::string& PodmanQueryRequest::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanQueryRequest.container_name)
-  return _internal_container_name();
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanQueryRequest.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PodmanQueryRequest::set_container_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void PodmanQueryRequest::set_name(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kContainerName) {
+  if (by_case() != kName) {
     clear_by();
 
-    set_has_container_name();
-    _impl_.by_.container_name_.InitDefault();
+    set_has_name();
+    _impl_.by_.name_.InitDefault();
   }
-  _impl_.by_.container_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanQueryRequest.container_name)
+  _impl_.by_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanQueryRequest.name)
 }
-inline std::string* PodmanQueryRequest::mutable_container_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_container_name();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanQueryRequest.container_name)
+inline std::string* PodmanQueryRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanQueryRequest.name)
   return _s;
 }
-inline const std::string& PodmanQueryRequest::_internal_container_name() const {
+inline const std::string& PodmanQueryRequest::_internal_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  if (by_case() != kContainerName) {
+  if (by_case() != kName) {
     return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
   }
-  return _impl_.by_.container_name_.Get();
+  return _impl_.by_.name_.Get();
 }
-inline void PodmanQueryRequest::_internal_set_container_name(const std::string& value) {
+inline void PodmanQueryRequest::_internal_set_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kContainerName) {
+  if (by_case() != kName) {
     clear_by();
 
-    set_has_container_name();
-    _impl_.by_.container_name_.InitDefault();
+    set_has_name();
+    _impl_.by_.name_.InitDefault();
   }
-  _impl_.by_.container_name_.Set(value, GetArena());
+  _impl_.by_.name_.Set(value, GetArena());
 }
-inline std::string* PodmanQueryRequest::_internal_mutable_container_name() {
+inline std::string* PodmanQueryRequest::_internal_mutable_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kContainerName) {
+  if (by_case() != kName) {
     clear_by();
 
-    set_has_container_name();
-    _impl_.by_.container_name_.InitDefault();
+    set_has_name();
+    _impl_.by_.name_.InitDefault();
   }
-  return _impl_.by_.container_name_.Mutable( GetArena());
+  return _impl_.by_.name_.Mutable( GetArena());
 }
-inline std::string* PodmanQueryRequest::release_container_name() {
+inline std::string* PodmanQueryRequest::release_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanQueryRequest.container_name)
-  if (by_case() != kContainerName) {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanQueryRequest.name)
+  if (by_case() != kName) {
     return nullptr;
   }
   clear_has_by();
-  return _impl_.by_.container_name_.Release();
+  return _impl_.by_.name_.Release();
 }
-inline void PodmanQueryRequest::set_allocated_container_name(std::string* value) {
+inline void PodmanQueryRequest::set_allocated_name(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (has_by()) {
     clear_by();
   }
   if (value != nullptr) {
-    set_has_container_name();
-    _impl_.by_.container_name_.InitAllocated(value, GetArena());
+    set_has_name();
+    _impl_.by_.name_.InitAllocated(value, GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanQueryRequest.container_name)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanQueryRequest.name)
 }
 
 // .google.protobuf.Timestamp from = 91;
@@ -7760,55 +7778,103 @@ inline void PodmanLogsResponse_Item::set_allocated_host(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.host)
 }
 
-// string container_id = 2;
-inline void PodmanLogsResponse_Item::clear_container_id() {
+// string id = 2;
+inline void PodmanLogsResponse_Item::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.container_id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
 }
-inline const std::string& PodmanLogsResponse_Item::container_id() const
+inline const std::string& PodmanLogsResponse_Item::id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanLogsResponse.Item.container_id)
-  return _internal_container_id();
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanLogsResponse.Item.id)
+  return _internal_id();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PodmanLogsResponse_Item::set_container_id(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void PodmanLogsResponse_Item::set_id(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.container_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanLogsResponse.Item.container_id)
+  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanLogsResponse.Item.id)
 }
-inline std::string* PodmanLogsResponse_Item::mutable_container_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_container_id();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanLogsResponse.Item.container_id)
+inline std::string* PodmanLogsResponse_Item::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanLogsResponse.Item.id)
   return _s;
 }
-inline const std::string& PodmanLogsResponse_Item::_internal_container_id() const {
+inline const std::string& PodmanLogsResponse_Item::_internal_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.container_id_.Get();
+  return _impl_.id_.Get();
 }
-inline void PodmanLogsResponse_Item::_internal_set_container_id(const std::string& value) {
+inline void PodmanLogsResponse_Item::_internal_set_id(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.container_id_.Set(value, GetArena());
+  _impl_.id_.Set(value, GetArena());
 }
-inline std::string* PodmanLogsResponse_Item::_internal_mutable_container_id() {
+inline std::string* PodmanLogsResponse_Item::_internal_mutable_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.container_id_.Mutable( GetArena());
+  return _impl_.id_.Mutable( GetArena());
 }
-inline std::string* PodmanLogsResponse_Item::release_container_id() {
+inline std::string* PodmanLogsResponse_Item::release_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanLogsResponse.Item.container_id)
-  return _impl_.container_id_.Release();
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanLogsResponse.Item.id)
+  return _impl_.id_.Release();
 }
-inline void PodmanLogsResponse_Item::set_allocated_container_id(std::string* value) {
+inline void PodmanLogsResponse_Item::set_allocated_id(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.container_id_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.container_id_.IsDefault()) {
-    _impl_.container_id_.Set("", GetArena());
+  _impl_.id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.container_id)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.id)
 }
 
-// string message = 3;
+// string name = 3;
+inline void PodmanLogsResponse_Item::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& PodmanLogsResponse_Item::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanLogsResponse.Item.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void PodmanLogsResponse_Item::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanLogsResponse.Item.name)
+}
+inline std::string* PodmanLogsResponse_Item::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanLogsResponse.Item.name)
+  return _s;
+}
+inline const std::string& PodmanLogsResponse_Item::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void PodmanLogsResponse_Item::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* PodmanLogsResponse_Item::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* PodmanLogsResponse_Item::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanLogsResponse.Item.name)
+  return _impl_.name_.Release();
+}
+inline void PodmanLogsResponse_Item::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.name)
+}
+
+// string message = 4;
 inline void PodmanLogsResponse_Item::clear_message() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.message_.ClearToEmpty();

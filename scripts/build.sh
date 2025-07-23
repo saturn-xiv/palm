@@ -12,7 +12,10 @@ export WORK_DIR=$PWD
 function build_on_arch() {
     cd $WORK_DIR/
 
-    cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/arch/clang.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
+    # cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/arch/clang.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
+    # cmake --build $WORK_DIR/build/arch
+
+    cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/arch
 }
 
@@ -63,16 +66,16 @@ EOF
 
     mkdir -p $target/var/lib/palm/lavender
     cd $WORK_DIR/lavender/
-    cp -rv README.md assets views locales vendors $target/var/lib/palm/lavender/ $target/etc/palm/lavender
+    cp -rv README.md assets views locales vendors $target/var/lib/palm/lavender/ 
     mkdir -p $target/var/lib/palm/lavender/db
     cd $WORK_DIR/lavender/db
     cp -rv README.md migrations $target/var/lib/palm/lavender/db/
 
-    mkdir -p $target/var/lib/palm/bamboo $target/usr/share/palm/bamboo $target/etc/palm/bamboo
+    mkdir -p $target/var/lib/palm/bamboo $target/usr/share/palm/bamboo 
     cd $WORK_DIR/bamboo/
     cp -rv README.md $target/usr/share/palm/bamboo/
 
-    mkdir -p $target/var/lib/palm/phlox $target/usr/share/palm/phlox $target/etc/palm/phlox
+    mkdir -p $target/var/lib/palm/phlox $target/usr/share/palm/phlox 
     cd $WORK_DIR/phlox/
     cp -rv README.md $target/usr/share/palm/phlox/    
     build_dashboard $WORK_DIR/phlox/dashboard $target/usr/share/palm/phlox/dashboard

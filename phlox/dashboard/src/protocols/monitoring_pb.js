@@ -3125,8 +3125,8 @@ proto.palm.monitoring.v1.PodmanQueryRequest.ByCase = {
   BY_NOT_SET: 0,
   ALL: 1,
   HOST: 2,
-  CONTAINER_ID: 3,
-  CONTAINER_NAME: 4
+  ID: 3,
+  NAME: 4
 };
 
 /**
@@ -3169,8 +3169,8 @@ proto.palm.monitoring.v1.PodmanQueryRequest.toObject = function(includeInstance,
   var f, obj = {
 all: (f = msg.getAll()) && proto.palm.monitoring.v1.PodmanQueryRequest.All.toObject(includeInstance, f),
 host: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
-containerId: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
-containerName: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+id: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+name: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
 from: (f = msg.getFrom()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
 to: (f = msg.getTo()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
 page: (f = msg.getPage()) && portal_pb.Page.toObject(includeInstance, f)
@@ -3221,11 +3221,11 @@ proto.palm.monitoring.v1.PodmanQueryRequest.deserializeBinaryFromReader = functi
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContainerId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContainerName(value);
+      msg.setName(value);
       break;
     case 91:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -3502,10 +3502,10 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.hasHost = function() {
 
 
 /**
- * optional string container_id = 3;
+ * optional string id = 3;
  * @return {string}
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.getContainerId = function() {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -3514,7 +3514,7 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.getContainerId = function(
  * @param {string} value
  * @return {!proto.palm.monitoring.v1.PodmanQueryRequest} returns this
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.setContainerId = function(value) {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.setId = function(value) {
   return jspb.Message.setOneofField(this, 3, proto.palm.monitoring.v1.PodmanQueryRequest.oneofGroups_[0], value);
 };
 
@@ -3523,7 +3523,7 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.setContainerId = function(
  * Clears the field making it undefined.
  * @return {!proto.palm.monitoring.v1.PodmanQueryRequest} returns this
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.clearContainerId = function() {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.clearId = function() {
   return jspb.Message.setOneofField(this, 3, proto.palm.monitoring.v1.PodmanQueryRequest.oneofGroups_[0], undefined);
 };
 
@@ -3532,16 +3532,16 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.clearContainerId = functio
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.hasContainerId = function() {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.hasId = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional string container_name = 4;
+ * optional string name = 4;
  * @return {string}
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.getContainerName = function() {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -3550,7 +3550,7 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.getContainerName = functio
  * @param {string} value
  * @return {!proto.palm.monitoring.v1.PodmanQueryRequest} returns this
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.setContainerName = function(value) {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.setName = function(value) {
   return jspb.Message.setOneofField(this, 4, proto.palm.monitoring.v1.PodmanQueryRequest.oneofGroups_[0], value);
 };
 
@@ -3559,7 +3559,7 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.setContainerName = functio
  * Clears the field making it undefined.
  * @return {!proto.palm.monitoring.v1.PodmanQueryRequest} returns this
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.clearContainerName = function() {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.clearName = function() {
   return jspb.Message.setOneofField(this, 4, proto.palm.monitoring.v1.PodmanQueryRequest.oneofGroups_[0], undefined);
 };
 
@@ -3568,7 +3568,7 @@ proto.palm.monitoring.v1.PodmanQueryRequest.prototype.clearContainerName = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.palm.monitoring.v1.PodmanQueryRequest.prototype.hasContainerName = function() {
+proto.palm.monitoring.v1.PodmanQueryRequest.prototype.hasName = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -3853,8 +3853,9 @@ proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.toObject = function(o
 proto.palm.monitoring.v1.PodmanLogsResponse.Item.toObject = function(includeInstance, msg) {
   var f, obj = {
 host: jspb.Message.getFieldWithDefault(msg, 1, ""),
-containerId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-message: jspb.Message.getFieldWithDefault(msg, 3, ""),
+id: jspb.Message.getFieldWithDefault(msg, 2, ""),
+name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+message: jspb.Message.getFieldWithDefault(msg, 4, ""),
 createdAt: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
@@ -3898,9 +3899,13 @@ proto.palm.monitoring.v1.PodmanLogsResponse.Item.deserializeBinaryFromReader = f
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContainerId(value);
+      msg.setId(value);
       break;
     case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
@@ -3944,17 +3949,24 @@ proto.palm.monitoring.v1.PodmanLogsResponse.Item.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getContainerId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getMessage();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -3987,10 +3999,10 @@ proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.setHost = function(va
 
 
 /**
- * optional string container_id = 2;
+ * optional string id = 2;
  * @return {string}
  */
-proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getContainerId = function() {
+proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -3999,16 +4011,16 @@ proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getContainerId = func
  * @param {string} value
  * @return {!proto.palm.monitoring.v1.PodmanLogsResponse.Item} returns this
  */
-proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.setContainerId = function(value) {
+proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string message = 3;
+ * optional string name = 3;
  * @return {string}
  */
-proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getMessage = function() {
+proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4017,8 +4029,26 @@ proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getMessage = function
  * @param {string} value
  * @return {!proto.palm.monitoring.v1.PodmanLogsResponse.Item} returns this
  */
-proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.setMessage = function(value) {
+proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string message = 4;
+ * @return {string}
+ */
+proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.getMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.palm.monitoring.v1.PodmanLogsResponse.Item} returns this
+ */
+proto.palm.monitoring.v1.PodmanLogsResponse.Item.prototype.setMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
