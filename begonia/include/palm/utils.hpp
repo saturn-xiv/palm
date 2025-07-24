@@ -13,6 +13,13 @@ namespace palm {
 
 void init(bool debug);
 
+inline int64_t epoch_in_seconds() {
+  const auto now = std::chrono::system_clock::now();
+  const auto epoch = now.time_since_epoch();
+  const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(epoch);
+  return seconds.count();
+}
+
 inline std::string truncate(const std::string& s, uint l,
                             const std::string& ellipse = "...") {
   int c = l - ellipse.length();

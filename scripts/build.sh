@@ -78,7 +78,7 @@ EOF
     mkdir -p $target/var/lib/palm/phlox $target/usr/share/palm/phlox 
     cd $WORK_DIR/phlox/
     cp -rv README.md $target/usr/share/palm/phlox/    
-    build_dashboard $WORK_DIR/phlox/dashboard $target/usr/share/palm/phlox/dashboard
+    build_dashboard phlox/dashboard $target/usr/share/palm/phlox/dashboard
 
     build_assets $target
 

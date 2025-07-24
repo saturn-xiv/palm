@@ -482,8 +482,10 @@ export namespace PodmanLogsResponse {
     getMessage(): string;
     setMessage(value: string): Item;
 
-    getCreatedAt(): string;
-    setCreatedAt(value: string): Item;
+    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCreatedAt(): boolean;
+    clearCreatedAt(): Item;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Item.AsObject;
@@ -499,7 +501,7 @@ export namespace PodmanLogsResponse {
       id: string,
       name: string,
       message: string,
-      createdAt: string,
+      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 
@@ -567,6 +569,12 @@ export namespace PodmanContainersResponse {
     getStartedAt(): number;
     setStartedAt(value: number): Item;
 
+    getCreatedAt(): string;
+    setCreatedAt(value: string): Item;
+
+    getCreated(): number;
+    setCreated(value: number): Item;
+
     getExited(): boolean;
     setExited(value: boolean): Item;
 
@@ -579,10 +587,10 @@ export namespace PodmanContainersResponse {
     getHost(): string;
     setHost(value: string): Item;
 
-    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
-    hasCreatedAt(): boolean;
-    clearCreatedAt(): Item;
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Item.AsObject;
@@ -604,11 +612,13 @@ export namespace PodmanContainersResponse {
       pid: number,
       state: string,
       startedAt: number,
+      createdAt: string,
+      created: number,
       exited: boolean,
       exitedAt: number,
       exitCode: number,
       host: string,
-      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 
@@ -673,10 +683,10 @@ export namespace PodmanStatisticsResponse {
     getHost(): string;
     setHost(value: string): Item;
 
-    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
-    hasCreatedAt(): boolean;
-    clearCreatedAt(): Item;
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Item.AsObject;
@@ -699,7 +709,7 @@ export namespace PodmanStatisticsResponse {
       blockIo: string,
       pids: string,
       host: string,
-      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 

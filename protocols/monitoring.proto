@@ -101,7 +101,7 @@ message PodmanLogsResponse {
     string id = 2;
     string name = 3;
     string message = 4;
-    string created_at = 9;
+    google.protobuf.Timestamp created_at = 9;
   }
   repeated Item items = 1;
   palm.portal.v1.Pagination pagination = 9;
@@ -117,13 +117,15 @@ message PodmanContainersResponse {
     repeated string command = 7;
     int32 pid = 11;
     string state = 12;
-    int32 started_at = 13;
+    int64 started_at = 13;
+    string created_at = 14;
+    int64 created = 15;
     bool exited = 21;
-    int32 exited_at = 22;
+    int64 exited_at = 22;
     int32 exit_code = 23;
 
     string host = 98;
-    google.protobuf.Timestamp created_at = 99;
+    google.protobuf.Timestamp updated_at = 99;
   }
   repeated Item items = 1;
   palm.portal.v1.Pagination pagination = 9;
@@ -141,7 +143,7 @@ message PodmanStatisticsResponse {
     string block_io = 9;
     string pids = 10;
     string host = 98;
-    google.protobuf.Timestamp created_at = 99;
+    google.protobuf.Timestamp updated_at = 99;
   }
   repeated Item items = 1;
   palm.portal.v1.Pagination pagination = 9;

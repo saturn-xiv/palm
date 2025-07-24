@@ -5,11 +5,19 @@
 namespace palm {
 namespace podman {
 namespace models {
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html
+// journalctl --output=json-pretty -n 20 CONTAINER_NAME=xxx
 struct Log {
-  std::string timestamp;
-  std::string message;
+  std::string _MACHINE_ID;
+  std::string __SEQNUM_ID;
+  int8_t __REALTIME_TIMESTAMP;
+  std::string MESSAGE;
+  std::string CONTAINER_ID_FULL;
+  std::string CONTAINER_NAME;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log, timestamp, message)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log, _MACHINE_ID, __SEQNUM_ID,
+                                   __REALTIME_TIMESTAMP, MESSAGE,
+                                   CONTAINER_ID_FULL, CONTAINER_NAME)
 
 struct Status {
   std::string id;
@@ -44,7 +52,7 @@ struct Item {
   std::string CreatedAt;
   std::string CIDFile;
   bool Exited;
-  int ExitedAt;
+  int64_t ExitedAt;
   int ExitCode;
   std::string Id;
   std::string Image;
@@ -61,10 +69,10 @@ struct Item {
   std::optional<std::vector<Port>> Ports;
   int Restarts;
   // TODO Size
-  int StartedAt;
+  int64_t StartedAt;
   std::string State;
   std::string Status;
-  int Created;
+  int64_t Created;
 };
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Item, AutoRemove, Command, CreatedAt,
                                    CIDFile, Exited, ExitedAt, ExitCode, Id,
@@ -74,12 +82,9 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Item, AutoRemove, Command, CreatedAt,
 }  // namespace container
 }  // namespace models
 
-std::vector<models::Log> logs(
-    const std::string& container_id, std::tm* begin,
-    const std::chrono::seconds ttl =
-        std::chrono::duration_cast<std::chrono::seconds>(std::chrono::hours{
-            1}));
-std::vector<models::Status> stats();
-std::vector<models::container::Item> ps();
+std::vector<models::Log> logs(const std::string& container_id, std::tm* since,
+                              std::tm* until);
+std::vector<models::Status> stats(bool all = false);
+std::vector<models::container::Item> ps(bool all = false);
 }  // namespace podman
 }  // namespace palm
