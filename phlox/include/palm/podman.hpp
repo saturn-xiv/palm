@@ -1,6 +1,6 @@
 #pragma once
 
-#include "palm/theme.hpp"
+#include "palm/systemd.hpp"
 
 namespace palm {
 namespace podman {
@@ -8,18 +8,20 @@ namespace models {
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html
 // journalctl --output=json-pretty -n 20 CONTAINER_NAME=xxx
 struct Log {
+  std::string _HOSTNAME;
   std::string _MACHINE_ID;
   std::string __SEQNUM;
   std::string __SEQNUM_ID;
   std::string __REALTIME_TIMESTAMP;
-  std::optional<std::vector<uint8_t>> MESSAGE;
+  palm::systemd::models::journal::Message MESSAGE;
   std::string CONTAINER_ID;
   std::string CONTAINER_ID_FULL;
   std::string CONTAINER_NAME;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log, _MACHINE_ID, __SEQNUM, __SEQNUM_ID,
-                                   __REALTIME_TIMESTAMP, MESSAGE, CONTAINER_ID,
-                                   CONTAINER_ID_FULL, CONTAINER_NAME)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log, _HOSTNAME, _MACHINE_ID, __SEQNUM,
+                                   __SEQNUM_ID, __REALTIME_TIMESTAMP, MESSAGE,
+                                   CONTAINER_ID, CONTAINER_ID_FULL,
+                                   CONTAINER_NAME)
 
 struct Status {
   std::string id;

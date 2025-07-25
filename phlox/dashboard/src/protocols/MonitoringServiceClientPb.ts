@@ -84,6 +84,70 @@ export class SiteClient {
 
 }
 
+export class SystemdClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'binary';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname.replace(/\/+$/, '');
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodDescriptorJournal = new grpcWeb.MethodDescriptor(
+    '/palm.monitoring.v1.Systemd/Journal',
+    grpcWeb.MethodType.UNARY,
+    monitoring_pb.SystemdJournalRequest,
+    monitoring_pb.SystemdJournalResponse,
+    (request: monitoring_pb.SystemdJournalRequest) => {
+      return request.serializeBinary();
+    },
+    monitoring_pb.SystemdJournalResponse.deserializeBinary
+  );
+
+  journal(
+    request: monitoring_pb.SystemdJournalRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.SystemdJournalResponse>;
+
+  journal(
+    request: monitoring_pb.SystemdJournalRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: monitoring_pb.SystemdJournalResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.SystemdJournalResponse>;
+
+  journal(
+    request: monitoring_pb.SystemdJournalRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: monitoring_pb.SystemdJournalResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.monitoring.v1.Systemd/Journal',
+        request,
+        metadata || {},
+        this.methodDescriptorJournal,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.monitoring.v1.Systemd/Journal',
+    request,
+    metadata || {},
+    this.methodDescriptorJournal);
+  }
+
+}
+
 export class FileSystemClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;

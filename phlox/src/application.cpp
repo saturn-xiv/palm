@@ -4,6 +4,7 @@
 #include "palm/podman.hpp"
 #include "palm/rpc.hpp"
 #include "palm/services.hpp"
+#include "palm/systemd.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
 
@@ -13,7 +14,6 @@
 #include <regex>
 #include <stdexcept>
 
-#include <boost/algorithm/string.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/ip/host_name.hpp>
 #include <boost/optional/optional.hpp>
@@ -54,10 +54,44 @@ CREATE TABLE IF NOT EXISTS container_logs (
   created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_container_logs_id ON container_logs(id);
+CREATE TABLE IF NOT EXISTS systemd_service_logs (
+  name VARCHAR(127) NOT NULL,
+  last_fetched_at BIGINT NOT NULL,
+  version INTEGER NOT NULL DEFAULT 0, 
+  created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_systemd_service_logs_name ON systemd_service_logs(name);
 )SQL";
     tr.commit();
   }
   return db;
+}
+
+static inline boost::optional<int64_t> get_last_fetched_systemd_service_logs_at(
+    std::shared_ptr<soci::session> db, const std::string& name) {
+  boost::optional<int64_t> it;
+  (*db)
+      << R"SQL(SELECT last_fetched_at FROM systemd_service_logs WHERE name = :name)SQL",
+      soci::use(name, "name"), soci::into(it);
+  return it;
+}
+
+static inline void set_last_fetched_systemd_service_logs_at(
+    std::shared_ptr<soci::session> db, const std::string& name,
+    int64_t last_fetched_at) {
+  int c = 0;
+  (*db)
+      << R"SQL(SELECT COUNT(*) FROM systemd_service_logs WHERE name = :name)SQL",
+      soci::use(name, "name"), soci::into(c);
+  if (c > 0) {
+    (*db)
+        << R"SQL(UPDATE systemd_service_logs SET last_fetched_at=:last_fetched_at, version=version+1 WHERE name=:name)SQL",
+        soci::use(name, "name"), soci::use(last_fetched_at, "last_fetched_at");
+  } else {
+    (*db)
+        << R"SQL(INSERT INTO systemd_service_logs(name, last_fetched_at) VALUES(:name, :last_fetched_at))SQL",
+        soci::use(name, "name"), soci::use(last_fetched_at, "last_fetched_at");
+  }
 }
 
 static inline boost::optional<int64_t> get_last_fetched_container_logs_at(
@@ -233,6 +267,33 @@ static inline std::shared_ptr<palm::opensearch::Client> open_opensearch(
         it->create_index<palm::monitoring::v1::FileSystemLogsResponse_Item>(
             2, 1, props);
   }
+  if (!it->index_exists<palm::monitoring::v1::SystemdJournalResponse_Item>()) {
+    nlohmann::json props;
+
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["host"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["name"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["message"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["createdAt"] = it;
+    }
+
+    it->create_index<palm::monitoring::v1::SystemdJournalResponse_Item>(2, 1,
+                                                                        props);
+  }
   return it;
 }
 
@@ -243,7 +304,6 @@ static void launch_podman_logs(const toml::table& config) {
   const std::chrono::seconds interval =
       std::chrono::duration_cast<std::chrono::seconds>(std::chrono::minutes{5});
 
-  const std::string hostname = boost::asio::ip::host_name();
   const auto now = palm::epoch_in_seconds();
   auto db = open_db(config);
   auto search = open_opensearch(config);
@@ -282,26 +342,16 @@ static void launch_podman_logs(const toml::table& config) {
 
       std::stringstream body;
       for (const auto& it : items) {
-        if (!it.MESSAGE.has_value()) {
-          spdlog::warn("null message");
+        if (!it.MESSAGE.content) {
           continue;
         }
-        if (it.MESSAGE->empty()) {
-          spdlog::warn("empty message");
-          continue;
-        }
+
         palm::monitoring::v1::PodmanLogsResponse_Item x;
-        x.set_host(hostname);
+        x.set_host(it._HOSTNAME);
         x.set_id(it.CONTAINER_ID);
         x.set_full_id(it.CONTAINER_ID_FULL);
         x.set_name(it.CONTAINER_NAME);
-        {
-          spdlog::debug("message length {}", it.MESSAGE->size());
-          std::string s(it.MESSAGE->begin(), it.MESSAGE->end());
-          boost::trim(s);
-          x.set_message(s);
-        }
-
+        x.set_message(it.MESSAGE.content.value());
         {
           int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
           auto y = x.mutable_created_at();
@@ -495,6 +545,102 @@ static void launch_podman_ps(const toml::table& config) {
   {
     const auto it =
         search->count<palm::monitoring::v1::PodmanContainersResponse_Item>();
+    spdlog::debug("{} total has {} items", index_name, it.value());
+  }
+}
+
+static void launch_systemd_journal_command(const toml::table& config,
+                                           const std::string& service_name,
+                                           bool user_scope) {
+  if (palm::is_stopped()) {
+    return;
+  }
+
+  const std::chrono::seconds interval =
+      std::chrono::duration_cast<std::chrono::seconds>(std::chrono::minutes{5});
+
+  const auto now = palm::epoch_in_seconds();
+  auto db = open_db(config);
+  auto search = open_opensearch(config);
+  const auto index_name =
+      search->index_name<palm::monitoring::v1::SystemdJournalResponse_Item>();
+
+  palm::opensearch::requests::bulk_index::Action bulk{
+      .index = {._index = index_name}};
+
+  // TODO check systemd service exists
+  const int64_t booted_at = palm::booted_at().value();
+  {
+    const auto last_fetched_at =
+        get_last_fetched_systemd_service_logs_at(db, service_name);
+    const int64_t begin = last_fetched_at ? last_fetched_at.value() : booted_at;
+    const int64_t end = now;
+    for (int64_t since = begin;; since += interval.count()) {
+      const int64_t until = since + interval.count();
+      if (until >= end) {
+        spdlog::debug("wait for next turn");
+        break;
+      }
+
+      const auto items = palm::systemd::logs(service_name, user_scope,
+                                             static_cast<time_t>(since),
+                                             static_cast<time_t>(until));
+      if (items.empty()) {
+        spdlog::debug("empty logs");
+        break;
+      }
+      spdlog::info("fetch {} logs for {}", items.size(), service_name);
+
+      std::stringstream body;
+      for (const auto& it : items) {
+        if (!it.MESSAGE.content) {
+          continue;
+        }
+
+        palm::monitoring::v1::SystemdJournalResponse_Item x;
+        x.set_host(it._HOSTNAME);
+        x.set_name(it.UNIT);
+        x.set_message(it.MESSAGE.content.value());
+        {
+          int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
+          auto y = x.mutable_created_at();
+          y->set_seconds(ts / 1000000);
+          y->set_nanos((ts % 1000000) * 1000);
+        }
+
+        bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID, it.__SEQNUM_ID,
+                                     it.__SEQNUM);
+        nlohmann::json act = bulk;
+        body << act.dump() << "\n";
+
+        const auto buf = palm::to_json(x);
+        body << buf.value() << "\n";
+      }
+
+      const auto req = body.str();
+      if (req.empty()) {
+        spdlog::warn("skip for empty bulk body");
+      } else {
+        spdlog::debug("{}", req);
+
+        const auto res = search->post("_bulk", req);
+        {
+          const auto body = res.value();
+          auto js = nlohmann::json::parse(body);
+          auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+          if (it.errors) {
+            spdlog::error("{}", body);
+            return;
+          }
+        }
+      }
+
+      set_last_fetched_systemd_service_logs_at(db, service_name, until);
+    }
+  }
+  {
+    const auto it =
+        search->count<palm::monitoring::v1::SystemdJournalResponse_Item>();
     spdlog::debug("{} total has {} items", index_name, it.value());
   }
 }
@@ -754,6 +900,9 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
 
   std::string generate_etc_domain;
 
+  bool systemd_journal_user_scope;
+  std::string systemd_journal_service_name;
+
   argparse::ArgumentParser program(
       "phlox", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
   program.add_description("Centralize, transform & stash your logging data.");
@@ -801,7 +950,8 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       .store_into(generate_token_years);
 
   argparse::ArgumentParser podman_logs_command("podman-logs");
-  podman_logs_command.add_description("fetch the logs of podman containers");
+  podman_logs_command.add_description(
+      "fetch the logs of podman containers' logs");
 
   argparse::ArgumentParser podman_stats_command("podman-stats");
   podman_stats_command.add_description(
@@ -809,6 +959,16 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
 
   argparse::ArgumentParser podman_ps_command("podman-ps");
   podman_ps_command.add_description("fetch podman containers");
+
+  argparse::ArgumentParser systemd_journal_command("systemd-journal");
+  systemd_journal_command.add_description("fetch systemd service logs");
+  systemd_journal_command.add_argument("-u", "--user-scope")
+      .flag()
+      .store_into(systemd_journal_user_scope)
+      .help("run as user scope");
+  systemd_journal_command.add_argument("-s", "--service")
+      .store_into(systemd_journal_service_name)
+      .required();
 
   argparse::ArgumentParser fs_watcher_command("fs-watcher");
   fs_watcher_command.add_description("start a log files watcher");
@@ -828,6 +988,7 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
   program.add_subparser(podman_logs_command);
   program.add_subparser(podman_stats_command);
   program.add_subparser(podman_ps_command);
+  program.add_subparser(systemd_journal_command);
   program.add_subparser(fs_watcher_command);
   program.parse_args(argc, argv);
 
@@ -840,6 +1001,7 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
       program.is_subcommand_used(rpc_command) ||
       program.is_subcommand_used(generate_token_command) ||
       program.is_subcommand_used(fs_watcher_command) ||
+      program.is_subcommand_used(systemd_journal_command) ||
       program.is_subcommand_used(podman_logs_command) ||
       program.is_subcommand_used(podman_stats_command) ||
       program.is_subcommand_used(podman_ps_command)) {
@@ -873,6 +1035,11 @@ void palm::phlox::Application::launch(int argc, char* argv[]) {
     }
     if (program.is_subcommand_used(podman_ps_command)) {
       launch_podman_ps(config);
+      return;
+    }
+    if (program.is_subcommand_used(systemd_journal_command)) {
+      launch_systemd_journal_command(config, systemd_journal_service_name,
+                                     systemd_journal_user_scope);
       return;
     }
   }

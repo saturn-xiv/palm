@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <format>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -77,6 +78,25 @@ inline std::tuple<int, std::string, std::string> shell(
   const int exit_code = proc.wait();
 
   return {exit_code, out, err};
+}
+
+inline std::optional<time_t> booted_at() {
+  double uptime_in_seconds;
+
+  {
+    std::ifstream file("/proc/uptime");
+    if (!file.is_open()) {
+      spdlog::error("couldn't open the linux uptime file");
+      return std::nullopt;
+    }
+    file >> uptime_in_seconds;
+    file.close();
+  }
+
+  std::time_t current_time = std::time(nullptr);
+  std::time_t last_boot_time =
+      current_time - static_cast<std::time_t>(uptime_in_seconds);
+  return last_boot_time;
 }
 
 namespace gravatar {

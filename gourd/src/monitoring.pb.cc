@@ -27,6 +27,24 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace monitoring {
 namespace v1 {
+              template <typename>
+PROTOBUF_CONSTEXPR SystemdJournalRequest_All::SystemdJournalRequest_All(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct SystemdJournalRequest_AllDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SystemdJournalRequest_AllDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SystemdJournalRequest_AllDefaultTypeInternal() {}
+  union {
+    SystemdJournalRequest_All _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SystemdJournalRequest_AllDefaultTypeInternal _SystemdJournalRequest_All_default_instance_;
 
 inline constexpr SiteLayoutResponse_CurrentUser::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -296,6 +314,67 @@ struct FileSystemLogsRequest_AllDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsRequest_AllDefaultTypeInternal _FileSystemLogsRequest_All_default_instance_;
+
+inline constexpr SystemdJournalResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        host_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        created_at_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SystemdJournalResponse_Item::SystemdJournalResponse_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SystemdJournalResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SystemdJournalResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SystemdJournalResponse_ItemDefaultTypeInternal() {}
+  union {
+    SystemdJournalResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SystemdJournalResponse_ItemDefaultTypeInternal _SystemdJournalResponse_Item_default_instance_;
+
+inline constexpr SystemdJournalRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        page_{nullptr},
+        by_{},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SystemdJournalRequest::SystemdJournalRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SystemdJournalRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SystemdJournalRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SystemdJournalRequestDefaultTypeInternal() {}
+  union {
+    SystemdJournalRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SystemdJournalRequestDefaultTypeInternal _SystemdJournalRequest_default_instance_;
 
 inline constexpr SiteLayoutResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -595,6 +674,32 @@ struct FileSystemLogsRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsRequestDefaultTypeInternal _FileSystemLogsRequest_default_instance_;
 
+inline constexpr SystemdJournalResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SystemdJournalResponse::SystemdJournalResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SystemdJournalResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SystemdJournalResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SystemdJournalResponseDefaultTypeInternal() {}
+  union {
+    SystemdJournalResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SystemdJournalResponseDefaultTypeInternal _SystemdJournalResponse_default_instance_;
+
 inline constexpr PodmanStatisticsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -787,6 +892,59 @@ const ::uint32_t
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::Heartbeat, _impl_.by_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest_All, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest, _impl_.page_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest, _impl_.by_),
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse_Item, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse_Item, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse_Item, _impl_.host_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse_Item, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse_Item, _impl_.created_at_),
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalResponse, _impl_.pagination_),
+        ~0u,
+        0,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsRequest_All, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1024,19 +1182,23 @@ static const ::_pbi::MigrationSchema
         {71, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Redis)},
         {82, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat_Minio)},
         {90, -1, -1, sizeof(::palm::monitoring::v1::Heartbeat)},
-        {105, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest_All)},
-        {113, 126, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
-        {130, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
-        {141, 151, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
-        {153, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {161, 177, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {184, 198, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {204, 214, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {216, 226, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {228, 254, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {272, 282, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {284, 304, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {316, 326, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {105, -1, -1, sizeof(::palm::monitoring::v1::SystemdJournalRequest_All)},
+        {113, 126, -1, sizeof(::palm::monitoring::v1::SystemdJournalRequest)},
+        {130, 142, -1, sizeof(::palm::monitoring::v1::SystemdJournalResponse_Item)},
+        {146, 156, -1, sizeof(::palm::monitoring::v1::SystemdJournalResponse)},
+        {158, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest_All)},
+        {166, 179, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
+        {183, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
+        {194, 204, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
+        {206, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {214, 230, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {237, 251, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {257, 267, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {269, 279, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {281, 307, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {325, 335, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {337, 357, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {369, 379, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
@@ -1049,6 +1211,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_Heartbeat_Redis_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_Minio_default_instance_._instance,
     &::palm::monitoring::v1::_Heartbeat_default_instance_._instance,
+    &::palm::monitoring::v1::_SystemdJournalRequest_All_default_instance_._instance,
+    &::palm::monitoring::v1::_SystemdJournalRequest_default_instance_._instance,
+    &::palm::monitoring::v1::_SystemdJournalResponse_Item_default_instance_._instance,
+    &::palm::monitoring::v1::_SystemdJournalResponse_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemLogsRequest_All_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemLogsRequest_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemLogsResponse_Item_default_instance_._instance,
@@ -1086,56 +1252,69 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     ".Heartbeat.MinioH\000\032\023\n\004Http\022\013\n\003url\030\001 \001(\t\032"
     "\007\n\005MySql\032\014\n\nPostgreSql\032\n\n\010RabbitMQ\0324\n\005Re"
     "dis\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\022\017\n\007clust"
-    "er\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\"\246\001\n\025FileSystemLo"
-    "gsRequest\022<\n\003all\030\001 \001(\0132-.palm.monitoring"
-    ".v1.FileSystemLogsRequest.AllH\000\022\016\n\004host\030"
-    "\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH\000\022\"\n\004page\030c \001(\0132\024."
-    "palm.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\275\001\n\026Fil"
-    "eSystemLogsResponse\022>\n\005items\030\001 \003(\0132/.pal"
-    "m.monitoring.v1.FileSystemLogsResponse.I"
+    "er\030\003 \001(\010\032\007\n\005MinioB\004\n\002by\"\246\001\n\025SystemdJourn"
+    "alRequest\022<\n\003all\030\001 \001(\0132-.palm.monitoring"
+    ".v1.SystemdJournalRequest.AllH\000\022\016\n\004host\030"
+    "\002 \001(\tH\000\022\016\n\004name\030\003 \001(\tH\000\022\"\n\004page\030c \001(\0132\024."
+    "palm.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\355\001\n\026Sys"
+    "temdJournalResponse\022>\n\005items\030\001 \003(\0132/.pal"
+    "m.monitoring.v1.SystemdJournalResponse.I"
     "tem\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1"
-    ".Pagination\0323\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n\004fil"
-    "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\200\002\n\022PodmanQuery"
-    "Request\0229\n\003all\030\001 \001(\0132*.palm.monitoring.v"
-    "1.PodmanQueryRequest.AllH\000\022\016\n\004host\030\002 \001(\t"
-    "H\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 \001(\tH\000\022(\n\004from"
-    "\030[ \001(\0132\032.google.protobuf.Timestamp\022&\n\002to"
-    "\030\\ \001(\0132\032.google.protobuf.Timestamp\022\"\n\004pa"
-    "ge\030c \001(\0132\024.palm.portal.v1.Page\032\005\n\003AllB\004\n"
-    "\002by\"\203\002\n\022PodmanLogsResponse\022:\n\005items\030\001 \003("
-    "\0132+.palm.monitoring.v1.PodmanLogsRespons"
-    "e.Item\022.\n\npagination\030\t \001(\0132\032.palm.portal"
-    ".v1.Pagination\032\200\001\n\004Item\022\014\n\004host\030\001 \001(\t\022\n\n"
-    "\002id\030\002 \001(\t\022\017\n\007full_id\030\003 \001(\t\022\014\n\004name\030\004 \001(\t"
-    "\022\017\n\007message\030\005 \001(\t\022.\n\ncreated_at\030\t \001(\0132\032."
-    "google.protobuf.Timestamp\"\311\004\n\030PodmanCont"
-    "ainersResponse\022@\n\005items\030\001 \003(\01321.palm.mon"
-    "itoring.v1.PodmanContainersResponse.Item"
-    "\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pa"
-    "gination\032\272\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n\005image\030\002"
-    " \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labels\030\004 \003(\0132="
+    ".Pagination\032c\n\004Item\022\014\n\004host\030\001 \001(\t\022\014\n\004nam"
+    "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\022.\n\ncreated_at\030\t"
+    " \001(\0132\032.google.protobuf.Timestamp\"\246\001\n\025Fil"
+    "eSystemLogsRequest\022<\n\003all\030\001 \001(\0132-.palm.m"
+    "onitoring.v1.FileSystemLogsRequest.AllH\000"
+    "\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH\000\022\"\n\004page"
+    "\030c \001(\0132\024.palm.portal.v1.Page\032\005\n\003AllB\004\n\002b"
+    "y\"\275\001\n\026FileSystemLogsResponse\022>\n\005items\030\001 "
+    "\003(\0132/.palm.monitoring.v1.FileSystemLogsR"
+    "esponse.Item\022.\n\npagination\030\t \001(\0132\032.palm."
+    "portal.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001"
+    "(\t\022\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\200\002\n\022Po"
+    "dmanQueryRequest\0229\n\003all\030\001 \001(\0132*.palm.mon"
+    "itoring.v1.PodmanQueryRequest.AllH\000\022\016\n\004h"
+    "ost\030\002 \001(\tH\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 \001(\tH"
+    "\000\022(\n\004from\030[ \001(\0132\032.google.protobuf.Timest"
+    "amp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Timest"
+    "amp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032"
+    "\005\n\003AllB\004\n\002by\"\203\002\n\022PodmanLogsResponse\022:\n\005i"
+    "tems\030\001 \003(\0132+.palm.monitoring.v1.PodmanLo"
+    "gsResponse.Item\022.\n\npagination\030\t \001(\0132\032.pa"
+    "lm.portal.v1.Pagination\032\200\001\n\004Item\022\014\n\004host"
+    "\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\017\n\007full_id\030\003 \001(\t\022\014\n\004n"
+    "ame\030\004 \001(\t\022\017\n\007message\030\005 \001(\t\022.\n\ncreated_at"
+    "\030\t \001(\0132\032.google.protobuf.Timestamp\"\311\004\n\030P"
+    "odmanContainersResponse\022@\n\005items\030\001 \003(\01321"
     ".palm.monitoring.v1.PodmanContainersResp"
-    "onse.Item.LabelsEntry\022\016\n\006mounts\030\005 \003(\t\022\r\n"
-    "\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n\003pid\030\013 \001"
-    "(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_at\030\r \001(\003\022\022\n"
-    "\ncreated_at\030\016 \001(\t\022\017\n\007created\030\017 \001(\003\022\016\n\006st"
-    "atus\030\020 \001(\t\022\016\n\006exited\030\025 \001(\010\022\021\n\texited_at\030"
-    "\026 \001(\003\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022."
-    "\n\nupdated_at\030c \001(\0132\032.google.protobuf.Tim"
-    "estamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va"
-    "lue\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisticsRespon"
-    "se\022@\n\005items\030\001 \003(\01321.palm.monitoring.v1.P"
-    "odmanStatisticsResponse.Item\022.\n\npaginati"
-    "on\030\t \001(\0132\032.palm.portal.v1.Pagination\032\356\001\n"
-    "\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_t"
-    "ime\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017\n\007avg_cp"
-    "u\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013mem_percen"
-    "t\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block_io\030\t \001("
-    "\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated"
-    "_at\030c \001(\0132\032.google.protobuf.Timestamp2a\n"
-    "\004Site\022Y\n\006Layout\022%.palm.monitoring.v1.Sit"
-    "eLayoutRequest\032&.palm.monitoring.v1.Site"
-    "LayoutResponse\"\0002m\n\nFileSystem\022_\n\004Logs\022)"
+    "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por"
+    "tal.v1.Pagination\032\272\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r"
+    "\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006label"
+    "s\030\004 \003(\0132=.palm.monitoring.v1.PodmanConta"
+    "inersResponse.Item.LabelsEntry\022\016\n\006mounts"
+    "\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013"
+    "\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_at"
+    "\030\r \001(\003\022\022\n\ncreated_at\030\016 \001(\t\022\017\n\007created\030\017 "
+    "\001(\003\022\016\n\006status\030\020 \001(\t\022\016\n\006exited\030\025 \001(\010\022\021\n\te"
+    "xited_at\030\026 \001(\003\022\021\n\texit_code\030\027 \001(\005\022\014\n\004hos"
+    "t\030b \001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.pro"
+    "tobuf.Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 "
+    "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatist"
+    "icsResponse\022@\n\005items\030\001 \003(\01321.palm.monito"
+    "ring.v1.PodmanStatisticsResponse.Item\022.\n"
+    "\npagination\030\t \001(\0132\032.palm.portal.v1.Pagin"
+    "ation\032\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t"
+    "\022\020\n\010cpu_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022"
+    "\017\n\007avg_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013m"
+    "em_percent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010bloc"
+    "k_io\030\t \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022."
+    "\n\ncreated_at\030c \001(\0132\032.google.protobuf.Tim"
+    "estamp2a\n\004Site\022Y\n\006Layout\022%.palm.monitori"
+    "ng.v1.SiteLayoutRequest\032&.palm.monitorin"
+    "g.v1.SiteLayoutResponse\"\0002m\n\007Systemd\022b\n\007"
+    "Journal\022).palm.monitoring.v1.SystemdJour"
+    "nalRequest\032*.palm.monitoring.v1.SystemdJ"
+    "ournalResponse\"\0002m\n\nFileSystem\022_\n\004Logs\022)"
     ".palm.monitoring.v1.FileSystemLogsReques"
     "t\032*.palm.monitoring.v1.FileSystemLogsRes"
     "ponse\"\0002\256\002\n\006Podman\022X\n\004Logs\022&.palm.monito"
@@ -1158,13 +1337,13 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    3294,
+    3814,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
     descriptor_table_monitoring_2eproto_deps,
     2,
-    23,
+    27,
     schemas,
     file_default_instances,
     TableStruct_monitoring_2eproto::offsets,
@@ -3556,6 +3735,1173 @@ void Heartbeat::InternalSwap(Heartbeat* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata Heartbeat::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SystemdJournalRequest_All::_Internal {
+ public:
+};
+
+SystemdJournalRequest_All::SystemdJournalRequest_All(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SystemdJournalRequest.All)
+}
+SystemdJournalRequest_All::SystemdJournalRequest_All(
+    ::google::protobuf::Arena* arena,
+    const SystemdJournalRequest_All& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SystemdJournalRequest_All* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SystemdJournalRequest.All)
+}
+
+inline void* SystemdJournalRequest_All::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SystemdJournalRequest_All(arena);
+}
+constexpr auto SystemdJournalRequest_All::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SystemdJournalRequest_All),
+                                            alignof(SystemdJournalRequest_All));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SystemdJournalRequest_All::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SystemdJournalRequest_All_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SystemdJournalRequest_All::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<SystemdJournalRequest_All>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SystemdJournalRequest_All::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<SystemdJournalRequest_All>(), &SystemdJournalRequest_All::ByteSizeLong,
+            &SystemdJournalRequest_All::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SystemdJournalRequest_All, _impl_._cached_size_),
+        false,
+    },
+    &SystemdJournalRequest_All::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SystemdJournalRequest_All::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> SystemdJournalRequest_All::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SystemdJournalRequest_All>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata SystemdJournalRequest_All::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SystemdJournalRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<SystemdJournalRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_._has_bits_);
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::SystemdJournalRequest, _impl_._oneof_case_);
+};
+
+void SystemdJournalRequest::set_allocated_all(::palm::monitoring::v1::SystemdJournalRequest_All* all) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_by();
+  if (all) {
+    ::google::protobuf::Arena* submessage_arena = all->GetArena();
+    if (message_arena != submessage_arena) {
+      all = ::google::protobuf::internal::GetOwnedMessage(message_arena, all, submessage_arena);
+    }
+    set_has_all();
+    _impl_.by_.all_ = all;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalRequest.all)
+}
+void SystemdJournalRequest::clear_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.page_ != nullptr) _impl_.page_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+SystemdJournalRequest::SystemdJournalRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SystemdJournalRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SystemdJournalRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::SystemdJournalRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        by_{},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+SystemdJournalRequest::SystemdJournalRequest(
+    ::google::protobuf::Arena* arena,
+    const SystemdJournalRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SystemdJournalRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.page_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(
+                              arena, *from._impl_.page_)
+                        : nullptr;
+  switch (by_case()) {
+    case BY_NOT_SET:
+      break;
+      case kAll:
+        _impl_.by_.all_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SystemdJournalRequest_All>(arena, *from._impl_.by_.all_);
+        break;
+      case kHost:
+        new (&_impl_.by_.host_) decltype(_impl_.by_.host_){arena, from._impl_.by_.host_};
+        break;
+      case kName:
+        new (&_impl_.by_.name_) decltype(_impl_.by_.name_){arena, from._impl_.by_.name_};
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SystemdJournalRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SystemdJournalRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        by_{},
+        _oneof_case_{} {}
+
+inline void SystemdJournalRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.page_ = {};
+}
+SystemdJournalRequest::~SystemdJournalRequest() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SystemdJournalRequest)
+  SharedDtor(*this);
+}
+inline void SystemdJournalRequest::SharedDtor(MessageLite& self) {
+  SystemdJournalRequest& this_ = static_cast<SystemdJournalRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.page_;
+  if (this_.has_by()) {
+    this_.clear_by();
+  }
+  this_._impl_.~Impl_();
+}
+
+void SystemdJournalRequest::clear_by() {
+// @@protoc_insertion_point(one_of_clear_start:palm.monitoring.v1.SystemdJournalRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (by_case()) {
+    case kAll: {
+      if (GetArena() == nullptr) {
+        delete _impl_.by_.all_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.all_);
+      }
+      break;
+    }
+    case kHost: {
+      _impl_.by_.host_.Destroy();
+      break;
+    }
+    case kName: {
+      _impl_.by_.name_.Destroy();
+      break;
+    }
+    case BY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+
+
+inline void* SystemdJournalRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SystemdJournalRequest(arena);
+}
+constexpr auto SystemdJournalRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SystemdJournalRequest),
+                                            alignof(SystemdJournalRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SystemdJournalRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SystemdJournalRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SystemdJournalRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SystemdJournalRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SystemdJournalRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SystemdJournalRequest>(), &SystemdJournalRequest::ByteSizeLong,
+            &SystemdJournalRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_._cached_size_),
+        false,
+    },
+    &SystemdJournalRequest::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SystemdJournalRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 4, 2, 57, 7> SystemdJournalRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    99, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SystemdJournalRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Page page = 99;
+    {::_pbi::TcParser::FastMtS2,
+     {1690, 0, 1, PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_.page_)}},
+  }}, {{
+    99, 0, 1,
+    65534, 3,
+    65535, 65535
+  }}, {{
+    // .palm.monitoring.v1.SystemdJournalRequest.All all = 1;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_.by_.all_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string host = 2;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_.by_.host_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string name = 3;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_.by_.name_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.portal.v1.Page page = 99;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::SystemdJournalRequest_All>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
+  }}, {{
+    "\50\0\4\4\0\0\0\0"
+    "palm.monitoring.v1.SystemdJournalRequest"
+    "host"
+    "name"
+  }},
+};
+
+PROTOBUF_NOINLINE void SystemdJournalRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SystemdJournalRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.page_ != nullptr);
+    _impl_.page_->Clear();
+  }
+  clear_by();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SystemdJournalRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SystemdJournalRequest& this_ = static_cast<const SystemdJournalRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SystemdJournalRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SystemdJournalRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SystemdJournalRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.by_case()) {
+            case kAll: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.by_.all_, this_._impl_.by_.all_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kHost: {
+              const std::string& _s = this_._internal_host();
+              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SystemdJournalRequest.host");
+              target = stream->WriteStringMaybeAliased(2, _s, target);
+              break;
+            }
+            case kName: {
+              const std::string& _s = this_._internal_name();
+              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SystemdJournalRequest.name");
+              target = stream->WriteStringMaybeAliased(3, _s, target);
+              break;
+            }
+            default:
+              break;
+          }
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Page page = 99;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                99, *this_._impl_.page_, this_._impl_.page_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SystemdJournalRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SystemdJournalRequest::ByteSizeLong(const MessageLite& base) {
+          const SystemdJournalRequest& this_ = static_cast<const SystemdJournalRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SystemdJournalRequest::ByteSizeLong() const {
+          const SystemdJournalRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SystemdJournalRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // .palm.portal.v1.Page page = 99;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 2 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.page_);
+            }
+          }
+          switch (this_.by_case()) {
+            // .palm.monitoring.v1.SystemdJournalRequest.All all = 1;
+            case kAll: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.all_);
+              break;
+            }
+            // string host = 2;
+            case kHost: {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_host());
+              break;
+            }
+            // string name = 3;
+            case kName: {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+              break;
+            }
+            case BY_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SystemdJournalRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SystemdJournalRequest*>(&to_msg);
+  auto& from = static_cast<const SystemdJournalRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SystemdJournalRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.page_ != nullptr);
+    if (_this->_impl_.page_ == nullptr) {
+      _this->_impl_.page_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(arena, *from._impl_.page_);
+    } else {
+      _this->_impl_.page_->MergeFrom(*from._impl_.page_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_by();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kAll: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.all_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::SystemdJournalRequest_All>(arena, *from._impl_.by_.all_);
+        } else {
+          _this->_impl_.by_.all_->MergeFrom(from._internal_all());
+        }
+        break;
+      }
+      case kHost: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.host_.InitDefault();
+        }
+        _this->_impl_.by_.host_.Set(from._internal_host(), arena);
+        break;
+      }
+      case kName: {
+        if (oneof_needs_init) {
+          _this->_impl_.by_.name_.InitDefault();
+        }
+        _this->_impl_.by_.name_.Set(from._internal_name(), arena);
+        break;
+      }
+      case BY_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SystemdJournalRequest::CopyFrom(const SystemdJournalRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SystemdJournalRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SystemdJournalRequest::InternalSwap(SystemdJournalRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.page_, other->_impl_.page_);
+  swap(_impl_.by_, other->_impl_.by_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata SystemdJournalRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SystemdJournalResponse_Item::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<SystemdJournalResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_._has_bits_);
+};
+
+void SystemdJournalResponse_Item::clear_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ != nullptr) _impl_.created_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+SystemdJournalResponse_Item::SystemdJournalResponse_Item(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SystemdJournalResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE SystemdJournalResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::SystemdJournalResponse_Item& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        host_(arena, from.host_),
+        name_(arena, from.name_),
+        message_(arena, from.message_) {}
+
+SystemdJournalResponse_Item::SystemdJournalResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const SystemdJournalResponse_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SystemdJournalResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.created_at_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
+                              arena, *from._impl_.created_at_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SystemdJournalResponse.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE SystemdJournalResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        host_(arena),
+        name_(arena),
+        message_(arena) {}
+
+inline void SystemdJournalResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.created_at_ = {};
+}
+SystemdJournalResponse_Item::~SystemdJournalResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SystemdJournalResponse.Item)
+  SharedDtor(*this);
+}
+inline void SystemdJournalResponse_Item::SharedDtor(MessageLite& self) {
+  SystemdJournalResponse_Item& this_ = static_cast<SystemdJournalResponse_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.host_.Destroy();
+  this_._impl_.name_.Destroy();
+  this_._impl_.message_.Destroy();
+  delete this_._impl_.created_at_;
+  this_._impl_.~Impl_();
+}
+
+inline void* SystemdJournalResponse_Item::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SystemdJournalResponse_Item(arena);
+}
+constexpr auto SystemdJournalResponse_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SystemdJournalResponse_Item),
+                                            alignof(SystemdJournalResponse_Item));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SystemdJournalResponse_Item::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SystemdJournalResponse_Item_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SystemdJournalResponse_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SystemdJournalResponse_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SystemdJournalResponse_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SystemdJournalResponse_Item>(), &SystemdJournalResponse_Item::ByteSizeLong,
+            &SystemdJournalResponse_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_._cached_size_),
+        false,
+    },
+    &SystemdJournalResponse_Item::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SystemdJournalResponse_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 1, 70, 2> SystemdJournalResponse_Item::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967032,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SystemdJournalResponse_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string host = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.host_)}},
+    // string name = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.name_)}},
+    // string message = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.message_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string host = 1;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.host_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string name = 2;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string message = 3;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.message_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp created_at = 9;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalResponse_Item, _impl_.created_at_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }}, {{
+    "\56\4\4\7\0\0\0\0"
+    "palm.monitoring.v1.SystemdJournalResponse.Item"
+    "host"
+    "name"
+    "message"
+  }},
+};
+
+PROTOBUF_NOINLINE void SystemdJournalResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SystemdJournalResponse.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.host_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.created_at_ != nullptr);
+    _impl_.created_at_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SystemdJournalResponse_Item::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SystemdJournalResponse_Item& this_ = static_cast<const SystemdJournalResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SystemdJournalResponse_Item::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SystemdJournalResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SystemdJournalResponse.Item)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string host = 1;
+          if (!this_._internal_host().empty()) {
+            const std::string& _s = this_._internal_host();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SystemdJournalResponse.Item.host");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string name = 2;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SystemdJournalResponse.Item.name");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string message = 3;
+          if (!this_._internal_message().empty()) {
+            const std::string& _s = this_._internal_message();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.SystemdJournalResponse.Item.message");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .google.protobuf.Timestamp created_at = 9;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                9, *this_._impl_.created_at_, this_._impl_.created_at_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SystemdJournalResponse.Item)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SystemdJournalResponse_Item::ByteSizeLong(const MessageLite& base) {
+          const SystemdJournalResponse_Item& this_ = static_cast<const SystemdJournalResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SystemdJournalResponse_Item::ByteSizeLong() const {
+          const SystemdJournalResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SystemdJournalResponse.Item)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string host = 1;
+            if (!this_._internal_host().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_host());
+            }
+            // string name = 2;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+            // string message = 3;
+            if (!this_._internal_message().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_message());
+            }
+          }
+           {
+            // .google.protobuf.Timestamp created_at = 9;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.created_at_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SystemdJournalResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SystemdJournalResponse_Item*>(&to_msg);
+  auto& from = static_cast<const SystemdJournalResponse_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SystemdJournalResponse.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_host().empty()) {
+    _this->_internal_set_host(from._internal_host());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.created_at_ != nullptr);
+    if (_this->_impl_.created_at_ == nullptr) {
+      _this->_impl_.created_at_ =
+          ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.created_at_);
+    } else {
+      _this->_impl_.created_at_->MergeFrom(*from._impl_.created_at_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SystemdJournalResponse_Item::CopyFrom(const SystemdJournalResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SystemdJournalResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SystemdJournalResponse_Item::InternalSwap(SystemdJournalResponse_Item* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  swap(_impl_.created_at_, other->_impl_.created_at_);
+}
+
+::google::protobuf::Metadata SystemdJournalResponse_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SystemdJournalResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<SystemdJournalResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_._has_bits_);
+};
+
+void SystemdJournalResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+SystemdJournalResponse::SystemdJournalResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.SystemdJournalResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SystemdJournalResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::monitoring::v1::SystemdJournalResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+SystemdJournalResponse::SystemdJournalResponse(
+    ::google::protobuf::Arena* arena,
+    const SystemdJournalResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SystemdJournalResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pagination_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(
+                              arena, *from._impl_.pagination_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.SystemdJournalResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SystemdJournalResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void SystemdJournalResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.pagination_ = {};
+}
+SystemdJournalResponse::~SystemdJournalResponse() {
+  // @@protoc_insertion_point(destructor:palm.monitoring.v1.SystemdJournalResponse)
+  SharedDtor(*this);
+}
+inline void SystemdJournalResponse::SharedDtor(MessageLite& self) {
+  SystemdJournalResponse& this_ = static_cast<SystemdJournalResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.pagination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* SystemdJournalResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SystemdJournalResponse(arena);
+}
+constexpr auto SystemdJournalResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_.items_) +
+          decltype(SystemdJournalResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(SystemdJournalResponse), alignof(SystemdJournalResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&SystemdJournalResponse::PlacementNew_,
+                                 sizeof(SystemdJournalResponse),
+                                 alignof(SystemdJournalResponse));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SystemdJournalResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SystemdJournalResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SystemdJournalResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SystemdJournalResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SystemdJournalResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SystemdJournalResponse>(), &SystemdJournalResponse::ByteSizeLong,
+            &SystemdJournalResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_._cached_size_),
+        false,
+    },
+    &SystemdJournalResponse::kDescriptorMethods,
+    &descriptor_table_monitoring_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SystemdJournalResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> SystemdJournalResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967038,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::SystemdJournalResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.monitoring.v1.SystemdJournalResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.monitoring.v1.SystemdJournalResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_.items_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Pagination pagination = 9;
+    {PROTOBUF_FIELD_OFFSET(SystemdJournalResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::SystemdJournalResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SystemdJournalResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.SystemdJournalResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pagination_ != nullptr);
+    _impl_.pagination_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SystemdJournalResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SystemdJournalResponse& this_ = static_cast<const SystemdJournalResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SystemdJournalResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SystemdJournalResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.SystemdJournalResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .palm.monitoring.v1.SystemdJournalResponse.Item items = 1;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_items_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_items().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    1, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Pagination pagination = 9;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                9, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.SystemdJournalResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SystemdJournalResponse::ByteSizeLong(const MessageLite& base) {
+          const SystemdJournalResponse& this_ = static_cast<const SystemdJournalResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SystemdJournalResponse::ByteSizeLong() const {
+          const SystemdJournalResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.SystemdJournalResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .palm.monitoring.v1.SystemdJournalResponse.Item items = 1;
+            {
+              total_size += 1UL * this_._internal_items_size();
+              for (const auto& msg : this_._internal_items()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // .palm.portal.v1.Pagination pagination = 9;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pagination_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SystemdJournalResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SystemdJournalResponse*>(&to_msg);
+  auto& from = static_cast<const SystemdJournalResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.SystemdJournalResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.pagination_ != nullptr);
+    if (_this->_impl_.pagination_ == nullptr) {
+      _this->_impl_.pagination_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Pagination>(arena, *from._impl_.pagination_);
+    } else {
+      _this->_impl_.pagination_->MergeFrom(*from._impl_.pagination_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SystemdJournalResponse::CopyFrom(const SystemdJournalResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.SystemdJournalResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SystemdJournalResponse::InternalSwap(SystemdJournalResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.pagination_, other->_impl_.pagination_);
+}
+
+::google::protobuf::Metadata SystemdJournalResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

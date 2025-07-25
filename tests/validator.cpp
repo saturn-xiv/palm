@@ -55,3 +55,13 @@ TEST_CASE("std tm", "[datetime]") {
     }
   }
 }
+
+TEST_CASE("booted at", "[datetime]") {
+  auto i = palm::booted_at();
+  REQUIRE(i.has_value());
+
+  {
+    auto it = i.value();
+    std::cout << "BOOTED AT: " << std::ctime(&it);
+  }
+}

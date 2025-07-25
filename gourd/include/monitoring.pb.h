@@ -129,6 +129,18 @@ extern SiteLayoutResponseDefaultTypeInternal _SiteLayoutResponse_default_instanc
 class SiteLayoutResponse_CurrentUser;
 struct SiteLayoutResponse_CurrentUserDefaultTypeInternal;
 extern SiteLayoutResponse_CurrentUserDefaultTypeInternal _SiteLayoutResponse_CurrentUser_default_instance_;
+class SystemdJournalRequest;
+struct SystemdJournalRequestDefaultTypeInternal;
+extern SystemdJournalRequestDefaultTypeInternal _SystemdJournalRequest_default_instance_;
+class SystemdJournalRequest_All;
+struct SystemdJournalRequest_AllDefaultTypeInternal;
+extern SystemdJournalRequest_AllDefaultTypeInternal _SystemdJournalRequest_All_default_instance_;
+class SystemdJournalResponse;
+struct SystemdJournalResponseDefaultTypeInternal;
+extern SystemdJournalResponseDefaultTypeInternal _SystemdJournalResponse_default_instance_;
+class SystemdJournalResponse_Item;
+struct SystemdJournalResponse_ItemDefaultTypeInternal;
+extern SystemdJournalResponse_ItemDefaultTypeInternal _SystemdJournalResponse_Item_default_instance_;
 }  // namespace v1
 }  // namespace monitoring
 }  // namespace palm
@@ -144,6 +156,151 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class SystemdJournalRequest_All final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SystemdJournalRequest.All) */ {
+ public:
+  inline SystemdJournalRequest_All() : SystemdJournalRequest_All(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SystemdJournalRequest_All* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SystemdJournalRequest_All));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SystemdJournalRequest_All(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SystemdJournalRequest_All(const SystemdJournalRequest_All& from) : SystemdJournalRequest_All(nullptr, from) {}
+  inline SystemdJournalRequest_All(SystemdJournalRequest_All&& from) noexcept
+      : SystemdJournalRequest_All(nullptr, std::move(from)) {}
+  inline SystemdJournalRequest_All& operator=(const SystemdJournalRequest_All& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SystemdJournalRequest_All& operator=(SystemdJournalRequest_All&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SystemdJournalRequest_All& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SystemdJournalRequest_All* internal_default_instance() {
+    return reinterpret_cast<const SystemdJournalRequest_All*>(
+        &_SystemdJournalRequest_All_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(SystemdJournalRequest_All& a, SystemdJournalRequest_All& b) { a.Swap(&b); }
+  inline void Swap(SystemdJournalRequest_All* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SystemdJournalRequest_All* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SystemdJournalRequest_All* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<SystemdJournalRequest_All>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SystemdJournalRequest_All& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SystemdJournalRequest_All& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SystemdJournalRequest.All"; }
+
+ protected:
+  explicit SystemdJournalRequest_All(::google::protobuf::Arena* arena);
+  SystemdJournalRequest_All(::google::protobuf::Arena* arena, const SystemdJournalRequest_All& from);
+  SystemdJournalRequest_All(::google::protobuf::Arena* arena, SystemdJournalRequest_All&& from) noexcept
+      : SystemdJournalRequest_All(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SystemdJournalRequest.All)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SystemdJournalRequest_All& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
 // -------------------------------------------------------------------
 
 class SiteLayoutResponse_CurrentUser final : public ::google::protobuf::Message
@@ -596,7 +753,7 @@ class PodmanQueryRequest_All final : public ::google::protobuf::internal::ZeroFi
     return reinterpret_cast<const PodmanQueryRequest_All*>(
         &_PodmanQueryRequest_All_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(PodmanQueryRequest_All& a, PodmanQueryRequest_All& b) { a.Swap(&b); }
   inline void Swap(PodmanQueryRequest_All* other) {
     if (other == this) return;
@@ -1777,7 +1934,7 @@ class FileSystemLogsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const FileSystemLogsResponse_Item*>(
         &_FileSystemLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(FileSystemLogsResponse_Item& a, FileSystemLogsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(FileSystemLogsResponse_Item* other) {
     if (other == this) return;
@@ -2008,7 +2165,7 @@ class FileSystemLogsRequest_All final : public ::google::protobuf::internal::Zer
     return reinterpret_cast<const FileSystemLogsRequest_All*>(
         &_FileSystemLogsRequest_All_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(FileSystemLogsRequest_All& a, FileSystemLogsRequest_All& b) { a.Swap(&b); }
   inline void Swap(FileSystemLogsRequest_All* other) {
     if (other == this) return;
@@ -2091,6 +2248,530 @@ class FileSystemLogsRequest_All final : public ::google::protobuf::internal::Zer
                           const FileSystemLogsRequest_All& from_msg);
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SystemdJournalResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SystemdJournalResponse.Item) */ {
+ public:
+  inline SystemdJournalResponse_Item() : SystemdJournalResponse_Item(nullptr) {}
+  ~SystemdJournalResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SystemdJournalResponse_Item* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SystemdJournalResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SystemdJournalResponse_Item(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SystemdJournalResponse_Item(const SystemdJournalResponse_Item& from) : SystemdJournalResponse_Item(nullptr, from) {}
+  inline SystemdJournalResponse_Item(SystemdJournalResponse_Item&& from) noexcept
+      : SystemdJournalResponse_Item(nullptr, std::move(from)) {}
+  inline SystemdJournalResponse_Item& operator=(const SystemdJournalResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SystemdJournalResponse_Item& operator=(SystemdJournalResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SystemdJournalResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SystemdJournalResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const SystemdJournalResponse_Item*>(
+        &_SystemdJournalResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 12;
+  friend void swap(SystemdJournalResponse_Item& a, SystemdJournalResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(SystemdJournalResponse_Item* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SystemdJournalResponse_Item* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SystemdJournalResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SystemdJournalResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SystemdJournalResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SystemdJournalResponse_Item& from) { SystemdJournalResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SystemdJournalResponse_Item* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SystemdJournalResponse.Item"; }
+
+ protected:
+  explicit SystemdJournalResponse_Item(::google::protobuf::Arena* arena);
+  SystemdJournalResponse_Item(::google::protobuf::Arena* arena, const SystemdJournalResponse_Item& from);
+  SystemdJournalResponse_Item(::google::protobuf::Arena* arena, SystemdJournalResponse_Item&& from) noexcept
+      : SystemdJournalResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kHostFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kMessageFieldNumber = 3,
+    kCreatedAtFieldNumber = 9,
+  };
+  // string host = 1;
+  void clear_host() ;
+  const std::string& host() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_host(Arg_&& arg, Args_... args);
+  std::string* mutable_host();
+  PROTOBUF_NODISCARD std::string* release_host();
+  void set_allocated_host(std::string* value);
+
+  private:
+  const std::string& _internal_host() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_host(
+      const std::string& value);
+  std::string* _internal_mutable_host();
+
+  public:
+  // string name = 2;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string message = 3;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // .google.protobuf.Timestamp created_at = 9;
+  bool has_created_at() const;
+  void clear_created_at() ;
+  const ::google::protobuf::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_created_at();
+  ::google::protobuf::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_created_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_created_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_created_at();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SystemdJournalResponse.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 1,
+      70, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SystemdJournalResponse_Item& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr host_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::Timestamp* created_at_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SystemdJournalRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SystemdJournalRequest) */ {
+ public:
+  inline SystemdJournalRequest() : SystemdJournalRequest(nullptr) {}
+  ~SystemdJournalRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SystemdJournalRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SystemdJournalRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SystemdJournalRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SystemdJournalRequest(const SystemdJournalRequest& from) : SystemdJournalRequest(nullptr, from) {}
+  inline SystemdJournalRequest(SystemdJournalRequest&& from) noexcept
+      : SystemdJournalRequest(nullptr, std::move(from)) {}
+  inline SystemdJournalRequest& operator=(const SystemdJournalRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SystemdJournalRequest& operator=(SystemdJournalRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SystemdJournalRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ByCase {
+    kAll = 1,
+    kHost = 2,
+    kName = 3,
+    BY_NOT_SET = 0,
+  };
+  static inline const SystemdJournalRequest* internal_default_instance() {
+    return reinterpret_cast<const SystemdJournalRequest*>(
+        &_SystemdJournalRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 11;
+  friend void swap(SystemdJournalRequest& a, SystemdJournalRequest& b) { a.Swap(&b); }
+  inline void Swap(SystemdJournalRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SystemdJournalRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SystemdJournalRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SystemdJournalRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SystemdJournalRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SystemdJournalRequest& from) { SystemdJournalRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SystemdJournalRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SystemdJournalRequest"; }
+
+ protected:
+  explicit SystemdJournalRequest(::google::protobuf::Arena* arena);
+  SystemdJournalRequest(::google::protobuf::Arena* arena, const SystemdJournalRequest& from);
+  SystemdJournalRequest(::google::protobuf::Arena* arena, SystemdJournalRequest&& from) noexcept
+      : SystemdJournalRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using All = SystemdJournalRequest_All;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPageFieldNumber = 99,
+    kAllFieldNumber = 1,
+    kHostFieldNumber = 2,
+    kNameFieldNumber = 3,
+  };
+  // .palm.portal.v1.Page page = 99;
+  bool has_page() const;
+  void clear_page() ;
+  const ::palm::portal::v1::Page& page() const;
+  PROTOBUF_NODISCARD ::palm::portal::v1::Page* release_page();
+  ::palm::portal::v1::Page* mutable_page();
+  void set_allocated_page(::palm::portal::v1::Page* value);
+  void unsafe_arena_set_allocated_page(::palm::portal::v1::Page* value);
+  ::palm::portal::v1::Page* unsafe_arena_release_page();
+
+  private:
+  const ::palm::portal::v1::Page& _internal_page() const;
+  ::palm::portal::v1::Page* _internal_mutable_page();
+
+  public:
+  // .palm.monitoring.v1.SystemdJournalRequest.All all = 1;
+  bool has_all() const;
+  private:
+  bool _internal_has_all() const;
+
+  public:
+  void clear_all() ;
+  const ::palm::monitoring::v1::SystemdJournalRequest_All& all() const;
+  PROTOBUF_NODISCARD ::palm::monitoring::v1::SystemdJournalRequest_All* release_all();
+  ::palm::monitoring::v1::SystemdJournalRequest_All* mutable_all();
+  void set_allocated_all(::palm::monitoring::v1::SystemdJournalRequest_All* value);
+  void unsafe_arena_set_allocated_all(::palm::monitoring::v1::SystemdJournalRequest_All* value);
+  ::palm::monitoring::v1::SystemdJournalRequest_All* unsafe_arena_release_all();
+
+  private:
+  const ::palm::monitoring::v1::SystemdJournalRequest_All& _internal_all() const;
+  ::palm::monitoring::v1::SystemdJournalRequest_All* _internal_mutable_all();
+
+  public:
+  // string host = 2;
+  bool has_host() const;
+  void clear_host() ;
+  const std::string& host() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_host(Arg_&& arg, Args_... args);
+  std::string* mutable_host();
+  PROTOBUF_NODISCARD std::string* release_host();
+  void set_allocated_host(std::string* value);
+
+  private:
+  const std::string& _internal_host() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_host(
+      const std::string& value);
+  std::string* _internal_mutable_host();
+
+  public:
+  // string name = 3;
+  bool has_name() const;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  void clear_by();
+  ByCase by_case() const;
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SystemdJournalRequest)
+ private:
+  class _Internal;
+  void set_has_all();
+  void set_has_host();
+  void set_has_name();
+  inline bool has_by() const;
+  inline void clear_has_by();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 4, 2,
+      57, 7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SystemdJournalRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::palm::portal::v1::Page* page_;
+    union ByUnion {
+      constexpr ByUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::palm::monitoring::v1::SystemdJournalRequest_All* all_;
+      ::google::protobuf::internal::ArenaStringPtr host_;
+      ::google::protobuf::internal::ArenaStringPtr name_;
+    } by_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_monitoring_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2446,7 +3127,7 @@ class PodmanStatisticsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanStatisticsResponse_Item*>(
         &_PodmanStatisticsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(PodmanStatisticsResponse_Item& a, PodmanStatisticsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanStatisticsResponse_Item* other) {
     if (other == this) return;
@@ -2847,7 +3528,7 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanQueryRequest*>(
         &_PodmanQueryRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(PodmanQueryRequest& a, PodmanQueryRequest& b) { a.Swap(&b); }
   inline void Swap(PodmanQueryRequest* other) {
     if (other == this) return;
@@ -3169,7 +3850,7 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanLogsResponse_Item*>(
         &_PodmanLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(PodmanLogsResponse_Item& a, PodmanLogsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanLogsResponse_Item* other) {
     if (other == this) return;
@@ -3455,7 +4136,7 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanContainersResponse_Item*>(
         &_PodmanContainersResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(PodmanContainersResponse_Item& a, PodmanContainersResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanContainersResponse_Item* other) {
     if (other == this) return;
@@ -4275,7 +4956,7 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const FileSystemLogsResponse*>(
         &_FileSystemLogsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(FileSystemLogsResponse& a, FileSystemLogsResponse& b) { a.Swap(&b); }
   inline void Swap(FileSystemLogsResponse* other) {
     if (other == this) return;
@@ -4497,7 +5178,7 @@ class FileSystemLogsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const FileSystemLogsRequest*>(
         &_FileSystemLogsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(FileSystemLogsRequest& a, FileSystemLogsRequest& b) { a.Swap(&b); }
   inline void Swap(FileSystemLogsRequest* other) {
     if (other == this) return;
@@ -4706,6 +5387,222 @@ class FileSystemLogsRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class SystemdJournalResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SystemdJournalResponse) */ {
+ public:
+  inline SystemdJournalResponse() : SystemdJournalResponse(nullptr) {}
+  ~SystemdJournalResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SystemdJournalResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SystemdJournalResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SystemdJournalResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SystemdJournalResponse(const SystemdJournalResponse& from) : SystemdJournalResponse(nullptr, from) {}
+  inline SystemdJournalResponse(SystemdJournalResponse&& from) noexcept
+      : SystemdJournalResponse(nullptr, std::move(from)) {}
+  inline SystemdJournalResponse& operator=(const SystemdJournalResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SystemdJournalResponse& operator=(SystemdJournalResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SystemdJournalResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SystemdJournalResponse* internal_default_instance() {
+    return reinterpret_cast<const SystemdJournalResponse*>(
+        &_SystemdJournalResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(SystemdJournalResponse& a, SystemdJournalResponse& b) { a.Swap(&b); }
+  inline void Swap(SystemdJournalResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SystemdJournalResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SystemdJournalResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SystemdJournalResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SystemdJournalResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SystemdJournalResponse& from) { SystemdJournalResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SystemdJournalResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.SystemdJournalResponse"; }
+
+ protected:
+  explicit SystemdJournalResponse(::google::protobuf::Arena* arena);
+  SystemdJournalResponse(::google::protobuf::Arena* arena, const SystemdJournalResponse& from);
+  SystemdJournalResponse(::google::protobuf::Arena* arena, SystemdJournalResponse&& from) noexcept
+      : SystemdJournalResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = SystemdJournalResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 9,
+  };
+  // repeated .palm.monitoring.v1.SystemdJournalResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::monitoring::v1::SystemdJournalResponse_Item* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>* _internal_mutable_items();
+  public:
+  const ::palm::monitoring::v1::SystemdJournalResponse_Item& items(int index) const;
+  ::palm::monitoring::v1::SystemdJournalResponse_Item* add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>& items() const;
+  // .palm.portal.v1.Pagination pagination = 9;
+  bool has_pagination() const;
+  void clear_pagination() ;
+  const ::palm::portal::v1::Pagination& pagination() const;
+  PROTOBUF_NODISCARD ::palm::portal::v1::Pagination* release_pagination();
+  ::palm::portal::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* value);
+  ::palm::portal::v1::Pagination* unsafe_arena_release_pagination();
+
+  private:
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* _internal_mutable_pagination();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.SystemdJournalResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SystemdJournalResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::monitoring::v1::SystemdJournalResponse_Item > items_;
+    ::palm::portal::v1::Pagination* pagination_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PodmanStatisticsResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.monitoring.v1.PodmanStatisticsResponse) */ {
  public:
@@ -4765,7 +5662,7 @@ class PodmanStatisticsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanStatisticsResponse*>(
         &_PodmanStatisticsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(PodmanStatisticsResponse& a, PodmanStatisticsResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanStatisticsResponse* other) {
     if (other == this) return;
@@ -4981,7 +5878,7 @@ class PodmanLogsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanLogsResponse*>(
         &_PodmanLogsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(PodmanLogsResponse& a, PodmanLogsResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanLogsResponse* other) {
     if (other == this) return;
@@ -5197,7 +6094,7 @@ class PodmanContainersResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanContainersResponse*>(
         &_PodmanContainersResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(PodmanContainersResponse& a, PodmanContainersResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanContainersResponse* other) {
     if (other == this) return;
@@ -6519,6 +7416,746 @@ inline void Heartbeat::clear_has_by() {
 inline Heartbeat::ByCase Heartbeat::by_case() const {
   return Heartbeat::ByCase(_impl_._oneof_case_[0]);
 }
+// -------------------------------------------------------------------
+
+// SystemdJournalRequest_All
+
+// -------------------------------------------------------------------
+
+// SystemdJournalRequest
+
+// .palm.monitoring.v1.SystemdJournalRequest.All all = 1;
+inline bool SystemdJournalRequest::has_all() const {
+  return by_case() == kAll;
+}
+inline bool SystemdJournalRequest::_internal_has_all() const {
+  return by_case() == kAll;
+}
+inline void SystemdJournalRequest::set_has_all() {
+  _impl_._oneof_case_[0] = kAll;
+}
+inline void SystemdJournalRequest::clear_all() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kAll) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.all_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.all_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::monitoring::v1::SystemdJournalRequest_All* SystemdJournalRequest::release_all() {
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalRequest.all)
+  if (by_case() == kAll) {
+    clear_has_by();
+    auto* temp = _impl_.by_.all_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.all_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::monitoring::v1::SystemdJournalRequest_All& SystemdJournalRequest::_internal_all() const {
+  return by_case() == kAll ? *_impl_.by_.all_ : reinterpret_cast<::palm::monitoring::v1::SystemdJournalRequest_All&>(::palm::monitoring::v1::_SystemdJournalRequest_All_default_instance_);
+}
+inline const ::palm::monitoring::v1::SystemdJournalRequest_All& SystemdJournalRequest::all() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalRequest.all)
+  return _internal_all();
+}
+inline ::palm::monitoring::v1::SystemdJournalRequest_All* SystemdJournalRequest::unsafe_arena_release_all() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.SystemdJournalRequest.all)
+  if (by_case() == kAll) {
+    clear_has_by();
+    auto* temp = _impl_.by_.all_;
+    _impl_.by_.all_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void SystemdJournalRequest::unsafe_arena_set_allocated_all(::palm::monitoring::v1::SystemdJournalRequest_All* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_all();
+    _impl_.by_.all_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.SystemdJournalRequest.all)
+}
+inline ::palm::monitoring::v1::SystemdJournalRequest_All* SystemdJournalRequest::_internal_mutable_all() {
+  if (by_case() != kAll) {
+    clear_by();
+    set_has_all();
+    _impl_.by_.all_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::SystemdJournalRequest_All>(GetArena());
+  }
+  return _impl_.by_.all_;
+}
+inline ::palm::monitoring::v1::SystemdJournalRequest_All* SystemdJournalRequest::mutable_all() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::monitoring::v1::SystemdJournalRequest_All* _msg = _internal_mutable_all();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalRequest.all)
+  return _msg;
+}
+
+// string host = 2;
+inline bool SystemdJournalRequest::has_host() const {
+  return by_case() == kHost;
+}
+inline void SystemdJournalRequest::set_has_host() {
+  _impl_._oneof_case_[0] = kHost;
+}
+inline void SystemdJournalRequest::clear_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kHost) {
+    _impl_.by_.host_.Destroy();
+    clear_has_by();
+  }
+}
+inline const std::string& SystemdJournalRequest::host() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalRequest.host)
+  return _internal_host();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SystemdJournalRequest::set_host(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kHost) {
+    clear_by();
+
+    set_has_host();
+    _impl_.by_.host_.InitDefault();
+  }
+  _impl_.by_.host_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SystemdJournalRequest.host)
+}
+inline std::string* SystemdJournalRequest::mutable_host() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_host();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalRequest.host)
+  return _s;
+}
+inline const std::string& SystemdJournalRequest::_internal_host() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  if (by_case() != kHost) {
+    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
+  }
+  return _impl_.by_.host_.Get();
+}
+inline void SystemdJournalRequest::_internal_set_host(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kHost) {
+    clear_by();
+
+    set_has_host();
+    _impl_.by_.host_.InitDefault();
+  }
+  _impl_.by_.host_.Set(value, GetArena());
+}
+inline std::string* SystemdJournalRequest::_internal_mutable_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kHost) {
+    clear_by();
+
+    set_has_host();
+    _impl_.by_.host_.InitDefault();
+  }
+  return _impl_.by_.host_.Mutable( GetArena());
+}
+inline std::string* SystemdJournalRequest::release_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalRequest.host)
+  if (by_case() != kHost) {
+    return nullptr;
+  }
+  clear_has_by();
+  return _impl_.by_.host_.Release();
+}
+inline void SystemdJournalRequest::set_allocated_host(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (has_by()) {
+    clear_by();
+  }
+  if (value != nullptr) {
+    set_has_host();
+    _impl_.by_.host_.InitAllocated(value, GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalRequest.host)
+}
+
+// string name = 3;
+inline bool SystemdJournalRequest::has_name() const {
+  return by_case() == kName;
+}
+inline void SystemdJournalRequest::set_has_name() {
+  _impl_._oneof_case_[0] = kName;
+}
+inline void SystemdJournalRequest::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kName) {
+    _impl_.by_.name_.Destroy();
+    clear_has_by();
+  }
+}
+inline const std::string& SystemdJournalRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SystemdJournalRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kName) {
+    clear_by();
+
+    set_has_name();
+    _impl_.by_.name_.InitDefault();
+  }
+  _impl_.by_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SystemdJournalRequest.name)
+}
+inline std::string* SystemdJournalRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalRequest.name)
+  return _s;
+}
+inline const std::string& SystemdJournalRequest::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  if (by_case() != kName) {
+    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
+  }
+  return _impl_.by_.name_.Get();
+}
+inline void SystemdJournalRequest::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kName) {
+    clear_by();
+
+    set_has_name();
+    _impl_.by_.name_.InitDefault();
+  }
+  _impl_.by_.name_.Set(value, GetArena());
+}
+inline std::string* SystemdJournalRequest::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kName) {
+    clear_by();
+
+    set_has_name();
+    _impl_.by_.name_.InitDefault();
+  }
+  return _impl_.by_.name_.Mutable( GetArena());
+}
+inline std::string* SystemdJournalRequest::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalRequest.name)
+  if (by_case() != kName) {
+    return nullptr;
+  }
+  clear_has_by();
+  return _impl_.by_.name_.Release();
+}
+inline void SystemdJournalRequest::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (has_by()) {
+    clear_by();
+  }
+  if (value != nullptr) {
+    set_has_name();
+    _impl_.by_.name_.InitAllocated(value, GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalRequest.name)
+}
+
+// .palm.portal.v1.Page page = 99;
+inline bool SystemdJournalRequest::has_page() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.page_ != nullptr);
+  return value;
+}
+inline const ::palm::portal::v1::Page& SystemdJournalRequest::_internal_page() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Page* p = _impl_.page_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Page&>(::palm::portal::v1::_Page_default_instance_);
+}
+inline const ::palm::portal::v1::Page& SystemdJournalRequest::page() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalRequest.page)
+  return _internal_page();
+}
+inline void SystemdJournalRequest::unsafe_arena_set_allocated_page(::palm::portal::v1::Page* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.page_);
+  }
+  _impl_.page_ = reinterpret_cast<::palm::portal::v1::Page*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.SystemdJournalRequest.page)
+}
+inline ::palm::portal::v1::Page* SystemdJournalRequest::release_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Page* released = _impl_.page_;
+  _impl_.page_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Page* SystemdJournalRequest::unsafe_arena_release_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalRequest.page)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Page* temp = _impl_.page_;
+  _impl_.page_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Page* SystemdJournalRequest::_internal_mutable_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.page_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Page>(GetArena());
+    _impl_.page_ = reinterpret_cast<::palm::portal::v1::Page*>(p);
+  }
+  return _impl_.page_;
+}
+inline ::palm::portal::v1::Page* SystemdJournalRequest::mutable_page() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::portal::v1::Page* _msg = _internal_mutable_page();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalRequest.page)
+  return _msg;
+}
+inline void SystemdJournalRequest::set_allocated_page(::palm::portal::v1::Page* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.page_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.page_ = reinterpret_cast<::palm::portal::v1::Page*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalRequest.page)
+}
+
+inline bool SystemdJournalRequest::has_by() const {
+  return by_case() != BY_NOT_SET;
+}
+inline void SystemdJournalRequest::clear_has_by() {
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+inline SystemdJournalRequest::ByCase SystemdJournalRequest::by_case() const {
+  return SystemdJournalRequest::ByCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// SystemdJournalResponse_Item
+
+// string host = 1;
+inline void SystemdJournalResponse_Item::clear_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.ClearToEmpty();
+}
+inline const std::string& SystemdJournalResponse_Item::host() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalResponse.Item.host)
+  return _internal_host();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SystemdJournalResponse_Item::set_host(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SystemdJournalResponse.Item.host)
+}
+inline std::string* SystemdJournalResponse_Item::mutable_host() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_host();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalResponse.Item.host)
+  return _s;
+}
+inline const std::string& SystemdJournalResponse_Item::_internal_host() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.host_.Get();
+}
+inline void SystemdJournalResponse_Item::_internal_set_host(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.Set(value, GetArena());
+}
+inline std::string* SystemdJournalResponse_Item::_internal_mutable_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.host_.Mutable( GetArena());
+}
+inline std::string* SystemdJournalResponse_Item::release_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalResponse.Item.host)
+  return _impl_.host_.Release();
+}
+inline void SystemdJournalResponse_Item::set_allocated_host(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.host_.IsDefault()) {
+    _impl_.host_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalResponse.Item.host)
+}
+
+// string name = 2;
+inline void SystemdJournalResponse_Item::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& SystemdJournalResponse_Item::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalResponse.Item.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SystemdJournalResponse_Item::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SystemdJournalResponse.Item.name)
+}
+inline std::string* SystemdJournalResponse_Item::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalResponse.Item.name)
+  return _s;
+}
+inline const std::string& SystemdJournalResponse_Item::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void SystemdJournalResponse_Item::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* SystemdJournalResponse_Item::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* SystemdJournalResponse_Item::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalResponse.Item.name)
+  return _impl_.name_.Release();
+}
+inline void SystemdJournalResponse_Item::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalResponse.Item.name)
+}
+
+// string message = 3;
+inline void SystemdJournalResponse_Item::clear_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& SystemdJournalResponse_Item::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalResponse.Item.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SystemdJournalResponse_Item::set_message(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.SystemdJournalResponse.Item.message)
+}
+inline std::string* SystemdJournalResponse_Item::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalResponse.Item.message)
+  return _s;
+}
+inline const std::string& SystemdJournalResponse_Item::_internal_message() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.message_.Get();
+}
+inline void SystemdJournalResponse_Item::_internal_set_message(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.Set(value, GetArena());
+}
+inline std::string* SystemdJournalResponse_Item::_internal_mutable_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.message_.Mutable( GetArena());
+}
+inline std::string* SystemdJournalResponse_Item::release_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalResponse.Item.message)
+  return _impl_.message_.Release();
+}
+inline void SystemdJournalResponse_Item::set_allocated_message(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalResponse.Item.message)
+}
+
+// .google.protobuf.Timestamp created_at = 9;
+inline bool SystemdJournalResponse_Item::has_created_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.created_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& SystemdJournalResponse_Item::_internal_created_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& SystemdJournalResponse_Item::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalResponse.Item.created_at)
+  return _internal_created_at();
+}
+inline void SystemdJournalResponse_Item::unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.SystemdJournalResponse.Item.created_at)
+}
+inline ::google::protobuf::Timestamp* SystemdJournalResponse_Item::release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* SystemdJournalResponse_Item::unsafe_arena_release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalResponse.Item.created_at)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* SystemdJournalResponse_Item::_internal_mutable_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.created_at_;
+}
+inline ::google::protobuf::Timestamp* SystemdJournalResponse_Item::mutable_created_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalResponse.Item.created_at)
+  return _msg;
+}
+inline void SystemdJournalResponse_Item::set_allocated_created_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalResponse.Item.created_at)
+}
+
+// -------------------------------------------------------------------
+
+// SystemdJournalResponse
+
+// repeated .palm.monitoring.v1.SystemdJournalResponse.Item items = 1;
+inline int SystemdJournalResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int SystemdJournalResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void SystemdJournalResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::monitoring::v1::SystemdJournalResponse_Item* SystemdJournalResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>* SystemdJournalResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.monitoring.v1.SystemdJournalResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::monitoring::v1::SystemdJournalResponse_Item& SystemdJournalResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::monitoring::v1::SystemdJournalResponse_Item* SystemdJournalResponse::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::monitoring::v1::SystemdJournalResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.monitoring.v1.SystemdJournalResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>& SystemdJournalResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.monitoring.v1.SystemdJournalResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>&
+SystemdJournalResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::SystemdJournalResponse_Item>*
+SystemdJournalResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// .palm.portal.v1.Pagination pagination = 9;
+inline bool SystemdJournalResponse::has_pagination() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pagination_ != nullptr);
+  return value;
+}
+inline const ::palm::portal::v1::Pagination& SystemdJournalResponse::_internal_pagination() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Pagination* p = _impl_.pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Pagination&>(::palm::portal::v1::_Pagination_default_instance_);
+}
+inline const ::palm::portal::v1::Pagination& SystemdJournalResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.SystemdJournalResponse.pagination)
+  return _internal_pagination();
+}
+inline void SystemdJournalResponse::unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.SystemdJournalResponse.pagination)
+}
+inline ::palm::portal::v1::Pagination* SystemdJournalResponse::release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* released = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Pagination* SystemdJournalResponse::unsafe_arena_release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.SystemdJournalResponse.pagination)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* temp = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Pagination* SystemdJournalResponse::_internal_mutable_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Pagination>(GetArena());
+    _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(p);
+  }
+  return _impl_.pagination_;
+}
+inline ::palm::portal::v1::Pagination* SystemdJournalResponse::mutable_pagination() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::portal::v1::Pagination* _msg = _internal_mutable_pagination();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.SystemdJournalResponse.pagination)
+  return _msg;
+}
+inline void SystemdJournalResponse::set_allocated_pagination(::palm::portal::v1::Pagination* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.SystemdJournalResponse.pagination)
+}
+
 // -------------------------------------------------------------------
 
 // FileSystemLogsRequest_All

@@ -53,6 +53,30 @@ message Heartbeat {
 }
 
 // ----------------------------------------------------------------------------
+service Systemd {
+  rpc Journal(SystemdJournalRequest) returns (SystemdJournalResponse) {}
+}
+message SystemdJournalRequest {
+  message All {}
+  oneof by {
+    All all = 1;
+    string host = 2;
+    string name = 3;
+  }
+  palm.portal.v1.Page page = 99;
+}
+message SystemdJournalResponse {
+  message Item {
+    string host = 1;
+    string name = 2;
+    string message = 3;
+    google.protobuf.Timestamp created_at = 9;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+// ----------------------------------------------------------------------------
+
 service FileSystem {
   rpc Logs(FileSystemLogsRequest) returns (FileSystemLogsResponse) {}
 }

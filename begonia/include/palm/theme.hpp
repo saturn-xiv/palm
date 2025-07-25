@@ -2,6 +2,7 @@
 
 #include "palm/http.hpp"
 
+#include <boost/algorithm/string.hpp>
 #include <boost/optional.hpp>
 
 #include <google/protobuf/util/json_util.h>
@@ -86,38 +87,38 @@ inline void json(httplib::Response& response,
 namespace nlohmann {
 template <typename T>
 struct adl_serializer<boost::optional<T>> {
-  static void to_json(json& j, const boost::optional<T>& opt) {
-    if (opt == boost::none) {
+  static void to_json(json& j, const boost::optional<T>& o) {
+    if (o == boost::none) {
       j = nullptr;
     } else {
-      j = *opt;
+      j = *o;
     }
   }
 
-  static void from_json(const json& j, boost::optional<T>& opt) {
+  static void from_json(const json& j, boost::optional<T>& o) {
     if (j.is_null()) {
-      opt = boost::none;
+      o = boost::none;
     } else {
-      opt = j.template get<T>();
+      o = j.template get<T>();
     }
   }
 };
 
 template <typename T>
 struct adl_serializer<std::optional<T>> {
-  static void to_json(json& j, const std::optional<T>& opt) {
-    if (opt == std::nullopt) {
+  static void to_json(json& j, const std::optional<T>& o) {
+    if (o == std::nullopt) {
       j = nullptr;
     } else {
-      j = *opt;
+      j = *o;
     }
   }
 
-  static void from_json(const json& j, std::optional<T>& opt) {
+  static void from_json(const json& j, std::optional<T>& o) {
     if (j.is_null()) {
-      opt = std::nullopt;
+      o = std::nullopt;
     } else {
-      opt = j.template get<T>();
+      o = j.template get<T>();
     }
   }
 };

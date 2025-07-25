@@ -84,6 +84,67 @@ Site::Service::~Service() {
 }
 
 
+static const char* Systemd_method_names[] = {
+  "/palm.monitoring.v1.Systemd/Journal",
+};
+
+std::unique_ptr< Systemd::Stub> Systemd::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Systemd::Stub> stub(new Systemd::Stub(channel, options));
+  return stub;
+}
+
+Systemd::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Journal_(Systemd_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Systemd::Stub::Journal(::grpc::ClientContext* context, const ::palm::monitoring::v1::SystemdJournalRequest& request, ::palm::monitoring::v1::SystemdJournalResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::SystemdJournalRequest, ::palm::monitoring::v1::SystemdJournalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Journal_, context, request, response);
+}
+
+void Systemd::Stub::async::Journal(::grpc::ClientContext* context, const ::palm::monitoring::v1::SystemdJournalRequest* request, ::palm::monitoring::v1::SystemdJournalResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::SystemdJournalRequest, ::palm::monitoring::v1::SystemdJournalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Journal_, context, request, response, std::move(f));
+}
+
+void Systemd::Stub::async::Journal(::grpc::ClientContext* context, const ::palm::monitoring::v1::SystemdJournalRequest* request, ::palm::monitoring::v1::SystemdJournalResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Journal_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SystemdJournalResponse>* Systemd::Stub::PrepareAsyncJournalRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SystemdJournalRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::SystemdJournalResponse, ::palm::monitoring::v1::SystemdJournalRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Journal_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::SystemdJournalResponse>* Systemd::Stub::AsyncJournalRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::SystemdJournalRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncJournalRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Systemd::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Systemd_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Systemd::Service, ::palm::monitoring::v1::SystemdJournalRequest, ::palm::monitoring::v1::SystemdJournalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Systemd::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::monitoring::v1::SystemdJournalRequest* req,
+             ::palm::monitoring::v1::SystemdJournalResponse* resp) {
+               return service->Journal(ctx, req, resp);
+             }, this)));
+}
+
+Systemd::Service::~Service() {
+}
+
+::grpc::Status Systemd::Service::Journal(::grpc::ServerContext* context, const ::palm::monitoring::v1::SystemdJournalRequest* request, ::palm::monitoring::v1::SystemdJournalResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 static const char* FileSystem_method_names[] = {
   "/palm.monitoring.v1.FileSystem/Logs",
 };

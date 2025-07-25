@@ -258,6 +258,123 @@ export namespace Heartbeat {
   }
 }
 
+export class SystemdJournalRequest extends jspb.Message {
+  getAll(): SystemdJournalRequest.All | undefined;
+  setAll(value?: SystemdJournalRequest.All): SystemdJournalRequest;
+  hasAll(): boolean;
+  clearAll(): SystemdJournalRequest;
+
+  getHost(): string;
+  setHost(value: string): SystemdJournalRequest;
+
+  getName(): string;
+  setName(value: string): SystemdJournalRequest;
+
+  getPage(): portal_pb.Page | undefined;
+  setPage(value?: portal_pb.Page): SystemdJournalRequest;
+  hasPage(): boolean;
+  clearPage(): SystemdJournalRequest;
+
+  getByCase(): SystemdJournalRequest.ByCase;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SystemdJournalRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SystemdJournalRequest): SystemdJournalRequest.AsObject;
+  static serializeBinaryToWriter(message: SystemdJournalRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SystemdJournalRequest;
+  static deserializeBinaryFromReader(message: SystemdJournalRequest, reader: jspb.BinaryReader): SystemdJournalRequest;
+}
+
+export namespace SystemdJournalRequest {
+  export type AsObject = {
+    all?: SystemdJournalRequest.All.AsObject,
+    host: string,
+    name: string,
+    page?: portal_pb.Page.AsObject,
+  }
+
+  export class All extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): All.AsObject;
+    static toObject(includeInstance: boolean, msg: All): All.AsObject;
+    static serializeBinaryToWriter(message: All, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): All;
+    static deserializeBinaryFromReader(message: All, reader: jspb.BinaryReader): All;
+  }
+
+  export namespace All {
+    export type AsObject = {
+    }
+  }
+
+
+  export enum ByCase { 
+    BY_NOT_SET = 0,
+    ALL = 1,
+    HOST = 2,
+    NAME = 3,
+  }
+}
+
+export class SystemdJournalResponse extends jspb.Message {
+  getItemsList(): Array<SystemdJournalResponse.Item>;
+  setItemsList(value: Array<SystemdJournalResponse.Item>): SystemdJournalResponse;
+  clearItemsList(): SystemdJournalResponse;
+  addItems(value?: SystemdJournalResponse.Item, index?: number): SystemdJournalResponse.Item;
+
+  getPagination(): portal_pb.Pagination | undefined;
+  setPagination(value?: portal_pb.Pagination): SystemdJournalResponse;
+  hasPagination(): boolean;
+  clearPagination(): SystemdJournalResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SystemdJournalResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SystemdJournalResponse): SystemdJournalResponse.AsObject;
+  static serializeBinaryToWriter(message: SystemdJournalResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SystemdJournalResponse;
+  static deserializeBinaryFromReader(message: SystemdJournalResponse, reader: jspb.BinaryReader): SystemdJournalResponse;
+}
+
+export namespace SystemdJournalResponse {
+  export type AsObject = {
+    itemsList: Array<SystemdJournalResponse.Item.AsObject>,
+    pagination?: portal_pb.Pagination.AsObject,
+  }
+
+  export class Item extends jspb.Message {
+    getHost(): string;
+    setHost(value: string): Item;
+
+    getName(): string;
+    setName(value: string): Item;
+
+    getMessage(): string;
+    setMessage(value: string): Item;
+
+    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCreatedAt(): boolean;
+    clearCreatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      host: string,
+      name: string,
+      message: string,
+      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+  }
+
+}
+
 export class FileSystemLogsRequest extends jspb.Message {
   getAll(): FileSystemLogsRequest.All | undefined;
   setAll(value?: FileSystemLogsRequest.All): FileSystemLogsRequest;
