@@ -128,7 +128,14 @@ struct Item {
 };
 }  // namespace delete_index
 
-namespace create_index {}  // namespace create_index
+namespace bulk {
+struct Item {
+  int took;
+  bool errors;
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Item, took, errors);
+};
+}  // namespace bulk
+
 struct ClusterHealth {
   std::string cluster_name;
   std::string status;

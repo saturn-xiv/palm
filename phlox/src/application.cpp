@@ -136,7 +136,7 @@ static inline std::shared_ptr<palm::opensearch::Client> open_opensearch(
     {
       nlohmann::json it;
       it["type"] = "text";
-      props["createdAt"] = it;
+      props["updatedAt"] = it;
     }
 
     it->create_index<palm::monitoring::v1::PodmanContainersResponse_Item>(
@@ -154,6 +154,11 @@ static inline std::shared_ptr<palm::opensearch::Client> open_opensearch(
       nlohmann::json it;
       it["type"] = "text";
       props["id"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["full_id"] = it;
     }
     {
       nlohmann::json it;
@@ -219,6 +224,11 @@ static inline std::shared_ptr<palm::opensearch::Client> open_opensearch(
       it["type"] = "text";
       props["message"] = it;
     }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["createdAt"] = it;
+    }
     const auto val =
         it->create_index<palm::monitoring::v1::FileSystemLogsResponse_Item>(
             2, 1, props);
@@ -247,39 +257,59 @@ static void launch_podman_logs(const toml::table& config) {
 
   const auto containers = palm::podman::ps(true);
   for (const auto& container : containers) {
-    // TODO
-    const auto items = palm::podman::logs(container.Id, nullptr, nullptr);
-    for (const auto& it : items) {
-      palm::monitoring::v1::PodmanLogsResponse_Item x;
-      x.set_host(hostname);
-      x.set_id(it.CONTAINER_ID_FULL);
-      x.set_name(it.CONTAINER_NAME);
-      x.set_message(it.MESSAGE);
-
-      {
-        auto y = x.mutable_created_at();
-        y->set_seconds(it.__REALTIME_TIMESTAMP / 1000000);
-        y->set_nanos((it.__REALTIME_TIMESTAMP % 1000000) * 1000);
+    if (container.State == "created") {
+      spdlog::debug("skip created container {}", container.Id);
+      continue;
+    }
+    const auto last_fetched_at =
+        get_last_fetched_container_logs_at(db, container.Id);
+    const int64_t begin =
+        last_fetched_at ? last_fetched_at.value() : container.Created;
+    const int64_t end = container.Exited ? container.ExitedAt : now;
+    for (int64_t since = begin;; since += interval.count()) {
+      const int64_t until = since + interval.count();
+      if (until >= end) {
+        break;
       }
+      std::tm* since_ = std::localtime(&since);
+      std::tm* until_ = std::localtime(&until);
+      const auto items = palm::podman::logs(container.Id, since_, until_);
+      spdlog::info("fetch {} logs for {}", items.size(), container.Id);
+      for (const auto& it : items) {
+        palm::monitoring::v1::PodmanLogsResponse_Item x;
+        x.set_host(hostname);
+        x.set_id(it.CONTAINER_ID);
+        x.set_full_id(it.CONTAINER_ID_FULL);
+        x.set_name(it.CONTAINER_NAME);
+        x.set_message(it.MESSAGE);
 
-      bulk.index._id = std::format("{}.{}", it._MACHINE_ID, it.__SEQNUM_ID);
-      nlohmann::json act = bulk;
-      body << act.dump() << "\n";
+        {
+          auto y = x.mutable_created_at();
+          y->set_seconds(it.__REALTIME_TIMESTAMP / 1000000);
+          y->set_nanos((it.__REALTIME_TIMESTAMP % 1000000) * 1000);
+        }
 
-      const auto buf = palm::to_json(x);
-      body << buf.value() << "\n";
+        bulk.index._id = std::format("{}.{}", it._MACHINE_ID, it.__SEQNUM_ID);
+        nlohmann::json act = bulk;
+        body << act.dump() << "\n";
+
+        const auto buf = palm::to_json(x);
+        body << buf.value() << "\n";
+      }
+      // spdlog::debug("{}", body.str());
+      /*
+      const auto res = search->post("_bulk", body.str());
+      // TODO check error
+      if (res) {
+        const auto it =
+            search->count<palm::monitoring::v1::PodmanLogsResponse_Item>();
+        spdlog::debug("{} total has {} items", index_name, it.value());
+      }
+        */
+
+      set_last_fetched_container_logs_at(db, container.Id, until);
     }
   }
-  spdlog::debug("{}", body.str());
-  /*
-  const auto res = search->post("_bulk", body.str());
-  // TODO check error
-  if (res) {
-    const auto it =
-        search->count<palm::monitoring::v1::PodmanLogsResponse_Item>();
-    spdlog::debug("{} total has {} items", index_name, it.value());
-  }
-    */
 }
 
 static void launch_podman_stats(const toml::table& config) {
@@ -318,7 +348,7 @@ static void launch_podman_stats(const toml::table& config) {
       x.set_pids(it.pids);
 
       {
-        auto y = x.mutable_updated_at();
+        auto y = x.mutable_created_at();
         y->set_seconds(seconds);
         y->set_nanos(0);
       }
@@ -370,6 +400,7 @@ static void launch_podman_ps(const toml::table& config) {
       x.set_image_id(it.ImageID);
       x.set_pid(it.Pid);
       x.set_state(it.State);
+      x.set_status(it.Status);
       x.set_started_at(it.StartedAt);
       x.set_exited(it.Exited);
       x.set_exited_at(it.ExitedAt);
@@ -409,8 +440,15 @@ static void launch_podman_ps(const toml::table& config) {
   }
   spdlog::debug("{}", body.str());
   const auto res = search->post("_bulk", body.str());
-  // TODO check error
-  if (res) {
+  {
+    const auto body = res.value();
+    auto js = nlohmann::json::parse(body);
+    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+    if (it.errors) {
+      spdlog::error("{}", body);
+    }
+  }
+  {
     const auto it =
         search->count<palm::monitoring::v1::PodmanContainersResponse_Item>();
     spdlog::debug("{} total has {} items", index_name, it.value());

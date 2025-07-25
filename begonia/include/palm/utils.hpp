@@ -6,6 +6,9 @@
 #include <vector>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/asio.hpp>
+#include <boost/process.hpp>
+#include <boost/type_index.hpp>
 
 #include <spdlog/spdlog.h>
 
@@ -39,6 +42,41 @@ inline bool is_stopped() {
     spdlog::warn("file {} exists, will be exited...", file);
   }
   return ok;
+}
+
+inline std::tuple<int, std::string, std::string> shell(
+    const std::string& command, const std::vector<std::string>& args) {
+  boost::asio::io_context ctx;
+
+  boost::asio::readable_pipe out_p(ctx);
+  boost::asio::readable_pipe err_p(ctx);
+
+  boost::process::v2::process proc(
+      ctx, command, args, boost::process::v2::process_stdio{{}, out_p, err_p});
+
+  std::string out;
+  std::string err;
+
+  {
+    boost::system::error_code ec;
+    boost::asio::read(out_p, boost::asio::dynamic_buffer(out), ec);
+    if (ec && ec != boost::asio::error::eof) {
+      spdlog::error("read stdout: {}", ec.message());
+      return {};
+    }
+  }
+  {
+    boost::system::error_code ec;
+    boost::asio::read(err_p, boost::asio::dynamic_buffer(err), ec);
+    if (ec && ec != boost::asio::error::eof) {
+      spdlog::error("read stderr: {}", ec.message());
+      return {};
+    }
+  }
+
+  const int exit_code = proc.wait();
+
+  return {exit_code, out, err};
 }
 
 namespace gravatar {

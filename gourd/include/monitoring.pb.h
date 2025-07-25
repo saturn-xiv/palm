@@ -2544,7 +2544,7 @@ class PodmanStatisticsResponse_Item final : public ::google::protobuf::Message
     kBlockIoFieldNumber = 9,
     kPidsFieldNumber = 10,
     kHostFieldNumber = 98,
-    kUpdatedAtFieldNumber = 99,
+    kCreatedAtFieldNumber = 99,
   };
   // string id = 1;
   void clear_id() ;
@@ -2722,19 +2722,19 @@ class PodmanStatisticsResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_host();
 
   public:
-  // .google.protobuf.Timestamp updated_at = 99;
-  bool has_updated_at() const;
-  void clear_updated_at() ;
-  const ::google::protobuf::Timestamp& updated_at() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_updated_at();
-  ::google::protobuf::Timestamp* mutable_updated_at();
-  void set_allocated_updated_at(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_updated_at(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_updated_at();
+  // .google.protobuf.Timestamp created_at = 99;
+  bool has_created_at() const;
+  void clear_created_at() ;
+  const ::google::protobuf::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_created_at();
+  ::google::protobuf::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_created_at();
 
   private:
-  const ::google::protobuf::Timestamp& _internal_updated_at() const;
-  ::google::protobuf::Timestamp* _internal_mutable_updated_at();
+  const ::google::protobuf::Timestamp& _internal_created_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_created_at();
 
   public:
   // @@protoc_insertion_point(class_scope:palm.monitoring.v1.PodmanStatisticsResponse.Item)
@@ -2773,7 +2773,7 @@ class PodmanStatisticsResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr block_io_;
     ::google::protobuf::internal::ArenaStringPtr pids_;
     ::google::protobuf::internal::ArenaStringPtr host_;
-    ::google::protobuf::Timestamp* updated_at_;
+    ::google::protobuf::Timestamp* created_at_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3258,8 +3258,9 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   enum : int {
     kHostFieldNumber = 1,
     kIdFieldNumber = 2,
-    kNameFieldNumber = 3,
-    kMessageFieldNumber = 4,
+    kFullIdFieldNumber = 3,
+    kNameFieldNumber = 4,
+    kMessageFieldNumber = 5,
     kCreatedAtFieldNumber = 9,
   };
   // string host = 1;
@@ -3294,7 +3295,23 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_id();
 
   public:
-  // string name = 3;
+  // string full_id = 3;
+  void clear_full_id() ;
+  const std::string& full_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_full_id(Arg_&& arg, Args_... args);
+  std::string* mutable_full_id();
+  PROTOBUF_NODISCARD std::string* release_full_id();
+  void set_allocated_full_id(std::string* value);
+
+  private:
+  const std::string& _internal_full_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_full_id(
+      const std::string& value);
+  std::string* _internal_mutable_full_id();
+
+  public:
+  // string name = 4;
   void clear_name() ;
   const std::string& name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3310,7 +3327,7 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
-  // string message = 4;
+  // string message = 5;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3346,8 +3363,8 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 5, 1,
-      68, 2>
+      3, 6, 1,
+      75, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3368,6 +3385,7 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr host_;
     ::google::protobuf::internal::ArenaStringPtr id_;
+    ::google::protobuf::internal::ArenaStringPtr full_id_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     ::google::protobuf::Timestamp* created_at_;
@@ -3533,6 +3551,7 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
     kImageIdFieldNumber = 3,
     kStateFieldNumber = 12,
     kCreatedAtFieldNumber = 14,
+    kStatusFieldNumber = 16,
     kHostFieldNumber = 98,
     kUpdatedAtFieldNumber = 99,
     kStartedAtFieldNumber = 13,
@@ -3703,6 +3722,22 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_created_at();
 
   public:
+  // string status = 16;
+  void clear_status() ;
+  const std::string& status() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_status(Arg_&& arg, Args_... args);
+  std::string* mutable_status();
+  PROTOBUF_NODISCARD std::string* release_status();
+  void set_allocated_status(std::string* value);
+
+  private:
+  const std::string& _internal_status() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_status(
+      const std::string& value);
+  std::string* _internal_mutable_status();
+
+  public:
   // string host = 98;
   void clear_host() ;
   const std::string& host() const;
@@ -3799,8 +3834,8 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      5, 17, 2,
-      131, 7>
+      5, 18, 2,
+      137, 7>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3831,6 +3866,7 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr image_id_;
     ::google::protobuf::internal::ArenaStringPtr state_;
     ::google::protobuf::internal::ArenaStringPtr created_at_;
+    ::google::protobuf::internal::ArenaStringPtr status_;
     ::google::protobuf::internal::ArenaStringPtr host_;
     ::google::protobuf::Timestamp* updated_at_;
     ::int64_t started_at_;
@@ -7856,7 +7892,55 @@ inline void PodmanLogsResponse_Item::set_allocated_id(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.id)
 }
 
-// string name = 3;
+// string full_id = 3;
+inline void PodmanLogsResponse_Item::clear_full_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.full_id_.ClearToEmpty();
+}
+inline const std::string& PodmanLogsResponse_Item::full_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanLogsResponse.Item.full_id)
+  return _internal_full_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void PodmanLogsResponse_Item::set_full_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.full_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanLogsResponse.Item.full_id)
+}
+inline std::string* PodmanLogsResponse_Item::mutable_full_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_full_id();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanLogsResponse.Item.full_id)
+  return _s;
+}
+inline const std::string& PodmanLogsResponse_Item::_internal_full_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.full_id_.Get();
+}
+inline void PodmanLogsResponse_Item::_internal_set_full_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.full_id_.Set(value, GetArena());
+}
+inline std::string* PodmanLogsResponse_Item::_internal_mutable_full_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.full_id_.Mutable( GetArena());
+}
+inline std::string* PodmanLogsResponse_Item::release_full_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanLogsResponse.Item.full_id)
+  return _impl_.full_id_.Release();
+}
+inline void PodmanLogsResponse_Item::set_allocated_full_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.full_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.full_id_.IsDefault()) {
+    _impl_.full_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.full_id)
+}
+
+// string name = 4;
 inline void PodmanLogsResponse_Item::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.name_.ClearToEmpty();
@@ -7904,7 +7988,7 @@ inline void PodmanLogsResponse_Item::set_allocated_name(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanLogsResponse.Item.name)
 }
 
-// string message = 4;
+// string message = 5;
 inline void PodmanLogsResponse_Item::clear_message() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.message_.ClearToEmpty();
@@ -8717,6 +8801,54 @@ inline ::int64_t PodmanContainersResponse_Item::_internal_created() const {
 inline void PodmanContainersResponse_Item::_internal_set_created(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.created_ = value;
+}
+
+// string status = 16;
+inline void PodmanContainersResponse_Item::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.ClearToEmpty();
+}
+inline const std::string& PodmanContainersResponse_Item::status() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanContainersResponse.Item.status)
+  return _internal_status();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void PodmanContainersResponse_Item::set_status(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.PodmanContainersResponse.Item.status)
+}
+inline std::string* PodmanContainersResponse_Item::mutable_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanContainersResponse.Item.status)
+  return _s;
+}
+inline const std::string& PodmanContainersResponse_Item::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.status_.Get();
+}
+inline void PodmanContainersResponse_Item::_internal_set_status(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.Set(value, GetArena());
+}
+inline std::string* PodmanContainersResponse_Item::_internal_mutable_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.status_.Mutable( GetArena());
+}
+inline std::string* PodmanContainersResponse_Item::release_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanContainersResponse.Item.status)
+  return _impl_.status_.Release();
+}
+inline void PodmanContainersResponse_Item::set_allocated_status(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.status_.IsDefault()) {
+    _impl_.status_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanContainersResponse.Item.status)
 }
 
 // bool exited = 21;
@@ -9600,40 +9732,40 @@ inline void PodmanStatisticsResponse_Item::set_allocated_host(std::string* value
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanStatisticsResponse.Item.host)
 }
 
-// .google.protobuf.Timestamp updated_at = 99;
-inline bool PodmanStatisticsResponse_Item::has_updated_at() const {
+// .google.protobuf.Timestamp created_at = 99;
+inline bool PodmanStatisticsResponse_Item::has_created_at() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.updated_at_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.created_at_ != nullptr);
   return value;
 }
-inline const ::google::protobuf::Timestamp& PodmanStatisticsResponse_Item::_internal_updated_at() const {
+inline const ::google::protobuf::Timestamp& PodmanStatisticsResponse_Item::_internal_created_at() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Timestamp* p = _impl_.updated_at_;
+  const ::google::protobuf::Timestamp* p = _impl_.created_at_;
   return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
 }
-inline const ::google::protobuf::Timestamp& PodmanStatisticsResponse_Item::updated_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanStatisticsResponse.Item.updated_at)
-  return _internal_updated_at();
+inline const ::google::protobuf::Timestamp& PodmanStatisticsResponse_Item::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.PodmanStatisticsResponse.Item.created_at)
+  return _internal_created_at();
 }
-inline void PodmanStatisticsResponse_Item::unsafe_arena_set_allocated_updated_at(::google::protobuf::Timestamp* value) {
+inline void PodmanStatisticsResponse_Item::unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_at_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
   }
-  _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.PodmanStatisticsResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.PodmanStatisticsResponse.Item.created_at)
 }
-inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::release_updated_at() {
+inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::release_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* released = _impl_.updated_at_;
-  _impl_.updated_at_ = nullptr;
+  ::google::protobuf::Timestamp* released = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -9647,34 +9779,34 @@ inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::release_upd
   }
   return released;
 }
-inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::unsafe_arena_release_updated_at() {
+inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::unsafe_arena_release_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanStatisticsResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.PodmanStatisticsResponse.Item.created_at)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* temp = _impl_.updated_at_;
-  _impl_.updated_at_ = nullptr;
+  ::google::protobuf::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
   return temp;
 }
-inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::_internal_mutable_updated_at() {
+inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::_internal_mutable_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.updated_at_ == nullptr) {
+  if (_impl_.created_at_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
-    _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+    _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
   }
-  return _impl_.updated_at_;
+  return _impl_.created_at_;
 }
-inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::mutable_updated_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::Timestamp* PodmanStatisticsResponse_Item::mutable_created_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_updated_at();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanStatisticsResponse.Item.updated_at)
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.PodmanStatisticsResponse.Item.created_at)
   return _msg;
 }
-inline void PodmanStatisticsResponse_Item::set_allocated_updated_at(::google::protobuf::Timestamp* value) {
+inline void PodmanStatisticsResponse_Item::set_allocated_created_at(::google::protobuf::Timestamp* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_at_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
   }
 
   if (value != nullptr) {
@@ -9687,8 +9819,8 @@ inline void PodmanStatisticsResponse_Item::set_allocated_updated_at(::google::pr
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanStatisticsResponse.Item.updated_at)
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.PodmanStatisticsResponse.Item.created_at)
 }
 
 // -------------------------------------------------------------------

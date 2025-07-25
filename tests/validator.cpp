@@ -1,11 +1,10 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "palm/queue.hpp"
+#include "palm/utils.hpp"
 #include "palm/validator.hpp"
 
 #include <iostream>
-
-#include <boost/type_index.hpp>
 
 TEST_CASE("check types", "[types]") {
   std::cout << "size_t: " << boost::typeindex::type_id<size_t>().pretty_name()
@@ -28,4 +27,22 @@ TEST_CASE("check types", "[types]") {
       << "RabbitMQ Client(&): "
       << boost::typeindex::type_id<palm::rabbitmq::Client&>().pretty_name()
       << std::endl;
+}
+
+TEST_CASE("boost process2", "[shell]") {
+  spdlog::set_level(spdlog::level::debug);
+  SECTION("stdout") {
+    const auto& [code, out, err] = palm::shell("/usr/bin/podman", {"ps", "-a"});
+    std::cout << "exit code: " << code << std::endl;
+    std::cout << "STDOUT: " << out << std::endl;
+    std::cout << "STDERR: " << err << std::endl;
+    REQUIRE(!out.empty());
+  }
+  SECTION("stderr") {
+    const auto& [code, out, err] = palm::shell("/usr/bin/ls", {"-a", "/aaa"});
+    std::cout << "exit code: " << code << std::endl;
+    std::cout << "STDOUT: " << out << std::endl;
+    std::cout << "STDERR: " << err << std::endl;
+    REQUIRE(!err.empty());
+  }
 }
