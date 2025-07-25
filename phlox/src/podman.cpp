@@ -19,15 +19,14 @@ podman logs --since "2025-07-17T01:00:00" --until "2025-07-18T02:00:00" -n -t
 // journalctl --output=json-pretty -n 20 CONTAINER_NAME=xxx
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html#Parsing%20Timestamps
-static inline std::string std_tm_to_journald_timestamp(std::tm* t) {
-  char buf[80];
+static inline std::string std_tm_to_journald_timestamp(time_t i) {
+  std::tm* t = std::localtime(&i);
+  char buf[32];
   strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", t);
   return buf;
 }
 std::vector<palm::podman::models::Log> palm::podman::logs(
-    const std::string& container_id, std::tm* since_, std::tm* until_) {
-  spdlog::debug("SINCE {} UNTIL {}", std::asctime(since_),
-                std::asctime(until_));
+    const std::string& container_id, time_t since_, time_t until_) {
   const std::string since = std_tm_to_journald_timestamp(since_);
   const std::string until = std_tm_to_journald_timestamp(until_);
   spdlog::info("fetch logs for {} from {} to {}", container_id, since, until);

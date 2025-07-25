@@ -83,8 +83,8 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Item, AutoRemove, Command, CreatedAt,
 }  // namespace container
 }  // namespace models
 
-std::vector<models::Log> logs(const std::string& container_id, std::tm* since,
-                              std::tm* until);
+std::vector<models::Log> logs(const std::string& container_id, time_t since,
+                              time_t until);
 std::vector<models::Status> stats(bool all = false);
 std::vector<models::container::Item> ps(bool all = false);
 }  // namespace podman

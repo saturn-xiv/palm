@@ -46,3 +46,12 @@ TEST_CASE("boost process2", "[shell]") {
     REQUIRE(!err.empty());
   }
 }
+
+TEST_CASE("std tm", "[datetime]") {
+  SECTION("time_t to *tm") {
+    for (const time_t i : {1753369286, 1753369586}) {
+      std::tm* t = std::localtime(&i);
+      std::cout << i << " " << std::ctime(&i) << std::asctime(t);
+    }
+  }
+}

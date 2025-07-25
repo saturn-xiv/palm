@@ -271,9 +271,9 @@ static void launch_podman_logs(const toml::table& config) {
       if (until >= end) {
         break;
       }
-      std::tm* since_ = std::localtime(&since);
-      std::tm* until_ = std::localtime(&until);
-      const auto items = palm::podman::logs(container.Id, since_, until_);
+
+      const auto items = palm::podman::logs(
+          container.Id, static_cast<time_t>(since), static_cast<time_t>(until));
       spdlog::info("fetch {} logs for {}", items.size(), container.Id);
       for (const auto& it : items) {
         palm::monitoring::v1::PodmanLogsResponse_Item x;
@@ -299,8 +299,16 @@ static void launch_podman_logs(const toml::table& config) {
       // spdlog::debug("{}", body.str());
       /*
       const auto res = search->post("_bulk", body.str());
-      // TODO check error
-      if (res) {
+      {
+    const auto body = res.value();
+    auto js = nlohmann::json::parse(body);
+    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+    if (it.errors) {
+      spdlog::error("{}", body);
+      return;
+    }
+  }
+       {
         const auto it =
             search->count<palm::monitoring::v1::PodmanLogsResponse_Item>();
         spdlog::debug("{} total has {} items", index_name, it.value());
@@ -362,8 +370,16 @@ static void launch_podman_stats(const toml::table& config) {
   }
   spdlog::debug("{}", body.str());
   const auto res = search->post("_bulk", body.str());
-  // TODO check error
-  if (res) {
+  {
+    const auto body = res.value();
+    auto js = nlohmann::json::parse(body);
+    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+    if (it.errors) {
+      spdlog::error("{}", body);
+      return;
+    }
+  }
+  {
     const auto it =
         search->count<palm::monitoring::v1::PodmanStatisticsResponse_Item>();
     spdlog::debug("{} total has {} items", index_name, it.value());
@@ -446,6 +462,7 @@ static void launch_podman_ps(const toml::table& config) {
     auto it = js.template get<palm::opensearch::responses::bulk::Item>();
     if (it.errors) {
       spdlog::error("{}", body);
+      return;
     }
   }
   {
