@@ -253,7 +253,6 @@ static void launch_podman_logs(const toml::table& config) {
 
   palm::opensearch::requests::bulk_index::Action bulk{
       .index = {._index = index_name}};
-  std::stringstream body;
 
   const auto containers = palm::podman::ps(true);
   for (const auto& container : containers) {
@@ -269,54 +268,82 @@ static void launch_podman_logs(const toml::table& config) {
     for (int64_t since = begin;; since += interval.count()) {
       const int64_t until = since + interval.count();
       if (until >= end) {
+        spdlog::debug("wait for next turn");
         break;
       }
 
       const auto items = palm::podman::logs(
           container.Id, static_cast<time_t>(since), static_cast<time_t>(until));
+      if (items.empty()) {
+        spdlog::debug("empty logs");
+        break;
+      }
       spdlog::info("fetch {} logs for {}", items.size(), container.Id);
+
+      std::stringstream body;
       for (const auto& it : items) {
+        if (!it.MESSAGE.has_value()) {
+          spdlog::warn("null message");
+          continue;
+        }
+        if (it.MESSAGE->empty()) {
+          spdlog::warn("empty message");
+          continue;
+        }
         palm::monitoring::v1::PodmanLogsResponse_Item x;
         x.set_host(hostname);
         x.set_id(it.CONTAINER_ID);
         x.set_full_id(it.CONTAINER_ID_FULL);
         x.set_name(it.CONTAINER_NAME);
-        x.set_message(it.MESSAGE);
-
         {
-          auto y = x.mutable_created_at();
-          y->set_seconds(it.__REALTIME_TIMESTAMP / 1000000);
-          y->set_nanos((it.__REALTIME_TIMESTAMP % 1000000) * 1000);
+          spdlog::debug("message length {}", it.MESSAGE->size());
+          std::string s(it.MESSAGE->begin(), it.MESSAGE->end());
+          boost::trim(s);
+          x.set_message(s);
         }
 
-        bulk.index._id = std::format("{}.{}", it._MACHINE_ID, it.__SEQNUM_ID);
+        {
+          int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
+          auto y = x.mutable_created_at();
+          y->set_seconds(ts / 1000000);
+          y->set_nanos((ts % 1000000) * 1000);
+        }
+
+        bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID, it.__SEQNUM_ID,
+                                     it.__SEQNUM);
         nlohmann::json act = bulk;
         body << act.dump() << "\n";
 
         const auto buf = palm::to_json(x);
         body << buf.value() << "\n";
       }
-      // spdlog::debug("{}", body.str());
-      /*
-      const auto res = search->post("_bulk", body.str());
-      {
-    const auto body = res.value();
-    auto js = nlohmann::json::parse(body);
-    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
-    if (it.errors) {
-      spdlog::error("{}", body);
-      return;
-    }
-  }
-       {
-        const auto it =
-            search->count<palm::monitoring::v1::PodmanLogsResponse_Item>();
-        spdlog::debug("{} total has {} items", index_name, it.value());
+
+      const auto req = body.str();
+      if (req.empty()) {
+        spdlog::warn("skip for empty bulk body");
+      } else {
+        spdlog::debug("{}", req);
+
+        const auto res = search->post("_bulk", req);
+        {
+          const auto body = res.value();
+          auto js = nlohmann::json::parse(body);
+          auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+          if (it.errors) {
+            spdlog::error("{}", body);
+            return;
+          }
+        }
       }
-        */
 
       set_last_fetched_container_logs_at(db, container.Id, until);
     }
+  }
+
+  {
+    const auto it =
+        search->count<palm::monitoring::v1::PodmanLogsResponse_Item>();
+    spdlog::debug("{} total has {} items", index_name, it.value());
   }
 }
 

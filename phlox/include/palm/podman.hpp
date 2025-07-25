@@ -9,14 +9,15 @@ namespace models {
 // journalctl --output=json-pretty -n 20 CONTAINER_NAME=xxx
 struct Log {
   std::string _MACHINE_ID;
+  std::string __SEQNUM;
   std::string __SEQNUM_ID;
-  int8_t __REALTIME_TIMESTAMP;
-  std::string MESSAGE;
+  std::string __REALTIME_TIMESTAMP;
+  std::optional<std::vector<uint8_t>> MESSAGE;
   std::string CONTAINER_ID;
   std::string CONTAINER_ID_FULL;
   std::string CONTAINER_NAME;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log, _MACHINE_ID, __SEQNUM_ID,
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log, _MACHINE_ID, __SEQNUM, __SEQNUM_ID,
                                    __REALTIME_TIMESTAMP, MESSAGE, CONTAINER_ID,
                                    CONTAINER_ID_FULL, CONTAINER_NAME)
 

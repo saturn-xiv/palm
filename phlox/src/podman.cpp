@@ -31,16 +31,29 @@ std::vector<palm::podman::models::Log> palm::podman::logs(
   const std::string until = std_tm_to_journald_timestamp(until_);
   spdlog::info("fetch logs for {} from {} to {}", container_id, since, until);
 
-  const auto& [code, out, err] = palm::shell(
-      "/usr/bin/journalctl",
-      {"--user", "--output", "json", "--since", since, "--until", until});
+  const auto& [code, out, err] =
+      palm::shell("/usr/bin/journalctl",
+                  {"--user", "--output", "json", "--since", since, "--until",
+                   until, std::format("CONTAINER_ID_FULL={}", container_id)});
   if (code != EXIT_SUCCESS) {
     spdlog::error("{}", err);
     return {};
   }
 
-  const auto js = nlohmann::json::parse(out);
-  std::vector<palm::podman::models::Log> items = js;
+  std::vector<std::string> lines;
+  std::vector<palm::podman::models::Log> items;
+  boost::split(lines, out, boost::is_any_of("\n"));
+  for (auto& line : lines) {
+    boost::trim(line);
+    if (line.empty()) {
+      continue;
+    }
+    spdlog::debug("receive log: {}", line);
+    const auto js = nlohmann::json::parse(line);
+    const auto it = js.template get<palm::podman::models::Log>();
+    items.push_back(it);
+  }
+
   return items;
 }
 
