@@ -7,6 +7,14 @@ package palm.casbin.v1;
 
 // ----------------------------------------------------------------------------
 
+// https://casbin.org/docs/rbac#how-to-distinguish-role-from-user
+message Subject {
+  oneof by {
+    User user = 1;
+    Role role = 2;
+  }
+}
+
 message User {
   oneof by {
     uint32 id = 1;
@@ -27,7 +35,7 @@ message Role {
   }
 }
 
-message Resource {
+message Object {
   string type = 1;
   oneof by {
     uint32 id = 11;
@@ -35,7 +43,7 @@ message Resource {
   }
 }
 
-message Permission {
+message Action {
   message Read {}
   message Write {}
   message Append {}

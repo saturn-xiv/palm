@@ -56,28 +56,28 @@ TEST_CASE("by PostgreSQL & RabbitMQ", "[casbin]") {
   }
 }
 
-TEST_CASE("object/subject/permission", "[models]") {
+TEST_CASE("object/subject/action", "[models]") {
   SECTION("user subject") {
     {
       int32_t id = 123;
-      std::cout << "user by id(" << id
-                << "): " << palm::casbin::user::to_subject(id) << std::endl;
+      std::cout << "user by id(" << id << "): " << palm::rbac::user::id(id)
+                << std::endl;
     }
     {
       std::string code = "abc";
       std::cout << "user by code(" << code
-                << "): " << palm::casbin::user::to_subject(code) << std::endl;
+                << "): " << palm::rbac::user::code(code) << std::endl;
     }
   }
 
   SECTION("role subject") {
-    std::cout << "role(root): " << palm::casbin::role::root() << std::endl;
-    std::cout << "role(administrator): " << palm::casbin::role::administrator()
+    std::cout << "role(root): " << palm::rbac::role::root() << std::endl;
+    std::cout << "role(administrator): " << palm::rbac::role::administrator()
               << std::endl;
     {
       std::string code = "abc";
       std::cout << "role by code(" << code
-                << "): " << palm::casbin::role::other(code) << std::endl;
+                << "): " << palm::rbac::role::other(code) << std::endl;
     }
   }
 
@@ -85,39 +85,36 @@ TEST_CASE("object/subject/permission", "[models]") {
     const std::string type =
         boost::typeindex::type_id<palm::rabbitmq::Client>().pretty_name();
     std::cout << "resource(" << type
-              << "): " << palm::casbin::resource::to_object(type) << std::endl;
+              << "): " << palm::rbac::resource::to_object(type) << std::endl;
     {
       int32_t id = 123;
       std::cout << "resource by id(" << type << "," << id
-                << "): " << palm::casbin::resource::to_object(type, id)
+                << "): " << palm::rbac::resource::to_object(type, id)
                 << std::endl;
     }
     {
       std::string code = "abc";
       std::cout << "resource by code(" << type << "," << code
-                << "): " << palm::casbin::resource::to_object(type, code)
+                << "): " << palm::rbac::resource::to_object(type, code)
                 << std::endl;
     }
   }
-  SECTION("action") {
-    std::cout << "permission(read): " << palm::casbin::permission::read()
+  SECTION("actions") {
+    std::cout << "action(read): " << palm::rbac::action::read() << std::endl;
+    std::cout << "action(write): " << palm::rbac::action::write() << std::endl;
+    std::cout << "action(append): " << palm::rbac::action::append()
               << std::endl;
-    std::cout << "permission(write): " << palm::casbin::permission::write()
+    std::cout << "action(execute): " << palm::rbac::action::execute()
               << std::endl;
-    std::cout << "permission(append): " << palm::casbin::permission::append()
+    std::cout << "action(debit): " << palm::rbac::action::debit() << std::endl;
+    std::cout << "action(credit): " << palm::rbac::action::credit()
               << std::endl;
-    std::cout << "permission(execute): " << palm::casbin::permission::execute()
-              << std::endl;
-    std::cout << "permission(debit): " << palm::casbin::permission::debit()
-              << std::endl;
-    std::cout << "permission(credit): " << palm::casbin::permission::credit()
-              << std::endl;
-    std::cout << "permission(inquiry): " << palm::casbin::permission::inquiry()
+    std::cout << "action(inquiry): " << palm::rbac::action::inquiry()
               << std::endl;
     {
       std::string code = "abc";
-      std::cout << "permission by code(" << code
-                << "): " << palm::casbin::permission::other(code) << std::endl;
+      std::cout << "action by code(" << code
+                << "): " << palm::rbac::action::other(code) << std::endl;
     }
   }
 }

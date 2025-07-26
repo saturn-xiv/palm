@@ -326,11 +326,11 @@ static void role_for_user(const toml::table& config,
                           const std::string& role_code, bool enable) {
   std::string role;
   if (role_code == "root") {
-    role = palm::casbin::role::root();
+    role = palm::rbac::role::root();
   } else if (role_code == "administrator") {
-    role = palm::casbin::role::administrator();
+    role = palm::rbac::role::administrator();
   } else {
-    role = palm::casbin::role::other(role_code);
+    role = palm::rbac::role::other(role_code);
   }
   auto db_pool = open_postgresql(config);
   auto queue = open_rabbitmq(config);
@@ -342,7 +342,7 @@ static void role_for_user(const toml::table& config,
       spdlog::error("couldn't find user {}", user_uid);
       return;
     }
-    const std::string subject = palm::casbin::user::to_subject(user->id);
+    const std::string subject = palm::rbac::user::id(user->id);
     if (enable) {
       enforcer->AddRoleForUser(subject, role);
     } else {

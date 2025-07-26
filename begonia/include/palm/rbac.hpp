@@ -4,6 +4,7 @@
 #include "palm/orm.hpp"
 #include "palm/queue.hpp"
 
+#include <boost/algorithm/string.hpp>
 #include <boost/type_index.hpp>
 
 #include <casbin/casbin.h>
@@ -109,35 +110,120 @@ class RabbitMQWatcher : public ::casbin::Watcher {
 //   }
 // };
 
+}  // namespace casbin
+
+namespace rbac {
 namespace user {
-std::string to_subject(uint32_t id);
-std::string to_subject(const std::string& code);
+inline std::string id(uint32_t id) {
+  palm::casbin::v1::Subject it;
+  it.mutable_user()->set_id(id);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string code(const std::string& code) {
+  palm::casbin::v1::Subject it;
+  it.mutable_user()->set_code(code);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
 }  // namespace user
 
 namespace role {
-std::string root();
-std::string administrator();
-std::string other(const std::string& code);
+inline std::string root() {
+  palm::casbin::v1::Subject it;
+  it.mutable_role()->mutable_root();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string administrator() {
+  palm::casbin::v1::Subject it;
+  it.mutable_role()->mutable_administrator();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string other(const std::string& code) {
+  palm::casbin::v1::Subject it;
+  it.mutable_role()->mutable_other()->set_code(code);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
 }  // namespace role
 
-namespace permission {
-std::string read();
-std::string write();
-std::string append();
-std::string execute();
-std::string credit();
-std::string debit();
-std::string inquiry();
-std::string other(const std::string& code);
-}  // namespace permission
+namespace action {
+inline std::string read() {
+  palm::casbin::v1::Action it;
+  it.mutable_read();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string write() {
+  palm::casbin::v1::Action it;
+  it.mutable_write();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string append() {
+  palm::casbin::v1::Action it;
+  it.mutable_append();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string execute() {
+  palm::casbin::v1::Action it;
+  it.mutable_execute();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string credit() {
+  palm::casbin::v1::Action it;
+  it.mutable_credit();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string debit() {
+  palm::casbin::v1::Action it;
+  it.mutable_credit();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string inquiry() {
+  palm::casbin::v1::Action it;
+  it.mutable_inquiry();
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string other(const std::string& code) {
+  palm::casbin::v1::Action it;
+  it.mutable_other()->set_code(code);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+}  // namespace action
 
 namespace resource {
-std::string to_object(const std::string& type, uint32_t id);
-std::string to_object(const std::string& type, const std::string& code);
-std::string to_object(const std::string& type);
+inline std::string to_object(const std::string& type, uint32_t id) {
+  palm::casbin::v1::Object it;
+  it.set_type(type);
+  it.set_id(id);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string to_object(const std::string& type, const std::string& code) {
+  palm::casbin::v1::Object it;
+  it.set_type(type);
+  it.set_code(code);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
+inline std::string to_object(const std::string& type) {
+  palm::casbin::v1::Object it;
+  it.set_type(type);
+  const auto buf = it.SerializeAsString();
+  return cppcodec::base64_url_unpadded::encode(buf);
+}
 }  // namespace resource
+}  // namespace rbac
 
-}  // namespace casbin
 }  // namespace palm
 
 namespace soci {

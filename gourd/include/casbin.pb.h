@@ -56,6 +56,33 @@ extern const ::google::protobuf::internal::DescriptorTable
 namespace palm {
 namespace casbin {
 namespace v1 {
+class Action;
+struct ActionDefaultTypeInternal;
+extern ActionDefaultTypeInternal _Action_default_instance_;
+class Action_Append;
+struct Action_AppendDefaultTypeInternal;
+extern Action_AppendDefaultTypeInternal _Action_Append_default_instance_;
+class Action_Credit;
+struct Action_CreditDefaultTypeInternal;
+extern Action_CreditDefaultTypeInternal _Action_Credit_default_instance_;
+class Action_Debit;
+struct Action_DebitDefaultTypeInternal;
+extern Action_DebitDefaultTypeInternal _Action_Debit_default_instance_;
+class Action_Execute;
+struct Action_ExecuteDefaultTypeInternal;
+extern Action_ExecuteDefaultTypeInternal _Action_Execute_default_instance_;
+class Action_Inquiry;
+struct Action_InquiryDefaultTypeInternal;
+extern Action_InquiryDefaultTypeInternal _Action_Inquiry_default_instance_;
+class Action_Other;
+struct Action_OtherDefaultTypeInternal;
+extern Action_OtherDefaultTypeInternal _Action_Other_default_instance_;
+class Action_Read;
+struct Action_ReadDefaultTypeInternal;
+extern Action_ReadDefaultTypeInternal _Action_Read_default_instance_;
+class Action_Write;
+struct Action_WriteDefaultTypeInternal;
+extern Action_WriteDefaultTypeInternal _Action_Write_default_instance_;
 class Array2DReply;
 struct Array2DReplyDefaultTypeInternal;
 extern Array2DReplyDefaultTypeInternal _Array2DReply_default_instance_;
@@ -92,42 +119,15 @@ extern NewEnforcerReplyDefaultTypeInternal _NewEnforcerReply_default_instance_;
 class NewEnforcerRequest;
 struct NewEnforcerRequestDefaultTypeInternal;
 extern NewEnforcerRequestDefaultTypeInternal _NewEnforcerRequest_default_instance_;
-class Permission;
-struct PermissionDefaultTypeInternal;
-extern PermissionDefaultTypeInternal _Permission_default_instance_;
+class Object;
+struct ObjectDefaultTypeInternal;
+extern ObjectDefaultTypeInternal _Object_default_instance_;
 class PermissionRequest;
 struct PermissionRequestDefaultTypeInternal;
 extern PermissionRequestDefaultTypeInternal _PermissionRequest_default_instance_;
-class Permission_Append;
-struct Permission_AppendDefaultTypeInternal;
-extern Permission_AppendDefaultTypeInternal _Permission_Append_default_instance_;
-class Permission_Credit;
-struct Permission_CreditDefaultTypeInternal;
-extern Permission_CreditDefaultTypeInternal _Permission_Credit_default_instance_;
-class Permission_Debit;
-struct Permission_DebitDefaultTypeInternal;
-extern Permission_DebitDefaultTypeInternal _Permission_Debit_default_instance_;
-class Permission_Execute;
-struct Permission_ExecuteDefaultTypeInternal;
-extern Permission_ExecuteDefaultTypeInternal _Permission_Execute_default_instance_;
-class Permission_Inquiry;
-struct Permission_InquiryDefaultTypeInternal;
-extern Permission_InquiryDefaultTypeInternal _Permission_Inquiry_default_instance_;
-class Permission_Other;
-struct Permission_OtherDefaultTypeInternal;
-extern Permission_OtherDefaultTypeInternal _Permission_Other_default_instance_;
-class Permission_Read;
-struct Permission_ReadDefaultTypeInternal;
-extern Permission_ReadDefaultTypeInternal _Permission_Read_default_instance_;
-class Permission_Write;
-struct Permission_WriteDefaultTypeInternal;
-extern Permission_WriteDefaultTypeInternal _Permission_Write_default_instance_;
 class PolicyRequest;
 struct PolicyRequestDefaultTypeInternal;
 extern PolicyRequestDefaultTypeInternal _PolicyRequest_default_instance_;
-class Resource;
-struct ResourceDefaultTypeInternal;
-extern ResourceDefaultTypeInternal _Resource_default_instance_;
 class Role;
 struct RoleDefaultTypeInternal;
 extern RoleDefaultTypeInternal _Role_default_instance_;
@@ -143,6 +143,9 @@ extern Role_RootDefaultTypeInternal _Role_Root_default_instance_;
 class SimpleGetRequest;
 struct SimpleGetRequestDefaultTypeInternal;
 extern SimpleGetRequestDefaultTypeInternal _SimpleGetRequest_default_instance_;
+class Subject;
+struct SubjectDefaultTypeInternal;
+extern SubjectDefaultTypeInternal _Subject_default_instance_;
 class User;
 struct UserDefaultTypeInternal;
 extern UserDefaultTypeInternal _User_default_instance_;
@@ -268,7 +271,7 @@ class WatcherMessage final : public ::google::protobuf::Message
     return reinterpret_cast<const WatcherMessage*>(
         &_WatcherMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(WatcherMessage& a, WatcherMessage& b) { a.Swap(&b); }
   inline void Swap(WatcherMessage* other) {
     if (other == this) return;
@@ -502,7 +505,7 @@ class UserRoleRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserRoleRequest*>(
         &_UserRoleRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 28;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(UserRoleRequest& a, UserRoleRequest& b) { a.Swap(&b); }
   inline void Swap(UserRoleRequest* other) {
     if (other == this) return;
@@ -757,7 +760,7 @@ class User final : public ::google::protobuf::Message
     return reinterpret_cast<const User*>(
         &_User_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(User& a, User& b) { a.Swap(&b); }
   inline void Swap(User* other) {
     if (other == this) return;
@@ -978,7 +981,7 @@ class SimpleGetRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SimpleGetRequest*>(
         &_SimpleGetRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(SimpleGetRequest& a, SimpleGetRequest& b) { a.Swap(&b); }
   inline void Swap(SimpleGetRequest* other) {
     if (other == this) return;
@@ -1185,7 +1188,7 @@ class Role_Root final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Role_Root*>(
         &_Role_Root_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(Role_Root& a, Role_Root& b) { a.Swap(&b); }
   inline void Swap(Role_Root* other) {
     if (other == this) return;
@@ -1331,7 +1334,7 @@ class Role_Other final : public ::google::protobuf::Message
     return reinterpret_cast<const Role_Other*>(
         &_Role_Other_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(Role_Other& a, Role_Other& b) { a.Swap(&b); }
   inline void Swap(Role_Other* other) {
     if (other == this) return;
@@ -1526,7 +1529,7 @@ class Role_Administrator final : public ::google::protobuf::internal::ZeroFields
     return reinterpret_cast<const Role_Administrator*>(
         &_Role_Administrator_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(Role_Administrator& a, Role_Administrator& b) { a.Swap(&b); }
   inline void Swap(Role_Administrator* other) {
     if (other == this) return;
@@ -1613,250 +1616,6 @@ class Role_Administrator final : public ::google::protobuf::internal::ZeroFields
 };
 // -------------------------------------------------------------------
 
-class Resource final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Resource) */ {
- public:
-  inline Resource() : Resource(nullptr) {}
-  ~Resource() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Resource* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Resource));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Resource(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Resource(const Resource& from) : Resource(nullptr, from) {}
-  inline Resource(Resource&& from) noexcept
-      : Resource(nullptr, std::move(from)) {}
-  inline Resource& operator=(const Resource& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Resource& operator=(Resource&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Resource& default_instance() {
-    return *internal_default_instance();
-  }
-  enum ByCase {
-    kId = 11,
-    kCode = 21,
-    BY_NOT_SET = 0,
-  };
-  static inline const Resource* internal_default_instance() {
-    return reinterpret_cast<const Resource*>(
-        &_Resource_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 5;
-  friend void swap(Resource& a, Resource& b) { a.Swap(&b); }
-  inline void Swap(Resource* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Resource* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Resource* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Resource>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Resource& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Resource& from) { Resource::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Resource* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Resource"; }
-
- protected:
-  explicit Resource(::google::protobuf::Arena* arena);
-  Resource(::google::protobuf::Arena* arena, const Resource& from);
-  Resource(::google::protobuf::Arena* arena, Resource&& from) noexcept
-      : Resource(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kTypeFieldNumber = 1,
-    kIdFieldNumber = 11,
-    kCodeFieldNumber = 21,
-  };
-  // string type = 1;
-  void clear_type() ;
-  const std::string& type() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_type(Arg_&& arg, Args_... args);
-  std::string* mutable_type();
-  PROTOBUF_NODISCARD std::string* release_type();
-  void set_allocated_type(std::string* value);
-
-  private:
-  const std::string& _internal_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
-      const std::string& value);
-  std::string* _internal_mutable_type();
-
-  public:
-  // uint32 id = 11;
-  bool has_id() const;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // string code = 21;
-  bool has_code() const;
-  void clear_code() ;
-  const std::string& code() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_code(Arg_&& arg, Args_... args);
-  std::string* mutable_code();
-  PROTOBUF_NODISCARD std::string* release_code();
-  void set_allocated_code(std::string* value);
-
-  private:
-  const std::string& _internal_code() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(
-      const std::string& value);
-  std::string* _internal_mutable_code();
-
-  public:
-  void clear_by();
-  ByCase by_case() const;
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Resource)
- private:
-  class _Internal;
-  void set_has_id();
-  void set_has_code();
-  inline bool has_by() const;
-  inline void clear_has_by();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 3, 0,
-      40, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Resource& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr type_;
-    union ByUnion {
-      constexpr ByUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::uint32_t id_;
-      ::google::protobuf::internal::ArenaStringPtr code_;
-    } by_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
 class PolicyRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.casbin.v1.PolicyRequest) */ {
  public:
@@ -1916,7 +1675,7 @@ class PolicyRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PolicyRequest*>(
         &_PolicyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(PolicyRequest& a, PolicyRequest& b) { a.Swap(&b); }
   inline void Swap(PolicyRequest* other) {
     if (other == this) return;
@@ -2148,7 +1907,7 @@ class PermissionRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PermissionRequest*>(
         &_PermissionRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 29;
+  static constexpr int kIndexInFileMessages = 30;
   friend void swap(PermissionRequest& a, PermissionRequest& b) { a.Swap(&b); }
   inline void Swap(PermissionRequest* other) {
     if (other == this) return;
@@ -2345,30 +2104,31 @@ class PermissionRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class Permission_Write final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Write) */ {
+class Object final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Object) */ {
  public:
-  inline Permission_Write() : Permission_Write(nullptr) {}
+  inline Object() : Object(nullptr) {}
+  ~Object() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Write* msg, std::destroying_delete_t) {
+  void operator delete(Object* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Write));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Object));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Write(
+  explicit PROTOBUF_CONSTEXPR Object(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline Permission_Write(const Permission_Write& from) : Permission_Write(nullptr, from) {}
-  inline Permission_Write(Permission_Write&& from) noexcept
-      : Permission_Write(nullptr, std::move(from)) {}
-  inline Permission_Write& operator=(const Permission_Write& from) {
+  inline Object(const Object& from) : Object(nullptr, from) {}
+  inline Object(Object&& from) noexcept
+      : Object(nullptr, std::move(from)) {}
+  inline Object& operator=(const Object& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Permission_Write& operator=(Permission_Write&& from) noexcept {
+  inline Object& operator=(Object&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2396,161 +2156,21 @@ class Permission_Write final : public ::google::protobuf::internal::ZeroFieldsBa
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Permission_Write& default_instance() {
+  static const Object& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Permission_Write* internal_default_instance() {
-    return reinterpret_cast<const Permission_Write*>(
-        &_Permission_Write_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 7;
-  friend void swap(Permission_Write& a, Permission_Write& b) { a.Swap(&b); }
-  inline void Swap(Permission_Write* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Write* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Write* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Write>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Write& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Write& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Write"; }
-
- protected:
-  explicit Permission_Write(::google::protobuf::Arena* arena);
-  Permission_Write(::google::protobuf::Arena* arena, const Permission_Write& from);
-  Permission_Write(::google::protobuf::Arena* arena, Permission_Write&& from) noexcept
-      : Permission_Write(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Write)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Write& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
+  enum ByCase {
+    kId = 11,
+    kCode = 21,
+    BY_NOT_SET = 0,
   };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Read final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Read) */ {
- public:
-  inline Permission_Read() : Permission_Read(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Read* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Read));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Read(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Read(const Permission_Read& from) : Permission_Read(nullptr, from) {}
-  inline Permission_Read(Permission_Read&& from) noexcept
-      : Permission_Read(nullptr, std::move(from)) {}
-  inline Permission_Read& operator=(const Permission_Read& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Read& operator=(Permission_Read&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Read& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Read* internal_default_instance() {
-    return reinterpret_cast<const Permission_Read*>(
-        &_Permission_Read_default_instance_);
+  static inline const Object* internal_default_instance() {
+    return reinterpret_cast<const Object*>(
+        &_Object_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 6;
-  friend void swap(Permission_Read& a, Permission_Read& b) { a.Swap(&b); }
-  inline void Swap(Permission_Read* other) {
+  friend void swap(Object& a, Object& b) { a.Swap(&b); }
+  inline void Swap(Object* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2558,7 +2178,7 @@ class Permission_Read final : public ::google::protobuf::internal::ZeroFieldsBas
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Permission_Read* other) {
+  void UnsafeArenaSwap(Object* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2566,159 +2186,13 @@ class Permission_Read final : public ::google::protobuf::internal::ZeroFieldsBas
 
   // implements Message ----------------------------------------------
 
-  Permission_Read* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Read>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Read& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Read& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Read"; }
-
- protected:
-  explicit Permission_Read(::google::protobuf::Arena* arena);
-  Permission_Read(::google::protobuf::Arena* arena, const Permission_Read& from);
-  Permission_Read(::google::protobuf::Arena* arena, Permission_Read&& from) noexcept
-      : Permission_Read(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Read)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Read& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Other final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Other) */ {
- public:
-  inline Permission_Other() : Permission_Other(nullptr) {}
-  ~Permission_Other() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Other* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Other));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Other(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Other(const Permission_Other& from) : Permission_Other(nullptr, from) {}
-  inline Permission_Other(Permission_Other&& from) noexcept
-      : Permission_Other(nullptr, std::move(from)) {}
-  inline Permission_Other& operator=(const Permission_Other& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Other& operator=(Permission_Other&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Other& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Other* internal_default_instance() {
-    return reinterpret_cast<const Permission_Other*>(
-        &_Permission_Other_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 13;
-  friend void swap(Permission_Other& a, Permission_Other& b) { a.Swap(&b); }
-  inline void Swap(Permission_Other* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Other* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Other* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Permission_Other>(arena);
+  Object* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Object>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Permission_Other& from);
+  void CopyFrom(const Object& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Permission_Other& from) { Permission_Other::MergeImpl(*this, from); }
+  void MergeFrom(const Object& from) { Object::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -2755,18 +2229,18 @@ class Permission_Other final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(Permission_Other* other);
+  void InternalSwap(Object* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Other"; }
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Object"; }
 
  protected:
-  explicit Permission_Other(::google::protobuf::Arena* arena);
-  Permission_Other(::google::protobuf::Arena* arena, const Permission_Other& from);
-  Permission_Other(::google::protobuf::Arena* arena, Permission_Other&& from) noexcept
-      : Permission_Other(arena) {
+  explicit Object(::google::protobuf::Arena* arena);
+  Object(::google::protobuf::Arena* arena, const Object& from);
+  Object(::google::protobuf::Arena* arena, Object&& from) noexcept
+      : Object(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -2781,9 +2255,39 @@ class Permission_Other final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kCodeFieldNumber = 1,
+    kTypeFieldNumber = 1,
+    kIdFieldNumber = 11,
+    kCodeFieldNumber = 21,
   };
-  // string code = 1;
+  // string type = 1;
+  void clear_type() ;
+  const std::string& type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_type(Arg_&& arg, Args_... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* value);
+
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
+      const std::string& value);
+  std::string* _internal_mutable_type();
+
+  public:
+  // uint32 id = 11;
+  bool has_id() const;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // string code = 21;
+  bool has_code() const;
   void clear_code() ;
   const std::string& code() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2799,13 +2303,19 @@ class Permission_Other final : public ::google::protobuf::Message
   std::string* _internal_mutable_code();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Other)
+  void clear_by();
+  ByCase by_case() const;
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Object)
  private:
   class _Internal;
+  void set_has_id();
+  void set_has_code();
+  inline bool has_by() const;
+  inline void clear_has_by();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      44, 2>
+      0, 3, 0,
+      38, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2821,737 +2331,19 @@ class Permission_Other final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Other& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr code_;
+                          const Object& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr type_;
+    union ByUnion {
+      constexpr ByUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::uint32_t id_;
+      ::google::protobuf::internal::ArenaStringPtr code_;
+    } by_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Inquiry final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Inquiry) */ {
- public:
-  inline Permission_Inquiry() : Permission_Inquiry(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Inquiry* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Inquiry));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Inquiry(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Inquiry(const Permission_Inquiry& from) : Permission_Inquiry(nullptr, from) {}
-  inline Permission_Inquiry(Permission_Inquiry&& from) noexcept
-      : Permission_Inquiry(nullptr, std::move(from)) {}
-  inline Permission_Inquiry& operator=(const Permission_Inquiry& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Inquiry& operator=(Permission_Inquiry&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Inquiry& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Inquiry* internal_default_instance() {
-    return reinterpret_cast<const Permission_Inquiry*>(
-        &_Permission_Inquiry_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 12;
-  friend void swap(Permission_Inquiry& a, Permission_Inquiry& b) { a.Swap(&b); }
-  inline void Swap(Permission_Inquiry* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Inquiry* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Inquiry* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Inquiry>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Inquiry& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Inquiry& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Inquiry"; }
-
- protected:
-  explicit Permission_Inquiry(::google::protobuf::Arena* arena);
-  Permission_Inquiry(::google::protobuf::Arena* arena, const Permission_Inquiry& from);
-  Permission_Inquiry(::google::protobuf::Arena* arena, Permission_Inquiry&& from) noexcept
-      : Permission_Inquiry(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Inquiry)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Inquiry& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Execute final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Execute) */ {
- public:
-  inline Permission_Execute() : Permission_Execute(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Execute* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Execute));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Execute(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Execute(const Permission_Execute& from) : Permission_Execute(nullptr, from) {}
-  inline Permission_Execute(Permission_Execute&& from) noexcept
-      : Permission_Execute(nullptr, std::move(from)) {}
-  inline Permission_Execute& operator=(const Permission_Execute& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Execute& operator=(Permission_Execute&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Execute& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Execute* internal_default_instance() {
-    return reinterpret_cast<const Permission_Execute*>(
-        &_Permission_Execute_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 9;
-  friend void swap(Permission_Execute& a, Permission_Execute& b) { a.Swap(&b); }
-  inline void Swap(Permission_Execute* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Execute* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Execute* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Execute>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Execute& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Execute& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Execute"; }
-
- protected:
-  explicit Permission_Execute(::google::protobuf::Arena* arena);
-  Permission_Execute(::google::protobuf::Arena* arena, const Permission_Execute& from);
-  Permission_Execute(::google::protobuf::Arena* arena, Permission_Execute&& from) noexcept
-      : Permission_Execute(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Execute)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Execute& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Debit final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Debit) */ {
- public:
-  inline Permission_Debit() : Permission_Debit(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Debit* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Debit));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Debit(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Debit(const Permission_Debit& from) : Permission_Debit(nullptr, from) {}
-  inline Permission_Debit(Permission_Debit&& from) noexcept
-      : Permission_Debit(nullptr, std::move(from)) {}
-  inline Permission_Debit& operator=(const Permission_Debit& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Debit& operator=(Permission_Debit&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Debit& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Debit* internal_default_instance() {
-    return reinterpret_cast<const Permission_Debit*>(
-        &_Permission_Debit_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 11;
-  friend void swap(Permission_Debit& a, Permission_Debit& b) { a.Swap(&b); }
-  inline void Swap(Permission_Debit* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Debit* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Debit* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Debit>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Debit& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Debit& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Debit"; }
-
- protected:
-  explicit Permission_Debit(::google::protobuf::Arena* arena);
-  Permission_Debit(::google::protobuf::Arena* arena, const Permission_Debit& from);
-  Permission_Debit(::google::protobuf::Arena* arena, Permission_Debit&& from) noexcept
-      : Permission_Debit(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Debit)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Debit& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Credit final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Credit) */ {
- public:
-  inline Permission_Credit() : Permission_Credit(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Credit* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Credit));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Credit(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Credit(const Permission_Credit& from) : Permission_Credit(nullptr, from) {}
-  inline Permission_Credit(Permission_Credit&& from) noexcept
-      : Permission_Credit(nullptr, std::move(from)) {}
-  inline Permission_Credit& operator=(const Permission_Credit& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Credit& operator=(Permission_Credit&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Credit& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Credit* internal_default_instance() {
-    return reinterpret_cast<const Permission_Credit*>(
-        &_Permission_Credit_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 10;
-  friend void swap(Permission_Credit& a, Permission_Credit& b) { a.Swap(&b); }
-  inline void Swap(Permission_Credit* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Credit* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Credit* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Credit>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Credit& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Credit& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Credit"; }
-
- protected:
-  explicit Permission_Credit(::google::protobuf::Arena* arena);
-  Permission_Credit(::google::protobuf::Arena* arena, const Permission_Credit& from);
-  Permission_Credit(::google::protobuf::Arena* arena, Permission_Credit&& from) noexcept
-      : Permission_Credit(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Credit)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Credit& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Permission_Append final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission.Append) */ {
- public:
-  inline Permission_Append() : Permission_Append(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission_Append* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission_Append));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission_Append(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission_Append(const Permission_Append& from) : Permission_Append(nullptr, from) {}
-  inline Permission_Append(Permission_Append&& from) noexcept
-      : Permission_Append(nullptr, std::move(from)) {}
-  inline Permission_Append& operator=(const Permission_Append& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission_Append& operator=(Permission_Append&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission_Append& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Permission_Append* internal_default_instance() {
-    return reinterpret_cast<const Permission_Append*>(
-        &_Permission_Append_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 8;
-  friend void swap(Permission_Append& a, Permission_Append& b) { a.Swap(&b); }
-  inline void Swap(Permission_Append* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission_Append* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission_Append* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Permission_Append>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Permission_Append& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Permission_Append& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission.Append"; }
-
- protected:
-  explicit Permission_Append(::google::protobuf::Arena* arena);
-  Permission_Append(::google::protobuf::Arena* arena, const Permission_Append& from);
-  Permission_Append(::google::protobuf::Arena* arena, Permission_Append&& from) noexcept
-      : Permission_Append(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission.Append)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission_Append& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
   friend struct ::TableStruct_casbin_2eproto;
 };
 // -------------------------------------------------------------------
@@ -3615,7 +2407,7 @@ class NewEnforcerRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const NewEnforcerRequest*>(
         &_NewEnforcerRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(NewEnforcerRequest& a, NewEnforcerRequest& b) { a.Swap(&b); }
   inline void Swap(NewEnforcerRequest* other) {
     if (other == this) return;
@@ -3835,7 +2627,7 @@ class NewEnforcerReply final : public ::google::protobuf::Message
     return reinterpret_cast<const NewEnforcerReply*>(
         &_NewEnforcerReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(NewEnforcerReply& a, NewEnforcerReply& b) { a.Swap(&b); }
   inline void Swap(NewEnforcerReply* other) {
     if (other == this) return;
@@ -4025,7 +2817,7 @@ class NewAdapterRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const NewAdapterRequest*>(
         &_NewAdapterRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(NewAdapterRequest& a, NewAdapterRequest& b) { a.Swap(&b); }
   inline void Swap(NewAdapterRequest* other) {
     if (other == this) return;
@@ -4269,7 +3061,7 @@ class NewAdapterReply final : public ::google::protobuf::Message
     return reinterpret_cast<const NewAdapterReply*>(
         &_NewAdapterReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(NewAdapterReply& a, NewAdapterReply& b) { a.Swap(&b); }
   inline void Swap(NewAdapterReply* other) {
     if (other == this) return;
@@ -4459,7 +3251,7 @@ class FilteredPolicyRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const FilteredPolicyRequest*>(
         &_FilteredPolicyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(FilteredPolicyRequest& a, FilteredPolicyRequest& b) { a.Swap(&b); }
   inline void Swap(FilteredPolicyRequest* other) {
     if (other == this) return;
@@ -4703,7 +3495,7 @@ class EnforceRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const EnforceRequest*>(
         &_EnforceRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(EnforceRequest& a, EnforceRequest& b) { a.Swap(&b); }
   inline void Swap(EnforceRequest* other) {
     if (other == this) return;
@@ -4917,7 +3709,7 @@ class EmptyRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const EmptyRequest*>(
         &_EmptyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(EmptyRequest& a, EmptyRequest& b) { a.Swap(&b); }
   inline void Swap(EmptyRequest* other) {
     if (other == this) return;
@@ -5106,7 +3898,7 @@ class EmptyReply final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const EmptyReply*>(
         &_EmptyReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(EmptyReply& a, EmptyReply& b) { a.Swap(&b); }
   inline void Swap(EmptyReply* other) {
     if (other == this) return;
@@ -5252,7 +4044,7 @@ class BoolReply final : public ::google::protobuf::Message
     return reinterpret_cast<const BoolReply*>(
         &_BoolReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(BoolReply& a, BoolReply& b) { a.Swap(&b); }
   inline void Swap(BoolReply* other) {
     if (other == this) return;
@@ -5442,7 +4234,7 @@ class ArrayReply final : public ::google::protobuf::Message
     return reinterpret_cast<const ArrayReply*>(
         &_ArrayReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(ArrayReply& a, ArrayReply& b) { a.Swap(&b); }
   inline void Swap(ArrayReply* other) {
     if (other == this) return;
@@ -5644,7 +4436,7 @@ class Array2DReply_d final : public ::google::protobuf::Message
     return reinterpret_cast<const Array2DReply_d*>(
         &_Array2DReply_d_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 30;
+  static constexpr int kIndexInFileMessages = 31;
   friend void swap(Array2DReply_d& a, Array2DReply_d& b) { a.Swap(&b); }
   inline void Swap(Array2DReply_d* other) {
     if (other == this) return;
@@ -5787,6 +4579,1217 @@ class Array2DReply_d final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Action_Write final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Write) */ {
+ public:
+  inline Action_Write() : Action_Write(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Write* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Write));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Write(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Write(const Action_Write& from) : Action_Write(nullptr, from) {}
+  inline Action_Write(Action_Write&& from) noexcept
+      : Action_Write(nullptr, std::move(from)) {}
+  inline Action_Write& operator=(const Action_Write& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Write& operator=(Action_Write&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Write& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Write* internal_default_instance() {
+    return reinterpret_cast<const Action_Write*>(
+        &_Action_Write_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(Action_Write& a, Action_Write& b) { a.Swap(&b); }
+  inline void Swap(Action_Write* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Write* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Write* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Write>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Write& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Write& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Write"; }
+
+ protected:
+  explicit Action_Write(::google::protobuf::Arena* arena);
+  Action_Write(::google::protobuf::Arena* arena, const Action_Write& from);
+  Action_Write(::google::protobuf::Arena* arena, Action_Write&& from) noexcept
+      : Action_Write(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Write)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Write& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Read final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Read) */ {
+ public:
+  inline Action_Read() : Action_Read(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Read* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Read));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Read(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Read(const Action_Read& from) : Action_Read(nullptr, from) {}
+  inline Action_Read(Action_Read&& from) noexcept
+      : Action_Read(nullptr, std::move(from)) {}
+  inline Action_Read& operator=(const Action_Read& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Read& operator=(Action_Read&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Read& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Read* internal_default_instance() {
+    return reinterpret_cast<const Action_Read*>(
+        &_Action_Read_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(Action_Read& a, Action_Read& b) { a.Swap(&b); }
+  inline void Swap(Action_Read* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Read* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Read* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Read>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Read& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Read& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Read"; }
+
+ protected:
+  explicit Action_Read(::google::protobuf::Arena* arena);
+  Action_Read(::google::protobuf::Arena* arena, const Action_Read& from);
+  Action_Read(::google::protobuf::Arena* arena, Action_Read&& from) noexcept
+      : Action_Read(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Read)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Read& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Other final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Other) */ {
+ public:
+  inline Action_Other() : Action_Other(nullptr) {}
+  ~Action_Other() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Other* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Other));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Other(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Other(const Action_Other& from) : Action_Other(nullptr, from) {}
+  inline Action_Other(Action_Other&& from) noexcept
+      : Action_Other(nullptr, std::move(from)) {}
+  inline Action_Other& operator=(const Action_Other& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Other& operator=(Action_Other&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Other& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Other* internal_default_instance() {
+    return reinterpret_cast<const Action_Other*>(
+        &_Action_Other_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 14;
+  friend void swap(Action_Other& a, Action_Other& b) { a.Swap(&b); }
+  inline void Swap(Action_Other* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Other* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Other* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Action_Other>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Action_Other& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Action_Other& from) { Action_Other::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Action_Other* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Other"; }
+
+ protected:
+  explicit Action_Other(::google::protobuf::Arena* arena);
+  Action_Other(::google::protobuf::Arena* arena, const Action_Other& from);
+  Action_Other(::google::protobuf::Arena* arena, Action_Other&& from) noexcept
+      : Action_Other(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCodeFieldNumber = 1,
+  };
+  // string code = 1;
+  void clear_code() ;
+  const std::string& code() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_code(Arg_&& arg, Args_... args);
+  std::string* mutable_code();
+  PROTOBUF_NODISCARD std::string* release_code();
+  void set_allocated_code(std::string* value);
+
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(
+      const std::string& value);
+  std::string* _internal_mutable_code();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Other)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      40, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Other& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr code_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Inquiry final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Inquiry) */ {
+ public:
+  inline Action_Inquiry() : Action_Inquiry(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Inquiry* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Inquiry));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Inquiry(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Inquiry(const Action_Inquiry& from) : Action_Inquiry(nullptr, from) {}
+  inline Action_Inquiry(Action_Inquiry&& from) noexcept
+      : Action_Inquiry(nullptr, std::move(from)) {}
+  inline Action_Inquiry& operator=(const Action_Inquiry& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Inquiry& operator=(Action_Inquiry&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Inquiry& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Inquiry* internal_default_instance() {
+    return reinterpret_cast<const Action_Inquiry*>(
+        &_Action_Inquiry_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(Action_Inquiry& a, Action_Inquiry& b) { a.Swap(&b); }
+  inline void Swap(Action_Inquiry* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Inquiry* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Inquiry* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Inquiry>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Inquiry& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Inquiry& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Inquiry"; }
+
+ protected:
+  explicit Action_Inquiry(::google::protobuf::Arena* arena);
+  Action_Inquiry(::google::protobuf::Arena* arena, const Action_Inquiry& from);
+  Action_Inquiry(::google::protobuf::Arena* arena, Action_Inquiry&& from) noexcept
+      : Action_Inquiry(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Inquiry)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Inquiry& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Execute final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Execute) */ {
+ public:
+  inline Action_Execute() : Action_Execute(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Execute* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Execute));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Execute(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Execute(const Action_Execute& from) : Action_Execute(nullptr, from) {}
+  inline Action_Execute(Action_Execute&& from) noexcept
+      : Action_Execute(nullptr, std::move(from)) {}
+  inline Action_Execute& operator=(const Action_Execute& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Execute& operator=(Action_Execute&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Execute& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Execute* internal_default_instance() {
+    return reinterpret_cast<const Action_Execute*>(
+        &_Action_Execute_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(Action_Execute& a, Action_Execute& b) { a.Swap(&b); }
+  inline void Swap(Action_Execute* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Execute* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Execute* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Execute>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Execute& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Execute& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Execute"; }
+
+ protected:
+  explicit Action_Execute(::google::protobuf::Arena* arena);
+  Action_Execute(::google::protobuf::Arena* arena, const Action_Execute& from);
+  Action_Execute(::google::protobuf::Arena* arena, Action_Execute&& from) noexcept
+      : Action_Execute(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Execute)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Execute& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Debit final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Debit) */ {
+ public:
+  inline Action_Debit() : Action_Debit(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Debit* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Debit));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Debit(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Debit(const Action_Debit& from) : Action_Debit(nullptr, from) {}
+  inline Action_Debit(Action_Debit&& from) noexcept
+      : Action_Debit(nullptr, std::move(from)) {}
+  inline Action_Debit& operator=(const Action_Debit& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Debit& operator=(Action_Debit&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Debit& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Debit* internal_default_instance() {
+    return reinterpret_cast<const Action_Debit*>(
+        &_Action_Debit_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 12;
+  friend void swap(Action_Debit& a, Action_Debit& b) { a.Swap(&b); }
+  inline void Swap(Action_Debit* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Debit* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Debit* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Debit>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Debit& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Debit& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Debit"; }
+
+ protected:
+  explicit Action_Debit(::google::protobuf::Arena* arena);
+  Action_Debit(::google::protobuf::Arena* arena, const Action_Debit& from);
+  Action_Debit(::google::protobuf::Arena* arena, Action_Debit&& from) noexcept
+      : Action_Debit(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Debit)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Debit& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Credit final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Credit) */ {
+ public:
+  inline Action_Credit() : Action_Credit(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Credit* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Credit));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Credit(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Credit(const Action_Credit& from) : Action_Credit(nullptr, from) {}
+  inline Action_Credit(Action_Credit&& from) noexcept
+      : Action_Credit(nullptr, std::move(from)) {}
+  inline Action_Credit& operator=(const Action_Credit& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Credit& operator=(Action_Credit&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Credit& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Credit* internal_default_instance() {
+    return reinterpret_cast<const Action_Credit*>(
+        &_Action_Credit_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 11;
+  friend void swap(Action_Credit& a, Action_Credit& b) { a.Swap(&b); }
+  inline void Swap(Action_Credit* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Credit* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Credit* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Credit>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Credit& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Credit& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Credit"; }
+
+ protected:
+  explicit Action_Credit(::google::protobuf::Arena* arena);
+  Action_Credit(::google::protobuf::Arena* arena, const Action_Credit& from);
+  Action_Credit(::google::protobuf::Arena* arena, Action_Credit&& from) noexcept
+      : Action_Credit(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Credit)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Credit& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Action_Append final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action.Append) */ {
+ public:
+  inline Action_Append() : Action_Append(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action_Append* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action_Append));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action_Append(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action_Append(const Action_Append& from) : Action_Append(nullptr, from) {}
+  inline Action_Append(Action_Append&& from) noexcept
+      : Action_Append(nullptr, std::move(from)) {}
+  inline Action_Append& operator=(const Action_Append& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action_Append& operator=(Action_Append&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action_Append& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Action_Append* internal_default_instance() {
+    return reinterpret_cast<const Action_Append*>(
+        &_Action_Append_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 9;
+  friend void swap(Action_Append& a, Action_Append& b) { a.Swap(&b); }
+  inline void Swap(Action_Append* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action_Append* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action_Append* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Action_Append>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Action_Append& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Action_Append& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action.Append"; }
+
+ protected:
+  explicit Action_Append(::google::protobuf::Arena* arena);
+  Action_Append(::google::protobuf::Arena* arena, const Action_Append& from);
+  Action_Append(::google::protobuf::Arena* arena, Action_Append&& from) noexcept
+      : Action_Append(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action.Append)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action_Append& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Role final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.casbin.v1.Role) */ {
  public:
@@ -5852,7 +5855,7 @@ class Role final : public ::google::protobuf::Message
     return reinterpret_cast<const Role*>(
         &_Role_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(Role& a, Role& b) { a.Swap(&b); }
   inline void Swap(Role* other) {
     if (other == this) return;
@@ -6049,388 +6052,6 @@ class Role final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class Permission final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Permission) */ {
- public:
-  inline Permission() : Permission(nullptr) {}
-  ~Permission() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Permission* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Permission));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Permission(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Permission(const Permission& from) : Permission(nullptr, from) {}
-  inline Permission(Permission&& from) noexcept
-      : Permission(nullptr, std::move(from)) {}
-  inline Permission& operator=(const Permission& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Permission& operator=(Permission&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Permission& default_instance() {
-    return *internal_default_instance();
-  }
-  enum ByCase {
-    kRead = 1,
-    kWrite = 2,
-    kAppend = 3,
-    kExecute = 4,
-    kCredit = 5,
-    kDebit = 6,
-    kInquiry = 7,
-    kOther = 9,
-    BY_NOT_SET = 0,
-  };
-  static inline const Permission* internal_default_instance() {
-    return reinterpret_cast<const Permission*>(
-        &_Permission_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 14;
-  friend void swap(Permission& a, Permission& b) { a.Swap(&b); }
-  inline void Swap(Permission* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Permission* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Permission* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Permission>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Permission& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Permission& from) { Permission::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Permission* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Permission"; }
-
- protected:
-  explicit Permission(::google::protobuf::Arena* arena);
-  Permission(::google::protobuf::Arena* arena, const Permission& from);
-  Permission(::google::protobuf::Arena* arena, Permission&& from) noexcept
-      : Permission(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Read = Permission_Read;
-  using Write = Permission_Write;
-  using Append = Permission_Append;
-  using Execute = Permission_Execute;
-  using Credit = Permission_Credit;
-  using Debit = Permission_Debit;
-  using Inquiry = Permission_Inquiry;
-  using Other = Permission_Other;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kReadFieldNumber = 1,
-    kWriteFieldNumber = 2,
-    kAppendFieldNumber = 3,
-    kExecuteFieldNumber = 4,
-    kCreditFieldNumber = 5,
-    kDebitFieldNumber = 6,
-    kInquiryFieldNumber = 7,
-    kOtherFieldNumber = 9,
-  };
-  // .palm.casbin.v1.Permission.Read read = 1;
-  bool has_read() const;
-  private:
-  bool _internal_has_read() const;
-
-  public:
-  void clear_read() ;
-  const ::palm::casbin::v1::Permission_Read& read() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Read* release_read();
-  ::palm::casbin::v1::Permission_Read* mutable_read();
-  void set_allocated_read(::palm::casbin::v1::Permission_Read* value);
-  void unsafe_arena_set_allocated_read(::palm::casbin::v1::Permission_Read* value);
-  ::palm::casbin::v1::Permission_Read* unsafe_arena_release_read();
-
-  private:
-  const ::palm::casbin::v1::Permission_Read& _internal_read() const;
-  ::palm::casbin::v1::Permission_Read* _internal_mutable_read();
-
-  public:
-  // .palm.casbin.v1.Permission.Write write = 2;
-  bool has_write() const;
-  private:
-  bool _internal_has_write() const;
-
-  public:
-  void clear_write() ;
-  const ::palm::casbin::v1::Permission_Write& write() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Write* release_write();
-  ::palm::casbin::v1::Permission_Write* mutable_write();
-  void set_allocated_write(::palm::casbin::v1::Permission_Write* value);
-  void unsafe_arena_set_allocated_write(::palm::casbin::v1::Permission_Write* value);
-  ::palm::casbin::v1::Permission_Write* unsafe_arena_release_write();
-
-  private:
-  const ::palm::casbin::v1::Permission_Write& _internal_write() const;
-  ::palm::casbin::v1::Permission_Write* _internal_mutable_write();
-
-  public:
-  // .palm.casbin.v1.Permission.Append append = 3;
-  bool has_append() const;
-  private:
-  bool _internal_has_append() const;
-
-  public:
-  void clear_append() ;
-  const ::palm::casbin::v1::Permission_Append& append() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Append* release_append();
-  ::palm::casbin::v1::Permission_Append* mutable_append();
-  void set_allocated_append(::palm::casbin::v1::Permission_Append* value);
-  void unsafe_arena_set_allocated_append(::palm::casbin::v1::Permission_Append* value);
-  ::palm::casbin::v1::Permission_Append* unsafe_arena_release_append();
-
-  private:
-  const ::palm::casbin::v1::Permission_Append& _internal_append() const;
-  ::palm::casbin::v1::Permission_Append* _internal_mutable_append();
-
-  public:
-  // .palm.casbin.v1.Permission.Execute execute = 4;
-  bool has_execute() const;
-  private:
-  bool _internal_has_execute() const;
-
-  public:
-  void clear_execute() ;
-  const ::palm::casbin::v1::Permission_Execute& execute() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Execute* release_execute();
-  ::palm::casbin::v1::Permission_Execute* mutable_execute();
-  void set_allocated_execute(::palm::casbin::v1::Permission_Execute* value);
-  void unsafe_arena_set_allocated_execute(::palm::casbin::v1::Permission_Execute* value);
-  ::palm::casbin::v1::Permission_Execute* unsafe_arena_release_execute();
-
-  private:
-  const ::palm::casbin::v1::Permission_Execute& _internal_execute() const;
-  ::palm::casbin::v1::Permission_Execute* _internal_mutable_execute();
-
-  public:
-  // .palm.casbin.v1.Permission.Credit credit = 5;
-  bool has_credit() const;
-  private:
-  bool _internal_has_credit() const;
-
-  public:
-  void clear_credit() ;
-  const ::palm::casbin::v1::Permission_Credit& credit() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Credit* release_credit();
-  ::palm::casbin::v1::Permission_Credit* mutable_credit();
-  void set_allocated_credit(::palm::casbin::v1::Permission_Credit* value);
-  void unsafe_arena_set_allocated_credit(::palm::casbin::v1::Permission_Credit* value);
-  ::palm::casbin::v1::Permission_Credit* unsafe_arena_release_credit();
-
-  private:
-  const ::palm::casbin::v1::Permission_Credit& _internal_credit() const;
-  ::palm::casbin::v1::Permission_Credit* _internal_mutable_credit();
-
-  public:
-  // .palm.casbin.v1.Permission.Debit debit = 6;
-  bool has_debit() const;
-  private:
-  bool _internal_has_debit() const;
-
-  public:
-  void clear_debit() ;
-  const ::palm::casbin::v1::Permission_Debit& debit() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Debit* release_debit();
-  ::palm::casbin::v1::Permission_Debit* mutable_debit();
-  void set_allocated_debit(::palm::casbin::v1::Permission_Debit* value);
-  void unsafe_arena_set_allocated_debit(::palm::casbin::v1::Permission_Debit* value);
-  ::palm::casbin::v1::Permission_Debit* unsafe_arena_release_debit();
-
-  private:
-  const ::palm::casbin::v1::Permission_Debit& _internal_debit() const;
-  ::palm::casbin::v1::Permission_Debit* _internal_mutable_debit();
-
-  public:
-  // .palm.casbin.v1.Permission.Inquiry inquiry = 7;
-  bool has_inquiry() const;
-  private:
-  bool _internal_has_inquiry() const;
-
-  public:
-  void clear_inquiry() ;
-  const ::palm::casbin::v1::Permission_Inquiry& inquiry() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Inquiry* release_inquiry();
-  ::palm::casbin::v1::Permission_Inquiry* mutable_inquiry();
-  void set_allocated_inquiry(::palm::casbin::v1::Permission_Inquiry* value);
-  void unsafe_arena_set_allocated_inquiry(::palm::casbin::v1::Permission_Inquiry* value);
-  ::palm::casbin::v1::Permission_Inquiry* unsafe_arena_release_inquiry();
-
-  private:
-  const ::palm::casbin::v1::Permission_Inquiry& _internal_inquiry() const;
-  ::palm::casbin::v1::Permission_Inquiry* _internal_mutable_inquiry();
-
-  public:
-  // .palm.casbin.v1.Permission.Other other = 9;
-  bool has_other() const;
-  private:
-  bool _internal_has_other() const;
-
-  public:
-  void clear_other() ;
-  const ::palm::casbin::v1::Permission_Other& other() const;
-  PROTOBUF_NODISCARD ::palm::casbin::v1::Permission_Other* release_other();
-  ::palm::casbin::v1::Permission_Other* mutable_other();
-  void set_allocated_other(::palm::casbin::v1::Permission_Other* value);
-  void unsafe_arena_set_allocated_other(::palm::casbin::v1::Permission_Other* value);
-  ::palm::casbin::v1::Permission_Other* unsafe_arena_release_other();
-
-  private:
-  const ::palm::casbin::v1::Permission_Other& _internal_other() const;
-  ::palm::casbin::v1::Permission_Other* _internal_mutable_other();
-
-  public:
-  void clear_by();
-  ByCase by_case() const;
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Permission)
- private:
-  class _Internal;
-  void set_has_read();
-  void set_has_write();
-  void set_has_append();
-  void set_has_execute();
-  void set_has_credit();
-  void set_has_debit();
-  void set_has_inquiry();
-  void set_has_other();
-  inline bool has_by() const;
-  inline void clear_has_by();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 8, 8,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Permission& from_msg);
-    union ByUnion {
-      constexpr ByUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::palm::casbin::v1::Permission_Read* read_;
-      ::palm::casbin::v1::Permission_Write* write_;
-      ::palm::casbin::v1::Permission_Append* append_;
-      ::palm::casbin::v1::Permission_Execute* execute_;
-      ::palm::casbin::v1::Permission_Credit* credit_;
-      ::palm::casbin::v1::Permission_Debit* debit_;
-      ::palm::casbin::v1::Permission_Inquiry* inquiry_;
-      ::palm::casbin::v1::Permission_Other* other_;
-    } by_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_casbin_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Array2DReply final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.casbin.v1.Array2DReply) */ {
  public:
@@ -6490,7 +6111,7 @@ class Array2DReply final : public ::google::protobuf::Message
     return reinterpret_cast<const Array2DReply*>(
         &_Array2DReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 31;
+  static constexpr int kIndexInFileMessages = 32;
   friend void swap(Array2DReply& a, Array2DReply& b) { a.Swap(&b); }
   inline void Swap(Array2DReply* other) {
     if (other == this) return;
@@ -6627,6 +6248,624 @@ class Array2DReply final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_casbin_2eproto;
 };
+// -------------------------------------------------------------------
+
+class Action final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Action) */ {
+ public:
+  inline Action() : Action(nullptr) {}
+  ~Action() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Action* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Action));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Action(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Action(const Action& from) : Action(nullptr, from) {}
+  inline Action(Action&& from) noexcept
+      : Action(nullptr, std::move(from)) {}
+  inline Action& operator=(const Action& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Action& operator=(Action&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Action& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ByCase {
+    kRead = 1,
+    kWrite = 2,
+    kAppend = 3,
+    kExecute = 4,
+    kCredit = 5,
+    kDebit = 6,
+    kInquiry = 7,
+    kOther = 9,
+    BY_NOT_SET = 0,
+  };
+  static inline const Action* internal_default_instance() {
+    return reinterpret_cast<const Action*>(
+        &_Action_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(Action& a, Action& b) { a.Swap(&b); }
+  inline void Swap(Action* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Action* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Action* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Action>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Action& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Action& from) { Action::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Action* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Action"; }
+
+ protected:
+  explicit Action(::google::protobuf::Arena* arena);
+  Action(::google::protobuf::Arena* arena, const Action& from);
+  Action(::google::protobuf::Arena* arena, Action&& from) noexcept
+      : Action(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Read = Action_Read;
+  using Write = Action_Write;
+  using Append = Action_Append;
+  using Execute = Action_Execute;
+  using Credit = Action_Credit;
+  using Debit = Action_Debit;
+  using Inquiry = Action_Inquiry;
+  using Other = Action_Other;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kReadFieldNumber = 1,
+    kWriteFieldNumber = 2,
+    kAppendFieldNumber = 3,
+    kExecuteFieldNumber = 4,
+    kCreditFieldNumber = 5,
+    kDebitFieldNumber = 6,
+    kInquiryFieldNumber = 7,
+    kOtherFieldNumber = 9,
+  };
+  // .palm.casbin.v1.Action.Read read = 1;
+  bool has_read() const;
+  private:
+  bool _internal_has_read() const;
+
+  public:
+  void clear_read() ;
+  const ::palm::casbin::v1::Action_Read& read() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Read* release_read();
+  ::palm::casbin::v1::Action_Read* mutable_read();
+  void set_allocated_read(::palm::casbin::v1::Action_Read* value);
+  void unsafe_arena_set_allocated_read(::palm::casbin::v1::Action_Read* value);
+  ::palm::casbin::v1::Action_Read* unsafe_arena_release_read();
+
+  private:
+  const ::palm::casbin::v1::Action_Read& _internal_read() const;
+  ::palm::casbin::v1::Action_Read* _internal_mutable_read();
+
+  public:
+  // .palm.casbin.v1.Action.Write write = 2;
+  bool has_write() const;
+  private:
+  bool _internal_has_write() const;
+
+  public:
+  void clear_write() ;
+  const ::palm::casbin::v1::Action_Write& write() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Write* release_write();
+  ::palm::casbin::v1::Action_Write* mutable_write();
+  void set_allocated_write(::palm::casbin::v1::Action_Write* value);
+  void unsafe_arena_set_allocated_write(::palm::casbin::v1::Action_Write* value);
+  ::palm::casbin::v1::Action_Write* unsafe_arena_release_write();
+
+  private:
+  const ::palm::casbin::v1::Action_Write& _internal_write() const;
+  ::palm::casbin::v1::Action_Write* _internal_mutable_write();
+
+  public:
+  // .palm.casbin.v1.Action.Append append = 3;
+  bool has_append() const;
+  private:
+  bool _internal_has_append() const;
+
+  public:
+  void clear_append() ;
+  const ::palm::casbin::v1::Action_Append& append() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Append* release_append();
+  ::palm::casbin::v1::Action_Append* mutable_append();
+  void set_allocated_append(::palm::casbin::v1::Action_Append* value);
+  void unsafe_arena_set_allocated_append(::palm::casbin::v1::Action_Append* value);
+  ::palm::casbin::v1::Action_Append* unsafe_arena_release_append();
+
+  private:
+  const ::palm::casbin::v1::Action_Append& _internal_append() const;
+  ::palm::casbin::v1::Action_Append* _internal_mutable_append();
+
+  public:
+  // .palm.casbin.v1.Action.Execute execute = 4;
+  bool has_execute() const;
+  private:
+  bool _internal_has_execute() const;
+
+  public:
+  void clear_execute() ;
+  const ::palm::casbin::v1::Action_Execute& execute() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Execute* release_execute();
+  ::palm::casbin::v1::Action_Execute* mutable_execute();
+  void set_allocated_execute(::palm::casbin::v1::Action_Execute* value);
+  void unsafe_arena_set_allocated_execute(::palm::casbin::v1::Action_Execute* value);
+  ::palm::casbin::v1::Action_Execute* unsafe_arena_release_execute();
+
+  private:
+  const ::palm::casbin::v1::Action_Execute& _internal_execute() const;
+  ::palm::casbin::v1::Action_Execute* _internal_mutable_execute();
+
+  public:
+  // .palm.casbin.v1.Action.Credit credit = 5;
+  bool has_credit() const;
+  private:
+  bool _internal_has_credit() const;
+
+  public:
+  void clear_credit() ;
+  const ::palm::casbin::v1::Action_Credit& credit() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Credit* release_credit();
+  ::palm::casbin::v1::Action_Credit* mutable_credit();
+  void set_allocated_credit(::palm::casbin::v1::Action_Credit* value);
+  void unsafe_arena_set_allocated_credit(::palm::casbin::v1::Action_Credit* value);
+  ::palm::casbin::v1::Action_Credit* unsafe_arena_release_credit();
+
+  private:
+  const ::palm::casbin::v1::Action_Credit& _internal_credit() const;
+  ::palm::casbin::v1::Action_Credit* _internal_mutable_credit();
+
+  public:
+  // .palm.casbin.v1.Action.Debit debit = 6;
+  bool has_debit() const;
+  private:
+  bool _internal_has_debit() const;
+
+  public:
+  void clear_debit() ;
+  const ::palm::casbin::v1::Action_Debit& debit() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Debit* release_debit();
+  ::palm::casbin::v1::Action_Debit* mutable_debit();
+  void set_allocated_debit(::palm::casbin::v1::Action_Debit* value);
+  void unsafe_arena_set_allocated_debit(::palm::casbin::v1::Action_Debit* value);
+  ::palm::casbin::v1::Action_Debit* unsafe_arena_release_debit();
+
+  private:
+  const ::palm::casbin::v1::Action_Debit& _internal_debit() const;
+  ::palm::casbin::v1::Action_Debit* _internal_mutable_debit();
+
+  public:
+  // .palm.casbin.v1.Action.Inquiry inquiry = 7;
+  bool has_inquiry() const;
+  private:
+  bool _internal_has_inquiry() const;
+
+  public:
+  void clear_inquiry() ;
+  const ::palm::casbin::v1::Action_Inquiry& inquiry() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Inquiry* release_inquiry();
+  ::palm::casbin::v1::Action_Inquiry* mutable_inquiry();
+  void set_allocated_inquiry(::palm::casbin::v1::Action_Inquiry* value);
+  void unsafe_arena_set_allocated_inquiry(::palm::casbin::v1::Action_Inquiry* value);
+  ::palm::casbin::v1::Action_Inquiry* unsafe_arena_release_inquiry();
+
+  private:
+  const ::palm::casbin::v1::Action_Inquiry& _internal_inquiry() const;
+  ::palm::casbin::v1::Action_Inquiry* _internal_mutable_inquiry();
+
+  public:
+  // .palm.casbin.v1.Action.Other other = 9;
+  bool has_other() const;
+  private:
+  bool _internal_has_other() const;
+
+  public:
+  void clear_other() ;
+  const ::palm::casbin::v1::Action_Other& other() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action_Other* release_other();
+  ::palm::casbin::v1::Action_Other* mutable_other();
+  void set_allocated_other(::palm::casbin::v1::Action_Other* value);
+  void unsafe_arena_set_allocated_other(::palm::casbin::v1::Action_Other* value);
+  ::palm::casbin::v1::Action_Other* unsafe_arena_release_other();
+
+  private:
+  const ::palm::casbin::v1::Action_Other& _internal_other() const;
+  ::palm::casbin::v1::Action_Other* _internal_mutable_other();
+
+  public:
+  void clear_by();
+  ByCase by_case() const;
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Action)
+ private:
+  class _Internal;
+  void set_has_read();
+  void set_has_write();
+  void set_has_append();
+  void set_has_execute();
+  void set_has_credit();
+  void set_has_debit();
+  void set_has_inquiry();
+  void set_has_other();
+  inline bool has_by() const;
+  inline void clear_has_by();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 8, 8,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Action& from_msg);
+    union ByUnion {
+      constexpr ByUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::palm::casbin::v1::Action_Read* read_;
+      ::palm::casbin::v1::Action_Write* write_;
+      ::palm::casbin::v1::Action_Append* append_;
+      ::palm::casbin::v1::Action_Execute* execute_;
+      ::palm::casbin::v1::Action_Credit* credit_;
+      ::palm::casbin::v1::Action_Debit* debit_;
+      ::palm::casbin::v1::Action_Inquiry* inquiry_;
+      ::palm::casbin::v1::Action_Other* other_;
+    } by_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Subject final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.Subject) */ {
+ public:
+  inline Subject() : Subject(nullptr) {}
+  ~Subject() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Subject* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Subject));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Subject(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Subject(const Subject& from) : Subject(nullptr, from) {}
+  inline Subject(Subject&& from) noexcept
+      : Subject(nullptr, std::move(from)) {}
+  inline Subject& operator=(const Subject& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Subject& operator=(Subject&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Subject& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ByCase {
+    kUser = 1,
+    kRole = 2,
+    BY_NOT_SET = 0,
+  };
+  static inline const Subject* internal_default_instance() {
+    return reinterpret_cast<const Subject*>(
+        &_Subject_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Subject& a, Subject& b) { a.Swap(&b); }
+  inline void Swap(Subject* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Subject* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Subject* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Subject>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Subject& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Subject& from) { Subject::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Subject* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.Subject"; }
+
+ protected:
+  explicit Subject(::google::protobuf::Arena* arena);
+  Subject(::google::protobuf::Arena* arena, const Subject& from);
+  Subject(::google::protobuf::Arena* arena, Subject&& from) noexcept
+      : Subject(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUserFieldNumber = 1,
+    kRoleFieldNumber = 2,
+  };
+  // .palm.casbin.v1.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+
+  public:
+  void clear_user() ;
+  const ::palm::casbin::v1::User& user() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::User* release_user();
+  ::palm::casbin::v1::User* mutable_user();
+  void set_allocated_user(::palm::casbin::v1::User* value);
+  void unsafe_arena_set_allocated_user(::palm::casbin::v1::User* value);
+  ::palm::casbin::v1::User* unsafe_arena_release_user();
+
+  private:
+  const ::palm::casbin::v1::User& _internal_user() const;
+  ::palm::casbin::v1::User* _internal_mutable_user();
+
+  public:
+  // .palm.casbin.v1.Role role = 2;
+  bool has_role() const;
+  private:
+  bool _internal_has_role() const;
+
+  public:
+  void clear_role() ;
+  const ::palm::casbin::v1::Role& role() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Role* release_role();
+  ::palm::casbin::v1::Role* mutable_role();
+  void set_allocated_role(::palm::casbin::v1::Role* value);
+  void unsafe_arena_set_allocated_role(::palm::casbin::v1::Role* value);
+  ::palm::casbin::v1::Role* unsafe_arena_release_role();
+
+  private:
+  const ::palm::casbin::v1::Role& _internal_role() const;
+  ::palm::casbin::v1::Role* _internal_mutable_role();
+
+  public:
+  void clear_by();
+  ByCase by_case() const;
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.Subject)
+ private:
+  class _Internal;
+  void set_has_user();
+  void set_has_role();
+  inline bool has_by() const;
+  inline void clear_has_by();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Subject& from_msg);
+    union ByUnion {
+      constexpr ByUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::palm::casbin::v1::User* user_;
+      ::palm::casbin::v1::Role* role_;
+    } by_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_casbin_2eproto;
+};
 
 // ===================================================================
 
@@ -6640,6 +6879,177 @@ class Array2DReply final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// Subject
+
+// .palm.casbin.v1.User user = 1;
+inline bool Subject::has_user() const {
+  return by_case() == kUser;
+}
+inline bool Subject::_internal_has_user() const {
+  return by_case() == kUser;
+}
+inline void Subject::set_has_user() {
+  _impl_._oneof_case_[0] = kUser;
+}
+inline void Subject::clear_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kUser) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.user_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.user_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::casbin::v1::User* Subject::release_user() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Subject.user)
+  if (by_case() == kUser) {
+    clear_has_by();
+    auto* temp = _impl_.by_.user_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.user_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::casbin::v1::User& Subject::_internal_user() const {
+  return by_case() == kUser ? *_impl_.by_.user_ : reinterpret_cast<::palm::casbin::v1::User&>(::palm::casbin::v1::_User_default_instance_);
+}
+inline const ::palm::casbin::v1::User& Subject::user() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Subject.user)
+  return _internal_user();
+}
+inline ::palm::casbin::v1::User* Subject::unsafe_arena_release_user() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Subject.user)
+  if (by_case() == kUser) {
+    clear_has_by();
+    auto* temp = _impl_.by_.user_;
+    _impl_.by_.user_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Subject::unsafe_arena_set_allocated_user(::palm::casbin::v1::User* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_user();
+    _impl_.by_.user_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Subject.user)
+}
+inline ::palm::casbin::v1::User* Subject::_internal_mutable_user() {
+  if (by_case() != kUser) {
+    clear_by();
+    set_has_user();
+    _impl_.by_.user_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::User>(GetArena());
+  }
+  return _impl_.by_.user_;
+}
+inline ::palm::casbin::v1::User* Subject::mutable_user() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::User* _msg = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Subject.user)
+  return _msg;
+}
+
+// .palm.casbin.v1.Role role = 2;
+inline bool Subject::has_role() const {
+  return by_case() == kRole;
+}
+inline bool Subject::_internal_has_role() const {
+  return by_case() == kRole;
+}
+inline void Subject::set_has_role() {
+  _impl_._oneof_case_[0] = kRole;
+}
+inline void Subject::clear_role() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kRole) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.role_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.role_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::casbin::v1::Role* Subject::release_role() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Subject.role)
+  if (by_case() == kRole) {
+    clear_has_by();
+    auto* temp = _impl_.by_.role_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.role_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::casbin::v1::Role& Subject::_internal_role() const {
+  return by_case() == kRole ? *_impl_.by_.role_ : reinterpret_cast<::palm::casbin::v1::Role&>(::palm::casbin::v1::_Role_default_instance_);
+}
+inline const ::palm::casbin::v1::Role& Subject::role() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Subject.role)
+  return _internal_role();
+}
+inline ::palm::casbin::v1::Role* Subject::unsafe_arena_release_role() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Subject.role)
+  if (by_case() == kRole) {
+    clear_has_by();
+    auto* temp = _impl_.by_.role_;
+    _impl_.by_.role_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Subject::unsafe_arena_set_allocated_role(::palm::casbin::v1::Role* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_role();
+    _impl_.by_.role_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Subject.role)
+}
+inline ::palm::casbin::v1::Role* Subject::_internal_mutable_role() {
+  if (by_case() != kRole) {
+    clear_by();
+    set_has_role();
+    _impl_.by_.role_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Role>(GetArena());
+  }
+  return _impl_.by_.role_;
+}
+inline ::palm::casbin::v1::Role* Subject::mutable_role() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Role* _msg = _internal_mutable_role();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Subject.role)
+  return _msg;
+}
+
+inline bool Subject::has_by() const {
+  return by_case() != BY_NOT_SET;
+}
+inline void Subject::clear_has_by() {
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+inline Subject::ByCase Subject::by_case() const {
+  return Subject::ByCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // User
@@ -7083,83 +7493,83 @@ inline Role::ByCase Role::by_case() const {
 }
 // -------------------------------------------------------------------
 
-// Resource
+// Object
 
 // string type = 1;
-inline void Resource::clear_type() {
+inline void Object::clear_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_.ClearToEmpty();
 }
-inline const std::string& Resource::type() const
+inline const std::string& Object::type() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Resource.type)
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Object.type)
   return _internal_type();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Resource::set_type(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Object::set_type(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.casbin.v1.Resource.type)
+  // @@protoc_insertion_point(field_set:palm.casbin.v1.Object.type)
 }
-inline std::string* Resource::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* Object::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_type();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Resource.type)
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Object.type)
   return _s;
 }
-inline const std::string& Resource::_internal_type() const {
+inline const std::string& Object::_internal_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.type_.Get();
 }
-inline void Resource::_internal_set_type(const std::string& value) {
+inline void Object::_internal_set_type(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_.Set(value, GetArena());
 }
-inline std::string* Resource::_internal_mutable_type() {
+inline std::string* Object::_internal_mutable_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.type_.Mutable( GetArena());
 }
-inline std::string* Resource::release_type() {
+inline std::string* Object::release_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Resource.type)
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Object.type)
   return _impl_.type_.Release();
 }
-inline void Resource::set_allocated_type(std::string* value) {
+inline void Object::set_allocated_type(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.type_.IsDefault()) {
     _impl_.type_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Resource.type)
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Object.type)
 }
 
 // uint32 id = 11;
-inline bool Resource::has_id() const {
+inline bool Object::has_id() const {
   return by_case() == kId;
 }
-inline void Resource::set_has_id() {
+inline void Object::set_has_id() {
   _impl_._oneof_case_[0] = kId;
 }
-inline void Resource::clear_id() {
+inline void Object::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kId) {
     _impl_.by_.id_ = 0u;
     clear_has_by();
   }
 }
-inline ::uint32_t Resource::id() const {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Resource.id)
+inline ::uint32_t Object::id() const {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Object.id)
   return _internal_id();
 }
-inline void Resource::set_id(::uint32_t value) {
+inline void Object::set_id(::uint32_t value) {
   if (by_case() != kId) {
     clear_by();
     set_has_id();
   }
   _impl_.by_.id_ = value;
-  // @@protoc_insertion_point(field_set:palm.casbin.v1.Resource.id)
+  // @@protoc_insertion_point(field_set:palm.casbin.v1.Object.id)
 }
-inline ::uint32_t Resource::_internal_id() const {
+inline ::uint32_t Object::_internal_id() const {
   if (by_case() == kId) {
     return _impl_.by_.id_;
   }
@@ -7167,26 +7577,26 @@ inline ::uint32_t Resource::_internal_id() const {
 }
 
 // string code = 21;
-inline bool Resource::has_code() const {
+inline bool Object::has_code() const {
   return by_case() == kCode;
 }
-inline void Resource::set_has_code() {
+inline void Object::set_has_code() {
   _impl_._oneof_case_[0] = kCode;
 }
-inline void Resource::clear_code() {
+inline void Object::clear_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kCode) {
     _impl_.by_.code_.Destroy();
     clear_has_by();
   }
 }
-inline const std::string& Resource::code() const
+inline const std::string& Object::code() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Resource.code)
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Object.code)
   return _internal_code();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Resource::set_code(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Object::set_code(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() != kCode) {
@@ -7196,21 +7606,21 @@ inline PROTOBUF_ALWAYS_INLINE void Resource::set_code(Arg_&& arg,
     _impl_.by_.code_.InitDefault();
   }
   _impl_.by_.code_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.casbin.v1.Resource.code)
+  // @@protoc_insertion_point(field_set:palm.casbin.v1.Object.code)
 }
-inline std::string* Resource::mutable_code() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* Object::mutable_code() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_code();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Resource.code)
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Object.code)
   return _s;
 }
-inline const std::string& Resource::_internal_code() const {
+inline const std::string& Object::_internal_code() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   if (by_case() != kCode) {
     return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
   }
   return _impl_.by_.code_.Get();
 }
-inline void Resource::_internal_set_code(const std::string& value) {
+inline void Object::_internal_set_code(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() != kCode) {
     clear_by();
@@ -7220,7 +7630,7 @@ inline void Resource::_internal_set_code(const std::string& value) {
   }
   _impl_.by_.code_.Set(value, GetArena());
 }
-inline std::string* Resource::_internal_mutable_code() {
+inline std::string* Object::_internal_mutable_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() != kCode) {
     clear_by();
@@ -7230,16 +7640,16 @@ inline std::string* Resource::_internal_mutable_code() {
   }
   return _impl_.by_.code_.Mutable( GetArena());
 }
-inline std::string* Resource::release_code() {
+inline std::string* Object::release_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Resource.code)
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Object.code)
   if (by_case() != kCode) {
     return nullptr;
   }
   clear_has_by();
   return _impl_.by_.code_.Release();
 }
-inline void Resource::set_allocated_code(std::string* value) {
+inline void Object::set_allocated_code(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (has_by()) {
     clear_by();
@@ -7248,113 +7658,113 @@ inline void Resource::set_allocated_code(std::string* value) {
     set_has_code();
     _impl_.by_.code_.InitAllocated(value, GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Resource.code)
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Object.code)
 }
 
-inline bool Resource::has_by() const {
+inline bool Object::has_by() const {
   return by_case() != BY_NOT_SET;
 }
-inline void Resource::clear_has_by() {
+inline void Object::clear_has_by() {
   _impl_._oneof_case_[0] = BY_NOT_SET;
 }
-inline Resource::ByCase Resource::by_case() const {
-  return Resource::ByCase(_impl_._oneof_case_[0]);
+inline Object::ByCase Object::by_case() const {
+  return Object::ByCase(_impl_._oneof_case_[0]);
 }
 // -------------------------------------------------------------------
 
-// Permission_Read
+// Action_Read
 
 // -------------------------------------------------------------------
 
-// Permission_Write
+// Action_Write
 
 // -------------------------------------------------------------------
 
-// Permission_Append
+// Action_Append
 
 // -------------------------------------------------------------------
 
-// Permission_Execute
+// Action_Execute
 
 // -------------------------------------------------------------------
 
-// Permission_Credit
+// Action_Credit
 
 // -------------------------------------------------------------------
 
-// Permission_Debit
+// Action_Debit
 
 // -------------------------------------------------------------------
 
-// Permission_Inquiry
+// Action_Inquiry
 
 // -------------------------------------------------------------------
 
-// Permission_Other
+// Action_Other
 
 // string code = 1;
-inline void Permission_Other::clear_code() {
+inline void Action_Other::clear_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.code_.ClearToEmpty();
 }
-inline const std::string& Permission_Other::code() const
+inline const std::string& Action_Other::code() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.Other.code)
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.Other.code)
   return _internal_code();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Permission_Other::set_code(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Action_Other::set_code(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.code_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.casbin.v1.Permission.Other.code)
+  // @@protoc_insertion_point(field_set:palm.casbin.v1.Action.Other.code)
 }
-inline std::string* Permission_Other::mutable_code() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* Action_Other::mutable_code() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_code();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.Other.code)
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.Other.code)
   return _s;
 }
-inline const std::string& Permission_Other::_internal_code() const {
+inline const std::string& Action_Other::_internal_code() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.code_.Get();
 }
-inline void Permission_Other::_internal_set_code(const std::string& value) {
+inline void Action_Other::_internal_set_code(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.code_.Set(value, GetArena());
 }
-inline std::string* Permission_Other::_internal_mutable_code() {
+inline std::string* Action_Other::_internal_mutable_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.code_.Mutable( GetArena());
 }
-inline std::string* Permission_Other::release_code() {
+inline std::string* Action_Other::release_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.Other.code)
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.Other.code)
   return _impl_.code_.Release();
 }
-inline void Permission_Other::set_allocated_code(std::string* value) {
+inline void Action_Other::set_allocated_code(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.code_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.code_.IsDefault()) {
     _impl_.code_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Permission.Other.code)
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.Action.Other.code)
 }
 
 // -------------------------------------------------------------------
 
-// Permission
+// Action
 
-// .palm.casbin.v1.Permission.Read read = 1;
-inline bool Permission::has_read() const {
+// .palm.casbin.v1.Action.Read read = 1;
+inline bool Action::has_read() const {
   return by_case() == kRead;
 }
-inline bool Permission::_internal_has_read() const {
+inline bool Action::_internal_has_read() const {
   return by_case() == kRead;
 }
-inline void Permission::set_has_read() {
+inline void Action::set_has_read() {
   _impl_._oneof_case_[0] = kRead;
 }
-inline void Permission::clear_read() {
+inline void Action::clear_read() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kRead) {
     if (GetArena() == nullptr) {
@@ -7365,8 +7775,8 @@ inline void Permission::clear_read() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Read* Permission::release_read() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.read)
+inline ::palm::casbin::v1::Action_Read* Action::release_read() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.read)
   if (by_case() == kRead) {
     clear_has_by();
     auto* temp = _impl_.by_.read_;
@@ -7379,15 +7789,15 @@ inline ::palm::casbin::v1::Permission_Read* Permission::release_read() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Read& Permission::_internal_read() const {
-  return by_case() == kRead ? *_impl_.by_.read_ : reinterpret_cast<::palm::casbin::v1::Permission_Read&>(::palm::casbin::v1::_Permission_Read_default_instance_);
+inline const ::palm::casbin::v1::Action_Read& Action::_internal_read() const {
+  return by_case() == kRead ? *_impl_.by_.read_ : reinterpret_cast<::palm::casbin::v1::Action_Read&>(::palm::casbin::v1::_Action_Read_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Read& Permission::read() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.read)
+inline const ::palm::casbin::v1::Action_Read& Action::read() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.read)
   return _internal_read();
 }
-inline ::palm::casbin::v1::Permission_Read* Permission::unsafe_arena_release_read() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.read)
+inline ::palm::casbin::v1::Action_Read* Action::unsafe_arena_release_read() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.read)
   if (by_case() == kRead) {
     clear_has_by();
     auto* temp = _impl_.by_.read_;
@@ -7397,7 +7807,7 @@ inline ::palm::casbin::v1::Permission_Read* Permission::unsafe_arena_release_rea
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_read(::palm::casbin::v1::Permission_Read* value) {
+inline void Action::unsafe_arena_set_allocated_read(::palm::casbin::v1::Action_Read* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7406,34 +7816,34 @@ inline void Permission::unsafe_arena_set_allocated_read(::palm::casbin::v1::Perm
     set_has_read();
     _impl_.by_.read_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.read)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.read)
 }
-inline ::palm::casbin::v1::Permission_Read* Permission::_internal_mutable_read() {
+inline ::palm::casbin::v1::Action_Read* Action::_internal_mutable_read() {
   if (by_case() != kRead) {
     clear_by();
     set_has_read();
     _impl_.by_.read_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Read>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Read>(GetArena());
   }
   return _impl_.by_.read_;
 }
-inline ::palm::casbin::v1::Permission_Read* Permission::mutable_read() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Read* _msg = _internal_mutable_read();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.read)
+inline ::palm::casbin::v1::Action_Read* Action::mutable_read() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Read* _msg = _internal_mutable_read();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.read)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Write write = 2;
-inline bool Permission::has_write() const {
+// .palm.casbin.v1.Action.Write write = 2;
+inline bool Action::has_write() const {
   return by_case() == kWrite;
 }
-inline bool Permission::_internal_has_write() const {
+inline bool Action::_internal_has_write() const {
   return by_case() == kWrite;
 }
-inline void Permission::set_has_write() {
+inline void Action::set_has_write() {
   _impl_._oneof_case_[0] = kWrite;
 }
-inline void Permission::clear_write() {
+inline void Action::clear_write() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kWrite) {
     if (GetArena() == nullptr) {
@@ -7444,8 +7854,8 @@ inline void Permission::clear_write() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Write* Permission::release_write() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.write)
+inline ::palm::casbin::v1::Action_Write* Action::release_write() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.write)
   if (by_case() == kWrite) {
     clear_has_by();
     auto* temp = _impl_.by_.write_;
@@ -7458,15 +7868,15 @@ inline ::palm::casbin::v1::Permission_Write* Permission::release_write() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Write& Permission::_internal_write() const {
-  return by_case() == kWrite ? *_impl_.by_.write_ : reinterpret_cast<::palm::casbin::v1::Permission_Write&>(::palm::casbin::v1::_Permission_Write_default_instance_);
+inline const ::palm::casbin::v1::Action_Write& Action::_internal_write() const {
+  return by_case() == kWrite ? *_impl_.by_.write_ : reinterpret_cast<::palm::casbin::v1::Action_Write&>(::palm::casbin::v1::_Action_Write_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Write& Permission::write() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.write)
+inline const ::palm::casbin::v1::Action_Write& Action::write() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.write)
   return _internal_write();
 }
-inline ::palm::casbin::v1::Permission_Write* Permission::unsafe_arena_release_write() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.write)
+inline ::palm::casbin::v1::Action_Write* Action::unsafe_arena_release_write() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.write)
   if (by_case() == kWrite) {
     clear_has_by();
     auto* temp = _impl_.by_.write_;
@@ -7476,7 +7886,7 @@ inline ::palm::casbin::v1::Permission_Write* Permission::unsafe_arena_release_wr
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_write(::palm::casbin::v1::Permission_Write* value) {
+inline void Action::unsafe_arena_set_allocated_write(::palm::casbin::v1::Action_Write* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7485,34 +7895,34 @@ inline void Permission::unsafe_arena_set_allocated_write(::palm::casbin::v1::Per
     set_has_write();
     _impl_.by_.write_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.write)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.write)
 }
-inline ::palm::casbin::v1::Permission_Write* Permission::_internal_mutable_write() {
+inline ::palm::casbin::v1::Action_Write* Action::_internal_mutable_write() {
   if (by_case() != kWrite) {
     clear_by();
     set_has_write();
     _impl_.by_.write_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Write>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Write>(GetArena());
   }
   return _impl_.by_.write_;
 }
-inline ::palm::casbin::v1::Permission_Write* Permission::mutable_write() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Write* _msg = _internal_mutable_write();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.write)
+inline ::palm::casbin::v1::Action_Write* Action::mutable_write() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Write* _msg = _internal_mutable_write();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.write)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Append append = 3;
-inline bool Permission::has_append() const {
+// .palm.casbin.v1.Action.Append append = 3;
+inline bool Action::has_append() const {
   return by_case() == kAppend;
 }
-inline bool Permission::_internal_has_append() const {
+inline bool Action::_internal_has_append() const {
   return by_case() == kAppend;
 }
-inline void Permission::set_has_append() {
+inline void Action::set_has_append() {
   _impl_._oneof_case_[0] = kAppend;
 }
-inline void Permission::clear_append() {
+inline void Action::clear_append() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kAppend) {
     if (GetArena() == nullptr) {
@@ -7523,8 +7933,8 @@ inline void Permission::clear_append() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Append* Permission::release_append() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.append)
+inline ::palm::casbin::v1::Action_Append* Action::release_append() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.append)
   if (by_case() == kAppend) {
     clear_has_by();
     auto* temp = _impl_.by_.append_;
@@ -7537,15 +7947,15 @@ inline ::palm::casbin::v1::Permission_Append* Permission::release_append() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Append& Permission::_internal_append() const {
-  return by_case() == kAppend ? *_impl_.by_.append_ : reinterpret_cast<::palm::casbin::v1::Permission_Append&>(::palm::casbin::v1::_Permission_Append_default_instance_);
+inline const ::palm::casbin::v1::Action_Append& Action::_internal_append() const {
+  return by_case() == kAppend ? *_impl_.by_.append_ : reinterpret_cast<::palm::casbin::v1::Action_Append&>(::palm::casbin::v1::_Action_Append_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Append& Permission::append() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.append)
+inline const ::palm::casbin::v1::Action_Append& Action::append() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.append)
   return _internal_append();
 }
-inline ::palm::casbin::v1::Permission_Append* Permission::unsafe_arena_release_append() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.append)
+inline ::palm::casbin::v1::Action_Append* Action::unsafe_arena_release_append() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.append)
   if (by_case() == kAppend) {
     clear_has_by();
     auto* temp = _impl_.by_.append_;
@@ -7555,7 +7965,7 @@ inline ::palm::casbin::v1::Permission_Append* Permission::unsafe_arena_release_a
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_append(::palm::casbin::v1::Permission_Append* value) {
+inline void Action::unsafe_arena_set_allocated_append(::palm::casbin::v1::Action_Append* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7564,34 +7974,34 @@ inline void Permission::unsafe_arena_set_allocated_append(::palm::casbin::v1::Pe
     set_has_append();
     _impl_.by_.append_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.append)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.append)
 }
-inline ::palm::casbin::v1::Permission_Append* Permission::_internal_mutable_append() {
+inline ::palm::casbin::v1::Action_Append* Action::_internal_mutable_append() {
   if (by_case() != kAppend) {
     clear_by();
     set_has_append();
     _impl_.by_.append_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Append>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Append>(GetArena());
   }
   return _impl_.by_.append_;
 }
-inline ::palm::casbin::v1::Permission_Append* Permission::mutable_append() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Append* _msg = _internal_mutable_append();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.append)
+inline ::palm::casbin::v1::Action_Append* Action::mutable_append() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Append* _msg = _internal_mutable_append();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.append)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Execute execute = 4;
-inline bool Permission::has_execute() const {
+// .palm.casbin.v1.Action.Execute execute = 4;
+inline bool Action::has_execute() const {
   return by_case() == kExecute;
 }
-inline bool Permission::_internal_has_execute() const {
+inline bool Action::_internal_has_execute() const {
   return by_case() == kExecute;
 }
-inline void Permission::set_has_execute() {
+inline void Action::set_has_execute() {
   _impl_._oneof_case_[0] = kExecute;
 }
-inline void Permission::clear_execute() {
+inline void Action::clear_execute() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kExecute) {
     if (GetArena() == nullptr) {
@@ -7602,8 +8012,8 @@ inline void Permission::clear_execute() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Execute* Permission::release_execute() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.execute)
+inline ::palm::casbin::v1::Action_Execute* Action::release_execute() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.execute)
   if (by_case() == kExecute) {
     clear_has_by();
     auto* temp = _impl_.by_.execute_;
@@ -7616,15 +8026,15 @@ inline ::palm::casbin::v1::Permission_Execute* Permission::release_execute() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Execute& Permission::_internal_execute() const {
-  return by_case() == kExecute ? *_impl_.by_.execute_ : reinterpret_cast<::palm::casbin::v1::Permission_Execute&>(::palm::casbin::v1::_Permission_Execute_default_instance_);
+inline const ::palm::casbin::v1::Action_Execute& Action::_internal_execute() const {
+  return by_case() == kExecute ? *_impl_.by_.execute_ : reinterpret_cast<::palm::casbin::v1::Action_Execute&>(::palm::casbin::v1::_Action_Execute_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Execute& Permission::execute() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.execute)
+inline const ::palm::casbin::v1::Action_Execute& Action::execute() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.execute)
   return _internal_execute();
 }
-inline ::palm::casbin::v1::Permission_Execute* Permission::unsafe_arena_release_execute() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.execute)
+inline ::palm::casbin::v1::Action_Execute* Action::unsafe_arena_release_execute() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.execute)
   if (by_case() == kExecute) {
     clear_has_by();
     auto* temp = _impl_.by_.execute_;
@@ -7634,7 +8044,7 @@ inline ::palm::casbin::v1::Permission_Execute* Permission::unsafe_arena_release_
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_execute(::palm::casbin::v1::Permission_Execute* value) {
+inline void Action::unsafe_arena_set_allocated_execute(::palm::casbin::v1::Action_Execute* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7643,34 +8053,34 @@ inline void Permission::unsafe_arena_set_allocated_execute(::palm::casbin::v1::P
     set_has_execute();
     _impl_.by_.execute_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.execute)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.execute)
 }
-inline ::palm::casbin::v1::Permission_Execute* Permission::_internal_mutable_execute() {
+inline ::palm::casbin::v1::Action_Execute* Action::_internal_mutable_execute() {
   if (by_case() != kExecute) {
     clear_by();
     set_has_execute();
     _impl_.by_.execute_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Execute>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Execute>(GetArena());
   }
   return _impl_.by_.execute_;
 }
-inline ::palm::casbin::v1::Permission_Execute* Permission::mutable_execute() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Execute* _msg = _internal_mutable_execute();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.execute)
+inline ::palm::casbin::v1::Action_Execute* Action::mutable_execute() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Execute* _msg = _internal_mutable_execute();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.execute)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Credit credit = 5;
-inline bool Permission::has_credit() const {
+// .palm.casbin.v1.Action.Credit credit = 5;
+inline bool Action::has_credit() const {
   return by_case() == kCredit;
 }
-inline bool Permission::_internal_has_credit() const {
+inline bool Action::_internal_has_credit() const {
   return by_case() == kCredit;
 }
-inline void Permission::set_has_credit() {
+inline void Action::set_has_credit() {
   _impl_._oneof_case_[0] = kCredit;
 }
-inline void Permission::clear_credit() {
+inline void Action::clear_credit() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kCredit) {
     if (GetArena() == nullptr) {
@@ -7681,8 +8091,8 @@ inline void Permission::clear_credit() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Credit* Permission::release_credit() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.credit)
+inline ::palm::casbin::v1::Action_Credit* Action::release_credit() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.credit)
   if (by_case() == kCredit) {
     clear_has_by();
     auto* temp = _impl_.by_.credit_;
@@ -7695,15 +8105,15 @@ inline ::palm::casbin::v1::Permission_Credit* Permission::release_credit() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Credit& Permission::_internal_credit() const {
-  return by_case() == kCredit ? *_impl_.by_.credit_ : reinterpret_cast<::palm::casbin::v1::Permission_Credit&>(::palm::casbin::v1::_Permission_Credit_default_instance_);
+inline const ::palm::casbin::v1::Action_Credit& Action::_internal_credit() const {
+  return by_case() == kCredit ? *_impl_.by_.credit_ : reinterpret_cast<::palm::casbin::v1::Action_Credit&>(::palm::casbin::v1::_Action_Credit_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Credit& Permission::credit() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.credit)
+inline const ::palm::casbin::v1::Action_Credit& Action::credit() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.credit)
   return _internal_credit();
 }
-inline ::palm::casbin::v1::Permission_Credit* Permission::unsafe_arena_release_credit() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.credit)
+inline ::palm::casbin::v1::Action_Credit* Action::unsafe_arena_release_credit() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.credit)
   if (by_case() == kCredit) {
     clear_has_by();
     auto* temp = _impl_.by_.credit_;
@@ -7713,7 +8123,7 @@ inline ::palm::casbin::v1::Permission_Credit* Permission::unsafe_arena_release_c
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_credit(::palm::casbin::v1::Permission_Credit* value) {
+inline void Action::unsafe_arena_set_allocated_credit(::palm::casbin::v1::Action_Credit* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7722,34 +8132,34 @@ inline void Permission::unsafe_arena_set_allocated_credit(::palm::casbin::v1::Pe
     set_has_credit();
     _impl_.by_.credit_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.credit)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.credit)
 }
-inline ::palm::casbin::v1::Permission_Credit* Permission::_internal_mutable_credit() {
+inline ::palm::casbin::v1::Action_Credit* Action::_internal_mutable_credit() {
   if (by_case() != kCredit) {
     clear_by();
     set_has_credit();
     _impl_.by_.credit_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Credit>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Credit>(GetArena());
   }
   return _impl_.by_.credit_;
 }
-inline ::palm::casbin::v1::Permission_Credit* Permission::mutable_credit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Credit* _msg = _internal_mutable_credit();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.credit)
+inline ::palm::casbin::v1::Action_Credit* Action::mutable_credit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Credit* _msg = _internal_mutable_credit();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.credit)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Debit debit = 6;
-inline bool Permission::has_debit() const {
+// .palm.casbin.v1.Action.Debit debit = 6;
+inline bool Action::has_debit() const {
   return by_case() == kDebit;
 }
-inline bool Permission::_internal_has_debit() const {
+inline bool Action::_internal_has_debit() const {
   return by_case() == kDebit;
 }
-inline void Permission::set_has_debit() {
+inline void Action::set_has_debit() {
   _impl_._oneof_case_[0] = kDebit;
 }
-inline void Permission::clear_debit() {
+inline void Action::clear_debit() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kDebit) {
     if (GetArena() == nullptr) {
@@ -7760,8 +8170,8 @@ inline void Permission::clear_debit() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Debit* Permission::release_debit() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.debit)
+inline ::palm::casbin::v1::Action_Debit* Action::release_debit() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.debit)
   if (by_case() == kDebit) {
     clear_has_by();
     auto* temp = _impl_.by_.debit_;
@@ -7774,15 +8184,15 @@ inline ::palm::casbin::v1::Permission_Debit* Permission::release_debit() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Debit& Permission::_internal_debit() const {
-  return by_case() == kDebit ? *_impl_.by_.debit_ : reinterpret_cast<::palm::casbin::v1::Permission_Debit&>(::palm::casbin::v1::_Permission_Debit_default_instance_);
+inline const ::palm::casbin::v1::Action_Debit& Action::_internal_debit() const {
+  return by_case() == kDebit ? *_impl_.by_.debit_ : reinterpret_cast<::palm::casbin::v1::Action_Debit&>(::palm::casbin::v1::_Action_Debit_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Debit& Permission::debit() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.debit)
+inline const ::palm::casbin::v1::Action_Debit& Action::debit() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.debit)
   return _internal_debit();
 }
-inline ::palm::casbin::v1::Permission_Debit* Permission::unsafe_arena_release_debit() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.debit)
+inline ::palm::casbin::v1::Action_Debit* Action::unsafe_arena_release_debit() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.debit)
   if (by_case() == kDebit) {
     clear_has_by();
     auto* temp = _impl_.by_.debit_;
@@ -7792,7 +8202,7 @@ inline ::palm::casbin::v1::Permission_Debit* Permission::unsafe_arena_release_de
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_debit(::palm::casbin::v1::Permission_Debit* value) {
+inline void Action::unsafe_arena_set_allocated_debit(::palm::casbin::v1::Action_Debit* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7801,34 +8211,34 @@ inline void Permission::unsafe_arena_set_allocated_debit(::palm::casbin::v1::Per
     set_has_debit();
     _impl_.by_.debit_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.debit)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.debit)
 }
-inline ::palm::casbin::v1::Permission_Debit* Permission::_internal_mutable_debit() {
+inline ::palm::casbin::v1::Action_Debit* Action::_internal_mutable_debit() {
   if (by_case() != kDebit) {
     clear_by();
     set_has_debit();
     _impl_.by_.debit_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Debit>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Debit>(GetArena());
   }
   return _impl_.by_.debit_;
 }
-inline ::palm::casbin::v1::Permission_Debit* Permission::mutable_debit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Debit* _msg = _internal_mutable_debit();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.debit)
+inline ::palm::casbin::v1::Action_Debit* Action::mutable_debit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Debit* _msg = _internal_mutable_debit();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.debit)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Inquiry inquiry = 7;
-inline bool Permission::has_inquiry() const {
+// .palm.casbin.v1.Action.Inquiry inquiry = 7;
+inline bool Action::has_inquiry() const {
   return by_case() == kInquiry;
 }
-inline bool Permission::_internal_has_inquiry() const {
+inline bool Action::_internal_has_inquiry() const {
   return by_case() == kInquiry;
 }
-inline void Permission::set_has_inquiry() {
+inline void Action::set_has_inquiry() {
   _impl_._oneof_case_[0] = kInquiry;
 }
-inline void Permission::clear_inquiry() {
+inline void Action::clear_inquiry() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kInquiry) {
     if (GetArena() == nullptr) {
@@ -7839,8 +8249,8 @@ inline void Permission::clear_inquiry() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Inquiry* Permission::release_inquiry() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.inquiry)
+inline ::palm::casbin::v1::Action_Inquiry* Action::release_inquiry() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.inquiry)
   if (by_case() == kInquiry) {
     clear_has_by();
     auto* temp = _impl_.by_.inquiry_;
@@ -7853,15 +8263,15 @@ inline ::palm::casbin::v1::Permission_Inquiry* Permission::release_inquiry() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Inquiry& Permission::_internal_inquiry() const {
-  return by_case() == kInquiry ? *_impl_.by_.inquiry_ : reinterpret_cast<::palm::casbin::v1::Permission_Inquiry&>(::palm::casbin::v1::_Permission_Inquiry_default_instance_);
+inline const ::palm::casbin::v1::Action_Inquiry& Action::_internal_inquiry() const {
+  return by_case() == kInquiry ? *_impl_.by_.inquiry_ : reinterpret_cast<::palm::casbin::v1::Action_Inquiry&>(::palm::casbin::v1::_Action_Inquiry_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Inquiry& Permission::inquiry() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.inquiry)
+inline const ::palm::casbin::v1::Action_Inquiry& Action::inquiry() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.inquiry)
   return _internal_inquiry();
 }
-inline ::palm::casbin::v1::Permission_Inquiry* Permission::unsafe_arena_release_inquiry() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.inquiry)
+inline ::palm::casbin::v1::Action_Inquiry* Action::unsafe_arena_release_inquiry() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.inquiry)
   if (by_case() == kInquiry) {
     clear_has_by();
     auto* temp = _impl_.by_.inquiry_;
@@ -7871,7 +8281,7 @@ inline ::palm::casbin::v1::Permission_Inquiry* Permission::unsafe_arena_release_
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_inquiry(::palm::casbin::v1::Permission_Inquiry* value) {
+inline void Action::unsafe_arena_set_allocated_inquiry(::palm::casbin::v1::Action_Inquiry* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7880,34 +8290,34 @@ inline void Permission::unsafe_arena_set_allocated_inquiry(::palm::casbin::v1::P
     set_has_inquiry();
     _impl_.by_.inquiry_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.inquiry)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.inquiry)
 }
-inline ::palm::casbin::v1::Permission_Inquiry* Permission::_internal_mutable_inquiry() {
+inline ::palm::casbin::v1::Action_Inquiry* Action::_internal_mutable_inquiry() {
   if (by_case() != kInquiry) {
     clear_by();
     set_has_inquiry();
     _impl_.by_.inquiry_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Inquiry>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Inquiry>(GetArena());
   }
   return _impl_.by_.inquiry_;
 }
-inline ::palm::casbin::v1::Permission_Inquiry* Permission::mutable_inquiry() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Inquiry* _msg = _internal_mutable_inquiry();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.inquiry)
+inline ::palm::casbin::v1::Action_Inquiry* Action::mutable_inquiry() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Inquiry* _msg = _internal_mutable_inquiry();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.inquiry)
   return _msg;
 }
 
-// .palm.casbin.v1.Permission.Other other = 9;
-inline bool Permission::has_other() const {
+// .palm.casbin.v1.Action.Other other = 9;
+inline bool Action::has_other() const {
   return by_case() == kOther;
 }
-inline bool Permission::_internal_has_other() const {
+inline bool Action::_internal_has_other() const {
   return by_case() == kOther;
 }
-inline void Permission::set_has_other() {
+inline void Action::set_has_other() {
   _impl_._oneof_case_[0] = kOther;
 }
-inline void Permission::clear_other() {
+inline void Action::clear_other() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kOther) {
     if (GetArena() == nullptr) {
@@ -7918,8 +8328,8 @@ inline void Permission::clear_other() {
     clear_has_by();
   }
 }
-inline ::palm::casbin::v1::Permission_Other* Permission::release_other() {
-  // @@protoc_insertion_point(field_release:palm.casbin.v1.Permission.other)
+inline ::palm::casbin::v1::Action_Other* Action::release_other() {
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.Action.other)
   if (by_case() == kOther) {
     clear_has_by();
     auto* temp = _impl_.by_.other_;
@@ -7932,15 +8342,15 @@ inline ::palm::casbin::v1::Permission_Other* Permission::release_other() {
     return nullptr;
   }
 }
-inline const ::palm::casbin::v1::Permission_Other& Permission::_internal_other() const {
-  return by_case() == kOther ? *_impl_.by_.other_ : reinterpret_cast<::palm::casbin::v1::Permission_Other&>(::palm::casbin::v1::_Permission_Other_default_instance_);
+inline const ::palm::casbin::v1::Action_Other& Action::_internal_other() const {
+  return by_case() == kOther ? *_impl_.by_.other_ : reinterpret_cast<::palm::casbin::v1::Action_Other&>(::palm::casbin::v1::_Action_Other_default_instance_);
 }
-inline const ::palm::casbin::v1::Permission_Other& Permission::other() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.casbin.v1.Permission.other)
+inline const ::palm::casbin::v1::Action_Other& Action::other() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.Action.other)
   return _internal_other();
 }
-inline ::palm::casbin::v1::Permission_Other* Permission::unsafe_arena_release_other() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Permission.other)
+inline ::palm::casbin::v1::Action_Other* Action::unsafe_arena_release_other() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.casbin.v1.Action.other)
   if (by_case() == kOther) {
     clear_has_by();
     auto* temp = _impl_.by_.other_;
@@ -7950,7 +8360,7 @@ inline ::palm::casbin::v1::Permission_Other* Permission::unsafe_arena_release_ot
     return nullptr;
   }
 }
-inline void Permission::unsafe_arena_set_allocated_other(::palm::casbin::v1::Permission_Other* value) {
+inline void Action::unsafe_arena_set_allocated_other(::palm::casbin::v1::Action_Other* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -7959,31 +8369,31 @@ inline void Permission::unsafe_arena_set_allocated_other(::palm::casbin::v1::Per
     set_has_other();
     _impl_.by_.other_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Permission.other)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.Action.other)
 }
-inline ::palm::casbin::v1::Permission_Other* Permission::_internal_mutable_other() {
+inline ::palm::casbin::v1::Action_Other* Action::_internal_mutable_other() {
   if (by_case() != kOther) {
     clear_by();
     set_has_other();
     _impl_.by_.other_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Permission_Other>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action_Other>(GetArena());
   }
   return _impl_.by_.other_;
 }
-inline ::palm::casbin::v1::Permission_Other* Permission::mutable_other() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::casbin::v1::Permission_Other* _msg = _internal_mutable_other();
-  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Permission.other)
+inline ::palm::casbin::v1::Action_Other* Action::mutable_other() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::casbin::v1::Action_Other* _msg = _internal_mutable_other();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.Action.other)
   return _msg;
 }
 
-inline bool Permission::has_by() const {
+inline bool Action::has_by() const {
   return by_case() != BY_NOT_SET;
 }
-inline void Permission::clear_has_by() {
+inline void Action::clear_has_by() {
   _impl_._oneof_case_[0] = BY_NOT_SET;
 }
-inline Permission::ByCase Permission::by_case() const {
-  return Permission::ByCase(_impl_._oneof_case_[0]);
+inline Action::ByCase Action::by_case() const {
+  return Action::ByCase(_impl_._oneof_case_[0]);
 }
 // -------------------------------------------------------------------
 
