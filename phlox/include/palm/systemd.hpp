@@ -54,27 +54,28 @@ struct adl_serializer<palm::systemd::models::journal::Message> {
   static void from_json(const json& j,
                         palm::systemd::models::journal::Message& o) {
     if (j.is_null()) {
-      o.content = nullptr;
+      o.content = std::nullopt;
     } else if (j.is_string()) {
       auto s = j.template get<std::string>();
       boost::trim(s);
       if (s.empty()) {
-        o.content = nullptr;
+        o.content = std::nullopt;
       } else {
         o.content = s;
       }
-    } else if (j.is_binary()) {
+    } else if (j.is_array()) {
       auto buf = j.template get<std::vector<uint8_t>>();
       std::string s(buf.begin(), buf.end());
       boost::trim(s);
       if (s.empty()) {
-        o.content = nullptr;
+        o.content = std::nullopt;
       } else {
         o.content = s;
       }
     } else {
-      spdlog::error("unknown message value {}", j.dump());
-      o.content = nullptr;
+      spdlog::error("unknown journald message value({}) {}", j.type_name(),
+                    j.dump());
+      o.content = std::nullopt;
     }
   }
 };

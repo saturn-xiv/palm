@@ -12,9 +12,8 @@ std::vector<palm::systemd::models::journal::Item> palm::systemd::logs(
   const std::string until = palm::epoch_to_journald_timestamp(until_);
   spdlog::info("fetch logs for {} from {} to {}", service_name, since, until);
 
-  std::vector<std::string> args = {"--user",  "--output", "json",
-                                   "--since", since,      "--until",
-                                   until,     "-u",       service_name};
+  std::vector<std::string> args = {"--output", "json", "--since", since,
+                                   "--until",  until,  "-u",      service_name};
   if (user_scope) {
     args.push_back("--user");
   }
@@ -32,7 +31,7 @@ std::vector<palm::systemd::models::journal::Item> palm::systemd::logs(
     if (line.empty()) {
       continue;
     }
-    spdlog::debug("receive log: {}", line);
+    spdlog::debug("receive systemd log: {}", line);
     const auto js = nlohmann::json::parse(line);
     const auto it = js.template get<palm::systemd::models::journal::Item>();
     items.push_back(it);

@@ -42,7 +42,7 @@ std::vector<palm::podman::models::Log> palm::podman::logs(
     if (line.empty()) {
       continue;
     }
-    spdlog::debug("receive log: {}", line);
+    spdlog::debug("receive podman log: {}", line);
     const auto js = nlohmann::json::parse(line);
     const auto it = js.template get<palm::podman::models::Log>();
     items.push_back(it);

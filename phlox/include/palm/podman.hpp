@@ -13,7 +13,7 @@ struct Log {
   std::string __SEQNUM;
   std::string __SEQNUM_ID;
   std::string __REALTIME_TIMESTAMP;
-  palm::systemd::models::journal::Message MESSAGE;
+  std::optional<palm::systemd::models::journal::Message> MESSAGE;
   std::string CONTAINER_ID;
   std::string CONTAINER_ID_FULL;
   std::string CONTAINER_NAME;

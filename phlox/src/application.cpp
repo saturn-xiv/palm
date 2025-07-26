@@ -336,56 +336,56 @@ static void launch_podman_logs(const toml::table& config) {
           container.Id, static_cast<time_t>(since), static_cast<time_t>(until));
       if (items.empty()) {
         spdlog::debug("empty logs");
-        break;
-      }
-      spdlog::info("fetch {} logs for {}", items.size(), container.Id);
-
-      std::stringstream body;
-      for (const auto& it : items) {
-        if (!it.MESSAGE.content) {
-          continue;
-        }
-
-        palm::monitoring::v1::PodmanLogsResponse_Item x;
-        x.set_host(it._HOSTNAME);
-        x.set_id(it.CONTAINER_ID);
-        x.set_full_id(it.CONTAINER_ID_FULL);
-        x.set_name(it.CONTAINER_NAME);
-        x.set_message(it.MESSAGE.content.value());
-        {
-          int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
-          auto y = x.mutable_created_at();
-          y->set_seconds(ts / 1000000);
-          y->set_nanos((ts % 1000000) * 1000);
-        }
-
-        bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID, it.__SEQNUM_ID,
-                                     it.__SEQNUM);
-        nlohmann::json act = bulk;
-        body << act.dump() << "\n";
-
-        const auto buf = palm::to_json(x);
-        body << buf.value() << "\n";
-      }
-
-      const auto req = body.str();
-      if (req.empty()) {
-        spdlog::warn("skip for empty bulk body");
       } else {
-        spdlog::debug("{}", req);
+        spdlog::info("fetch {} logs for {}", items.size(), container.Id);
 
-        const auto res = search->post("_bulk", req);
-        {
-          const auto body = res.value();
-          auto js = nlohmann::json::parse(body);
-          auto it = js.template get<palm::opensearch::responses::bulk::Item>();
-          if (it.errors) {
-            spdlog::error("{}", body);
-            return;
+        std::stringstream body;
+        for (const auto& it : items) {
+          if (!it.MESSAGE.has_value() || !it.MESSAGE->content.has_value()) {
+            continue;
+          }
+
+          palm::monitoring::v1::PodmanLogsResponse_Item x;
+          x.set_host(it._HOSTNAME);
+          x.set_id(it.CONTAINER_ID);
+          x.set_full_id(it.CONTAINER_ID_FULL);
+          x.set_name(it.CONTAINER_NAME);
+          x.set_message(it.MESSAGE->content.value());
+          {
+            int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
+            auto y = x.mutable_created_at();
+            y->set_seconds(ts / 1000000);
+            y->set_nanos((ts % 1000000) * 1000);
+          }
+
+          bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID,
+                                       it.__SEQNUM_ID, it.__SEQNUM);
+          nlohmann::json act = bulk;
+          body << act.dump() << "\n";
+
+          const auto buf = palm::to_json(x);
+          body << buf.value() << "\n";
+        }
+
+        const auto req = body.str();
+        if (req.empty()) {
+          spdlog::warn("skip for empty bulk body");
+        } else {
+          spdlog::debug("{}", req);
+
+          const auto res = search->post("_bulk", req);
+          {
+            const auto body = res.value();
+            auto js = nlohmann::json::parse(body);
+            auto it =
+                js.template get<palm::opensearch::responses::bulk::Item>();
+            if (it.errors) {
+              spdlog::error("{}", body);
+              return;
+            }
           }
         }
       }
-
       set_last_fetched_container_logs_at(db, container.Id, until);
     }
   }
@@ -587,54 +587,55 @@ static void launch_systemd_journal_command(const toml::table& config,
                                              static_cast<time_t>(until));
       if (items.empty()) {
         spdlog::debug("empty logs");
-        break;
-      }
-      spdlog::info("fetch {} logs for {}", items.size(), service_name);
 
-      std::stringstream body;
-      for (const auto& it : items) {
-        if (!it.MESSAGE.content) {
-          continue;
-        }
-
-        palm::monitoring::v1::SystemdJournalResponse_Item x;
-        x.set_host(it._HOSTNAME);
-        x.set_name(it.UNIT);
-        x.set_message(it.MESSAGE.content.value());
-        {
-          int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
-          auto y = x.mutable_created_at();
-          y->set_seconds(ts / 1000000);
-          y->set_nanos((ts % 1000000) * 1000);
-        }
-
-        bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID, it.__SEQNUM_ID,
-                                     it.__SEQNUM);
-        nlohmann::json act = bulk;
-        body << act.dump() << "\n";
-
-        const auto buf = palm::to_json(x);
-        body << buf.value() << "\n";
-      }
-
-      const auto req = body.str();
-      if (req.empty()) {
-        spdlog::warn("skip for empty bulk body");
       } else {
-        spdlog::debug("{}", req);
+        spdlog::info("fetch {} logs for {}", items.size(), service_name);
 
-        const auto res = search->post("_bulk", req);
-        {
-          const auto body = res.value();
-          auto js = nlohmann::json::parse(body);
-          auto it = js.template get<palm::opensearch::responses::bulk::Item>();
-          if (it.errors) {
-            spdlog::error("{}", body);
-            return;
+        std::stringstream body;
+        for (const auto& it : items) {
+          if (!it.MESSAGE.content) {
+            continue;
+          }
+
+          palm::monitoring::v1::SystemdJournalResponse_Item x;
+          x.set_host(it._HOSTNAME);
+          x.set_name(it.UNIT);
+          x.set_message(it.MESSAGE.content.value());
+          {
+            int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
+            auto y = x.mutable_created_at();
+            y->set_seconds(ts / 1000000);
+            y->set_nanos((ts % 1000000) * 1000);
+          }
+
+          bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID,
+                                       it.__SEQNUM_ID, it.__SEQNUM);
+          nlohmann::json act = bulk;
+          body << act.dump() << "\n";
+
+          const auto buf = palm::to_json(x);
+          body << buf.value() << "\n";
+        }
+
+        const auto req = body.str();
+        if (req.empty()) {
+          spdlog::warn("skip for empty bulk body");
+        } else {
+          spdlog::debug("{}", req);
+
+          const auto res = search->post("_bulk", req);
+          {
+            const auto body = res.value();
+            auto js = nlohmann::json::parse(body);
+            auto it =
+                js.template get<palm::opensearch::responses::bulk::Item>();
+            if (it.errors) {
+              spdlog::error("{}", body);
+              return;
+            }
           }
         }
       }
-
       set_last_fetched_systemd_service_logs_at(db, service_name, until);
     }
   }
