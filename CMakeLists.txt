@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(
   palm
-  VERSION 2025.7.13
+  VERSION 2025.7.28
   DESCRIPTION "An open source online education and transaction solution."
   LANGUAGES CXX
 )

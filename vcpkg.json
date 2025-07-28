@@ -23,6 +23,8 @@
     "cpr",
     "libsodium",
     { "name": "libevent", "features": ["openssl", "thread"] },
+    "libpng",
+    { "name": "libgit2", "features": ["ssh"] },
     "jwt-cpp",
     { "name": "soci", "features": ["postgresql", "sqlite3", "boost"] },
     {
