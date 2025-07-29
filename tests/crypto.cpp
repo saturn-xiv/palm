@@ -60,6 +60,14 @@ TEST_CASE("random data", "[random]") {
       }
     }
   }
+  SECTION("bytes") {
+    for (int i = 1; i < PALM_LOOP_SIZE; i++) {
+      const auto [r, g, b] = palm::random::rgb();
+      std::cout << "random rgb(" << static_cast<int>(r) << ","
+                << static_cast<int>(g) << "," << static_cast<int>(b) << ")"
+                << std::endl;
+    }
+  }
   SECTION("alphanumeric") {
     // FIXME 128
     const size_t len = 32;

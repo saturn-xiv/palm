@@ -1,8 +1,10 @@
 #pragma once
 
 #include <chrono>
+#include <climits>
 #include <cstdlib>
 #include <ctime>
+#include <random>
 #include <string>
 #include <vector>
 
@@ -86,7 +88,16 @@ std::vector<uint8_t> from_string(const std::string& str);
 namespace random {
 std::vector<uint8_t> bytes(size_t len);
 std::string alphanumeric(size_t len);
-double double_(double min = 0.0, double max = 1.0);
+inline double double_(double min = 0.0, double max = 1.0) {
+  static std::mt19937 rng(std::time(nullptr));
+  std::uniform_real_distribution<double> dist(min, max);
+  return dist(rng);
+}
+inline std::tuple<uint8_t, uint8_t, uint8_t> rgb() {
+  static std::mt19937 rng(std::time(nullptr));
+  std::uniform_int_distribution<uint8_t> dist(0, 255);
+  return {dist(rng), dist(rng), dist(rng)};
+}
 }  // namespace random
 
 std::string uuid();

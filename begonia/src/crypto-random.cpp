@@ -1,11 +1,9 @@
 #include "palm/crypto.hpp"
 
 #include <algorithm>
-#include <climits>
 #include <functional>
 #include <iomanip>
 #include <iterator>
-#include <random>
 #include <sstream>
 #include <string>
 
@@ -38,11 +36,6 @@ std::vector<uint8_t> palm::random::bytes(size_t len) {
   return buf;
 }
 
-double palm::random::double_(double min, double max) {
-  static std::mt19937 rng(std::time(nullptr));
-  std::uniform_real_distribution<double> dist(min, max);
-  return dist(rng);
-}
 std::string palm::random::alphanumeric(size_t len) {
   static std::mt19937 rng(std::time(nullptr));
   // static const char CHARSET[] =
