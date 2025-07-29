@@ -10,6 +10,7 @@ inline static const std::string CONTENT_TYPE = "Content-Type";
 
 }  // namespace headers
 namespace content_type {
+inline static const std::string IMAGE_PNG = "image/png";
 inline static const std::string TEXT_HTML_UTF8 = "text/html; charset=utf-8";
 inline static const std::string TEXT_PLAIN_UTF8 = "text/plain; charset=utf-8";
 inline static const std::string APPLICATION_JSON_UTF8 =

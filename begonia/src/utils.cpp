@@ -17,6 +17,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
+#include <png.h>
 #include <sodium.h>
 #include <thrift/version.h>
 
@@ -47,6 +48,7 @@ void palm::init(bool debug) {
                                     GOOGLE_PROTOBUF_VERSION));
   spdlog::debug("gRpc v{}", grpc::Version());
   spdlog::debug("thrift v{}", THRIFT_VERSION);
+  spdlog::debug("libpng {}", PNG_LIBPNG_VER_STRING);
   {
     if (sodium_init() < 0) {
       spdlog::error("the sodium library couldn't be initialized");
