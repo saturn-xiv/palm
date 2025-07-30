@@ -850,6 +850,7 @@ static void start_rpc_server(const std::string& host, uint16_t port,
 
   palm::monitoring::services::SiteServiceImpl site_service(jwt, search);
   palm::monitoring::services::PodmanServiceImpl podman_service(jwt, search);
+  palm::monitoring::services::SystemdServiceImpl systemd_service(jwt, search);
   palm::monitoring::services::FileSystemServiceImpl file_system_service(jwt,
                                                                         search);
 
@@ -863,6 +864,7 @@ static void start_rpc_server(const std::string& host, uint16_t port,
   {
     builder.RegisterService(&site_service);
     builder.RegisterService(&podman_service);
+    builder.RegisterService(&systemd_service);
     builder.RegisterService(&file_system_service);
   }
 

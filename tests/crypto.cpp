@@ -211,7 +211,7 @@ TEST_CASE("impl by openssl", "[jwt]") {
                         jwt::error::signature_verification_exception);
     }
     {
-      const auto [jid, kid, sub, pay] = jwt.verify(token, issuer, audience_2);
+      const auto& [jid, kid, sub, pay] = jwt.verify(token, issuer, audience_2);
       REQUIRE(!jid.has_value());
       REQUIRE(!kid.has_value());
       REQUIRE(sub == subject);
