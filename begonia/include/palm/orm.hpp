@@ -24,8 +24,6 @@
 
 namespace palm {
 
-std::pair<int, int> paginate(int total, int index = 1, int size = 60);
-
 class SociLogger : public soci::logger_impl {
  public:
   void start_query(std::string const& query) { spdlog::debug("{}", query); }

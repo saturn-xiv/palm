@@ -24,6 +24,7 @@
     "libsodium",
     { "name": "libevent", "features": ["openssl", "thread"] },
     "libpng",
+    { "name": "freetype", "features": ["png", "zlib"] },
     { "name": "libgit2", "features": ["ssh"] },
     "jwt-cpp",
     { "name": "soci", "features": ["postgresql", "sqlite3", "boost"] },

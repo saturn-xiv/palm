@@ -21,6 +21,191 @@ void palm::mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
     palm::http::json(response, res);
   });
 
+  // ----------------------------------------------------------------------------
+  server.Get("/api/systemd/by-host/:host",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto hostname = request.path_params.at("name");
+               auto stub = palm::monitoring::v1::Systemd::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::SystemdJournalRequest req;
+               {
+                 req.set_host(hostname);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::SystemdJournalResponse res;
+               auto status = stub->Journal(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get("/api/systemd/by-name/:name",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto service_name = request.path_params.at("name");
+               auto stub = palm::monitoring::v1::Systemd::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::SystemdJournalRequest req;
+               {
+                 req.set_name(service_name);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::SystemdJournalResponse res;
+               auto status = stub->Journal(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get("/api/systemd/journal",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               auto stub = palm::monitoring::v1::Systemd::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::SystemdJournalRequest req;
+               {
+                 req.mutable_all();
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::SystemdJournalResponse res;
+               auto status = stub->Journal(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  // ----------------------------------------------------------------------------
+  server.Get("/api/podman/logs/by-service/:name",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto container_name = request.path_params.at("name");
+
+               auto stub = palm::monitoring::v1::Podman::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::PodmanQueryRequest req;
+               {
+                 req.set_name(container_name);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::PodmanLogsResponse res;
+               auto status = stub->Logs(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get("/api/podman/logs/by-id/:id",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto container_id = request.path_params.at("id");
+
+               auto stub = palm::monitoring::v1::Podman::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::PodmanQueryRequest req;
+               {
+                 req.set_id(container_id);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::PodmanLogsResponse res;
+               auto status = stub->Logs(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get("/api/podman/logs/by-host/:host",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto hostname = request.path_params.at("host");
+
+               auto stub = palm::monitoring::v1::Podman::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::PodmanQueryRequest req;
+               {
+                 req.set_host(hostname);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::PodmanLogsResponse res;
+               auto status = stub->Logs(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get("/api/podman/logs", [ch = channel](const httplib::Request& request,
+                                                httplib::Response& response) {
+    auto stub = palm::monitoring::v1::Podman::NewStub(ch);
+    grpc::ClientContext ctx;
+    palm::Session::init(request, &ctx);
+    palm::monitoring::v1::PodmanQueryRequest req;
+    {
+      req.mutable_all();
+      palm::page(request, req.mutable_page());
+    }
+    palm::monitoring::v1::PodmanLogsResponse res;
+    auto status = stub->Logs(&ctx, req, &res);
+    if (!status.ok()) {
+      palm::http::abort(response, status);
+      return;
+    }
+    palm::http::json(response, res);
+  });
+
+  // ----------------------------------------------------------------------------
+  server.Get("/api/podman/containers",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               auto stub = palm::monitoring::v1::Podman::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::PodmanQueryRequest req;
+               {
+                 req.mutable_all();
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::PodmanContainersResponse res;
+               auto status = stub->Containers(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  // ----------------------------------------------------------------------------
+  server.Get("/api/podman/statistics",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               auto stub = palm::monitoring::v1::Podman::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::PodmanQueryRequest req;
+               {
+                 req.mutable_all();
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::PodmanStatisticsResponse res;
+               auto status = stub->Statistics(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  // ----------------------------------------------------------------------------
+
   server.Get("/captcha.png", [](const httplib::Request& request,
                                 httplib::Response& response) {
     // const auto file = std::filesystem::temp_directory_path() /

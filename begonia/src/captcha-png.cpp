@@ -1,8 +1,13 @@
-#include <palm/crypto.hpp>
 #include "palm/captcha.hpp"
+#include "palm/crypto.hpp"
+
+#include <filesystem>
 
 #include <png.h>
 #include <spdlog/spdlog.h>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 // static void png_write_callback(png_structp ptr, png_bytep buf, png_size_t
 // len) {
@@ -84,9 +89,52 @@ static void flush_data_memory(png_structp png_ptr) {
   spdlog::debug("flush png data memory");
 }
 
+// https://mrandri19.github.io/2019/07/18/modern-text-rendering-linux-ep1.html
+// https://freetype.org/freetype2/docs/tutorial/step1.html#section-2
 static void write_captcha(png_structp png_ptr, png_bytep row,
-                          const std::string &str) {
-  // TODO
+                          const std::string &str, size_t font_size) {
+  FT_Library ft;
+  if (FT_Init_FreeType(&ft) != 0) {
+    spdlog::error("failed to initialize FreeType");
+    return;
+  }
+  FT_Face face;
+  {
+    const char *DEJAVU_FONT = "/usr/share/fonts/TTF/DejaVuSansMono.ttf";
+    if (std::filesystem::exists(DEJAVU_FONT)) {
+      if (FT_New_Face(ft, DEJAVU_FONT, 0, &face) != 0) {
+        spdlog::error("failed to load face(dejavu font)");
+        return;
+      }
+    }
+  }
+
+  if (FT_Set_Pixel_Sizes(face, 0, font_size) != 0) {
+    spdlog::error("failed to set pixel size({})", font_size);
+    return;
+  }
+  for (const char &c : str) {
+    FT_UInt glyph_index = FT_Get_Char_Index(face, c);
+    if (FT_Load_Glyph(face, glyph_index, FT_LOAD_DEFAULT) != 0) {
+      spdlog::error("failed to load glyph for char '{}'", c);
+      return;
+    }
+    if (FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL) != 0) {
+      spdlog::error("failed to render the glyph");
+      return;
+    }
+    for (size_t i = 0; i < face->glyph->bitmap.rows; i++) {
+      for (size_t j = 0; j < face->glyph->bitmap.width; j++) {
+        unsigned char pixel_brightness =
+            face->glyph->bitmap.buffer[i * face->glyph->bitmap.pitch + j];
+        if (pixel_brightness > 84) {
+          // TODO drow pixel
+        } else {
+          // TODO random
+        }
+      }
+    }
+  }
 }
 
 // http://www.labbookpages.co.uk/software/imgProc/libPNG.html
@@ -133,6 +181,7 @@ static void create_png(const std::string &str, size_t width, size_t height,
 
   // allocate memory for one row (3 bytes per pixel - RGB)
   // row = (png_bytep)malloc(3 * width * sizeof(png_byte));
+  // TODO
   row = (png_bytep)malloc(png_get_rowbytes(png_ptr, info_ptr));
   {
     for (int y = 0; y < height; y++) {
@@ -144,17 +193,6 @@ static void create_png(const std::string &str, size_t width, size_t height,
       }
       png_write_row(png_ptr, row);
     }
-
-    // write_captcha(png_ptr, row, str);
-
-    // TODO write image data
-    // int x, y;
-    // for (y = 0; y < height; y++) {
-    //   for (x = 0; x < width; x++) {
-    //     setRGB(&(row[x * 3]), buffer[y * width + x]);
-    //   }
-    //   png_write_row(png_ptr, row);
-    // }
   }
   // end write
   png_write_end(png_ptr, NULL);

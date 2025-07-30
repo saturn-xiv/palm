@@ -25,6 +25,9 @@
 // #include <mysql/mariadb_version.h>
 // #endif
 
+#include <freetype2/ft2build.h>
+#include FT_FREETYPE_H
+
 void palm::init(bool debug) {
   spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
 
@@ -55,6 +58,17 @@ void palm::init(bool debug) {
       std::exit(EXIT_FAILURE);
     }
     spdlog::debug("sodium v{}", SODIUM_VERSION_STRING);
+  }
+  {
+    FT_Library ft;
+    FT_Error err = FT_Init_FreeType(&ft);
+    if (err != 0) {
+      spdlog::error("failed to initialize FreeType");
+      std::exit(EXIT_FAILURE);
+    }
+    FT_Int major, minor, patch;
+    FT_Library_Version(ft, &major, &minor, &patch);
+    spdlog::debug("FreeType v{}.{}.{}", major, minor, patch);
   }
 }
 

@@ -20,6 +20,7 @@ find_package(jwt-cpp CONFIG REQUIRED)
 find_package(mailio CONFIG REQUIRED)
 find_package(libgit2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
+find_package(Freetype REQUIRED)
 find_package(cpr CONFIG REQUIRED)
 find_package(miniocpp CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
@@ -62,7 +63,7 @@ target_link_libraries(begonia PUBLIC
   rabbitmq::rabbitmq-static
   unofficial-sodium::sodium mailio::mailio cpr::cpr jwt-cpp::jwt-cpp
   httplib::httplib nlohmann_json::nlohmann_json pantor::inja
-  libgit2::libgit2package PNG::PNG
+  libgit2::libgit2package PNG::PNG Freetype::Freetype
   PkgConfig::tomlplusplus yaml-cpp::yaml-cpp pugixml::pugixml mstch::mstch msgpack-cxx
   Boost::uuid Boost::url Boost::property_tree Boost::algorithm Boost::locale Boost::process
   protobuf::libprotobuf gRPC::grpc++

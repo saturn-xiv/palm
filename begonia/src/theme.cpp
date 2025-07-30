@@ -82,3 +82,28 @@ void palm::str2ts(const std::string& time,
   // timestamp->set_seconds(diff.total_seconds());
   // timestamp->set_nanos(diff.total_nanoseconds() % 1000000000);
 }
+
+std::pair<uint32_t, uint32_t> palm::paginate(uint32_t total, uint32_t index,
+                                             uint32_t size) {
+  const int MIN_SIZE = 10, MAX_SIZE = (1 << 12);
+
+  if (size < MIN_SIZE) {
+    size = MIN_SIZE;
+  }
+  if (size > MAX_SIZE) {
+    size = MAX_SIZE;
+  }
+  if (index < 1) {
+    index = 1;
+  }
+  if (total <= size) {
+    return {1, size};
+  }
+  if (total < index * size) {
+    if (total % size == 0) {
+      return {total / size, size};
+    }
+    return {(total / size) + 1, size};
+  }
+  return {index, size};
+}

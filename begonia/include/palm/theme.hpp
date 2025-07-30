@@ -1,6 +1,7 @@
 #pragma once
 
 #include "palm/http.hpp"
+#include "portal.pb.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/optional.hpp>
@@ -13,6 +14,23 @@
 #include <inja/inja.hpp>
 
 namespace palm {
+
+inline void page(const httplib::Request& request,
+                 palm::portal::v1::Page* page) {
+  int index = std::stoi(request.get_param_value("index"));
+  int size = std::stoi(request.get_param_value("size"));
+  page->set_index(static_cast<uint32_t>(index));
+  page->set_size(static_cast<uint32_t>(size));
+}
+std::pair<uint32_t, uint32_t> paginate(uint32_t total, uint32_t index = 1,
+                                       uint32_t size = 60);
+inline void paginate(palm::portal::v1::Page* page,
+                     palm::portal::v1::Pagination* pagination, uint32_t total) {
+  const auto [index, size] = palm::paginate(total, page->index(), page->size());
+  pagination->set_total(total);
+  pagination->set_index(index);
+  pagination->set_size(size);
+}
 
 class Theme {
  public:
