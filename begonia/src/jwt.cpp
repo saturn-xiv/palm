@@ -3,9 +3,11 @@
 #include <algorithm>
 
 #include <jwt-cpp/jwt.h>
+#include <jwt-cpp/traits/nlohmann-json/traits.h>
 #include <spdlog/spdlog.h>
 #include <nlohmann/json.hpp>
 
+// https://github.com/Thalhammer/jwt-cpp/blob/master/example/traits/nlohmann-json.cpp
 std::string palm::Jwt::sign(
     const std::optional<std::string> jwt_id,
     const std::optional<std::string> key_id, const std::string& issuer,
@@ -16,7 +18,7 @@ std::string palm::Jwt::sign(
     const std::optional<std::string> payload) const {
   spdlog::debug("generate token for ({}, {})", issuer, subject);
 
-  auto builder = jwt::create()
+  auto builder = jwt::create<jwt::traits::nlohmann_json>()
                      .set_type("JWS")
                      .set_issuer(issuer)
                      .set_subject(subject)
@@ -31,8 +33,7 @@ std::string palm::Jwt::sign(
     builder = builder.set_key_id(key_id.value());
   }
   if (payload) {
-    builder = builder.set_payload_claim(PAYLOAD_CLAIM_KEY,
-                                        jwt::claim(payload.value()));
+    builder = builder.set_payload_claim(PAYLOAD_CLAIM_KEY, payload.value());
   }
   {
     nlohmann::json js = audiences;
@@ -58,8 +59,8 @@ std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
            std::optional<std::string>>
 palm::Jwt::verify(const std::string& token, const std::string& issuer,
                   const std::string& audience) const {
-  auto decoded = jwt::decode(token);
-  auto verifier = jwt::verify()
+  auto decoded = jwt::decode<jwt::traits::nlohmann_json>(token);
+  auto verifier = jwt::verify<jwt::traits::nlohmann_json>()
                       .with_issuer(issuer)
                       //   .with_audience(audience)
                       .allow_algorithm(jwt::algorithm::hs512{this->_key});

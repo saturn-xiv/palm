@@ -7,6 +7,7 @@
 #include "palm/utils.hpp"
 
 #include <chrono>
+#include <iostream>
 #include <thread>
 
 #include <jwt-cpp/jwt.h>

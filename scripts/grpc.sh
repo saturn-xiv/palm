@@ -49,7 +49,7 @@ function build_grpc() {
 #     exit 1
 # fi
 
-# vcpkg 2025.06.13
+# vcpkg 2025.07.25
 build_grpc v1.71.0 v5.29.3
 echo "done."
 

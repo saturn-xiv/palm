@@ -66,7 +66,7 @@ RUN echo 'source $HOME/.xmake/profile' >> $HOME/.bashrc
 RUN echo 'export XMAKE_ROOT=y' >> $HOME/.bashrc
 
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash 
-RUN git clone -b 2025.06.13 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+RUN git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 RUN echo 'export VCPKG_ROOT=$HOME/local/vcpkg' >> $HOME/.bashrc
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
