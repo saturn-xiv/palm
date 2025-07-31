@@ -25,7 +25,7 @@
 // #include <mysql/mariadb_version.h>
 // #endif
 
-#include <freetype2/ft2build.h>
+#include <ft2build.h>
 #include FT_FREETYPE_H
 
 void palm::init(bool debug) {

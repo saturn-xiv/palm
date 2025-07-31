@@ -1,8 +1,21 @@
+diff --git a/ports/cpp-httplib/vcpkg.json b/ports/cpp-httplib/vcpkg.json
+index a623f377ce..df2f002a94 100644
+--- a/ports/cpp-httplib/vcpkg.json
++++ b/ports/cpp-httplib/vcpkg.json
+@@ -4,7 +4,7 @@
+   "description": "A single file C++11 header-only HTTP/HTTPS server and client library",
+   "homepage": "https://github.com/yhirose/cpp-httplib",
+   "license": "MIT",
+-  "supports": "!x86 & !arm",
++  "supports": "!x86 & !arm32",
+   "dependencies": [
+     {
+       "name": "vcpkg-cmake",
 diff --git a/ports/grpc/portfile.cmake b/ports/grpc/portfile.cmake
-index 4d8aae5166..6f0e14be51 100644
+index 0c14253d19..2d118c450b 100644
 --- a/ports/grpc/portfile.cmake
 +++ b/ports/grpc/portfile.cmake
-@@ -52,6 +52,7 @@ vcpkg_cmake_configure(
+@@ -51,6 +51,7 @@ vcpkg_cmake_configure(
      OPTIONS ${FEATURE_OPTIONS}
          -DgRPC_INSTALL=ON
          -DgRPC_BUILD_TESTS=OFF
