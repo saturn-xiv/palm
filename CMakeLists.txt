@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(
   palm
-  VERSION 2025.7.28
+  VERSION 2025.8.1
   DESCRIPTION "An open source online education and transaction solution."
   LANGUAGES CXX
 )
@@ -30,4 +30,5 @@ add_subdirectory(begonia)
 add_subdirectory(bamboo)
 add_subdirectory(lavender)
 add_subdirectory(phlox)
+add_subdirectory(aloe)
 add_subdirectory(tests)
