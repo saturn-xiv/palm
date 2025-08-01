@@ -3,17 +3,19 @@ LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt update
+RUN apt  update
 RUN apt -y upgrade
 RUN apt install -y lsb-release apt-utils \
     debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
-    zsh git locales locales-all \
+    sudo zsh git locales locales-all \
     vim tzdata zip unzip tree tmux \
     build-essential cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio \
     debhelper bison flex ninja-build \
     gawk \
     python3-full python3-dev \
-    rsync bc bzr cvs mercurial subversion asciidoc w3m dblatex graphviz python3-matplotlib 
+    libncurses-dev \
+    rsync bc bzr cvs mercurial subversion asciidoc w3m dblatex graphviz python3-matplotlib \
+    texinfo help2man libtool-bin
 
 RUN apt -y autoremove
 RUN apt -y clean
@@ -23,7 +25,12 @@ RUN locale-gen
 RUN update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
 
-RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
+RUN useradd -s /bin/bash -m deploy
+RUN passwd -l deploy
+RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
+
+USER deploy
+RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp $HOME/src
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
@@ -39,10 +46,23 @@ RUN git config --global core.quotepath false \
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
     && echo 'set-option -g default-shell "/bin/zsh"' >> $HOME/.tmux.conf
 
+# https://github.com/crosstool-ng/crosstool-ng
+# https://crosstool-ng.github.io/docs/
+ENV CROSSTOOLNG_VERSION "crosstool-ng-1.27.0"
+RUN git clone -b ${CROSSTOOLNG_VERSION} https://github.com/crosstool-ng/crosstool-ng.git $HOME/downloads/crosstool-ng
+RUN cd $HOME/downloads/crosstool-ng \
+    && ./bootstrap \
+    && ./configure --enable-local \
+    && make
+# ct-ng list-samples
+# ct-ng arm-unknown-linux-gnueabi
+# ct-ng menuconfig
+# ct-ng build
+
 # https://github.com/buildroot/buildroot
 # https://buildroot.org/downloads/manual/manual.html#requirement
-ENV BUILDROOT_VERSION "2024.08.2"
-RUN git clone -b ${BUILDROOT_VERSION} https://git.buildroot.net/buildroot $HOME/downloads/buildroot
+ENV BUILDROOT_VERSION "2025.02.4"
+RUN git clone -b ${BUILDROOT_VERSION} https://github.com/buildroot/buildroot.git $HOME/downloads/buildroot
 RUN echo 'export BR2_DL_DIR=$HOME/downloads' >> $HOME/.zshrc
 # make list-defconfigs
 RUN zsh -c "source $HOME/.zshrc \
@@ -65,14 +85,14 @@ RUN zsh -c "source $HOME/.zshrc \
     && make source"
 
 # https://github.com/openwrt/openwrt
-ENV OPENWRT_VERSION "24.10.0"
-RUN git clone -b ${OPENWRT_VERSION} https://git.openwrt.org/openwrt/openwrt.git $HOME/downloads/openwrt
+ENV OPENWRT_VERSION "v24.10.2"
+RUN git clone -b ${OPENWRT_VERSION} https://github.com/openwrt/openwrt.git $HOME/downloads/openwrt
 RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/downloads/openwrt \
     && ./scripts/feeds update -a \
     && ./scripts/feeds install -a"
 
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace

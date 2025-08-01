@@ -19,6 +19,17 @@ function build_on_arch() {
     cmake --build $WORK_DIR/build/arch
 }
 
+function build_on_crosstool_ng() {
+    cd $WORK_DIR/
+
+    cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/x-tools/x86_64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
+    cmake --build $WORK_DIR/build/x86_64
+
+    # cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/x-tools/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
+    # cmake --build $WORK_DIR/build/aarch64
+
+}
+
 function build_x86_64_on_ubuntu() {
     cd $WORK_DIR/
     cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
@@ -117,7 +128,19 @@ function build_assets() {
 
 . /etc/os-release
 
-if [ $ID == "arch" ]; then
+if [ ! -d $HOME/local/vcpkg ]; then
+    git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+    $HOME/local/vcpkg/bootstrap-vcpkg.sh
+    echo 'export VCPKG_ROOT=$HOME/local/vcpkg' >> $HOME/.bashrc
+    echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc    
+    cd $HOME/local/vcpkg && git apply $WORK_DIR/begonia/docker/vcpkg.patch
+fi
+
+export VCPKG_DISABLE_METRICS=1
+
+if [ -d $HOME/x-tools ]; then
+    build_on_crosstool_ng
+elif [ $ID == "arch" ]; then
     build_on_arch
 elif [ $ID == "ubuntu" ]; then
     build_x86_64_on_ubuntu
