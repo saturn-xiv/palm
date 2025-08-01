@@ -1,12 +1,12 @@
-#include "palm/application.hpp"
-#include "palm/controllers.hpp"
-#include "palm/filesystem.hpp"
-#include "palm/podman.hpp"
+#include "phlox/application.hpp"
 #include "palm/rpc.hpp"
-#include "palm/services.hpp"
-#include "palm/systemd.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
+#include "phlox/controllers.hpp"
+#include "phlox/filesystem.hpp"
+#include "phlox/podman.hpp"
+#include "phlox/services.hpp"
+#include "phlox/systemd.hpp"
 
 #include <unistd.h>
 #include <format>
@@ -314,7 +314,7 @@ static void launch_podman_logs(const toml::table& config) {
   palm::opensearch::requests::bulk_index::Action bulk{
       .index = {._index = index_name}};
 
-  const auto containers = palm::podman::ps(true);
+  const auto containers = phlox::podman::ps(true);
   for (const auto& container : containers) {
     if (container.State == "created") {
       spdlog::debug("skip created container {}", container.Id);
@@ -332,7 +332,7 @@ static void launch_podman_logs(const toml::table& config) {
         break;
       }
 
-      const auto items = palm::podman::logs(
+      const auto items = phlox::podman::logs(
           container.Id, static_cast<time_t>(since), static_cast<time_t>(until));
       if (items.empty()) {
         spdlog::debug("empty logs");
@@ -415,7 +415,7 @@ static void launch_podman_stats(const toml::table& config) {
     const auto now = std::chrono::system_clock::now();
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
-    const auto items = palm::podman::stats();
+    const auto items = phlox::podman::stats();
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.name, it.id);
 
@@ -481,7 +481,7 @@ static void launch_podman_ps(const toml::table& config) {
     const auto now = std::chrono::system_clock::now();
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
-    const auto items = palm::podman::ps(true);
+    const auto items = phlox::podman::ps(true);
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.Id,
                     boost::algorithm::join(it.Names, ","));
@@ -582,9 +582,9 @@ static void launch_systemd_journal_command(const toml::table& config,
         break;
       }
 
-      const auto items = palm::systemd::logs(service_name, user_scope,
-                                             static_cast<time_t>(since),
-                                             static_cast<time_t>(until));
+      const auto items = phlox::systemd::logs(service_name, user_scope,
+                                              static_cast<time_t>(since),
+                                              static_cast<time_t>(until));
       if (items.empty()) {
         spdlog::debug("empty logs");
 
@@ -795,21 +795,21 @@ static void start_log_watcher(const toml::table& config, bool stdin,
     auto res = search->cluster_health();
     spdlog::debug("{} {}", res->cluster_name, res->status);
   }
-  if (!search->index_exists<palm::monitoring::logging::Item>()) {
-    const auto props = palm::monitoring::logging::Item::properties();
-    search->create_index<palm::monitoring::logging::Item>(2, 1, props);
+  if (!search->index_exists<phlox::monitoring::logging::Item>()) {
+    const auto props = phlox::monitoring::logging::Item::properties();
+    search->create_index<phlox::monitoring::logging::Item>(2, 1, props);
   }
-  palm::monitoring::LoggingScratcher scratcher;
+  phlox::monitoring::LoggingScratcher scratcher;
 
   if (stdin) {
     spdlog::info("listen from STDIN stream");
-    std::shared_ptr<palm::monitoring::logging::Source> it =
-        std::make_shared<palm::monitoring::logging::StdinSource>();
+    std::shared_ptr<phlox::monitoring::logging::Source> it =
+        std::make_shared<phlox::monitoring::logging::StdinSource>();
     scratcher.register_(it);
   }
   {
-    std::shared_ptr<palm::monitoring::logging::FilesystemNotify> it =
-        std::make_shared<palm::monitoring::logging::FilesystemNotify>();
+    std::shared_ptr<phlox::monitoring::logging::FilesystemNotify> it =
+        std::make_shared<phlox::monitoring::logging::FilesystemNotify>();
     const std::set<std::string> items(original_files.begin(),
                                       original_files.end());
     for (const auto& file : items) {
@@ -832,7 +832,7 @@ static void start_http_server(const std::string& host, uint16_t port,
 
   httplib::Server server;
   palm::set_logger(server);
-  palm::mount(server, jwt, channel);
+  phlox::mount(server, jwt, channel);
 
   spdlog::info("listen a HTTP server on tcp://{}:{}", host, port);
   server.listen(host, port);
@@ -848,11 +848,11 @@ static void start_rpc_server(const std::string& host, uint16_t port,
   auto search = open_opensearch(config);
   auto jwt = open_jwt(config);
 
-  palm::monitoring::services::SiteServiceImpl site_service(jwt, search);
-  palm::monitoring::services::PodmanServiceImpl podman_service(jwt, search);
-  palm::monitoring::services::SystemdServiceImpl systemd_service(jwt, search);
-  palm::monitoring::services::FileSystemServiceImpl file_system_service(jwt,
-                                                                        search);
+  phlox::monitoring::services::SiteServiceImpl site_service(jwt, search);
+  phlox::monitoring::services::PodmanServiceImpl podman_service(jwt, search);
+  phlox::monitoring::services::SystemdServiceImpl systemd_service(jwt, search);
+  phlox::monitoring::services::FileSystemServiceImpl file_system_service(
+      jwt, search);
 
   grpc::EnableDefaultHealthCheckService(true);
   // TODO
@@ -878,14 +878,14 @@ static void generate_token_for_user(const toml::table& config,
                                     uint8_t years) {
   spdlog::info("generate token for user {} with {} years", username, years);
   auto jwt = open_jwt(config);
-  const auto token = jwt->sign(palm::CurrentUser::ISSUER, username,
-                               {palm::CurrentUser::WEB_AUDIENCE}, std::nullopt,
+  const auto token = jwt->sign(phlox::CurrentUser::ISSUER, username,
+                               {phlox::CurrentUser::WEB_AUDIENCE}, std::nullopt,
                                std::chrono::years{years});
   std::cout << token << std::endl;
   spdlog::info("done.");
 }
 
-void palm::phlox::Application::launch(int argc, char* argv[]) {
+void phlox::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
 

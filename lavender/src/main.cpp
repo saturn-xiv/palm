@@ -1,4 +1,4 @@
-#include "palm/application.hpp"
+#include "lavender/application.hpp"
 
 #include <cstdlib>
 
@@ -7,7 +7,7 @@
 #include <spdlog/spdlog.h>
 
 int main(int argc, char** argv) {
-  palm::lavender::Application app;
+  lavender::Application app;
   try {
     app.launch(argc, argv);
     return EXIT_SUCCESS;

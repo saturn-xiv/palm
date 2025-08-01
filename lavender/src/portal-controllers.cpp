@@ -1,10 +1,10 @@
-#include "palm/portal.hpp"
+#include "lavender/portal.hpp"
 
 #include <boost/current_function.hpp>
 
-void palm::portal::mount(httplib::Server& server, palm::GrpcClient& rpc,
-                         palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
-                         std::shared_ptr<palm::Minio> s3) {
+void lavender::portal::mount(httplib::Server& server, lavender::GrpcClient& rpc,
+                             palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
+                             std::shared_ptr<palm::Minio> s3) {
   spdlog::debug("{}", BOOST_CURRENT_FUNCTION);
   //   TODO
   server.Get("/", [&](const auto& req, auto& res) {

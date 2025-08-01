@@ -1,2 +1,2 @@
-#include "palm/controllers.hpp"
+#include "bamboo/controllers.hpp"
 #include "router.grpc.pb.h"

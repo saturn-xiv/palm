@@ -2,7 +2,7 @@
 
 #include "palm/theme.hpp"
 
-namespace palm {
+namespace phlox {
 namespace systemd {
 namespace models {
 namespace journal {
@@ -37,13 +37,13 @@ inline std::string epoch_to_journald_timestamp(time_t epoch_in_seconds) {
   strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", it);
   return buf;
 }
-}  // namespace palm
+}  // namespace phlox
 
 namespace nlohmann {
 template <>
-struct adl_serializer<palm::systemd::models::journal::Message> {
+struct adl_serializer<phlox::systemd::models::journal::Message> {
   static void to_json(json& j,
-                      const palm::systemd::models::journal::Message& o) {
+                      const phlox::systemd::models::journal::Message& o) {
     if (o.content) {
       j = o.content.value();
     } else {
@@ -52,7 +52,7 @@ struct adl_serializer<palm::systemd::models::journal::Message> {
   }
 
   static void from_json(const json& j,
-                        palm::systemd::models::journal::Message& o) {
+                        phlox::systemd::models::journal::Message& o) {
     if (j.is_null()) {
       o.content = std::nullopt;
     } else if (j.is_string()) {

@@ -1,4 +1,4 @@
-#include "palm/application.hpp"
+#include "phlox/application.hpp"
 
 #include <cstdlib>
 
@@ -7,7 +7,7 @@
 #include <spdlog/spdlog.h>
 
 int main(int argc, char** argv) {
-  palm::phlox::Application app;
+  phlox::Application app;
   try {
     app.launch(argc, argv);
     return EXIT_SUCCESS;

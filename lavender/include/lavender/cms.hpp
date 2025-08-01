@@ -1,9 +1,9 @@
 #pragma once
 
 #include "cms.grpc.pb.h"
-#include "palm/portal.hpp"
+#include "lavender/portal.hpp"
 
-namespace palm {
+namespace lavender {
 namespace cms {
 namespace services {
 class PageServiceImpl final : public palm::cms::v1::Page::Service {};

@@ -1,12 +1,12 @@
-#include "palm/application.hpp"
-#include "palm/babel.hpp"
-#include "palm/bbs.hpp"
-#include "palm/blog.hpp"
-#include "palm/cms.hpp"
+#include "lavender/application.hpp"
+#include "lavender/babel.hpp"
+#include "lavender/bbs.hpp"
+#include "lavender/blog.hpp"
+#include "lavender/cms.hpp"
+#include "lavender/ledger.hpp"
+#include "lavender/portal.hpp"
+#include "lavender/survey.hpp"
 #include "palm/iso4217.hpp"
-#include "palm/ledger.hpp"
-#include "palm/portal.hpp"
-#include "palm/survey.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
 
@@ -193,9 +193,9 @@ static void list_user(const toml::table& config) {
                   << name.value_or("") << std::endl;
       }
     }
-    // const auto users = palm::portal::dao::users::all(db);
+    // const auto users = lavender::portal::dao::users::all(db);
     // {
-    //   const auto items = palm::portal::dao::users::email::all(db);
+    //   const auto items = lavender::portal::dao::users::email::all(db);
     //   std::cout << "UID EMAIL\tREAL NAME" << std::endl;
     //   boost::fusion::for_each(items, [&](auto const& it) {
     //     boost::fusion::for_each(users, [&](auto const& jt) {
@@ -207,9 +207,10 @@ static void list_user(const toml::table& config) {
     //   });
     // }
     // {
-    //   const auto items = palm::portal::dao::users::google::oauth2::all(db);
-    //   std::cout << "UID SUBJECT\tEMAIL\tNAME" << std::endl;
-    //   boost::fusion::for_each(items, [&](auto const& it) {
+    //   const auto items =
+    //   lavender::portal::dao::users::google::oauth2::all(db); std::cout <<
+    //   "UID SUBJECT\tEMAIL\tNAME" << std::endl; boost::fusion::for_each(items,
+    //   [&](auto const& it) {
     //     boost::fusion::for_each(users, [&](auto const& jt) {
     //       if (it.user_id == jt.id) {
     //         std::cout << jt.uid << " " << it.subject << "\t"
@@ -221,8 +222,9 @@ static void list_user(const toml::table& config) {
     //   });
     // }
     // {
-    //   const auto items = palm::portal::dao::users::wechat::oauth2::all(db);
-    //   std::cout << "UID OPENID\tNICKNAME\tCITY\tCOUNTRY" << std::endl;
+    //   const auto items =
+    //   lavender::portal::dao::users::wechat::oauth2::all(db); std::cout <<
+    //   "UID OPENID\tNICKNAME\tCITY\tCOUNTRY" << std::endl;
     //   boost::fusion::for_each(items, [&](auto const& it) {
     //     boost::fusion::for_each(users, [&](auto const& jt) {
     //       if (it.user_id == jt.id) {
@@ -234,7 +236,7 @@ static void list_user(const toml::table& config) {
     // }
     // {
     //   const auto items =
-    //       palm::portal::dao::users::wechat::mini_program::all(db);
+    //       lavender::portal::dao::users::wechat::mini_program::all(db);
     //   std::cout << "UID OPENID\tNICKNAME" << std::endl;
     //   boost::fusion::for_each(items, [&](auto const& it) {
     //     boost::fusion::for_each(users, [&](auto const& jt) {
@@ -265,21 +267,22 @@ static void create_email_user(const toml::table& config,
     soci::session db(*db_pool);
     {
       soci::transaction tr(db);
-      if (palm::portal::dao::users::email::get(db, email.value())) {
+      if (lavender::portal::dao::users::email::get(db, email.value())) {
         spdlog::error("email user({}) already exists", email.value());
         return;
       }
       spdlog::debug("create user {}<{}>", real_name.value(), email.value());
-      palm::portal::dao::users::create(db, uid);
-      const auto user = palm::portal::dao::users::get(db, uid);
-      palm::portal::dao::users::email::create(db, user->id, real_name.value(),
-                                              email.value(), password.value());
+      lavender::portal::dao::users::create(db, uid);
+      const auto user = lavender::portal::dao::users::get(db, uid);
+      lavender::portal::dao::users::email::create(
+          db, user->id, real_name.value(), email.value(), password.value());
       const auto email_user =
-          palm::portal::dao::users::email::get(db, email.value());
+          lavender::portal::dao::users::email::get(db, email.value());
       spdlog::debug("confirm it's email");
-      palm::portal::dao::users::email::confirm(db, email_user->id);
-      palm::portal::dao::logs::create<palm::portal::dao::users::email::Item>(
-          db, user->id, palm::portal::PLUGIN_NAME, hostname,
+      lavender::portal::dao::users::email::confirm(db, email_user->id);
+      lavender::portal::dao::logs::create<
+          lavender::portal::dao::users::email::Item>(
+          db, user->id, lavender::portal::PLUGIN_NAME, hostname,
           palm::portal::v1::UserIndexLogResponse_Item_Level_INFO, boost::none,
           "created by system manager");
       tr.commit();
@@ -303,17 +306,18 @@ static void set_password_for_email_user(const toml::table& config,
     {
       soci::transaction tr(db);
       const auto email_user =
-          palm::portal::dao::users::email::get(db, email.value());
+          lavender::portal::dao::users::email::get(db, email.value());
       if (!email_user) {
         spdlog::error("can't find email user {}", email.value());
         return;
       }
       spdlog::debug("reset user {}<{}>'s password", email_user->real_name,
                     email_user->email);
-      palm::portal::dao::users::email::set_password(db, email_user->id,
-                                                    password.value());
-      palm::portal::dao::logs::create<palm::portal::dao::users::email::Item>(
-          db, email_user->user_id, palm::portal::PLUGIN_NAME, hostname,
+      lavender::portal::dao::users::email::set_password(db, email_user->id,
+                                                        password.value());
+      lavender::portal::dao::logs::create<
+          lavender::portal::dao::users::email::Item>(
+          db, email_user->user_id, lavender::portal::PLUGIN_NAME, hostname,
           palm::portal::v1::UserIndexLogResponse_Item_Level_WARNING,
           boost::none, "reset password by system manager");
       tr.commit();
@@ -337,7 +341,7 @@ static void role_for_user(const toml::table& config,
   auto enforcer = open_casbin_enforcer(db_pool, queue);
   {
     soci::session db(*db_pool);
-    const auto user = palm::portal::dao::users::get(db, user_uid);
+    const auto user = lavender::portal::dao::users::get(db, user_uid);
     if (!user) {
       spdlog::error("couldn't find user {}", user_uid);
       return;
@@ -699,7 +703,7 @@ static void db_seed(const toml::table& config) {
     soci::session db(*db_pool);
     {
       soci::transaction tr(db);
-      palm::portal::dao::locales::load(db, "locales");
+      lavender::portal::dao::locales::load(db, "locales");
       palm::iso4217::load(db, "vendors/iso4217/list-one.xml");
       tr.commit();
     }
@@ -715,9 +719,10 @@ static void start_sms_send_worker(const std::string& name,
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
   std::shared_ptr<palm::QueueConsumer> consumer =
-      std::make_shared<palm::portal::workers::SmsSendQueueConsumer>(name,
-                                                                    twilio);
-  cli->consume(palm::portal::workers::SmsSendQueueConsumer::QUEUE, consumer);
+      std::make_shared<lavender::portal::workers::SmsSendQueueConsumer>(name,
+                                                                        twilio);
+  cli->consume(lavender::portal::workers::SmsSendQueueConsumer::QUEUE,
+               consumer);
 }
 
 static void start_email_send_worker(const std::string& name,
@@ -729,9 +734,10 @@ static void start_email_send_worker(const std::string& name,
   const auto queue = open_rabbitmq(config);
   auto cli = queue->open();
   std::shared_ptr<palm::QueueConsumer> consumer =
-      std::make_shared<palm::portal::workers::EmailSendQueueConsumer>(name,
-                                                                      smtp);
-  cli->consume(palm::portal::workers::EmailSendQueueConsumer::QUEUE, consumer);
+      std::make_shared<lavender::portal::workers::EmailSendQueueConsumer>(name,
+                                                                          smtp);
+  cli->consume(lavender::portal::workers::EmailSendQueueConsumer::QUEUE,
+               consumer);
 }
 
 static void start_http_server(const std::string& host, uint16_t port,
@@ -745,7 +751,7 @@ static void start_http_server(const std::string& host, uint16_t port,
   auto search = open_opensearch(config);
   auto jwt = open_jwt(config);
 
-  palm::GrpcClient rpc = palm::GrpcClient(*(config["backend"].as_table()));
+  lavender::GrpcClient rpc(*(config["backend"].as_table()));
   spdlog::debug("connect to backend tcp://{}", rpc.target());
 
   nlohmann::json global;
@@ -768,7 +774,7 @@ static void start_http_server(const std::string& host, uint16_t port,
   }
 
   palm::set_logger(server);
-  palm::portal::mount(server, rpc, theme, jwt, s3);
+  lavender::portal::mount(server, rpc, theme, jwt, s3);
 
   spdlog::info("listen a HTTP server on tcp://{}:{} with theme {}", host, port,
                theme_folder);
@@ -790,18 +796,18 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   auto hmac = open_hmac(config);
   auto aes = open_aes(config);
 
-  palm::portal::services::UserServiceImpl portal_user_service(cache, queue, s3,
-                                                              aes, hmac, jwt);
-  palm::portal::services::PolicyServiceImpl portal_policy_service;
-  palm::portal::services::SiteServiceImpl portal_site_service(search);
-  palm::cms::services::PageServiceImpl cms_page_service;
-  palm::bbs::services::ForumServiceImpl bbs_forum_service;
-  palm::bbs::services::TopicServiceImpl bbs_topic_service;
-  palm::bbs::services::PostServiceImpl bbs_post_service;
-  palm::ledger::services::BookServiceImpl ledger_book_service;
-  palm::survey::services::FormServiceImpl survey_form_service;
-  palm::blog::services::PageServiceImpl blog_page_service;
-  palm::blog::services::PostServiceImpl blog_post_service;
+  lavender::portal::services::UserServiceImpl portal_user_service(
+      cache, queue, s3, aes, hmac, jwt);
+  lavender::portal::services::PolicyServiceImpl portal_policy_service;
+  lavender::portal::services::SiteServiceImpl portal_site_service(search);
+  lavender::cms::services::PageServiceImpl cms_page_service;
+  lavender::bbs::services::ForumServiceImpl bbs_forum_service;
+  lavender::bbs::services::TopicServiceImpl bbs_topic_service;
+  lavender::bbs::services::PostServiceImpl bbs_post_service;
+  lavender::ledger::services::BookServiceImpl ledger_book_service;
+  lavender::survey::services::FormServiceImpl survey_form_service;
+  lavender::blog::services::PageServiceImpl blog_page_service;
+  lavender::blog::services::PostServiceImpl blog_post_service;
 
   grpc::EnableDefaultHealthCheckService(true);
   // TODO
@@ -830,7 +836,7 @@ static void start_rpc_server(const std::string& host, uint16_t port, bool debug,
   server->Wait();
 }
 
-void palm::lavender::Application::launch(int argc, char* argv[]) {
+void lavender::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
   std::string http_listen_host;

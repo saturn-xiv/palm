@@ -5,7 +5,7 @@
 #include "palm/rpc.hpp"
 #include "palm/session.hpp"
 
-namespace palm {
+namespace phlox {
 void mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
            std::shared_ptr<grpc::Channel> channel);
 

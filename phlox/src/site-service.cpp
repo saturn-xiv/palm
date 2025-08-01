@@ -1,13 +1,13 @@
-#include "palm/services.hpp"
+#include "phlox/services.hpp"
 #include "palm/theme.hpp"
 #include "palm/version.hpp"
 
-grpc::Status palm::monitoring::services::SiteServiceImpl::Layout(
+grpc::Status phlox::monitoring::services::SiteServiceImpl::Layout(
     grpc::ServerContext* context,
     const palm::monitoring::v1::SiteLayoutRequest* request,
     palm::monitoring::v1::SiteLayoutResponse* reply) {
   const std::string en_us = "en-US";
-  palm::CurrentUser current_user(context);
+  phlox::CurrentUser current_user(context);
   {
     auto name = current_user.name(this->_jwt);
     if (!name) {

@@ -1,11 +1,11 @@
-#include "palm/controllers.hpp"
+#include "phlox/controllers.hpp"
 #include "palm/captcha.hpp"
 #include "palm/crypto.hpp"
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
 
-void palm::mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
-                 std::shared_ptr<grpc::Channel> channel) {
+void phlox::mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
+                  std::shared_ptr<grpc::Channel> channel) {
   server.Get("/api/layout", [ch = channel](const httplib::Request& request,
                                            httplib::Response& response) {
     auto stub = palm::monitoring::v1::Site::NewStub(ch);

@@ -1,10 +1,10 @@
-#include "palm/services.hpp"
+#include "phlox/services.hpp"
 
-grpc::Status palm::monitoring::services::SystemdServiceImpl::Journal(
+grpc::Status phlox::monitoring::services::SystemdServiceImpl::Journal(
     grpc::ServerContext* context,
     const palm::monitoring::v1::SystemdJournalRequest* request,
     palm::monitoring::v1::SystemdJournalResponse* reply) {
-  palm::CurrentUser current_user(context);
+  phlox::CurrentUser current_user(context);
   {
     auto name = current_user.name(this->_jwt);
     if (!name) {

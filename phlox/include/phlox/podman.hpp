@@ -1,8 +1,8 @@
 #pragma once
 
-#include "palm/systemd.hpp"
+#include "phlox/systemd.hpp"
 
-namespace palm {
+namespace phlox {
 namespace podman {
 namespace models {
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html
@@ -13,7 +13,7 @@ struct Log {
   std::string __SEQNUM;
   std::string __SEQNUM_ID;
   std::string __REALTIME_TIMESTAMP;
-  std::optional<palm::systemd::models::journal::Message> MESSAGE;
+  std::optional<phlox::systemd::models::journal::Message> MESSAGE;
   std::string CONTAINER_ID;
   std::string CONTAINER_ID_FULL;
   std::string CONTAINER_NAME;
@@ -91,4 +91,4 @@ std::vector<models::Log> logs(const std::string& container_id, time_t since,
 std::vector<models::Status> stats(bool all = false);
 std::vector<models::container::Item> ps(bool all = false);
 }  // namespace podman
-}  // namespace palm
+}  // namespace phlox

@@ -1,15 +1,15 @@
-#include "palm/systemd.hpp"
+#include "phlox/systemd.hpp"
 #include "palm/utils.hpp"
 
 #include <cstdlib>
 #include <sstream>
 
 // sudo journalctl --output json-pretty -n 20 -u nginx
-std::vector<palm::systemd::models::journal::Item> palm::systemd::logs(
+std::vector<phlox::systemd::models::journal::Item> phlox::systemd::logs(
     const std::string& service_name, bool user_scope, time_t since_,
     time_t until_) {
-  const std::string since = palm::epoch_to_journald_timestamp(since_);
-  const std::string until = palm::epoch_to_journald_timestamp(until_);
+  const std::string since = phlox::epoch_to_journald_timestamp(since_);
+  const std::string until = phlox::epoch_to_journald_timestamp(until_);
   spdlog::info("fetch logs for {} from {} to {}", service_name, since, until);
 
   std::vector<std::string> args = {"--output", "json", "--since", since,
@@ -24,7 +24,7 @@ std::vector<palm::systemd::models::journal::Item> palm::systemd::logs(
   }
 
   std::vector<std::string> lines;
-  std::vector<palm::systemd::models::journal::Item> items;
+  std::vector<phlox::systemd::models::journal::Item> items;
   boost::split(lines, out, boost::is_any_of("\n"));
   for (auto& line : lines) {
     boost::trim(line);
@@ -33,7 +33,7 @@ std::vector<palm::systemd::models::journal::Item> palm::systemd::logs(
     }
     spdlog::debug("receive systemd log: {}", line);
     const auto js = nlohmann::json::parse(line);
-    const auto it = js.template get<palm::systemd::models::journal::Item>();
+    const auto it = js.template get<phlox::systemd::models::journal::Item>();
     items.push_back(it);
   }
 

@@ -16,7 +16,7 @@
 
 #include <format>
 
-namespace palm {
+namespace lavender {
 class GrpcClient {
  public:
   GrpcClient(const toml::table& config)
@@ -211,8 +211,9 @@ void load(soci::session& db, const std::filesystem::path& folder);
 }  // namespace locales
 }  // namespace dao
 
-void mount(httplib::Server& server, palm::GrpcClient& rpc, palm::Theme& theme,
-           std::shared_ptr<palm::Jwt> jwt, std::shared_ptr<palm::Minio> s3);
+void mount(httplib::Server& server, lavender::GrpcClient& rpc,
+           palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
+           std::shared_ptr<palm::Minio> s3);
 
 namespace workers {
 class SmsSendQueueConsumer : public palm::QueueConsumer {
@@ -304,28 +305,28 @@ class UserClient {
 }  // namespace rpc
 
 namespace services {
-class SiteService final : public v1::Site::Service {
-  grpc::Status Timezones(grpc::ServerContext* context,
-                         const google::protobuf::Empty* request,
-                         v1::SiteTimezonesResponse* reply) override;
-  grpc::Status Languages(grpc::ServerContext* context,
-                         const google::protobuf::Empty* request,
-                         v1::SiteLanguagesResponse* reply) override;
-  grpc::Status Currencies(grpc::ServerContext* context,
-                          const google::protobuf::Empty* request,
-                          v1::SiteCurrenciesResponse* reply) override;
+class SiteService final : public palm::portal::v1::Site::Service {
+  grpc::Status Timezones(
+      grpc::ServerContext* context, const google::protobuf::Empty* request,
+      palm::portal::v1::SiteTimezonesResponse* reply) override;
+  grpc::Status Languages(
+      grpc::ServerContext* context, const google::protobuf::Empty* request,
+      palm::portal::v1::SiteLanguagesResponse* reply) override;
+  grpc::Status Currencies(
+      grpc::ServerContext* context, const google::protobuf::Empty* request,
+      palm::portal::v1::SiteCurrenciesResponse* reply) override;
 };
 }  // namespace services
 }  // namespace portal
-}  // namespace palm
+}  // namespace lavender
 
 namespace soci {
 template <>
-struct type_conversion<palm::portal::dao::locales::Item> {
+struct type_conversion<lavender::portal::dao::locales::Item> {
   typedef soci::values base_type;
 
   static void from_base(soci::values const& v, soci::indicator /* ind */,
-                        palm::portal::dao::locales::Item& p) {
+                        lavender::portal::dao::locales::Item& p) {
     p.id = v.get<int>("id");
     p.lang = v.get<std::string>("lang");
     p.code = v.get<std::string>("code");
@@ -333,7 +334,7 @@ struct type_conversion<palm::portal::dao::locales::Item> {
     p.updated_at = v.get<std::tm>("updated_at");
   }
 
-  static void to_base(const palm::portal::dao::locales::Item& p,
+  static void to_base(const lavender::portal::dao::locales::Item& p,
                       soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("lang", p.lang);
@@ -345,11 +346,11 @@ struct type_conversion<palm::portal::dao::locales::Item> {
 };
 
 template <>
-struct type_conversion<palm::portal::dao::users::Item> {
+struct type_conversion<lavender::portal::dao::users::Item> {
   typedef soci::values base_type;
 
   static void from_base(soci::values const& v, soci::indicator /* ind */,
-                        palm::portal::dao::users::Item& p) {
+                        lavender::portal::dao::users::Item& p) {
     p.id = v.get<int>("id");
     p.uid = v.get<std::string>("uid");
     p.lang = v.get<std::string>("lang");
@@ -367,8 +368,8 @@ struct type_conversion<palm::portal::dao::users::Item> {
     p.updated_at = v.get<std::tm>("updated_at");
   }
 
-  static void to_base(const palm::portal::dao::users::Item& p, soci::values& v,
-                      soci::indicator& ind) {
+  static void to_base(const lavender::portal::dao::users::Item& p,
+                      soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("uid", p.uid);
     v.set("lang", p.lang);
@@ -387,11 +388,11 @@ struct type_conversion<palm::portal::dao::users::Item> {
 };
 
 template <>
-struct type_conversion<palm::portal::dao::users::email::Item> {
+struct type_conversion<lavender::portal::dao::users::email::Item> {
   typedef soci::values base_type;
 
   static void from_base(soci::values const& v, soci::indicator /* ind */,
-                        palm::portal::dao::users::email::Item& p) {
+                        lavender::portal::dao::users::email::Item& p) {
     p.id = v.get<int>("id");
     p.user_id = v.get<int>("user_id");
     p.real_name = v.get<std::string>("real_name");
@@ -404,7 +405,7 @@ struct type_conversion<palm::portal::dao::users::email::Item> {
     p.updated_at = v.get<std::tm>("updated_at");
   }
 
-  static void to_base(const palm::portal::dao::users::email::Item& p,
+  static void to_base(const lavender::portal::dao::users::email::Item& p,
                       soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("user_id", p.user_id);
@@ -421,12 +422,13 @@ struct type_conversion<palm::portal::dao::users::email::Item> {
 };
 
 template <>
-struct type_conversion<palm::portal::dao::users::wechat::mini_program::Item> {
+struct type_conversion<
+    lavender::portal::dao::users::wechat::mini_program::Item> {
   typedef soci::values base_type;
 
   static void from_base(
       soci::values const& v, soci::indicator /* ind */,
-      palm::portal::dao::users::wechat::mini_program::Item& p) {
+      lavender::portal::dao::users::wechat::mini_program::Item& p) {
     p.id = v.get<int>("id");
     p.user_id = v.get<int>("user_id");
     p.union_id = v.get<std::string>("union_id");
@@ -440,7 +442,7 @@ struct type_conversion<palm::portal::dao::users::wechat::mini_program::Item> {
   }
 
   static void to_base(
-      const palm::portal::dao::users::wechat::mini_program::Item& p,
+      const lavender::portal::dao::users::wechat::mini_program::Item& p,
       soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("user_id", p.user_id);
@@ -457,11 +459,11 @@ struct type_conversion<palm::portal::dao::users::wechat::mini_program::Item> {
 };
 
 template <>
-struct type_conversion<palm::portal::dao::users::wechat::oauth2::Item> {
+struct type_conversion<lavender::portal::dao::users::wechat::oauth2::Item> {
   typedef soci::values base_type;
 
   static void from_base(soci::values const& v, soci::indicator /* ind */,
-                        palm::portal::dao::users::wechat::oauth2::Item& p) {
+                        lavender::portal::dao::users::wechat::oauth2::Item& p) {
     p.id = v.get<int>("id");
     p.user_id = v.get<int>("user_id");
     p.union_id = v.get<std::string>("union_id");
@@ -480,8 +482,9 @@ struct type_conversion<palm::portal::dao::users::wechat::oauth2::Item> {
     p.updated_at = v.get<std::tm>("updated_at");
   }
 
-  static void to_base(const palm::portal::dao::users::wechat::oauth2::Item& p,
-                      soci::values& v, soci::indicator& ind) {
+  static void to_base(
+      const lavender::portal::dao::users::wechat::oauth2::Item& p,
+      soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("user_id", p.user_id);
     v.set("union_id", p.union_id);
@@ -503,11 +506,11 @@ struct type_conversion<palm::portal::dao::users::wechat::oauth2::Item> {
 };
 
 template <>
-struct type_conversion<palm::portal::dao::users::google::oauth2::Item> {
+struct type_conversion<lavender::portal::dao::users::google::oauth2::Item> {
   typedef soci::values base_type;
 
   static void from_base(soci::values const& v, soci::indicator /* ind */,
-                        palm::portal::dao::users::google::oauth2::Item& p) {
+                        lavender::portal::dao::users::google::oauth2::Item& p) {
     p.id = v.get<int>("id");
     p.user_id = v.get<int>("user_id");
     p.subject = v.get<std::string>("subject");
@@ -521,8 +524,9 @@ struct type_conversion<palm::portal::dao::users::google::oauth2::Item> {
     p.updated_at = v.get<std::tm>("updated_at");
   }
 
-  static void to_base(const palm::portal::dao::users::google::oauth2::Item& p,
-                      soci::values& v, soci::indicator& ind) {
+  static void to_base(
+      const lavender::portal::dao::users::google::oauth2::Item& p,
+      soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("user_id", p.user_id);
     v.set("subject", p.subject);
@@ -539,11 +543,11 @@ struct type_conversion<palm::portal::dao::users::google::oauth2::Item> {
 };
 
 template <>
-struct type_conversion<palm::portal::dao::logs::Item> {
+struct type_conversion<lavender::portal::dao::logs::Item> {
   typedef soci::values base_type;
 
   static void from_base(soci::values const& v, soci::indicator /* ind */,
-                        palm::portal::dao::logs::Item& p) {
+                        lavender::portal::dao::logs::Item& p) {
     p.id = v.get<int>("id");
     p.user_id = v.get<int>("user_id");
     p.plugin = v.get<std::string>("plugin");
@@ -555,8 +559,8 @@ struct type_conversion<palm::portal::dao::logs::Item> {
     p.created_at = v.get<std::tm>("created_at");
   }
 
-  static void to_base(const palm::portal::dao::logs::Item& p, soci::values& v,
-                      soci::indicator& ind) {
+  static void to_base(const lavender::portal::dao::logs::Item& p,
+                      soci::values& v, soci::indicator& ind) {
     v.set("id", p.id);
     v.set("user_id", p.user_id);
     v.set("plugin", p.plugin);

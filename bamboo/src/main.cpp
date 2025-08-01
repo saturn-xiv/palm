@@ -1,4 +1,4 @@
-#include "palm/application.hpp"
+#include "bamboo/application.hpp"
 
 #include "cstdlib"
 
@@ -7,7 +7,7 @@
 #include <spdlog/spdlog.h>
 
 int main(int argc, char** argv) {
-  palm::bamboo::Application app;
+  bamboo::Application app;
   try {
     app.launch(argc, argv);
   } catch (...) {

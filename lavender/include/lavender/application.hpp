@@ -1,6 +1,5 @@
 #pragma once
 
-namespace palm {
 namespace lavender {
 class Application {
  public:
@@ -9,4 +8,3 @@ class Application {
 };
 
 }  // namespace lavender
-}  // namespace palm

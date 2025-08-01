@@ -1,12 +1,12 @@
 #pragma once
 
-#include "palm/portal.hpp"
+#include "lavender/portal.hpp"
 #include "survey.grpc.pb.h"
 
-namespace palm {
+namespace lavender {
 namespace survey {
 namespace services {
 class FormServiceImpl final : public palm::survey::v1::Form::Service {};
 }  // namespace services
 }  // namespace survey
-}  // namespace palm
+}  // namespace lavender

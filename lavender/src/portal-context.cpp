@@ -1,7 +1,7 @@
 
-#include "palm/portal.hpp"
+#include "lavender/portal.hpp"
 
-grpc::Status palm::portal::services::UserServiceImpl::SignInByEmail(
+grpc::Status lavender::portal::services::UserServiceImpl::SignInByEmail(
     grpc::ServerContext* context,
     const palm::portal::v1::UserSignInByEmailRequest* request,
     palm::portal::v1::UserSignInResponse* reply) {
@@ -11,7 +11,7 @@ grpc::Status palm::portal::services::UserServiceImpl::SignInByEmail(
 }
 
 std::shared_ptr<palm::portal::v1::UserSignInResponse>
-palm::portal::rpc::UserClient::sign_in(const std::string& email,
+lavender::portal::rpc::UserClient::sign_in(const std::string& email,
                                        const std::string& password) {
   palm::portal::v1::UserSignInByEmailRequest request;
   //   TODO check email

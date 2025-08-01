@@ -1,4 +1,4 @@
-#include "palm/filesystem.hpp"
+#include "phlox/filesystem.hpp"
 
 #include <boost/asio/ip/host_name.hpp>
 #include <boost/exception/diagnostic_information.hpp>
@@ -7,18 +7,18 @@
 #include <sys/types.h>
 #include <cerrno>
 
-palm::monitoring::logging::Source::Source()
+phlox::monitoring::logging::Source::Source()
     : _hostname(boost::asio::ip::host_name()) {}
 
 // https://developer.ibm.com/tutorials/l-ubuntu-inotify/
-palm::monitoring::logging::FilesystemNotify::FilesystemNotify() : Source() {
+phlox::monitoring::logging::FilesystemNotify::FilesystemNotify() : Source() {
   this->_notify_id = inotify_init();
   if (this->_notify_id < 0) {
     spdlog::error("init inotify({}): {}", errno, strerror(errno));
     throw std::runtime_error("init inotify");
   }
 }
-palm::monitoring::logging::FilesystemNotify::~FilesystemNotify() {
+phlox::monitoring::logging::FilesystemNotify::~FilesystemNotify() {
   for (auto [wd, file] : this->_targets) {
     spdlog::info("remove watch of {}", file.string());
     inotify_rm_watch(this->_notify_id, wd);
@@ -26,7 +26,7 @@ palm::monitoring::logging::FilesystemNotify::~FilesystemNotify() {
   spdlog::info("close notify");
   close(this->_notify_id);
 }
-void palm::monitoring::logging::FilesystemNotify::register_(
+void phlox::monitoring::logging::FilesystemNotify::register_(
     const std::filesystem::path& file) {
   std::lock_guard<std::mutex> lock(this->_mutex);
 
@@ -55,7 +55,7 @@ void palm::monitoring::logging::FilesystemNotify::register_(
   this->_targets[wd] = file;
 }
 
-void palm::monitoring::logging::FilesystemNotify::execute(
+void phlox::monitoring::logging::FilesystemNotify::execute(
     std::shared_ptr<palm::opensearch::Client> search) {
   const auto event_size = sizeof(struct inotify_event);
   const auto buf_len = 1024 * (event_size + 16);
@@ -99,7 +99,7 @@ void palm::monitoring::logging::FilesystemNotify::execute(
   }
 
   {
-    palm::monitoring::logging::Item log = {.host = this->_hostname};
+    phlox::monitoring::logging::Item log = {.host = this->_hostname};
     for (const auto [f, m, c] : items) {
       log.file = f.string();
       log.message = m;
@@ -112,21 +112,21 @@ void palm::monitoring::logging::FilesystemNotify::execute(
   }
 }
 
-void palm::monitoring::logging::StdinSource::execute(
+void phlox::monitoring::logging::StdinSource::execute(
     std::shared_ptr<palm::opensearch::Client> search) {
-  palm::monitoring::logging::Item it = {.host = this->_hostname,
-                                        .file = "stdin"};
+  phlox::monitoring::logging::Item it = {.host = this->_hostname,
+                                         .file = "stdin"};
   std::string line;
   while (std::getline(std::cin, it.message)) {
     boost::algorithm::trim(it.message);
-    it.created_at = palm::monitoring::logging::Item::now();
+    it.created_at = phlox::monitoring::logging::Item::now();
     if (!it.message.empty()) {
       search->index_document(it);
     }
   }
 }
 
-void palm::monitoring::LoggingScratcher::launch(
+void phlox::monitoring::LoggingScratcher::launch(
     std::shared_ptr<palm::opensearch::Client> search,
     std::chrono::seconds ttl) {
   std::vector<std::shared_ptr<std::thread>> pool;

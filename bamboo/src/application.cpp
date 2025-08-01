@@ -1,8 +1,8 @@
-#include "palm/application.hpp"
-#include "palm/controllers.hpp"
+#include "bamboo/application.hpp"
+#include "bamboo/controllers.hpp"
 #include "palm/utils.hpp"
 
-void palm::bamboo::Application::launch(int argc, char* argv[]) {
+void bamboo::Application::launch(int argc, char* argv[]) {
   // TODO
   palm::init(true);
 }
