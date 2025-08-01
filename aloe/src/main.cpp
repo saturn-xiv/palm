@@ -7,7 +7,7 @@
 #include <spdlog/spdlog.h>
 
 int main(int argc, char** argv) {
-  palm::aloe::Application app;
+  aloe::Application app;
   try {
     app.launch(argc, argv);
   } catch (...) {
