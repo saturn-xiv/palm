@@ -55,7 +55,7 @@ FetchContent_MakeAvailable(thrift casbin)
 
 add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
 
-target_link_libraries(begonia PUBLIC
+target_link_libraries(begonia PUBLIC m dl anl
   argparse::argparse spdlog::spdlog_header_only
   SOCI::soci_core_static SOCI::soci_sqlite3_static SOCI::soci_postgresql_static
   redis++::redis++_static 

@@ -23,10 +23,17 @@ function build_on_crosstool_ng() {
     cd $WORK_DIR/
 
     cmake --preset=x86_64 -DVCPKG_TARGET_TRIPLET=x64-linux-ng-release \
-    -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$HOME/x-tools/x86_64.cmake \
-    $BOOST_FLAGS -DBOOST_CHARCONV_QUADMATH_FOUND_EXITCODE=0 \
-    $THRIFT_FLAGS $CASBIN_FLAGS
+        -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$HOME/x-tools/x86_64.cmake \
+        $BOOST_FLAGS -DBOOST_CHARCONV_QUADMATH_FOUND_EXITCODE=0 \
+        $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/x86_64
+
+
+    cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=aarch64-linux-ng-release \
+        -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$HOME/x-tools/aarch64.cmake \
+        $BOOST_FLAGS -DBOOST_CHARCONV_QUADMATH_FOUND_EXITCODE=0 \
+        $THRIFT_FLAGS $CASBIN_FLAGS
+    cmake --build $WORK_DIR/build/aarch64
 
     # cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$HOME/x-tools/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     # cmake --build $WORK_DIR/build/aarch64
