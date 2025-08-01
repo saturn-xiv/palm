@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Aloe
+Comment=A collections of accessibility tools.
+Exec=aloe
+Icon=aloe
+Type=Application
+StartupNotify=false
+Categories=Utility;

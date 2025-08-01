@@ -25,7 +25,7 @@ RUN locale-gen
 RUN update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
 
-RUN useradd -s /bin/bash -m deploy
+RUN useradd -s /bin/zsh -m deploy
 RUN passwd -l deploy
 RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
 
@@ -54,6 +54,8 @@ RUN cd $HOME/downloads/crosstool-ng \
     && ./bootstrap \
     && ./configure --enable-local \
     && make
+ADD --chown=deploy crosstool-ng/toolchains/ $HOME/x-tools/
+
 # ct-ng list-samples
 # ct-ng arm-unknown-linux-gnueabi
 # ct-ng menuconfig
@@ -91,6 +93,14 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/downloads/openwrt \
     && ./scripts/feeds update -a \
     && ./scripts/feeds install -a"
+
+# https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash 
+RUN git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
+ADD vcpkg.patch /opt/
+RUN cd $HOME/local/vcpkg && git apply /opt/vcpkg.patch
+ADD --chown=deploy crosstool-ng/triplets/ $HOME/local/vcpkg/triplets/community/
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
