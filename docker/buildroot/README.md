@@ -5,6 +5,7 @@
 - "Toolchain options"=>"Enable nls"
 - "C-Library"=>"Version of glibc"
 - "C compiler"=>"Compile libquadmatch"
+- "C-Library"=>"Enable debug symbols"
 
 - System information
 
