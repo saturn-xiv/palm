@@ -7,9 +7,9 @@
 #include <boost/algorithm/string/join.hpp>
 
 TEST_CASE("minio client", "[minio]") {
-  palm::Minio cli(std::getenv("MINIO_BASE_URL"),
-                  std::getenv("MINIO_ACCESS_KEY"),
-                  std::getenv("MINIO_SECRET_KEY"));
+  palm::minio::Client cli(std::getenv("MINIO_BASE_URL"),
+                          std::getenv("MINIO_ACCESS_KEY"),
+                          std::getenv("MINIO_SECRET_KEY"));
 
   {
     const auto buckets = cli.list_buckets();

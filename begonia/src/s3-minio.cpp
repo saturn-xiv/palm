@@ -13,7 +13,7 @@
   ::minio::creds::StaticProvider provider(x->_access_key, x->_secret_key); \
   ::minio::s3::Client client(base_url, &provider)
 
-std::vector<std::string> palm::Minio::list_buckets() {
+std::vector<std::string> palm::minio::Client::list_buckets() {
   PALM_OPEN_MINIO_CLIENT(this);
   const auto res = client.ListBuckets();
   if (!res) {
@@ -27,8 +27,24 @@ std::vector<std::string> palm::Minio::list_buckets() {
   }
   return items;
 }
-
-bool palm::Minio::bucket_exists(const std::string& name) {
+std::vector<std::tuple<std::string, size_t>> palm::minio::Client::list_objects(
+    const std::string& bucket) {
+  PALM_OPEN_MINIO_CLIENT(this);
+  ::minio::s3::ListObjectsArgs args;
+  args.bucket = bucket;
+  auto res = client.ListObjects(args);
+  std::vector<std::tuple<std::string, size_t>> items;
+  for (; res; res++) {
+    ::minio::s3::Item it = *res;
+    if (!it) {
+      spdlog::error("{}", it.Error().String());
+      continue;
+    }
+    items.push_back({it.name, it.size});
+  }
+  return items;
+}
+bool palm::minio::Client::bucket_exists(const std::string& name) {
   PALM_OPEN_MINIO_CLIENT(this);
   ::minio::s3::BucketExistsArgs args;
   args.bucket = name;
@@ -40,8 +56,8 @@ bool palm::Minio::bucket_exists(const std::string& name) {
   }
   return res.exist;
 }
-void palm::Minio::create_bucket(const std::string& name, bool is_public,
-                                std::optional<uint> expiration_days) {
+void palm::minio::Client::create_bucket(const std::string& name, bool is_public,
+                                        std::optional<uint> expiration_days) {
   PALM_OPEN_MINIO_CLIENT(this);
   // https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
   {
@@ -106,12 +122,12 @@ void palm::Minio::create_bucket(const std::string& name, bool is_public,
       ::minio::s3::LifecycleRule rule;
       rule.id = std::format("expires-in-{}-days", expiration_days.value());
       rule.status = true;
-      rule.expiration_days = minio::s3::Integer(expiration_days.value());
-      rule.filter.prefix = minio::s3::Prefix(std::format("{}/", name));
+      rule.expiration_days = ::minio::s3::Integer(expiration_days.value());
+      rule.filter.prefix = ::minio::s3::Prefix(std::format("{}/", name));
       config.rules.push_back(rule);
     }
 
-    minio::s3::SetBucketLifecycleArgs args(config);
+    ::minio::s3::SetBucketLifecycleArgs args(config);
     args.bucket = name;
 
     ::minio::s3::SetBucketLifecycleResponse res =
@@ -122,12 +138,10 @@ void palm::Minio::create_bucket(const std::string& name, bool is_public,
     }
   }
 }
-std::optional<std::string> palm::Minio::upload(const std::string& bucket,
-                                               const std::string& filename) {
+std::optional<std::string> palm::minio::Client::upload(
+    const std::string& bucket, const std::string& object,
+    const std::string& filename) {
   PALM_OPEN_MINIO_CLIENT(this);
-  std::filesystem::path file(filename);
-  const std::string object =
-      std::format("{}{}", palm::uuid(), file.extension().string());
   spdlog::info("upload {} to ({}, {})", filename, bucket, object);
   ::minio::s3::UploadObjectArgs args;
 
@@ -142,7 +156,7 @@ std::optional<std::string> palm::Minio::upload(const std::string& bucket,
   }
   return object;
 }
-std::optional<std::string> palm::Minio::get_presigned_object_url(
+std::optional<std::string> palm::minio::Client::get_presigned_object_url(
     const std::string& bucket, const std::string& object,
     const std::string& title, const std::string& content_type,
     const std::chrono::seconds ttl) {
@@ -157,7 +171,7 @@ std::optional<std::string> palm::Minio::get_presigned_object_url(
   ::minio::s3::GetPresignedObjectUrlArgs args;
   args.bucket = bucket;
   args.object = object;
-  args.method = minio::http::Method::kGet;
+  args.method = ::minio::http::Method::kGet;
   args.expiry_seconds = ttl.count();
   ::minio::utils::Multimap headers;
   headers.Add(
@@ -177,7 +191,31 @@ std::optional<std::string> palm::Minio::get_presigned_object_url(
   return res.url;
 }
 
-std::string palm::Minio::get_object(const std::string& bucket,
-                                    const std::string& object) {
+std::string palm::minio::Client::get_object(const std::string& bucket,
+                                            const std::string& object) {
   return std::format("https://{}/{}/{}", this->_base_url, bucket, object);
+}
+
+bool palm::minio::Client::get_object(const std::string& bucket,
+                                     const std::string& object,
+                                     std::ofstream& output) {
+  PALM_OPEN_MINIO_CLIENT(this);
+  ::minio::s3::GetObjectArgs args;
+  args.bucket = bucket;
+  args.object = object;
+  args.datafunc = [&](::minio::http::DataFunctionArgs args) -> bool {
+    if (!output.is_open()) {
+      spdlog::error("file was closed");
+      return false;
+    }
+    output << args.datachunk;
+    return true;
+  };
+
+  ::minio::s3::GetObjectResponse res = client.GetObject(args);
+  if (!res) {
+    spdlog::error("{}", res.Error().String());
+    return false;
+  }
+  return true;
 }

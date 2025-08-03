@@ -1,4 +1,9 @@
 #include "aloe/application.hpp"
+#include "aloe/dm8.hpp"
+#include "aloe/ftp.hpp"
+#include "aloe/mysql.hpp"
+#include "aloe/oracle.hpp"
+#include "aloe/postgresql.hpp"
 #include "aloe/s3.hpp"
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
@@ -10,7 +15,8 @@ void aloe::Application::launch(int argc, char* argv[]) {
   bool debug;
   std::string config_file;
 
-  std::string s3_dump_host;
+  std::vector<std::string> s3_dump_hosts;
+  bool s3_dump_zip;
 
   std::string s3_restore_host;
   std::string s3_restore_file;
@@ -33,9 +39,14 @@ void aloe::Application::launch(int argc, char* argv[]) {
 
   argparse::ArgumentParser s3_dump_command("s3-dump");
   s3_dump_command.add_description("backup a s3 server");
-  s3_dump_command.add_argument("-H", "--host")
+  s3_dump_command.add_argument("-H", "--hosts")
       .required()
-      .store_into(s3_dump_host);
+      .append()
+      .store_into(s3_dump_hosts);
+  s3_dump_command.add_argument("-z", "--zip")
+      .flag()
+      .store_into(s3_dump_zip)
+      .help("compress the package(xz)");
 
   argparse::ArgumentParser s3_restore_command("s3-restore");
   s3_restore_command.add_description("restore a s3 server");
@@ -45,6 +56,8 @@ void aloe::Application::launch(int argc, char* argv[]) {
   s3_restore_command.add_argument("-f", "--file")
       .required()
       .store_into(s3_restore_file);
+  s3_restore_command.add_argument("-l", "--file-list")
+      .help("a (bucket,object) list in json format");
 
   argparse::ArgumentParser s3_sync_command("s3-sync");
   s3_sync_command.add_description("sync files between two s3 servers");
@@ -69,11 +82,18 @@ void aloe::Application::launch(int argc, char* argv[]) {
     spdlog::info("load configuration from {}", config_file);
     toml::table config = toml::parse_file(config_file);
     if (program.is_subcommand_used(s3_dump_command)) {
-      aloe::s3::dump(config, s3_dump_host);
+      aloe::s3::dump(config, s3_dump_hosts, s3_dump_zip);
       return;
     }
     if (program.is_subcommand_used(s3_restore_command)) {
-      aloe::s3::restore(config, s3_restore_host, s3_restore_file);
+      auto file_list = s3_restore_command.present("-l");
+      if (file_list) {
+        aloe::s3::restore(config, s3_restore_host, s3_restore_file,
+                          file_list.value());
+      } else {
+        aloe::s3::restore(config, s3_restore_host, s3_restore_file);
+      }
+
       return;
     }
     if (program.is_subcommand_used(s3_sync_command)) {

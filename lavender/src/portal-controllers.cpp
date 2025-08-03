@@ -4,7 +4,7 @@
 
 void lavender::portal::mount(httplib::Server& server, lavender::GrpcClient& rpc,
                              palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
-                             std::shared_ptr<palm::Minio> s3) {
+                             std::shared_ptr<palm::minio::Client> s3) {
   spdlog::debug("{}", BOOST_CURRENT_FUNCTION);
   //   TODO
   server.Get("/", [&](const auto& req, auto& res) {

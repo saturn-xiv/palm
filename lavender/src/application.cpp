@@ -71,9 +71,11 @@ static std::shared_ptr<palm::opensearch::Client> open_opensearch(
   }
   return it;
 }
-static std::shared_ptr<palm::Minio> open_minio(const toml::table& config) {
+static std::shared_ptr<palm::minio::Client> open_minio(
+    const toml::table& config) {
   auto cfg = config["minio"].as_table();
-  std::shared_ptr<palm::Minio> it = std::make_shared<palm::Minio>(*cfg);
+  std::shared_ptr<palm::minio::Client> it =
+      std::make_shared<palm::minio::Client>(*cfg);
   {
     const auto items = it->list_buckets();
     spdlog::debug("total {} buckets", items.size());

@@ -213,7 +213,7 @@ void load(soci::session& db, const std::filesystem::path& folder);
 
 void mount(httplib::Server& server, lavender::GrpcClient& rpc,
            palm::Theme& theme, std::shared_ptr<palm::Jwt> jwt,
-           std::shared_ptr<palm::Minio> s3);
+           std::shared_ptr<palm::minio::Client> s3);
 
 namespace workers {
 class SmsSendQueueConsumer : public palm::QueueConsumer {
@@ -255,7 +255,7 @@ class UserServiceImpl final : public palm::portal::v1::User::Service {
  public:
   UserServiceImpl(std::shared_ptr<sw::redis::Redis> cache,
                   std::shared_ptr<palm::rabbitmq::Config> queue,
-                  std::shared_ptr<palm::Minio> s3,
+                  std::shared_ptr<palm::minio::Client> s3,
                   std::shared_ptr<palm::Aes> aes,
                   std::shared_ptr<palm::HMac> hmac,
                   std::shared_ptr<palm::Jwt> jwt)
@@ -274,7 +274,7 @@ class UserServiceImpl final : public palm::portal::v1::User::Service {
  private:
   std::shared_ptr<palm::rabbitmq::Config> _queue;
   std::shared_ptr<sw::redis::Redis> _cache;
-  std::shared_ptr<palm::Minio> _s3;
+  std::shared_ptr<palm::minio::Client> _s3;
   std::shared_ptr<palm::Aes> _aes;
   std::shared_ptr<palm::Jwt> _jwt;
   std::shared_ptr<palm::HMac> _hmac;
