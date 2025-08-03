@@ -4,6 +4,7 @@
 
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
+#include <openssl/md5.h>
 #include <openssl/sha.h>
 #include <spdlog/spdlog.h>
 #include <cppcodec/base64_rfc4648.hpp>
@@ -121,4 +122,48 @@ std::vector<uint8_t> palm::sha512::sign(const std::vector<uint8_t> plain) {
 
   std::vector<uint8_t> it(std::begin(digest), std::end(digest));
   return it;
+}
+
+std::optional<std::string> palm::md5(const std::filesystem::path &filename) {
+  std::ifstream file(filename, std::ios::binary);
+  if (!file.is_open()) {
+    return std::nullopt;
+  }
+
+  EVP_MD_CTX *md_ctx = EVP_MD_CTX_new();
+  if (!md_ctx) {
+    spdlog::error("init openssl evp");
+    return std::nullopt;
+  }
+  if (1 != EVP_DigestInit_ex(md_ctx, EVP_md5(), NULL)) {
+    spdlog::error("init openssl digest");
+    return std::nullopt;
+  }
+
+  std::vector<char> buffer(4096);
+  while (file.read(buffer.data(), buffer.size())) {
+    if (1 != EVP_DigestUpdate(md_ctx, buffer.data(), file.gcount())) {
+      spdlog::error("update evp digest");
+      return std::nullopt;
+    }
+  }
+
+  if (1 != EVP_DigestUpdate(md_ctx, buffer.data(), file.gcount())) {
+    spdlog::error("update evp digest(tail)");
+    return std::nullopt;
+  }
+  unsigned char md_value[EVP_MAX_MD_SIZE];
+  unsigned int md_len;
+  if (1 != EVP_DigestFinal_ex(md_ctx, md_value, &md_len)) {
+    spdlog::error("final evp digest");
+    return std::nullopt;
+  }
+  EVP_MD_CTX_free(md_ctx);
+
+  std::stringstream ss;
+  for (unsigned int i = 0; i < md_len; ++i) {
+    ss << std::hex << std::setw(2) << std::setfill('0')
+       << static_cast<int>(md_value[i]);
+  }
+  return ss.str();
 }

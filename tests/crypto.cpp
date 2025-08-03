@@ -80,6 +80,22 @@ TEST_CASE("random data", "[random]") {
   }
 }
 
+TEST_CASE("impl by openssl", "[md5]") {
+  SECTION("file") {
+    std::vector<std::string> items = {"CMakeCache.txt", "CPackConfig.cmake",
+                                      "vcpkg-manifest-install.log",
+                                      "build.ninja"};
+    for (const auto& it : items) {
+      if (!std::filesystem::exists(it)) {
+        continue;
+      }
+      auto md5 = palm::md5(it);
+      REQUIRE(md5.has_value());
+      std::cout << it << "(md5): " << md5.value() << std::endl;
+    }
+    std::cout << "md5sum " << boost::algorithm::join(items, " ") << std::endl;
+  }
+}
 TEST_CASE("impl by openssl", "[sha]") {
   const std::string hi = "Hello, palm!";
 

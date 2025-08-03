@@ -4,18 +4,6 @@
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
 
-void aloe::s3::sync(const toml::table& config, const std::string& source,
-                    const std::string& destination) {
-  spdlog::info("sync s3 from {} to {}", source, destination);
-  // TODO
-}
-void aloe::s3::sync(const toml::table& config, const std::string& source,
-                    const std::string& destination, const std::string& list) {
-  spdlog::info("sync s3 from {} to {} by files list {}", source, destination,
-               list);
-  // TODO
-}
-
 static inline void download(std::shared_ptr<palm::minio::Client> client,
                             const std::string& bucket,
                             const std::string& object,
@@ -45,11 +33,11 @@ static inline void download(std::shared_ptr<palm::minio::Client> client,
   }
 }
 
-void aloe::s3::dump(const toml::table& config,
-                    const std::vector<std::string>& hosts, bool compress) {
+void aloe::s3::dump(const std::vector<std::string>& hosts, bool compress) {
   const auto tmp = palm::timestamp();
   const auto tar = std::format("{}.tar", tmp);
   const auto zip = std::format("{}.tar.xz", tmp);
+  const auto md5 = std::format("{}.md5", tmp);
 
   spdlog::info("dump s3 {} to {}", boost::algorithm::join(hosts, ","), tmp);
 
@@ -98,6 +86,17 @@ void aloe::s3::dump(const toml::table& config,
       spdlog::error("{} {}", status, err);
       return;
     }
+
+    {
+      const auto hash = palm::md5(tar);
+      std::ofstream out(md5);
+      if (out.is_open()) {
+        spdlog::error("couldn't create md5 file");
+        return;
+      }
+      out << hash.value() << std::endl;
+      out.close();
+    }
   }
   // compress xz file
   if (compress) {
@@ -109,6 +108,16 @@ void aloe::s3::dump(const toml::table& config,
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;
+    }
+    {
+      const auto hash = palm::md5(tar);
+      std::ofstream out(md5, std::ios::app);
+      if (out.is_open()) {
+        spdlog::error("couldn't open md5 file");
+        return;
+      }
+      out << hash.value() << std::endl;
+      out.close();
     }
   }
 
@@ -148,8 +157,7 @@ inline static void upload(std::shared_ptr<palm::minio::Client> client,
   client->upload(bucket, object, file.string());
 }
 
-void aloe::s3::restore(const toml::table& config, const std::string& host,
-                       const std::string& tar) {
+void aloe::s3::restore(const std::string& host, const std::string& tar) {
   auto client = palm::minio::Client::open(host);
   client->list_buckets();
   spdlog::info("restore s3 {} to {}", tar, host);
@@ -172,8 +180,8 @@ void aloe::s3::restore(const toml::table& config, const std::string& host,
   spdlog::info("done.");
 }
 
-void aloe::s3::restore(const toml::table& config, const std::string& host,
-                       const std::string& tar, const std::string& list) {
+void aloe::s3::restore(const std::string& host, const std::string& tar,
+                       const std::string& list) {
   auto client = palm::minio::Client::open(host);
   client->list_buckets();
   spdlog::info("restore s3 {} to {} by file list {}", tar, host, list);
@@ -188,4 +196,45 @@ void aloe::s3::restore(const toml::table& config, const std::string& host,
     upload(client, tmp.value() / ROOTFS, f.bucket, f.object);
   }
   spdlog::info("done.");
+}
+
+void aloe::s3::sync(const std::string& source_,
+                    const std::string& destination_) {
+  spdlog::info("sync s3 from {} to {}", source_, destination_);
+  auto source = palm::minio::Client::open(source_);
+  auto destination = palm::minio::Client::open(destination_);
+
+  const auto buckets = source->list_buckets();
+  spdlog::debug("found {} buckets", buckets.size());
+  const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
+  for (auto const& bucket : buckets) {
+    spdlog::debug("fetch bucket {}", bucket);
+    const auto objects = source->list_objects(bucket);
+    for (auto const& [name, size] : objects) {
+      spdlog::info("fetch {}/{} {} bytes", bucket, name, size);
+      download(source, bucket, name, rootfs);
+      upload(destination, rootfs, bucket, name);
+    }
+  }
+  spdlog::info("clean {}", rootfs.string());
+  std::filesystem::remove_all(rootfs);
+}
+void aloe::s3::sync(const std::string& source_, const std::string& destination_,
+                    const std::string& file_list_) {
+  spdlog::info("sync s3 from {} to {} by files list {}", source_, destination_,
+               file_list_);
+  std::ifstream fs(file_list_);
+  auto js = nlohmann::json::parse(fs);
+  auto files = js.template get<std::vector<File>>();
+
+  auto source = palm::minio::Client::open(source_);
+  auto destination = palm::minio::Client::open(destination_);
+  const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
+  for (auto const& file : files) {
+    spdlog::info("fetch {}/{} ", file.bucket, file.object);
+    download(source, file.bucket, file.object, rootfs);
+    upload(destination, rootfs, file.bucket, file.object);
+  }
+  spdlog::info("clean {}", rootfs.string());
+  std::filesystem::remove_all(rootfs);
 }

@@ -4,6 +4,9 @@
 #include <climits>
 #include <cstdlib>
 #include <ctime>
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
 #include <random>
 #include <string>
 #include <vector>
@@ -138,4 +141,6 @@ js: Math.random()
 */
 std::string sign(const std::string& plain);
 }  // namespace salted_password
+
+std::optional<std::string> md5(const std::filesystem::path& file);
 }  // namespace palm

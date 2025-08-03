@@ -9,16 +9,13 @@
 
 namespace aloe {
 namespace s3 {
-void sync(const toml::table& config, const std::string& source,
-          const std::string& destination, const std::string& file_list);
-void sync(const toml::table& config, const std::string& source,
-          const std::string& destination);
-void dump(const toml::table& config, const std::vector<std::string>& hosts,
-          bool zip = false);
-void restore(const toml::table& config, const std::string& host,
-             const std::string& tar_file);
-void restore(const toml::table& config, const std::string& host,
-             const std::string& tar_file, const std::string& file_list);
+void sync(const std::string& source, const std::string& destination,
+          const std::string& file_list);
+void sync(const std::string& source, const std::string& destination);
+void dump(const std::vector<std::string>& hosts, bool zip = false);
+void restore(const std::string& host, const std::string& tar_file);
+void restore(const std::string& host, const std::string& tar_file,
+             const std::string& file_list);
 struct Object {
   std::string name;
   size_t size;

@@ -13,7 +13,6 @@
 
 void aloe::Application::launch(int argc, char* argv[]) {
   bool debug;
-  std::string config_file;
 
   std::vector<std::string> s3_dump_hosts;
   bool s3_dump_zip;
@@ -28,10 +27,6 @@ void aloe::Application::launch(int argc, char* argv[]) {
       "aloe", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
   program.add_description("A collections of accessibility tools.");
   program.add_epilog(palm::PROJECT_HOME);
-  program.add_argument("-c", "--config")
-      .default_value("config.toml")
-      .store_into(config_file)
-      .help("configuration file");
   program.add_argument("-d", "--debug")
       .flag()
       .store_into(debug)
@@ -79,19 +74,18 @@ void aloe::Application::launch(int argc, char* argv[]) {
       program.is_subcommand_used(s3_restore_command) ||
       program.is_subcommand_used(s3_sync_command)) {
     palm::init(debug);
-    spdlog::info("load configuration from {}", config_file);
-    toml::table config = toml::parse_file(config_file);
+    // spdlog::info("load configuration from {}", config_file);
+    // toml::table config = toml::parse_file(config_file);
     if (program.is_subcommand_used(s3_dump_command)) {
-      aloe::s3::dump(config, s3_dump_hosts, s3_dump_zip);
+      aloe::s3::dump(s3_dump_hosts, s3_dump_zip);
       return;
     }
     if (program.is_subcommand_used(s3_restore_command)) {
       auto file_list = s3_restore_command.present("-l");
       if (file_list) {
-        aloe::s3::restore(config, s3_restore_host, s3_restore_file,
-                          file_list.value());
+        aloe::s3::restore(s3_restore_host, s3_restore_file, file_list.value());
       } else {
-        aloe::s3::restore(config, s3_restore_host, s3_restore_file);
+        aloe::s3::restore(s3_restore_host, s3_restore_file);
       }
 
       return;
@@ -99,10 +93,9 @@ void aloe::Application::launch(int argc, char* argv[]) {
     if (program.is_subcommand_used(s3_sync_command)) {
       auto file_list = s3_sync_command.present("-l");
       if (file_list) {
-        aloe::s3::sync(config, s3_sync_source, s3_sync_destination,
-                       file_list.value());
+        aloe::s3::sync(s3_sync_source, s3_sync_destination, file_list.value());
       } else {
-        aloe::s3::sync(config, s3_sync_source, s3_sync_destination);
+        aloe::s3::sync(s3_sync_source, s3_sync_destination);
       }
 
       return;
