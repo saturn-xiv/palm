@@ -187,7 +187,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
   if (!tmp) {
     return;
   }
-  std::vector<std::tuple<std::string, std::string>> failed;
+  std::vector<File> failed;
   spdlog::debug("load file list from {}", INDEX);
   std::ifstream fs(tmp.value() / INDEX);
   auto js = nlohmann::json::parse(fs);
@@ -196,7 +196,8 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
     for (const auto& b : h.buckets) {
       for (const auto& o : b.objects) {
         if (!upload(client, tmp.value() / ROOTFS, b.name, o.name)) {
-          failed.push_back({b.name, o.name});
+          File it = {.bucket = b.name, .object = o.name};
+          failed.push_back(it);
         }
       }
     }
@@ -227,10 +228,11 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
   std::ifstream fs(list);
   auto js = nlohmann::json::parse(fs);
   auto files = js.template get<std::vector<File>>();
-  std::vector<std::tuple<std::string, std::string>> failed;
+  std::vector<File> failed;
   for (const auto& f : files) {
     if (!upload(client, tmp.value() / ROOTFS, f.bucket, f.object)) {
-      failed.push_back({f.bucket, f.object});
+      File it = {.bucket = f.bucket, .object = f.object};
+      failed.push_back(it);
     }
   }
   if (failed.size() > 0) {
@@ -256,7 +258,7 @@ void aloe::s3::sync(const std::string& source_,
   const auto buckets = source->list_buckets();
   spdlog::debug("found {} buckets", buckets.size());
   const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
-  std::vector<std::tuple<std::string, std::string>> failed;
+  std::vector<File> failed;
   for (auto const& bucket : buckets) {
     spdlog::debug("fetch bucket {}", bucket);
     const auto objects = source->list_objects(bucket);
@@ -267,7 +269,8 @@ void aloe::s3::sync(const std::string& source_,
           continue;
         }
       }
-      failed.push_back({bucket, name});
+      File it = {.bucket = bucket, .object = name};
+      failed.push_back(it);
     }
   }
   spdlog::debug("clean {}", rootfs.string());
