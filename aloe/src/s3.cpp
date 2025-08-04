@@ -81,7 +81,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
       spdlog::debug("write {}", INDEX);
       std::ofstream ofs(std::filesystem::path(tmp) / INDEX);
       nlohmann::json js(hosts_);
-      ofs << std::setw(4) << js << std::endl;
+      ofs << std::setw(2) << js << std::endl;
     }
   }
 
@@ -90,7 +90,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
     spdlog::info("create {}", tar);
     const auto& [status, out, err] =
         palm::shell("/usr/bin/tar",
-                    {"cf", tar, "--remove-files", ROOTFS, INDEX, "-C", tmp});
+                    {"cf", tar, "-C", tmp, "--remove-files", ROOTFS, INDEX});
     spdlog::debug("{}", out);
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
@@ -139,7 +139,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
-    ofs << std::setw(4) << js << std::endl;
+    ofs << std::setw(2) << js << std::endl;
   }
   spdlog::info("done({} failed).", failed.size());
 }
@@ -205,7 +205,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
-    ofs << std::setw(4) << js << std::endl;
+    ofs << std::setw(2) << js << std::endl;
   }
 
   spdlog::info("clean {}", tmp->string());
@@ -237,7 +237,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
-    ofs << std::setw(4) << js << std::endl;
+    ofs << std::setw(2) << js << std::endl;
   }
 
   spdlog::info("clean {}", tmp->string());
@@ -277,7 +277,7 @@ void aloe::s3::sync(const std::string& source_,
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
-    ofs << std::setw(4) << js << std::endl;
+    ofs << std::setw(2) << js << std::endl;
   }
   spdlog::info("done({} failed).", failed.size());
 }
