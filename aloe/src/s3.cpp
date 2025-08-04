@@ -100,11 +100,11 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
     {
       const auto hash = palm::md5(tar);
       std::ofstream out(md5);
-      if (out.is_open()) {
+      if (!out.is_open()) {
         spdlog::error("couldn't create md5 file");
         return;
       }
-      out << hash.value() << std::endl;
+      out << hash.value() << " " << tar << std::endl;
       out.close();
     }
   }
@@ -120,13 +120,13 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
       return;
     }
     {
-      const auto hash = palm::md5(tar);
+      const auto hash = palm::md5(zip);
       std::ofstream out(md5, std::ios::app);
-      if (out.is_open()) {
+      if (!out.is_open()) {
         spdlog::error("couldn't open md5 file");
         return;
       }
-      out << hash.value() << std::endl;
+      out << hash.value() << zip << std::endl;
       out.close();
     }
   }
