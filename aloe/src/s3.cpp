@@ -88,9 +88,10 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   // create tar file
   {
     spdlog::info("create {}", tar);
-    const auto& [status, out, err] =
-        palm::shell("/usr/bin/tar",
-                    {"cf", tar, "-C", tmp, "--remove-files", ROOTFS, INDEX});
+    // const auto& [status, out, err] =
+    //     palm::shell("/usr/bin/tar",
+    //                 {"cf", tar, "-C", tmp, "--remove-files", ROOTFS, INDEX});
+    const auto& [status, out, err] = palm::tar(tar, "tmp");
     spdlog::debug("{}", out);
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
@@ -111,9 +112,10 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   // compress xz file
   if (compress) {
     spdlog::info("create {}", zip);
-    const auto& [status, out, err] = palm::shell(
-        "/usr/bin/xz",
-        {"-z", "-F", "xz", "-C", "sha256", "--best", "-T", "+1", tar});
+    // const auto& [status, out, err] = palm::shell(
+    //     "/usr/bin/xz",
+    //     {"-z", "-F", "xz", "-C", "sha256", "--best", "-T", "+1", tar});
+    const auto& [status, out, err] = palm::xz(tar);
     spdlog::debug("{}", out);
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
@@ -135,7 +137,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   //   spdlog::error("failed to fetch file ({}, {}, {})", h, b, o);
   // }
   if (failed.size() > 0) {
-    const std::string file = std::format("dump-{}-errors.json", tmp);
+    const std::string file = std::format("dump-{}-failed.json", tmp);
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
@@ -201,7 +203,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
   }
   if (failed.size() > 0) {
     const std::string file =
-        std::format("restore-{}-errors.json", palm::timestamp());
+        std::format("restore-{}-failed.json", palm::timestamp());
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
@@ -222,7 +224,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
   if (!tmp) {
     return;
   }
-  std::ifstream fs(tmp.value() / INDEX);
+  std::ifstream fs(list);
   auto js = nlohmann::json::parse(fs);
   auto files = js.template get<std::vector<File>>();
   std::vector<std::tuple<std::string, std::string>> failed;
@@ -233,7 +235,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
   }
   if (failed.size() > 0) {
     const std::string file =
-        std::format("restore-{}-errors.json", palm::timestamp());
+        std::format("restore-{}-failed.json", palm::timestamp());
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);
@@ -273,7 +275,7 @@ void aloe::s3::sync(const std::string& source_,
 
   if (failed.size() > 0) {
     const std::string file =
-        std::format("sync-{}-errors.json", palm::timestamp());
+        std::format("sync-{}-failed.json", palm::timestamp());
     spdlog::debug("write {}", file);
     std::ofstream ofs(file);
     nlohmann::json js(failed);

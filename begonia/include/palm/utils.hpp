@@ -80,7 +80,15 @@ inline std::tuple<int, std::string, std::string> shell(
 
   return {exit_code, out, err};
 }
-
+inline std::tuple<int, std::string, std::string> tar(
+    const std::string& name, const std::string& folder) {
+  return shell("/usr/bin/tar",
+               {"cf", name, "-C", folder, "--remove-files", "."});
+}
+inline std::tuple<int, std::string, std::string> xz(const std::string& file) {
+  return shell("/usr/bin/xz",
+               {"-z", "-F", "xz", "-C", "sha256", "--best", "-T", "+1", file});
+}
 inline std::optional<time_t> booted_at() {
   double uptime_in_seconds;
 
