@@ -4,7 +4,7 @@
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
 
-static inline void download(std::shared_ptr<palm::minio::Client> client,
+static inline bool download(std::shared_ptr<palm::minio::Client> client,
                             const std::string& bucket,
                             const std::string& object,
                             const std::filesystem::path& rootfs) {
@@ -18,7 +18,7 @@ static inline void download(std::shared_ptr<palm::minio::Client> client,
   std::filesystem::path file = folder / object;
   if (std::filesystem::exists(file)) {
     spdlog::warn("file already exists {}", file.string());
-    return;
+    return false;
   }
   {
     spdlog::info("create {}", file.string());
@@ -30,6 +30,7 @@ static inline void download(std::shared_ptr<palm::minio::Client> client,
       spdlog::debug("remove file {}", file.string());
       std::filesystem::remove(file);
     }
+    return ok;
   }
 }
 
@@ -42,6 +43,8 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   const auto tar = std::format("{}.tar", tmp);
   const auto zip = std::format("{}.tar.xz", tmp);
   const auto md5 = std::format("{}.md5", tmp);
+
+  std::vector<std::tuple<std::string, std::string, std::string>> failed;
 
   spdlog::info("dump s3 {} to {}", boost::algorithm::join(hosts, ","), tmp);
 
@@ -61,9 +64,12 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
                       bucket);
         for (const auto& [name, size] : objects) {
           spdlog::debug("found object {}/{}", bucket, name);
-          download(cli, bucket, name, root);
-          Object object_ = {.name = name, .size = size};
-          bucket_.objects.push_back(object_);
+          if (download(cli, bucket, name, root)) {
+            Object object_ = {.name = name, .size = size};
+            bucket_.objects.push_back(object_);
+          } else {
+            failed.push_back({host, bucket, name});
+          }
         }
         host_.buckets.push_back(bucket_);
       }
@@ -125,7 +131,17 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
     }
   }
 
-  spdlog::info("done.");
+  // for (const auto& [h, b, o] : failed) {
+  //   spdlog::error("failed to fetch file ({}, {}, {})", h, b, o);
+  // }
+  if (failed.size() > 0) {
+    const std::string file = std::format("dump-{}-errors.json", tmp);
+    spdlog::debug("write {}", file);
+    std::ofstream ofs(file);
+    nlohmann::json js(failed);
+    ofs << std::setw(4) << js << std::endl;
+  }
+  spdlog::info("done({} failed).", failed.size());
 }
 
 static inline std::optional<std::filesystem::path> uncompress(
@@ -150,7 +166,7 @@ static inline std::optional<std::filesystem::path> uncompress(
   return root;
 }
 
-inline static void upload(std::shared_ptr<palm::minio::Client> client,
+inline static bool upload(std::shared_ptr<palm::minio::Client> client,
                           const std::filesystem::path& rootfs,
                           const std::string& bucket,
                           const std::string& object) {
@@ -158,7 +174,7 @@ inline static void upload(std::shared_ptr<palm::minio::Client> client,
     client->create_bucket(bucket);
   }
   const auto file = rootfs / bucket / object;
-  client->upload(bucket, object, file.string());
+  return client->upload(bucket, object, file.string());
 }
 
 void aloe::s3::restore(const std::string& host, const std::string& tar) {
@@ -169,6 +185,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
   if (!tmp) {
     return;
   }
+  std::vector<std::tuple<std::string, std::string>> failed;
   spdlog::debug("load file list from {}", INDEX);
   std::ifstream fs(tmp.value() / INDEX);
   auto js = nlohmann::json::parse(fs);
@@ -176,12 +193,24 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
   for (const auto& h : hosts) {
     for (const auto& b : h.buckets) {
       for (const auto& o : b.objects) {
-        upload(client, tmp.value() / ROOTFS, b.name, o.name);
+        if (!upload(client, tmp.value() / ROOTFS, b.name, o.name)) {
+          failed.push_back({b.name, o.name});
+        }
       }
     }
   }
+  if (failed.size() > 0) {
+    const std::string file =
+        std::format("restore-{}-errors.json", palm::timestamp());
+    spdlog::debug("write {}", file);
+    std::ofstream ofs(file);
+    nlohmann::json js(failed);
+    ofs << std::setw(4) << js << std::endl;
+  }
 
-  spdlog::info("done.");
+  spdlog::info("clean {}", tmp->string());
+  std::filesystem::remove_all(tmp.value());
+  spdlog::info("done({} failed).", failed.size());
 }
 
 void aloe::s3::restore(const std::string& host, const std::string& tar,
@@ -196,10 +225,24 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
   std::ifstream fs(tmp.value() / INDEX);
   auto js = nlohmann::json::parse(fs);
   auto files = js.template get<std::vector<File>>();
+  std::vector<std::tuple<std::string, std::string>> failed;
   for (const auto& f : files) {
-    upload(client, tmp.value() / ROOTFS, f.bucket, f.object);
+    if (!upload(client, tmp.value() / ROOTFS, f.bucket, f.object)) {
+      failed.push_back({f.bucket, f.object});
+    }
   }
-  spdlog::info("done.");
+  if (failed.size() > 0) {
+    const std::string file =
+        std::format("restore-{}-errors.json", palm::timestamp());
+    spdlog::debug("write {}", file);
+    std::ofstream ofs(file);
+    nlohmann::json js(failed);
+    ofs << std::setw(4) << js << std::endl;
+  }
+
+  spdlog::info("clean {}", tmp->string());
+  std::filesystem::remove_all(tmp.value());
+  spdlog::info("done({} failed).", failed.size());
 }
 
 void aloe::s3::sync(const std::string& source_,
@@ -211,17 +254,32 @@ void aloe::s3::sync(const std::string& source_,
   const auto buckets = source->list_buckets();
   spdlog::debug("found {} buckets", buckets.size());
   const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
+  std::vector<std::tuple<std::string, std::string>> failed;
   for (auto const& bucket : buckets) {
     spdlog::debug("fetch bucket {}", bucket);
     const auto objects = source->list_objects(bucket);
     for (auto const& [name, size] : objects) {
       spdlog::info("fetch {}/{} {} bytes", bucket, name, size);
-      download(source, bucket, name, rootfs);
-      upload(destination, rootfs, bucket, name);
+      if (download(source, bucket, name, rootfs)) {
+        if (upload(destination, rootfs, bucket, name)) {
+          continue;
+        }
+      }
+      failed.push_back({bucket, name});
     }
   }
-  spdlog::info("clean {}", rootfs.string());
+  spdlog::debug("clean {}", rootfs.string());
   std::filesystem::remove_all(rootfs);
+
+  if (failed.size() > 0) {
+    const std::string file =
+        std::format("sync-{}-errors.json", palm::timestamp());
+    spdlog::debug("write {}", file);
+    std::ofstream ofs(file);
+    nlohmann::json js(failed);
+    ofs << std::setw(4) << js << std::endl;
+  }
+  spdlog::info("done({} failed).", failed.size());
 }
 void aloe::s3::sync(const std::string& source_, const std::string& destination_,
                     const std::string& file_list_) {

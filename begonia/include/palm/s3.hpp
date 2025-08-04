@@ -79,9 +79,8 @@ class Client {
 
   void create_bucket(const std::string& name, bool is_public = false,
                      std::optional<uint> expiration_days = std::nullopt);
-  std::optional<std::string> upload(const std::string& bucket,
-                                    const std::string& object,
-                                    const std::string& file);
+  bool upload(const std::string& bucket, const std::string& object,
+              const std::string& file);
   std::optional<std::string> get_presigned_object_url(
       const std::string& bucket, const std::string& object,
       const std::string& title, const std::string& content_type,
@@ -99,7 +98,7 @@ class Client {
     }
     ss << "://" << this->_host;
     if (this->_port) {
-      ss << this->_port.value();
+      ss << ":" << this->_port.value();
     }
     return ss.str();
   }

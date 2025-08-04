@@ -142,9 +142,9 @@ void palm::minio::Client::create_bucket(const std::string& name, bool is_public,
     }
   }
 }
-std::optional<std::string> palm::minio::Client::upload(
-    const std::string& bucket, const std::string& object,
-    const std::string& filename) {
+bool palm::minio::Client::upload(const std::string& bucket,
+                                 const std::string& object,
+                                 const std::string& filename) {
   PALM_OPEN_MINIO_CLIENT(this);
   spdlog::info("upload {} to ({}, {})", filename, bucket, object);
   ::minio::s3::UploadObjectArgs args;
@@ -156,9 +156,9 @@ std::optional<std::string> palm::minio::Client::upload(
   ::minio::s3::UploadObjectResponse res = client.UploadObject(args);
   if (!res) {
     spdlog::error("{}", res.Error().String());
-    return nullptr;
+    return false;
   }
-  return object;
+  return true;
 }
 std::optional<std::string> palm::minio::Client::get_presigned_object_url(
     const std::string& bucket, const std::string& object,
