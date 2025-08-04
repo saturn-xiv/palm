@@ -8,8 +8,12 @@
 #include <inja/inja.hpp>
 
 #define PALM_OPEN_MINIO_CLIENT(x)                                          \
-  spdlog::debug("connect https://{}", x->_base_url);                       \
-  ::minio::s3::BaseUrl base_url(x->_base_url);                             \
+  spdlog::debug("connect {}", x->base_url());                              \
+  ::minio::s3::BaseUrl base_url(x->_host);                                 \
+  base_url.https = x->_https;                                              \
+  if (x->_port) {                                                          \
+    base_url.port = x->_port.value();                                      \
+  }                                                                        \
   ::minio::creds::StaticProvider provider(x->_access_key, x->_secret_key); \
   ::minio::s3::Client client(base_url, &provider)
 
@@ -193,7 +197,7 @@ std::optional<std::string> palm::minio::Client::get_presigned_object_url(
 
 std::string palm::minio::Client::get_object(const std::string& bucket,
                                             const std::string& object) {
-  return std::format("https://{}/{}/{}", this->_base_url, bucket, object);
+  return std::format("{}/{}/{}", this->base_url(), bucket, object);
 }
 
 bool palm::minio::Client::get_object(const std::string& bucket,

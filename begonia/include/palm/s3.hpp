@@ -16,6 +16,7 @@
 #include <boost/uuid/uuid_io.hpp>
 
 #include <miniocpp/client.h>
+#include <spdlog/spdlog.h>
 #include <nlohmann/json.hpp>
 
 #define TOML_EXCEPTIONS 1
@@ -26,38 +27,47 @@ namespace palm {
 namespace minio {
 struct Config {
   std::string url;
-  std::string access_key;
-  std::string secret_key;
+  std::string accessKey;
+  std::string secretKey;
   std::string api;
   std::string path;
 
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Config, access_key, secret_key, api, path)
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Config, url, accessKey, secretKey, api, path)
 };
 
 class Client {
  public:
   Client(const toml::table& config)
-      : _base_url(config["base-url"].value<std::string>().value()),
+      : _host(config["host"].value<std::string>().value()),
+        _port(config["port"].value<uint16_t>()),
+        _https(config["https"].value<bool>().value_or(true)),
         _access_key(config["access-key"].value<std::string>().value()),
         _secret_key(config["secret-key"].value<std::string>().value()) {}
-  Client(const std::string& base_url, const std::string& access_key,
-         const std::string& secret_key)
-      : _base_url(base_url), _access_key(access_key), _secret_key(secret_key) {}
+  Client(const std::string& host, std::optional<uint16_t> port, bool is_https,
+         const std::string& access_key, const std::string& secret_key)
+      : _host(host),
+        _port(port),
+        _https(is_https),
+        _access_key(access_key),
+        _secret_key(secret_key) {}
 
   static inline std::shared_ptr<Client> open(const std::string& name) {
     std::ifstream fs(std::format("{}.json", name));
     auto js = nlohmann::json::parse(fs);
     auto cfg = js.template get<Config>();
     const auto url = boost::urls::parse_uri(cfg.url);
-    std::stringstream endpoint;
-    {
-      endpoint << url->scheme() << "://" << url->host();
-      if (url->has_port()) {
-        endpoint << ":" << url->port();
-      }
+    if (!url) {
+      spdlog::error("bad minio url {}", cfg.url);
+      return nullptr;
     }
-    auto it = std::make_shared<Client>(endpoint.str(), cfg.access_key,
-                                       cfg.secret_key);
+    std::optional<uint16_t> port;
+    if (url->has_port()) {
+      port = url->port_number();
+    }
+
+    auto it = std::make_shared<Client>(
+        url->host(), port, url->scheme_id() == boost::urls::scheme::https,
+        cfg.accessKey, cfg.secretKey);
     return it;
   }
 
@@ -81,7 +91,18 @@ class Client {
   std::string get_object(const std::string& bucket, const std::string& object);
   bool get_object(const std::string& bucket, const std::string& object,
                   std::ofstream& output);
-  inline std::string base_url() { return this->_base_url; }
+  inline std::string base_url() {
+    std::stringstream ss;
+    ss << "http";
+    if (this->_https) {
+      ss << "s";
+    }
+    ss << "://" << this->_host;
+    if (this->_port) {
+      ss << this->_port.value();
+    }
+    return ss.str();
+  }
 
   static inline std::string object(const std::filesystem::path& filename) {
     static boost::uuids::random_generator gen;
@@ -93,9 +114,11 @@ class Client {
   }
 
  private:
-  std::string _base_url;
+  std::string _host;
+  std::optional<uint16_t> _port;
   std::string _access_key;
   std::string _secret_key;
+  bool _https;
 };
 }  // namespace minio
 }  // namespace palm

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <set>
 #include <string>
 
 #include <nlohmann/json.hpp>
@@ -12,7 +13,7 @@ namespace s3 {
 void sync(const std::string& source, const std::string& destination,
           const std::string& file_list);
 void sync(const std::string& source, const std::string& destination);
-void dump(const std::vector<std::string>& hosts, bool zip = false);
+void dump(const std::set<std::string>& hosts, bool zip = false);
 void restore(const std::string& host, const std::string& tar_file);
 void restore(const std::string& host, const std::string& tar_file,
              const std::string& file_list);

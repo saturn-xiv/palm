@@ -33,7 +33,11 @@ static inline void download(std::shared_ptr<palm::minio::Client> client,
   }
 }
 
-void aloe::s3::dump(const std::vector<std::string>& hosts, bool compress) {
+void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
+  if (hosts.empty()) {
+    spdlog::warn("empty s3 hosts");
+    return;
+  }
   const auto tmp = palm::timestamp();
   const auto tar = std::format("{}.tar", tmp);
   const auto zip = std::format("{}.tar.xz", tmp);

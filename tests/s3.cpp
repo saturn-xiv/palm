@@ -7,12 +7,34 @@
 #include <boost/algorithm/string/join.hpp>
 
 TEST_CASE("minio client", "[minio]") {
-  palm::minio::Client cli(std::getenv("MINIO_BASE_URL"),
-                          std::getenv("MINIO_ACCESS_KEY"),
-                          std::getenv("MINIO_SECRET_KEY"));
+  spdlog::set_level(spdlog::level::debug);
 
-  {
-    const auto buckets = cli.list_buckets();
+  // palm::minio::Client cli(std::getenv("MINIO_BASE_URL"),
+  //                         std::getenv("MINIO_ACCESS_KEY"),
+  //                         std::getenv("MINIO_SECRET_KEY"));
+
+  SECTION("config") {
+    std::ifstream fs("testing.json");
+    auto js = nlohmann::json::parse(fs);
+    std::cout << js.dump(2) << std::endl;
+    auto cfg = js.template get<palm::minio::Config>();
+    std::cout << "parse url: " << cfg.url << "\t" << cfg.path << std::endl;
+    REQUIRE(!cfg.url.empty());
+    const auto url = boost::urls::parse_uri(cfg.url);
+    REQUIRE(url.has_value());
+    std::stringstream endpoint;
+    {
+      endpoint << url->scheme() << "://" << url->host();
+      if (url->has_port()) {
+        endpoint << ":" << url->port();
+      }
+    }
+    std::cout << endpoint.str() << std::endl;
+  }
+
+  auto cli = palm::minio::Client::open("testing");
+  SECTION("list-buckets") {
+    const auto buckets = cli->list_buckets();
     std::cout << boost::algorithm::join(buckets, ", ") << std::endl;
   }
 }

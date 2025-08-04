@@ -77,7 +77,8 @@ void aloe::Application::launch(int argc, char* argv[]) {
     // spdlog::info("load configuration from {}", config_file);
     // toml::table config = toml::parse_file(config_file);
     if (program.is_subcommand_used(s3_dump_command)) {
-      aloe::s3::dump(s3_dump_hosts, s3_dump_zip);
+      std::set<std::string> hosts(s3_dump_hosts.begin(), s3_dump_hosts.end());
+      aloe::s3::dump(hosts, s3_dump_zip);
       return;
     }
     if (program.is_subcommand_used(s3_restore_command)) {
