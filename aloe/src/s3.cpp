@@ -60,6 +60,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   spdlog::info("dump s3 {} to {}", boost::algorithm::join(hosts, ","), tmp);
 
   std::vector<Host> hosts_;
+  size_t cnt = 0;
   {
     const auto root = std::filesystem::path(tmp) / ROOTFS;
     for (const auto& host : hosts) {
@@ -74,7 +75,9 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
         spdlog::debug("found {} objects for {}/{}", objects.size(), host,
                       bucket);
         for (const auto& [name, size] : objects) {
-          spdlog::debug("found object {}/{}", bucket, name);
+          cnt++;
+          spdlog::debug("[{}] found object {}://{}/{}", cnt, cli->base_url(),
+                        bucket, name);
           if (download(cli, bucket, name, root)) {
             Object object_ = {.name = name, .size = size};
             bucket_.objects.push_back(object_);
@@ -200,12 +203,15 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
   std::ifstream fs(tmp.value() / INDEX);
   auto js = nlohmann::json::parse(fs);
   auto hosts = js.template get<std::vector<Host>>();
+  size_t cnt = 0;
   for (const auto& h : hosts) {
     for (const auto& b : h.buckets) {
       for (const auto& o : b.objects) {
+        cnt++;
+        spdlog::debug("[{}] upload {}://{}/{}", cnt, client->base_url(), b.name,
+                      o.name);
         if (client->stat_object(b.name, o.name)) {
-          spdlog::warn("file {}://{}/{} already exists", client->base_url(),
-                       b.name, o.name);
+          spdlog::warn("already exists");
           File it = {.bucket = b.name, .object = o.name};
           skipped.push_back(it);
           continue;
@@ -245,10 +251,13 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
   auto files = js.template get<std::vector<File>>();
   std::vector<File> failed;
   std::vector<File> skipped;
+  size_t cnt = 0;
   for (const auto& f : files) {
+    cnt++;
+    spdlog::debug("[{}/{}] upload {}://{}/{}", cnt, files.size(),
+                  client->base_url(), f.bucket, f.object);
     if (client->stat_object(f.bucket, f.object)) {
-      spdlog::warn("file {}://{}/{} already exists", client->base_url(),
-                   f.bucket, f.object);
+      spdlog::warn("already exists");
       File it = {.bucket = f.bucket, .object = f.object};
       skipped.push_back(it);
       continue;
@@ -283,11 +292,14 @@ void aloe::s3::sync(const std::string& source_,
   const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
   std::vector<File> failed;
   std::vector<File> skipped;
+  size_t cnt = 0;
   for (auto const& bucket : buckets) {
     spdlog::debug("fetch bucket {}", bucket);
     const auto objects = source->list_objects(bucket);
     for (auto const& [name, size] : objects) {
-      spdlog::info("fetch {}/{} {} bytes", bucket, name, size);
+      cnt++;
+      spdlog::info("[{}] fetch {}://{}/{} {} bytes", cnt, source->base_url(),
+                   bucket, name, size);
       if (destination->stat_object(bucket, name)) {
         spdlog::warn("file {}://{}/{} already exists", destination->base_url(),
                      bucket, name);
@@ -329,8 +341,11 @@ void aloe::s3::sync(const std::string& source_, const std::string& destination_,
   const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
   std::vector<File> failed;
   std::vector<File> skipped;
+  size_t cnt = 0;
   for (auto const& file : files) {
-    spdlog::info("fetch {}/{} ", file.bucket, file.object);
+    cnt++;
+    spdlog::info("[{}/{}] fetch {}/{} ", cnt, files.size(), file.bucket,
+                 file.object);
     if (!source->stat_object(file.bucket, file.object)) {
       spdlog::warn("couldn't found {}://{}/{}", source->base_url(), file.bucket,
                    file.object);
