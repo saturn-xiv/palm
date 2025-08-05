@@ -34,6 +34,17 @@ static inline bool download(std::shared_ptr<palm::minio::Client> client,
   }
 }
 
+template <typename T>
+inline static void save_report(const std::string& name,
+                               const std::vector<T>& items) {
+  const std::string file =
+      std::format("{}-{}-failed.json", name, palm::timestamp());
+  spdlog::debug("write {}", file);
+  std::ofstream ofs(file);
+  nlohmann::json js(items);
+  ofs << std::setw(2) << js << std::endl;
+}
+
 void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   if (hosts.empty()) {
     spdlog::warn("empty s3 hosts");
@@ -137,11 +148,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
   //   spdlog::error("failed to fetch file ({}, {}, {})", h, b, o);
   // }
   if (failed.size() > 0) {
-    const std::string file = std::format("dump-{}-failed.json", tmp);
-    spdlog::debug("write {}", file);
-    std::ofstream ofs(file);
-    nlohmann::json js(failed);
-    ofs << std::setw(2) << js << std::endl;
+    save_report("dump-failed", failed);
   }
   spdlog::info("done({} failed).", failed.size());
 }
@@ -188,6 +195,7 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
     return;
   }
   std::vector<File> failed;
+  std::vector<File> skipped;
   spdlog::debug("load file list from {}", INDEX);
   std::ifstream fs(tmp.value() / INDEX);
   auto js = nlohmann::json::parse(fs);
@@ -195,6 +203,13 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
   for (const auto& h : hosts) {
     for (const auto& b : h.buckets) {
       for (const auto& o : b.objects) {
+        if (client->stat_object(b.name, o.name)) {
+          spdlog::warn("file {}://{}/{} already exists", client->base_url(),
+                       b.name, o.name);
+          File it = {.bucket = b.name, .object = o.name};
+          skipped.push_back(it);
+          continue;
+        }
         if (!upload(client, tmp.value() / ROOTFS, b.name, o.name)) {
           File it = {.bucket = b.name, .object = o.name};
           failed.push_back(it);
@@ -202,18 +217,18 @@ void aloe::s3::restore(const std::string& host, const std::string& tar) {
       }
     }
   }
+  if (skipped.size() > 0) {
+    save_report("restore-skipped", skipped);
+  }
   if (failed.size() > 0) {
-    const std::string file =
-        std::format("restore-{}-failed.json", palm::timestamp());
-    spdlog::debug("write {}", file);
-    std::ofstream ofs(file);
-    nlohmann::json js(failed);
-    ofs << std::setw(2) << js << std::endl;
+    save_report("restore-failed", failed);
   }
 
-  spdlog::info("clean {}", tmp->string());
-  std::filesystem::remove_all(tmp.value());
-  spdlog::info("done({} failed).", failed.size());
+  {
+    spdlog::info("clean {}", tmp->string());
+    std::filesystem::remove_all(tmp.value());
+  }
+  spdlog::info("done({} skipped, {} failed).", skipped.size(), failed.size());
 }
 
 void aloe::s3::restore(const std::string& host, const std::string& tar,
@@ -229,24 +244,32 @@ void aloe::s3::restore(const std::string& host, const std::string& tar,
   auto js = nlohmann::json::parse(fs);
   auto files = js.template get<std::vector<File>>();
   std::vector<File> failed;
+  std::vector<File> skipped;
   for (const auto& f : files) {
+    if (client->stat_object(f.bucket, f.object)) {
+      spdlog::warn("file {}://{}/{} already exists", client->base_url(),
+                   f.bucket, f.object);
+      File it = {.bucket = f.bucket, .object = f.object};
+      skipped.push_back(it);
+      continue;
+    }
     if (!upload(client, tmp.value() / ROOTFS, f.bucket, f.object)) {
       File it = {.bucket = f.bucket, .object = f.object};
       failed.push_back(it);
     }
   }
+  if (skipped.size() > 0) {
+    save_report("restore-skipped", skipped);
+  }
   if (failed.size() > 0) {
-    const std::string file =
-        std::format("restore-{}-failed.json", palm::timestamp());
-    spdlog::debug("write {}", file);
-    std::ofstream ofs(file);
-    nlohmann::json js(failed);
-    ofs << std::setw(2) << js << std::endl;
+    save_report("restore-failed", failed);
   }
 
-  spdlog::info("clean {}", tmp->string());
-  std::filesystem::remove_all(tmp.value());
-  spdlog::info("done({} failed).", failed.size());
+  {
+    spdlog::info("clean {}", tmp->string());
+    std::filesystem::remove_all(tmp.value());
+  }
+  spdlog::info("done({}skipped, {} failed).", skipped.size(), failed.size());
 }
 
 void aloe::s3::sync(const std::string& source_,
@@ -259,11 +282,19 @@ void aloe::s3::sync(const std::string& source_,
   spdlog::debug("found {} buckets", buckets.size());
   const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
   std::vector<File> failed;
+  std::vector<File> skipped;
   for (auto const& bucket : buckets) {
     spdlog::debug("fetch bucket {}", bucket);
     const auto objects = source->list_objects(bucket);
     for (auto const& [name, size] : objects) {
       spdlog::info("fetch {}/{} {} bytes", bucket, name, size);
+      if (destination->stat_object(bucket, name)) {
+        spdlog::warn("file {}://{}/{} already exists", destination->base_url(),
+                     bucket, name);
+        File it = {.bucket = bucket, .object = name};
+        skipped.push_back(it);
+        continue;
+      }
       if (download(source, bucket, name, rootfs)) {
         if (upload(destination, rootfs, bucket, name)) {
           continue;
@@ -273,16 +304,15 @@ void aloe::s3::sync(const std::string& source_,
       failed.push_back(it);
     }
   }
-  spdlog::debug("clean {}", rootfs.string());
-  std::filesystem::remove_all(rootfs);
-
+  {
+    spdlog::debug("clean {}", rootfs.string());
+    std::filesystem::remove_all(rootfs);
+  }
+  if (skipped.size() > 0) {
+    save_report("sync-skipped", skipped);
+  }
   if (failed.size() > 0) {
-    const std::string file =
-        std::format("sync-{}-failed.json", palm::timestamp());
-    spdlog::debug("write {}", file);
-    std::ofstream ofs(file);
-    nlohmann::json js(failed);
-    ofs << std::setw(2) << js << std::endl;
+    save_report("sync-failed", failed);
   }
   spdlog::info("done({} failed).", failed.size());
 }
@@ -297,11 +327,42 @@ void aloe::s3::sync(const std::string& source_, const std::string& destination_,
   auto source = palm::minio::Client::open(source_);
   auto destination = palm::minio::Client::open(destination_);
   const std::filesystem::path rootfs = std::format("tmp-{}", palm::timestamp());
+  std::vector<File> failed;
+  std::vector<File> skipped;
   for (auto const& file : files) {
     spdlog::info("fetch {}/{} ", file.bucket, file.object);
-    download(source, file.bucket, file.object, rootfs);
-    upload(destination, rootfs, file.bucket, file.object);
+    if (!source->stat_object(file.bucket, file.object)) {
+      spdlog::warn("couldn't found {}://{}/{}", source->base_url(), file.bucket,
+                   file.object);
+      File it = {.bucket = file.bucket, .object = file.object};
+      skipped.push_back(it);
+      continue;
+    }
+    if (destination->stat_object(file.bucket, file.object)) {
+      spdlog::warn("file {}://{}/{} already exists", destination->base_url(),
+                   file.bucket, file.object);
+      File it = {.bucket = file.bucket, .object = file.object};
+      skipped.push_back(it);
+      continue;
+    }
+    if (download(source, file.bucket, file.object, rootfs)) {
+      if (upload(destination, rootfs, file.bucket, file.object)) {
+        continue;
+      }
+    }
+    File it = {.bucket = file.bucket, .object = file.object};
+    failed.push_back(it);
   }
-  spdlog::info("clean {}", rootfs.string());
-  std::filesystem::remove_all(rootfs);
+
+  {
+    spdlog::info("clean {}", rootfs.string());
+    std::filesystem::remove_all(rootfs);
+  }
+  if (skipped.size() > 0) {
+    save_report("sync-skipped", skipped);
+  }
+  if (failed.size() > 0) {
+    save_report("sync-failed", failed);
+  }
+  spdlog::info("done({} skipped, {} failed).", skipped.size(), failed.size());
 }

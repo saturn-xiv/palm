@@ -186,6 +186,7 @@ std::optional<std::string> palm::minio::Client::get_presigned_object_url(
           : std::format("attachment; filename=\"{}\"", title));
 
   args.extra_headers = headers;
+  spdlog::debug("get presigned object url ({}, {})", bucket, object);
   ::minio::s3::GetPresignedObjectUrlResponse res =
       client.GetPresignedObjectUrl(args);
   if (!res) {
@@ -215,11 +216,29 @@ bool palm::minio::Client::get_object(const std::string& bucket,
     output << args.datachunk;
     return true;
   };
-
+  spdlog::debug("get object ({}, {})", bucket, object);
   ::minio::s3::GetObjectResponse res = client.GetObject(args);
   if (!res) {
     spdlog::error("{}", res.Error().String());
     return false;
   }
   return true;
+}
+
+std::optional<std::tuple<std::string, std::string, size_t, std::string>>
+palm::minio::Client::stat_object(const std::string& bucket,
+                                 const std::string& object) {
+  PALM_OPEN_MINIO_CLIENT(this);
+  ::minio::s3::StatObjectArgs args;
+  args.bucket = bucket;
+  args.object = object;
+  spdlog::debug("stat object ({}, {})", bucket, object);
+  ::minio::s3::StatObjectResponse res = client.StatObject(args);
+  if (!res) {
+    spdlog::error("{}", res.Error().String());
+    return std::nullopt;
+  }
+  std::tuple<std::string, std::string, size_t, std::string> it = {
+      res.version_id, res.etag, res.size, res.last_modified.ToISO8601UTC()};
+  return it;
 }

@@ -90,6 +90,9 @@ class Client {
   std::string get_object(const std::string& bucket, const std::string& object);
   bool get_object(const std::string& bucket, const std::string& object,
                   std::ofstream& output);
+  // version_id, etag, size, last_modified(ISO8601UTC)
+  std::optional<std::tuple<std::string, std::string, size_t, std::string>>
+  stat_object(const std::string& bucket, const std::string& object);
   inline std::string base_url() {
     std::stringstream ss;
     ss << "http";
