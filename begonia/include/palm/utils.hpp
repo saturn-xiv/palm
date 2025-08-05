@@ -81,9 +81,11 @@ inline std::tuple<int, std::string, std::string> shell(
   return {exit_code, out, err};
 }
 inline std::tuple<int, std::string, std::string> tar(
-    const std::string& name, const std::string& folder) {
-  return shell("/usr/bin/tar",
-               {"cf", name, "-C", folder, "--remove-files", "."});
+    const std::string& name, const std::string& folder,
+    const std::vector<std::string>& files = {"."}) {
+  std::vector<std::string> args = {"cf", name, "-C", folder, "--remove-files"};
+  args.insert(args.end(), files.begin(), files.end());
+  return shell("/usr/bin/tar", args);
 }
 inline std::tuple<int, std::string, std::string> xz(const std::string& file) {
   return shell("/usr/bin/xz",
