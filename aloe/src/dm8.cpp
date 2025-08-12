@@ -11,12 +11,11 @@ void aloe::Dm8::dump(const std::string& directory) {
   const std::string dmp = std::format("{}.dmp", tmp);
 
   {
-    const auto& [status, out, err] =
-        palm::shell("/usr/bin/dexp",
-                    {std::format("userid={}/{}:{}", this->_user,
-                                 this->_password, this->_port),
-                     std::format("directory={}", directory), "full=y",
-                     std::format("file=", dmp), std::format("logs=", log)});
+    const auto cmd = this->_home / "dexp";
+    const auto& [status, out, err] = palm::shell(
+        cmd.string(),
+        {this->_url(), std::format("directory={}", directory), "full=y",
+         std::format("file=", dmp), std::format("log=", log)});
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;
@@ -43,9 +42,12 @@ void aloe::Dm8::dump(const std::string& directory) {
   spdlog::info("done({}.xz).", tmp);
 }
 
-void aloe::Dm8::restore(const std::string& directory, const std::string& name) {
-  spdlog::info("restore {} to dm8://{}@:127.0.0.1:{}", name, this->_user,
-               this->_port);
+void aloe::Dm8::restore(const std::string& directory,
+                        const std::filesystem::path& file) {
+  spdlog::info("restore {} to dm8://{}@:127.0.0.1:{}", file.string(),
+               this->_user, this->_port);
+
+  const std::string name = file.stem().string();
   const std::string log = std::format("{}.imp.log", name);
   const std::string dmp = std::format("{}.dmp", name);
   {
@@ -59,26 +61,11 @@ void aloe::Dm8::restore(const std::string& directory, const std::string& name) {
     std::filesystem::rename(dmp, std::filesystem::path(directory) / dmp);
   }
   {
+    const auto cmd = this->_home / "dimp";
     const auto& [status, out, err] = palm::shell(
-        "/usr/bin/dimp",
-        {std::format("userid={}/{}:{}", this->_user, this->_password,
-                     this->_port),
-         "full=y", std::format("file={}", dmp), std::format("logs={}", log),
-         std::format("directory={}", directory)});
-    if (status != EXIT_SUCCESS) {
-      spdlog::error("{} {}", status, err);
-      return;
-    }
-    spdlog::debug("{}", out);
-  }
-  {
-    std::filesystem::path it = std::filesystem::path(directory) / dmp;
-    spdlog::debug("remove {}", it.string());
-    std::filesystem::remove(it);
-  }
-  {
-    const auto& [status, out, err] =
-        palm::xz(std::filesystem::path(directory) / log);
+        cmd.string(),
+        {this->_url(), "full=y", std::format("file={}", dmp),
+         std::format("log={}", log), std::format("directory={}", directory)});
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;

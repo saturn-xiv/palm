@@ -3,6 +3,7 @@
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
 #include "phlox/controllers.hpp"
+#include "phlox/docker.hpp"
 #include "phlox/filesystem.hpp"
 #include "phlox/podman.hpp"
 #include "phlox/services.hpp"

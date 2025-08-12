@@ -5,18 +5,164 @@ option java_package = "com.github.saturn_xiv.palm.plugins.s3.v1";
 option go_package = "./;v2";
 package palm.s3.v1;
 
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
 service S3 {
-  rpc Upload(S3UploadRequest) returns (S3UploadResponse) {}
+  rpc ListBuckets(google.protobuf.Empty) returns (ListBucketsResponse) {}
+  rpc BucketExists(BucketRequest) returns (BucketExistsResponse) {}
+  rpc GetBucketEncryption(BucketRequest) returns (GetBucketEncryptionResponse) {
+  }
+  rpc GetBucketPolicy(BucketRequest) returns (GetBucketPolicyResponse) {}
+  rpc GetBucketTags(BucketRequest) returns (GetBucketTagsResponse) {}
+  rpc GetBucketLifecycle(BucketRequest) returns (GetBucketLifecycleResponse) {}
+  rpc MakeBucket(MakeBucketRequest) returns (google.protobuf.Empty) {}
+  rpc RemoveBucket(BucketRequest) returns (google.protobuf.Empty) {}
+  rpc SetBucketTags(SetBucketTagsRequest) returns (google.protobuf.Empty) {}
+  rpc SetBucketPolicy(SetBucketPolicyRequest) returns (google.protobuf.Empty) {}
+  rpc SetBucketLifecycle(SetBucketLifecycleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc SetBucketEncryption(SetBucketEncryptionRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeleteBucketEncryption(BucketRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteBucketPolicy(BucketRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteBucketTags(BucketRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteBucketLifecycle(BucketRequest) returns (google.protobuf.Empty) {}
+
+  rpc GetPresignedPostFormData(GetPresignedPostFormDataRequest)
+      returns (GetPresignedPostFormDataResponse) {}
+  rpc GetPresignedObjectUrl(GetPresignedObjectUrlRequest)
+      returns (GetPresignedObjectUrlResponse) {}
+  rpc ListObjects(BucketRequest) returns (ListObjectsResponse) {}
+  rpc GetObjectTags(ObjectRequest) returns (GetObjectTagsResponse) {}
+  rpc GetObjectRetention(ObjectRequest) returns (GetObjectRetentionResponse) {}
+  rpc StatObject(ObjectRequest) returns (StatObjectResponse) {}
+  rpc SetObjectTags(SetObjectTagsRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteObjects(DeleteObjectsRequest) returns (google.protobuf.Empty) {}
 }
 
-message S3UploadRequest {
-  string name = 1;
-  string content_type = 2;
-  bytes content = 8;
-  string bucket = 9;
+message StatObjectResponse {
+  string version_id = 1;
+  string etag = 2;
+  uint64 size = 3;
+  google.protobuf.Timestamp last_modified = 4;
+  optional string retention_mode = 5;
+  optional google.protobuf.Timestamp retention_retain_until_date = 6;
+  optional string legal_hold = 7;
+  bool delete_marker = 8;
+  message UserMetadataItem {
+    string key = 1;
+    repeated string values = 2;
+  }
+  repeated UserMetadataItem items = 9;
 }
-
-message S3UploadResponse {
+message SetObjectTagsRequest {
   string bucket = 1;
   string object = 2;
+  map<string, string> tags = 3;
+}
+message DeleteObjectsRequest {
+  string bucket = 1;
+  repeated string objects = 2;
+}
+message GetObjectRetentionResponse {
+  string retention_mode = 1;
+  google.protobuf.Timestamp retain_until_date = 2;
+}
+message ObjectRequest {
+  string bucket = 1;
+  string object = 2;
+}
+message GetObjectTagsResponse {
+  map<string, string> tags = 1;
+}
+message ListObjectsResponse {
+  message Item {
+    string name = 1;
+    string version_id = 2;
+    string etag = 3;
+    uint64 size = 4;
+    google.protobuf.Timestamp last_modified = 5;
+    bool is_delete_marker = 6;
+    map<string, string> metadata = 7;
+    string owner_id = 8;
+    string owner_name = 9;
+    string storage_class = 10;
+    bool is_latest = 11;
+    bool is_prefix = 12;
+  }
+  repeated Item items = 1;
+}
+message GetPresignedObjectUrlRequest {
+  string bucket = 1;
+  string object = 2;
+  optional google.protobuf.Duration expiry_seconds = 3;
+}
+message GetPresignedObjectUrlResponse {
+  string url = 1;
+}
+message GetPresignedPostFormDataRequest {
+  string bucket = 1;
+  string object_prefix = 2;
+  google.protobuf.Duration expiry = 3;
+}
+message GetPresignedPostFormDataResponse {
+  string url = 1;
+}
+message GetBucketLifecycleResponse {
+  message Item {}
+  repeated Item items = 1;
+}
+message GetBucketTagsResponse {
+  map<string, string> tags = 1;
+}
+message GetBucketPolicyResponse {
+  string policy = 1;
+}
+message GetBucketEncryptionResponse {
+  string sse_algorithm = 1;
+  string kms_master_key_id = 2;
+}
+message SetBucketEncryptionRequest {
+  string bucket = 1;
+  message Sse {}
+  oneof algorithm {
+    Sse sse = 11;
+  }
+}
+message SetBucketLifecycleRequest {
+  message LifecycleRule {
+    string id = 1;
+    bool status = 2;
+    uint32 transition_days = 3;
+    string filter_prefix = 4;
+  }
+  string bucket = 1;
+  repeated LifecycleRule rules = 2;
+}
+message BucketRequest {
+  string bucket = 1;
+}
+message MakeBucketRequest {
+  string bucket = 1;
+  optional string region = 2;
+}
+message SetBucketPolicyRequest {
+  string bucket = 1;
+  string policy = 2;
+}
+message SetBucketTagsRequest {
+  string bucket = 1;
+  map<string, string> tags = 2;
+}
+message BucketExistsResponse {
+  bool exist = 1;
+}
+message ListBucketsResponse {
+  message Item {
+    string name = 1;
+    google.protobuf.Timestamp creation_date = 2;
+  }
+  repeated Item items = 1;
 }

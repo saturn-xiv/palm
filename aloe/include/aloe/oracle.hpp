@@ -5,6 +5,7 @@
 
 namespace aloe {
 class Oracle {
+ public:
   Oracle(const toml::table& node)
       : _sid(node["sid"].value_or("orclcdb")),
         _user(node["user"].value_or("postgres")),

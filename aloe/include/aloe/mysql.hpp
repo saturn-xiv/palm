@@ -5,6 +5,7 @@
 
 namespace aloe {
 class MySql {
+  public:
   MySql(const toml::table& node)
       : _host(node["host"].value_or("127.0.0.1")),
         _port(node["port"].value_or(3306)),
