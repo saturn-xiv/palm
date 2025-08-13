@@ -48,6 +48,7 @@ inline bool is_stopped() {
 
 inline std::tuple<int, std::string, std::string> shell(
     const std::string& command, const std::vector<std::string>& args) {
+  spdlog::debug("{} {}", command, boost::algorithm::join(args, " "));
   boost::asio::io_context ctx;
 
   boost::asio::readable_pipe out_p(ctx);
@@ -87,9 +88,15 @@ inline std::tuple<int, std::string, std::string> tar(
   args.insert(args.end(), files.begin(), files.end());
   return shell("/usr/bin/tar", args);
 }
+inline std::tuple<int, std::string, std::string> uncompress(
+    const std::string& tar, const std::string& target) {
+  spdlog::debug("create {}", target);
+  std::filesystem::create_directory(target);
+  return palm::shell("/usr/bin/tar", {"xf", tar, "-C", target});
+}
 inline std::tuple<int, std::string, std::string> xz(const std::string& file) {
   return shell("/usr/bin/xz",
-               {"-z", "-F", "xz", "-C", "sha256", "--best", "-T", "+1", file});
+               {"-z", "-F", "xz", "-C", "sha256", "--best", "-T", "1", file});
 }
 inline std::optional<time_t> booted_at() {
   double uptime_in_seconds;

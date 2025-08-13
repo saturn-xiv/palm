@@ -161,14 +161,8 @@ static inline std::optional<std::filesystem::path> uncompress(
   const auto root = std::format("tmp-{}", palm::timestamp());
 
   {
-    spdlog::debug("create {}", root);
-    std::filesystem::create_directory(root);
-  }
-
-  {
     spdlog::info("decompress {}", tar);
-    const auto& [status, out, err] =
-        palm::shell("/usr/bin/tar", {"xf", tar, "-C", root});
+    const auto& [status, out, err] = palm::uncompress(tar, root);
     spdlog::debug("{}", out);
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);

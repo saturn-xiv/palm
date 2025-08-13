@@ -29,6 +29,7 @@ void aloe::Application::launch(int argc, char* argv[]) {
 
   std::string dm8_dump_host;
   std::string dm8_dump_directory;
+  bool dm8_dump_zip;
 
   const std::string work_dir = std::filesystem::current_path().string();
 
@@ -50,7 +51,7 @@ void aloe::Application::launch(int argc, char* argv[]) {
   s3_dump_command.add_argument("-z", "--zip")
       .flag()
       .store_into(s3_dump_zip)
-      .help("compress the package(xz)");
+      .help("compress the package(tar.xz)");
 
   argparse::ArgumentParser s3_restore_command("s3-restore");
   s3_restore_command.add_description("restore a s3 server");
@@ -75,7 +76,7 @@ void aloe::Application::launch(int argc, char* argv[]) {
       .help("a (bucket,object) list in json format");
 
   argparse::ArgumentParser dm8_dump_command("dm8-dump");
-  dm8_dump_command.add_description("dump from DM8 database");
+  dm8_dump_command.add_description("backup from DM8 database");
   dm8_dump_command.add_argument("-H", "--hostname")
       .required()
       .store_into(dm8_dump_host);
@@ -83,6 +84,10 @@ void aloe::Application::launch(int argc, char* argv[]) {
       .required()
       .default_value(work_dir)
       .store_into(dm8_dump_directory);
+  dm8_dump_command.add_argument("-z", "--zip")
+      .flag()
+      .store_into(dm8_dump_zip)
+      .help("compress the package(tar.xz)");
 
   argparse::ArgumentParser dm8_restore_command("dm8-restore");
   dm8_restore_command.add_description("restore to DM8 database ");
@@ -140,7 +145,7 @@ void aloe::Application::launch(int argc, char* argv[]) {
       spdlog::debug("load configuration from {}", config_file);
       const toml::table config = toml::parse_file(config_file);
       aloe::Dm8 dm8(config);
-      dm8.dump(dm8_dump_directory);
+      dm8.dump(dm8_dump_directory, dm8_dump_zip);
       return;
     }
     if (program.is_subcommand_used(dm8_restore_command)) {
