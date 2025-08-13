@@ -13,12 +13,15 @@ std::vector<phlox::docker::models::Status> phlox::docker::stats(bool all) {
     return {};
   }
 
-  const auto js = nlohmann::json::parse(out);
-  std::vector<phlox::docker::models::Status> items = js;
+  std::vector<phlox::docker::models::Status> items;
   {
     std::vector<std::string> lines;
     boost::algorithm::split(lines, out, boost::is_any_of("\n"));
-    for (const std::string& line : lines) {
+    for (std::string& line : lines) {
+      boost::algorithm::trim(line);
+      if (line.empty()) {
+        continue;
+      }
       const auto js = nlohmann::json::parse(line);
       auto it = js.template get<phlox::docker::models::Status>();
       items.push_back(it);
@@ -38,12 +41,15 @@ std::vector<phlox::docker::models::Container> phlox::docker::ps(bool all) {
     return {};
   }
 
-  const auto js = nlohmann::json::parse(out);
-  std::vector<phlox::docker::models::Container> items = js;
+  std::vector<phlox::docker::models::Container> items;
   {
     std::vector<std::string> lines;
     boost::algorithm::split(lines, out, boost::is_any_of("\n"));
-    for (const std::string& line : lines) {
+    for (std::string& line : lines) {
+      boost::algorithm::trim(line);
+      if (line.empty()) {
+        continue;
+      }
       const auto js = nlohmann::json::parse(line);
       auto it = js.template get<phlox::docker::models::Container>();
       items.push_back(it);

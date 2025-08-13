@@ -242,6 +242,60 @@ static inline std::shared_ptr<palm::opensearch::Client> open_opensearch(
     it->create_index<palm::monitoring::v1::PodmanStatisticsResponse_Item>(
         2, 1, props);
   }
+  if (!it->index_exists<
+          palm::monitoring::v1::DockerStatisticsResponse_Item>()) {
+    nlohmann::json props;
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["host"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["id"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["name"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["createdAt"] = it;
+    }
+
+    it->create_index<palm::monitoring::v1::DockerStatisticsResponse_Item>(
+        2, 1, props);
+  }
+  if (!it->index_exists<
+          palm::monitoring::v1::DockerContainersResponse_Item>()) {
+    nlohmann::json props;
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["host"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["id"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["name"] = it;
+    }
+    {
+      nlohmann::json it;
+      it["type"] = "text";
+      props["createdAt"] = it;
+    }
+
+    it->create_index<palm::monitoring::v1::DockerContainersResponse_Item>(
+        2, 1, props);
+  }
   if (!it->index_exists<palm::monitoring::v1::FileSystemLogsResponse_Item>()) {
     nlohmann::json props;
 
@@ -418,6 +472,9 @@ static void launch_podman_stats(const toml::table& config, bool all) {
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
     const auto items = phlox::podman::stats(all);
+    if (items.empty()) {
+      return;
+    }
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.name, it.id);
 
@@ -484,6 +541,9 @@ static void launch_podman_ps(const toml::table& config, bool all) {
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
     const auto items = phlox::podman::ps(all);
+    if (items.empty()) {
+      return;
+    }
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.Id,
                     boost::algorithm::join(it.Names, ","));
@@ -570,6 +630,9 @@ static void launch_docker_stats(const toml::table& config, bool all) {
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
     const auto items = phlox::docker::stats(all);
+    if (items.empty()) {
+      return;
+    }
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.Name, it.ID);
 
@@ -622,7 +685,7 @@ static inline void set_google_timestamp_by_docker(
   std::tm it = {0};
   {
     char* rst = strptime(ds.c_str(), FORMAT.c_str(), &it);
-    if (rst != nullptr) {
+    if (rst == nullptr) {
       spdlog::error("parse tm failed({})", ds);
       return;
     }
@@ -651,6 +714,9 @@ static void launch_docker_ps(const toml::table& config, bool all) {
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
     const auto items = phlox::docker::ps(all);
+    if (items.empty()) {
+      return;
+    }
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.ID, it.Names);
 

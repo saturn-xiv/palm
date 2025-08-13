@@ -7,6 +7,9 @@
 #include <toml++/toml.hpp>
 
 namespace aloe {
+/*
+select * from dba_users;
+*/
 class Dm8 {
  public:
   Dm8(const toml::table& node)
