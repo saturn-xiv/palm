@@ -31,7 +31,7 @@ inline bool is_root() {
   //     return true;
   //   }
   // }
-  return geteuid() == 0;
+  return getuid() == 0;
 }
 
 inline int64_t epoch_in_seconds() {
