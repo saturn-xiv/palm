@@ -17,6 +17,7 @@ void phlox::Application::rpc_server(const toml::table& config,
 
   phlox::monitoring::services::SiteServiceImpl site_service(jwt, search);
   phlox::monitoring::services::PodmanServiceImpl podman_service(jwt, search);
+  phlox::monitoring::services::DockerServiceImpl docker_service(jwt, search);
   phlox::monitoring::services::SystemdServiceImpl systemd_service(jwt, search);
   phlox::monitoring::services::FileSystemServiceImpl file_system_service(
       jwt, search);
@@ -31,6 +32,7 @@ void phlox::Application::rpc_server(const toml::table& config,
   {
     builder.RegisterService(&site_service);
     builder.RegisterService(&podman_service);
+    builder.RegisterService(&docker_service);
     builder.RegisterService(&systemd_service);
     builder.RegisterService(&file_system_service);
   }

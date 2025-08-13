@@ -87,6 +87,27 @@ class PodmanServiceImpl final : public palm::monitoring::v1::Podman::Service {
   std::shared_ptr<palm::opensearch::Client> _search;
   std::shared_ptr<palm::Jwt> _jwt;
 };
+class DockerServiceImpl final : public palm::monitoring::v1::Docker::Service {
+ public:
+  explicit DockerServiceImpl(std::shared_ptr<palm::Jwt> jwt,
+                             std::shared_ptr<palm::opensearch::Client> search)
+      : _jwt(jwt), _search(search) {}
+  grpc::Status Logs(grpc::ServerContext* context,
+                    const palm::monitoring::v1::PodmanQueryRequest* request,
+                    palm::monitoring::v1::PodmanLogsResponse* reply) override;
+  grpc::Status Containers(
+      grpc::ServerContext* context,
+      const palm::monitoring::v1::PodmanQueryRequest* request,
+      palm::monitoring::v1::DockerContainersResponse* reply) override;
+  grpc::Status Statistics(
+      grpc::ServerContext* context,
+      const palm::monitoring::v1::PodmanQueryRequest* request,
+      palm::monitoring::v1::DockerStatisticsResponse* reply) override;
+
+ private:
+  std::shared_ptr<palm::opensearch::Client> _search;
+  std::shared_ptr<palm::Jwt> _jwt;
+};
 }  // namespace services
 }  // namespace monitoring
 }  // namespace phlox

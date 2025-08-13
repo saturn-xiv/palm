@@ -78,13 +78,13 @@ void aloe::Dm8::restore(const std::string& directory,
   const std::string dmp = std::format("{}.dmp", name);
   {
     const auto& [status, out, err] =
-        palm::shell("/usr/bin/tar", {"xf", std::format("{}.tar.xz", name)});
+        palm::uncompress(std::format("{}.tar.xz", name), directory);
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;
     }
     spdlog::debug("{}", out);
-    std::filesystem::rename(dmp, std::filesystem::path(directory) / dmp);
+    // std::filesystem::rename(dmp, std::filesystem::path(directory) / dmp);
   }
   {
     const auto cmd = this->_home / "bin" / "dimp";
