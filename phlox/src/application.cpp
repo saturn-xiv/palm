@@ -15,6 +15,7 @@
 #include <regex>
 #include <stdexcept>
 
+#include <boost/algorithm/string.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/ip/host_name.hpp>
 #include <boost/optional/optional.hpp>
@@ -398,7 +399,7 @@ static void launch_podman_logs(const toml::table& config) {
   }
 }
 
-static void launch_podman_stats(const toml::table& config) {
+static void launch_podman_stats(const toml::table& config, bool all) {
   if (palm::is_stopped()) {
     return;
   }
@@ -416,7 +417,7 @@ static void launch_podman_stats(const toml::table& config) {
     const auto now = std::chrono::system_clock::now();
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
-    const auto items = phlox::podman::stats();
+    const auto items = phlox::podman::stats(all);
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.name, it.id);
 
@@ -463,7 +464,7 @@ static void launch_podman_stats(const toml::table& config) {
     spdlog::debug("{} total has {} items", index_name, it.value());
   }
 }
-static void launch_podman_ps(const toml::table& config) {
+static void launch_podman_ps(const toml::table& config, bool all) {
   if (palm::is_stopped()) {
     return;
   }
@@ -482,7 +483,7 @@ static void launch_podman_ps(const toml::table& config) {
     const auto now = std::chrono::system_clock::now();
     const time_t seconds = std::chrono::system_clock::to_time_t(now);
 
-    const auto items = phlox::podman::ps(true);
+    const auto items = phlox::podman::ps(all);
     for (const auto& it : items) {
       spdlog::debug("find container {}({})", it.Id,
                     boost::algorithm::join(it.Names, ","));
@@ -525,6 +526,163 @@ static void launch_podman_ps(const toml::table& config) {
       }
 
       bulk.index._id = std::format("{}.{}", hostname, it.Id);
+      nlohmann::json act = bulk;
+      body << act.dump() << "\n";
+
+      const auto buf = palm::to_json(x);
+      body << buf.value() << "\n";
+    }
+  }
+  spdlog::debug("{}", body.str());
+  const auto res = search->post("_bulk", body.str());
+  {
+    const auto body = res.value();
+    auto js = nlohmann::json::parse(body);
+    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+    if (it.errors) {
+      spdlog::error("{}", body);
+      return;
+    }
+  }
+  {
+    const auto it =
+        search->count<palm::monitoring::v1::PodmanContainersResponse_Item>();
+    spdlog::debug("{} total has {} items", index_name, it.value());
+  }
+}
+
+static void launch_docker_stats(const toml::table& config, bool all) {
+  if (palm::is_stopped()) {
+    return;
+  }
+  const std::string hostname = boost::asio::ip::host_name();
+  auto search = open_opensearch(config);
+
+  const auto index_name =
+      search->index_name<palm::monitoring::v1::PodmanStatisticsResponse_Item>();
+
+  palm::opensearch::requests::bulk_create::Action bulk{
+      .create = {._index = index_name}};
+  std::stringstream body;
+
+  {
+    const auto now = std::chrono::system_clock::now();
+    const time_t seconds = std::chrono::system_clock::to_time_t(now);
+
+    const auto items = phlox::docker::stats(all);
+    for (const auto& it : items) {
+      spdlog::debug("find container {}({})", it.Name, it.ID);
+
+      palm::monitoring::v1::DockerStatisticsResponse_Item x;
+      x.set_host(hostname);
+      x.set_id(it.ID);
+      x.set_name(it.Name);
+      x.set_block_io(it.BlockIO);
+      x.set_cpu_percent(it.CPUPerc);
+      x.set_container(it.Container);
+      x.set_mem_percent(it.MemPerc);
+      x.set_mem_usage(it.MemUsage);
+      x.set_net_io(it.NetIO);
+      x.set_pids(it.PIDs);
+
+      {
+        auto y = x.mutable_created_at();
+        y->set_seconds(seconds);
+        y->set_nanos(0);
+      }
+
+      nlohmann::json act = bulk;
+      body << act.dump() << "\n";
+
+      const auto buf = palm::to_json(x);
+      body << buf.value() << "\n";
+    }
+  }
+  spdlog::debug("{}", body.str());
+  const auto res = search->post("_bulk", body.str());
+  {
+    const auto body = res.value();
+    auto js = nlohmann::json::parse(body);
+    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+    if (it.errors) {
+      spdlog::error("{}", body);
+      return;
+    }
+  }
+  {
+    const auto it =
+        search->count<palm::monitoring::v1::PodmanStatisticsResponse_Item>();
+    spdlog::debug("{} total has {} items", index_name, it.value());
+  }
+}
+
+static inline void set_google_timestamp_by_docker(
+    const std::string& ds, google::protobuf::Timestamp* ts) {
+  const std::string FORMAT = "%Y-%m-%d %H:%M:%S %z %Z";
+  std::tm it = {0};
+  {
+    char* rst = strptime(ds.c_str(), FORMAT.c_str(), &it);
+    if (rst != nullptr) {
+      spdlog::error("parse tm failed({})", ds);
+      return;
+    }
+  }
+  time_t seconds = mktime(&it);
+  ts->set_seconds(seconds);
+  ts->set_nanos(0);
+}
+static void launch_docker_ps(const toml::table& config, bool all) {
+  if (palm::is_stopped()) {
+    return;
+  }
+
+  const std::string hostname = boost::asio::ip::host_name();
+  auto search = open_opensearch(config);
+
+  const auto index_name =
+      search->index_name<palm::monitoring::v1::DockerContainersResponse_Item>();
+
+  palm::opensearch::requests::bulk_index::Action bulk{
+      .index = {._index = index_name}};
+
+  std::stringstream body;
+  {
+    const auto now = std::chrono::system_clock::now();
+    const time_t seconds = std::chrono::system_clock::to_time_t(now);
+
+    const auto items = phlox::docker::ps(all);
+    for (const auto& it : items) {
+      spdlog::debug("find container {}({})", it.ID, it.Names);
+
+      palm::monitoring::v1::DockerContainersResponse_Item x;
+      x.set_host(hostname);
+      {
+        auto y = x.mutable_created_at();
+        set_google_timestamp_by_docker(it.CreatedAt, y);
+      }
+      x.set_id(it.ID);
+      x.set_image(it.Image);
+      x.set_labels(it.Labels);
+      x.set_local_volumes(it.LocalVolumes);
+      x.set_mounts(it.Mounts);
+      x.set_names(it.Names);
+      x.set_networks(it.Networks);
+      if (it.Platform) {
+        x.set_platform(it.Platform.value());
+      }
+      x.set_ports(it.Ports);
+      x.set_running_for(it.RunningFor);
+      x.set_size(it.Size);
+      x.set_state(it.State);
+      x.set_status(it.Status);
+
+      {
+        auto y = x.mutable_updated_at();
+        y->set_seconds(seconds);
+        y->set_nanos(0);
+      }
+
+      bulk.index._id = std::format("{}.{}", hostname, it.ID);
       nlohmann::json act = bulk;
       body << act.dump() << "\n";
 
@@ -907,6 +1065,12 @@ void phlox::Application::launch(int argc, char* argv[]) {
   bool systemd_journal_user_scope;
   std::string systemd_journal_service_name;
 
+  bool podman_stats_all;
+  bool podman_ps_all;
+
+  bool docker_stats_all;
+  bool docker_ps_all;
+
   argparse::ArgumentParser program(
       "phlox", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
   program.add_description("Centralize, transform & stash your logging data.");
@@ -960,9 +1124,28 @@ void phlox::Application::launch(int argc, char* argv[]) {
   argparse::ArgumentParser podman_stats_command("podman-stats");
   podman_stats_command.add_description(
       "podman container resource usage statistics");
+  podman_stats_command.add_argument("-a", "--all")
+      .flag()
+      .store_into(podman_stats_all);
 
   argparse::ArgumentParser podman_ps_command("podman-ps");
   podman_ps_command.add_description("fetch podman containers");
+  podman_ps_command.add_argument("-a", "--all")
+      .flag()
+      .store_into(podman_ps_all);
+
+  argparse::ArgumentParser docker_ps_command("docker-ps");
+  docker_ps_command.add_description("fetch docker containers");
+  docker_ps_command.add_argument("-a", "--all")
+      .flag()
+      .store_into(docker_ps_all);
+
+  argparse::ArgumentParser docker_stats_command("docker-stats");
+  docker_stats_command.add_description(
+      "docker container resource usage statistics");
+  docker_stats_command.add_argument("-a", "--all")
+      .flag()
+      .store_into(docker_stats_all);
 
   argparse::ArgumentParser systemd_journal_command("systemd-journal");
   systemd_journal_command.add_description("fetch systemd service logs");
@@ -992,6 +1175,8 @@ void phlox::Application::launch(int argc, char* argv[]) {
   program.add_subparser(podman_logs_command);
   program.add_subparser(podman_stats_command);
   program.add_subparser(podman_ps_command);
+  program.add_subparser(docker_stats_command);
+  program.add_subparser(docker_ps_command);
   program.add_subparser(systemd_journal_command);
   program.add_subparser(fs_watcher_command);
   program.parse_args(argc, argv);
@@ -1008,7 +1193,9 @@ void phlox::Application::launch(int argc, char* argv[]) {
       program.is_subcommand_used(systemd_journal_command) ||
       program.is_subcommand_used(podman_logs_command) ||
       program.is_subcommand_used(podman_stats_command) ||
-      program.is_subcommand_used(podman_ps_command)) {
+      program.is_subcommand_used(podman_ps_command) ||
+      program.is_subcommand_used(docker_stats_command) ||
+      program.is_subcommand_used(docker_ps_command)) {
     palm::init(debug);
     spdlog::info("load configuration from {}", config_file);
     toml::table config = toml::parse_file(config_file);
@@ -1034,11 +1221,19 @@ void phlox::Application::launch(int argc, char* argv[]) {
       return;
     }
     if (program.is_subcommand_used(podman_stats_command)) {
-      launch_podman_stats(config);
+      launch_podman_stats(config, podman_stats_all);
       return;
     }
     if (program.is_subcommand_used(podman_ps_command)) {
-      launch_podman_ps(config);
+      launch_podman_ps(config, podman_ps_all);
+      return;
+    }
+    if (program.is_subcommand_used(docker_stats_command)) {
+      launch_docker_stats(config, docker_stats_all);
+      return;
+    }
+    if (program.is_subcommand_used(docker_ps_command)) {
+      launch_docker_ps(config, docker_ps_all);
       return;
     }
     if (program.is_subcommand_used(systemd_journal_command)) {

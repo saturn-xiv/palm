@@ -486,6 +486,288 @@ export namespace FileSystemLogsResponse {
 
 }
 
+export class DockerQueryRequest extends jspb.Message {
+  getAll(): DockerQueryRequest.All | undefined;
+  setAll(value?: DockerQueryRequest.All): DockerQueryRequest;
+  hasAll(): boolean;
+  clearAll(): DockerQueryRequest;
+
+  getHost(): string;
+  setHost(value: string): DockerQueryRequest;
+
+  getId(): string;
+  setId(value: string): DockerQueryRequest;
+
+  getName(): string;
+  setName(value: string): DockerQueryRequest;
+
+  getFrom(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFrom(value?: google_protobuf_timestamp_pb.Timestamp): DockerQueryRequest;
+  hasFrom(): boolean;
+  clearFrom(): DockerQueryRequest;
+
+  getTo(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTo(value?: google_protobuf_timestamp_pb.Timestamp): DockerQueryRequest;
+  hasTo(): boolean;
+  clearTo(): DockerQueryRequest;
+
+  getPage(): portal_pb.Page | undefined;
+  setPage(value?: portal_pb.Page): DockerQueryRequest;
+  hasPage(): boolean;
+  clearPage(): DockerQueryRequest;
+
+  getByCase(): DockerQueryRequest.ByCase;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DockerQueryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DockerQueryRequest): DockerQueryRequest.AsObject;
+  static serializeBinaryToWriter(message: DockerQueryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DockerQueryRequest;
+  static deserializeBinaryFromReader(message: DockerQueryRequest, reader: jspb.BinaryReader): DockerQueryRequest;
+}
+
+export namespace DockerQueryRequest {
+  export type AsObject = {
+    all?: DockerQueryRequest.All.AsObject,
+    host: string,
+    id: string,
+    name: string,
+    from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    page?: portal_pb.Page.AsObject,
+  }
+
+  export class All extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): All.AsObject;
+    static toObject(includeInstance: boolean, msg: All): All.AsObject;
+    static serializeBinaryToWriter(message: All, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): All;
+    static deserializeBinaryFromReader(message: All, reader: jspb.BinaryReader): All;
+  }
+
+  export namespace All {
+    export type AsObject = {
+    }
+  }
+
+
+  export enum ByCase { 
+    BY_NOT_SET = 0,
+    ALL = 1,
+    HOST = 2,
+    ID = 3,
+    NAME = 4,
+  }
+}
+
+export class DockerContainersResponse extends jspb.Message {
+  getItemsList(): Array<DockerContainersResponse.Item>;
+  setItemsList(value: Array<DockerContainersResponse.Item>): DockerContainersResponse;
+  clearItemsList(): DockerContainersResponse;
+  addItems(value?: DockerContainersResponse.Item, index?: number): DockerContainersResponse.Item;
+
+  getPagination(): portal_pb.Pagination | undefined;
+  setPagination(value?: portal_pb.Pagination): DockerContainersResponse;
+  hasPagination(): boolean;
+  clearPagination(): DockerContainersResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DockerContainersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DockerContainersResponse): DockerContainersResponse.AsObject;
+  static serializeBinaryToWriter(message: DockerContainersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DockerContainersResponse;
+  static deserializeBinaryFromReader(message: DockerContainersResponse, reader: jspb.BinaryReader): DockerContainersResponse;
+}
+
+export namespace DockerContainersResponse {
+  export type AsObject = {
+    itemsList: Array<DockerContainersResponse.Item.AsObject>,
+    pagination?: portal_pb.Pagination.AsObject,
+  }
+
+  export class Item extends jspb.Message {
+    getCommand(): string;
+    setCommand(value: string): Item;
+
+    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCreatedAt(): boolean;
+    clearCreatedAt(): Item;
+
+    getId(): string;
+    setId(value: string): Item;
+
+    getImage(): string;
+    setImage(value: string): Item;
+
+    getLabels(): string;
+    setLabels(value: string): Item;
+
+    getLocalVolumes(): string;
+    setLocalVolumes(value: string): Item;
+
+    getMounts(): string;
+    setMounts(value: string): Item;
+
+    getNames(): string;
+    setNames(value: string): Item;
+
+    getNetworks(): string;
+    setNetworks(value: string): Item;
+
+    getPlatform(): string;
+    setPlatform(value: string): Item;
+    hasPlatform(): boolean;
+    clearPlatform(): Item;
+
+    getPorts(): string;
+    setPorts(value: string): Item;
+
+    getRunningFor(): string;
+    setRunningFor(value: string): Item;
+
+    getSize(): string;
+    setSize(value: string): Item;
+
+    getState(): string;
+    setState(value: string): Item;
+
+    getStatus(): string;
+    setStatus(value: string): Item;
+
+    getHost(): string;
+    setHost(value: string): Item;
+
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      command: string,
+      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      id: string,
+      image: string,
+      labels: string,
+      localVolumes: string,
+      mounts: string,
+      names: string,
+      networks: string,
+      platform?: string,
+      ports: string,
+      runningFor: string,
+      size: string,
+      state: string,
+      status: string,
+      host: string,
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+
+    export enum PlatformCase { 
+      _PLATFORM_NOT_SET = 0,
+      PLATFORM = 10,
+    }
+  }
+
+}
+
+export class DockerStatisticsResponse extends jspb.Message {
+  getItemsList(): Array<DockerStatisticsResponse.Item>;
+  setItemsList(value: Array<DockerStatisticsResponse.Item>): DockerStatisticsResponse;
+  clearItemsList(): DockerStatisticsResponse;
+  addItems(value?: DockerStatisticsResponse.Item, index?: number): DockerStatisticsResponse.Item;
+
+  getPagination(): portal_pb.Pagination | undefined;
+  setPagination(value?: portal_pb.Pagination): DockerStatisticsResponse;
+  hasPagination(): boolean;
+  clearPagination(): DockerStatisticsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DockerStatisticsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DockerStatisticsResponse): DockerStatisticsResponse.AsObject;
+  static serializeBinaryToWriter(message: DockerStatisticsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DockerStatisticsResponse;
+  static deserializeBinaryFromReader(message: DockerStatisticsResponse, reader: jspb.BinaryReader): DockerStatisticsResponse;
+}
+
+export namespace DockerStatisticsResponse {
+  export type AsObject = {
+    itemsList: Array<DockerStatisticsResponse.Item.AsObject>,
+    pagination?: portal_pb.Pagination.AsObject,
+  }
+
+  export class Item extends jspb.Message {
+    getBlockIo(): string;
+    setBlockIo(value: string): Item;
+
+    getCpuPercent(): string;
+    setCpuPercent(value: string): Item;
+
+    getContainer(): string;
+    setContainer(value: string): Item;
+
+    getId(): string;
+    setId(value: string): Item;
+
+    getMemPercent(): string;
+    setMemPercent(value: string): Item;
+
+    getMemUsage(): string;
+    setMemUsage(value: string): Item;
+
+    getName(): string;
+    setName(value: string): Item;
+
+    getNetIo(): string;
+    setNetIo(value: string): Item;
+
+    getPids(): string;
+    setPids(value: string): Item;
+
+    getHost(): string;
+    setHost(value: string): Item;
+
+    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCreatedAt(): boolean;
+    clearCreatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      blockIo: string,
+      cpuPercent: string,
+      container: string,
+      id: string,
+      memPercent: string,
+      memUsage: string,
+      name: string,
+      netIo: string,
+      pids: string,
+      host: string,
+      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+  }
+
+}
+
 export class PodmanQueryRequest extends jspb.Message {
   getAll(): PodmanQueryRequest.All | undefined;
   setAll(value?: PodmanQueryRequest.All): PodmanQueryRequest;

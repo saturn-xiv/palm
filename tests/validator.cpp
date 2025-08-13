@@ -54,6 +54,21 @@ TEST_CASE("std tm", "[datetime]") {
       std::cout << i << " " << std::ctime(&i) << std::asctime(t);
     }
   }
+
+  // docker ps --format json
+  SECTION("docker ps CreatedAt") {
+    const std::string date = "2025-08-11 10:00:54 +0000 UTC";
+    const std::string format = "%Y-%m-%d %H:%M:%S %z %Z";
+
+    std::tm it = {0};
+
+    {
+      char* rst = strptime(date.c_str(), format.c_str(), &it);
+      REQUIRE(rst != nullptr);
+    }
+    std::cout << "Docker Datetime: " << date << " VS " << std::asctime(&it)
+              << std::endl;
+  }
 }
 
 TEST_CASE("booted at", "[datetime]") {

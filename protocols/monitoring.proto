@@ -100,6 +100,66 @@ message FileSystemLogsResponse {
 }
 // ----------------------------------------------------------------------------
 
+service Docker {
+  rpc Containers(DockerQueryRequest) returns (DockerContainersResponse) {}
+  rpc Statistics(DockerQueryRequest) returns (DockerStatisticsResponse) {}
+}
+message DockerQueryRequest {
+  message All {}
+  oneof by {
+    All all = 1;
+    string host = 2;
+    string id = 3;
+    string name = 4;
+  }
+  google.protobuf.Timestamp from = 91;
+  google.protobuf.Timestamp to = 92;
+  palm.portal.v1.Page page = 99;
+}
+message DockerContainersResponse {
+  message Item {
+    string command = 1;
+    google.protobuf.Timestamp created_at = 2;
+    string id = 3;
+    string image = 4;
+    string labels = 5;
+    string local_volumes = 6;
+    string mounts = 7;
+    string names = 8;
+    string networks = 9;
+    optional string platform = 10;
+    string ports = 11;
+    string running_for = 12;
+    string size = 13;
+    string state = 14;
+    string status = 15;
+
+    string host = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+message DockerStatisticsResponse {
+  message Item {
+    string block_io = 1;
+    string cpu_percent = 2;
+    string container = 3;
+    string id = 4;
+    string mem_percent = 5;
+    string mem_usage = 6;
+    string name = 7;
+    string net_io = 8;
+    string pids = 9;
+
+    string host = 98;
+    google.protobuf.Timestamp created_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+// ----------------------------------------------------------------------------
+
 service Podman {
   rpc Logs(PodmanQueryRequest) returns (PodmanLogsResponse) {}
   rpc Containers(PodmanQueryRequest) returns (PodmanContainersResponse) {}

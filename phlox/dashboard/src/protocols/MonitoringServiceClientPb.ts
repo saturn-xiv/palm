@@ -212,6 +212,113 @@ export class FileSystemClient {
 
 }
 
+export class DockerClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'binary';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname.replace(/\/+$/, '');
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodDescriptorContainers = new grpcWeb.MethodDescriptor(
+    '/palm.monitoring.v1.Docker/Containers',
+    grpcWeb.MethodType.UNARY,
+    monitoring_pb.DockerQueryRequest,
+    monitoring_pb.DockerContainersResponse,
+    (request: monitoring_pb.DockerQueryRequest) => {
+      return request.serializeBinary();
+    },
+    monitoring_pb.DockerContainersResponse.deserializeBinary
+  );
+
+  containers(
+    request: monitoring_pb.DockerQueryRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.DockerContainersResponse>;
+
+  containers(
+    request: monitoring_pb.DockerQueryRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: monitoring_pb.DockerContainersResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.DockerContainersResponse>;
+
+  containers(
+    request: monitoring_pb.DockerQueryRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: monitoring_pb.DockerContainersResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.monitoring.v1.Docker/Containers',
+        request,
+        metadata || {},
+        this.methodDescriptorContainers,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.monitoring.v1.Docker/Containers',
+    request,
+    metadata || {},
+    this.methodDescriptorContainers);
+  }
+
+  methodDescriptorStatistics = new grpcWeb.MethodDescriptor(
+    '/palm.monitoring.v1.Docker/Statistics',
+    grpcWeb.MethodType.UNARY,
+    monitoring_pb.DockerQueryRequest,
+    monitoring_pb.DockerStatisticsResponse,
+    (request: monitoring_pb.DockerQueryRequest) => {
+      return request.serializeBinary();
+    },
+    monitoring_pb.DockerStatisticsResponse.deserializeBinary
+  );
+
+  statistics(
+    request: monitoring_pb.DockerQueryRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.DockerStatisticsResponse>;
+
+  statistics(
+    request: monitoring_pb.DockerQueryRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: monitoring_pb.DockerStatisticsResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.DockerStatisticsResponse>;
+
+  statistics(
+    request: monitoring_pb.DockerQueryRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: monitoring_pb.DockerStatisticsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.monitoring.v1.Docker/Statistics',
+        request,
+        metadata || {},
+        this.methodDescriptorStatistics,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.monitoring.v1.Docker/Statistics',
+    request,
+    metadata || {},
+    this.methodDescriptorStatistics);
+  }
+
+}
+
 export class PodmanClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;

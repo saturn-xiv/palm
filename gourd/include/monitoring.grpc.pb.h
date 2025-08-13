@@ -653,6 +653,370 @@ class FileSystem final {
   typedef WithStreamedUnaryMethod_Logs<Service > StreamedService;
 };
 
+class Docker final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.monitoring.v1.Docker";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::palm::monitoring::v1::DockerContainersResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerContainersResponse>> AsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerContainersResponse>>(AsyncContainersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerContainersResponse>> PrepareAsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerContainersResponse>>(PrepareAsyncContainersRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::palm::monitoring::v1::DockerStatisticsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerStatisticsResponse>> AsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerStatisticsResponse>>(AsyncStatisticsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerStatisticsResponse>> PrepareAsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerStatisticsResponse>>(PrepareAsyncStatisticsRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerContainersResponse>* AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerContainersResponse>* PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerStatisticsResponse>* AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::monitoring::v1::DockerStatisticsResponse>* PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::palm::monitoring::v1::DockerContainersResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>> AsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>>(AsyncContainersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>> PrepareAsyncContainers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>>(PrepareAsyncContainersRaw(context, request, cq));
+    }
+    ::grpc::Status Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::palm::monitoring::v1::DockerStatisticsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>> AsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>>(AsyncStatisticsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>> PrepareAsyncStatistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>>(PrepareAsyncStatisticsRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, std::function<void(::grpc::Status)>) override;
+      void Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>* AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>* PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>* AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>* PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Containers_;
+    const ::grpc::internal::RpcMethod rpcmethod_Statistics_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Containers(::grpc::ServerContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response);
+    virtual ::grpc::Status Statistics(::grpc::ServerContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Containers() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestContainers(::grpc::ServerContext* context, ::palm::monitoring::v1::DockerQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::DockerContainersResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Statistics() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatistics(::grpc::ServerContext* context, ::palm::monitoring::v1::DockerQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::monitoring::v1::DockerStatisticsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Containers<WithAsyncMethod_Statistics<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Containers() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response) { return this->Containers(context, request, response); }));}
+    void SetMessageAllocatorFor_Containers(
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Containers(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Statistics() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response) { return this->Statistics(context, request, response); }));}
+    void SetMessageAllocatorFor_Statistics(
+        ::grpc::MessageAllocator< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Statistics(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Containers<WithCallbackMethod_Statistics<Service > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Containers() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Statistics() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Containers() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestContainers(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Statistics() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatistics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Containers() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Containers(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Containers(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Statistics() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Statistics(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Statistics(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Containers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Containers() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse>* streamer) {
+                       return this->StreamedContainers(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Containers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Containers(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedContainers(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::DockerQueryRequest,::palm::monitoring::v1::DockerContainersResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Statistics : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Statistics() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse>* streamer) {
+                       return this->StreamedStatistics(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Statistics() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Statistics(::grpc::ServerContext* /*context*/, const ::palm::monitoring::v1::DockerQueryRequest* /*request*/, ::palm::monitoring::v1::DockerStatisticsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedStatistics(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::monitoring::v1::DockerQueryRequest,::palm::monitoring::v1::DockerStatisticsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Containers<WithStreamedUnaryMethod_Statistics<Service > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Containers<WithStreamedUnaryMethod_Statistics<Service > > StreamedService;
+};
+
 class Podman final {
  public:
   static constexpr char const* service_full_name() {

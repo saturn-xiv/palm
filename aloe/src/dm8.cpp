@@ -1,4 +1,5 @@
 #include "aloe/dm8.hpp"
+#include "aloe/utils.hpp"
 #include "palm/crypto.hpp"
 #include "palm/utils.hpp"
 
@@ -72,7 +73,7 @@ void aloe::Dm8::restore(const std::string& directory,
   spdlog::info("restore {} to dm8://{}:{}:{}", file.string(), this->_user,
                this->_host, this->_port);
 
-  const std::string name = file.stem().string();
+  const std::string name = aloe::filename(file);
   const std::string log = std::format("{}.imp.log", name);
   const std::string dmp = std::format("{}.dmp", name);
   {

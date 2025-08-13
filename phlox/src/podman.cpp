@@ -69,7 +69,7 @@ std::vector<phlox::podman::models::Status> phlox::podman::stats(bool all) {
 }
 std::vector<phlox::podman::models::container::Item> phlox::podman::ps(
     bool all) {
-  std::vector<std::string> args = {"ps", "-a", "--format", "json"};
+  std::vector<std::string> args = {"ps", "--format", "json"};
   if (all) {
     args.push_back("-a");
   }
