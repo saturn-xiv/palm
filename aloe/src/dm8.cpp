@@ -2,9 +2,11 @@
 #include "palm/crypto.hpp"
 #include "palm/utils.hpp"
 
-void aloe::Dm8::dump(const std::string& directory, bool zip) {
+void aloe::Dm8::dump(const std::string& directory, bool compress) {
   const std::string tmp = std::format("{}-{}", this->_user, palm::timestamp());
   const std::string tar = std::format("{}.tar", tmp);
+  const auto zip = std::format("{}.tar.xz", tmp);
+  const auto md5 = std::format("{}.md5", tmp);
   spdlog::info("dump dm8://{}@{}:{} to {}/{}", this->_user, this->_host,
                this->_port, directory, tmp);
   const std::string log = std::format("{}.exp.log", tmp);
@@ -24,24 +26,45 @@ void aloe::Dm8::dump(const std::string& directory, bool zip) {
   }
 
   {
+    spdlog::info("create {}", tar);
     const auto& [status, out, err] = palm::tar(tar, directory, {log, dmp});
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;
     }
     spdlog::debug("{}", out);
-    spdlog::info("done({}.tar).", tmp);
-    return;
+
+    {
+      const auto hash = palm::md5(tar);
+      std::ofstream out(md5);
+      if (!out.is_open()) {
+        spdlog::error("couldn't create md5 file");
+        return;
+      }
+      out << hash.value() << " " << tar << std::endl;
+      out.close();
+    }
   }
-  if (zip) {
+  if (compress) {
+    spdlog::info("create {}", zip);
     const auto& [status, out, err] = palm::xz(tar);
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;
     }
     spdlog::debug("{}", out);
+    {
+      const auto hash = palm::md5(zip);
+      std::ofstream out(md5, std::ios::app);
+      if (!out.is_open()) {
+        spdlog::error("couldn't open md5 file");
+        return;
+      }
+      out << hash.value() << zip << std::endl;
+      out.close();
+    }
   }
-  spdlog::info("done({}.tar.xz).", tmp);
+  spdlog::info("done({}).", tmp);
 }
 
 void aloe::Dm8::restore(const std::string& directory,

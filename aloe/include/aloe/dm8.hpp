@@ -15,7 +15,7 @@ class Dm8 {
         _user(node["user"].value_or("sysdba")),
         _password(node["password"].value<std::string>().value()),
         _home(node["home"].value_or("/opt/dmdbms")) {}
-  void dump(const std::string& directory,bool zip);
+  void dump(const std::string& directory, bool compress);
   void restore(const std::string& directory, const std::filesystem::path& file);
 
  private:
