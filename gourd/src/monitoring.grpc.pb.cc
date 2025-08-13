@@ -209,6 +209,7 @@ FileSystem::Service::~Service() {
 static const char* Docker_method_names[] = {
   "/palm.monitoring.v1.Docker/Containers",
   "/palm.monitoring.v1.Docker/Statistics",
+  "/palm.monitoring.v1.Docker/Logs",
 };
 
 std::unique_ptr< Docker::Stub> Docker::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -220,50 +221,74 @@ std::unique_ptr< Docker::Stub> Docker::NewStub(const std::shared_ptr< ::grpc::Ch
 Docker::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Containers_(Docker_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Statistics_(Docker_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Logs_(Docker_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Docker::Stub::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::palm::monitoring::v1::DockerContainersResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Containers_, context, request, response);
+::grpc::Status Docker::Stub::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::DockerContainersResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::DockerContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Containers_, context, request, response);
 }
 
-void Docker::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Containers_, context, request, response, std::move(f));
+void Docker::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::DockerContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Containers_, context, request, response, std::move(f));
 }
 
-void Docker::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Docker::Stub::async::Containers(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Containers_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>* Docker::Stub::PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::DockerContainersResponse, ::palm::monitoring::v1::DockerQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Containers_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>* Docker::Stub::PrepareAsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::DockerContainersResponse, ::palm::monitoring::v1::PodmanQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Containers_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>* Docker::Stub::AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerContainersResponse>* Docker::Stub::AsyncContainersRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncContainersRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Docker::Stub::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::palm::monitoring::v1::DockerStatisticsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Statistics_, context, request, response);
+::grpc::Status Docker::Stub::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::DockerStatisticsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Statistics_, context, request, response);
 }
 
-void Docker::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Statistics_, context, request, response, std::move(f));
+void Docker::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Statistics_, context, request, response, std::move(f));
 }
 
-void Docker::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Docker::Stub::async::Statistics(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Statistics_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>* Docker::Stub::PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::DockerStatisticsResponse, ::palm::monitoring::v1::DockerQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Statistics_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>* Docker::Stub::PrepareAsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::DockerStatisticsResponse, ::palm::monitoring::v1::PodmanQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Statistics_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>* Docker::Stub::AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::DockerQueryRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::DockerStatisticsResponse>* Docker::Stub::AsyncStatisticsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncStatisticsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Docker::Stub::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::palm::monitoring::v1::PodmanLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+}
+
+void Docker::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+}
+
+void Docker::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* Docker::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::monitoring::v1::PodmanLogsResponse, ::palm::monitoring::v1::PodmanQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::monitoring::v1::PodmanLogsResponse>* Docker::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::monitoring::v1::PodmanQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLogsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -272,36 +297,53 @@ Docker::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Docker_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Docker::Service, ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Docker::Service, ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::DockerContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Docker::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::monitoring::v1::DockerQueryRequest* req,
+             const ::palm::monitoring::v1::PodmanQueryRequest* req,
              ::palm::monitoring::v1::DockerContainersResponse* resp) {
                return service->Containers(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Docker_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Docker::Service, ::palm::monitoring::v1::DockerQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Docker::Service, ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::DockerStatisticsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Docker::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::monitoring::v1::DockerQueryRequest* req,
+             const ::palm::monitoring::v1::PodmanQueryRequest* req,
              ::palm::monitoring::v1::DockerStatisticsResponse* resp) {
                return service->Statistics(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Docker_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Docker::Service, ::palm::monitoring::v1::PodmanQueryRequest, ::palm::monitoring::v1::PodmanLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Docker::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::monitoring::v1::PodmanQueryRequest* req,
+             ::palm::monitoring::v1::PodmanLogsResponse* resp) {
+               return service->Logs(ctx, req, resp);
              }, this)));
 }
 
 Docker::Service::~Service() {
 }
 
-::grpc::Status Docker::Service::Containers(::grpc::ServerContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response) {
+::grpc::Status Docker::Service::Containers(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::DockerContainersResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Docker::Service::Statistics(::grpc::ServerContext* context, const ::palm::monitoring::v1::DockerQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response) {
+::grpc::Status Docker::Service::Statistics(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::DockerStatisticsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Docker::Service::Logs(::grpc::ServerContext* context, const ::palm::monitoring::v1::PodmanQueryRequest* request, ::palm::monitoring::v1::PodmanLogsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

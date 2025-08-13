@@ -33,29 +33,26 @@ static inline std::shared_ptr<soci::session> open_db(
   auto db = cfg.open();
   {
     soci::transaction tr(*db);
-    /*
-CREATE TABLE IF NOT EXISTS containers (
-  id INTEGER PRIMARY KEY,
-  host VARCHAR(127) NOT NULL,
-  uid VARCHAR(127) NOT NULL,
-  status VARCHAR(15) NOT NULL,
-  last_fetch_logs_at TIMESTAMP,
-  version INTEGER NOT NULL DEFAULT 0,
-  updated_at TIMESTAMP NOT NULL,
-  created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_containers_uid ON containers(uid);
-CREATE INDEX IF NOT EXISTS idx_containers_host ON containers(host);
-CREATE INDEX IF NOT EXISTS idx_containers_status ON containers(status);
-    */
+    // COULDN'T put all sql together
     *db << R"SQL(
-CREATE TABLE IF NOT EXISTS container_logs (
+CREATE TABLE IF NOT EXISTS podman_container_logs (
   id VARCHAR(127) NOT NULL,
   last_fetched_at BIGINT NOT NULL,
   version INTEGER NOT NULL DEFAULT 0, 
   created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_container_logs_id ON container_logs(id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_podman_container_logs_id ON podman_container_logs(id);
+)SQL";
+    *db << R"SQL(
+CREATE TABLE IF NOT EXISTS docker_container_logs (
+  id VARCHAR(12) NOT NULL,
+  last_fetched_at BIGINT NOT NULL,
+  version INTEGER NOT NULL DEFAULT 0, 
+  created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_docker_container_logs_id ON docker_container_logs(id);
+)SQL";
+    *db << R"SQL(
 CREATE TABLE IF NOT EXISTS systemd_service_logs (
   name VARCHAR(127) NOT NULL,
   last_fetched_at BIGINT NOT NULL,
@@ -96,27 +93,56 @@ static inline void set_last_fetched_systemd_service_logs_at(
   }
 }
 
-static inline boost::optional<int64_t> get_last_fetched_container_logs_at(
-    std::shared_ptr<soci::session> db, const std::string& id) {
+static inline boost::optional<int64_t>
+get_last_fetched_podman_container_logs_at(std::shared_ptr<soci::session> db,
+                                          const std::string& id) {
   boost::optional<int64_t> it;
-  (*db) << R"SQL(SELECT last_fetched_at FROM container_logs WHERE id = :id)SQL",
+  (*db)
+      << R"SQL(SELECT last_fetched_at FROM podman_container_logs WHERE id = :id)SQL",
       soci::use(id, "id"), soci::into(it);
   return it;
 }
 
-static inline void set_last_fetched_container_logs_at(
+static inline void set_last_fetched_podman_container_logs_at(
     std::shared_ptr<soci::session> db, const std::string& id,
     int64_t last_fetched_at) {
   int c = 0;
-  (*db) << R"SQL(SELECT COUNT(*) FROM container_logs WHERE id = :id)SQL",
+  (*db) << R"SQL(SELECT COUNT(*) FROM podman_container_logs WHERE id = :id)SQL",
       soci::use(id, "id"), soci::into(c);
   if (c > 0) {
     (*db)
-        << R"SQL(UPDATE container_logs SET last_fetched_at=:last_fetched_at, version=version+1 WHERE id=:id)SQL",
+        << R"SQL(UPDATE podman_container_logs SET last_fetched_at=:last_fetched_at, version=version+1 WHERE id=:id)SQL",
         soci::use(id, "id"), soci::use(last_fetched_at, "last_fetched_at");
   } else {
     (*db)
-        << R"SQL(INSERT INTO container_logs(id, last_fetched_at) VALUES(:id, :last_fetched_at))SQL",
+        << R"SQL(INSERT INTO podman_container_logs(id, last_fetched_at) VALUES(:id, :last_fetched_at))SQL",
+        soci::use(id, "id"), soci::use(last_fetched_at, "last_fetched_at");
+  }
+}
+
+static inline boost::optional<int64_t>
+get_last_fetched_docker_container_logs_at(std::shared_ptr<soci::session> db,
+                                          const std::string& id) {
+  boost::optional<int64_t> it;
+  (*db)
+      << R"SQL(SELECT last_fetched_at FROM docker_container_logs WHERE id = :id)SQL",
+      soci::use(id, "id"), soci::into(it);
+  return it;
+}
+
+static inline void set_last_fetched_docker_container_logs_at(
+    std::shared_ptr<soci::session> db, const std::string& id,
+    int64_t last_fetched_at) {
+  int c = 0;
+  (*db) << R"SQL(SELECT COUNT(*) FROM docker_container_logs WHERE id = :id)SQL",
+      soci::use(id, "id"), soci::into(c);
+  if (c > 0) {
+    (*db)
+        << R"SQL(UPDATE docker_container_logs SET last_fetched_at=:last_fetched_at, version=version+1 WHERE id=:id)SQL",
+        soci::use(id, "id"), soci::use(last_fetched_at, "last_fetched_at");
+  } else {
+    (*db)
+        << R"SQL(INSERT INTO docker_container_logs(id, last_fetched_at) VALUES(:id, :last_fetched_at))SQL",
         soci::use(id, "id"), soci::use(last_fetched_at, "last_fetched_at");
   }
 }
@@ -377,7 +403,7 @@ static void launch_podman_logs(const toml::table& config) {
       continue;
     }
     const auto last_fetched_at =
-        get_last_fetched_container_logs_at(db, container.Id);
+        get_last_fetched_podman_container_logs_at(db, container.Id);
     const int64_t begin =
         last_fetched_at ? last_fetched_at.value() : container.Created;
     const int64_t end = container.Exited ? container.ExitedAt : now;
@@ -442,7 +468,7 @@ static void launch_podman_logs(const toml::table& config) {
           }
         }
       }
-      set_last_fetched_container_logs_at(db, container.Id, until);
+      set_last_fetched_podman_container_logs_at(db, container.Id, until);
     }
   }
 
@@ -611,6 +637,107 @@ static void launch_podman_ps(const toml::table& config, bool all) {
   }
 }
 
+static void launch_docker_logs(const toml::table& config) {
+  if (palm::is_stopped()) {
+    return;
+  }
+  const std::chrono::seconds interval =
+      std::chrono::duration_cast<std::chrono::seconds>(std::chrono::minutes{5});
+
+  const auto now = palm::epoch_in_seconds();
+  auto db = open_db(config);
+  auto search = open_opensearch(config);
+
+  const auto index_name =
+      search->index_name<palm::monitoring::v1::PodmanLogsResponse_Item>();
+
+  palm::opensearch::requests::bulk_index::Action bulk{
+      .index = {._index = index_name}};
+
+  const auto containers = phlox::docker::ps(true);
+  for (const auto& container : containers) {
+    if (container.State == "created") {
+      spdlog::debug("skip created container {}", container.ID);
+      continue;
+    }
+    const auto last_fetched_at =
+        get_last_fetched_docker_container_logs_at(db, container.ID);
+    const int64_t begin =
+        last_fetched_at ? last_fetched_at.value() : container.created_at();
+    // const int64_t end = container.State == "exited" ? container.ExitedAt :
+    // now;
+    const int64_t end = now;
+    for (int64_t since = begin;; since += interval.count()) {
+      const int64_t until = since + interval.count();
+      if (until >= end) {
+        spdlog::debug("wait for next turn");
+        break;
+      }
+
+      const auto items = phlox::docker::logs(
+          container.ID, static_cast<time_t>(since), static_cast<time_t>(until));
+      if (items.empty()) {
+        spdlog::debug("empty logs");
+      } else {
+        spdlog::info("fetch {} logs for {}", items.size(), container.ID);
+
+        std::stringstream body;
+        for (const auto& it : items) {
+          if (!it.MESSAGE.has_value() || !it.MESSAGE->content.has_value()) {
+            continue;
+          }
+
+          palm::monitoring::v1::PodmanLogsResponse_Item x;
+          x.set_host(it._HOSTNAME);
+          x.set_id(it.CONTAINER_ID);
+          x.set_full_id(it.CONTAINER_ID_FULL);
+          x.set_name(it.CONTAINER_NAME);
+          x.set_message(it.MESSAGE->content.value());
+          {
+            int64_t ts = std::stol(it.__REALTIME_TIMESTAMP);
+            auto y = x.mutable_created_at();
+            y->set_seconds(ts / 1000000);
+            y->set_nanos((ts % 1000000) * 1000);
+          }
+
+          bulk.index._id = std::format("{}.{}.{}", it._MACHINE_ID,
+                                       it.__SEQNUM_ID, it.__SEQNUM);
+          nlohmann::json act = bulk;
+          body << act.dump() << "\n";
+
+          const auto buf = palm::to_json(x);
+          body << buf.value() << "\n";
+        }
+
+        const auto req = body.str();
+        if (req.empty()) {
+          spdlog::warn("skip for empty bulk body");
+        } else {
+          spdlog::debug("{}", req);
+
+          const auto res = search->post("_bulk", req);
+          {
+            const auto body = res.value();
+            auto js = nlohmann::json::parse(body);
+            auto it =
+                js.template get<palm::opensearch::responses::bulk::Item>();
+            if (it.errors) {
+              spdlog::error("{}", body);
+              return;
+            }
+          }
+        }
+      }
+      set_last_fetched_docker_container_logs_at(db, container.ID, until);
+    }
+  }
+
+  {
+    const auto it =
+        search->count<palm::monitoring::v1::PodmanLogsResponse_Item>();
+    spdlog::debug("{} total has {} items", index_name, it.value());
+  }
+}
 static void launch_docker_stats(const toml::table& config, bool all) {
   if (palm::is_stopped()) {
     return;
@@ -679,21 +806,6 @@ static void launch_docker_stats(const toml::table& config, bool all) {
   }
 }
 
-static inline void set_google_timestamp_by_docker(
-    const std::string& ds, google::protobuf::Timestamp* ts) {
-  const std::string FORMAT = "%Y-%m-%d %H:%M:%S %z %Z";
-  std::tm it = {0};
-  {
-    char* rst = strptime(ds.c_str(), FORMAT.c_str(), &it);
-    if (rst == nullptr) {
-      spdlog::error("parse tm failed({})", ds);
-      return;
-    }
-  }
-  time_t seconds = mktime(&it);
-  ts->set_seconds(seconds);
-  ts->set_nanos(0);
-}
 static void launch_docker_ps(const toml::table& config, bool all) {
   if (palm::is_stopped()) {
     return;
@@ -724,7 +836,8 @@ static void launch_docker_ps(const toml::table& config, bool all) {
       x.set_host(hostname);
       {
         auto y = x.mutable_created_at();
-        set_google_timestamp_by_docker(it.CreatedAt, y);
+        y->set_seconds(it.created_at());
+        y->set_nanos(0);
       }
       x.set_id(it.ID);
       x.set_image(it.Image);
@@ -1200,6 +1313,9 @@ void phlox::Application::launch(int argc, char* argv[]) {
       .flag()
       .store_into(podman_ps_all);
 
+  argparse::ArgumentParser docker_logs_command("docker-logs");
+  docker_logs_command.add_description(
+      "fetch the logs of docker containers' logs");
   argparse::ArgumentParser docker_ps_command("docker-ps");
   docker_ps_command.add_description("fetch docker containers");
   docker_ps_command.add_argument("-a", "--all")
@@ -1241,6 +1357,7 @@ void phlox::Application::launch(int argc, char* argv[]) {
   program.add_subparser(podman_logs_command);
   program.add_subparser(podman_stats_command);
   program.add_subparser(podman_ps_command);
+  program.add_subparser(docker_logs_command);
   program.add_subparser(docker_stats_command);
   program.add_subparser(docker_ps_command);
   program.add_subparser(systemd_journal_command);
@@ -1260,6 +1377,7 @@ void phlox::Application::launch(int argc, char* argv[]) {
       program.is_subcommand_used(podman_logs_command) ||
       program.is_subcommand_used(podman_stats_command) ||
       program.is_subcommand_used(podman_ps_command) ||
+      program.is_subcommand_used(docker_logs_command) ||
       program.is_subcommand_used(docker_stats_command) ||
       program.is_subcommand_used(docker_ps_command)) {
     palm::init(debug);
@@ -1292,6 +1410,10 @@ void phlox::Application::launch(int argc, char* argv[]) {
     }
     if (program.is_subcommand_used(podman_ps_command)) {
       launch_podman_ps(config, podman_ps_all);
+      return;
+    }
+    if (program.is_subcommand_used(docker_logs_command)) {
+      launch_docker_logs(config);
       return;
     }
     if (program.is_subcommand_used(docker_stats_command)) {

@@ -234,26 +234,26 @@ export class DockerClient {
   methodDescriptorContainers = new grpcWeb.MethodDescriptor(
     '/palm.monitoring.v1.Docker/Containers',
     grpcWeb.MethodType.UNARY,
-    monitoring_pb.DockerQueryRequest,
+    monitoring_pb.PodmanQueryRequest,
     monitoring_pb.DockerContainersResponse,
-    (request: monitoring_pb.DockerQueryRequest) => {
+    (request: monitoring_pb.PodmanQueryRequest) => {
       return request.serializeBinary();
     },
     monitoring_pb.DockerContainersResponse.deserializeBinary
   );
 
   containers(
-    request: monitoring_pb.DockerQueryRequest,
+    request: monitoring_pb.PodmanQueryRequest,
     metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.DockerContainersResponse>;
 
   containers(
-    request: monitoring_pb.DockerQueryRequest,
+    request: monitoring_pb.PodmanQueryRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: monitoring_pb.DockerContainersResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.DockerContainersResponse>;
 
   containers(
-    request: monitoring_pb.DockerQueryRequest,
+    request: monitoring_pb.PodmanQueryRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
                response: monitoring_pb.DockerContainersResponse) => void) {
@@ -277,26 +277,26 @@ export class DockerClient {
   methodDescriptorStatistics = new grpcWeb.MethodDescriptor(
     '/palm.monitoring.v1.Docker/Statistics',
     grpcWeb.MethodType.UNARY,
-    monitoring_pb.DockerQueryRequest,
+    monitoring_pb.PodmanQueryRequest,
     monitoring_pb.DockerStatisticsResponse,
-    (request: monitoring_pb.DockerQueryRequest) => {
+    (request: monitoring_pb.PodmanQueryRequest) => {
       return request.serializeBinary();
     },
     monitoring_pb.DockerStatisticsResponse.deserializeBinary
   );
 
   statistics(
-    request: monitoring_pb.DockerQueryRequest,
+    request: monitoring_pb.PodmanQueryRequest,
     metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.DockerStatisticsResponse>;
 
   statistics(
-    request: monitoring_pb.DockerQueryRequest,
+    request: monitoring_pb.PodmanQueryRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: monitoring_pb.DockerStatisticsResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.DockerStatisticsResponse>;
 
   statistics(
-    request: monitoring_pb.DockerQueryRequest,
+    request: monitoring_pb.PodmanQueryRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
                response: monitoring_pb.DockerStatisticsResponse) => void) {
@@ -315,6 +315,49 @@ export class DockerClient {
     request,
     metadata || {},
     this.methodDescriptorStatistics);
+  }
+
+  methodDescriptorLogs = new grpcWeb.MethodDescriptor(
+    '/palm.monitoring.v1.Docker/Logs',
+    grpcWeb.MethodType.UNARY,
+    monitoring_pb.PodmanQueryRequest,
+    monitoring_pb.PodmanLogsResponse,
+    (request: monitoring_pb.PodmanQueryRequest) => {
+      return request.serializeBinary();
+    },
+    monitoring_pb.PodmanLogsResponse.deserializeBinary
+  );
+
+  logs(
+    request: monitoring_pb.PodmanQueryRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<monitoring_pb.PodmanLogsResponse>;
+
+  logs(
+    request: monitoring_pb.PodmanQueryRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: monitoring_pb.PodmanLogsResponse) => void): grpcWeb.ClientReadableStream<monitoring_pb.PodmanLogsResponse>;
+
+  logs(
+    request: monitoring_pb.PodmanQueryRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: monitoring_pb.PodmanLogsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.monitoring.v1.Docker/Logs',
+        request,
+        metadata || {},
+        this.methodDescriptorLogs,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.monitoring.v1.Docker/Logs',
+    request,
+    metadata || {},
+    this.methodDescriptorLogs);
   }
 
 }

@@ -314,24 +314,6 @@ struct FileSystemLogsRequest_AllDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsRequest_AllDefaultTypeInternal _FileSystemLogsRequest_All_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR DockerQueryRequest_All::DockerQueryRequest_All(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
-#endif  // PROTOBUF_CUSTOM_VTABLE
-struct DockerQueryRequest_AllDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DockerQueryRequest_AllDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DockerQueryRequest_AllDefaultTypeInternal() {}
-  union {
-    DockerQueryRequest_All _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DockerQueryRequest_AllDefaultTypeInternal _DockerQueryRequest_All_default_instance_;
 
 inline constexpr SystemdJournalResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -746,35 +728,6 @@ struct DockerStatisticsResponse_ItemDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DockerStatisticsResponse_ItemDefaultTypeInternal _DockerStatisticsResponse_Item_default_instance_;
-
-inline constexpr DockerQueryRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        from_{nullptr},
-        to_{nullptr},
-        page_{nullptr},
-        by_{},
-        _oneof_case_{} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR DockerQueryRequest::DockerQueryRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct DockerQueryRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DockerQueryRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DockerQueryRequestDefaultTypeInternal() {}
-  union {
-    DockerQueryRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DockerQueryRequestDefaultTypeInternal _DockerQueryRequest_default_instance_;
 
 inline constexpr DockerContainersResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1218,37 +1171,6 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _impl_.pagination_),
         ~0u,
         0,
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest_All, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _internal_metadata_),
-        ~0u,  // no _extensions_
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_._oneof_case_[0]),
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_.from_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_.to_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_.page_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_.by_),
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        0,
-        1,
-        2,
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerContainersResponse_Item, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerContainersResponse_Item, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1542,21 +1464,19 @@ static const ::_pbi::MigrationSchema
         {166, 179, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
         {183, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
         {194, 204, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
-        {206, -1, -1, sizeof(::palm::monitoring::v1::DockerQueryRequest_All)},
-        {214, 230, -1, sizeof(::palm::monitoring::v1::DockerQueryRequest)},
-        {237, 262, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse_Item)},
-        {279, 289, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse)},
-        {291, 310, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse_Item)},
-        {321, 331, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse)},
-        {333, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {341, 357, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {364, 378, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {384, 394, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {396, 406, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {408, 434, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {452, 462, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {464, 484, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {496, 506, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {206, 231, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse_Item)},
+        {248, 258, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse)},
+        {260, 279, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse_Item)},
+        {290, 300, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse)},
+        {302, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {310, 326, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {333, 347, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {353, 363, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {365, 375, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {377, 403, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {421, 431, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {433, 453, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {465, 475, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
@@ -1577,8 +1497,6 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_FileSystemLogsRequest_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemLogsResponse_Item_default_instance_._instance,
     &::palm::monitoring::v1::_FileSystemLogsResponse_default_instance_._instance,
-    &::palm::monitoring::v1::_DockerQueryRequest_All_default_instance_._instance,
-    &::palm::monitoring::v1::_DockerQueryRequest_default_instance_._instance,
     &::palm::monitoring::v1::_DockerContainersResponse_Item_default_instance_._instance,
     &::palm::monitoring::v1::_DockerContainersResponse_default_instance_._instance,
     &::palm::monitoring::v1::_DockerStatisticsResponse_Item_default_instance_._instance,
@@ -1635,96 +1553,91 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     "\003(\0132/.palm.monitoring.v1.FileSystemLogsR"
     "esponse.Item\022.\n\npagination\030\t \001(\0132\032.palm."
     "portal.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001"
-    "(\t\022\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\200\002\n\022Do"
-    "ckerQueryRequest\0229\n\003all\030\001 \001(\0132*.palm.mon"
-    "itoring.v1.DockerQueryRequest.AllH\000\022\016\n\004h"
-    "ost\030\002 \001(\tH\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 \001(\tH"
-    "\000\022(\n\004from\030[ \001(\0132\032.google.protobuf.Timest"
-    "amp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Timest"
-    "amp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032"
-    "\005\n\003AllB\004\n\002by\"\374\003\n\030DockerContainersRespons"
-    "e\022@\n\005items\030\001 \003(\01321.palm.monitoring.v1.Do"
-    "ckerContainersResponse.Item\022.\n\npaginatio"
-    "n\030\t \001(\0132\032.palm.portal.v1.Pagination\032\355\002\n\004"
-    "Item\022\017\n\007command\030\001 \001(\t\022.\n\ncreated_at\030\002 \001("
-    "\0132\032.google.protobuf.Timestamp\022\n\n\002id\030\003 \001("
-    "\t\022\r\n\005image\030\004 \001(\t\022\016\n\006labels\030\005 \001(\t\022\025\n\rloca"
-    "l_volumes\030\006 \001(\t\022\016\n\006mounts\030\007 \001(\t\022\r\n\005names"
-    "\030\010 \001(\t\022\020\n\010networks\030\t \001(\t\022\025\n\010platform\030\n \001"
-    "(\tH\000\210\001\001\022\r\n\005ports\030\013 \001(\t\022\023\n\013running_for\030\014 "
-    "\001(\t\022\014\n\004size\030\r \001(\t\022\r\n\005state\030\016 \001(\t\022\016\n\006stat"
-    "us\030\017 \001(\t\022\014\n\004host\030b \001(\t\022.\n\nupdated_at\030c \001"
-    "(\0132\032.google.protobuf.TimestampB\013\n\t_platf"
-    "orm\"\355\002\n\030DockerStatisticsResponse\022@\n\005item"
-    "s\030\001 \003(\01321.palm.monitoring.v1.DockerStati"
-    "sticsResponse.Item\022.\n\npagination\030\t \001(\0132\032"
-    ".palm.portal.v1.Pagination\032\336\001\n\004Item\022\020\n\010b"
-    "lock_io\030\001 \001(\t\022\023\n\013cpu_percent\030\002 \001(\t\022\021\n\tco"
-    "ntainer\030\003 \001(\t\022\n\n\002id\030\004 \001(\t\022\023\n\013mem_percent"
-    "\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\014\n\004name\030\007 \001(\t\022"
-    "\016\n\006net_io\030\010 \001(\t\022\014\n\004pids\030\t \001(\t\022\014\n\004host\030b "
-    "\001(\t\022.\n\ncreated_at\030c \001(\0132\032.google.protobu"
-    "f.Timestamp\"\200\002\n\022PodmanQueryRequest\0229\n\003al"
-    "l\030\001 \001(\0132*.palm.monitoring.v1.PodmanQuery"
-    "Request.AllH\000\022\016\n\004host\030\002 \001(\tH\000\022\014\n\002id\030\003 \001("
-    "\tH\000\022\016\n\004name\030\004 \001(\tH\000\022(\n\004from\030[ \001(\0132\032.goog"
-    "le.protobuf.Timestamp\022&\n\002to\030\\ \001(\0132\032.goog"
-    "le.protobuf.Timestamp\022\"\n\004page\030c \001(\0132\024.pa"
-    "lm.portal.v1.Page\032\005\n\003AllB\004\n\002by\"\203\002\n\022Podma"
-    "nLogsResponse\022:\n\005items\030\001 \003(\0132+.palm.moni"
-    "toring.v1.PodmanLogsResponse.Item\022.\n\npag"
-    "ination\030\t \001(\0132\032.palm.portal.v1.Paginatio"
-    "n\032\200\001\n\004Item\022\014\n\004host\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\017\n\007"
-    "full_id\030\003 \001(\t\022\014\n\004name\030\004 \001(\t\022\017\n\007message\030\005"
-    " \001(\t\022.\n\ncreated_at\030\t \001(\0132\032.google.protob"
-    "uf.Timestamp\"\311\004\n\030PodmanContainersRespons"
-    "e\022@\n\005items\030\001 \003(\01321.palm.monitoring.v1.Po"
-    "dmanContainersResponse.Item\022.\n\npaginatio"
-    "n\030\t \001(\0132\032.palm.portal.v1.Pagination\032\272\003\n\004"
-    "Item\022\n\n\002id\030\001 \001(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image"
-    "_id\030\003 \001(\t\022M\n\006labels\030\004 \003(\0132=.palm.monitor"
-    "ing.v1.PodmanContainersResponse.Item.Lab"
-    "elsEntry\022\016\n\006mounts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022"
-    "\017\n\007command\030\007 \003(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014"
-    " \001(\t\022\022\n\nstarted_at\030\r \001(\003\022\022\n\ncreated_at\030\016"
-    " \001(\t\022\017\n\007created\030\017 \001(\003\022\016\n\006status\030\020 \001(\t\022\016\n"
-    "\006exited\030\025 \001(\010\022\021\n\texited_at\030\026 \001(\003\022\021\n\texit"
-    "_code\030\027 \001(\005\022\014\n\004host\030b \001(\t\022.\n\nupdated_at\030"
-    "c \001(\0132\032.google.protobuf.Timestamp\032-\n\013Lab"
-    "elsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001"
-    "\"\375\002\n\030PodmanStatisticsResponse\022@\n\005items\030\001"
-    " \003(\01321.palm.monitoring.v1.PodmanStatisti"
-    "csResponse.Item\022.\n\npagination\030\t \001(\0132\032.pa"
-    "lm.portal.v1.Pagination\032\356\001\n\004Item\022\n\n\002id\030\001"
-    " \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010cpu_time\030\003 \001(\t\022\023\n\013"
-    "cpu_percent\030\004 \001(\t\022\017\n\007avg_cpu\030\005 \001(\t\022\021\n\tme"
-    "m_usage\030\006 \001(\t\022\023\n\013mem_percent\030\007 \001(\t\022\016\n\006ne"
-    "t_io\030\010 \001(\t\022\020\n\010block_io\030\t \001(\t\022\014\n\004pids\030\n \001"
-    "(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032.g"
-    "oogle.protobuf.Timestamp2a\n\004Site\022Y\n\006Layo"
-    "ut\022%.palm.monitoring.v1.SiteLayoutReques"
-    "t\032&.palm.monitoring.v1.SiteLayoutRespons"
-    "e\"\0002m\n\007Systemd\022b\n\007Journal\022).palm.monitor"
-    "ing.v1.SystemdJournalRequest\032*.palm.moni"
-    "toring.v1.SystemdJournalResponse\"\0002m\n\nFi"
-    "leSystem\022_\n\004Logs\022).palm.monitoring.v1.Fi"
-    "leSystemLogsRequest\032*.palm.monitoring.v1"
-    ".FileSystemLogsResponse\"\0002\324\001\n\006Docker\022d\n\n"
-    "Containers\022&.palm.monitoring.v1.DockerQu"
-    "eryRequest\032,.palm.monitoring.v1.DockerCo"
-    "ntainersResponse\"\000\022d\n\nStatistics\022&.palm."
-    "monitoring.v1.DockerQueryRequest\032,.palm."
-    "monitoring.v1.DockerStatisticsResponse\"\000"
-    "2\256\002\n\006Podman\022X\n\004Logs\022&.palm.monitoring.v1"
-    ".PodmanQueryRequest\032&.palm.monitoring.v1"
-    ".PodmanLogsResponse\"\000\022d\n\nContainers\022&.pa"
-    "lm.monitoring.v1.PodmanQueryRequest\032,.pa"
-    "lm.monitoring.v1.PodmanContainersRespons"
-    "e\"\000\022d\n\nStatistics\022&.palm.monitoring.v1.P"
-    "odmanQueryRequest\032,.palm.monitoring.v1.P"
-    "odmanStatisticsResponse\"\000B4\n0com.github."
-    "saturn_xiv.palm.plugins.monitoring.v1P\001b"
-    "\006proto3"
+    "(\t\022\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\374\003\n\030Do"
+    "ckerContainersResponse\022@\n\005items\030\001 \003(\01321."
+    "palm.monitoring.v1.DockerContainersRespo"
+    "nse.Item\022.\n\npagination\030\t \001(\0132\032.palm.port"
+    "al.v1.Pagination\032\355\002\n\004Item\022\017\n\007command\030\001 \001"
+    "(\t\022.\n\ncreated_at\030\002 \001(\0132\032.google.protobuf"
+    ".Timestamp\022\n\n\002id\030\003 \001(\t\022\r\n\005image\030\004 \001(\t\022\016\n"
+    "\006labels\030\005 \001(\t\022\025\n\rlocal_volumes\030\006 \001(\t\022\016\n\006"
+    "mounts\030\007 \001(\t\022\r\n\005names\030\010 \001(\t\022\020\n\010networks\030"
+    "\t \001(\t\022\025\n\010platform\030\n \001(\tH\000\210\001\001\022\r\n\005ports\030\013 "
+    "\001(\t\022\023\n\013running_for\030\014 \001(\t\022\014\n\004size\030\r \001(\t\022\r"
+    "\n\005state\030\016 \001(\t\022\016\n\006status\030\017 \001(\t\022\014\n\004host\030b "
+    "\001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.protobu"
+    "f.TimestampB\013\n\t_platform\"\355\002\n\030DockerStati"
+    "sticsResponse\022@\n\005items\030\001 \003(\01321.palm.moni"
+    "toring.v1.DockerStatisticsResponse.Item\022"
+    ".\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pag"
+    "ination\032\336\001\n\004Item\022\020\n\010block_io\030\001 \001(\t\022\023\n\013cp"
+    "u_percent\030\002 \001(\t\022\021\n\tcontainer\030\003 \001(\t\022\n\n\002id"
+    "\030\004 \001(\t\022\023\n\013mem_percent\030\005 \001(\t\022\021\n\tmem_usage"
+    "\030\006 \001(\t\022\014\n\004name\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\014\n\004"
+    "pids\030\t \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at\030c"
+    " \001(\0132\032.google.protobuf.Timestamp\"\200\002\n\022Pod"
+    "manQueryRequest\0229\n\003all\030\001 \001(\0132*.palm.moni"
+    "toring.v1.PodmanQueryRequest.AllH\000\022\016\n\004ho"
+    "st\030\002 \001(\tH\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 \001(\tH\000"
+    "\022(\n\004from\030[ \001(\0132\032.google.protobuf.Timesta"
+    "mp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Timesta"
+    "mp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032\005"
+    "\n\003AllB\004\n\002by\"\203\002\n\022PodmanLogsResponse\022:\n\005it"
+    "ems\030\001 \003(\0132+.palm.monitoring.v1.PodmanLog"
+    "sResponse.Item\022.\n\npagination\030\t \001(\0132\032.pal"
+    "m.portal.v1.Pagination\032\200\001\n\004Item\022\014\n\004host\030"
+    "\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\017\n\007full_id\030\003 \001(\t\022\014\n\004na"
+    "me\030\004 \001(\t\022\017\n\007message\030\005 \001(\t\022.\n\ncreated_at\030"
+    "\t \001(\0132\032.google.protobuf.Timestamp\"\311\004\n\030Po"
+    "dmanContainersResponse\022@\n\005items\030\001 \003(\01321."
+    "palm.monitoring.v1.PodmanContainersRespo"
+    "nse.Item\022.\n\npagination\030\t \001(\0132\032.palm.port"
+    "al.v1.Pagination\032\272\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n"
+    "\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labels"
+    "\030\004 \003(\0132=.palm.monitoring.v1.PodmanContai"
+    "nersResponse.Item.LabelsEntry\022\016\n\006mounts\030"
+    "\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n"
+    "\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_at\030"
+    "\r \001(\003\022\022\n\ncreated_at\030\016 \001(\t\022\017\n\007created\030\017 \001"
+    "(\003\022\016\n\006status\030\020 \001(\t\022\016\n\006exited\030\025 \001(\010\022\021\n\tex"
+    "ited_at\030\026 \001(\003\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host"
+    "\030b \001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.prot"
+    "obuf.Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001"
+    "(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisti"
+    "csResponse\022@\n\005items\030\001 \003(\01321.palm.monitor"
+    "ing.v1.PodmanStatisticsResponse.Item\022.\n\n"
+    "pagination\030\t \001(\0132\032.palm.portal.v1.Pagina"
+    "tion\032\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022"
+    "\020\n\010cpu_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017"
+    "\n\007avg_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013me"
+    "m_percent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block"
+    "_io\030\t \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n"
+    "\ncreated_at\030c \001(\0132\032.google.protobuf.Time"
+    "stamp2a\n\004Site\022Y\n\006Layout\022%.palm.monitorin"
+    "g.v1.SiteLayoutRequest\032&.palm.monitoring"
+    ".v1.SiteLayoutResponse\"\0002m\n\007Systemd\022b\n\007J"
+    "ournal\022).palm.monitoring.v1.SystemdJourn"
+    "alRequest\032*.palm.monitoring.v1.SystemdJo"
+    "urnalResponse\"\0002m\n\nFileSystem\022_\n\004Logs\022)."
+    "palm.monitoring.v1.FileSystemLogsRequest"
+    "\032*.palm.monitoring.v1.FileSystemLogsResp"
+    "onse\"\0002\256\002\n\006Docker\022d\n\nContainers\022&.palm.m"
+    "onitoring.v1.PodmanQueryRequest\032,.palm.m"
+    "onitoring.v1.DockerContainersResponse\"\000\022"
+    "d\n\nStatistics\022&.palm.monitoring.v1.Podma"
+    "nQueryRequest\032,.palm.monitoring.v1.Docke"
+    "rStatisticsResponse\"\000\022X\n\004Logs\022&.palm.mon"
+    "itoring.v1.PodmanQueryRequest\032&.palm.mon"
+    "itoring.v1.PodmanLogsResponse\"\0002\256\002\n\006Podm"
+    "an\022X\n\004Logs\022&.palm.monitoring.v1.PodmanQu"
+    "eryRequest\032&.palm.monitoring.v1.PodmanLo"
+    "gsResponse\"\000\022d\n\nContainers\022&.palm.monito"
+    "ring.v1.PodmanQueryRequest\032,.palm.monito"
+    "ring.v1.PodmanContainersResponse\"\000\022d\n\nSt"
+    "atistics\022&.palm.monitoring.v1.PodmanQuer"
+    "yRequest\032,.palm.monitoring.v1.PodmanStat"
+    "isticsResponse\"\000B4\n0com.github.saturn_xi"
+    "v.palm.plugins.monitoring.v1P\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1735,13 +1648,13 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    5167,
+    4998,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
     descriptor_table_monitoring_2eproto_deps,
     2,
-    33,
+    31,
     schemas,
     file_default_instances,
     TableStruct_monitoring_2eproto::offsets,
@@ -6412,656 +6325,6 @@ void FileSystemLogsResponse::InternalSwap(FileSystemLogsResponse* PROTOBUF_RESTR
 }
 
 ::google::protobuf::Metadata FileSystemLogsResponse::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class DockerQueryRequest_All::_Internal {
- public:
-};
-
-DockerQueryRequest_All::DockerQueryRequest_All(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.DockerQueryRequest.All)
-}
-DockerQueryRequest_All::DockerQueryRequest_All(
-    ::google::protobuf::Arena* arena,
-    const DockerQueryRequest_All& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  DockerQueryRequest_All* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.DockerQueryRequest.All)
-}
-
-inline void* DockerQueryRequest_All::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) DockerQueryRequest_All(arena);
-}
-constexpr auto DockerQueryRequest_All::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(DockerQueryRequest_All),
-                                            alignof(DockerQueryRequest_All));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull DockerQueryRequest_All::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_DockerQueryRequest_All_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &DockerQueryRequest_All::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<DockerQueryRequest_All>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &DockerQueryRequest_All::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<DockerQueryRequest_All>(), &DockerQueryRequest_All::ByteSizeLong,
-            &DockerQueryRequest_All::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(DockerQueryRequest_All, _impl_._cached_size_),
-        false,
-    },
-    &DockerQueryRequest_All::kDescriptorMethods,
-    &descriptor_table_monitoring_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* DockerQueryRequest_All::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> DockerQueryRequest_All::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::DockerQueryRequest_All>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    65535, 65535
-  }},
-  // no field_entries, or aux_entries
-  {{
-  }},
-};
-
-
-
-
-
-
-
-
-::google::protobuf::Metadata DockerQueryRequest_All::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class DockerQueryRequest::_Internal {
- public:
-  using HasBits =
-      decltype(std::declval<DockerQueryRequest>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_._has_bits_);
-  static constexpr ::int32_t kOneofCaseOffset =
-      PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::DockerQueryRequest, _impl_._oneof_case_);
-};
-
-void DockerQueryRequest::set_allocated_all(::palm::monitoring::v1::DockerQueryRequest_All* all) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_by();
-  if (all) {
-    ::google::protobuf::Arena* submessage_arena = all->GetArena();
-    if (message_arena != submessage_arena) {
-      all = ::google::protobuf::internal::GetOwnedMessage(message_arena, all, submessage_arena);
-    }
-    set_has_all();
-    _impl_.by_.all_ = all;
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.all)
-}
-void DockerQueryRequest::clear_from() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.from_ != nullptr) _impl_.from_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-void DockerQueryRequest::clear_to() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.to_ != nullptr) _impl_.to_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-void DockerQueryRequest::clear_page() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.page_ != nullptr) _impl_.page_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-DockerQueryRequest::DockerQueryRequest(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.monitoring.v1.DockerQueryRequest)
-}
-inline PROTOBUF_NDEBUG_INLINE DockerQueryRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::monitoring::v1::DockerQueryRequest& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        by_{},
-        _oneof_case_{from._oneof_case_[0]} {}
-
-DockerQueryRequest::DockerQueryRequest(
-    ::google::protobuf::Arena* arena,
-    const DockerQueryRequest& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  DockerQueryRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.from_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
-                              arena, *from._impl_.from_)
-                        : nullptr;
-  _impl_.to_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
-                              arena, *from._impl_.to_)
-                        : nullptr;
-  _impl_.page_ = (cached_has_bits & 0x00000004u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(
-                              arena, *from._impl_.page_)
-                        : nullptr;
-  switch (by_case()) {
-    case BY_NOT_SET:
-      break;
-      case kAll:
-        _impl_.by_.all_ = ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::DockerQueryRequest_All>(arena, *from._impl_.by_.all_);
-        break;
-      case kHost:
-        new (&_impl_.by_.host_) decltype(_impl_.by_.host_){arena, from._impl_.by_.host_};
-        break;
-      case kId:
-        new (&_impl_.by_.id_) decltype(_impl_.by_.id_){arena, from._impl_.by_.id_};
-        break;
-      case kName:
-        new (&_impl_.by_.name_) decltype(_impl_.by_.name_){arena, from._impl_.by_.name_};
-        break;
-  }
-
-  // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.DockerQueryRequest)
-}
-inline PROTOBUF_NDEBUG_INLINE DockerQueryRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        by_{},
-        _oneof_case_{} {}
-
-inline void DockerQueryRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, from_),
-           0,
-           offsetof(Impl_, page_) -
-               offsetof(Impl_, from_) +
-               sizeof(Impl_::page_));
-}
-DockerQueryRequest::~DockerQueryRequest() {
-  // @@protoc_insertion_point(destructor:palm.monitoring.v1.DockerQueryRequest)
-  SharedDtor(*this);
-}
-inline void DockerQueryRequest::SharedDtor(MessageLite& self) {
-  DockerQueryRequest& this_ = static_cast<DockerQueryRequest&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.from_;
-  delete this_._impl_.to_;
-  delete this_._impl_.page_;
-  if (this_.has_by()) {
-    this_.clear_by();
-  }
-  this_._impl_.~Impl_();
-}
-
-void DockerQueryRequest::clear_by() {
-// @@protoc_insertion_point(one_of_clear_start:palm.monitoring.v1.DockerQueryRequest)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  switch (by_case()) {
-    case kAll: {
-      if (GetArena() == nullptr) {
-        delete _impl_.by_.all_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.all_);
-      }
-      break;
-    }
-    case kHost: {
-      _impl_.by_.host_.Destroy();
-      break;
-    }
-    case kId: {
-      _impl_.by_.id_.Destroy();
-      break;
-    }
-    case kName: {
-      _impl_.by_.name_.Destroy();
-      break;
-    }
-    case BY_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = BY_NOT_SET;
-}
-
-
-inline void* DockerQueryRequest::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) DockerQueryRequest(arena);
-}
-constexpr auto DockerQueryRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(DockerQueryRequest),
-                                            alignof(DockerQueryRequest));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull DockerQueryRequest::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_DockerQueryRequest_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &DockerQueryRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<DockerQueryRequest>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &DockerQueryRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<DockerQueryRequest>(), &DockerQueryRequest::ByteSizeLong,
-            &DockerQueryRequest::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_._cached_size_),
-        false,
-    },
-    &DockerQueryRequest::kDescriptorMethods,
-    &descriptor_table_monitoring_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* DockerQueryRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 7, 4, 56, 7> DockerQueryRequest::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_._has_bits_),
-    0, // no _extensions_
-    99, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    4,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::monitoring::v1::DockerQueryRequest>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // .google.protobuf.Timestamp to = 92;
-    {::_pbi::TcParser::FastMtS2,
-     {1506, 1, 2, PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.to_)}},
-    // .google.protobuf.Timestamp from = 91;
-    {::_pbi::TcParser::FastMtS2,
-     {1498, 0, 1, PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.from_)}},
-  }}, {{
-    91, 0, 1,
-    65276, 4,
-    65535, 65535
-  }}, {{
-    // .palm.monitoring.v1.DockerQueryRequest.All all = 1;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.by_.all_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string host = 2;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.by_.host_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string id = 3;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string name = 4;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.by_.name_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Timestamp from = 91;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.from_), _Internal::kHasBitsOffset + 0, 1,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .google.protobuf.Timestamp to = 92;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.to_), _Internal::kHasBitsOffset + 1, 2,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .palm.portal.v1.Page page = 99;
-    {PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.page_), _Internal::kHasBitsOffset + 2, 3,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::palm::monitoring::v1::DockerQueryRequest_All>()},
-    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
-    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
-    {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
-  }}, {{
-    "\45\0\4\2\4\0\0\0"
-    "palm.monitoring.v1.DockerQueryRequest"
-    "host"
-    "id"
-    "name"
-  }},
-};
-
-PROTOBUF_NOINLINE void DockerQueryRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.monitoring.v1.DockerQueryRequest)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000007u) {
-    if (cached_has_bits & 0x00000001u) {
-      ABSL_DCHECK(_impl_.from_ != nullptr);
-      _impl_.from_->Clear();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(_impl_.to_ != nullptr);
-      _impl_.to_->Clear();
-    }
-    if (cached_has_bits & 0x00000004u) {
-      ABSL_DCHECK(_impl_.page_ != nullptr);
-      _impl_.page_->Clear();
-    }
-  }
-  clear_by();
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* DockerQueryRequest::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const DockerQueryRequest& this_ = static_cast<const DockerQueryRequest&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* DockerQueryRequest::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const DockerQueryRequest& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.monitoring.v1.DockerQueryRequest)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          switch (this_.by_case()) {
-            case kAll: {
-              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  1, *this_._impl_.by_.all_, this_._impl_.by_.all_->GetCachedSize(), target,
-                  stream);
-              break;
-            }
-            case kHost: {
-              const std::string& _s = this_._internal_host();
-              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.DockerQueryRequest.host");
-              target = stream->WriteStringMaybeAliased(2, _s, target);
-              break;
-            }
-            case kId: {
-              const std::string& _s = this_._internal_id();
-              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.DockerQueryRequest.id");
-              target = stream->WriteStringMaybeAliased(3, _s, target);
-              break;
-            }
-            case kName: {
-              const std::string& _s = this_._internal_name();
-              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.DockerQueryRequest.name");
-              target = stream->WriteStringMaybeAliased(4, _s, target);
-              break;
-            }
-            default:
-              break;
-          }
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .google.protobuf.Timestamp from = 91;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                91, *this_._impl_.from_, this_._impl_.from_->GetCachedSize(), target,
-                stream);
-          }
-
-          // .google.protobuf.Timestamp to = 92;
-          if (cached_has_bits & 0x00000002u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                92, *this_._impl_.to_, this_._impl_.to_->GetCachedSize(), target,
-                stream);
-          }
-
-          // .palm.portal.v1.Page page = 99;
-          if (cached_has_bits & 0x00000004u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                99, *this_._impl_.page_, this_._impl_.page_->GetCachedSize(), target,
-                stream);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.monitoring.v1.DockerQueryRequest)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t DockerQueryRequest::ByteSizeLong(const MessageLite& base) {
-          const DockerQueryRequest& this_ = static_cast<const DockerQueryRequest&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t DockerQueryRequest::ByteSizeLong() const {
-          const DockerQueryRequest& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.monitoring.v1.DockerQueryRequest)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-          cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x00000007u) {
-            // .google.protobuf.Timestamp from = 91;
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 2 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.from_);
-            }
-            // .google.protobuf.Timestamp to = 92;
-            if (cached_has_bits & 0x00000002u) {
-              total_size += 2 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.to_);
-            }
-            // .palm.portal.v1.Page page = 99;
-            if (cached_has_bits & 0x00000004u) {
-              total_size += 2 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.page_);
-            }
-          }
-          switch (this_.by_case()) {
-            // .palm.monitoring.v1.DockerQueryRequest.All all = 1;
-            case kAll: {
-              total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.all_);
-              break;
-            }
-            // string host = 2;
-            case kHost: {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_host());
-              break;
-            }
-            // string id = 3;
-            case kId: {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_id());
-              break;
-            }
-            // string name = 4;
-            case kName: {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_name());
-              break;
-            }
-            case BY_NOT_SET: {
-              break;
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void DockerQueryRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<DockerQueryRequest*>(&to_msg);
-  auto& from = static_cast<const DockerQueryRequest&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.DockerQueryRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000007u) {
-    if (cached_has_bits & 0x00000001u) {
-      ABSL_DCHECK(from._impl_.from_ != nullptr);
-      if (_this->_impl_.from_ == nullptr) {
-        _this->_impl_.from_ =
-            ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.from_);
-      } else {
-        _this->_impl_.from_->MergeFrom(*from._impl_.from_);
-      }
-    }
-    if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(from._impl_.to_ != nullptr);
-      if (_this->_impl_.to_ == nullptr) {
-        _this->_impl_.to_ =
-            ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.to_);
-      } else {
-        _this->_impl_.to_->MergeFrom(*from._impl_.to_);
-      }
-    }
-    if (cached_has_bits & 0x00000004u) {
-      ABSL_DCHECK(from._impl_.page_ != nullptr);
-      if (_this->_impl_.page_ == nullptr) {
-        _this->_impl_.page_ =
-            ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(arena, *from._impl_.page_);
-      } else {
-        _this->_impl_.page_->MergeFrom(*from._impl_.page_);
-      }
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
-    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
-    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
-    if (oneof_needs_init) {
-      if (oneof_to_case != 0) {
-        _this->clear_by();
-      }
-      _this->_impl_._oneof_case_[0] = oneof_from_case;
-    }
-
-    switch (oneof_from_case) {
-      case kAll: {
-        if (oneof_needs_init) {
-          _this->_impl_.by_.all_ =
-              ::google::protobuf::Message::CopyConstruct<::palm::monitoring::v1::DockerQueryRequest_All>(arena, *from._impl_.by_.all_);
-        } else {
-          _this->_impl_.by_.all_->MergeFrom(from._internal_all());
-        }
-        break;
-      }
-      case kHost: {
-        if (oneof_needs_init) {
-          _this->_impl_.by_.host_.InitDefault();
-        }
-        _this->_impl_.by_.host_.Set(from._internal_host(), arena);
-        break;
-      }
-      case kId: {
-        if (oneof_needs_init) {
-          _this->_impl_.by_.id_.InitDefault();
-        }
-        _this->_impl_.by_.id_.Set(from._internal_id(), arena);
-        break;
-      }
-      case kName: {
-        if (oneof_needs_init) {
-          _this->_impl_.by_.name_.InitDefault();
-        }
-        _this->_impl_.by_.name_.Set(from._internal_name(), arena);
-        break;
-      }
-      case BY_NOT_SET:
-        break;
-    }
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void DockerQueryRequest::CopyFrom(const DockerQueryRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.monitoring.v1.DockerQueryRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void DockerQueryRequest::InternalSwap(DockerQueryRequest* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.page_)
-      + sizeof(DockerQueryRequest::_impl_.page_)
-      - PROTOBUF_FIELD_OFFSET(DockerQueryRequest, _impl_.from_)>(
-          reinterpret_cast<char*>(&_impl_.from_),
-          reinterpret_cast<char*>(&other->_impl_.from_));
-  swap(_impl_.by_, other->_impl_.by_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-}
-
-::google::protobuf::Metadata DockerQueryRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

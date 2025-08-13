@@ -66,12 +66,6 @@ extern DockerContainersResponseDefaultTypeInternal _DockerContainersResponse_def
 class DockerContainersResponse_Item;
 struct DockerContainersResponse_ItemDefaultTypeInternal;
 extern DockerContainersResponse_ItemDefaultTypeInternal _DockerContainersResponse_Item_default_instance_;
-class DockerQueryRequest;
-struct DockerQueryRequestDefaultTypeInternal;
-extern DockerQueryRequestDefaultTypeInternal _DockerQueryRequest_default_instance_;
-class DockerQueryRequest_All;
-struct DockerQueryRequest_AllDefaultTypeInternal;
-extern DockerQueryRequest_AllDefaultTypeInternal _DockerQueryRequest_All_default_instance_;
 class DockerStatisticsResponse;
 struct DockerStatisticsResponseDefaultTypeInternal;
 extern DockerStatisticsResponseDefaultTypeInternal _DockerStatisticsResponse_default_instance_;
@@ -771,7 +765,7 @@ class PodmanQueryRequest_All final : public ::google::protobuf::internal::ZeroFi
     return reinterpret_cast<const PodmanQueryRequest_All*>(
         &_PodmanQueryRequest_All_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(PodmanQueryRequest_All& a, PodmanQueryRequest_All& b) { a.Swap(&b); }
   inline void Swap(PodmanQueryRequest_All* other) {
     if (other == this) return;
@@ -2270,151 +2264,6 @@ class FileSystemLogsRequest_All final : public ::google::protobuf::internal::Zer
 };
 // -------------------------------------------------------------------
 
-class DockerQueryRequest_All final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.DockerQueryRequest.All) */ {
- public:
-  inline DockerQueryRequest_All() : DockerQueryRequest_All(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(DockerQueryRequest_All* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(DockerQueryRequest_All));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR DockerQueryRequest_All(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline DockerQueryRequest_All(const DockerQueryRequest_All& from) : DockerQueryRequest_All(nullptr, from) {}
-  inline DockerQueryRequest_All(DockerQueryRequest_All&& from) noexcept
-      : DockerQueryRequest_All(nullptr, std::move(from)) {}
-  inline DockerQueryRequest_All& operator=(const DockerQueryRequest_All& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DockerQueryRequest_All& operator=(DockerQueryRequest_All&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DockerQueryRequest_All& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DockerQueryRequest_All* internal_default_instance() {
-    return reinterpret_cast<const DockerQueryRequest_All*>(
-        &_DockerQueryRequest_All_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 18;
-  friend void swap(DockerQueryRequest_All& a, DockerQueryRequest_All& b) { a.Swap(&b); }
-  inline void Swap(DockerQueryRequest_All* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DockerQueryRequest_All* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DockerQueryRequest_All* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<DockerQueryRequest_All>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const DockerQueryRequest_All& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const DockerQueryRequest_All& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.DockerQueryRequest.All"; }
-
- protected:
-  explicit DockerQueryRequest_All(::google::protobuf::Arena* arena);
-  DockerQueryRequest_All(::google::protobuf::Arena* arena, const DockerQueryRequest_All& from);
-  DockerQueryRequest_All(::google::protobuf::Arena* arena, DockerQueryRequest_All&& from) noexcept
-      : DockerQueryRequest_All(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.DockerQueryRequest.All)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const DockerQueryRequest_All& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_monitoring_2eproto;
-};
-// -------------------------------------------------------------------
-
 class SystemdJournalResponse_Item final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.monitoring.v1.SystemdJournalResponse.Item) */ {
  public:
@@ -3290,7 +3139,7 @@ class PodmanStatisticsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanStatisticsResponse_Item*>(
         &_PodmanStatisticsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 31;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(PodmanStatisticsResponse_Item& a, PodmanStatisticsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanStatisticsResponse_Item* other) {
     if (other == this) return;
@@ -3691,7 +3540,7 @@ class PodmanQueryRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanQueryRequest*>(
         &_PodmanQueryRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(PodmanQueryRequest& a, PodmanQueryRequest& b) { a.Swap(&b); }
   inline void Swap(PodmanQueryRequest* other) {
     if (other == this) return;
@@ -4013,7 +3862,7 @@ class PodmanLogsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanLogsResponse_Item*>(
         &_PodmanLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(PodmanLogsResponse_Item& a, PodmanLogsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanLogsResponse_Item* other) {
     if (other == this) return;
@@ -4299,7 +4148,7 @@ class PodmanContainersResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanContainersResponse_Item*>(
         &_PodmanContainersResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 29;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(PodmanContainersResponse_Item& a, PodmanContainersResponse_Item& b) { a.Swap(&b); }
   inline void Swap(PodmanContainersResponse_Item* other) {
     if (other == this) return;
@@ -5609,7 +5458,7 @@ class DockerStatisticsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const DockerStatisticsResponse_Item*>(
         &_DockerStatisticsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(DockerStatisticsResponse_Item& a, DockerStatisticsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(DockerStatisticsResponse_Item* other) {
     if (other == this) return;
@@ -5926,335 +5775,6 @@ class DockerStatisticsResponse_Item final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class DockerQueryRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.DockerQueryRequest) */ {
- public:
-  inline DockerQueryRequest() : DockerQueryRequest(nullptr) {}
-  ~DockerQueryRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(DockerQueryRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(DockerQueryRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR DockerQueryRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline DockerQueryRequest(const DockerQueryRequest& from) : DockerQueryRequest(nullptr, from) {}
-  inline DockerQueryRequest(DockerQueryRequest&& from) noexcept
-      : DockerQueryRequest(nullptr, std::move(from)) {}
-  inline DockerQueryRequest& operator=(const DockerQueryRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DockerQueryRequest& operator=(DockerQueryRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DockerQueryRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  enum ByCase {
-    kAll = 1,
-    kHost = 2,
-    kId = 3,
-    kName = 4,
-    BY_NOT_SET = 0,
-  };
-  static inline const DockerQueryRequest* internal_default_instance() {
-    return reinterpret_cast<const DockerQueryRequest*>(
-        &_DockerQueryRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 19;
-  friend void swap(DockerQueryRequest& a, DockerQueryRequest& b) { a.Swap(&b); }
-  inline void Swap(DockerQueryRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DockerQueryRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DockerQueryRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<DockerQueryRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const DockerQueryRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const DockerQueryRequest& from) { DockerQueryRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(DockerQueryRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.DockerQueryRequest"; }
-
- protected:
-  explicit DockerQueryRequest(::google::protobuf::Arena* arena);
-  DockerQueryRequest(::google::protobuf::Arena* arena, const DockerQueryRequest& from);
-  DockerQueryRequest(::google::protobuf::Arena* arena, DockerQueryRequest&& from) noexcept
-      : DockerQueryRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using All = DockerQueryRequest_All;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kFromFieldNumber = 91,
-    kToFieldNumber = 92,
-    kPageFieldNumber = 99,
-    kAllFieldNumber = 1,
-    kHostFieldNumber = 2,
-    kIdFieldNumber = 3,
-    kNameFieldNumber = 4,
-  };
-  // .google.protobuf.Timestamp from = 91;
-  bool has_from() const;
-  void clear_from() ;
-  const ::google::protobuf::Timestamp& from() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_from();
-  ::google::protobuf::Timestamp* mutable_from();
-  void set_allocated_from(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_from(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_from();
-
-  private:
-  const ::google::protobuf::Timestamp& _internal_from() const;
-  ::google::protobuf::Timestamp* _internal_mutable_from();
-
-  public:
-  // .google.protobuf.Timestamp to = 92;
-  bool has_to() const;
-  void clear_to() ;
-  const ::google::protobuf::Timestamp& to() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_to();
-  ::google::protobuf::Timestamp* mutable_to();
-  void set_allocated_to(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_to(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_to();
-
-  private:
-  const ::google::protobuf::Timestamp& _internal_to() const;
-  ::google::protobuf::Timestamp* _internal_mutable_to();
-
-  public:
-  // .palm.portal.v1.Page page = 99;
-  bool has_page() const;
-  void clear_page() ;
-  const ::palm::portal::v1::Page& page() const;
-  PROTOBUF_NODISCARD ::palm::portal::v1::Page* release_page();
-  ::palm::portal::v1::Page* mutable_page();
-  void set_allocated_page(::palm::portal::v1::Page* value);
-  void unsafe_arena_set_allocated_page(::palm::portal::v1::Page* value);
-  ::palm::portal::v1::Page* unsafe_arena_release_page();
-
-  private:
-  const ::palm::portal::v1::Page& _internal_page() const;
-  ::palm::portal::v1::Page* _internal_mutable_page();
-
-  public:
-  // .palm.monitoring.v1.DockerQueryRequest.All all = 1;
-  bool has_all() const;
-  private:
-  bool _internal_has_all() const;
-
-  public:
-  void clear_all() ;
-  const ::palm::monitoring::v1::DockerQueryRequest_All& all() const;
-  PROTOBUF_NODISCARD ::palm::monitoring::v1::DockerQueryRequest_All* release_all();
-  ::palm::monitoring::v1::DockerQueryRequest_All* mutable_all();
-  void set_allocated_all(::palm::monitoring::v1::DockerQueryRequest_All* value);
-  void unsafe_arena_set_allocated_all(::palm::monitoring::v1::DockerQueryRequest_All* value);
-  ::palm::monitoring::v1::DockerQueryRequest_All* unsafe_arena_release_all();
-
-  private:
-  const ::palm::monitoring::v1::DockerQueryRequest_All& _internal_all() const;
-  ::palm::monitoring::v1::DockerQueryRequest_All* _internal_mutable_all();
-
-  public:
-  // string host = 2;
-  bool has_host() const;
-  void clear_host() ;
-  const std::string& host() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_host(Arg_&& arg, Args_... args);
-  std::string* mutable_host();
-  PROTOBUF_NODISCARD std::string* release_host();
-  void set_allocated_host(std::string* value);
-
-  private:
-  const std::string& _internal_host() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_host(
-      const std::string& value);
-  std::string* _internal_mutable_host();
-
-  public:
-  // string id = 3;
-  bool has_id() const;
-  void clear_id() ;
-  const std::string& id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_id(Arg_&& arg, Args_... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* value);
-
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
-      const std::string& value);
-  std::string* _internal_mutable_id();
-
-  public:
-  // string name = 4;
-  bool has_name() const;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  void clear_by();
-  ByCase by_case() const;
-  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.DockerQueryRequest)
- private:
-  class _Internal;
-  void set_has_all();
-  void set_has_host();
-  void set_has_id();
-  void set_has_name();
-  inline bool has_by() const;
-  inline void clear_has_by();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 7, 4,
-      56, 7>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const DockerQueryRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::Timestamp* from_;
-    ::google::protobuf::Timestamp* to_;
-    ::palm::portal::v1::Page* page_;
-    union ByUnion {
-      constexpr ByUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::palm::monitoring::v1::DockerQueryRequest_All* all_;
-      ::google::protobuf::internal::ArenaStringPtr host_;
-      ::google::protobuf::internal::ArenaStringPtr id_;
-      ::google::protobuf::internal::ArenaStringPtr name_;
-    } by_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_monitoring_2eproto;
-};
-// -------------------------------------------------------------------
-
 class DockerContainersResponse_Item final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.monitoring.v1.DockerContainersResponse.Item) */ {
  public:
@@ -6314,7 +5834,7 @@ class DockerContainersResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const DockerContainersResponse_Item*>(
         &_DockerContainersResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(DockerContainersResponse_Item& a, DockerContainersResponse_Item& b) { a.Swap(&b); }
   inline void Swap(DockerContainersResponse_Item* other) {
     if (other == this) return;
@@ -7014,7 +6534,7 @@ class PodmanStatisticsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanStatisticsResponse*>(
         &_PodmanStatisticsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 32;
+  static constexpr int kIndexInFileMessages = 30;
   friend void swap(PodmanStatisticsResponse& a, PodmanStatisticsResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanStatisticsResponse* other) {
     if (other == this) return;
@@ -7230,7 +6750,7 @@ class PodmanLogsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanLogsResponse*>(
         &_PodmanLogsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(PodmanLogsResponse& a, PodmanLogsResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanLogsResponse* other) {
     if (other == this) return;
@@ -7446,7 +6966,7 @@ class PodmanContainersResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PodmanContainersResponse*>(
         &_PodmanContainersResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 30;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(PodmanContainersResponse& a, PodmanContainersResponse& b) { a.Swap(&b); }
   inline void Swap(PodmanContainersResponse* other) {
     if (other == this) return;
@@ -7662,7 +7182,7 @@ class DockerStatisticsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const DockerStatisticsResponse*>(
         &_DockerStatisticsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(DockerStatisticsResponse& a, DockerStatisticsResponse& b) { a.Swap(&b); }
   inline void Swap(DockerStatisticsResponse* other) {
     if (other == this) return;
@@ -7878,7 +7398,7 @@ class DockerContainersResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const DockerContainersResponse*>(
         &_DockerContainersResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(DockerContainersResponse& a, DockerContainersResponse& b) { a.Swap(&b); }
   inline void Swap(DockerContainersResponse* other) {
     if (other == this) return;
@@ -10589,630 +10109,6 @@ inline void FileSystemLogsResponse::set_allocated_pagination(::palm::portal::v1:
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemLogsResponse.pagination)
 }
 
-// -------------------------------------------------------------------
-
-// DockerQueryRequest_All
-
-// -------------------------------------------------------------------
-
-// DockerQueryRequest
-
-// .palm.monitoring.v1.DockerQueryRequest.All all = 1;
-inline bool DockerQueryRequest::has_all() const {
-  return by_case() == kAll;
-}
-inline bool DockerQueryRequest::_internal_has_all() const {
-  return by_case() == kAll;
-}
-inline void DockerQueryRequest::set_has_all() {
-  _impl_._oneof_case_[0] = kAll;
-}
-inline void DockerQueryRequest::clear_all() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() == kAll) {
-    if (GetArena() == nullptr) {
-      delete _impl_.by_.all_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.all_);
-    }
-    clear_has_by();
-  }
-}
-inline ::palm::monitoring::v1::DockerQueryRequest_All* DockerQueryRequest::release_all() {
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.all)
-  if (by_case() == kAll) {
-    clear_has_by();
-    auto* temp = _impl_.by_.all_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.by_.all_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::palm::monitoring::v1::DockerQueryRequest_All& DockerQueryRequest::_internal_all() const {
-  return by_case() == kAll ? *_impl_.by_.all_ : reinterpret_cast<::palm::monitoring::v1::DockerQueryRequest_All&>(::palm::monitoring::v1::_DockerQueryRequest_All_default_instance_);
-}
-inline const ::palm::monitoring::v1::DockerQueryRequest_All& DockerQueryRequest::all() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.all)
-  return _internal_all();
-}
-inline ::palm::monitoring::v1::DockerQueryRequest_All* DockerQueryRequest::unsafe_arena_release_all() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.monitoring.v1.DockerQueryRequest.all)
-  if (by_case() == kAll) {
-    clear_has_by();
-    auto* temp = _impl_.by_.all_;
-    _impl_.by_.all_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void DockerQueryRequest::unsafe_arena_set_allocated_all(::palm::monitoring::v1::DockerQueryRequest_All* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_by();
-  if (value) {
-    set_has_all();
-    _impl_.by_.all_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.DockerQueryRequest.all)
-}
-inline ::palm::monitoring::v1::DockerQueryRequest_All* DockerQueryRequest::_internal_mutable_all() {
-  if (by_case() != kAll) {
-    clear_by();
-    set_has_all();
-    _impl_.by_.all_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::monitoring::v1::DockerQueryRequest_All>(GetArena());
-  }
-  return _impl_.by_.all_;
-}
-inline ::palm::monitoring::v1::DockerQueryRequest_All* DockerQueryRequest::mutable_all() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::monitoring::v1::DockerQueryRequest_All* _msg = _internal_mutable_all();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.all)
-  return _msg;
-}
-
-// string host = 2;
-inline bool DockerQueryRequest::has_host() const {
-  return by_case() == kHost;
-}
-inline void DockerQueryRequest::set_has_host() {
-  _impl_._oneof_case_[0] = kHost;
-}
-inline void DockerQueryRequest::clear_host() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() == kHost) {
-    _impl_.by_.host_.Destroy();
-    clear_has_by();
-  }
-}
-inline const std::string& DockerQueryRequest::host() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.host)
-  return _internal_host();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DockerQueryRequest::set_host(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kHost) {
-    clear_by();
-
-    set_has_host();
-    _impl_.by_.host_.InitDefault();
-  }
-  _impl_.by_.host_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.DockerQueryRequest.host)
-}
-inline std::string* DockerQueryRequest::mutable_host() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_host();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.host)
-  return _s;
-}
-inline const std::string& DockerQueryRequest::_internal_host() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  if (by_case() != kHost) {
-    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
-  }
-  return _impl_.by_.host_.Get();
-}
-inline void DockerQueryRequest::_internal_set_host(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kHost) {
-    clear_by();
-
-    set_has_host();
-    _impl_.by_.host_.InitDefault();
-  }
-  _impl_.by_.host_.Set(value, GetArena());
-}
-inline std::string* DockerQueryRequest::_internal_mutable_host() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kHost) {
-    clear_by();
-
-    set_has_host();
-    _impl_.by_.host_.InitDefault();
-  }
-  return _impl_.by_.host_.Mutable( GetArena());
-}
-inline std::string* DockerQueryRequest::release_host() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.host)
-  if (by_case() != kHost) {
-    return nullptr;
-  }
-  clear_has_by();
-  return _impl_.by_.host_.Release();
-}
-inline void DockerQueryRequest::set_allocated_host(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (has_by()) {
-    clear_by();
-  }
-  if (value != nullptr) {
-    set_has_host();
-    _impl_.by_.host_.InitAllocated(value, GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.host)
-}
-
-// string id = 3;
-inline bool DockerQueryRequest::has_id() const {
-  return by_case() == kId;
-}
-inline void DockerQueryRequest::set_has_id() {
-  _impl_._oneof_case_[0] = kId;
-}
-inline void DockerQueryRequest::clear_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() == kId) {
-    _impl_.by_.id_.Destroy();
-    clear_has_by();
-  }
-}
-inline const std::string& DockerQueryRequest::id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.id)
-  return _internal_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DockerQueryRequest::set_id(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kId) {
-    clear_by();
-
-    set_has_id();
-    _impl_.by_.id_.InitDefault();
-  }
-  _impl_.by_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.DockerQueryRequest.id)
-}
-inline std::string* DockerQueryRequest::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.id)
-  return _s;
-}
-inline const std::string& DockerQueryRequest::_internal_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  if (by_case() != kId) {
-    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
-  }
-  return _impl_.by_.id_.Get();
-}
-inline void DockerQueryRequest::_internal_set_id(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kId) {
-    clear_by();
-
-    set_has_id();
-    _impl_.by_.id_.InitDefault();
-  }
-  _impl_.by_.id_.Set(value, GetArena());
-}
-inline std::string* DockerQueryRequest::_internal_mutable_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kId) {
-    clear_by();
-
-    set_has_id();
-    _impl_.by_.id_.InitDefault();
-  }
-  return _impl_.by_.id_.Mutable( GetArena());
-}
-inline std::string* DockerQueryRequest::release_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.id)
-  if (by_case() != kId) {
-    return nullptr;
-  }
-  clear_has_by();
-  return _impl_.by_.id_.Release();
-}
-inline void DockerQueryRequest::set_allocated_id(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (has_by()) {
-    clear_by();
-  }
-  if (value != nullptr) {
-    set_has_id();
-    _impl_.by_.id_.InitAllocated(value, GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.id)
-}
-
-// string name = 4;
-inline bool DockerQueryRequest::has_name() const {
-  return by_case() == kName;
-}
-inline void DockerQueryRequest::set_has_name() {
-  _impl_._oneof_case_[0] = kName;
-}
-inline void DockerQueryRequest::clear_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() == kName) {
-    _impl_.by_.name_.Destroy();
-    clear_has_by();
-  }
-}
-inline const std::string& DockerQueryRequest::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.name)
-  return _internal_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DockerQueryRequest::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kName) {
-    clear_by();
-
-    set_has_name();
-    _impl_.by_.name_.InitDefault();
-  }
-  _impl_.by_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.DockerQueryRequest.name)
-}
-inline std::string* DockerQueryRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.name)
-  return _s;
-}
-inline const std::string& DockerQueryRequest::_internal_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  if (by_case() != kName) {
-    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
-  }
-  return _impl_.by_.name_.Get();
-}
-inline void DockerQueryRequest::_internal_set_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kName) {
-    clear_by();
-
-    set_has_name();
-    _impl_.by_.name_.InitDefault();
-  }
-  _impl_.by_.name_.Set(value, GetArena());
-}
-inline std::string* DockerQueryRequest::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (by_case() != kName) {
-    clear_by();
-
-    set_has_name();
-    _impl_.by_.name_.InitDefault();
-  }
-  return _impl_.by_.name_.Mutable( GetArena());
-}
-inline std::string* DockerQueryRequest::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.name)
-  if (by_case() != kName) {
-    return nullptr;
-  }
-  clear_has_by();
-  return _impl_.by_.name_.Release();
-}
-inline void DockerQueryRequest::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (has_by()) {
-    clear_by();
-  }
-  if (value != nullptr) {
-    set_has_name();
-    _impl_.by_.name_.InitAllocated(value, GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.name)
-}
-
-// .google.protobuf.Timestamp from = 91;
-inline bool DockerQueryRequest::has_from() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.from_ != nullptr);
-  return value;
-}
-inline const ::google::protobuf::Timestamp& DockerQueryRequest::_internal_from() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Timestamp* p = _impl_.from_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
-}
-inline const ::google::protobuf::Timestamp& DockerQueryRequest::from() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.from)
-  return _internal_from();
-}
-inline void DockerQueryRequest::unsafe_arena_set_allocated_from(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.from_);
-  }
-  _impl_.from_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.DockerQueryRequest.from)
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::release_from() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* released = _impl_.from_;
-  _impl_.from_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::unsafe_arena_release_from() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.from)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* temp = _impl_.from_;
-  _impl_.from_ = nullptr;
-  return temp;
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::_internal_mutable_from() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.from_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
-    _impl_.from_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
-  }
-  return _impl_.from_;
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::mutable_from() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_from();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.from)
-  return _msg;
-}
-inline void DockerQueryRequest::set_allocated_from(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.from_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.from_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.from)
-}
-
-// .google.protobuf.Timestamp to = 92;
-inline bool DockerQueryRequest::has_to() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.to_ != nullptr);
-  return value;
-}
-inline const ::google::protobuf::Timestamp& DockerQueryRequest::_internal_to() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Timestamp* p = _impl_.to_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
-}
-inline const ::google::protobuf::Timestamp& DockerQueryRequest::to() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.to)
-  return _internal_to();
-}
-inline void DockerQueryRequest::unsafe_arena_set_allocated_to(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.to_);
-  }
-  _impl_.to_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.DockerQueryRequest.to)
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::release_to() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Timestamp* released = _impl_.to_;
-  _impl_.to_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::unsafe_arena_release_to() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.to)
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Timestamp* temp = _impl_.to_;
-  _impl_.to_ = nullptr;
-  return temp;
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::_internal_mutable_to() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.to_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
-    _impl_.to_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
-  }
-  return _impl_.to_;
-}
-inline ::google::protobuf::Timestamp* DockerQueryRequest::mutable_to() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_to();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.to)
-  return _msg;
-}
-inline void DockerQueryRequest::set_allocated_to(::google::protobuf::Timestamp* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.to_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-
-  _impl_.to_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.to)
-}
-
-// .palm.portal.v1.Page page = 99;
-inline bool DockerQueryRequest::has_page() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.page_ != nullptr);
-  return value;
-}
-inline const ::palm::portal::v1::Page& DockerQueryRequest::_internal_page() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::portal::v1::Page* p = _impl_.page_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Page&>(::palm::portal::v1::_Page_default_instance_);
-}
-inline const ::palm::portal::v1::Page& DockerQueryRequest::page() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.DockerQueryRequest.page)
-  return _internal_page();
-}
-inline void DockerQueryRequest::unsafe_arena_set_allocated_page(::palm::portal::v1::Page* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.page_);
-  }
-  _impl_.page_ = reinterpret_cast<::palm::portal::v1::Page*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.DockerQueryRequest.page)
-}
-inline ::palm::portal::v1::Page* DockerQueryRequest::release_page() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::palm::portal::v1::Page* released = _impl_.page_;
-  _impl_.page_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::palm::portal::v1::Page* DockerQueryRequest::unsafe_arena_release_page() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.DockerQueryRequest.page)
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::palm::portal::v1::Page* temp = _impl_.page_;
-  _impl_.page_ = nullptr;
-  return temp;
-}
-inline ::palm::portal::v1::Page* DockerQueryRequest::_internal_mutable_page() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.page_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Page>(GetArena());
-    _impl_.page_ = reinterpret_cast<::palm::portal::v1::Page*>(p);
-  }
-  return _impl_.page_;
-}
-inline ::palm::portal::v1::Page* DockerQueryRequest::mutable_page() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
-  ::palm::portal::v1::Page* _msg = _internal_mutable_page();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.DockerQueryRequest.page)
-  return _msg;
-}
-inline void DockerQueryRequest::set_allocated_page(::palm::portal::v1::Page* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.page_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-
-  _impl_.page_ = reinterpret_cast<::palm::portal::v1::Page*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.DockerQueryRequest.page)
-}
-
-inline bool DockerQueryRequest::has_by() const {
-  return by_case() != BY_NOT_SET;
-}
-inline void DockerQueryRequest::clear_has_by() {
-  _impl_._oneof_case_[0] = BY_NOT_SET;
-}
-inline DockerQueryRequest::ByCase DockerQueryRequest::by_case() const {
-  return DockerQueryRequest::ByCase(_impl_._oneof_case_[0]);
-}
 // -------------------------------------------------------------------
 
 // DockerContainersResponse_Item

@@ -101,21 +101,11 @@ message FileSystemLogsResponse {
 // ----------------------------------------------------------------------------
 
 service Docker {
-  rpc Containers(DockerQueryRequest) returns (DockerContainersResponse) {}
-  rpc Statistics(DockerQueryRequest) returns (DockerStatisticsResponse) {}
+  rpc Containers(PodmanQueryRequest) returns (DockerContainersResponse) {}
+  rpc Statistics(PodmanQueryRequest) returns (DockerStatisticsResponse) {}
+  rpc Logs(PodmanQueryRequest) returns (PodmanLogsResponse) {}
 }
-message DockerQueryRequest {
-  message All {}
-  oneof by {
-    All all = 1;
-    string host = 2;
-    string id = 3;
-    string name = 4;
-  }
-  google.protobuf.Timestamp from = 91;
-  google.protobuf.Timestamp to = 92;
-  palm.portal.v1.Page page = 99;
-}
+
 message DockerContainersResponse {
   message Item {
     string command = 1;

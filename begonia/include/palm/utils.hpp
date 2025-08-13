@@ -1,5 +1,6 @@
 #pragma once
 
+#include <unistd.h>
 #include <filesystem>
 #include <format>
 #include <fstream>
@@ -17,6 +18,21 @@
 namespace palm {
 
 void init(bool debug);
+inline bool is_root() {
+  // {
+  //   uid_t it = getuid();
+  //   if (it == 0) {
+  //     return true;
+  //   }
+  // }
+  // {
+  //   uid_t it = geteuid();
+  //   if (it == 0) {
+  //     return true;
+  //   }
+  // }
+  return geteuid() == 0;
+}
 
 inline int64_t epoch_in_seconds() {
   const auto now = std::chrono::system_clock::now();

@@ -1,11 +1,24 @@
 #pragma once
 
-#include "phlox/systemd.hpp"
+#include "phlox/podman.hpp"
 
 namespace phlox {
 namespace docker {
 namespace models {
 struct Container {
+  inline time_t created_at() const {
+    const std::string FORMAT = "%Y-%m-%d %H:%M:%S %z %Z";
+    std::tm it = {0};
+    {
+      char* rst = strptime(this->CreatedAt.c_str(), FORMAT.c_str(), &it);
+      if (rst == nullptr) {
+        spdlog::error("parse tm failed({})", this->CreatedAt);
+        return 0;
+      }
+    }
+    time_t seconds = mktime(&it);
+    return seconds;
+  }
   std::string Command;
   std::string CreatedAt;
   std::string ID;
@@ -43,6 +56,8 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Status, BlockIO, CPUPerc, Container, ID,
 
 std::vector<models::Status> stats(bool all = false);
 std::vector<models::Container> ps(bool all = false);
+std::vector<phlox::podman::models::Log> logs(const std::string& container_id,
+                                             time_t since, time_t until);
 
 }  // namespace docker
 }  // namespace phlox
