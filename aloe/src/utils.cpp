@@ -1,8 +1,38 @@
 #include "aloe/utils.hpp"
 
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <cstring>
 #include <vector>
 
 #include <spdlog/spdlog.h>
+
+bool aloe::tcp(const std::string& host, uint8_t port) {
+  int sock = socket(AF_INET, SOCK_STREAM, 0);
+  if (sock == -1) {
+    spdlog::error("socket creation failed");
+    return false;
+  }
+
+  sockaddr_in server_addr;
+  memset(&server_addr, 0, sizeof(server_addr));
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_port = htons(port);
+  server_addr.sin_addr.s_addr = inet_addr(host.c_str());
+
+  bool ok;
+  if (connect(sock, (sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
+    spdlog::error("connection tcp://{}:{} failed", host, port);
+    ok = false;
+  } else {
+    ok = true;
+  }
+
+  close(sock);
+  return ok;
+}
 
 void aloe::keep(const std::filesystem::path& target, const size_t count) {
   // TODO

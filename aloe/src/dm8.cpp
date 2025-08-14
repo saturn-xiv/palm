@@ -61,7 +61,7 @@ void aloe::Dm8::dump(const std::string& directory, bool compress) {
         spdlog::error("couldn't open md5 file");
         return;
       }
-      out << hash.value() << zip << std::endl;
+      out << hash.value() << " " << zip << std::endl;
       out.close();
     }
   }
@@ -72,11 +72,14 @@ void aloe::Dm8::restore(const std::string& directory,
                         const std::filesystem::path& file) {
   spdlog::info("restore {} to dm8://{}:{}:{}", file.string(), this->_user,
                this->_host, this->_port);
-
+  if (!aloe::tcp(this->_host, this->_port)) {
+    return;
+  }
   const std::string name = aloe::filename(file);
   const std::string log = std::format("{}.imp.log", name);
   const std::string dmp = std::format("{}.dmp", name);
   {
+    spdlog::info("uncompress {}", file.string());
     const auto& [status, out, err] =
         palm::uncompress(std::format("{}.tar.xz", name), directory);
     if (status != EXIT_SUCCESS) {
@@ -87,6 +90,7 @@ void aloe::Dm8::restore(const std::string& directory,
     // std::filesystem::rename(dmp, std::filesystem::path(directory) / dmp);
   }
   {
+    spdlog::info("write into database....");
     const auto cmd = this->_home / "bin" / "dimp";
     const auto& [status, out, err] = palm::shell(
         cmd.string(),

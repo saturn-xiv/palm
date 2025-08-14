@@ -142,7 +142,7 @@ void aloe::s3::dump(const std::set<std::string>& hosts, bool compress) {
         spdlog::error("couldn't open md5 file");
         return;
       }
-      out << hash.value() << zip << std::endl;
+      out << hash.value() << " " << zip << std::endl;
       out.close();
     }
   }
