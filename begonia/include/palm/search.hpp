@@ -198,6 +198,7 @@ class Client {
   std::optional<responses::create_index::Item> create_index(
       uint16_t number_of_shards, uint16_t number_of_replicas,
       // https://docs.opensearch.org/docs/latest/field-types/
+      // https://docs.opensearch.org/latest/search-plugins/sql/datatypes/
       const nlohmann::json& properties) const {
     const auto name = this->index_name<T>();
     spdlog::warn("create index {}", name);

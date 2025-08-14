@@ -3931,7 +3931,8 @@ proto.palm.monitoring.v1.FileSystemLogsResponse.Item.toObject = function(include
   var f, obj = {
 host: jspb.Message.getFieldWithDefault(msg, 1, ""),
 file: jspb.Message.getFieldWithDefault(msg, 2, ""),
-message: jspb.Message.getFieldWithDefault(msg, 3, "")
+line: jspb.Message.getFieldWithDefault(msg, 3, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3978,7 +3979,12 @@ proto.palm.monitoring.v1.FileSystemLogsResponse.Item.deserializeBinaryFromReader
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
+      msg.setLine(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAt(value);
       break;
     default:
       reader.skipField();
@@ -4023,11 +4029,19 @@ proto.palm.monitoring.v1.FileSystemLogsResponse.Item.serializeBinaryToWriter = f
       f
     );
   }
-  f = message.getMessage();
+  f = message.getLine();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
+    );
+  }
+  f = message.getCreatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -4070,10 +4084,10 @@ proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.setFile = functio
 
 
 /**
- * optional string message = 3;
+ * optional string line = 3;
  * @return {string}
  */
-proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.getMessage = function() {
+proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.getLine = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4082,8 +4096,45 @@ proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.getMessage = func
  * @param {string} value
  * @return {!proto.palm.monitoring.v1.FileSystemLogsResponse.Item} returns this
  */
-proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.setMessage = function(value) {
+proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.setLine = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_at = 9;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.getCreatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.palm.monitoring.v1.FileSystemLogsResponse.Item} returns this
+*/
+proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.palm.monitoring.v1.FileSystemLogsResponse.Item} returns this
+ */
+proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.clearCreatedAt = function() {
+  return this.setCreatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.palm.monitoring.v1.FileSystemLogsResponse.Item.prototype.hasCreatedAt = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

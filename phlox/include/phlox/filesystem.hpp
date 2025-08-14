@@ -1,5 +1,6 @@
 #pragma once
 
+#include "monitoring.grpc.pb.h"
 #include "palm/cache.hpp"
 #include "palm/jwt.hpp"
 #include "palm/orm.hpp"
@@ -18,43 +19,6 @@ void mount(httplib::Server& server, palm::Theme& theme,
            std::shared_ptr<palm::opensearch::Client> search);
 
 namespace logging {
-struct Item {
-  static nlohmann::json properties() {
-    nlohmann::json props;
-    {
-      nlohmann::json it;
-      it["type"] = "keyword";
-      props["host"] = it;
-    }
-    {
-      nlohmann::json it;
-      it["type"] = "keyword";
-      props["file"] = it;
-    }
-    {
-      nlohmann::json it;
-      it["type"] = "text";
-      props["message"] = it;
-    }
-    {
-      nlohmann::json it;
-      it["type"] = "unsigned_long";
-      props["created_at"] = it;
-    }
-    return props;
-  }
-  static inline uint64_t now() {
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(
-               std::chrono::system_clock::now().time_since_epoch())
-        .count();
-  }
-
-  std::string host;
-  std::string file;
-  std::string message;
-  uint64_t created_at;
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Item, host, file, message, created_at);
-};
 class Source {
  public:
   Source();
@@ -78,9 +42,9 @@ class FilesystemNotify : public Source {
   void execute(std::shared_ptr<palm::opensearch::Client> search) override;
 
  private:
-  inline std::vector<std::tuple<std::filesystem::path, std::string, uint64_t>>
-  load(const std::filesystem::path& p) {
-    std::vector<std::tuple<std::filesystem::path, std::string, uint64_t>> items;
+  inline std::vector<palm::monitoring::v1::FileSystemLogsResponse_Item> load(
+      const std::filesystem::path& p) {
+    std::vector<palm::monitoring::v1::FileSystemLogsResponse_Item> items;
     const auto key = std::filesystem::absolute(p);
     auto it = this->_positions.find(key);
     if (it == this->_positions.end()) {
@@ -96,7 +60,18 @@ class FilesystemNotify : public Source {
     std::string line;
     int pos = it->second;
     while (std::getline(ss, line)) {
-      items.push_back({p, line, phlox::monitoring::logging::Item::now()});
+      palm::monitoring::v1::FileSystemLogsResponse_Item log;
+      log.set_host(this->_hostname);
+      log.set_file(p.string());
+      log.set_line(line);
+      {
+        const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
+        auto at = log.mutable_created_at();
+        at->set_seconds(now.seconds());
+        at->set_nanos(now.nanos());
+      }
+      items.push_back(log);
+
       pos += line.length() + 1;
     }
 

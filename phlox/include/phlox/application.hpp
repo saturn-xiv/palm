@@ -29,7 +29,7 @@ class Application {
   void generate_token(const toml::table& config, const std::string& username,
                       uint8_t years);
   void fs_watcher(const toml::table& config, bool stdin,
-                  const std::vector<std::string>& original_files);
+                  const std::set<std::string>& original_files);
   void http_server(const toml::table& config, const std::string& host,
                    uint16_t port);
   void rpc_server(const toml::table& config, const std::string& host,

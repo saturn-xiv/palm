@@ -465,8 +465,13 @@ export namespace FileSystemLogsResponse {
     getFile(): string;
     setFile(value: string): Item;
 
-    getMessage(): string;
-    setMessage(value: string): Item;
+    getLine(): string;
+    setLine(value: string): Item;
+
+    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCreatedAt(): boolean;
+    clearCreatedAt(): Item;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Item.AsObject;
@@ -480,7 +485,8 @@ export namespace FileSystemLogsResponse {
     export type AsObject = {
       host: string,
       file: string,
-      message: string,
+      line: string,
+      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 

@@ -64,13 +64,13 @@ TEST_CASE("grpc client", "[grpc]") {
             google::protobuf::Arena::Create<google::protobuf::Timestamp>(
                 &arena);
         it->set_seconds(seconds);
-        it->set_nanos(0);
+        it->set_nanos(123);
 
         std::string buf;
         const auto status =
             google::protobuf::util::MessageToJsonString(*it, &buf);
         REQUIRE(status.ok());
-        std::cout << "utc now(system_clock): " << buf << std::endl;
+        std::cout << "json utc now(system_clock): " << buf << std::endl;
       }
     }
 

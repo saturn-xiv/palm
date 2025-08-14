@@ -1,4 +1,5 @@
 #include "phlox/filesystem.hpp"
+#include "phlox/services.hpp"
 
 #include <boost/asio/ip/host_name.hpp>
 #include <boost/exception/diagnostic_information.hpp>
@@ -55,6 +56,41 @@ void phlox::monitoring::logging::FilesystemNotify::register_(
   this->_targets[wd] = file;
 }
 
+static inline void save_logs(
+    std::shared_ptr<palm::opensearch::Client> search,
+    std::vector<palm::monitoring::v1::FileSystemLogsResponse_Item>& items) {
+  if (items.empty()) {
+    spdlog::warn("empty logs list");
+    return;
+  }
+  const auto index_name =
+      search->index_name<palm::monitoring::v1::FileSystemLogsResponse_Item>();
+
+  palm::opensearch::requests::bulk_index::Action bulk{
+      .index = {._index = index_name}};
+  std::stringstream body;
+  for (const auto& it : items) {
+    nlohmann::json act = bulk;
+    body << act.dump() << "\n";
+    const auto buf = palm::to_json(it);
+    body << buf.value() << "\n";
+  }
+
+  const auto req = body.str();
+  spdlog::debug("{}", req);
+
+  const auto res = search->post("_bulk", req);
+  {
+    const auto body = res.value();
+    auto js = nlohmann::json::parse(body);
+    auto it = js.template get<palm::opensearch::responses::bulk::Item>();
+    if (it.errors) {
+      spdlog::error("{}", body);
+      return;
+    }
+  }
+}
+
 void phlox::monitoring::logging::FilesystemNotify::execute(
     std::shared_ptr<palm::opensearch::Client> search) {
   const auto event_size = sizeof(struct inotify_event);
@@ -63,7 +99,7 @@ void phlox::monitoring::logging::FilesystemNotify::execute(
 
   std::lock_guard<std::mutex> lock(this->_mutex);
   auto length = read(this->_notify_id, buffer, buf_len);
-  std::vector<std::tuple<std::filesystem::path, std::string, uint64_t>> items;
+  std::vector<palm::monitoring::v1::FileSystemLogsResponse_Item> items;
 
   if (length < 0) {
     spdlog::error("read notify buffer({}): {}", errno, strerror(errno));
@@ -98,30 +134,30 @@ void phlox::monitoring::logging::FilesystemNotify::execute(
     i += event_size + event->len;
   }
 
-  {
-    phlox::monitoring::logging::Item log = {.host = this->_hostname};
-    for (const auto [f, m, c] : items) {
-      log.file = f.string();
-      log.message = m;
-      boost::algorithm::trim(log.message);
-      log.created_at = c;
-      if (!log.message.empty()) {
-        search->index_document(log);
-      }
-    }
-  }
+  save_logs(search, items);
 }
 
 void phlox::monitoring::logging::StdinSource::execute(
     std::shared_ptr<palm::opensearch::Client> search) {
-  phlox::monitoring::logging::Item it = {.host = this->_hostname,
-                                         .file = "stdin"};
+  std::vector<palm::monitoring::v1::FileSystemLogsResponse_Item> items;
+
   std::string line;
-  while (std::getline(std::cin, it.message)) {
-    boost::algorithm::trim(it.message);
-    it.created_at = phlox::monitoring::logging::Item::now();
-    if (!it.message.empty()) {
-      search->index_document(it);
+  while (std::getline(std::cin, line)) {
+    palm::monitoring::v1::FileSystemLogsResponse_Item it;
+    it.set_host(this->_hostname);
+    it.set_file("stdin");
+    it.set_line(line);
+    {
+      const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
+      auto at = it.mutable_created_at();
+      at->set_seconds(now.seconds());
+      at->set_nanos(now.nanos());
+    }
+    items.push_back(it);
+
+    if (items.size() > 128) {
+      save_logs(search, items);
+      items.clear();
     }
   }
 }
@@ -147,8 +183,10 @@ void phlox::monitoring::LoggingScratcher::launch(
       pool.push_back(t);
     }
   }
-  spdlog::info("start a logging scratcher progress");
-  for (auto& it : pool) {
-    it->join();
+  if (!pool.empty()) {
+    spdlog::info("start a logging scratcher progress");
+    for (auto& it : pool) {
+      it->join();
+    }
   }
 }

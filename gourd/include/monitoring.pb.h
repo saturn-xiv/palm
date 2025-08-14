@@ -1887,238 +1887,6 @@ class Heartbeat_Http final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class FileSystemLogsResponse_Item final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemLogsResponse.Item) */ {
- public:
-  inline FileSystemLogsResponse_Item() : FileSystemLogsResponse_Item(nullptr) {}
-  ~FileSystemLogsResponse_Item() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(FileSystemLogsResponse_Item* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(FileSystemLogsResponse_Item));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR FileSystemLogsResponse_Item(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline FileSystemLogsResponse_Item(const FileSystemLogsResponse_Item& from) : FileSystemLogsResponse_Item(nullptr, from) {}
-  inline FileSystemLogsResponse_Item(FileSystemLogsResponse_Item&& from) noexcept
-      : FileSystemLogsResponse_Item(nullptr, std::move(from)) {}
-  inline FileSystemLogsResponse_Item& operator=(const FileSystemLogsResponse_Item& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline FileSystemLogsResponse_Item& operator=(FileSystemLogsResponse_Item&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const FileSystemLogsResponse_Item& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const FileSystemLogsResponse_Item* internal_default_instance() {
-    return reinterpret_cast<const FileSystemLogsResponse_Item*>(
-        &_FileSystemLogsResponse_Item_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 16;
-  friend void swap(FileSystemLogsResponse_Item& a, FileSystemLogsResponse_Item& b) { a.Swap(&b); }
-  inline void Swap(FileSystemLogsResponse_Item* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(FileSystemLogsResponse_Item* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  FileSystemLogsResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<FileSystemLogsResponse_Item>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const FileSystemLogsResponse_Item& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const FileSystemLogsResponse_Item& from) { FileSystemLogsResponse_Item::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(FileSystemLogsResponse_Item* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.FileSystemLogsResponse.Item"; }
-
- protected:
-  explicit FileSystemLogsResponse_Item(::google::protobuf::Arena* arena);
-  FileSystemLogsResponse_Item(::google::protobuf::Arena* arena, const FileSystemLogsResponse_Item& from);
-  FileSystemLogsResponse_Item(::google::protobuf::Arena* arena, FileSystemLogsResponse_Item&& from) noexcept
-      : FileSystemLogsResponse_Item(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kHostFieldNumber = 1,
-    kFileFieldNumber = 2,
-    kMessageFieldNumber = 3,
-  };
-  // string host = 1;
-  void clear_host() ;
-  const std::string& host() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_host(Arg_&& arg, Args_... args);
-  std::string* mutable_host();
-  PROTOBUF_NODISCARD std::string* release_host();
-  void set_allocated_host(std::string* value);
-
-  private:
-  const std::string& _internal_host() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_host(
-      const std::string& value);
-  std::string* _internal_mutable_host();
-
-  public:
-  // string file = 2;
-  void clear_file() ;
-  const std::string& file() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_file(Arg_&& arg, Args_... args);
-  std::string* mutable_file();
-  PROTOBUF_NODISCARD std::string* release_file();
-  void set_allocated_file(std::string* value);
-
-  private:
-  const std::string& _internal_file() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file(
-      const std::string& value);
-  std::string* _internal_mutable_file();
-
-  public:
-  // string message = 3;
-  void clear_message() ;
-  const std::string& message() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_message(Arg_&& arg, Args_... args);
-  std::string* mutable_message();
-  PROTOBUF_NODISCARD std::string* release_message();
-  void set_allocated_message(std::string* value);
-
-  private:
-  const std::string& _internal_message() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
-      const std::string& value);
-  std::string* _internal_mutable_message();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.FileSystemLogsResponse.Item)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      70, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const FileSystemLogsResponse_Item& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr host_;
-    ::google::protobuf::internal::ArenaStringPtr file_;
-    ::google::protobuf::internal::ArenaStringPtr message_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_monitoring_2eproto;
-};
-// -------------------------------------------------------------------
-
 class FileSystemLogsRequest_All final : public ::google::protobuf::internal::ZeroFieldsBase
 /* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemLogsRequest.All) */ {
  public:
@@ -4909,31 +4677,31 @@ class Heartbeat final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class FileSystemLogsResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemLogsResponse) */ {
+class FileSystemLogsResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemLogsResponse.Item) */ {
  public:
-  inline FileSystemLogsResponse() : FileSystemLogsResponse(nullptr) {}
-  ~FileSystemLogsResponse() PROTOBUF_FINAL;
+  inline FileSystemLogsResponse_Item() : FileSystemLogsResponse_Item(nullptr) {}
+  ~FileSystemLogsResponse_Item() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(FileSystemLogsResponse* msg, std::destroying_delete_t) {
+  void operator delete(FileSystemLogsResponse_Item* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(FileSystemLogsResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(FileSystemLogsResponse_Item));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR FileSystemLogsResponse(
+  explicit PROTOBUF_CONSTEXPR FileSystemLogsResponse_Item(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline FileSystemLogsResponse(const FileSystemLogsResponse& from) : FileSystemLogsResponse(nullptr, from) {}
-  inline FileSystemLogsResponse(FileSystemLogsResponse&& from) noexcept
-      : FileSystemLogsResponse(nullptr, std::move(from)) {}
-  inline FileSystemLogsResponse& operator=(const FileSystemLogsResponse& from) {
+  inline FileSystemLogsResponse_Item(const FileSystemLogsResponse_Item& from) : FileSystemLogsResponse_Item(nullptr, from) {}
+  inline FileSystemLogsResponse_Item(FileSystemLogsResponse_Item&& from) noexcept
+      : FileSystemLogsResponse_Item(nullptr, std::move(from)) {}
+  inline FileSystemLogsResponse_Item& operator=(const FileSystemLogsResponse_Item& from) {
     CopyFrom(from);
     return *this;
   }
-  inline FileSystemLogsResponse& operator=(FileSystemLogsResponse&& from) noexcept {
+  inline FileSystemLogsResponse_Item& operator=(FileSystemLogsResponse_Item&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -4961,16 +4729,16 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const FileSystemLogsResponse& default_instance() {
+  static const FileSystemLogsResponse_Item& default_instance() {
     return *internal_default_instance();
   }
-  static inline const FileSystemLogsResponse* internal_default_instance() {
-    return reinterpret_cast<const FileSystemLogsResponse*>(
-        &_FileSystemLogsResponse_default_instance_);
+  static inline const FileSystemLogsResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const FileSystemLogsResponse_Item*>(
+        &_FileSystemLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
-  friend void swap(FileSystemLogsResponse& a, FileSystemLogsResponse& b) { a.Swap(&b); }
-  inline void Swap(FileSystemLogsResponse* other) {
+  static constexpr int kIndexInFileMessages = 16;
+  friend void swap(FileSystemLogsResponse_Item& a, FileSystemLogsResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(FileSystemLogsResponse_Item* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -4978,7 +4746,7 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(FileSystemLogsResponse* other) {
+  void UnsafeArenaSwap(FileSystemLogsResponse_Item* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -4986,13 +4754,13 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  FileSystemLogsResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<FileSystemLogsResponse>(arena);
+  FileSystemLogsResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<FileSystemLogsResponse_Item>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const FileSystemLogsResponse& from);
+  void CopyFrom(const FileSystemLogsResponse_Item& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const FileSystemLogsResponse& from) { FileSystemLogsResponse::MergeImpl(*this, from); }
+  void MergeFrom(const FileSystemLogsResponse_Item& from) { FileSystemLogsResponse_Item::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -5029,18 +4797,18 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(FileSystemLogsResponse* other);
+  void InternalSwap(FileSystemLogsResponse_Item* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.FileSystemLogsResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.FileSystemLogsResponse.Item"; }
 
  protected:
-  explicit FileSystemLogsResponse(::google::protobuf::Arena* arena);
-  FileSystemLogsResponse(::google::protobuf::Arena* arena, const FileSystemLogsResponse& from);
-  FileSystemLogsResponse(::google::protobuf::Arena* arena, FileSystemLogsResponse&& from) noexcept
-      : FileSystemLogsResponse(arena) {
+  explicit FileSystemLogsResponse_Item(::google::protobuf::Arena* arena);
+  FileSystemLogsResponse_Item(::google::protobuf::Arena* arena, const FileSystemLogsResponse_Item& from);
+  FileSystemLogsResponse_Item(::google::protobuf::Arena* arena, FileSystemLogsResponse_Item&& from) noexcept
+      : FileSystemLogsResponse_Item(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -5052,52 +4820,84 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
-  using Item = FileSystemLogsResponse_Item;
 
   // accessors -------------------------------------------------------
   enum : int {
-    kItemsFieldNumber = 1,
-    kPaginationFieldNumber = 9,
+    kHostFieldNumber = 1,
+    kFileFieldNumber = 2,
+    kLineFieldNumber = 3,
+    kCreatedAtFieldNumber = 9,
   };
-  // repeated .palm.monitoring.v1.FileSystemLogsResponse.Item items = 1;
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-
-  public:
-  void clear_items() ;
-  ::palm::monitoring::v1::FileSystemLogsResponse_Item* mutable_items(int index);
-  ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>* mutable_items();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>& _internal_items() const;
-  ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>* _internal_mutable_items();
-  public:
-  const ::palm::monitoring::v1::FileSystemLogsResponse_Item& items(int index) const;
-  ::palm::monitoring::v1::FileSystemLogsResponse_Item* add_items();
-  const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>& items() const;
-  // .palm.portal.v1.Pagination pagination = 9;
-  bool has_pagination() const;
-  void clear_pagination() ;
-  const ::palm::portal::v1::Pagination& pagination() const;
-  PROTOBUF_NODISCARD ::palm::portal::v1::Pagination* release_pagination();
-  ::palm::portal::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::portal::v1::Pagination* value);
-  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* value);
-  ::palm::portal::v1::Pagination* unsafe_arena_release_pagination();
+  // string host = 1;
+  void clear_host() ;
+  const std::string& host() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_host(Arg_&& arg, Args_... args);
+  std::string* mutable_host();
+  PROTOBUF_NODISCARD std::string* release_host();
+  void set_allocated_host(std::string* value);
 
   private:
-  const ::palm::portal::v1::Pagination& _internal_pagination() const;
-  ::palm::portal::v1::Pagination* _internal_mutable_pagination();
+  const std::string& _internal_host() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_host(
+      const std::string& value);
+  std::string* _internal_mutable_host();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.FileSystemLogsResponse)
+  // string file = 2;
+  void clear_file() ;
+  const std::string& file() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_file(Arg_&& arg, Args_... args);
+  std::string* mutable_file();
+  PROTOBUF_NODISCARD std::string* release_file();
+  void set_allocated_file(std::string* value);
+
+  private:
+  const std::string& _internal_file() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file(
+      const std::string& value);
+  std::string* _internal_mutable_file();
+
+  public:
+  // string line = 3;
+  void clear_line() ;
+  const std::string& line() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_line(Arg_&& arg, Args_... args);
+  std::string* mutable_line();
+  PROTOBUF_NODISCARD std::string* release_line();
+  void set_allocated_line(std::string* value);
+
+  private:
+  const std::string& _internal_line() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_line(
+      const std::string& value);
+  std::string* _internal_mutable_line();
+
+  public:
+  // .google.protobuf.Timestamp created_at = 9;
+  bool has_created_at() const;
+  void clear_created_at() ;
+  const ::google::protobuf::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_created_at();
+  ::google::protobuf::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_created_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_created_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_created_at();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.FileSystemLogsResponse.Item)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 2, 2,
-      0, 2>
+      2, 4, 1,
+      67, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -5113,11 +4913,13 @@ class FileSystemLogsResponse final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const FileSystemLogsResponse& from_msg);
+                          const FileSystemLogsResponse_Item& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::palm::monitoring::v1::FileSystemLogsResponse_Item > items_;
-    ::palm::portal::v1::Pagination* pagination_;
+    ::google::protobuf::internal::ArenaStringPtr host_;
+    ::google::protobuf::internal::ArenaStringPtr file_;
+    ::google::protobuf::internal::ArenaStringPtr line_;
+    ::google::protobuf::Timestamp* created_at_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7115,6 +6917,222 @@ class PodmanContainersResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::palm::monitoring::v1::PodmanContainersResponse_Item > items_;
+    ::palm::portal::v1::Pagination* pagination_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_monitoring_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FileSystemLogsResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.monitoring.v1.FileSystemLogsResponse) */ {
+ public:
+  inline FileSystemLogsResponse() : FileSystemLogsResponse(nullptr) {}
+  ~FileSystemLogsResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(FileSystemLogsResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(FileSystemLogsResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR FileSystemLogsResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline FileSystemLogsResponse(const FileSystemLogsResponse& from) : FileSystemLogsResponse(nullptr, from) {}
+  inline FileSystemLogsResponse(FileSystemLogsResponse&& from) noexcept
+      : FileSystemLogsResponse(nullptr, std::move(from)) {}
+  inline FileSystemLogsResponse& operator=(const FileSystemLogsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FileSystemLogsResponse& operator=(FileSystemLogsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FileSystemLogsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FileSystemLogsResponse* internal_default_instance() {
+    return reinterpret_cast<const FileSystemLogsResponse*>(
+        &_FileSystemLogsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 17;
+  friend void swap(FileSystemLogsResponse& a, FileSystemLogsResponse& b) { a.Swap(&b); }
+  inline void Swap(FileSystemLogsResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FileSystemLogsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FileSystemLogsResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<FileSystemLogsResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const FileSystemLogsResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const FileSystemLogsResponse& from) { FileSystemLogsResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(FileSystemLogsResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.monitoring.v1.FileSystemLogsResponse"; }
+
+ protected:
+  explicit FileSystemLogsResponse(::google::protobuf::Arena* arena);
+  FileSystemLogsResponse(::google::protobuf::Arena* arena, const FileSystemLogsResponse& from);
+  FileSystemLogsResponse(::google::protobuf::Arena* arena, FileSystemLogsResponse&& from) noexcept
+      : FileSystemLogsResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = FileSystemLogsResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 9,
+  };
+  // repeated .palm.monitoring.v1.FileSystemLogsResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::monitoring::v1::FileSystemLogsResponse_Item* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>* _internal_mutable_items();
+  public:
+  const ::palm::monitoring::v1::FileSystemLogsResponse_Item& items(int index) const;
+  ::palm::monitoring::v1::FileSystemLogsResponse_Item* add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::monitoring::v1::FileSystemLogsResponse_Item>& items() const;
+  // .palm.portal.v1.Pagination pagination = 9;
+  bool has_pagination() const;
+  void clear_pagination() ;
+  const ::palm::portal::v1::Pagination& pagination() const;
+  PROTOBUF_NODISCARD ::palm::portal::v1::Pagination* release_pagination();
+  ::palm::portal::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* value);
+  ::palm::portal::v1::Pagination* unsafe_arena_release_pagination();
+
+  private:
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* _internal_mutable_pagination();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.monitoring.v1.FileSystemLogsResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const FileSystemLogsResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::monitoring::v1::FileSystemLogsResponse_Item > items_;
     ::palm::portal::v1::Pagination* pagination_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -9917,52 +9935,143 @@ inline void FileSystemLogsResponse_Item::set_allocated_file(std::string* value) 
   // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemLogsResponse.Item.file)
 }
 
-// string message = 3;
-inline void FileSystemLogsResponse_Item::clear_message() {
+// string line = 3;
+inline void FileSystemLogsResponse_Item::clear_line() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.message_.ClearToEmpty();
+  _impl_.line_.ClearToEmpty();
 }
-inline const std::string& FileSystemLogsResponse_Item::message() const
+inline const std::string& FileSystemLogsResponse_Item::line() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.monitoring.v1.FileSystemLogsResponse.Item.message)
-  return _internal_message();
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.FileSystemLogsResponse.Item.line)
+  return _internal_line();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void FileSystemLogsResponse_Item::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void FileSystemLogsResponse_Item::set_line(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.monitoring.v1.FileSystemLogsResponse.Item.message)
+  _impl_.line_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.monitoring.v1.FileSystemLogsResponse.Item.line)
 }
-inline std::string* FileSystemLogsResponse_Item::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.FileSystemLogsResponse.Item.message)
+inline std::string* FileSystemLogsResponse_Item::mutable_line() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_line();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.FileSystemLogsResponse.Item.line)
   return _s;
 }
-inline const std::string& FileSystemLogsResponse_Item::_internal_message() const {
+inline const std::string& FileSystemLogsResponse_Item::_internal_line() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.message_.Get();
+  return _impl_.line_.Get();
 }
-inline void FileSystemLogsResponse_Item::_internal_set_message(const std::string& value) {
+inline void FileSystemLogsResponse_Item::_internal_set_line(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.message_.Set(value, GetArena());
+  _impl_.line_.Set(value, GetArena());
 }
-inline std::string* FileSystemLogsResponse_Item::_internal_mutable_message() {
+inline std::string* FileSystemLogsResponse_Item::_internal_mutable_line() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.message_.Mutable( GetArena());
+  return _impl_.line_.Mutable( GetArena());
 }
-inline std::string* FileSystemLogsResponse_Item::release_message() {
+inline std::string* FileSystemLogsResponse_Item::release_line() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.monitoring.v1.FileSystemLogsResponse.Item.message)
-  return _impl_.message_.Release();
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.FileSystemLogsResponse.Item.line)
+  return _impl_.line_.Release();
 }
-inline void FileSystemLogsResponse_Item::set_allocated_message(std::string* value) {
+inline void FileSystemLogsResponse_Item::set_allocated_line(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.message_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
-    _impl_.message_.Set("", GetArena());
+  _impl_.line_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.line_.IsDefault()) {
+    _impl_.line_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemLogsResponse.Item.message)
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemLogsResponse.Item.line)
+}
+
+// .google.protobuf.Timestamp created_at = 9;
+inline bool FileSystemLogsResponse_Item::has_created_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.created_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& FileSystemLogsResponse_Item::_internal_created_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& FileSystemLogsResponse_Item::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.monitoring.v1.FileSystemLogsResponse.Item.created_at)
+  return _internal_created_at();
+}
+inline void FileSystemLogsResponse_Item::unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.monitoring.v1.FileSystemLogsResponse.Item.created_at)
+}
+inline ::google::protobuf::Timestamp* FileSystemLogsResponse_Item::release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* FileSystemLogsResponse_Item::unsafe_arena_release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.monitoring.v1.FileSystemLogsResponse.Item.created_at)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* FileSystemLogsResponse_Item::_internal_mutable_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.created_at_;
+}
+inline ::google::protobuf::Timestamp* FileSystemLogsResponse_Item::mutable_created_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:palm.monitoring.v1.FileSystemLogsResponse.Item.created_at)
+  return _msg;
+}
+inline void FileSystemLogsResponse_Item::set_allocated_created_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.monitoring.v1.FileSystemLogsResponse.Item.created_at)
 }
 
 // -------------------------------------------------------------------

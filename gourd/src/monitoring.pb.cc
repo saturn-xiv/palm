@@ -263,39 +263,6 @@ struct Heartbeat_HttpDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Heartbeat_HttpDefaultTypeInternal _Heartbeat_Http_default_instance_;
-
-inline constexpr FileSystemLogsResponse_Item::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : host_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        file_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct FileSystemLogsResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileSystemLogsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileSystemLogsResponse_ItemDefaultTypeInternal() {}
-  union {
-    FileSystemLogsResponse_Item _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsResponse_ItemDefaultTypeInternal _FileSystemLogsResponse_Item_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR FileSystemLogsRequest_All::FileSystemLogsRequest_All(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -621,14 +588,22 @@ struct HeartbeatDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatDefaultTypeInternal _Heartbeat_default_instance_;
 
-inline constexpr FileSystemLogsResponse::Impl_::Impl_(
+inline constexpr FileSystemLogsResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        items_{},
-        pagination_{nullptr} {}
+        host_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        line_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        created_at_{nullptr} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR FileSystemLogsResponse::FileSystemLogsResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -636,16 +611,16 @@ PROTOBUF_CONSTEXPR FileSystemLogsResponse::FileSystemLogsResponse(::_pbi::Consta
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct FileSystemLogsResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileSystemLogsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileSystemLogsResponseDefaultTypeInternal() {}
+struct FileSystemLogsResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileSystemLogsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileSystemLogsResponse_ItemDefaultTypeInternal() {}
   union {
-    FileSystemLogsResponse _instance;
+    FileSystemLogsResponse_Item _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsResponseDefaultTypeInternal _FileSystemLogsResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsResponse_ItemDefaultTypeInternal _FileSystemLogsResponse_Item_default_instance_;
 
 inline constexpr FileSystemLogsRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -904,6 +879,32 @@ struct PodmanContainersResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PodmanContainersResponseDefaultTypeInternal _PodmanContainersResponse_default_instance_;
 
+inline constexpr FileSystemLogsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR FileSystemLogsResponse::FileSystemLogsResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct FileSystemLogsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileSystemLogsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileSystemLogsResponseDefaultTypeInternal() {}
+  union {
+    FileSystemLogsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileSystemLogsResponseDefaultTypeInternal _FileSystemLogsResponse_default_instance_;
+
 inline constexpr DockerStatisticsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -1148,7 +1149,7 @@ const ::uint32_t
         ~0u,
         ~0u,
         0,
-        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -1158,7 +1159,12 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.host_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.file_),
-        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.line_),
+        PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse_Item, _impl_.created_at_),
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::monitoring::v1::FileSystemLogsResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1462,21 +1468,21 @@ static const ::_pbi::MigrationSchema
         {146, 156, -1, sizeof(::palm::monitoring::v1::SystemdJournalResponse)},
         {158, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest_All)},
         {166, 179, -1, sizeof(::palm::monitoring::v1::FileSystemLogsRequest)},
-        {183, -1, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
-        {194, 204, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
-        {206, 231, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse_Item)},
-        {248, 258, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse)},
-        {260, 279, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse_Item)},
-        {290, 300, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse)},
-        {302, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
-        {310, 326, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
-        {333, 347, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
-        {353, 363, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
-        {365, 375, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
-        {377, 403, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
-        {421, 431, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
-        {433, 453, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
-        {465, 475, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
+        {183, 195, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse_Item)},
+        {199, 209, -1, sizeof(::palm::monitoring::v1::FileSystemLogsResponse)},
+        {211, 236, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse_Item)},
+        {253, 263, -1, sizeof(::palm::monitoring::v1::DockerContainersResponse)},
+        {265, 284, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse_Item)},
+        {295, 305, -1, sizeof(::palm::monitoring::v1::DockerStatisticsResponse)},
+        {307, -1, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest_All)},
+        {315, 331, -1, sizeof(::palm::monitoring::v1::PodmanQueryRequest)},
+        {338, 352, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse_Item)},
+        {358, 368, -1, sizeof(::palm::monitoring::v1::PodmanLogsResponse)},
+        {370, 380, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item_LabelsEntry_DoNotUse)},
+        {382, 408, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse_Item)},
+        {426, 436, -1, sizeof(::palm::monitoring::v1::PodmanContainersResponse)},
+        {438, 458, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse_Item)},
+        {470, 480, -1, sizeof(::palm::monitoring::v1::PodmanStatisticsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::monitoring::v1::_SiteLayoutRequest_default_instance_._instance,
@@ -1549,95 +1555,97 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     "onitoring.v1.FileSystemLogsRequest.AllH\000"
     "\022\016\n\004host\030\002 \001(\tH\000\022\016\n\004file\030\003 \001(\tH\000\022\"\n\004page"
     "\030c \001(\0132\024.palm.portal.v1.Page\032\005\n\003AllB\004\n\002b"
-    "y\"\275\001\n\026FileSystemLogsResponse\022>\n\005items\030\001 "
+    "y\"\352\001\n\026FileSystemLogsResponse\022>\n\005items\030\001 "
     "\003(\0132/.palm.monitoring.v1.FileSystemLogsR"
     "esponse.Item\022.\n\npagination\030\t \001(\0132\032.palm."
-    "portal.v1.Pagination\0323\n\004Item\022\014\n\004host\030\001 \001"
-    "(\t\022\014\n\004file\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\374\003\n\030Do"
-    "ckerContainersResponse\022@\n\005items\030\001 \003(\01321."
-    "palm.monitoring.v1.DockerContainersRespo"
-    "nse.Item\022.\n\npagination\030\t \001(\0132\032.palm.port"
-    "al.v1.Pagination\032\355\002\n\004Item\022\017\n\007command\030\001 \001"
-    "(\t\022.\n\ncreated_at\030\002 \001(\0132\032.google.protobuf"
-    ".Timestamp\022\n\n\002id\030\003 \001(\t\022\r\n\005image\030\004 \001(\t\022\016\n"
-    "\006labels\030\005 \001(\t\022\025\n\rlocal_volumes\030\006 \001(\t\022\016\n\006"
-    "mounts\030\007 \001(\t\022\r\n\005names\030\010 \001(\t\022\020\n\010networks\030"
-    "\t \001(\t\022\025\n\010platform\030\n \001(\tH\000\210\001\001\022\r\n\005ports\030\013 "
-    "\001(\t\022\023\n\013running_for\030\014 \001(\t\022\014\n\004size\030\r \001(\t\022\r"
-    "\n\005state\030\016 \001(\t\022\016\n\006status\030\017 \001(\t\022\014\n\004host\030b "
-    "\001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.protobu"
-    "f.TimestampB\013\n\t_platform\"\355\002\n\030DockerStati"
-    "sticsResponse\022@\n\005items\030\001 \003(\01321.palm.moni"
-    "toring.v1.DockerStatisticsResponse.Item\022"
-    ".\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pag"
-    "ination\032\336\001\n\004Item\022\020\n\010block_io\030\001 \001(\t\022\023\n\013cp"
-    "u_percent\030\002 \001(\t\022\021\n\tcontainer\030\003 \001(\t\022\n\n\002id"
-    "\030\004 \001(\t\022\023\n\013mem_percent\030\005 \001(\t\022\021\n\tmem_usage"
-    "\030\006 \001(\t\022\014\n\004name\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\014\n\004"
-    "pids\030\t \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated_at\030c"
-    " \001(\0132\032.google.protobuf.Timestamp\"\200\002\n\022Pod"
-    "manQueryRequest\0229\n\003all\030\001 \001(\0132*.palm.moni"
-    "toring.v1.PodmanQueryRequest.AllH\000\022\016\n\004ho"
-    "st\030\002 \001(\tH\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 \001(\tH\000"
-    "\022(\n\004from\030[ \001(\0132\032.google.protobuf.Timesta"
-    "mp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Timesta"
-    "mp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.Page\032\005"
-    "\n\003AllB\004\n\002by\"\203\002\n\022PodmanLogsResponse\022:\n\005it"
-    "ems\030\001 \003(\0132+.palm.monitoring.v1.PodmanLog"
-    "sResponse.Item\022.\n\npagination\030\t \001(\0132\032.pal"
-    "m.portal.v1.Pagination\032\200\001\n\004Item\022\014\n\004host\030"
-    "\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\017\n\007full_id\030\003 \001(\t\022\014\n\004na"
-    "me\030\004 \001(\t\022\017\n\007message\030\005 \001(\t\022.\n\ncreated_at\030"
-    "\t \001(\0132\032.google.protobuf.Timestamp\"\311\004\n\030Po"
-    "dmanContainersResponse\022@\n\005items\030\001 \003(\01321."
-    "palm.monitoring.v1.PodmanContainersRespo"
-    "nse.Item\022.\n\npagination\030\t \001(\0132\032.palm.port"
-    "al.v1.Pagination\032\272\003\n\004Item\022\n\n\002id\030\001 \001(\t\022\r\n"
-    "\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006labels"
-    "\030\004 \003(\0132=.palm.monitoring.v1.PodmanContai"
-    "nersResponse.Item.LabelsEntry\022\016\n\006mounts\030"
-    "\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003(\t\022\013\n"
-    "\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarted_at\030"
-    "\r \001(\003\022\022\n\ncreated_at\030\016 \001(\t\022\017\n\007created\030\017 \001"
-    "(\003\022\016\n\006status\030\020 \001(\t\022\016\n\006exited\030\025 \001(\010\022\021\n\tex"
-    "ited_at\030\026 \001(\003\022\021\n\texit_code\030\027 \001(\005\022\014\n\004host"
-    "\030b \001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.prot"
-    "obuf.Timestamp\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001"
-    "(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanStatisti"
-    "csResponse\022@\n\005items\030\001 \003(\01321.palm.monitor"
-    "ing.v1.PodmanStatisticsResponse.Item\022.\n\n"
-    "pagination\030\t \001(\0132\032.palm.portal.v1.Pagina"
-    "tion\032\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022"
-    "\020\n\010cpu_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 \001(\t\022\017"
-    "\n\007avg_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022\023\n\013me"
-    "m_percent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010block"
-    "_io\030\t \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001(\t\022.\n"
-    "\ncreated_at\030c \001(\0132\032.google.protobuf.Time"
-    "stamp2a\n\004Site\022Y\n\006Layout\022%.palm.monitorin"
-    "g.v1.SiteLayoutRequest\032&.palm.monitoring"
-    ".v1.SiteLayoutResponse\"\0002m\n\007Systemd\022b\n\007J"
-    "ournal\022).palm.monitoring.v1.SystemdJourn"
-    "alRequest\032*.palm.monitoring.v1.SystemdJo"
-    "urnalResponse\"\0002m\n\nFileSystem\022_\n\004Logs\022)."
-    "palm.monitoring.v1.FileSystemLogsRequest"
-    "\032*.palm.monitoring.v1.FileSystemLogsResp"
-    "onse\"\0002\256\002\n\006Docker\022d\n\nContainers\022&.palm.m"
+    "portal.v1.Pagination\032`\n\004Item\022\014\n\004host\030\001 \001"
+    "(\t\022\014\n\004file\030\002 \001(\t\022\014\n\004line\030\003 \001(\t\022.\n\ncreate"
+    "d_at\030\t \001(\0132\032.google.protobuf.Timestamp\"\374"
+    "\003\n\030DockerContainersResponse\022@\n\005items\030\001 \003"
+    "(\01321.palm.monitoring.v1.DockerContainers"
+    "Response.Item\022.\n\npagination\030\t \001(\0132\032.palm"
+    ".portal.v1.Pagination\032\355\002\n\004Item\022\017\n\007comman"
+    "d\030\001 \001(\t\022.\n\ncreated_at\030\002 \001(\0132\032.google.pro"
+    "tobuf.Timestamp\022\n\n\002id\030\003 \001(\t\022\r\n\005image\030\004 \001"
+    "(\t\022\016\n\006labels\030\005 \001(\t\022\025\n\rlocal_volumes\030\006 \001("
+    "\t\022\016\n\006mounts\030\007 \001(\t\022\r\n\005names\030\010 \001(\t\022\020\n\010netw"
+    "orks\030\t \001(\t\022\025\n\010platform\030\n \001(\tH\000\210\001\001\022\r\n\005por"
+    "ts\030\013 \001(\t\022\023\n\013running_for\030\014 \001(\t\022\014\n\004size\030\r "
+    "\001(\t\022\r\n\005state\030\016 \001(\t\022\016\n\006status\030\017 \001(\t\022\014\n\004ho"
+    "st\030b \001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.pr"
+    "otobuf.TimestampB\013\n\t_platform\"\355\002\n\030Docker"
+    "StatisticsResponse\022@\n\005items\030\001 \003(\01321.palm"
+    ".monitoring.v1.DockerStatisticsResponse."
+    "Item\022.\n\npagination\030\t \001(\0132\032.palm.portal.v"
+    "1.Pagination\032\336\001\n\004Item\022\020\n\010block_io\030\001 \001(\t\022"
+    "\023\n\013cpu_percent\030\002 \001(\t\022\021\n\tcontainer\030\003 \001(\t\022"
+    "\n\n\002id\030\004 \001(\t\022\023\n\013mem_percent\030\005 \001(\t\022\021\n\tmem_"
+    "usage\030\006 \001(\t\022\014\n\004name\030\007 \001(\t\022\016\n\006net_io\030\010 \001("
+    "\t\022\014\n\004pids\030\t \001(\t\022\014\n\004host\030b \001(\t\022.\n\ncreated"
+    "_at\030c \001(\0132\032.google.protobuf.Timestamp\"\200\002"
+    "\n\022PodmanQueryRequest\0229\n\003all\030\001 \001(\0132*.palm"
+    ".monitoring.v1.PodmanQueryRequest.AllH\000\022"
+    "\016\n\004host\030\002 \001(\tH\000\022\014\n\002id\030\003 \001(\tH\000\022\016\n\004name\030\004 "
+    "\001(\tH\000\022(\n\004from\030[ \001(\0132\032.google.protobuf.Ti"
+    "mestamp\022&\n\002to\030\\ \001(\0132\032.google.protobuf.Ti"
+    "mestamp\022\"\n\004page\030c \001(\0132\024.palm.portal.v1.P"
+    "age\032\005\n\003AllB\004\n\002by\"\203\002\n\022PodmanLogsResponse\022"
+    ":\n\005items\030\001 \003(\0132+.palm.monitoring.v1.Podm"
+    "anLogsResponse.Item\022.\n\npagination\030\t \001(\0132"
+    "\032.palm.portal.v1.Pagination\032\200\001\n\004Item\022\014\n\004"
+    "host\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\017\n\007full_id\030\003 \001(\t\022"
+    "\014\n\004name\030\004 \001(\t\022\017\n\007message\030\005 \001(\t\022.\n\ncreate"
+    "d_at\030\t \001(\0132\032.google.protobuf.Timestamp\"\311"
+    "\004\n\030PodmanContainersResponse\022@\n\005items\030\001 \003"
+    "(\01321.palm.monitoring.v1.PodmanContainers"
+    "Response.Item\022.\n\npagination\030\t \001(\0132\032.palm"
+    ".portal.v1.Pagination\032\272\003\n\004Item\022\n\n\002id\030\001 \001"
+    "(\t\022\r\n\005image\030\002 \001(\t\022\020\n\010image_id\030\003 \001(\t\022M\n\006l"
+    "abels\030\004 \003(\0132=.palm.monitoring.v1.PodmanC"
+    "ontainersResponse.Item.LabelsEntry\022\016\n\006mo"
+    "unts\030\005 \003(\t\022\r\n\005names\030\006 \003(\t\022\017\n\007command\030\007 \003"
+    "(\t\022\013\n\003pid\030\013 \001(\005\022\r\n\005state\030\014 \001(\t\022\022\n\nstarte"
+    "d_at\030\r \001(\003\022\022\n\ncreated_at\030\016 \001(\t\022\017\n\007create"
+    "d\030\017 \001(\003\022\016\n\006status\030\020 \001(\t\022\016\n\006exited\030\025 \001(\010\022"
+    "\021\n\texited_at\030\026 \001(\003\022\021\n\texit_code\030\027 \001(\005\022\014\n"
+    "\004host\030b \001(\t\022.\n\nupdated_at\030c \001(\0132\032.google"
+    ".protobuf.Timestamp\032-\n\013LabelsEntry\022\013\n\003ke"
+    "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\375\002\n\030PodmanSta"
+    "tisticsResponse\022@\n\005items\030\001 \003(\01321.palm.mo"
+    "nitoring.v1.PodmanStatisticsResponse.Ite"
+    "m\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1.P"
+    "agination\032\356\001\n\004Item\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002"
+    " \001(\t\022\020\n\010cpu_time\030\003 \001(\t\022\023\n\013cpu_percent\030\004 "
+    "\001(\t\022\017\n\007avg_cpu\030\005 \001(\t\022\021\n\tmem_usage\030\006 \001(\t\022"
+    "\023\n\013mem_percent\030\007 \001(\t\022\016\n\006net_io\030\010 \001(\t\022\020\n\010"
+    "block_io\030\t \001(\t\022\014\n\004pids\030\n \001(\t\022\014\n\004host\030b \001"
+    "(\t\022.\n\ncreated_at\030c \001(\0132\032.google.protobuf"
+    ".Timestamp2a\n\004Site\022Y\n\006Layout\022%.palm.moni"
+    "toring.v1.SiteLayoutRequest\032&.palm.monit"
+    "oring.v1.SiteLayoutResponse\"\0002m\n\007Systemd"
+    "\022b\n\007Journal\022).palm.monitoring.v1.Systemd"
+    "JournalRequest\032*.palm.monitoring.v1.Syst"
+    "emdJournalResponse\"\0002m\n\nFileSystem\022_\n\004Lo"
+    "gs\022).palm.monitoring.v1.FileSystemLogsRe"
+    "quest\032*.palm.monitoring.v1.FileSystemLog"
+    "sResponse\"\0002\256\002\n\006Docker\022d\n\nContainers\022&.p"
+    "alm.monitoring.v1.PodmanQueryRequest\032,.p"
+    "alm.monitoring.v1.DockerContainersRespon"
+    "se\"\000\022d\n\nStatistics\022&.palm.monitoring.v1."
+    "PodmanQueryRequest\032,.palm.monitoring.v1."
+    "DockerStatisticsResponse\"\000\022X\n\004Logs\022&.pal"
+    "m.monitoring.v1.PodmanQueryRequest\032&.pal"
+    "m.monitoring.v1.PodmanLogsResponse\"\0002\256\002\n"
+    "\006Podman\022X\n\004Logs\022&.palm.monitoring.v1.Pod"
+    "manQueryRequest\032&.palm.monitoring.v1.Pod"
+    "manLogsResponse\"\000\022d\n\nContainers\022&.palm.m"
     "onitoring.v1.PodmanQueryRequest\032,.palm.m"
-    "onitoring.v1.DockerContainersResponse\"\000\022"
+    "onitoring.v1.PodmanContainersResponse\"\000\022"
     "d\n\nStatistics\022&.palm.monitoring.v1.Podma"
-    "nQueryRequest\032,.palm.monitoring.v1.Docke"
-    "rStatisticsResponse\"\000\022X\n\004Logs\022&.palm.mon"
-    "itoring.v1.PodmanQueryRequest\032&.palm.mon"
-    "itoring.v1.PodmanLogsResponse\"\0002\256\002\n\006Podm"
-    "an\022X\n\004Logs\022&.palm.monitoring.v1.PodmanQu"
-    "eryRequest\032&.palm.monitoring.v1.PodmanLo"
-    "gsResponse\"\000\022d\n\nContainers\022&.palm.monito"
-    "ring.v1.PodmanQueryRequest\032,.palm.monito"
-    "ring.v1.PodmanContainersResponse\"\000\022d\n\nSt"
-    "atistics\022&.palm.monitoring.v1.PodmanQuer"
-    "yRequest\032,.palm.monitoring.v1.PodmanStat"
-    "isticsResponse\"\000B4\n0com.github.saturn_xi"
-    "v.palm.plugins.monitoring.v1P\001b\006proto3"
+    "nQueryRequest\032,.palm.monitoring.v1.Podma"
+    "nStatisticsResponse\"\000B4\n0com.github.satu"
+    "rn_xiv.palm.plugins.monitoring.v1P\001b\006pro"
+    "to3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1648,7 +1656,7 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    4998,
+    5043,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,
@@ -5744,8 +5752,17 @@ void FileSystemLogsRequest::InternalSwap(FileSystemLogsRequest* PROTOBUF_RESTRIC
 
 class FileSystemLogsResponse_Item::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<FileSystemLogsResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_._has_bits_);
 };
 
+void FileSystemLogsResponse_Item::clear_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ != nullptr) _impl_.created_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
 FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
@@ -5758,10 +5775,11 @@ FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(::google::protobuf::Are
 inline PROTOBUF_NDEBUG_INLINE FileSystemLogsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::monitoring::v1::FileSystemLogsResponse_Item& from_msg)
-      : host_(arena, from.host_),
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        host_(arena, from.host_),
         file_(arena, from.file_),
-        message_(arena, from.message_),
-        _cached_size_{0} {}
+        line_(arena, from.line_) {}
 
 FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(
     ::google::protobuf::Arena* arena,
@@ -5776,19 +5794,24 @@ FileSystemLogsResponse_Item::FileSystemLogsResponse_Item(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.created_at_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
+                              arena, *from._impl_.created_at_)
+                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:palm.monitoring.v1.FileSystemLogsResponse.Item)
 }
 inline PROTOBUF_NDEBUG_INLINE FileSystemLogsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : host_(arena),
+      : _cached_size_{0},
+        host_(arena),
         file_(arena),
-        message_(arena),
-        _cached_size_{0} {}
+        line_(arena) {}
 
 inline void FileSystemLogsResponse_Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.created_at_ = {};
 }
 FileSystemLogsResponse_Item::~FileSystemLogsResponse_Item() {
   // @@protoc_insertion_point(destructor:palm.monitoring.v1.FileSystemLogsResponse.Item)
@@ -5800,7 +5823,8 @@ inline void FileSystemLogsResponse_Item::SharedDtor(MessageLite& self) {
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.host_.Destroy();
   this_._impl_.file_.Destroy();
-  this_._impl_.message_.Destroy();
+  this_._impl_.line_.Destroy();
+  delete this_._impl_.created_at_;
   this_._impl_.~Impl_();
 }
 
@@ -5840,17 +5864,17 @@ const ::google::protobuf::internal::ClassData* FileSystemLogsResponse_Item::GetC
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 70, 2> FileSystemLogsResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 1, 67, 2> FileSystemLogsResponse_Item::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    9, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967032,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    4,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -5865,29 +5889,32 @@ const ::_pbi::TcParseTable<2, 3, 0, 70, 2> FileSystemLogsResponse_Item::_table_ 
     // string file = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.file_)}},
-    // string message = 3;
+    // string line = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.message_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.line_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string host = 1;
-    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.host_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.host_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string file = 2;
-    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.file_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.file_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string message = 3;
-    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.message_), 0, 0,
+    // string line = 3;
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.line_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\56\4\4\7\0\0\0\0"
+    // .google.protobuf.Timestamp created_at = 9;
+    {PROTOBUF_FIELD_OFFSET(FileSystemLogsResponse_Item, _impl_.created_at_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }}, {{
+    "\56\4\4\4\0\0\0\0"
     "palm.monitoring.v1.FileSystemLogsResponse.Item"
     "host"
     "file"
-    "message"
+    "line"
   }},
 };
 
@@ -5900,7 +5927,13 @@ PROTOBUF_NOINLINE void FileSystemLogsResponse_Item::Clear() {
 
   _impl_.host_.ClearToEmpty();
   _impl_.file_.ClearToEmpty();
-  _impl_.message_.ClearToEmpty();
+  _impl_.line_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.created_at_ != nullptr);
+    _impl_.created_at_->Clear();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -5935,12 +5968,20 @@ PROTOBUF_NOINLINE void FileSystemLogsResponse_Item::Clear() {
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // string message = 3;
-          if (!this_._internal_message().empty()) {
-            const std::string& _s = this_._internal_message();
+          // string line = 3;
+          if (!this_._internal_line().empty()) {
+            const std::string& _s = this_._internal_line();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsResponse.Item.message");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.monitoring.v1.FileSystemLogsResponse.Item.line");
             target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .google.protobuf.Timestamp created_at = 9;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                9, *this_._impl_.created_at_, this_._impl_.created_at_->GetCachedSize(), target,
+                stream);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -5978,10 +6019,18 @@ PROTOBUF_NOINLINE void FileSystemLogsResponse_Item::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_file());
             }
-            // string message = 3;
-            if (!this_._internal_message().empty()) {
+            // string line = 3;
+            if (!this_._internal_line().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_message());
+                                              this_._internal_line());
+            }
+          }
+           {
+            // .google.protobuf.Timestamp created_at = 9;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.created_at_);
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -5991,6 +6040,7 @@ PROTOBUF_NOINLINE void FileSystemLogsResponse_Item::Clear() {
 void FileSystemLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<FileSystemLogsResponse_Item*>(&to_msg);
   auto& from = static_cast<const FileSystemLogsResponse_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.monitoring.v1.FileSystemLogsResponse.Item)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
@@ -6002,9 +6052,20 @@ void FileSystemLogsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_
   if (!from._internal_file().empty()) {
     _this->_internal_set_file(from._internal_file());
   }
-  if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
+  if (!from._internal_line().empty()) {
+    _this->_internal_set_line(from._internal_line());
   }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.created_at_ != nullptr);
+    if (_this->_impl_.created_at_ == nullptr) {
+      _this->_impl_.created_at_ =
+          ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.created_at_);
+    } else {
+      _this->_impl_.created_at_->MergeFrom(*from._impl_.created_at_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6021,9 +6082,11 @@ void FileSystemLogsResponse_Item::InternalSwap(FileSystemLogsResponse_Item* PROT
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_, &other->_impl_.file_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.line_, &other->_impl_.line_, arena);
+  swap(_impl_.created_at_, other->_impl_.created_at_);
 }
 
 ::google::protobuf::Metadata FileSystemLogsResponse_Item::GetMetadata() const {

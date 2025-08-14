@@ -322,6 +322,70 @@ static void mount_systemd_journal(httplib::Server& server,
              });
 }
 
+static void mount_fs_watcher(httplib::Server& server,
+                             std::shared_ptr<palm::Jwt> jwt,
+                             std::shared_ptr<grpc::Channel> channel) {
+  server.Get("/api/filesystem/logs/by-host/:host",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto hostname = request.path_params.at("name");
+               auto stub = palm::monitoring::v1::FileSystem::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::FileSystemLogsRequest req;
+               {
+                 req.set_host(hostname);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::FileSystemLogsResponse res;
+               auto status = stub->Logs(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get(R"P(/api/filesystem/logs/by-file/.*)P",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               const auto file = request.matches[1];
+               auto stub = palm::monitoring::v1::FileSystem::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::FileSystemLogsRequest req;
+               {
+                 req.set_file(file);
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::FileSystemLogsResponse res;
+               auto status = stub->Logs(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+  server.Get("/api/filesystem/logs",
+             [ch = channel](const httplib::Request& request,
+                            httplib::Response& response) {
+               auto stub = palm::monitoring::v1::FileSystem::NewStub(ch);
+               grpc::ClientContext ctx;
+               palm::Session::init(request, &ctx);
+               palm::monitoring::v1::FileSystemLogsRequest req;
+               {
+                 req.mutable_all();
+                 palm::page(request, req.mutable_page());
+               }
+               palm::monitoring::v1::FileSystemLogsResponse res;
+               auto status = stub->Logs(&ctx, req, &res);
+               if (!status.ok()) {
+                 palm::http::abort(response, status);
+                 return;
+               }
+               palm::http::json(response, res);
+             });
+}
+
 void phlox::mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
                   std::shared_ptr<grpc::Channel> channel) {
   server.Get("/api/layout", [ch = channel](const httplib::Request& request,
@@ -344,6 +408,7 @@ void phlox::mount(httplib::Server& server, std::shared_ptr<palm::Jwt> jwt,
   mount_podman(server, jwt, channel);
   mount_docker(server, jwt, channel);
   mount_systemd_journal(server, jwt, channel);
+  mount_fs_watcher(server, jwt, channel);
 
   // ----------------------------------------------------------------------------
 

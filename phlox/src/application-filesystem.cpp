@@ -3,21 +3,13 @@
 
 void phlox::Application::fs_watcher(
     const toml::table& config, bool stdin,
-    const std::vector<std::string>& original_files) {
+    const std::set<std::string>& original_files) {
   if (palm::is_stopped()) {
     return;
   }
 
-  std::shared_ptr<palm::opensearch::Client> search =
-      std::make_shared<palm::opensearch::Client>(config);
-  {
-    auto res = search->cluster_health();
-    spdlog::debug("{} {}", res->cluster_name, res->status);
-  }
-  if (!search->index_exists<phlox::monitoring::logging::Item>()) {
-    const auto props = phlox::monitoring::logging::Item::properties();
-    search->create_index<phlox::monitoring::logging::Item>(2, 1, props);
-  }
+  std::shared_ptr<palm::opensearch::Client> search = this->opensearch(config);
+
   phlox::monitoring::LoggingScratcher scratcher;
 
   if (stdin) {
@@ -26,12 +18,10 @@ void phlox::Application::fs_watcher(
         std::make_shared<phlox::monitoring::logging::StdinSource>();
     scratcher.register_(it);
   }
-  {
+  if (!original_files.empty()) {
     std::shared_ptr<phlox::monitoring::logging::FilesystemNotify> it =
         std::make_shared<phlox::monitoring::logging::FilesystemNotify>();
-    const std::set<std::string> items(original_files.begin(),
-                                      original_files.end());
-    for (const auto& file : items) {
+    for (const auto& file : original_files) {
       it->register_(file);
     }
 

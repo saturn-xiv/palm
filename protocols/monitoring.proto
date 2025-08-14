@@ -93,7 +93,8 @@ message FileSystemLogsResponse {
   message Item {
     string host = 1;
     string file = 2;
-    string message = 3;
+    string line = 3;
+    google.protobuf.Timestamp created_at = 9;
   }
   repeated Item items = 1;
   palm.portal.v1.Pagination pagination = 9;

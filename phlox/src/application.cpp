@@ -25,25 +25,28 @@ std::shared_ptr<soci::session> phlox::Application::db(
   auto db = cfg.open();
   {
     soci::transaction tr(*db);
+
     // COULDN'T put all sql together
     *db << R"SQL(
 CREATE TABLE IF NOT EXISTS podman_container_logs (
-  id VARCHAR(127) NOT NULL,
+  id CHAR(64) NOT NULL,
   last_fetched_at BIGINT NOT NULL,
   version INTEGER NOT NULL DEFAULT 0, 
   created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_podman_container_logs_id ON podman_container_logs(id);
 )SQL";
+
     *db << R"SQL(
 CREATE TABLE IF NOT EXISTS docker_container_logs (
-  id VARCHAR(12) NOT NULL,
+  id CHAR(12) NOT NULL,
   last_fetched_at BIGINT NOT NULL,
   version INTEGER NOT NULL DEFAULT 0, 
   created_at TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_docker_container_logs_id ON docker_container_logs(id);
 )SQL";
+
     *db << R"SQL(
 CREATE TABLE IF NOT EXISTS systemd_service_logs (
   name VARCHAR(127) NOT NULL,
@@ -53,6 +56,7 @@ CREATE TABLE IF NOT EXISTS systemd_service_logs (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_systemd_service_logs_name ON systemd_service_logs(name);
 )SQL";
+
     tr.commit();
   }
   return db;
@@ -69,6 +73,7 @@ std::shared_ptr<palm::Jwt> phlox::Application::jwt(const toml::table& config) {
   return it;
 }
 
+// curl -v -XDELETE "http://127.0.0.1:9200/_all"
 std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     const toml::table& config) {
   std::shared_ptr<palm::opensearch::Client> it =
@@ -84,22 +89,22 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     nlohmann::json props;
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["id"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["name"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["updatedAt"] = it;
     }
 
@@ -111,22 +116,22 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
 
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["id"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["full_id"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["name"] = it;
     }
     {
@@ -136,7 +141,7 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["createdAt"] = it;
     }
 
@@ -148,22 +153,22 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     nlohmann::json props;
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["id"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["name"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["createdAt"] = it;
     }
 
@@ -175,22 +180,22 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     nlohmann::json props;
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["id"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["name"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["createdAt"] = it;
     }
 
@@ -202,22 +207,22 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     nlohmann::json props;
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["id"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["name"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["createdAt"] = it;
     }
 
@@ -229,22 +234,22 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
 
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["file"] = it;
     }
     {
       nlohmann::json it;
       it["type"] = "text";
-      props["message"] = it;
+      props["line"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["createdAt"] = it;
     }
     const auto val =
@@ -256,12 +261,12 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
 
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["host"] = it;
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "keyword";
       props["name"] = it;
     }
     {
@@ -271,7 +276,7 @@ std::shared_ptr<palm::opensearch::Client> phlox::Application::opensearch(
     }
     {
       nlohmann::json it;
-      it["type"] = "text";
+      it["type"] = "date_nanos";
       props["createdAt"] = it;
     }
 
@@ -455,7 +460,9 @@ void phlox::Application::launch(int argc, char* argv[]) {
       return;
     }
     if (program.is_subcommand_used(fs_watcher_command)) {
-      this->fs_watcher(config, fs_watcher_stdin, fs_watcher_files);
+      std::set<std::string> files(fs_watcher_files.begin(),
+                                  fs_watcher_files.end());
+      this->fs_watcher(config, fs_watcher_stdin, files);
       return;
     }
     if (program.is_subcommand_used(podman_logs_command)) {
