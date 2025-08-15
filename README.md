@@ -25,3 +25,5 @@ $ ./docker/begonia/start.sh
 - [gRPC for Web Clients](https://github.com/grpc/grpc-web)
 - [RBAC96](https://profsandhu.com/cs6393_s12/lecture-rbac96.pdf)
 - [AppImage Building Tool](https://github.com/linuxdeploy/linuxdeploy/releases/)
+- [OpenSearch Data types](https://docs.opensearch.org/latest/search-plugins/sql/datatypes/)
+- [ProtoJSON Format](https://protobuf.dev/programming-guides/json/)
