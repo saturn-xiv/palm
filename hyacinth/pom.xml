@@ -37,6 +37,12 @@
       <artifactId>protobuf-java</artifactId>
       <version>4.29.3</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util -->
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java-util</artifactId>
+      <version>4.29.3</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
     <dependency>
       <groupId>io.grpc</groupId>
