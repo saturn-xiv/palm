@@ -1,3 +1,5 @@
+packages = ["com.github.saturn_xiv.palm.plugins"]
+
 [backends]
 
 [backends.main]

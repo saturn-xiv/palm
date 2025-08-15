@@ -9,7 +9,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
-
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
@@ -28,7 +27,7 @@ import com.github.saturn_xiv.palm.hyacinth.models.Config;
 import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 
 public class Server {
-    public Server(String config_file) throws IOException {
+    public Server(String config_file) throws IOException, ClassNotFoundException {
         this.channels = new HashMap<>();
         TomlMapper mapper = new TomlMapper();
         logger.info("load configuration from {}", config_file);
@@ -43,7 +42,7 @@ public class Server {
                     .build();
             this.channels.put(name, channel);
         }
-
+        config.load();
     }
 
     public void launch(int port) {
