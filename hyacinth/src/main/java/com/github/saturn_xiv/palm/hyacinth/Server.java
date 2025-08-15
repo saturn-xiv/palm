@@ -67,6 +67,7 @@ public class Server {
                                     .flatMap(requestBody -> {
                                         final var req = new HttpRequest(request.param("host"), request.param("package"),
                                                 request.param("service"), request.param("method"),
+                                                request.requestHeaders().get(HttpHeaderNames.AUTHORIZATION),
                                                 requestTypes.getFirst(), requestBody,
                                                 responseTypes.getFirst());
                                         var reply = handler.handle(req);

@@ -1,11 +1,7 @@
 package com.github.saturn_xiv.palm.hyacinth;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.cli.CommandLine;
@@ -15,10 +11,9 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.help.HelpFormatter;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.github.saturn_xiv.palm.hyacinth.models.MetaInfo;
 
 public class App {
     public static void main(String[] args)
@@ -54,48 +49,18 @@ public class App {
         CommandLineParser parser = new DefaultParser();
         CommandLine line = parser.parse(options, args);
 
-        Properties props = new Properties();
-        try (InputStream ins = App.class.getClassLoader()
-                .getResourceAsStream("META-INF/maven/com.github.saturn_xiv.palm/hyacinth/pom.properties")) {
-            props.load(ins);
-        }
-
-        String project_url = "";
-        String project_name = "";
-        try (InputStream ins = App.class.getClassLoader()
-                .getResourceAsStream("META-INF/maven/com.github.saturn_xiv.palm/hyacinth/pom.xml")) {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(ins);
-            doc.getDocumentElement().normalize();
-            {
-                NodeList lst = doc.getElementsByTagName("project");
-                if (lst.getLength() > 0) {
-                    Element project = (Element) lst.item(0);
-                    {
-                        NodeList urls = project.getElementsByTagName("url");
-                        if (urls.getLength() > 0) {
-                            project_url = urls.item(0).getTextContent();
-                        }
-                    }
-                    {
-                        NodeList names = project.getElementsByTagName("name");
-                        if (names.getLength() > 0) {
-                            project_name = names.item(0).getTextContent();
-                        }
-                    }
-                }
-            }
-        }
+        final var metaInfo = new MetaInfo();
 
         if (line.hasOption(version)) {
-            System.out.println(props.getProperty("version"));
+            System.out.println(metaInfo.getVersion());
             return;
         }
 
         if (line.hasOption(help)) {
             HelpFormatter formatter = HelpFormatter.builder().get();
-            formatter.printHelp(props.getProperty("artifactId"), project_name, options, project_url, true);
+            formatter.printHelp(metaInfo.getArtifactId(),
+                    String.format("%s - %s", metaInfo.getName(), metaInfo.getDescription()), options,
+                    metaInfo.getUrl(), true);
             return;
         }
 

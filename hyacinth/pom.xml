@@ -9,6 +9,7 @@
   <version>2025.8.15</version>
 
   <name>Hyacinth</name>
+  <description>A ProtocolBuffers-HTTP proxy adapter.</description>
   <url>https://github.com/saturn-xiv/palm/tree/main/hyacinth</url>
 
   <properties>
