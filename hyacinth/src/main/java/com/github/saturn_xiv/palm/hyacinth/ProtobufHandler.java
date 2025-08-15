@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 import com.github.saturn_xiv.palm.hyacinth.models.HttpResponse;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 public class ProtobufHandler {
     public ProtobufHandler(Map<String, ManagedChannel> channels) {

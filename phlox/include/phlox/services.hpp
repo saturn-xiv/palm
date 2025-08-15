@@ -5,6 +5,8 @@
 #include "palm/search.hpp"
 #include "palm/session.hpp"
 
+#include <boost/exception/diagnostic_information.hpp>
+
 namespace phlox {
 
 class CurrentUser : public palm::Session {
@@ -12,10 +14,18 @@ class CurrentUser : public palm::Session {
   CurrentUser(grpc::ServerContext* context) : Session(context) {}
   std::optional<std::string> name(std::shared_ptr<palm::Jwt> jwt) {
     if (this->_token) {
-      const auto& [jid, kid, sub, pay] =
-          jwt->verify(this->_token.value(), ISSUER, WEB_AUDIENCE);
-      return kid;
+      const std::string token = this->_token.value();
+      try {
+        const auto& [jid, kid, sub, pay] =
+            jwt->verify(token, ISSUER, WEB_AUDIENCE);
+        spdlog::debug("current user {}", sub);
+        return kid;
+      } catch (...) {
+        spdlog::error("invalid token({}): {}", token,
+                      boost::current_exception_diagnostic_information());
+      }
     }
+    spdlog::debug("non signed in");
     return std::nullopt;
   }
 

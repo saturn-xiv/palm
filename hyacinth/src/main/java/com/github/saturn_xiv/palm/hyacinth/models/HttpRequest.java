@@ -59,9 +59,11 @@ public record HttpRequest(String package_, String service, String method,
                         Class responseClass = rpcMethod.getReturnType();
                         logger.debug("response class: {}", responseClass.getCanonicalName());
                 }
+
                 Object response = rpcMethod.invoke(blockingStub, request);
 
                 return Optional.of((Message) response);
+
         }
 
         private static final Logger logger = LoggerFactory.getLogger(HttpRequest.class);
