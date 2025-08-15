@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.saturn_xiv.palm</groupId>
-  <artifactId>crocus</artifactId>
+  <artifactId>hyacinth</artifactId>
   <version>2025.8.15</version>
 
-  <name>Crocus</name>
-  <url>https://github.com/saturn-xiv/palm/tree/main/crocus</url>
+  <name>Hyacinth</name>
+  <url>https://github.com/saturn-xiv/palm/tree/main/hyacinth</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,35 +29,6 @@
   </dependencyManagement>
 
   <dependencies>
-
-
-    <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
-    <dependency>
-      <groupId>com.google.protobuf</groupId>
-      <artifactId>protobuf-java</artifactId>
-      <version>4.29.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-protobuf</artifactId>
-      <version>1.71.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-stub</artifactId>
-      <version>1.71.0</version>
-    </dependency>
-    <!-- https://github.com/grpc/grpc-java/blob/master/README.md -->
-    <dependency> <!-- necessary for Java 9+ -->
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>annotations-api</artifactId>
-      <version>6.0.53</version>
-      <scope>provided</scope>
-    </dependency>
-
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
