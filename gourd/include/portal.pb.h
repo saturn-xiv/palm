@@ -20,7 +20,6 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -104,9 +103,6 @@ extern SiteLanguagesResponseDefaultTypeInternal _SiteLanguagesResponse_default_i
 class SiteTimezonesResponse;
 struct SiteTimezonesResponseDefaultTypeInternal;
 extern SiteTimezonesResponseDefaultTypeInternal _SiteTimezonesResponse_default_instance_;
-class SiteTimezonesResponse_Item;
-struct SiteTimezonesResponse_ItemDefaultTypeInternal;
-extern SiteTimezonesResponse_ItemDefaultTypeInternal _SiteTimezonesResponse_Item_default_instance_;
 class UserIndexLogResponse;
 struct UserIndexLogResponseDefaultTypeInternal;
 extern UserIndexLogResponseDefaultTypeInternal _UserIndexLogResponse_default_instance_;
@@ -367,30 +363,31 @@ class UserSignInResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class SiteTimezonesResponse_Item final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.SiteTimezonesResponse.Item) */ {
+class SiteTimezonesResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.SiteTimezonesResponse) */ {
  public:
-  inline SiteTimezonesResponse_Item() : SiteTimezonesResponse_Item(nullptr) {}
+  inline SiteTimezonesResponse() : SiteTimezonesResponse(nullptr) {}
+  ~SiteTimezonesResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(SiteTimezonesResponse_Item* msg, std::destroying_delete_t) {
+  void operator delete(SiteTimezonesResponse* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteTimezonesResponse_Item));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteTimezonesResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR SiteTimezonesResponse_Item(
+  explicit PROTOBUF_CONSTEXPR SiteTimezonesResponse(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline SiteTimezonesResponse_Item(const SiteTimezonesResponse_Item& from) : SiteTimezonesResponse_Item(nullptr, from) {}
-  inline SiteTimezonesResponse_Item(SiteTimezonesResponse_Item&& from) noexcept
-      : SiteTimezonesResponse_Item(nullptr, std::move(from)) {}
-  inline SiteTimezonesResponse_Item& operator=(const SiteTimezonesResponse_Item& from) {
+  inline SiteTimezonesResponse(const SiteTimezonesResponse& from) : SiteTimezonesResponse(nullptr, from) {}
+  inline SiteTimezonesResponse(SiteTimezonesResponse&& from) noexcept
+      : SiteTimezonesResponse(nullptr, std::move(from)) {}
+  inline SiteTimezonesResponse& operator=(const SiteTimezonesResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SiteTimezonesResponse_Item& operator=(SiteTimezonesResponse_Item&& from) noexcept {
+  inline SiteTimezonesResponse& operator=(SiteTimezonesResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -418,16 +415,16 @@ class SiteTimezonesResponse_Item final : public ::google::protobuf::internal::Ze
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SiteTimezonesResponse_Item& default_instance() {
+  static const SiteTimezonesResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SiteTimezonesResponse_Item* internal_default_instance() {
-    return reinterpret_cast<const SiteTimezonesResponse_Item*>(
-        &_SiteTimezonesResponse_Item_default_instance_);
+  static inline const SiteTimezonesResponse* internal_default_instance() {
+    return reinterpret_cast<const SiteTimezonesResponse*>(
+        &_SiteTimezonesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 15;
-  friend void swap(SiteTimezonesResponse_Item& a, SiteTimezonesResponse_Item& b) { a.Swap(&b); }
-  inline void Swap(SiteTimezonesResponse_Item* other) {
+  friend void swap(SiteTimezonesResponse& a, SiteTimezonesResponse& b) { a.Swap(&b); }
+  inline void Swap(SiteTimezonesResponse* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -435,7 +432,7 @@ class SiteTimezonesResponse_Item final : public ::google::protobuf::internal::Ze
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SiteTimezonesResponse_Item* other) {
+  void UnsafeArenaSwap(SiteTimezonesResponse* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -443,33 +440,61 @@ class SiteTimezonesResponse_Item final : public ::google::protobuf::internal::Ze
 
   // implements Message ----------------------------------------------
 
-  SiteTimezonesResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<SiteTimezonesResponse_Item>(arena);
+  SiteTimezonesResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SiteTimezonesResponse>(arena);
   }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const SiteTimezonesResponse_Item& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const SiteTimezonesResponse_Item& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SiteTimezonesResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SiteTimezonesResponse& from) { SiteTimezonesResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
 
   public:
   bool IsInitialized() const {
     return true;
   }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SiteTimezonesResponse* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.SiteTimezonesResponse.Item"; }
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.SiteTimezonesResponse"; }
 
  protected:
-  explicit SiteTimezonesResponse_Item(::google::protobuf::Arena* arena);
-  SiteTimezonesResponse_Item(::google::protobuf::Arena* arena, const SiteTimezonesResponse_Item& from);
-  SiteTimezonesResponse_Item(::google::protobuf::Arena* arena, SiteTimezonesResponse_Item&& from) noexcept
-      : SiteTimezonesResponse_Item(arena) {
+  explicit SiteTimezonesResponse(::google::protobuf::Arena* arena);
+  SiteTimezonesResponse(::google::protobuf::Arena* arena, const SiteTimezonesResponse& from);
+  SiteTimezonesResponse(::google::protobuf::Arena* arena, SiteTimezonesResponse&& from) noexcept
+      : SiteTimezonesResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -483,13 +508,38 @@ class SiteTimezonesResponse_Item final : public ::google::protobuf::internal::Ze
   // nested types ----------------------------------------------------
 
   // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteTimezonesResponse.Item)
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated string items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  const std::string& items(int index) const;
+  std::string* mutable_items(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_items(int index, Arg_&& value, Args_... args);
+  std::string* add_items();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_items(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& items() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_items();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteTimezonesResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
+      0, 1, 0,
+      50, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -505,9 +555,12 @@ class SiteTimezonesResponse_Item final : public ::google::protobuf::internal::Ze
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const SiteTimezonesResponse_Item& from_msg);
+                          const SiteTimezonesResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField<std::string> items_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_portal_2eproto;
 };
 // -------------------------------------------------------------------
@@ -571,7 +624,7 @@ class SiteLanguagesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteLanguagesResponse*>(
         &_SiteLanguagesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(SiteLanguagesResponse& a, SiteLanguagesResponse& b) { a.Swap(&b); }
   inline void Swap(SiteLanguagesResponse* other) {
     if (other == this) return;
@@ -773,7 +826,7 @@ class SiteCurrenciesResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteCurrenciesResponse_Item*>(
         &_SiteCurrenciesResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(SiteCurrenciesResponse_Item& a, SiteCurrenciesResponse_Item& b) { a.Swap(&b); }
   inline void Swap(SiteCurrenciesResponse_Item* other) {
     if (other == this) return;
@@ -3195,204 +3248,6 @@ class UserIndexLogResponse_Item final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class SiteTimezonesResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.SiteTimezonesResponse) */ {
- public:
-  inline SiteTimezonesResponse() : SiteTimezonesResponse(nullptr) {}
-  ~SiteTimezonesResponse() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(SiteTimezonesResponse* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteTimezonesResponse));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR SiteTimezonesResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline SiteTimezonesResponse(const SiteTimezonesResponse& from) : SiteTimezonesResponse(nullptr, from) {}
-  inline SiteTimezonesResponse(SiteTimezonesResponse&& from) noexcept
-      : SiteTimezonesResponse(nullptr, std::move(from)) {}
-  inline SiteTimezonesResponse& operator=(const SiteTimezonesResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SiteTimezonesResponse& operator=(SiteTimezonesResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SiteTimezonesResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SiteTimezonesResponse* internal_default_instance() {
-    return reinterpret_cast<const SiteTimezonesResponse*>(
-        &_SiteTimezonesResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 16;
-  friend void swap(SiteTimezonesResponse& a, SiteTimezonesResponse& b) { a.Swap(&b); }
-  inline void Swap(SiteTimezonesResponse* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SiteTimezonesResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SiteTimezonesResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<SiteTimezonesResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SiteTimezonesResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const SiteTimezonesResponse& from) { SiteTimezonesResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(SiteTimezonesResponse* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.SiteTimezonesResponse"; }
-
- protected:
-  explicit SiteTimezonesResponse(::google::protobuf::Arena* arena);
-  SiteTimezonesResponse(::google::protobuf::Arena* arena, const SiteTimezonesResponse& from);
-  SiteTimezonesResponse(::google::protobuf::Arena* arena, SiteTimezonesResponse&& from) noexcept
-      : SiteTimezonesResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Item = SiteTimezonesResponse_Item;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kItemsFieldNumber = 1,
-  };
-  // repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-
-  public:
-  void clear_items() ;
-  ::palm::portal::v1::SiteTimezonesResponse_Item* mutable_items(int index);
-  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>* mutable_items();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>& _internal_items() const;
-  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>* _internal_mutable_items();
-  public:
-  const ::palm::portal::v1::SiteTimezonesResponse_Item& items(int index) const;
-  ::palm::portal::v1::SiteTimezonesResponse_Item* add_items();
-  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>& items() const;
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteTimezonesResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const SiteTimezonesResponse& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::SiteTimezonesResponse_Item > items_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_portal_2eproto;
-};
-// -------------------------------------------------------------------
-
 class SiteCurrenciesResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.SiteCurrenciesResponse) */ {
  public:
@@ -3452,7 +3307,7 @@ class SiteCurrenciesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteCurrenciesResponse*>(
         &_SiteCurrenciesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(SiteCurrenciesResponse& a, SiteCurrenciesResponse& b) { a.Swap(&b); }
   inline void Swap(SiteCurrenciesResponse* other) {
     if (other == this) return;
@@ -6328,13 +6183,9 @@ inline void UserSignInResponse::set_allocated_token(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// SiteTimezonesResponse_Item
-
-// -------------------------------------------------------------------
-
 // SiteTimezonesResponse
 
-// repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;
+// repeated string items = 1;
 inline int SiteTimezonesResponse::_internal_items_size() const {
   return _internal_items().size();
 }
@@ -6345,39 +6196,54 @@ inline void SiteTimezonesResponse::clear_items() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.items_.Clear();
 }
-inline ::palm::portal::v1::SiteTimezonesResponse_Item* SiteTimezonesResponse::mutable_items(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteTimezonesResponse.items)
-  return _internal_mutable_items()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>* SiteTimezonesResponse::mutable_items()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.SiteTimezonesResponse.items)
+inline std::string* SiteTimezonesResponse::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_items();
+  std::string* _s = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add_mutable:palm.portal.v1.SiteTimezonesResponse.items)
+  return _s;
 }
-inline const ::palm::portal::v1::SiteTimezonesResponse_Item& SiteTimezonesResponse::items(int index) const
+inline const std::string& SiteTimezonesResponse::items(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.portal.v1.SiteTimezonesResponse.items)
   return _internal_items().Get(index);
 }
-inline ::palm::portal::v1::SiteTimezonesResponse_Item* SiteTimezonesResponse::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::palm::portal::v1::SiteTimezonesResponse_Item* _add = _internal_mutable_items()->Add();
-  // @@protoc_insertion_point(field_add:palm.portal.v1.SiteTimezonesResponse.items)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>& SiteTimezonesResponse::items() const
+inline std::string* SiteTimezonesResponse::mutable_items(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteTimezonesResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void SiteTimezonesResponse::set_items(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_items()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteTimezonesResponse.items)
+}
+template <typename Arg_, typename... Args_>
+inline void SiteTimezonesResponse::add_items(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_items(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:palm.portal.v1.SiteTimezonesResponse.items)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+SiteTimezonesResponse::items() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:palm.portal.v1.SiteTimezonesResponse.items)
   return _internal_items();
 }
-inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>&
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SiteTimezonesResponse::mutable_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.SiteTimezonesResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
 SiteTimezonesResponse::_internal_items() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.items_;
 }
-inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::SiteTimezonesResponse_Item>*
+inline ::google::protobuf::RepeatedPtrField<std::string>*
 SiteTimezonesResponse::_internal_mutable_items() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.items_;

@@ -1,13 +1,17 @@
 # Usage
 
-- Start server
+- Start [hyacinth](../hyacinth/)
 
 ```bash
-java -jar
+mvn clean && mvn package
+cp target/crocus-2025.8.15.jar ../hyacinth/libs/
 ```
 
-- Curl
+- Start backends
 
 ```bash
-curl
+./lavender/lavender -d -c lavender.toml rpc -p 10080
+./phlox/phlox -d -c phlox.toml rpc -p 18081
 ```
+
+- Curl client test: `./*-test.sh`

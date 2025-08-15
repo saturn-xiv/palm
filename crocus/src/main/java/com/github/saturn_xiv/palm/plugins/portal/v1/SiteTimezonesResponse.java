@@ -27,7 +27,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private SiteTimezonesResponse() {
-    items_ = java.util.Collections.emptyList();
+    items_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -43,400 +44,41 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Builder.class);
   }
 
-  public interface ItemOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:palm.portal.v1.SiteTimezonesResponse.Item)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * Protobuf type {@code palm.portal.v1.SiteTimezonesResponse.Item}
-   */
-  public static final class Item extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:palm.portal.v1.SiteTimezonesResponse.Item)
-      ItemOrBuilder {
-  private static final long serialVersionUID = 0L;
-    static {
-      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 29,
-        /* patch= */ 3,
-        /* suffix= */ "",
-        Item.class.getName());
-    }
-    // Use Item.newBuilder() to construct.
-    private Item(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-    }
-    private Item() {
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteTimezonesResponse_Item_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteTimezonesResponse_Item_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item)) {
-        return super.equals(obj);
-      }
-      com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item other = (com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item) obj;
-
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code palm.portal.v1.SiteTimezonesResponse.Item}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:palm.portal.v1.SiteTimezonesResponse.Item)
-        com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteTimezonesResponse_Item_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteTimezonesResponse_Item_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder.class);
-      }
-
-      // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteTimezonesResponse_Item_descriptor;
-      }
-
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item getDefaultInstanceForType() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item build() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item buildPartial() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item result = new com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item(this);
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item) {
-          return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item other) {
-        if (other == com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:palm.portal.v1.SiteTimezonesResponse.Item)
-    }
-
-    // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteTimezonesResponse.Item)
-    private static final com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item();
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Item>
-        PARSER = new com.google.protobuf.AbstractParser<Item>() {
-      @java.lang.Override
-      public Item parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<Item> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Item> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public static final int ITEMS_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item> items_;
+  private com.google.protobuf.LazyStringArrayList items_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @return A list containing the items.
    */
-  @java.lang.Override
-  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item> getItemsList() {
+  public com.google.protobuf.ProtocolStringList
+      getItemsList() {
     return items_;
   }
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @return The count of items.
    */
-  @java.lang.Override
-  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder> 
-      getItemsOrBuilderList() {
-    return items_;
-  }
-  /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-   */
-  @java.lang.Override
   public int getItemsCount() {
     return items_.size();
   }
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @param index The index of the element to return.
+   * @return The items at the given index.
    */
-  @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item getItems(int index) {
+  public java.lang.String getItems(int index) {
     return items_.get(index);
   }
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the items at the given index.
    */
-  @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder getItemsOrBuilder(
-      int index) {
-    return items_.get(index);
+  public com.google.protobuf.ByteString
+      getItemsBytes(int index) {
+    return items_.getByteString(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -454,7 +96,7 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     for (int i = 0; i < items_.size(); i++) {
-      output.writeMessage(1, items_.get(i));
+      com.google.protobuf.GeneratedMessage.writeString(output, 1, items_.getRaw(i));
     }
     getUnknownFields().writeTo(output);
   }
@@ -465,9 +107,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    for (int i = 0; i < items_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, items_.get(i));
+    {
+      int dataSize = 0;
+      for (int i = 0; i < items_.size(); i++) {
+        dataSize += computeStringSizeNoTag(items_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getItemsList().size();
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -632,13 +278,8 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      if (itemsBuilder_ == null) {
-        items_ = java.util.Collections.emptyList();
-      } else {
-        items_ = null;
-        itemsBuilder_.clear();
-      }
-      bitField0_ = (bitField0_ & ~0x00000001);
+      items_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       return this;
     }
 
@@ -665,26 +306,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse buildPartial() {
       com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse result = new com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse(this);
-      buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartialRepeatedFields(com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse result) {
-      if (itemsBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          items_ = java.util.Collections.unmodifiableList(items_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.items_ = items_;
-      } else {
-        result.items_ = itemsBuilder_.build();
-      }
-    }
-
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse result) {
       int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        items_.makeImmutable();
+        result.items_ = items_;
+      }
     }
 
     @java.lang.Override
@@ -699,31 +331,15 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse other) {
       if (other == com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.getDefaultInstance()) return this;
-      if (itemsBuilder_ == null) {
-        if (!other.items_.isEmpty()) {
-          if (items_.isEmpty()) {
-            items_ = other.items_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureItemsIsMutable();
-            items_.addAll(other.items_);
-          }
-          onChanged();
+      if (!other.items_.isEmpty()) {
+        if (items_.isEmpty()) {
+          items_ = other.items_;
+          bitField0_ |= 0x00000001;
+        } else {
+          ensureItemsIsMutable();
+          items_.addAll(other.items_);
         }
-      } else {
-        if (!other.items_.isEmpty()) {
-          if (itemsBuilder_.isEmpty()) {
-            itemsBuilder_.dispose();
-            itemsBuilder_ = null;
-            items_ = other.items_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            itemsBuilder_ = 
-              com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                 getItemsFieldBuilder() : null;
-          } else {
-            itemsBuilder_.addAllMessages(other.items_);
-          }
-        }
+        onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -752,16 +368,9 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item m =
-                  input.readMessage(
-                      com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.parser(),
-                      extensionRegistry);
-              if (itemsBuilder_ == null) {
-                ensureItemsIsMutable();
-                items_.add(m);
-              } else {
-                itemsBuilder_.addMessage(m);
-              }
+              java.lang.String s = input.readStringRequireUtf8();
+              ensureItemsIsMutable();
+              items_.add(s);
               break;
             } // case 10
             default: {
@@ -781,244 +390,115 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item> items_ =
-      java.util.Collections.emptyList();
+    private com.google.protobuf.LazyStringArrayList items_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureItemsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        items_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item>(items_);
-        bitField0_ |= 0x00000001;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder> itemsBuilder_;
-
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item> getItemsList() {
-      if (itemsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(items_);
-      } else {
-        return itemsBuilder_.getMessageList();
+      if (!items_.isModifiable()) {
+        items_ = new com.google.protobuf.LazyStringArrayList(items_);
       }
+      bitField0_ |= 0x00000001;
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @return A list containing the items.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getItemsList() {
+      items_.makeImmutable();
+      return items_;
+    }
+    /**
+     * <code>repeated string items = 1;</code>
+     * @return The count of items.
      */
     public int getItemsCount() {
-      if (itemsBuilder_ == null) {
-        return items_.size();
-      } else {
-        return itemsBuilder_.getCount();
-      }
+      return items_.size();
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @param index The index of the element to return.
+     * @return The items at the given index.
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item getItems(int index) {
-      if (itemsBuilder_ == null) {
-        return items_.get(index);
-      } else {
-        return itemsBuilder_.getMessage(index);
-      }
+    public java.lang.String getItems(int index) {
+      return items_.get(index);
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the items at the given index.
      */
-    public Builder setItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item value) {
-      if (itemsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureItemsIsMutable();
-        items_.set(index, value);
-        onChanged();
-      } else {
-        itemsBuilder_.setMessage(index, value);
-      }
-      return this;
+    public com.google.protobuf.ByteString
+        getItemsBytes(int index) {
+      return items_.getByteString(index);
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @param index The index to set the value at.
+     * @param value The items to set.
+     * @return This builder for chaining.
      */
     public Builder setItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder builderForValue) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        itemsBuilder_.setMessage(index, builderForValue.build());
-      }
+        int index, java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureItemsIsMutable();
+      items_.set(index, value);
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public Builder addItems(com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item value) {
-      if (itemsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureItemsIsMutable();
-        items_.add(value);
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @param value The items to add.
+     * @return This builder for chaining.
      */
     public Builder addItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item value) {
-      if (itemsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureItemsIsMutable();
-        items_.add(index, value);
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(index, value);
-      }
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureItemsIsMutable();
+      items_.add(value);
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public Builder addItems(
-        com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder builderForValue) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.add(builderForValue.build());
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public Builder addItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder builderForValue) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @param values The items to add.
+     * @return This builder for chaining.
      */
     public Builder addAllItems(
-        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item> values) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, items_);
-        onChanged();
-      } else {
-        itemsBuilder_.addAllMessages(values);
-      }
+        java.lang.Iterable<java.lang.String> values) {
+      ensureItemsIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, items_);
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @return This builder for chaining.
      */
     public Builder clearItems() {
-      if (itemsBuilder_ == null) {
-        items_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        itemsBuilder_.clear();
-      }
+      items_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000001);;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+     * <code>repeated string items = 1;</code>
+     * @param value The bytes of the items to add.
+     * @return This builder for chaining.
      */
-    public Builder removeItems(int index) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.remove(index);
-        onChanged();
-      } else {
-        itemsBuilder_.remove(index);
-      }
+    public Builder addItemsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      ensureItemsIsMutable();
+      items_.add(value);
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder getItemsBuilder(
-        int index) {
-      return getItemsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder getItemsOrBuilder(
-        int index) {
-      if (itemsBuilder_ == null) {
-        return items_.get(index);  } else {
-        return itemsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder> 
-         getItemsOrBuilderList() {
-      if (itemsBuilder_ != null) {
-        return itemsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(items_);
-      }
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder addItemsBuilder() {
-      return getItemsFieldBuilder().addBuilder(
-          com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder addItemsBuilder(
-        int index) {
-      return getItemsFieldBuilder().addBuilder(
-          index, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-     */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder> 
-         getItemsBuilderList() {
-      return getItemsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder> 
-        getItemsFieldBuilder() {
-      if (itemsBuilder_ == null) {
-        itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder>(
-                items_,
-                ((bitField0_ & 0x00000001) != 0),
-                getParentForChildren(),
-                isClean());
-        items_ = null;
-      }
-      return itemsBuilder_;
     }
 
     // @@protoc_insertion_point(builder_scope:palm.portal.v1.SiteTimezonesResponse)

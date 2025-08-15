@@ -143,33 +143,7 @@ inline void json(httplib::Response& response,
 
 void mount(httplib::Server& server, const std::string& path,
            std::shared_ptr<grpc::Channel> channel,
-           const std::set<GRpcHandler>& handlers) {
-  server.Post(std::format("{}/:package/:service/:method", path),
-              [ch = channel, hnd = handlers](const httplib::Request& req,
-                                             httplib::Response& res) mutable {
-                const auto pkg = req.path_params.at("package");
-                const auto srv = req.path_params.at("service");
-                const auto mth = req.path_params.at("method");
-                grpc::ClientContext ctx;
-                palm::Session::init(req, &ctx);
-                for (auto& h : hnd) {
-                  if (h.package == pkg && h.service == srv && h.method == mth) {
-                    const auto& [sts, msg] = h.handler(ch, ctx, req.body);
-                    if (sts.ok()) {
-                      if (msg) {
-                        palm::http::json(res, *msg);
-                      } else {
-                        palm::http::text(res);
-                      }
-                    } else {
-                      palm::http::abort(res, sts);
-                    }
-                    return;
-                  }
-                }
-                res.status = httplib::StatusCode::NotFound_404;
-              });
-}
+           const std::set<GRpcHandler>& handlers);
 
 }  // namespace http
 }  // namespace palm

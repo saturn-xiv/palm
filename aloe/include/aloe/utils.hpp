@@ -4,7 +4,7 @@
 #include <filesystem>
 
 namespace aloe {
-bool tcp(const std::string& host, uint8_t port);
+bool tcp(const std::string& host, uint16_t port);
 void keep(const std::filesystem::path& target, const size_t count);
 inline std::string filename(const std::filesystem::path& file) {
   auto it = file.stem();

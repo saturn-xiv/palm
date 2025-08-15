@@ -26,6 +26,7 @@ $ ./docker/begonia/start.sh
 - [RBAC96](https://profsandhu.com/cs6393_s12/lecture-rbac96.pdf)
 - [AppImage Building Tool](https://github.com/linuxdeploy/linuxdeploy/releases/)
 - [OpenSearch Data types](https://docs.opensearch.org/latest/search-plugins/sql/datatypes/)
+- [gRPC Status Codes](https://grpc.io/docs/guides/status-codes/)
 - [ProtoJSON Format](https://protobuf.dev/programming-guides/json/)
 - [Protocol Buffers Version Support](https://protobuf.dev/support/version-support/)
 - [Maven Quickstart Archetype](https://maven.apache.org/archetypes/maven-archetype-quickstart/)

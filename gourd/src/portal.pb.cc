@@ -54,24 +54,31 @@ struct UserSignInResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInResponseDefaultTypeInternal _UserSignInResponse_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR SiteTimezonesResponse_Item::SiteTimezonesResponse_Item(::_pbi::ConstantInitialized)
+
+inline constexpr SiteTimezonesResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SiteTimezonesResponse::SiteTimezonesResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+    : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
-struct SiteTimezonesResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SiteTimezonesResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SiteTimezonesResponse_ItemDefaultTypeInternal() {}
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SiteTimezonesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteTimezonesResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteTimezonesResponseDefaultTypeInternal() {}
   union {
-    SiteTimezonesResponse_Item _instance;
+    SiteTimezonesResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteTimezonesResponse_ItemDefaultTypeInternal _SiteTimezonesResponse_Item_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteTimezonesResponseDefaultTypeInternal _SiteTimezonesResponse_default_instance_;
 
 inline constexpr SiteLanguagesResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -426,31 +433,6 @@ struct UserIndexLogResponse_ItemDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexLogResponse_ItemDefaultTypeInternal _UserIndexLogResponse_Item_default_instance_;
 
-inline constexpr SiteTimezonesResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : items_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR SiteTimezonesResponse::SiteTimezonesResponse(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct SiteTimezonesResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SiteTimezonesResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SiteTimezonesResponseDefaultTypeInternal() {}
-  union {
-    SiteTimezonesResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteTimezonesResponseDefaultTypeInternal _SiteTimezonesResponse_default_instance_;
-
 inline constexpr SiteCurrenciesResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : items_{},
@@ -775,14 +757,6 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserSignInResponse, _impl_.token_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteTimezonesResponse_Item, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteTimezonesResponse, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -848,11 +822,10 @@ static const ::_pbi::MigrationSchema
         {143, 153, -1, sizeof(::palm::portal::v1::UserIndexLogResponse)},
         {155, 166, -1, sizeof(::palm::portal::v1::UserSignInByEmailRequest)},
         {169, -1, -1, sizeof(::palm::portal::v1::UserSignInResponse)},
-        {178, -1, -1, sizeof(::palm::portal::v1::SiteTimezonesResponse_Item)},
-        {186, -1, -1, sizeof(::palm::portal::v1::SiteTimezonesResponse)},
-        {195, -1, -1, sizeof(::palm::portal::v1::SiteLanguagesResponse)},
-        {204, 218, -1, sizeof(::palm::portal::v1::SiteCurrenciesResponse_Item)},
-        {224, -1, -1, sizeof(::palm::portal::v1::SiteCurrenciesResponse)},
+        {178, -1, -1, sizeof(::palm::portal::v1::SiteTimezonesResponse)},
+        {187, -1, -1, sizeof(::palm::portal::v1::SiteLanguagesResponse)},
+        {196, 210, -1, sizeof(::palm::portal::v1::SiteCurrenciesResponse_Item)},
+        {216, -1, -1, sizeof(::palm::portal::v1::SiteCurrenciesResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::portal::v1::_Page_default_instance_._instance,
@@ -870,7 +843,6 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::portal::v1::_UserIndexLogResponse_default_instance_._instance,
     &::palm::portal::v1::_UserSignInByEmailRequest_default_instance_._instance,
     &::palm::portal::v1::_UserSignInResponse_default_instance_._instance,
-    &::palm::portal::v1::_SiteTimezonesResponse_Item_default_instance_._instance,
     &::palm::portal::v1::_SiteTimezonesResponse_default_instance_._instance,
     &::palm::portal::v1::_SiteLanguagesResponse_default_instance_._instance,
     &::palm::portal::v1::_SiteCurrenciesResponse_Item_default_instance_._instance,
@@ -912,37 +884,36 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "ilRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001"
     "(\t\022+\n\003ttl\030\t \001(\0132\031.google.protobuf.Durati"
     "onH\000\210\001\001B\006\n\004_ttl\"#\n\022UserSignInResponse\022\r\n"
-    "\005token\030\001 \001(\t\"Z\n\025SiteTimezonesResponse\0229\n"
-    "\005items\030\001 \003(\0132*.palm.portal.v1.SiteTimezo"
-    "nesResponse.Item\032\006\n\004Item\"&\n\025SiteLanguage"
-    "sResponse\022\r\n\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenc"
-    "iesResponse\022:\n\005items\030\001 \003(\0132+.palm.portal"
-    ".v1.SiteCurrenciesResponse.Item\032y\n\004Item\022"
-    "\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022"
-    "\017\n\007country\030\004 \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004"
-    "fund\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006L"
-    "ocale\022D\n\005Index\022\024.palm.portal.v1.Page\032#.p"
-    "alm.portal.v1.LocaleIndexResponse\"\000\022G\n\006C"
-    "reate\022#.palm.portal.v1.LocaleCreateReque"
-    "st\032\026.google.protobuf.Empty\"\000\022G\n\006Update\022#"
-    ".palm.portal.v1.LocaleUpdateRequest\032\026.go"
-    "ogle.protobuf.Empty\"\000\022>\n\007Destroy\022\031.palm."
-    "portal.v1.IdRequest\032\026.google.protobuf.Em"
-    "pty\"\000\022U\n\006ByLang\022#.palm.portal.v1.LocaleB"
-    "yLangRequest\032$.palm.portal.v1.LocaleByLa"
-    "ngResponse\"\0002\261\001\n\004User\022_\n\rSignInByEmail\022("
-    ".palm.portal.v1.UserSignInByEmailRequest"
-    "\032\".palm.portal.v1.UserSignInResponse\"\000\022H"
-    "\n\010IndexLog\022\024.palm.portal.v1.Page\032$.palm."
-    "portal.v1.UserIndexLogResponse\"\0002\010\n\006Poli"
-    "cy2\362\001\n\004Site\022L\n\tTimezones\022\026.google.protob"
-    "uf.Empty\032%.palm.portal.v1.SiteTimezonesR"
-    "esponse\"\000\022N\n\nCurrencies\022\026.google.protobu"
-    "f.Empty\032&.palm.portal.v1.SiteCurrenciesR"
-    "esponse\"\000\022L\n\tLanguages\022\026.google.protobuf"
-    ".Empty\032%.palm.portal.v1.SiteLanguagesRes"
-    "ponse\"\000B7\n,com.github.saturn_xiv.palm.pl"
-    "ugins.portal.v1P\001Z\005./;v2b\006proto3"
+    "\005token\030\001 \001(\t\"&\n\025SiteTimezonesResponse\022\r\n"
+    "\005items\030\001 \003(\t\"&\n\025SiteLanguagesResponse\022\r\n"
+    "\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenciesResponse\022"
+    ":\n\005items\030\001 \003(\0132+.palm.portal.v1.SiteCurr"
+    "enciesResponse.Item\032y\n\004Item\022\n\n\002id\030\001 \001(\r\022"
+    "\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007country\030\004"
+    " \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004fund\030\006 \001(\010H\001"
+    "\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006Locale\022D\n\005Ind"
+    "ex\022\024.palm.portal.v1.Page\032#.palm.portal.v"
+    "1.LocaleIndexResponse\"\000\022G\n\006Create\022#.palm"
+    ".portal.v1.LocaleCreateRequest\032\026.google."
+    "protobuf.Empty\"\000\022G\n\006Update\022#.palm.portal"
+    ".v1.LocaleUpdateRequest\032\026.google.protobu"
+    "f.Empty\"\000\022>\n\007Destroy\022\031.palm.portal.v1.Id"
+    "Request\032\026.google.protobuf.Empty\"\000\022U\n\006ByL"
+    "ang\022#.palm.portal.v1.LocaleByLangRequest"
+    "\032$.palm.portal.v1.LocaleByLangResponse\"\000"
+    "2\261\001\n\004User\022_\n\rSignInByEmail\022(.palm.portal"
+    ".v1.UserSignInByEmailRequest\032\".palm.port"
+    "al.v1.UserSignInResponse\"\000\022H\n\010IndexLog\022\024"
+    ".palm.portal.v1.Page\032$.palm.portal.v1.Us"
+    "erIndexLogResponse\"\0002\010\n\006Policy2\362\001\n\004Site\022"
+    "L\n\tTimezones\022\026.google.protobuf.Empty\032%.p"
+    "alm.portal.v1.SiteTimezonesResponse\"\000\022N\n"
+    "\nCurrencies\022\026.google.protobuf.Empty\032&.pa"
+    "lm.portal.v1.SiteCurrenciesResponse\"\000\022L\n"
+    "\tLanguages\022\026.google.protobuf.Empty\032%.pal"
+    "m.portal.v1.SiteLanguagesResponse\"\000B7\n,c"
+    "om.github.saturn_xiv.palm.plugins.portal"
+    ".v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_portal_2eproto_deps[3] =
     {
@@ -954,13 +925,13 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    2592,
+    2540,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
     descriptor_table_portal_2eproto_deps,
     3,
-    20,
+    19,
     schemas,
     file_default_instances,
     TableStruct_portal_2eproto::offsets,
@@ -5213,109 +5184,6 @@ void UserSignInResponse::InternalSwap(UserSignInResponse* PROTOBUF_RESTRICT othe
 }
 // ===================================================================
 
-class SiteTimezonesResponse_Item::_Internal {
- public:
-};
-
-SiteTimezonesResponse_Item::SiteTimezonesResponse_Item(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.SiteTimezonesResponse.Item)
-}
-SiteTimezonesResponse_Item::SiteTimezonesResponse_Item(
-    ::google::protobuf::Arena* arena,
-    const SiteTimezonesResponse_Item& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SiteTimezonesResponse_Item* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-
-  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.SiteTimezonesResponse.Item)
-}
-
-inline void* SiteTimezonesResponse_Item::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) SiteTimezonesResponse_Item(arena);
-}
-constexpr auto SiteTimezonesResponse_Item::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SiteTimezonesResponse_Item),
-                                            alignof(SiteTimezonesResponse_Item));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull SiteTimezonesResponse_Item::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_SiteTimezonesResponse_Item_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &SiteTimezonesResponse_Item::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<SiteTimezonesResponse_Item>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &SiteTimezonesResponse_Item::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<SiteTimezonesResponse_Item>(), &SiteTimezonesResponse_Item::ByteSizeLong,
-            &SiteTimezonesResponse_Item::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(SiteTimezonesResponse_Item, _impl_._cached_size_),
-        false,
-    },
-    &SiteTimezonesResponse_Item::kDescriptorMethods,
-    &descriptor_table_portal_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* SiteTimezonesResponse_Item::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> SiteTimezonesResponse_Item::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::portal::v1::SiteTimezonesResponse_Item>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    65535, 65535
-  }},
-  // no field_entries, or aux_entries
-  {{
-  }},
-};
-
-
-
-
-
-
-
-
-::google::protobuf::Metadata SiteTimezonesResponse_Item::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
 class SiteTimezonesResponse::_Internal {
  public:
 };
@@ -5419,7 +5287,7 @@ const ::google::protobuf::internal::ClassData* SiteTimezonesResponse::GetClassDa
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SiteTimezonesResponse::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 50, 2> SiteTimezonesResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -5428,8 +5296,8 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SiteTimezonesResponse::_table_ = {
     4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
     1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -5437,18 +5305,21 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SiteTimezonesResponse::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::portal::v1::SiteTimezonesResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;
-    {::_pbi::TcParser::FastMtR1,
+    // repeated string items = 1;
+    {::_pbi::TcParser::FastUR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(SiteTimezonesResponse, _impl_.items_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;
+    // repeated string items = 1;
     {PROTOBUF_FIELD_OFFSET(SiteTimezonesResponse, _impl_.items_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::palm::portal::v1::SiteTimezonesResponse_Item>()},
-  }}, {{
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\44\5\0\0\0\0\0\0"
+    "palm.portal.v1.SiteTimezonesResponse"
+    "items"
   }},
 };
 
@@ -5478,15 +5349,12 @@ PROTOBUF_NOINLINE void SiteTimezonesResponse::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;
-          for (unsigned i = 0, n = static_cast<unsigned>(
-                                   this_._internal_items_size());
-               i < n; i++) {
-            const auto& repfield = this_._internal_items().Get(i);
-            target =
-                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    1, repfield, repfield.GetCachedSize(),
-                    target, stream);
+          // repeated string items = 1;
+          for (int i = 0, n = this_._internal_items_size(); i < n; ++i) {
+            const auto& s = this_._internal_items().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteTimezonesResponse.items");
+            target = stream->WriteString(1, s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -5514,11 +5382,13 @@ PROTOBUF_NOINLINE void SiteTimezonesResponse::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;
+            // repeated string items = 1;
             {
-              total_size += 1UL * this_._internal_items_size();
-              for (const auto& msg : this_._internal_items()) {
-                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_items().size());
+              for (int i = 0, n = this_._internal_items().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_items().Get(i));
               }
             }
           }
@@ -5534,8 +5404,7 @@ void SiteTimezonesResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, c
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_items()->MergeFrom(
-      from._internal_items());
+  _this->_internal_mutable_items()->MergeFrom(from._internal_items());
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 

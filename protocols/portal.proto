@@ -109,8 +109,7 @@ service Site {
   rpc Languages(google.protobuf.Empty) returns (SiteLanguagesResponse) {}
 }
 message SiteTimezonesResponse {
-  message Item {}
-  repeated Item items = 1;
+  repeated string items = 1;
 }
 message SiteLanguagesResponse {
   repeated string items = 1;

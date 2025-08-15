@@ -404,10 +404,10 @@ export namespace UserSignInResponse {
 }
 
 export class SiteTimezonesResponse extends jspb.Message {
-  getItemsList(): Array<SiteTimezonesResponse.Item>;
-  setItemsList(value: Array<SiteTimezonesResponse.Item>): SiteTimezonesResponse;
+  getItemsList(): Array<string>;
+  setItemsList(value: Array<string>): SiteTimezonesResponse;
   clearItemsList(): SiteTimezonesResponse;
-  addItems(value?: SiteTimezonesResponse.Item, index?: number): SiteTimezonesResponse.Item;
+  addItems(value: string, index?: number): SiteTimezonesResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SiteTimezonesResponse.AsObject;
@@ -419,23 +419,8 @@ export class SiteTimezonesResponse extends jspb.Message {
 
 export namespace SiteTimezonesResponse {
   export type AsObject = {
-    itemsList: Array<SiteTimezonesResponse.Item.AsObject>,
+    itemsList: Array<string>,
   }
-
-  export class Item extends jspb.Message {
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Item.AsObject;
-    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
-    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Item;
-    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
-  }
-
-  export namespace Item {
-    export type AsObject = {
-    }
-  }
-
 }
 
 export class SiteLanguagesResponse extends jspb.Message {

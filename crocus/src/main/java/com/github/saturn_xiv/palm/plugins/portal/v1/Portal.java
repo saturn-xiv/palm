@@ -106,11 +106,6 @@ public final class Portal {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_SiteTimezonesResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_SiteTimezonesResponse_Item_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_SiteTimezonesResponse_Item_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_SiteLanguagesResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -168,37 +163,36 @@ public final class Portal {
       "ilRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001" +
       "(\t\022+\n\003ttl\030\t \001(\0132\031.google.protobuf.Durati" +
       "onH\000\210\001\001B\006\n\004_ttl\"#\n\022UserSignInResponse\022\r\n" +
-      "\005token\030\001 \001(\t\"Z\n\025SiteTimezonesResponse\0229\n" +
-      "\005items\030\001 \003(\0132*.palm.portal.v1.SiteTimezo" +
-      "nesResponse.Item\032\006\n\004Item\"&\n\025SiteLanguage" +
-      "sResponse\022\r\n\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenc" +
-      "iesResponse\022:\n\005items\030\001 \003(\0132+.palm.portal" +
-      ".v1.SiteCurrenciesResponse.Item\032y\n\004Item\022" +
-      "\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022" +
-      "\017\n\007country\030\004 \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004" +
-      "fund\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006L" +
-      "ocale\022D\n\005Index\022\024.palm.portal.v1.Page\032#.p" +
-      "alm.portal.v1.LocaleIndexResponse\"\000\022G\n\006C" +
-      "reate\022#.palm.portal.v1.LocaleCreateReque" +
-      "st\032\026.google.protobuf.Empty\"\000\022G\n\006Update\022#" +
-      ".palm.portal.v1.LocaleUpdateRequest\032\026.go" +
-      "ogle.protobuf.Empty\"\000\022>\n\007Destroy\022\031.palm." +
-      "portal.v1.IdRequest\032\026.google.protobuf.Em" +
-      "pty\"\000\022U\n\006ByLang\022#.palm.portal.v1.LocaleB" +
-      "yLangRequest\032$.palm.portal.v1.LocaleByLa" +
-      "ngResponse\"\0002\261\001\n\004User\022_\n\rSignInByEmail\022(" +
-      ".palm.portal.v1.UserSignInByEmailRequest" +
-      "\032\".palm.portal.v1.UserSignInResponse\"\000\022H" +
-      "\n\010IndexLog\022\024.palm.portal.v1.Page\032$.palm." +
-      "portal.v1.UserIndexLogResponse\"\0002\010\n\006Poli" +
-      "cy2\362\001\n\004Site\022L\n\tTimezones\022\026.google.protob" +
-      "uf.Empty\032%.palm.portal.v1.SiteTimezonesR" +
-      "esponse\"\000\022N\n\nCurrencies\022\026.google.protobu" +
-      "f.Empty\032&.palm.portal.v1.SiteCurrenciesR" +
-      "esponse\"\000\022L\n\tLanguages\022\026.google.protobuf" +
-      ".Empty\032%.palm.portal.v1.SiteLanguagesRes" +
-      "ponse\"\000B7\n,com.github.saturn_xiv.palm.pl" +
-      "ugins.portal.v1P\001Z\005./;v2b\006proto3"
+      "\005token\030\001 \001(\t\"&\n\025SiteTimezonesResponse\022\r\n" +
+      "\005items\030\001 \003(\t\"&\n\025SiteLanguagesResponse\022\r\n" +
+      "\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenciesResponse\022" +
+      ":\n\005items\030\001 \003(\0132+.palm.portal.v1.SiteCurr" +
+      "enciesResponse.Item\032y\n\004Item\022\n\n\002id\030\001 \001(\r\022" +
+      "\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007country\030\004" +
+      " \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004fund\030\006 \001(\010H\001" +
+      "\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006Locale\022D\n\005Ind" +
+      "ex\022\024.palm.portal.v1.Page\032#.palm.portal.v" +
+      "1.LocaleIndexResponse\"\000\022G\n\006Create\022#.palm" +
+      ".portal.v1.LocaleCreateRequest\032\026.google." +
+      "protobuf.Empty\"\000\022G\n\006Update\022#.palm.portal" +
+      ".v1.LocaleUpdateRequest\032\026.google.protobu" +
+      "f.Empty\"\000\022>\n\007Destroy\022\031.palm.portal.v1.Id" +
+      "Request\032\026.google.protobuf.Empty\"\000\022U\n\006ByL" +
+      "ang\022#.palm.portal.v1.LocaleByLangRequest" +
+      "\032$.palm.portal.v1.LocaleByLangResponse\"\000" +
+      "2\261\001\n\004User\022_\n\rSignInByEmail\022(.palm.portal" +
+      ".v1.UserSignInByEmailRequest\032\".palm.port" +
+      "al.v1.UserSignInResponse\"\000\022H\n\010IndexLog\022\024" +
+      ".palm.portal.v1.Page\032$.palm.portal.v1.Us" +
+      "erIndexLogResponse\"\0002\010\n\006Policy2\362\001\n\004Site\022" +
+      "L\n\tTimezones\022\026.google.protobuf.Empty\032%.p" +
+      "alm.portal.v1.SiteTimezonesResponse\"\000\022N\n" +
+      "\nCurrencies\022\026.google.protobuf.Empty\032&.pa" +
+      "lm.portal.v1.SiteCurrenciesResponse\"\000\022L\n" +
+      "\tLanguages\022\026.google.protobuf.Empty\032%.pal" +
+      "m.portal.v1.SiteLanguagesResponse\"\000B7\n,c" +
+      "om.github.saturn_xiv.palm.plugins.portal" +
+      ".v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -303,12 +297,6 @@ public final class Portal {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor,
         new java.lang.String[] { "Items", });
-    internal_static_palm_portal_v1_SiteTimezonesResponse_Item_descriptor =
-      internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor.getNestedTypes().get(0);
-    internal_static_palm_portal_v1_SiteTimezonesResponse_Item_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_SiteTimezonesResponse_Item_descriptor,
-        new java.lang.String[] { });
     internal_static_palm_portal_v1_SiteLanguagesResponse_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_palm_portal_v1_SiteLanguagesResponse_fieldAccessorTable = new

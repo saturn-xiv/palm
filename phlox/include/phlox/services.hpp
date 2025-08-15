@@ -1,3 +1,5 @@
+#pragma once
+
 #include "monitoring.grpc.pb.h"
 #include "palm/jwt.hpp"
 #include "palm/search.hpp"

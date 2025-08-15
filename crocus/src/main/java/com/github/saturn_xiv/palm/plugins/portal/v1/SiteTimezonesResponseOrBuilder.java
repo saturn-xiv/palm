@@ -10,26 +10,27 @@ public interface SiteTimezonesResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @return A list containing the items.
    */
-  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item> 
+  java.util.List<java.lang.String>
       getItemsList();
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
-   */
-  com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.Item getItems(int index);
-  /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @return The count of items.
    */
   int getItemsCount();
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @param index The index of the element to return.
+   * @return The items at the given index.
    */
-  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder> 
-      getItemsOrBuilderList();
+  java.lang.String getItems(int index);
   /**
-   * <code>repeated .palm.portal.v1.SiteTimezonesResponse.Item items = 1;</code>
+   * <code>repeated string items = 1;</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the items at the given index.
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse.ItemOrBuilder getItemsOrBuilder(
-      int index);
+  com.google.protobuf.ByteString
+      getItemsBytes(int index);
 }

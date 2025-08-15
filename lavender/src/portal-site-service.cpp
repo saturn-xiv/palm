@@ -3,7 +3,9 @@
 grpc::Status lavender::portal::services::SiteService::Timezones(
     grpc::ServerContext* context, const google::protobuf::Empty* request,
     palm::portal::v1::SiteTimezonesResponse* reply) {
-  // TODO
+  for (auto& it : std::chrono::get_tzdb().zones) {
+    reply->add_items(it.name());
+  }
   return grpc::Status::OK;
 }
 grpc::Status lavender::portal::services::SiteService::Languages(
