@@ -148,10 +148,8 @@ void phlox::monitoring::logging::StdinSource::execute(
     it.set_file("stdin");
     it.set_line(line);
     {
-      const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
       auto at = it.mutable_created_at();
-      at->set_seconds(now.seconds());
-      at->set_nanos(now.nanos());
+      palm::now(at);
     }
     items.push_back(it);
 

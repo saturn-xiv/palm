@@ -65,10 +65,8 @@ class FilesystemNotify : public Source {
       log.set_file(p.string());
       log.set_line(line);
       {
-        const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
         auto at = log.mutable_created_at();
-        at->set_seconds(now.seconds());
-        at->set_nanos(now.nanos());
+        palm::now(at);
       }
       items.push_back(log);
 

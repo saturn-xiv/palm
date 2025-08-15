@@ -1,7 +1,10 @@
 #pragma once
 
 #include "palm/http.hpp"
+#include "palm/session.hpp"
 #include "portal.pb.h"
+
+#include <functional>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/optional.hpp>
@@ -50,6 +53,11 @@ class Theme {
 void set_logger(httplib::Server& server);
 void tm2ts(std::tm* time, google::protobuf::Timestamp* timestamp);
 void str2ts(const std::string& time, google::protobuf::Timestamp* timestamp);
+inline void now(google::protobuf::Timestamp* timestamp) {
+  const auto it = google::protobuf::util::TimeUtil::GetCurrentTime();
+  timestamp->set_seconds(it.seconds());
+  timestamp->set_nanos(it.nanos());
+}
 /*
 PostgreSQL: timestamp without time zone
 2025-07-13 10:49:04.782031+00
@@ -67,11 +75,44 @@ inline std::optional<std::string> to_json(
   return std::nullopt;
 }
 
+inline grpc::Status from_json(const std::string buffer,
+                              google::protobuf::Message* message) {
+  const auto status =
+      google::protobuf::util::JsonStringToMessage(buffer, message);
+  return status.ok()
+             ? grpc::Status::OK
+             : grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid json");
+}
+
 namespace http {
-inline void abort(httplib::Response& response, const std::string& content,
-                  int status = httplib::StatusCode::InternalServerError_500) {
+
+struct GRpcHandler {
+  std::string package;
+  std::string service;
+  std::string method;
+  std::function<std::pair<grpc::Status,
+                          std::shared_ptr<google::protobuf::Message>>(
+      std::shared_ptr<grpc::Channel>, grpc::ClientContext&, const std::string&)>
+      handler;
+
+  bool operator<(const GRpcHandler& other) const {
+    if (package != other.package) {
+      return package < other.package;
+    }
+    if (service != other.service) {
+      return service < other.service;
+    }
+    return method < other.method;
+  }
+};
+inline void text(httplib::Response& response, const std::string& content = "",
+                 int status = httplib::StatusCode::OK_200) {
   response.set_content(content, palm::http::content_type::TEXT_PLAIN_UTF8);
   response.status = status;
+}
+inline void abort(httplib::Response& response, const std::string& content = "",
+                  int status = httplib::StatusCode::InternalServerError_500) {
+  text(response, content, status);
 }
 inline void abort(httplib::Response& response, const grpc::Status& status,
                   int code = httplib::StatusCode::InternalServerError_500) {
@@ -99,6 +140,37 @@ inline void json(httplib::Response& response,
     abort(response, it);
   }
 }
+
+void mount(httplib::Server& server, const std::string& path,
+           std::shared_ptr<grpc::Channel> channel,
+           const std::set<GRpcHandler>& handlers) {
+  server.Post(std::format("{}/:package/:service/:method", path),
+              [ch = channel, hnd = handlers](const httplib::Request& req,
+                                             httplib::Response& res) mutable {
+                const auto pkg = req.path_params.at("package");
+                const auto srv = req.path_params.at("service");
+                const auto mth = req.path_params.at("method");
+                grpc::ClientContext ctx;
+                palm::Session::init(req, &ctx);
+                for (auto& h : hnd) {
+                  if (h.package == pkg && h.service == srv && h.method == mth) {
+                    const auto& [sts, msg] = h.handler(ch, ctx, req.body);
+                    if (sts.ok()) {
+                      if (msg) {
+                        palm::http::json(res, *msg);
+                      } else {
+                        palm::http::text(res);
+                      }
+                    } else {
+                      palm::http::abort(res, sts);
+                    }
+                    return;
+                  }
+                }
+                res.status = httplib::StatusCode::NotFound_404;
+              });
+}
+
 }  // namespace http
 }  // namespace palm
 
