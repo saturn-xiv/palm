@@ -10,9 +10,13 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
+import io.netty.handler.codec.http.HttpHeaderNames;
+import io.netty.handler.codec.http.HttpHeaderValues;
+import reactor.core.publisher.Mono;
+import reactor.netty.http.server.HttpServer;
+import com.google.protobuf.Empty;
 
 import com.github.saturn_xiv.palm.hyacinth.models.Config;
-import com.google.protobuf.Empty;
 
 public class Server {
     public Server(String config_file) throws IOException {
@@ -30,10 +34,19 @@ public class Server {
                     .usePlaintext().build();
             this.channels.put(name, channel);
         }
+
     }
 
     public void launch(int port) {
         logger.info("listen on http://0.0.0.0:{}", port);
+        var server = HttpServer.create()
+                .port(port)
+                .route(routes -> routes.post("/hi/{param}",
+                        // curl -v -X POST http://localhost:8080/hi/John
+                        (request, response) -> response
+                                .header(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.TEXT_PLAIN)
+                                .sendString(Mono.just(String.format("Hello, %s!", request.param("param"))))));
+        server.bindNow().onDispose().block();
     }
 
     void handle(final String host, final String package_, final String service, final String method,
