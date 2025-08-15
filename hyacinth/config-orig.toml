@@ -1,3 +1,13 @@
-[backend]
+[backends]
+
+[backends.main]
 host = "127.0.0.1"
 port = 10080
+
+[backends.node-1]
+host = "127.0.0.1"
+port = 10081
+
+[backends.node-2]
+host = "127.0.0.1"
+port = 10082

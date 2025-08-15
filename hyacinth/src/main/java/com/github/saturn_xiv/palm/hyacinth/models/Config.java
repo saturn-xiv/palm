@@ -1,5 +1,7 @@
 package com.github.saturn_xiv.palm.hyacinth.models;
 
-public record Config(Backend backend) {
+import java.util.Map;
+
+public record Config(Map<String, Backend> backends) {
 
 }
