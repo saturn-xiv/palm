@@ -1,41 +1,40 @@
 package com.github.saturn_xiv.palm.hyacinth;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.grpc.Channel;
+import io.grpc.ManagedChannel;
 import io.grpc.Status;
-import reactor.netty.http.server.HttpServerRequest;
-import reactor.netty.http.server.HttpServerResponse;
 
 import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 import com.github.saturn_xiv.palm.hyacinth.models.HttpResponse;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 public class ProtobufHandler {
-    public ProtobufHandler(Map<String, Channel> channels) {
+    public ProtobufHandler(Map<String, ManagedChannel> channels) {
         this.channels = channels;
     }
 
-    public void handle(HttpServerRequest request, HttpServerResponse response) {
-    }
+    HttpResponse handle(final String host, final HttpRequest request) {
+        logger.info("handle {}://{}/{}/{}?q={}", host, request.package_(), request.service(),
+                request.method(), request.requestType());
 
-    HttpResponse handle(final HttpRequest request) {
-        logger.debug("handle {}://{}/{}/{}?q={}&p={}", request.host(), request.package_(), request.service(),
-                request.method(), request.requestType(), request.responseType());
-
-        var channel = this.channels.get(request.host());
+        var channel = this.channels.get(host);
         if (channel == null) {
             return new HttpResponse(Status.NOT_FOUND, null);
         }
-        // Empty request = Empty.newBuilder().build();
-        // GreeterGrpc.GreeterBlockingStub blockingStub=
-        // GreeterGrpc.newBlockingStub(channel);
-        // response = blockingStub.sayHello(request);
-        return new HttpResponse(Status.NOT_FOUND, null);
+        try {
+            var response = request.execute(channel);
+            return new HttpResponse(Status.OK, response);
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException
+                | InvocationTargetException | InvalidProtocolBufferException e) {
+            logger.error("", e);
+            return new HttpResponse(Status.INVALID_ARGUMENT, null);
+        }
     }
 
-    private final Map<String, Channel> channels;
+    private final Map<String, ManagedChannel> channels;
     private static final Logger logger = LoggerFactory.getLogger(ProtobufHandler.class);
 }

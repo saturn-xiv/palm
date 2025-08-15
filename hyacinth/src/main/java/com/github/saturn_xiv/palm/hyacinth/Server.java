@@ -9,8 +9,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
-import io.grpc.Channel;
-import io.grpc.ManagedChannelBuilder;
+
+import io.grpc.Grpc;
+import io.grpc.InsecureChannelCredentials;
+import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpHeaderValues;
@@ -36,9 +38,9 @@ public class Server {
             var host = entry.getValue().host();
             var port = entry.getValue().port();
             logger.debug("found rpc backend {}(tcp://{}:{})", name, host, port);
-            var channel = ManagedChannelBuilder.forAddress(host, port)
-                    // .useTransportSecurity()
-                    .usePlaintext().build();
+            var channel = Grpc
+                    .newChannelBuilderForAddress(host, port, InsecureChannelCredentials.create())
+                    .build();
             this.channels.put(name, channel);
         }
 
@@ -55,9 +57,7 @@ public class Server {
                             QueryStringDecoder decoder = new QueryStringDecoder(uri);
                             Map<String, List<String>> queryParams = decoder.parameters();
                             List<String> requestTypes = queryParams.get("q");
-                            List<String> responseTypes = queryParams.get("p");
-                            if (requestTypes == null || requestTypes.size() != 1 || responseTypes == null
-                                    || responseTypes.size() != 1) {
+                            if (requestTypes == null || requestTypes.size() != 1) {
                                 return response.status(HttpResponseStatus.BAD_REQUEST)
                                         .header(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.TEXT_PLAIN)
                                         .sendString(Mono.just(""));
@@ -65,16 +65,16 @@ public class Server {
                             return request.receive()
                                     .asString()
                                     .flatMap(requestBody -> {
-                                        final var req = new HttpRequest(request.param("host"), request.param("package"),
+                                        final var req = new HttpRequest(request.param("package"),
                                                 request.param("service"), request.param("method"),
                                                 request.requestHeaders().get(HttpHeaderNames.AUTHORIZATION),
-                                                requestTypes.getFirst(), requestBody,
-                                                responseTypes.getFirst());
-                                        var reply = handler.handle(req);
+                                                requestTypes.getFirst(), requestBody);
+                                        var reply = handler.handle(request.param("host"), req);
                                         if (reply.status().isOk()) {
                                             var it = reply.body().orElse(Empty.newBuilder());
                                             try {
                                                 String body = JsonFormat.printer().print(it);
+                                                logger.info("{} {} bytes", reply.status().getCode(), body.length());
                                                 return response.status(HttpResponseStatus.OK)
                                                         .header(HttpHeaderNames.CONTENT_TYPE,
                                                                 HttpHeaderValues.APPLICATION_JSON)
@@ -102,6 +102,6 @@ public class Server {
         server.bindNow().onDispose().block();
     }
 
-    private Map<String, Channel> channels;
+    private Map<String, ManagedChannel> channels;
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
 }
