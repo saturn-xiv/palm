@@ -24,8 +24,10 @@ public class Server {
             var name = entry.getKey();
             var host = entry.getValue().host();
             var port = entry.getValue().port();
-            logger.debug("found rpc {} backend tcp://{}:{}", name, host, port);
-            var channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+            logger.debug("found rpc backend {}(tcp://{}:{})", name, host, port);
+            var channel = ManagedChannelBuilder.forAddress(host, port)
+                    // .useTransportSecurity()
+                    .usePlaintext().build();
             this.channels.put(name, channel);
         }
     }
