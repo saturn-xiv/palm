@@ -9,7 +9,7 @@
 
 #include <spdlog/spdlog.h>
 
-bool aloe::tcp(const std::string& host, uint8_t port) {
+bool aloe::tcp(const std::string& host, uint16_t port) {
   int sock = socket(AF_INET, SOCK_STREAM, 0);
   if (sock == -1) {
     spdlog::error("socket creation failed");
