@@ -46,6 +46,21 @@ function generate_phlox_dashboard() {
         portal.proto monitoring.proto
 }
 
+function generate_crocus() {
+    echo "generate grpc protocols(java) for crocus..."
+    local target=$WORK_DIR/crocus/src/main/java/
+    if [ -d $target/com/github/saturn_xiv/palm/plugins ]
+    then
+        rm -r $target/com/github/saturn_xiv/palm/plugins
+    fi
+    mkdir -p $target
+    $PROTOBUF_HOME/bin/protoc -I $PROTOCOLS_HOME \
+        -I $PROTOBUF_HOME/include/google/protobuf \
+        --java_out=$target --grpc_out=$target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_java_plugin \
+        $PROTOCOLS_HOME/*.proto
+}
+
 echo "clean gourd project"
 if [ -d $WORK_DIR/gourd ]; then
     rm -r $WORK_DIR/gourd
@@ -55,6 +70,8 @@ generate_gourd_thrift
 generate_gourd_grpc
 
 generate_phlox_dashboard
+
+generate_crocus
 
 echo 'done.'
 exit 0

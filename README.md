@@ -28,3 +28,4 @@ $ ./docker/begonia/start.sh
 - [OpenSearch Data types](https://docs.opensearch.org/latest/search-plugins/sql/datatypes/)
 - [ProtoJSON Format](https://protobuf.dev/programming-guides/json/)
 - [Protocol Buffers Version Support](https://protobuf.dev/support/version-support/)
+- [Maven Quickstart Archetype](https://maven.apache.org/archetypes/maven-archetype-quickstart/)
