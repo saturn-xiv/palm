@@ -64,8 +64,8 @@ function generate_crocus() {
 }
 
 function generate_jasmine() {
-    echo "generate grpc protocols(go) for jasmine..."
-    local target=$WORK_DIR/jasmine/services/v2
+    echo "generate grpc protocols(go) for jasmine.$1..."
+    local target=$WORK_DIR/jasmine/services/$1/v2
     if [ -d $target ]; then
         rm -f $target/*.pb.go
     else
@@ -80,7 +80,7 @@ function generate_jasmine() {
         -I $PROTOBUF_HOME/include/google/protobuf \
         --go_out=$target --go_opt=paths=source_relative \
         --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
-        $PROTOCOLS_HOME/*.proto
+        $PROTOCOLS_HOME/$1.proto
 }
 
 # -----------------------------------------------------------------------------
@@ -96,7 +96,11 @@ generate_gourd_grpc
 generate_phlox_dashboard
 
 generate_crocus
-generate_jasmine
+generate_jasmine sms
+generate_jasmine mail
+generate_jasmine s3
+generate_jasmine casbin
+generate_jasmine portal
 
 echo 'done.'
 exit 0
