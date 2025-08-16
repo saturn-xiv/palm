@@ -67,6 +67,7 @@ inline constexpr EmailSendTask_Attachment::Impl_::Impl_(
         body_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        inline__{false},
         _cached_size_{0} {}
 
 template <typename>
@@ -192,6 +193,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::mail::v1::EmailSendTask_Attachment, _impl_.title_),
         PROTOBUF_FIELD_OFFSET(::palm::mail::v1::EmailSendTask_Attachment, _impl_.content_type_),
         PROTOBUF_FIELD_OFFSET(::palm::mail::v1::EmailSendTask_Attachment, _impl_.body_),
+        PROTOBUF_FIELD_OFFSET(::palm::mail::v1::EmailSendTask_Attachment, _impl_.inline__),
         PROTOBUF_FIELD_OFFSET(::palm::mail::v1::EmailSendTask, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::mail::v1::EmailSendTask, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -221,7 +223,7 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::palm::mail::v1::EmailSendTask_Address)},
         {10, -1, -1, sizeof(::palm::mail::v1::EmailSendTask_Body)},
         {20, -1, -1, sizeof(::palm::mail::v1::EmailSendTask_Attachment)},
-        {31, 46, -1, sizeof(::palm::mail::v1::EmailSendTask)},
+        {32, 47, -1, sizeof(::palm::mail::v1::EmailSendTask)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::mail::v1::_EmailSendTask_Address_default_instance_._instance,
@@ -231,7 +233,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_mail_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\nmail.proto\022\014palm.mail.v1\"\344\003\n\rEmailSend"
+    "\n\nmail.proto\022\014palm.mail.v1\"\364\003\n\rEmailSend"
     "Task\0221\n\004from\030\001 \001(\0132#.palm.mail.v1.EmailS"
     "endTask.Address\022/\n\002to\030\002 \001(\0132#.palm.mail."
     "v1.EmailSendTask.Address\022\017\n\007subject\030\003 \001("
@@ -242,16 +244,16 @@ const char descriptor_table_protodef_mail_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "nts\030\t \003(\0132&.palm.mail.v1.EmailSendTask.A"
     "ttachment\032&\n\007Address\022\014\n\004name\030\001 \001(\t\022\r\n\005em"
     "ail\030\002 \001(\t\032%\n\004Body\022\014\n\004html\030\001 \001(\010\022\017\n\007conte"
-    "nt\030\002 \001(\t\032\?\n\nAttachment\022\r\n\005title\030\001 \001(\t\022\024\n"
-    "\014content_type\030\002 \001(\t\022\014\n\004body\030\t \001(\014B5\n*com"
-    ".github.saturn_xiv.palm.plugins.mail.v1P"
-    "\001Z\005./;v2b\006proto3"
+    "nt\030\002 \001(\t\032O\n\nAttachment\022\r\n\005title\030\001 \001(\t\022\024\n"
+    "\014content_type\030\002 \001(\t\022\014\n\004body\030\010 \001(\014\022\016\n\006inl"
+    "ine\030\t \001(\010B5\n*com.github.saturn_xiv.palm."
+    "plugins.mail.v1P\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_mail_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_mail_2eproto = {
     false,
     false,
-    576,
+    592,
     descriptor_table_protodef_mail_2eproto,
     "mail.proto",
     &descriptor_table_mail_2eproto_once,
@@ -819,6 +821,7 @@ EmailSendTask_Attachment::EmailSendTask_Attachment(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.inline__ = from._impl_.inline__;
 
   // @@protoc_insertion_point(copy_constructor:palm.mail.v1.EmailSendTask.Attachment)
 }
@@ -832,6 +835,7 @@ inline PROTOBUF_NDEBUG_INLINE EmailSendTask_Attachment::Impl_::Impl_(
 
 inline void EmailSendTask_Attachment::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.inline__ = {};
 }
 EmailSendTask_Attachment::~EmailSendTask_Attachment() {
   // @@protoc_insertion_point(destructor:palm.mail.v1.EmailSendTask.Attachment)
@@ -883,15 +887,15 @@ const ::google::protobuf::internal::ClassData* EmailSendTask_Attachment::GetClas
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 0, 63, 2> EmailSendTask_Attachment::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 0, 63, 2> EmailSendTask_Attachment::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    9, 8,  // max_field_number, fast_idx_mask
+    9, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967036,  // skipmap
+    4294966908,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -901,12 +905,16 @@ const ::_pbi::TcParseTable<1, 3, 0, 63, 2> EmailSendTask_Attachment::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::mail::v1::EmailSendTask_Attachment>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string content_type = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.content_type_)}},
+    // bytes body = 8;
+    {::_pbi::TcParser::FastBS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.body_)}},
     // string title = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.title_)}},
+    // string content_type = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.content_type_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -916,9 +924,12 @@ const ::_pbi::TcParseTable<1, 3, 0, 63, 2> EmailSendTask_Attachment::_table_ = {
     // string content_type = 2;
     {PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.content_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bytes body = 9;
+    // bytes body = 8;
     {PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.body_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bool inline = 9;
+    {PROTOBUF_FIELD_OFFSET(EmailSendTask_Attachment, _impl_.inline__), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
   {{
@@ -939,6 +950,7 @@ PROTOBUF_NOINLINE void EmailSendTask_Attachment::Clear() {
   _impl_.title_.ClearToEmpty();
   _impl_.content_type_.ClearToEmpty();
   _impl_.body_.ClearToEmpty();
+  _impl_.inline__ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -973,10 +985,17 @@ PROTOBUF_NOINLINE void EmailSendTask_Attachment::Clear() {
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // bytes body = 9;
+          // bytes body = 8;
           if (!this_._internal_body().empty()) {
             const std::string& _s = this_._internal_body();
-            target = stream->WriteBytesMaybeAliased(9, _s, target);
+            target = stream->WriteBytesMaybeAliased(8, _s, target);
+          }
+
+          // bool inline = 9;
+          if (this_._internal_inline_() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                9, this_._internal_inline_(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1014,10 +1033,14 @@ PROTOBUF_NOINLINE void EmailSendTask_Attachment::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_content_type());
             }
-            // bytes body = 9;
+            // bytes body = 8;
             if (!this_._internal_body().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                               this_._internal_body());
+            }
+            // bool inline = 9;
+            if (this_._internal_inline_() != 0) {
+              total_size += 2;
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1041,6 +1064,9 @@ void EmailSendTask_Attachment::MergeImpl(::google::protobuf::MessageLite& to_msg
   if (!from._internal_body().empty()) {
     _this->_internal_set_body(from._internal_body());
   }
+  if (from._internal_inline_() != 0) {
+    _this->_impl_.inline__ = from._impl_.inline__;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1060,6 +1086,7 @@ void EmailSendTask_Attachment::InternalSwap(EmailSendTask_Attachment* PROTOBUF_R
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_type_, &other->_impl_.content_type_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.body_, &other->_impl_.body_, arena);
+        swap(_impl_.inline__, other->_impl_.inline__);
 }
 
 ::google::protobuf::Metadata EmailSendTask_Attachment::GetMetadata() const {

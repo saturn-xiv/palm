@@ -221,7 +221,8 @@ type EmailSendTask_Attachment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Body          []byte                 `protobuf:"bytes,9,opt,name=body,proto3" json:"body,omitempty"`
+	Body          []byte                 `protobuf:"bytes,8,opt,name=body,proto3" json:"body,omitempty"`
+	Inline        bool                   `protobuf:"varint,9,opt,name=inline,proto3" json:"inline,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -277,12 +278,19 @@ func (x *EmailSendTask_Attachment) GetBody() []byte {
 	return nil
 }
 
+func (x *EmailSendTask_Attachment) GetInline() bool {
+	if x != nil {
+		return x.Inline
+	}
+	return false
+}
+
 var File_mail_proto protoreflect.FileDescriptor
 
 const file_mail_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"mail.proto\x12\fpalm.mail.v1\"\xc9\x04\n" +
+	"mail.proto\x12\fpalm.mail.v1\"\xe1\x04\n" +
 	"\rEmailSendTask\x127\n" +
 	"\x04from\x18\x01 \x01(\v2#.palm.mail.v1.EmailSendTask.AddressR\x04from\x123\n" +
 	"\x02to\x18\x02 \x01(\v2#.palm.mail.v1.EmailSendTask.AddressR\x02to\x12\x18\n" +
@@ -296,12 +304,13 @@ const file_mail_proto_rawDesc = "" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x1a4\n" +
 	"\x04Body\x12\x12\n" +
 	"\x04html\x18\x01 \x01(\bR\x04html\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\x1aY\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\x1aq\n" +
 	"\n" +
 	"Attachment\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12!\n" +
 	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04body\x18\t \x01(\fR\x04bodyB5\n" +
+	"\x04body\x18\b \x01(\fR\x04body\x12\x16\n" +
+	"\x06inline\x18\t \x01(\bR\x06inlineB5\n" +
 	"*com.github.saturn_xiv.palm.plugins.mail.v1P\x01Z\x05./;v2b\x06proto3"
 
 var (

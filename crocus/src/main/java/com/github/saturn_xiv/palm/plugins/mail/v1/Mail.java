@@ -54,7 +54,7 @@ public final class Mail {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nmail.proto\022\014palm.mail.v1\"\344\003\n\rEmailSend" +
+      "\n\nmail.proto\022\014palm.mail.v1\"\364\003\n\rEmailSend" +
       "Task\0221\n\004from\030\001 \001(\0132#.palm.mail.v1.EmailS" +
       "endTask.Address\022/\n\002to\030\002 \001(\0132#.palm.mail." +
       "v1.EmailSendTask.Address\022\017\n\007subject\030\003 \001(" +
@@ -65,10 +65,10 @@ public final class Mail {
       "nts\030\t \003(\0132&.palm.mail.v1.EmailSendTask.A" +
       "ttachment\032&\n\007Address\022\014\n\004name\030\001 \001(\t\022\r\n\005em" +
       "ail\030\002 \001(\t\032%\n\004Body\022\014\n\004html\030\001 \001(\010\022\017\n\007conte" +
-      "nt\030\002 \001(\t\032?\n\nAttachment\022\r\n\005title\030\001 \001(\t\022\024\n" +
-      "\014content_type\030\002 \001(\t\022\014\n\004body\030\t \001(\014B5\n*com" +
-      ".github.saturn_xiv.palm.plugins.mail.v1P" +
-      "\001Z\005./;v2b\006proto3"
+      "nt\030\002 \001(\t\032O\n\nAttachment\022\r\n\005title\030\001 \001(\t\022\024\n" +
+      "\014content_type\030\002 \001(\t\022\014\n\004body\030\010 \001(\014\022\016\n\006inl" +
+      "ine\030\t \001(\010B5\n*com.github.saturn_xiv.palm." +
+      "plugins.mail.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -97,7 +97,7 @@ public final class Mail {
     internal_static_palm_mail_v1_EmailSendTask_Attachment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_mail_v1_EmailSendTask_Attachment_descriptor,
-        new java.lang.String[] { "Title", "ContentType", "Body", });
+        new java.lang.String[] { "Title", "ContentType", "Body", "Inline", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

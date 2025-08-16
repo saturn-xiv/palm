@@ -10,7 +10,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/gomail.v2"
 
-	v2 "github.com/saturn-xiv/palm/jasmine/services/v2"
+	v2 "github.com/saturn-xiv/palm/jasmine/services/mail/v2"
 )
 
 type SendEmailWorker struct {
@@ -25,7 +25,7 @@ func NewSendEmailWorker(dialer *gomail.Dialer, from string, cc []string, bcc []s
 }
 
 func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
-	var task v2.EmailSendRequest
+	var task v2.EmailSendTask
 	if err := proto.Unmarshal(message, &task); err != nil {
 		return err
 	}
@@ -53,9 +53,9 @@ func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
 		}
 		msg.SetHeader("Subject", task.Subject)
 		if task.Body.Html {
-			msg.SetBody("text/plain", task.Body.Text)
+			msg.SetBody("text/plain", task.Body.Content)
 		} else {
-			msg.SetBody("text/html", task.Body.Text)
+			msg.SetBody("text/html", task.Body.Content)
 		}
 
 		{
@@ -74,7 +74,6 @@ func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
 				} else {
 					msg.Attach(file)
 				}
-
 			}
 		}
 	}

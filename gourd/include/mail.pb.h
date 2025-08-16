@@ -439,7 +439,8 @@ class EmailSendTask_Attachment final : public ::google::protobuf::Message
   enum : int {
     kTitleFieldNumber = 1,
     kContentTypeFieldNumber = 2,
-    kBodyFieldNumber = 9,
+    kBodyFieldNumber = 8,
+    kInlineFieldNumber = 9,
   };
   // string title = 1;
   void clear_title() ;
@@ -473,7 +474,7 @@ class EmailSendTask_Attachment final : public ::google::protobuf::Message
   std::string* _internal_mutable_content_type();
 
   public:
-  // bytes body = 9;
+  // bytes body = 8;
   void clear_body() ;
   const std::string& body() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -489,12 +490,22 @@ class EmailSendTask_Attachment final : public ::google::protobuf::Message
   std::string* _internal_mutable_body();
 
   public:
+  // bool inline = 9;
+  void clear_inline_() ;
+  bool inline_() const;
+  void set_inline_(bool value);
+
+  private:
+  bool _internal_inline_() const;
+  void _internal_set_inline_(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:palm.mail.v1.EmailSendTask.Attachment)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 3, 0,
+      2, 4, 0,
       63, 2>
       _table_;
 
@@ -515,6 +526,7 @@ class EmailSendTask_Attachment final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr title_;
     ::google::protobuf::internal::ArenaStringPtr content_type_;
     ::google::protobuf::internal::ArenaStringPtr body_;
+    bool inline__;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1330,7 +1342,7 @@ inline void EmailSendTask_Attachment::set_allocated_content_type(std::string* va
   // @@protoc_insertion_point(field_set_allocated:palm.mail.v1.EmailSendTask.Attachment.content_type)
 }
 
-// bytes body = 9;
+// bytes body = 8;
 inline void EmailSendTask_Attachment::clear_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.body_.ClearToEmpty();
@@ -1376,6 +1388,28 @@ inline void EmailSendTask_Attachment::set_allocated_body(std::string* value) {
     _impl_.body_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.mail.v1.EmailSendTask.Attachment.body)
+}
+
+// bool inline = 9;
+inline void EmailSendTask_Attachment::clear_inline_() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inline__ = false;
+}
+inline bool EmailSendTask_Attachment::inline_() const {
+  // @@protoc_insertion_point(field_get:palm.mail.v1.EmailSendTask.Attachment.inline)
+  return _internal_inline_();
+}
+inline void EmailSendTask_Attachment::set_inline_(bool value) {
+  _internal_set_inline_(value);
+  // @@protoc_insertion_point(field_set:palm.mail.v1.EmailSendTask.Attachment.inline)
+}
+inline bool EmailSendTask_Attachment::_internal_inline_() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.inline__;
+}
+inline void EmailSendTask_Attachment::_internal_set_inline_(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inline__ = value;
 }
 
 // -------------------------------------------------------------------

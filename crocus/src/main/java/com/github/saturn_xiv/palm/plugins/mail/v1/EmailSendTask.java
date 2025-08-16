@@ -1316,10 +1316,16 @@ private static final long serialVersionUID = 0L;
         getContentTypeBytes();
 
     /**
-     * <code>bytes body = 9;</code>
+     * <code>bytes body = 8;</code>
      * @return The body.
      */
     com.google.protobuf.ByteString getBody();
+
+    /**
+     * <code>bool inline = 9;</code>
+     * @return The inline.
+     */
+    boolean getInline();
   }
   /**
    * Protobuf type {@code palm.mail.v1.EmailSendTask.Attachment}
@@ -1439,15 +1445,26 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int BODY_FIELD_NUMBER = 9;
+    public static final int BODY_FIELD_NUMBER = 8;
     private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes body = 9;</code>
+     * <code>bytes body = 8;</code>
      * @return The body.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getBody() {
       return body_;
+    }
+
+    public static final int INLINE_FIELD_NUMBER = 9;
+    private boolean inline_ = false;
+    /**
+     * <code>bool inline = 9;</code>
+     * @return The inline.
+     */
+    @java.lang.Override
+    public boolean getInline() {
+      return inline_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1471,7 +1488,10 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.GeneratedMessage.writeString(output, 2, contentType_);
       }
       if (!body_.isEmpty()) {
-        output.writeBytes(9, body_);
+        output.writeBytes(8, body_);
+      }
+      if (inline_ != false) {
+        output.writeBool(9, inline_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1490,7 +1510,11 @@ private static final long serialVersionUID = 0L;
       }
       if (!body_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(9, body_);
+          .computeBytesSize(8, body_);
+      }
+      if (inline_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, inline_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1513,6 +1537,8 @@ private static final long serialVersionUID = 0L;
           .equals(other.getContentType())) return false;
       if (!getBody()
           .equals(other.getBody())) return false;
+      if (getInline()
+          != other.getInline()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1530,6 +1556,9 @@ private static final long serialVersionUID = 0L;
       hash = (53 * hash) + getContentType().hashCode();
       hash = (37 * hash) + BODY_FIELD_NUMBER;
       hash = (53 * hash) + getBody().hashCode();
+      hash = (37 * hash) + INLINE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getInline());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1664,6 +1693,7 @@ private static final long serialVersionUID = 0L;
         title_ = "";
         contentType_ = "";
         body_ = com.google.protobuf.ByteString.EMPTY;
+        inline_ = false;
         return this;
       }
 
@@ -1706,6 +1736,9 @@ private static final long serialVersionUID = 0L;
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.body_ = body_;
         }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.inline_ = inline_;
+        }
       }
 
       @java.lang.Override
@@ -1732,6 +1765,9 @@ private static final long serialVersionUID = 0L;
         }
         if (other.getBody() != com.google.protobuf.ByteString.EMPTY) {
           setBody(other.getBody());
+        }
+        if (other.getInline() != false) {
+          setInline(other.getInline());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1769,11 +1805,16 @@ private static final long serialVersionUID = 0L;
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
-              case 74: {
+              case 66: {
                 body_ = input.readBytes();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 74
+              } // case 66
+              case 72: {
+                inline_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 72
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1937,7 +1978,7 @@ private static final long serialVersionUID = 0L;
 
       private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes body = 9;</code>
+       * <code>bytes body = 8;</code>
        * @return The body.
        */
       @java.lang.Override
@@ -1945,7 +1986,7 @@ private static final long serialVersionUID = 0L;
         return body_;
       }
       /**
-       * <code>bytes body = 9;</code>
+       * <code>bytes body = 8;</code>
        * @param value The body to set.
        * @return This builder for chaining.
        */
@@ -1957,12 +1998,44 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>bytes body = 9;</code>
+       * <code>bytes body = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearBody() {
         bitField0_ = (bitField0_ & ~0x00000004);
         body_ = getDefaultInstance().getBody();
+        onChanged();
+        return this;
+      }
+
+      private boolean inline_ ;
+      /**
+       * <code>bool inline = 9;</code>
+       * @return The inline.
+       */
+      @java.lang.Override
+      public boolean getInline() {
+        return inline_;
+      }
+      /**
+       * <code>bool inline = 9;</code>
+       * @param value The inline to set.
+       * @return This builder for chaining.
+       */
+      public Builder setInline(boolean value) {
+
+        inline_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool inline = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearInline() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        inline_ = false;
         onChanged();
         return this;
       }

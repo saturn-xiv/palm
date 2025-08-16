@@ -17,7 +17,8 @@ message EmailSendTask {
   message Attachment {
     string title = 1;
     string content_type = 2;
-    bytes body = 9;
+    bytes body = 8;
+    bool inline = 9;
   }
   Address from = 1;
   Address to = 2;
