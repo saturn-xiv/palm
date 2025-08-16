@@ -21,9 +21,9 @@ var (
 )
 
 var root_cmd = &cobra.Command{
-	Use:     "atropa",
-	Short:   "Atropa",
-	Long:    fmt.Sprintf("A collection of rpc services by Go.(%s).", repo_url),
+	Use:     "jasmine",
+	Short:   "Jasmine",
+	Long:    fmt.Sprintf("A web portal application.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
@@ -42,8 +42,9 @@ var (
 	gl_debug  bool
 	gl_config string
 
-	gl_rpc_port uint16
-	gl_web_port uint16
+	gl_rpc_port  uint16
+	gl_web_port  uint16
+	gl_web_theme string
 
 	gl_etc_domain string
 )
@@ -73,13 +74,14 @@ func init() {
 			Short: "Start a HTTP server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := web.Launch(gl_web_port, gl_config, git_version); err != nil {
+				if err := web.Launch(gl_web_port, gl_config, gl_web_theme, git_version); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},
 		}
 
 		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
+		cmd.Flags().StringVarP(&gl_web_theme, "theme", "t", "bootstrap", "website's theme")
 		root_cmd.AddCommand(cmd)
 	}
 	{
