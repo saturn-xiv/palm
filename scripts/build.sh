@@ -17,6 +17,9 @@ function build_on_arch() {
 
     cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/arch
+
+    build_go jasmine amd64
+    build_go jasmine arm64
 }
 
 function build_on_crosstool_ng() {
@@ -51,6 +54,17 @@ function build_x86_64_on_ubuntu() {
     build_deb x86_64 amd64
 }
 
+function build_go() {
+    cd $WORK_DIR/$1/
+
+    local pkg="github.com/saturn-xiv/palm/$1/cmd"
+    # ldflags="-extldflags=-static" -tags sqlite_omit_load_extension
+    local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
+
+    echo "build $1.$2"
+    GOOS=linux GOARCH=$1 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2 
+}
+
 function build_aarch64_on_ubuntu() {
     cd $WORK_DIR/
     cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/ubuntu/gcc/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
@@ -58,6 +72,29 @@ function build_aarch64_on_ubuntu() {
 
     build_deb aarch64 arm64
 }
+
+function build_hyacinth_and_crocus() {
+    local hyacinth_version="2025.8.16"
+    local crocus_version="2025.8.15"
+
+    cd $WORK_DIR/hyacinth/
+    mvn clean
+    mvn package
+    mkdir -p $1
+    cp config-orig.toml logback.xml target/hyacinth-$hyacinth_version-full.jar $1/
+    cat >$1/run.sh <<EOF
+#!/bin/sh
+java -Dlogback.configurationFile=logback.xml -cp 'target/hyacinth-$hyacinth_version-full.jar:libs/*' com.github.saturn_xiv.palm.hyacinth.App -p 8080 -c config.toml
+EOF
+    chmod +x $1/run.sh
+
+    cd $WORK_DIR/crocus/
+    mvn clean
+    mvn package
+    mkdir -p $1/libs
+    cp target/crocus-$crocus_version.jar $1/libs/
+}
+
 
 function build_deb() {
     local target=$WORK_DIR/tmp/$VERSION_CODENAME-$1/palm
@@ -100,6 +137,10 @@ EOF
     cd $WORK_DIR/phlox/
     cp -rv README.md $target/usr/share/palm/phlox/    
     build_dashboard phlox/dashboard $target/usr/share/palm/phlox/dashboard
+
+    build_hyacinth_and_crocus $target/var/lib/palm/hyacinth
+    build_go jasmine $2
+    cp -v $WORK_DIR/tmp/jasmine.$2 $target/usr/bin/
 
     build_assets $target
 

@@ -1,12 +1,12 @@
 FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
 RUN apt install -y lsb-release apt-utils \
     debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
-ENV GCC_VERSION 14
+ENV GCC_VERSION=14
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt -y upgrade
@@ -46,12 +46,25 @@ RUN update-alternatives --set editor /usr/bin/vim.basic
 RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
 
 # https://github.com/nvm-sh/nvm
-ENV NVM_VERSION "v0.40.3"
+ENV NVM_VERSION="v0.40.3"
 RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bashrc
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.bashrc
 RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.bashrc
 RUN bash -c ". $HOME/.nvm/nvm.sh && nvm install --lts"
+
+# https://github.com/sdkman/sdkman-cli
+RUN curl -s "https://get.sdkman.io" | bash
+RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
+RUN bash -c ". $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 24.0.2-open && sdk install maven"
+
+# https://go.dev/doc/install
+ENV GO_VERSION="1.25.0"
+RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
+RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
+RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.bashrc \
+    && echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc \
+    && echo 'export PATH="$(go env GOPATH)/bin:$PATH"' >> $HOME/.bashrc
 
 RUN python3 -m venv $HOME/python3
 RUN echo 'source $HOME/python3/bin/activate' >> $HOME/.bashrc
