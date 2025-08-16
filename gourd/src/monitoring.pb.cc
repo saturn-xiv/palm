@@ -1643,9 +1643,9 @@ const char descriptor_table_protodef_monitoring_2eproto[] ABSL_ATTRIBUTE_SECTION
     "onitoring.v1.PodmanContainersResponse\"\000\022"
     "d\n\nStatistics\022&.palm.monitoring.v1.Podma"
     "nQueryRequest\032,.palm.monitoring.v1.Podma"
-    "nStatisticsResponse\"\000B4\n0com.github.satu"
-    "rn_xiv.palm.plugins.monitoring.v1P\001b\006pro"
-    "to3"
+    "nStatisticsResponse\"\000B;\n0com.github.satu"
+    "rn_xiv.palm.plugins.monitoring.v1P\001Z\005./;"
+    "v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_monitoring_2eproto_deps[2] =
     {
@@ -1656,7 +1656,7 @@ static ::absl::once_flag descriptor_table_monitoring_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_monitoring_2eproto = {
     false,
     false,
-    5043,
+    5050,
     descriptor_table_protodef_monitoring_2eproto,
     "monitoring.proto",
     &descriptor_table_monitoring_2eproto_once,

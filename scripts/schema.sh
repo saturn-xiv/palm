@@ -7,6 +7,8 @@ export PROTOBUF_HOME=$HOME/.local
 export WORK_DIR=$PWD
 export PROTOCOLS_HOME=$WORK_DIR/protocols
 
+# -----------------------------------------------------------------------------
+
 function generate_gourd_thrift() {
     local target=$WORK_DIR/gourd
 
@@ -61,6 +63,28 @@ function generate_crocus() {
         $PROTOCOLS_HOME/*.proto
 }
 
+function generate_jasmine() {
+    echo "generate grpc protocols(go) for jasmine..."
+    local target=$WORK_DIR/jasmine/services/v2
+    if [ -d $target ]; then
+        rm -f $target/*.pb.go
+    else
+        mkdir -p $target
+    fi
+
+    if [ ! -f $target/mod.go ]; then
+        echo "package v2" >$target/mod.go
+    fi
+
+    $PROTOBUF_HOME/bin/protoc -I $PROTOCOLS_HOME \
+        -I $PROTOBUF_HOME/include/google/protobuf \
+        --go_out=$target --go_opt=paths=source_relative \
+        --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
+        $PROTOCOLS_HOME/*.proto
+}
+
+# -----------------------------------------------------------------------------
+
 echo "clean gourd project"
 if [ -d $WORK_DIR/gourd ]; then
     rm -r $WORK_DIR/gourd
@@ -72,6 +96,7 @@ generate_gourd_grpc
 generate_phlox_dashboard
 
 generate_crocus
+generate_jasmine
 
 echo 'done.'
 exit 0

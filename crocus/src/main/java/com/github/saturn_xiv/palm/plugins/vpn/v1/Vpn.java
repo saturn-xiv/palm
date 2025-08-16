@@ -34,9 +34,9 @@ public final class Vpn {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tvpn.proto\022\013palm.vpn.v12\010\n\006MemberB-\n)co" +
+      "\n\tvpn.proto\022\013palm.vpn.v12\010\n\006MemberB4\n)co" +
       "m.github.saturn_xiv.palm.plugins.vpn.v1P" +
-      "\001b\006proto3"
+      "\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

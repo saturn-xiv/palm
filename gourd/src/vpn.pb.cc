@@ -39,15 +39,15 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_vpn_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\tvpn.proto\022\013palm.vpn.v12\010\n\006MemberB-\n)co"
+    "\n\tvpn.proto\022\013palm.vpn.v12\010\n\006MemberB4\n)co"
     "m.github.saturn_xiv.palm.plugins.vpn.v1P"
-    "\001b\006proto3"
+    "\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_vpn_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_vpn_2eproto = {
     false,
     false,
-    89,
+    96,
     descriptor_table_protodef_vpn_2eproto,
     "vpn.proto",
     &descriptor_table_vpn_2eproto_once,

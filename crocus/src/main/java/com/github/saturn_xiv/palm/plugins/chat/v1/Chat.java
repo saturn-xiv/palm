@@ -34,9 +34,9 @@ public final class Chat {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nchat.proto\022\014palm.chat.v12\006\n\004RoomB.\n*co" +
+      "\n\nchat.proto\022\014palm.chat.v12\006\n\004RoomB5\n*co" +
       "m.github.saturn_xiv.palm.plugins.chat.v1" +
-      "P\001b\006proto3"
+      "P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -41,14 +41,14 @@ const char descriptor_table_protodef_logistics_2eproto[] ABSL_ATTRIBUTE_SECTION_
     protodesc_cold) = {
     "\n\017logistics.proto\022\021palm.logistics.v12\006\n\004"
     "Room2\007\n\005Issue2\t\n\007Library2\016\n\014LeaveRequest"
-    "2\t\n\007VisitorB3\n/com.github.saturn_xiv.pal"
-    "m.plugins.logistics.v1P\001b\006proto3"
+    "2\t\n\007VisitorB:\n/com.github.saturn_xiv.pal"
+    "m.plugins.logistics.v1P\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_logistics_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_logistics_2eproto = {
     false,
     false,
-    152,
+    159,
     descriptor_table_protodef_logistics_2eproto,
     "logistics.proto",
     &descriptor_table_logistics_2eproto_once,

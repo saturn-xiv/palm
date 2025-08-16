@@ -39,15 +39,15 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_router_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\014router.proto\022\016palm.router.v12\006\n\004HostB0"
+    "\n\014router.proto\022\016palm.router.v12\006\n\004HostB7"
     "\n,com.github.saturn_xiv.palm.plugins.rou"
-    "ter.v1P\001b\006proto3"
+    "ter.v1P\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_router_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto = {
     false,
     false,
-    96,
+    103,
     descriptor_table_protodef_router_2eproto,
     "router.proto",
     &descriptor_table_router_2eproto_once,

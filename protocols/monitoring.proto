@@ -2,6 +2,7 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.monitoring.v1";
+option go_package = "./;v2";
 package palm.monitoring.v1;
 
 import "google/protobuf/timestamp.proto";

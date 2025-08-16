@@ -34,9 +34,9 @@ public final class Router {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014router.proto\022\016palm.router.v12\006\n\004HostB0" +
+      "\n\014router.proto\022\016palm.router.v12\006\n\004HostB7" +
       "\n,com.github.saturn_xiv.palm.plugins.rou" +
-      "ter.v1P\001b\006proto3"
+      "ter.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

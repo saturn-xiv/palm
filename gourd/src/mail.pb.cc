@@ -243,15 +243,15 @@ const char descriptor_table_protodef_mail_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "ttachment\032&\n\007Address\022\014\n\004name\030\001 \001(\t\022\r\n\005em"
     "ail\030\002 \001(\t\032%\n\004Body\022\014\n\004html\030\001 \001(\010\022\017\n\007conte"
     "nt\030\002 \001(\t\032\?\n\nAttachment\022\r\n\005title\030\001 \001(\t\022\024\n"
-    "\014content_type\030\002 \001(\t\022\014\n\004body\030\t \001(\014B.\n*com"
+    "\014content_type\030\002 \001(\t\022\014\n\004body\030\t \001(\014B5\n*com"
     ".github.saturn_xiv.palm.plugins.mail.v1P"
-    "\001b\006proto3"
+    "\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_mail_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_mail_2eproto = {
     false,
     false,
-    569,
+    576,
     descriptor_table_protodef_mail_2eproto,
     "mail.proto",
     &descriptor_table_mail_2eproto_once,

@@ -36,8 +36,8 @@ public final class Logistics {
     java.lang.String[] descriptorData = {
       "\n\017logistics.proto\022\021palm.logistics.v12\006\n\004" +
       "Room2\007\n\005Issue2\t\n\007Library2\016\n\014LeaveRequest" +
-      "2\t\n\007VisitorB3\n/com.github.saturn_xiv.pal" +
-      "m.plugins.logistics.v1P\001b\006proto3"
+      "2\t\n\007VisitorB:\n/com.github.saturn_xiv.pal" +
+      "m.plugins.logistics.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
