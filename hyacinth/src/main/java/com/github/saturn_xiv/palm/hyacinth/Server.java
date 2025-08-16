@@ -72,7 +72,10 @@ public class Server {
                                         if (reply.status().isOk()) {
                                             var it = reply.body().orElse(Empty.newBuilder());
                                             try {
-                                                String body = JsonFormat.printer().print(it);
+                                                String body = JsonFormat.printer()
+                                                        .alwaysPrintFieldsWithNoPresence()
+                                                        .omittingInsignificantWhitespace()
+                                                        .print(it);
                                                 logger.info("{} {} bytes", reply.status().getCode(), body.length());
                                                 return response.status(HttpResponseStatus.OK)
                                                         .header(HttpHeaderNames.CONTENT_TYPE,
