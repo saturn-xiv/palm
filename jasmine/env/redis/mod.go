@@ -3,6 +3,7 @@ package redis
 import (
 	"context"
 	"fmt"
+	"log/slog"
 
 	"github.com/redis/go-redis/v9"
 )
@@ -28,6 +29,7 @@ func (p *Cluster) Open(ctx context.Context) (*redis.ClusterClient, error) {
 	options := p.Options()
 	db := redis.NewClusterClient(&options)
 	if err := db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
+		slog.Debug("test redis cluster", slog.String("node", shard.Options().Addr))
 		return shard.Ping(ctx).Err()
 	}); err != nil {
 		return nil, err

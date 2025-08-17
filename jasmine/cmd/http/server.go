@@ -28,8 +28,8 @@ func Launch(port uint16, config_file string, theme string, version string) error
 		return err
 	}
 
-	slog.Debug("load views folder")
-	h_tpl, err := h_template.ParseFS(gl_templates_fs, path.Join("views", theme, "*"))
+	slog.Debug("load views folder", slog.String("theme", theme))
+	h_tpl, err := h_template.ParseFS(gl_views_fs, path.Join("views", theme, "*"))
 	if err != nil {
 		return err
 	}
@@ -54,7 +54,7 @@ func Launch(port uint16, config_file string, theme string, version string) error
 		return err
 	}
 
-	_, _, jwt, err := crypto.Open(config.Keys)
+	_, _, jwt, err := crypto.Open(config.SecretsStore)
 	if err != nil {
 		return err
 	}

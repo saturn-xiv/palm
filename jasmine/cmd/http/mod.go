@@ -23,16 +23,16 @@ var gl_assets_fs embed.FS
 
 type Config struct {
 	// openssl rand -base64 32
-	CookieKey      string         `toml:"cookie-key"`
-	CsrfKey        string         `toml:"csrf-key"`
+	CookieSecret   string         `toml:"cookie-secret"`
+	CsrfSecret     string         `toml:"csrf-secret"`
 	AllowedOrigins []string       `toml:"allowed-origins"`
-	Keys           string         `toml:"keys"`
+	SecretsStore   string         `toml:"secrets-store"`
 	Database       env.Database   `toml:"database"`
 	Redis          redis_.Cluster `toml:"redis"`
 }
 
 func (p *Config) OpenSessionStore() (sessions.Store, error) {
-	buf, err := base64.StdEncoding.DecodeString(p.CookieKey)
+	buf, err := base64.StdEncoding.DecodeString(p.CookieSecret)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (p *Config) OpenSessionStore() (sessions.Store, error) {
 }
 
 func (p *Config) OpenCsrf() (func(http_.Handler) http_.Handler, error) {
-	buf, err := base64.StdEncoding.DecodeString(p.CsrfKey)
+	buf, err := base64.StdEncoding.DecodeString(p.CsrfSecret)
 	if err != nil {
 		return nil, err
 	}

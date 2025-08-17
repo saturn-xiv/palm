@@ -12,7 +12,7 @@ import (
 type MySql struct {
 	Host     string `toml:"host"`
 	Port     uint16 `toml:"port"`
-	DbName   string `toml:"dbname"`
+	DbName   string `toml:"db-name"`
 	User     string `toml:"user"`
 	Password string `toml:"password"`
 	PoolSize int    `toml:"pool-size"`

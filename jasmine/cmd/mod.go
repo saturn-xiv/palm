@@ -70,7 +70,7 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "web",
+			Use:   "http",
 			Short: "Start a HTTP server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
