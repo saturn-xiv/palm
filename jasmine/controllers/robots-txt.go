@@ -1,8 +1,12 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
 
-func RobotsTxt(w http.ResponseWriter, r *http.Request) error {
+	"github.com/saturn-xiv/palm/jasmine/web"
+)
+
+func RobotsTxt(r *http.Request) (string, interface{}, error) {
 	// TODO
-	return nil
+	return "robots.txt", web.H{}, nil
 }

@@ -8,8 +8,8 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/saturn-xiv/palm/jasmine/cmd/etc"
+	"github.com/saturn-xiv/palm/jasmine/cmd/http"
 	"github.com/saturn-xiv/palm/jasmine/cmd/rpc"
-	"github.com/saturn-xiv/palm/jasmine/cmd/web"
 )
 
 var (
@@ -74,7 +74,7 @@ func init() {
 			Short: "Start a HTTP server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := web.Launch(gl_web_port, gl_config, gl_web_theme, git_version); err != nil {
+				if err := http.Launch(gl_web_port, gl_config, gl_web_theme, git_version); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},

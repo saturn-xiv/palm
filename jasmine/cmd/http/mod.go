@@ -1,8 +1,9 @@
-package web
+package http
 
 import (
+	"embed"
 	"encoding/base64"
-	"net/http"
+	http_ "net/http"
 
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/sessions"
@@ -10,6 +11,15 @@ import (
 	"github.com/saturn-xiv/palm/jasmine/env"
 	redis_ "github.com/saturn-xiv/palm/jasmine/env/redis"
 )
+
+//go:embed templates/*
+var gl_templates_fs embed.FS
+
+//go:embed views/*/*
+var gl_views_fs embed.FS
+
+//go:embed assets/**/*
+var gl_assets_fs embed.FS
 
 type Config struct {
 	// openssl rand -base64 32
@@ -30,7 +40,7 @@ func (p *Config) OpenSessionStore() (sessions.Store, error) {
 	return store, nil
 }
 
-func (p *Config) OpenCsrf() (func(http.Handler) http.Handler, error) {
+func (p *Config) OpenCsrf() (func(http_.Handler) http_.Handler, error) {
 	buf, err := base64.StdEncoding.DecodeString(p.CsrfKey)
 	if err != nil {
 		return nil, err

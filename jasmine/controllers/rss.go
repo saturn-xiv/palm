@@ -1,10 +1,14 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
 
-func Rss(ctx *Context) HttpHandler {
-	return func(w http.ResponseWriter, r *http.Request) error {
+	"github.com/saturn-xiv/palm/jasmine/web"
+)
+
+func Rss(ctx *Context) web.XmlHttpHandler {
+	return func(r *http.Request) (interface{}, error) {
 		// TODO
-		return nil
+		return web.H{}, nil
 	}
 }

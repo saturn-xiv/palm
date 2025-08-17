@@ -1,6 +1,11 @@
 package env
 
-import "gorm.io/gorm"
+import (
+	"encoding/base64"
+
+	"google.golang.org/protobuf/proto"
+	"gorm.io/gorm"
+)
 
 type Database struct {
 	PostgreSql PostgreSql `toml:"postgresql,omitempty"`
@@ -25,4 +30,23 @@ func (p *Database) Open() (*gorm.DB, error) {
 	}
 	it := Sqlite3{File: "tmp/db"}
 	return it.Open(&config)
+}
+
+// ----------------------------------------------------------------------------
+
+func ProtoBufMessageToString(m proto.Message) (string, error) {
+	out, err := proto.Marshal(m)
+	if err != nil {
+		return "", err
+	}
+	base64.RawURLEncoding.EncodeToString(out)
+	return "", nil
+}
+
+func ProtoBufMessageFromString(s string, m proto.Message) error {
+	buf, err := base64.RawURLEncoding.DecodeString(s)
+	if err != nil {
+		return err
+	}
+	return proto.Unmarshal(buf, m)
 }
