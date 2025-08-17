@@ -62,7 +62,7 @@ function build_go() {
     local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1.$2"
-    GOOS=linux GOARCH=$1 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2 
+    GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2 
 }
 
 function build_aarch64_on_ubuntu() {
@@ -140,7 +140,7 @@ EOF
 
     build_hyacinth_and_crocus $target/var/lib/palm/hyacinth
     build_go jasmine $2
-    cp -v $WORK_DIR/tmp/jasmine.$2 $target/usr/bin/
+    cp -v $WORK_DIR/tmp/jasmine.$2 $target/usr/bin/jasmine
 
     build_assets $target
 
