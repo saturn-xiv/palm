@@ -10,17 +10,22 @@ import (
 
 func Home(ctx *Context) web.HtmlHttpHandler {
 	return func(r *http.Request) (string, interface{}, error) {
-		// TODO
-		return "home.html", web.H{}, nil
+		// TODO get default lang
+		lang := "en-US"
+		return home(ctx, lang)
 	}
 }
 
 func HomeByLang(ctx *Context) web.HtmlHttpHandler {
 	return func(r *http.Request) (string, interface{}, error) {
 		vars := mux.Vars(r)
-		// TODO
-		return "home.html", web.H{
-			"locale": vars["lang"],
-		}, nil
+		return home(ctx, vars["lang"])
 	}
+}
+
+func home(ctx *Context, lang string) (string, interface{}, error) {
+	// TODO
+	return "home.html", web.H{
+		"locale": lang,
+	}, nil
 }

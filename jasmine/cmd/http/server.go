@@ -22,16 +22,25 @@ import (
 )
 
 func Launch(port uint16, config_file string, theme string, version string) error {
-	slog.Debug("load templates folder")
+	slog.Debug("load embed text templates")
 	t_tpl, err := t_template.ParseFS(gl_templates_fs, path.Join("templates", "*"))
 	if err != nil {
 		return err
 	}
 
-	slog.Debug("load views folder", slog.String("theme", theme))
+	slog.Debug("load embed html views", slog.String("theme", theme))
 	h_tpl, err := h_template.ParseFS(gl_views_fs, path.Join("views", theme, "*"))
 	if err != nil {
 		return err
+	}
+	{
+		root := "views"
+		if _, err = os.Stat(root); err == nil {
+			slog.Debug("load html views from filesystem", slog.String("folder", root))
+			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "*")); err != nil {
+				return err
+			}
+		}
 	}
 
 	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
@@ -70,10 +79,18 @@ func Launch(port uint16, config_file string, theme string, version string) error
 
 	{
 		router.PathPrefix("/static/").Handler(http_.StripPrefix("/static/", http_.FileServerFS(gl_assets_fs))).Methods(http_.MethodGet)
+		{
+			root := "public"
+			if _, err = os.Stat(root); err == nil {
+				slog.Debug("mount public folder from filesystem")
+				router.PathPrefix("/public/").Handler(http_.StripPrefix("/public/", http_.FileServer(http_.Dir(root)))).Methods(http_.MethodGet)
+			}
+		}
 		router.HandleFunc("/robots.txt", web.WarpPlain(t_tpl, controllers.RobotsTxt)).Methods(http_.MethodGet).Name("robots.txt")
 		router.HandleFunc("/sitemap.xml", web.WarpXml(controllers.SitemapIndex(&ctx))).Methods(http_.MethodGet).Name("sitemap.index")
 		router.HandleFunc("/sitemap/{lang}.xml", web.WarpXml(controllers.SitemapByLang(&ctx))).Methods(http_.MethodGet).Name("sitemap.by-lang")
 		router.HandleFunc("/rss/{lang}.xml", web.WarpXml(controllers.Rss(&ctx))).Methods(http_.MethodGet).Name("rss.by-lang")
+		router.HandleFunc("/{tid}-{oid}.html", home(&ctx, h_tpl)).Methods(http_.MethodGet).Name("pages.show")
 		router.HandleFunc("/{lang}/", web.WarpHtml(h_tpl, controllers.HomeByLang(&ctx))).Methods(http_.MethodGet).Name("home.by-lang")
 		router.HandleFunc("/", web.WarpHtml(h_tpl, controllers.Home(&ctx))).Methods(http_.MethodGet).Name("home.index")
 	}
@@ -120,4 +137,10 @@ func start(router http_.Handler, port uint16) {
 
 	slog.Warn("shutting down")
 	os.Exit(0)
+}
+
+func home(ctx *controllers.Context, tpl *h_template.Template) http_.HandlerFunc {
+	// TODO redirect if setting.get "home.direct"(url, permanent)
+
+	return web.WarpHtml(tpl, controllers.ShowPage(ctx))
 }

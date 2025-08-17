@@ -34,8 +34,17 @@ func HTML(w http.ResponseWriter, t *h_template.Template, n string, o interface{}
 	w.WriteHeader(s)
 	return t.ExecuteTemplate(w, n, o)
 }
+
 func XML(w http.ResponseWriter, o interface{}, s int) error {
 	w.Header().Set(HeaderContentType, ContentTypeXML)
 	w.WriteHeader(s)
 	return xml.NewEncoder(w).Encode(o)
+}
+
+func Redirect(w http.ResponseWriter, r *http.Request, u string, p bool) {
+	if p {
+		http.Redirect(w, r, u, http.StatusMovedPermanently)
+	} else {
+		http.Redirect(w, r, u, http.StatusFound)
+	}
 }

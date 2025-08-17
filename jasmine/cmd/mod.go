@@ -23,7 +23,7 @@ var (
 var root_cmd = &cobra.Command{
 	Use:     "jasmine",
 	Short:   "Jasmine",
-	Long:    fmt.Sprintf("A web portal application.(%s).", repo_url),
+	Long:    fmt.Sprintf("A web portal application(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
