@@ -48,6 +48,8 @@ var (
 	gl_web_theme string
 
 	gl_etc_domain string
+
+	gl_db_seed_locales_folder string
 )
 
 func init() {
@@ -122,6 +124,20 @@ func init() {
 				}
 			},
 		}
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "db-seed",
+			Short: "Initialize with the seed data",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := db.Seed(gl_config, gl_db_seed_locales_folder); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_db_seed_locales_folder, "locales", "l", "", "load locales from this folder(toml)")
 		root_cmd.AddCommand(cmd)
 	}
 	{
