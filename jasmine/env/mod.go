@@ -1,9 +1,8 @@
 package env
 
 import (
-	"encoding/base64"
+	"errors"
 
-	"google.golang.org/protobuf/proto"
 	"gorm.io/gorm"
 )
 
@@ -11,6 +10,7 @@ type Database struct {
 	PostgreSql PostgreSql `toml:"postgresql,omitempty"`
 	MySql      MySql      `toml:"mysql,omitempty"`
 	SqlServer  SqlServer  `toml:"sqlserver,omitempty"`
+	Sqlite3    Sqlite3    `toml:"sqlite3,omitempty"`
 }
 
 func (p *Database) Open() (*gorm.DB, error) {
@@ -28,25 +28,9 @@ func (p *Database) Open() (*gorm.DB, error) {
 	if len(p.SqlServer.DbName) > 0 {
 		return p.SqlServer.Open(&config)
 	}
-	it := Sqlite3{File: "tmp/db"}
-	return it.Open(&config)
-}
-
-// ----------------------------------------------------------------------------
-
-func ProtoBufMessageToString(m proto.Message) (string, error) {
-	out, err := proto.Marshal(m)
-	if err != nil {
-		return "", err
+	if len(p.Sqlite3.File) > 0 {
+		return p.Sqlite3.Open(&config)
 	}
-	base64.RawURLEncoding.EncodeToString(out)
-	return "", nil
-}
+	return nil, errors.New("couldn't found database")
 
-func ProtoBufMessageFromString(s string, m proto.Message) error {
-	buf, err := base64.RawURLEncoding.DecodeString(s)
-	if err != nil {
-		return err
-	}
-	return proto.Unmarshal(buf, m)
 }

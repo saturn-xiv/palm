@@ -7,6 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/saturn-xiv/palm/jasmine/cmd/db"
 	"github.com/saturn-xiv/palm/jasmine/cmd/etc"
 	"github.com/saturn-xiv/palm/jasmine/cmd/http"
 	"github.com/saturn-xiv/palm/jasmine/cmd/rpc"
@@ -82,6 +83,45 @@ func init() {
 
 		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
 		cmd.Flags().StringVarP(&gl_web_theme, "theme", "t", "bootstrap", "website's theme")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "db-migrate",
+			Short: "Migrate database to the latest version",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := db.Migrate(gl_config); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "db-status",
+			Short: "List applied and pending migrations",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := db.Status(gl_config); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "db-rollback",
+			Short: "Rollback the most recent migration",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := db.Rollback(gl_config); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
 		root_cmd.AddCommand(cmd)
 	}
 	{
