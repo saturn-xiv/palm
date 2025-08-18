@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log/slog"
 	"net/url"
-	"os"
+	"path"
 
 	"github.com/BurntSushi/toml"
 	"github.com/amacneil/dbmate/v2/pkg/dbmate"
@@ -109,21 +109,19 @@ func (p *Config) open_dbmate() (*dbmate.DB, error) {
 	}
 	db := dbmate.New(u)
 	db.Verbose = true
-	db.MigrationsDir = []string{}
-	{
-		dir := "migrations"
-		if _, err := os.Stat(dir); err == nil {
-			db.MigrationsDir = append(db.MigrationsDir, dir)
-		}
-	}
+	db.AutoDumpSchema = false
+	db.MigrationsTableName = "jasmine_schema_migrations"
 
 	switch db.DatabaseURL.Scheme {
 	case "postgres":
 		db.FS = fs_postgresql_migrations
+		db.MigrationsDir = []string{path.Join("postgresql", "migrations")}
 	case "mysql":
 		db.FS = fs_mysql_migrations
+		db.MigrationsDir = []string{path.Join("mysql", "migrations")}
 	case "sqlite":
 		db.FS = fs_sqlite3_migrations
+		db.MigrationsDir = []string{path.Join("sqlite3", "migrations")}
 	default:
 		slog.Warn("Unsupported migration driver", slog.String("schema", u.Scheme))
 	}
