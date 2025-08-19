@@ -26,7 +26,7 @@ var root_cmd = &cobra.Command{
 	Use:     "jasmine",
 	Short:   "Jasmine",
 	Long:    fmt.Sprintf("A web portal application(%s).", repo_url),
-	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
+	Version: version(),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
 			log.Fatal(err)
@@ -65,6 +65,13 @@ var (
 	gl_set_email_user_password_email    string
 	gl_set_email_user_password_password string
 )
+
+func version() string {
+	if len(author_name) > 0 && len(author_email) > 0 {
+		return fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email)
+	}
+	return fmt.Sprintf("%s(%s)", git_version, build_time)
+}
 
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
@@ -217,7 +224,7 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "etc",
+			Use:   "etc-generate",
 			Short: "Generate systemd & nginx configuration file",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)

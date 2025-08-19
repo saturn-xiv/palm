@@ -62,7 +62,16 @@ function build_go() {
     local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1.$2"
-    GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2 
+    if [ $2 == "arm64" ]
+    then
+        CC=aarch64-linux-gnu-gcc CGO_ENABLED=1 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2
+    elif [ $2 == "amd64" ]
+    then
+        GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2
+    else
+        echo "unsupported arch $2"
+        exit 1
+    fi    
 }
 
 function build_aarch64_on_ubuntu() {
