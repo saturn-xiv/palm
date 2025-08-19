@@ -10,57 +10,32 @@ public interface UserRoleRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 enforcerHandler = 1;</code>
-   * @return The enforcerHandler.
+   * <code>.palm.casbin.v1.User user = 1;</code>
+   * @return Whether the user field is set.
    */
-  int getEnforcerHandler();
-
+  boolean hasUser();
   /**
-   * <code>string user = 2;</code>
+   * <code>.palm.casbin.v1.User user = 1;</code>
    * @return The user.
    */
-  java.lang.String getUser();
+  com.github.saturn_xiv.palm.plugins.casbin.v1.User getUser();
   /**
-   * <code>string user = 2;</code>
-   * @return The bytes for user.
+   * <code>.palm.casbin.v1.User user = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getUserBytes();
+  com.github.saturn_xiv.palm.plugins.casbin.v1.UserOrBuilder getUserOrBuilder();
 
   /**
-   * <code>string role = 3;</code>
+   * <code>.palm.casbin.v1.Role role = 2;</code>
+   * @return Whether the role field is set.
+   */
+  boolean hasRole();
+  /**
+   * <code>.palm.casbin.v1.Role role = 2;</code>
    * @return The role.
    */
-  java.lang.String getRole();
+  com.github.saturn_xiv.palm.plugins.casbin.v1.Role getRole();
   /**
-   * <code>string role = 3;</code>
-   * @return The bytes for role.
+   * <code>.palm.casbin.v1.Role role = 2;</code>
    */
-  com.google.protobuf.ByteString
-      getRoleBytes();
-
-  /**
-   * <code>repeated string domain = 4;</code>
-   * @return A list containing the domain.
-   */
-  java.util.List<java.lang.String>
-      getDomainList();
-  /**
-   * <code>repeated string domain = 4;</code>
-   * @return The count of domain.
-   */
-  int getDomainCount();
-  /**
-   * <code>repeated string domain = 4;</code>
-   * @param index The index of the element to return.
-   * @return The domain at the given index.
-   */
-  java.lang.String getDomain(int index);
-  /**
-   * <code>repeated string domain = 4;</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the domain at the given index.
-   */
-  com.google.protobuf.ByteString
-      getDomainBytes(int index);
+  com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder getRoleOrBuilder();
 }

@@ -86,7 +86,67 @@ func (x WatcherMessage_Method) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WatcherMessage_Method.Descriptor instead.
 func (WatcherMessage_Method) EnumDescriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{5, 0}
+	return file_casbin_proto_rawDescGZIP(), []int{6, 0}
+}
+
+type Permission struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Subject       *Subject               `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	Object        *Object                `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	Action        *Action                `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Permission) Reset() {
+	*x = Permission{}
+	mi := &file_casbin_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Permission) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Permission) ProtoMessage() {}
+
+func (x *Permission) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Permission.ProtoReflect.Descriptor instead.
+func (*Permission) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Permission) GetSubject() *Subject {
+	if x != nil {
+		return x.Subject
+	}
+	return nil
+}
+
+func (x *Permission) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+func (x *Permission) GetAction() *Action {
+	if x != nil {
+		return x.Action
+	}
+	return nil
 }
 
 // https://casbin.org/docs/rbac#how-to-distinguish-role-from-user
@@ -103,7 +163,7 @@ type Subject struct {
 
 func (x *Subject) Reset() {
 	*x = Subject{}
-	mi := &file_casbin_proto_msgTypes[0]
+	mi := &file_casbin_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115,7 +175,7 @@ func (x *Subject) String() string {
 func (*Subject) ProtoMessage() {}
 
 func (x *Subject) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[0]
+	mi := &file_casbin_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -128,7 +188,7 @@ func (x *Subject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Subject.ProtoReflect.Descriptor instead.
 func (*Subject) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{0}
+	return file_casbin_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Subject) GetBy() isSubject_By {
@@ -185,7 +245,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_casbin_proto_msgTypes[1]
+	mi := &file_casbin_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -197,7 +257,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[1]
+	mi := &file_casbin_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -210,7 +270,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{1}
+	return file_casbin_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *User) GetBy() isUser_By {
@@ -268,7 +328,7 @@ type Role struct {
 
 func (x *Role) Reset() {
 	*x = Role{}
-	mi := &file_casbin_proto_msgTypes[2]
+	mi := &file_casbin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -280,7 +340,7 @@ func (x *Role) String() string {
 func (*Role) ProtoMessage() {}
 
 func (x *Role) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[2]
+	mi := &file_casbin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -293,7 +353,7 @@ func (x *Role) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Role.ProtoReflect.Descriptor instead.
 func (*Role) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{2}
+	return file_casbin_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Role) GetBy() isRole_By {
@@ -367,7 +427,7 @@ type Object struct {
 
 func (x *Object) Reset() {
 	*x = Object{}
-	mi := &file_casbin_proto_msgTypes[3]
+	mi := &file_casbin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -379,7 +439,7 @@ func (x *Object) String() string {
 func (*Object) ProtoMessage() {}
 
 func (x *Object) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[3]
+	mi := &file_casbin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -392,7 +452,7 @@ func (x *Object) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Object.ProtoReflect.Descriptor instead.
 func (*Object) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{3}
+	return file_casbin_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Object) GetType() string {
@@ -477,7 +537,7 @@ type Action struct {
 
 func (x *Action) Reset() {
 	*x = Action{}
-	mi := &file_casbin_proto_msgTypes[4]
+	mi := &file_casbin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -489,7 +549,7 @@ func (x *Action) String() string {
 func (*Action) ProtoMessage() {}
 
 func (x *Action) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[4]
+	mi := &file_casbin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -502,7 +562,7 @@ func (x *Action) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action.ProtoReflect.Descriptor instead.
 func (*Action) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4}
+	return file_casbin_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Action) GetBy() isAction_By {
@@ -646,7 +706,7 @@ type WatcherMessage struct {
 
 func (x *WatcherMessage) Reset() {
 	*x = WatcherMessage{}
-	mi := &file_casbin_proto_msgTypes[5]
+	mi := &file_casbin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -658,7 +718,7 @@ func (x *WatcherMessage) String() string {
 func (*WatcherMessage) ProtoMessage() {}
 
 func (x *WatcherMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[5]
+	mi := &file_casbin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -671,7 +731,7 @@ func (x *WatcherMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatcherMessage.ProtoReflect.Descriptor instead.
 func (*WatcherMessage) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{5}
+	return file_casbin_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *WatcherMessage) GetId() string {
@@ -688,635 +748,17 @@ func (x *WatcherMessage) GetMethod() WatcherMessage_Method {
 	return WatcherMessage_Update
 }
 
-type NewEnforcerRequest struct {
-	state                   protoimpl.MessageState `protogen:"open.v1"`
-	ModelText               string                 `protobuf:"bytes,1,opt,name=modelText,proto3" json:"modelText,omitempty"`
-	AdapterHandle           int32                  `protobuf:"varint,2,opt,name=adapterHandle,proto3" json:"adapterHandle,omitempty"`
-	EnableAcceptJsonRequest bool                   `protobuf:"varint,3,opt,name=enableAcceptJsonRequest,proto3" json:"enableAcceptJsonRequest,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
-}
-
-func (x *NewEnforcerRequest) Reset() {
-	*x = NewEnforcerRequest{}
-	mi := &file_casbin_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NewEnforcerRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NewEnforcerRequest) ProtoMessage() {}
-
-func (x *NewEnforcerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NewEnforcerRequest.ProtoReflect.Descriptor instead.
-func (*NewEnforcerRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *NewEnforcerRequest) GetModelText() string {
-	if x != nil {
-		return x.ModelText
-	}
-	return ""
-}
-
-func (x *NewEnforcerRequest) GetAdapterHandle() int32 {
-	if x != nil {
-		return x.AdapterHandle
-	}
-	return 0
-}
-
-func (x *NewEnforcerRequest) GetEnableAcceptJsonRequest() bool {
-	if x != nil {
-		return x.EnableAcceptJsonRequest
-	}
-	return false
-}
-
-type NewEnforcerReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Handler       int32                  `protobuf:"varint,1,opt,name=handler,proto3" json:"handler,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *NewEnforcerReply) Reset() {
-	*x = NewEnforcerReply{}
-	mi := &file_casbin_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NewEnforcerReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NewEnforcerReply) ProtoMessage() {}
-
-func (x *NewEnforcerReply) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NewEnforcerReply.ProtoReflect.Descriptor instead.
-func (*NewEnforcerReply) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *NewEnforcerReply) GetHandler() int32 {
-	if x != nil {
-		return x.Handler
-	}
-	return 0
-}
-
-type NewAdapterRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AdapterName   string                 `protobuf:"bytes,1,opt,name=adapterName,proto3" json:"adapterName,omitempty"`
-	DriverName    string                 `protobuf:"bytes,2,opt,name=driverName,proto3" json:"driverName,omitempty"`
-	ConnectString string                 `protobuf:"bytes,3,opt,name=connectString,proto3" json:"connectString,omitempty"`
-	DbSpecified   bool                   `protobuf:"varint,4,opt,name=dbSpecified,proto3" json:"dbSpecified,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *NewAdapterRequest) Reset() {
-	*x = NewAdapterRequest{}
-	mi := &file_casbin_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NewAdapterRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NewAdapterRequest) ProtoMessage() {}
-
-func (x *NewAdapterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NewAdapterRequest.ProtoReflect.Descriptor instead.
-func (*NewAdapterRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *NewAdapterRequest) GetAdapterName() string {
-	if x != nil {
-		return x.AdapterName
-	}
-	return ""
-}
-
-func (x *NewAdapterRequest) GetDriverName() string {
-	if x != nil {
-		return x.DriverName
-	}
-	return ""
-}
-
-func (x *NewAdapterRequest) GetConnectString() string {
-	if x != nil {
-		return x.ConnectString
-	}
-	return ""
-}
-
-func (x *NewAdapterRequest) GetDbSpecified() bool {
-	if x != nil {
-		return x.DbSpecified
-	}
-	return false
-}
-
-type NewAdapterReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Handler       int32                  `protobuf:"varint,1,opt,name=handler,proto3" json:"handler,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *NewAdapterReply) Reset() {
-	*x = NewAdapterReply{}
-	mi := &file_casbin_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NewAdapterReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NewAdapterReply) ProtoMessage() {}
-
-func (x *NewAdapterReply) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NewAdapterReply.ProtoReflect.Descriptor instead.
-func (*NewAdapterReply) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *NewAdapterReply) GetHandler() int32 {
-	if x != nil {
-		return x.Handler
-	}
-	return 0
-}
-
-type EnforceRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	Params          []string               `protobuf:"bytes,2,rep,name=params,proto3" json:"params,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *EnforceRequest) Reset() {
-	*x = EnforceRequest{}
-	mi := &file_casbin_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EnforceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EnforceRequest) ProtoMessage() {}
-
-func (x *EnforceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EnforceRequest.ProtoReflect.Descriptor instead.
-func (*EnforceRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *EnforceRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *EnforceRequest) GetParams() []string {
-	if x != nil {
-		return x.Params
-	}
-	return nil
-}
-
-type BoolReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Res           bool                   `protobuf:"varint,1,opt,name=res,proto3" json:"res,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BoolReply) Reset() {
-	*x = BoolReply{}
-	mi := &file_casbin_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BoolReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BoolReply) ProtoMessage() {}
-
-func (x *BoolReply) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BoolReply.ProtoReflect.Descriptor instead.
-func (*BoolReply) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *BoolReply) GetRes() bool {
-	if x != nil {
-		return x.Res
-	}
-	return false
-}
-
-type EmptyRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Handler       int32                  `protobuf:"varint,1,opt,name=handler,proto3" json:"handler,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmptyRequest) Reset() {
-	*x = EmptyRequest{}
-	mi := &file_casbin_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmptyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmptyRequest) ProtoMessage() {}
-
-func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
-func (*EmptyRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *EmptyRequest) GetHandler() int32 {
-	if x != nil {
-		return x.Handler
-	}
-	return 0
-}
-
-type EmptyReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmptyReply) Reset() {
-	*x = EmptyReply{}
-	mi := &file_casbin_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmptyReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmptyReply) ProtoMessage() {}
-
-func (x *EmptyReply) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmptyReply.ProtoReflect.Descriptor instead.
-func (*EmptyReply) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{13}
-}
-
-type PolicyRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	PType           string                 `protobuf:"bytes,2,opt,name=pType,proto3" json:"pType,omitempty"`
-	Params          []string               `protobuf:"bytes,3,rep,name=params,proto3" json:"params,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *PolicyRequest) Reset() {
-	*x = PolicyRequest{}
-	mi := &file_casbin_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PolicyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PolicyRequest) ProtoMessage() {}
-
-func (x *PolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PolicyRequest.ProtoReflect.Descriptor instead.
-func (*PolicyRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *PolicyRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *PolicyRequest) GetPType() string {
-	if x != nil {
-		return x.PType
-	}
-	return ""
-}
-
-func (x *PolicyRequest) GetParams() []string {
-	if x != nil {
-		return x.Params
-	}
-	return nil
-}
-
-type SimpleGetRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	PType           string                 `protobuf:"bytes,2,opt,name=pType,proto3" json:"pType,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *SimpleGetRequest) Reset() {
-	*x = SimpleGetRequest{}
-	mi := &file_casbin_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SimpleGetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SimpleGetRequest) ProtoMessage() {}
-
-func (x *SimpleGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SimpleGetRequest.ProtoReflect.Descriptor instead.
-func (*SimpleGetRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *SimpleGetRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *SimpleGetRequest) GetPType() string {
-	if x != nil {
-		return x.PType
-	}
-	return ""
-}
-
-type ArrayReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Array         []string               `protobuf:"bytes,1,rep,name=array,proto3" json:"array,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ArrayReply) Reset() {
-	*x = ArrayReply{}
-	mi := &file_casbin_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ArrayReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ArrayReply) ProtoMessage() {}
-
-func (x *ArrayReply) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ArrayReply.ProtoReflect.Descriptor instead.
-func (*ArrayReply) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *ArrayReply) GetArray() []string {
-	if x != nil {
-		return x.Array
-	}
-	return nil
-}
-
-type FilteredPolicyRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	PType           string                 `protobuf:"bytes,2,opt,name=pType,proto3" json:"pType,omitempty"`
-	FieldIndex      int32                  `protobuf:"varint,3,opt,name=fieldIndex,proto3" json:"fieldIndex,omitempty"`
-	FieldValues     []string               `protobuf:"bytes,4,rep,name=fieldValues,proto3" json:"fieldValues,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *FilteredPolicyRequest) Reset() {
-	*x = FilteredPolicyRequest{}
-	mi := &file_casbin_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FilteredPolicyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FilteredPolicyRequest) ProtoMessage() {}
-
-func (x *FilteredPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FilteredPolicyRequest.ProtoReflect.Descriptor instead.
-func (*FilteredPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *FilteredPolicyRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *FilteredPolicyRequest) GetPType() string {
-	if x != nil {
-		return x.PType
-	}
-	return ""
-}
-
-func (x *FilteredPolicyRequest) GetFieldIndex() int32 {
-	if x != nil {
-		return x.FieldIndex
-	}
-	return 0
-}
-
-func (x *FilteredPolicyRequest) GetFieldValues() []string {
-	if x != nil {
-		return x.FieldValues
-	}
-	return nil
-}
-
 type UserRoleRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	User            string                 `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
-	Role            string                 `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
-	Domain          []string               `protobuf:"bytes,4,rep,name=domain,proto3" json:"domain,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Role          *Role                  `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserRoleRequest) Reset() {
 	*x = UserRoleRequest{}
-	mi := &file_casbin_proto_msgTypes[18]
+	mi := &file_casbin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1328,7 +770,7 @@ func (x *UserRoleRequest) String() string {
 func (*UserRoleRequest) ProtoMessage() {}
 
 func (x *UserRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[18]
+	mi := &file_casbin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1341,127 +783,45 @@ func (x *UserRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserRoleRequest.ProtoReflect.Descriptor instead.
 func (*UserRoleRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{18}
+	return file_casbin_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UserRoleRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *UserRoleRequest) GetUser() string {
+func (x *UserRoleRequest) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
-	return ""
+	return nil
 }
 
-func (x *UserRoleRequest) GetRole() string {
+func (x *UserRoleRequest) GetRole() *Role {
 	if x != nil {
 		return x.Role
 	}
-	return ""
-}
-
-func (x *UserRoleRequest) GetDomain() []string {
-	if x != nil {
-		return x.Domain
-	}
 	return nil
 }
 
-type PermissionRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	User            string                 `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
-	Permissions     []string               `protobuf:"bytes,3,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	Domain          []string               `protobuf:"bytes,4,rep,name=domain,proto3" json:"domain,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *PermissionRequest) Reset() {
-	*x = PermissionRequest{}
-	mi := &file_casbin_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PermissionRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PermissionRequest) ProtoMessage() {}
-
-func (x *PermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PermissionRequest.ProtoReflect.Descriptor instead.
-func (*PermissionRequest) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *PermissionRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *PermissionRequest) GetUser() string {
-	if x != nil {
-		return x.User
-	}
-	return ""
-}
-
-func (x *PermissionRequest) GetPermissions() []string {
-	if x != nil {
-		return x.Permissions
-	}
-	return nil
-}
-
-func (x *PermissionRequest) GetDomain() []string {
-	if x != nil {
-		return x.Domain
-	}
-	return nil
-}
-
-type Array2DReply struct {
+type BoolResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	D2            []*Array2DReplyD       `protobuf:"bytes,1,rep,name=d2,proto3" json:"d2,omitempty"`
+	Yes           bool                   `protobuf:"varint,1,opt,name=yes,proto3" json:"yes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Array2DReply) Reset() {
-	*x = Array2DReply{}
-	mi := &file_casbin_proto_msgTypes[20]
+func (x *BoolResponse) Reset() {
+	*x = BoolResponse{}
+	mi := &file_casbin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Array2DReply) String() string {
+func (x *BoolResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Array2DReply) ProtoMessage() {}
+func (*BoolResponse) ProtoMessage() {}
 
-func (x *Array2DReply) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[20]
+func (x *BoolResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1472,14 +832,354 @@ func (x *Array2DReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Array2DReply.ProtoReflect.Descriptor instead.
-func (*Array2DReply) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{20}
+// Deprecated: Use BoolResponse.ProtoReflect.Descriptor instead.
+func (*BoolResponse) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *Array2DReply) GetD2() []*Array2DReplyD {
+func (x *BoolResponse) GetYes() bool {
 	if x != nil {
-		return x.D2
+		return x.Yes
+	}
+	return false
+}
+
+type UserPermissionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Object        *Object                `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	Action        *Action                `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserPermissionRequest) Reset() {
+	*x = UserPermissionRequest{}
+	mi := &file_casbin_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserPermissionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserPermissionRequest) ProtoMessage() {}
+
+func (x *UserPermissionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserPermissionRequest.ProtoReflect.Descriptor instead.
+func (*UserPermissionRequest) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UserPermissionRequest) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *UserPermissionRequest) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+func (x *UserPermissionRequest) GetAction() *Action {
+	if x != nil {
+		return x.Action
+	}
+	return nil
+}
+
+type RolePermissionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Role          *Role                  `protobuf:"bytes,1,opt,name=role,proto3" json:"role,omitempty"`
+	Object        *Object                `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	Action        *Action                `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RolePermissionRequest) Reset() {
+	*x = RolePermissionRequest{}
+	mi := &file_casbin_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RolePermissionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RolePermissionRequest) ProtoMessage() {}
+
+func (x *RolePermissionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RolePermissionRequest.ProtoReflect.Descriptor instead.
+func (*RolePermissionRequest) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *RolePermissionRequest) GetRole() *Role {
+	if x != nil {
+		return x.Role
+	}
+	return nil
+}
+
+func (x *RolePermissionRequest) GetObject() *Object {
+	if x != nil {
+		return x.Object
+	}
+	return nil
+}
+
+func (x *RolePermissionRequest) GetAction() *Action {
+	if x != nil {
+		return x.Action
+	}
+	return nil
+}
+
+type PermissionsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Permission          `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PermissionsResponse) Reset() {
+	*x = PermissionsResponse{}
+	mi := &file_casbin_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PermissionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PermissionsResponse) ProtoMessage() {}
+
+func (x *PermissionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PermissionsResponse.ProtoReflect.Descriptor instead.
+func (*PermissionsResponse) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *PermissionsResponse) GetItems() []*Permission {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type RolesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Role                `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RolesResponse) Reset() {
+	*x = RolesResponse{}
+	mi := &file_casbin_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RolesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RolesResponse) ProtoMessage() {}
+
+func (x *RolesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RolesResponse.ProtoReflect.Descriptor instead.
+func (*RolesResponse) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *RolesResponse) GetItems() []*Role {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type UsersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*User                `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UsersResponse) Reset() {
+	*x = UsersResponse{}
+	mi := &file_casbin_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UsersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UsersResponse) ProtoMessage() {}
+
+func (x *UsersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UsersResponse.ProtoReflect.Descriptor instead.
+func (*UsersResponse) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *UsersResponse) GetItems() []*User {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type ActionsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Action              `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ActionsResponse) Reset() {
+	*x = ActionsResponse{}
+	mi := &file_casbin_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ActionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionsResponse) ProtoMessage() {}
+
+func (x *ActionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionsResponse.ProtoReflect.Descriptor instead.
+func (*ActionsResponse) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ActionsResponse) GetItems() []*Action {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type ObjectsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Object              `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ObjectsResponse) Reset() {
+	*x = ObjectsResponse{}
+	mi := &file_casbin_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjectsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjectsResponse) ProtoMessage() {}
+
+func (x *ObjectsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_casbin_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ObjectsResponse.ProtoReflect.Descriptor instead.
+func (*ObjectsResponse) Descriptor() ([]byte, []int) {
+	return file_casbin_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ObjectsResponse) GetItems() []*Object {
+	if x != nil {
+		return x.Items
 	}
 	return nil
 }
@@ -1492,7 +1192,7 @@ type Role_Root struct {
 
 func (x *Role_Root) Reset() {
 	*x = Role_Root{}
-	mi := &file_casbin_proto_msgTypes[21]
+	mi := &file_casbin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1504,7 +1204,7 @@ func (x *Role_Root) String() string {
 func (*Role_Root) ProtoMessage() {}
 
 func (x *Role_Root) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[21]
+	mi := &file_casbin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1517,7 +1217,7 @@ func (x *Role_Root) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Role_Root.ProtoReflect.Descriptor instead.
 func (*Role_Root) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{2, 0}
+	return file_casbin_proto_rawDescGZIP(), []int{3, 0}
 }
 
 type Role_Administrator struct {
@@ -1528,7 +1228,7 @@ type Role_Administrator struct {
 
 func (x *Role_Administrator) Reset() {
 	*x = Role_Administrator{}
-	mi := &file_casbin_proto_msgTypes[22]
+	mi := &file_casbin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1540,7 +1240,7 @@ func (x *Role_Administrator) String() string {
 func (*Role_Administrator) ProtoMessage() {}
 
 func (x *Role_Administrator) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[22]
+	mi := &file_casbin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1553,7 +1253,7 @@ func (x *Role_Administrator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Role_Administrator.ProtoReflect.Descriptor instead.
 func (*Role_Administrator) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{2, 1}
+	return file_casbin_proto_rawDescGZIP(), []int{3, 1}
 }
 
 type Role_Other struct {
@@ -1565,7 +1265,7 @@ type Role_Other struct {
 
 func (x *Role_Other) Reset() {
 	*x = Role_Other{}
-	mi := &file_casbin_proto_msgTypes[23]
+	mi := &file_casbin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1577,7 +1277,7 @@ func (x *Role_Other) String() string {
 func (*Role_Other) ProtoMessage() {}
 
 func (x *Role_Other) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[23]
+	mi := &file_casbin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1590,7 +1290,7 @@ func (x *Role_Other) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Role_Other.ProtoReflect.Descriptor instead.
 func (*Role_Other) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{2, 2}
+	return file_casbin_proto_rawDescGZIP(), []int{3, 2}
 }
 
 func (x *Role_Other) GetCode() string {
@@ -1608,7 +1308,7 @@ type Action_Read struct {
 
 func (x *Action_Read) Reset() {
 	*x = Action_Read{}
-	mi := &file_casbin_proto_msgTypes[24]
+	mi := &file_casbin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1620,7 +1320,7 @@ func (x *Action_Read) String() string {
 func (*Action_Read) ProtoMessage() {}
 
 func (x *Action_Read) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[24]
+	mi := &file_casbin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1633,7 +1333,7 @@ func (x *Action_Read) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Read.ProtoReflect.Descriptor instead.
 func (*Action_Read) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 0}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 0}
 }
 
 type Action_Write struct {
@@ -1644,7 +1344,7 @@ type Action_Write struct {
 
 func (x *Action_Write) Reset() {
 	*x = Action_Write{}
-	mi := &file_casbin_proto_msgTypes[25]
+	mi := &file_casbin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1656,7 +1356,7 @@ func (x *Action_Write) String() string {
 func (*Action_Write) ProtoMessage() {}
 
 func (x *Action_Write) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[25]
+	mi := &file_casbin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1669,7 +1369,7 @@ func (x *Action_Write) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Write.ProtoReflect.Descriptor instead.
 func (*Action_Write) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 1}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 1}
 }
 
 type Action_Append struct {
@@ -1680,7 +1380,7 @@ type Action_Append struct {
 
 func (x *Action_Append) Reset() {
 	*x = Action_Append{}
-	mi := &file_casbin_proto_msgTypes[26]
+	mi := &file_casbin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1692,7 +1392,7 @@ func (x *Action_Append) String() string {
 func (*Action_Append) ProtoMessage() {}
 
 func (x *Action_Append) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[26]
+	mi := &file_casbin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1705,7 +1405,7 @@ func (x *Action_Append) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Append.ProtoReflect.Descriptor instead.
 func (*Action_Append) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 2}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 2}
 }
 
 type Action_Execute struct {
@@ -1716,7 +1416,7 @@ type Action_Execute struct {
 
 func (x *Action_Execute) Reset() {
 	*x = Action_Execute{}
-	mi := &file_casbin_proto_msgTypes[27]
+	mi := &file_casbin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1728,7 +1428,7 @@ func (x *Action_Execute) String() string {
 func (*Action_Execute) ProtoMessage() {}
 
 func (x *Action_Execute) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[27]
+	mi := &file_casbin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1741,7 +1441,7 @@ func (x *Action_Execute) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Execute.ProtoReflect.Descriptor instead.
 func (*Action_Execute) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 3}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 3}
 }
 
 type Action_Credit struct {
@@ -1752,7 +1452,7 @@ type Action_Credit struct {
 
 func (x *Action_Credit) Reset() {
 	*x = Action_Credit{}
-	mi := &file_casbin_proto_msgTypes[28]
+	mi := &file_casbin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1764,7 +1464,7 @@ func (x *Action_Credit) String() string {
 func (*Action_Credit) ProtoMessage() {}
 
 func (x *Action_Credit) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[28]
+	mi := &file_casbin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1777,7 +1477,7 @@ func (x *Action_Credit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Credit.ProtoReflect.Descriptor instead.
 func (*Action_Credit) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 4}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 4}
 }
 
 type Action_Debit struct {
@@ -1788,7 +1488,7 @@ type Action_Debit struct {
 
 func (x *Action_Debit) Reset() {
 	*x = Action_Debit{}
-	mi := &file_casbin_proto_msgTypes[29]
+	mi := &file_casbin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1800,7 +1500,7 @@ func (x *Action_Debit) String() string {
 func (*Action_Debit) ProtoMessage() {}
 
 func (x *Action_Debit) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[29]
+	mi := &file_casbin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1813,7 +1513,7 @@ func (x *Action_Debit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Debit.ProtoReflect.Descriptor instead.
 func (*Action_Debit) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 5}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 5}
 }
 
 type Action_Inquiry struct {
@@ -1824,7 +1524,7 @@ type Action_Inquiry struct {
 
 func (x *Action_Inquiry) Reset() {
 	*x = Action_Inquiry{}
-	mi := &file_casbin_proto_msgTypes[30]
+	mi := &file_casbin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1836,7 +1536,7 @@ func (x *Action_Inquiry) String() string {
 func (*Action_Inquiry) ProtoMessage() {}
 
 func (x *Action_Inquiry) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[30]
+	mi := &file_casbin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1849,7 +1549,7 @@ func (x *Action_Inquiry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Inquiry.ProtoReflect.Descriptor instead.
 func (*Action_Inquiry) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 6}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 6}
 }
 
 type Action_Other struct {
@@ -1861,7 +1561,7 @@ type Action_Other struct {
 
 func (x *Action_Other) Reset() {
 	*x = Action_Other{}
-	mi := &file_casbin_proto_msgTypes[31]
+	mi := &file_casbin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1873,7 +1573,7 @@ func (x *Action_Other) String() string {
 func (*Action_Other) ProtoMessage() {}
 
 func (x *Action_Other) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[31]
+	mi := &file_casbin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1886,7 +1586,7 @@ func (x *Action_Other) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Action_Other.ProtoReflect.Descriptor instead.
 func (*Action_Other) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{4, 7}
+	return file_casbin_proto_rawDescGZIP(), []int{5, 7}
 }
 
 func (x *Action_Other) GetCode() string {
@@ -1896,55 +1596,16 @@ func (x *Action_Other) GetCode() string {
 	return ""
 }
 
-type Array2DReplyD struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	D1            []string               `protobuf:"bytes,1,rep,name=d1,proto3" json:"d1,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Array2DReplyD) Reset() {
-	*x = Array2DReplyD{}
-	mi := &file_casbin_proto_msgTypes[32]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Array2DReplyD) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Array2DReplyD) ProtoMessage() {}
-
-func (x *Array2DReplyD) ProtoReflect() protoreflect.Message {
-	mi := &file_casbin_proto_msgTypes[32]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Array2DReplyD.ProtoReflect.Descriptor instead.
-func (*Array2DReplyD) Descriptor() ([]byte, []int) {
-	return file_casbin_proto_rawDescGZIP(), []int{20, 0}
-}
-
-func (x *Array2DReplyD) GetD1() []string {
-	if x != nil {
-		return x.D1
-	}
-	return nil
-}
-
 var File_casbin_proto protoreflect.FileDescriptor
 
 const file_casbin_proto_rawDesc = "" +
 	"\n" +
-	"\fcasbin.proto\x12\x0epalm.casbin.v1\x1a\x1bgoogle/protobuf/empty.proto\"g\n" +
+	"\fcasbin.proto\x12\x0epalm.casbin.v1\x1a\x1bgoogle/protobuf/empty.proto\"\x9f\x01\n" +
+	"\n" +
+	"Permission\x121\n" +
+	"\asubject\x18\x01 \x01(\v2\x17.palm.casbin.v1.SubjectR\asubject\x12.\n" +
+	"\x06object\x18\x02 \x01(\v2\x16.palm.casbin.v1.ObjectR\x06object\x12.\n" +
+	"\x06action\x18\x03 \x01(\v2\x16.palm.casbin.v1.ActionR\x06action\"g\n" +
 	"\aSubject\x12*\n" +
 	"\x04user\x18\x01 \x01(\v2\x14.palm.casbin.v1.UserH\x00R\x04user\x12*\n" +
 	"\x04role\x18\x02 \x01(\v2\x14.palm.casbin.v1.RoleH\x00R\x04roleB\x04\n" +
@@ -2000,123 +1661,57 @@ const file_casbin_proto_rawDesc = "" +
 	"\x1dUpdateForRemoveFilteredPolicy\x10\x05\x12\x1b\n" +
 	"\x17UpdateForRemovePolicies\x10\x06\x12\x19\n" +
 	"\x15UpdateForUpdatePolicy\x10\a\x12\x1b\n" +
-	"\x17UpdateForUpdatePolicies\x10\b\"\x92\x01\n" +
-	"\x12NewEnforcerRequest\x12\x1c\n" +
-	"\tmodelText\x18\x01 \x01(\tR\tmodelText\x12$\n" +
-	"\radapterHandle\x18\x02 \x01(\x05R\radapterHandle\x128\n" +
-	"\x17enableAcceptJsonRequest\x18\x03 \x01(\bR\x17enableAcceptJsonRequest\",\n" +
-	"\x10NewEnforcerReply\x12\x18\n" +
-	"\ahandler\x18\x01 \x01(\x05R\ahandler\"\x9d\x01\n" +
-	"\x11NewAdapterRequest\x12 \n" +
-	"\vadapterName\x18\x01 \x01(\tR\vadapterName\x12\x1e\n" +
-	"\n" +
-	"driverName\x18\x02 \x01(\tR\n" +
-	"driverName\x12$\n" +
-	"\rconnectString\x18\x03 \x01(\tR\rconnectString\x12 \n" +
-	"\vdbSpecified\x18\x04 \x01(\bR\vdbSpecified\"+\n" +
-	"\x0fNewAdapterReply\x12\x18\n" +
-	"\ahandler\x18\x01 \x01(\x05R\ahandler\"R\n" +
-	"\x0eEnforceRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x16\n" +
-	"\x06params\x18\x02 \x03(\tR\x06params\"\x1d\n" +
-	"\tBoolReply\x12\x10\n" +
-	"\x03res\x18\x01 \x01(\bR\x03res\"(\n" +
-	"\fEmptyRequest\x12\x18\n" +
-	"\ahandler\x18\x01 \x01(\x05R\ahandler\"\f\n" +
-	"\n" +
-	"EmptyReply\"g\n" +
-	"\rPolicyRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x14\n" +
-	"\x05pType\x18\x02 \x01(\tR\x05pType\x12\x16\n" +
-	"\x06params\x18\x03 \x03(\tR\x06params\"R\n" +
-	"\x10SimpleGetRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x14\n" +
-	"\x05pType\x18\x02 \x01(\tR\x05pType\"\"\n" +
-	"\n" +
-	"ArrayReply\x12\x14\n" +
-	"\x05array\x18\x01 \x03(\tR\x05array\"\x99\x01\n" +
-	"\x15FilteredPolicyRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x14\n" +
-	"\x05pType\x18\x02 \x01(\tR\x05pType\x12\x1e\n" +
-	"\n" +
-	"fieldIndex\x18\x03 \x01(\x05R\n" +
-	"fieldIndex\x12 \n" +
-	"\vfieldValues\x18\x04 \x03(\tR\vfieldValues\"{\n" +
+	"\x17UpdateForUpdatePolicies\x10\b\"e\n" +
 	"\x0fUserRoleRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x12\n" +
-	"\x04user\x18\x02 \x01(\tR\x04user\x12\x12\n" +
-	"\x04role\x18\x03 \x01(\tR\x04role\x12\x16\n" +
-	"\x06domain\x18\x04 \x03(\tR\x06domain\"\x8b\x01\n" +
-	"\x11PermissionRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x12\n" +
-	"\x04user\x18\x02 \x01(\tR\x04user\x12 \n" +
-	"\vpermissions\x18\x03 \x03(\tR\vpermissions\x12\x16\n" +
-	"\x06domain\x18\x04 \x03(\tR\x06domain\"S\n" +
-	"\fArray2DReply\x12.\n" +
-	"\x02d2\x18\x01 \x03(\v2\x1e.palm.casbin.v1.Array2DReply.dR\x02d2\x1a\x13\n" +
-	"\x01d\x12\x0e\n" +
-	"\x02d1\x18\x01 \x03(\tR\x02d12\xe1#\n" +
-	"\x06Casbin\x12U\n" +
-	"\vNewEnforcer\x12\".palm.casbin.v1.NewEnforcerRequest\x1a .palm.casbin.v1.NewEnforcerReply\"\x00\x12R\n" +
+	"\x04user\x18\x01 \x01(\v2\x14.palm.casbin.v1.UserR\x04user\x12(\n" +
+	"\x04role\x18\x02 \x01(\v2\x14.palm.casbin.v1.RoleR\x04role\" \n" +
+	"\fBoolResponse\x12\x10\n" +
+	"\x03yes\x18\x01 \x01(\bR\x03yes\"\xa1\x01\n" +
+	"\x15UserPermissionRequest\x12(\n" +
+	"\x04user\x18\x01 \x01(\v2\x14.palm.casbin.v1.UserR\x04user\x12.\n" +
+	"\x06object\x18\x02 \x01(\v2\x16.palm.casbin.v1.ObjectR\x06object\x12.\n" +
+	"\x06action\x18\x03 \x01(\v2\x16.palm.casbin.v1.ActionR\x06action\"\xa1\x01\n" +
+	"\x15RolePermissionRequest\x12(\n" +
+	"\x04role\x18\x01 \x01(\v2\x14.palm.casbin.v1.RoleR\x04role\x12.\n" +
+	"\x06object\x18\x02 \x01(\v2\x16.palm.casbin.v1.ObjectR\x06object\x12.\n" +
+	"\x06action\x18\x03 \x01(\v2\x16.palm.casbin.v1.ActionR\x06action\"G\n" +
+	"\x13PermissionsResponse\x120\n" +
+	"\x05items\x18\x01 \x03(\v2\x1a.palm.casbin.v1.PermissionR\x05items\";\n" +
+	"\rRolesResponse\x12*\n" +
+	"\x05items\x18\x01 \x03(\v2\x14.palm.casbin.v1.RoleR\x05items\";\n" +
+	"\rUsersResponse\x12*\n" +
+	"\x05items\x18\x01 \x03(\v2\x14.palm.casbin.v1.UserR\x05items\"?\n" +
+	"\x0fActionsResponse\x12,\n" +
+	"\x05items\x18\x01 \x03(\v2\x16.palm.casbin.v1.ActionR\x05items\"?\n" +
+	"\x0fObjectsResponse\x12,\n" +
+	"\x05items\x18\x01 \x03(\v2\x16.palm.casbin.v1.ObjectR\x05items2\xa8\x0f\n" +
+	"\x06Policy\x12F\n" +
+	"\vGetAllUsers\x12\x16.google.protobuf.Empty\x1a\x1d.palm.casbin.v1.UsersResponse\"\x00\x12J\n" +
+	"\rGetAllObjects\x12\x16.google.protobuf.Empty\x1a\x1f.palm.casbin.v1.ObjectsResponse\"\x00\x12J\n" +
+	"\rGetAllActions\x12\x16.google.protobuf.Empty\x1a\x1f.palm.casbin.v1.ActionsResponse\"\x00\x12F\n" +
+	"\vGetAllRoles\x12\x16.google.protobuf.Empty\x1a\x1d.palm.casbin.v1.RolesResponse\"\x00\x12F\n" +
+	"\x03Has\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1c.palm.casbin.v1.BoolResponse\"\x00\x12L\n" +
+	"\x03Can\x12%.palm.casbin.v1.UserPermissionRequest\x1a\x1c.palm.casbin.v1.BoolResponse\"\x00\x12H\n" +
+	"\x0fGetRolesForUser\x12\x14.palm.casbin.v1.User\x1a\x1d.palm.casbin.v1.RolesResponse\"\x00\x12P\n" +
+	"\x17GetImplicitRolesForUser\x12\x14.palm.casbin.v1.User\x1a\x1d.palm.casbin.v1.RolesResponse\"\x00\x12H\n" +
+	"\x0fGetUsersForRole\x12\x14.palm.casbin.v1.Role\x1a\x1d.palm.casbin.v1.UsersResponse\"\x00\x12Q\n" +
+	"\x0eHasRoleForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1c.palm.casbin.v1.BoolResponse\"\x00\x12K\n" +
+	"\x0eAddRoleForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x16.google.protobuf.Empty\"\x00\x12N\n" +
+	"\x11DeleteRoleForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x16.google.protobuf.Empty\"\x00\x12<\n" +
 	"\n" +
-	"NewAdapter\x12!.palm.casbin.v1.NewAdapterRequest\x1a\x1f.palm.casbin.v1.NewAdapterReply\"\x00\x12F\n" +
-	"\aEnforce\x12\x1e.palm.casbin.v1.EnforceRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12H\n" +
+	"DeleteUser\x12\x14.palm.casbin.v1.User\x1a\x16.google.protobuf.Empty\"\x00\x12<\n" +
 	"\n" +
-	"LoadPolicy\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1a.palm.casbin.v1.EmptyReply\"\x00\x12H\n" +
-	"\n" +
-	"SavePolicy\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1a.palm.casbin.v1.EmptyReply\"\x00\x12G\n" +
-	"\tAddPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12L\n" +
-	"\x0eAddNamedPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12J\n" +
-	"\fRemovePolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12O\n" +
-	"\x11RemoveNamedPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12Z\n" +
-	"\x14RemoveFilteredPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12_\n" +
-	"\x19RemoveFilteredNamedPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12I\n" +
-	"\tGetPolicy\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12O\n" +
-	"\x0eGetNamedPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12Z\n" +
-	"\x11GetFilteredPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12_\n" +
-	"\x16GetFilteredNamedPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12O\n" +
-	"\x11AddGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12T\n" +
-	"\x16AddNamedGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12R\n" +
-	"\x14RemoveGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12W\n" +
-	"\x19RemoveNamedGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12b\n" +
-	"\x1cRemoveFilteredGroupingPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12g\n" +
-	"!RemoveFilteredNamedGroupingPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12Q\n" +
-	"\x11GetGroupingPolicy\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12W\n" +
-	"\x16GetNamedGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12b\n" +
-	"\x19GetFilteredGroupingPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12g\n" +
-	"\x1eGetFilteredNamedGroupingPolicy\x12%.palm.casbin.v1.FilteredPolicyRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12L\n" +
-	"\x0eGetAllSubjects\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12U\n" +
-	"\x13GetAllNamedSubjects\x12 .palm.casbin.v1.SimpleGetRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12K\n" +
-	"\rGetAllObjects\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12T\n" +
-	"\x12GetAllNamedObjects\x12 .palm.casbin.v1.SimpleGetRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12K\n" +
-	"\rGetAllActions\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12T\n" +
-	"\x12GetAllNamedActions\x12 .palm.casbin.v1.SimpleGetRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12I\n" +
-	"\vGetAllRoles\x12\x1c.palm.casbin.v1.EmptyRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12R\n" +
-	"\x10GetAllNamedRoles\x12 .palm.casbin.v1.SimpleGetRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12G\n" +
-	"\tHasPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12L\n" +
-	"\x0eHasNamedPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12O\n" +
-	"\x11HasGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12T\n" +
-	"\x16HasNamedGroupingPolicy\x12\x1d.palm.casbin.v1.PolicyRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12K\n" +
-	"\n" +
-	"GetDomains\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12P\n" +
-	"\x0fGetRolesForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12X\n" +
-	"\x17GetImplicitRolesForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12P\n" +
-	"\x0fGetUsersForRole\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1a.palm.casbin.v1.ArrayReply\"\x00\x12N\n" +
-	"\x0eHasRoleForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12N\n" +
-	"\x0eAddRoleForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12Q\n" +
-	"\x11DeleteRoleForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12R\n" +
-	"\x12DeleteRolesForUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12J\n" +
-	"\n" +
-	"DeleteUser\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12K\n" +
-	"\n" +
-	"DeleteRole\x12\x1f.palm.casbin.v1.UserRoleRequest\x1a\x1a.palm.casbin.v1.EmptyReply\"\x00\x12Z\n" +
-	"\x15GetPermissionsForUser\x12!.palm.casbin.v1.PermissionRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12b\n" +
-	"\x1dGetImplicitPermissionsForUser\x12!.palm.casbin.v1.PermissionRequest\x1a\x1c.palm.casbin.v1.Array2DReply\"\x00\x12R\n" +
-	"\x10DeletePermission\x12!.palm.casbin.v1.PermissionRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12V\n" +
-	"\x14AddPermissionForUser\x12!.palm.casbin.v1.PermissionRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12Y\n" +
-	"\x17DeletePermissionForUser\x12!.palm.casbin.v1.PermissionRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12Z\n" +
-	"\x18DeletePermissionsForUser\x12!.palm.casbin.v1.PermissionRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00\x12V\n" +
-	"\x14HasPermissionForUser\x12!.palm.casbin.v1.PermissionRequest\x1a\x19.palm.casbin.v1.BoolReply\"\x00B7\n" +
+	"DeleteRole\x12\x14.palm.casbin.v1.Role\x1a\x16.google.protobuf.Empty\"\x00\x12T\n" +
+	"\x15GetPermissionsForUser\x12\x14.palm.casbin.v1.User\x1a#.palm.casbin.v1.PermissionsResponse\"\x00\x12\\\n" +
+	"\x1dGetImplicitPermissionsForUser\x12\x14.palm.casbin.v1.User\x1a#.palm.casbin.v1.PermissionsResponse\"\x00\x12W\n" +
+	"\x14AddPermissionForUser\x12%.palm.casbin.v1.UserPermissionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12Z\n" +
+	"\x17DeletePermissionForUser\x12%.palm.casbin.v1.UserPermissionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12]\n" +
+	"\x14HasPermissionForUser\x12%.palm.casbin.v1.UserPermissionRequest\x1a\x1c.palm.casbin.v1.BoolResponse\"\x00\x12T\n" +
+	"\x15GetPermissionsForRole\x12\x14.palm.casbin.v1.Role\x1a#.palm.casbin.v1.PermissionsResponse\"\x00\x12\\\n" +
+	"\x1dGetImplicitPermissionsForRole\x12\x14.palm.casbin.v1.Role\x1a#.palm.casbin.v1.PermissionsResponse\"\x00\x12W\n" +
+	"\x14AddPermissionForRole\x12%.palm.casbin.v1.RolePermissionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12Z\n" +
+	"\x17DeletePermissionForRole\x12%.palm.casbin.v1.RolePermissionRequest\x1a\x16.google.protobuf.Empty\"\x00\x12]\n" +
+	"\x14HasPermissionForRole\x12%.palm.casbin.v1.RolePermissionRequest\x1a\x1c.palm.casbin.v1.BoolResponse\"\x00B7\n" +
 	",com.github.saturn_xiv.palm.plugins.casbin.v1P\x01Z\x05./;v2b\x06proto3"
 
 var (
@@ -2132,174 +1727,123 @@ func file_casbin_proto_rawDescGZIP() []byte {
 }
 
 var file_casbin_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_casbin_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_casbin_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_casbin_proto_goTypes = []any{
 	(WatcherMessage_Method)(0),    // 0: palm.casbin.v1.WatcherMessage.Method
-	(*Subject)(nil),               // 1: palm.casbin.v1.Subject
-	(*User)(nil),                  // 2: palm.casbin.v1.User
-	(*Role)(nil),                  // 3: palm.casbin.v1.Role
-	(*Object)(nil),                // 4: palm.casbin.v1.Object
-	(*Action)(nil),                // 5: palm.casbin.v1.Action
-	(*WatcherMessage)(nil),        // 6: palm.casbin.v1.WatcherMessage
-	(*NewEnforcerRequest)(nil),    // 7: palm.casbin.v1.NewEnforcerRequest
-	(*NewEnforcerReply)(nil),      // 8: palm.casbin.v1.NewEnforcerReply
-	(*NewAdapterRequest)(nil),     // 9: palm.casbin.v1.NewAdapterRequest
-	(*NewAdapterReply)(nil),       // 10: palm.casbin.v1.NewAdapterReply
-	(*EnforceRequest)(nil),        // 11: palm.casbin.v1.EnforceRequest
-	(*BoolReply)(nil),             // 12: palm.casbin.v1.BoolReply
-	(*EmptyRequest)(nil),          // 13: palm.casbin.v1.EmptyRequest
-	(*EmptyReply)(nil),            // 14: palm.casbin.v1.EmptyReply
-	(*PolicyRequest)(nil),         // 15: palm.casbin.v1.PolicyRequest
-	(*SimpleGetRequest)(nil),      // 16: palm.casbin.v1.SimpleGetRequest
-	(*ArrayReply)(nil),            // 17: palm.casbin.v1.ArrayReply
-	(*FilteredPolicyRequest)(nil), // 18: palm.casbin.v1.FilteredPolicyRequest
-	(*UserRoleRequest)(nil),       // 19: palm.casbin.v1.UserRoleRequest
-	(*PermissionRequest)(nil),     // 20: palm.casbin.v1.PermissionRequest
-	(*Array2DReply)(nil),          // 21: palm.casbin.v1.Array2DReply
-	(*Role_Root)(nil),             // 22: palm.casbin.v1.Role.Root
-	(*Role_Administrator)(nil),    // 23: palm.casbin.v1.Role.Administrator
-	(*Role_Other)(nil),            // 24: palm.casbin.v1.Role.Other
-	(*Action_Read)(nil),           // 25: palm.casbin.v1.Action.Read
-	(*Action_Write)(nil),          // 26: palm.casbin.v1.Action.Write
-	(*Action_Append)(nil),         // 27: palm.casbin.v1.Action.Append
-	(*Action_Execute)(nil),        // 28: palm.casbin.v1.Action.Execute
-	(*Action_Credit)(nil),         // 29: palm.casbin.v1.Action.Credit
-	(*Action_Debit)(nil),          // 30: palm.casbin.v1.Action.Debit
-	(*Action_Inquiry)(nil),        // 31: palm.casbin.v1.Action.Inquiry
-	(*Action_Other)(nil),          // 32: palm.casbin.v1.Action.Other
-	(*Array2DReplyD)(nil),         // 33: palm.casbin.v1.Array2DReply.d
-	(*emptypb.Empty)(nil),         // 34: google.protobuf.Empty
+	(*Permission)(nil),            // 1: palm.casbin.v1.Permission
+	(*Subject)(nil),               // 2: palm.casbin.v1.Subject
+	(*User)(nil),                  // 3: palm.casbin.v1.User
+	(*Role)(nil),                  // 4: palm.casbin.v1.Role
+	(*Object)(nil),                // 5: palm.casbin.v1.Object
+	(*Action)(nil),                // 6: palm.casbin.v1.Action
+	(*WatcherMessage)(nil),        // 7: palm.casbin.v1.WatcherMessage
+	(*UserRoleRequest)(nil),       // 8: palm.casbin.v1.UserRoleRequest
+	(*BoolResponse)(nil),          // 9: palm.casbin.v1.BoolResponse
+	(*UserPermissionRequest)(nil), // 10: palm.casbin.v1.UserPermissionRequest
+	(*RolePermissionRequest)(nil), // 11: palm.casbin.v1.RolePermissionRequest
+	(*PermissionsResponse)(nil),   // 12: palm.casbin.v1.PermissionsResponse
+	(*RolesResponse)(nil),         // 13: palm.casbin.v1.RolesResponse
+	(*UsersResponse)(nil),         // 14: palm.casbin.v1.UsersResponse
+	(*ActionsResponse)(nil),       // 15: palm.casbin.v1.ActionsResponse
+	(*ObjectsResponse)(nil),       // 16: palm.casbin.v1.ObjectsResponse
+	(*Role_Root)(nil),             // 17: palm.casbin.v1.Role.Root
+	(*Role_Administrator)(nil),    // 18: palm.casbin.v1.Role.Administrator
+	(*Role_Other)(nil),            // 19: palm.casbin.v1.Role.Other
+	(*Action_Read)(nil),           // 20: palm.casbin.v1.Action.Read
+	(*Action_Write)(nil),          // 21: palm.casbin.v1.Action.Write
+	(*Action_Append)(nil),         // 22: palm.casbin.v1.Action.Append
+	(*Action_Execute)(nil),        // 23: palm.casbin.v1.Action.Execute
+	(*Action_Credit)(nil),         // 24: palm.casbin.v1.Action.Credit
+	(*Action_Debit)(nil),          // 25: palm.casbin.v1.Action.Debit
+	(*Action_Inquiry)(nil),        // 26: palm.casbin.v1.Action.Inquiry
+	(*Action_Other)(nil),          // 27: palm.casbin.v1.Action.Other
+	(*emptypb.Empty)(nil),         // 28: google.protobuf.Empty
 }
 var file_casbin_proto_depIdxs = []int32{
-	2,  // 0: palm.casbin.v1.Subject.user:type_name -> palm.casbin.v1.User
-	3,  // 1: palm.casbin.v1.Subject.role:type_name -> palm.casbin.v1.Role
-	22, // 2: palm.casbin.v1.Role.root:type_name -> palm.casbin.v1.Role.Root
-	23, // 3: palm.casbin.v1.Role.administrator:type_name -> palm.casbin.v1.Role.Administrator
-	24, // 4: palm.casbin.v1.Role.other:type_name -> palm.casbin.v1.Role.Other
-	34, // 5: palm.casbin.v1.Object.empty:type_name -> google.protobuf.Empty
-	25, // 6: palm.casbin.v1.Action.read:type_name -> palm.casbin.v1.Action.Read
-	26, // 7: palm.casbin.v1.Action.write:type_name -> palm.casbin.v1.Action.Write
-	27, // 8: palm.casbin.v1.Action.append:type_name -> palm.casbin.v1.Action.Append
-	28, // 9: palm.casbin.v1.Action.execute:type_name -> palm.casbin.v1.Action.Execute
-	29, // 10: palm.casbin.v1.Action.credit:type_name -> palm.casbin.v1.Action.Credit
-	30, // 11: palm.casbin.v1.Action.debit:type_name -> palm.casbin.v1.Action.Debit
-	31, // 12: palm.casbin.v1.Action.inquiry:type_name -> palm.casbin.v1.Action.Inquiry
-	32, // 13: palm.casbin.v1.Action.other:type_name -> palm.casbin.v1.Action.Other
-	0,  // 14: palm.casbin.v1.WatcherMessage.method:type_name -> palm.casbin.v1.WatcherMessage.Method
-	33, // 15: palm.casbin.v1.Array2DReply.d2:type_name -> palm.casbin.v1.Array2DReply.d
-	7,  // 16: palm.casbin.v1.Casbin.NewEnforcer:input_type -> palm.casbin.v1.NewEnforcerRequest
-	9,  // 17: palm.casbin.v1.Casbin.NewAdapter:input_type -> palm.casbin.v1.NewAdapterRequest
-	11, // 18: palm.casbin.v1.Casbin.Enforce:input_type -> palm.casbin.v1.EnforceRequest
-	13, // 19: palm.casbin.v1.Casbin.LoadPolicy:input_type -> palm.casbin.v1.EmptyRequest
-	13, // 20: palm.casbin.v1.Casbin.SavePolicy:input_type -> palm.casbin.v1.EmptyRequest
-	15, // 21: palm.casbin.v1.Casbin.AddPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 22: palm.casbin.v1.Casbin.AddNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 23: palm.casbin.v1.Casbin.RemovePolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 24: palm.casbin.v1.Casbin.RemoveNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 25: palm.casbin.v1.Casbin.RemoveFilteredPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 26: palm.casbin.v1.Casbin.RemoveFilteredNamedPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	13, // 27: palm.casbin.v1.Casbin.GetPolicy:input_type -> palm.casbin.v1.EmptyRequest
-	15, // 28: palm.casbin.v1.Casbin.GetNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 29: palm.casbin.v1.Casbin.GetFilteredPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 30: palm.casbin.v1.Casbin.GetFilteredNamedPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	15, // 31: palm.casbin.v1.Casbin.AddGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 32: palm.casbin.v1.Casbin.AddNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 33: palm.casbin.v1.Casbin.RemoveGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 34: palm.casbin.v1.Casbin.RemoveNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 35: palm.casbin.v1.Casbin.RemoveFilteredGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 36: palm.casbin.v1.Casbin.RemoveFilteredNamedGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	13, // 37: palm.casbin.v1.Casbin.GetGroupingPolicy:input_type -> palm.casbin.v1.EmptyRequest
-	15, // 38: palm.casbin.v1.Casbin.GetNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 39: palm.casbin.v1.Casbin.GetFilteredGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 40: palm.casbin.v1.Casbin.GetFilteredNamedGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	13, // 41: palm.casbin.v1.Casbin.GetAllSubjects:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 42: palm.casbin.v1.Casbin.GetAllNamedSubjects:input_type -> palm.casbin.v1.SimpleGetRequest
-	13, // 43: palm.casbin.v1.Casbin.GetAllObjects:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 44: palm.casbin.v1.Casbin.GetAllNamedObjects:input_type -> palm.casbin.v1.SimpleGetRequest
-	13, // 45: palm.casbin.v1.Casbin.GetAllActions:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 46: palm.casbin.v1.Casbin.GetAllNamedActions:input_type -> palm.casbin.v1.SimpleGetRequest
-	13, // 47: palm.casbin.v1.Casbin.GetAllRoles:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 48: palm.casbin.v1.Casbin.GetAllNamedRoles:input_type -> palm.casbin.v1.SimpleGetRequest
-	15, // 49: palm.casbin.v1.Casbin.HasPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 50: palm.casbin.v1.Casbin.HasNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 51: palm.casbin.v1.Casbin.HasGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 52: palm.casbin.v1.Casbin.HasNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	19, // 53: palm.casbin.v1.Casbin.GetDomains:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 54: palm.casbin.v1.Casbin.GetRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 55: palm.casbin.v1.Casbin.GetImplicitRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 56: palm.casbin.v1.Casbin.GetUsersForRole:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 57: palm.casbin.v1.Casbin.HasRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 58: palm.casbin.v1.Casbin.AddRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 59: palm.casbin.v1.Casbin.DeleteRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 60: palm.casbin.v1.Casbin.DeleteRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 61: palm.casbin.v1.Casbin.DeleteUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 62: palm.casbin.v1.Casbin.DeleteRole:input_type -> palm.casbin.v1.UserRoleRequest
-	20, // 63: palm.casbin.v1.Casbin.GetPermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 64: palm.casbin.v1.Casbin.GetImplicitPermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 65: palm.casbin.v1.Casbin.DeletePermission:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 66: palm.casbin.v1.Casbin.AddPermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 67: palm.casbin.v1.Casbin.DeletePermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 68: palm.casbin.v1.Casbin.DeletePermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 69: palm.casbin.v1.Casbin.HasPermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
-	8,  // 70: palm.casbin.v1.Casbin.NewEnforcer:output_type -> palm.casbin.v1.NewEnforcerReply
-	10, // 71: palm.casbin.v1.Casbin.NewAdapter:output_type -> palm.casbin.v1.NewAdapterReply
-	12, // 72: palm.casbin.v1.Casbin.Enforce:output_type -> palm.casbin.v1.BoolReply
-	14, // 73: palm.casbin.v1.Casbin.LoadPolicy:output_type -> palm.casbin.v1.EmptyReply
-	14, // 74: palm.casbin.v1.Casbin.SavePolicy:output_type -> palm.casbin.v1.EmptyReply
-	12, // 75: palm.casbin.v1.Casbin.AddPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 76: palm.casbin.v1.Casbin.AddNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 77: palm.casbin.v1.Casbin.RemovePolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 78: palm.casbin.v1.Casbin.RemoveNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 79: palm.casbin.v1.Casbin.RemoveFilteredPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 80: palm.casbin.v1.Casbin.RemoveFilteredNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	21, // 81: palm.casbin.v1.Casbin.GetPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 82: palm.casbin.v1.Casbin.GetNamedPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 83: palm.casbin.v1.Casbin.GetFilteredPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 84: palm.casbin.v1.Casbin.GetFilteredNamedPolicy:output_type -> palm.casbin.v1.Array2DReply
-	12, // 85: palm.casbin.v1.Casbin.AddGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 86: palm.casbin.v1.Casbin.AddNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 87: palm.casbin.v1.Casbin.RemoveGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 88: palm.casbin.v1.Casbin.RemoveNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 89: palm.casbin.v1.Casbin.RemoveFilteredGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 90: palm.casbin.v1.Casbin.RemoveFilteredNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	21, // 91: palm.casbin.v1.Casbin.GetGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 92: palm.casbin.v1.Casbin.GetNamedGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 93: palm.casbin.v1.Casbin.GetFilteredGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 94: palm.casbin.v1.Casbin.GetFilteredNamedGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	17, // 95: palm.casbin.v1.Casbin.GetAllSubjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 96: palm.casbin.v1.Casbin.GetAllNamedSubjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 97: palm.casbin.v1.Casbin.GetAllObjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 98: palm.casbin.v1.Casbin.GetAllNamedObjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 99: palm.casbin.v1.Casbin.GetAllActions:output_type -> palm.casbin.v1.ArrayReply
-	17, // 100: palm.casbin.v1.Casbin.GetAllNamedActions:output_type -> palm.casbin.v1.ArrayReply
-	17, // 101: palm.casbin.v1.Casbin.GetAllRoles:output_type -> palm.casbin.v1.ArrayReply
-	17, // 102: palm.casbin.v1.Casbin.GetAllNamedRoles:output_type -> palm.casbin.v1.ArrayReply
-	12, // 103: palm.casbin.v1.Casbin.HasPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 104: palm.casbin.v1.Casbin.HasNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 105: palm.casbin.v1.Casbin.HasGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 106: palm.casbin.v1.Casbin.HasNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	17, // 107: palm.casbin.v1.Casbin.GetDomains:output_type -> palm.casbin.v1.ArrayReply
-	17, // 108: palm.casbin.v1.Casbin.GetRolesForUser:output_type -> palm.casbin.v1.ArrayReply
-	17, // 109: palm.casbin.v1.Casbin.GetImplicitRolesForUser:output_type -> palm.casbin.v1.ArrayReply
-	17, // 110: palm.casbin.v1.Casbin.GetUsersForRole:output_type -> palm.casbin.v1.ArrayReply
-	12, // 111: palm.casbin.v1.Casbin.HasRoleForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 112: palm.casbin.v1.Casbin.AddRoleForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 113: palm.casbin.v1.Casbin.DeleteRoleForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 114: palm.casbin.v1.Casbin.DeleteRolesForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 115: palm.casbin.v1.Casbin.DeleteUser:output_type -> palm.casbin.v1.BoolReply
-	14, // 116: palm.casbin.v1.Casbin.DeleteRole:output_type -> palm.casbin.v1.EmptyReply
-	21, // 117: palm.casbin.v1.Casbin.GetPermissionsForUser:output_type -> palm.casbin.v1.Array2DReply
-	21, // 118: palm.casbin.v1.Casbin.GetImplicitPermissionsForUser:output_type -> palm.casbin.v1.Array2DReply
-	12, // 119: palm.casbin.v1.Casbin.DeletePermission:output_type -> palm.casbin.v1.BoolReply
-	12, // 120: palm.casbin.v1.Casbin.AddPermissionForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 121: palm.casbin.v1.Casbin.DeletePermissionForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 122: palm.casbin.v1.Casbin.DeletePermissionsForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 123: palm.casbin.v1.Casbin.HasPermissionForUser:output_type -> palm.casbin.v1.BoolReply
-	70, // [70:124] is the sub-list for method output_type
-	16, // [16:70] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	2,  // 0: palm.casbin.v1.Permission.subject:type_name -> palm.casbin.v1.Subject
+	5,  // 1: palm.casbin.v1.Permission.object:type_name -> palm.casbin.v1.Object
+	6,  // 2: palm.casbin.v1.Permission.action:type_name -> palm.casbin.v1.Action
+	3,  // 3: palm.casbin.v1.Subject.user:type_name -> palm.casbin.v1.User
+	4,  // 4: palm.casbin.v1.Subject.role:type_name -> palm.casbin.v1.Role
+	17, // 5: palm.casbin.v1.Role.root:type_name -> palm.casbin.v1.Role.Root
+	18, // 6: palm.casbin.v1.Role.administrator:type_name -> palm.casbin.v1.Role.Administrator
+	19, // 7: palm.casbin.v1.Role.other:type_name -> palm.casbin.v1.Role.Other
+	28, // 8: palm.casbin.v1.Object.empty:type_name -> google.protobuf.Empty
+	20, // 9: palm.casbin.v1.Action.read:type_name -> palm.casbin.v1.Action.Read
+	21, // 10: palm.casbin.v1.Action.write:type_name -> palm.casbin.v1.Action.Write
+	22, // 11: palm.casbin.v1.Action.append:type_name -> palm.casbin.v1.Action.Append
+	23, // 12: palm.casbin.v1.Action.execute:type_name -> palm.casbin.v1.Action.Execute
+	24, // 13: palm.casbin.v1.Action.credit:type_name -> palm.casbin.v1.Action.Credit
+	25, // 14: palm.casbin.v1.Action.debit:type_name -> palm.casbin.v1.Action.Debit
+	26, // 15: palm.casbin.v1.Action.inquiry:type_name -> palm.casbin.v1.Action.Inquiry
+	27, // 16: palm.casbin.v1.Action.other:type_name -> palm.casbin.v1.Action.Other
+	0,  // 17: palm.casbin.v1.WatcherMessage.method:type_name -> palm.casbin.v1.WatcherMessage.Method
+	3,  // 18: palm.casbin.v1.UserRoleRequest.user:type_name -> palm.casbin.v1.User
+	4,  // 19: palm.casbin.v1.UserRoleRequest.role:type_name -> palm.casbin.v1.Role
+	3,  // 20: palm.casbin.v1.UserPermissionRequest.user:type_name -> palm.casbin.v1.User
+	5,  // 21: palm.casbin.v1.UserPermissionRequest.object:type_name -> palm.casbin.v1.Object
+	6,  // 22: palm.casbin.v1.UserPermissionRequest.action:type_name -> palm.casbin.v1.Action
+	4,  // 23: palm.casbin.v1.RolePermissionRequest.role:type_name -> palm.casbin.v1.Role
+	5,  // 24: palm.casbin.v1.RolePermissionRequest.object:type_name -> palm.casbin.v1.Object
+	6,  // 25: palm.casbin.v1.RolePermissionRequest.action:type_name -> palm.casbin.v1.Action
+	1,  // 26: palm.casbin.v1.PermissionsResponse.items:type_name -> palm.casbin.v1.Permission
+	4,  // 27: palm.casbin.v1.RolesResponse.items:type_name -> palm.casbin.v1.Role
+	3,  // 28: palm.casbin.v1.UsersResponse.items:type_name -> palm.casbin.v1.User
+	6,  // 29: palm.casbin.v1.ActionsResponse.items:type_name -> palm.casbin.v1.Action
+	5,  // 30: palm.casbin.v1.ObjectsResponse.items:type_name -> palm.casbin.v1.Object
+	28, // 31: palm.casbin.v1.Policy.GetAllUsers:input_type -> google.protobuf.Empty
+	28, // 32: palm.casbin.v1.Policy.GetAllObjects:input_type -> google.protobuf.Empty
+	28, // 33: palm.casbin.v1.Policy.GetAllActions:input_type -> google.protobuf.Empty
+	28, // 34: palm.casbin.v1.Policy.GetAllRoles:input_type -> google.protobuf.Empty
+	8,  // 35: palm.casbin.v1.Policy.Has:input_type -> palm.casbin.v1.UserRoleRequest
+	10, // 36: palm.casbin.v1.Policy.Can:input_type -> palm.casbin.v1.UserPermissionRequest
+	3,  // 37: palm.casbin.v1.Policy.GetRolesForUser:input_type -> palm.casbin.v1.User
+	3,  // 38: palm.casbin.v1.Policy.GetImplicitRolesForUser:input_type -> palm.casbin.v1.User
+	4,  // 39: palm.casbin.v1.Policy.GetUsersForRole:input_type -> palm.casbin.v1.Role
+	8,  // 40: palm.casbin.v1.Policy.HasRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	8,  // 41: palm.casbin.v1.Policy.AddRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	8,  // 42: palm.casbin.v1.Policy.DeleteRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	3,  // 43: palm.casbin.v1.Policy.DeleteUser:input_type -> palm.casbin.v1.User
+	4,  // 44: palm.casbin.v1.Policy.DeleteRole:input_type -> palm.casbin.v1.Role
+	3,  // 45: palm.casbin.v1.Policy.GetPermissionsForUser:input_type -> palm.casbin.v1.User
+	3,  // 46: palm.casbin.v1.Policy.GetImplicitPermissionsForUser:input_type -> palm.casbin.v1.User
+	10, // 47: palm.casbin.v1.Policy.AddPermissionForUser:input_type -> palm.casbin.v1.UserPermissionRequest
+	10, // 48: palm.casbin.v1.Policy.DeletePermissionForUser:input_type -> palm.casbin.v1.UserPermissionRequest
+	10, // 49: palm.casbin.v1.Policy.HasPermissionForUser:input_type -> palm.casbin.v1.UserPermissionRequest
+	4,  // 50: palm.casbin.v1.Policy.GetPermissionsForRole:input_type -> palm.casbin.v1.Role
+	4,  // 51: palm.casbin.v1.Policy.GetImplicitPermissionsForRole:input_type -> palm.casbin.v1.Role
+	11, // 52: palm.casbin.v1.Policy.AddPermissionForRole:input_type -> palm.casbin.v1.RolePermissionRequest
+	11, // 53: palm.casbin.v1.Policy.DeletePermissionForRole:input_type -> palm.casbin.v1.RolePermissionRequest
+	11, // 54: palm.casbin.v1.Policy.HasPermissionForRole:input_type -> palm.casbin.v1.RolePermissionRequest
+	14, // 55: palm.casbin.v1.Policy.GetAllUsers:output_type -> palm.casbin.v1.UsersResponse
+	16, // 56: palm.casbin.v1.Policy.GetAllObjects:output_type -> palm.casbin.v1.ObjectsResponse
+	15, // 57: palm.casbin.v1.Policy.GetAllActions:output_type -> palm.casbin.v1.ActionsResponse
+	13, // 58: palm.casbin.v1.Policy.GetAllRoles:output_type -> palm.casbin.v1.RolesResponse
+	9,  // 59: palm.casbin.v1.Policy.Has:output_type -> palm.casbin.v1.BoolResponse
+	9,  // 60: palm.casbin.v1.Policy.Can:output_type -> palm.casbin.v1.BoolResponse
+	13, // 61: palm.casbin.v1.Policy.GetRolesForUser:output_type -> palm.casbin.v1.RolesResponse
+	13, // 62: palm.casbin.v1.Policy.GetImplicitRolesForUser:output_type -> palm.casbin.v1.RolesResponse
+	14, // 63: palm.casbin.v1.Policy.GetUsersForRole:output_type -> palm.casbin.v1.UsersResponse
+	9,  // 64: palm.casbin.v1.Policy.HasRoleForUser:output_type -> palm.casbin.v1.BoolResponse
+	28, // 65: palm.casbin.v1.Policy.AddRoleForUser:output_type -> google.protobuf.Empty
+	28, // 66: palm.casbin.v1.Policy.DeleteRoleForUser:output_type -> google.protobuf.Empty
+	28, // 67: palm.casbin.v1.Policy.DeleteUser:output_type -> google.protobuf.Empty
+	28, // 68: palm.casbin.v1.Policy.DeleteRole:output_type -> google.protobuf.Empty
+	12, // 69: palm.casbin.v1.Policy.GetPermissionsForUser:output_type -> palm.casbin.v1.PermissionsResponse
+	12, // 70: palm.casbin.v1.Policy.GetImplicitPermissionsForUser:output_type -> palm.casbin.v1.PermissionsResponse
+	28, // 71: palm.casbin.v1.Policy.AddPermissionForUser:output_type -> google.protobuf.Empty
+	28, // 72: palm.casbin.v1.Policy.DeletePermissionForUser:output_type -> google.protobuf.Empty
+	9,  // 73: palm.casbin.v1.Policy.HasPermissionForUser:output_type -> palm.casbin.v1.BoolResponse
+	12, // 74: palm.casbin.v1.Policy.GetPermissionsForRole:output_type -> palm.casbin.v1.PermissionsResponse
+	12, // 75: palm.casbin.v1.Policy.GetImplicitPermissionsForRole:output_type -> palm.casbin.v1.PermissionsResponse
+	28, // 76: palm.casbin.v1.Policy.AddPermissionForRole:output_type -> google.protobuf.Empty
+	28, // 77: palm.casbin.v1.Policy.DeletePermissionForRole:output_type -> google.protobuf.Empty
+	9,  // 78: palm.casbin.v1.Policy.HasPermissionForRole:output_type -> palm.casbin.v1.BoolResponse
+	55, // [55:79] is the sub-list for method output_type
+	31, // [31:55] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_casbin_proto_init() }
@@ -2307,25 +1851,25 @@ func file_casbin_proto_init() {
 	if File_casbin_proto != nil {
 		return
 	}
-	file_casbin_proto_msgTypes[0].OneofWrappers = []any{
+	file_casbin_proto_msgTypes[1].OneofWrappers = []any{
 		(*Subject_User)(nil),
 		(*Subject_Role)(nil),
 	}
-	file_casbin_proto_msgTypes[1].OneofWrappers = []any{
+	file_casbin_proto_msgTypes[2].OneofWrappers = []any{
 		(*User_Id)(nil),
 		(*User_Code)(nil),
 	}
-	file_casbin_proto_msgTypes[2].OneofWrappers = []any{
+	file_casbin_proto_msgTypes[3].OneofWrappers = []any{
 		(*Role_Root_)(nil),
 		(*Role_Administrator_)(nil),
 		(*Role_Other_)(nil),
 	}
-	file_casbin_proto_msgTypes[3].OneofWrappers = []any{
+	file_casbin_proto_msgTypes[4].OneofWrappers = []any{
 		(*Object_Id)(nil),
 		(*Object_Code)(nil),
 		(*Object_Empty)(nil),
 	}
-	file_casbin_proto_msgTypes[4].OneofWrappers = []any{
+	file_casbin_proto_msgTypes[5].OneofWrappers = []any{
 		(*Action_Read_)(nil),
 		(*Action_Write_)(nil),
 		(*Action_Append_)(nil),
@@ -2341,7 +1885,7 @@ func file_casbin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_casbin_proto_rawDesc), len(file_casbin_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   33,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

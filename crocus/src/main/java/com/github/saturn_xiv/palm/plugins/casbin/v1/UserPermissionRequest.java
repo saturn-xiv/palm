@@ -6,12 +6,12 @@
 package com.github.saturn_xiv.palm.plugins.casbin.v1;
 
 /**
- * Protobuf type {@code palm.casbin.v1.UserRoleRequest}
+ * Protobuf type {@code palm.casbin.v1.UserPermissionRequest}
  */
-public final class UserRoleRequest extends
+public final class UserPermissionRequest extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.casbin.v1.UserRoleRequest)
-    UserRoleRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.casbin.v1.UserPermissionRequest)
+    UserPermissionRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -20,26 +20,26 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 29,
       /* patch= */ 3,
       /* suffix= */ "",
-      UserRoleRequest.class.getName());
+      UserPermissionRequest.class.getName());
   }
-  // Use UserRoleRequest.newBuilder() to construct.
-  private UserRoleRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use UserPermissionRequest.newBuilder() to construct.
+  private UserPermissionRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private UserRoleRequest() {
+  private UserPermissionRequest() {
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserRoleRequest_descriptor;
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserPermissionRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserRoleRequest_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserPermissionRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.class, com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.Builder.class);
+            com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.class, com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.Builder.class);
   }
 
   private int bitField0_;
@@ -69,30 +69,56 @@ private static final long serialVersionUID = 0L;
     return user_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.User.getDefaultInstance() : user_;
   }
 
-  public static final int ROLE_FIELD_NUMBER = 2;
-  private com.github.saturn_xiv.palm.plugins.casbin.v1.Role role_;
+  public static final int OBJECT_FIELD_NUMBER = 2;
+  private com.github.saturn_xiv.palm.plugins.casbin.v1.Object object_;
   /**
-   * <code>.palm.casbin.v1.Role role = 2;</code>
-   * @return Whether the role field is set.
+   * <code>.palm.casbin.v1.Object object = 2;</code>
+   * @return Whether the object field is set.
    */
   @java.lang.Override
-  public boolean hasRole() {
+  public boolean hasObject() {
     return ((bitField0_ & 0x00000002) != 0);
   }
   /**
-   * <code>.palm.casbin.v1.Role role = 2;</code>
-   * @return The role.
+   * <code>.palm.casbin.v1.Object object = 2;</code>
+   * @return The object.
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.casbin.v1.Role getRole() {
-    return role_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Role.getDefaultInstance() : role_;
+  public com.github.saturn_xiv.palm.plugins.casbin.v1.Object getObject() {
+    return object_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Object.getDefaultInstance() : object_;
   }
   /**
-   * <code>.palm.casbin.v1.Role role = 2;</code>
+   * <code>.palm.casbin.v1.Object object = 2;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder getRoleOrBuilder() {
-    return role_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Role.getDefaultInstance() : role_;
+  public com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectOrBuilder getObjectOrBuilder() {
+    return object_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Object.getDefaultInstance() : object_;
+  }
+
+  public static final int ACTION_FIELD_NUMBER = 3;
+  private com.github.saturn_xiv.palm.plugins.casbin.v1.Action action_;
+  /**
+   * <code>.palm.casbin.v1.Action action = 3;</code>
+   * @return Whether the action field is set.
+   */
+  @java.lang.Override
+  public boolean hasAction() {
+    return ((bitField0_ & 0x00000004) != 0);
+  }
+  /**
+   * <code>.palm.casbin.v1.Action action = 3;</code>
+   * @return The action.
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.casbin.v1.Action getAction() {
+    return action_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Action.getDefaultInstance() : action_;
+  }
+  /**
+   * <code>.palm.casbin.v1.Action action = 3;</code>
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.casbin.v1.ActionOrBuilder getActionOrBuilder() {
+    return action_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Action.getDefaultInstance() : action_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -113,7 +139,10 @@ private static final long serialVersionUID = 0L;
       output.writeMessage(1, getUser());
     }
     if (((bitField0_ & 0x00000002) != 0)) {
-      output.writeMessage(2, getRole());
+      output.writeMessage(2, getObject());
+    }
+    if (((bitField0_ & 0x00000004) != 0)) {
+      output.writeMessage(3, getAction());
     }
     getUnknownFields().writeTo(output);
   }
@@ -130,7 +159,11 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getRole());
+        .computeMessageSize(2, getObject());
+    }
+    if (((bitField0_ & 0x00000004) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getAction());
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -142,20 +175,25 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest other = (com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest) obj;
+    com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest other = (com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest) obj;
 
     if (hasUser() != other.hasUser()) return false;
     if (hasUser()) {
       if (!getUser()
           .equals(other.getUser())) return false;
     }
-    if (hasRole() != other.hasRole()) return false;
-    if (hasRole()) {
-      if (!getRole()
-          .equals(other.getRole())) return false;
+    if (hasObject() != other.hasObject()) return false;
+    if (hasObject()) {
+      if (!getObject()
+          .equals(other.getObject())) return false;
+    }
+    if (hasAction() != other.hasAction()) return false;
+    if (hasAction()) {
+      if (!getAction()
+          .equals(other.getAction())) return false;
     }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
@@ -172,53 +210,57 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + USER_FIELD_NUMBER;
       hash = (53 * hash) + getUser().hashCode();
     }
-    if (hasRole()) {
-      hash = (37 * hash) + ROLE_FIELD_NUMBER;
-      hash = (53 * hash) + getRole().hashCode();
+    if (hasObject()) {
+      hash = (37 * hash) + OBJECT_FIELD_NUMBER;
+      hash = (53 * hash) + getObject().hashCode();
+    }
+    if (hasAction()) {
+      hash = (37 * hash) + ACTION_FIELD_NUMBER;
+      hash = (53 * hash) + getAction().hashCode();
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -226,26 +268,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -258,7 +300,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -274,26 +316,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.casbin.v1.UserRoleRequest}
+   * Protobuf type {@code palm.casbin.v1.UserPermissionRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.casbin.v1.UserRoleRequest)
-      com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.casbin.v1.UserPermissionRequest)
+      com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserRoleRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserPermissionRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserRoleRequest_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserPermissionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.class, com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.Builder.class);
+              com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.class, com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -307,7 +349,8 @@ private static final long serialVersionUID = 0L;
       if (com.google.protobuf.GeneratedMessage
               .alwaysUseFieldBuilders) {
         getUserFieldBuilder();
-        getRoleFieldBuilder();
+        getObjectFieldBuilder();
+        getActionFieldBuilder();
       }
     }
     @java.lang.Override
@@ -319,10 +362,15 @@ private static final long serialVersionUID = 0L;
         userBuilder_.dispose();
         userBuilder_ = null;
       }
-      role_ = null;
-      if (roleBuilder_ != null) {
-        roleBuilder_.dispose();
-        roleBuilder_ = null;
+      object_ = null;
+      if (objectBuilder_ != null) {
+        objectBuilder_.dispose();
+        objectBuilder_ = null;
+      }
+      action_ = null;
+      if (actionBuilder_ != null) {
+        actionBuilder_.dispose();
+        actionBuilder_ = null;
       }
       return this;
     }
@@ -330,17 +378,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserRoleRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_UserPermissionRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest build() {
-      com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest build() {
+      com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -348,14 +396,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest buildPartial() {
-      com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest result = new com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest(this);
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest buildPartial() {
+      com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest result = new com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest result) {
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -365,31 +413,40 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000001;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.role_ = roleBuilder_ == null
-            ? role_
-            : roleBuilder_.build();
+        result.object_ = objectBuilder_ == null
+            ? object_
+            : objectBuilder_.build();
         to_bitField0_ |= 0x00000002;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.action_ = actionBuilder_ == null
+            ? action_
+            : actionBuilder_.build();
+        to_bitField0_ |= 0x00000004;
       }
       result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest other) {
-      if (other == com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest other) {
+      if (other == com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest.getDefaultInstance()) return this;
       if (other.hasUser()) {
         mergeUser(other.getUser());
       }
-      if (other.hasRole()) {
-        mergeRole(other.getRole());
+      if (other.hasObject()) {
+        mergeObject(other.getObject());
+      }
+      if (other.hasAction()) {
+        mergeAction(other.getAction());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -426,11 +483,18 @@ private static final long serialVersionUID = 0L;
             } // case 10
             case 18: {
               input.readMessage(
-                  getRoleFieldBuilder().getBuilder(),
+                  getObjectFieldBuilder().getBuilder(),
                   extensionRegistry);
               bitField0_ |= 0x00000002;
               break;
             } // case 18
+            case 26: {
+              input.readMessage(
+                  getActionFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -569,144 +633,265 @@ private static final long serialVersionUID = 0L;
       return userBuilder_;
     }
 
-    private com.github.saturn_xiv.palm.plugins.casbin.v1.Role role_;
+    private com.github.saturn_xiv.palm.plugins.casbin.v1.Object object_;
     private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.casbin.v1.Role, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder> roleBuilder_;
+        com.github.saturn_xiv.palm.plugins.casbin.v1.Object, com.github.saturn_xiv.palm.plugins.casbin.v1.Object.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectOrBuilder> objectBuilder_;
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
-     * @return Whether the role field is set.
+     * <code>.palm.casbin.v1.Object object = 2;</code>
+     * @return Whether the object field is set.
      */
-    public boolean hasRole() {
+    public boolean hasObject() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
-     * @return The role.
+     * <code>.palm.casbin.v1.Object object = 2;</code>
+     * @return The object.
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.Role getRole() {
-      if (roleBuilder_ == null) {
-        return role_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Role.getDefaultInstance() : role_;
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.Object getObject() {
+      if (objectBuilder_ == null) {
+        return object_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Object.getDefaultInstance() : object_;
       } else {
-        return roleBuilder_.getMessage();
+        return objectBuilder_.getMessage();
       }
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
-    public Builder setRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role value) {
-      if (roleBuilder_ == null) {
+    public Builder setObject(com.github.saturn_xiv.palm.plugins.casbin.v1.Object value) {
+      if (objectBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        role_ = value;
+        object_ = value;
       } else {
-        roleBuilder_.setMessage(value);
+        objectBuilder_.setMessage(value);
       }
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
-    public Builder setRole(
-        com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder builderForValue) {
-      if (roleBuilder_ == null) {
-        role_ = builderForValue.build();
+    public Builder setObject(
+        com.github.saturn_xiv.palm.plugins.casbin.v1.Object.Builder builderForValue) {
+      if (objectBuilder_ == null) {
+        object_ = builderForValue.build();
       } else {
-        roleBuilder_.setMessage(builderForValue.build());
+        objectBuilder_.setMessage(builderForValue.build());
       }
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
-    public Builder mergeRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role value) {
-      if (roleBuilder_ == null) {
+    public Builder mergeObject(com.github.saturn_xiv.palm.plugins.casbin.v1.Object value) {
+      if (objectBuilder_ == null) {
         if (((bitField0_ & 0x00000002) != 0) &&
-          role_ != null &&
-          role_ != com.github.saturn_xiv.palm.plugins.casbin.v1.Role.getDefaultInstance()) {
-          getRoleBuilder().mergeFrom(value);
+          object_ != null &&
+          object_ != com.github.saturn_xiv.palm.plugins.casbin.v1.Object.getDefaultInstance()) {
+          getObjectBuilder().mergeFrom(value);
         } else {
-          role_ = value;
+          object_ = value;
         }
       } else {
-        roleBuilder_.mergeFrom(value);
+        objectBuilder_.mergeFrom(value);
       }
-      if (role_ != null) {
+      if (object_ != null) {
         bitField0_ |= 0x00000002;
         onChanged();
       }
       return this;
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
-    public Builder clearRole() {
+    public Builder clearObject() {
       bitField0_ = (bitField0_ & ~0x00000002);
-      role_ = null;
-      if (roleBuilder_ != null) {
-        roleBuilder_.dispose();
-        roleBuilder_ = null;
+      object_ = null;
+      if (objectBuilder_ != null) {
+        objectBuilder_.dispose();
+        objectBuilder_ = null;
       }
       onChanged();
       return this;
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder getRoleBuilder() {
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.Object.Builder getObjectBuilder() {
       bitField0_ |= 0x00000002;
       onChanged();
-      return getRoleFieldBuilder().getBuilder();
+      return getObjectFieldBuilder().getBuilder();
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder getRoleOrBuilder() {
-      if (roleBuilder_ != null) {
-        return roleBuilder_.getMessageOrBuilder();
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectOrBuilder getObjectOrBuilder() {
+      if (objectBuilder_ != null) {
+        return objectBuilder_.getMessageOrBuilder();
       } else {
-        return role_ == null ?
-            com.github.saturn_xiv.palm.plugins.casbin.v1.Role.getDefaultInstance() : role_;
+        return object_ == null ?
+            com.github.saturn_xiv.palm.plugins.casbin.v1.Object.getDefaultInstance() : object_;
       }
     }
     /**
-     * <code>.palm.casbin.v1.Role role = 2;</code>
+     * <code>.palm.casbin.v1.Object object = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.casbin.v1.Role, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder> 
-        getRoleFieldBuilder() {
-      if (roleBuilder_ == null) {
-        roleBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.casbin.v1.Role, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder>(
-                getRole(),
+        com.github.saturn_xiv.palm.plugins.casbin.v1.Object, com.github.saturn_xiv.palm.plugins.casbin.v1.Object.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectOrBuilder> 
+        getObjectFieldBuilder() {
+      if (objectBuilder_ == null) {
+        objectBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.casbin.v1.Object, com.github.saturn_xiv.palm.plugins.casbin.v1.Object.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectOrBuilder>(
+                getObject(),
                 getParentForChildren(),
                 isClean());
-        role_ = null;
+        object_ = null;
       }
-      return roleBuilder_;
+      return objectBuilder_;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.casbin.v1.UserRoleRequest)
+    private com.github.saturn_xiv.palm.plugins.casbin.v1.Action action_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.casbin.v1.Action, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.ActionOrBuilder> actionBuilder_;
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     * @return Whether the action field is set.
+     */
+    public boolean hasAction() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     * @return The action.
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.Action getAction() {
+      if (actionBuilder_ == null) {
+        return action_ == null ? com.github.saturn_xiv.palm.plugins.casbin.v1.Action.getDefaultInstance() : action_;
+      } else {
+        return actionBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    public Builder setAction(com.github.saturn_xiv.palm.plugins.casbin.v1.Action value) {
+      if (actionBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        action_ = value;
+      } else {
+        actionBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    public Builder setAction(
+        com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder builderForValue) {
+      if (actionBuilder_ == null) {
+        action_ = builderForValue.build();
+      } else {
+        actionBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    public Builder mergeAction(com.github.saturn_xiv.palm.plugins.casbin.v1.Action value) {
+      if (actionBuilder_ == null) {
+        if (((bitField0_ & 0x00000004) != 0) &&
+          action_ != null &&
+          action_ != com.github.saturn_xiv.palm.plugins.casbin.v1.Action.getDefaultInstance()) {
+          getActionBuilder().mergeFrom(value);
+        } else {
+          action_ = value;
+        }
+      } else {
+        actionBuilder_.mergeFrom(value);
+      }
+      if (action_ != null) {
+        bitField0_ |= 0x00000004;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    public Builder clearAction() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      action_ = null;
+      if (actionBuilder_ != null) {
+        actionBuilder_.dispose();
+        actionBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder getActionBuilder() {
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return getActionFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.ActionOrBuilder getActionOrBuilder() {
+      if (actionBuilder_ != null) {
+        return actionBuilder_.getMessageOrBuilder();
+      } else {
+        return action_ == null ?
+            com.github.saturn_xiv.palm.plugins.casbin.v1.Action.getDefaultInstance() : action_;
+      }
+    }
+    /**
+     * <code>.palm.casbin.v1.Action action = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.casbin.v1.Action, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.ActionOrBuilder> 
+        getActionFieldBuilder() {
+      if (actionBuilder_ == null) {
+        actionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.casbin.v1.Action, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder, com.github.saturn_xiv.palm.plugins.casbin.v1.ActionOrBuilder>(
+                getAction(),
+                getParentForChildren(),
+                isClean());
+        action_ = null;
+      }
+      return actionBuilder_;
+    }
+
+    // @@protoc_insertion_point(builder_scope:palm.casbin.v1.UserPermissionRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.UserRoleRequest)
-  private static final com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.UserPermissionRequest)
+  private static final com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<UserRoleRequest>
-      PARSER = new com.google.protobuf.AbstractParser<UserRoleRequest>() {
+  private static final com.google.protobuf.Parser<UserPermissionRequest>
+      PARSER = new com.google.protobuf.AbstractParser<UserPermissionRequest>() {
     @java.lang.Override
-    public UserRoleRequest parsePartialFrom(
+    public UserPermissionRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -725,17 +910,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<UserRoleRequest> parser() {
+  public static com.google.protobuf.Parser<UserPermissionRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<UserRoleRequest> getParserForType() {
+  public com.google.protobuf.Parser<UserPermissionRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

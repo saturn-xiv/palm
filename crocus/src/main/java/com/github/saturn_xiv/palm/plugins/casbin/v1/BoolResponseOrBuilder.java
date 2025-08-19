@@ -5,13 +5,13 @@
 
 package com.github.saturn_xiv.palm.plugins.casbin.v1;
 
-public interface BoolReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.casbin.v1.BoolReply)
+public interface BoolResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.casbin.v1.BoolResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool res = 1;</code>
-   * @return The res.
+   * <code>bool yes = 1;</code>
+   * @return The yes.
    */
-  boolean getRes();
+  boolean getYes();
 }

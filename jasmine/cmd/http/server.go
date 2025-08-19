@@ -135,7 +135,7 @@ func start(router http_.Handler, port uint16) {
 
 	server.Shutdown(ctx)
 
-	slog.Warn("shutting down")
+	slog.Warn("server stopped gracefully")
 	os.Exit(0)
 }
 

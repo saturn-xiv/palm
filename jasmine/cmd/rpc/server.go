@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log/slog"
 	"net"
-	"reflect"
+	"os"
+	"os/signal"
 
 	"github.com/BurntSushi/toml"
 	"google.golang.org/grpc"
@@ -13,6 +14,8 @@ import (
 
 	"github.com/saturn-xiv/palm/jasmine/env"
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
+	"github.com/saturn-xiv/palm/jasmine/services/casbin"
+	casbin_v2 "github.com/saturn-xiv/palm/jasmine/services/casbin/v2"
 	"github.com/saturn-xiv/palm/jasmine/services/s3"
 	s3_v2 "github.com/saturn-xiv/palm/jasmine/services/s3/v2"
 )
@@ -41,6 +44,7 @@ func Launch(port uint16, config_file string, version string) error {
 	}
 
 	server := grpc.NewServer()
+	casbin_v2.RegisterPolicyServer(server, casbin.NewPolicyServer(db, jwt, enf))
 	s3_v2.RegisterS3Server(server, s3.NewS3Server(db, jwt, enf, minio_client))
 	grpc_health.RegisterHealthServer(server, health.NewServer())
 
@@ -48,14 +52,27 @@ func Launch(port uint16, config_file string, version string) error {
 	if err != nil {
 		return err
 	}
-	slog.Info("server listening at", slog.String("address", listen.Addr().String()))
-	if err := server.Serve(listen); err != nil {
-		return err
-	}
 
+	start(server, listen)
 	return nil
 }
 
-func serviceName(it interface{}) string {
-	return fmt.Sprintf("%s/%s", reflect.TypeOf(it).Elem().PkgPath(), reflect.TypeOf(it).Elem().Name())
+// https://grpc.io/docs/guides/server-graceful-stop/
+func start(server *grpc.Server, listen net.Listener) {
+	slog.Info("server listening at", slog.String("address", listen.Addr().String()))
+	go func() {
+		if err := server.Serve(listen); err != nil {
+			slog.Error(err.Error())
+		}
+	}()
+	c := make(chan os.Signal, 1)
+
+	signal.Notify(c, os.Interrupt)
+
+	<-c
+
+	server.GracefulStop()
+
+	slog.Warn("server stopped gracefully")
+	os.Exit(0)
 }

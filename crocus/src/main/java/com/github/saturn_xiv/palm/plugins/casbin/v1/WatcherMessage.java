@@ -33,13 +33,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_WatcherMessage_descriptor;
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_WatcherMessage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_WatcherMessage_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_WatcherMessage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.github.saturn_xiv.palm.plugins.casbin.v1.WatcherMessage.class, com.github.saturn_xiv.palm.plugins.casbin.v1.WatcherMessage.Builder.class);
   }
@@ -456,13 +456,13 @@ private static final long serialVersionUID = 0L;
       com.github.saturn_xiv.palm.plugins.casbin.v1.WatcherMessageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_WatcherMessage_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_WatcherMessage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_WatcherMessage_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_WatcherMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.WatcherMessage.class, com.github.saturn_xiv.palm.plugins.casbin.v1.WatcherMessage.Builder.class);
     }
@@ -489,7 +489,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_WatcherMessage_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_WatcherMessage_descriptor;
     }
 
     @java.lang.Override

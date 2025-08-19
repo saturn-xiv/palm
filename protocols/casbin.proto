@@ -9,6 +9,12 @@ import "google/protobuf/empty.proto";
 
 // ----------------------------------------------------------------------------
 
+message Permission {
+  Subject subject = 1;
+  Object object = 2;
+  Action action = 3;
+}
+
 // https://casbin.org/docs/rbac#how-to-distinguish-role-from-user
 message Subject {
   oneof by {
@@ -87,152 +93,76 @@ message WatcherMessage {
 
 // ----------------------------------------------------------------------------
 
-// https://github.com/casbin/casbin-server/blob/master/proto/casbin.proto
-// 8d7fda9
-service Casbin {
-  rpc NewEnforcer(NewEnforcerRequest) returns (NewEnforcerReply) {}
-  rpc NewAdapter(NewAdapterRequest) returns (NewAdapterReply) {}
+service Policy {
+  rpc GetAllUsers(google.protobuf.Empty) returns (UsersResponse) {}
+  rpc GetAllObjects(google.protobuf.Empty) returns (ObjectsResponse) {}
+  rpc GetAllActions(google.protobuf.Empty) returns (ActionsResponse) {}
+  rpc GetAllRoles(google.protobuf.Empty) returns (RolesResponse) {}
 
-  rpc Enforce(EnforceRequest) returns (BoolReply) {}
+  rpc Has(UserRoleRequest) returns (BoolResponse) {}
+  rpc Can(UserPermissionRequest) returns (BoolResponse) {}
 
-  rpc LoadPolicy(EmptyRequest) returns (EmptyReply) {}
-  rpc SavePolicy(EmptyRequest) returns (EmptyReply) {}
+  rpc GetRolesForUser(User) returns (RolesResponse) {}
+  rpc GetImplicitRolesForUser(User) returns (RolesResponse) {}
+  rpc GetUsersForRole(Role) returns (UsersResponse) {}
+  rpc HasRoleForUser(UserRoleRequest) returns (BoolResponse) {}
+  rpc AddRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteUser(User) returns (google.protobuf.Empty) {}
+  rpc DeleteRole(Role) returns (google.protobuf.Empty) {}
 
-  rpc AddPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc AddNamedPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc RemovePolicy(PolicyRequest) returns (BoolReply) {}
-  rpc RemoveNamedPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc RemoveFilteredPolicy(FilteredPolicyRequest) returns (BoolReply) {}
-  rpc RemoveFilteredNamedPolicy(FilteredPolicyRequest) returns (BoolReply) {}
-  rpc GetPolicy(EmptyRequest) returns (Array2DReply) {}
-  rpc GetNamedPolicy(PolicyRequest) returns (Array2DReply) {}
-  rpc GetFilteredPolicy(FilteredPolicyRequest) returns (Array2DReply) {}
-  rpc GetFilteredNamedPolicy(FilteredPolicyRequest) returns (Array2DReply) {}
+  rpc GetPermissionsForUser(User) returns (PermissionsResponse) {}
+  rpc GetImplicitPermissionsForUser(User) returns (PermissionsResponse) {}
+  rpc AddPermissionForUser(UserPermissionRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionForUser(UserPermissionRequest)
+      returns (google.protobuf.Empty) {}
+  rpc HasPermissionForUser(UserPermissionRequest) returns (BoolResponse) {}
 
-  rpc AddGroupingPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc AddNamedGroupingPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc RemoveGroupingPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc RemoveNamedGroupingPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc RemoveFilteredGroupingPolicy(FilteredPolicyRequest) returns (BoolReply) {}
-  rpc RemoveFilteredNamedGroupingPolicy(FilteredPolicyRequest)
-      returns (BoolReply) {}
-  rpc GetGroupingPolicy(EmptyRequest) returns (Array2DReply) {}
-  rpc GetNamedGroupingPolicy(PolicyRequest) returns (Array2DReply) {}
-  rpc GetFilteredGroupingPolicy(FilteredPolicyRequest) returns (Array2DReply) {}
-  rpc GetFilteredNamedGroupingPolicy(FilteredPolicyRequest)
-      returns (Array2DReply) {}
-
-  rpc GetAllSubjects(EmptyRequest) returns (ArrayReply) {}
-  rpc GetAllNamedSubjects(SimpleGetRequest) returns (ArrayReply) {}
-  rpc GetAllObjects(EmptyRequest) returns (ArrayReply) {}
-  rpc GetAllNamedObjects(SimpleGetRequest) returns (ArrayReply) {}
-  rpc GetAllActions(EmptyRequest) returns (ArrayReply) {}
-  rpc GetAllNamedActions(SimpleGetRequest) returns (ArrayReply) {}
-  rpc GetAllRoles(EmptyRequest) returns (ArrayReply) {}
-  rpc GetAllNamedRoles(SimpleGetRequest) returns (ArrayReply) {}
-
-  rpc HasPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc HasNamedPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc HasGroupingPolicy(PolicyRequest) returns (BoolReply) {}
-  rpc HasNamedGroupingPolicy(PolicyRequest) returns (BoolReply) {}
-
-  rpc GetDomains(UserRoleRequest) returns (ArrayReply) {}
-
-  rpc GetRolesForUser(UserRoleRequest) returns (ArrayReply) {}
-  rpc GetImplicitRolesForUser(UserRoleRequest) returns (ArrayReply) {}
-  rpc GetUsersForRole(UserRoleRequest) returns (ArrayReply) {}
-  rpc HasRoleForUser(UserRoleRequest) returns (BoolReply) {}
-  rpc AddRoleForUser(UserRoleRequest) returns (BoolReply) {}
-  rpc DeleteRoleForUser(UserRoleRequest) returns (BoolReply) {}
-  rpc DeleteRolesForUser(UserRoleRequest) returns (BoolReply) {}
-  rpc DeleteUser(UserRoleRequest) returns (BoolReply) {}
-  rpc DeleteRole(UserRoleRequest) returns (EmptyReply) {}
-
-  rpc GetPermissionsForUser(PermissionRequest) returns (Array2DReply) {}
-  rpc GetImplicitPermissionsForUser(PermissionRequest) returns (Array2DReply) {}
-  rpc DeletePermission(PermissionRequest) returns (BoolReply) {}
-  rpc AddPermissionForUser(PermissionRequest) returns (BoolReply) {}
-  rpc DeletePermissionForUser(PermissionRequest) returns (BoolReply) {}
-  rpc DeletePermissionsForUser(PermissionRequest) returns (BoolReply) {}
-  rpc HasPermissionForUser(PermissionRequest) returns (BoolReply) {}
-}
-
-message NewEnforcerRequest {
-  string modelText = 1;
-  int32 adapterHandle = 2;
-  bool enableAcceptJsonRequest = 3;
-}
-
-message NewEnforcerReply {
-  int32 handler = 1;
-}
-
-message NewAdapterRequest {
-  string adapterName = 1;
-  string driverName = 2;
-  string connectString = 3;
-  bool dbSpecified = 4;
-}
-
-message NewAdapterReply {
-  int32 handler = 1;
-}
-
-message EnforceRequest {
-  int32 enforcerHandler = 1;
-  repeated string params = 2;
-}
-
-message BoolReply {
-  bool res = 1;
-}
-
-message EmptyRequest {
-  int32 handler = 1;
-}
-
-message EmptyReply {}
-
-message PolicyRequest {
-  int32 enforcerHandler = 1;
-  string pType = 2;
-  repeated string params = 3;
-}
-
-message SimpleGetRequest {
-  int32 enforcerHandler = 1;
-  string pType = 2;
-}
-
-message ArrayReply {
-  repeated string array = 1;
-}
-
-message FilteredPolicyRequest {
-  int32 enforcerHandler = 1;
-  string pType = 2;
-  int32 fieldIndex = 3;
-  repeated string fieldValues = 4;
+  rpc GetPermissionsForRole(Role) returns (PermissionsResponse) {}
+  rpc GetImplicitPermissionsForRole(Role) returns (PermissionsResponse) {}
+  rpc AddPermissionForRole(RolePermissionRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionForRole(RolePermissionRequest)
+      returns (google.protobuf.Empty) {}
+  rpc HasPermissionForRole(RolePermissionRequest) returns (BoolResponse) {}
 }
 
 message UserRoleRequest {
-  int32 enforcerHandler = 1;
-  string user = 2;
-  string role = 3;
-  repeated string domain = 4;
+  User user = 1;
+  Role role = 2;
+}
+message BoolResponse {
+  bool yes = 1;
+}
+message UserPermissionRequest {
+  User user = 1;
+  Object object = 2;
+  Action action = 3;
 }
 
-message PermissionRequest {
-  int32 enforcerHandler = 1;
-  string user = 2;
-  repeated string permissions = 3;
-  repeated string domain = 4;
+message RolePermissionRequest {
+  Role role = 1;
+  Object object = 2;
+  Action action = 3;
 }
 
-message Array2DReply {
-  message d {
-    repeated string d1 = 1;
-  }
+message PermissionsResponse {
+  repeated Permission items = 1;
+}
 
-  repeated d d2 = 1;
+message RolesResponse {
+  repeated Role items = 1;
+}
+
+message UsersResponse {
+  repeated User items = 1;
+}
+
+message ActionsResponse {
+  repeated Action items = 1;
+}
+
+message ObjectsResponse {
+  repeated Object items = 1;
 }

@@ -6,12 +6,12 @@
 package com.github.saturn_xiv.palm.plugins.casbin.v1;
 
 /**
- * Protobuf type {@code palm.casbin.v1.NewEnforcerReply}
+ * Protobuf type {@code palm.casbin.v1.BoolResponse}
  */
-public final class NewEnforcerReply extends
+public final class BoolResponse extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.casbin.v1.NewEnforcerReply)
-    NewEnforcerReplyOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.casbin.v1.BoolResponse)
+    BoolResponseOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -20,37 +20,37 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 29,
       /* patch= */ 3,
       /* suffix= */ "",
-      NewEnforcerReply.class.getName());
+      BoolResponse.class.getName());
   }
-  // Use NewEnforcerReply.newBuilder() to construct.
-  private NewEnforcerReply(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use BoolResponse.newBuilder() to construct.
+  private BoolResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private NewEnforcerReply() {
+  private BoolResponse() {
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_NewEnforcerReply_descriptor;
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_BoolResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_NewEnforcerReply_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_BoolResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.class, com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.Builder.class);
+            com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.class, com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.Builder.class);
   }
 
-  public static final int HANDLER_FIELD_NUMBER = 1;
-  private int handler_ = 0;
+  public static final int YES_FIELD_NUMBER = 1;
+  private boolean yes_ = false;
   /**
-   * <code>int32 handler = 1;</code>
-   * @return The handler.
+   * <code>bool yes = 1;</code>
+   * @return The yes.
    */
   @java.lang.Override
-  public int getHandler() {
-    return handler_;
+  public boolean getYes() {
+    return yes_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -67,8 +67,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (handler_ != 0) {
-      output.writeInt32(1, handler_);
+    if (yes_ != false) {
+      output.writeBool(1, yes_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -79,9 +79,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (handler_ != 0) {
+    if (yes_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, handler_);
+        .computeBoolSize(1, yes_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -93,13 +93,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply other = (com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply) obj;
+    com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse other = (com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse) obj;
 
-    if (getHandler()
-        != other.getHandler()) return false;
+    if (getYes()
+        != other.getYes()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -111,51 +111,52 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + HANDLER_FIELD_NUMBER;
-    hash = (53 * hash) + getHandler();
+    hash = (37 * hash) + YES_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getYes());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -163,26 +164,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -195,7 +196,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -211,26 +212,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.casbin.v1.NewEnforcerReply}
+   * Protobuf type {@code palm.casbin.v1.BoolResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.casbin.v1.NewEnforcerReply)
-      com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReplyOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.casbin.v1.BoolResponse)
+      com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_NewEnforcerReply_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_BoolResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_NewEnforcerReply_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_BoolResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.class, com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.Builder.class);
+              com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.class, com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.newBuilder()
     private Builder() {
 
     }
@@ -244,24 +245,24 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      handler_ = 0;
+      yes_ = false;
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_NewEnforcerReply_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_BoolResponse_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply build() {
-      com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse build() {
+      com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -269,34 +270,34 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply buildPartial() {
-      com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply result = new com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply(this);
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse buildPartial() {
+      com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse result = new com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.handler_ = handler_;
+        result.yes_ = yes_;
       }
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply other) {
-      if (other == com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply.getDefaultInstance()) return this;
-      if (other.getHandler() != 0) {
-        setHandler(other.getHandler());
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse other) {
+      if (other == com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse.getDefaultInstance()) return this;
+      if (other.getYes() != false) {
+        setYes(other.getYes());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -325,7 +326,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              handler_ = input.readInt32();
+              yes_ = input.readBool();
               bitField0_ |= 0x00000001;
               break;
             } // case 8
@@ -346,55 +347,55 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private int handler_ ;
+    private boolean yes_ ;
     /**
-     * <code>int32 handler = 1;</code>
-     * @return The handler.
+     * <code>bool yes = 1;</code>
+     * @return The yes.
      */
     @java.lang.Override
-    public int getHandler() {
-      return handler_;
+    public boolean getYes() {
+      return yes_;
     }
     /**
-     * <code>int32 handler = 1;</code>
-     * @param value The handler to set.
+     * <code>bool yes = 1;</code>
+     * @param value The yes to set.
      * @return This builder for chaining.
      */
-    public Builder setHandler(int value) {
+    public Builder setYes(boolean value) {
 
-      handler_ = value;
+      yes_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 handler = 1;</code>
+     * <code>bool yes = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearHandler() {
+    public Builder clearYes() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      handler_ = 0;
+      yes_ = false;
       onChanged();
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.casbin.v1.NewEnforcerReply)
+    // @@protoc_insertion_point(builder_scope:palm.casbin.v1.BoolResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.casbin.v1.NewEnforcerReply)
-  private static final com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.BoolResponse)
+  private static final com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<NewEnforcerReply>
-      PARSER = new com.google.protobuf.AbstractParser<NewEnforcerReply>() {
+  private static final com.google.protobuf.Parser<BoolResponse>
+      PARSER = new com.google.protobuf.AbstractParser<BoolResponse>() {
     @java.lang.Override
-    public NewEnforcerReply parsePartialFrom(
+    public BoolResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -413,17 +414,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<NewEnforcerReply> parser() {
+  public static com.google.protobuf.Parser<BoolResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<NewEnforcerReply> getParserForType() {
+  public com.google.protobuf.Parser<BoolResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.casbin.v1.NewEnforcerReply getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

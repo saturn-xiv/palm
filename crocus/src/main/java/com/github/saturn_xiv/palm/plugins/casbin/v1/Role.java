@@ -31,13 +31,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_descriptor;
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.github.saturn_xiv.palm.plugins.casbin.v1.Role.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder.class);
   }
@@ -72,13 +72,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Root_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Root_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Root_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Root_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Root.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Root.Builder.class);
     }
@@ -238,13 +238,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Role.RootOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Root_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Root_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Root_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Root_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Root.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Root.Builder.class);
       }
@@ -268,7 +268,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Root_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Root_descriptor;
       }
 
       @java.lang.Override
@@ -427,13 +427,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Administrator_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Administrator_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Administrator_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Administrator_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Administrator.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Administrator.Builder.class);
     }
@@ -593,13 +593,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Role.AdministratorOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Administrator_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Administrator_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Administrator_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Administrator_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Administrator.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Administrator.Builder.class);
       }
@@ -623,7 +623,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Administrator_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Administrator_descriptor;
       }
 
       @java.lang.Override
@@ -795,13 +795,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Other_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Other_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Other_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Other_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Other.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Other.Builder.class);
     }
@@ -1010,13 +1010,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Role.OtherOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Other_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Other_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Other_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Other_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Other.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Other.Builder.class);
       }
@@ -1042,7 +1042,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_Other_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_Other_descriptor;
       }
 
       @java.lang.Override
@@ -1608,13 +1608,13 @@ private static final long serialVersionUID = 0L;
       com.github.saturn_xiv.palm.plugins.casbin.v1.RoleOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Role.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Role.Builder.class);
     }
@@ -1650,7 +1650,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Role_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Role_descriptor;
     }
 
     @java.lang.Override

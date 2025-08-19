@@ -31,13 +31,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_descriptor;
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.github.saturn_xiv.palm.plugins.casbin.v1.Action.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder.class);
   }
@@ -72,13 +72,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Read_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Read_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Read_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Read_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Read.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Read.Builder.class);
     }
@@ -238,13 +238,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.ReadOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Read_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Read_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Read_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Read_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Read.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Read.Builder.class);
       }
@@ -268,7 +268,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Read_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Read_descriptor;
       }
 
       @java.lang.Override
@@ -427,13 +427,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Write_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Write_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Write_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Write_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Write.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Write.Builder.class);
     }
@@ -593,13 +593,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.WriteOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Write_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Write_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Write_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Write_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Write.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Write.Builder.class);
       }
@@ -623,7 +623,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Write_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Write_descriptor;
       }
 
       @java.lang.Override
@@ -782,13 +782,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Append_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Append_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Append_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Append_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Append.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Append.Builder.class);
     }
@@ -948,13 +948,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.AppendOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Append_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Append_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Append_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Append_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Append.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Append.Builder.class);
       }
@@ -978,7 +978,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Append_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Append_descriptor;
       }
 
       @java.lang.Override
@@ -1137,13 +1137,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Execute_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Execute_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Execute_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Execute_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Execute.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Execute.Builder.class);
     }
@@ -1303,13 +1303,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.ExecuteOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Execute_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Execute_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Execute_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Execute_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Execute.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Execute.Builder.class);
       }
@@ -1333,7 +1333,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Execute_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Execute_descriptor;
       }
 
       @java.lang.Override
@@ -1492,13 +1492,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Credit_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Credit_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Credit_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Credit_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Credit.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Credit.Builder.class);
     }
@@ -1658,13 +1658,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.CreditOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Credit_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Credit_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Credit_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Credit_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Credit.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Credit.Builder.class);
       }
@@ -1688,7 +1688,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Credit_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Credit_descriptor;
       }
 
       @java.lang.Override
@@ -1847,13 +1847,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Debit_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Debit_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Debit_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Debit_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Debit.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Debit.Builder.class);
     }
@@ -2013,13 +2013,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.DebitOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Debit_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Debit_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Debit_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Debit_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Debit.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Debit.Builder.class);
       }
@@ -2043,7 +2043,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Debit_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Debit_descriptor;
       }
 
       @java.lang.Override
@@ -2202,13 +2202,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Inquiry_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Inquiry_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Inquiry_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Inquiry_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Inquiry.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Inquiry.Builder.class);
     }
@@ -2368,13 +2368,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.InquiryOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Inquiry_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Inquiry_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Inquiry_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Inquiry_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Inquiry.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Inquiry.Builder.class);
       }
@@ -2398,7 +2398,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Inquiry_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Inquiry_descriptor;
       }
 
       @java.lang.Override
@@ -2570,13 +2570,13 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Other_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Other_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Other_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Other_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Other.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Other.Builder.class);
     }
@@ -2785,13 +2785,13 @@ private static final long serialVersionUID = 0L;
         com.github.saturn_xiv.palm.plugins.casbin.v1.Action.OtherOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Other_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Other_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Other_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Other_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Other.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Other.Builder.class);
       }
@@ -2817,7 +2817,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_Other_descriptor;
+        return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_Other_descriptor;
       }
 
       @java.lang.Override
@@ -3623,13 +3623,13 @@ private static final long serialVersionUID = 0L;
       com.github.saturn_xiv.palm.plugins.casbin.v1.ActionOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.casbin.v1.Action.class, com.github.saturn_xiv.palm.plugins.casbin.v1.Action.Builder.class);
     }
@@ -3680,7 +3680,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.casbin.v1.CasbinOuterClass.internal_static_palm_casbin_v1_Action_descriptor;
+      return com.github.saturn_xiv.palm.plugins.casbin.v1.Casbin.internal_static_palm_casbin_v1_Action_descriptor;
     }
 
     @java.lang.Override
