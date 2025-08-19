@@ -508,6 +508,32 @@ struct SubjectDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubjectDefaultTypeInternal _Subject_default_instance_;
 
+inline constexpr SessionCanRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        object_{nullptr},
+        action_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SessionCanRequest::SessionCanRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SessionCanRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SessionCanRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SessionCanRequestDefaultTypeInternal() {}
+  union {
+    SessionCanRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SessionCanRequestDefaultTypeInternal _SessionCanRequest_default_instance_;
+
 inline constexpr RolesResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : items_{},
@@ -848,6 +874,18 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::WatcherMessage, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::WatcherMessage, _impl_.method_),
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::SessionCanRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::SessionCanRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::SessionCanRequest, _impl_.object_),
+        PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::SessionCanRequest, _impl_.action_),
+        0,
+        1,
         PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::UserRoleRequest, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::casbin::v1::UserRoleRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -964,15 +1002,16 @@ static const ::_pbi::MigrationSchema
         {142, -1, -1, sizeof(::palm::casbin::v1::Action_Other)},
         {151, -1, -1, sizeof(::palm::casbin::v1::Action)},
         {168, -1, -1, sizeof(::palm::casbin::v1::WatcherMessage)},
-        {178, 188, -1, sizeof(::palm::casbin::v1::UserRoleRequest)},
-        {190, -1, -1, sizeof(::palm::casbin::v1::BoolResponse)},
-        {199, 210, -1, sizeof(::palm::casbin::v1::UserPermissionRequest)},
-        {213, 224, -1, sizeof(::palm::casbin::v1::RolePermissionRequest)},
-        {227, -1, -1, sizeof(::palm::casbin::v1::PermissionsResponse)},
-        {236, -1, -1, sizeof(::palm::casbin::v1::RolesResponse)},
-        {245, -1, -1, sizeof(::palm::casbin::v1::UsersResponse)},
-        {254, -1, -1, sizeof(::palm::casbin::v1::ActionsResponse)},
-        {263, -1, -1, sizeof(::palm::casbin::v1::ObjectsResponse)},
+        {178, 188, -1, sizeof(::palm::casbin::v1::SessionCanRequest)},
+        {190, 200, -1, sizeof(::palm::casbin::v1::UserRoleRequest)},
+        {202, -1, -1, sizeof(::palm::casbin::v1::BoolResponse)},
+        {211, 222, -1, sizeof(::palm::casbin::v1::UserPermissionRequest)},
+        {225, 236, -1, sizeof(::palm::casbin::v1::RolePermissionRequest)},
+        {239, -1, -1, sizeof(::palm::casbin::v1::PermissionsResponse)},
+        {248, -1, -1, sizeof(::palm::casbin::v1::RolesResponse)},
+        {257, -1, -1, sizeof(::palm::casbin::v1::UsersResponse)},
+        {266, -1, -1, sizeof(::palm::casbin::v1::ActionsResponse)},
+        {275, -1, -1, sizeof(::palm::casbin::v1::ObjectsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::casbin::v1::_Permission_default_instance_._instance,
@@ -993,6 +1032,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::casbin::v1::_Action_Other_default_instance_._instance,
     &::palm::casbin::v1::_Action_default_instance_._instance,
     &::palm::casbin::v1::_WatcherMessage_default_instance_._instance,
+    &::palm::casbin::v1::_SessionCanRequest_default_instance_._instance,
     &::palm::casbin::v1::_UserRoleRequest_default_instance_._instance,
     &::palm::casbin::v1::_BoolResponse_default_instance_._instance,
     &::palm::casbin::v1::_UserPermissionRequest_default_instance_._instance,
@@ -1041,75 +1081,91 @@ const char descriptor_table_protodef_casbin_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "es\020\003\022\031\n\025UpdateForRemovePolicy\020\004\022!\n\035Updat"
     "eForRemoveFilteredPolicy\020\005\022\033\n\027UpdateForR"
     "emovePolicies\020\006\022\031\n\025UpdateForUpdatePolicy"
-    "\020\007\022\033\n\027UpdateForUpdatePolicies\020\010\"Y\n\017UserR"
-    "oleRequest\022\"\n\004user\030\001 \001(\0132\024.palm.casbin.v"
-    "1.User\022\"\n\004role\030\002 \001(\0132\024.palm.casbin.v1.Ro"
-    "le\"\033\n\014BoolResponse\022\013\n\003yes\030\001 \001(\010\"\213\001\n\025User"
-    "PermissionRequest\022\"\n\004user\030\001 \001(\0132\024.palm.c"
-    "asbin.v1.User\022&\n\006object\030\002 \001(\0132\026.palm.cas"
-    "bin.v1.Object\022&\n\006action\030\003 \001(\0132\026.palm.cas"
-    "bin.v1.Action\"\213\001\n\025RolePermissionRequest\022"
-    "\"\n\004role\030\001 \001(\0132\024.palm.casbin.v1.Role\022&\n\006o"
-    "bject\030\002 \001(\0132\026.palm.casbin.v1.Object\022&\n\006a"
-    "ction\030\003 \001(\0132\026.palm.casbin.v1.Action\"@\n\023P"
-    "ermissionsResponse\022)\n\005items\030\001 \003(\0132\032.palm"
-    ".casbin.v1.Permission\"4\n\rRolesResponse\022#"
-    "\n\005items\030\001 \003(\0132\024.palm.casbin.v1.Role\"4\n\rU"
-    "sersResponse\022#\n\005items\030\001 \003(\0132\024.palm.casbi"
-    "n.v1.User\"8\n\017ActionsResponse\022%\n\005items\030\001 "
-    "\003(\0132\026.palm.casbin.v1.Action\"8\n\017ObjectsRe"
-    "sponse\022%\n\005items\030\001 \003(\0132\026.palm.casbin.v1.O"
-    "bject2\250\017\n\006Policy\022F\n\013GetAllUsers\022\026.google"
-    ".protobuf.Empty\032\035.palm.casbin.v1.UsersRe"
-    "sponse\"\000\022J\n\rGetAllObjects\022\026.google.proto"
-    "buf.Empty\032\037.palm.casbin.v1.ObjectsRespon"
-    "se\"\000\022J\n\rGetAllActions\022\026.google.protobuf."
-    "Empty\032\037.palm.casbin.v1.ActionsResponse\"\000"
-    "\022F\n\013GetAllRoles\022\026.google.protobuf.Empty\032"
-    "\035.palm.casbin.v1.RolesResponse\"\000\022F\n\003Has\022"
-    "\037.palm.casbin.v1.UserRoleRequest\032\034.palm."
-    "casbin.v1.BoolResponse\"\000\022L\n\003Can\022%.palm.c"
-    "asbin.v1.UserPermissionRequest\032\034.palm.ca"
-    "sbin.v1.BoolResponse\"\000\022H\n\017GetRolesForUse"
-    "r\022\024.palm.casbin.v1.User\032\035.palm.casbin.v1"
-    ".RolesResponse\"\000\022P\n\027GetImplicitRolesForU"
-    "ser\022\024.palm.casbin.v1.User\032\035.palm.casbin."
-    "v1.RolesResponse\"\000\022H\n\017GetUsersForRole\022\024."
-    "palm.casbin.v1.Role\032\035.palm.casbin.v1.Use"
-    "rsResponse\"\000\022Q\n\016HasRoleForUser\022\037.palm.ca"
-    "sbin.v1.UserRoleRequest\032\034.palm.casbin.v1"
-    ".BoolResponse\"\000\022K\n\016AddRoleForUser\022\037.palm"
-    ".casbin.v1.UserRoleRequest\032\026.google.prot"
-    "obuf.Empty\"\000\022N\n\021DeleteRoleForUser\022\037.palm"
-    ".casbin.v1.UserRoleRequest\032\026.google.prot"
-    "obuf.Empty\"\000\022<\n\nDeleteUser\022\024.palm.casbin"
-    ".v1.User\032\026.google.protobuf.Empty\"\000\022<\n\nDe"
-    "leteRole\022\024.palm.casbin.v1.Role\032\026.google."
-    "protobuf.Empty\"\000\022T\n\025GetPermissionsForUse"
-    "r\022\024.palm.casbin.v1.User\032#.palm.casbin.v1"
-    ".PermissionsResponse\"\000\022\\\n\035GetImplicitPer"
-    "missionsForUser\022\024.palm.casbin.v1.User\032#."
-    "palm.casbin.v1.PermissionsResponse\"\000\022W\n\024"
-    "AddPermissionForUser\022%.palm.casbin.v1.Us"
-    "erPermissionRequest\032\026.google.protobuf.Em"
-    "pty\"\000\022Z\n\027DeletePermissionForUser\022%.palm."
-    "casbin.v1.UserPermissionRequest\032\026.google"
-    ".protobuf.Empty\"\000\022]\n\024HasPermissionForUse"
-    "r\022%.palm.casbin.v1.UserPermissionRequest"
-    "\032\034.palm.casbin.v1.BoolResponse\"\000\022T\n\025GetP"
-    "ermissionsForRole\022\024.palm.casbin.v1.Role\032"
-    "#.palm.casbin.v1.PermissionsResponse\"\000\022\\"
-    "\n\035GetImplicitPermissionsForRole\022\024.palm.c"
-    "asbin.v1.Role\032#.palm.casbin.v1.Permissio"
-    "nsResponse\"\000\022W\n\024AddPermissionForRole\022%.p"
-    "alm.casbin.v1.RolePermissionRequest\032\026.go"
-    "ogle.protobuf.Empty\"\000\022Z\n\027DeletePermissio"
-    "nForRole\022%.palm.casbin.v1.RolePermission"
-    "Request\032\026.google.protobuf.Empty\"\000\022]\n\024Has"
-    "PermissionForRole\022%.palm.casbin.v1.RoleP"
-    "ermissionRequest\032\034.palm.casbin.v1.BoolRe"
-    "sponse\"\000B7\n,com.github.saturn_xiv.palm.p"
-    "lugins.casbin.v1P\001Z\005./;v2b\006proto3"
+    "\020\007\022\033\n\027UpdateForUpdatePolicies\020\010\"c\n\021Sessi"
+    "onCanRequest\022&\n\006object\030\001 \001(\0132\026.palm.casb"
+    "in.v1.Object\022&\n\006action\030\002 \001(\0132\026.palm.casb"
+    "in.v1.Action\"Y\n\017UserRoleRequest\022\"\n\004user\030"
+    "\001 \001(\0132\024.palm.casbin.v1.User\022\"\n\004role\030\002 \001("
+    "\0132\024.palm.casbin.v1.Role\"\033\n\014BoolResponse\022"
+    "\013\n\003yes\030\001 \001(\010\"\213\001\n\025UserPermissionRequest\022\""
+    "\n\004user\030\001 \001(\0132\024.palm.casbin.v1.User\022&\n\006ob"
+    "ject\030\002 \001(\0132\026.palm.casbin.v1.Object\022&\n\006ac"
+    "tion\030\003 \001(\0132\026.palm.casbin.v1.Action\"\213\001\n\025R"
+    "olePermissionRequest\022\"\n\004role\030\001 \001(\0132\024.pal"
+    "m.casbin.v1.Role\022&\n\006object\030\002 \001(\0132\026.palm."
+    "casbin.v1.Object\022&\n\006action\030\003 \001(\0132\026.palm."
+    "casbin.v1.Action\"@\n\023PermissionsResponse\022"
+    ")\n\005items\030\001 \003(\0132\032.palm.casbin.v1.Permissi"
+    "on\"4\n\rRolesResponse\022#\n\005items\030\001 \003(\0132\024.pal"
+    "m.casbin.v1.Role\"4\n\rUsersResponse\022#\n\005ite"
+    "ms\030\001 \003(\0132\024.palm.casbin.v1.User\"8\n\017Action"
+    "sResponse\022%\n\005items\030\001 \003(\0132\026.palm.casbin.v"
+    "1.Action\"8\n\017ObjectsResponse\022%\n\005items\030\001 \003"
+    "(\0132\026.palm.casbin.v1.Object2\300\003\n\007Session\022;"
+    "\n\003Has\022\024.palm.casbin.v1.Role\032\034.palm.casbi"
+    "n.v1.BoolResponse\"\000\022H\n\003Can\022!.palm.casbin"
+    ".v1.SessionCanRequest\032\034.palm.casbin.v1.B"
+    "oolResponse\"\000\022@\n\005Roles\022\026.google.protobuf"
+    ".Empty\032\035.palm.casbin.v1.RolesResponse\"\000\022"
+    "L\n\013Permissions\022\026.google.protobuf.Empty\032#"
+    ".palm.casbin.v1.PermissionsResponse\"\000\022H\n"
+    "\rImplicitRoles\022\026.google.protobuf.Empty\032\035"
+    ".palm.casbin.v1.RolesResponse\"\000\022T\n\023Impli"
+    "citPermissions\022\026.google.protobuf.Empty\032#"
+    ".palm.casbin.v1.PermissionsResponse\"\0002\374\017"
+    "\n\006Policy\022F\n\013GetAllUsers\022\026.google.protobu"
+    "f.Empty\032\035.palm.casbin.v1.UsersResponse\"\000"
+    "\022J\n\rGetAllObjects\022\026.google.protobuf.Empt"
+    "y\032\037.palm.casbin.v1.ObjectsResponse\"\000\022J\n\r"
+    "GetAllActions\022\026.google.protobuf.Empty\032\037."
+    "palm.casbin.v1.ActionsResponse\"\000\022F\n\013GetA"
+    "llRoles\022\026.google.protobuf.Empty\032\035.palm.c"
+    "asbin.v1.RolesResponse\"\000\022R\n\021GetAllPermis"
+    "sions\022\026.google.protobuf.Empty\032#.palm.cas"
+    "bin.v1.PermissionsResponse\"\000\022F\n\003Has\022\037.pa"
+    "lm.casbin.v1.UserRoleRequest\032\034.palm.casb"
+    "in.v1.BoolResponse\"\000\022L\n\003Can\022%.palm.casbi"
+    "n.v1.UserPermissionRequest\032\034.palm.casbin"
+    ".v1.BoolResponse\"\000\022H\n\017GetRolesForUser\022\024."
+    "palm.casbin.v1.User\032\035.palm.casbin.v1.Rol"
+    "esResponse\"\000\022P\n\027GetImplicitRolesForUser\022"
+    "\024.palm.casbin.v1.User\032\035.palm.casbin.v1.R"
+    "olesResponse\"\000\022H\n\017GetUsersForRole\022\024.palm"
+    ".casbin.v1.Role\032\035.palm.casbin.v1.UsersRe"
+    "sponse\"\000\022Q\n\016HasRoleForUser\022\037.palm.casbin"
+    ".v1.UserRoleRequest\032\034.palm.casbin.v1.Boo"
+    "lResponse\"\000\022K\n\016AddRoleForUser\022\037.palm.cas"
+    "bin.v1.UserRoleRequest\032\026.google.protobuf"
+    ".Empty\"\000\022N\n\021DeleteRoleForUser\022\037.palm.cas"
+    "bin.v1.UserRoleRequest\032\026.google.protobuf"
+    ".Empty\"\000\022<\n\nDeleteUser\022\024.palm.casbin.v1."
+    "User\032\026.google.protobuf.Empty\"\000\022<\n\nDelete"
+    "Role\022\024.palm.casbin.v1.Role\032\026.google.prot"
+    "obuf.Empty\"\000\022T\n\025GetPermissionsForUser\022\024."
+    "palm.casbin.v1.User\032#.palm.casbin.v1.Per"
+    "missionsResponse\"\000\022\\\n\035GetImplicitPermiss"
+    "ionsForUser\022\024.palm.casbin.v1.User\032#.palm"
+    ".casbin.v1.PermissionsResponse\"\000\022W\n\024AddP"
+    "ermissionForUser\022%.palm.casbin.v1.UserPe"
+    "rmissionRequest\032\026.google.protobuf.Empty\""
+    "\000\022Z\n\027DeletePermissionForUser\022%.palm.casb"
+    "in.v1.UserPermissionRequest\032\026.google.pro"
+    "tobuf.Empty\"\000\022]\n\024HasPermissionForUser\022%."
+    "palm.casbin.v1.UserPermissionRequest\032\034.p"
+    "alm.casbin.v1.BoolResponse\"\000\022T\n\025GetPermi"
+    "ssionsForRole\022\024.palm.casbin.v1.Role\032#.pa"
+    "lm.casbin.v1.PermissionsResponse\"\000\022\\\n\035Ge"
+    "tImplicitPermissionsForRole\022\024.palm.casbi"
+    "n.v1.Role\032#.palm.casbin.v1.PermissionsRe"
+    "sponse\"\000\022W\n\024AddPermissionForRole\022%.palm."
+    "casbin.v1.RolePermissionRequest\032\026.google"
+    ".protobuf.Empty\"\000\022Z\n\027DeletePermissionFor"
+    "Role\022%.palm.casbin.v1.RolePermissionRequ"
+    "est\032\026.google.protobuf.Empty\"\000\022]\n\024HasPerm"
+    "issionForRole\022%.palm.casbin.v1.RolePermi"
+    "ssionRequest\032\034.palm.casbin.v1.BoolRespon"
+    "se\"\000B7\n,com.github.saturn_xiv.palm.plugi"
+    "ns.casbin.v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_casbin_2eproto_deps[1] =
     {
@@ -1119,13 +1175,13 @@ static ::absl::once_flag descriptor_table_casbin_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_casbin_2eproto = {
     false,
     false,
-    4193,
+    4829,
     descriptor_table_protodef_casbin_2eproto,
     "casbin.proto",
     &descriptor_table_casbin_2eproto_once,
     descriptor_table_casbin_2eproto_deps,
     1,
-    27,
+    28,
     schemas,
     file_default_instances,
     TableStruct_casbin_2eproto::offsets,
@@ -5241,6 +5297,307 @@ void WatcherMessage::InternalSwap(WatcherMessage* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata WatcherMessage::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SessionCanRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<SessionCanRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_._has_bits_);
+};
+
+SessionCanRequest::SessionCanRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.casbin.v1.SessionCanRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SessionCanRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::casbin::v1::SessionCanRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SessionCanRequest::SessionCanRequest(
+    ::google::protobuf::Arena* arena,
+    const SessionCanRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SessionCanRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.object_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Object>(
+                              arena, *from._impl_.object_)
+                        : nullptr;
+  _impl_.action_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Action>(
+                              arena, *from._impl_.action_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.casbin.v1.SessionCanRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SessionCanRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SessionCanRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, object_),
+           0,
+           offsetof(Impl_, action_) -
+               offsetof(Impl_, object_) +
+               sizeof(Impl_::action_));
+}
+SessionCanRequest::~SessionCanRequest() {
+  // @@protoc_insertion_point(destructor:palm.casbin.v1.SessionCanRequest)
+  SharedDtor(*this);
+}
+inline void SessionCanRequest::SharedDtor(MessageLite& self) {
+  SessionCanRequest& this_ = static_cast<SessionCanRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.object_;
+  delete this_._impl_.action_;
+  this_._impl_.~Impl_();
+}
+
+inline void* SessionCanRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SessionCanRequest(arena);
+}
+constexpr auto SessionCanRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SessionCanRequest),
+                                            alignof(SessionCanRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SessionCanRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SessionCanRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SessionCanRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SessionCanRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SessionCanRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SessionCanRequest>(), &SessionCanRequest::ByteSizeLong,
+            &SessionCanRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_._cached_size_),
+        false,
+    },
+    &SessionCanRequest::kDescriptorMethods,
+    &descriptor_table_casbin_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SessionCanRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> SessionCanRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::casbin::v1::SessionCanRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.casbin.v1.Action action = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_.action_)}},
+    // .palm.casbin.v1.Object object = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_.object_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.casbin.v1.Object object = 1;
+    {PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_.object_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.casbin.v1.Action action = 2;
+    {PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_.action_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Object>()},
+    {::_pbi::TcParser::GetTable<::palm::casbin::v1::Action>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SessionCanRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.casbin.v1.SessionCanRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.object_ != nullptr);
+      _impl_.object_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.action_ != nullptr);
+      _impl_.action_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SessionCanRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SessionCanRequest& this_ = static_cast<const SessionCanRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SessionCanRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SessionCanRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.casbin.v1.SessionCanRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.casbin.v1.Object object = 1;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                1, *this_._impl_.object_, this_._impl_.object_->GetCachedSize(), target,
+                stream);
+          }
+
+          // .palm.casbin.v1.Action action = 2;
+          if (cached_has_bits & 0x00000002u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.action_, this_._impl_.action_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.casbin.v1.SessionCanRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SessionCanRequest::ByteSizeLong(const MessageLite& base) {
+          const SessionCanRequest& this_ = static_cast<const SessionCanRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SessionCanRequest::ByteSizeLong() const {
+          const SessionCanRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.casbin.v1.SessionCanRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000003u) {
+            // .palm.casbin.v1.Object object = 1;
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.object_);
+            }
+            // .palm.casbin.v1.Action action = 2;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.action_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SessionCanRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SessionCanRequest*>(&to_msg);
+  auto& from = static_cast<const SessionCanRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.casbin.v1.SessionCanRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.object_ != nullptr);
+      if (_this->_impl_.object_ == nullptr) {
+        _this->_impl_.object_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Object>(arena, *from._impl_.object_);
+      } else {
+        _this->_impl_.object_->MergeFrom(*from._impl_.object_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.action_ != nullptr);
+      if (_this->_impl_.action_ == nullptr) {
+        _this->_impl_.action_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::casbin::v1::Action>(arena, *from._impl_.action_);
+      } else {
+        _this->_impl_.action_->MergeFrom(*from._impl_.action_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SessionCanRequest::CopyFrom(const SessionCanRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.casbin.v1.SessionCanRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SessionCanRequest::InternalSwap(SessionCanRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_.action_)
+      + sizeof(SessionCanRequest::_impl_.action_)
+      - PROTOBUF_FIELD_OFFSET(SessionCanRequest, _impl_.object_)>(
+          reinterpret_cast<char*>(&_impl_.object_),
+          reinterpret_cast<char*>(&other->_impl_.object_));
+}
+
+::google::protobuf::Metadata SessionCanRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

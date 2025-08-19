@@ -30,7 +30,11 @@ const (
 )
 
 var (
-	ErrorUserNotSignedIn = status.Error(codes.PermissionDenied, "not signed in")
+	ErrorUserIsNotSignedIn        = status.Error(codes.PermissionDenied, "user is'not signed in")
+	ErrorUserMustHasAdministrator = status.Error(codes.PermissionDenied, "user must be an administrator")
+	ErrorUserHasRoot              = status.Error(codes.PermissionDenied, "this is a root user")
+	ErrorNotFound                 = status.Error(codes.NotFound, "not found")
+	ErrorBadRequest               = status.Error(codes.InvalidArgument, "bad request")
 )
 
 type H map[string]interface{}

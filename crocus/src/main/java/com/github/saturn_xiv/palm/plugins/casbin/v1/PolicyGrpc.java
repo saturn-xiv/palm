@@ -3,6 +3,9 @@ package com.github.saturn_xiv.palm.plugins.casbin.v1;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ * <pre>
+ * ----------------------------------------------------------------------------
+ * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.68.1)",
@@ -137,6 +140,37 @@ public final class PolicyGrpc {
       }
     }
     return getGetAllRolesMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse> getGetAllPermissionsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetAllPermissions",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse> getGetAllPermissionsMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse> getGetAllPermissionsMethod;
+    if ((getGetAllPermissionsMethod = PolicyGrpc.getGetAllPermissionsMethod) == null) {
+      synchronized (PolicyGrpc.class) {
+        if ((getGetAllPermissionsMethod = PolicyGrpc.getGetAllPermissionsMethod) == null) {
+          PolicyGrpc.getGetAllPermissionsMethod = getGetAllPermissionsMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetAllPermissions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PolicyMethodDescriptorSupplier("GetAllPermissions"))
+              .build();
+        }
+      }
+    }
+    return getGetAllPermissionsMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest,
@@ -804,6 +838,9 @@ public final class PolicyGrpc {
   }
 
   /**
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public interface AsyncService {
 
@@ -833,6 +870,13 @@ public final class PolicyGrpc {
     default void getAllRoles(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAllRolesMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void getAllPermissions(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAllPermissionsMethod(), responseObserver);
     }
 
     /**
@@ -978,6 +1022,9 @@ public final class PolicyGrpc {
 
   /**
    * Base class for the server implementation of the service Policy.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static abstract class PolicyImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -989,6 +1036,9 @@ public final class PolicyGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service Policy.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PolicyStub
       extends io.grpc.stub.AbstractAsyncStub<PolicyStub> {
@@ -1033,6 +1083,14 @@ public final class PolicyGrpc {
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetAllRolesMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getAllPermissions(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetAllPermissionsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1198,6 +1256,9 @@ public final class PolicyGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Policy.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PolicyBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<PolicyBlockingStub> {
@@ -1238,6 +1299,13 @@ public final class PolicyGrpc {
     public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getAllRoles(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetAllRolesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getAllPermissions(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetAllPermissionsMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1383,6 +1451,9 @@ public final class PolicyGrpc {
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service Policy.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PolicyFutureStub
       extends io.grpc.stub.AbstractFutureStub<PolicyFutureStub> {
@@ -1427,6 +1498,14 @@ public final class PolicyGrpc {
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetAllRolesMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse> getAllPermissions(
+        com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetAllPermissionsMethod(), getCallOptions()), request);
     }
 
     /**
@@ -1594,26 +1673,27 @@ public final class PolicyGrpc {
   private static final int METHODID_GET_ALL_OBJECTS = 1;
   private static final int METHODID_GET_ALL_ACTIONS = 2;
   private static final int METHODID_GET_ALL_ROLES = 3;
-  private static final int METHODID_HAS = 4;
-  private static final int METHODID_CAN = 5;
-  private static final int METHODID_GET_ROLES_FOR_USER = 6;
-  private static final int METHODID_GET_IMPLICIT_ROLES_FOR_USER = 7;
-  private static final int METHODID_GET_USERS_FOR_ROLE = 8;
-  private static final int METHODID_HAS_ROLE_FOR_USER = 9;
-  private static final int METHODID_ADD_ROLE_FOR_USER = 10;
-  private static final int METHODID_DELETE_ROLE_FOR_USER = 11;
-  private static final int METHODID_DELETE_USER = 12;
-  private static final int METHODID_DELETE_ROLE = 13;
-  private static final int METHODID_GET_PERMISSIONS_FOR_USER = 14;
-  private static final int METHODID_GET_IMPLICIT_PERMISSIONS_FOR_USER = 15;
-  private static final int METHODID_ADD_PERMISSION_FOR_USER = 16;
-  private static final int METHODID_DELETE_PERMISSION_FOR_USER = 17;
-  private static final int METHODID_HAS_PERMISSION_FOR_USER = 18;
-  private static final int METHODID_GET_PERMISSIONS_FOR_ROLE = 19;
-  private static final int METHODID_GET_IMPLICIT_PERMISSIONS_FOR_ROLE = 20;
-  private static final int METHODID_ADD_PERMISSION_FOR_ROLE = 21;
-  private static final int METHODID_DELETE_PERMISSION_FOR_ROLE = 22;
-  private static final int METHODID_HAS_PERMISSION_FOR_ROLE = 23;
+  private static final int METHODID_GET_ALL_PERMISSIONS = 4;
+  private static final int METHODID_HAS = 5;
+  private static final int METHODID_CAN = 6;
+  private static final int METHODID_GET_ROLES_FOR_USER = 7;
+  private static final int METHODID_GET_IMPLICIT_ROLES_FOR_USER = 8;
+  private static final int METHODID_GET_USERS_FOR_ROLE = 9;
+  private static final int METHODID_HAS_ROLE_FOR_USER = 10;
+  private static final int METHODID_ADD_ROLE_FOR_USER = 11;
+  private static final int METHODID_DELETE_ROLE_FOR_USER = 12;
+  private static final int METHODID_DELETE_USER = 13;
+  private static final int METHODID_DELETE_ROLE = 14;
+  private static final int METHODID_GET_PERMISSIONS_FOR_USER = 15;
+  private static final int METHODID_GET_IMPLICIT_PERMISSIONS_FOR_USER = 16;
+  private static final int METHODID_ADD_PERMISSION_FOR_USER = 17;
+  private static final int METHODID_DELETE_PERMISSION_FOR_USER = 18;
+  private static final int METHODID_HAS_PERMISSION_FOR_USER = 19;
+  private static final int METHODID_GET_PERMISSIONS_FOR_ROLE = 20;
+  private static final int METHODID_GET_IMPLICIT_PERMISSIONS_FOR_ROLE = 21;
+  private static final int METHODID_ADD_PERMISSION_FOR_ROLE = 22;
+  private static final int METHODID_DELETE_PERMISSION_FOR_ROLE = 23;
+  private static final int METHODID_HAS_PERMISSION_FOR_ROLE = 24;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1647,6 +1727,10 @@ public final class PolicyGrpc {
         case METHODID_GET_ALL_ROLES:
           serviceImpl.getAllRoles((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse>) responseObserver);
+          break;
+        case METHODID_GET_ALL_PERMISSIONS:
+          serviceImpl.getAllPermissions((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse>) responseObserver);
           break;
         case METHODID_HAS:
           serviceImpl.has((com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest) request,
@@ -1774,6 +1858,13 @@ public final class PolicyGrpc {
               com.google.protobuf.Empty,
               com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse>(
                 service, METHODID_GET_ALL_ROLES)))
+        .addMethod(
+          getGetAllPermissionsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.google.protobuf.Empty,
+              com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse>(
+                service, METHODID_GET_ALL_PERMISSIONS)))
         .addMethod(
           getHasMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -1966,6 +2057,7 @@ public final class PolicyGrpc {
               .addMethod(getGetAllObjectsMethod())
               .addMethod(getGetAllActionsMethod())
               .addMethod(getGetAllRolesMethod())
+              .addMethod(getGetAllPermissionsMethod())
               .addMethod(getHasMethod())
               .addMethod(getCanMethod())
               .addMethod(getGetRolesForUserMethod())

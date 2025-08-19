@@ -92,12 +92,26 @@ message WatcherMessage {
 }
 
 // ----------------------------------------------------------------------------
-
+service Session {
+  rpc Has(Role) returns (BoolResponse) {}
+  rpc Can(SessionCanRequest) returns (BoolResponse) {}
+  rpc Roles(google.protobuf.Empty) returns (RolesResponse) {}
+  rpc Permissions(google.protobuf.Empty) returns (PermissionsResponse) {}
+  rpc ImplicitRoles(google.protobuf.Empty) returns (RolesResponse) {}
+  rpc ImplicitPermissions(google.protobuf.Empty) returns (PermissionsResponse) {
+  }
+}
+message SessionCanRequest {
+  Object object = 1;
+  Action action = 2;
+}
+// ----------------------------------------------------------------------------
 service Policy {
   rpc GetAllUsers(google.protobuf.Empty) returns (UsersResponse) {}
   rpc GetAllObjects(google.protobuf.Empty) returns (ObjectsResponse) {}
   rpc GetAllActions(google.protobuf.Empty) returns (ActionsResponse) {}
   rpc GetAllRoles(google.protobuf.Empty) returns (RolesResponse) {}
+  rpc GetAllPermissions(google.protobuf.Empty) returns (PermissionsResponse) {}
 
   rpc Has(UserRoleRequest) returns (BoolResponse) {}
   rpc Can(UserPermissionRequest) returns (BoolResponse) {}

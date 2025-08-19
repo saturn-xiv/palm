@@ -31,7 +31,999 @@ namespace casbin {
 namespace v1 {
 
 // ----------------------------------------------------------------------------
-//
+class Session final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.casbin.v1.Session";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::palm::casbin::v1::BoolResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>> AsyncHas(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>>(AsyncHasRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>> PrepareAsyncHas(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>>(PrepareAsyncHasRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::palm::casbin::v1::BoolResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>> AsyncCan(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>>(AsyncCanRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>> PrepareAsyncCan(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>>(PrepareAsyncCanRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::RolesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>> AsyncRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>>(AsyncRolesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>> PrepareAsyncRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>>(PrepareAsyncRolesRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>> AsyncPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>>(AsyncPermissionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>> PrepareAsyncPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>>(PrepareAsyncPermissionsRaw(context, request, cq));
+    }
+    virtual ::grpc::Status ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::RolesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>> AsyncImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>>(AsyncImplicitRolesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>> PrepareAsyncImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>>(PrepareAsyncImplicitRolesRaw(context, request, cq));
+    }
+    virtual ::grpc::Status ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>> AsyncImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>>(AsyncImplicitPermissionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>> PrepareAsyncImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>>(PrepareAsyncImplicitPermissionsRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* AsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* PrepareAsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* AsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* PrepareAsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>* AsyncRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>* PrepareAsyncRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>* AsyncPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>* PrepareAsyncPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>* AsyncImplicitRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>* PrepareAsyncImplicitRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>* AsyncImplicitPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>* PrepareAsyncImplicitPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::palm::casbin::v1::BoolResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>> AsyncHas(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>>(AsyncHasRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>> PrepareAsyncHas(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>>(PrepareAsyncHasRaw(context, request, cq));
+    }
+    ::grpc::Status Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::palm::casbin::v1::BoolResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>> AsyncCan(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>>(AsyncCanRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>> PrepareAsyncCan(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>>(PrepareAsyncCanRaw(context, request, cq));
+    }
+    ::grpc::Status Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::RolesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>> AsyncRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>>(AsyncRolesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>> PrepareAsyncRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>>(PrepareAsyncRolesRaw(context, request, cq));
+    }
+    ::grpc::Status Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>> AsyncPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>>(AsyncPermissionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>> PrepareAsyncPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>>(PrepareAsyncPermissionsRaw(context, request, cq));
+    }
+    ::grpc::Status ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::RolesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>> AsyncImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>>(AsyncImplicitRolesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>> PrepareAsyncImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>>(PrepareAsyncImplicitRolesRaw(context, request, cq));
+    }
+    ::grpc::Status ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>> AsyncImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>>(AsyncImplicitPermissionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>> PrepareAsyncImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>>(PrepareAsyncImplicitPermissionsRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) override;
+      void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) override;
+      void Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)>) override;
+      void Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* AsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* PrepareAsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* AsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* PrepareAsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* AsyncRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* PrepareAsyncRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* AsyncPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* PrepareAsyncPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* AsyncImplicitRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* PrepareAsyncImplicitRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* AsyncImplicitPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* PrepareAsyncImplicitPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Has_;
+    const ::grpc::internal::RpcMethod rpcmethod_Can_;
+    const ::grpc::internal::RpcMethod rpcmethod_Roles_;
+    const ::grpc::internal::RpcMethod rpcmethod_Permissions_;
+    const ::grpc::internal::RpcMethod rpcmethod_ImplicitRoles_;
+    const ::grpc::internal::RpcMethod rpcmethod_ImplicitPermissions_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Has(::grpc::ServerContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response);
+    virtual ::grpc::Status Can(::grpc::ServerContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response);
+    virtual ::grpc::Status Roles(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response);
+    virtual ::grpc::Status Permissions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response);
+    virtual ::grpc::Status ImplicitRoles(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response);
+    virtual ::grpc::Status ImplicitPermissions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Has : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Has() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Has() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Has(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHas(::grpc::ServerContext* context, ::palm::casbin::v1::Role* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Can : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Can() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Can() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Can(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCan(::grpc::ServerContext* context, ::palm::casbin::v1::SessionCanRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Roles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Roles() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Roles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Roles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRoles(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::RolesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Permissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Permissions() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Permissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Permissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPermissions(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ImplicitRoles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ImplicitRoles() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_ImplicitRoles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitRoles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestImplicitRoles(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::RolesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ImplicitPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ImplicitPermissions() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_ImplicitPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestImplicitPermissions(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Has<WithAsyncMethod_Can<WithAsyncMethod_Roles<WithAsyncMethod_Permissions<WithAsyncMethod_ImplicitRoles<WithAsyncMethod_ImplicitPermissions<Service > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Has : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Has() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response) { return this->Has(context, request, response); }));}
+    void SetMessageAllocatorFor_Has(
+        ::grpc::MessageAllocator< ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Has() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Has(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Has(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Can : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Can() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response) { return this->Can(context, request, response); }));}
+    void SetMessageAllocatorFor_Can(
+        ::grpc::MessageAllocator< ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Can() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Can(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Can(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Roles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Roles() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response) { return this->Roles(context, request, response); }));}
+    void SetMessageAllocatorFor_Roles(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Roles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Roles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Roles(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Permissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Permissions() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->Permissions(context, request, response); }));}
+    void SetMessageAllocatorFor_Permissions(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Permissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Permissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Permissions(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ImplicitRoles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ImplicitRoles() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response) { return this->ImplicitRoles(context, request, response); }));}
+    void SetMessageAllocatorFor_ImplicitRoles(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ImplicitRoles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitRoles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ImplicitRoles(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ImplicitPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ImplicitPermissions() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->ImplicitPermissions(context, request, response); }));}
+    void SetMessageAllocatorFor_ImplicitPermissions(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ImplicitPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ImplicitPermissions(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Has<WithCallbackMethod_Can<WithCallbackMethod_Roles<WithCallbackMethod_Permissions<WithCallbackMethod_ImplicitRoles<WithCallbackMethod_ImplicitPermissions<Service > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Has : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Has() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Has() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Has(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Can : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Can() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Can() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Can(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Roles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Roles() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Roles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Roles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Permissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Permissions() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Permissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Permissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ImplicitRoles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ImplicitRoles() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_ImplicitRoles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitRoles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ImplicitPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ImplicitPermissions() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_ImplicitPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Has : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Has() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Has() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Has(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHas(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Can : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Can() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Can() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Can(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Roles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Roles() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Roles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Roles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRoles(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Permissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Permissions() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Permissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Permissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPermissions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ImplicitRoles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ImplicitRoles() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_ImplicitRoles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitRoles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestImplicitRoles(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ImplicitPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ImplicitPermissions() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_ImplicitPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestImplicitPermissions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Has : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Has() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Has(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Has() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Has(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Has(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Can : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Can() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Can(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Can() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Can(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Can(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Roles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Roles() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Roles(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Roles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Roles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Roles(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Permissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Permissions() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Permissions(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Permissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Permissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Permissions(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ImplicitRoles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ImplicitRoles() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ImplicitRoles(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ImplicitRoles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitRoles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ImplicitRoles(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ImplicitPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ImplicitPermissions() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ImplicitPermissions(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ImplicitPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ImplicitPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ImplicitPermissions(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Has : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Has() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse>* streamer) {
+                       return this->StreamedHas(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Has() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Has(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::Role* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedHas(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::casbin::v1::Role,::palm::casbin::v1::BoolResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Can : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Can() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse>* streamer) {
+                       return this->StreamedCan(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Can() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Can(::grpc::ServerContext* /*context*/, const ::palm::casbin::v1::SessionCanRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCan(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::casbin::v1::SessionCanRequest,::palm::casbin::v1::BoolResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Roles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Roles() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>* streamer) {
+                       return this->StreamedRoles(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Roles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Roles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRoles(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::casbin::v1::RolesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Permissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Permissions() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>* streamer) {
+                       return this->StreamedPermissions(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Permissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Permissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPermissions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::casbin::v1::PermissionsResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ImplicitRoles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ImplicitRoles() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse>* streamer) {
+                       return this->StreamedImplicitRoles(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ImplicitRoles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ImplicitRoles(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedImplicitRoles(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::casbin::v1::RolesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ImplicitPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ImplicitPermissions() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>* streamer) {
+                       return this->StreamedImplicitPermissions(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ImplicitPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ImplicitPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedImplicitPermissions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::casbin::v1::PermissionsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Has<WithStreamedUnaryMethod_Can<WithStreamedUnaryMethod_Roles<WithStreamedUnaryMethod_Permissions<WithStreamedUnaryMethod_ImplicitRoles<WithStreamedUnaryMethod_ImplicitPermissions<Service > > > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Has<WithStreamedUnaryMethod_Can<WithStreamedUnaryMethod_Roles<WithStreamedUnaryMethod_Permissions<WithStreamedUnaryMethod_ImplicitRoles<WithStreamedUnaryMethod_ImplicitPermissions<Service > > > > > > StreamedService;
+};
+
+// ----------------------------------------------------------------------------
 class Policy final {
  public:
   static constexpr char const* service_full_name() {
@@ -67,6 +1059,13 @@ class Policy final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>> PrepareAsyncGetAllRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>>(PrepareAsyncGetAllRolesRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>> AsyncGetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>>(AsyncGetAllPermissionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>> PrepareAsyncGetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>>(PrepareAsyncGetAllPermissionsRaw(context, request, cq));
     }
     virtual ::grpc::Status Has(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::palm::casbin::v1::BoolResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>> AsyncHas(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::grpc::CompletionQueue* cq) {
@@ -219,6 +1218,8 @@ class Policy final {
       virtual void GetAllActions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::ActionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetAllRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetAllRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Can(::grpc::ClientContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -272,6 +1273,8 @@ class Policy final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::ActionsResponse>* PrepareAsyncGetAllActionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>* AsyncGetAllRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::RolesResponse>* PrepareAsyncGetAllRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>* AsyncGetAllPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::PermissionsResponse>* PrepareAsyncGetAllPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* AsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* PrepareAsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::casbin::v1::BoolResponse>* AsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::UserPermissionRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -343,6 +1346,13 @@ class Policy final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>> PrepareAsyncGetAllRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>>(PrepareAsyncGetAllRolesRaw(context, request, cq));
+    }
+    ::grpc::Status GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>> AsyncGetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>>(AsyncGetAllPermissionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>> PrepareAsyncGetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>>(PrepareAsyncGetAllPermissionsRaw(context, request, cq));
     }
     ::grpc::Status Has(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::palm::casbin::v1::BoolResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>> AsyncHas(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::grpc::CompletionQueue* cq) {
@@ -495,6 +1505,8 @@ class Policy final {
       void GetAllActions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::ActionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetAllRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)>) override;
       void GetAllRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) override;
       void Has(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Can(::grpc::ClientContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)>) override;
@@ -554,6 +1566,8 @@ class Policy final {
     ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::ActionsResponse>* PrepareAsyncGetAllActionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* AsyncGetAllRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* PrepareAsyncGetAllRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* AsyncGetAllPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* PrepareAsyncGetAllPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* AsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* PrepareAsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::UserRoleRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* AsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::UserPermissionRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -598,6 +1612,7 @@ class Policy final {
     const ::grpc::internal::RpcMethod rpcmethod_GetAllObjects_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAllActions_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAllRoles_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetAllPermissions_;
     const ::grpc::internal::RpcMethod rpcmethod_Has_;
     const ::grpc::internal::RpcMethod rpcmethod_Can_;
     const ::grpc::internal::RpcMethod rpcmethod_GetRolesForUser_;
@@ -629,6 +1644,7 @@ class Policy final {
     virtual ::grpc::Status GetAllObjects(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::ObjectsResponse* response);
     virtual ::grpc::Status GetAllActions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::ActionsResponse* response);
     virtual ::grpc::Status GetAllRoles(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response);
+    virtual ::grpc::Status GetAllPermissions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response);
     virtual ::grpc::Status Has(::grpc::ServerContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response);
     virtual ::grpc::Status Can(::grpc::ServerContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::palm::casbin::v1::BoolResponse* response);
     virtual ::grpc::Status GetRolesForUser(::grpc::ServerContext* context, const ::palm::casbin::v1::User* request, ::palm::casbin::v1::RolesResponse* response);
@@ -731,12 +1747,32 @@ class Policy final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetAllPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetAllPermissions() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_GetAllPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAllPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetAllPermissions(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_Has : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Has() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_Has() override {
       BaseClassMustBeDerivedFromService(this);
@@ -747,7 +1783,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHas(::grpc::ServerContext* context, ::palm::casbin::v1::UserRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -756,7 +1792,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Can() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_Can() override {
       BaseClassMustBeDerivedFromService(this);
@@ -767,7 +1803,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCan(::grpc::ServerContext* context, ::palm::casbin::v1::UserPermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -776,7 +1812,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRolesForUser() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_GetRolesForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -787,7 +1823,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRolesForUser(::grpc::ServerContext* context, ::palm::casbin::v1::User* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::RolesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -796,7 +1832,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetImplicitRolesForUser() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_GetImplicitRolesForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -807,7 +1843,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetImplicitRolesForUser(::grpc::ServerContext* context, ::palm::casbin::v1::User* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::RolesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -816,7 +1852,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetUsersForRole() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_GetUsersForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -827,7 +1863,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetUsersForRole(::grpc::ServerContext* context, ::palm::casbin::v1::Role* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::UsersResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -836,7 +1872,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_HasRoleForUser() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_HasRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -847,7 +1883,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHasRoleForUser(::grpc::ServerContext* context, ::palm::casbin::v1::UserRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -856,7 +1892,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_AddRoleForUser() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_AddRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -867,7 +1903,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddRoleForUser(::grpc::ServerContext* context, ::palm::casbin::v1::UserRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -876,7 +1912,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteRoleForUser() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(12);
     }
     ~WithAsyncMethod_DeleteRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -887,7 +1923,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRoleForUser(::grpc::ServerContext* context, ::palm::casbin::v1::UserRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -896,7 +1932,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteUser() {
-      ::grpc::Service::MarkMethodAsync(12);
+      ::grpc::Service::MarkMethodAsync(13);
     }
     ~WithAsyncMethod_DeleteUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -907,7 +1943,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteUser(::grpc::ServerContext* context, ::palm::casbin::v1::User* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -916,7 +1952,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteRole() {
-      ::grpc::Service::MarkMethodAsync(13);
+      ::grpc::Service::MarkMethodAsync(14);
     }
     ~WithAsyncMethod_DeleteRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -927,7 +1963,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRole(::grpc::ServerContext* context, ::palm::casbin::v1::Role* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -936,7 +1972,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPermissionsForUser() {
-      ::grpc::Service::MarkMethodAsync(14);
+      ::grpc::Service::MarkMethodAsync(15);
     }
     ~WithAsyncMethod_GetPermissionsForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -947,7 +1983,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPermissionsForUser(::grpc::ServerContext* context, ::palm::casbin::v1::User* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -956,7 +1992,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetImplicitPermissionsForUser() {
-      ::grpc::Service::MarkMethodAsync(15);
+      ::grpc::Service::MarkMethodAsync(16);
     }
     ~WithAsyncMethod_GetImplicitPermissionsForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -967,7 +2003,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetImplicitPermissionsForUser(::grpc::ServerContext* context, ::palm::casbin::v1::User* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -976,7 +2012,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_AddPermissionForUser() {
-      ::grpc::Service::MarkMethodAsync(16);
+      ::grpc::Service::MarkMethodAsync(17);
     }
     ~WithAsyncMethod_AddPermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -987,7 +2023,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddPermissionForUser(::grpc::ServerContext* context, ::palm::casbin::v1::UserPermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -996,7 +2032,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeletePermissionForUser() {
-      ::grpc::Service::MarkMethodAsync(17);
+      ::grpc::Service::MarkMethodAsync(18);
     }
     ~WithAsyncMethod_DeletePermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1007,7 +2043,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeletePermissionForUser(::grpc::ServerContext* context, ::palm::casbin::v1::UserPermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1016,7 +2052,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_HasPermissionForUser() {
-      ::grpc::Service::MarkMethodAsync(18);
+      ::grpc::Service::MarkMethodAsync(19);
     }
     ~WithAsyncMethod_HasPermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1027,7 +2063,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHasPermissionForUser(::grpc::ServerContext* context, ::palm::casbin::v1::UserPermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1036,7 +2072,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPermissionsForRole() {
-      ::grpc::Service::MarkMethodAsync(19);
+      ::grpc::Service::MarkMethodAsync(20);
     }
     ~WithAsyncMethod_GetPermissionsForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1047,7 +2083,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPermissionsForRole(::grpc::ServerContext* context, ::palm::casbin::v1::Role* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1056,7 +2092,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetImplicitPermissionsForRole() {
-      ::grpc::Service::MarkMethodAsync(20);
+      ::grpc::Service::MarkMethodAsync(21);
     }
     ~WithAsyncMethod_GetImplicitPermissionsForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1067,7 +2103,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetImplicitPermissionsForRole(::grpc::ServerContext* context, ::palm::casbin::v1::Role* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::PermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1076,7 +2112,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_AddPermissionForRole() {
-      ::grpc::Service::MarkMethodAsync(21);
+      ::grpc::Service::MarkMethodAsync(22);
     }
     ~WithAsyncMethod_AddPermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1087,7 +2123,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddPermissionForRole(::grpc::ServerContext* context, ::palm::casbin::v1::RolePermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1096,7 +2132,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeletePermissionForRole() {
-      ::grpc::Service::MarkMethodAsync(22);
+      ::grpc::Service::MarkMethodAsync(23);
     }
     ~WithAsyncMethod_DeletePermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1107,7 +2143,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeletePermissionForRole(::grpc::ServerContext* context, ::palm::casbin::v1::RolePermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1116,7 +2152,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_HasPermissionForRole() {
-      ::grpc::Service::MarkMethodAsync(23);
+      ::grpc::Service::MarkMethodAsync(24);
     }
     ~WithAsyncMethod_HasPermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1127,10 +2163,10 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHasPermissionForRole(::grpc::ServerContext* context, ::palm::casbin::v1::RolePermissionRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::casbin::v1::BoolResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetAllUsers<WithAsyncMethod_GetAllObjects<WithAsyncMethod_GetAllActions<WithAsyncMethod_GetAllRoles<WithAsyncMethod_Has<WithAsyncMethod_Can<WithAsyncMethod_GetRolesForUser<WithAsyncMethod_GetImplicitRolesForUser<WithAsyncMethod_GetUsersForRole<WithAsyncMethod_HasRoleForUser<WithAsyncMethod_AddRoleForUser<WithAsyncMethod_DeleteRoleForUser<WithAsyncMethod_DeleteUser<WithAsyncMethod_DeleteRole<WithAsyncMethod_GetPermissionsForUser<WithAsyncMethod_GetImplicitPermissionsForUser<WithAsyncMethod_AddPermissionForUser<WithAsyncMethod_DeletePermissionForUser<WithAsyncMethod_HasPermissionForUser<WithAsyncMethod_GetPermissionsForRole<WithAsyncMethod_GetImplicitPermissionsForRole<WithAsyncMethod_AddPermissionForRole<WithAsyncMethod_DeletePermissionForRole<WithAsyncMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetAllUsers<WithAsyncMethod_GetAllObjects<WithAsyncMethod_GetAllActions<WithAsyncMethod_GetAllRoles<WithAsyncMethod_GetAllPermissions<WithAsyncMethod_Has<WithAsyncMethod_Can<WithAsyncMethod_GetRolesForUser<WithAsyncMethod_GetImplicitRolesForUser<WithAsyncMethod_GetUsersForRole<WithAsyncMethod_HasRoleForUser<WithAsyncMethod_AddRoleForUser<WithAsyncMethod_DeleteRoleForUser<WithAsyncMethod_DeleteUser<WithAsyncMethod_DeleteRole<WithAsyncMethod_GetPermissionsForUser<WithAsyncMethod_GetImplicitPermissionsForUser<WithAsyncMethod_AddPermissionForUser<WithAsyncMethod_DeletePermissionForUser<WithAsyncMethod_HasPermissionForUser<WithAsyncMethod_GetPermissionsForRole<WithAsyncMethod_GetImplicitPermissionsForRole<WithAsyncMethod_AddPermissionForRole<WithAsyncMethod_DeletePermissionForRole<WithAsyncMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetAllUsers : public BaseClass {
    private:
@@ -1240,18 +2276,45 @@ class Policy final {
       ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::RolesResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetAllPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetAllPermissions() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->GetAllPermissions(context, request, response); }));}
+    void SetMessageAllocatorFor_GetAllPermissions(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetAllPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAllPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetAllPermissions(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_Has : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Has() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response) { return this->Has(context, request, response); }));}
     void SetMessageAllocatorFor_Has(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1272,13 +2335,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Can() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::palm::casbin::v1::BoolResponse* response) { return this->Can(context, request, response); }));}
     void SetMessageAllocatorFor_Can(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1299,13 +2362,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRolesForUser() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::User* request, ::palm::casbin::v1::RolesResponse* response) { return this->GetRolesForUser(context, request, response); }));}
     void SetMessageAllocatorFor_GetRolesForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1326,13 +2389,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetImplicitRolesForUser() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::User* request, ::palm::casbin::v1::RolesResponse* response) { return this->GetImplicitRolesForUser(context, request, response); }));}
     void SetMessageAllocatorFor_GetImplicitRolesForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1353,13 +2416,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetUsersForRole() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::UsersResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::UsersResponse* response) { return this->GetUsersForRole(context, request, response); }));}
     void SetMessageAllocatorFor_GetUsersForRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::Role, ::palm::casbin::v1::UsersResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::UsersResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1380,13 +2443,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_HasRoleForUser() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::palm::casbin::v1::BoolResponse* response) { return this->HasRoleForUser(context, request, response); }));}
     void SetMessageAllocatorFor_HasRoleForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1407,13 +2470,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_AddRoleForUser() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::google::protobuf::Empty* response) { return this->AddRoleForUser(context, request, response); }));}
     void SetMessageAllocatorFor_AddRoleForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1434,13 +2497,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteRoleForUser() {
-      ::grpc::Service::MarkMethodCallback(11,
+      ::grpc::Service::MarkMethodCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserRoleRequest* request, ::google::protobuf::Empty* response) { return this->DeleteRoleForUser(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteRoleForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1461,13 +2524,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteUser() {
-      ::grpc::Service::MarkMethodCallback(12,
+      ::grpc::Service::MarkMethodCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::User* request, ::google::protobuf::Empty* response) { return this->DeleteUser(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::User, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1488,13 +2551,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteRole() {
-      ::grpc::Service::MarkMethodCallback(13,
+      ::grpc::Service::MarkMethodCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::Role* request, ::google::protobuf::Empty* response) { return this->DeleteRole(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::Role, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1515,13 +2578,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPermissionsForUser() {
-      ::grpc::Service::MarkMethodCallback(14,
+      ::grpc::Service::MarkMethodCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::User* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->GetPermissionsForUser(context, request, response); }));}
     void SetMessageAllocatorFor_GetPermissionsForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1542,13 +2605,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetImplicitPermissionsForUser() {
-      ::grpc::Service::MarkMethodCallback(15,
+      ::grpc::Service::MarkMethodCallback(16,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::User* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->GetImplicitPermissionsForUser(context, request, response); }));}
     void SetMessageAllocatorFor_GetImplicitPermissionsForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1569,13 +2632,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_AddPermissionForUser() {
-      ::grpc::Service::MarkMethodCallback(16,
+      ::grpc::Service::MarkMethodCallback(17,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::google::protobuf::Empty* response) { return this->AddPermissionForUser(context, request, response); }));}
     void SetMessageAllocatorFor_AddPermissionForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1596,13 +2659,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeletePermissionForUser() {
-      ::grpc::Service::MarkMethodCallback(17,
+      ::grpc::Service::MarkMethodCallback(18,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::google::protobuf::Empty* response) { return this->DeletePermissionForUser(context, request, response); }));}
     void SetMessageAllocatorFor_DeletePermissionForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1623,13 +2686,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_HasPermissionForUser() {
-      ::grpc::Service::MarkMethodCallback(18,
+      ::grpc::Service::MarkMethodCallback(19,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::UserPermissionRequest* request, ::palm::casbin::v1::BoolResponse* response) { return this->HasPermissionForUser(context, request, response); }));}
     void SetMessageAllocatorFor_HasPermissionForUser(
         ::grpc::MessageAllocator< ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1650,13 +2713,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPermissionsForRole() {
-      ::grpc::Service::MarkMethodCallback(19,
+      ::grpc::Service::MarkMethodCallback(20,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->GetPermissionsForRole(context, request, response); }));}
     void SetMessageAllocatorFor_GetPermissionsForRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1677,13 +2740,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetImplicitPermissionsForRole() {
-      ::grpc::Service::MarkMethodCallback(20,
+      ::grpc::Service::MarkMethodCallback(21,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::PermissionsResponse* response) { return this->GetImplicitPermissionsForRole(context, request, response); }));}
     void SetMessageAllocatorFor_GetImplicitPermissionsForRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(21);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1704,13 +2767,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_AddPermissionForRole() {
-      ::grpc::Service::MarkMethodCallback(21,
+      ::grpc::Service::MarkMethodCallback(22,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::RolePermissionRequest* request, ::google::protobuf::Empty* response) { return this->AddPermissionForRole(context, request, response); }));}
     void SetMessageAllocatorFor_AddPermissionForRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(21);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1731,13 +2794,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeletePermissionForRole() {
-      ::grpc::Service::MarkMethodCallback(22,
+      ::grpc::Service::MarkMethodCallback(23,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::RolePermissionRequest* request, ::google::protobuf::Empty* response) { return this->DeletePermissionForRole(context, request, response); }));}
     void SetMessageAllocatorFor_DeletePermissionForRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1758,13 +2821,13 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_HasPermissionForRole() {
-      ::grpc::Service::MarkMethodCallback(23,
+      ::grpc::Service::MarkMethodCallback(24,
           new ::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::RolePermissionRequest, ::palm::casbin::v1::BoolResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::palm::casbin::v1::RolePermissionRequest* request, ::palm::casbin::v1::BoolResponse* response) { return this->HasPermissionForRole(context, request, response); }));}
     void SetMessageAllocatorFor_HasPermissionForRole(
         ::grpc::MessageAllocator< ::palm::casbin::v1::RolePermissionRequest, ::palm::casbin::v1::BoolResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::casbin::v1::RolePermissionRequest, ::palm::casbin::v1::BoolResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1779,7 +2842,7 @@ class Policy final {
     virtual ::grpc::ServerUnaryReactor* HasPermissionForRole(
       ::grpc::CallbackServerContext* /*context*/, const ::palm::casbin::v1::RolePermissionRequest* /*request*/, ::palm::casbin::v1::BoolResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetAllUsers<WithCallbackMethod_GetAllObjects<WithCallbackMethod_GetAllActions<WithCallbackMethod_GetAllRoles<WithCallbackMethod_Has<WithCallbackMethod_Can<WithCallbackMethod_GetRolesForUser<WithCallbackMethod_GetImplicitRolesForUser<WithCallbackMethod_GetUsersForRole<WithCallbackMethod_HasRoleForUser<WithCallbackMethod_AddRoleForUser<WithCallbackMethod_DeleteRoleForUser<WithCallbackMethod_DeleteUser<WithCallbackMethod_DeleteRole<WithCallbackMethod_GetPermissionsForUser<WithCallbackMethod_GetImplicitPermissionsForUser<WithCallbackMethod_AddPermissionForUser<WithCallbackMethod_DeletePermissionForUser<WithCallbackMethod_HasPermissionForUser<WithCallbackMethod_GetPermissionsForRole<WithCallbackMethod_GetImplicitPermissionsForRole<WithCallbackMethod_AddPermissionForRole<WithCallbackMethod_DeletePermissionForRole<WithCallbackMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetAllUsers<WithCallbackMethod_GetAllObjects<WithCallbackMethod_GetAllActions<WithCallbackMethod_GetAllRoles<WithCallbackMethod_GetAllPermissions<WithCallbackMethod_Has<WithCallbackMethod_Can<WithCallbackMethod_GetRolesForUser<WithCallbackMethod_GetImplicitRolesForUser<WithCallbackMethod_GetUsersForRole<WithCallbackMethod_HasRoleForUser<WithCallbackMethod_AddRoleForUser<WithCallbackMethod_DeleteRoleForUser<WithCallbackMethod_DeleteUser<WithCallbackMethod_DeleteRole<WithCallbackMethod_GetPermissionsForUser<WithCallbackMethod_GetImplicitPermissionsForUser<WithCallbackMethod_AddPermissionForUser<WithCallbackMethod_DeletePermissionForUser<WithCallbackMethod_HasPermissionForUser<WithCallbackMethod_GetPermissionsForRole<WithCallbackMethod_GetImplicitPermissionsForRole<WithCallbackMethod_AddPermissionForRole<WithCallbackMethod_DeletePermissionForRole<WithCallbackMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetAllUsers : public BaseClass {
@@ -1850,12 +2913,29 @@ class Policy final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetAllPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetAllPermissions() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_GetAllPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAllPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Has : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Has() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_Has() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1872,7 +2952,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Can() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_Can() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1889,7 +2969,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRolesForUser() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_GetRolesForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1906,7 +2986,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetImplicitRolesForUser() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_GetImplicitRolesForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1923,7 +3003,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetUsersForRole() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_GetUsersForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1940,7 +3020,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_HasRoleForUser() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_HasRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1957,7 +3037,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_AddRoleForUser() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_AddRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1974,7 +3054,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteRoleForUser() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(12);
     }
     ~WithGenericMethod_DeleteRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1991,7 +3071,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteUser() {
-      ::grpc::Service::MarkMethodGeneric(12);
+      ::grpc::Service::MarkMethodGeneric(13);
     }
     ~WithGenericMethod_DeleteUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2008,7 +3088,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteRole() {
-      ::grpc::Service::MarkMethodGeneric(13);
+      ::grpc::Service::MarkMethodGeneric(14);
     }
     ~WithGenericMethod_DeleteRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2025,7 +3105,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPermissionsForUser() {
-      ::grpc::Service::MarkMethodGeneric(14);
+      ::grpc::Service::MarkMethodGeneric(15);
     }
     ~WithGenericMethod_GetPermissionsForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2042,7 +3122,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetImplicitPermissionsForUser() {
-      ::grpc::Service::MarkMethodGeneric(15);
+      ::grpc::Service::MarkMethodGeneric(16);
     }
     ~WithGenericMethod_GetImplicitPermissionsForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2059,7 +3139,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_AddPermissionForUser() {
-      ::grpc::Service::MarkMethodGeneric(16);
+      ::grpc::Service::MarkMethodGeneric(17);
     }
     ~WithGenericMethod_AddPermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2076,7 +3156,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeletePermissionForUser() {
-      ::grpc::Service::MarkMethodGeneric(17);
+      ::grpc::Service::MarkMethodGeneric(18);
     }
     ~WithGenericMethod_DeletePermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2093,7 +3173,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_HasPermissionForUser() {
-      ::grpc::Service::MarkMethodGeneric(18);
+      ::grpc::Service::MarkMethodGeneric(19);
     }
     ~WithGenericMethod_HasPermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2110,7 +3190,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPermissionsForRole() {
-      ::grpc::Service::MarkMethodGeneric(19);
+      ::grpc::Service::MarkMethodGeneric(20);
     }
     ~WithGenericMethod_GetPermissionsForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2127,7 +3207,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetImplicitPermissionsForRole() {
-      ::grpc::Service::MarkMethodGeneric(20);
+      ::grpc::Service::MarkMethodGeneric(21);
     }
     ~WithGenericMethod_GetImplicitPermissionsForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2144,7 +3224,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_AddPermissionForRole() {
-      ::grpc::Service::MarkMethodGeneric(21);
+      ::grpc::Service::MarkMethodGeneric(22);
     }
     ~WithGenericMethod_AddPermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2161,7 +3241,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeletePermissionForRole() {
-      ::grpc::Service::MarkMethodGeneric(22);
+      ::grpc::Service::MarkMethodGeneric(23);
     }
     ~WithGenericMethod_DeletePermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2178,7 +3258,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_HasPermissionForRole() {
-      ::grpc::Service::MarkMethodGeneric(23);
+      ::grpc::Service::MarkMethodGeneric(24);
     }
     ~WithGenericMethod_HasPermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2270,12 +3350,32 @@ class Policy final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetAllPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetAllPermissions() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_GetAllPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAllPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetAllPermissions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_Has : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Has() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_Has() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2286,7 +3386,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHas(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2295,7 +3395,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Can() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_Can() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2306,7 +3406,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2315,7 +3415,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRolesForUser() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_GetRolesForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2326,7 +3426,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRolesForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2335,7 +3435,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetImplicitRolesForUser() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(8);
     }
     ~WithRawMethod_GetImplicitRolesForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2346,7 +3446,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetImplicitRolesForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2355,7 +3455,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetUsersForRole() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_GetUsersForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2366,7 +3466,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetUsersForRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2375,7 +3475,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_HasRoleForUser() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_HasRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2386,7 +3486,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHasRoleForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2395,7 +3495,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_AddRoleForUser() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_AddRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2406,7 +3506,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddRoleForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2415,7 +3515,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteRoleForUser() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(12);
     }
     ~WithRawMethod_DeleteRoleForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2426,7 +3526,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRoleForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2435,7 +3535,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteUser() {
-      ::grpc::Service::MarkMethodRaw(12);
+      ::grpc::Service::MarkMethodRaw(13);
     }
     ~WithRawMethod_DeleteUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2446,7 +3546,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2455,7 +3555,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteRole() {
-      ::grpc::Service::MarkMethodRaw(13);
+      ::grpc::Service::MarkMethodRaw(14);
     }
     ~WithRawMethod_DeleteRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2466,7 +3566,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2475,7 +3575,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPermissionsForUser() {
-      ::grpc::Service::MarkMethodRaw(14);
+      ::grpc::Service::MarkMethodRaw(15);
     }
     ~WithRawMethod_GetPermissionsForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2486,7 +3586,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPermissionsForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2495,7 +3595,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetImplicitPermissionsForUser() {
-      ::grpc::Service::MarkMethodRaw(15);
+      ::grpc::Service::MarkMethodRaw(16);
     }
     ~WithRawMethod_GetImplicitPermissionsForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2506,7 +3606,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetImplicitPermissionsForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2515,7 +3615,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_AddPermissionForUser() {
-      ::grpc::Service::MarkMethodRaw(16);
+      ::grpc::Service::MarkMethodRaw(17);
     }
     ~WithRawMethod_AddPermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2526,7 +3626,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddPermissionForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2535,7 +3635,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeletePermissionForUser() {
-      ::grpc::Service::MarkMethodRaw(17);
+      ::grpc::Service::MarkMethodRaw(18);
     }
     ~WithRawMethod_DeletePermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2546,7 +3646,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeletePermissionForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2555,7 +3655,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_HasPermissionForUser() {
-      ::grpc::Service::MarkMethodRaw(18);
+      ::grpc::Service::MarkMethodRaw(19);
     }
     ~WithRawMethod_HasPermissionForUser() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2566,7 +3666,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHasPermissionForUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2575,7 +3675,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPermissionsForRole() {
-      ::grpc::Service::MarkMethodRaw(19);
+      ::grpc::Service::MarkMethodRaw(20);
     }
     ~WithRawMethod_GetPermissionsForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2586,7 +3686,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPermissionsForRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2595,7 +3695,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetImplicitPermissionsForRole() {
-      ::grpc::Service::MarkMethodRaw(20);
+      ::grpc::Service::MarkMethodRaw(21);
     }
     ~WithRawMethod_GetImplicitPermissionsForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2606,7 +3706,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetImplicitPermissionsForRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2615,7 +3715,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_AddPermissionForRole() {
-      ::grpc::Service::MarkMethodRaw(21);
+      ::grpc::Service::MarkMethodRaw(22);
     }
     ~WithRawMethod_AddPermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2626,7 +3726,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddPermissionForRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2635,7 +3735,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeletePermissionForRole() {
-      ::grpc::Service::MarkMethodRaw(22);
+      ::grpc::Service::MarkMethodRaw(23);
     }
     ~WithRawMethod_DeletePermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2646,7 +3746,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeletePermissionForRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2655,7 +3755,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_HasPermissionForRole() {
-      ::grpc::Service::MarkMethodRaw(23);
+      ::grpc::Service::MarkMethodRaw(24);
     }
     ~WithRawMethod_HasPermissionForRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2666,7 +3766,7 @@ class Policy final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHasPermissionForRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2758,12 +3858,34 @@ class Policy final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetAllPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetAllPermissions() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAllPermissions(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetAllPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAllPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetAllPermissions(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Has : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Has() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Has(context, request, response); }));
@@ -2785,7 +3907,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Can() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Can(context, request, response); }));
@@ -2807,7 +3929,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRolesForUser() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRolesForUser(context, request, response); }));
@@ -2829,7 +3951,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetImplicitRolesForUser() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetImplicitRolesForUser(context, request, response); }));
@@ -2851,7 +3973,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetUsersForRole() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetUsersForRole(context, request, response); }));
@@ -2873,7 +3995,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_HasRoleForUser() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->HasRoleForUser(context, request, response); }));
@@ -2895,7 +4017,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_AddRoleForUser() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddRoleForUser(context, request, response); }));
@@ -2917,7 +4039,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteRoleForUser() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+      ::grpc::Service::MarkMethodRawCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRoleForUser(context, request, response); }));
@@ -2939,7 +4061,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteUser() {
-      ::grpc::Service::MarkMethodRawCallback(12,
+      ::grpc::Service::MarkMethodRawCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteUser(context, request, response); }));
@@ -2961,7 +4083,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteRole() {
-      ::grpc::Service::MarkMethodRawCallback(13,
+      ::grpc::Service::MarkMethodRawCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRole(context, request, response); }));
@@ -2983,7 +4105,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPermissionsForUser() {
-      ::grpc::Service::MarkMethodRawCallback(14,
+      ::grpc::Service::MarkMethodRawCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPermissionsForUser(context, request, response); }));
@@ -3005,7 +4127,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetImplicitPermissionsForUser() {
-      ::grpc::Service::MarkMethodRawCallback(15,
+      ::grpc::Service::MarkMethodRawCallback(16,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetImplicitPermissionsForUser(context, request, response); }));
@@ -3027,7 +4149,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_AddPermissionForUser() {
-      ::grpc::Service::MarkMethodRawCallback(16,
+      ::grpc::Service::MarkMethodRawCallback(17,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddPermissionForUser(context, request, response); }));
@@ -3049,7 +4171,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeletePermissionForUser() {
-      ::grpc::Service::MarkMethodRawCallback(17,
+      ::grpc::Service::MarkMethodRawCallback(18,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeletePermissionForUser(context, request, response); }));
@@ -3071,7 +4193,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_HasPermissionForUser() {
-      ::grpc::Service::MarkMethodRawCallback(18,
+      ::grpc::Service::MarkMethodRawCallback(19,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->HasPermissionForUser(context, request, response); }));
@@ -3093,7 +4215,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPermissionsForRole() {
-      ::grpc::Service::MarkMethodRawCallback(19,
+      ::grpc::Service::MarkMethodRawCallback(20,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPermissionsForRole(context, request, response); }));
@@ -3115,7 +4237,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetImplicitPermissionsForRole() {
-      ::grpc::Service::MarkMethodRawCallback(20,
+      ::grpc::Service::MarkMethodRawCallback(21,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetImplicitPermissionsForRole(context, request, response); }));
@@ -3137,7 +4259,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_AddPermissionForRole() {
-      ::grpc::Service::MarkMethodRawCallback(21,
+      ::grpc::Service::MarkMethodRawCallback(22,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddPermissionForRole(context, request, response); }));
@@ -3159,7 +4281,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeletePermissionForRole() {
-      ::grpc::Service::MarkMethodRawCallback(22,
+      ::grpc::Service::MarkMethodRawCallback(23,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeletePermissionForRole(context, request, response); }));
@@ -3181,7 +4303,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_HasPermissionForRole() {
-      ::grpc::Service::MarkMethodRawCallback(23,
+      ::grpc::Service::MarkMethodRawCallback(24,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->HasPermissionForRole(context, request, response); }));
@@ -3306,12 +4428,39 @@ class Policy final {
     virtual ::grpc::Status StreamedGetAllRoles(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::casbin::v1::RolesResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetAllPermissions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetAllPermissions() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse>* streamer) {
+                       return this->StreamedGetAllPermissions(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetAllPermissions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetAllPermissions(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::casbin::v1::PermissionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetAllPermissions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::casbin::v1::PermissionsResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Has : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Has() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>(
             [this](::grpc::ServerContext* context,
@@ -3338,7 +4487,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Can() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>(
             [this](::grpc::ServerContext* context,
@@ -3365,7 +4514,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRolesForUser() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>(
             [this](::grpc::ServerContext* context,
@@ -3392,7 +4541,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetImplicitRolesForUser() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse>(
             [this](::grpc::ServerContext* context,
@@ -3419,7 +4568,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetUsersForRole() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::Role, ::palm::casbin::v1::UsersResponse>(
             [this](::grpc::ServerContext* context,
@@ -3446,7 +4595,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_HasRoleForUser() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse>(
             [this](::grpc::ServerContext* context,
@@ -3473,7 +4622,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_AddRoleForUser() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3500,7 +4649,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteRoleForUser() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3527,7 +4676,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteUser() {
-      ::grpc::Service::MarkMethodStreamed(12,
+      ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::User, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3554,7 +4703,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteRole() {
-      ::grpc::Service::MarkMethodStreamed(13,
+      ::grpc::Service::MarkMethodStreamed(14,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::Role, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3581,7 +4730,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPermissionsForUser() {
-      ::grpc::Service::MarkMethodStreamed(14,
+      ::grpc::Service::MarkMethodStreamed(15,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>(
             [this](::grpc::ServerContext* context,
@@ -3608,7 +4757,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetImplicitPermissionsForUser() {
-      ::grpc::Service::MarkMethodStreamed(15,
+      ::grpc::Service::MarkMethodStreamed(16,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse>(
             [this](::grpc::ServerContext* context,
@@ -3635,7 +4784,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_AddPermissionForUser() {
-      ::grpc::Service::MarkMethodStreamed(16,
+      ::grpc::Service::MarkMethodStreamed(17,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3662,7 +4811,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeletePermissionForUser() {
-      ::grpc::Service::MarkMethodStreamed(17,
+      ::grpc::Service::MarkMethodStreamed(18,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3689,7 +4838,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_HasPermissionForUser() {
-      ::grpc::Service::MarkMethodStreamed(18,
+      ::grpc::Service::MarkMethodStreamed(19,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse>(
             [this](::grpc::ServerContext* context,
@@ -3716,7 +4865,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPermissionsForRole() {
-      ::grpc::Service::MarkMethodStreamed(19,
+      ::grpc::Service::MarkMethodStreamed(20,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>(
             [this](::grpc::ServerContext* context,
@@ -3743,7 +4892,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetImplicitPermissionsForRole() {
-      ::grpc::Service::MarkMethodStreamed(20,
+      ::grpc::Service::MarkMethodStreamed(21,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse>(
             [this](::grpc::ServerContext* context,
@@ -3770,7 +4919,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_AddPermissionForRole() {
-      ::grpc::Service::MarkMethodStreamed(21,
+      ::grpc::Service::MarkMethodStreamed(22,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3797,7 +4946,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeletePermissionForRole() {
-      ::grpc::Service::MarkMethodStreamed(22,
+      ::grpc::Service::MarkMethodStreamed(23,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
@@ -3824,7 +4973,7 @@ class Policy final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_HasPermissionForRole() {
-      ::grpc::Service::MarkMethodStreamed(23,
+      ::grpc::Service::MarkMethodStreamed(24,
         new ::grpc::internal::StreamedUnaryHandler<
           ::palm::casbin::v1::RolePermissionRequest, ::palm::casbin::v1::BoolResponse>(
             [this](::grpc::ServerContext* context,
@@ -3845,9 +4994,9 @@ class Policy final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedHasPermissionForRole(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::casbin::v1::RolePermissionRequest,::palm::casbin::v1::BoolResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetAllUsers<WithStreamedUnaryMethod_GetAllObjects<WithStreamedUnaryMethod_GetAllActions<WithStreamedUnaryMethod_GetAllRoles<WithStreamedUnaryMethod_Has<WithStreamedUnaryMethod_Can<WithStreamedUnaryMethod_GetRolesForUser<WithStreamedUnaryMethod_GetImplicitRolesForUser<WithStreamedUnaryMethod_GetUsersForRole<WithStreamedUnaryMethod_HasRoleForUser<WithStreamedUnaryMethod_AddRoleForUser<WithStreamedUnaryMethod_DeleteRoleForUser<WithStreamedUnaryMethod_DeleteUser<WithStreamedUnaryMethod_DeleteRole<WithStreamedUnaryMethod_GetPermissionsForUser<WithStreamedUnaryMethod_GetImplicitPermissionsForUser<WithStreamedUnaryMethod_AddPermissionForUser<WithStreamedUnaryMethod_DeletePermissionForUser<WithStreamedUnaryMethod_HasPermissionForUser<WithStreamedUnaryMethod_GetPermissionsForRole<WithStreamedUnaryMethod_GetImplicitPermissionsForRole<WithStreamedUnaryMethod_AddPermissionForRole<WithStreamedUnaryMethod_DeletePermissionForRole<WithStreamedUnaryMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetAllUsers<WithStreamedUnaryMethod_GetAllObjects<WithStreamedUnaryMethod_GetAllActions<WithStreamedUnaryMethod_GetAllRoles<WithStreamedUnaryMethod_GetAllPermissions<WithStreamedUnaryMethod_Has<WithStreamedUnaryMethod_Can<WithStreamedUnaryMethod_GetRolesForUser<WithStreamedUnaryMethod_GetImplicitRolesForUser<WithStreamedUnaryMethod_GetUsersForRole<WithStreamedUnaryMethod_HasRoleForUser<WithStreamedUnaryMethod_AddRoleForUser<WithStreamedUnaryMethod_DeleteRoleForUser<WithStreamedUnaryMethod_DeleteUser<WithStreamedUnaryMethod_DeleteRole<WithStreamedUnaryMethod_GetPermissionsForUser<WithStreamedUnaryMethod_GetImplicitPermissionsForUser<WithStreamedUnaryMethod_AddPermissionForUser<WithStreamedUnaryMethod_DeletePermissionForUser<WithStreamedUnaryMethod_HasPermissionForUser<WithStreamedUnaryMethod_GetPermissionsForRole<WithStreamedUnaryMethod_GetImplicitPermissionsForRole<WithStreamedUnaryMethod_AddPermissionForRole<WithStreamedUnaryMethod_DeletePermissionForRole<WithStreamedUnaryMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetAllUsers<WithStreamedUnaryMethod_GetAllObjects<WithStreamedUnaryMethod_GetAllActions<WithStreamedUnaryMethod_GetAllRoles<WithStreamedUnaryMethod_Has<WithStreamedUnaryMethod_Can<WithStreamedUnaryMethod_GetRolesForUser<WithStreamedUnaryMethod_GetImplicitRolesForUser<WithStreamedUnaryMethod_GetUsersForRole<WithStreamedUnaryMethod_HasRoleForUser<WithStreamedUnaryMethod_AddRoleForUser<WithStreamedUnaryMethod_DeleteRoleForUser<WithStreamedUnaryMethod_DeleteUser<WithStreamedUnaryMethod_DeleteRole<WithStreamedUnaryMethod_GetPermissionsForUser<WithStreamedUnaryMethod_GetImplicitPermissionsForUser<WithStreamedUnaryMethod_AddPermissionForUser<WithStreamedUnaryMethod_DeletePermissionForUser<WithStreamedUnaryMethod_HasPermissionForUser<WithStreamedUnaryMethod_GetPermissionsForRole<WithStreamedUnaryMethod_GetImplicitPermissionsForRole<WithStreamedUnaryMethod_AddPermissionForRole<WithStreamedUnaryMethod_DeletePermissionForRole<WithStreamedUnaryMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetAllUsers<WithStreamedUnaryMethod_GetAllObjects<WithStreamedUnaryMethod_GetAllActions<WithStreamedUnaryMethod_GetAllRoles<WithStreamedUnaryMethod_GetAllPermissions<WithStreamedUnaryMethod_Has<WithStreamedUnaryMethod_Can<WithStreamedUnaryMethod_GetRolesForUser<WithStreamedUnaryMethod_GetImplicitRolesForUser<WithStreamedUnaryMethod_GetUsersForRole<WithStreamedUnaryMethod_HasRoleForUser<WithStreamedUnaryMethod_AddRoleForUser<WithStreamedUnaryMethod_DeleteRoleForUser<WithStreamedUnaryMethod_DeleteUser<WithStreamedUnaryMethod_DeleteRole<WithStreamedUnaryMethod_GetPermissionsForUser<WithStreamedUnaryMethod_GetImplicitPermissionsForUser<WithStreamedUnaryMethod_AddPermissionForUser<WithStreamedUnaryMethod_DeletePermissionForUser<WithStreamedUnaryMethod_HasPermissionForUser<WithStreamedUnaryMethod_GetPermissionsForRole<WithStreamedUnaryMethod_GetImplicitPermissionsForRole<WithStreamedUnaryMethod_AddPermissionForRole<WithStreamedUnaryMethod_DeletePermissionForRole<WithStreamedUnaryMethod_HasPermissionForRole<Service > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

@@ -46,6 +46,7 @@ func Launch(port uint16, config_file string, version string) error {
 	}
 
 	server := grpc.NewServer()
+	casbin_v2.RegisterSessionServer(server, casbin.NewSessionServer(db, jwt, enf))
 	casbin_v2.RegisterPolicyServer(server, casbin.NewPolicyServer(db, jwt, enf))
 	s3_v2.RegisterS3Server(server, s3.NewS3Server(db, jwt, enf, minio_client))
 	grpc_health.RegisterHealthServer(server, health.NewServer())

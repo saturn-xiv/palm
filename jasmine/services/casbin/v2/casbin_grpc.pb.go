@@ -20,10 +20,307 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Session_Has_FullMethodName                 = "/palm.casbin.v1.Session/Has"
+	Session_Can_FullMethodName                 = "/palm.casbin.v1.Session/Can"
+	Session_Roles_FullMethodName               = "/palm.casbin.v1.Session/Roles"
+	Session_Permissions_FullMethodName         = "/palm.casbin.v1.Session/Permissions"
+	Session_ImplicitRoles_FullMethodName       = "/palm.casbin.v1.Session/ImplicitRoles"
+	Session_ImplicitPermissions_FullMethodName = "/palm.casbin.v1.Session/ImplicitPermissions"
+)
+
+// SessionClient is the client API for Session service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type SessionClient interface {
+	Has(ctx context.Context, in *Role, opts ...grpc.CallOption) (*BoolResponse, error)
+	Can(ctx context.Context, in *SessionCanRequest, opts ...grpc.CallOption) (*BoolResponse, error)
+	Roles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error)
+	Permissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PermissionsResponse, error)
+	ImplicitRoles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error)
+	ImplicitPermissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PermissionsResponse, error)
+}
+
+type sessionClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSessionClient(cc grpc.ClientConnInterface) SessionClient {
+	return &sessionClient{cc}
+}
+
+func (c *sessionClient) Has(ctx context.Context, in *Role, opts ...grpc.CallOption) (*BoolResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, Session_Has_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) Can(ctx context.Context, in *SessionCanRequest, opts ...grpc.CallOption) (*BoolResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, Session_Can_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) Roles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RolesResponse)
+	err := c.cc.Invoke(ctx, Session_Roles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) Permissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PermissionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PermissionsResponse)
+	err := c.cc.Invoke(ctx, Session_Permissions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) ImplicitRoles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RolesResponse)
+	err := c.cc.Invoke(ctx, Session_ImplicitRoles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) ImplicitPermissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PermissionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PermissionsResponse)
+	err := c.cc.Invoke(ctx, Session_ImplicitPermissions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SessionServer is the server API for Session service.
+// All implementations must embed UnimplementedSessionServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type SessionServer interface {
+	Has(context.Context, *Role) (*BoolResponse, error)
+	Can(context.Context, *SessionCanRequest) (*BoolResponse, error)
+	Roles(context.Context, *emptypb.Empty) (*RolesResponse, error)
+	Permissions(context.Context, *emptypb.Empty) (*PermissionsResponse, error)
+	ImplicitRoles(context.Context, *emptypb.Empty) (*RolesResponse, error)
+	ImplicitPermissions(context.Context, *emptypb.Empty) (*PermissionsResponse, error)
+	mustEmbedUnimplementedSessionServer()
+}
+
+// UnimplementedSessionServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSessionServer struct{}
+
+func (UnimplementedSessionServer) Has(context.Context, *Role) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Has not implemented")
+}
+func (UnimplementedSessionServer) Can(context.Context, *SessionCanRequest) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Can not implemented")
+}
+func (UnimplementedSessionServer) Roles(context.Context, *emptypb.Empty) (*RolesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Roles not implemented")
+}
+func (UnimplementedSessionServer) Permissions(context.Context, *emptypb.Empty) (*PermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Permissions not implemented")
+}
+func (UnimplementedSessionServer) ImplicitRoles(context.Context, *emptypb.Empty) (*RolesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ImplicitRoles not implemented")
+}
+func (UnimplementedSessionServer) ImplicitPermissions(context.Context, *emptypb.Empty) (*PermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ImplicitPermissions not implemented")
+}
+func (UnimplementedSessionServer) mustEmbedUnimplementedSessionServer() {}
+func (UnimplementedSessionServer) testEmbeddedByValue()                 {}
+
+// UnsafeSessionServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SessionServer will
+// result in compilation errors.
+type UnsafeSessionServer interface {
+	mustEmbedUnimplementedSessionServer()
+}
+
+func RegisterSessionServer(s grpc.ServiceRegistrar, srv SessionServer) {
+	// If the following call pancis, it indicates UnimplementedSessionServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Session_ServiceDesc, srv)
+}
+
+func _Session_Has_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Role)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).Has(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_Has_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).Has(ctx, req.(*Role))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_Can_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SessionCanRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).Can(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_Can_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).Can(ctx, req.(*SessionCanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_Roles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).Roles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_Roles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).Roles(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_Permissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).Permissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_Permissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).Permissions(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_ImplicitRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).ImplicitRoles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_ImplicitRoles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).ImplicitRoles(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_ImplicitPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).ImplicitPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_ImplicitPermissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).ImplicitPermissions(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Session_ServiceDesc is the grpc.ServiceDesc for Session service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Session_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.casbin.v1.Session",
+	HandlerType: (*SessionServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Has",
+			Handler:    _Session_Has_Handler,
+		},
+		{
+			MethodName: "Can",
+			Handler:    _Session_Can_Handler,
+		},
+		{
+			MethodName: "Roles",
+			Handler:    _Session_Roles_Handler,
+		},
+		{
+			MethodName: "Permissions",
+			Handler:    _Session_Permissions_Handler,
+		},
+		{
+			MethodName: "ImplicitRoles",
+			Handler:    _Session_ImplicitRoles_Handler,
+		},
+		{
+			MethodName: "ImplicitPermissions",
+			Handler:    _Session_ImplicitPermissions_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "casbin.proto",
+}
+
+const (
 	Policy_GetAllUsers_FullMethodName                   = "/palm.casbin.v1.Policy/GetAllUsers"
 	Policy_GetAllObjects_FullMethodName                 = "/palm.casbin.v1.Policy/GetAllObjects"
 	Policy_GetAllActions_FullMethodName                 = "/palm.casbin.v1.Policy/GetAllActions"
 	Policy_GetAllRoles_FullMethodName                   = "/palm.casbin.v1.Policy/GetAllRoles"
+	Policy_GetAllPermissions_FullMethodName             = "/palm.casbin.v1.Policy/GetAllPermissions"
 	Policy_Has_FullMethodName                           = "/palm.casbin.v1.Policy/Has"
 	Policy_Can_FullMethodName                           = "/palm.casbin.v1.Policy/Can"
 	Policy_GetRolesForUser_FullMethodName               = "/palm.casbin.v1.Policy/GetRolesForUser"
@@ -49,11 +346,14 @@ const (
 // PolicyClient is the client API for Policy service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
 type PolicyClient interface {
 	GetAllUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UsersResponse, error)
 	GetAllObjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ObjectsResponse, error)
 	GetAllActions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ActionsResponse, error)
 	GetAllRoles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error)
+	GetAllPermissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PermissionsResponse, error)
 	Has(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolResponse, error)
 	Can(ctx context.Context, in *UserPermissionRequest, opts ...grpc.CallOption) (*BoolResponse, error)
 	GetRolesForUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*RolesResponse, error)
@@ -118,6 +418,16 @@ func (c *policyClient) GetAllRoles(ctx context.Context, in *emptypb.Empty, opts 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RolesResponse)
 	err := c.cc.Invoke(ctx, Policy_GetAllRoles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *policyClient) GetAllPermissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PermissionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PermissionsResponse)
+	err := c.cc.Invoke(ctx, Policy_GetAllPermissions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -327,11 +637,14 @@ func (c *policyClient) HasPermissionForRole(ctx context.Context, in *RolePermiss
 // PolicyServer is the server API for Policy service.
 // All implementations must embed UnimplementedPolicyServer
 // for forward compatibility.
+//
+// ----------------------------------------------------------------------------
 type PolicyServer interface {
 	GetAllUsers(context.Context, *emptypb.Empty) (*UsersResponse, error)
 	GetAllObjects(context.Context, *emptypb.Empty) (*ObjectsResponse, error)
 	GetAllActions(context.Context, *emptypb.Empty) (*ActionsResponse, error)
 	GetAllRoles(context.Context, *emptypb.Empty) (*RolesResponse, error)
+	GetAllPermissions(context.Context, *emptypb.Empty) (*PermissionsResponse, error)
 	Has(context.Context, *UserRoleRequest) (*BoolResponse, error)
 	Can(context.Context, *UserPermissionRequest) (*BoolResponse, error)
 	GetRolesForUser(context.Context, *User) (*RolesResponse, error)
@@ -373,6 +686,9 @@ func (UnimplementedPolicyServer) GetAllActions(context.Context, *emptypb.Empty) 
 }
 func (UnimplementedPolicyServer) GetAllRoles(context.Context, *emptypb.Empty) (*RolesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllRoles not implemented")
+}
+func (UnimplementedPolicyServer) GetAllPermissions(context.Context, *emptypb.Empty) (*PermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllPermissions not implemented")
 }
 func (UnimplementedPolicyServer) Has(context.Context, *UserRoleRequest) (*BoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Has not implemented")
@@ -523,6 +839,24 @@ func _Policy_GetAllRoles_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PolicyServer).GetAllRoles(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Policy_GetAllPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PolicyServer).GetAllPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Policy_GetAllPermissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PolicyServer).GetAllPermissions(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -909,6 +1243,10 @@ var Policy_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllRoles",
 			Handler:    _Policy_GetAllRoles_Handler,
+		},
+		{
+			MethodName: "GetAllPermissions",
+			Handler:    _Policy_GetAllPermissions_Handler,
 		},
 		{
 			MethodName: "Has",

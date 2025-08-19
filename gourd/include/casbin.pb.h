@@ -120,6 +120,9 @@ extern Role_RootDefaultTypeInternal _Role_Root_default_instance_;
 class RolesResponse;
 struct RolesResponseDefaultTypeInternal;
 extern RolesResponseDefaultTypeInternal _RolesResponse_default_instance_;
+class SessionCanRequest;
+struct SessionCanRequestDefaultTypeInternal;
+extern SessionCanRequestDefaultTypeInternal _SessionCanRequest_default_instance_;
 class Subject;
 struct SubjectDefaultTypeInternal;
 extern SubjectDefaultTypeInternal _Subject_default_instance_;
@@ -1200,7 +1203,7 @@ class BoolResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BoolResponse*>(
         &_BoolResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(BoolResponse& a, BoolResponse& b) { a.Swap(&b); }
   inline void Swap(BoolResponse* other) {
     if (other == this) return;
@@ -2601,7 +2604,7 @@ class UsersResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UsersResponse*>(
         &_UsersResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(UsersResponse& a, UsersResponse& b) { a.Swap(&b); }
   inline void Swap(UsersResponse* other) {
     if (other == this) return;
@@ -3709,7 +3712,7 @@ class UserRoleRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserRoleRequest*>(
         &_UserRoleRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(UserRoleRequest& a, UserRoleRequest& b) { a.Swap(&b); }
   inline void Swap(UserRoleRequest* other) {
     if (other == this) return;
@@ -3922,7 +3925,7 @@ class UserPermissionRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserPermissionRequest*>(
         &_UserPermissionRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(UserPermissionRequest& a, UserPermissionRequest& b) { a.Swap(&b); }
   inline void Swap(UserPermissionRequest* other) {
     if (other == this) return;
@@ -4329,6 +4332,219 @@ class Subject final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class SessionCanRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.casbin.v1.SessionCanRequest) */ {
+ public:
+  inline SessionCanRequest() : SessionCanRequest(nullptr) {}
+  ~SessionCanRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SessionCanRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SessionCanRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SessionCanRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SessionCanRequest(const SessionCanRequest& from) : SessionCanRequest(nullptr, from) {}
+  inline SessionCanRequest(SessionCanRequest&& from) noexcept
+      : SessionCanRequest(nullptr, std::move(from)) {}
+  inline SessionCanRequest& operator=(const SessionCanRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SessionCanRequest& operator=(SessionCanRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SessionCanRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SessionCanRequest* internal_default_instance() {
+    return reinterpret_cast<const SessionCanRequest*>(
+        &_SessionCanRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 18;
+  friend void swap(SessionCanRequest& a, SessionCanRequest& b) { a.Swap(&b); }
+  inline void Swap(SessionCanRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SessionCanRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SessionCanRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SessionCanRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SessionCanRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SessionCanRequest& from) { SessionCanRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SessionCanRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.casbin.v1.SessionCanRequest"; }
+
+ protected:
+  explicit SessionCanRequest(::google::protobuf::Arena* arena);
+  SessionCanRequest(::google::protobuf::Arena* arena, const SessionCanRequest& from);
+  SessionCanRequest(::google::protobuf::Arena* arena, SessionCanRequest&& from) noexcept
+      : SessionCanRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kObjectFieldNumber = 1,
+    kActionFieldNumber = 2,
+  };
+  // .palm.casbin.v1.Object object = 1;
+  bool has_object() const;
+  void clear_object() ;
+  const ::palm::casbin::v1::Object& object() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Object* release_object();
+  ::palm::casbin::v1::Object* mutable_object();
+  void set_allocated_object(::palm::casbin::v1::Object* value);
+  void unsafe_arena_set_allocated_object(::palm::casbin::v1::Object* value);
+  ::palm::casbin::v1::Object* unsafe_arena_release_object();
+
+  private:
+  const ::palm::casbin::v1::Object& _internal_object() const;
+  ::palm::casbin::v1::Object* _internal_mutable_object();
+
+  public:
+  // .palm.casbin.v1.Action action = 2;
+  bool has_action() const;
+  void clear_action() ;
+  const ::palm::casbin::v1::Action& action() const;
+  PROTOBUF_NODISCARD ::palm::casbin::v1::Action* release_action();
+  ::palm::casbin::v1::Action* mutable_action();
+  void set_allocated_action(::palm::casbin::v1::Action* value);
+  void unsafe_arena_set_allocated_action(::palm::casbin::v1::Action* value);
+  ::palm::casbin::v1::Action* unsafe_arena_release_action();
+
+  private:
+  const ::palm::casbin::v1::Action& _internal_action() const;
+  ::palm::casbin::v1::Action* _internal_mutable_action();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.casbin.v1.SessionCanRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SessionCanRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::palm::casbin::v1::Object* object_;
+    ::palm::casbin::v1::Action* action_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_casbin_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RolesResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.casbin.v1.RolesResponse) */ {
  public:
@@ -4388,7 +4604,7 @@ class RolesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const RolesResponse*>(
         &_RolesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(RolesResponse& a, RolesResponse& b) { a.Swap(&b); }
   inline void Swap(RolesResponse* other) {
     if (other == this) return;
@@ -4585,7 +4801,7 @@ class RolePermissionRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RolePermissionRequest*>(
         &_RolePermissionRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(RolePermissionRequest& a, RolePermissionRequest& b) { a.Swap(&b); }
   inline void Swap(RolePermissionRequest* other) {
     if (other == this) return;
@@ -4815,7 +5031,7 @@ class ObjectsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ObjectsResponse*>(
         &_ObjectsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(ObjectsResponse& a, ObjectsResponse& b) { a.Swap(&b); }
   inline void Swap(ObjectsResponse* other) {
     if (other == this) return;
@@ -5012,7 +5228,7 @@ class ActionsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ActionsResponse*>(
         &_ActionsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(ActionsResponse& a, ActionsResponse& b) { a.Swap(&b); }
   inline void Swap(ActionsResponse* other) {
     if (other == this) return;
@@ -5439,7 +5655,7 @@ class PermissionsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PermissionsResponse*>(
         &_PermissionsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(PermissionsResponse& a, PermissionsResponse& b) { a.Swap(&b); }
   inline void Swap(PermissionsResponse* other) {
     if (other == this) return;
@@ -7536,6 +7752,202 @@ inline ::palm::casbin::v1::WatcherMessage_Method WatcherMessage::_internal_metho
 inline void WatcherMessage::_internal_set_method(::palm::casbin::v1::WatcherMessage_Method value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.method_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SessionCanRequest
+
+// .palm.casbin.v1.Object object = 1;
+inline bool SessionCanRequest::has_object() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.object_ != nullptr);
+  return value;
+}
+inline void SessionCanRequest::clear_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.object_ != nullptr) _impl_.object_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::casbin::v1::Object& SessionCanRequest::_internal_object() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::casbin::v1::Object* p = _impl_.object_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::casbin::v1::Object&>(::palm::casbin::v1::_Object_default_instance_);
+}
+inline const ::palm::casbin::v1::Object& SessionCanRequest::object() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.SessionCanRequest.object)
+  return _internal_object();
+}
+inline void SessionCanRequest::unsafe_arena_set_allocated_object(::palm::casbin::v1::Object* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.object_);
+  }
+  _impl_.object_ = reinterpret_cast<::palm::casbin::v1::Object*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.SessionCanRequest.object)
+}
+inline ::palm::casbin::v1::Object* SessionCanRequest::release_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::casbin::v1::Object* released = _impl_.object_;
+  _impl_.object_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::casbin::v1::Object* SessionCanRequest::unsafe_arena_release_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.SessionCanRequest.object)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::casbin::v1::Object* temp = _impl_.object_;
+  _impl_.object_ = nullptr;
+  return temp;
+}
+inline ::palm::casbin::v1::Object* SessionCanRequest::_internal_mutable_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.object_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Object>(GetArena());
+    _impl_.object_ = reinterpret_cast<::palm::casbin::v1::Object*>(p);
+  }
+  return _impl_.object_;
+}
+inline ::palm::casbin::v1::Object* SessionCanRequest::mutable_object() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::casbin::v1::Object* _msg = _internal_mutable_object();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.SessionCanRequest.object)
+  return _msg;
+}
+inline void SessionCanRequest::set_allocated_object(::palm::casbin::v1::Object* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.object_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.object_ = reinterpret_cast<::palm::casbin::v1::Object*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.SessionCanRequest.object)
+}
+
+// .palm.casbin.v1.Action action = 2;
+inline bool SessionCanRequest::has_action() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.action_ != nullptr);
+  return value;
+}
+inline void SessionCanRequest::clear_action() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.action_ != nullptr) _impl_.action_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::palm::casbin::v1::Action& SessionCanRequest::_internal_action() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::casbin::v1::Action* p = _impl_.action_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::casbin::v1::Action&>(::palm::casbin::v1::_Action_default_instance_);
+}
+inline const ::palm::casbin::v1::Action& SessionCanRequest::action() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.casbin.v1.SessionCanRequest.action)
+  return _internal_action();
+}
+inline void SessionCanRequest::unsafe_arena_set_allocated_action(::palm::casbin::v1::Action* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.action_);
+  }
+  _impl_.action_ = reinterpret_cast<::palm::casbin::v1::Action*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.casbin.v1.SessionCanRequest.action)
+}
+inline ::palm::casbin::v1::Action* SessionCanRequest::release_action() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::casbin::v1::Action* released = _impl_.action_;
+  _impl_.action_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::casbin::v1::Action* SessionCanRequest::unsafe_arena_release_action() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.casbin.v1.SessionCanRequest.action)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::casbin::v1::Action* temp = _impl_.action_;
+  _impl_.action_ = nullptr;
+  return temp;
+}
+inline ::palm::casbin::v1::Action* SessionCanRequest::_internal_mutable_action() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.action_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::casbin::v1::Action>(GetArena());
+    _impl_.action_ = reinterpret_cast<::palm::casbin::v1::Action*>(p);
+  }
+  return _impl_.action_;
+}
+inline ::palm::casbin::v1::Action* SessionCanRequest::mutable_action() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::palm::casbin::v1::Action* _msg = _internal_mutable_action();
+  // @@protoc_insertion_point(field_mutable:palm.casbin.v1.SessionCanRequest.action)
+  return _msg;
+}
+inline void SessionCanRequest::set_allocated_action(::palm::casbin::v1::Action* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.action_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.action_ = reinterpret_cast<::palm::casbin::v1::Action*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.casbin.v1.SessionCanRequest.action)
 }
 
 // -------------------------------------------------------------------

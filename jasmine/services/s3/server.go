@@ -27,7 +27,7 @@ type S3Server struct {
 func (p *S3Server) ListBuckets(ctx context.Context, req *emptypb.Empty) (*s3_v2.ListBucketsResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	buckets, err := p.client.ListBuckets(ctx)
 	if err != nil {
@@ -46,7 +46,7 @@ func (p *S3Server) ListBuckets(ctx context.Context, req *emptypb.Empty) (*s3_v2.
 func (p *S3Server) BucketExists(ctx context.Context, req *s3_v2.BucketRequest) (*s3_v2.BucketExistsResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	ok, err := p.client.BucketExists(ctx, req.Bucket)
 	if err != nil {
@@ -59,7 +59,7 @@ func (p *S3Server) BucketExists(ctx context.Context, req *s3_v2.BucketRequest) (
 func (p *S3Server) GetBucketEncryption(ctx context.Context, req *s3_v2.BucketRequest) (*s3_v2.GetBucketEncryptionResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -67,7 +67,7 @@ func (p *S3Server) GetBucketEncryption(ctx context.Context, req *s3_v2.BucketReq
 func (p *S3Server) GetBucketPolicy(ctx context.Context, req *s3_v2.BucketRequest) (*s3_v2.GetBucketPolicyResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -75,7 +75,7 @@ func (p *S3Server) GetBucketPolicy(ctx context.Context, req *s3_v2.BucketRequest
 func (p *S3Server) GetBucketTags(ctx context.Context, req *s3_v2.BucketRequest) (*s3_v2.GetBucketTagsResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -83,7 +83,7 @@ func (p *S3Server) GetBucketTags(ctx context.Context, req *s3_v2.BucketRequest) 
 func (p *S3Server) GetBucketLifecycle(ctx context.Context, req *s3_v2.BucketRequest) (*s3_v2.GetBucketLifecycleResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -91,7 +91,7 @@ func (p *S3Server) GetBucketLifecycle(ctx context.Context, req *s3_v2.BucketRequ
 func (p *S3Server) MakeBucket(ctx context.Context, req *s3_v2.MakeBucketRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -99,7 +99,7 @@ func (p *S3Server) MakeBucket(ctx context.Context, req *s3_v2.MakeBucketRequest)
 func (p *S3Server) RemoveBucket(ctx context.Context, req *s3_v2.BucketRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -107,7 +107,7 @@ func (p *S3Server) RemoveBucket(ctx context.Context, req *s3_v2.BucketRequest) (
 func (p *S3Server) SetBucketTags(ctx context.Context, req *s3_v2.SetBucketTagsRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -115,7 +115,7 @@ func (p *S3Server) SetBucketTags(ctx context.Context, req *s3_v2.SetBucketTagsRe
 func (p *S3Server) SetBucketPolicy(ctx context.Context, req *s3_v2.SetBucketPolicyRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -123,7 +123,7 @@ func (p *S3Server) SetBucketPolicy(ctx context.Context, req *s3_v2.SetBucketPoli
 func (p *S3Server) SetBucketLifecycle(ctx context.Context, req *s3_v2.SetBucketLifecycleRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -131,7 +131,7 @@ func (p *S3Server) SetBucketLifecycle(ctx context.Context, req *s3_v2.SetBucketL
 func (p *S3Server) SetBucketEncryption(ctx context.Context, req *s3_v2.SetBucketEncryptionRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -139,7 +139,7 @@ func (p *S3Server) SetBucketEncryption(ctx context.Context, req *s3_v2.SetBucket
 func (p *S3Server) DeleteBucketEncryption(ctx context.Context, req *s3_v2.BucketRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -147,7 +147,7 @@ func (p *S3Server) DeleteBucketEncryption(ctx context.Context, req *s3_v2.Bucket
 func (p *S3Server) DeleteBucketPolicy(ctx context.Context, req *s3_v2.BucketRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -155,7 +155,7 @@ func (p *S3Server) DeleteBucketPolicy(ctx context.Context, req *s3_v2.BucketRequ
 func (p *S3Server) DeleteBucketTags(ctx context.Context, req *s3_v2.BucketRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -163,7 +163,7 @@ func (p *S3Server) DeleteBucketTags(ctx context.Context, req *s3_v2.BucketReques
 func (p *S3Server) DeleteBucketLifecycle(ctx context.Context, req *s3_v2.BucketRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -172,7 +172,7 @@ func (p *S3Server) DeleteBucketLifecycle(ctx context.Context, req *s3_v2.BucketR
 func (p *S3Server) GetPresignedPostFormData(ctx context.Context, req *s3_v2.GetPresignedPostFormDataRequest) (*s3_v2.GetPresignedPostFormDataResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -180,7 +180,7 @@ func (p *S3Server) GetPresignedPostFormData(ctx context.Context, req *s3_v2.GetP
 func (p *S3Server) GetPresignedObjectUrl(ctx context.Context, req *s3_v2.GetPresignedObjectUrlRequest) (*s3_v2.GetPresignedObjectUrlResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -188,7 +188,7 @@ func (p *S3Server) GetPresignedObjectUrl(ctx context.Context, req *s3_v2.GetPres
 func (p *S3Server) ListObjects(ctx context.Context, req *s3_v2.BucketRequest) (*s3_v2.ListObjectsResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -196,7 +196,7 @@ func (p *S3Server) ListObjects(ctx context.Context, req *s3_v2.BucketRequest) (*
 func (p *S3Server) GetObjectTags(ctx context.Context, req *s3_v2.ObjectRequest) (*s3_v2.GetObjectTagsResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -204,7 +204,7 @@ func (p *S3Server) GetObjectTags(ctx context.Context, req *s3_v2.ObjectRequest) 
 func (p *S3Server) GetObjectRetention(ctx context.Context, req *s3_v2.ObjectRequest) (*s3_v2.GetObjectRetentionResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -212,7 +212,7 @@ func (p *S3Server) GetObjectRetention(ctx context.Context, req *s3_v2.ObjectRequ
 func (p *S3Server) StatObject(ctx context.Context, req *s3_v2.ObjectRequest) (*s3_v2.StatObjectResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -220,7 +220,7 @@ func (p *S3Server) StatObject(ctx context.Context, req *s3_v2.ObjectRequest) (*s
 func (p *S3Server) SetObjectTags(ctx context.Context, req *s3_v2.SetObjectTagsRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil
@@ -228,7 +228,7 @@ func (p *S3Server) SetObjectTags(ctx context.Context, req *s3_v2.SetObjectTagsRe
 func (p *S3Server) DeleteObjects(ctx context.Context, req *s3_v2.DeleteObjectsRequest) (*emptypb.Empty, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
 	if !ss.IsSignedIn() {
-		return nil, web.ErrorUserNotSignedIn
+		return nil, web.ErrorUserIsNotSignedIn
 	}
 	// TODO
 	return nil, nil

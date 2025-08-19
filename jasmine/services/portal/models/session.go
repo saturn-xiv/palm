@@ -39,6 +39,9 @@ func (p *Session) Has(role string) bool {
 	return p.has(casbin_v2.NewRoleByCode(web.ToCode(role)))
 }
 func (p *Session) has(role_ *casbin_v2.Role) bool {
+	if p.user == nil {
+		return false
+	}
 	role, err := web.ProtoBufMessageToString(casbin_v2.NewRoleSubject(role_))
 	if err != nil {
 		slog.Error("get role subject", slog.String("reason", err.Error()))
@@ -55,6 +58,9 @@ func (p *Session) Can(action *casbin_v2.Action, resource_type string, resource_i
 }
 
 func (p *Session) can(act_ *casbin_v2.Action, obj_ *casbin_v2.Object) bool {
+	if p.user == nil {
+		return false
+	}
 	act, err := web.ProtoBufMessageToString(act_)
 	if err != nil {
 		slog.Error("get action", slog.String("reason", err.Error()))

@@ -23,11 +23,283 @@ namespace palm {
 namespace casbin {
 namespace v1 {
 
+static const char* Session_method_names[] = {
+  "/palm.casbin.v1.Session/Has",
+  "/palm.casbin.v1.Session/Can",
+  "/palm.casbin.v1.Session/Roles",
+  "/palm.casbin.v1.Session/Permissions",
+  "/palm.casbin.v1.Session/ImplicitRoles",
+  "/palm.casbin.v1.Session/ImplicitPermissions",
+};
+
+std::unique_ptr< Session::Stub> Session::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Session::Stub> stub(new Session::Stub(channel, options));
+  return stub;
+}
+
+Session::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Has_(Session_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Can_(Session_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Roles_(Session_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Permissions_(Session_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ImplicitRoles_(Session_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ImplicitPermissions_(Session_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Session::Stub::Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::palm::casbin::v1::BoolResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Has_, context, request, response);
+}
+
+void Session::Stub::async::Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Has_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::Has(::grpc::ClientContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Has_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* Session::Stub::PrepareAsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::BoolResponse, ::palm::casbin::v1::Role, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Has_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* Session::Stub::AsyncHasRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::Role& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncHasRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::palm::casbin::v1::BoolResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Can_, context, request, response);
+}
+
+void Session::Stub::async::Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Can_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::Can(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Can_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* Session::Stub::PrepareAsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::BoolResponse, ::palm::casbin::v1::SessionCanRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Can_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::BoolResponse>* Session::Stub::AsyncCanRaw(::grpc::ClientContext* context, const ::palm::casbin::v1::SessionCanRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCanRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::RolesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Roles_, context, request, response);
+}
+
+void Session::Stub::async::Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Roles_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::Roles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Roles_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* Session::Stub::PrepareAsyncRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::RolesResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Roles_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* Session::Stub::AsyncRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRolesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Permissions_, context, request, response);
+}
+
+void Session::Stub::async::Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Permissions_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::Permissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Permissions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* Session::Stub::PrepareAsyncPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::PermissionsResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Permissions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* Session::Stub::AsyncPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPermissionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::RolesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ImplicitRoles_, context, request, response);
+}
+
+void Session::Stub::async::ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ImplicitRoles_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::ImplicitRoles(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ImplicitRoles_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* Session::Stub::PrepareAsyncImplicitRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::RolesResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ImplicitRoles_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* Session::Stub::AsyncImplicitRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncImplicitRolesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ImplicitPermissions_, context, request, response);
+}
+
+void Session::Stub::async::ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ImplicitPermissions_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::ImplicitPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ImplicitPermissions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* Session::Stub::PrepareAsyncImplicitPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::PermissionsResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ImplicitPermissions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* Session::Stub::AsyncImplicitPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncImplicitPermissionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Session::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::palm::casbin::v1::Role, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::casbin::v1::Role* req,
+             ::palm::casbin::v1::BoolResponse* resp) {
+               return service->Has(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::palm::casbin::v1::SessionCanRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::casbin::v1::SessionCanRequest* req,
+             ::palm::casbin::v1::BoolResponse* resp) {
+               return service->Can(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::casbin::v1::RolesResponse* resp) {
+               return service->Roles(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::casbin::v1::PermissionsResponse* resp) {
+               return service->Permissions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::google::protobuf::Empty, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::casbin::v1::RolesResponse* resp) {
+               return service->ImplicitRoles(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::casbin::v1::PermissionsResponse* resp) {
+               return service->ImplicitPermissions(ctx, req, resp);
+             }, this)));
+}
+
+Session::Service::~Service() {
+}
+
+::grpc::Status Session::Service::Has(::grpc::ServerContext* context, const ::palm::casbin::v1::Role* request, ::palm::casbin::v1::BoolResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::Can(::grpc::ServerContext* context, const ::palm::casbin::v1::SessionCanRequest* request, ::palm::casbin::v1::BoolResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::Roles(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::Permissions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::ImplicitRoles(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::ImplicitPermissions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 static const char* Policy_method_names[] = {
   "/palm.casbin.v1.Policy/GetAllUsers",
   "/palm.casbin.v1.Policy/GetAllObjects",
   "/palm.casbin.v1.Policy/GetAllActions",
   "/palm.casbin.v1.Policy/GetAllRoles",
+  "/palm.casbin.v1.Policy/GetAllPermissions",
   "/palm.casbin.v1.Policy/Has",
   "/palm.casbin.v1.Policy/Can",
   "/palm.casbin.v1.Policy/GetRolesForUser",
@@ -61,26 +333,27 @@ Policy::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_GetAllObjects_(Policy_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAllActions_(Policy_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAllRoles_(Policy_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Has_(Policy_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Can_(Policy_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRolesForUser_(Policy_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetImplicitRolesForUser_(Policy_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetUsersForRole_(Policy_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_HasRoleForUser_(Policy_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddRoleForUser_(Policy_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRoleForUser_(Policy_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteUser_(Policy_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRole_(Policy_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPermissionsForUser_(Policy_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetImplicitPermissionsForUser_(Policy_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddPermissionForUser_(Policy_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeletePermissionForUser_(Policy_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_HasPermissionForUser_(Policy_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPermissionsForRole_(Policy_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetImplicitPermissionsForRole_(Policy_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddPermissionForRole_(Policy_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeletePermissionForRole_(Policy_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_HasPermissionForRole_(Policy_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAllPermissions_(Policy_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Has_(Policy_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Can_(Policy_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRolesForUser_(Policy_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetImplicitRolesForUser_(Policy_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetUsersForRole_(Policy_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_HasRoleForUser_(Policy_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddRoleForUser_(Policy_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRoleForUser_(Policy_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteUser_(Policy_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRole_(Policy_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPermissionsForUser_(Policy_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetImplicitPermissionsForUser_(Policy_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddPermissionForUser_(Policy_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeletePermissionForUser_(Policy_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_HasPermissionForUser_(Policy_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPermissionsForRole_(Policy_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetImplicitPermissionsForRole_(Policy_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddPermissionForRole_(Policy_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeletePermissionForRole_(Policy_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_HasPermissionForRole_(Policy_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Policy::Stub::GetAllUsers(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::UsersResponse* response) {
@@ -171,6 +444,29 @@ void Policy::Stub::async::GetAllRoles(::grpc::ClientContext* context, const ::go
 ::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::RolesResponse>* Policy::Stub::AsyncGetAllRolesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetAllRolesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Policy::Stub::GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::casbin::v1::PermissionsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAllPermissions_, context, request, response);
+}
+
+void Policy::Stub::async::GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAllPermissions_, context, request, response, std::move(f));
+}
+
+void Policy::Stub::async::GetAllPermissions(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAllPermissions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* Policy::Stub::PrepareAsyncGetAllPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::casbin::v1::PermissionsResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAllPermissions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::casbin::v1::PermissionsResponse>* Policy::Stub::AsyncGetAllPermissionsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAllPermissionsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -679,6 +975,16 @@ Policy::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Policy_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Policy::Service, ::google::protobuf::Empty, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Policy::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::casbin::v1::PermissionsResponse* resp) {
+               return service->GetAllPermissions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Policy_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
              ::grpc::ServerContext* ctx,
@@ -687,7 +993,7 @@ Policy::Service::Service() {
                return service->Has(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[5],
+      Policy_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -697,7 +1003,7 @@ Policy::Service::Service() {
                return service->Can(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[6],
+      Policy_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -707,7 +1013,7 @@ Policy::Service::Service() {
                return service->GetRolesForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[7],
+      Policy_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::User, ::palm::casbin::v1::RolesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -717,7 +1023,7 @@ Policy::Service::Service() {
                return service->GetImplicitRolesForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[8],
+      Policy_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::Role, ::palm::casbin::v1::UsersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -727,7 +1033,7 @@ Policy::Service::Service() {
                return service->GetUsersForRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[9],
+      Policy_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserRoleRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -737,7 +1043,7 @@ Policy::Service::Service() {
                return service->HasRoleForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[10],
+      Policy_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -747,7 +1053,7 @@ Policy::Service::Service() {
                return service->AddRoleForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[11],
+      Policy_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -757,7 +1063,7 @@ Policy::Service::Service() {
                return service->DeleteRoleForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[12],
+      Policy_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::User, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -767,7 +1073,7 @@ Policy::Service::Service() {
                return service->DeleteUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[13],
+      Policy_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::Role, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -777,7 +1083,7 @@ Policy::Service::Service() {
                return service->DeleteRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[14],
+      Policy_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -787,7 +1093,7 @@ Policy::Service::Service() {
                return service->GetPermissionsForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[15],
+      Policy_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::User, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -797,7 +1103,7 @@ Policy::Service::Service() {
                return service->GetImplicitPermissionsForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[16],
+      Policy_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -807,7 +1113,7 @@ Policy::Service::Service() {
                return service->AddPermissionForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[17],
+      Policy_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserPermissionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -817,7 +1123,7 @@ Policy::Service::Service() {
                return service->DeletePermissionForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[18],
+      Policy_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::UserPermissionRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -827,7 +1133,7 @@ Policy::Service::Service() {
                return service->HasPermissionForUser(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[19],
+      Policy_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -837,7 +1143,7 @@ Policy::Service::Service() {
                return service->GetPermissionsForRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[20],
+      Policy_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::Role, ::palm::casbin::v1::PermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -847,7 +1153,7 @@ Policy::Service::Service() {
                return service->GetImplicitPermissionsForRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[21],
+      Policy_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -857,7 +1163,7 @@ Policy::Service::Service() {
                return service->AddPermissionForRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[22],
+      Policy_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::RolePermissionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -867,7 +1173,7 @@ Policy::Service::Service() {
                return service->DeletePermissionForRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Policy_method_names[23],
+      Policy_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::casbin::v1::RolePermissionRequest, ::palm::casbin::v1::BoolResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
@@ -903,6 +1209,13 @@ Policy::Service::~Service() {
 }
 
 ::grpc::Status Policy::Service::GetAllRoles(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::RolesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Policy::Service::GetAllPermissions(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::casbin::v1::PermissionsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

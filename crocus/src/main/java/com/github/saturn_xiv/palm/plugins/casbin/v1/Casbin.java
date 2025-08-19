@@ -116,6 +116,11 @@ public final class Casbin {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_casbin_v1_WatcherMessage_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_casbin_v1_SessionCanRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_casbin_v1_SessionCanRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_casbin_v1_UserRoleRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -205,75 +210,91 @@ public final class Casbin {
       "es\020\003\022\031\n\025UpdateForRemovePolicy\020\004\022!\n\035Updat" +
       "eForRemoveFilteredPolicy\020\005\022\033\n\027UpdateForR" +
       "emovePolicies\020\006\022\031\n\025UpdateForUpdatePolicy" +
-      "\020\007\022\033\n\027UpdateForUpdatePolicies\020\010\"Y\n\017UserR" +
-      "oleRequest\022\"\n\004user\030\001 \001(\0132\024.palm.casbin.v" +
-      "1.User\022\"\n\004role\030\002 \001(\0132\024.palm.casbin.v1.Ro" +
-      "le\"\033\n\014BoolResponse\022\013\n\003yes\030\001 \001(\010\"\213\001\n\025User" +
-      "PermissionRequest\022\"\n\004user\030\001 \001(\0132\024.palm.c" +
-      "asbin.v1.User\022&\n\006object\030\002 \001(\0132\026.palm.cas" +
-      "bin.v1.Object\022&\n\006action\030\003 \001(\0132\026.palm.cas" +
-      "bin.v1.Action\"\213\001\n\025RolePermissionRequest\022" +
-      "\"\n\004role\030\001 \001(\0132\024.palm.casbin.v1.Role\022&\n\006o" +
-      "bject\030\002 \001(\0132\026.palm.casbin.v1.Object\022&\n\006a" +
-      "ction\030\003 \001(\0132\026.palm.casbin.v1.Action\"@\n\023P" +
-      "ermissionsResponse\022)\n\005items\030\001 \003(\0132\032.palm" +
-      ".casbin.v1.Permission\"4\n\rRolesResponse\022#" +
-      "\n\005items\030\001 \003(\0132\024.palm.casbin.v1.Role\"4\n\rU" +
-      "sersResponse\022#\n\005items\030\001 \003(\0132\024.palm.casbi" +
-      "n.v1.User\"8\n\017ActionsResponse\022%\n\005items\030\001 " +
-      "\003(\0132\026.palm.casbin.v1.Action\"8\n\017ObjectsRe" +
-      "sponse\022%\n\005items\030\001 \003(\0132\026.palm.casbin.v1.O" +
-      "bject2\250\017\n\006Policy\022F\n\013GetAllUsers\022\026.google" +
-      ".protobuf.Empty\032\035.palm.casbin.v1.UsersRe" +
-      "sponse\"\000\022J\n\rGetAllObjects\022\026.google.proto" +
-      "buf.Empty\032\037.palm.casbin.v1.ObjectsRespon" +
-      "se\"\000\022J\n\rGetAllActions\022\026.google.protobuf." +
-      "Empty\032\037.palm.casbin.v1.ActionsResponse\"\000" +
-      "\022F\n\013GetAllRoles\022\026.google.protobuf.Empty\032" +
-      "\035.palm.casbin.v1.RolesResponse\"\000\022F\n\003Has\022" +
-      "\037.palm.casbin.v1.UserRoleRequest\032\034.palm." +
-      "casbin.v1.BoolResponse\"\000\022L\n\003Can\022%.palm.c" +
-      "asbin.v1.UserPermissionRequest\032\034.palm.ca" +
-      "sbin.v1.BoolResponse\"\000\022H\n\017GetRolesForUse" +
-      "r\022\024.palm.casbin.v1.User\032\035.palm.casbin.v1" +
-      ".RolesResponse\"\000\022P\n\027GetImplicitRolesForU" +
-      "ser\022\024.palm.casbin.v1.User\032\035.palm.casbin." +
-      "v1.RolesResponse\"\000\022H\n\017GetUsersForRole\022\024." +
-      "palm.casbin.v1.Role\032\035.palm.casbin.v1.Use" +
-      "rsResponse\"\000\022Q\n\016HasRoleForUser\022\037.palm.ca" +
-      "sbin.v1.UserRoleRequest\032\034.palm.casbin.v1" +
-      ".BoolResponse\"\000\022K\n\016AddRoleForUser\022\037.palm" +
-      ".casbin.v1.UserRoleRequest\032\026.google.prot" +
-      "obuf.Empty\"\000\022N\n\021DeleteRoleForUser\022\037.palm" +
-      ".casbin.v1.UserRoleRequest\032\026.google.prot" +
-      "obuf.Empty\"\000\022<\n\nDeleteUser\022\024.palm.casbin" +
-      ".v1.User\032\026.google.protobuf.Empty\"\000\022<\n\nDe" +
-      "leteRole\022\024.palm.casbin.v1.Role\032\026.google." +
-      "protobuf.Empty\"\000\022T\n\025GetPermissionsForUse" +
-      "r\022\024.palm.casbin.v1.User\032#.palm.casbin.v1" +
-      ".PermissionsResponse\"\000\022\\\n\035GetImplicitPer" +
-      "missionsForUser\022\024.palm.casbin.v1.User\032#." +
-      "palm.casbin.v1.PermissionsResponse\"\000\022W\n\024" +
-      "AddPermissionForUser\022%.palm.casbin.v1.Us" +
-      "erPermissionRequest\032\026.google.protobuf.Em" +
-      "pty\"\000\022Z\n\027DeletePermissionForUser\022%.palm." +
-      "casbin.v1.UserPermissionRequest\032\026.google" +
-      ".protobuf.Empty\"\000\022]\n\024HasPermissionForUse" +
-      "r\022%.palm.casbin.v1.UserPermissionRequest" +
-      "\032\034.palm.casbin.v1.BoolResponse\"\000\022T\n\025GetP" +
-      "ermissionsForRole\022\024.palm.casbin.v1.Role\032" +
-      "#.palm.casbin.v1.PermissionsResponse\"\000\022\\" +
-      "\n\035GetImplicitPermissionsForRole\022\024.palm.c" +
-      "asbin.v1.Role\032#.palm.casbin.v1.Permissio" +
-      "nsResponse\"\000\022W\n\024AddPermissionForRole\022%.p" +
-      "alm.casbin.v1.RolePermissionRequest\032\026.go" +
-      "ogle.protobuf.Empty\"\000\022Z\n\027DeletePermissio" +
-      "nForRole\022%.palm.casbin.v1.RolePermission" +
-      "Request\032\026.google.protobuf.Empty\"\000\022]\n\024Has" +
-      "PermissionForRole\022%.palm.casbin.v1.RoleP" +
-      "ermissionRequest\032\034.palm.casbin.v1.BoolRe" +
-      "sponse\"\000B7\n,com.github.saturn_xiv.palm.p" +
-      "lugins.casbin.v1P\001Z\005./;v2b\006proto3"
+      "\020\007\022\033\n\027UpdateForUpdatePolicies\020\010\"c\n\021Sessi" +
+      "onCanRequest\022&\n\006object\030\001 \001(\0132\026.palm.casb" +
+      "in.v1.Object\022&\n\006action\030\002 \001(\0132\026.palm.casb" +
+      "in.v1.Action\"Y\n\017UserRoleRequest\022\"\n\004user\030" +
+      "\001 \001(\0132\024.palm.casbin.v1.User\022\"\n\004role\030\002 \001(" +
+      "\0132\024.palm.casbin.v1.Role\"\033\n\014BoolResponse\022" +
+      "\013\n\003yes\030\001 \001(\010\"\213\001\n\025UserPermissionRequest\022\"" +
+      "\n\004user\030\001 \001(\0132\024.palm.casbin.v1.User\022&\n\006ob" +
+      "ject\030\002 \001(\0132\026.palm.casbin.v1.Object\022&\n\006ac" +
+      "tion\030\003 \001(\0132\026.palm.casbin.v1.Action\"\213\001\n\025R" +
+      "olePermissionRequest\022\"\n\004role\030\001 \001(\0132\024.pal" +
+      "m.casbin.v1.Role\022&\n\006object\030\002 \001(\0132\026.palm." +
+      "casbin.v1.Object\022&\n\006action\030\003 \001(\0132\026.palm." +
+      "casbin.v1.Action\"@\n\023PermissionsResponse\022" +
+      ")\n\005items\030\001 \003(\0132\032.palm.casbin.v1.Permissi" +
+      "on\"4\n\rRolesResponse\022#\n\005items\030\001 \003(\0132\024.pal" +
+      "m.casbin.v1.Role\"4\n\rUsersResponse\022#\n\005ite" +
+      "ms\030\001 \003(\0132\024.palm.casbin.v1.User\"8\n\017Action" +
+      "sResponse\022%\n\005items\030\001 \003(\0132\026.palm.casbin.v" +
+      "1.Action\"8\n\017ObjectsResponse\022%\n\005items\030\001 \003" +
+      "(\0132\026.palm.casbin.v1.Object2\300\003\n\007Session\022;" +
+      "\n\003Has\022\024.palm.casbin.v1.Role\032\034.palm.casbi" +
+      "n.v1.BoolResponse\"\000\022H\n\003Can\022!.palm.casbin" +
+      ".v1.SessionCanRequest\032\034.palm.casbin.v1.B" +
+      "oolResponse\"\000\022@\n\005Roles\022\026.google.protobuf" +
+      ".Empty\032\035.palm.casbin.v1.RolesResponse\"\000\022" +
+      "L\n\013Permissions\022\026.google.protobuf.Empty\032#" +
+      ".palm.casbin.v1.PermissionsResponse\"\000\022H\n" +
+      "\rImplicitRoles\022\026.google.protobuf.Empty\032\035" +
+      ".palm.casbin.v1.RolesResponse\"\000\022T\n\023Impli" +
+      "citPermissions\022\026.google.protobuf.Empty\032#" +
+      ".palm.casbin.v1.PermissionsResponse\"\0002\374\017" +
+      "\n\006Policy\022F\n\013GetAllUsers\022\026.google.protobu" +
+      "f.Empty\032\035.palm.casbin.v1.UsersResponse\"\000" +
+      "\022J\n\rGetAllObjects\022\026.google.protobuf.Empt" +
+      "y\032\037.palm.casbin.v1.ObjectsResponse\"\000\022J\n\r" +
+      "GetAllActions\022\026.google.protobuf.Empty\032\037." +
+      "palm.casbin.v1.ActionsResponse\"\000\022F\n\013GetA" +
+      "llRoles\022\026.google.protobuf.Empty\032\035.palm.c" +
+      "asbin.v1.RolesResponse\"\000\022R\n\021GetAllPermis" +
+      "sions\022\026.google.protobuf.Empty\032#.palm.cas" +
+      "bin.v1.PermissionsResponse\"\000\022F\n\003Has\022\037.pa" +
+      "lm.casbin.v1.UserRoleRequest\032\034.palm.casb" +
+      "in.v1.BoolResponse\"\000\022L\n\003Can\022%.palm.casbi" +
+      "n.v1.UserPermissionRequest\032\034.palm.casbin" +
+      ".v1.BoolResponse\"\000\022H\n\017GetRolesForUser\022\024." +
+      "palm.casbin.v1.User\032\035.palm.casbin.v1.Rol" +
+      "esResponse\"\000\022P\n\027GetImplicitRolesForUser\022" +
+      "\024.palm.casbin.v1.User\032\035.palm.casbin.v1.R" +
+      "olesResponse\"\000\022H\n\017GetUsersForRole\022\024.palm" +
+      ".casbin.v1.Role\032\035.palm.casbin.v1.UsersRe" +
+      "sponse\"\000\022Q\n\016HasRoleForUser\022\037.palm.casbin" +
+      ".v1.UserRoleRequest\032\034.palm.casbin.v1.Boo" +
+      "lResponse\"\000\022K\n\016AddRoleForUser\022\037.palm.cas" +
+      "bin.v1.UserRoleRequest\032\026.google.protobuf" +
+      ".Empty\"\000\022N\n\021DeleteRoleForUser\022\037.palm.cas" +
+      "bin.v1.UserRoleRequest\032\026.google.protobuf" +
+      ".Empty\"\000\022<\n\nDeleteUser\022\024.palm.casbin.v1." +
+      "User\032\026.google.protobuf.Empty\"\000\022<\n\nDelete" +
+      "Role\022\024.palm.casbin.v1.Role\032\026.google.prot" +
+      "obuf.Empty\"\000\022T\n\025GetPermissionsForUser\022\024." +
+      "palm.casbin.v1.User\032#.palm.casbin.v1.Per" +
+      "missionsResponse\"\000\022\\\n\035GetImplicitPermiss" +
+      "ionsForUser\022\024.palm.casbin.v1.User\032#.palm" +
+      ".casbin.v1.PermissionsResponse\"\000\022W\n\024AddP" +
+      "ermissionForUser\022%.palm.casbin.v1.UserPe" +
+      "rmissionRequest\032\026.google.protobuf.Empty\"" +
+      "\000\022Z\n\027DeletePermissionForUser\022%.palm.casb" +
+      "in.v1.UserPermissionRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\022]\n\024HasPermissionForUser\022%." +
+      "palm.casbin.v1.UserPermissionRequest\032\034.p" +
+      "alm.casbin.v1.BoolResponse\"\000\022T\n\025GetPermi" +
+      "ssionsForRole\022\024.palm.casbin.v1.Role\032#.pa" +
+      "lm.casbin.v1.PermissionsResponse\"\000\022\\\n\035Ge" +
+      "tImplicitPermissionsForRole\022\024.palm.casbi" +
+      "n.v1.Role\032#.palm.casbin.v1.PermissionsRe" +
+      "sponse\"\000\022W\n\024AddPermissionForRole\022%.palm." +
+      "casbin.v1.RolePermissionRequest\032\026.google" +
+      ".protobuf.Empty\"\000\022Z\n\027DeletePermissionFor" +
+      "Role\022%.palm.casbin.v1.RolePermissionRequ" +
+      "est\032\026.google.protobuf.Empty\"\000\022]\n\024HasPerm" +
+      "issionForRole\022%.palm.casbin.v1.RolePermi" +
+      "ssionRequest\032\034.palm.casbin.v1.BoolRespon" +
+      "se\"\000B7\n,com.github.saturn_xiv.palm.plugi" +
+      "ns.casbin.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -388,56 +409,62 @@ public final class Casbin {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_WatcherMessage_descriptor,
         new java.lang.String[] { "Id", "Method", });
-    internal_static_palm_casbin_v1_UserRoleRequest_descriptor =
+    internal_static_palm_casbin_v1_SessionCanRequest_descriptor =
       getDescriptor().getMessageTypes().get(7);
+    internal_static_palm_casbin_v1_SessionCanRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_casbin_v1_SessionCanRequest_descriptor,
+        new java.lang.String[] { "Object", "Action", });
+    internal_static_palm_casbin_v1_UserRoleRequest_descriptor =
+      getDescriptor().getMessageTypes().get(8);
     internal_static_palm_casbin_v1_UserRoleRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_UserRoleRequest_descriptor,
         new java.lang.String[] { "User", "Role", });
     internal_static_palm_casbin_v1_BoolResponse_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_palm_casbin_v1_BoolResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_BoolResponse_descriptor,
         new java.lang.String[] { "Yes", });
     internal_static_palm_casbin_v1_UserPermissionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_palm_casbin_v1_UserPermissionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_UserPermissionRequest_descriptor,
         new java.lang.String[] { "User", "Object", "Action", });
     internal_static_palm_casbin_v1_RolePermissionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_palm_casbin_v1_RolePermissionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_RolePermissionRequest_descriptor,
         new java.lang.String[] { "Role", "Object", "Action", });
     internal_static_palm_casbin_v1_PermissionsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_palm_casbin_v1_PermissionsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_PermissionsResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_casbin_v1_RolesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_palm_casbin_v1_RolesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_RolesResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_casbin_v1_UsersResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_palm_casbin_v1_UsersResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_UsersResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_casbin_v1_ActionsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_palm_casbin_v1_ActionsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_ActionsResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_casbin_v1_ObjectsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_palm_casbin_v1_ObjectsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_casbin_v1_ObjectsResponse_descriptor,
