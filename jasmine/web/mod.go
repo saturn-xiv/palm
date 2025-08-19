@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/gob"
+	"fmt"
 	"net/http"
+	"reflect"
+	"strings"
 
 	"google.golang.org/protobuf/proto"
 )
@@ -52,7 +55,7 @@ func ToString(v interface{}) (string, error) {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	if err := enc.Encode(v); err != nil {
-		return "", nil
+		return "", err
 	}
 	return base64.RawURLEncoding.EncodeToString(buf.Bytes()), nil
 }
@@ -65,4 +68,13 @@ func FromString(s string, v interface{}) error {
 	buf := bytes.NewBuffer(tmp)
 	dec := gob.NewDecoder(buf)
 	return dec.Decode(v)
+}
+
+// ----------------------------------------------------------------------------
+func ToCode(s string) string {
+	return strings.TrimSpace(strings.ToLower(s))
+}
+func ResourceType(o interface{}) string {
+	it := reflect.TypeOf(o).Elem()
+	return fmt.Sprintf("%s.%s", it.PkgPath(), it.Name())
 }

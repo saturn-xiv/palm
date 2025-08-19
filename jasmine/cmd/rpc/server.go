@@ -11,7 +11,7 @@ import (
 )
 
 func Launch(port uint16, config_file string, version string) error {
-	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
+	slog.Debug("load configuration", slog.String("file", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err

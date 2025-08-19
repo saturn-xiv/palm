@@ -13,6 +13,8 @@ import (
 	_ "github.com/amacneil/dbmate/v2/pkg/driver/mysql"
 	_ "github.com/amacneil/dbmate/v2/pkg/driver/postgres"
 	_ "github.com/amacneil/dbmate/v2/pkg/driver/sqlite"
+
+	"github.com/saturn-xiv/palm/jasmine/env"
 )
 
 //go:embed postgresql/migrations/*.sql
@@ -110,7 +112,7 @@ func (p *Config) open_dbmate() (*dbmate.DB, error) {
 	db := dbmate.New(u)
 	db.Verbose = true
 	db.AutoDumpSchema = false
-	db.MigrationsTableName = "jasmine_schema_migrations"
+	db.MigrationsTableName = fmt.Sprintf("%s_schema_migrations", env.PLUGIN_NAME)
 
 	switch db.DatabaseURL.Scheme {
 	case "postgres":

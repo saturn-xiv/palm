@@ -11,6 +11,7 @@ import (
 	"github.com/saturn-xiv/palm/jasmine/cmd/etc"
 	"github.com/saturn-xiv/palm/jasmine/cmd/http"
 	"github.com/saturn-xiv/palm/jasmine/cmd/rpc"
+	"github.com/saturn-xiv/palm/jasmine/cmd/user"
 )
 
 var (
@@ -50,6 +51,16 @@ var (
 	gl_etc_domain string
 
 	gl_db_seed_locales_folder string
+
+	gl_create_email_user_name     string
+	gl_create_email_user_email    string
+	gl_create_email_user_password string
+
+	gl_add_role_for_email_user_role  string
+	gl_add_role_for_email_user_email string
+
+	gl_delete_role_for_email_user_role  string
+	gl_delete_role_for_email_user_email string
 )
 
 func init() {
@@ -138,6 +149,52 @@ func init() {
 			},
 		}
 		cmd.Flags().StringVarP(&gl_db_seed_locales_folder, "locales", "l", "", "load locales from this folder(toml)")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "create-email-user",
+			Short: "Create an email user",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := user.CreateEmailUser(gl_config, gl_create_email_user_email, gl_create_email_user_name, gl_create_email_user_password); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_create_email_user_email, "email", "e", "", "email address")
+		cmd.Flags().StringVarP(&gl_create_email_user_name, "name", "n", "", "name")
+		cmd.Flags().StringVarP(&gl_create_email_user_password, "password", "p", "", "password")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "add-role-for-email-user",
+			Short: "Add role for an email user",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := user.AddRoleForEmailUser(gl_config, gl_add_role_for_email_user_email, gl_add_role_for_email_user_role); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_add_role_for_email_user_email, "email", "e", "", "user's email address")
+		cmd.Flags().StringVarP(&gl_add_role_for_email_user_role, "role", "r", "", "role's name")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "delete-role-for-email-user",
+			Short: "Delete role for an email user",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := user.DeleteRoleForEmailUser(gl_config, gl_delete_role_for_email_user_email, gl_delete_role_for_email_user_email); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_delete_role_for_email_user_email, "email", "e", "", "user's email address")
+		cmd.Flags().StringVarP(&gl_delete_role_for_email_user_role, "role", "r", "", "role's name")
 		root_cmd.AddCommand(cmd)
 	}
 	{

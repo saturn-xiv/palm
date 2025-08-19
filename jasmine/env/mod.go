@@ -6,6 +6,10 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	PLUGIN_NAME = "jasmine"
+)
+
 type Database struct {
 	PostgreSql PostgreSql `toml:"postgresql,omitempty"`
 	MySql      MySql      `toml:"mysql,omitempty"`
