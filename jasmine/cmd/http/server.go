@@ -22,6 +22,7 @@ import (
 )
 
 func Launch(port uint16, config_file string, theme string, version string) error {
+	web.EnsureStopped()
 	slog.Debug("load embed text templates")
 	t_tpl, err := t_template.ParseFS(gl_templates_fs, path.Join("templates", "*"))
 	if err != nil {

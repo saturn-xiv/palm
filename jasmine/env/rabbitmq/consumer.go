@@ -8,6 +8,7 @@ import (
 	"os/user"
 
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/saturn-xiv/palm/jasmine/web"
 )
 
 type Consumer interface {
@@ -20,6 +21,7 @@ func (p *Config) Consume(ctx context.Context, queue string, consumer Consumer) e
 		return err
 	}
 	slog.Info("start consumer", slog.String("name", name), slog.String("queue", queue))
+	web.EnsureStopped()
 	slog.Debug("open RabbitMQ", slog.String("user", p.User), slog.String("host", p.Host), slog.Int("port", int(p.Port)), slog.String("virtual-host", p.VirtualHost))
 	con, err := amqp.Dial(p.Url())
 	if err != nil {

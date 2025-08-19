@@ -5,7 +5,9 @@ import (
 	"encoding/base64"
 	"encoding/gob"
 	"fmt"
+	"log/slog"
 	"net/http"
+	"os"
 	"reflect"
 	"strings"
 
@@ -83,4 +85,13 @@ func ToCode(s string) string {
 func ResourceType(o interface{}) string {
 	it := reflect.TypeOf(o).Elem()
 	return fmt.Sprintf("%s.%s", it.PkgPath(), it.Name())
+}
+
+// ----------------------------------------------------------------------------
+func EnsureStopped() {
+	name := ".stop"
+	if _, err := os.Stat(name); err == nil {
+		slog.Warn("stop file exists, will be exit...", slog.String("name", name))
+		os.Exit(0)
+	}
 }

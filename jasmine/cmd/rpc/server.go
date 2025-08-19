@@ -18,9 +18,11 @@ import (
 	casbin_v2 "github.com/saturn-xiv/palm/jasmine/services/casbin/v2"
 	"github.com/saturn-xiv/palm/jasmine/services/s3"
 	s3_v2 "github.com/saturn-xiv/palm/jasmine/services/s3/v2"
+	"github.com/saturn-xiv/palm/jasmine/web"
 )
 
 func Launch(port uint16, config_file string, version string) error {
+	web.EnsureStopped()
 	slog.Debug("load configuration", slog.String("file", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
