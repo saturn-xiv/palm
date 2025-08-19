@@ -2,8 +2,6 @@ package env
 
 import (
 	"github.com/twilio/twilio-go"
-
-	"github.com/saturn-xiv/palm/jasmine/workers"
 )
 
 type Twilio struct {
@@ -12,10 +10,9 @@ type Twilio struct {
 	From       string `toml:"from"`
 }
 
-func (p *Twilio) Open() *workers.SendSmsWorker {
-	client := twilio.NewRestClientWithParams(twilio.ClientParams{
+func (p *Twilio) Open() *twilio.RestClient {
+	return twilio.NewRestClientWithParams(twilio.ClientParams{
 		Username: p.AccountSid,
 		Password: p.AuthToken,
 	})
-	return workers.NewSendSmsWorker(client, p.From)
 }

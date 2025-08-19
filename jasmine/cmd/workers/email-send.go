@@ -9,21 +9,41 @@ import (
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/gomail.v2"
 
+	"github.com/BurntSushi/toml"
+	"github.com/saturn-xiv/palm/jasmine/env"
+	"github.com/saturn-xiv/palm/jasmine/env/rabbitmq"
 	v2 "github.com/saturn-xiv/palm/jasmine/services/mail/v2"
 )
 
-type SendEmailWorker struct {
+func LaunchEmailSendConsumer(config_file string, queue string) error {
+	slog.Info("start email-send consumer", slog.String("queue", queue))
+	slog.Debug("load configuration", slog.String("file", config_file))
+	ctx := context.Background()
+	var config sendEmailWorkerConfig
+	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+	consumer := newSendEmailWorker(config.Smtp.Open(), config.Smtp.User, config.Smtp.Cc, config.Smtp.Bcc)
+	return config.RabbitMQ.Consume(ctx, queue, consumer)
+}
+
+type sendEmailWorkerConfig struct {
+	Smtp     env.Smtp        `toml:"smtp"`
+	RabbitMQ rabbitmq.Config `toml:"rabbitmq"`
+}
+
+type sendEmailWorker struct {
 	dialer *gomail.Dialer
 	from   string
 	cc     []string
 	bcc    []string
 }
 
-func NewSendEmailWorker(dialer *gomail.Dialer, from string, cc []string, bcc []string) *SendEmailWorker {
-	return &SendEmailWorker{dialer: dialer, from: from, cc: cc, bcc: bcc}
+func newSendEmailWorker(dialer *gomail.Dialer, from string, cc []string, bcc []string) *sendEmailWorker {
+	return &sendEmailWorker{dialer: dialer, from: from, cc: cc, bcc: bcc}
 }
 
-func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
+func (p *sendEmailWorker) Handle(id string, content_type string, message []byte) error {
 	var task v2.EmailSendTask
 	if err := proto.Unmarshal(message, &task); err != nil {
 		return err

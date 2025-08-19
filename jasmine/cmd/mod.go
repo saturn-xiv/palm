@@ -12,6 +12,7 @@ import (
 	"github.com/saturn-xiv/palm/jasmine/cmd/http"
 	"github.com/saturn-xiv/palm/jasmine/cmd/rpc"
 	"github.com/saturn-xiv/palm/jasmine/cmd/user"
+	"github.com/saturn-xiv/palm/jasmine/cmd/workers"
 )
 
 var (
@@ -64,6 +65,10 @@ var (
 
 	gl_set_email_user_password_email    string
 	gl_set_email_user_password_password string
+
+	gl_send_sms_worker_queue   string
+	gl_send_email_worker_queue string
+	gl_tex_to_pdf_worker_queue string
 )
 
 func version() string {
@@ -247,6 +252,49 @@ func init() {
 		cmd.Flags().StringVarP(&gl_etc_domain, "domain", "D", "change-me.org", "domain name")
 		cmd.Flags().Uint16Var(&gl_rpc_port, "rpc-port", 9999, "gRPC server port")
 		cmd.Flags().Uint16Var(&gl_web_port, "web-port", 8080, "http server port")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "consumer-email-send",
+			Short: "Start an email-send consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := workers.LaunchEmailSendConsumer(gl_config, gl_send_email_worker_queue); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_send_email_worker_queue, "queue", "q", "", "queue name")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "consumer-sms-send",
+			Short: "Start a sms-send consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := workers.LaunchSmsSendConsumer(gl_config, gl_send_sms_worker_queue); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_send_sms_worker_queue, "queue", "q", "", "queue name")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "consumer-tex-to-pdf",
+			Short: "Start a tex-to-pdf consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := workers.LaunchTexToPdfConsumer(gl_config, gl_tex_to_pdf_worker_queue); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_tex_to_pdf_worker_queue, "queue", "q", "", "queue name")
 		root_cmd.AddCommand(cmd)
 	}
 

@@ -4,8 +4,6 @@ import (
 	"crypto/tls"
 
 	"gopkg.in/gomail.v2"
-
-	"github.com/saturn-xiv/palm/jasmine/workers"
 )
 
 type Smtp struct {
@@ -17,8 +15,8 @@ type Smtp struct {
 	Bcc      []string `toml:"bcc"`
 }
 
-func (p *Smtp) Open() *workers.SendEmailWorker {
+func (p *Smtp) Open() *gomail.Dialer {
 	dialer := gomail.NewDialer(p.Host, p.Port, p.User, p.Password)
 	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
-	return workers.NewSendEmailWorker(dialer, p.User, p.Cc, p.Bcc)
+	return dialer
 }

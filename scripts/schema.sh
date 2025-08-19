@@ -97,6 +97,7 @@ generate_phlox_dashboard
 
 generate_crocus
 generate_jasmine sms
+generate_jasmine tex
 generate_jasmine mail
 generate_jasmine s3
 generate_jasmine casbin
