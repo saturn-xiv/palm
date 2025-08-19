@@ -125,16 +125,17 @@ func OpenCasbinEnforcer(namespace string, db *gorm.DB, redis_addrs []string) (*c
 		strings.Join(redis_addrs, ","),
 		rediswatcher.WatcherOptions{
 			ClusterOptions: redis.ClusterOptions{
-				ClientName: "casbin-watcher",
+				ClientName: fmt.Sprintf("%s.casbin.watcher", namespace),
 			},
 			Channel:    fmt.Sprintf("%s://casbin-watcher", namespace),
-			IgnoreSelf: false,
+			IgnoreSelf: true,
 		})
 	if err != nil {
 		return nil, err
 	}
 
 	slog.Debug("open casbin gorm adapter")
+	gormadapter.TurnOffAutoMigrate(db)
 	adp, err := gormadapter.NewAdapterByDB(db)
 	if err != nil {
 		return nil, err

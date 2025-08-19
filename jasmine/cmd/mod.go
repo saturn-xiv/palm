@@ -61,6 +61,9 @@ var (
 
 	gl_delete_role_for_email_user_role  string
 	gl_delete_role_for_email_user_email string
+
+	gl_set_email_user_password_email    string
+	gl_set_email_user_password_password string
 )
 
 func init() {
@@ -169,11 +172,26 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
+			Use:   "set-email-user-password",
+			Short: "Set email user's password",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := user.SetEmailUserPassword(gl_config, gl_set_email_user_password_email, gl_set_email_user_password_password); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_set_email_user_password_email, "email", "e", "", "email address")
+		cmd.Flags().StringVarP(&gl_set_email_user_password_password, "password", "p", "", "password")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
 			Use:   "add-role-for-email-user",
 			Short: "Add role for an email user",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := user.AddRoleForEmailUser(gl_config, gl_add_role_for_email_user_email, gl_add_role_for_email_user_role); err != nil {
+				if err := user.RoleForEmailUser(gl_config, gl_add_role_for_email_user_email, gl_add_role_for_email_user_role, true); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},
@@ -188,7 +206,7 @@ func init() {
 			Short: "Delete role for an email user",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := user.DeleteRoleForEmailUser(gl_config, gl_delete_role_for_email_user_email, gl_delete_role_for_email_user_email); err != nil {
+				if err := user.RoleForEmailUser(gl_config, gl_delete_role_for_email_user_email, gl_delete_role_for_email_user_email, false); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},

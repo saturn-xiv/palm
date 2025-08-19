@@ -80,7 +80,7 @@ func NewObjectByCode(type_ string, code string) *Object {
 }
 
 // ----------------------------------------------------------------------------
-func NewUserById(id uint32) *Subject {
+func NewUserSubjectById(id uint32) *Subject {
 	return &Subject{
 		By: &Subject_User{
 			User: &User{
@@ -91,7 +91,7 @@ func NewUserById(id uint32) *Subject {
 		},
 	}
 }
-func NewUserByCode(code string) *Subject {
+func NewUserSubjectByCode(code string) *Subject {
 	return &Subject{
 		By: &Subject_User{
 			User: &User{
@@ -104,7 +104,7 @@ func NewUserByCode(code string) *Subject {
 }
 
 // ----------------------------------------------------------------------------
-func NewRoot() *Subject {
+func NewRootRoleSubject() *Subject {
 	return &Subject{
 		By: &Subject_Role{
 			Role: &Role{
@@ -115,7 +115,7 @@ func NewRoot() *Subject {
 		},
 	}
 }
-func NewAdministrator() *Subject {
+func NewAdministratorRoleSubject() *Subject {
 	return &Subject{
 		By: &Subject_Role{
 			Role: &Role{
@@ -127,7 +127,7 @@ func NewAdministrator() *Subject {
 	}
 
 }
-func NewRoleByCode(code string) *Subject {
+func NewRoleSubjectByCode(code string) *Subject {
 	return &Subject{
 		By: &Subject_Role{
 			Role: &Role{

@@ -11,10 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-playground/validator/v10"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
+	casbin_v2 "github.com/saturn-xiv/palm/jasmine/services/casbin/v2"
+	"github.com/saturn-xiv/palm/jasmine/web"
 )
 
 type EmailUser struct {
@@ -36,6 +37,14 @@ func (EmailUser) TableName() string {
 	return "email_users"
 }
 
+func (p *EmailUser) Subject() (string, error) {
+	sub, err := web.ProtoBufMessageToString(casbin_v2.NewUserSubjectById(p.UserID))
+	if err != nil {
+		return "", err
+	}
+	return sub, nil
+}
+
 func IsEmailUserExists(db *gorm.DB, email string) (bool, error) {
 	var c int64
 	if err := db.Model(&EmailUser{}).Where("email = ?", email).Count(&c).Error; err != nil {
@@ -44,12 +53,25 @@ func IsEmailUserExists(db *gorm.DB, email string) (bool, error) {
 	return c > 0, nil
 }
 
-var gl_validate = validator.New(validator.WithRequiredStructEnabled())
+type SetEmailUserPasswordForm struct {
+	Password string `validate:"required,min=6,max=32"`
+}
+
+func (p *SetEmailUserPasswordForm) Execute(db *gorm.DB, mac *crypto.HMac, id uint32) error {
+	if err := gl_validate.Struct(p); err != nil {
+		return err
+	}
+	password, err := sign_password(mac, p.Password)
+	if err != nil {
+		return err
+	}
+	return db.Model(&EmailUser{}).Where("id = ?", id).Update("password", password).Error
+}
 
 type CreateEmailUserForm struct {
 	RealName string `validate:"required,min=2,max=63"`
 	Email    string `validate:"required,email,max=127"`
-	Password string `validate:"required,min=2,max=32"`
+	Password string `validate:"required,min=6,max=32"`
 }
 
 func (p *CreateEmailUserForm) Execute(db *gorm.DB, mac *crypto.HMac, lang string, timezone string) error {
