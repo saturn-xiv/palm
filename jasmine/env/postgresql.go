@@ -25,7 +25,7 @@ func (p *PostgreSql) Url() string {
 }
 
 func (p *PostgreSql) Open(config *gorm.Config) (*gorm.DB, error) {
-	slog.Info(fmt.Sprintf("open postgresql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName))
+	slog.Info("open postgresql", slog.String("user", p.User), slog.String("host", p.Host), slog.Int("port", int(p.Port)), slog.String("db-name", p.DbName))
 	db, err := gorm.Open(postgres.Open(p.Url()), config)
 	if err != nil {
 		return nil, err

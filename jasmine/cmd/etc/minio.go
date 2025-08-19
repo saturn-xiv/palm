@@ -8,6 +8,7 @@ import (
 	"text/template"
 
 	"github.com/btcsuite/btcutil/base58"
+	"github.com/saturn-xiv/palm/jasmine/env"
 )
 
 func MinioNginxConf(domain string) error {
@@ -31,7 +32,7 @@ func MinioNginxConf(domain string) error {
 	}); err != nil {
 		return err
 	}
-	slog.Info(fmt.Sprintf("please copy %s => /etc/nginx/sites-enabled/", file))
+	slog.Info("please copy to /etc/nginx/sites-enabled/", slog.String("file", file))
 	return nil
 }
 
@@ -45,7 +46,7 @@ func MinioSystemdConf(domain string) error {
 		return err
 	}
 
-	file := fmt.Sprintf("s3.atropa.%s.conf", domain)
+	file := fmt.Sprintf("s3.%s.%s.conf", env.PLUGIN_NAME, domain)
 	slog.Info("generate", slog.String("file", file))
 	fd, err := os.Create(file)
 	if err != nil {
@@ -61,6 +62,6 @@ func MinioSystemdConf(domain string) error {
 	}); err != nil {
 		return err
 	}
-	slog.Info(fmt.Sprintf("please copy %s => /usr/lib/systemd/system/", file))
+	slog.Info("please copy to /usr/lib/systemd/system/", slog.String("file", file))
 	return nil
 }

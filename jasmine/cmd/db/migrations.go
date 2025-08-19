@@ -27,7 +27,7 @@ var fs_mysql_migrations embed.FS
 var fs_sqlite3_migrations embed.FS
 
 func Migrate(config_file string) error {
-	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
+	slog.Debug("load configuration from", slog.String("file", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
@@ -40,7 +40,7 @@ func Migrate(config_file string) error {
 }
 
 func Rollback(config_file string) error {
-	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
+	slog.Debug("load configuration from", slog.String("file", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
@@ -53,7 +53,7 @@ func Rollback(config_file string) error {
 }
 
 func Status(config_file string) error {
-	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
+	slog.Debug("load configuration from", slog.String("file", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err

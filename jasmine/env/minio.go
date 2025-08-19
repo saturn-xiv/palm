@@ -2,7 +2,6 @@ package env
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"strings"
 
@@ -18,7 +17,7 @@ type Minio struct {
 }
 
 func (p *Minio) Open() (*minio.Client, error) {
-	slog.Info(fmt.Sprintf("open minio %s", p.Endpoint))
+	slog.Info("open minio", slog.String("endpoint", p.Endpoint))
 	cli, err := minio.New(p.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(p.AccessKey, p.SecretKey, ""),
 		Secure: p.Secure,
@@ -35,7 +34,7 @@ func (p *Minio) Open() (*minio.Client, error) {
 		for _, it := range buckets {
 			names = append(names, it.Name)
 		}
-		slog.Debug(fmt.Sprintf("found buckets: %s", strings.Join(names, ",")))
+		slog.Debug("found buckets", slog.String("buckets", strings.Join(names, ",")))
 
 	}
 	return cli, nil

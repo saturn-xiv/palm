@@ -85,7 +85,7 @@ func (l *Logger) LogRole(roles []string) {
 		return
 	}
 
-	slog.Info(fmt.Sprintf("Roles: %s", strings.Join(roles, ",")))
+	slog.Info("Roles", slog.String("roles", strings.Join(roles, ",")))
 }
 
 func (l *Logger) LogError(err error, msg ...string) {

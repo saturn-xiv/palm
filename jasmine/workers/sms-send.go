@@ -2,7 +2,6 @@ package workers
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
 	"github.com/twilio/twilio-go"
@@ -31,10 +30,10 @@ func (p *SendSmsWorker) Handle(ctx context.Context, message []byte) error {
 		if task.CallbackUrl != nil {
 			params.SetStatusCallback(*task.CallbackUrl)
 		}
-		slog.Info(fmt.Sprintf("send sms(%s) => %s", task.Message, to))
+		slog.Info("send sms", slog.String("message", task.Message), slog.String("to", to))
 		res, err := p.client.Api.CreateMessage(params)
 		if err != nil {
-			slog.Error(fmt.Sprintf("%d %s", *res.ErrorCode, *res.ErrorMessage))
+			slog.Error("", slog.Int("code", *res.ErrorCode), slog.String("message", *res.ErrorMessage))
 			return err
 		}
 	}

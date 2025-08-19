@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	"log/slog"
 
 	"github.com/BurntSushi/toml"
@@ -11,7 +10,7 @@ import (
 )
 
 func Seed(config_file string, locales_folder string) error {
-	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
+	slog.Debug("load configuration from", slog.String("file", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err

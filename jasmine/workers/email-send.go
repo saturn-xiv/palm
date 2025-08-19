@@ -2,7 +2,6 @@ package workers
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
@@ -30,7 +29,7 @@ func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
 		return err
 	}
 
-	slog.Info(fmt.Sprintf("send email(%s) => %s", task.Subject, task.To.Display()))
+	slog.Info("send email", slog.String("subject", task.Subject), slog.String("to", task.To.Display()))
 	msg := gomail.NewMessage()
 	{
 		msg.SetHeader("From", p.from)

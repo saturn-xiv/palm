@@ -156,7 +156,7 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "create-email-user",
+			Use:   "email-user-create",
 			Short: "Create an email user",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
@@ -172,7 +172,7 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "set-email-user-password",
+			Use:   "email-user-set-password",
 			Short: "Set email user's password",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
@@ -187,7 +187,7 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "add-role-for-email-user",
+			Use:   "email-user-add-role",
 			Short: "Add role for an email user",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
@@ -202,7 +202,7 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "delete-role-for-email-user",
+			Use:   "email-user-delete-role",
 			Short: "Delete role for an email user",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)

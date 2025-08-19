@@ -113,7 +113,7 @@ func Launch(port uint16, config_file string, theme string, version string) error
 
 func start(router http_.Handler, port uint16) {
 	addr := fmt.Sprintf("0.0.0.0:%d", port)
-	slog.Debug(fmt.Sprintf("listen on http://%s", addr))
+	slog.Debug("listen on", slog.String("address", addr))
 	server := &http_.Server{
 		Addr: addr,
 		// FIXME using logging
