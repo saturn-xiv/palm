@@ -1,5 +1,7 @@
 package v2
 
+import "google.golang.org/protobuf/types/known/emptypb"
+
 // ----------------------------------------------------------------------------
 func NewReadAction() *Action {
 	return &Action{
@@ -61,6 +63,15 @@ func NewOtherAction(code string) *Action {
 }
 
 // ----------------------------------------------------------------------------
+func NewObjectWithType(type_ string) *Object {
+	return &Object{
+		Type: type_,
+		By: &Object_Empty{
+			Empty: &emptypb.Empty{},
+		},
+	}
+}
+
 func NewObjectById(type_ string, id uint32) *Object {
 	return &Object{
 		Type: type_,
@@ -104,40 +115,41 @@ func NewUserSubjectByCode(code string) *Subject {
 }
 
 // ----------------------------------------------------------------------------
-func NewRootRoleSubject() *Subject {
+func NewRoleSubject(role *Role) *Subject {
 	return &Subject{
 		By: &Subject_Role{
-			Role: &Role{
-				By: &Role_Root_{
-					Root: &Role_Root{},
-				},
-			},
+			Role: role,
 		},
 	}
+}
+func NewRootRole() *Role {
+	return &Role{
+		By: &Role_Root_{
+			Root: &Role_Root{},
+		},
+	}
+}
+func NewRootRoleSubject() *Subject {
+	return NewRoleSubject(NewRootRole())
+}
+func NewAdministratorRole() *Role {
+	return &Role{
+		By: &Role_Administrator_{
+			Administrator: &Role_Administrator{},
+		}}
 }
 func NewAdministratorRoleSubject() *Subject {
-	return &Subject{
-		By: &Subject_Role{
-			Role: &Role{
-				By: &Role_Administrator_{
-					Administrator: &Role_Administrator{},
-				},
-			},
+	return NewRoleSubject(NewAdministratorRole())
+}
+func NewRoleByCode(code string) *Role {
+	return &Role{
+		By: &Role_Other_{
+			Other: &Role_Other{Code: code},
 		},
 	}
-
 }
 func NewRoleSubjectByCode(code string) *Subject {
-	return &Subject{
-		By: &Subject_Role{
-			Role: &Role{
-				By: &Role_Other_{
-					Other: &Role_Other{Code: code},
-				},
-			},
-		},
-	}
-
+	return NewRoleSubject(NewRoleByCode(code))
 }
 
 // ----------------------------------------------------------------------------

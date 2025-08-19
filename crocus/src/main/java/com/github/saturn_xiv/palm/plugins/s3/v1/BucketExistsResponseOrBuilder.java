@@ -10,8 +10,8 @@ public interface BucketExistsResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool exist = 1;</code>
-   * @return The exist.
+   * <code>bool exists = 1;</code>
+   * @return The exists.
    */
-  boolean getExist();
+  boolean getExists();
 }

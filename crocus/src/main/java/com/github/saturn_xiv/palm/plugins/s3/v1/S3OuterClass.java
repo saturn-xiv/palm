@@ -275,63 +275,63 @@ public final class S3OuterClass {
       "TagsRequest\022\016\n\006bucket\030\001 \001(\t\0228\n\004tags\030\002 \003(" +
       "\0132*.palm.s3.v1.SetBucketTagsRequest.Tags" +
       "Entry\032+\n\tTagsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value" +
-      "\030\002 \001(\t:\0028\001\"%\n\024BucketExistsResponse\022\r\n\005ex" +
-      "ist\030\001 \001(\010\"\223\001\n\023ListBucketsResponse\0223\n\005ite" +
-      "ms\030\001 \003(\0132$.palm.s3.v1.ListBucketsRespons" +
-      "e.Item\032G\n\004Item\022\014\n\004name\030\001 \001(\t\0221\n\rcreation" +
-      "_date\030\002 \001(\0132\032.google.protobuf.Timestamp2" +
-      "\315\017\n\002S3\022H\n\013ListBuckets\022\026.google.protobuf." +
-      "Empty\032\037.palm.s3.v1.ListBucketsResponse\"\000" +
-      "\022M\n\014BucketExists\022\031.palm.s3.v1.BucketRequ" +
-      "est\032 .palm.s3.v1.BucketExistsResponse\"\000\022" +
-      "[\n\023GetBucketEncryption\022\031.palm.s3.v1.Buck" +
-      "etRequest\032\'.palm.s3.v1.GetBucketEncrypti" +
-      "onResponse\"\000\022S\n\017GetBucketPolicy\022\031.palm.s" +
-      "3.v1.BucketRequest\032#.palm.s3.v1.GetBucke" +
-      "tPolicyResponse\"\000\022O\n\rGetBucketTags\022\031.pal" +
-      "m.s3.v1.BucketRequest\032!.palm.s3.v1.GetBu" +
-      "cketTagsResponse\"\000\022Y\n\022GetBucketLifecycle" +
-      "\022\031.palm.s3.v1.BucketRequest\032&.palm.s3.v1" +
-      ".GetBucketLifecycleResponse\"\000\022E\n\nMakeBuc" +
-      "ket\022\035.palm.s3.v1.MakeBucketRequest\032\026.goo" +
-      "gle.protobuf.Empty\"\000\022C\n\014RemoveBucket\022\031.p" +
-      "alm.s3.v1.BucketRequest\032\026.google.protobu" +
-      "f.Empty\"\000\022K\n\rSetBucketTags\022 .palm.s3.v1." +
-      "SetBucketTagsRequest\032\026.google.protobuf.E" +
-      "mpty\"\000\022O\n\017SetBucketPolicy\022\".palm.s3.v1.S" +
-      "etBucketPolicyRequest\032\026.google.protobuf." +
-      "Empty\"\000\022U\n\022SetBucketLifecycle\022%.palm.s3." +
-      "v1.SetBucketLifecycleRequest\032\026.google.pr" +
-      "otobuf.Empty\"\000\022W\n\023SetBucketEncryption\022&." +
-      "palm.s3.v1.SetBucketEncryptionRequest\032\026." +
-      "google.protobuf.Empty\"\000\022M\n\026DeleteBucketE" +
-      "ncryption\022\031.palm.s3.v1.BucketRequest\032\026.g" +
-      "oogle.protobuf.Empty\"\000\022I\n\022DeleteBucketPo" +
-      "licy\022\031.palm.s3.v1.BucketRequest\032\026.google" +
-      ".protobuf.Empty\"\000\022G\n\020DeleteBucketTags\022\031." +
-      "palm.s3.v1.BucketRequest\032\026.google.protob" +
-      "uf.Empty\"\000\022L\n\025DeleteBucketLifecycle\022\031.pa" +
-      "lm.s3.v1.BucketRequest\032\026.google.protobuf" +
-      ".Empty\"\000\022w\n\030GetPresignedPostFormData\022+.p" +
-      "alm.s3.v1.GetPresignedPostFormDataReques" +
-      "t\032,.palm.s3.v1.GetPresignedPostFormDataR" +
-      "esponse\"\000\022n\n\025GetPresignedObjectUrl\022(.pal" +
-      "m.s3.v1.GetPresignedObjectUrlRequest\032).p" +
-      "alm.s3.v1.GetPresignedObjectUrlResponse\"" +
-      "\000\022K\n\013ListObjects\022\031.palm.s3.v1.BucketRequ" +
-      "est\032\037.palm.s3.v1.ListObjectsResponse\"\000\022O" +
-      "\n\rGetObjectTags\022\031.palm.s3.v1.ObjectReque" +
-      "st\032!.palm.s3.v1.GetObjectTagsResponse\"\000\022" +
-      "Y\n\022GetObjectRetention\022\031.palm.s3.v1.Objec" +
-      "tRequest\032&.palm.s3.v1.GetObjectRetention" +
-      "Response\"\000\022I\n\nStatObject\022\031.palm.s3.v1.Ob" +
-      "jectRequest\032\036.palm.s3.v1.StatObjectRespo" +
-      "nse\"\000\022K\n\rSetObjectTags\022 .palm.s3.v1.SetO" +
-      "bjectTagsRequest\032\026.google.protobuf.Empty" +
-      "\"\000\022K\n\rDeleteObjects\022 .palm.s3.v1.DeleteO" +
-      "bjectsRequest\032\026.google.protobuf.Empty\"\000B" +
-      "3\n(com.github.saturn_xiv.palm.plugins.s3" +
-      ".v1P\001Z\005./;v2b\006proto3"
+      "\030\002 \001(\t:\0028\001\"&\n\024BucketExistsResponse\022\016\n\006ex" +
+      "ists\030\001 \001(\010\"\243\001\n\023ListBucketsResponse\0223\n\005it" +
+      "ems\030\001 \003(\0132$.palm.s3.v1.ListBucketsRespon" +
+      "se.Item\032W\n\004Item\022\014\n\004name\030\001 \001(\t\022\016\n\006region\030" +
+      "\002 \001(\t\0221\n\rcreation_date\030\t \001(\0132\032.google.pr" +
+      "otobuf.Timestamp2\315\017\n\002S3\022H\n\013ListBuckets\022\026" +
+      ".google.protobuf.Empty\032\037.palm.s3.v1.List" +
+      "BucketsResponse\"\000\022M\n\014BucketExists\022\031.palm" +
+      ".s3.v1.BucketRequest\032 .palm.s3.v1.Bucket" +
+      "ExistsResponse\"\000\022[\n\023GetBucketEncryption\022" +
+      "\031.palm.s3.v1.BucketRequest\032\'.palm.s3.v1." +
+      "GetBucketEncryptionResponse\"\000\022S\n\017GetBuck" +
+      "etPolicy\022\031.palm.s3.v1.BucketRequest\032#.pa" +
+      "lm.s3.v1.GetBucketPolicyResponse\"\000\022O\n\rGe" +
+      "tBucketTags\022\031.palm.s3.v1.BucketRequest\032!" +
+      ".palm.s3.v1.GetBucketTagsResponse\"\000\022Y\n\022G" +
+      "etBucketLifecycle\022\031.palm.s3.v1.BucketReq" +
+      "uest\032&.palm.s3.v1.GetBucketLifecycleResp" +
+      "onse\"\000\022E\n\nMakeBucket\022\035.palm.s3.v1.MakeBu" +
+      "cketRequest\032\026.google.protobuf.Empty\"\000\022C\n" +
+      "\014RemoveBucket\022\031.palm.s3.v1.BucketRequest" +
+      "\032\026.google.protobuf.Empty\"\000\022K\n\rSetBucketT" +
+      "ags\022 .palm.s3.v1.SetBucketTagsRequest\032\026." +
+      "google.protobuf.Empty\"\000\022O\n\017SetBucketPoli" +
+      "cy\022\".palm.s3.v1.SetBucketPolicyRequest\032\026" +
+      ".google.protobuf.Empty\"\000\022U\n\022SetBucketLif" +
+      "ecycle\022%.palm.s3.v1.SetBucketLifecycleRe" +
+      "quest\032\026.google.protobuf.Empty\"\000\022W\n\023SetBu" +
+      "cketEncryption\022&.palm.s3.v1.SetBucketEnc" +
+      "ryptionRequest\032\026.google.protobuf.Empty\"\000" +
+      "\022M\n\026DeleteBucketEncryption\022\031.palm.s3.v1." +
+      "BucketRequest\032\026.google.protobuf.Empty\"\000\022" +
+      "I\n\022DeleteBucketPolicy\022\031.palm.s3.v1.Bucke" +
+      "tRequest\032\026.google.protobuf.Empty\"\000\022G\n\020De" +
+      "leteBucketTags\022\031.palm.s3.v1.BucketReques" +
+      "t\032\026.google.protobuf.Empty\"\000\022L\n\025DeleteBuc" +
+      "ketLifecycle\022\031.palm.s3.v1.BucketRequest\032" +
+      "\026.google.protobuf.Empty\"\000\022w\n\030GetPresigne" +
+      "dPostFormData\022+.palm.s3.v1.GetPresignedP" +
+      "ostFormDataRequest\032,.palm.s3.v1.GetPresi" +
+      "gnedPostFormDataResponse\"\000\022n\n\025GetPresign" +
+      "edObjectUrl\022(.palm.s3.v1.GetPresignedObj" +
+      "ectUrlRequest\032).palm.s3.v1.GetPresignedO" +
+      "bjectUrlResponse\"\000\022K\n\013ListObjects\022\031.palm" +
+      ".s3.v1.BucketRequest\032\037.palm.s3.v1.ListOb" +
+      "jectsResponse\"\000\022O\n\rGetObjectTags\022\031.palm." +
+      "s3.v1.ObjectRequest\032!.palm.s3.v1.GetObje" +
+      "ctTagsResponse\"\000\022Y\n\022GetObjectRetention\022\031" +
+      ".palm.s3.v1.ObjectRequest\032&.palm.s3.v1.G" +
+      "etObjectRetentionResponse\"\000\022I\n\nStatObjec" +
+      "t\022\031.palm.s3.v1.ObjectRequest\032\036.palm.s3.v" +
+      "1.StatObjectResponse\"\000\022K\n\rSetObjectTags\022" +
+      " .palm.s3.v1.SetObjectTagsRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022K\n\rDeleteObjects\022 .p" +
+      "alm.s3.v1.DeleteObjectsRequest\032\026.google." +
+      "protobuf.Empty\"\000B3\n(com.github.saturn_xi" +
+      "v.palm.plugins.s3.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -531,7 +531,7 @@ public final class S3OuterClass {
     internal_static_palm_s3_v1_BucketExistsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_BucketExistsResponse_descriptor,
-        new java.lang.String[] { "Exist", });
+        new java.lang.String[] { "Exists", });
     internal_static_palm_s3_v1_ListBucketsResponse_descriptor =
       getDescriptor().getMessageTypes().get(22);
     internal_static_palm_s3_v1_ListBucketsResponse_fieldAccessorTable = new
@@ -543,7 +543,7 @@ public final class S3OuterClass {
     internal_static_palm_s3_v1_ListBucketsResponse_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_ListBucketsResponse_Item_descriptor,
-        new java.lang.String[] { "Name", "CreationDate", });
+        new java.lang.String[] { "Name", "Region", "CreationDate", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();

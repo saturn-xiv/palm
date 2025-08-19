@@ -38,6 +38,7 @@ func (EmailUser) TableName() string {
 }
 
 func (p *EmailUser) Subject() (string, error) {
+	// TODO
 	sub, err := web.ProtoBufMessageToString(casbin_v2.NewUserSubjectById(p.UserID))
 	if err != nil {
 		return "", err

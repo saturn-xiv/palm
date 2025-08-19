@@ -9,4 +9,5 @@ type Config struct {
 	SecretsStore string        `toml:"secrets-store"`
 	Redis        redis.Cluster `toml:"redis"`
 	Database     env.Database  `toml:"database"`
+	Minio        env.Minio     `toml:"minio"`
 }

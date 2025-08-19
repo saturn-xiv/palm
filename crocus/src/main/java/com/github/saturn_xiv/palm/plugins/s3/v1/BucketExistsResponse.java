@@ -42,15 +42,15 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse.class, com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse.Builder.class);
   }
 
-  public static final int EXIST_FIELD_NUMBER = 1;
-  private boolean exist_ = false;
+  public static final int EXISTS_FIELD_NUMBER = 1;
+  private boolean exists_ = false;
   /**
-   * <code>bool exist = 1;</code>
-   * @return The exist.
+   * <code>bool exists = 1;</code>
+   * @return The exists.
    */
   @java.lang.Override
-  public boolean getExist() {
-    return exist_;
+  public boolean getExists() {
+    return exists_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -67,8 +67,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (exist_ != false) {
-      output.writeBool(1, exist_);
+    if (exists_ != false) {
+      output.writeBool(1, exists_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -79,9 +79,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (exist_ != false) {
+    if (exists_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(1, exist_);
+        .computeBoolSize(1, exists_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -98,8 +98,8 @@ private static final long serialVersionUID = 0L;
     }
     com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse other = (com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse) obj;
 
-    if (getExist()
-        != other.getExist()) return false;
+    if (getExists()
+        != other.getExists()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -111,9 +111,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + EXIST_FIELD_NUMBER;
+    hash = (37 * hash) + EXISTS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getExist());
+        getExists());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -245,7 +245,7 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      exist_ = false;
+      exists_ = false;
       return this;
     }
 
@@ -280,7 +280,7 @@ private static final long serialVersionUID = 0L;
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.exist_ = exist_;
+        result.exists_ = exists_;
       }
     }
 
@@ -296,8 +296,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse other) {
       if (other == com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse.getDefaultInstance()) return this;
-      if (other.getExist() != false) {
-        setExist(other.getExist());
+      if (other.getExists() != false) {
+        setExists(other.getExists());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -326,7 +326,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              exist_ = input.readBool();
+              exists_ = input.readBool();
               bitField0_ |= 0x00000001;
               break;
             } // case 8
@@ -347,34 +347,34 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private boolean exist_ ;
+    private boolean exists_ ;
     /**
-     * <code>bool exist = 1;</code>
-     * @return The exist.
+     * <code>bool exists = 1;</code>
+     * @return The exists.
      */
     @java.lang.Override
-    public boolean getExist() {
-      return exist_;
+    public boolean getExists() {
+      return exists_;
     }
     /**
-     * <code>bool exist = 1;</code>
-     * @param value The exist to set.
+     * <code>bool exists = 1;</code>
+     * @param value The exists to set.
      * @return This builder for chaining.
      */
-    public Builder setExist(boolean value) {
+    public Builder setExists(boolean value) {
 
-      exist_ = value;
+      exists_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>bool exist = 1;</code>
+     * <code>bool exists = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearExist() {
+    public Builder clearExists() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      exist_ = false;
+      exists_ = false;
       onChanged();
       return this;
     }

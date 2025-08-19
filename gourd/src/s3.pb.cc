@@ -472,7 +472,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr BucketExistsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : exist_{false},
+      : exists_{false},
         _cached_size_{0} {}
 
 template <typename>
@@ -704,6 +704,9 @@ inline constexpr ListBucketsResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        region_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         creation_date_{nullptr} {}
@@ -1322,7 +1325,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::s3::v1::BucketExistsResponse, _impl_.exist_),
+        PROTOBUF_FIELD_OFFSET(::palm::s3::v1::BucketExistsResponse, _impl_.exists_),
         PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ListBucketsResponse_Item, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ListBucketsResponse_Item, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1332,7 +1335,9 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ListBucketsResponse_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ListBucketsResponse_Item, _impl_.region_),
         PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ListBucketsResponse_Item, _impl_.creation_date_),
+        ~0u,
         ~0u,
         0,
         ~0u,  // no _has_bits_
@@ -1380,8 +1385,8 @@ static const ::_pbi::MigrationSchema
         {340, 350, -1, sizeof(::palm::s3::v1::SetBucketTagsRequest_TagsEntry_DoNotUse)},
         {352, -1, -1, sizeof(::palm::s3::v1::SetBucketTagsRequest)},
         {362, -1, -1, sizeof(::palm::s3::v1::BucketExistsResponse)},
-        {371, 381, -1, sizeof(::palm::s3::v1::ListBucketsResponse_Item)},
-        {383, -1, -1, sizeof(::palm::s3::v1::ListBucketsResponse)},
+        {371, 382, -1, sizeof(::palm::s3::v1::ListBucketsResponse_Item)},
+        {385, -1, -1, sizeof(::palm::s3::v1::ListBucketsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::s3::v1::_StatObjectResponse_UserMetadataItem_default_instance_._instance,
@@ -1492,63 +1497,63 @@ const char descriptor_table_protodef_s3_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABL
     "TagsRequest\022\016\n\006bucket\030\001 \001(\t\0228\n\004tags\030\002 \003("
     "\0132*.palm.s3.v1.SetBucketTagsRequest.Tags"
     "Entry\032+\n\tTagsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value"
-    "\030\002 \001(\t:\0028\001\"%\n\024BucketExistsResponse\022\r\n\005ex"
-    "ist\030\001 \001(\010\"\223\001\n\023ListBucketsResponse\0223\n\005ite"
-    "ms\030\001 \003(\0132$.palm.s3.v1.ListBucketsRespons"
-    "e.Item\032G\n\004Item\022\014\n\004name\030\001 \001(\t\0221\n\rcreation"
-    "_date\030\002 \001(\0132\032.google.protobuf.Timestamp2"
-    "\315\017\n\002S3\022H\n\013ListBuckets\022\026.google.protobuf."
-    "Empty\032\037.palm.s3.v1.ListBucketsResponse\"\000"
-    "\022M\n\014BucketExists\022\031.palm.s3.v1.BucketRequ"
-    "est\032 .palm.s3.v1.BucketExistsResponse\"\000\022"
-    "[\n\023GetBucketEncryption\022\031.palm.s3.v1.Buck"
-    "etRequest\032\'.palm.s3.v1.GetBucketEncrypti"
-    "onResponse\"\000\022S\n\017GetBucketPolicy\022\031.palm.s"
-    "3.v1.BucketRequest\032#.palm.s3.v1.GetBucke"
-    "tPolicyResponse\"\000\022O\n\rGetBucketTags\022\031.pal"
-    "m.s3.v1.BucketRequest\032!.palm.s3.v1.GetBu"
-    "cketTagsResponse\"\000\022Y\n\022GetBucketLifecycle"
-    "\022\031.palm.s3.v1.BucketRequest\032&.palm.s3.v1"
-    ".GetBucketLifecycleResponse\"\000\022E\n\nMakeBuc"
-    "ket\022\035.palm.s3.v1.MakeBucketRequest\032\026.goo"
-    "gle.protobuf.Empty\"\000\022C\n\014RemoveBucket\022\031.p"
-    "alm.s3.v1.BucketRequest\032\026.google.protobu"
-    "f.Empty\"\000\022K\n\rSetBucketTags\022 .palm.s3.v1."
-    "SetBucketTagsRequest\032\026.google.protobuf.E"
-    "mpty\"\000\022O\n\017SetBucketPolicy\022\".palm.s3.v1.S"
-    "etBucketPolicyRequest\032\026.google.protobuf."
-    "Empty\"\000\022U\n\022SetBucketLifecycle\022%.palm.s3."
-    "v1.SetBucketLifecycleRequest\032\026.google.pr"
-    "otobuf.Empty\"\000\022W\n\023SetBucketEncryption\022&."
-    "palm.s3.v1.SetBucketEncryptionRequest\032\026."
-    "google.protobuf.Empty\"\000\022M\n\026DeleteBucketE"
-    "ncryption\022\031.palm.s3.v1.BucketRequest\032\026.g"
-    "oogle.protobuf.Empty\"\000\022I\n\022DeleteBucketPo"
-    "licy\022\031.palm.s3.v1.BucketRequest\032\026.google"
-    ".protobuf.Empty\"\000\022G\n\020DeleteBucketTags\022\031."
-    "palm.s3.v1.BucketRequest\032\026.google.protob"
-    "uf.Empty\"\000\022L\n\025DeleteBucketLifecycle\022\031.pa"
-    "lm.s3.v1.BucketRequest\032\026.google.protobuf"
-    ".Empty\"\000\022w\n\030GetPresignedPostFormData\022+.p"
-    "alm.s3.v1.GetPresignedPostFormDataReques"
-    "t\032,.palm.s3.v1.GetPresignedPostFormDataR"
-    "esponse\"\000\022n\n\025GetPresignedObjectUrl\022(.pal"
-    "m.s3.v1.GetPresignedObjectUrlRequest\032).p"
-    "alm.s3.v1.GetPresignedObjectUrlResponse\""
-    "\000\022K\n\013ListObjects\022\031.palm.s3.v1.BucketRequ"
-    "est\032\037.palm.s3.v1.ListObjectsResponse\"\000\022O"
-    "\n\rGetObjectTags\022\031.palm.s3.v1.ObjectReque"
-    "st\032!.palm.s3.v1.GetObjectTagsResponse\"\000\022"
-    "Y\n\022GetObjectRetention\022\031.palm.s3.v1.Objec"
-    "tRequest\032&.palm.s3.v1.GetObjectRetention"
-    "Response\"\000\022I\n\nStatObject\022\031.palm.s3.v1.Ob"
-    "jectRequest\032\036.palm.s3.v1.StatObjectRespo"
-    "nse\"\000\022K\n\rSetObjectTags\022 .palm.s3.v1.SetO"
-    "bjectTagsRequest\032\026.google.protobuf.Empty"
-    "\"\000\022K\n\rDeleteObjects\022 .palm.s3.v1.DeleteO"
-    "bjectsRequest\032\026.google.protobuf.Empty\"\000B"
-    "3\n(com.github.saturn_xiv.palm.plugins.s3"
-    ".v1P\001Z\005./;v2b\006proto3"
+    "\030\002 \001(\t:\0028\001\"&\n\024BucketExistsResponse\022\016\n\006ex"
+    "ists\030\001 \001(\010\"\243\001\n\023ListBucketsResponse\0223\n\005it"
+    "ems\030\001 \003(\0132$.palm.s3.v1.ListBucketsRespon"
+    "se.Item\032W\n\004Item\022\014\n\004name\030\001 \001(\t\022\016\n\006region\030"
+    "\002 \001(\t\0221\n\rcreation_date\030\t \001(\0132\032.google.pr"
+    "otobuf.Timestamp2\315\017\n\002S3\022H\n\013ListBuckets\022\026"
+    ".google.protobuf.Empty\032\037.palm.s3.v1.List"
+    "BucketsResponse\"\000\022M\n\014BucketExists\022\031.palm"
+    ".s3.v1.BucketRequest\032 .palm.s3.v1.Bucket"
+    "ExistsResponse\"\000\022[\n\023GetBucketEncryption\022"
+    "\031.palm.s3.v1.BucketRequest\032\'.palm.s3.v1."
+    "GetBucketEncryptionResponse\"\000\022S\n\017GetBuck"
+    "etPolicy\022\031.palm.s3.v1.BucketRequest\032#.pa"
+    "lm.s3.v1.GetBucketPolicyResponse\"\000\022O\n\rGe"
+    "tBucketTags\022\031.palm.s3.v1.BucketRequest\032!"
+    ".palm.s3.v1.GetBucketTagsResponse\"\000\022Y\n\022G"
+    "etBucketLifecycle\022\031.palm.s3.v1.BucketReq"
+    "uest\032&.palm.s3.v1.GetBucketLifecycleResp"
+    "onse\"\000\022E\n\nMakeBucket\022\035.palm.s3.v1.MakeBu"
+    "cketRequest\032\026.google.protobuf.Empty\"\000\022C\n"
+    "\014RemoveBucket\022\031.palm.s3.v1.BucketRequest"
+    "\032\026.google.protobuf.Empty\"\000\022K\n\rSetBucketT"
+    "ags\022 .palm.s3.v1.SetBucketTagsRequest\032\026."
+    "google.protobuf.Empty\"\000\022O\n\017SetBucketPoli"
+    "cy\022\".palm.s3.v1.SetBucketPolicyRequest\032\026"
+    ".google.protobuf.Empty\"\000\022U\n\022SetBucketLif"
+    "ecycle\022%.palm.s3.v1.SetBucketLifecycleRe"
+    "quest\032\026.google.protobuf.Empty\"\000\022W\n\023SetBu"
+    "cketEncryption\022&.palm.s3.v1.SetBucketEnc"
+    "ryptionRequest\032\026.google.protobuf.Empty\"\000"
+    "\022M\n\026DeleteBucketEncryption\022\031.palm.s3.v1."
+    "BucketRequest\032\026.google.protobuf.Empty\"\000\022"
+    "I\n\022DeleteBucketPolicy\022\031.palm.s3.v1.Bucke"
+    "tRequest\032\026.google.protobuf.Empty\"\000\022G\n\020De"
+    "leteBucketTags\022\031.palm.s3.v1.BucketReques"
+    "t\032\026.google.protobuf.Empty\"\000\022L\n\025DeleteBuc"
+    "ketLifecycle\022\031.palm.s3.v1.BucketRequest\032"
+    "\026.google.protobuf.Empty\"\000\022w\n\030GetPresigne"
+    "dPostFormData\022+.palm.s3.v1.GetPresignedP"
+    "ostFormDataRequest\032,.palm.s3.v1.GetPresi"
+    "gnedPostFormDataResponse\"\000\022n\n\025GetPresign"
+    "edObjectUrl\022(.palm.s3.v1.GetPresignedObj"
+    "ectUrlRequest\032).palm.s3.v1.GetPresignedO"
+    "bjectUrlResponse\"\000\022K\n\013ListObjects\022\031.palm"
+    ".s3.v1.BucketRequest\032\037.palm.s3.v1.ListOb"
+    "jectsResponse\"\000\022O\n\rGetObjectTags\022\031.palm."
+    "s3.v1.ObjectRequest\032!.palm.s3.v1.GetObje"
+    "ctTagsResponse\"\000\022Y\n\022GetObjectRetention\022\031"
+    ".palm.s3.v1.ObjectRequest\032&.palm.s3.v1.G"
+    "etObjectRetentionResponse\"\000\022I\n\nStatObjec"
+    "t\022\031.palm.s3.v1.ObjectRequest\032\036.palm.s3.v"
+    "1.StatObjectResponse\"\000\022K\n\rSetObjectTags\022"
+    " .palm.s3.v1.SetObjectTagsRequest\032\026.goog"
+    "le.protobuf.Empty\"\000\022K\n\rDeleteObjects\022 .p"
+    "alm.s3.v1.DeleteObjectsRequest\032\026.google."
+    "protobuf.Empty\"\000B3\n(com.github.saturn_xi"
+    "v.palm.plugins.s3.v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[3] =
     {
@@ -1560,7 +1565,7 @@ static ::absl::once_flag descriptor_table_s3_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_s3_2eproto = {
     false,
     false,
-    5100,
+    5117,
     descriptor_table_protodef_s3_2eproto,
     "s3.proto",
     &descriptor_table_s3_2eproto_once,
@@ -9470,7 +9475,7 @@ inline PROTOBUF_NDEBUG_INLINE BucketExistsResponse::Impl_::Impl_(
 
 inline void BucketExistsResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.exist_ = {};
+  _impl_.exists_ = {};
 }
 BucketExistsResponse::~BucketExistsResponse() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.BucketExistsResponse)
@@ -9537,14 +9542,14 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> BucketExistsResponse::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::s3::v1::BucketExistsResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool exist = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BucketExistsResponse, _impl_.exist_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(BucketExistsResponse, _impl_.exist_)}},
+    // bool exists = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BucketExistsResponse, _impl_.exists_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(BucketExistsResponse, _impl_.exists_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bool exist = 1;
-    {PROTOBUF_FIELD_OFFSET(BucketExistsResponse, _impl_.exist_), 0, 0,
+    // bool exists = 1;
+    {PROTOBUF_FIELD_OFFSET(BucketExistsResponse, _impl_.exists_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
@@ -9559,7 +9564,7 @@ PROTOBUF_NOINLINE void BucketExistsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.exist_ = false;
+  _impl_.exists_ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -9578,11 +9583,11 @@ PROTOBUF_NOINLINE void BucketExistsResponse::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // bool exist = 1;
-          if (this_._internal_exist() != 0) {
+          // bool exists = 1;
+          if (this_._internal_exists() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                1, this_._internal_exist(), target);
+                1, this_._internal_exists(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -9609,8 +9614,8 @@ PROTOBUF_NOINLINE void BucketExistsResponse::Clear() {
           (void)cached_has_bits;
 
            {
-            // bool exist = 1;
-            if (this_._internal_exist() != 0) {
+            // bool exists = 1;
+            if (this_._internal_exists() != 0) {
               total_size += 2;
             }
           }
@@ -9626,8 +9631,8 @@ void BucketExistsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, co
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_exist() != 0) {
-    _this->_impl_.exist_ = from._impl_.exist_;
+  if (from._internal_exists() != 0) {
+    _this->_impl_.exists_ = from._impl_.exists_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -9643,7 +9648,7 @@ void BucketExistsResponse::CopyFrom(const BucketExistsResponse& from) {
 void BucketExistsResponse::InternalSwap(BucketExistsResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.exist_, other->_impl_.exist_);
+        swap(_impl_.exists_, other->_impl_.exists_);
 }
 
 ::google::protobuf::Metadata BucketExistsResponse::GetMetadata() const {
@@ -9678,7 +9683,8 @@ inline PROTOBUF_NDEBUG_INLINE ListBucketsResponse_Item::Impl_::Impl_(
     const Impl_& from, const ::palm::s3::v1::ListBucketsResponse_Item& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        name_(arena, from.name_) {}
+        name_(arena, from.name_),
+        region_(arena, from.region_) {}
 
 ListBucketsResponse_Item::ListBucketsResponse_Item(
     ::google::protobuf::Arena* arena,
@@ -9704,7 +9710,8 @@ inline PROTOBUF_NDEBUG_INLINE ListBucketsResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        name_(arena) {}
+        name_(arena),
+        region_(arena) {}
 
 inline void ListBucketsResponse_Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -9719,6 +9726,7 @@ inline void ListBucketsResponse_Item::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.name_.Destroy();
+  this_._impl_.region_.Destroy();
   delete this_._impl_.creation_date_;
   this_._impl_.~Impl_();
 }
@@ -9759,15 +9767,15 @@ const ::google::protobuf::internal::ClassData* ListBucketsResponse_Item::GetClas
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 48, 2> ListBucketsResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 54, 2> ListBucketsResponse_Item::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    9, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967036,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -9777,9 +9785,9 @@ const ::_pbi::TcParseTable<1, 2, 1, 48, 2> ListBucketsResponse_Item::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::s3::v1::ListBucketsResponse_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .google.protobuf.Timestamp creation_date = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_.creation_date_)}},
+    // string region = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_.region_)}},
     // string name = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_.name_)}},
@@ -9789,15 +9797,19 @@ const ::_pbi::TcParseTable<1, 2, 1, 48, 2> ListBucketsResponse_Item::_table_ = {
     // string name = 1;
     {PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_.name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Timestamp creation_date = 2;
+    // string region = 2;
+    {PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_.region_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp creation_date = 9;
     {PROTOBUF_FIELD_OFFSET(ListBucketsResponse_Item, _impl_.creation_date_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
   }}, {{
-    "\43\4\0\0\0\0\0\0"
+    "\43\4\6\0\0\0\0\0"
     "palm.s3.v1.ListBucketsResponse.Item"
     "name"
+    "region"
   }},
 };
 
@@ -9809,6 +9821,7 @@ PROTOBUF_NOINLINE void ListBucketsResponse_Item::Clear() {
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
+  _impl_.region_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.creation_date_ != nullptr);
@@ -9841,11 +9854,19 @@ PROTOBUF_NOINLINE void ListBucketsResponse_Item::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
+          // string region = 2;
+          if (!this_._internal_region().empty()) {
+            const std::string& _s = this_._internal_region();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ListBucketsResponse.Item.region");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .google.protobuf.Timestamp creation_date = 2;
+          // .google.protobuf.Timestamp creation_date = 9;
           if (cached_has_bits & 0x00000001u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                2, *this_._impl_.creation_date_, this_._impl_.creation_date_->GetCachedSize(), target,
+                9, *this_._impl_.creation_date_, this_._impl_.creation_date_->GetCachedSize(), target,
                 stream);
           }
 
@@ -9879,9 +9900,14 @@ PROTOBUF_NOINLINE void ListBucketsResponse_Item::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_name());
             }
+            // string region = 2;
+            if (!this_._internal_region().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_region());
+            }
           }
            {
-            // .google.protobuf.Timestamp creation_date = 2;
+            // .google.protobuf.Timestamp creation_date = 9;
             cached_has_bits = this_._impl_._has_bits_[0];
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
@@ -9903,6 +9929,9 @@ void ListBucketsResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg
 
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_region().empty()) {
+    _this->_internal_set_region(from._internal_region());
   }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
@@ -9933,6 +9962,7 @@ void ListBucketsResponse_Item::InternalSwap(ListBucketsResponse_Item* PROTOBUF_R
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.region_, &other->_impl_.region_, arena);
   swap(_impl_.creation_date_, other->_impl_.creation_date_);
 }
 

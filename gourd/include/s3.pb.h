@@ -3131,16 +3131,16 @@ class BucketExistsResponse final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kExistFieldNumber = 1,
+    kExistsFieldNumber = 1,
   };
-  // bool exist = 1;
-  void clear_exist() ;
-  bool exist() const;
-  void set_exist(bool value);
+  // bool exists = 1;
+  void clear_exists() ;
+  bool exists() const;
+  void set_exists(bool value);
 
   private:
-  bool _internal_exist() const;
-  void _internal_set_exist(bool value);
+  bool _internal_exists() const;
+  void _internal_set_exists(bool value);
 
   public:
   // @@protoc_insertion_point(class_scope:palm.s3.v1.BucketExistsResponse)
@@ -3166,7 +3166,7 @@ class BucketExistsResponse final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const BucketExistsResponse& from_msg);
-    bool exist_;
+    bool exists_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4923,7 +4923,8 @@ class ListBucketsResponse_Item final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNameFieldNumber = 1,
-    kCreationDateFieldNumber = 2,
+    kRegionFieldNumber = 2,
+    kCreationDateFieldNumber = 9,
   };
   // string name = 1;
   void clear_name() ;
@@ -4941,7 +4942,23 @@ class ListBucketsResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
-  // .google.protobuf.Timestamp creation_date = 2;
+  // string region = 2;
+  void clear_region() ;
+  const std::string& region() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_region(Arg_&& arg, Args_... args);
+  std::string* mutable_region();
+  PROTOBUF_NODISCARD std::string* release_region();
+  void set_allocated_region(std::string* value);
+
+  private:
+  const std::string& _internal_region() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_region(
+      const std::string& value);
+  std::string* _internal_mutable_region();
+
+  public:
+  // .google.protobuf.Timestamp creation_date = 9;
   bool has_creation_date() const;
   void clear_creation_date() ;
   const ::google::protobuf::Timestamp& creation_date() const;
@@ -4961,8 +4978,8 @@ class ListBucketsResponse_Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      48, 2>
+      1, 3, 1,
+      54, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4982,6 +4999,7 @@ class ListBucketsResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr region_;
     ::google::protobuf::Timestamp* creation_date_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -9852,26 +9870,26 @@ inline ::google::protobuf::Map<std::string, std::string>* SetBucketTagsRequest::
 
 // BucketExistsResponse
 
-// bool exist = 1;
-inline void BucketExistsResponse::clear_exist() {
+// bool exists = 1;
+inline void BucketExistsResponse::clear_exists() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.exist_ = false;
+  _impl_.exists_ = false;
 }
-inline bool BucketExistsResponse::exist() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.BucketExistsResponse.exist)
-  return _internal_exist();
+inline bool BucketExistsResponse::exists() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.BucketExistsResponse.exists)
+  return _internal_exists();
 }
-inline void BucketExistsResponse::set_exist(bool value) {
-  _internal_set_exist(value);
-  // @@protoc_insertion_point(field_set:palm.s3.v1.BucketExistsResponse.exist)
+inline void BucketExistsResponse::set_exists(bool value) {
+  _internal_set_exists(value);
+  // @@protoc_insertion_point(field_set:palm.s3.v1.BucketExistsResponse.exists)
 }
-inline bool BucketExistsResponse::_internal_exist() const {
+inline bool BucketExistsResponse::_internal_exists() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.exist_;
+  return _impl_.exists_;
 }
-inline void BucketExistsResponse::_internal_set_exist(bool value) {
+inline void BucketExistsResponse::_internal_set_exists(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.exist_ = value;
+  _impl_.exists_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -9926,7 +9944,55 @@ inline void ListBucketsResponse_Item::set_allocated_name(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.ListBucketsResponse.Item.name)
 }
 
-// .google.protobuf.Timestamp creation_date = 2;
+// string region = 2;
+inline void ListBucketsResponse_Item::clear_region() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.region_.ClearToEmpty();
+}
+inline const std::string& ListBucketsResponse_Item::region() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.ListBucketsResponse.Item.region)
+  return _internal_region();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ListBucketsResponse_Item::set_region(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.region_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.ListBucketsResponse.Item.region)
+}
+inline std::string* ListBucketsResponse_Item::mutable_region() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_region();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.ListBucketsResponse.Item.region)
+  return _s;
+}
+inline const std::string& ListBucketsResponse_Item::_internal_region() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.region_.Get();
+}
+inline void ListBucketsResponse_Item::_internal_set_region(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.region_.Set(value, GetArena());
+}
+inline std::string* ListBucketsResponse_Item::_internal_mutable_region() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.region_.Mutable( GetArena());
+}
+inline std::string* ListBucketsResponse_Item::release_region() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.ListBucketsResponse.Item.region)
+  return _impl_.region_.Release();
+}
+inline void ListBucketsResponse_Item::set_allocated_region(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.region_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.region_.IsDefault()) {
+    _impl_.region_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.ListBucketsResponse.Item.region)
+}
+
+// .google.protobuf.Timestamp creation_date = 9;
 inline bool ListBucketsResponse_Item::has_creation_date() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.creation_date_ != nullptr);

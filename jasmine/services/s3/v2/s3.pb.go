@@ -1156,7 +1156,7 @@ func (x *SetBucketTagsRequest) GetTags() map[string]string {
 
 type BucketExistsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Exist         bool                   `protobuf:"varint,1,opt,name=exist,proto3" json:"exist,omitempty"`
+	Exists        bool                   `protobuf:"varint,1,opt,name=exists,proto3" json:"exists,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1191,9 +1191,9 @@ func (*BucketExistsResponse) Descriptor() ([]byte, []int) {
 	return file_s3_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *BucketExistsResponse) GetExist() bool {
+func (x *BucketExistsResponse) GetExists() bool {
 	if x != nil {
-		return x.Exist
+		return x.Exists
 	}
 	return false
 }
@@ -1569,7 +1569,8 @@ func (x *SetBucketLifecycleRequest_LifecycleRule) GetFilterPrefix() string {
 type ListBucketsResponse_Item struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	CreationDate  *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=creation_date,json=creationDate,proto3" json:"creation_date,omitempty"`
+	Region        string                 `protobuf:"bytes,2,opt,name=region,proto3" json:"region,omitempty"`
+	CreationDate  *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=creation_date,json=creationDate,proto3" json:"creation_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1607,6 +1608,13 @@ func (*ListBucketsResponse_Item) Descriptor() ([]byte, []int) {
 func (x *ListBucketsResponse_Item) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *ListBucketsResponse_Item) GetRegion() string {
+	if x != nil {
+		return x.Region
 	}
 	return ""
 }
@@ -1737,14 +1745,15 @@ const file_s3_proto_rawDesc = "" +
 	"\x04tags\x18\x02 \x03(\v2*.palm.s3.v1.SetBucketTagsRequest.TagsEntryR\x04tags\x1a7\n" +
 	"\tTagsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\",\n" +
-	"\x14BucketExistsResponse\x12\x14\n" +
-	"\x05exist\x18\x01 \x01(\bR\x05exist\"\xae\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\".\n" +
+	"\x14BucketExistsResponse\x12\x16\n" +
+	"\x06exists\x18\x01 \x01(\bR\x06exists\"\xc6\x01\n" +
 	"\x13ListBucketsResponse\x12:\n" +
-	"\x05items\x18\x01 \x03(\v2$.palm.s3.v1.ListBucketsResponse.ItemR\x05items\x1a[\n" +
+	"\x05items\x18\x01 \x03(\v2$.palm.s3.v1.ListBucketsResponse.ItemR\x05items\x1as\n" +
 	"\x04Item\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12?\n" +
-	"\rcreation_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\fcreationDate2\xcd\x0f\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
+	"\x06region\x18\x02 \x01(\tR\x06region\x12?\n" +
+	"\rcreation_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\fcreationDate2\xcd\x0f\n" +
 	"\x02S3\x12H\n" +
 	"\vListBuckets\x12\x16.google.protobuf.Empty\x1a\x1f.palm.s3.v1.ListBucketsResponse\"\x00\x12M\n" +
 	"\fBucketExists\x12\x19.palm.s3.v1.BucketRequest\x1a .palm.s3.v1.BucketExistsResponse\"\x00\x12[\n" +

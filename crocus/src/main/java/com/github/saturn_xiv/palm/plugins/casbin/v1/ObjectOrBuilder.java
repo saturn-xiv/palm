@@ -33,21 +33,36 @@ public interface ObjectOrBuilder extends
   int getId();
 
   /**
-   * <code>string code = 21;</code>
+   * <code>string code = 12;</code>
    * @return Whether the code field is set.
    */
   boolean hasCode();
   /**
-   * <code>string code = 21;</code>
+   * <code>string code = 12;</code>
    * @return The code.
    */
   java.lang.String getCode();
   /**
-   * <code>string code = 21;</code>
+   * <code>string code = 12;</code>
    * @return The bytes for code.
    */
   com.google.protobuf.ByteString
       getCodeBytes();
+
+  /**
+   * <code>.google.protobuf.Empty empty = 13;</code>
+   * @return Whether the empty field is set.
+   */
+  boolean hasEmpty();
+  /**
+   * <code>.google.protobuf.Empty empty = 13;</code>
+   * @return The empty.
+   */
+  com.google.protobuf.Empty getEmpty();
+  /**
+   * <code>.google.protobuf.Empty empty = 13;</code>
+   */
+  com.google.protobuf.EmptyOrBuilder getEmptyOrBuilder();
 
   com.github.saturn_xiv.palm.plugins.casbin.v1.Object.ByCase getByCase();
 }

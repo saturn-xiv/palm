@@ -157,12 +157,13 @@ message SetBucketTagsRequest {
   map<string, string> tags = 2;
 }
 message BucketExistsResponse {
-  bool exist = 1;
+  bool exists = 1;
 }
 message ListBucketsResponse {
   message Item {
     string name = 1;
-    google.protobuf.Timestamp creation_date = 2;
+    string region = 2;
+    google.protobuf.Timestamp creation_date = 9;
   }
   repeated Item items = 1;
 }

@@ -9,6 +9,7 @@ package v2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -358,6 +359,7 @@ type Object struct {
 	//
 	//	*Object_Id
 	//	*Object_Code
+	//	*Object_Empty
 	By            isObject_By `protobuf_oneof:"by"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -425,6 +427,15 @@ func (x *Object) GetCode() string {
 	return ""
 }
 
+func (x *Object) GetEmpty() *emptypb.Empty {
+	if x != nil {
+		if x, ok := x.By.(*Object_Empty); ok {
+			return x.Empty
+		}
+	}
+	return nil
+}
+
 type isObject_By interface {
 	isObject_By()
 }
@@ -434,12 +445,18 @@ type Object_Id struct {
 }
 
 type Object_Code struct {
-	Code string `protobuf:"bytes,21,opt,name=code,proto3,oneof"`
+	Code string `protobuf:"bytes,12,opt,name=code,proto3,oneof"`
+}
+
+type Object_Empty struct {
+	Empty *emptypb.Empty `protobuf:"bytes,13,opt,name=empty,proto3,oneof"`
 }
 
 func (*Object_Id) isObject_By() {}
 
 func (*Object_Code) isObject_By() {}
+
+func (*Object_Empty) isObject_By() {}
 
 type Action struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1927,7 +1944,7 @@ var File_casbin_proto protoreflect.FileDescriptor
 
 const file_casbin_proto_rawDesc = "" +
 	"\n" +
-	"\fcasbin.proto\x12\x0epalm.casbin.v1\"g\n" +
+	"\fcasbin.proto\x12\x0epalm.casbin.v1\x1a\x1bgoogle/protobuf/empty.proto\"g\n" +
 	"\aSubject\x12*\n" +
 	"\x04user\x18\x01 \x01(\v2\x14.palm.casbin.v1.UserH\x00R\x04user\x12*\n" +
 	"\x04role\x18\x02 \x01(\v2\x14.palm.casbin.v1.RoleH\x00R\x04roleB\x04\n" +
@@ -1944,11 +1961,12 @@ const file_casbin_proto_rawDesc = "" +
 	"\rAdministrator\x1a\x1b\n" +
 	"\x05Other\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04codeB\x04\n" +
-	"\x02by\"J\n" +
+	"\x02by\"z\n" +
 	"\x06Object\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x10\n" +
 	"\x02id\x18\v \x01(\rH\x00R\x02id\x12\x14\n" +
-	"\x04code\x18\x15 \x01(\tH\x00R\x04codeB\x04\n" +
+	"\x04code\x18\f \x01(\tH\x00R\x04code\x12.\n" +
+	"\x05empty\x18\r \x01(\v2\x16.google.protobuf.EmptyH\x00R\x05emptyB\x04\n" +
 	"\x02by\"\xae\x04\n" +
 	"\x06Action\x121\n" +
 	"\x04read\x18\x01 \x01(\v2\x1b.palm.casbin.v1.Action.ReadH\x00R\x04read\x124\n" +
@@ -2150,6 +2168,7 @@ var file_casbin_proto_goTypes = []any{
 	(*Action_Inquiry)(nil),        // 31: palm.casbin.v1.Action.Inquiry
 	(*Action_Other)(nil),          // 32: palm.casbin.v1.Action.Other
 	(*Array2DReplyD)(nil),         // 33: palm.casbin.v1.Array2DReply.d
+	(*emptypb.Empty)(nil),         // 34: google.protobuf.Empty
 }
 var file_casbin_proto_depIdxs = []int32{
 	2,  // 0: palm.casbin.v1.Subject.user:type_name -> palm.casbin.v1.User
@@ -2157,129 +2176,130 @@ var file_casbin_proto_depIdxs = []int32{
 	22, // 2: palm.casbin.v1.Role.root:type_name -> palm.casbin.v1.Role.Root
 	23, // 3: palm.casbin.v1.Role.administrator:type_name -> palm.casbin.v1.Role.Administrator
 	24, // 4: palm.casbin.v1.Role.other:type_name -> palm.casbin.v1.Role.Other
-	25, // 5: palm.casbin.v1.Action.read:type_name -> palm.casbin.v1.Action.Read
-	26, // 6: palm.casbin.v1.Action.write:type_name -> palm.casbin.v1.Action.Write
-	27, // 7: palm.casbin.v1.Action.append:type_name -> palm.casbin.v1.Action.Append
-	28, // 8: palm.casbin.v1.Action.execute:type_name -> palm.casbin.v1.Action.Execute
-	29, // 9: palm.casbin.v1.Action.credit:type_name -> palm.casbin.v1.Action.Credit
-	30, // 10: palm.casbin.v1.Action.debit:type_name -> palm.casbin.v1.Action.Debit
-	31, // 11: palm.casbin.v1.Action.inquiry:type_name -> palm.casbin.v1.Action.Inquiry
-	32, // 12: palm.casbin.v1.Action.other:type_name -> palm.casbin.v1.Action.Other
-	0,  // 13: palm.casbin.v1.WatcherMessage.method:type_name -> palm.casbin.v1.WatcherMessage.Method
-	33, // 14: palm.casbin.v1.Array2DReply.d2:type_name -> palm.casbin.v1.Array2DReply.d
-	7,  // 15: palm.casbin.v1.Casbin.NewEnforcer:input_type -> palm.casbin.v1.NewEnforcerRequest
-	9,  // 16: palm.casbin.v1.Casbin.NewAdapter:input_type -> palm.casbin.v1.NewAdapterRequest
-	11, // 17: palm.casbin.v1.Casbin.Enforce:input_type -> palm.casbin.v1.EnforceRequest
-	13, // 18: palm.casbin.v1.Casbin.LoadPolicy:input_type -> palm.casbin.v1.EmptyRequest
-	13, // 19: palm.casbin.v1.Casbin.SavePolicy:input_type -> palm.casbin.v1.EmptyRequest
-	15, // 20: palm.casbin.v1.Casbin.AddPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 21: palm.casbin.v1.Casbin.AddNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 22: palm.casbin.v1.Casbin.RemovePolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 23: palm.casbin.v1.Casbin.RemoveNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 24: palm.casbin.v1.Casbin.RemoveFilteredPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 25: palm.casbin.v1.Casbin.RemoveFilteredNamedPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	13, // 26: palm.casbin.v1.Casbin.GetPolicy:input_type -> palm.casbin.v1.EmptyRequest
-	15, // 27: palm.casbin.v1.Casbin.GetNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 28: palm.casbin.v1.Casbin.GetFilteredPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 29: palm.casbin.v1.Casbin.GetFilteredNamedPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	15, // 30: palm.casbin.v1.Casbin.AddGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 31: palm.casbin.v1.Casbin.AddNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 32: palm.casbin.v1.Casbin.RemoveGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 33: palm.casbin.v1.Casbin.RemoveNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 34: palm.casbin.v1.Casbin.RemoveFilteredGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 35: palm.casbin.v1.Casbin.RemoveFilteredNamedGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	13, // 36: palm.casbin.v1.Casbin.GetGroupingPolicy:input_type -> palm.casbin.v1.EmptyRequest
-	15, // 37: palm.casbin.v1.Casbin.GetNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	18, // 38: palm.casbin.v1.Casbin.GetFilteredGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	18, // 39: palm.casbin.v1.Casbin.GetFilteredNamedGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
-	13, // 40: palm.casbin.v1.Casbin.GetAllSubjects:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 41: palm.casbin.v1.Casbin.GetAllNamedSubjects:input_type -> palm.casbin.v1.SimpleGetRequest
-	13, // 42: palm.casbin.v1.Casbin.GetAllObjects:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 43: palm.casbin.v1.Casbin.GetAllNamedObjects:input_type -> palm.casbin.v1.SimpleGetRequest
-	13, // 44: palm.casbin.v1.Casbin.GetAllActions:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 45: palm.casbin.v1.Casbin.GetAllNamedActions:input_type -> palm.casbin.v1.SimpleGetRequest
-	13, // 46: palm.casbin.v1.Casbin.GetAllRoles:input_type -> palm.casbin.v1.EmptyRequest
-	16, // 47: palm.casbin.v1.Casbin.GetAllNamedRoles:input_type -> palm.casbin.v1.SimpleGetRequest
-	15, // 48: palm.casbin.v1.Casbin.HasPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 49: palm.casbin.v1.Casbin.HasNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 50: palm.casbin.v1.Casbin.HasGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	15, // 51: palm.casbin.v1.Casbin.HasNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
-	19, // 52: palm.casbin.v1.Casbin.GetDomains:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 53: palm.casbin.v1.Casbin.GetRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 54: palm.casbin.v1.Casbin.GetImplicitRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 55: palm.casbin.v1.Casbin.GetUsersForRole:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 56: palm.casbin.v1.Casbin.HasRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 57: palm.casbin.v1.Casbin.AddRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 58: palm.casbin.v1.Casbin.DeleteRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 59: palm.casbin.v1.Casbin.DeleteRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 60: palm.casbin.v1.Casbin.DeleteUser:input_type -> palm.casbin.v1.UserRoleRequest
-	19, // 61: palm.casbin.v1.Casbin.DeleteRole:input_type -> palm.casbin.v1.UserRoleRequest
-	20, // 62: palm.casbin.v1.Casbin.GetPermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 63: palm.casbin.v1.Casbin.GetImplicitPermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 64: palm.casbin.v1.Casbin.DeletePermission:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 65: palm.casbin.v1.Casbin.AddPermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 66: palm.casbin.v1.Casbin.DeletePermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 67: palm.casbin.v1.Casbin.DeletePermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
-	20, // 68: palm.casbin.v1.Casbin.HasPermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
-	8,  // 69: palm.casbin.v1.Casbin.NewEnforcer:output_type -> palm.casbin.v1.NewEnforcerReply
-	10, // 70: palm.casbin.v1.Casbin.NewAdapter:output_type -> palm.casbin.v1.NewAdapterReply
-	12, // 71: palm.casbin.v1.Casbin.Enforce:output_type -> palm.casbin.v1.BoolReply
-	14, // 72: palm.casbin.v1.Casbin.LoadPolicy:output_type -> palm.casbin.v1.EmptyReply
-	14, // 73: palm.casbin.v1.Casbin.SavePolicy:output_type -> palm.casbin.v1.EmptyReply
-	12, // 74: palm.casbin.v1.Casbin.AddPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 75: palm.casbin.v1.Casbin.AddNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 76: palm.casbin.v1.Casbin.RemovePolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 77: palm.casbin.v1.Casbin.RemoveNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 78: palm.casbin.v1.Casbin.RemoveFilteredPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 79: palm.casbin.v1.Casbin.RemoveFilteredNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	21, // 80: palm.casbin.v1.Casbin.GetPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 81: palm.casbin.v1.Casbin.GetNamedPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 82: palm.casbin.v1.Casbin.GetFilteredPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 83: palm.casbin.v1.Casbin.GetFilteredNamedPolicy:output_type -> palm.casbin.v1.Array2DReply
-	12, // 84: palm.casbin.v1.Casbin.AddGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 85: palm.casbin.v1.Casbin.AddNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 86: palm.casbin.v1.Casbin.RemoveGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 87: palm.casbin.v1.Casbin.RemoveNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 88: palm.casbin.v1.Casbin.RemoveFilteredGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 89: palm.casbin.v1.Casbin.RemoveFilteredNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	21, // 90: palm.casbin.v1.Casbin.GetGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 91: palm.casbin.v1.Casbin.GetNamedGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 92: palm.casbin.v1.Casbin.GetFilteredGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	21, // 93: palm.casbin.v1.Casbin.GetFilteredNamedGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
-	17, // 94: palm.casbin.v1.Casbin.GetAllSubjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 95: palm.casbin.v1.Casbin.GetAllNamedSubjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 96: palm.casbin.v1.Casbin.GetAllObjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 97: palm.casbin.v1.Casbin.GetAllNamedObjects:output_type -> palm.casbin.v1.ArrayReply
-	17, // 98: palm.casbin.v1.Casbin.GetAllActions:output_type -> palm.casbin.v1.ArrayReply
-	17, // 99: palm.casbin.v1.Casbin.GetAllNamedActions:output_type -> palm.casbin.v1.ArrayReply
-	17, // 100: palm.casbin.v1.Casbin.GetAllRoles:output_type -> palm.casbin.v1.ArrayReply
-	17, // 101: palm.casbin.v1.Casbin.GetAllNamedRoles:output_type -> palm.casbin.v1.ArrayReply
-	12, // 102: palm.casbin.v1.Casbin.HasPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 103: palm.casbin.v1.Casbin.HasNamedPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 104: palm.casbin.v1.Casbin.HasGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	12, // 105: palm.casbin.v1.Casbin.HasNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
-	17, // 106: palm.casbin.v1.Casbin.GetDomains:output_type -> palm.casbin.v1.ArrayReply
-	17, // 107: palm.casbin.v1.Casbin.GetRolesForUser:output_type -> palm.casbin.v1.ArrayReply
-	17, // 108: palm.casbin.v1.Casbin.GetImplicitRolesForUser:output_type -> palm.casbin.v1.ArrayReply
-	17, // 109: palm.casbin.v1.Casbin.GetUsersForRole:output_type -> palm.casbin.v1.ArrayReply
-	12, // 110: palm.casbin.v1.Casbin.HasRoleForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 111: palm.casbin.v1.Casbin.AddRoleForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 112: palm.casbin.v1.Casbin.DeleteRoleForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 113: palm.casbin.v1.Casbin.DeleteRolesForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 114: palm.casbin.v1.Casbin.DeleteUser:output_type -> palm.casbin.v1.BoolReply
-	14, // 115: palm.casbin.v1.Casbin.DeleteRole:output_type -> palm.casbin.v1.EmptyReply
-	21, // 116: palm.casbin.v1.Casbin.GetPermissionsForUser:output_type -> palm.casbin.v1.Array2DReply
-	21, // 117: palm.casbin.v1.Casbin.GetImplicitPermissionsForUser:output_type -> palm.casbin.v1.Array2DReply
-	12, // 118: palm.casbin.v1.Casbin.DeletePermission:output_type -> palm.casbin.v1.BoolReply
-	12, // 119: palm.casbin.v1.Casbin.AddPermissionForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 120: palm.casbin.v1.Casbin.DeletePermissionForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 121: palm.casbin.v1.Casbin.DeletePermissionsForUser:output_type -> palm.casbin.v1.BoolReply
-	12, // 122: palm.casbin.v1.Casbin.HasPermissionForUser:output_type -> palm.casbin.v1.BoolReply
-	69, // [69:123] is the sub-list for method output_type
-	15, // [15:69] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	34, // 5: palm.casbin.v1.Object.empty:type_name -> google.protobuf.Empty
+	25, // 6: palm.casbin.v1.Action.read:type_name -> palm.casbin.v1.Action.Read
+	26, // 7: palm.casbin.v1.Action.write:type_name -> palm.casbin.v1.Action.Write
+	27, // 8: palm.casbin.v1.Action.append:type_name -> palm.casbin.v1.Action.Append
+	28, // 9: palm.casbin.v1.Action.execute:type_name -> palm.casbin.v1.Action.Execute
+	29, // 10: palm.casbin.v1.Action.credit:type_name -> palm.casbin.v1.Action.Credit
+	30, // 11: palm.casbin.v1.Action.debit:type_name -> palm.casbin.v1.Action.Debit
+	31, // 12: palm.casbin.v1.Action.inquiry:type_name -> palm.casbin.v1.Action.Inquiry
+	32, // 13: palm.casbin.v1.Action.other:type_name -> palm.casbin.v1.Action.Other
+	0,  // 14: palm.casbin.v1.WatcherMessage.method:type_name -> palm.casbin.v1.WatcherMessage.Method
+	33, // 15: palm.casbin.v1.Array2DReply.d2:type_name -> palm.casbin.v1.Array2DReply.d
+	7,  // 16: palm.casbin.v1.Casbin.NewEnforcer:input_type -> palm.casbin.v1.NewEnforcerRequest
+	9,  // 17: palm.casbin.v1.Casbin.NewAdapter:input_type -> palm.casbin.v1.NewAdapterRequest
+	11, // 18: palm.casbin.v1.Casbin.Enforce:input_type -> palm.casbin.v1.EnforceRequest
+	13, // 19: palm.casbin.v1.Casbin.LoadPolicy:input_type -> palm.casbin.v1.EmptyRequest
+	13, // 20: palm.casbin.v1.Casbin.SavePolicy:input_type -> palm.casbin.v1.EmptyRequest
+	15, // 21: palm.casbin.v1.Casbin.AddPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 22: palm.casbin.v1.Casbin.AddNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 23: palm.casbin.v1.Casbin.RemovePolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 24: palm.casbin.v1.Casbin.RemoveNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	18, // 25: palm.casbin.v1.Casbin.RemoveFilteredPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	18, // 26: palm.casbin.v1.Casbin.RemoveFilteredNamedPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	13, // 27: palm.casbin.v1.Casbin.GetPolicy:input_type -> palm.casbin.v1.EmptyRequest
+	15, // 28: palm.casbin.v1.Casbin.GetNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	18, // 29: palm.casbin.v1.Casbin.GetFilteredPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	18, // 30: palm.casbin.v1.Casbin.GetFilteredNamedPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	15, // 31: palm.casbin.v1.Casbin.AddGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 32: palm.casbin.v1.Casbin.AddNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 33: palm.casbin.v1.Casbin.RemoveGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 34: palm.casbin.v1.Casbin.RemoveNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	18, // 35: palm.casbin.v1.Casbin.RemoveFilteredGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	18, // 36: palm.casbin.v1.Casbin.RemoveFilteredNamedGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	13, // 37: palm.casbin.v1.Casbin.GetGroupingPolicy:input_type -> palm.casbin.v1.EmptyRequest
+	15, // 38: palm.casbin.v1.Casbin.GetNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	18, // 39: palm.casbin.v1.Casbin.GetFilteredGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	18, // 40: palm.casbin.v1.Casbin.GetFilteredNamedGroupingPolicy:input_type -> palm.casbin.v1.FilteredPolicyRequest
+	13, // 41: palm.casbin.v1.Casbin.GetAllSubjects:input_type -> palm.casbin.v1.EmptyRequest
+	16, // 42: palm.casbin.v1.Casbin.GetAllNamedSubjects:input_type -> palm.casbin.v1.SimpleGetRequest
+	13, // 43: palm.casbin.v1.Casbin.GetAllObjects:input_type -> palm.casbin.v1.EmptyRequest
+	16, // 44: palm.casbin.v1.Casbin.GetAllNamedObjects:input_type -> palm.casbin.v1.SimpleGetRequest
+	13, // 45: palm.casbin.v1.Casbin.GetAllActions:input_type -> palm.casbin.v1.EmptyRequest
+	16, // 46: palm.casbin.v1.Casbin.GetAllNamedActions:input_type -> palm.casbin.v1.SimpleGetRequest
+	13, // 47: palm.casbin.v1.Casbin.GetAllRoles:input_type -> palm.casbin.v1.EmptyRequest
+	16, // 48: palm.casbin.v1.Casbin.GetAllNamedRoles:input_type -> palm.casbin.v1.SimpleGetRequest
+	15, // 49: palm.casbin.v1.Casbin.HasPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 50: palm.casbin.v1.Casbin.HasNamedPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 51: palm.casbin.v1.Casbin.HasGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	15, // 52: palm.casbin.v1.Casbin.HasNamedGroupingPolicy:input_type -> palm.casbin.v1.PolicyRequest
+	19, // 53: palm.casbin.v1.Casbin.GetDomains:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 54: palm.casbin.v1.Casbin.GetRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 55: palm.casbin.v1.Casbin.GetImplicitRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 56: palm.casbin.v1.Casbin.GetUsersForRole:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 57: palm.casbin.v1.Casbin.HasRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 58: palm.casbin.v1.Casbin.AddRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 59: palm.casbin.v1.Casbin.DeleteRoleForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 60: palm.casbin.v1.Casbin.DeleteRolesForUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 61: palm.casbin.v1.Casbin.DeleteUser:input_type -> palm.casbin.v1.UserRoleRequest
+	19, // 62: palm.casbin.v1.Casbin.DeleteRole:input_type -> palm.casbin.v1.UserRoleRequest
+	20, // 63: palm.casbin.v1.Casbin.GetPermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
+	20, // 64: palm.casbin.v1.Casbin.GetImplicitPermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
+	20, // 65: palm.casbin.v1.Casbin.DeletePermission:input_type -> palm.casbin.v1.PermissionRequest
+	20, // 66: palm.casbin.v1.Casbin.AddPermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
+	20, // 67: palm.casbin.v1.Casbin.DeletePermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
+	20, // 68: palm.casbin.v1.Casbin.DeletePermissionsForUser:input_type -> palm.casbin.v1.PermissionRequest
+	20, // 69: palm.casbin.v1.Casbin.HasPermissionForUser:input_type -> palm.casbin.v1.PermissionRequest
+	8,  // 70: palm.casbin.v1.Casbin.NewEnforcer:output_type -> palm.casbin.v1.NewEnforcerReply
+	10, // 71: palm.casbin.v1.Casbin.NewAdapter:output_type -> palm.casbin.v1.NewAdapterReply
+	12, // 72: palm.casbin.v1.Casbin.Enforce:output_type -> palm.casbin.v1.BoolReply
+	14, // 73: palm.casbin.v1.Casbin.LoadPolicy:output_type -> palm.casbin.v1.EmptyReply
+	14, // 74: palm.casbin.v1.Casbin.SavePolicy:output_type -> palm.casbin.v1.EmptyReply
+	12, // 75: palm.casbin.v1.Casbin.AddPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 76: palm.casbin.v1.Casbin.AddNamedPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 77: palm.casbin.v1.Casbin.RemovePolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 78: palm.casbin.v1.Casbin.RemoveNamedPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 79: palm.casbin.v1.Casbin.RemoveFilteredPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 80: palm.casbin.v1.Casbin.RemoveFilteredNamedPolicy:output_type -> palm.casbin.v1.BoolReply
+	21, // 81: palm.casbin.v1.Casbin.GetPolicy:output_type -> palm.casbin.v1.Array2DReply
+	21, // 82: palm.casbin.v1.Casbin.GetNamedPolicy:output_type -> palm.casbin.v1.Array2DReply
+	21, // 83: palm.casbin.v1.Casbin.GetFilteredPolicy:output_type -> palm.casbin.v1.Array2DReply
+	21, // 84: palm.casbin.v1.Casbin.GetFilteredNamedPolicy:output_type -> palm.casbin.v1.Array2DReply
+	12, // 85: palm.casbin.v1.Casbin.AddGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 86: palm.casbin.v1.Casbin.AddNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 87: palm.casbin.v1.Casbin.RemoveGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 88: palm.casbin.v1.Casbin.RemoveNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 89: palm.casbin.v1.Casbin.RemoveFilteredGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 90: palm.casbin.v1.Casbin.RemoveFilteredNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	21, // 91: palm.casbin.v1.Casbin.GetGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
+	21, // 92: palm.casbin.v1.Casbin.GetNamedGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
+	21, // 93: palm.casbin.v1.Casbin.GetFilteredGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
+	21, // 94: palm.casbin.v1.Casbin.GetFilteredNamedGroupingPolicy:output_type -> palm.casbin.v1.Array2DReply
+	17, // 95: palm.casbin.v1.Casbin.GetAllSubjects:output_type -> palm.casbin.v1.ArrayReply
+	17, // 96: palm.casbin.v1.Casbin.GetAllNamedSubjects:output_type -> palm.casbin.v1.ArrayReply
+	17, // 97: palm.casbin.v1.Casbin.GetAllObjects:output_type -> palm.casbin.v1.ArrayReply
+	17, // 98: palm.casbin.v1.Casbin.GetAllNamedObjects:output_type -> palm.casbin.v1.ArrayReply
+	17, // 99: palm.casbin.v1.Casbin.GetAllActions:output_type -> palm.casbin.v1.ArrayReply
+	17, // 100: palm.casbin.v1.Casbin.GetAllNamedActions:output_type -> palm.casbin.v1.ArrayReply
+	17, // 101: palm.casbin.v1.Casbin.GetAllRoles:output_type -> palm.casbin.v1.ArrayReply
+	17, // 102: palm.casbin.v1.Casbin.GetAllNamedRoles:output_type -> palm.casbin.v1.ArrayReply
+	12, // 103: palm.casbin.v1.Casbin.HasPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 104: palm.casbin.v1.Casbin.HasNamedPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 105: palm.casbin.v1.Casbin.HasGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	12, // 106: palm.casbin.v1.Casbin.HasNamedGroupingPolicy:output_type -> palm.casbin.v1.BoolReply
+	17, // 107: palm.casbin.v1.Casbin.GetDomains:output_type -> palm.casbin.v1.ArrayReply
+	17, // 108: palm.casbin.v1.Casbin.GetRolesForUser:output_type -> palm.casbin.v1.ArrayReply
+	17, // 109: palm.casbin.v1.Casbin.GetImplicitRolesForUser:output_type -> palm.casbin.v1.ArrayReply
+	17, // 110: palm.casbin.v1.Casbin.GetUsersForRole:output_type -> palm.casbin.v1.ArrayReply
+	12, // 111: palm.casbin.v1.Casbin.HasRoleForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 112: palm.casbin.v1.Casbin.AddRoleForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 113: palm.casbin.v1.Casbin.DeleteRoleForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 114: palm.casbin.v1.Casbin.DeleteRolesForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 115: palm.casbin.v1.Casbin.DeleteUser:output_type -> palm.casbin.v1.BoolReply
+	14, // 116: palm.casbin.v1.Casbin.DeleteRole:output_type -> palm.casbin.v1.EmptyReply
+	21, // 117: palm.casbin.v1.Casbin.GetPermissionsForUser:output_type -> palm.casbin.v1.Array2DReply
+	21, // 118: palm.casbin.v1.Casbin.GetImplicitPermissionsForUser:output_type -> palm.casbin.v1.Array2DReply
+	12, // 119: palm.casbin.v1.Casbin.DeletePermission:output_type -> palm.casbin.v1.BoolReply
+	12, // 120: palm.casbin.v1.Casbin.AddPermissionForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 121: palm.casbin.v1.Casbin.DeletePermissionForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 122: palm.casbin.v1.Casbin.DeletePermissionsForUser:output_type -> palm.casbin.v1.BoolReply
+	12, // 123: palm.casbin.v1.Casbin.HasPermissionForUser:output_type -> palm.casbin.v1.BoolReply
+	70, // [70:124] is the sub-list for method output_type
+	16, // [16:70] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_casbin_proto_init() }
@@ -2303,6 +2323,7 @@ func file_casbin_proto_init() {
 	file_casbin_proto_msgTypes[3].OneofWrappers = []any{
 		(*Object_Id)(nil),
 		(*Object_Code)(nil),
+		(*Object_Empty)(nil),
 	}
 	file_casbin_proto_msgTypes[4].OneofWrappers = []any{
 		(*Action_Read_)(nil),

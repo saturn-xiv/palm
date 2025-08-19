@@ -5,6 +5,8 @@ option java_package = "com.github.saturn_xiv.palm.plugins.casbin.v1";
 option go_package = "./;v2";
 package palm.casbin.v1;
 
+import "google/protobuf/empty.proto";
+
 // ----------------------------------------------------------------------------
 
 // https://casbin.org/docs/rbac#how-to-distinguish-role-from-user
@@ -39,7 +41,8 @@ message Object {
   string type = 1;
   oneof by {
     uint32 id = 11;
-    string code = 21;
+    string code = 12;
+    google.protobuf.Empty empty = 13;
   }
 }
 

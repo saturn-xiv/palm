@@ -50,7 +50,8 @@ private static final long serialVersionUID = 0L;
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     ID(11),
-    CODE(21),
+    CODE(12),
+    EMPTY(13),
     BY_NOT_SET(0);
     private final int value;
     private ByCase(int value) {
@@ -69,7 +70,8 @@ private static final long serialVersionUID = 0L;
     public static ByCase forNumber(int value) {
       switch (value) {
         case 11: return ID;
-        case 21: return CODE;
+        case 12: return CODE;
+        case 13: return EMPTY;
         case 0: return BY_NOT_SET;
         default: return null;
       }
@@ -145,21 +147,21 @@ private static final long serialVersionUID = 0L;
     return 0;
   }
 
-  public static final int CODE_FIELD_NUMBER = 21;
+  public static final int CODE_FIELD_NUMBER = 12;
   /**
-   * <code>string code = 21;</code>
+   * <code>string code = 12;</code>
    * @return Whether the code field is set.
    */
   public boolean hasCode() {
-    return byCase_ == 21;
+    return byCase_ == 12;
   }
   /**
-   * <code>string code = 21;</code>
+   * <code>string code = 12;</code>
    * @return The code.
    */
   public java.lang.String getCode() {
     java.lang.Object ref = "";
-    if (byCase_ == 21) {
+    if (byCase_ == 12) {
       ref = by_;
     }
     if (ref instanceof java.lang.String) {
@@ -168,33 +170,64 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      if (byCase_ == 21) {
+      if (byCase_ == 12) {
         by_ = s;
       }
       return s;
     }
   }
   /**
-   * <code>string code = 21;</code>
+   * <code>string code = 12;</code>
    * @return The bytes for code.
    */
   public com.google.protobuf.ByteString
       getCodeBytes() {
     java.lang.Object ref = "";
-    if (byCase_ == 21) {
+    if (byCase_ == 12) {
       ref = by_;
     }
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      if (byCase_ == 21) {
+      if (byCase_ == 12) {
         by_ = b;
       }
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int EMPTY_FIELD_NUMBER = 13;
+  /**
+   * <code>.google.protobuf.Empty empty = 13;</code>
+   * @return Whether the empty field is set.
+   */
+  @java.lang.Override
+  public boolean hasEmpty() {
+    return byCase_ == 13;
+  }
+  /**
+   * <code>.google.protobuf.Empty empty = 13;</code>
+   * @return The empty.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Empty getEmpty() {
+    if (byCase_ == 13) {
+       return (com.google.protobuf.Empty) by_;
+    }
+    return com.google.protobuf.Empty.getDefaultInstance();
+  }
+  /**
+   * <code>.google.protobuf.Empty empty = 13;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.EmptyOrBuilder getEmptyOrBuilder() {
+    if (byCase_ == 13) {
+       return (com.google.protobuf.Empty) by_;
+    }
+    return com.google.protobuf.Empty.getDefaultInstance();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -218,8 +251,11 @@ private static final long serialVersionUID = 0L;
       output.writeUInt32(
           11, (int)((java.lang.Integer) by_));
     }
-    if (byCase_ == 21) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 21, by_);
+    if (byCase_ == 12) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 12, by_);
+    }
+    if (byCase_ == 13) {
+      output.writeMessage(13, (com.google.protobuf.Empty) by_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -238,8 +274,12 @@ private static final long serialVersionUID = 0L;
         .computeUInt32Size(
             11, (int)((java.lang.Integer) by_));
     }
-    if (byCase_ == 21) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(21, by_);
+    if (byCase_ == 12) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(12, by_);
+    }
+    if (byCase_ == 13) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(13, (com.google.protobuf.Empty) by_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -264,9 +304,13 @@ private static final long serialVersionUID = 0L;
         if (getId()
             != other.getId()) return false;
         break;
-      case 21:
+      case 12:
         if (!getCode()
             .equals(other.getCode())) return false;
+        break;
+      case 13:
+        if (!getEmpty()
+            .equals(other.getEmpty())) return false;
         break;
       case 0:
       default:
@@ -289,9 +333,13 @@ private static final long serialVersionUID = 0L;
         hash = (37 * hash) + ID_FIELD_NUMBER;
         hash = (53 * hash) + getId();
         break;
-      case 21:
+      case 12:
         hash = (37 * hash) + CODE_FIELD_NUMBER;
         hash = (53 * hash) + getCode().hashCode();
+        break;
+      case 13:
+        hash = (37 * hash) + EMPTY_FIELD_NUMBER;
+        hash = (53 * hash) + getEmpty().hashCode();
         break;
       case 0:
       default:
@@ -428,6 +476,9 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       type_ = "";
+      if (emptyBuilder_ != null) {
+        emptyBuilder_.clear();
+      }
       byCase_ = 0;
       by_ = null;
       return this;
@@ -472,6 +523,10 @@ private static final long serialVersionUID = 0L;
     private void buildPartialOneofs(com.github.saturn_xiv.palm.plugins.casbin.v1.Object result) {
       result.byCase_ = byCase_;
       result.by_ = this.by_;
+      if (byCase_ == 13 &&
+          emptyBuilder_ != null) {
+        result.by_ = emptyBuilder_.build();
+      }
     }
 
     @java.lang.Override
@@ -497,9 +552,13 @@ private static final long serialVersionUID = 0L;
           break;
         }
         case CODE: {
-          byCase_ = 21;
+          byCase_ = 12;
           by_ = other.by_;
           onChanged();
+          break;
+        }
+        case EMPTY: {
+          mergeEmpty(other.getEmpty());
           break;
         }
         case BY_NOT_SET: {
@@ -542,12 +601,19 @@ private static final long serialVersionUID = 0L;
               byCase_ = 11;
               break;
             } // case 88
-            case 170: {
+            case 98: {
               java.lang.String s = input.readStringRequireUtf8();
-              byCase_ = 21;
+              byCase_ = 12;
               by_ = s;
               break;
-            } // case 170
+            } // case 98
+            case 106: {
+              input.readMessage(
+                  getEmptyFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              byCase_ = 13;
+              break;
+            } // case 106
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -695,28 +761,28 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>string code = 21;</code>
+     * <code>string code = 12;</code>
      * @return Whether the code field is set.
      */
     @java.lang.Override
     public boolean hasCode() {
-      return byCase_ == 21;
+      return byCase_ == 12;
     }
     /**
-     * <code>string code = 21;</code>
+     * <code>string code = 12;</code>
      * @return The code.
      */
     @java.lang.Override
     public java.lang.String getCode() {
       java.lang.Object ref = "";
-      if (byCase_ == 21) {
+      if (byCase_ == 12) {
         ref = by_;
       }
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (byCase_ == 21) {
+        if (byCase_ == 12) {
           by_ = s;
         }
         return s;
@@ -725,21 +791,21 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string code = 21;</code>
+     * <code>string code = 12;</code>
      * @return The bytes for code.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
         getCodeBytes() {
       java.lang.Object ref = "";
-      if (byCase_ == 21) {
+      if (byCase_ == 12) {
         ref = by_;
       }
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        if (byCase_ == 21) {
+        if (byCase_ == 12) {
           by_ = b;
         }
         return b;
@@ -748,24 +814,24 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string code = 21;</code>
+     * <code>string code = 12;</code>
      * @param value The code to set.
      * @return This builder for chaining.
      */
     public Builder setCode(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      byCase_ = 21;
+      byCase_ = 12;
       by_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string code = 21;</code>
+     * <code>string code = 12;</code>
      * @return This builder for chaining.
      */
     public Builder clearCode() {
-      if (byCase_ == 21) {
+      if (byCase_ == 12) {
         byCase_ = 0;
         by_ = null;
         onChanged();
@@ -773,7 +839,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string code = 21;</code>
+     * <code>string code = 12;</code>
      * @param value The bytes for code to set.
      * @return This builder for chaining.
      */
@@ -781,10 +847,152 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      byCase_ = 21;
+      byCase_ = 12;
       by_ = value;
       onChanged();
       return this;
+    }
+
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder> emptyBuilder_;
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     * @return Whether the empty field is set.
+     */
+    @java.lang.Override
+    public boolean hasEmpty() {
+      return byCase_ == 13;
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     * @return The empty.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Empty getEmpty() {
+      if (emptyBuilder_ == null) {
+        if (byCase_ == 13) {
+          return (com.google.protobuf.Empty) by_;
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
+      } else {
+        if (byCase_ == 13) {
+          return emptyBuilder_.getMessage();
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    public Builder setEmpty(com.google.protobuf.Empty value) {
+      if (emptyBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        by_ = value;
+        onChanged();
+      } else {
+        emptyBuilder_.setMessage(value);
+      }
+      byCase_ = 13;
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    public Builder setEmpty(
+        com.google.protobuf.Empty.Builder builderForValue) {
+      if (emptyBuilder_ == null) {
+        by_ = builderForValue.build();
+        onChanged();
+      } else {
+        emptyBuilder_.setMessage(builderForValue.build());
+      }
+      byCase_ = 13;
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    public Builder mergeEmpty(com.google.protobuf.Empty value) {
+      if (emptyBuilder_ == null) {
+        if (byCase_ == 13 &&
+            by_ != com.google.protobuf.Empty.getDefaultInstance()) {
+          by_ = com.google.protobuf.Empty.newBuilder((com.google.protobuf.Empty) by_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          by_ = value;
+        }
+        onChanged();
+      } else {
+        if (byCase_ == 13) {
+          emptyBuilder_.mergeFrom(value);
+        } else {
+          emptyBuilder_.setMessage(value);
+        }
+      }
+      byCase_ = 13;
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    public Builder clearEmpty() {
+      if (emptyBuilder_ == null) {
+        if (byCase_ == 13) {
+          byCase_ = 0;
+          by_ = null;
+          onChanged();
+        }
+      } else {
+        if (byCase_ == 13) {
+          byCase_ = 0;
+          by_ = null;
+        }
+        emptyBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    public com.google.protobuf.Empty.Builder getEmptyBuilder() {
+      return getEmptyFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.EmptyOrBuilder getEmptyOrBuilder() {
+      if ((byCase_ == 13) && (emptyBuilder_ != null)) {
+        return emptyBuilder_.getMessageOrBuilder();
+      } else {
+        if (byCase_ == 13) {
+          return (com.google.protobuf.Empty) by_;
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Empty empty = 13;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder> 
+        getEmptyFieldBuilder() {
+      if (emptyBuilder_ == null) {
+        if (!(byCase_ == 13)) {
+          by_ = com.google.protobuf.Empty.getDefaultInstance();
+        }
+        emptyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder>(
+                (com.google.protobuf.Empty) by_,
+                getParentForChildren(),
+                isClean());
+        by_ = null;
+      }
+      byCase_ = 13;
+      onChanged();
+      return emptyBuilder_;
     }
 
     // @@protoc_insertion_point(builder_scope:palm.casbin.v1.Object)

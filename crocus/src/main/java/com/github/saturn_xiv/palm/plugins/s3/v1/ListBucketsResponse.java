@@ -60,17 +60,29 @@ private static final long serialVersionUID = 0L;
         getNameBytes();
 
     /**
-     * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+     * <code>string region = 2;</code>
+     * @return The region.
+     */
+    java.lang.String getRegion();
+    /**
+     * <code>string region = 2;</code>
+     * @return The bytes for region.
+     */
+    com.google.protobuf.ByteString
+        getRegionBytes();
+
+    /**
+     * <code>.google.protobuf.Timestamp creation_date = 9;</code>
      * @return Whether the creationDate field is set.
      */
     boolean hasCreationDate();
     /**
-     * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+     * <code>.google.protobuf.Timestamp creation_date = 9;</code>
      * @return The creationDate.
      */
     com.google.protobuf.Timestamp getCreationDate();
     /**
-     * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+     * <code>.google.protobuf.Timestamp creation_date = 9;</code>
      */
     com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder();
   }
@@ -97,6 +109,7 @@ private static final long serialVersionUID = 0L;
     }
     private Item() {
       name_ = "";
+      region_ = "";
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -152,10 +165,49 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int CREATION_DATE_FIELD_NUMBER = 2;
+    public static final int REGION_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object region_ = "";
+    /**
+     * <code>string region = 2;</code>
+     * @return The region.
+     */
+    @java.lang.Override
+    public java.lang.String getRegion() {
+      java.lang.Object ref = region_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        region_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string region = 2;</code>
+     * @return The bytes for region.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRegionBytes() {
+      java.lang.Object ref = region_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        region_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CREATION_DATE_FIELD_NUMBER = 9;
     private com.google.protobuf.Timestamp creationDate_;
     /**
-     * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+     * <code>.google.protobuf.Timestamp creation_date = 9;</code>
      * @return Whether the creationDate field is set.
      */
     @java.lang.Override
@@ -163,7 +215,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+     * <code>.google.protobuf.Timestamp creation_date = 9;</code>
      * @return The creationDate.
      */
     @java.lang.Override
@@ -171,7 +223,7 @@ private static final long serialVersionUID = 0L;
       return creationDate_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : creationDate_;
     }
     /**
-     * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+     * <code>.google.protobuf.Timestamp creation_date = 9;</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder() {
@@ -195,8 +247,11 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(region_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, region_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(2, getCreationDate());
+        output.writeMessage(9, getCreationDate());
       }
       getUnknownFields().writeTo(output);
     }
@@ -210,9 +265,12 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(region_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, region_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getCreationDate());
+          .computeMessageSize(9, getCreationDate());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -231,6 +289,8 @@ private static final long serialVersionUID = 0L;
 
       if (!getName()
           .equals(other.getName())) return false;
+      if (!getRegion()
+          .equals(other.getRegion())) return false;
       if (hasCreationDate() != other.hasCreationDate()) return false;
       if (hasCreationDate()) {
         if (!getCreationDate()
@@ -249,6 +309,8 @@ private static final long serialVersionUID = 0L;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + REGION_FIELD_NUMBER;
+      hash = (53 * hash) + getRegion().hashCode();
       if (hasCreationDate()) {
         hash = (37 * hash) + CREATION_DATE_FIELD_NUMBER;
         hash = (53 * hash) + getCreationDate().hashCode();
@@ -391,6 +453,7 @@ private static final long serialVersionUID = 0L;
         super.clear();
         bitField0_ = 0;
         name_ = "";
+        region_ = "";
         creationDate_ = null;
         if (creationDateBuilder_ != null) {
           creationDateBuilder_.dispose();
@@ -432,8 +495,11 @@ private static final long serialVersionUID = 0L;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.name_ = name_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.region_ = region_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.creationDate_ = creationDateBuilder_ == null
               ? creationDate_
               : creationDateBuilder_.build();
@@ -457,6 +523,11 @@ private static final long serialVersionUID = 0L;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getRegion().isEmpty()) {
+          region_ = other.region_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.hasCreationDate()) {
@@ -494,12 +565,17 @@ private static final long serialVersionUID = 0L;
                 break;
               } // case 10
               case 18: {
-                input.readMessage(
-                    getCreationDateFieldBuilder().getBuilder(),
-                    extensionRegistry);
+                region_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 74: {
+                input.readMessage(
+                    getCreationDateFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 74
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -589,18 +665,90 @@ private static final long serialVersionUID = 0L;
         return this;
       }
 
+      private java.lang.Object region_ = "";
+      /**
+       * <code>string region = 2;</code>
+       * @return The region.
+       */
+      public java.lang.String getRegion() {
+        java.lang.Object ref = region_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          region_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string region = 2;</code>
+       * @return The bytes for region.
+       */
+      public com.google.protobuf.ByteString
+          getRegionBytes() {
+        java.lang.Object ref = region_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          region_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string region = 2;</code>
+       * @param value The region to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRegion(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        region_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string region = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRegion() {
+        region_ = getDefaultInstance().getRegion();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string region = 2;</code>
+       * @param value The bytes for region to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRegionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        region_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.Timestamp creationDate_;
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> creationDateBuilder_;
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        * @return Whether the creationDate field is set.
        */
       public boolean hasCreationDate() {
-        return ((bitField0_ & 0x00000002) != 0);
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        * @return The creationDate.
        */
       public com.google.protobuf.Timestamp getCreationDate() {
@@ -611,7 +759,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       public Builder setCreationDate(com.google.protobuf.Timestamp value) {
         if (creationDateBuilder_ == null) {
@@ -622,12 +770,12 @@ private static final long serialVersionUID = 0L;
         } else {
           creationDateBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       public Builder setCreationDate(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -636,16 +784,16 @@ private static final long serialVersionUID = 0L;
         } else {
           creationDateBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       public Builder mergeCreationDate(com.google.protobuf.Timestamp value) {
         if (creationDateBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0) &&
+          if (((bitField0_ & 0x00000004) != 0) &&
             creationDate_ != null &&
             creationDate_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
             getCreationDateBuilder().mergeFrom(value);
@@ -656,16 +804,16 @@ private static final long serialVersionUID = 0L;
           creationDateBuilder_.mergeFrom(value);
         }
         if (creationDate_ != null) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       public Builder clearCreationDate() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         creationDate_ = null;
         if (creationDateBuilder_ != null) {
           creationDateBuilder_.dispose();
@@ -675,15 +823,15 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       public com.google.protobuf.Timestamp.Builder getCreationDateBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getCreationDateFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getCreationDateOrBuilder() {
         if (creationDateBuilder_ != null) {
@@ -694,7 +842,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>.google.protobuf.Timestamp creation_date = 2;</code>
+       * <code>.google.protobuf.Timestamp creation_date = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

@@ -12,11 +12,11 @@ type Session struct {
 	Token string
 }
 
-func FromHttp(r *http.Request) *Session {
+func SessionFromHttp(r *http.Request) *Session {
 	return &Session{Token: parse_token_from_http_request(r)}
 }
 
-func (p *Session) FromGrpc(c context.Context) *Session {
+func SessionFromGrpc(c context.Context) *Session {
 	return &Session{Token: parse_token_from_grpc_request(c)}
 }
 

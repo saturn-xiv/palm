@@ -9,6 +9,8 @@ import (
 	"reflect"
 	"strings"
 
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -23,6 +25,10 @@ const (
 	HeaderContentType   = "Content-Type"
 	HeaderAuthorization = "Authorization"
 	BearerTokenPrefix   = "Bearer "
+)
+
+var (
+	ErrorUserNotSignedIn = status.Error(codes.PermissionDenied, "not signed in")
 )
 
 type H map[string]interface{}
