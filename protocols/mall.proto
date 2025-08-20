@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.mall.v1";
+option go_package = "./;v2";
+package palm.mall.v1;
+
+service Store {}
+
+service Customer {}
+
+service Order {}
+service Billing {}
+service Payment {}
+
+service Wishlist {}
+service Reviews {}
+service AddressBook {}

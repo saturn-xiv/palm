@@ -4,6 +4,7 @@
 #include "lavender/blog.hpp"
 #include "lavender/cms.hpp"
 #include "lavender/ledger.hpp"
+#include "lavender/mall.hpp"
 #include "lavender/portal.hpp"
 #include "lavender/survey.hpp"
 #include "palm/iso4217.hpp"

@@ -102,6 +102,7 @@ generate_jasmine mail
 generate_jasmine s3
 generate_jasmine casbin
 generate_jasmine portal
+generate_jasmine wechatpay
 
 echo 'done.'
 exit 0
