@@ -11,8 +11,6 @@ import (
 	"reflect"
 	"strings"
 
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -27,14 +25,6 @@ const (
 	HeaderContentType   = "Content-Type"
 	HeaderAuthorization = "Authorization"
 	BearerTokenPrefix   = "Bearer "
-)
-
-var (
-	ErrorUserIsNotSignedIn        = status.Error(codes.PermissionDenied, "user is'not signed in")
-	ErrorUserMustHasAdministrator = status.Error(codes.PermissionDenied, "user must be an administrator")
-	ErrorUserHasRoot              = status.Error(codes.PermissionDenied, "this is a root user")
-	ErrorNotFound                 = status.Error(codes.NotFound, "not found")
-	ErrorBadRequest               = status.Error(codes.InvalidArgument, "bad request")
 )
 
 type H map[string]interface{}

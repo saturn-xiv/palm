@@ -4,14 +4,13 @@ import (
 	"context"
 	"log/slog"
 	"net/http"
-	"slices"
-	"strings"
 
 	"github.com/casbin/casbin/v2"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
 	casbin_v2 "github.com/saturn-xiv/palm/jasmine/services/casbin/v2"
+	v2 "github.com/saturn-xiv/palm/jasmine/services/portal/v2"
 	"github.com/saturn-xiv/palm/jasmine/web"
 )
 
@@ -42,12 +41,7 @@ func (p *Session) has(role_ *casbin_v2.Role) bool {
 	if p.user == nil {
 		return false
 	}
-	role, err := web.ProtoBufMessageToString(casbin_v2.NewRoleSubject(role_))
-	if err != nil {
-		slog.Error("get role subject", slog.String("reason", err.Error()))
-		return false
-	}
-	return slices.Contains(p.roles, role)
+	return casbin_v2.Has(p.roles, role_)
 }
 
 func (p *Session) Can(action *casbin_v2.Action, resource_type string, resource_id *uint32) bool {
@@ -61,26 +55,7 @@ func (p *Session) can(act_ *casbin_v2.Action, obj_ *casbin_v2.Object) bool {
 	if p.user == nil {
 		return false
 	}
-	act, err := web.ProtoBufMessageToString(act_)
-	if err != nil {
-		slog.Error("get action", slog.String("reason", err.Error()))
-		return false
-	}
-	obj, err := web.ProtoBufMessageToString(obj_)
-	if err != nil {
-		slog.Error("get object", slog.String("reason", err.Error()))
-		return false
-	}
-	for _, it := range p.permissions {
-		if len(it) != 3 {
-			slog.Warn("unknown permission", slog.String("rule", strings.Join(it, ",")))
-			continue
-		}
-		if it[1] == obj && it[2] == act {
-			return true
-		}
-	}
-	return false
+	return casbin_v2.Can(p.permissions, obj_, act_)
 }
 
 func SessionFromHttp(db *gorm.DB, enf *casbin.Enforcer, jwt *crypto.Jwt, r *http.Request) *Session {
@@ -91,28 +66,34 @@ func SessionFromGrpc(db *gorm.DB, enf *casbin.Enforcer, jwt *crypto.Jwt, c conte
 	return new_session(db, enf, jwt, web.SessionFromGrpc(c))
 }
 
+func CurrentUser(db *gorm.DB, jwt *crypto.Jwt, ss *web.Session) (*User, error) {
+	if len(ss.Token) == 0 {
+		return nil, v2.ErrorUserIsNotSignedIn
+	}
+	// TODO
+	_, uid, _, err := jwt.Verify("t", "i", "a")
+	if err != nil {
+		return nil, err
+	}
+	user, err := UserByUID(db, uid)
+	if err != nil {
+		return nil, err
+	}
+	if user.LockedAt != nil {
+		return nil, v2.ErrorUserIsLocked
+	}
+	return user, nil
+}
+
 func new_session(db *gorm.DB, enf *casbin.Enforcer, jwt *crypto.Jwt, ss *web.Session) *Session {
 	it := Session{session: ss}
-	if len(ss.Token) == 0 {
-		return &it
-	}
+
 	{
-		_, uid, _, err := jwt.Verify("t", "i", "a")
+		user, err := CurrentUser(db, jwt, ss)
 		if err != nil {
-			slog.Error("parse token failed", slog.String("reason", err.Error()))
-			return &it
-		}
-		user, err := UserByUID(db, uid)
-		if err != nil {
-			slog.Error("failed to find current user", slog.String("reason", err.Error()))
-			return &it
-		}
-		if user.LockedAt != nil {
-			slog.Error("user was locked")
 			return &it
 		}
 		it.user = user
-
 	}
 	{
 		subject, err := web.ProtoBufMessageToString(casbin_v2.NewUserSubjectById(it.user.ID))

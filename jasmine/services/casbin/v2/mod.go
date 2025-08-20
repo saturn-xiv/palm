@@ -1,6 +1,15 @@
 package v2
 
-import "google.golang.org/protobuf/types/known/emptypb"
+import (
+	"log/slog"
+	"slices"
+	"strings"
+
+	"github.com/saturn-xiv/palm/jasmine/web"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/emptypb"
+)
 
 // ----------------------------------------------------------------------------
 func NewReadAction() *Action {
@@ -91,27 +100,25 @@ func NewObjectByCode(type_ string, code string) *Object {
 }
 
 // ----------------------------------------------------------------------------
-func NewUserSubjectById(id uint32) *Subject {
+func NewUserSubject(user *User) *Subject {
 	return &Subject{
 		By: &Subject_User{
-			User: &User{
-				By: &User_Id{
-					Id: id,
-				},
-			},
+			User: user,
 		},
 	}
 }
+func NewUserSubjectById(id uint32) *Subject {
+	return NewUserSubject(&User{
+		By: &User_Id{
+			Id: id,
+		}})
+}
 func NewUserSubjectByCode(code string) *Subject {
-	return &Subject{
-		By: &Subject_User{
-			User: &User{
-				By: &User_Code{
-					Code: code,
-				},
-			},
+	return NewUserSubject(&User{
+		By: &User_Code{
+			Code: code,
 		},
-	}
+	})
 }
 
 // ----------------------------------------------------------------------------
@@ -153,3 +160,39 @@ func NewRoleSubjectByCode(code string) *Subject {
 }
 
 // ----------------------------------------------------------------------------
+
+func Has(roles []string, role_ *Role) bool {
+	role, err := web.ProtoBufMessageToString(NewRoleSubject(role_))
+	if err != nil {
+		slog.Error("get role subject", slog.String("reason", err.Error()))
+		return false
+	}
+	return slices.Contains(roles, role)
+}
+
+func Can(permissions [][]string, obj_ *Object, act_ *Action) bool {
+	act, err := web.ProtoBufMessageToString(act_)
+	if err != nil {
+		slog.Error("get action", slog.String("reason", err.Error()))
+		return false
+	}
+	obj, err := web.ProtoBufMessageToString(obj_)
+	if err != nil {
+		slog.Error("get object", slog.String("reason", err.Error()))
+		return false
+	}
+	for _, it := range permissions {
+		if len(it) != 3 {
+			slog.Warn("unknown permission", slog.String("rule", strings.Join(it, ",")))
+			continue
+		}
+		if it[1] == obj && it[2] == act {
+			return true
+		}
+	}
+	return false
+}
+
+func ErrorUnknownPermissionRule(rule []string) error {
+	return status.Errorf(codes.PermissionDenied, "unknown permission rule %s", strings.Join(rule, ","))
+}
