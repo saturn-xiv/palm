@@ -362,6 +362,49 @@ export class UserClient {
     this.methodDescriptorIndexLog);
   }
 
+  methodDescriptorList = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/List',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.Page,
+    portal_pb.UserListResponse,
+    (request: portal_pb.Page) => {
+      return request.serializeBinary();
+    },
+    portal_pb.UserListResponse.deserializeBinary
+  );
+
+  list(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.UserListResponse>;
+
+  list(
+    request: portal_pb.Page,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.UserListResponse) => void): grpcWeb.ClientReadableStream<portal_pb.UserListResponse>;
+
+  list(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.UserListResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/List',
+        request,
+        metadata || {},
+        this.methodDescriptorList,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/List',
+    request,
+    metadata || {},
+    this.methodDescriptorList);
+  }
+
 }
 
 export class PolicyClient {

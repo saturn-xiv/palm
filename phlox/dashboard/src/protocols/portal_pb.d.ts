@@ -272,6 +272,131 @@ export namespace Resource {
   }
 }
 
+export class UserListResponse extends jspb.Message {
+  getItemsList(): Array<UserListResponse.Item>;
+  setItemsList(value: Array<UserListResponse.Item>): UserListResponse;
+  clearItemsList(): UserListResponse;
+  addItems(value?: UserListResponse.Item, index?: number): UserListResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): UserListResponse;
+  hasPagination(): boolean;
+  clearPagination(): UserListResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserListResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserListResponse): UserListResponse.AsObject;
+  static serializeBinaryToWriter(message: UserListResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserListResponse;
+  static deserializeBinaryFromReader(message: UserListResponse, reader: jspb.BinaryReader): UserListResponse;
+}
+
+export namespace UserListResponse {
+  export type AsObject = {
+    itemsList: Array<UserListResponse.Item.AsObject>,
+    pagination?: Pagination.AsObject,
+  }
+
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getUid(): string;
+    setUid(value: string): Item;
+
+    getName(): string;
+    setName(value: string): Item;
+
+    getLang(): string;
+    setLang(value: string): Item;
+
+    getTimezone(): string;
+    setTimezone(value: string): Item;
+
+    getProviderId(): number;
+    setProviderId(value: number): Item;
+
+    getProviderType(): UserListResponse.Item.Type;
+    setProviderType(value: UserListResponse.Item.Type): Item;
+
+    getSignInCount(): number;
+    setSignInCount(value: number): Item;
+
+    getCurrentSignInIp(): string;
+    setCurrentSignInIp(value: string): Item;
+    hasCurrentSignInIp(): boolean;
+    clearCurrentSignInIp(): Item;
+
+    getCurrentSignInAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCurrentSignInAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCurrentSignInAt(): boolean;
+    clearCurrentSignInAt(): Item;
+
+    getLockedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setLockedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasLockedAt(): boolean;
+    clearLockedAt(): Item;
+
+    getDeletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setDeletedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasDeletedAt(): boolean;
+    clearDeletedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number,
+      uid: string,
+      name: string,
+      lang: string,
+      timezone: string,
+      providerId: number,
+      providerType: UserListResponse.Item.Type,
+      signInCount: number,
+      currentSignInIp?: string,
+      currentSignInAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      lockedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      deletedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+
+    export enum Type { 
+      EMAIL = 0,
+      WECHATMINIPROGRAM = 1,
+      WECHATOAUTH2 = 2,
+      GOOGLEOAUTH2 = 3,
+      FACEBOOKOAUTH2 = 4,
+    }
+
+    export enum CurrentSignInIpCase { 
+      _CURRENT_SIGN_IN_IP_NOT_SET = 0,
+      CURRENT_SIGN_IN_IP = 12,
+    }
+
+    export enum CurrentSignInAtCase { 
+      _CURRENT_SIGN_IN_AT_NOT_SET = 0,
+      CURRENT_SIGN_IN_AT = 13,
+    }
+
+    export enum LockedAtCase { 
+      _LOCKED_AT_NOT_SET = 0,
+      LOCKED_AT = 18,
+    }
+
+    export enum DeletedAtCase { 
+      _DELETED_AT_NOT_SET = 0,
+      DELETED_AT = 19,
+    }
+  }
+
+}
+
 export class UserIndexLogResponse extends jspb.Message {
   getItemsList(): Array<UserIndexLogResponse.Item>;
   setItemsList(value: Array<UserIndexLogResponse.Item>): UserIndexLogResponse;

@@ -70,6 +70,32 @@ message Resource {
 service User {
   rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
   rpc IndexLog(Page) returns (UserIndexLogResponse) {}
+  rpc List(Page) returns (UserListResponse) {}
+}
+message UserListResponse {
+  message Item {
+    enum Type {
+      Email = 0;
+      WeChatMiniProgram = 1;
+      WeChatOauth2 = 2;
+      GoogleOauth2 = 3;
+      FacebookOauth2 = 4;
+    }
+    uint32 id = 1;
+    string uid = 2;
+    string name = 3;
+    string lang = 4;
+    string timezone = 5;
+    uint32 provider_id = 8;
+    Type provider_type = 9;
+    uint32 sign_in_count = 11;
+    optional string current_sign_in_ip = 12;
+    optional google.protobuf.Timestamp current_sign_in_at = 13;
+    optional google.protobuf.Timestamp locked_at = 18;
+    optional google.protobuf.Timestamp deleted_at = 19;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 9;
 }
 message UserIndexLogResponse {
   message Item {

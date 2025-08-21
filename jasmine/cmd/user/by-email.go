@@ -195,3 +195,11 @@ func to_role_subject(code string) *casbin_v2.Subject {
 		return casbin_v2.NewRoleSubjectByCode(web.ToCode(code))
 	}
 }
+
+func listEmailUser(db *gorm.DB) ([]models.EmailUser, error) {
+	var items []models.EmailUser
+	if err := db.Order("updated_at DESC").Find(&items).Error; err != nil {
+		return nil, err
+	}
+	return items, nil
+}

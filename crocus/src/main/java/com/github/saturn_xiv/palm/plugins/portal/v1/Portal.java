@@ -81,6 +81,16 @@ public final class Portal {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_Resource_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserListResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserListResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserListResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserListResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_UserIndexLogResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -149,50 +159,69 @@ public final class Portal {
       "\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007message\030\004 \001(\t\022.\n\n" +
       "updated_at\030\t \001(\0132\032.google.protobuf.Times" +
       "tamp\"0\n\010Resource\022\014\n\004type\030\001 \001(\t\022\017\n\002id\030\002 \001" +
-      "(\rH\000\210\001\001B\005\n\003_id\"\224\003\n\024UserIndexLogResponse\022" +
-      "8\n\005items\030\001 \003(\0132).palm.portal.v1.UserInde" +
-      "xLogResponse.Item\022.\n\npagination\030\t \001(\0132\032." +
-      "palm.portal.v1.Pagination\032\221\002\n\004Item\022\n\n\002id" +
-      "\030\001 \001(\r\022\016\n\006plugin\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022>\n\005le" +
-      "vel\030\004 \001(\0162/.palm.portal.v1.UserIndexLogR" +
-      "esponse.Item.Level\022*\n\010resource\030\005 \001(\0132\030.p" +
-      "alm.portal.v1.Resource\022\017\n\007message\030\006 \001(\t\022" +
-      ".\n\ncreated_at\030\t \001(\0132\032.google.protobuf.Ti" +
-      "mestamp\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n" +
-      "\007WARNING\020\002\022\t\n\005ERROR\020\003\"p\n\030UserSignInByEma" +
-      "ilRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001" +
-      "(\t\022+\n\003ttl\030\t \001(\0132\031.google.protobuf.Durati" +
-      "onH\000\210\001\001B\006\n\004_ttl\"#\n\022UserSignInResponse\022\r\n" +
-      "\005token\030\001 \001(\t\"&\n\025SiteTimezonesResponse\022\r\n" +
-      "\005items\030\001 \003(\t\"&\n\025SiteLanguagesResponse\022\r\n" +
-      "\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenciesResponse\022" +
-      ":\n\005items\030\001 \003(\0132+.palm.portal.v1.SiteCurr" +
-      "enciesResponse.Item\032y\n\004Item\022\n\n\002id\030\001 \001(\r\022" +
-      "\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007country\030\004" +
-      " \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004fund\030\006 \001(\010H\001" +
-      "\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006Locale\022D\n\005Ind" +
-      "ex\022\024.palm.portal.v1.Page\032#.palm.portal.v" +
-      "1.LocaleIndexResponse\"\000\022G\n\006Create\022#.palm" +
-      ".portal.v1.LocaleCreateRequest\032\026.google." +
-      "protobuf.Empty\"\000\022G\n\006Update\022#.palm.portal" +
-      ".v1.LocaleUpdateRequest\032\026.google.protobu" +
-      "f.Empty\"\000\022>\n\007Destroy\022\031.palm.portal.v1.Id" +
-      "Request\032\026.google.protobuf.Empty\"\000\022U\n\006ByL" +
-      "ang\022#.palm.portal.v1.LocaleByLangRequest" +
-      "\032$.palm.portal.v1.LocaleByLangResponse\"\000" +
-      "2\261\001\n\004User\022_\n\rSignInByEmail\022(.palm.portal" +
-      ".v1.UserSignInByEmailRequest\032\".palm.port" +
-      "al.v1.UserSignInResponse\"\000\022H\n\010IndexLog\022\024" +
-      ".palm.portal.v1.Page\032$.palm.portal.v1.Us" +
-      "erIndexLogResponse\"\0002\010\n\006Policy2\362\001\n\004Site\022" +
-      "L\n\tTimezones\022\026.google.protobuf.Empty\032%.p" +
-      "alm.portal.v1.SiteTimezonesResponse\"\000\022N\n" +
-      "\nCurrencies\022\026.google.protobuf.Empty\032&.pa" +
-      "lm.portal.v1.SiteCurrenciesResponse\"\000\022L\n" +
-      "\tLanguages\022\026.google.protobuf.Empty\032%.pal" +
-      "m.portal.v1.SiteLanguagesResponse\"\000B7\n,c" +
-      "om.github.saturn_xiv.palm.plugins.portal" +
-      ".v1P\001Z\005./;v2b\006proto3"
+      "(\rH\000\210\001\001B\005\n\003_id\"\253\005\n\020UserListResponse\0224\n\005i" +
+      "tems\030\001 \003(\0132%.palm.portal.v1.UserListResp" +
+      "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por" +
+      "tal.v1.Pagination\032\260\004\n\004Item\022\n\n\002id\030\001 \001(\r\022\013" +
+      "\n\003uid\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004lang\030\004 \001(\t\022" +
+      "\020\n\010timezone\030\005 \001(\t\022\023\n\013provider_id\030\010 \001(\r\022A" +
+      "\n\rprovider_type\030\t \001(\0162*.palm.portal.v1.U" +
+      "serListResponse.Item.Type\022\025\n\rsign_in_cou" +
+      "nt\030\013 \001(\r\022\037\n\022current_sign_in_ip\030\014 \001(\tH\000\210\001" +
+      "\001\022;\n\022current_sign_in_at\030\r \001(\0132\032.google.p" +
+      "rotobuf.TimestampH\001\210\001\001\0222\n\tlocked_at\030\022 \001(" +
+      "\0132\032.google.protobuf.TimestampH\002\210\001\001\0223\n\nde" +
+      "leted_at\030\023 \001(\0132\032.google.protobuf.Timesta" +
+      "mpH\003\210\001\001\"`\n\004Type\022\t\n\005Email\020\000\022\025\n\021WeChatMini" +
+      "Program\020\001\022\020\n\014WeChatOauth2\020\002\022\020\n\014GoogleOau" +
+      "th2\020\003\022\022\n\016FacebookOauth2\020\004B\025\n\023_current_si" +
+      "gn_in_ipB\025\n\023_current_sign_in_atB\014\n\n_lock" +
+      "ed_atB\r\n\013_deleted_at\"\224\003\n\024UserIndexLogRes" +
+      "ponse\0228\n\005items\030\001 \003(\0132).palm.portal.v1.Us" +
+      "erIndexLogResponse.Item\022.\n\npagination\030\t " +
+      "\001(\0132\032.palm.portal.v1.Pagination\032\221\002\n\004Item" +
+      "\022\n\n\002id\030\001 \001(\r\022\016\n\006plugin\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t" +
+      "\022>\n\005level\030\004 \001(\0162/.palm.portal.v1.UserInd" +
+      "exLogResponse.Item.Level\022*\n\010resource\030\005 \001" +
+      "(\0132\030.palm.portal.v1.Resource\022\017\n\007message\030" +
+      "\006 \001(\t\022.\n\ncreated_at\030\t \001(\0132\032.google.proto" +
+      "buf.Timestamp\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INF" +
+      "O\020\001\022\013\n\007WARNING\020\002\022\t\n\005ERROR\020\003\"p\n\030UserSignI" +
+      "nByEmailRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010passwo" +
+      "rd\030\002 \001(\t\022+\n\003ttl\030\t \001(\0132\031.google.protobuf." +
+      "DurationH\000\210\001\001B\006\n\004_ttl\"#\n\022UserSignInRespo" +
+      "nse\022\r\n\005token\030\001 \001(\t\"&\n\025SiteTimezonesRespo" +
+      "nse\022\r\n\005items\030\001 \003(\t\"&\n\025SiteLanguagesRespo" +
+      "nse\022\r\n\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenciesRes" +
+      "ponse\022:\n\005items\030\001 \003(\0132+.palm.portal.v1.Si" +
+      "teCurrenciesResponse.Item\032y\n\004Item\022\n\n\002id\030" +
+      "\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007cou" +
+      "ntry\030\004 \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004fund\030\006" +
+      " \001(\010H\001\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006Locale\022" +
+      "D\n\005Index\022\024.palm.portal.v1.Page\032#.palm.po" +
+      "rtal.v1.LocaleIndexResponse\"\000\022G\n\006Create\022" +
+      "#.palm.portal.v1.LocaleCreateRequest\032\026.g" +
+      "oogle.protobuf.Empty\"\000\022G\n\006Update\022#.palm." +
+      "portal.v1.LocaleUpdateRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022>\n\007Destroy\022\031.palm.portal" +
+      ".v1.IdRequest\032\026.google.protobuf.Empty\"\000\022" +
+      "U\n\006ByLang\022#.palm.portal.v1.LocaleByLangR" +
+      "equest\032$.palm.portal.v1.LocaleByLangResp" +
+      "onse\"\0002\363\001\n\004User\022_\n\rSignInByEmail\022(.palm." +
+      "portal.v1.UserSignInByEmailRequest\032\".pal" +
+      "m.portal.v1.UserSignInResponse\"\000\022H\n\010Inde" +
+      "xLog\022\024.palm.portal.v1.Page\032$.palm.portal" +
+      ".v1.UserIndexLogResponse\"\000\022@\n\004List\022\024.pal" +
+      "m.portal.v1.Page\032 .palm.portal.v1.UserLi" +
+      "stResponse\"\0002\010\n\006Policy2\362\001\n\004Site\022L\n\tTimez" +
+      "ones\022\026.google.protobuf.Empty\032%.palm.port" +
+      "al.v1.SiteTimezonesResponse\"\000\022N\n\nCurrenc" +
+      "ies\022\026.google.protobuf.Empty\032&.palm.porta" +
+      "l.v1.SiteCurrenciesResponse\"\000\022L\n\tLanguag" +
+      "es\022\026.google.protobuf.Empty\032%.palm.portal" +
+      ".v1.SiteLanguagesResponse\"\000B7\n,com.githu" +
+      "b.saturn_xiv.palm.plugins.portal.v1P\001Z\005." +
+      "/;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -267,8 +296,20 @@ public final class Portal {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Resource_descriptor,
         new java.lang.String[] { "Type", "Id", });
-    internal_static_palm_portal_v1_UserIndexLogResponse_descriptor =
+    internal_static_palm_portal_v1_UserListResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
+    internal_static_palm_portal_v1_UserListResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserListResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_portal_v1_UserListResponse_Item_descriptor =
+      internal_static_palm_portal_v1_UserListResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_UserListResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserListResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Uid", "Name", "Lang", "Timezone", "ProviderId", "ProviderType", "SignInCount", "CurrentSignInIp", "CurrentSignInAt", "LockedAt", "DeletedAt", });
+    internal_static_palm_portal_v1_UserIndexLogResponse_descriptor =
+      getDescriptor().getMessageTypes().get(10);
     internal_static_palm_portal_v1_UserIndexLogResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserIndexLogResponse_descriptor,
@@ -280,31 +321,31 @@ public final class Portal {
         internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor,
         new java.lang.String[] { "Id", "Plugin", "Ip", "Level", "Resource", "Message", "CreatedAt", });
     internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_palm_portal_v1_UserSignInByEmailRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor,
         new java.lang.String[] { "Email", "Password", "Ttl", });
     internal_static_palm_portal_v1_UserSignInResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_palm_portal_v1_UserSignInResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserSignInResponse_descriptor,
         new java.lang.String[] { "Token", });
     internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_palm_portal_v1_SiteTimezonesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_portal_v1_SiteLanguagesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_palm_portal_v1_SiteLanguagesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteLanguagesResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_portal_v1_SiteCurrenciesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_palm_portal_v1_SiteCurrenciesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteCurrenciesResponse_descriptor,

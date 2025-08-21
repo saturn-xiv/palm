@@ -214,6 +214,34 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
+			Use:   "user-list",
+			Short: "List all users",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				email_users, err := user.ListUser(gl_config)
+				if err != nil {
+					log.Fatalf("%v", err)
+					return
+				}
+				{
+					format := "%-32s%-32s%-20s\n"
+					fmt.Printf(format, "EMAIL", "NAME", "DELETED AT")
+					for _, it := range email_users {
+						deleted_at := ""
+						if it.DeletedAt.Valid {
+							deleted_at = it.DeletedAt.Time.String()
+						}
+						fmt.Printf(format, it.Email, it.RealName, deleted_at)
+					}
+				}
+
+			},
+		}
+
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
 			Use:   "email-user-delete-role",
 			Short: "Delete role for an email user",
 			Run: func(cmd *cobra.Command, args []string) {

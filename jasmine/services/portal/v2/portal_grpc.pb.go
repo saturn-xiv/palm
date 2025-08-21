@@ -280,6 +280,7 @@ var Locale_ServiceDesc = grpc.ServiceDesc{
 const (
 	User_SignInByEmail_FullMethodName = "/palm.portal.v1.User/SignInByEmail"
 	User_IndexLog_FullMethodName      = "/palm.portal.v1.User/IndexLog"
+	User_List_FullMethodName          = "/palm.portal.v1.User/List"
 )
 
 // UserClient is the client API for User service.
@@ -288,6 +289,7 @@ const (
 type UserClient interface {
 	SignInByEmail(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
 	IndexLog(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexLogResponse, error)
+	List(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserListResponse, error)
 }
 
 type userClient struct {
@@ -318,12 +320,23 @@ func (c *userClient) IndexLog(ctx context.Context, in *Page, opts ...grpc.CallOp
 	return out, nil
 }
 
+func (c *userClient) List(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserListResponse)
+	err := c.cc.Invoke(ctx, User_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
 type UserServer interface {
 	SignInByEmail(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error)
 	IndexLog(context.Context, *Page) (*UserIndexLogResponse, error)
+	List(context.Context, *Page) (*UserListResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -339,6 +352,9 @@ func (UnimplementedUserServer) SignInByEmail(context.Context, *UserSignInByEmail
 }
 func (UnimplementedUserServer) IndexLog(context.Context, *Page) (*UserIndexLogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IndexLog not implemented")
+}
+func (UnimplementedUserServer) List(context.Context, *Page) (*UserListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -397,6 +413,24 @@ func _User_IndexLog_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).List(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -411,6 +445,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IndexLog",
 			Handler:    _User_IndexLog_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _User_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

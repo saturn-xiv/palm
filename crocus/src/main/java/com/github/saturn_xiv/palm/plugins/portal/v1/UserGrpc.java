@@ -77,6 +77,37 @@ public final class UserGrpc {
     return getIndexLogMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse> getListMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "List",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
+      responseType = com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse> getListMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse> getListMethod;
+    if ((getListMethod = UserGrpc.getListMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getListMethod = UserGrpc.getListMethod) == null) {
+          UserGrpc.getListMethod = getListMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "List"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("List"))
+              .build();
+        }
+      }
+    }
+    return getListMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -138,6 +169,13 @@ public final class UserGrpc {
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndexLogMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void list(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListMethod(), responseObserver);
+    }
   }
 
   /**
@@ -182,6 +220,14 @@ public final class UserGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getIndexLogMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void list(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getListMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -212,6 +258,13 @@ public final class UserGrpc {
     public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse indexLog(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getIndexLogMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse list(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getListMethod(), getCallOptions(), request);
     }
   }
 
@@ -246,10 +299,19 @@ public final class UserGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getIndexLogMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse> list(
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getListMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SIGN_IN_BY_EMAIL = 0;
   private static final int METHODID_INDEX_LOG = 1;
+  private static final int METHODID_LIST = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -275,6 +337,10 @@ public final class UserGrpc {
         case METHODID_INDEX_LOG:
           serviceImpl.indexLog((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse>) responseObserver);
+          break;
+        case METHODID_LIST:
+          serviceImpl.list((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -308,6 +374,13 @@ public final class UserGrpc {
               com.github.saturn_xiv.palm.plugins.portal.v1.Page,
               com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse>(
                 service, METHODID_INDEX_LOG)))
+        .addMethod(
+          getListMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse>(
+                service, METHODID_LIST)))
         .build();
   }
 
@@ -358,6 +431,7 @@ public final class UserGrpc {
               .setSchemaDescriptor(new UserFileDescriptorSupplier())
               .addMethod(getSignInByEmailMethod())
               .addMethod(getIndexLogMethod())
+              .addMethod(getListMethod())
               .build();
         }
       }
