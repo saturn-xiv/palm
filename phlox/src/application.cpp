@@ -428,7 +428,7 @@ void phlox::Application::launch(int argc, char* argv[]) {
   program.parse_args(argc, argv);
 
   if (program.is_subcommand_used(generate_etc_command)) {
-    generate_etc(generate_etc_domain);
+    this->generate_etc(generate_etc_domain);
     return;
   }
 

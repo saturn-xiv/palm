@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(
   palm
-  VERSION 2025.8.1
+  VERSION 2025.8.21
   DESCRIPTION "An open source online education and transaction solution."
   LANGUAGES CXX
 )
@@ -26,6 +26,7 @@ configure_file(begonia/include/palm/version.h.in ${PROJECT_SOURCE_DIR}/begonia/i
 
 # ---------------------------------------------------------
 
+add_subdirectory(chrysanthemum)
 add_subdirectory(begonia)
 add_subdirectory(bamboo)
 add_subdirectory(lavender)
