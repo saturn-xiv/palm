@@ -43,701 +43,43 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Builder.class);
   }
 
-  public interface ItemOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:palm.portal.v1.LocaleByLangResponse.Item)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string code = 1;</code>
-     * @return The code.
-     */
-    java.lang.String getCode();
-    /**
-     * <code>string code = 1;</code>
-     * @return The bytes for code.
-     */
-    com.google.protobuf.ByteString
-        getCodeBytes();
-
-    /**
-     * <code>string message = 2;</code>
-     * @return The message.
-     */
-    java.lang.String getMessage();
-    /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
-     */
-    com.google.protobuf.ByteString
-        getMessageBytes();
-  }
-  /**
-   * Protobuf type {@code palm.portal.v1.LocaleByLangResponse.Item}
-   */
-  public static final class Item extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:palm.portal.v1.LocaleByLangResponse.Item)
-      ItemOrBuilder {
-  private static final long serialVersionUID = 0L;
-    static {
-      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 29,
-        /* patch= */ 3,
-        /* suffix= */ "",
-        Item.class.getName());
-    }
-    // Use Item.newBuilder() to construct.
-    private Item(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-    }
-    private Item() {
-      code_ = "";
-      message_ = "";
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_LocaleByLangResponse_Item_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_LocaleByLangResponse_Item_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder.class);
-    }
-
-    public static final int CODE_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object code_ = "";
-    /**
-     * <code>string code = 1;</code>
-     * @return The code.
-     */
-    @java.lang.Override
-    public java.lang.String getCode() {
-      java.lang.Object ref = code_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        code_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string code = 1;</code>
-     * @return The bytes for code.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getCodeBytes() {
-      java.lang.Object ref = code_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        code_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int MESSAGE_FIELD_NUMBER = 2;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object message_ = "";
-    /**
-     * <code>string message = 2;</code>
-     * @return The message.
-     */
-    @java.lang.Override
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        message_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(code_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, code_);
-      }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(message_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 2, message_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(code_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, code_);
-      }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(message_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, message_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item)) {
-        return super.equals(obj);
-      }
-      com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item other = (com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item) obj;
-
-      if (!getCode()
-          .equals(other.getCode())) return false;
-      if (!getMessage()
-          .equals(other.getMessage())) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode().hashCode();
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code palm.portal.v1.LocaleByLangResponse.Item}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:palm.portal.v1.LocaleByLangResponse.Item)
-        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_LocaleByLangResponse_Item_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_LocaleByLangResponse_Item_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder.class);
-      }
-
-      // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        bitField0_ = 0;
-        code_ = "";
-        message_ = "";
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_LocaleByLangResponse_Item_descriptor;
-      }
-
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item getDefaultInstanceForType() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item build() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item buildPartial() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item result = new com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
-        onBuilt();
-        return result;
-      }
-
-      private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item result) {
-        int from_bitField0_ = bitField0_;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.code_ = code_;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.message_ = message_;
-        }
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item) {
-          return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item other) {
-        if (other == com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.getDefaultInstance()) return this;
-        if (!other.getCode().isEmpty()) {
-          code_ = other.code_;
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                code_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 10
-              case 18: {
-                message_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 18
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object code_ = "";
-      /**
-       * <code>string code = 1;</code>
-       * @return The code.
-       */
-      public java.lang.String getCode() {
-        java.lang.Object ref = code_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          code_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string code = 1;</code>
-       * @return The bytes for code.
-       */
-      public com.google.protobuf.ByteString
-          getCodeBytes() {
-        java.lang.Object ref = code_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          code_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string code = 1;</code>
-       * @param value The code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCode(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        code_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string code = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCode() {
-        code_ = getDefaultInstance().getCode();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string code = 1;</code>
-       * @param value The bytes for code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCodeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        code_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object message_ = "";
-      /**
-       * <code>string message = 2;</code>
-       * @return The message.
-       */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          message_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string message = 2;</code>
-       * @return The bytes for message.
-       */
-      public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          message_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string message = 2;</code>
-       * @param value The message to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMessage(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        message_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string message = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMessage() {
-        message_ = getDefaultInstance().getMessage();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string message = 2;</code>
-       * @param value The bytes for message to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMessageBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        message_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:palm.portal.v1.LocaleByLangResponse.Item)
-    }
-
-    // @@protoc_insertion_point(class_scope:palm.portal.v1.LocaleByLangResponse.Item)
-    private static final com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item();
-    }
-
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Item>
-        PARSER = new com.google.protobuf.AbstractParser<Item>() {
-      @java.lang.Override
-      public Item parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<Item> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Item> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public static final int ITEMS_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item> items_;
+  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item> items_;
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item> getItemsList() {
+  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item> getItemsList() {
     return items_;
   }
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder> 
+  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder> 
       getItemsOrBuilderList() {
     return items_;
   }
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
   public int getItemsCount() {
     return items_.size();
   }
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item getItems(int index) {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item getItems(int index) {
     return items_.get(index);
   }
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder getItemsOrBuilder(
+  public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder getItemsOrBuilder(
       int index) {
     return items_.get(index);
   }
@@ -1055,9 +397,9 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item m =
+              com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item m =
                   input.readMessage(
-                      com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.parser(),
+                      com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.parser(),
                       extensionRegistry);
               if (itemsBuilder_ == null) {
                 ensureItemsIsMutable();
@@ -1084,22 +426,22 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item> items_ =
+    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item> items_ =
       java.util.Collections.emptyList();
     private void ensureItemsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        items_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item>(items_);
+        items_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item>(items_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder> itemsBuilder_;
+        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder> itemsBuilder_;
 
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item> getItemsList() {
+    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item> getItemsList() {
       if (itemsBuilder_ == null) {
         return java.util.Collections.unmodifiableList(items_);
       } else {
@@ -1107,7 +449,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public int getItemsCount() {
       if (itemsBuilder_ == null) {
@@ -1117,9 +459,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item getItems(int index) {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item getItems(int index) {
       if (itemsBuilder_ == null) {
         return items_.get(index);
       } else {
@@ -1127,10 +469,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder setItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item value) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item value) {
       if (itemsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1144,10 +486,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder setItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder builderForValue) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder builderForValue) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         items_.set(index, builderForValue.build());
@@ -1158,9 +500,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public Builder addItems(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item value) {
+    public Builder addItems(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item value) {
       if (itemsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1174,10 +516,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder addItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item value) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item value) {
       if (itemsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1191,10 +533,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder addItems(
-        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder builderForValue) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder builderForValue) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         items_.add(builderForValue.build());
@@ -1205,10 +547,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder addItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder builderForValue) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder builderForValue) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         items_.add(index, builderForValue.build());
@@ -1219,10 +561,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder addAllItems(
-        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item> values) {
+        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item> values) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1234,7 +576,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder clearItems() {
       if (itemsBuilder_ == null) {
@@ -1247,7 +589,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
     public Builder removeItems(int index) {
       if (itemsBuilder_ == null) {
@@ -1260,16 +602,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder getItemsBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder getItemsBuilder(
         int index) {
       return getItemsFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder getItemsOrBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder getItemsOrBuilder(
         int index) {
       if (itemsBuilder_ == null) {
         return items_.get(index);  } else {
@@ -1277,9 +619,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder> 
+    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder> 
          getItemsOrBuilderList() {
       if (itemsBuilder_ != null) {
         return itemsBuilder_.getMessageOrBuilderList();
@@ -1288,33 +630,33 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder addItemsBuilder() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder addItemsBuilder() {
       return getItemsFieldBuilder().addBuilder(
-          com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.getDefaultInstance());
+          com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.getDefaultInstance());
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder addItemsBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder addItemsBuilder(
         int index) {
       return getItemsFieldBuilder().addBuilder(
-          index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.getDefaultInstance());
+          index, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.getDefaultInstance());
     }
     /**
-     * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
      */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder> 
+    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder> 
          getItemsBuilderList() {
       return getItemsFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder> 
+        com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder> 
         getItemsFieldBuilder() {
       if (itemsBuilder_ == null) {
         itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder>(
+            com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder>(
                 items_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),

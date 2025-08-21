@@ -5,32 +5,32 @@
 
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
-public interface UserListResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.portal.v1.UserListResponse)
+public interface UserLogsResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.portal.v1.UserLogsResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserLogsResponse.Item items = 1;</code>
    */
-  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item> 
+  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserLogsResponse.Item> 
       getItemsList();
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserLogsResponse.Item items = 1;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item getItems(int index);
+  com.github.saturn_xiv.palm.plugins.portal.v1.UserLogsResponse.Item getItems(int index);
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserLogsResponse.Item items = 1;</code>
    */
   int getItemsCount();
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserLogsResponse.Item items = 1;</code>
    */
-  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder> 
+  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserLogsResponse.ItemOrBuilder> 
       getItemsOrBuilderList();
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserLogsResponse.Item items = 1;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder getItemsOrBuilder(
+  com.github.saturn_xiv.palm.plugins.portal.v1.UserLogsResponse.ItemOrBuilder getItemsOrBuilder(
       int index);
 
   /**

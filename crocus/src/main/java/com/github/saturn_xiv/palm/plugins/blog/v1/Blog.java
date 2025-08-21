@@ -25,6 +25,31 @@ public final class Blog {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_Theme_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_Theme_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_Theme_Bootstrap_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_Theme_Bootstrap_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_Theme_Bootstrap_Show_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_Theme_Bootstrap_Show_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_Theme_Bootstrap_Index_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_Theme_Bootstrap_Index_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_Theme_Bootstrap_Archive_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_Theme_Bootstrap_Archive_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -34,14 +59,45 @@ public final class Blog {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nblog.proto\022\014palm.blog.v12\006\n\004Page2\006\n\004Po" +
-      "stB5\n*com.github.saturn_xiv.palm.plugins" +
-      ".blog.v1P\001Z\005./;v2b\006proto3"
+      "\n\nblog.proto\022\014palm.blog.v1\"0\n\005Theme\032\'\n\tB" +
+      "ootstrap\032\006\n\004Show\032\007\n\005Index\032\t\n\007Archive2\006\n\004" +
+      "Page2\006\n\004PostB5\n*com.github.saturn_xiv.pa" +
+      "lm.plugins.blog.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
+    internal_static_palm_blog_v1_Theme_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_palm_blog_v1_Theme_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_Theme_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_blog_v1_Theme_Bootstrap_descriptor =
+      internal_static_palm_blog_v1_Theme_descriptor.getNestedTypes().get(0);
+    internal_static_palm_blog_v1_Theme_Bootstrap_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_Theme_Bootstrap_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_blog_v1_Theme_Bootstrap_Show_descriptor =
+      internal_static_palm_blog_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(0);
+    internal_static_palm_blog_v1_Theme_Bootstrap_Show_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_Theme_Bootstrap_Show_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_blog_v1_Theme_Bootstrap_Index_descriptor =
+      internal_static_palm_blog_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(1);
+    internal_static_palm_blog_v1_Theme_Bootstrap_Index_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_Theme_Bootstrap_Index_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_blog_v1_Theme_Bootstrap_Archive_descriptor =
+      internal_static_palm_blog_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(2);
+    internal_static_palm_blog_v1_Theme_Bootstrap_Archive_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_Theme_Bootstrap_Archive_descriptor,
+        new java.lang.String[] { });
     descriptor.resolveAllFeaturesImmutable();
   }
 

@@ -10,26 +10,26 @@ public interface LocaleByLangResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
-  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item> 
+  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item> 
       getItemsList();
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.Item getItems(int index);
+  com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.Item getItems(int index);
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
   int getItemsCount();
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
-  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder> 
+  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder> 
       getItemsOrBuilderList();
   /**
-   * <code>repeated .palm.portal.v1.LocaleByLangResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse.ItemOrBuilder getItemsOrBuilder(
+  com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse.ItemOrBuilder getItemsOrBuilder(
       int index);
 }

@@ -125,7 +125,7 @@ EOF
 
     mkdir -p $target/usr/bin
     cd $WORK_DIR/build/$1/
-    cp -v lavender/lavender bamboo/bamboo phlox/phlox aloe/aloe $target/usr/bin/
+    cp -v lavender/lavender bamboo/bamboo phlox/phlox aloe/aloe chrysanthemum/chrysanthemum $target/usr/bin/
 
     mkdir -p $target/usr/share/palm/
     cd $WORK_DIR

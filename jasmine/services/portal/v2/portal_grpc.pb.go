@@ -278,18 +278,824 @@ var Locale_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	User_SignInByEmail_FullMethodName = "/palm.portal.v1.User/SignInByEmail"
-	User_IndexLog_FullMethodName      = "/palm.portal.v1.User/IndexLog"
-	User_List_FullMethodName          = "/palm.portal.v1.User/List"
+	EmailUser_SignIn_FullMethodName         = "/palm.portal.v1.EmailUser/SignIn"
+	EmailUser_SignUp_FullMethodName         = "/palm.portal.v1.EmailUser/SignUp"
+	EmailUser_ConfirmByEmail_FullMethodName = "/palm.portal.v1.EmailUser/ConfirmByEmail"
+	EmailUser_ConfirmByToken_FullMethodName = "/palm.portal.v1.EmailUser/ConfirmByToken"
+	EmailUser_UnlockByEmail_FullMethodName  = "/palm.portal.v1.EmailUser/UnlockByEmail"
+	EmailUser_UnlockByToken_FullMethodName  = "/palm.portal.v1.EmailUser/UnlockByToken"
+	EmailUser_ForgotPassword_FullMethodName = "/palm.portal.v1.EmailUser/ForgotPassword"
+	EmailUser_ResetPassword_FullMethodName  = "/palm.portal.v1.EmailUser/ResetPassword"
+	EmailUser_ChangePassword_FullMethodName = "/palm.portal.v1.EmailUser/ChangePassword"
+	EmailUser_SetRealName_FullMethodName    = "/palm.portal.v1.EmailUser/SetRealName"
+	EmailUser_SetAvatar_FullMethodName      = "/palm.portal.v1.EmailUser/SetAvatar"
+	EmailUser_UploadAvatar_FullMethodName   = "/palm.portal.v1.EmailUser/UploadAvatar"
+	EmailUser_DeleteByEmail_FullMethodName  = "/palm.portal.v1.EmailUser/DeleteByEmail"
+	EmailUser_DeleteByToken_FullMethodName  = "/palm.portal.v1.EmailUser/DeleteByToken"
+	EmailUser_SetPassword_FullMethodName    = "/palm.portal.v1.EmailUser/SetPassword"
+	EmailUser_Confirm_FullMethodName        = "/palm.portal.v1.EmailUser/Confirm"
+	EmailUser_Disable_FullMethodName        = "/palm.portal.v1.EmailUser/Disable"
+	EmailUser_Enable_FullMethodName         = "/palm.portal.v1.EmailUser/Enable"
+	EmailUser_Index_FullMethodName          = "/palm.portal.v1.EmailUser/Index"
+)
+
+// EmailUserClient is the client API for EmailUser service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type EmailUserClient interface {
+	SignIn(ctx context.Context, in *EmailUserSignInRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
+	SignUp(ctx context.Context, in *EmailUserSignUpRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmByEmail(ctx context.Context, in *EmailUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmByToken(ctx context.Context, in *EmailUserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UnlockByEmail(ctx context.Context, in *EmailUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UnlockByToken(ctx context.Context, in *EmailUserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ForgotPassword(ctx context.Context, in *EmailUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ResetPassword(ctx context.Context, in *EmailUserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ChangePassword(ctx context.Context, in *EmailUserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetRealName(ctx context.Context, in *EmailUserSetRealNameRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetAvatar(ctx context.Context, in *EmailUserSetAvatarRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UploadAvatar(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*EmailUserUploadAvatarResponse, error)
+	DeleteByEmail(ctx context.Context, in *EmailUserDeleteByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteByToken(ctx context.Context, in *EmailUserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetPassword(ctx context.Context, in *EmailUserSetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Confirm(ctx context.Context, in *EmailUserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Disable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*EmailUserIndexResponse, error)
+}
+
+type emailUserClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEmailUserClient(cc grpc.ClientConnInterface) EmailUserClient {
+	return &emailUserClient{cc}
+}
+
+func (c *emailUserClient) SignIn(ctx context.Context, in *EmailUserSignInRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserSignInResponse)
+	err := c.cc.Invoke(ctx, EmailUser_SignIn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SignUp(ctx context.Context, in *EmailUserSignUpRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SignUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ConfirmByEmail(ctx context.Context, in *EmailUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ConfirmByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ConfirmByToken(ctx context.Context, in *EmailUserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ConfirmByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UnlockByEmail(ctx context.Context, in *EmailUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_UnlockByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UnlockByToken(ctx context.Context, in *EmailUserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_UnlockByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ForgotPassword(ctx context.Context, in *EmailUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ForgotPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ResetPassword(ctx context.Context, in *EmailUserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ResetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ChangePassword(ctx context.Context, in *EmailUserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ChangePassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SetRealName(ctx context.Context, in *EmailUserSetRealNameRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SetRealName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SetAvatar(ctx context.Context, in *EmailUserSetAvatarRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SetAvatar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UploadAvatar(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*EmailUserUploadAvatarResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserUploadAvatarResponse)
+	err := c.cc.Invoke(ctx, EmailUser_UploadAvatar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) DeleteByEmail(ctx context.Context, in *EmailUserDeleteByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_DeleteByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) DeleteByToken(ctx context.Context, in *EmailUserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_DeleteByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SetPassword(ctx context.Context, in *EmailUserSetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Confirm(ctx context.Context, in *EmailUserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Confirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Disable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Enable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*EmailUserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserIndexResponse)
+	err := c.cc.Invoke(ctx, EmailUser_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EmailUserServer is the server API for EmailUser service.
+// All implementations must embed UnimplementedEmailUserServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type EmailUserServer interface {
+	SignIn(context.Context, *EmailUserSignInRequest) (*UserSignInResponse, error)
+	SignUp(context.Context, *EmailUserSignUpRequest) (*emptypb.Empty, error)
+	ConfirmByEmail(context.Context, *EmailUserRequest) (*emptypb.Empty, error)
+	ConfirmByToken(context.Context, *EmailUserByTokenRequest) (*emptypb.Empty, error)
+	UnlockByEmail(context.Context, *EmailUserRequest) (*emptypb.Empty, error)
+	UnlockByToken(context.Context, *EmailUserByTokenRequest) (*emptypb.Empty, error)
+	ForgotPassword(context.Context, *EmailUserRequest) (*emptypb.Empty, error)
+	ResetPassword(context.Context, *EmailUserResetPasswordRequest) (*emptypb.Empty, error)
+	ChangePassword(context.Context, *EmailUserChangePasswordRequest) (*emptypb.Empty, error)
+	SetRealName(context.Context, *EmailUserSetRealNameRequest) (*emptypb.Empty, error)
+	SetAvatar(context.Context, *EmailUserSetAvatarRequest) (*emptypb.Empty, error)
+	UploadAvatar(context.Context, *emptypb.Empty) (*EmailUserUploadAvatarResponse, error)
+	DeleteByEmail(context.Context, *EmailUserDeleteByEmailRequest) (*emptypb.Empty, error)
+	DeleteByToken(context.Context, *EmailUserByTokenRequest) (*emptypb.Empty, error)
+	SetPassword(context.Context, *EmailUserSetPasswordRequest) (*emptypb.Empty, error)
+	Confirm(context.Context, *EmailUserChangePasswordRequest) (*emptypb.Empty, error)
+	Disable(context.Context, *SetupUserRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *SetupUserRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Page) (*EmailUserIndexResponse, error)
+	mustEmbedUnimplementedEmailUserServer()
+}
+
+// UnimplementedEmailUserServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedEmailUserServer struct{}
+
+func (UnimplementedEmailUserServer) SignIn(context.Context, *EmailUserSignInRequest) (*UserSignInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
+}
+func (UnimplementedEmailUserServer) SignUp(context.Context, *EmailUserSignUpRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
+}
+func (UnimplementedEmailUserServer) ConfirmByEmail(context.Context, *EmailUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) ConfirmByToken(context.Context, *EmailUserByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmByToken not implemented")
+}
+func (UnimplementedEmailUserServer) UnlockByEmail(context.Context, *EmailUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) UnlockByToken(context.Context, *EmailUserByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockByToken not implemented")
+}
+func (UnimplementedEmailUserServer) ForgotPassword(context.Context, *EmailUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
+}
+func (UnimplementedEmailUserServer) ResetPassword(context.Context, *EmailUserResetPasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedEmailUserServer) ChangePassword(context.Context, *EmailUserChangePasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
+}
+func (UnimplementedEmailUserServer) SetRealName(context.Context, *EmailUserSetRealNameRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRealName not implemented")
+}
+func (UnimplementedEmailUserServer) SetAvatar(context.Context, *EmailUserSetAvatarRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetAvatar not implemented")
+}
+func (UnimplementedEmailUserServer) UploadAvatar(context.Context, *emptypb.Empty) (*EmailUserUploadAvatarResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadAvatar not implemented")
+}
+func (UnimplementedEmailUserServer) DeleteByEmail(context.Context, *EmailUserDeleteByEmailRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) DeleteByToken(context.Context, *EmailUserByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteByToken not implemented")
+}
+func (UnimplementedEmailUserServer) SetPassword(context.Context, *EmailUserSetPasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPassword not implemented")
+}
+func (UnimplementedEmailUserServer) Confirm(context.Context, *EmailUserChangePasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
+}
+func (UnimplementedEmailUserServer) Disable(context.Context, *SetupUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedEmailUserServer) Enable(context.Context, *SetupUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedEmailUserServer) Index(context.Context, *Page) (*EmailUserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedEmailUserServer) mustEmbedUnimplementedEmailUserServer() {}
+func (UnimplementedEmailUserServer) testEmbeddedByValue()                   {}
+
+// UnsafeEmailUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EmailUserServer will
+// result in compilation errors.
+type UnsafeEmailUserServer interface {
+	mustEmbedUnimplementedEmailUserServer()
+}
+
+func RegisterEmailUserServer(s grpc.ServiceRegistrar, srv EmailUserServer) {
+	// If the following call pancis, it indicates UnimplementedEmailUserServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&EmailUser_ServiceDesc, srv)
+}
+
+func _EmailUser_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSignInRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SignIn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SignIn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SignIn(ctx, req.(*EmailUserSignInRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSignUpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SignUp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SignUp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SignUp(ctx, req.(*EmailUserSignUpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ConfirmByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ConfirmByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ConfirmByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ConfirmByEmail(ctx, req.(*EmailUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ConfirmByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ConfirmByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ConfirmByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ConfirmByToken(ctx, req.(*EmailUserByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UnlockByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UnlockByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UnlockByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UnlockByEmail(ctx, req.(*EmailUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UnlockByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UnlockByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UnlockByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UnlockByToken(ctx, req.(*EmailUserByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ForgotPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ForgotPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ForgotPassword(ctx, req.(*EmailUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ResetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ResetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ResetPassword(ctx, req.(*EmailUserResetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserChangePasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ChangePassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ChangePassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ChangePassword(ctx, req.(*EmailUserChangePasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SetRealName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSetRealNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SetRealName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SetRealName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SetRealName(ctx, req.(*EmailUserSetRealNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SetAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSetAvatarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SetAvatar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SetAvatar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SetAvatar(ctx, req.(*EmailUserSetAvatarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UploadAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UploadAvatar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UploadAvatar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UploadAvatar(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_DeleteByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserDeleteByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).DeleteByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_DeleteByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).DeleteByEmail(ctx, req.(*EmailUserDeleteByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_DeleteByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).DeleteByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_DeleteByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).DeleteByToken(ctx, req.(*EmailUserByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SetPassword(ctx, req.(*EmailUserSetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserChangePasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Confirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Confirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Confirm(ctx, req.(*EmailUserChangePasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Disable(ctx, req.(*SetupUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Enable(ctx, req.(*SetupUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Index(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// EmailUser_ServiceDesc is the grpc.ServiceDesc for EmailUser service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var EmailUser_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.EmailUser",
+	HandlerType: (*EmailUserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SignIn",
+			Handler:    _EmailUser_SignIn_Handler,
+		},
+		{
+			MethodName: "SignUp",
+			Handler:    _EmailUser_SignUp_Handler,
+		},
+		{
+			MethodName: "ConfirmByEmail",
+			Handler:    _EmailUser_ConfirmByEmail_Handler,
+		},
+		{
+			MethodName: "ConfirmByToken",
+			Handler:    _EmailUser_ConfirmByToken_Handler,
+		},
+		{
+			MethodName: "UnlockByEmail",
+			Handler:    _EmailUser_UnlockByEmail_Handler,
+		},
+		{
+			MethodName: "UnlockByToken",
+			Handler:    _EmailUser_UnlockByToken_Handler,
+		},
+		{
+			MethodName: "ForgotPassword",
+			Handler:    _EmailUser_ForgotPassword_Handler,
+		},
+		{
+			MethodName: "ResetPassword",
+			Handler:    _EmailUser_ResetPassword_Handler,
+		},
+		{
+			MethodName: "ChangePassword",
+			Handler:    _EmailUser_ChangePassword_Handler,
+		},
+		{
+			MethodName: "SetRealName",
+			Handler:    _EmailUser_SetRealName_Handler,
+		},
+		{
+			MethodName: "SetAvatar",
+			Handler:    _EmailUser_SetAvatar_Handler,
+		},
+		{
+			MethodName: "UploadAvatar",
+			Handler:    _EmailUser_UploadAvatar_Handler,
+		},
+		{
+			MethodName: "DeleteByEmail",
+			Handler:    _EmailUser_DeleteByEmail_Handler,
+		},
+		{
+			MethodName: "DeleteByToken",
+			Handler:    _EmailUser_DeleteByToken_Handler,
+		},
+		{
+			MethodName: "SetPassword",
+			Handler:    _EmailUser_SetPassword_Handler,
+		},
+		{
+			MethodName: "Confirm",
+			Handler:    _EmailUser_Confirm_Handler,
+		},
+		{
+			MethodName: "Disable",
+			Handler:    _EmailUser_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _EmailUser_Enable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _EmailUser_Index_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "portal.proto",
+}
+
+const (
+	User_Logs_FullMethodName        = "/palm.portal.v1.User/Logs"
+	User_Index_FullMethodName       = "/palm.portal.v1.User/Index"
+	User_SetLocation_FullMethodName = "/palm.portal.v1.User/SetLocation"
+	User_SetV_FullMethodName        = "/palm.portal.v1.User/SetV"
+	User_GetV_FullMethodName        = "/palm.portal.v1.User/GetV"
+	User_Upload_FullMethodName      = "/palm.portal.v1.User/Upload"
+	User_SignOut_FullMethodName     = "/palm.portal.v1.User/SignOut"
+	User_Lock_FullMethodName        = "/palm.portal.v1.User/Lock"
+	User_Unlock_FullMethodName      = "/palm.portal.v1.User/Unlock"
+	User_Disable_FullMethodName     = "/palm.portal.v1.User/Disable"
+	User_Enable_FullMethodName      = "/palm.portal.v1.User/Enable"
 )
 
 // UserClient is the client API for User service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
-	SignInByEmail(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
-	IndexLog(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexLogResponse, error)
-	List(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserListResponse, error)
+	Logs(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserLogsResponse, error)
+	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexResponse, error)
+	SetLocation(ctx context.Context, in *UserSetLocationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetV(ctx context.Context, in *UserSetVRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetV(ctx context.Context, in *UserGetVRequest, opts ...grpc.CallOption) (*UserGetVResponse, error)
+	Upload(ctx context.Context, in *UserUploadRequest, opts ...grpc.CallOption) (*UserUploadResponse, error)
+	SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Lock(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Unlock(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Disable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type userClient struct {
@@ -300,30 +1106,110 @@ func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
 }
 
-func (c *userClient) SignInByEmail(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+func (c *userClient) Logs(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserLogsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserSignInResponse)
-	err := c.cc.Invoke(ctx, User_SignInByEmail_FullMethodName, in, out, cOpts...)
+	out := new(UserLogsResponse)
+	err := c.cc.Invoke(ctx, User_Logs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) IndexLog(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexLogResponse, error) {
+func (c *userClient) Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserIndexLogResponse)
-	err := c.cc.Invoke(ctx, User_IndexLog_FullMethodName, in, out, cOpts...)
+	out := new(UserIndexResponse)
+	err := c.cc.Invoke(ctx, User_Index_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) List(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserListResponse, error) {
+func (c *userClient) SetLocation(ctx context.Context, in *UserSetLocationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserListResponse)
-	err := c.cc.Invoke(ctx, User_List_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetLocation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetV(ctx context.Context, in *UserSetVRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetV_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetV(ctx context.Context, in *UserGetVRequest, opts ...grpc.CallOption) (*UserGetVResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserGetVResponse)
+	err := c.cc.Invoke(ctx, User_GetV_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Upload(ctx context.Context, in *UserUploadRequest, opts ...grpc.CallOption) (*UserUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserUploadResponse)
+	err := c.cc.Invoke(ctx, User_Upload_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SignOut_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Lock(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Lock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Unlock(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Unlock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Disable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Enable(ctx context.Context, in *SetupUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Enable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -334,9 +1220,17 @@ func (c *userClient) List(ctx context.Context, in *Page, opts ...grpc.CallOption
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
 type UserServer interface {
-	SignInByEmail(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error)
-	IndexLog(context.Context, *Page) (*UserIndexLogResponse, error)
-	List(context.Context, *Page) (*UserListResponse, error)
+	Logs(context.Context, *Page) (*UserLogsResponse, error)
+	Index(context.Context, *Page) (*UserIndexResponse, error)
+	SetLocation(context.Context, *UserSetLocationRequest) (*emptypb.Empty, error)
+	SetV(context.Context, *UserSetVRequest) (*emptypb.Empty, error)
+	GetV(context.Context, *UserGetVRequest) (*UserGetVResponse, error)
+	Upload(context.Context, *UserUploadRequest) (*UserUploadResponse, error)
+	SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	Lock(context.Context, *SetupUserRequest) (*emptypb.Empty, error)
+	Unlock(context.Context, *SetupUserRequest) (*emptypb.Empty, error)
+	Disable(context.Context, *SetupUserRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *SetupUserRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -347,14 +1241,38 @@ type UserServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServer struct{}
 
-func (UnimplementedUserServer) SignInByEmail(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SignInByEmail not implemented")
+func (UnimplementedUserServer) Logs(context.Context, *Page) (*UserLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Logs not implemented")
 }
-func (UnimplementedUserServer) IndexLog(context.Context, *Page) (*UserIndexLogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IndexLog not implemented")
+func (UnimplementedUserServer) Index(context.Context, *Page) (*UserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
 }
-func (UnimplementedUserServer) List(context.Context, *Page) (*UserListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+func (UnimplementedUserServer) SetLocation(context.Context, *UserSetLocationRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetLocation not implemented")
+}
+func (UnimplementedUserServer) SetV(context.Context, *UserSetVRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetV not implemented")
+}
+func (UnimplementedUserServer) GetV(context.Context, *UserGetVRequest) (*UserGetVResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetV not implemented")
+}
+func (UnimplementedUserServer) Upload(context.Context, *UserUploadRequest) (*UserUploadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
+}
+func (UnimplementedUserServer) SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignOut not implemented")
+}
+func (UnimplementedUserServer) Lock(context.Context, *SetupUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Lock not implemented")
+}
+func (UnimplementedUserServer) Unlock(context.Context, *SetupUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unlock not implemented")
+}
+func (UnimplementedUserServer) Disable(context.Context, *SetupUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedUserServer) Enable(context.Context, *SetupUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -377,56 +1295,200 @@ func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 	s.RegisterService(&User_ServiceDesc, srv)
 }
 
-func _User_SignInByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserSignInByEmailRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).SignInByEmail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_SignInByEmail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).SignInByEmail(ctx, req.(*UserSignInByEmailRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_IndexLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_Logs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Page)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).IndexLog(ctx, in)
+		return srv.(UserServer).Logs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_IndexLog_FullMethodName,
+		FullMethod: User_Logs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).IndexLog(ctx, req.(*Page))
+		return srv.(UserServer).Logs(ctx, req.(*Page))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Page)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).List(ctx, in)
+		return srv.(UserServer).Index(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_List_FullMethodName,
+		FullMethod: User_Index_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).List(ctx, req.(*Page))
+		return srv.(UserServer).Index(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetLocation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetLocation(ctx, req.(*UserSetLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetV_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetVRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetV(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetV_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetV(ctx, req.(*UserSetVRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetV_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserGetVRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetV(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetV_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetV(ctx, req.(*UserGetVRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Upload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Upload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Upload(ctx, req.(*UserUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SignOut(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SignOut_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SignOut(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Lock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Lock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Lock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Lock(ctx, req.(*SetupUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Unlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Unlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Unlock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Unlock(ctx, req.(*SetupUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Disable(ctx, req.(*SetupUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Enable(ctx, req.(*SetupUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -439,90 +1501,77 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SignInByEmail",
-			Handler:    _User_SignInByEmail_Handler,
+			MethodName: "Logs",
+			Handler:    _User_Logs_Handler,
 		},
 		{
-			MethodName: "IndexLog",
-			Handler:    _User_IndexLog_Handler,
+			MethodName: "Index",
+			Handler:    _User_Index_Handler,
 		},
 		{
-			MethodName: "List",
-			Handler:    _User_List_Handler,
+			MethodName: "SetLocation",
+			Handler:    _User_SetLocation_Handler,
+		},
+		{
+			MethodName: "SetV",
+			Handler:    _User_SetV_Handler,
+		},
+		{
+			MethodName: "GetV",
+			Handler:    _User_GetV_Handler,
+		},
+		{
+			MethodName: "Upload",
+			Handler:    _User_Upload_Handler,
+		},
+		{
+			MethodName: "SignOut",
+			Handler:    _User_SignOut_Handler,
+		},
+		{
+			MethodName: "Lock",
+			Handler:    _User_Lock_Handler,
+		},
+		{
+			MethodName: "Unlock",
+			Handler:    _User_Unlock_Handler,
+		},
+		{
+			MethodName: "Disable",
+			Handler:    _User_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _User_Enable_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "portal.proto",
 }
 
-// PolicyClient is the client API for Policy service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-//
-// ----------------------------------------------------------------------------
-type PolicyClient interface {
-}
-
-type policyClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewPolicyClient(cc grpc.ClientConnInterface) PolicyClient {
-	return &policyClient{cc}
-}
-
-// PolicyServer is the server API for Policy service.
-// All implementations must embed UnimplementedPolicyServer
-// for forward compatibility.
-//
-// ----------------------------------------------------------------------------
-type PolicyServer interface {
-	mustEmbedUnimplementedPolicyServer()
-}
-
-// UnimplementedPolicyServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedPolicyServer struct{}
-
-func (UnimplementedPolicyServer) mustEmbedUnimplementedPolicyServer() {}
-func (UnimplementedPolicyServer) testEmbeddedByValue()                {}
-
-// UnsafePolicyServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PolicyServer will
-// result in compilation errors.
-type UnsafePolicyServer interface {
-	mustEmbedUnimplementedPolicyServer()
-}
-
-func RegisterPolicyServer(s grpc.ServiceRegistrar, srv PolicyServer) {
-	// If the following call pancis, it indicates UnimplementedPolicyServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&Policy_ServiceDesc, srv)
-}
-
-// Policy_ServiceDesc is the grpc.ServiceDesc for Policy service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var Policy_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.portal.v1.Policy",
-	HandlerType: (*PolicyServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "portal.proto",
-}
-
 const (
-	Site_Timezones_FullMethodName  = "/palm.portal.v1.Site/Timezones"
-	Site_Currencies_FullMethodName = "/palm.portal.v1.Site/Currencies"
-	Site_Languages_FullMethodName  = "/palm.portal.v1.Site/Languages"
+	Site_SetInfoByLang_FullMethodName                      = "/palm.portal.v1.Site/SetInfoByLang"
+	Site_GetInfoByLang_FullMethodName                      = "/palm.portal.v1.Site/GetInfoByLang"
+	Site_SetAuthor_FullMethodName                          = "/palm.portal.v1.Site/SetAuthor"
+	Site_GetAuthor_FullMethodName                          = "/palm.portal.v1.Site/GetAuthor"
+	Site_SetFavicon_FullMethodName                         = "/palm.portal.v1.Site/SetFavicon"
+	Site_GetFavicon_FullMethodName                         = "/palm.portal.v1.Site/GetFavicon"
+	Site_UploadFavicon_FullMethodName                      = "/palm.portal.v1.Site/UploadFavicon"
+	Site_SetGoogleSiteOwnershipVerification_FullMethodName = "/palm.portal.v1.Site/SetGoogleSiteOwnershipVerification"
+	Site_GetGoogleSiteOwnershipVerification_FullMethodName = "/palm.portal.v1.Site/GetGoogleSiteOwnershipVerification"
+	Site_SetReCaptcha_FullMethodName                       = "/palm.portal.v1.Site/SetReCaptcha"
+	Site_GetReCaptcha_FullMethodName                       = "/palm.portal.v1.Site/GetReCaptcha"
+	Site_SetBaiduSiteOwnershipVerification_FullMethodName  = "/palm.portal.v1.Site/SetBaiduSiteOwnershipVerification"
+	Site_GetBaiduSiteOwnershipVerification_FullMethodName  = "/palm.portal.v1.Site/GetBaiduSiteOwnershipVerification"
+	Site_PingBaidu_FullMethodName                          = "/palm.portal.v1.Site/PingBaidu"
+	Site_SetIndexNow_FullMethodName                        = "/palm.portal.v1.Site/SetIndexNow"
+	Site_GetIndexNow_FullMethodName                        = "/palm.portal.v1.Site/GetIndexNow"
+	Site_PingIndexNow_FullMethodName                       = "/palm.portal.v1.Site/PingIndexNow"
+	Site_ClearCache_FullMethodName                         = "/palm.portal.v1.Site/ClearCache"
+	Site_SetMaintenanceMode_FullMethodName                 = "/palm.portal.v1.Site/SetMaintenanceMode"
+	Site_Timezones_FullMethodName                          = "/palm.portal.v1.Site/Timezones"
+	Site_Currencies_FullMethodName                         = "/palm.portal.v1.Site/Currencies"
+	Site_Languages_FullMethodName                          = "/palm.portal.v1.Site/Languages"
 )
 
 // SiteClient is the client API for Site service.
@@ -531,6 +1580,25 @@ const (
 //
 // ----------------------------------------------------------------------------
 type SiteClient interface {
+	SetInfoByLang(ctx context.Context, in *SetSiteInfoByLangRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetInfoByLang(ctx context.Context, in *GetSiteInfoByLangRequest, opts ...grpc.CallOption) (*GetSiteInfoByLangResponse, error)
+	SetAuthor(ctx context.Context, in *SiteAuthorProfile, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAuthor(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteAuthorProfile, error)
+	SetFavicon(ctx context.Context, in *SiteFaviconProfile, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetFavicon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteFaviconProfile, error)
+	UploadFavicon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteUploadFaviconResponse, error)
+	SetGoogleSiteOwnershipVerification(ctx context.Context, in *GoogleSiteOwnershipVerification, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetGoogleSiteOwnershipVerification(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleSiteOwnershipVerification, error)
+	SetReCaptcha(ctx context.Context, in *ReCaptchaProfile, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetReCaptcha(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ReCaptchaProfile, error)
+	SetBaiduSiteOwnershipVerification(ctx context.Context, in *BaiduSiteOwnershipVerification, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetBaiduSiteOwnershipVerification(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BaiduSiteOwnershipVerification, error)
+	PingBaidu(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetIndexNow(ctx context.Context, in *IndexNowProfile, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetIndexNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IndexNowProfile, error)
+	PingIndexNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ClearCache(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetMaintenanceMode(ctx context.Context, in *SiteSetMaintenanceModeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Timezones(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteTimezonesResponse, error)
 	Currencies(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteCurrenciesResponse, error)
 	Languages(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLanguagesResponse, error)
@@ -542,6 +1610,196 @@ type siteClient struct {
 
 func NewSiteClient(cc grpc.ClientConnInterface) SiteClient {
 	return &siteClient{cc}
+}
+
+func (c *siteClient) SetInfoByLang(ctx context.Context, in *SetSiteInfoByLangRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetInfoByLang_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetInfoByLang(ctx context.Context, in *GetSiteInfoByLangRequest, opts ...grpc.CallOption) (*GetSiteInfoByLangResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSiteInfoByLangResponse)
+	err := c.cc.Invoke(ctx, Site_GetInfoByLang_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetAuthor(ctx context.Context, in *SiteAuthorProfile, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetAuthor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetAuthor(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteAuthorProfile, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteAuthorProfile)
+	err := c.cc.Invoke(ctx, Site_GetAuthor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetFavicon(ctx context.Context, in *SiteFaviconProfile, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetFavicon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetFavicon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteFaviconProfile, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteFaviconProfile)
+	err := c.cc.Invoke(ctx, Site_GetFavicon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) UploadFavicon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteUploadFaviconResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteUploadFaviconResponse)
+	err := c.cc.Invoke(ctx, Site_UploadFavicon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetGoogleSiteOwnershipVerification(ctx context.Context, in *GoogleSiteOwnershipVerification, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetGoogleSiteOwnershipVerification_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetGoogleSiteOwnershipVerification(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleSiteOwnershipVerification, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GoogleSiteOwnershipVerification)
+	err := c.cc.Invoke(ctx, Site_GetGoogleSiteOwnershipVerification_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetReCaptcha(ctx context.Context, in *ReCaptchaProfile, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetReCaptcha_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetReCaptcha(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ReCaptchaProfile, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReCaptchaProfile)
+	err := c.cc.Invoke(ctx, Site_GetReCaptcha_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetBaiduSiteOwnershipVerification(ctx context.Context, in *BaiduSiteOwnershipVerification, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetBaiduSiteOwnershipVerification_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetBaiduSiteOwnershipVerification(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*BaiduSiteOwnershipVerification, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BaiduSiteOwnershipVerification)
+	err := c.cc.Invoke(ctx, Site_GetBaiduSiteOwnershipVerification_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) PingBaidu(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_PingBaidu_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetIndexNow(ctx context.Context, in *IndexNowProfile, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetIndexNow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetIndexNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IndexNowProfile, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IndexNowProfile)
+	err := c.cc.Invoke(ctx, Site_GetIndexNow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) PingIndexNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_PingIndexNow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) ClearCache(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_ClearCache_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetMaintenanceMode(ctx context.Context, in *SiteSetMaintenanceModeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetMaintenanceMode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *siteClient) Timezones(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteTimezonesResponse, error) {
@@ -580,6 +1838,25 @@ func (c *siteClient) Languages(ctx context.Context, in *emptypb.Empty, opts ...g
 //
 // ----------------------------------------------------------------------------
 type SiteServer interface {
+	SetInfoByLang(context.Context, *SetSiteInfoByLangRequest) (*emptypb.Empty, error)
+	GetInfoByLang(context.Context, *GetSiteInfoByLangRequest) (*GetSiteInfoByLangResponse, error)
+	SetAuthor(context.Context, *SiteAuthorProfile) (*emptypb.Empty, error)
+	GetAuthor(context.Context, *emptypb.Empty) (*SiteAuthorProfile, error)
+	SetFavicon(context.Context, *SiteFaviconProfile) (*emptypb.Empty, error)
+	GetFavicon(context.Context, *emptypb.Empty) (*SiteFaviconProfile, error)
+	UploadFavicon(context.Context, *emptypb.Empty) (*SiteUploadFaviconResponse, error)
+	SetGoogleSiteOwnershipVerification(context.Context, *GoogleSiteOwnershipVerification) (*emptypb.Empty, error)
+	GetGoogleSiteOwnershipVerification(context.Context, *emptypb.Empty) (*GoogleSiteOwnershipVerification, error)
+	SetReCaptcha(context.Context, *ReCaptchaProfile) (*emptypb.Empty, error)
+	GetReCaptcha(context.Context, *emptypb.Empty) (*ReCaptchaProfile, error)
+	SetBaiduSiteOwnershipVerification(context.Context, *BaiduSiteOwnershipVerification) (*emptypb.Empty, error)
+	GetBaiduSiteOwnershipVerification(context.Context, *emptypb.Empty) (*BaiduSiteOwnershipVerification, error)
+	PingBaidu(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	SetIndexNow(context.Context, *IndexNowProfile) (*emptypb.Empty, error)
+	GetIndexNow(context.Context, *emptypb.Empty) (*IndexNowProfile, error)
+	PingIndexNow(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	ClearCache(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	SetMaintenanceMode(context.Context, *SiteSetMaintenanceModeRequest) (*emptypb.Empty, error)
 	Timezones(context.Context, *emptypb.Empty) (*SiteTimezonesResponse, error)
 	Currencies(context.Context, *emptypb.Empty) (*SiteCurrenciesResponse, error)
 	Languages(context.Context, *emptypb.Empty) (*SiteLanguagesResponse, error)
@@ -593,6 +1870,63 @@ type SiteServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSiteServer struct{}
 
+func (UnimplementedSiteServer) SetInfoByLang(context.Context, *SetSiteInfoByLangRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetInfoByLang not implemented")
+}
+func (UnimplementedSiteServer) GetInfoByLang(context.Context, *GetSiteInfoByLangRequest) (*GetSiteInfoByLangResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInfoByLang not implemented")
+}
+func (UnimplementedSiteServer) SetAuthor(context.Context, *SiteAuthorProfile) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetAuthor not implemented")
+}
+func (UnimplementedSiteServer) GetAuthor(context.Context, *emptypb.Empty) (*SiteAuthorProfile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthor not implemented")
+}
+func (UnimplementedSiteServer) SetFavicon(context.Context, *SiteFaviconProfile) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFavicon not implemented")
+}
+func (UnimplementedSiteServer) GetFavicon(context.Context, *emptypb.Empty) (*SiteFaviconProfile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFavicon not implemented")
+}
+func (UnimplementedSiteServer) UploadFavicon(context.Context, *emptypb.Empty) (*SiteUploadFaviconResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadFavicon not implemented")
+}
+func (UnimplementedSiteServer) SetGoogleSiteOwnershipVerification(context.Context, *GoogleSiteOwnershipVerification) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetGoogleSiteOwnershipVerification not implemented")
+}
+func (UnimplementedSiteServer) GetGoogleSiteOwnershipVerification(context.Context, *emptypb.Empty) (*GoogleSiteOwnershipVerification, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGoogleSiteOwnershipVerification not implemented")
+}
+func (UnimplementedSiteServer) SetReCaptcha(context.Context, *ReCaptchaProfile) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetReCaptcha not implemented")
+}
+func (UnimplementedSiteServer) GetReCaptcha(context.Context, *emptypb.Empty) (*ReCaptchaProfile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReCaptcha not implemented")
+}
+func (UnimplementedSiteServer) SetBaiduSiteOwnershipVerification(context.Context, *BaiduSiteOwnershipVerification) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetBaiduSiteOwnershipVerification not implemented")
+}
+func (UnimplementedSiteServer) GetBaiduSiteOwnershipVerification(context.Context, *emptypb.Empty) (*BaiduSiteOwnershipVerification, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBaiduSiteOwnershipVerification not implemented")
+}
+func (UnimplementedSiteServer) PingBaidu(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PingBaidu not implemented")
+}
+func (UnimplementedSiteServer) SetIndexNow(context.Context, *IndexNowProfile) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetIndexNow not implemented")
+}
+func (UnimplementedSiteServer) GetIndexNow(context.Context, *emptypb.Empty) (*IndexNowProfile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIndexNow not implemented")
+}
+func (UnimplementedSiteServer) PingIndexNow(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PingIndexNow not implemented")
+}
+func (UnimplementedSiteServer) ClearCache(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClearCache not implemented")
+}
+func (UnimplementedSiteServer) SetMaintenanceMode(context.Context, *SiteSetMaintenanceModeRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetMaintenanceMode not implemented")
+}
 func (UnimplementedSiteServer) Timezones(context.Context, *emptypb.Empty) (*SiteTimezonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Timezones not implemented")
 }
@@ -621,6 +1955,348 @@ func RegisterSiteServer(s grpc.ServiceRegistrar, srv SiteServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&Site_ServiceDesc, srv)
+}
+
+func _Site_SetInfoByLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetSiteInfoByLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetInfoByLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetInfoByLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetInfoByLang(ctx, req.(*SetSiteInfoByLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetInfoByLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSiteInfoByLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetInfoByLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetInfoByLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetInfoByLang(ctx, req.(*GetSiteInfoByLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetAuthor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteAuthorProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetAuthor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetAuthor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetAuthor(ctx, req.(*SiteAuthorProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetAuthor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetAuthor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetAuthor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetAuthor(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetFavicon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteFaviconProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetFavicon(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetFavicon_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetFavicon(ctx, req.(*SiteFaviconProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetFavicon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetFavicon(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetFavicon_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetFavicon(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_UploadFavicon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).UploadFavicon(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_UploadFavicon_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).UploadFavicon(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetGoogleSiteOwnershipVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoogleSiteOwnershipVerification)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetGoogleSiteOwnershipVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetGoogleSiteOwnershipVerification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetGoogleSiteOwnershipVerification(ctx, req.(*GoogleSiteOwnershipVerification))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetGoogleSiteOwnershipVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetGoogleSiteOwnershipVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetGoogleSiteOwnershipVerification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetGoogleSiteOwnershipVerification(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetReCaptcha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReCaptchaProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetReCaptcha(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetReCaptcha_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetReCaptcha(ctx, req.(*ReCaptchaProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetReCaptcha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetReCaptcha(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetReCaptcha_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetReCaptcha(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetBaiduSiteOwnershipVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BaiduSiteOwnershipVerification)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetBaiduSiteOwnershipVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetBaiduSiteOwnershipVerification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetBaiduSiteOwnershipVerification(ctx, req.(*BaiduSiteOwnershipVerification))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetBaiduSiteOwnershipVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetBaiduSiteOwnershipVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetBaiduSiteOwnershipVerification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetBaiduSiteOwnershipVerification(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_PingBaidu_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).PingBaidu(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_PingBaidu_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).PingBaidu(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetIndexNow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IndexNowProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetIndexNow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetIndexNow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetIndexNow(ctx, req.(*IndexNowProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetIndexNow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetIndexNow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetIndexNow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetIndexNow(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_PingIndexNow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).PingIndexNow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_PingIndexNow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).PingIndexNow(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_ClearCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).ClearCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_ClearCache_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).ClearCache(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetMaintenanceMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteSetMaintenanceModeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetMaintenanceMode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetMaintenanceMode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetMaintenanceMode(ctx, req.(*SiteSetMaintenanceModeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Site_Timezones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -684,6 +2360,82 @@ var Site_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "palm.portal.v1.Site",
 	HandlerType: (*SiteServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SetInfoByLang",
+			Handler:    _Site_SetInfoByLang_Handler,
+		},
+		{
+			MethodName: "GetInfoByLang",
+			Handler:    _Site_GetInfoByLang_Handler,
+		},
+		{
+			MethodName: "SetAuthor",
+			Handler:    _Site_SetAuthor_Handler,
+		},
+		{
+			MethodName: "GetAuthor",
+			Handler:    _Site_GetAuthor_Handler,
+		},
+		{
+			MethodName: "SetFavicon",
+			Handler:    _Site_SetFavicon_Handler,
+		},
+		{
+			MethodName: "GetFavicon",
+			Handler:    _Site_GetFavicon_Handler,
+		},
+		{
+			MethodName: "UploadFavicon",
+			Handler:    _Site_UploadFavicon_Handler,
+		},
+		{
+			MethodName: "SetGoogleSiteOwnershipVerification",
+			Handler:    _Site_SetGoogleSiteOwnershipVerification_Handler,
+		},
+		{
+			MethodName: "GetGoogleSiteOwnershipVerification",
+			Handler:    _Site_GetGoogleSiteOwnershipVerification_Handler,
+		},
+		{
+			MethodName: "SetReCaptcha",
+			Handler:    _Site_SetReCaptcha_Handler,
+		},
+		{
+			MethodName: "GetReCaptcha",
+			Handler:    _Site_GetReCaptcha_Handler,
+		},
+		{
+			MethodName: "SetBaiduSiteOwnershipVerification",
+			Handler:    _Site_SetBaiduSiteOwnershipVerification_Handler,
+		},
+		{
+			MethodName: "GetBaiduSiteOwnershipVerification",
+			Handler:    _Site_GetBaiduSiteOwnershipVerification_Handler,
+		},
+		{
+			MethodName: "PingBaidu",
+			Handler:    _Site_PingBaidu_Handler,
+		},
+		{
+			MethodName: "SetIndexNow",
+			Handler:    _Site_SetIndexNow_Handler,
+		},
+		{
+			MethodName: "GetIndexNow",
+			Handler:    _Site_GetIndexNow_Handler,
+		},
+		{
+			MethodName: "PingIndexNow",
+			Handler:    _Site_PingIndexNow_Handler,
+		},
+		{
+			MethodName: "ClearCache",
+			Handler:    _Site_ClearCache_Handler,
+		},
+		{
+			MethodName: "SetMaintenanceMode",
+			Handler:    _Site_SetMaintenanceMode_Handler,
+		},
 		{
 			MethodName: "Timezones",
 			Handler:    _Site_Timezones_Handler,

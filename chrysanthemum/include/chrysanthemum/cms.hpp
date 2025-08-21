@@ -6,5 +6,6 @@
 #include "palm/queue.hpp"
 #include "palm/search.hpp"
 #include "palm/theme.hpp"
+#include "portal.grpc.pb.h"
 
-namespace chrysanthemum{}
+namespace chrysanthemum {}

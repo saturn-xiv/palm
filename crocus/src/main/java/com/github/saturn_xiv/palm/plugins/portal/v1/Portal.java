@@ -51,11 +51,6 @@ public final class Portal {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_LocaleByLangResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_LocaleByLangResponse_Item_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_LocaleByLangResponse_Item_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_LocaleUpdateRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -81,35 +76,185 @@ public final class Portal {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_Resource_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_UserListResponse_descriptor;
+    internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_UserListResponse_fieldAccessorTable;
+      internal_static_palm_portal_v1_EmailUserIndexResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_UserListResponse_Item_descriptor;
+    internal_static_palm_portal_v1_EmailUserIndexResponse_Item_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_UserListResponse_Item_fieldAccessorTable;
+      internal_static_palm_portal_v1_EmailUserIndexResponse_Item_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_UserIndexLogResponse_descriptor;
+    internal_static_palm_portal_v1_EmailUserDeleteByEmailRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_UserIndexLogResponse_fieldAccessorTable;
+      internal_static_palm_portal_v1_EmailUserDeleteByEmailRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor;
+    internal_static_palm_portal_v1_EmailUserUploadAvatarResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_UserIndexLogResponse_Item_fieldAccessorTable;
+      internal_static_palm_portal_v1_EmailUserUploadAvatarResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor;
+    internal_static_palm_portal_v1_EmailUserSetAvatarRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_UserSignInByEmailRequest_fieldAccessorTable;
+      internal_static_palm_portal_v1_EmailUserSetAvatarRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSetRealNameRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSetRealNameRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSetPasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserChangePasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserChangePasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserResetPasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserResetPasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserByTokenRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserByTokenRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSignUpRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSignUpRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSignInRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSignInRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserUploadRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserUploadRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserUploadResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserUploadResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserSetVRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserSetVRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserGetVRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserGetVRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserGetVResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserGetVResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserSetLocationRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserSetLocationRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_SetupUserRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_SetupUserRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserIndexResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserIndexResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserIndexResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserLogsResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserLogsResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserLogsResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserLogsResponse_Item_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_UserSignInResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_UserSignInResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_SiteSetMaintenanceModeRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_SiteSetMaintenanceModeRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_SiteUploadFaviconResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_SiteUploadFaviconResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_SiteFaviconProfile_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_SiteFaviconProfile_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_SiteAuthorProfile_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_SiteAuthorProfile_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_GetSiteInfoByLangRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_GetSiteInfoByLangRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_SetSiteInfoByLangRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_SetSiteInfoByLangRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_GetSiteInfoByLangResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_GetSiteInfoByLangResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_BaiduSiteOwnershipVerification_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_BaiduSiteOwnershipVerification_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_ReCaptchaProfile_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_ReCaptchaProfile_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_GoogleSiteOwnershipVerification_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_GoogleSiteOwnershipVerification_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_IndexNowProfile_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_IndexNowProfile_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor;
   static final 
@@ -130,6 +275,106 @@ public final class Portal {
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_SiteCurrenciesResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Rss_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Rss_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Rss_Channel_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Rss_Channel_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Rss_Channel_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Rss_Channel_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Rss_Channel_Item_Guid_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Rss_Channel_Item_Guid_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Sitemap_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Sitemap_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Sitemap_Url_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Sitemap_Url_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Sitemap_UrlSet_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Sitemap_UrlSet_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Sitemap_ItemsEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Sitemap_ItemsEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_HtmlPage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_HtmlPage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Home_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Home_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Header_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Header_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Footer_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Footer_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_TemplatesEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_TemplatesEntry_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -146,10 +391,9 @@ public final class Portal {
       "\r\"8\n\nPagination\022\r\n\005total\030\001 \001(\r\022\r\n\005index\030" +
       "\002 \001(\r\022\014\n\004size\030\003 \001(\r\"\027\n\tIdRequest\022\n\n\002id\030\001" +
       " \001(\r\"#\n\023LocaleByLangRequest\022\014\n\004lang\030\001 \001(" +
-      "\t\"w\n\024LocaleByLangResponse\0228\n\005items\030\001 \003(\013" +
-      "2).palm.portal.v1.LocaleByLangResponse.I" +
-      "tem\032%\n\004Item\022\014\n\004code\030\001 \001(\t\022\017\n\007message\030\002 \001" +
-      "(\t\"2\n\023LocaleUpdateRequest\022\n\n\002id\030\001 \001(\r\022\017\n" +
+      "\t\"O\n\024LocaleByLangResponse\0227\n\005items\030\001 \003(\013" +
+      "2(.palm.portal.v1.LocaleIndexResponse.It" +
+      "em\"2\n\023LocaleUpdateRequest\022\n\n\002id\030\001 \001(\r\022\017\n" +
       "\007message\030\002 \001(\t\"B\n\023LocaleCreateRequest\022\014\n" +
       "\004lang\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\017\n\007message\030\003 \001" +
       "(\t\"\357\001\n\023LocaleIndexResponse\0227\n\005items\030\001 \003(" +
@@ -159,69 +403,260 @@ public final class Portal {
       "\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007message\030\004 \001(\t\022.\n\n" +
       "updated_at\030\t \001(\0132\032.google.protobuf.Times" +
       "tamp\"0\n\010Resource\022\014\n\004type\030\001 \001(\t\022\017\n\002id\030\002 \001" +
-      "(\rH\000\210\001\001B\005\n\003_id\"\253\005\n\020UserListResponse\0224\n\005i" +
-      "tems\030\001 \003(\0132%.palm.portal.v1.UserListResp" +
-      "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por" +
-      "tal.v1.Pagination\032\260\004\n\004Item\022\n\n\002id\030\001 \001(\r\022\013" +
-      "\n\003uid\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004lang\030\004 \001(\t\022" +
-      "\020\n\010timezone\030\005 \001(\t\022\023\n\013provider_id\030\010 \001(\r\022A" +
-      "\n\rprovider_type\030\t \001(\0162*.palm.portal.v1.U" +
-      "serListResponse.Item.Type\022\025\n\rsign_in_cou" +
-      "nt\030\013 \001(\r\022\037\n\022current_sign_in_ip\030\014 \001(\tH\000\210\001" +
-      "\001\022;\n\022current_sign_in_at\030\r \001(\0132\032.google.p" +
-      "rotobuf.TimestampH\001\210\001\001\0222\n\tlocked_at\030\022 \001(" +
-      "\0132\032.google.protobuf.TimestampH\002\210\001\001\0223\n\nde" +
-      "leted_at\030\023 \001(\0132\032.google.protobuf.Timesta" +
-      "mpH\003\210\001\001\"`\n\004Type\022\t\n\005Email\020\000\022\025\n\021WeChatMini" +
-      "Program\020\001\022\020\n\014WeChatOauth2\020\002\022\020\n\014GoogleOau" +
-      "th2\020\003\022\022\n\016FacebookOauth2\020\004B\025\n\023_current_si" +
-      "gn_in_ipB\025\n\023_current_sign_in_atB\014\n\n_lock" +
-      "ed_atB\r\n\013_deleted_at\"\224\003\n\024UserIndexLogRes" +
-      "ponse\0228\n\005items\030\001 \003(\0132).palm.portal.v1.Us" +
-      "erIndexLogResponse.Item\022.\n\npagination\030\t " +
-      "\001(\0132\032.palm.portal.v1.Pagination\032\221\002\n\004Item" +
-      "\022\n\n\002id\030\001 \001(\r\022\016\n\006plugin\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t" +
-      "\022>\n\005level\030\004 \001(\0162/.palm.portal.v1.UserInd" +
-      "exLogResponse.Item.Level\022*\n\010resource\030\005 \001" +
-      "(\0132\030.palm.portal.v1.Resource\022\017\n\007message\030" +
-      "\006 \001(\t\022.\n\ncreated_at\030\t \001(\0132\032.google.proto" +
-      "buf.Timestamp\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INF" +
-      "O\020\001\022\013\n\007WARNING\020\002\022\t\n\005ERROR\020\003\"p\n\030UserSignI" +
-      "nByEmailRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010passwo" +
-      "rd\030\002 \001(\t\022+\n\003ttl\030\t \001(\0132\031.google.protobuf." +
-      "DurationH\000\210\001\001B\006\n\004_ttl\"#\n\022UserSignInRespo" +
-      "nse\022\r\n\005token\030\001 \001(\t\"&\n\025SiteTimezonesRespo" +
-      "nse\022\r\n\005items\030\001 \003(\t\"&\n\025SiteLanguagesRespo" +
-      "nse\022\r\n\005items\030\001 \003(\t\"\317\001\n\026SiteCurrenciesRes" +
-      "ponse\022:\n\005items\030\001 \003(\0132+.palm.portal.v1.Si" +
-      "teCurrenciesResponse.Item\032y\n\004Item\022\n\n\002id\030" +
-      "\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007cou" +
-      "ntry\030\004 \001(\t\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\021\n\004fund\030\006" +
-      " \001(\010H\001\210\001\001B\010\n\006_unitsB\007\n\005_fund2\367\002\n\006Locale\022" +
-      "D\n\005Index\022\024.palm.portal.v1.Page\032#.palm.po" +
-      "rtal.v1.LocaleIndexResponse\"\000\022G\n\006Create\022" +
-      "#.palm.portal.v1.LocaleCreateRequest\032\026.g" +
-      "oogle.protobuf.Empty\"\000\022G\n\006Update\022#.palm." +
-      "portal.v1.LocaleUpdateRequest\032\026.google.p" +
-      "rotobuf.Empty\"\000\022>\n\007Destroy\022\031.palm.portal" +
-      ".v1.IdRequest\032\026.google.protobuf.Empty\"\000\022" +
-      "U\n\006ByLang\022#.palm.portal.v1.LocaleByLangR" +
-      "equest\032$.palm.portal.v1.LocaleByLangResp" +
-      "onse\"\0002\363\001\n\004User\022_\n\rSignInByEmail\022(.palm." +
-      "portal.v1.UserSignInByEmailRequest\032\".pal" +
-      "m.portal.v1.UserSignInResponse\"\000\022H\n\010Inde" +
-      "xLog\022\024.palm.portal.v1.Page\032$.palm.portal" +
-      ".v1.UserIndexLogResponse\"\000\022@\n\004List\022\024.pal" +
-      "m.portal.v1.Page\032 .palm.portal.v1.UserLi" +
-      "stResponse\"\0002\010\n\006Policy2\362\001\n\004Site\022L\n\tTimez" +
-      "ones\022\026.google.protobuf.Empty\032%.palm.port" +
-      "al.v1.SiteTimezonesResponse\"\000\022N\n\nCurrenc" +
-      "ies\022\026.google.protobuf.Empty\032&.palm.porta" +
-      "l.v1.SiteCurrenciesResponse\"\000\022L\n\tLanguag" +
-      "es\022\026.google.protobuf.Empty\032%.palm.portal" +
-      ".v1.SiteLanguagesResponse\"\000B7\n,com.githu" +
-      "b.saturn_xiv.palm.plugins.portal.v1P\001Z\005." +
-      "/;v2b\006proto3"
+      "(\rH\000\210\001\001B\005\n\003_id\"\256\003\n\026EmailUserIndexRespons" +
+      "e\022:\n\005items\030\001 \003(\0132+.palm.portal.v1.EmailU" +
+      "serIndexResponse.Item\022.\n\npagination\030\t \001(" +
+      "\0132\032.palm.portal.v1.Pagination\032\247\002\n\004Item\022\n" +
+      "\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\022\016\n\006avatar\030" +
+      "\003 \001(\t\0225\n\014confirmed_at\030\004 \001(\0132\032.google.pro" +
+      "tobuf.TimestampH\000\210\001\001\0223\n\ndeleted_at\030\005 \001(\013" +
+      "2\032.google.protobuf.TimestampH\001\210\001\001\022.\n\nupd" +
+      "ated_at\030\006 \001(\0132\032.google.protobuf.Timestam" +
+      "p\0224\n\004user\030\t \001(\0132&.palm.portal.v1.UserInd" +
+      "exResponse.ItemB\017\n\r_confirmed_atB\r\n\013_del" +
+      "eted_at\"/\n\035EmailUserDeleteByEmailRequest" +
+      "\022\016\n\006reason\030\001 \001(\t\"T\n\035EmailUserUploadAvata" +
+      "rResponse\022\013\n\003url\030\001 \001(\t\022&\n\003ttl\030\t \001(\0132\031.go" +
+      "ogle.protobuf.Duration\"(\n\031EmailUserSetAv" +
+      "atarRequest\022\013\n\003url\030\001 \001(\t\"+\n\033EmailUserSet" +
+      "RealNameRequest\022\014\n\004name\030\001 \001(\t\"i\n\033EmailUs" +
+      "erSetPasswordRequest\022\n\n\002id\030\001 \001(\r\022\020\n\010pass" +
+      "word\030\002 \001(\t\022\014\n\004salt\030\003 \001(\t\022\023\n\006reason\030\004 \001(\t" +
+      "H\000\210\001\001B\t\n\007_reason\"^\n\036EmailUserChangePassw" +
+      "ordRequest\022\030\n\020current_password\030\001 \001(\t\022\024\n\014" +
+      "new_password\030\002 \001(\t\022\014\n\004salt\030\003 \001(\t\"N\n\035Emai" +
+      "lUserResetPasswordRequest\022\r\n\005token\030\001 \001(\t" +
+      "\022\020\n\010password\030\002 \001(\t\022\014\n\004salt\030\003 \001(\t\"(\n\027Emai" +
+      "lUserByTokenRequest\022\r\n\005token\030\001 \001(\t\"/\n\020Em" +
+      "ailUserRequest\022\r\n\005email\030\001 \001(\t\022\014\n\004home\030\002 " +
+      "\001(\t\"\210\001\n\026EmailUserSignUpRequest\022\021\n\treal_n" +
+      "ame\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030\003 \001" +
+      "(\t\022\014\n\004salt\030\004 \001(\t\022\014\n\004lang\030\005 \001(\t\022\020\n\010timezo" +
+      "ne\030\006 \001(\t\022\014\n\004home\030\007 \001(\t\"|\n\026EmailUserSignI" +
+      "nRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
+      "\t\022\014\n\004salt\030\003 \001(\t\022+\n\003ttl\030\t \001(\0132\031.google.pr" +
+      "otobuf.DurationH\000\210\001\001B\006\n\004_ttl\"K\n\021UserUplo" +
+      "adRequest\022\016\n\006public\030\001 \001(\010\022&\n\003ttl\030\t \001(\0132\031" +
+      ".google.protobuf.Duration\"A\n\022UserUploadR" +
+      "esponse\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\022" +
+      "\013\n\003url\030\003 \001(\t\">\n\017UserSetVRequest\022\013\n\003key\030\001" +
+      " \001(\t\022\r\n\005value\030\002 \001(\014\022\017\n\007encrypt\030\003 \001(\010\"\036\n\017" +
+      "UserGetVRequest\022\013\n\003key\030\001 \001(\t\"!\n\020UserGetV" +
+      "Response\022\r\n\005value\030\001 \001(\014\"8\n\026UserSetLocati" +
+      "onRequest\022\020\n\010timezone\030\001 \001(\t\022\014\n\004lang\030\002 \001(" +
+      "\t\">\n\020SetupUserRequest\022\n\n\002id\030\001 \001(\r\022\023\n\006rea" +
+      "son\030\002 \001(\tH\000\210\001\001B\t\n\007_reason\"\205\006\n\021UserIndexR" +
+      "esponse\0225\n\005items\030\001 \003(\0132&.palm.portal.v1." +
+      "UserIndexResponse.Item\022.\n\npagination\030\t \001" +
+      "(\0132\032.palm.portal.v1.Pagination\032\210\005\n\004Item\022" +
+      "\n\n\002id\030\001 \001(\r\022\013\n\003uid\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014" +
+      "\n\004lang\030\004 \001(\t\022\020\n\010timezone\030\005 \001(\t\022\025\n\rsign_i" +
+      "n_count\030\006 \001(\r\022\037\n\022current_sign_in_ip\030\007 \001(" +
+      "\tH\000\210\001\001\022;\n\022current_sign_in_at\030\010 \001(\0132\032.goo" +
+      "gle.protobuf.TimestampH\001\210\001\001\022\034\n\017last_sign" +
+      "_in_ip\030\t \001(\tH\002\210\001\001\0228\n\017last_sign_in_at\030\n \001" +
+      "(\0132\032.google.protobuf.TimestampH\003\210\001\001\0222\n\tl" +
+      "ocked_at\030\013 \001(\0132\032.google.protobuf.Timesta" +
+      "mpH\004\210\001\001\0223\n\ndeleted_at\030\014 \001(\0132\032.google.pro" +
+      "tobuf.TimestampH\005\210\001\001\022.\n\nupdated_at\030\r \001(\013" +
+      "2\032.google.protobuf.Timestamp\"`\n\004Type\022\t\n\005" +
+      "Email\020\000\022\025\n\021WeChatMiniProgram\020\001\022\020\n\014WeChat" +
+      "Oauth2\020\002\022\020\n\014GoogleOauth2\020\003\022\022\n\016FacebookOa" +
+      "uth2\020\004B\025\n\023_current_sign_in_ipB\025\n\023_curren" +
+      "t_sign_in_atB\022\n\020_last_sign_in_ipB\022\n\020_las" +
+      "t_sign_in_atB\014\n\n_locked_atB\r\n\013_deleted_a" +
+      "t\"\210\003\n\020UserLogsResponse\0224\n\005items\030\001 \003(\0132%." +
+      "palm.portal.v1.UserLogsResponse.Item\022.\n\n" +
+      "pagination\030\t \001(\0132\032.palm.portal.v1.Pagina" +
+      "tion\032\215\002\n\004Item\022\n\n\002id\030\001 \001(\r\022\016\n\006plugin\030\002 \001(" +
+      "\t\022\n\n\002ip\030\003 \001(\t\022:\n\005level\030\004 \001(\0162+.palm.port" +
+      "al.v1.UserLogsResponse.Item.Level\022*\n\010res" +
+      "ource\030\005 \001(\0132\030.palm.portal.v1.Resource\022\017\n" +
+      "\007message\030\006 \001(\t\022.\n\ncreated_at\030\t \001(\0132\032.goo" +
+      "gle.protobuf.Timestamp\"4\n\005Level\022\t\n\005DEBUG" +
+      "\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNING\020\002\022\t\n\005ERROR\020\003\"#\n\022" +
+      "UserSignInResponse\022\r\n\005token\030\001 \001(\t\";\n\035Sit" +
+      "eSetMaintenanceModeRequest\022\n\n\002on\030\001 \001(\010\022\016" +
+      "\n\006reason\030\002 \001(\t\"P\n\031SiteUploadFaviconRespo" +
+      "nse\022\013\n\003url\030\001 \001(\t\022&\n\003ttl\030\002 \001(\0132\031.google.p" +
+      "rotobuf.Duration\"!\n\022SiteFaviconProfile\022\013" +
+      "\n\003url\030\001 \001(\t\"0\n\021SiteAuthorProfile\022\014\n\004name" +
+      "\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\"(\n\030GetSiteInfoByLa" +
+      "ngRequest\022\014\n\004lang\030\001 \001(\t\"a\n\030SetSiteInfoBy" +
+      "LangRequest\022\014\n\004lang\030\001 \001(\t\0227\n\004item\030\002 \001(\0132" +
+      ").palm.portal.v1.GetSiteInfoByLangRespon" +
+      "se\"u\n\031GetSiteInfoByLangResponse\022\r\n\005title" +
+      "\030\001 \001(\t\022\017\n\007subhead\030\002 \001(\t\022\023\n\013description\030\003" +
+      " \001(\t\022\021\n\tcopyright\030\004 \001(\t\022\020\n\010keywords\030\005 \003(" +
+      "\t\".\n\036BaiduSiteOwnershipVerification\022\014\n\004c" +
+      "ode\030\001 \001(\t\"\037\n\020ReCaptchaProfile\022\013\n\003key\030\001 \001" +
+      "(\t\"/\n\037GoogleSiteOwnershipVerification\022\014\n" +
+      "\004code\030\001 \001(\t\"\036\n\017IndexNowProfile\022\013\n\003key\030\001 " +
+      "\001(\t\"&\n\025SiteTimezonesResponse\022\r\n\005items\030\001 " +
+      "\003(\t\"&\n\025SiteLanguagesResponse\022\r\n\005items\030\001 " +
+      "\003(\t\"\317\001\n\026SiteCurrenciesResponse\022:\n\005items\030" +
+      "\001 \003(\0132+.palm.portal.v1.SiteCurrenciesRes" +
+      "ponse.Item\032y\n\004Item\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002" +
+      " \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007country\030\004 \001(\t\022\022\n\005u" +
+      "nits\030\005 \001(\rH\000\210\001\001\022\021\n\004fund\030\006 \001(\010H\001\210\001\001B\010\n\006_u" +
+      "nitsB\007\n\005_fund\"\325\003\n\003Rss\022,\n\007channel\030\001 \001(\0132\033" +
+      ".palm.portal.v1.Rss.Channel\032\237\003\n\007Channel\022" +
+      "\r\n\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\014\n\004l" +
+      "ink\030\003 \001(\t\022\021\n\tcopyright\030\004 \001(\t\0223\n\017last_bui" +
+      "ld_date\030\013 \001(\0132\032.google.protobuf.Timestam" +
+      "p\022,\n\010pub_date\030\014 \001(\0132\032.google.protobuf.Ti" +
+      "mestamp\022&\n\003ttl\030\r \001(\0132\031.google.protobuf.D" +
+      "uration\022/\n\005items\030c \003(\0132 .palm.portal.v1." +
+      "Rss.Channel.Item\032\222\001\n\004Item\022\r\n\005title\030\001 \001(\t" +
+      "\022\023\n\013description\030\002 \001(\t\022\014\n\004link\030\003 \001(\t\022,\n\010p" +
+      "ub_date\030\t \001(\0132\032.google.protobuf.Timestam" +
+      "p\032*\n\004Guid\022\026\n\016permanent_link\030\001 \001(\010\022\n\n\002id\030" +
+      "\002 \001(\t\"\344\003\n\007Sitemap\0221\n\005items\030\001 \003(\0132\".palm." +
+      "portal.v1.Sitemap.ItemsEntry\032\241\002\n\003Url\022\013\n\003" +
+      "loc\030\001 \001(\t\022\030\n\013change_freq\030\002 \001(\tH\000\210\001\001\022\023\n\006m" +
+      "obile\030\003 \001(\010H\001\210\001\001\022\025\n\010priority\030\004 \001(\002H\002\210\001\001\022" +
+      "1\n\010last_mod\030\005 \001(\0132\032.google.protobuf.Time" +
+      "stampH\003\210\001\001\"_\n\nChangeFreq\022\n\n\006Always\020\000\022\n\n\006" +
+      "Hourly\020\001\022\t\n\005Daily\020\002\022\n\n\006Weekly\020\003\022\013\n\007Month" +
+      "ly\020\004\022\n\n\006Yearly\020\005\022\t\n\005Never\020\006B\016\n\014_change_f" +
+      "reqB\t\n\007_mobileB\013\n\t_priorityB\013\n\t_last_mod" +
+      "\0324\n\006UrlSet\022*\n\005items\030\001 \003(\0132\033.palm.portal." +
+      "v1.Sitemap.Url\032L\n\nItemsEntry\022\013\n\003key\030\001 \001(" +
+      "\t\022-\n\005value\030\002 \001(\0132\036.palm.portal.v1.Sitema" +
+      "p.UrlSet:\0028\001\"8\n\010HtmlPage\022\014\n\004lang\030\001 \001(\t\022\020" +
+      "\n\010template\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"\347\004\n\005Theme" +
+      "\032\335\004\n\tBootstrap\032\006\n\004Home\032\307\004\n\006Sample\022H\n\ttem" +
+      "plates\030\001 \003(\01325.palm.portal.v1.Theme.Boot" +
+      "strap.Sample.TemplatesEntry\0229\n\004data\030\002 \001(" +
+      "\0132+.palm.portal.v1.Theme.Bootstrap.Sampl" +
+      "e.Data\032\205\003\n\004Data\032\027\n\006Header\022\r\n\005title\030\001 \001(\t" +
+      "\032\033\n\006Footer\022\021\n\tcopyright\030\001 \001(\t\032\306\002\n\004Body\022\r" +
+      "\n\005title\030\001 \001(\t\022D\n\005items\030\002 \003(\01325.palm.port" +
+      "al.v1.Theme.Bootstrap.Sample.Data.Body.I" +
+      "tem\022.\n\ncreated_at\030\t \001(\0132\032.google.protobu" +
+      "f.Timestamp\032\270\001\n\004Item\022\r\n\005title\030\001 \001(\t\022\023\n\013d" +
+      "escription\030\002 \001(\t\022Y\n\nproperties\030\003 \003(\0132E.p" +
+      "alm.portal.v1.Theme.Bootstrap.Sample.Dat" +
+      "a.Body.Item.PropertiesEntry\0321\n\017Propertie" +
+      "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0320" +
+      "\n\016TemplatesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002" +
+      " \001(\t:\0028\0012\367\002\n\006Locale\022D\n\005Index\022\024.palm.port" +
+      "al.v1.Page\032#.palm.portal.v1.LocaleIndexR" +
+      "esponse\"\000\022G\n\006Create\022#.palm.portal.v1.Loc" +
+      "aleCreateRequest\032\026.google.protobuf.Empty" +
+      "\"\000\022G\n\006Update\022#.palm.portal.v1.LocaleUpda" +
+      "teRequest\032\026.google.protobuf.Empty\"\000\022>\n\007D" +
+      "estroy\022\031.palm.portal.v1.IdRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022U\n\006ByLang\022#.palm.por" +
+      "tal.v1.LocaleByLangRequest\032$.palm.portal" +
+      ".v1.LocaleByLangResponse\"\0002\247\014\n\tEmailUser" +
+      "\022V\n\006SignIn\022&.palm.portal.v1.EmailUserSig" +
+      "nInRequest\032\".palm.portal.v1.UserSignInRe" +
+      "sponse\"\000\022J\n\006SignUp\022&.palm.portal.v1.Emai" +
+      "lUserSignUpRequest\032\026.google.protobuf.Emp" +
+      "ty\"\000\022L\n\016ConfirmByEmail\022 .palm.portal.v1." +
+      "EmailUserRequest\032\026.google.protobuf.Empty" +
+      "\"\000\022S\n\016ConfirmByToken\022\'.palm.portal.v1.Em" +
+      "ailUserByTokenRequest\032\026.google.protobuf." +
+      "Empty\"\000\022K\n\rUnlockByEmail\022 .palm.portal.v" +
+      "1.EmailUserRequest\032\026.google.protobuf.Emp" +
+      "ty\"\000\022R\n\rUnlockByToken\022\'.palm.portal.v1.E" +
+      "mailUserByTokenRequest\032\026.google.protobuf" +
+      ".Empty\"\000\022L\n\016ForgotPassword\022 .palm.portal" +
+      ".v1.EmailUserRequest\032\026.google.protobuf.E" +
+      "mpty\"\000\022X\n\rResetPassword\022-.palm.portal.v1" +
+      ".EmailUserResetPasswordRequest\032\026.google." +
+      "protobuf.Empty\"\000\022Z\n\016ChangePassword\022..pal" +
+      "m.portal.v1.EmailUserChangePasswordReque" +
+      "st\032\026.google.protobuf.Empty\"\000\022T\n\013SetRealN" +
+      "ame\022+.palm.portal.v1.EmailUserSetRealNam" +
+      "eRequest\032\026.google.protobuf.Empty\"\000\022P\n\tSe" +
+      "tAvatar\022).palm.portal.v1.EmailUserSetAva" +
+      "tarRequest\032\026.google.protobuf.Empty\"\000\022W\n\014" +
+      "UploadAvatar\022\026.google.protobuf.Empty\032-.p" +
+      "alm.portal.v1.EmailUserUploadAvatarRespo" +
+      "nse\"\000\022X\n\rDeleteByEmail\022-.palm.portal.v1." +
+      "EmailUserDeleteByEmailRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022R\n\rDeleteByToken\022\'.palm." +
+      "portal.v1.EmailUserByTokenRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022T\n\013SetPassword\022+.pal" +
+      "m.portal.v1.EmailUserSetPasswordRequest\032" +
+      "\026.google.protobuf.Empty\"\000\022S\n\007Confirm\022..p" +
+      "alm.portal.v1.EmailUserChangePasswordReq" +
+      "uest\032\026.google.protobuf.Empty\"\000\022E\n\007Disabl" +
+      "e\022 .palm.portal.v1.SetupUserRequest\032\026.go" +
+      "ogle.protobuf.Empty\"\000\022D\n\006Enable\022 .palm.p" +
+      "ortal.v1.SetupUserRequest\032\026.google.proto" +
+      "buf.Empty\"\000\022G\n\005Index\022\024.palm.portal.v1.Pa" +
+      "ge\032&.palm.portal.v1.EmailUserIndexRespon" +
+      "se\"\0002\224\006\n\004User\022@\n\004Logs\022\024.palm.portal.v1.P" +
+      "age\032 .palm.portal.v1.UserLogsResponse\"\000\022" +
+      "B\n\005Index\022\024.palm.portal.v1.Page\032!.palm.po" +
+      "rtal.v1.UserIndexResponse\"\000\022O\n\013SetLocati" +
+      "on\022&.palm.portal.v1.UserSetLocationReque" +
+      "st\032\026.google.protobuf.Empty\"\000\022A\n\004SetV\022\037.p" +
+      "alm.portal.v1.UserSetVRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022K\n\004GetV\022\037.palm.portal.v1" +
+      ".UserGetVRequest\032 .palm.portal.v1.UserGe" +
+      "tVResponse\"\000\022Q\n\006Upload\022!.palm.portal.v1." +
+      "UserUploadRequest\032\".palm.portal.v1.UserU" +
+      "ploadResponse\"\000\022;\n\007SignOut\022\026.google.prot" +
+      "obuf.Empty\032\026.google.protobuf.Empty\"\000\022B\n\004" +
+      "Lock\022 .palm.portal.v1.SetupUserRequest\032\026" +
+      ".google.protobuf.Empty\"\000\022D\n\006Unlock\022 .pal" +
+      "m.portal.v1.SetupUserRequest\032\026.google.pr" +
+      "otobuf.Empty\"\000\022E\n\007Disable\022 .palm.portal." +
+      "v1.SetupUserRequest\032\026.google.protobuf.Em" +
+      "pty\"\000\022D\n\006Enable\022 .palm.portal.v1.SetupUs" +
+      "erRequest\032\026.google.protobuf.Empty\"\0002\275\016\n\004" +
+      "Site\022S\n\rSetInfoByLang\022(.palm.portal.v1.S" +
+      "etSiteInfoByLangRequest\032\026.google.protobu" +
+      "f.Empty\"\000\022f\n\rGetInfoByLang\022(.palm.portal" +
+      ".v1.GetSiteInfoByLangRequest\032).palm.port" +
+      "al.v1.GetSiteInfoByLangResponse\"\000\022H\n\tSet" +
+      "Author\022!.palm.portal.v1.SiteAuthorProfil" +
+      "e\032\026.google.protobuf.Empty\"\000\022H\n\tGetAuthor" +
+      "\022\026.google.protobuf.Empty\032!.palm.portal.v" +
+      "1.SiteAuthorProfile\"\000\022J\n\nSetFavicon\022\".pa" +
+      "lm.portal.v1.SiteFaviconProfile\032\026.google" +
+      ".protobuf.Empty\"\000\022J\n\nGetFavicon\022\026.google" +
+      ".protobuf.Empty\032\".palm.portal.v1.SiteFav" +
+      "iconProfile\"\000\022T\n\rUploadFavicon\022\026.google." +
+      "protobuf.Empty\032).palm.portal.v1.SiteUplo" +
+      "adFaviconResponse\"\000\022o\n\"SetGoogleSiteOwne" +
+      "rshipVerification\022/.palm.portal.v1.Googl" +
+      "eSiteOwnershipVerification\032\026.google.prot" +
+      "obuf.Empty\"\000\022o\n\"GetGoogleSiteOwnershipVe" +
+      "rification\022\026.google.protobuf.Empty\032/.pal" +
+      "m.portal.v1.GoogleSiteOwnershipVerificat" +
+      "ion\"\000\022J\n\014SetReCaptcha\022 .palm.portal.v1.R" +
+      "eCaptchaProfile\032\026.google.protobuf.Empty\"" +
+      "\000\022J\n\014GetReCaptcha\022\026.google.protobuf.Empt" +
+      "y\032 .palm.portal.v1.ReCaptchaProfile\"\000\022m\n" +
+      "!SetBaiduSiteOwnershipVerification\022..pal" +
+      "m.portal.v1.BaiduSiteOwnershipVerificati" +
+      "on\032\026.google.protobuf.Empty\"\000\022m\n!GetBaidu" +
+      "SiteOwnershipVerification\022\026.google.proto" +
+      "buf.Empty\032..palm.portal.v1.BaiduSiteOwne" +
+      "rshipVerification\"\000\022=\n\tPingBaidu\022\026.googl" +
+      "e.protobuf.Empty\032\026.google.protobuf.Empty" +
+      "\"\000\022H\n\013SetIndexNow\022\037.palm.portal.v1.Index" +
+      "NowProfile\032\026.google.protobuf.Empty\"\000\022H\n\013" +
+      "GetIndexNow\022\026.google.protobuf.Empty\032\037.pa" +
+      "lm.portal.v1.IndexNowProfile\"\000\022@\n\014PingIn" +
+      "dexNow\022\026.google.protobuf.Empty\032\026.google." +
+      "protobuf.Empty\"\000\022>\n\nClearCache\022\026.google." +
+      "protobuf.Empty\032\026.google.protobuf.Empty\"\000" +
+      "\022]\n\022SetMaintenanceMode\022-.palm.portal.v1." +
+      "SiteSetMaintenanceModeRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022L\n\tTimezones\022\026.google.pr" +
+      "otobuf.Empty\032%.palm.portal.v1.SiteTimezo" +
+      "nesResponse\"\000\022N\n\nCurrencies\022\026.google.pro" +
+      "tobuf.Empty\032&.palm.portal.v1.SiteCurrenc" +
+      "iesResponse\"\000\022L\n\tLanguages\022\026.google.prot" +
+      "obuf.Empty\032%.palm.portal.v1.SiteLanguage" +
+      "sResponse\"\000B7\n,com.github.saturn_xiv.pal" +
+      "m.plugins.portal.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -260,12 +695,6 @@ public final class Portal {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_LocaleByLangResponse_descriptor,
         new java.lang.String[] { "Items", });
-    internal_static_palm_portal_v1_LocaleByLangResponse_Item_descriptor =
-      internal_static_palm_portal_v1_LocaleByLangResponse_descriptor.getNestedTypes().get(0);
-    internal_static_palm_portal_v1_LocaleByLangResponse_Item_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_LocaleByLangResponse_Item_descriptor,
-        new java.lang.String[] { "Code", "Message", });
     internal_static_palm_portal_v1_LocaleUpdateRequest_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_palm_portal_v1_LocaleUpdateRequest_fieldAccessorTable = new
@@ -296,56 +725,236 @@ public final class Portal {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Resource_descriptor,
         new java.lang.String[] { "Type", "Id", });
-    internal_static_palm_portal_v1_UserListResponse_descriptor =
+    internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
-    internal_static_palm_portal_v1_UserListResponse_fieldAccessorTable = new
+    internal_static_palm_portal_v1_EmailUserIndexResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_UserListResponse_descriptor,
+        internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor,
         new java.lang.String[] { "Items", "Pagination", });
-    internal_static_palm_portal_v1_UserListResponse_Item_descriptor =
-      internal_static_palm_portal_v1_UserListResponse_descriptor.getNestedTypes().get(0);
-    internal_static_palm_portal_v1_UserListResponse_Item_fieldAccessorTable = new
+    internal_static_palm_portal_v1_EmailUserIndexResponse_Item_descriptor =
+      internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_EmailUserIndexResponse_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_UserListResponse_Item_descriptor,
-        new java.lang.String[] { "Id", "Uid", "Name", "Lang", "Timezone", "ProviderId", "ProviderType", "SignInCount", "CurrentSignInIp", "CurrentSignInAt", "LockedAt", "DeletedAt", });
-    internal_static_palm_portal_v1_UserIndexLogResponse_descriptor =
+        internal_static_palm_portal_v1_EmailUserIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "RealName", "Avatar", "ConfirmedAt", "DeletedAt", "UpdatedAt", "User", });
+    internal_static_palm_portal_v1_EmailUserDeleteByEmailRequest_descriptor =
       getDescriptor().getMessageTypes().get(10);
-    internal_static_palm_portal_v1_UserIndexLogResponse_fieldAccessorTable = new
+    internal_static_palm_portal_v1_EmailUserDeleteByEmailRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_UserIndexLogResponse_descriptor,
-        new java.lang.String[] { "Items", "Pagination", });
-    internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor =
-      internal_static_palm_portal_v1_UserIndexLogResponse_descriptor.getNestedTypes().get(0);
-    internal_static_palm_portal_v1_UserIndexLogResponse_Item_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor,
-        new java.lang.String[] { "Id", "Plugin", "Ip", "Level", "Resource", "Message", "CreatedAt", });
-    internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor =
+        internal_static_palm_portal_v1_EmailUserDeleteByEmailRequest_descriptor,
+        new java.lang.String[] { "Reason", });
+    internal_static_palm_portal_v1_EmailUserUploadAvatarResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
-    internal_static_palm_portal_v1_UserSignInByEmailRequest_fieldAccessorTable = new
+    internal_static_palm_portal_v1_EmailUserUploadAvatarResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor,
-        new java.lang.String[] { "Email", "Password", "Ttl", });
-    internal_static_palm_portal_v1_UserSignInResponse_descriptor =
+        internal_static_palm_portal_v1_EmailUserUploadAvatarResponse_descriptor,
+        new java.lang.String[] { "Url", "Ttl", });
+    internal_static_palm_portal_v1_EmailUserSetAvatarRequest_descriptor =
       getDescriptor().getMessageTypes().get(12);
+    internal_static_palm_portal_v1_EmailUserSetAvatarRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSetAvatarRequest_descriptor,
+        new java.lang.String[] { "Url", });
+    internal_static_palm_portal_v1_EmailUserSetRealNameRequest_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_palm_portal_v1_EmailUserSetRealNameRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSetRealNameRequest_descriptor,
+        new java.lang.String[] { "Name", });
+    internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_palm_portal_v1_EmailUserSetPasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor,
+        new java.lang.String[] { "Id", "Password", "Salt", "Reason", });
+    internal_static_palm_portal_v1_EmailUserChangePasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_palm_portal_v1_EmailUserChangePasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserChangePasswordRequest_descriptor,
+        new java.lang.String[] { "CurrentPassword", "NewPassword", "Salt", });
+    internal_static_palm_portal_v1_EmailUserResetPasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_palm_portal_v1_EmailUserResetPasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserResetPasswordRequest_descriptor,
+        new java.lang.String[] { "Token", "Password", "Salt", });
+    internal_static_palm_portal_v1_EmailUserByTokenRequest_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_palm_portal_v1_EmailUserByTokenRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserByTokenRequest_descriptor,
+        new java.lang.String[] { "Token", });
+    internal_static_palm_portal_v1_EmailUserRequest_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_palm_portal_v1_EmailUserRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserRequest_descriptor,
+        new java.lang.String[] { "Email", "Home", });
+    internal_static_palm_portal_v1_EmailUserSignUpRequest_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_palm_portal_v1_EmailUserSignUpRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSignUpRequest_descriptor,
+        new java.lang.String[] { "RealName", "Email", "Password", "Salt", "Lang", "Timezone", "Home", });
+    internal_static_palm_portal_v1_EmailUserSignInRequest_descriptor =
+      getDescriptor().getMessageTypes().get(20);
+    internal_static_palm_portal_v1_EmailUserSignInRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSignInRequest_descriptor,
+        new java.lang.String[] { "Email", "Password", "Salt", "Ttl", });
+    internal_static_palm_portal_v1_UserUploadRequest_descriptor =
+      getDescriptor().getMessageTypes().get(21);
+    internal_static_palm_portal_v1_UserUploadRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserUploadRequest_descriptor,
+        new java.lang.String[] { "Public", "Ttl", });
+    internal_static_palm_portal_v1_UserUploadResponse_descriptor =
+      getDescriptor().getMessageTypes().get(22);
+    internal_static_palm_portal_v1_UserUploadResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserUploadResponse_descriptor,
+        new java.lang.String[] { "Bucket", "Object", "Url", });
+    internal_static_palm_portal_v1_UserSetVRequest_descriptor =
+      getDescriptor().getMessageTypes().get(23);
+    internal_static_palm_portal_v1_UserSetVRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserSetVRequest_descriptor,
+        new java.lang.String[] { "Key", "Value", "Encrypt", });
+    internal_static_palm_portal_v1_UserGetVRequest_descriptor =
+      getDescriptor().getMessageTypes().get(24);
+    internal_static_palm_portal_v1_UserGetVRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserGetVRequest_descriptor,
+        new java.lang.String[] { "Key", });
+    internal_static_palm_portal_v1_UserGetVResponse_descriptor =
+      getDescriptor().getMessageTypes().get(25);
+    internal_static_palm_portal_v1_UserGetVResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserGetVResponse_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_palm_portal_v1_UserSetLocationRequest_descriptor =
+      getDescriptor().getMessageTypes().get(26);
+    internal_static_palm_portal_v1_UserSetLocationRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserSetLocationRequest_descriptor,
+        new java.lang.String[] { "Timezone", "Lang", });
+    internal_static_palm_portal_v1_SetupUserRequest_descriptor =
+      getDescriptor().getMessageTypes().get(27);
+    internal_static_palm_portal_v1_SetupUserRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_SetupUserRequest_descriptor,
+        new java.lang.String[] { "Id", "Reason", });
+    internal_static_palm_portal_v1_UserIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(28);
+    internal_static_palm_portal_v1_UserIndexResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserIndexResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor =
+      internal_static_palm_portal_v1_UserIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_UserIndexResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Uid", "Name", "Lang", "Timezone", "SignInCount", "CurrentSignInIp", "CurrentSignInAt", "LastSignInIp", "LastSignInAt", "LockedAt", "DeletedAt", "UpdatedAt", });
+    internal_static_palm_portal_v1_UserLogsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(29);
+    internal_static_palm_portal_v1_UserLogsResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserLogsResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_portal_v1_UserLogsResponse_Item_descriptor =
+      internal_static_palm_portal_v1_UserLogsResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_UserLogsResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserLogsResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Plugin", "Ip", "Level", "Resource", "Message", "CreatedAt", });
+    internal_static_palm_portal_v1_UserSignInResponse_descriptor =
+      getDescriptor().getMessageTypes().get(30);
     internal_static_palm_portal_v1_UserSignInResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserSignInResponse_descriptor,
         new java.lang.String[] { "Token", });
+    internal_static_palm_portal_v1_SiteSetMaintenanceModeRequest_descriptor =
+      getDescriptor().getMessageTypes().get(31);
+    internal_static_palm_portal_v1_SiteSetMaintenanceModeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_SiteSetMaintenanceModeRequest_descriptor,
+        new java.lang.String[] { "On", "Reason", });
+    internal_static_palm_portal_v1_SiteUploadFaviconResponse_descriptor =
+      getDescriptor().getMessageTypes().get(32);
+    internal_static_palm_portal_v1_SiteUploadFaviconResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_SiteUploadFaviconResponse_descriptor,
+        new java.lang.String[] { "Url", "Ttl", });
+    internal_static_palm_portal_v1_SiteFaviconProfile_descriptor =
+      getDescriptor().getMessageTypes().get(33);
+    internal_static_palm_portal_v1_SiteFaviconProfile_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_SiteFaviconProfile_descriptor,
+        new java.lang.String[] { "Url", });
+    internal_static_palm_portal_v1_SiteAuthorProfile_descriptor =
+      getDescriptor().getMessageTypes().get(34);
+    internal_static_palm_portal_v1_SiteAuthorProfile_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_SiteAuthorProfile_descriptor,
+        new java.lang.String[] { "Name", "Email", });
+    internal_static_palm_portal_v1_GetSiteInfoByLangRequest_descriptor =
+      getDescriptor().getMessageTypes().get(35);
+    internal_static_palm_portal_v1_GetSiteInfoByLangRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_GetSiteInfoByLangRequest_descriptor,
+        new java.lang.String[] { "Lang", });
+    internal_static_palm_portal_v1_SetSiteInfoByLangRequest_descriptor =
+      getDescriptor().getMessageTypes().get(36);
+    internal_static_palm_portal_v1_SetSiteInfoByLangRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_SetSiteInfoByLangRequest_descriptor,
+        new java.lang.String[] { "Lang", "Item", });
+    internal_static_palm_portal_v1_GetSiteInfoByLangResponse_descriptor =
+      getDescriptor().getMessageTypes().get(37);
+    internal_static_palm_portal_v1_GetSiteInfoByLangResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_GetSiteInfoByLangResponse_descriptor,
+        new java.lang.String[] { "Title", "Subhead", "Description", "Copyright", "Keywords", });
+    internal_static_palm_portal_v1_BaiduSiteOwnershipVerification_descriptor =
+      getDescriptor().getMessageTypes().get(38);
+    internal_static_palm_portal_v1_BaiduSiteOwnershipVerification_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_BaiduSiteOwnershipVerification_descriptor,
+        new java.lang.String[] { "Code", });
+    internal_static_palm_portal_v1_ReCaptchaProfile_descriptor =
+      getDescriptor().getMessageTypes().get(39);
+    internal_static_palm_portal_v1_ReCaptchaProfile_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_ReCaptchaProfile_descriptor,
+        new java.lang.String[] { "Key", });
+    internal_static_palm_portal_v1_GoogleSiteOwnershipVerification_descriptor =
+      getDescriptor().getMessageTypes().get(40);
+    internal_static_palm_portal_v1_GoogleSiteOwnershipVerification_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_GoogleSiteOwnershipVerification_descriptor,
+        new java.lang.String[] { "Code", });
+    internal_static_palm_portal_v1_IndexNowProfile_descriptor =
+      getDescriptor().getMessageTypes().get(41);
+    internal_static_palm_portal_v1_IndexNowProfile_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_IndexNowProfile_descriptor,
+        new java.lang.String[] { "Key", });
     internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(42);
     internal_static_palm_portal_v1_SiteTimezonesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteTimezonesResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_portal_v1_SiteLanguagesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(43);
     internal_static_palm_portal_v1_SiteLanguagesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteLanguagesResponse_descriptor,
         new java.lang.String[] { "Items", });
     internal_static_palm_portal_v1_SiteCurrenciesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(44);
     internal_static_palm_portal_v1_SiteCurrenciesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteCurrenciesResponse_descriptor,
@@ -356,6 +965,126 @@ public final class Portal {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_SiteCurrenciesResponse_Item_descriptor,
         new java.lang.String[] { "Id", "Name", "Code", "Country", "Units", "Fund", });
+    internal_static_palm_portal_v1_Rss_descriptor =
+      getDescriptor().getMessageTypes().get(45);
+    internal_static_palm_portal_v1_Rss_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Rss_descriptor,
+        new java.lang.String[] { "Channel", });
+    internal_static_palm_portal_v1_Rss_Channel_descriptor =
+      internal_static_palm_portal_v1_Rss_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Rss_Channel_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Rss_Channel_descriptor,
+        new java.lang.String[] { "Title", "Description", "Link", "Copyright", "LastBuildDate", "PubDate", "Ttl", "Items", });
+    internal_static_palm_portal_v1_Rss_Channel_Item_descriptor =
+      internal_static_palm_portal_v1_Rss_Channel_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Rss_Channel_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Rss_Channel_Item_descriptor,
+        new java.lang.String[] { "Title", "Description", "Link", "PubDate", });
+    internal_static_palm_portal_v1_Rss_Channel_Item_Guid_descriptor =
+      internal_static_palm_portal_v1_Rss_Channel_Item_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Rss_Channel_Item_Guid_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Rss_Channel_Item_Guid_descriptor,
+        new java.lang.String[] { "PermanentLink", "Id", });
+    internal_static_palm_portal_v1_Sitemap_descriptor =
+      getDescriptor().getMessageTypes().get(46);
+    internal_static_palm_portal_v1_Sitemap_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Sitemap_descriptor,
+        new java.lang.String[] { "Items", });
+    internal_static_palm_portal_v1_Sitemap_Url_descriptor =
+      internal_static_palm_portal_v1_Sitemap_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Sitemap_Url_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Sitemap_Url_descriptor,
+        new java.lang.String[] { "Loc", "ChangeFreq", "Mobile", "Priority", "LastMod", });
+    internal_static_palm_portal_v1_Sitemap_UrlSet_descriptor =
+      internal_static_palm_portal_v1_Sitemap_descriptor.getNestedTypes().get(1);
+    internal_static_palm_portal_v1_Sitemap_UrlSet_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Sitemap_UrlSet_descriptor,
+        new java.lang.String[] { "Items", });
+    internal_static_palm_portal_v1_Sitemap_ItemsEntry_descriptor =
+      internal_static_palm_portal_v1_Sitemap_descriptor.getNestedTypes().get(2);
+    internal_static_palm_portal_v1_Sitemap_ItemsEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Sitemap_ItemsEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_palm_portal_v1_HtmlPage_descriptor =
+      getDescriptor().getMessageTypes().get(47);
+    internal_static_palm_portal_v1_HtmlPage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_HtmlPage_descriptor,
+        new java.lang.String[] { "Lang", "Template", "Data", });
+    internal_static_palm_portal_v1_Theme_descriptor =
+      getDescriptor().getMessageTypes().get(48);
+    internal_static_palm_portal_v1_Theme_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_portal_v1_Theme_Bootstrap_descriptor =
+      internal_static_palm_portal_v1_Theme_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Theme_Bootstrap_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Home_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Home_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Home_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(1);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_descriptor,
+        new java.lang.String[] { "Templates", "Data", });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Header_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Header_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Header_descriptor,
+        new java.lang.String[] { "Title", });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Footer_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_descriptor.getNestedTypes().get(1);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Footer_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Footer_descriptor,
+        new java.lang.String[] { "Copyright", });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_descriptor.getNestedTypes().get(2);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_descriptor,
+        new java.lang.String[] { "Title", "Items", "CreatedAt", });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_descriptor,
+        new java.lang.String[] { "Title", "Description", "Properties", });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_TemplatesEntry_descriptor =
+      internal_static_palm_portal_v1_Theme_Bootstrap_Sample_descriptor.getNestedTypes().get(1);
+    internal_static_palm_portal_v1_Theme_Bootstrap_Sample_TemplatesEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_Theme_Bootstrap_Sample_TemplatesEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();

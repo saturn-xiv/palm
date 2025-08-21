@@ -252,10 +252,835 @@ Locale::Service::~Service() {
 }
 
 
+static const char* EmailUser_method_names[] = {
+  "/palm.portal.v1.EmailUser/SignIn",
+  "/palm.portal.v1.EmailUser/SignUp",
+  "/palm.portal.v1.EmailUser/ConfirmByEmail",
+  "/palm.portal.v1.EmailUser/ConfirmByToken",
+  "/palm.portal.v1.EmailUser/UnlockByEmail",
+  "/palm.portal.v1.EmailUser/UnlockByToken",
+  "/palm.portal.v1.EmailUser/ForgotPassword",
+  "/palm.portal.v1.EmailUser/ResetPassword",
+  "/palm.portal.v1.EmailUser/ChangePassword",
+  "/palm.portal.v1.EmailUser/SetRealName",
+  "/palm.portal.v1.EmailUser/SetAvatar",
+  "/palm.portal.v1.EmailUser/UploadAvatar",
+  "/palm.portal.v1.EmailUser/DeleteByEmail",
+  "/palm.portal.v1.EmailUser/DeleteByToken",
+  "/palm.portal.v1.EmailUser/SetPassword",
+  "/palm.portal.v1.EmailUser/Confirm",
+  "/palm.portal.v1.EmailUser/Disable",
+  "/palm.portal.v1.EmailUser/Enable",
+  "/palm.portal.v1.EmailUser/Index",
+};
+
+std::unique_ptr< EmailUser::Stub> EmailUser::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< EmailUser::Stub> stub(new EmailUser::Stub(channel, options));
+  return stub;
+}
+
+EmailUser::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_SignIn_(EmailUser_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SignUp_(EmailUser_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConfirmByEmail_(EmailUser_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConfirmByToken_(EmailUser_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnlockByEmail_(EmailUser_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnlockByToken_(EmailUser_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ForgotPassword_(EmailUser_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetPassword_(EmailUser_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ChangePassword_(EmailUser_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRealName_(EmailUser_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAvatar_(EmailUser_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadAvatar_(EmailUser_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteByEmail_(EmailUser_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteByToken_(EmailUser_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPassword_(EmailUser_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Confirm_(EmailUser_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Disable_(EmailUser_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(EmailUser_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(EmailUser_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status EmailUser::Stub::SignIn(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignInRequest& request, ::palm::portal::v1::UserSignInResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserSignInRequest, ::palm::portal::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignIn_, context, request, response);
+}
+
+void EmailUser::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignInRequest* request, ::palm::portal::v1::UserSignInResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserSignInRequest, ::palm::portal::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignInRequest* request, ::palm::portal::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>* EmailUser::Stub::PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignInRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserSignInResponse, ::palm::portal::v1::EmailUserSignInRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignIn_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>* EmailUser::Stub::AsyncSignInRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignInRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSignInRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::SignUp(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignUpRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserSignUpRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignUp_, context, request, response);
+}
+
+void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignUpRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserSignUpRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignUpRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignUpRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserSignUpRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignUp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSignUpRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSignUpRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ConfirmByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ConfirmByEmail_, context, request, response);
+}
+
+void EmailUser::Stub::async::ConfirmByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByEmail_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ConfirmByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ConfirmByEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConfirmByEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ConfirmByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ConfirmByToken_, context, request, response);
+}
+
+void EmailUser::Stub::async::ConfirmByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByToken_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ConfirmByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserByTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ConfirmByToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConfirmByTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::UnlockByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnlockByEmail_, context, request, response);
+}
+
+void EmailUser::Stub::async::UnlockByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByEmail_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::UnlockByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncUnlockByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnlockByEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncUnlockByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnlockByEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::UnlockByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnlockByToken_, context, request, response);
+}
+
+void EmailUser::Stub::async::UnlockByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByToken_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::UnlockByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserByTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnlockByToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnlockByTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ForgotPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ForgotPassword_, context, request, response);
+}
+
+void EmailUser::Stub::async::ForgotPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ForgotPassword_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ForgotPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ForgotPassword_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ForgotPassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncForgotPasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ResetPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserResetPasswordRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserResetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetPassword_, context, request, response);
+}
+
+void EmailUser::Stub::async::ResetPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserResetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserResetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetPassword_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ResetPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserResetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetPassword_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserResetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserResetPasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetPassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserResetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResetPasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ChangePassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserChangePasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ChangePassword_, context, request, response);
+}
+
+void EmailUser::Stub::async::ChangePassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserChangePasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChangePassword_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ChangePassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChangePassword_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncChangePasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserChangePasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ChangePassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncChangePasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncChangePasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::SetRealName(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetRealNameRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserSetRealNameRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRealName_, context, request, response);
+}
+
+void EmailUser::Stub::async::SetRealName(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetRealNameRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserSetRealNameRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRealName_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SetRealName(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetRealNameRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRealName_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncSetRealNameRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetRealNameRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserSetRealNameRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRealName_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncSetRealNameRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetRealNameRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRealNameRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::SetAvatar(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetAvatarRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserSetAvatarRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetAvatar_, context, request, response);
+}
+
+void EmailUser::Stub::async::SetAvatar(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetAvatarRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserSetAvatarRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAvatar_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SetAvatar(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetAvatarRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAvatar_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncSetAvatarRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetAvatarRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserSetAvatarRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetAvatar_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncSetAvatarRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetAvatarRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetAvatarRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::UploadAvatar(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::EmailUserUploadAvatarResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserUploadAvatarResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UploadAvatar_, context, request, response);
+}
+
+void EmailUser::Stub::async::UploadAvatar(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::EmailUserUploadAvatarResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserUploadAvatarResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadAvatar_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::UploadAvatar(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::EmailUserUploadAvatarResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadAvatar_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::EmailUserUploadAvatarResponse>* EmailUser::Stub::PrepareAsyncUploadAvatarRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::EmailUserUploadAvatarResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UploadAvatar_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::EmailUserUploadAvatarResponse>* EmailUser::Stub::AsyncUploadAvatarRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUploadAvatarRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::DeleteByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserDeleteByEmailRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserDeleteByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteByEmail_, context, request, response);
+}
+
+void EmailUser::Stub::async::DeleteByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserDeleteByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserDeleteByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteByEmail_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::DeleteByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserDeleteByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteByEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncDeleteByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserDeleteByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserDeleteByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteByEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncDeleteByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserDeleteByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteByEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::DeleteByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteByToken_, context, request, response);
+}
+
+void EmailUser::Stub::async::DeleteByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteByToken_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::DeleteByToken(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteByToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncDeleteByTokenRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserByTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteByToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncDeleteByTokenRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteByTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::SetPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetPasswordRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPassword_, context, request, response);
+}
+
+void EmailUser::Stub::async::SetPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPassword_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SetPassword(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPassword_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserSetPasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Confirm(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::EmailUserChangePasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Confirm_, context, request, response);
+}
+
+void EmailUser::Stub::async::Confirm(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::EmailUserChangePasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Confirm_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Confirm(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Confirm_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::EmailUserChangePasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Confirm_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConfirmRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void EmailUser::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void EmailUser::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::EmailUserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::EmailUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void EmailUser::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::EmailUserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::EmailUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::EmailUserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::EmailUserIndexResponse>* EmailUser::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::EmailUserIndexResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::EmailUserIndexResponse>* EmailUser::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+EmailUser::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserSignInRequest, ::palm::portal::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserSignInRequest* req,
+             ::palm::portal::v1::UserSignInResponse* resp) {
+               return service->SignIn(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserSignUpRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserSignUpRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SignUp(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ConfirmByEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserByTokenRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ConfirmByToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->UnlockByEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserByTokenRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->UnlockByToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ForgotPassword(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserResetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserResetPasswordRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ResetPassword(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserChangePasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserChangePasswordRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ChangePassword(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserSetRealNameRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserSetRealNameRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetRealName(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserSetAvatarRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserSetAvatarRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetAvatar(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::google::protobuf::Empty, ::palm::portal::v1::EmailUserUploadAvatarResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::EmailUserUploadAvatarResponse* resp) {
+               return service->UploadAvatar(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserDeleteByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserDeleteByEmailRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->DeleteByEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[13],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserByTokenRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->DeleteByToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[14],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserSetPasswordRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetPassword(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[15],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::EmailUserChangePasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::EmailUserChangePasswordRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Confirm(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[16],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[17],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[18],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::portal::v1::Page, ::palm::portal::v1::EmailUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::Page* req,
+             ::palm::portal::v1::EmailUserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+}
+
+EmailUser::Service::~Service() {
+}
+
+::grpc::Status EmailUser::Service::SignIn(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserSignInRequest* request, ::palm::portal::v1::UserSignInResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::SignUp(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserSignUpRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ConfirmByEmail(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ConfirmByToken(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::UnlockByEmail(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::UnlockByToken(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ForgotPassword(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ResetPassword(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserResetPasswordRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ChangePassword(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::SetRealName(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserSetRealNameRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::SetAvatar(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserSetAvatarRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::UploadAvatar(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::EmailUserUploadAvatarResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::DeleteByEmail(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserDeleteByEmailRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::DeleteByToken(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserByTokenRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::SetPassword(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserSetPasswordRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Confirm(::grpc::ServerContext* context, const ::palm::portal::v1::EmailUserChangePasswordRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Disable(::grpc::ServerContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Enable(::grpc::ServerContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::EmailUserIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 static const char* User_method_names[] = {
-  "/palm.portal.v1.User/SignInByEmail",
-  "/palm.portal.v1.User/IndexLog",
-  "/palm.portal.v1.User/List",
+  "/palm.portal.v1.User/Logs",
+  "/palm.portal.v1.User/Index",
+  "/palm.portal.v1.User/SetLocation",
+  "/palm.portal.v1.User/SetV",
+  "/palm.portal.v1.User/GetV",
+  "/palm.portal.v1.User/Upload",
+  "/palm.portal.v1.User/SignOut",
+  "/palm.portal.v1.User/Lock",
+  "/palm.portal.v1.User/Unlock",
+  "/palm.portal.v1.User/Disable",
+  "/palm.portal.v1.User/Enable",
 };
 
 std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -265,76 +1090,268 @@ std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SignInByEmail_(User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IndexLog_(User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_List_(User_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Logs_(User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetLocation_(User_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetV_(User_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetV_(User_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Upload_(User_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SignOut_(User_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Lock_(User_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Unlock_(User_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Disable_(User_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(User_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status User::Stub::SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::palm::portal::v1::UserSignInResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::UserSignInByEmailRequest, ::palm::portal::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignInByEmail_, context, request, response);
+::grpc::Status User::Stub::Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
 }
 
-void User::Stub::async::SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::UserSignInByEmailRequest, ::palm::portal::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignInByEmail_, context, request, response, std::move(f));
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::SignInByEmail(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignInByEmail_, context, request, response, reactor);
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>* User::Stub::PrepareAsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserSignInResponse, ::palm::portal::v1::UserSignInByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignInByEmail_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserLogsResponse>* User::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserLogsResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserSignInResponse>* User::Stub::AsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserLogsResponse>* User::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSignInByEmailRaw(context, request, cq);
+    this->PrepareAsyncLogsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status User::Stub::IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexLogResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IndexLog_, context, request, response);
+::grpc::Status User::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
 }
 
-void User::Stub::async::IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexLog_, context, request, response, std::move(f));
+void User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::IndexLog(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexLog_, context, request, response, reactor);
+void User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>* User::Stub::PrepareAsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserIndexLogResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IndexLog_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexResponse>* User::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserIndexResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexLogResponse>* User::Stub::AsyncIndexLogRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexResponse>* User::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncIndexLogRaw(context, request, cq);
+    this->PrepareAsyncIndexRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status User::Stub::List(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserListResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserListResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_List_, context, request, response);
+::grpc::Status User::Stub::SetLocation(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetLocationRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::UserSetLocationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetLocation_, context, request, response);
 }
 
-void User::Stub::async::List(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserListResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::portal::v1::UserListResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_List_, context, request, response, std::move(f));
+void User::Stub::async::SetLocation(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetLocationRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::UserSetLocationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLocation_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::List(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserListResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_List_, context, request, response, reactor);
+void User::Stub::async::SetLocation(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetLocationRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLocation_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserListResponse>* User::Stub::PrepareAsyncListRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserListResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_List_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSetLocationRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetLocationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::UserSetLocationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetLocation_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserListResponse>* User::Stub::AsyncListRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSetLocationRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetLocationRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncListRaw(context, request, cq);
+    this->PrepareAsyncSetLocationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::SetV(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetVRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::UserSetVRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetV_, context, request, response);
+}
+
+void User::Stub::async::SetV(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetVRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::UserSetVRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetV_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::SetV(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetVRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetV_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSetVRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetVRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::UserSetVRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetV_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSetVRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetVRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetVRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::GetV(::grpc::ClientContext* context, const ::palm::portal::v1::UserGetVRequest& request, ::palm::portal::v1::UserGetVResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::UserGetVRequest, ::palm::portal::v1::UserGetVResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetV_, context, request, response);
+}
+
+void User::Stub::async::GetV(::grpc::ClientContext* context, const ::palm::portal::v1::UserGetVRequest* request, ::palm::portal::v1::UserGetVResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::UserGetVRequest, ::palm::portal::v1::UserGetVResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetV_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::GetV(::grpc::ClientContext* context, const ::palm::portal::v1::UserGetVRequest* request, ::palm::portal::v1::UserGetVResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetV_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserGetVResponse>* User::Stub::PrepareAsyncGetVRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserGetVRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserGetVResponse, ::palm::portal::v1::UserGetVRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetV_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserGetVResponse>* User::Stub::AsyncGetVRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserGetVRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetVRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Upload(::grpc::ClientContext* context, const ::palm::portal::v1::UserUploadRequest& request, ::palm::portal::v1::UserUploadResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::UserUploadRequest, ::palm::portal::v1::UserUploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Upload_, context, request, response);
+}
+
+void User::Stub::async::Upload(::grpc::ClientContext* context, const ::palm::portal::v1::UserUploadRequest* request, ::palm::portal::v1::UserUploadResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::UserUploadRequest, ::palm::portal::v1::UserUploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Upload(::grpc::ClientContext* context, const ::palm::portal::v1::UserUploadRequest* request, ::palm::portal::v1::UserUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserUploadResponse>* User::Stub::PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserUploadRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::UserUploadResponse, ::palm::portal::v1::UserUploadRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Upload_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserUploadResponse>* User::Stub::AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserUploadRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUploadRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignOut_, context, request, response);
+}
+
+void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignOut_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSignOutRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Lock(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Lock_, context, request, response);
+}
+
+void User::Stub::async::Lock(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Lock_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Lock(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Lock_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncLockRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Lock_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncLockRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Unlock(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Unlock_, context, request, response);
+}
+
+void User::Stub::async::Unlock(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Unlock_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Unlock(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Unlock_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Unlock_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnlockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -343,77 +1360,216 @@ User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::UserSignInByEmailRequest, ::palm::portal::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::Page, ::palm::portal::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::portal::v1::UserSignInByEmailRequest* req,
-             ::palm::portal::v1::UserSignInResponse* resp) {
-               return service->SignInByEmail(ctx, req, resp);
+             const ::palm::portal::v1::Page* req,
+             ::palm::portal::v1::UserLogsResponse* resp) {
+               return service->Logs(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexLogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::portal::v1::Page* req,
-             ::palm::portal::v1::UserIndexLogResponse* resp) {
-               return service->IndexLog(ctx, req, resp);
+             ::palm::portal::v1::UserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::Page, ::palm::portal::v1::UserListResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::UserSetLocationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::portal::v1::Page* req,
-             ::palm::portal::v1::UserListResponse* resp) {
-               return service->List(ctx, req, resp);
+             const ::palm::portal::v1::UserSetLocationRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetLocation(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::UserSetVRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::UserSetVRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetV(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::UserGetVRequest, ::palm::portal::v1::UserGetVResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::UserGetVRequest* req,
+             ::palm::portal::v1::UserGetVResponse* resp) {
+               return service->GetV(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::UserUploadRequest, ::palm::portal::v1::UserUploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::UserUploadRequest* req,
+             ::palm::portal::v1::UserUploadResponse* resp) {
+               return service->Upload(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SignOut(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Lock(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Unlock(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::portal::v1::SetupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
              }, this)));
 }
 
 User::Service::~Service() {
 }
 
-::grpc::Status User::Service::SignInByEmail(::grpc::ServerContext* context, const ::palm::portal::v1::UserSignInByEmailRequest* request, ::palm::portal::v1::UserSignInResponse* response) {
+::grpc::Status User::Service::Logs(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserLogsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status User::Service::IndexLog(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexLogResponse* response) {
+::grpc::Status User::Service::Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status User::Service::List(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserListResponse* response) {
+::grpc::Status User::Service::SetLocation(::grpc::ServerContext* context, const ::palm::portal::v1::UserSetLocationRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-
-std::unique_ptr< Policy::Stub> Policy::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
-  (void)options;
-  std::unique_ptr< Policy::Stub> stub(new Policy::Stub(channel, options));
-  return stub;
+::grpc::Status User::Service::SetV(::grpc::ServerContext* context, const ::palm::portal::v1::UserSetVRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-Policy::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel){}
-
-Policy::Service::Service() {
+::grpc::Status User::Service::GetV(::grpc::ServerContext* context, const ::palm::portal::v1::UserGetVRequest* request, ::palm::portal::v1::UserGetVResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-Policy::Service::~Service() {
+::grpc::Status User::Service::Upload(::grpc::ServerContext* context, const ::palm::portal::v1::UserUploadRequest* request, ::palm::portal::v1::UserUploadResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::SignOut(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Lock(::grpc::ServerContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Unlock(::grpc::ServerContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Disable(::grpc::ServerContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Enable(::grpc::ServerContext* context, const ::palm::portal::v1::SetupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 
 static const char* Site_method_names[] = {
+  "/palm.portal.v1.Site/SetInfoByLang",
+  "/palm.portal.v1.Site/GetInfoByLang",
+  "/palm.portal.v1.Site/SetAuthor",
+  "/palm.portal.v1.Site/GetAuthor",
+  "/palm.portal.v1.Site/SetFavicon",
+  "/palm.portal.v1.Site/GetFavicon",
+  "/palm.portal.v1.Site/UploadFavicon",
+  "/palm.portal.v1.Site/SetGoogleSiteOwnershipVerification",
+  "/palm.portal.v1.Site/GetGoogleSiteOwnershipVerification",
+  "/palm.portal.v1.Site/SetReCaptcha",
+  "/palm.portal.v1.Site/GetReCaptcha",
+  "/palm.portal.v1.Site/SetBaiduSiteOwnershipVerification",
+  "/palm.portal.v1.Site/GetBaiduSiteOwnershipVerification",
+  "/palm.portal.v1.Site/PingBaidu",
+  "/palm.portal.v1.Site/SetIndexNow",
+  "/palm.portal.v1.Site/GetIndexNow",
+  "/palm.portal.v1.Site/PingIndexNow",
+  "/palm.portal.v1.Site/ClearCache",
+  "/palm.portal.v1.Site/SetMaintenanceMode",
   "/palm.portal.v1.Site/Timezones",
   "/palm.portal.v1.Site/Currencies",
   "/palm.portal.v1.Site/Languages",
@@ -426,10 +1582,466 @@ std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 Site::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Timezones_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Currencies_(Site_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Languages_(Site_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_SetInfoByLang_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInfoByLang_(Site_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAuthor_(Site_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAuthor_(Site_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFavicon_(Site_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFavicon_(Site_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadFavicon_(Site_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetGoogleSiteOwnershipVerification_(Site_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGoogleSiteOwnershipVerification_(Site_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetReCaptcha_(Site_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReCaptcha_(Site_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetBaiduSiteOwnershipVerification_(Site_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBaiduSiteOwnershipVerification_(Site_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PingBaidu_(Site_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetIndexNow_(Site_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIndexNow_(Site_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PingIndexNow_(Site_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ClearCache_(Site_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetMaintenanceMode_(Site_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Timezones_(Site_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Currencies_(Site_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Languages_(Site_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status Site::Stub::SetInfoByLang(::grpc::ClientContext* context, const ::palm::portal::v1::SetSiteInfoByLangRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SetSiteInfoByLangRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetInfoByLang_, context, request, response);
+}
+
+void Site::Stub::async::SetInfoByLang(::grpc::ClientContext* context, const ::palm::portal::v1::SetSiteInfoByLangRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SetSiteInfoByLangRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetInfoByLang_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetInfoByLang(::grpc::ClientContext* context, const ::palm::portal::v1::SetSiteInfoByLangRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetInfoByLang_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetInfoByLangRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetSiteInfoByLangRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SetSiteInfoByLangRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetInfoByLang_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetInfoByLangRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SetSiteInfoByLangRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetInfoByLangRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetInfoByLang(::grpc::ClientContext* context, const ::palm::portal::v1::GetSiteInfoByLangRequest& request, ::palm::portal::v1::GetSiteInfoByLangResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::GetSiteInfoByLangRequest, ::palm::portal::v1::GetSiteInfoByLangResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInfoByLang_, context, request, response);
+}
+
+void Site::Stub::async::GetInfoByLang(::grpc::ClientContext* context, const ::palm::portal::v1::GetSiteInfoByLangRequest* request, ::palm::portal::v1::GetSiteInfoByLangResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::GetSiteInfoByLangRequest, ::palm::portal::v1::GetSiteInfoByLangResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInfoByLang_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetInfoByLang(::grpc::ClientContext* context, const ::palm::portal::v1::GetSiteInfoByLangRequest* request, ::palm::portal::v1::GetSiteInfoByLangResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInfoByLang_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::GetSiteInfoByLangResponse>* Site::Stub::PrepareAsyncGetInfoByLangRaw(::grpc::ClientContext* context, const ::palm::portal::v1::GetSiteInfoByLangRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::GetSiteInfoByLangResponse, ::palm::portal::v1::GetSiteInfoByLangRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInfoByLang_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::GetSiteInfoByLangResponse>* Site::Stub::AsyncGetInfoByLangRaw(::grpc::ClientContext* context, const ::palm::portal::v1::GetSiteInfoByLangRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetInfoByLangRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetAuthor(::grpc::ClientContext* context, const ::palm::portal::v1::SiteAuthorProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SiteAuthorProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetAuthor_, context, request, response);
+}
+
+void Site::Stub::async::SetAuthor(::grpc::ClientContext* context, const ::palm::portal::v1::SiteAuthorProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SiteAuthorProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAuthor_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetAuthor(::grpc::ClientContext* context, const ::palm::portal::v1::SiteAuthorProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAuthor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetAuthorRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SiteAuthorProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SiteAuthorProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetAuthor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetAuthorRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SiteAuthorProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetAuthorRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetAuthor(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteAuthorProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteAuthorProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAuthor_, context, request, response);
+}
+
+void Site::Stub::async::GetAuthor(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteAuthorProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteAuthorProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAuthor_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetAuthor(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteAuthorProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAuthor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteAuthorProfile>* Site::Stub::PrepareAsyncGetAuthorRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteAuthorProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAuthor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteAuthorProfile>* Site::Stub::AsyncGetAuthorRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAuthorRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetFavicon(::grpc::ClientContext* context, const ::palm::portal::v1::SiteFaviconProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SiteFaviconProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetFavicon_, context, request, response);
+}
+
+void Site::Stub::async::SetFavicon(::grpc::ClientContext* context, const ::palm::portal::v1::SiteFaviconProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SiteFaviconProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFavicon_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetFavicon(::grpc::ClientContext* context, const ::palm::portal::v1::SiteFaviconProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFavicon_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetFaviconRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SiteFaviconProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SiteFaviconProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetFavicon_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetFaviconRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SiteFaviconProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetFaviconRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetFavicon(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteFaviconProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteFaviconProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFavicon_, context, request, response);
+}
+
+void Site::Stub::async::GetFavicon(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteFaviconProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteFaviconProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFavicon_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetFavicon(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteFaviconProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFavicon_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteFaviconProfile>* Site::Stub::PrepareAsyncGetFaviconRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteFaviconProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFavicon_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteFaviconProfile>* Site::Stub::AsyncGetFaviconRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetFaviconRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::UploadFavicon(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteUploadFaviconResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteUploadFaviconResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UploadFavicon_, context, request, response);
+}
+
+void Site::Stub::async::UploadFavicon(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteUploadFaviconResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteUploadFaviconResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadFavicon_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::UploadFavicon(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteUploadFaviconResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadFavicon_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteUploadFaviconResponse>* Site::Stub::PrepareAsyncUploadFaviconRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteUploadFaviconResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UploadFavicon_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteUploadFaviconResponse>* Site::Stub::AsyncUploadFaviconRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUploadFaviconRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetGoogleSiteOwnershipVerification(::grpc::ClientContext* context, const ::palm::portal::v1::GoogleSiteOwnershipVerification& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::GoogleSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetGoogleSiteOwnershipVerification_, context, request, response);
+}
+
+void Site::Stub::async::SetGoogleSiteOwnershipVerification(::grpc::ClientContext* context, const ::palm::portal::v1::GoogleSiteOwnershipVerification* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::GoogleSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetGoogleSiteOwnershipVerification_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetGoogleSiteOwnershipVerification(::grpc::ClientContext* context, const ::palm::portal::v1::GoogleSiteOwnershipVerification* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetGoogleSiteOwnershipVerification_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetGoogleSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::palm::portal::v1::GoogleSiteOwnershipVerification& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::GoogleSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetGoogleSiteOwnershipVerification_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetGoogleSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::palm::portal::v1::GoogleSiteOwnershipVerification& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetGoogleSiteOwnershipVerificationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetGoogleSiteOwnershipVerification(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::GoogleSiteOwnershipVerification* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::GoogleSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGoogleSiteOwnershipVerification_, context, request, response);
+}
+
+void Site::Stub::async::GetGoogleSiteOwnershipVerification(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::GoogleSiteOwnershipVerification* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::GoogleSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGoogleSiteOwnershipVerification_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetGoogleSiteOwnershipVerification(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::GoogleSiteOwnershipVerification* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGoogleSiteOwnershipVerification_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::GoogleSiteOwnershipVerification>* Site::Stub::PrepareAsyncGetGoogleSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::GoogleSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGoogleSiteOwnershipVerification_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::GoogleSiteOwnershipVerification>* Site::Stub::AsyncGetGoogleSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetGoogleSiteOwnershipVerificationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetReCaptcha(::grpc::ClientContext* context, const ::palm::portal::v1::ReCaptchaProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ReCaptchaProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetReCaptcha_, context, request, response);
+}
+
+void Site::Stub::async::SetReCaptcha(::grpc::ClientContext* context, const ::palm::portal::v1::ReCaptchaProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ReCaptchaProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetReCaptcha_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetReCaptcha(::grpc::ClientContext* context, const ::palm::portal::v1::ReCaptchaProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetReCaptcha_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetReCaptchaRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ReCaptchaProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::ReCaptchaProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetReCaptcha_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetReCaptchaRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ReCaptchaProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetReCaptchaRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetReCaptcha(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::ReCaptchaProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::ReCaptchaProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReCaptcha_, context, request, response);
+}
+
+void Site::Stub::async::GetReCaptcha(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::ReCaptchaProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::ReCaptchaProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReCaptcha_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetReCaptcha(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::ReCaptchaProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReCaptcha_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::ReCaptchaProfile>* Site::Stub::PrepareAsyncGetReCaptchaRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::ReCaptchaProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReCaptcha_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::ReCaptchaProfile>* Site::Stub::AsyncGetReCaptchaRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReCaptchaRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetBaiduSiteOwnershipVerification(::grpc::ClientContext* context, const ::palm::portal::v1::BaiduSiteOwnershipVerification& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::BaiduSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetBaiduSiteOwnershipVerification_, context, request, response);
+}
+
+void Site::Stub::async::SetBaiduSiteOwnershipVerification(::grpc::ClientContext* context, const ::palm::portal::v1::BaiduSiteOwnershipVerification* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::BaiduSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetBaiduSiteOwnershipVerification_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetBaiduSiteOwnershipVerification(::grpc::ClientContext* context, const ::palm::portal::v1::BaiduSiteOwnershipVerification* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetBaiduSiteOwnershipVerification_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetBaiduSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::palm::portal::v1::BaiduSiteOwnershipVerification& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::BaiduSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetBaiduSiteOwnershipVerification_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetBaiduSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::palm::portal::v1::BaiduSiteOwnershipVerification& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetBaiduSiteOwnershipVerificationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetBaiduSiteOwnershipVerification(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::BaiduSiteOwnershipVerification* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::BaiduSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetBaiduSiteOwnershipVerification_, context, request, response);
+}
+
+void Site::Stub::async::GetBaiduSiteOwnershipVerification(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::BaiduSiteOwnershipVerification* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::BaiduSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBaiduSiteOwnershipVerification_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetBaiduSiteOwnershipVerification(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::BaiduSiteOwnershipVerification* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBaiduSiteOwnershipVerification_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::BaiduSiteOwnershipVerification>* Site::Stub::PrepareAsyncGetBaiduSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::BaiduSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetBaiduSiteOwnershipVerification_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::BaiduSiteOwnershipVerification>* Site::Stub::AsyncGetBaiduSiteOwnershipVerificationRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetBaiduSiteOwnershipVerificationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::PingBaidu(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PingBaidu_, context, request, response);
+}
+
+void Site::Stub::async::PingBaidu(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PingBaidu_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::PingBaidu(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PingBaidu_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncPingBaiduRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PingBaidu_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncPingBaiduRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPingBaiduRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetIndexNow(::grpc::ClientContext* context, const ::palm::portal::v1::IndexNowProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::IndexNowProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetIndexNow_, context, request, response);
+}
+
+void Site::Stub::async::SetIndexNow(::grpc::ClientContext* context, const ::palm::portal::v1::IndexNowProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::IndexNowProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetIndexNow_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetIndexNow(::grpc::ClientContext* context, const ::palm::portal::v1::IndexNowProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetIndexNow_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetIndexNowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IndexNowProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::IndexNowProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetIndexNow_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetIndexNowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IndexNowProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetIndexNowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::GetIndexNow(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::IndexNowProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::IndexNowProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetIndexNow_, context, request, response);
+}
+
+void Site::Stub::async::GetIndexNow(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::IndexNowProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::IndexNowProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIndexNow_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::GetIndexNow(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::IndexNowProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIndexNow_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::IndexNowProfile>* Site::Stub::PrepareAsyncGetIndexNowRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::IndexNowProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetIndexNow_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::IndexNowProfile>* Site::Stub::AsyncGetIndexNowRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetIndexNowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::PingIndexNow(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PingIndexNow_, context, request, response);
+}
+
+void Site::Stub::async::PingIndexNow(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PingIndexNow_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::PingIndexNow(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PingIndexNow_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncPingIndexNowRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PingIndexNow_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncPingIndexNowRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPingIndexNowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::ClearCache(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ClearCache_, context, request, response);
+}
+
+void Site::Stub::async::ClearCache(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ClearCache_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::ClearCache(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ClearCache_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncClearCacheRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ClearCache_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncClearCacheRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncClearCacheRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Site::Stub::SetMaintenanceMode(::grpc::ClientContext* context, const ::palm::portal::v1::SiteSetMaintenanceModeRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::SiteSetMaintenanceModeRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetMaintenanceMode_, context, request, response);
+}
+
+void Site::Stub::async::SetMaintenanceMode(::grpc::ClientContext* context, const ::palm::portal::v1::SiteSetMaintenanceModeRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::SiteSetMaintenanceModeRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMaintenanceMode_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::SetMaintenanceMode(::grpc::ClientContext* context, const ::palm::portal::v1::SiteSetMaintenanceModeRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMaintenanceMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::PrepareAsyncSetMaintenanceModeRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SiteSetMaintenanceModeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::SiteSetMaintenanceModeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetMaintenanceMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Site::Stub::AsyncSetMaintenanceModeRaw(::grpc::ClientContext* context, const ::palm::portal::v1::SiteSetMaintenanceModeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetMaintenanceModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 ::grpc::Status Site::Stub::Timezones(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteTimezonesResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Timezones_, context, request, response);
@@ -504,6 +2116,196 @@ Site::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Site_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::SetSiteInfoByLangRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SetSiteInfoByLangRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetInfoByLang(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::GetSiteInfoByLangRequest, ::palm::portal::v1::GetSiteInfoByLangResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::GetSiteInfoByLangRequest* req,
+             ::palm::portal::v1::GetSiteInfoByLangResponse* resp) {
+               return service->GetInfoByLang(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::SiteAuthorProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SiteAuthorProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetAuthor(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteAuthorProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteAuthorProfile* resp) {
+               return service->GetAuthor(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::SiteFaviconProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SiteFaviconProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetFavicon(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteFaviconProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteFaviconProfile* resp) {
+               return service->GetFavicon(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteUploadFaviconResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteUploadFaviconResponse* resp) {
+               return service->UploadFavicon(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::GoogleSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::GoogleSiteOwnershipVerification* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetGoogleSiteOwnershipVerification(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::GoogleSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::GoogleSiteOwnershipVerification* resp) {
+               return service->GetGoogleSiteOwnershipVerification(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::ReCaptchaProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ReCaptchaProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetReCaptcha(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::ReCaptchaProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::ReCaptchaProfile* resp) {
+               return service->GetReCaptcha(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::BaiduSiteOwnershipVerification, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::BaiduSiteOwnershipVerification* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetBaiduSiteOwnershipVerification(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::BaiduSiteOwnershipVerification, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::BaiduSiteOwnershipVerification* resp) {
+               return service->GetBaiduSiteOwnershipVerification(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[13],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->PingBaidu(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[14],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::IndexNowProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::IndexNowProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetIndexNow(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[15],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::IndexNowProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::IndexNowProfile* resp) {
+               return service->GetIndexNow(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[16],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->PingIndexNow(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[17],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ClearCache(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[18],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::portal::v1::SiteSetMaintenanceModeRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::SiteSetMaintenanceModeRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetMaintenanceMode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[19],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteTimezonesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Site::Service* service,
              ::grpc::ServerContext* ctx,
@@ -512,7 +2314,7 @@ Site::Service::Service() {
                return service->Timezones(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Site_method_names[1],
+      Site_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteCurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Site::Service* service,
@@ -522,7 +2324,7 @@ Site::Service::Service() {
                return service->Currencies(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Site_method_names[2],
+      Site_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteLanguagesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Site::Service* service,
@@ -534,6 +2336,139 @@ Site::Service::Service() {
 }
 
 Site::Service::~Service() {
+}
+
+::grpc::Status Site::Service::SetInfoByLang(::grpc::ServerContext* context, const ::palm::portal::v1::SetSiteInfoByLangRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetInfoByLang(::grpc::ServerContext* context, const ::palm::portal::v1::GetSiteInfoByLangRequest* request, ::palm::portal::v1::GetSiteInfoByLangResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetAuthor(::grpc::ServerContext* context, const ::palm::portal::v1::SiteAuthorProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetAuthor(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteAuthorProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetFavicon(::grpc::ServerContext* context, const ::palm::portal::v1::SiteFaviconProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetFavicon(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteFaviconProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::UploadFavicon(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteUploadFaviconResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetGoogleSiteOwnershipVerification(::grpc::ServerContext* context, const ::palm::portal::v1::GoogleSiteOwnershipVerification* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetGoogleSiteOwnershipVerification(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::GoogleSiteOwnershipVerification* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetReCaptcha(::grpc::ServerContext* context, const ::palm::portal::v1::ReCaptchaProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetReCaptcha(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::ReCaptchaProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetBaiduSiteOwnershipVerification(::grpc::ServerContext* context, const ::palm::portal::v1::BaiduSiteOwnershipVerification* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetBaiduSiteOwnershipVerification(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::BaiduSiteOwnershipVerification* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::PingBaidu(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetIndexNow(::grpc::ServerContext* context, const ::palm::portal::v1::IndexNowProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::GetIndexNow(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::IndexNowProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::PingIndexNow(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::ClearCache(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Site::Service::SetMaintenanceMode(::grpc::ServerContext* context, const ::palm::portal::v1::SiteSetMaintenanceModeRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status Site::Service::Timezones(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteTimezonesResponse* response) {

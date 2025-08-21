@@ -20,12 +20,16 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
+#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
 #include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/message.h"
+#include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -48,6 +52,27 @@ struct TableStruct_blog_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_blog_2eproto;
+namespace palm {
+namespace blog {
+namespace v1 {
+class Theme;
+struct ThemeDefaultTypeInternal;
+extern ThemeDefaultTypeInternal _Theme_default_instance_;
+class Theme_Bootstrap;
+struct Theme_BootstrapDefaultTypeInternal;
+extern Theme_BootstrapDefaultTypeInternal _Theme_Bootstrap_default_instance_;
+class Theme_Bootstrap_Archive;
+struct Theme_Bootstrap_ArchiveDefaultTypeInternal;
+extern Theme_Bootstrap_ArchiveDefaultTypeInternal _Theme_Bootstrap_Archive_default_instance_;
+class Theme_Bootstrap_Index;
+struct Theme_Bootstrap_IndexDefaultTypeInternal;
+extern Theme_Bootstrap_IndexDefaultTypeInternal _Theme_Bootstrap_Index_default_instance_;
+class Theme_Bootstrap_Show;
+struct Theme_Bootstrap_ShowDefaultTypeInternal;
+extern Theme_Bootstrap_ShowDefaultTypeInternal _Theme_Bootstrap_Show_default_instance_;
+}  // namespace v1
+}  // namespace blog
+}  // namespace palm
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
@@ -60,6 +85,735 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class Theme_Bootstrap_Show final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.blog.v1.Theme.Bootstrap.Show) */ {
+ public:
+  inline Theme_Bootstrap_Show() : Theme_Bootstrap_Show(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap_Show* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Show));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Show(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap_Show(const Theme_Bootstrap_Show& from) : Theme_Bootstrap_Show(nullptr, from) {}
+  inline Theme_Bootstrap_Show(Theme_Bootstrap_Show&& from) noexcept
+      : Theme_Bootstrap_Show(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Show& operator=(const Theme_Bootstrap_Show& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap_Show& operator=(Theme_Bootstrap_Show&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap_Show& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap_Show* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Show*>(
+        &_Theme_Bootstrap_Show_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Theme_Bootstrap_Show& a, Theme_Bootstrap_Show& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Show* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap_Show* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap_Show* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bootstrap_Show>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme_Bootstrap_Show& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Show& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.blog.v1.Theme.Bootstrap.Show"; }
+
+ protected:
+  explicit Theme_Bootstrap_Show(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Show(::google::protobuf::Arena* arena, const Theme_Bootstrap_Show& from);
+  Theme_Bootstrap_Show(::google::protobuf::Arena* arena, Theme_Bootstrap_Show&& from) noexcept
+      : Theme_Bootstrap_Show(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.blog.v1.Theme.Bootstrap.Show)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap_Show& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_blog_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Theme_Bootstrap_Index final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.blog.v1.Theme.Bootstrap.Index) */ {
+ public:
+  inline Theme_Bootstrap_Index() : Theme_Bootstrap_Index(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap_Index* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Index));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Index(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap_Index(const Theme_Bootstrap_Index& from) : Theme_Bootstrap_Index(nullptr, from) {}
+  inline Theme_Bootstrap_Index(Theme_Bootstrap_Index&& from) noexcept
+      : Theme_Bootstrap_Index(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Index& operator=(const Theme_Bootstrap_Index& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap_Index& operator=(Theme_Bootstrap_Index&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap_Index& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap_Index* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Index*>(
+        &_Theme_Bootstrap_Index_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(Theme_Bootstrap_Index& a, Theme_Bootstrap_Index& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Index* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap_Index* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap_Index* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bootstrap_Index>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme_Bootstrap_Index& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Index& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.blog.v1.Theme.Bootstrap.Index"; }
+
+ protected:
+  explicit Theme_Bootstrap_Index(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Index(::google::protobuf::Arena* arena, const Theme_Bootstrap_Index& from);
+  Theme_Bootstrap_Index(::google::protobuf::Arena* arena, Theme_Bootstrap_Index&& from) noexcept
+      : Theme_Bootstrap_Index(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.blog.v1.Theme.Bootstrap.Index)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap_Index& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_blog_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Theme_Bootstrap_Archive final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.blog.v1.Theme.Bootstrap.Archive) */ {
+ public:
+  inline Theme_Bootstrap_Archive() : Theme_Bootstrap_Archive(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap_Archive* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Archive));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Archive(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap_Archive(const Theme_Bootstrap_Archive& from) : Theme_Bootstrap_Archive(nullptr, from) {}
+  inline Theme_Bootstrap_Archive(Theme_Bootstrap_Archive&& from) noexcept
+      : Theme_Bootstrap_Archive(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Archive& operator=(const Theme_Bootstrap_Archive& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap_Archive& operator=(Theme_Bootstrap_Archive&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap_Archive& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap_Archive* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Archive*>(
+        &_Theme_Bootstrap_Archive_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(Theme_Bootstrap_Archive& a, Theme_Bootstrap_Archive& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Archive* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap_Archive* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap_Archive* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bootstrap_Archive>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme_Bootstrap_Archive& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Archive& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.blog.v1.Theme.Bootstrap.Archive"; }
+
+ protected:
+  explicit Theme_Bootstrap_Archive(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Archive(::google::protobuf::Arena* arena, const Theme_Bootstrap_Archive& from);
+  Theme_Bootstrap_Archive(::google::protobuf::Arena* arena, Theme_Bootstrap_Archive&& from) noexcept
+      : Theme_Bootstrap_Archive(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.blog.v1.Theme.Bootstrap.Archive)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap_Archive& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_blog_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Theme_Bootstrap final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.blog.v1.Theme.Bootstrap) */ {
+ public:
+  inline Theme_Bootstrap() : Theme_Bootstrap(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap(const Theme_Bootstrap& from) : Theme_Bootstrap(nullptr, from) {}
+  inline Theme_Bootstrap(Theme_Bootstrap&& from) noexcept
+      : Theme_Bootstrap(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap& operator=(const Theme_Bootstrap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap& operator=(Theme_Bootstrap&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap*>(
+        &_Theme_Bootstrap_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(Theme_Bootstrap& a, Theme_Bootstrap& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bootstrap>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme_Bootstrap& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.blog.v1.Theme.Bootstrap"; }
+
+ protected:
+  explicit Theme_Bootstrap(::google::protobuf::Arena* arena);
+  Theme_Bootstrap(::google::protobuf::Arena* arena, const Theme_Bootstrap& from);
+  Theme_Bootstrap(::google::protobuf::Arena* arena, Theme_Bootstrap&& from) noexcept
+      : Theme_Bootstrap(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Show = Theme_Bootstrap_Show;
+  using Index = Theme_Bootstrap_Index;
+  using Archive = Theme_Bootstrap_Archive;
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.blog.v1.Theme.Bootstrap)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_blog_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Theme final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.blog.v1.Theme) */ {
+ public:
+  inline Theme() : Theme(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme(const Theme& from) : Theme(nullptr, from) {}
+  inline Theme(Theme&& from) noexcept
+      : Theme(nullptr, std::move(from)) {}
+  inline Theme& operator=(const Theme& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme& operator=(Theme&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme* internal_default_instance() {
+    return reinterpret_cast<const Theme*>(
+        &_Theme_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(Theme& a, Theme& b) { a.Swap(&b); }
+  inline void Swap(Theme* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.blog.v1.Theme"; }
+
+ protected:
+  explicit Theme(::google::protobuf::Arena* arena);
+  Theme(::google::protobuf::Arena* arena, const Theme& from);
+  Theme(::google::protobuf::Arena* arena, Theme&& from) noexcept
+      : Theme(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Bootstrap = Theme_Bootstrap;
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.blog.v1.Theme)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_blog_2eproto;
+};
 
 // ===================================================================
 
@@ -73,6 +827,26 @@ namespace v1 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// Theme_Bootstrap_Show
+
+// -------------------------------------------------------------------
+
+// Theme_Bootstrap_Index
+
+// -------------------------------------------------------------------
+
+// Theme_Bootstrap_Archive
+
+// -------------------------------------------------------------------
+
+// Theme_Bootstrap
+
+// -------------------------------------------------------------------
+
+// Theme
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__

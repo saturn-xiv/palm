@@ -27,6 +27,96 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace blog {
 namespace v1 {
+              template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Show::Theme_Bootstrap_Show(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_Bootstrap_ShowDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_ShowDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_ShowDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap_Show _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_ShowDefaultTypeInternal _Theme_Bootstrap_Show_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Index::Theme_Bootstrap_Index(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_Bootstrap_IndexDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_IndexDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_IndexDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap_Index _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_IndexDefaultTypeInternal _Theme_Bootstrap_Index_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Archive::Theme_Bootstrap_Archive(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_Bootstrap_ArchiveDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_ArchiveDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_ArchiveDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap_Archive _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_ArchiveDefaultTypeInternal _Theme_Bootstrap_Archive_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap::Theme_Bootstrap(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_BootstrapDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_BootstrapDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_BootstrapDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_BootstrapDefaultTypeInternal _Theme_Bootstrap_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Theme::Theme(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct ThemeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ThemeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ThemeDefaultTypeInternal() {}
+  union {
+    Theme _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ThemeDefaultTypeInternal _Theme_default_instance_;
 }  // namespace v1
 }  // namespace blog
 }  // namespace palm
@@ -34,26 +124,84 @@ static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_blog_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_blog_2eproto = nullptr;
-const ::uint32_t TableStruct_blog_2eproto::offsets[1] = {};
-static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
-static constexpr ::_pb::Message* const* file_default_instances = nullptr;
+const ::uint32_t
+    TableStruct_blog_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
+        protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::blog::v1::Theme_Bootstrap_Show, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::blog::v1::Theme_Bootstrap_Index, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::blog::v1::Theme_Bootstrap_Archive, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::blog::v1::Theme_Bootstrap, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::blog::v1::Theme, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+};
+
+static const ::_pbi::MigrationSchema
+    schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::palm::blog::v1::Theme_Bootstrap_Show)},
+        {8, -1, -1, sizeof(::palm::blog::v1::Theme_Bootstrap_Index)},
+        {16, -1, -1, sizeof(::palm::blog::v1::Theme_Bootstrap_Archive)},
+        {24, -1, -1, sizeof(::palm::blog::v1::Theme_Bootstrap)},
+        {32, -1, -1, sizeof(::palm::blog::v1::Theme)},
+};
+static const ::_pb::Message* const file_default_instances[] = {
+    &::palm::blog::v1::_Theme_Bootstrap_Show_default_instance_._instance,
+    &::palm::blog::v1::_Theme_Bootstrap_Index_default_instance_._instance,
+    &::palm::blog::v1::_Theme_Bootstrap_Archive_default_instance_._instance,
+    &::palm::blog::v1::_Theme_Bootstrap_default_instance_._instance,
+    &::palm::blog::v1::_Theme_default_instance_._instance,
+};
 const char descriptor_table_protodef_blog_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\nblog.proto\022\014palm.blog.v12\006\n\004Page2\006\n\004Po"
-    "stB5\n*com.github.saturn_xiv.palm.plugins"
-    ".blog.v1P\001Z\005./;v2b\006proto3"
+    "\n\nblog.proto\022\014palm.blog.v1\"0\n\005Theme\032\'\n\tB"
+    "ootstrap\032\006\n\004Show\032\007\n\005Index\032\t\n\007Archive2\006\n\004"
+    "Page2\006\n\004PostB5\n*com.github.saturn_xiv.pa"
+    "lm.plugins.blog.v1P\001Z\005./;v2b\006proto3"
 };
 static ::absl::once_flag descriptor_table_blog_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_blog_2eproto = {
     false,
     false,
-    105,
+    155,
     descriptor_table_protodef_blog_2eproto,
     "blog.proto",
     &descriptor_table_blog_2eproto_once,
     nullptr,
     0,
-    0,
+    5,
     schemas,
     file_default_instances,
     TableStruct_blog_2eproto::offsets,
@@ -63,6 +211,521 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_blog_2eproto =
 namespace palm {
 namespace blog {
 namespace v1 {
+// ===================================================================
+
+class Theme_Bootstrap_Show::_Internal {
+ public:
+};
+
+Theme_Bootstrap_Show::Theme_Bootstrap_Show(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.blog.v1.Theme.Bootstrap.Show)
+}
+Theme_Bootstrap_Show::Theme_Bootstrap_Show(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bootstrap_Show& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bootstrap_Show* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.blog.v1.Theme.Bootstrap.Show)
+}
+
+inline void* Theme_Bootstrap_Show::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bootstrap_Show(arena);
+}
+constexpr auto Theme_Bootstrap_Show::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme_Bootstrap_Show),
+                                            alignof(Theme_Bootstrap_Show));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Show::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bootstrap_Show_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bootstrap_Show::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bootstrap_Show>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bootstrap_Show::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bootstrap_Show>(), &Theme_Bootstrap_Show::ByteSizeLong,
+            &Theme_Bootstrap_Show::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Show, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bootstrap_Show::kDescriptorMethods,
+    &descriptor_table_blog_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Show::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap_Show::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::blog::v1::Theme_Bootstrap_Show>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme_Bootstrap_Show::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme_Bootstrap_Index::_Internal {
+ public:
+};
+
+Theme_Bootstrap_Index::Theme_Bootstrap_Index(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.blog.v1.Theme.Bootstrap.Index)
+}
+Theme_Bootstrap_Index::Theme_Bootstrap_Index(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bootstrap_Index& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bootstrap_Index* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.blog.v1.Theme.Bootstrap.Index)
+}
+
+inline void* Theme_Bootstrap_Index::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bootstrap_Index(arena);
+}
+constexpr auto Theme_Bootstrap_Index::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme_Bootstrap_Index),
+                                            alignof(Theme_Bootstrap_Index));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Index::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bootstrap_Index_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bootstrap_Index::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bootstrap_Index>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bootstrap_Index::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bootstrap_Index>(), &Theme_Bootstrap_Index::ByteSizeLong,
+            &Theme_Bootstrap_Index::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Index, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bootstrap_Index::kDescriptorMethods,
+    &descriptor_table_blog_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Index::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap_Index::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::blog::v1::Theme_Bootstrap_Index>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme_Bootstrap_Index::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme_Bootstrap_Archive::_Internal {
+ public:
+};
+
+Theme_Bootstrap_Archive::Theme_Bootstrap_Archive(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.blog.v1.Theme.Bootstrap.Archive)
+}
+Theme_Bootstrap_Archive::Theme_Bootstrap_Archive(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bootstrap_Archive& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bootstrap_Archive* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.blog.v1.Theme.Bootstrap.Archive)
+}
+
+inline void* Theme_Bootstrap_Archive::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bootstrap_Archive(arena);
+}
+constexpr auto Theme_Bootstrap_Archive::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme_Bootstrap_Archive),
+                                            alignof(Theme_Bootstrap_Archive));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Archive::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bootstrap_Archive_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bootstrap_Archive::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bootstrap_Archive>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bootstrap_Archive::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bootstrap_Archive>(), &Theme_Bootstrap_Archive::ByteSizeLong,
+            &Theme_Bootstrap_Archive::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Archive, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bootstrap_Archive::kDescriptorMethods,
+    &descriptor_table_blog_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Archive::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap_Archive::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::blog::v1::Theme_Bootstrap_Archive>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme_Bootstrap_Archive::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme_Bootstrap::_Internal {
+ public:
+};
+
+Theme_Bootstrap::Theme_Bootstrap(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.blog.v1.Theme.Bootstrap)
+}
+Theme_Bootstrap::Theme_Bootstrap(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bootstrap& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bootstrap* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.blog.v1.Theme.Bootstrap)
+}
+
+inline void* Theme_Bootstrap::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bootstrap(arena);
+}
+constexpr auto Theme_Bootstrap::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme_Bootstrap),
+                                            alignof(Theme_Bootstrap));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bootstrap_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bootstrap::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bootstrap>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bootstrap::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bootstrap>(), &Theme_Bootstrap::ByteSizeLong,
+            &Theme_Bootstrap::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bootstrap, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bootstrap::kDescriptorMethods,
+    &descriptor_table_blog_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bootstrap::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::blog::v1::Theme_Bootstrap>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme_Bootstrap::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme::_Internal {
+ public:
+};
+
+Theme::Theme(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.blog.v1.Theme)
+}
+Theme::Theme(
+    ::google::protobuf::Arena* arena,
+    const Theme& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.blog.v1.Theme)
+}
+
+inline void* Theme::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme(arena);
+}
+constexpr auto Theme::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme),
+                                            alignof(Theme));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme>(), &Theme::ByteSizeLong,
+            &Theme::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme, _impl_._cached_size_),
+        false,
+    },
+    &Theme::kDescriptorMethods,
+    &descriptor_table_blog_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::blog::v1::Theme>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace blog

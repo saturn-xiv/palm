@@ -35,11 +35,7 @@ message LocaleByLangRequest {
   string lang = 1;
 }
 message LocaleByLangResponse {
-  message Item {
-    string code = 1;
-    string message = 2;
-  }
-  repeated Item items = 1;
+  repeated LocaleIndexResponse.Item items = 1;
 }
 message LocaleUpdateRequest {
   uint32 id = 1;
@@ -65,14 +61,145 @@ message Resource {
   string type = 1;
   optional uint32 id = 2;
 }
+
+// ----------------------------------------------------------------------------
+service EmailUser {
+  rpc SignIn(EmailUserSignInRequest) returns (UserSignInResponse) {}
+  rpc SignUp(EmailUserSignUpRequest) returns (google.protobuf.Empty) {}
+  rpc ConfirmByEmail(EmailUserRequest) returns (google.protobuf.Empty) {}
+  rpc ConfirmByToken(EmailUserByTokenRequest) returns (google.protobuf.Empty) {}
+  rpc UnlockByEmail(EmailUserRequest) returns (google.protobuf.Empty) {}
+  rpc UnlockByToken(EmailUserByTokenRequest) returns (google.protobuf.Empty) {}
+  rpc ForgotPassword(EmailUserRequest) returns (google.protobuf.Empty) {}
+  rpc ResetPassword(EmailUserResetPasswordRequest)
+      returns (google.protobuf.Empty) {}
+  rpc ChangePassword(EmailUserChangePasswordRequest)
+      returns (google.protobuf.Empty) {}
+  rpc SetRealName(EmailUserSetRealNameRequest) returns (google.protobuf.Empty) {
+  }
+  rpc SetAvatar(EmailUserSetAvatarRequest) returns (google.protobuf.Empty) {}
+  rpc UploadAvatar(google.protobuf.Empty)
+      returns (EmailUserUploadAvatarResponse) {}
+  rpc DeleteByEmail(EmailUserDeleteByEmailRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeleteByToken(EmailUserByTokenRequest) returns (google.protobuf.Empty) {}
+
+  rpc SetPassword(EmailUserSetPasswordRequest) returns (google.protobuf.Empty) {
+  }
+  rpc Confirm(EmailUserChangePasswordRequest) returns (google.protobuf.Empty) {}
+  rpc Disable(SetupUserRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(SetupUserRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Page) returns (EmailUserIndexResponse) {}
+}
+message EmailUserIndexResponse {
+  message Item {
+    uint32 id = 1;
+    string real_name = 2;
+    string avatar = 3;
+    optional google.protobuf.Timestamp confirmed_at = 4;
+    optional google.protobuf.Timestamp deleted_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+    UserIndexResponse.Item user = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 9;
+}
+message EmailUserDeleteByEmailRequest {
+  string reason = 1;
+}
+message EmailUserUploadAvatarResponse {
+  string url = 1;
+  google.protobuf.Duration ttl = 9;
+}
+message EmailUserSetAvatarRequest {
+  string url = 1;
+}
+message EmailUserSetRealNameRequest {
+  string name = 1;
+}
+message EmailUserSetPasswordRequest {
+  uint32 id = 1;
+  string password = 2;
+  string salt = 3;
+  optional string reason = 4;
+}
+message EmailUserChangePasswordRequest {
+  string current_password = 1;
+  string new_password = 2;
+  string salt = 3;
+}
+message EmailUserResetPasswordRequest {
+  string token = 1;
+  string password = 2;
+  string salt = 3;
+}
+message EmailUserByTokenRequest {
+  string token = 1;
+}
+message EmailUserRequest {
+  string email = 1;
+  string home = 2;
+}
+message EmailUserSignUpRequest {
+  string real_name = 1;
+  string email = 2;
+  string password = 3;
+  string salt = 4;
+  string lang = 5;
+  string timezone = 6;
+  string home = 7;
+}
+message EmailUserSignInRequest {
+  string email = 1;
+  string password = 2;
+  string salt = 3;
+  optional google.protobuf.Duration ttl = 9;
+}
 // ----------------------------------------------------------------------------
 
 service User {
-  rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
-  rpc IndexLog(Page) returns (UserIndexLogResponse) {}
-  rpc List(Page) returns (UserListResponse) {}
+  rpc Logs(Page) returns (UserLogsResponse) {}
+  rpc Index(Page) returns (UserIndexResponse) {}
+  rpc SetLocation(UserSetLocationRequest) returns (google.protobuf.Empty) {}
+  rpc SetV(UserSetVRequest) returns (google.protobuf.Empty) {}
+  rpc GetV(UserGetVRequest) returns (UserGetVResponse) {}
+  rpc Upload(UserUploadRequest) returns (UserUploadResponse) {}
+  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc Lock(SetupUserRequest) returns (google.protobuf.Empty) {}
+  rpc Unlock(SetupUserRequest) returns (google.protobuf.Empty) {}
+  rpc Disable(SetupUserRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(SetupUserRequest) returns (google.protobuf.Empty) {}
 }
-message UserListResponse {
+message UserUploadRequest {
+  bool public = 1;
+  google.protobuf.Duration ttl = 9;
+}
+message UserUploadResponse {
+  string bucket = 1;
+  string object = 2;
+  string url = 3;
+}
+message UserSetVRequest {
+  string key = 1;
+  bytes value = 2;
+  bool encrypt = 3;
+}
+message UserGetVRequest {
+  string key = 1;
+}
+message UserGetVResponse {
+  bytes value = 1;
+}
+message UserSetLocationRequest {
+  string timezone = 1;
+  string lang = 2;
+}
+message SetupUserRequest {
+  uint32 id = 1;
+  optional string reason = 2;
+}
+message UserIndexResponse {
   message Item {
     enum Type {
       Email = 0;
@@ -86,18 +213,19 @@ message UserListResponse {
     string name = 3;
     string lang = 4;
     string timezone = 5;
-    uint32 provider_id = 8;
-    Type provider_type = 9;
-    uint32 sign_in_count = 11;
-    optional string current_sign_in_ip = 12;
-    optional google.protobuf.Timestamp current_sign_in_at = 13;
-    optional google.protobuf.Timestamp locked_at = 18;
-    optional google.protobuf.Timestamp deleted_at = 19;
+    uint32 sign_in_count = 6;
+    optional string current_sign_in_ip = 7;
+    optional google.protobuf.Timestamp current_sign_in_at = 8;
+    optional string last_sign_in_ip = 9;
+    optional google.protobuf.Timestamp last_sign_in_at = 10;
+    optional google.protobuf.Timestamp locked_at = 11;
+    optional google.protobuf.Timestamp deleted_at = 12;
+    google.protobuf.Timestamp updated_at = 13;
   }
   repeated Item items = 1;
   Pagination pagination = 9;
 }
-message UserIndexLogResponse {
+message UserLogsResponse {
   message Item {
     enum Level {
       DEBUG = 0;
@@ -116,23 +244,94 @@ message UserIndexLogResponse {
   repeated Item items = 1;
   Pagination pagination = 9;
 }
-message UserSignInByEmailRequest {
-  string email = 1;
-  string password = 2;
-  optional google.protobuf.Duration ttl = 9;
-}
+
 message UserSignInResponse {
   string token = 1;
 }
-
-// ----------------------------------------------------------------------------
-service Policy {}
-
 // ----------------------------------------------------------------------------
 service Site {
+  rpc SetInfoByLang(SetSiteInfoByLangRequest) returns (google.protobuf.Empty) {}
+  rpc GetInfoByLang(GetSiteInfoByLangRequest)
+      returns (GetSiteInfoByLangResponse) {}
+  rpc SetAuthor(SiteAuthorProfile) returns (google.protobuf.Empty) {}
+  rpc GetAuthor(google.protobuf.Empty) returns (SiteAuthorProfile) {}
+  rpc SetFavicon(SiteFaviconProfile) returns (google.protobuf.Empty) {}
+  rpc GetFavicon(google.protobuf.Empty) returns (SiteFaviconProfile) {}
+  rpc UploadFavicon(google.protobuf.Empty) returns (SiteUploadFaviconResponse) {
+  }
+
+  rpc SetGoogleSiteOwnershipVerification(GoogleSiteOwnershipVerification)
+      returns (google.protobuf.Empty) {}
+  rpc GetGoogleSiteOwnershipVerification(google.protobuf.Empty)
+      returns (GoogleSiteOwnershipVerification) {}
+
+  rpc SetReCaptcha(ReCaptchaProfile) returns (google.protobuf.Empty) {}
+  rpc GetReCaptcha(google.protobuf.Empty) returns (ReCaptchaProfile) {}
+
+  rpc SetBaiduSiteOwnershipVerification(BaiduSiteOwnershipVerification)
+      returns (google.protobuf.Empty) {}
+  rpc GetBaiduSiteOwnershipVerification(google.protobuf.Empty)
+      returns (BaiduSiteOwnershipVerification) {}
+  rpc PingBaidu(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc SetIndexNow(IndexNowProfile) returns (google.protobuf.Empty) {}
+  rpc GetIndexNow(google.protobuf.Empty) returns (IndexNowProfile) {}
+  rpc PingIndexNow(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc ClearCache(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc SetMaintenanceMode(SiteSetMaintenanceModeRequest)
+      returns (google.protobuf.Empty) {}
+
   rpc Timezones(google.protobuf.Empty) returns (SiteTimezonesResponse) {}
   rpc Currencies(google.protobuf.Empty) returns (SiteCurrenciesResponse) {}
   rpc Languages(google.protobuf.Empty) returns (SiteLanguagesResponse) {}
+}
+message SiteSetMaintenanceModeRequest {
+  bool on = 1;
+  string reason = 2;
+}
+message SiteUploadFaviconResponse {
+  string url = 1;
+  google.protobuf.Duration ttl = 2;
+}
+message SiteFaviconProfile {
+  string url = 1;
+}
+message SiteAuthorProfile {
+  string name = 1;
+  string email = 2;
+}
+message GetSiteInfoByLangRequest {
+  string lang = 1;
+}
+message SetSiteInfoByLangRequest {
+  string lang = 1;
+  GetSiteInfoByLangResponse item = 2;
+}
+message GetSiteInfoByLangResponse {
+  string title = 1;
+  string subhead = 2;
+  string description = 3;
+  string copyright = 4;
+  repeated string keywords = 5;
+}
+// https://ziyuan.baidu.com/linksubmit/index
+message BaiduSiteOwnershipVerification {
+  string code = 1;
+}
+
+// https://developers.google.com/recaptcha/intro
+message ReCaptchaProfile {
+  string key = 1;
+}
+// https://support.google.com/webmasters/answer/9008080?hl=en
+message GoogleSiteOwnershipVerification {
+  string code = 1;
+}
+
+// https://www.indexnow.org/documentation
+message IndexNowProfile {
+  string key = 1;
 }
 message SiteTimezonesResponse {
   repeated string items = 1;
@@ -152,4 +351,84 @@ message SiteCurrenciesResponse {
   repeated Item items = 1;
 }
 
+// https://en.wikipedia.org/wiki/RSS
+message Rss {
+  message Channel {
+    message Item {
+      message Guid {
+        bool permanent_link = 1;
+        string id = 2;
+      }
+      string title = 1;
+      string description = 2;
+      string link = 3;
+      google.protobuf.Timestamp pub_date = 9;
+    }
+    string title = 1;
+    string description = 2;
+    string link = 3;
+    string copyright = 4;
+    google.protobuf.Timestamp last_build_date = 11;
+    google.protobuf.Timestamp pub_date = 12;
+    google.protobuf.Duration ttl = 13;
+    repeated Item items = 99;
+  }
+  Channel channel = 1;
+}
+// https://www.sitemaps.org/protocol.html
+message Sitemap {
+  message Url {
+    enum ChangeFreq {
+      Always = 0;
+      Hourly = 1;
+      Daily = 2;
+      Weekly = 3;
+      Monthly = 4;
+      Yearly = 5;
+      Never = 6;
+    }
+    string loc = 1;
+    optional string change_freq = 2;
+    optional bool mobile = 3;
+    optional float priority = 4;  // 0.0 to 1.0
+    optional google.protobuf.Timestamp last_mod = 5;
+  }
+  message UrlSet {
+    repeated Url items = 1;
+  }
+  map<string, UrlSet> items = 1;
+}
+// ----------------------------------------------------------------------------
+message HtmlPage {
+  string lang = 1;
+  string template = 2;
+  bytes data = 3;
+}
+message Theme {
+  message Bootstrap {
+    message Home {}
+    message Sample {
+      message Data {
+        message Header {
+          string title = 1;
+        }
+        message Footer {
+          string copyright = 1;
+        }
+        message Body {
+          message Item {
+            string title = 1;
+            string description = 2;
+            map<string, string> properties = 3;
+          }
+          string title = 1;
+          repeated Item items = 2;
+          google.protobuf.Timestamp created_at = 9;
+        }
+      }
+      map<string, string> templates = 1;
+      Data data = 2;
+    }
+  }
+}
 // ----------------------------------------------------------------------------

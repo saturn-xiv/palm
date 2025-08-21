@@ -8,3 +8,13 @@ package palm.blog.v1;
 service Page {}
 
 service Post {}
+
+// ----------------------------------------------------------------------------
+
+message Theme {
+  message Bootstrap {
+    message Show {}
+    message Index {}
+    message Archive {}
+  }
+}

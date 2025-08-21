@@ -1,9 +1,11 @@
 package db
 
 import (
+	"context"
 	"log/slog"
 
 	"github.com/BurntSushi/toml"
+	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/jasmine/services/portal/models"
@@ -34,7 +36,23 @@ func Seed(config_file string, locales_folder string) error {
 		return err
 	}
 
+	ctx := context.Background()
+	cache, err := config.Redis.Open(ctx)
+	if err != nil {
+		return err
+	}
+
+	if err = set_sample_page(cache); err != nil {
+		return err
+	}
+
 	slog.Info("done.")
+	return nil
+}
+
+func set_sample_page(*redis.ClusterClient) error {
+	slog.Info("setup sample page /sample.html")
+	// TODO
 	return nil
 }
 

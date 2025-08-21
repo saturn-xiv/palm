@@ -5,8 +5,8 @@
 
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
-public interface UserSignInByEmailRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.portal.v1.UserSignInByEmailRequest)
+public interface EmailUserSignInRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.portal.v1.EmailUserSignInRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -32,6 +32,18 @@ public interface UserSignInByEmailRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getPasswordBytes();
+
+  /**
+   * <code>string salt = 3;</code>
+   * @return The salt.
+   */
+  java.lang.String getSalt();
+  /**
+   * <code>string salt = 3;</code>
+   * @return The bytes for salt.
+   */
+  com.google.protobuf.ByteString
+      getSaltBytes();
 
   /**
    * <code>optional .google.protobuf.Duration ttl = 9;</code>

@@ -6,12 +6,12 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.UserSignInByEmailRequest}
+ * Protobuf type {@code palm.portal.v1.SiteUploadFaviconResponse}
  */
-public final class UserSignInByEmailRequest extends
+public final class SiteUploadFaviconResponse extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.UserSignInByEmailRequest)
-    UserSignInByEmailRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.SiteUploadFaviconResponse)
+    SiteUploadFaviconResponseOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -20,113 +20,73 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 29,
       /* patch= */ 3,
       /* suffix= */ "",
-      UserSignInByEmailRequest.class.getName());
+      SiteUploadFaviconResponse.class.getName());
   }
-  // Use UserSignInByEmailRequest.newBuilder() to construct.
-  private UserSignInByEmailRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use SiteUploadFaviconResponse.newBuilder() to construct.
+  private SiteUploadFaviconResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private UserSignInByEmailRequest() {
-    email_ = "";
-    password_ = "";
+  private SiteUploadFaviconResponse() {
+    url_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteUploadFaviconResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserSignInByEmailRequest_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteUploadFaviconResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.Builder.class);
   }
 
   private int bitField0_;
-  public static final int EMAIL_FIELD_NUMBER = 1;
+  public static final int URL_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private volatile java.lang.Object email_ = "";
+  private volatile java.lang.Object url_ = "";
   /**
-   * <code>string email = 1;</code>
-   * @return The email.
+   * <code>string url = 1;</code>
+   * @return The url.
    */
   @java.lang.Override
-  public java.lang.String getEmail() {
-    java.lang.Object ref = email_;
+  public java.lang.String getUrl() {
+    java.lang.Object ref = url_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      email_ = s;
+      url_ = s;
       return s;
     }
   }
   /**
-   * <code>string email = 1;</code>
-   * @return The bytes for email.
+   * <code>string url = 1;</code>
+   * @return The bytes for url.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getEmailBytes() {
-    java.lang.Object ref = email_;
+      getUrlBytes() {
+    java.lang.Object ref = url_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      email_ = b;
+      url_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int PASSWORD_FIELD_NUMBER = 2;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object password_ = "";
-  /**
-   * <code>string password = 2;</code>
-   * @return The password.
-   */
-  @java.lang.Override
-  public java.lang.String getPassword() {
-    java.lang.Object ref = password_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      password_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string password = 2;</code>
-   * @return The bytes for password.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPasswordBytes() {
-    java.lang.Object ref = password_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      password_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int TTL_FIELD_NUMBER = 9;
+  public static final int TTL_FIELD_NUMBER = 2;
   private com.google.protobuf.Duration ttl_;
   /**
-   * <code>optional .google.protobuf.Duration ttl = 9;</code>
+   * <code>.google.protobuf.Duration ttl = 2;</code>
    * @return Whether the ttl field is set.
    */
   @java.lang.Override
@@ -134,7 +94,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>optional .google.protobuf.Duration ttl = 9;</code>
+   * <code>.google.protobuf.Duration ttl = 2;</code>
    * @return The ttl.
    */
   @java.lang.Override
@@ -142,7 +102,7 @@ private static final long serialVersionUID = 0L;
     return ttl_ == null ? com.google.protobuf.Duration.getDefaultInstance() : ttl_;
   }
   /**
-   * <code>optional .google.protobuf.Duration ttl = 9;</code>
+   * <code>.google.protobuf.Duration ttl = 2;</code>
    */
   @java.lang.Override
   public com.google.protobuf.DurationOrBuilder getTtlOrBuilder() {
@@ -163,14 +123,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(email_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, email_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(password_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 2, password_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(url_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 1, url_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(9, getTtl());
+      output.writeMessage(2, getTtl());
     }
     getUnknownFields().writeTo(output);
   }
@@ -181,15 +138,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(email_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, email_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(password_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, password_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(url_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, url_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(9, getTtl());
+        .computeMessageSize(2, getTtl());
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -201,15 +155,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse other = (com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse) obj;
 
-    if (!getEmail()
-        .equals(other.getEmail())) return false;
-    if (!getPassword()
-        .equals(other.getPassword())) return false;
+    if (!getUrl()
+        .equals(other.getUrl())) return false;
     if (hasTtl() != other.hasTtl()) return false;
     if (hasTtl()) {
       if (!getTtl()
@@ -226,10 +178,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + EMAIL_FIELD_NUMBER;
-    hash = (53 * hash) + getEmail().hashCode();
-    hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-    hash = (53 * hash) + getPassword().hashCode();
+    hash = (37 * hash) + URL_FIELD_NUMBER;
+    hash = (53 * hash) + getUrl().hashCode();
     if (hasTtl()) {
       hash = (37 * hash) + TTL_FIELD_NUMBER;
       hash = (53 * hash) + getTtl().hashCode();
@@ -239,44 +189,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -284,26 +234,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -316,7 +266,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -332,26 +282,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.UserSignInByEmailRequest}
+   * Protobuf type {@code palm.portal.v1.SiteUploadFaviconResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserSignInByEmailRequest)
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.SiteUploadFaviconResponse)
+      com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteUploadFaviconResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserSignInByEmailRequest_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteUploadFaviconResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -371,8 +321,7 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      email_ = "";
-      password_ = "";
+      url_ = "";
       ttl_ = null;
       if (ttlBuilder_ != null) {
         ttlBuilder_.dispose();
@@ -384,17 +333,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserSignInByEmailRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_SiteUploadFaviconResponse_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -402,23 +351,20 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse result = new com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.email_ = email_;
-      }
-      if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.password_ = password_;
+        result.url_ = url_;
       }
       int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000004) != 0)) {
+      if (((from_bitField0_ & 0x00000002) != 0)) {
         result.ttl_ = ttlBuilder_ == null
             ? ttl_
             : ttlBuilder_.build();
@@ -429,24 +375,19 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest.getDefaultInstance()) return this;
-      if (!other.getEmail().isEmpty()) {
-        email_ = other.email_;
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse.getDefaultInstance()) return this;
+      if (!other.getUrl().isEmpty()) {
+        url_ = other.url_;
         bitField0_ |= 0x00000001;
-        onChanged();
-      }
-      if (!other.getPassword().isEmpty()) {
-        password_ = other.password_;
-        bitField0_ |= 0x00000002;
         onChanged();
       }
       if (other.hasTtl()) {
@@ -479,22 +420,17 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              email_ = input.readStringRequireUtf8();
+              url_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
             case 18: {
-              password_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000002;
-              break;
-            } // case 18
-            case 74: {
               input.readMessage(
                   getTtlFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000002;
               break;
-            } // case 74
+            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -512,146 +448,74 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object email_ = "";
+    private java.lang.Object url_ = "";
     /**
-     * <code>string email = 1;</code>
-     * @return The email.
+     * <code>string url = 1;</code>
+     * @return The url.
      */
-    public java.lang.String getEmail() {
-      java.lang.Object ref = email_;
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        email_ = s;
+        url_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string email = 1;</code>
-     * @return The bytes for email.
+     * <code>string url = 1;</code>
+     * @return The bytes for url.
      */
     public com.google.protobuf.ByteString
-        getEmailBytes() {
-      java.lang.Object ref = email_;
+        getUrlBytes() {
+      java.lang.Object ref = url_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        email_ = b;
+        url_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string email = 1;</code>
-     * @param value The email to set.
+     * <code>string url = 1;</code>
+     * @param value The url to set.
      * @return This builder for chaining.
      */
-    public Builder setEmail(
+    public Builder setUrl(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      email_ = value;
+      url_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string email = 1;</code>
+     * <code>string url = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearEmail() {
-      email_ = getDefaultInstance().getEmail();
+    public Builder clearUrl() {
+      url_ = getDefaultInstance().getUrl();
       bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
     /**
-     * <code>string email = 1;</code>
-     * @param value The bytes for email to set.
+     * <code>string url = 1;</code>
+     * @param value The bytes for url to set.
      * @return This builder for chaining.
      */
-    public Builder setEmailBytes(
+    public Builder setUrlBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      email_ = value;
+      url_ = value;
       bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object password_ = "";
-    /**
-     * <code>string password = 2;</code>
-     * @return The password.
-     */
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        password_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
-     */
-    public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @param value The password to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPassword(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      password_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearPassword() {
-      password_ = getDefaultInstance().getPassword();
-      bitField0_ = (bitField0_ & ~0x00000002);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @param value The bytes for password to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPasswordBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      password_ = value;
-      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -660,14 +524,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilder<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> ttlBuilder_;
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      * @return Whether the ttl field is set.
      */
     public boolean hasTtl() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      * @return The ttl.
      */
     public com.google.protobuf.Duration getTtl() {
@@ -678,7 +542,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     public Builder setTtl(com.google.protobuf.Duration value) {
       if (ttlBuilder_ == null) {
@@ -689,12 +553,12 @@ private static final long serialVersionUID = 0L;
       } else {
         ttlBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     public Builder setTtl(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -703,16 +567,16 @@ private static final long serialVersionUID = 0L;
       } else {
         ttlBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     public Builder mergeTtl(com.google.protobuf.Duration value) {
       if (ttlBuilder_ == null) {
-        if (((bitField0_ & 0x00000004) != 0) &&
+        if (((bitField0_ & 0x00000002) != 0) &&
           ttl_ != null &&
           ttl_ != com.google.protobuf.Duration.getDefaultInstance()) {
           getTtlBuilder().mergeFrom(value);
@@ -723,16 +587,16 @@ private static final long serialVersionUID = 0L;
         ttlBuilder_.mergeFrom(value);
       }
       if (ttl_ != null) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         onChanged();
       }
       return this;
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     public Builder clearTtl() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       ttl_ = null;
       if (ttlBuilder_ != null) {
         ttlBuilder_.dispose();
@@ -742,15 +606,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     public com.google.protobuf.Duration.Builder getTtlBuilder() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return getTtlFieldBuilder().getBuilder();
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     public com.google.protobuf.DurationOrBuilder getTtlOrBuilder() {
       if (ttlBuilder_ != null) {
@@ -761,7 +625,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional .google.protobuf.Duration ttl = 9;</code>
+     * <code>.google.protobuf.Duration ttl = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -777,23 +641,23 @@ private static final long serialVersionUID = 0L;
       return ttlBuilder_;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserSignInByEmailRequest)
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.SiteUploadFaviconResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserSignInByEmailRequest)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteUploadFaviconResponse)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<UserSignInByEmailRequest>
-      PARSER = new com.google.protobuf.AbstractParser<UserSignInByEmailRequest>() {
+  private static final com.google.protobuf.Parser<SiteUploadFaviconResponse>
+      PARSER = new com.google.protobuf.AbstractParser<SiteUploadFaviconResponse>() {
     @java.lang.Override
-    public UserSignInByEmailRequest parsePartialFrom(
+    public SiteUploadFaviconResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -812,17 +676,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<UserSignInByEmailRequest> parser() {
+  public static com.google.protobuf.Parser<SiteUploadFaviconResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<UserSignInByEmailRequest> getParserForType() {
+  public com.google.protobuf.Parser<SiteUploadFaviconResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInByEmailRequest getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

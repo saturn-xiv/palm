@@ -35,7 +35,7 @@ type CreateLogForm struct {
 	Message      string `validate:"required,min=2"`
 }
 
-func (p *CreateLogForm) Execute(db *gorm.DB, user uint32, level portal_v2.UserIndexLogResponse_Item_Level, resource_id *uint32) error {
+func (p *CreateLogForm) Execute(db *gorm.DB, user uint32, level portal_v2.UserLogsResponse_Item_Level, resource_id *uint32) error {
 	if err := gl_validate.Struct(p); err != nil {
 		return err
 	}

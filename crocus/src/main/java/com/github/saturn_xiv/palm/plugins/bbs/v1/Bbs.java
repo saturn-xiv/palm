@@ -25,6 +25,46 @@ public final class Bbs {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_Index_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_Index_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_ForumShow_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_ForumShow_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_ForumIndex_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_ForumIndex_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_TopicShow_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_TopicShow_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_TopicIndex_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_TopicIndex_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_bbs_v1_Theme_Bootstrap_PostIndex_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_bbs_v1_Theme_Bootstrap_PostIndex_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -34,14 +74,65 @@ public final class Bbs {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tbbs.proto\022\013palm.bbs.v12\007\n\005Forum2\007\n\005Top" +
-      "ic2\006\n\004PostB4\n)com.github.saturn_xiv.palm" +
-      ".plugins.bbs.v1P\001Z\005./;v2b\006proto3"
+      "\n\tbbs.proto\022\013palm.bbs.v1\"`\n\005Theme\032W\n\tBoo" +
+      "tstrap\032\007\n\005Index\032\013\n\tForumShow\032\014\n\nForumInd" +
+      "ex\032\013\n\tTopicShow\032\014\n\nTopicIndex\032\013\n\tPostInd" +
+      "ex2\007\n\005Forum2\007\n\005Topic2\006\n\004PostB4\n)com.gith" +
+      "ub.saturn_xiv.palm.plugins.bbs.v1P\001Z\005./;" +
+      "v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
+    internal_static_palm_bbs_v1_Theme_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_palm_bbs_v1_Theme_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor =
+      internal_static_palm_bbs_v1_Theme_descriptor.getNestedTypes().get(0);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_Index_descriptor =
+      internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(0);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_Index_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_Index_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_ForumShow_descriptor =
+      internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(1);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_ForumShow_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_ForumShow_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_ForumIndex_descriptor =
+      internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(2);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_ForumIndex_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_ForumIndex_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_TopicShow_descriptor =
+      internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(3);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_TopicShow_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_TopicShow_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_TopicIndex_descriptor =
+      internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(4);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_TopicIndex_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_TopicIndex_descriptor,
+        new java.lang.String[] { });
+    internal_static_palm_bbs_v1_Theme_Bootstrap_PostIndex_descriptor =
+      internal_static_palm_bbs_v1_Theme_Bootstrap_descriptor.getNestedTypes().get(5);
+    internal_static_palm_bbs_v1_Theme_Bootstrap_PostIndex_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_bbs_v1_Theme_Bootstrap_PostIndex_descriptor,
+        new java.lang.String[] { });
     descriptor.resolveAllFeaturesImmutable();
   }
 

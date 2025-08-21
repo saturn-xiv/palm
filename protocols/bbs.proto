@@ -10,3 +10,16 @@ service Forum {}
 service Topic {}
 
 service Post {}
+
+// ----------------------------------------------------------------------------
+
+message Theme {
+  message Bootstrap {
+    message Index {}
+    message ForumShow {}
+    message ForumIndex {}
+    message TopicShow {}
+    message TopicIndex {}
+    message PostIndex {}
+  }
+}

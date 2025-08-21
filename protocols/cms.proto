@@ -6,3 +6,13 @@ option go_package = "./;v2";
 package palm.cms.v1;
 
 service Page {}
+
+// ----------------------------------------------------------------------------
+
+message Theme {
+  message Bootstrap {
+    message Show {}
+    message Index {}
+    message Archive {}
+  }
+}

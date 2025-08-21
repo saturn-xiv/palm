@@ -6,12 +6,12 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.UserListResponse}
+ * Protobuf type {@code palm.portal.v1.UserIndexResponse}
  */
-public final class UserListResponse extends
+public final class UserIndexResponse extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.UserListResponse)
-    UserListResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.UserIndexResponse)
+    UserIndexResponseOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -20,31 +20,31 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 29,
       /* patch= */ 3,
       /* suffix= */ "",
-      UserListResponse.class.getName());
+      UserIndexResponse.class.getName());
   }
-  // Use UserListResponse.newBuilder() to construct.
-  private UserListResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use UserIndexResponse.newBuilder() to construct.
+  private UserIndexResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private UserListResponse() {
+  private UserIndexResponse() {
     items_ = java.util.Collections.emptyList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Builder.class);
   }
 
   public interface ItemOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:palm.portal.v1.UserListResponse.Item)
+      // @@protoc_insertion_point(interface_extends:palm.portal.v1.UserIndexResponse.Item)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -102,96 +102,126 @@ private static final long serialVersionUID = 0L;
         getTimezoneBytes();
 
     /**
-     * <code>uint32 provider_id = 8;</code>
-     * @return The providerId.
-     */
-    int getProviderId();
-
-    /**
-     * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-     * @return The enum numeric value on the wire for providerType.
-     */
-    int getProviderTypeValue();
-    /**
-     * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-     * @return The providerType.
-     */
-    com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type getProviderType();
-
-    /**
-     * <code>uint32 sign_in_count = 11;</code>
+     * <code>uint32 sign_in_count = 6;</code>
      * @return The signInCount.
      */
     int getSignInCount();
 
     /**
-     * <code>optional string current_sign_in_ip = 12;</code>
+     * <code>optional string current_sign_in_ip = 7;</code>
      * @return Whether the currentSignInIp field is set.
      */
     boolean hasCurrentSignInIp();
     /**
-     * <code>optional string current_sign_in_ip = 12;</code>
+     * <code>optional string current_sign_in_ip = 7;</code>
      * @return The currentSignInIp.
      */
     java.lang.String getCurrentSignInIp();
     /**
-     * <code>optional string current_sign_in_ip = 12;</code>
+     * <code>optional string current_sign_in_ip = 7;</code>
      * @return The bytes for currentSignInIp.
      */
     com.google.protobuf.ByteString
         getCurrentSignInIpBytes();
 
     /**
-     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
      * @return Whether the currentSignInAt field is set.
      */
     boolean hasCurrentSignInAt();
     /**
-     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
      * @return The currentSignInAt.
      */
     com.google.protobuf.Timestamp getCurrentSignInAt();
     /**
-     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
      */
     com.google.protobuf.TimestampOrBuilder getCurrentSignInAtOrBuilder();
 
     /**
-     * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+     * <code>optional string last_sign_in_ip = 9;</code>
+     * @return Whether the lastSignInIp field is set.
+     */
+    boolean hasLastSignInIp();
+    /**
+     * <code>optional string last_sign_in_ip = 9;</code>
+     * @return The lastSignInIp.
+     */
+    java.lang.String getLastSignInIp();
+    /**
+     * <code>optional string last_sign_in_ip = 9;</code>
+     * @return The bytes for lastSignInIp.
+     */
+    com.google.protobuf.ByteString
+        getLastSignInIpBytes();
+
+    /**
+     * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+     * @return Whether the lastSignInAt field is set.
+     */
+    boolean hasLastSignInAt();
+    /**
+     * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+     * @return The lastSignInAt.
+     */
+    com.google.protobuf.Timestamp getLastSignInAt();
+    /**
+     * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getLastSignInAtOrBuilder();
+
+    /**
+     * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
      * @return Whether the lockedAt field is set.
      */
     boolean hasLockedAt();
     /**
-     * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+     * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
      * @return The lockedAt.
      */
     com.google.protobuf.Timestamp getLockedAt();
     /**
-     * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+     * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
      */
     com.google.protobuf.TimestampOrBuilder getLockedAtOrBuilder();
 
     /**
-     * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+     * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
      * @return Whether the deletedAt field is set.
      */
     boolean hasDeletedAt();
     /**
-     * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+     * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
      * @return The deletedAt.
      */
     com.google.protobuf.Timestamp getDeletedAt();
     /**
-     * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+     * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
      */
     com.google.protobuf.TimestampOrBuilder getDeletedAtOrBuilder();
+
+    /**
+     * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+     * @return Whether the updatedAt field is set.
+     */
+    boolean hasUpdatedAt();
+    /**
+     * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+     * @return The updatedAt.
+     */
+    com.google.protobuf.Timestamp getUpdatedAt();
+    /**
+     * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder();
   }
   /**
-   * Protobuf type {@code palm.portal.v1.UserListResponse.Item}
+   * Protobuf type {@code palm.portal.v1.UserIndexResponse.Item}
    */
   public static final class Item extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:palm.portal.v1.UserListResponse.Item)
+      // @@protoc_insertion_point(message_implements:palm.portal.v1.UserIndexResponse.Item)
       ItemOrBuilder {
   private static final long serialVersionUID = 0L;
     static {
@@ -212,25 +242,25 @@ private static final long serialVersionUID = 0L;
       name_ = "";
       lang_ = "";
       timezone_ = "";
-      providerType_ = 0;
       currentSignInIp_ = "";
+      lastSignInIp_ = "";
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_Item_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_Item_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_Item_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder.class);
     }
 
     /**
-     * Protobuf enum {@code palm.portal.v1.UserListResponse.Item.Type}
+     * Protobuf enum {@code palm.portal.v1.UserIndexResponse.Item.Type}
      */
     public enum Type
         implements com.google.protobuf.ProtocolMessageEnum {
@@ -347,7 +377,7 @@ private static final long serialVersionUID = 0L;
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.getDescriptor().getEnumTypes().get(0);
+        return com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDescriptor().getEnumTypes().get(0);
       }
 
       private static final Type[] VALUES = values();
@@ -370,7 +400,7 @@ private static final long serialVersionUID = 0L;
         this.value = value;
       }
 
-      // @@protoc_insertion_point(enum_scope:palm.portal.v1.UserListResponse.Item.Type)
+      // @@protoc_insertion_point(enum_scope:palm.portal.v1.UserIndexResponse.Item.Type)
     }
 
     private int bitField0_;
@@ -541,39 +571,10 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int PROVIDER_ID_FIELD_NUMBER = 8;
-    private int providerId_ = 0;
-    /**
-     * <code>uint32 provider_id = 8;</code>
-     * @return The providerId.
-     */
-    @java.lang.Override
-    public int getProviderId() {
-      return providerId_;
-    }
-
-    public static final int PROVIDER_TYPE_FIELD_NUMBER = 9;
-    private int providerType_ = 0;
-    /**
-     * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-     * @return The enum numeric value on the wire for providerType.
-     */
-    @java.lang.Override public int getProviderTypeValue() {
-      return providerType_;
-    }
-    /**
-     * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-     * @return The providerType.
-     */
-    @java.lang.Override public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type getProviderType() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type result = com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type.forNumber(providerType_);
-      return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type.UNRECOGNIZED : result;
-    }
-
-    public static final int SIGN_IN_COUNT_FIELD_NUMBER = 11;
+    public static final int SIGN_IN_COUNT_FIELD_NUMBER = 6;
     private int signInCount_ = 0;
     /**
-     * <code>uint32 sign_in_count = 11;</code>
+     * <code>uint32 sign_in_count = 6;</code>
      * @return The signInCount.
      */
     @java.lang.Override
@@ -581,11 +582,11 @@ private static final long serialVersionUID = 0L;
       return signInCount_;
     }
 
-    public static final int CURRENT_SIGN_IN_IP_FIELD_NUMBER = 12;
+    public static final int CURRENT_SIGN_IN_IP_FIELD_NUMBER = 7;
     @SuppressWarnings("serial")
     private volatile java.lang.Object currentSignInIp_ = "";
     /**
-     * <code>optional string current_sign_in_ip = 12;</code>
+     * <code>optional string current_sign_in_ip = 7;</code>
      * @return Whether the currentSignInIp field is set.
      */
     @java.lang.Override
@@ -593,7 +594,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>optional string current_sign_in_ip = 12;</code>
+     * <code>optional string current_sign_in_ip = 7;</code>
      * @return The currentSignInIp.
      */
     @java.lang.Override
@@ -610,7 +611,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional string current_sign_in_ip = 12;</code>
+     * <code>optional string current_sign_in_ip = 7;</code>
      * @return The bytes for currentSignInIp.
      */
     @java.lang.Override
@@ -628,10 +629,10 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int CURRENT_SIGN_IN_AT_FIELD_NUMBER = 13;
+    public static final int CURRENT_SIGN_IN_AT_FIELD_NUMBER = 8;
     private com.google.protobuf.Timestamp currentSignInAt_;
     /**
-     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
      * @return Whether the currentSignInAt field is set.
      */
     @java.lang.Override
@@ -639,7 +640,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
      * @return The currentSignInAt.
      */
     @java.lang.Override
@@ -647,25 +648,98 @@ private static final long serialVersionUID = 0L;
       return currentSignInAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : currentSignInAt_;
     }
     /**
-     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+     * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getCurrentSignInAtOrBuilder() {
       return currentSignInAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : currentSignInAt_;
     }
 
-    public static final int LOCKED_AT_FIELD_NUMBER = 18;
+    public static final int LAST_SIGN_IN_IP_FIELD_NUMBER = 9;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object lastSignInIp_ = "";
+    /**
+     * <code>optional string last_sign_in_ip = 9;</code>
+     * @return Whether the lastSignInIp field is set.
+     */
+    @java.lang.Override
+    public boolean hasLastSignInIp() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional string last_sign_in_ip = 9;</code>
+     * @return The lastSignInIp.
+     */
+    @java.lang.Override
+    public java.lang.String getLastSignInIp() {
+      java.lang.Object ref = lastSignInIp_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        lastSignInIp_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string last_sign_in_ip = 9;</code>
+     * @return The bytes for lastSignInIp.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getLastSignInIpBytes() {
+      java.lang.Object ref = lastSignInIp_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        lastSignInIp_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LAST_SIGN_IN_AT_FIELD_NUMBER = 10;
+    private com.google.protobuf.Timestamp lastSignInAt_;
+    /**
+     * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+     * @return Whether the lastSignInAt field is set.
+     */
+    @java.lang.Override
+    public boolean hasLastSignInAt() {
+      return ((bitField0_ & 0x00000008) != 0);
+    }
+    /**
+     * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+     * @return The lastSignInAt.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Timestamp getLastSignInAt() {
+      return lastSignInAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastSignInAt_;
+    }
+    /**
+     * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.TimestampOrBuilder getLastSignInAtOrBuilder() {
+      return lastSignInAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastSignInAt_;
+    }
+
+    public static final int LOCKED_AT_FIELD_NUMBER = 11;
     private com.google.protobuf.Timestamp lockedAt_;
     /**
-     * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+     * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
      * @return Whether the lockedAt field is set.
      */
     @java.lang.Override
     public boolean hasLockedAt() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+     * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
      * @return The lockedAt.
      */
     @java.lang.Override
@@ -673,25 +747,25 @@ private static final long serialVersionUID = 0L;
       return lockedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lockedAt_;
     }
     /**
-     * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+     * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getLockedAtOrBuilder() {
       return lockedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lockedAt_;
     }
 
-    public static final int DELETED_AT_FIELD_NUMBER = 19;
+    public static final int DELETED_AT_FIELD_NUMBER = 12;
     private com.google.protobuf.Timestamp deletedAt_;
     /**
-     * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+     * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
      * @return Whether the deletedAt field is set.
      */
     @java.lang.Override
     public boolean hasDeletedAt() {
-      return ((bitField0_ & 0x00000008) != 0);
+      return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+     * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
      * @return The deletedAt.
      */
     @java.lang.Override
@@ -699,11 +773,37 @@ private static final long serialVersionUID = 0L;
       return deletedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : deletedAt_;
     }
     /**
-     * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+     * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getDeletedAtOrBuilder() {
       return deletedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : deletedAt_;
+    }
+
+    public static final int UPDATED_AT_FIELD_NUMBER = 13;
+    private com.google.protobuf.Timestamp updatedAt_;
+    /**
+     * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+     * @return Whether the updatedAt field is set.
+     */
+    @java.lang.Override
+    public boolean hasUpdatedAt() {
+      return ((bitField0_ & 0x00000040) != 0);
+    }
+    /**
+     * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+     * @return The updatedAt.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Timestamp getUpdatedAt() {
+      return updatedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updatedAt_;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder() {
+      return updatedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updatedAt_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -735,26 +835,29 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(timezone_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 5, timezone_);
       }
-      if (providerId_ != 0) {
-        output.writeUInt32(8, providerId_);
-      }
-      if (providerType_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type.Email.getNumber()) {
-        output.writeEnum(9, providerType_);
-      }
       if (signInCount_ != 0) {
-        output.writeUInt32(11, signInCount_);
+        output.writeUInt32(6, signInCount_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 12, currentSignInIp_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 7, currentSignInIp_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeMessage(13, getCurrentSignInAt());
+        output.writeMessage(8, getCurrentSignInAt());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeMessage(18, getLockedAt());
+        com.google.protobuf.GeneratedMessage.writeString(output, 9, lastSignInIp_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
-        output.writeMessage(19, getDeletedAt());
+        output.writeMessage(10, getLastSignInAt());
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        output.writeMessage(11, getLockedAt());
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        output.writeMessage(12, getDeletedAt());
+      }
+      if (((bitField0_ & 0x00000040) != 0)) {
+        output.writeMessage(13, getUpdatedAt());
       }
       getUnknownFields().writeTo(output);
     }
@@ -781,32 +884,35 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(timezone_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(5, timezone_);
       }
-      if (providerId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(8, providerId_);
-      }
-      if (providerType_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type.Email.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(9, providerType_);
-      }
       if (signInCount_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(11, signInCount_);
+          .computeUInt32Size(6, signInCount_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(12, currentSignInIp_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(7, currentSignInIp_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, getCurrentSignInAt());
+          .computeMessageSize(8, getCurrentSignInAt());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(18, getLockedAt());
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(9, lastSignInIp_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(19, getDeletedAt());
+          .computeMessageSize(10, getLastSignInAt());
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getLockedAt());
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getDeletedAt());
+      }
+      if (((bitField0_ & 0x00000040) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getUpdatedAt());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -818,10 +924,10 @@ private static final long serialVersionUID = 0L;
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item)) {
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item)) {
         return super.equals(obj);
       }
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item) obj;
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -833,9 +939,6 @@ private static final long serialVersionUID = 0L;
           .equals(other.getLang())) return false;
       if (!getTimezone()
           .equals(other.getTimezone())) return false;
-      if (getProviderId()
-          != other.getProviderId()) return false;
-      if (providerType_ != other.providerType_) return false;
       if (getSignInCount()
           != other.getSignInCount()) return false;
       if (hasCurrentSignInIp() != other.hasCurrentSignInIp()) return false;
@@ -848,6 +951,16 @@ private static final long serialVersionUID = 0L;
         if (!getCurrentSignInAt()
             .equals(other.getCurrentSignInAt())) return false;
       }
+      if (hasLastSignInIp() != other.hasLastSignInIp()) return false;
+      if (hasLastSignInIp()) {
+        if (!getLastSignInIp()
+            .equals(other.getLastSignInIp())) return false;
+      }
+      if (hasLastSignInAt() != other.hasLastSignInAt()) return false;
+      if (hasLastSignInAt()) {
+        if (!getLastSignInAt()
+            .equals(other.getLastSignInAt())) return false;
+      }
       if (hasLockedAt() != other.hasLockedAt()) return false;
       if (hasLockedAt()) {
         if (!getLockedAt()
@@ -857,6 +970,11 @@ private static final long serialVersionUID = 0L;
       if (hasDeletedAt()) {
         if (!getDeletedAt()
             .equals(other.getDeletedAt())) return false;
+      }
+      if (hasUpdatedAt() != other.hasUpdatedAt()) return false;
+      if (hasUpdatedAt()) {
+        if (!getUpdatedAt()
+            .equals(other.getUpdatedAt())) return false;
       }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -879,10 +997,6 @@ private static final long serialVersionUID = 0L;
       hash = (53 * hash) + getLang().hashCode();
       hash = (37 * hash) + TIMEZONE_FIELD_NUMBER;
       hash = (53 * hash) + getTimezone().hashCode();
-      hash = (37 * hash) + PROVIDER_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getProviderId();
-      hash = (37 * hash) + PROVIDER_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + providerType_;
       hash = (37 * hash) + SIGN_IN_COUNT_FIELD_NUMBER;
       hash = (53 * hash) + getSignInCount();
       if (hasCurrentSignInIp()) {
@@ -893,6 +1007,14 @@ private static final long serialVersionUID = 0L;
         hash = (37 * hash) + CURRENT_SIGN_IN_AT_FIELD_NUMBER;
         hash = (53 * hash) + getCurrentSignInAt().hashCode();
       }
+      if (hasLastSignInIp()) {
+        hash = (37 * hash) + LAST_SIGN_IN_IP_FIELD_NUMBER;
+        hash = (53 * hash) + getLastSignInIp().hashCode();
+      }
+      if (hasLastSignInAt()) {
+        hash = (37 * hash) + LAST_SIGN_IN_AT_FIELD_NUMBER;
+        hash = (53 * hash) + getLastSignInAt().hashCode();
+      }
       if (hasLockedAt()) {
         hash = (37 * hash) + LOCKED_AT_FIELD_NUMBER;
         hash = (53 * hash) + getLockedAt().hashCode();
@@ -901,49 +1023,53 @@ private static final long serialVersionUID = 0L;
         hash = (37 * hash) + DELETED_AT_FIELD_NUMBER;
         hash = (53 * hash) + getDeletedAt().hashCode();
       }
+      if (hasUpdatedAt()) {
+        hash = (37 * hash) + UPDATED_AT_FIELD_NUMBER;
+        hash = (53 * hash) + getUpdatedAt().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(byte[] data)
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(java.io.InputStream input)
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -951,26 +1077,26 @@ private static final long serialVersionUID = 0L;
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseDelimitedFrom(java.io.InputStream input)
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseDelimitedFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item parseFrom(
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -983,7 +1109,7 @@ private static final long serialVersionUID = 0L;
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item prototype) {
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -999,26 +1125,26 @@ private static final long serialVersionUID = 0L;
       return builder;
     }
     /**
-     * Protobuf type {@code palm.portal.v1.UserListResponse.Item}
+     * Protobuf type {@code palm.portal.v1.UserIndexResponse.Item}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserListResponse.Item)
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder {
+        // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserIndexResponse.Item)
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_Item_descriptor;
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_Item_fieldAccessorTable
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_Item_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder.class);
+                com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder.class);
       }
 
-      // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.newBuilder()
+      // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1032,8 +1158,10 @@ private static final long serialVersionUID = 0L;
         if (com.google.protobuf.GeneratedMessage
                 .alwaysUseFieldBuilders) {
           getCurrentSignInAtFieldBuilder();
+          getLastSignInAtFieldBuilder();
           getLockedAtFieldBuilder();
           getDeletedAtFieldBuilder();
+          getUpdatedAtFieldBuilder();
         }
       }
       @java.lang.Override
@@ -1045,14 +1173,18 @@ private static final long serialVersionUID = 0L;
         name_ = "";
         lang_ = "";
         timezone_ = "";
-        providerId_ = 0;
-        providerType_ = 0;
         signInCount_ = 0;
         currentSignInIp_ = "";
         currentSignInAt_ = null;
         if (currentSignInAtBuilder_ != null) {
           currentSignInAtBuilder_.dispose();
           currentSignInAtBuilder_ = null;
+        }
+        lastSignInIp_ = "";
+        lastSignInAt_ = null;
+        if (lastSignInAtBuilder_ != null) {
+          lastSignInAtBuilder_.dispose();
+          lastSignInAtBuilder_ = null;
         }
         lockedAt_ = null;
         if (lockedAtBuilder_ != null) {
@@ -1064,23 +1196,28 @@ private static final long serialVersionUID = 0L;
           deletedAtBuilder_.dispose();
           deletedAtBuilder_ = null;
         }
+        updatedAt_ = null;
+        if (updatedAtBuilder_ != null) {
+          updatedAtBuilder_.dispose();
+          updatedAtBuilder_ = null;
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_Item_descriptor;
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor;
       }
 
       @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item getDefaultInstanceForType() {
-        return com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.getDefaultInstance();
+      public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item build() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item result = buildPartial();
+      public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item build() {
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1088,14 +1225,14 @@ private static final long serialVersionUID = 0L;
       }
 
       @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item buildPartial() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item(this);
+      public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item buildPartial() {
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item result) {
+      private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.id_ = id_;
@@ -1113,52 +1250,62 @@ private static final long serialVersionUID = 0L;
           result.timezone_ = timezone_;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.providerId_ = providerId_;
-        }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.providerType_ = providerType_;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
           result.signInCount_ = signInCount_;
         }
         int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000100) != 0)) {
+        if (((from_bitField0_ & 0x00000040) != 0)) {
           result.currentSignInIp_ = currentSignInIp_;
           to_bitField0_ |= 0x00000001;
         }
-        if (((from_bitField0_ & 0x00000200) != 0)) {
+        if (((from_bitField0_ & 0x00000080) != 0)) {
           result.currentSignInAt_ = currentSignInAtBuilder_ == null
               ? currentSignInAt_
               : currentSignInAtBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.lastSignInIp_ = lastSignInIp_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.lastSignInAt_ = lastSignInAtBuilder_ == null
+              ? lastSignInAt_
+              : lastSignInAtBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
         if (((from_bitField0_ & 0x00000400) != 0)) {
           result.lockedAt_ = lockedAtBuilder_ == null
               ? lockedAt_
               : lockedAtBuilder_.build();
-          to_bitField0_ |= 0x00000004;
+          to_bitField0_ |= 0x00000010;
         }
         if (((from_bitField0_ & 0x00000800) != 0)) {
           result.deletedAt_ = deletedAtBuilder_ == null
               ? deletedAt_
               : deletedAtBuilder_.build();
-          to_bitField0_ |= 0x00000008;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.updatedAt_ = updatedAtBuilder_ == null
+              ? updatedAt_
+              : updatedAtBuilder_.build();
+          to_bitField0_ |= 0x00000040;
         }
         result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item) {
-          return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item)other);
+        if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item other) {
-        if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item other) {
+        if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -1182,28 +1329,33 @@ private static final long serialVersionUID = 0L;
           bitField0_ |= 0x00000010;
           onChanged();
         }
-        if (other.getProviderId() != 0) {
-          setProviderId(other.getProviderId());
-        }
-        if (other.providerType_ != 0) {
-          setProviderTypeValue(other.getProviderTypeValue());
-        }
         if (other.getSignInCount() != 0) {
           setSignInCount(other.getSignInCount());
         }
         if (other.hasCurrentSignInIp()) {
           currentSignInIp_ = other.currentSignInIp_;
-          bitField0_ |= 0x00000100;
+          bitField0_ |= 0x00000040;
           onChanged();
         }
         if (other.hasCurrentSignInAt()) {
           mergeCurrentSignInAt(other.getCurrentSignInAt());
+        }
+        if (other.hasLastSignInIp()) {
+          lastSignInIp_ = other.lastSignInIp_;
+          bitField0_ |= 0x00000100;
+          onChanged();
+        }
+        if (other.hasLastSignInAt()) {
+          mergeLastSignInAt(other.getLastSignInAt());
         }
         if (other.hasLockedAt()) {
           mergeLockedAt(other.getLockedAt());
         }
         if (other.hasDeletedAt()) {
           mergeDeletedAt(other.getDeletedAt());
+        }
+        if (other.hasUpdatedAt()) {
+          mergeUpdatedAt(other.getUpdatedAt());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1256,47 +1408,56 @@ private static final long serialVersionUID = 0L;
                 bitField0_ |= 0x00000010;
                 break;
               } // case 42
-              case 64: {
-                providerId_ = input.readUInt32();
+              case 48: {
+                signInCount_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
                 break;
-              } // case 64
-              case 72: {
-                providerType_ = input.readEnum();
+              } // case 48
+              case 58: {
+                currentSignInIp_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000040;
                 break;
-              } // case 72
-              case 88: {
-                signInCount_ = input.readUInt32();
-                bitField0_ |= 0x00000080;
-                break;
-              } // case 88
-              case 98: {
-                currentSignInIp_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 98
-              case 106: {
+              } // case 58
+              case 66: {
                 input.readMessage(
                     getCurrentSignInAtFieldBuilder().getBuilder(),
                     extensionRegistry);
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 66
+              case 74: {
+                lastSignInIp_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 74
+              case 82: {
+                input.readMessage(
+                    getLastSignInAtFieldBuilder().getBuilder(),
+                    extensionRegistry);
                 bitField0_ |= 0x00000200;
                 break;
-              } // case 106
-              case 146: {
+              } // case 82
+              case 90: {
                 input.readMessage(
                     getLockedAtFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000400;
                 break;
-              } // case 146
-              case 154: {
+              } // case 90
+              case 98: {
                 input.readMessage(
                     getDeletedAtFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000800;
                 break;
-              } // case 154
+              } // case 98
+              case 106: {
+                input.readMessage(
+                    getUpdatedAtFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 106
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1634,94 +1795,9 @@ private static final long serialVersionUID = 0L;
         return this;
       }
 
-      private int providerId_ ;
-      /**
-       * <code>uint32 provider_id = 8;</code>
-       * @return The providerId.
-       */
-      @java.lang.Override
-      public int getProviderId() {
-        return providerId_;
-      }
-      /**
-       * <code>uint32 provider_id = 8;</code>
-       * @param value The providerId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setProviderId(int value) {
-
-        providerId_ = value;
-        bitField0_ |= 0x00000020;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>uint32 provider_id = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearProviderId() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        providerId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int providerType_ = 0;
-      /**
-       * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-       * @return The enum numeric value on the wire for providerType.
-       */
-      @java.lang.Override public int getProviderTypeValue() {
-        return providerType_;
-      }
-      /**
-       * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-       * @param value The enum numeric value on the wire for providerType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setProviderTypeValue(int value) {
-        providerType_ = value;
-        bitField0_ |= 0x00000040;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-       * @return The providerType.
-       */
-      @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type getProviderType() {
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type result = com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type.forNumber(providerType_);
-        return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-       * @param value The providerType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setProviderType(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Type value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000040;
-        providerType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.palm.portal.v1.UserListResponse.Item.Type provider_type = 9;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearProviderType() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        providerType_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int signInCount_ ;
       /**
-       * <code>uint32 sign_in_count = 11;</code>
+       * <code>uint32 sign_in_count = 6;</code>
        * @return The signInCount.
        */
       @java.lang.Override
@@ -1729,23 +1805,23 @@ private static final long serialVersionUID = 0L;
         return signInCount_;
       }
       /**
-       * <code>uint32 sign_in_count = 11;</code>
+       * <code>uint32 sign_in_count = 6;</code>
        * @param value The signInCount to set.
        * @return This builder for chaining.
        */
       public Builder setSignInCount(int value) {
 
         signInCount_ = value;
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
       /**
-       * <code>uint32 sign_in_count = 11;</code>
+       * <code>uint32 sign_in_count = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearSignInCount() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000020);
         signInCount_ = 0;
         onChanged();
         return this;
@@ -1753,14 +1829,14 @@ private static final long serialVersionUID = 0L;
 
       private java.lang.Object currentSignInIp_ = "";
       /**
-       * <code>optional string current_sign_in_ip = 12;</code>
+       * <code>optional string current_sign_in_ip = 7;</code>
        * @return Whether the currentSignInIp field is set.
        */
       public boolean hasCurrentSignInIp() {
-        return ((bitField0_ & 0x00000100) != 0);
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
-       * <code>optional string current_sign_in_ip = 12;</code>
+       * <code>optional string current_sign_in_ip = 7;</code>
        * @return The currentSignInIp.
        */
       public java.lang.String getCurrentSignInIp() {
@@ -1776,7 +1852,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional string current_sign_in_ip = 12;</code>
+       * <code>optional string current_sign_in_ip = 7;</code>
        * @return The bytes for currentSignInIp.
        */
       public com.google.protobuf.ByteString
@@ -1793,7 +1869,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional string current_sign_in_ip = 12;</code>
+       * <code>optional string current_sign_in_ip = 7;</code>
        * @param value The currentSignInIp to set.
        * @return This builder for chaining.
        */
@@ -1801,22 +1877,22 @@ private static final long serialVersionUID = 0L;
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         currentSignInIp_ = value;
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string current_sign_in_ip = 12;</code>
+       * <code>optional string current_sign_in_ip = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearCurrentSignInIp() {
         currentSignInIp_ = getDefaultInstance().getCurrentSignInIp();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
       }
       /**
-       * <code>optional string current_sign_in_ip = 12;</code>
+       * <code>optional string current_sign_in_ip = 7;</code>
        * @param value The bytes for currentSignInIp to set.
        * @return This builder for chaining.
        */
@@ -1825,7 +1901,7 @@ private static final long serialVersionUID = 0L;
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         currentSignInIp_ = value;
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -1834,14 +1910,14 @@ private static final long serialVersionUID = 0L;
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> currentSignInAtBuilder_;
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        * @return Whether the currentSignInAt field is set.
        */
       public boolean hasCurrentSignInAt() {
-        return ((bitField0_ & 0x00000200) != 0);
+        return ((bitField0_ & 0x00000080) != 0);
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        * @return The currentSignInAt.
        */
       public com.google.protobuf.Timestamp getCurrentSignInAt() {
@@ -1852,7 +1928,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       public Builder setCurrentSignInAt(com.google.protobuf.Timestamp value) {
         if (currentSignInAtBuilder_ == null) {
@@ -1863,12 +1939,12 @@ private static final long serialVersionUID = 0L;
         } else {
           currentSignInAtBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       public Builder setCurrentSignInAt(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1877,16 +1953,16 @@ private static final long serialVersionUID = 0L;
         } else {
           currentSignInAtBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       public Builder mergeCurrentSignInAt(com.google.protobuf.Timestamp value) {
         if (currentSignInAtBuilder_ == null) {
-          if (((bitField0_ & 0x00000200) != 0) &&
+          if (((bitField0_ & 0x00000080) != 0) &&
             currentSignInAt_ != null &&
             currentSignInAt_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
             getCurrentSignInAtBuilder().mergeFrom(value);
@@ -1897,16 +1973,16 @@ private static final long serialVersionUID = 0L;
           currentSignInAtBuilder_.mergeFrom(value);
         }
         if (currentSignInAt_ != null) {
-          bitField0_ |= 0x00000200;
+          bitField0_ |= 0x00000080;
           onChanged();
         }
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       public Builder clearCurrentSignInAt() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000080);
         currentSignInAt_ = null;
         if (currentSignInAtBuilder_ != null) {
           currentSignInAtBuilder_.dispose();
@@ -1916,15 +1992,15 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       public com.google.protobuf.Timestamp.Builder getCurrentSignInAtBuilder() {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000080;
         onChanged();
         return getCurrentSignInAtFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getCurrentSignInAtOrBuilder() {
         if (currentSignInAtBuilder_ != null) {
@@ -1935,7 +2011,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 13;</code>
+       * <code>optional .google.protobuf.Timestamp current_sign_in_at = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1951,18 +2027,218 @@ private static final long serialVersionUID = 0L;
         return currentSignInAtBuilder_;
       }
 
+      private java.lang.Object lastSignInIp_ = "";
+      /**
+       * <code>optional string last_sign_in_ip = 9;</code>
+       * @return Whether the lastSignInIp field is set.
+       */
+      public boolean hasLastSignInIp() {
+        return ((bitField0_ & 0x00000100) != 0);
+      }
+      /**
+       * <code>optional string last_sign_in_ip = 9;</code>
+       * @return The lastSignInIp.
+       */
+      public java.lang.String getLastSignInIp() {
+        java.lang.Object ref = lastSignInIp_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          lastSignInIp_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string last_sign_in_ip = 9;</code>
+       * @return The bytes for lastSignInIp.
+       */
+      public com.google.protobuf.ByteString
+          getLastSignInIpBytes() {
+        java.lang.Object ref = lastSignInIp_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          lastSignInIp_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string last_sign_in_ip = 9;</code>
+       * @param value The lastSignInIp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastSignInIp(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        lastSignInIp_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string last_sign_in_ip = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastSignInIp() {
+        lastSignInIp_ = getDefaultInstance().getLastSignInIp();
+        bitField0_ = (bitField0_ & ~0x00000100);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string last_sign_in_ip = 9;</code>
+       * @param value The bytes for lastSignInIp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastSignInIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        lastSignInIp_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Timestamp lastSignInAt_;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> lastSignInAtBuilder_;
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       * @return Whether the lastSignInAt field is set.
+       */
+      public boolean hasLastSignInAt() {
+        return ((bitField0_ & 0x00000200) != 0);
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       * @return The lastSignInAt.
+       */
+      public com.google.protobuf.Timestamp getLastSignInAt() {
+        if (lastSignInAtBuilder_ == null) {
+          return lastSignInAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastSignInAt_;
+        } else {
+          return lastSignInAtBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      public Builder setLastSignInAt(com.google.protobuf.Timestamp value) {
+        if (lastSignInAtBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          lastSignInAt_ = value;
+        } else {
+          lastSignInAtBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      public Builder setLastSignInAt(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        if (lastSignInAtBuilder_ == null) {
+          lastSignInAt_ = builderForValue.build();
+        } else {
+          lastSignInAtBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      public Builder mergeLastSignInAt(com.google.protobuf.Timestamp value) {
+        if (lastSignInAtBuilder_ == null) {
+          if (((bitField0_ & 0x00000200) != 0) &&
+            lastSignInAt_ != null &&
+            lastSignInAt_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+            getLastSignInAtBuilder().mergeFrom(value);
+          } else {
+            lastSignInAt_ = value;
+          }
+        } else {
+          lastSignInAtBuilder_.mergeFrom(value);
+        }
+        if (lastSignInAt_ != null) {
+          bitField0_ |= 0x00000200;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      public Builder clearLastSignInAt() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        lastSignInAt_ = null;
+        if (lastSignInAtBuilder_ != null) {
+          lastSignInAtBuilder_.dispose();
+          lastSignInAtBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      public com.google.protobuf.Timestamp.Builder getLastSignInAtBuilder() {
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return getLastSignInAtFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      public com.google.protobuf.TimestampOrBuilder getLastSignInAtOrBuilder() {
+        if (lastSignInAtBuilder_ != null) {
+          return lastSignInAtBuilder_.getMessageOrBuilder();
+        } else {
+          return lastSignInAt_ == null ?
+              com.google.protobuf.Timestamp.getDefaultInstance() : lastSignInAt_;
+        }
+      }
+      /**
+       * <code>optional .google.protobuf.Timestamp last_sign_in_at = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          getLastSignInAtFieldBuilder() {
+        if (lastSignInAtBuilder_ == null) {
+          lastSignInAtBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  getLastSignInAt(),
+                  getParentForChildren(),
+                  isClean());
+          lastSignInAt_ = null;
+        }
+        return lastSignInAtBuilder_;
+      }
+
       private com.google.protobuf.Timestamp lockedAt_;
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> lockedAtBuilder_;
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        * @return Whether the lockedAt field is set.
        */
       public boolean hasLockedAt() {
         return ((bitField0_ & 0x00000400) != 0);
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        * @return The lockedAt.
        */
       public com.google.protobuf.Timestamp getLockedAt() {
@@ -1973,7 +2249,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       public Builder setLockedAt(com.google.protobuf.Timestamp value) {
         if (lockedAtBuilder_ == null) {
@@ -1989,7 +2265,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       public Builder setLockedAt(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -2003,7 +2279,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       public Builder mergeLockedAt(com.google.protobuf.Timestamp value) {
         if (lockedAtBuilder_ == null) {
@@ -2024,7 +2300,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       public Builder clearLockedAt() {
         bitField0_ = (bitField0_ & ~0x00000400);
@@ -2037,7 +2313,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       public com.google.protobuf.Timestamp.Builder getLockedAtBuilder() {
         bitField0_ |= 0x00000400;
@@ -2045,7 +2321,7 @@ private static final long serialVersionUID = 0L;
         return getLockedAtFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getLockedAtOrBuilder() {
         if (lockedAtBuilder_ != null) {
@@ -2056,7 +2332,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional .google.protobuf.Timestamp locked_at = 18;</code>
+       * <code>optional .google.protobuf.Timestamp locked_at = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2076,14 +2352,14 @@ private static final long serialVersionUID = 0L;
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> deletedAtBuilder_;
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        * @return Whether the deletedAt field is set.
        */
       public boolean hasDeletedAt() {
         return ((bitField0_ & 0x00000800) != 0);
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        * @return The deletedAt.
        */
       public com.google.protobuf.Timestamp getDeletedAt() {
@@ -2094,7 +2370,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       public Builder setDeletedAt(com.google.protobuf.Timestamp value) {
         if (deletedAtBuilder_ == null) {
@@ -2110,7 +2386,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       public Builder setDeletedAt(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -2124,7 +2400,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       public Builder mergeDeletedAt(com.google.protobuf.Timestamp value) {
         if (deletedAtBuilder_ == null) {
@@ -2145,7 +2421,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       public Builder clearDeletedAt() {
         bitField0_ = (bitField0_ & ~0x00000800);
@@ -2158,7 +2434,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       public com.google.protobuf.Timestamp.Builder getDeletedAtBuilder() {
         bitField0_ |= 0x00000800;
@@ -2166,7 +2442,7 @@ private static final long serialVersionUID = 0L;
         return getDeletedAtFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getDeletedAtOrBuilder() {
         if (deletedAtBuilder_ != null) {
@@ -2177,7 +2453,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>optional .google.protobuf.Timestamp deleted_at = 19;</code>
+       * <code>optional .google.protobuf.Timestamp deleted_at = 12;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2193,16 +2469,137 @@ private static final long serialVersionUID = 0L;
         return deletedAtBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserListResponse.Item)
+      private com.google.protobuf.Timestamp updatedAt_;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> updatedAtBuilder_;
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       * @return Whether the updatedAt field is set.
+       */
+      public boolean hasUpdatedAt() {
+        return ((bitField0_ & 0x00001000) != 0);
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       * @return The updatedAt.
+       */
+      public com.google.protobuf.Timestamp getUpdatedAt() {
+        if (updatedAtBuilder_ == null) {
+          return updatedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updatedAt_;
+        } else {
+          return updatedAtBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      public Builder setUpdatedAt(com.google.protobuf.Timestamp value) {
+        if (updatedAtBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          updatedAt_ = value;
+        } else {
+          updatedAtBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      public Builder setUpdatedAt(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        if (updatedAtBuilder_ == null) {
+          updatedAt_ = builderForValue.build();
+        } else {
+          updatedAtBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      public Builder mergeUpdatedAt(com.google.protobuf.Timestamp value) {
+        if (updatedAtBuilder_ == null) {
+          if (((bitField0_ & 0x00001000) != 0) &&
+            updatedAt_ != null &&
+            updatedAt_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+            getUpdatedAtBuilder().mergeFrom(value);
+          } else {
+            updatedAt_ = value;
+          }
+        } else {
+          updatedAtBuilder_.mergeFrom(value);
+        }
+        if (updatedAt_ != null) {
+          bitField0_ |= 0x00001000;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      public Builder clearUpdatedAt() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        updatedAt_ = null;
+        if (updatedAtBuilder_ != null) {
+          updatedAtBuilder_.dispose();
+          updatedAtBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      public com.google.protobuf.Timestamp.Builder getUpdatedAtBuilder() {
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return getUpdatedAtFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      public com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder() {
+        if (updatedAtBuilder_ != null) {
+          return updatedAtBuilder_.getMessageOrBuilder();
+        } else {
+          return updatedAt_ == null ?
+              com.google.protobuf.Timestamp.getDefaultInstance() : updatedAt_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Timestamp updated_at = 13;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          getUpdatedAtFieldBuilder() {
+        if (updatedAtBuilder_ == null) {
+          updatedAtBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  getUpdatedAt(),
+                  getParentForChildren(),
+                  isClean());
+          updatedAt_ = null;
+        }
+        return updatedAtBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserIndexResponse.Item)
     }
 
-    // @@protoc_insertion_point(class_scope:palm.portal.v1.UserListResponse.Item)
-    private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:palm.portal.v1.UserIndexResponse.Item)
+    private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item();
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item();
     }
 
-    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item getDefaultInstance() {
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2238,7 +2635,7 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item getDefaultInstanceForType() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2247,41 +2644,41 @@ private static final long serialVersionUID = 0L;
   private int bitField0_;
   public static final int ITEMS_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item> items_;
+  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item> items_;
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item> getItemsList() {
+  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item> getItemsList() {
     return items_;
   }
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder> 
+  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder> 
       getItemsOrBuilderList() {
     return items_;
   }
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
   public int getItemsCount() {
     return items_.size();
   }
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item getItems(int index) {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getItems(int index) {
     return items_.get(index);
   }
   /**
-   * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+   * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder getItemsOrBuilder(
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder getItemsOrBuilder(
       int index) {
     return items_.get(index);
   }
@@ -2359,10 +2756,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse) obj;
 
     if (!getItemsList()
         .equals(other.getItemsList())) return false;
@@ -2395,44 +2792,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -2440,26 +2837,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -2472,7 +2869,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -2488,26 +2885,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.UserListResponse}
+   * Protobuf type {@code palm.portal.v1.UserIndexResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserListResponse)
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserIndexResponse)
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -2546,17 +2943,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserListResponse_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_UserIndexResponse_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -2564,15 +2961,15 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse(this);
       buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartialRepeatedFields(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse result) {
+    private void buildPartialRepeatedFields(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse result) {
       if (itemsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           items_ = java.util.Collections.unmodifiableList(items_);
@@ -2584,7 +2981,7 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse result) {
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000002) != 0)) {
@@ -2598,16 +2995,16 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.getDefaultInstance()) return this;
       if (itemsBuilder_ == null) {
         if (!other.items_.isEmpty()) {
           if (items_.isEmpty()) {
@@ -2664,9 +3061,9 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item m =
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item m =
                   input.readMessage(
-                      com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.parser(),
+                      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.parser(),
                       extensionRegistry);
               if (itemsBuilder_ == null) {
                 ensureItemsIsMutable();
@@ -2700,22 +3097,22 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item> items_ =
+    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item> items_ =
       java.util.Collections.emptyList();
     private void ensureItemsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        items_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item>(items_);
+        items_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item>(items_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder> itemsBuilder_;
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder> itemsBuilder_;
 
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item> getItemsList() {
+    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item> getItemsList() {
       if (itemsBuilder_ == null) {
         return java.util.Collections.unmodifiableList(items_);
       } else {
@@ -2723,7 +3120,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public int getItemsCount() {
       if (itemsBuilder_ == null) {
@@ -2733,9 +3130,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item getItems(int index) {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getItems(int index) {
       if (itemsBuilder_ == null) {
         return items_.get(index);
       } else {
@@ -2743,10 +3140,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder setItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item value) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item value) {
       if (itemsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2760,10 +3157,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder setItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder builderForValue) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder builderForValue) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         items_.set(index, builderForValue.build());
@@ -2774,9 +3171,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public Builder addItems(com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item value) {
+    public Builder addItems(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item value) {
       if (itemsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2790,10 +3187,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder addItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item value) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item value) {
       if (itemsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2807,10 +3204,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder addItems(
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder builderForValue) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder builderForValue) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         items_.add(builderForValue.build());
@@ -2821,10 +3218,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder addItems(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder builderForValue) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder builderForValue) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         items_.add(index, builderForValue.build());
@@ -2835,10 +3232,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder addAllItems(
-        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item> values) {
+        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item> values) {
       if (itemsBuilder_ == null) {
         ensureItemsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2850,7 +3247,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder clearItems() {
       if (itemsBuilder_ == null) {
@@ -2863,7 +3260,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
     public Builder removeItems(int index) {
       if (itemsBuilder_ == null) {
@@ -2876,16 +3273,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder getItemsBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder getItemsBuilder(
         int index) {
       return getItemsFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder getItemsOrBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder getItemsOrBuilder(
         int index) {
       if (itemsBuilder_ == null) {
         return items_.get(index);  } else {
@@ -2893,9 +3290,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder> 
+    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder> 
          getItemsOrBuilderList() {
       if (itemsBuilder_ != null) {
         return itemsBuilder_.getMessageOrBuilderList();
@@ -2904,33 +3301,33 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder addItemsBuilder() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder addItemsBuilder() {
       return getItemsFieldBuilder().addBuilder(
-          com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.getDefaultInstance());
+          com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance());
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder addItemsBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder addItemsBuilder(
         int index) {
       return getItemsFieldBuilder().addBuilder(
-          index, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.getDefaultInstance());
+          index, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance());
     }
     /**
-     * <code>repeated .palm.portal.v1.UserListResponse.Item items = 1;</code>
+     * <code>repeated .palm.portal.v1.UserIndexResponse.Item items = 1;</code>
      */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder> 
+    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder> 
          getItemsBuilderList() {
       return getItemsFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder> 
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder> 
         getItemsFieldBuilder() {
       if (itemsBuilder_ == null) {
         itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse.ItemOrBuilder>(
+            com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder>(
                 items_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
@@ -3061,23 +3458,23 @@ private static final long serialVersionUID = 0L;
       return paginationBuilder_;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserListResponse)
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserIndexResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserListResponse)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserIndexResponse)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<UserListResponse>
-      PARSER = new com.google.protobuf.AbstractParser<UserListResponse>() {
+  private static final com.google.protobuf.Parser<UserIndexResponse>
+      PARSER = new com.google.protobuf.AbstractParser<UserIndexResponse>() {
     @java.lang.Override
-    public UserListResponse parsePartialFrom(
+    public UserIndexResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3096,17 +3493,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<UserListResponse> parser() {
+  public static com.google.protobuf.Parser<UserIndexResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<UserListResponse> getParserForType() {
+  public com.google.protobuf.Parser<UserIndexResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.UserListResponse getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

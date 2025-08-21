@@ -48,7 +48,7 @@ func SetEmailUserPassword(config_file string, email string, password string) err
 				Message:      "created by system administrator",
 				ResourceType: web.ResourceType((*models.EmailUser)(nil)),
 			}
-			if err = it.Execute(tx, e_user.UserID, v2.UserIndexLogResponse_Item_INFO, &e_user.ID); err != nil {
+			if err = it.Execute(tx, e_user.UserID, v2.UserLogsResponse_Item_INFO, &e_user.ID); err != nil {
 				return err
 			}
 		}
@@ -109,7 +109,7 @@ func CreateEmailUser(config_file string, email string, name string, password str
 				Message:      "created by system administrator",
 				ResourceType: web.ResourceType((*models.EmailUser)(nil)),
 			}
-			if err = it.Execute(tx, e_user.UserID, v2.UserIndexLogResponse_Item_INFO, &e_user.ID); err != nil {
+			if err = it.Execute(tx, e_user.UserID, v2.UserLogsResponse_Item_INFO, &e_user.ID); err != nil {
 				return err
 			}
 		}
@@ -173,7 +173,7 @@ func RoleForEmailUser(config_file string, email string, role string, apply bool)
 			} else {
 				it.Message = fmt.Sprintf("relief role(%s) by system administrator", role)
 			}
-			if err = it.Execute(tx, e_user.UserID, v2.UserIndexLogResponse_Item_INFO, &e_user.ID); err != nil {
+			if err = it.Execute(tx, e_user.UserID, v2.UserLogsResponse_Item_INFO, &e_user.ID); err != nil {
 				return err
 			}
 			return nil

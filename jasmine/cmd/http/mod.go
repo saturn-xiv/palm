@@ -47,3 +47,7 @@ func (p *Config) OpenCsrf() (func(http_.Handler) http_.Handler, error) {
 	}
 	return csrf.Protect(buf), nil
 }
+
+func ReadHtmlTemplate(name string) ([]byte, error) {
+	return gl_views_fs.ReadFile(name)
+}
