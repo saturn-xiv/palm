@@ -88,6 +88,10 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.MessageOrBuilder {
     }
     /**
+     * <pre>
+     * --------------------------------
+     * </pre>
+     *
      * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Home}
      */
     public static final class Home extends
@@ -271,6 +275,10 @@ private static final long serialVersionUID = 0L;
         return builder;
       }
       /**
+       * <pre>
+       * --------------------------------
+       * </pre>
+       *
        * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Home}
        */
       public static final class Builder extends
@@ -477,21 +485,22 @@ java.lang.String defaultValue);
           java.lang.String key);
 
       /**
-       * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
-       * @return Whether the data field is set.
-       */
-      boolean hasData();
-      /**
-       * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+       * <code>string data = 2;</code>
        * @return The data.
        */
-      com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data getData();
+      java.lang.String getData();
       /**
-       * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+       * <code>string data = 2;</code>
+       * @return The bytes for data.
        */
-      com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.DataOrBuilder getDataOrBuilder();
+      com.google.protobuf.ByteString
+          getDataBytes();
     }
     /**
+     * <pre>
+     * --------------------------------
+     * </pre>
+     *
      * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample}
      */
     public static final class Sample extends
@@ -513,6 +522,7 @@ java.lang.String defaultValue);
         super(builder);
       }
       private Sample() {
+        data_ = "";
       }
 
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -543,6 +553,51 @@ java.lang.String defaultValue);
       public interface DataOrBuilder extends
           // @@protoc_insertion_point(interface_extends:palm.portal.v1.Theme.Bootstrap.Sample.Data)
           com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+         * @return Whether the header field is set.
+         */
+        boolean hasHeader();
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+         * @return The header.
+         */
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header getHeader();
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+         */
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.HeaderOrBuilder getHeaderOrBuilder();
+
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+         * @return Whether the footer field is set.
+         */
+        boolean hasFooter();
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+         * @return The footer.
+         */
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer getFooter();
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+         */
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.FooterOrBuilder getFooterOrBuilder();
+
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+         * @return Whether the body field is set.
+         */
+        boolean hasBody();
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+         * @return The body.
+         */
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body getBody();
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+         */
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.BodyOrBuilder getBodyOrBuilder();
       }
       /**
        * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample.Data}
@@ -1695,6 +1750,1700 @@ java.lang.String defaultValue);
                     com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Builder.class);
           }
 
+          public interface LinkOrBuilder extends
+              // @@protoc_insertion_point(interface_extends:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+              com.google.protobuf.MessageOrBuilder {
+
+            /**
+             * <code>string label = 1;</code>
+             * @return The label.
+             */
+            java.lang.String getLabel();
+            /**
+             * <code>string label = 1;</code>
+             * @return The bytes for label.
+             */
+            com.google.protobuf.ByteString
+                getLabelBytes();
+
+            /**
+             * <code>string href = 2;</code>
+             * @return The href.
+             */
+            java.lang.String getHref();
+            /**
+             * <code>string href = 2;</code>
+             * @return The bytes for href.
+             */
+            com.google.protobuf.ByteString
+                getHrefBytes();
+          }
+          /**
+           * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link}
+           */
+          public static final class Link extends
+              com.google.protobuf.GeneratedMessage implements
+              // @@protoc_insertion_point(message_implements:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+              LinkOrBuilder {
+          private static final long serialVersionUID = 0L;
+            static {
+              com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+                com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+                /* major= */ 4,
+                /* minor= */ 29,
+                /* patch= */ 3,
+                /* suffix= */ "",
+                Link.class.getName());
+            }
+            // Use Link.newBuilder() to construct.
+            private Link(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+              super(builder);
+            }
+            private Link() {
+              label_ = "";
+              href_ = "";
+            }
+
+            public static final com.google.protobuf.Descriptors.Descriptor
+                getDescriptor() {
+              return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Link_descriptor;
+            }
+
+            @java.lang.Override
+            protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+                internalGetFieldAccessorTable() {
+              return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Link_fieldAccessorTable
+                  .ensureFieldAccessorsInitialized(
+                      com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder.class);
+            }
+
+            public static final int LABEL_FIELD_NUMBER = 1;
+            @SuppressWarnings("serial")
+            private volatile java.lang.Object label_ = "";
+            /**
+             * <code>string label = 1;</code>
+             * @return The label.
+             */
+            @java.lang.Override
+            public java.lang.String getLabel() {
+              java.lang.Object ref = label_;
+              if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+              } else {
+                com.google.protobuf.ByteString bs = 
+                    (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                label_ = s;
+                return s;
+              }
+            }
+            /**
+             * <code>string label = 1;</code>
+             * @return The bytes for label.
+             */
+            @java.lang.Override
+            public com.google.protobuf.ByteString
+                getLabelBytes() {
+              java.lang.Object ref = label_;
+              if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b = 
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
+                label_ = b;
+                return b;
+              } else {
+                return (com.google.protobuf.ByteString) ref;
+              }
+            }
+
+            public static final int HREF_FIELD_NUMBER = 2;
+            @SuppressWarnings("serial")
+            private volatile java.lang.Object href_ = "";
+            /**
+             * <code>string href = 2;</code>
+             * @return The href.
+             */
+            @java.lang.Override
+            public java.lang.String getHref() {
+              java.lang.Object ref = href_;
+              if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+              } else {
+                com.google.protobuf.ByteString bs = 
+                    (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                href_ = s;
+                return s;
+              }
+            }
+            /**
+             * <code>string href = 2;</code>
+             * @return The bytes for href.
+             */
+            @java.lang.Override
+            public com.google.protobuf.ByteString
+                getHrefBytes() {
+              java.lang.Object ref = href_;
+              if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b = 
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
+                href_ = b;
+                return b;
+              } else {
+                return (com.google.protobuf.ByteString) ref;
+              }
+            }
+
+            private byte memoizedIsInitialized = -1;
+            @java.lang.Override
+            public final boolean isInitialized() {
+              byte isInitialized = memoizedIsInitialized;
+              if (isInitialized == 1) return true;
+              if (isInitialized == 0) return false;
+
+              memoizedIsInitialized = 1;
+              return true;
+            }
+
+            @java.lang.Override
+            public void writeTo(com.google.protobuf.CodedOutputStream output)
+                                throws java.io.IOException {
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(label_)) {
+                com.google.protobuf.GeneratedMessage.writeString(output, 1, label_);
+              }
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(href_)) {
+                com.google.protobuf.GeneratedMessage.writeString(output, 2, href_);
+              }
+              getUnknownFields().writeTo(output);
+            }
+
+            @java.lang.Override
+            public int getSerializedSize() {
+              int size = memoizedSize;
+              if (size != -1) return size;
+
+              size = 0;
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(label_)) {
+                size += com.google.protobuf.GeneratedMessage.computeStringSize(1, label_);
+              }
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(href_)) {
+                size += com.google.protobuf.GeneratedMessage.computeStringSize(2, href_);
+              }
+              size += getUnknownFields().getSerializedSize();
+              memoizedSize = size;
+              return size;
+            }
+
+            @java.lang.Override
+            public boolean equals(final java.lang.Object obj) {
+              if (obj == this) {
+               return true;
+              }
+              if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)) {
+                return super.equals(obj);
+              }
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link other = (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link) obj;
+
+              if (!getLabel()
+                  .equals(other.getLabel())) return false;
+              if (!getHref()
+                  .equals(other.getHref())) return false;
+              if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+              return true;
+            }
+
+            @java.lang.Override
+            public int hashCode() {
+              if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+              }
+              int hash = 41;
+              hash = (19 * hash) + getDescriptor().hashCode();
+              hash = (37 * hash) + LABEL_FIELD_NUMBER;
+              hash = (53 * hash) + getLabel().hashCode();
+              hash = (37 * hash) + HREF_FIELD_NUMBER;
+              hash = (53 * hash) + getHref().hashCode();
+              hash = (29 * hash) + getUnknownFields().hashCode();
+              memoizedHashCode = hash;
+              return hash;
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input, extensionRegistry);
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseDelimitedWithIOException(PARSER, input);
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input, extensionRegistry);
+            }
+
+            @java.lang.Override
+            public Builder newBuilderForType() { return newBuilder(); }
+            public static Builder newBuilder() {
+              return DEFAULT_INSTANCE.toBuilder();
+            }
+            public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link prototype) {
+              return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+            }
+            @java.lang.Override
+            public Builder toBuilder() {
+              return this == DEFAULT_INSTANCE
+                  ? new Builder() : new Builder().mergeFrom(this);
+            }
+
+            @java.lang.Override
+            protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+              Builder builder = new Builder(parent);
+              return builder;
+            }
+            /**
+             * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link}
+             */
+            public static final class Builder extends
+                com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder {
+              public static final com.google.protobuf.Descriptors.Descriptor
+                  getDescriptor() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Link_descriptor;
+              }
+
+              @java.lang.Override
+              protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+                  internalGetFieldAccessorTable() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Link_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder.class);
+              }
+
+              // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.newBuilder()
+              private Builder() {
+
+              }
+
+              private Builder(
+                  com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                super(parent);
+
+              }
+              @java.lang.Override
+              public Builder clear() {
+                super.clear();
+                bitField0_ = 0;
+                label_ = "";
+                href_ = "";
+                return this;
+              }
+
+              @java.lang.Override
+              public com.google.protobuf.Descriptors.Descriptor
+                  getDescriptorForType() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Link_descriptor;
+              }
+
+              @java.lang.Override
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link getDefaultInstanceForType() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.getDefaultInstance();
+              }
+
+              @java.lang.Override
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link build() {
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link result = buildPartial();
+                if (!result.isInitialized()) {
+                  throw newUninitializedMessageException(result);
+                }
+                return result;
+              }
+
+              @java.lang.Override
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link buildPartial() {
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link result = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link(this);
+                if (bitField0_ != 0) { buildPartial0(result); }
+                onBuilt();
+                return result;
+              }
+
+              private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link result) {
+                int from_bitField0_ = bitField0_;
+                if (((from_bitField0_ & 0x00000001) != 0)) {
+                  result.label_ = label_;
+                }
+                if (((from_bitField0_ & 0x00000002) != 0)) {
+                  result.href_ = href_;
+                }
+              }
+
+              @java.lang.Override
+              public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link) {
+                  return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)other);
+                } else {
+                  super.mergeFrom(other);
+                  return this;
+                }
+              }
+
+              public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link other) {
+                if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.getDefaultInstance()) return this;
+                if (!other.getLabel().isEmpty()) {
+                  label_ = other.label_;
+                  bitField0_ |= 0x00000001;
+                  onChanged();
+                }
+                if (!other.getHref().isEmpty()) {
+                  href_ = other.href_;
+                  bitField0_ |= 0x00000002;
+                  onChanged();
+                }
+                this.mergeUnknownFields(other.getUnknownFields());
+                onChanged();
+                return this;
+              }
+
+              @java.lang.Override
+              public final boolean isInitialized() {
+                return true;
+              }
+
+              @java.lang.Override
+              public Builder mergeFrom(
+                  com.google.protobuf.CodedInputStream input,
+                  com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                  throws java.io.IOException {
+                if (extensionRegistry == null) {
+                  throw new java.lang.NullPointerException();
+                }
+                try {
+                  boolean done = false;
+                  while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                      case 0:
+                        done = true;
+                        break;
+                      case 10: {
+                        label_ = input.readStringRequireUtf8();
+                        bitField0_ |= 0x00000001;
+                        break;
+                      } // case 10
+                      case 18: {
+                        href_ = input.readStringRequireUtf8();
+                        bitField0_ |= 0x00000002;
+                        break;
+                      } // case 18
+                      default: {
+                        if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                          done = true; // was an endgroup tag
+                        }
+                        break;
+                      } // default:
+                    } // switch (tag)
+                  } // while (!done)
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                  throw e.unwrapIOException();
+                } finally {
+                  onChanged();
+                } // finally
+                return this;
+              }
+              private int bitField0_;
+
+              private java.lang.Object label_ = "";
+              /**
+               * <code>string label = 1;</code>
+               * @return The label.
+               */
+              public java.lang.String getLabel() {
+                java.lang.Object ref = label_;
+                if (!(ref instanceof java.lang.String)) {
+                  com.google.protobuf.ByteString bs =
+                      (com.google.protobuf.ByteString) ref;
+                  java.lang.String s = bs.toStringUtf8();
+                  label_ = s;
+                  return s;
+                } else {
+                  return (java.lang.String) ref;
+                }
+              }
+              /**
+               * <code>string label = 1;</code>
+               * @return The bytes for label.
+               */
+              public com.google.protobuf.ByteString
+                  getLabelBytes() {
+                java.lang.Object ref = label_;
+                if (ref instanceof String) {
+                  com.google.protobuf.ByteString b = 
+                      com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
+                  label_ = b;
+                  return b;
+                } else {
+                  return (com.google.protobuf.ByteString) ref;
+                }
+              }
+              /**
+               * <code>string label = 1;</code>
+               * @param value The label to set.
+               * @return This builder for chaining.
+               */
+              public Builder setLabel(
+                  java.lang.String value) {
+                if (value == null) { throw new NullPointerException(); }
+                label_ = value;
+                bitField0_ |= 0x00000001;
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string label = 1;</code>
+               * @return This builder for chaining.
+               */
+              public Builder clearLabel() {
+                label_ = getDefaultInstance().getLabel();
+                bitField0_ = (bitField0_ & ~0x00000001);
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string label = 1;</code>
+               * @param value The bytes for label to set.
+               * @return This builder for chaining.
+               */
+              public Builder setLabelBytes(
+                  com.google.protobuf.ByteString value) {
+                if (value == null) { throw new NullPointerException(); }
+                checkByteStringIsUtf8(value);
+                label_ = value;
+                bitField0_ |= 0x00000001;
+                onChanged();
+                return this;
+              }
+
+              private java.lang.Object href_ = "";
+              /**
+               * <code>string href = 2;</code>
+               * @return The href.
+               */
+              public java.lang.String getHref() {
+                java.lang.Object ref = href_;
+                if (!(ref instanceof java.lang.String)) {
+                  com.google.protobuf.ByteString bs =
+                      (com.google.protobuf.ByteString) ref;
+                  java.lang.String s = bs.toStringUtf8();
+                  href_ = s;
+                  return s;
+                } else {
+                  return (java.lang.String) ref;
+                }
+              }
+              /**
+               * <code>string href = 2;</code>
+               * @return The bytes for href.
+               */
+              public com.google.protobuf.ByteString
+                  getHrefBytes() {
+                java.lang.Object ref = href_;
+                if (ref instanceof String) {
+                  com.google.protobuf.ByteString b = 
+                      com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
+                  href_ = b;
+                  return b;
+                } else {
+                  return (com.google.protobuf.ByteString) ref;
+                }
+              }
+              /**
+               * <code>string href = 2;</code>
+               * @param value The href to set.
+               * @return This builder for chaining.
+               */
+              public Builder setHref(
+                  java.lang.String value) {
+                if (value == null) { throw new NullPointerException(); }
+                href_ = value;
+                bitField0_ |= 0x00000002;
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string href = 2;</code>
+               * @return This builder for chaining.
+               */
+              public Builder clearHref() {
+                href_ = getDefaultInstance().getHref();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string href = 2;</code>
+               * @param value The bytes for href to set.
+               * @return This builder for chaining.
+               */
+              public Builder setHrefBytes(
+                  com.google.protobuf.ByteString value) {
+                if (value == null) { throw new NullPointerException(); }
+                checkByteStringIsUtf8(value);
+                href_ = value;
+                bitField0_ |= 0x00000002;
+                onChanged();
+                return this;
+              }
+
+              // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+            }
+
+            // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+            private static final com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link DEFAULT_INSTANCE;
+            static {
+              DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link();
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link getDefaultInstance() {
+              return DEFAULT_INSTANCE;
+            }
+
+            private static final com.google.protobuf.Parser<Link>
+                PARSER = new com.google.protobuf.AbstractParser<Link>() {
+              @java.lang.Override
+              public Link parsePartialFrom(
+                  com.google.protobuf.CodedInputStream input,
+                  com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                  throws com.google.protobuf.InvalidProtocolBufferException {
+                Builder builder = newBuilder();
+                try {
+                  builder.mergeFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                  throw e.setUnfinishedMessage(builder.buildPartial());
+                } catch (com.google.protobuf.UninitializedMessageException e) {
+                  throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+                } catch (java.io.IOException e) {
+                  throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                      .setUnfinishedMessage(builder.buildPartial());
+                }
+                return builder.buildPartial();
+              }
+            };
+
+            public static com.google.protobuf.Parser<Link> parser() {
+              return PARSER;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Parser<Link> getParserForType() {
+              return PARSER;
+            }
+
+            @java.lang.Override
+            public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link getDefaultInstanceForType() {
+              return DEFAULT_INSTANCE;
+            }
+
+          }
+
+          public interface PanelOrBuilder extends
+              // @@protoc_insertion_point(interface_extends:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+              com.google.protobuf.MessageOrBuilder {
+
+            /**
+             * <code>string title = 1;</code>
+             * @return The title.
+             */
+            java.lang.String getTitle();
+            /**
+             * <code>string title = 1;</code>
+             * @return The bytes for title.
+             */
+            com.google.protobuf.ByteString
+                getTitleBytes();
+
+            /**
+             * <code>string description = 2;</code>
+             * @return The description.
+             */
+            java.lang.String getDescription();
+            /**
+             * <code>string description = 2;</code>
+             * @return The bytes for description.
+             */
+            com.google.protobuf.ByteString
+                getDescriptionBytes();
+
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link> 
+                getLinksList();
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link getLinks(int index);
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            int getLinksCount();
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder> 
+                getLinksOrBuilderList();
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder getLinksOrBuilder(
+                int index);
+          }
+          /**
+           * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel}
+           */
+          public static final class Panel extends
+              com.google.protobuf.GeneratedMessage implements
+              // @@protoc_insertion_point(message_implements:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+              PanelOrBuilder {
+          private static final long serialVersionUID = 0L;
+            static {
+              com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+                com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+                /* major= */ 4,
+                /* minor= */ 29,
+                /* patch= */ 3,
+                /* suffix= */ "",
+                Panel.class.getName());
+            }
+            // Use Panel.newBuilder() to construct.
+            private Panel(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+              super(builder);
+            }
+            private Panel() {
+              title_ = "";
+              description_ = "";
+              links_ = java.util.Collections.emptyList();
+            }
+
+            public static final com.google.protobuf.Descriptors.Descriptor
+                getDescriptor() {
+              return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Panel_descriptor;
+            }
+
+            @java.lang.Override
+            protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+                internalGetFieldAccessorTable() {
+              return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Panel_fieldAccessorTable
+                  .ensureFieldAccessorsInitialized(
+                      com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder.class);
+            }
+
+            public static final int TITLE_FIELD_NUMBER = 1;
+            @SuppressWarnings("serial")
+            private volatile java.lang.Object title_ = "";
+            /**
+             * <code>string title = 1;</code>
+             * @return The title.
+             */
+            @java.lang.Override
+            public java.lang.String getTitle() {
+              java.lang.Object ref = title_;
+              if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+              } else {
+                com.google.protobuf.ByteString bs = 
+                    (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                title_ = s;
+                return s;
+              }
+            }
+            /**
+             * <code>string title = 1;</code>
+             * @return The bytes for title.
+             */
+            @java.lang.Override
+            public com.google.protobuf.ByteString
+                getTitleBytes() {
+              java.lang.Object ref = title_;
+              if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b = 
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
+                title_ = b;
+                return b;
+              } else {
+                return (com.google.protobuf.ByteString) ref;
+              }
+            }
+
+            public static final int DESCRIPTION_FIELD_NUMBER = 2;
+            @SuppressWarnings("serial")
+            private volatile java.lang.Object description_ = "";
+            /**
+             * <code>string description = 2;</code>
+             * @return The description.
+             */
+            @java.lang.Override
+            public java.lang.String getDescription() {
+              java.lang.Object ref = description_;
+              if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+              } else {
+                com.google.protobuf.ByteString bs = 
+                    (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                description_ = s;
+                return s;
+              }
+            }
+            /**
+             * <code>string description = 2;</code>
+             * @return The bytes for description.
+             */
+            @java.lang.Override
+            public com.google.protobuf.ByteString
+                getDescriptionBytes() {
+              java.lang.Object ref = description_;
+              if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b = 
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
+                description_ = b;
+                return b;
+              } else {
+                return (com.google.protobuf.ByteString) ref;
+              }
+            }
+
+            public static final int LINKS_FIELD_NUMBER = 3;
+            @SuppressWarnings("serial")
+            private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link> links_;
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            @java.lang.Override
+            public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link> getLinksList() {
+              return links_;
+            }
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            @java.lang.Override
+            public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder> 
+                getLinksOrBuilderList() {
+              return links_;
+            }
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            @java.lang.Override
+            public int getLinksCount() {
+              return links_.size();
+            }
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            @java.lang.Override
+            public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link getLinks(int index) {
+              return links_.get(index);
+            }
+            /**
+             * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+             */
+            @java.lang.Override
+            public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder getLinksOrBuilder(
+                int index) {
+              return links_.get(index);
+            }
+
+            private byte memoizedIsInitialized = -1;
+            @java.lang.Override
+            public final boolean isInitialized() {
+              byte isInitialized = memoizedIsInitialized;
+              if (isInitialized == 1) return true;
+              if (isInitialized == 0) return false;
+
+              memoizedIsInitialized = 1;
+              return true;
+            }
+
+            @java.lang.Override
+            public void writeTo(com.google.protobuf.CodedOutputStream output)
+                                throws java.io.IOException {
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(title_)) {
+                com.google.protobuf.GeneratedMessage.writeString(output, 1, title_);
+              }
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
+                com.google.protobuf.GeneratedMessage.writeString(output, 2, description_);
+              }
+              for (int i = 0; i < links_.size(); i++) {
+                output.writeMessage(3, links_.get(i));
+              }
+              getUnknownFields().writeTo(output);
+            }
+
+            @java.lang.Override
+            public int getSerializedSize() {
+              int size = memoizedSize;
+              if (size != -1) return size;
+
+              size = 0;
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(title_)) {
+                size += com.google.protobuf.GeneratedMessage.computeStringSize(1, title_);
+              }
+              if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
+                size += com.google.protobuf.GeneratedMessage.computeStringSize(2, description_);
+              }
+              for (int i = 0; i < links_.size(); i++) {
+                size += com.google.protobuf.CodedOutputStream
+                  .computeMessageSize(3, links_.get(i));
+              }
+              size += getUnknownFields().getSerializedSize();
+              memoizedSize = size;
+              return size;
+            }
+
+            @java.lang.Override
+            public boolean equals(final java.lang.Object obj) {
+              if (obj == this) {
+               return true;
+              }
+              if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)) {
+                return super.equals(obj);
+              }
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel other = (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) obj;
+
+              if (!getTitle()
+                  .equals(other.getTitle())) return false;
+              if (!getDescription()
+                  .equals(other.getDescription())) return false;
+              if (!getLinksList()
+                  .equals(other.getLinksList())) return false;
+              if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+              return true;
+            }
+
+            @java.lang.Override
+            public int hashCode() {
+              if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+              }
+              int hash = 41;
+              hash = (19 * hash) + getDescriptor().hashCode();
+              hash = (37 * hash) + TITLE_FIELD_NUMBER;
+              hash = (53 * hash) + getTitle().hashCode();
+              hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
+              hash = (53 * hash) + getDescription().hashCode();
+              if (getLinksCount() > 0) {
+                hash = (37 * hash) + LINKS_FIELD_NUMBER;
+                hash = (53 * hash) + getLinksList().hashCode();
+              }
+              hash = (29 * hash) + getUnknownFields().hashCode();
+              memoizedHashCode = hash;
+              return hash;
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+              return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input, extensionRegistry);
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseDelimitedWithIOException(PARSER, input);
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input);
+            }
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+              return com.google.protobuf.GeneratedMessage
+                  .parseWithIOException(PARSER, input, extensionRegistry);
+            }
+
+            @java.lang.Override
+            public Builder newBuilderForType() { return newBuilder(); }
+            public static Builder newBuilder() {
+              return DEFAULT_INSTANCE.toBuilder();
+            }
+            public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel prototype) {
+              return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+            }
+            @java.lang.Override
+            public Builder toBuilder() {
+              return this == DEFAULT_INSTANCE
+                  ? new Builder() : new Builder().mergeFrom(this);
+            }
+
+            @java.lang.Override
+            protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+              Builder builder = new Builder(parent);
+              return builder;
+            }
+            /**
+             * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel}
+             */
+            public static final class Builder extends
+                com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder {
+              public static final com.google.protobuf.Descriptors.Descriptor
+                  getDescriptor() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Panel_descriptor;
+              }
+
+              @java.lang.Override
+              protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+                  internalGetFieldAccessorTable() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Panel_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder.class);
+              }
+
+              // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.newBuilder()
+              private Builder() {
+
+              }
+
+              private Builder(
+                  com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                super(parent);
+
+              }
+              @java.lang.Override
+              public Builder clear() {
+                super.clear();
+                bitField0_ = 0;
+                title_ = "";
+                description_ = "";
+                if (linksBuilder_ == null) {
+                  links_ = java.util.Collections.emptyList();
+                } else {
+                  links_ = null;
+                  linksBuilder_.clear();
+                }
+                bitField0_ = (bitField0_ & ~0x00000004);
+                return this;
+              }
+
+              @java.lang.Override
+              public com.google.protobuf.Descriptors.Descriptor
+                  getDescriptorForType() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Panel_descriptor;
+              }
+
+              @java.lang.Override
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getDefaultInstanceForType() {
+                return com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.getDefaultInstance();
+              }
+
+              @java.lang.Override
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel build() {
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel result = buildPartial();
+                if (!result.isInitialized()) {
+                  throw newUninitializedMessageException(result);
+                }
+                return result;
+              }
+
+              @java.lang.Override
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel buildPartial() {
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel result = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel(this);
+                buildPartialRepeatedFields(result);
+                if (bitField0_ != 0) { buildPartial0(result); }
+                onBuilt();
+                return result;
+              }
+
+              private void buildPartialRepeatedFields(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel result) {
+                if (linksBuilder_ == null) {
+                  if (((bitField0_ & 0x00000004) != 0)) {
+                    links_ = java.util.Collections.unmodifiableList(links_);
+                    bitField0_ = (bitField0_ & ~0x00000004);
+                  }
+                  result.links_ = links_;
+                } else {
+                  result.links_ = linksBuilder_.build();
+                }
+              }
+
+              private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel result) {
+                int from_bitField0_ = bitField0_;
+                if (((from_bitField0_ & 0x00000001) != 0)) {
+                  result.title_ = title_;
+                }
+                if (((from_bitField0_ & 0x00000002) != 0)) {
+                  result.description_ = description_;
+                }
+              }
+
+              @java.lang.Override
+              public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) {
+                  return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)other);
+                } else {
+                  super.mergeFrom(other);
+                  return this;
+                }
+              }
+
+              public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel other) {
+                if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.getDefaultInstance()) return this;
+                if (!other.getTitle().isEmpty()) {
+                  title_ = other.title_;
+                  bitField0_ |= 0x00000001;
+                  onChanged();
+                }
+                if (!other.getDescription().isEmpty()) {
+                  description_ = other.description_;
+                  bitField0_ |= 0x00000002;
+                  onChanged();
+                }
+                if (linksBuilder_ == null) {
+                  if (!other.links_.isEmpty()) {
+                    if (links_.isEmpty()) {
+                      links_ = other.links_;
+                      bitField0_ = (bitField0_ & ~0x00000004);
+                    } else {
+                      ensureLinksIsMutable();
+                      links_.addAll(other.links_);
+                    }
+                    onChanged();
+                  }
+                } else {
+                  if (!other.links_.isEmpty()) {
+                    if (linksBuilder_.isEmpty()) {
+                      linksBuilder_.dispose();
+                      linksBuilder_ = null;
+                      links_ = other.links_;
+                      bitField0_ = (bitField0_ & ~0x00000004);
+                      linksBuilder_ = 
+                        com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                           getLinksFieldBuilder() : null;
+                    } else {
+                      linksBuilder_.addAllMessages(other.links_);
+                    }
+                  }
+                }
+                this.mergeUnknownFields(other.getUnknownFields());
+                onChanged();
+                return this;
+              }
+
+              @java.lang.Override
+              public final boolean isInitialized() {
+                return true;
+              }
+
+              @java.lang.Override
+              public Builder mergeFrom(
+                  com.google.protobuf.CodedInputStream input,
+                  com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                  throws java.io.IOException {
+                if (extensionRegistry == null) {
+                  throw new java.lang.NullPointerException();
+                }
+                try {
+                  boolean done = false;
+                  while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                      case 0:
+                        done = true;
+                        break;
+                      case 10: {
+                        title_ = input.readStringRequireUtf8();
+                        bitField0_ |= 0x00000001;
+                        break;
+                      } // case 10
+                      case 18: {
+                        description_ = input.readStringRequireUtf8();
+                        bitField0_ |= 0x00000002;
+                        break;
+                      } // case 18
+                      case 26: {
+                        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link m =
+                            input.readMessage(
+                                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.parser(),
+                                extensionRegistry);
+                        if (linksBuilder_ == null) {
+                          ensureLinksIsMutable();
+                          links_.add(m);
+                        } else {
+                          linksBuilder_.addMessage(m);
+                        }
+                        break;
+                      } // case 26
+                      default: {
+                        if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                          done = true; // was an endgroup tag
+                        }
+                        break;
+                      } // default:
+                    } // switch (tag)
+                  } // while (!done)
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                  throw e.unwrapIOException();
+                } finally {
+                  onChanged();
+                } // finally
+                return this;
+              }
+              private int bitField0_;
+
+              private java.lang.Object title_ = "";
+              /**
+               * <code>string title = 1;</code>
+               * @return The title.
+               */
+              public java.lang.String getTitle() {
+                java.lang.Object ref = title_;
+                if (!(ref instanceof java.lang.String)) {
+                  com.google.protobuf.ByteString bs =
+                      (com.google.protobuf.ByteString) ref;
+                  java.lang.String s = bs.toStringUtf8();
+                  title_ = s;
+                  return s;
+                } else {
+                  return (java.lang.String) ref;
+                }
+              }
+              /**
+               * <code>string title = 1;</code>
+               * @return The bytes for title.
+               */
+              public com.google.protobuf.ByteString
+                  getTitleBytes() {
+                java.lang.Object ref = title_;
+                if (ref instanceof String) {
+                  com.google.protobuf.ByteString b = 
+                      com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
+                  title_ = b;
+                  return b;
+                } else {
+                  return (com.google.protobuf.ByteString) ref;
+                }
+              }
+              /**
+               * <code>string title = 1;</code>
+               * @param value The title to set.
+               * @return This builder for chaining.
+               */
+              public Builder setTitle(
+                  java.lang.String value) {
+                if (value == null) { throw new NullPointerException(); }
+                title_ = value;
+                bitField0_ |= 0x00000001;
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string title = 1;</code>
+               * @return This builder for chaining.
+               */
+              public Builder clearTitle() {
+                title_ = getDefaultInstance().getTitle();
+                bitField0_ = (bitField0_ & ~0x00000001);
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string title = 1;</code>
+               * @param value The bytes for title to set.
+               * @return This builder for chaining.
+               */
+              public Builder setTitleBytes(
+                  com.google.protobuf.ByteString value) {
+                if (value == null) { throw new NullPointerException(); }
+                checkByteStringIsUtf8(value);
+                title_ = value;
+                bitField0_ |= 0x00000001;
+                onChanged();
+                return this;
+              }
+
+              private java.lang.Object description_ = "";
+              /**
+               * <code>string description = 2;</code>
+               * @return The description.
+               */
+              public java.lang.String getDescription() {
+                java.lang.Object ref = description_;
+                if (!(ref instanceof java.lang.String)) {
+                  com.google.protobuf.ByteString bs =
+                      (com.google.protobuf.ByteString) ref;
+                  java.lang.String s = bs.toStringUtf8();
+                  description_ = s;
+                  return s;
+                } else {
+                  return (java.lang.String) ref;
+                }
+              }
+              /**
+               * <code>string description = 2;</code>
+               * @return The bytes for description.
+               */
+              public com.google.protobuf.ByteString
+                  getDescriptionBytes() {
+                java.lang.Object ref = description_;
+                if (ref instanceof String) {
+                  com.google.protobuf.ByteString b = 
+                      com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
+                  description_ = b;
+                  return b;
+                } else {
+                  return (com.google.protobuf.ByteString) ref;
+                }
+              }
+              /**
+               * <code>string description = 2;</code>
+               * @param value The description to set.
+               * @return This builder for chaining.
+               */
+              public Builder setDescription(
+                  java.lang.String value) {
+                if (value == null) { throw new NullPointerException(); }
+                description_ = value;
+                bitField0_ |= 0x00000002;
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string description = 2;</code>
+               * @return This builder for chaining.
+               */
+              public Builder clearDescription() {
+                description_ = getDefaultInstance().getDescription();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                onChanged();
+                return this;
+              }
+              /**
+               * <code>string description = 2;</code>
+               * @param value The bytes for description to set.
+               * @return This builder for chaining.
+               */
+              public Builder setDescriptionBytes(
+                  com.google.protobuf.ByteString value) {
+                if (value == null) { throw new NullPointerException(); }
+                checkByteStringIsUtf8(value);
+                description_ = value;
+                bitField0_ |= 0x00000002;
+                onChanged();
+                return this;
+              }
+
+              private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link> links_ =
+                java.util.Collections.emptyList();
+              private void ensureLinksIsMutable() {
+                if (!((bitField0_ & 0x00000004) != 0)) {
+                  links_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link>(links_);
+                  bitField0_ |= 0x00000004;
+                 }
+              }
+
+              private com.google.protobuf.RepeatedFieldBuilder<
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder> linksBuilder_;
+
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link> getLinksList() {
+                if (linksBuilder_ == null) {
+                  return java.util.Collections.unmodifiableList(links_);
+                } else {
+                  return linksBuilder_.getMessageList();
+                }
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public int getLinksCount() {
+                if (linksBuilder_ == null) {
+                  return links_.size();
+                } else {
+                  return linksBuilder_.getCount();
+                }
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link getLinks(int index) {
+                if (linksBuilder_ == null) {
+                  return links_.get(index);
+                } else {
+                  return linksBuilder_.getMessage(index);
+                }
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder setLinks(
+                  int index, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link value) {
+                if (linksBuilder_ == null) {
+                  if (value == null) {
+                    throw new NullPointerException();
+                  }
+                  ensureLinksIsMutable();
+                  links_.set(index, value);
+                  onChanged();
+                } else {
+                  linksBuilder_.setMessage(index, value);
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder setLinks(
+                  int index, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder builderForValue) {
+                if (linksBuilder_ == null) {
+                  ensureLinksIsMutable();
+                  links_.set(index, builderForValue.build());
+                  onChanged();
+                } else {
+                  linksBuilder_.setMessage(index, builderForValue.build());
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder addLinks(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link value) {
+                if (linksBuilder_ == null) {
+                  if (value == null) {
+                    throw new NullPointerException();
+                  }
+                  ensureLinksIsMutable();
+                  links_.add(value);
+                  onChanged();
+                } else {
+                  linksBuilder_.addMessage(value);
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder addLinks(
+                  int index, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link value) {
+                if (linksBuilder_ == null) {
+                  if (value == null) {
+                    throw new NullPointerException();
+                  }
+                  ensureLinksIsMutable();
+                  links_.add(index, value);
+                  onChanged();
+                } else {
+                  linksBuilder_.addMessage(index, value);
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder addLinks(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder builderForValue) {
+                if (linksBuilder_ == null) {
+                  ensureLinksIsMutable();
+                  links_.add(builderForValue.build());
+                  onChanged();
+                } else {
+                  linksBuilder_.addMessage(builderForValue.build());
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder addLinks(
+                  int index, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder builderForValue) {
+                if (linksBuilder_ == null) {
+                  ensureLinksIsMutable();
+                  links_.add(index, builderForValue.build());
+                  onChanged();
+                } else {
+                  linksBuilder_.addMessage(index, builderForValue.build());
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder addAllLinks(
+                  java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link> values) {
+                if (linksBuilder_ == null) {
+                  ensureLinksIsMutable();
+                  com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                      values, links_);
+                  onChanged();
+                } else {
+                  linksBuilder_.addAllMessages(values);
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder clearLinks() {
+                if (linksBuilder_ == null) {
+                  links_ = java.util.Collections.emptyList();
+                  bitField0_ = (bitField0_ & ~0x00000004);
+                  onChanged();
+                } else {
+                  linksBuilder_.clear();
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public Builder removeLinks(int index) {
+                if (linksBuilder_ == null) {
+                  ensureLinksIsMutable();
+                  links_.remove(index);
+                  onChanged();
+                } else {
+                  linksBuilder_.remove(index);
+                }
+                return this;
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder getLinksBuilder(
+                  int index) {
+                return getLinksFieldBuilder().getBuilder(index);
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder getLinksOrBuilder(
+                  int index) {
+                if (linksBuilder_ == null) {
+                  return links_.get(index);  } else {
+                  return linksBuilder_.getMessageOrBuilder(index);
+                }
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder> 
+                   getLinksOrBuilderList() {
+                if (linksBuilder_ != null) {
+                  return linksBuilder_.getMessageOrBuilderList();
+                } else {
+                  return java.util.Collections.unmodifiableList(links_);
+                }
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder addLinksBuilder() {
+                return getLinksFieldBuilder().addBuilder(
+                    com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.getDefaultInstance());
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder addLinksBuilder(
+                  int index) {
+                return getLinksFieldBuilder().addBuilder(
+                    index, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.getDefaultInstance());
+              }
+              /**
+               * <code>repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;</code>
+               */
+              public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder> 
+                   getLinksBuilderList() {
+                return getLinksFieldBuilder().getBuilderList();
+              }
+              private com.google.protobuf.RepeatedFieldBuilder<
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder> 
+                  getLinksFieldBuilder() {
+                if (linksBuilder_ == null) {
+                  linksBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+                      com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkOrBuilder>(
+                          links_,
+                          ((bitField0_ & 0x00000004) != 0),
+                          getParentForChildren(),
+                          isClean());
+                  links_ = null;
+                }
+                return linksBuilder_;
+              }
+
+              // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+            }
+
+            // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+            private static final com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel DEFAULT_INSTANCE;
+            static {
+              DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel();
+            }
+
+            public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getDefaultInstance() {
+              return DEFAULT_INSTANCE;
+            }
+
+            private static final com.google.protobuf.Parser<Panel>
+                PARSER = new com.google.protobuf.AbstractParser<Panel>() {
+              @java.lang.Override
+              public Panel parsePartialFrom(
+                  com.google.protobuf.CodedInputStream input,
+                  com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                  throws com.google.protobuf.InvalidProtocolBufferException {
+                Builder builder = newBuilder();
+                try {
+                  builder.mergeFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                  throw e.setUnfinishedMessage(builder.buildPartial());
+                } catch (com.google.protobuf.UninitializedMessageException e) {
+                  throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+                } catch (java.io.IOException e) {
+                  throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                      .setUnfinishedMessage(builder.buildPartial());
+                }
+                return builder.buildPartial();
+              }
+            };
+
+            public static com.google.protobuf.Parser<Panel> parser() {
+              return PARSER;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Parser<Panel> getParserForType() {
+              return PARSER;
+            }
+
+            @java.lang.Override
+            public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getDefaultInstanceForType() {
+              return DEFAULT_INSTANCE;
+            }
+
+          }
+
           public interface ItemOrBuilder extends
               // @@protoc_insertion_point(interface_extends:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item)
               com.google.protobuf.MessageOrBuilder {
@@ -1724,37 +3473,37 @@ java.lang.String defaultValue);
                 getDescriptionBytes();
 
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
-            int getPropertiesCount();
+            int getPanelsCount();
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
-            boolean containsProperties(
+            boolean containsPanels(
                 java.lang.String key);
             /**
-             * Use {@link #getPropertiesMap()} instead.
+             * Use {@link #getPanelsMap()} instead.
              */
             @java.lang.Deprecated
-            java.util.Map<java.lang.String, java.lang.String>
-            getProperties();
+            java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>
+            getPanels();
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
-            java.util.Map<java.lang.String, java.lang.String>
-            getPropertiesMap();
+            java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>
+            getPanelsMap();
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
             /* nullable */
-java.lang.String getPropertiesOrDefault(
+com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getPanelsOrDefault(
                 java.lang.String key,
                 /* nullable */
-java.lang.String defaultValue);
+com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel defaultValue);
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
-            java.lang.String getPropertiesOrThrow(
+            com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getPanelsOrThrow(
                 java.lang.String key);
           }
           /**
@@ -1794,7 +3543,7 @@ java.lang.String defaultValue);
                 int number) {
               switch (number) {
                 case 3:
-                  return internalGetProperties();
+                  return internalGetPanels();
                 default:
                   throw new RuntimeException(
                       "Invalid map field number: " + number);
@@ -1886,79 +3635,79 @@ java.lang.String defaultValue);
               }
             }
 
-            public static final int PROPERTIES_FIELD_NUMBER = 3;
-            private static final class PropertiesDefaultEntryHolder {
+            public static final int PANELS_FIELD_NUMBER = 3;
+            private static final class PanelsDefaultEntryHolder {
               static final com.google.protobuf.MapEntry<
-                  java.lang.String, java.lang.String> defaultEntry =
+                  java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> defaultEntry =
                       com.google.protobuf.MapEntry
-                      .<java.lang.String, java.lang.String>newDefaultInstance(
-                          com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_descriptor, 
+                      .<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>newDefaultInstance(
+                          com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_descriptor, 
                           com.google.protobuf.WireFormat.FieldType.STRING,
                           "",
-                          com.google.protobuf.WireFormat.FieldType.STRING,
-                          "");
+                          com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                          com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.getDefaultInstance());
             }
             @SuppressWarnings("serial")
             private com.google.protobuf.MapField<
-                java.lang.String, java.lang.String> properties_;
-            private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-            internalGetProperties() {
-              if (properties_ == null) {
+                java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> panels_;
+            private com.google.protobuf.MapField<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>
+            internalGetPanels() {
+              if (panels_ == null) {
                 return com.google.protobuf.MapField.emptyMapField(
-                    PropertiesDefaultEntryHolder.defaultEntry);
+                    PanelsDefaultEntryHolder.defaultEntry);
               }
-              return properties_;
+              return panels_;
             }
-            public int getPropertiesCount() {
-              return internalGetProperties().getMap().size();
+            public int getPanelsCount() {
+              return internalGetPanels().getMap().size();
             }
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
             @java.lang.Override
-            public boolean containsProperties(
+            public boolean containsPanels(
                 java.lang.String key) {
               if (key == null) { throw new NullPointerException("map key"); }
-              return internalGetProperties().getMap().containsKey(key);
+              return internalGetPanels().getMap().containsKey(key);
             }
             /**
-             * Use {@link #getPropertiesMap()} instead.
+             * Use {@link #getPanelsMap()} instead.
              */
             @java.lang.Override
             @java.lang.Deprecated
-            public java.util.Map<java.lang.String, java.lang.String> getProperties() {
-              return getPropertiesMap();
+            public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> getPanels() {
+              return getPanelsMap();
             }
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
             @java.lang.Override
-            public java.util.Map<java.lang.String, java.lang.String> getPropertiesMap() {
-              return internalGetProperties().getMap();
+            public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> getPanelsMap() {
+              return internalGetPanels().getMap();
             }
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
             @java.lang.Override
             public /* nullable */
-java.lang.String getPropertiesOrDefault(
+com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getPanelsOrDefault(
                 java.lang.String key,
                 /* nullable */
-java.lang.String defaultValue) {
+com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel defaultValue) {
               if (key == null) { throw new NullPointerException("map key"); }
-              java.util.Map<java.lang.String, java.lang.String> map =
-                  internalGetProperties().getMap();
+              java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> map =
+                  internalGetPanels().getMap();
               return map.containsKey(key) ? map.get(key) : defaultValue;
             }
             /**
-             * <code>map&lt;string, string&gt; properties = 3;</code>
+             * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
              */
             @java.lang.Override
-            public java.lang.String getPropertiesOrThrow(
+            public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getPanelsOrThrow(
                 java.lang.String key) {
               if (key == null) { throw new NullPointerException("map key"); }
-              java.util.Map<java.lang.String, java.lang.String> map =
-                  internalGetProperties().getMap();
+              java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> map =
+                  internalGetPanels().getMap();
               if (!map.containsKey(key)) {
                 throw new java.lang.IllegalArgumentException();
               }
@@ -1988,8 +3737,8 @@ java.lang.String defaultValue) {
               com.google.protobuf.GeneratedMessage
                 .serializeStringMapTo(
                   output,
-                  internalGetProperties(),
-                  PropertiesDefaultEntryHolder.defaultEntry,
+                  internalGetPanels(),
+                  PanelsDefaultEntryHolder.defaultEntry,
                   3);
               getUnknownFields().writeTo(output);
             }
@@ -2006,15 +3755,15 @@ java.lang.String defaultValue) {
               if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
                 size += com.google.protobuf.GeneratedMessage.computeStringSize(2, description_);
               }
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-                   : internalGetProperties().getMap().entrySet()) {
-                com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-                properties__ = PropertiesDefaultEntryHolder.defaultEntry.newBuilderForType()
+              for (java.util.Map.Entry<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> entry
+                   : internalGetPanels().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>
+                panels__ = PanelsDefaultEntryHolder.defaultEntry.newBuilderForType()
                     .setKey(entry.getKey())
                     .setValue(entry.getValue())
                     .build();
                 size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(3, properties__);
+                    .computeMessageSize(3, panels__);
               }
               size += getUnknownFields().getSerializedSize();
               memoizedSize = size;
@@ -2035,8 +3784,8 @@ java.lang.String defaultValue) {
                   .equals(other.getTitle())) return false;
               if (!getDescription()
                   .equals(other.getDescription())) return false;
-              if (!internalGetProperties().equals(
-                  other.internalGetProperties())) return false;
+              if (!internalGetPanels().equals(
+                  other.internalGetPanels())) return false;
               if (!getUnknownFields().equals(other.getUnknownFields())) return false;
               return true;
             }
@@ -2052,9 +3801,9 @@ java.lang.String defaultValue) {
               hash = (53 * hash) + getTitle().hashCode();
               hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
               hash = (53 * hash) + getDescription().hashCode();
-              if (!internalGetProperties().getMap().isEmpty()) {
-                hash = (37 * hash) + PROPERTIES_FIELD_NUMBER;
-                hash = (53 * hash) + internalGetProperties().hashCode();
+              if (!internalGetPanels().getMap().isEmpty()) {
+                hash = (37 * hash) + PANELS_FIELD_NUMBER;
+                hash = (53 * hash) + internalGetPanels().hashCode();
               }
               hash = (29 * hash) + getUnknownFields().hashCode();
               memoizedHashCode = hash;
@@ -2170,7 +3919,7 @@ java.lang.String defaultValue) {
                   int number) {
                 switch (number) {
                   case 3:
-                    return internalGetProperties();
+                    return internalGetPanels();
                   default:
                     throw new RuntimeException(
                         "Invalid map field number: " + number);
@@ -2181,7 +3930,7 @@ java.lang.String defaultValue) {
                   int number) {
                 switch (number) {
                   case 3:
-                    return internalGetMutableProperties();
+                    return internalGetMutablePanels();
                   default:
                     throw new RuntimeException(
                         "Invalid map field number: " + number);
@@ -2211,7 +3960,7 @@ java.lang.String defaultValue) {
                 bitField0_ = 0;
                 title_ = "";
                 description_ = "";
-                internalGetMutableProperties().clear();
+                internalGetMutablePanels().clear();
                 return this;
               }
 
@@ -2252,8 +4001,7 @@ java.lang.String defaultValue) {
                   result.description_ = description_;
                 }
                 if (((from_bitField0_ & 0x00000004) != 0)) {
-                  result.properties_ = internalGetProperties();
-                  result.properties_.makeImmutable();
+                  result.panels_ = internalGetPanels().build(PanelsDefaultEntryHolder.defaultEntry);
                 }
               }
 
@@ -2279,8 +4027,8 @@ java.lang.String defaultValue) {
                   bitField0_ |= 0x00000002;
                   onChanged();
                 }
-                internalGetMutableProperties().mergeFrom(
-                    other.internalGetProperties());
+                internalGetMutablePanels().mergeFrom(
+                    other.internalGetPanels());
                 bitField0_ |= 0x00000004;
                 this.mergeUnknownFields(other.getUnknownFields());
                 onChanged();
@@ -2319,11 +4067,11 @@ java.lang.String defaultValue) {
                         break;
                       } // case 18
                       case 26: {
-                        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-                        properties__ = input.readMessage(
-                            PropertiesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-                        internalGetMutableProperties().getMutableMap().put(
-                            properties__.getKey(), properties__.getValue());
+                        com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>
+                        panels__ = input.readMessage(
+                            PanelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                        internalGetMutablePanels().ensureBuilderMap().put(
+                            panels__.getKey(), panels__.getValue());
                         bitField0_ |= 0x00000004;
                         break;
                       } // case 26
@@ -2488,97 +4236,103 @@ java.lang.String defaultValue) {
                 return this;
               }
 
-              private com.google.protobuf.MapField<
-                  java.lang.String, java.lang.String> properties_;
-              private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-                  internalGetProperties() {
-                if (properties_ == null) {
-                  return com.google.protobuf.MapField.emptyMapField(
-                      PropertiesDefaultEntryHolder.defaultEntry);
+              private static final class PanelsConverter implements com.google.protobuf.MapFieldBuilder.Converter<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> {
+                @java.lang.Override
+                public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel build(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder val) {
+                  if (val instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) { return (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) val; }
+                  return ((com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder) val).build();
                 }
-                return properties_;
+
+                @java.lang.Override
+                public com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> defaultEntry() {
+                  return PanelsDefaultEntryHolder.defaultEntry;
+                }
+              };
+              private static final PanelsConverter panelsConverter = new PanelsConverter();
+
+              private com.google.protobuf.MapFieldBuilder<
+                  java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder> panels_;
+              private com.google.protobuf.MapFieldBuilder<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder>
+                  internalGetPanels() {
+                if (panels_ == null) {
+                  return new com.google.protobuf.MapFieldBuilder<>(panelsConverter);
+                }
+                return panels_;
               }
-              private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-                  internalGetMutableProperties() {
-                if (properties_ == null) {
-                  properties_ = com.google.protobuf.MapField.newMapField(
-                      PropertiesDefaultEntryHolder.defaultEntry);
-                }
-                if (!properties_.isMutable()) {
-                  properties_ = properties_.copy();
+              private com.google.protobuf.MapFieldBuilder<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder>
+                  internalGetMutablePanels() {
+                if (panels_ == null) {
+                  panels_ = new com.google.protobuf.MapFieldBuilder<>(panelsConverter);
                 }
                 bitField0_ |= 0x00000004;
                 onChanged();
-                return properties_;
+                return panels_;
               }
-              public int getPropertiesCount() {
-                return internalGetProperties().getMap().size();
+              public int getPanelsCount() {
+                return internalGetPanels().ensureBuilderMap().size();
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
               @java.lang.Override
-              public boolean containsProperties(
+              public boolean containsPanels(
                   java.lang.String key) {
                 if (key == null) { throw new NullPointerException("map key"); }
-                return internalGetProperties().getMap().containsKey(key);
+                return internalGetPanels().ensureBuilderMap().containsKey(key);
               }
               /**
-               * Use {@link #getPropertiesMap()} instead.
+               * Use {@link #getPanelsMap()} instead.
                */
               @java.lang.Override
               @java.lang.Deprecated
-              public java.util.Map<java.lang.String, java.lang.String> getProperties() {
-                return getPropertiesMap();
+              public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> getPanels() {
+                return getPanelsMap();
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
               @java.lang.Override
-              public java.util.Map<java.lang.String, java.lang.String> getPropertiesMap() {
-                return internalGetProperties().getMap();
+              public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> getPanelsMap() {
+                return internalGetPanels().getImmutableMap();
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
               @java.lang.Override
               public /* nullable */
-java.lang.String getPropertiesOrDefault(
+com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getPanelsOrDefault(
                   java.lang.String key,
                   /* nullable */
-java.lang.String defaultValue) {
+com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel defaultValue) {
                 if (key == null) { throw new NullPointerException("map key"); }
-                java.util.Map<java.lang.String, java.lang.String> map =
-                    internalGetProperties().getMap();
-                return map.containsKey(key) ? map.get(key) : defaultValue;
+                java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder> map = internalGetMutablePanels().ensureBuilderMap();
+                return map.containsKey(key) ? panelsConverter.build(map.get(key)) : defaultValue;
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
               @java.lang.Override
-              public java.lang.String getPropertiesOrThrow(
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel getPanelsOrThrow(
                   java.lang.String key) {
                 if (key == null) { throw new NullPointerException("map key"); }
-                java.util.Map<java.lang.String, java.lang.String> map =
-                    internalGetProperties().getMap();
+                java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder> map = internalGetMutablePanels().ensureBuilderMap();
                 if (!map.containsKey(key)) {
                   throw new java.lang.IllegalArgumentException();
                 }
-                return map.get(key);
+                return panelsConverter.build(map.get(key));
               }
-              public Builder clearProperties() {
+              public Builder clearPanels() {
                 bitField0_ = (bitField0_ & ~0x00000004);
-                internalGetMutableProperties().getMutableMap()
-                    .clear();
+                internalGetMutablePanels().clear();
                 return this;
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
-              public Builder removeProperties(
+              public Builder removePanels(
                   java.lang.String key) {
                 if (key == null) { throw new NullPointerException("map key"); }
-                internalGetMutableProperties().getMutableMap()
+                internalGetMutablePanels().ensureBuilderMap()
                     .remove(key);
                 return this;
               }
@@ -2586,33 +4340,55 @@ java.lang.String defaultValue) {
                * Use alternate mutation accessors instead.
                */
               @java.lang.Deprecated
-              public java.util.Map<java.lang.String, java.lang.String>
-                  getMutableProperties() {
+              public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel>
+                  getMutablePanels() {
                 bitField0_ |= 0x00000004;
-                return internalGetMutableProperties().getMutableMap();
+                return internalGetMutablePanels().ensureMessageMap();
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
-              public Builder putProperties(
+              public Builder putPanels(
                   java.lang.String key,
-                  java.lang.String value) {
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel value) {
                 if (key == null) { throw new NullPointerException("map key"); }
                 if (value == null) { throw new NullPointerException("map value"); }
-                internalGetMutableProperties().getMutableMap()
+                internalGetMutablePanels().ensureBuilderMap()
                     .put(key, value);
                 bitField0_ |= 0x00000004;
                 return this;
               }
               /**
-               * <code>map&lt;string, string&gt; properties = 3;</code>
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
                */
-              public Builder putAllProperties(
-                  java.util.Map<java.lang.String, java.lang.String> values) {
-                internalGetMutableProperties().getMutableMap()
+              public Builder putAllPanels(
+                  java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> values) {
+                for (java.util.Map.Entry<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> e : values.entrySet()) {
+                  if (e.getKey() == null || e.getValue() == null) {
+                    throw new NullPointerException();
+                  }
+                }
+                internalGetMutablePanels().ensureBuilderMap()
                     .putAll(values);
                 bitField0_ |= 0x00000004;
                 return this;
+              }
+              /**
+               * <code>map&lt;string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel&gt; panels = 3;</code>
+               */
+              public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder putPanelsBuilderIfAbsent(
+                  java.lang.String key) {
+                java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder> builderMap = internalGetMutablePanels().ensureBuilderMap();
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelOrBuilder entry = builderMap.get(key);
+                if (entry == null) {
+                  entry = com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.newBuilder();
+                  builderMap.put(key, entry);
+                }
+                if (entry instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) {
+                  entry = ((com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) entry).toBuilder();
+                  builderMap.put(key, entry);
+                }
+                return (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.Builder) entry;
               }
 
               // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item)
@@ -3669,6 +5445,85 @@ java.lang.String defaultValue) {
 
         }
 
+        private int bitField0_;
+        public static final int HEADER_FIELD_NUMBER = 1;
+        private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header header_;
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+         * @return Whether the header field is set.
+         */
+        @java.lang.Override
+        public boolean hasHeader() {
+          return ((bitField0_ & 0x00000001) != 0);
+        }
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+         * @return The header.
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header getHeader() {
+          return header_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.getDefaultInstance() : header_;
+        }
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.HeaderOrBuilder getHeaderOrBuilder() {
+          return header_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.getDefaultInstance() : header_;
+        }
+
+        public static final int FOOTER_FIELD_NUMBER = 2;
+        private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer_;
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+         * @return Whether the footer field is set.
+         */
+        @java.lang.Override
+        public boolean hasFooter() {
+          return ((bitField0_ & 0x00000002) != 0);
+        }
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+         * @return The footer.
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer getFooter() {
+          return footer_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.getDefaultInstance() : footer_;
+        }
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.FooterOrBuilder getFooterOrBuilder() {
+          return footer_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.getDefaultInstance() : footer_;
+        }
+
+        public static final int BODY_FIELD_NUMBER = 3;
+        private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body body_;
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+         * @return Whether the body field is set.
+         */
+        @java.lang.Override
+        public boolean hasBody() {
+          return ((bitField0_ & 0x00000004) != 0);
+        }
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+         * @return The body.
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body getBody() {
+          return body_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.getDefaultInstance() : body_;
+        }
+        /**
+         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.BodyOrBuilder getBodyOrBuilder() {
+          return body_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.getDefaultInstance() : body_;
+        }
+
         private byte memoizedIsInitialized = -1;
         @java.lang.Override
         public final boolean isInitialized() {
@@ -3683,6 +5538,15 @@ java.lang.String defaultValue) {
         @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
                             throws java.io.IOException {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            output.writeMessage(1, getHeader());
+          }
+          if (((bitField0_ & 0x00000002) != 0)) {
+            output.writeMessage(2, getFooter());
+          }
+          if (((bitField0_ & 0x00000004) != 0)) {
+            output.writeMessage(3, getBody());
+          }
           getUnknownFields().writeTo(output);
         }
 
@@ -3692,6 +5556,18 @@ java.lang.String defaultValue) {
           if (size != -1) return size;
 
           size = 0;
+          if (((bitField0_ & 0x00000001) != 0)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeMessageSize(1, getHeader());
+          }
+          if (((bitField0_ & 0x00000002) != 0)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeMessageSize(2, getFooter());
+          }
+          if (((bitField0_ & 0x00000004) != 0)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeMessageSize(3, getBody());
+          }
           size += getUnknownFields().getSerializedSize();
           memoizedSize = size;
           return size;
@@ -3707,6 +5583,21 @@ java.lang.String defaultValue) {
           }
           com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data other = (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data) obj;
 
+          if (hasHeader() != other.hasHeader()) return false;
+          if (hasHeader()) {
+            if (!getHeader()
+                .equals(other.getHeader())) return false;
+          }
+          if (hasFooter() != other.hasFooter()) return false;
+          if (hasFooter()) {
+            if (!getFooter()
+                .equals(other.getFooter())) return false;
+          }
+          if (hasBody() != other.hasBody()) return false;
+          if (hasBody()) {
+            if (!getBody()
+                .equals(other.getBody())) return false;
+          }
           if (!getUnknownFields().equals(other.getUnknownFields())) return false;
           return true;
         }
@@ -3718,6 +5609,18 @@ java.lang.String defaultValue) {
           }
           int hash = 41;
           hash = (19 * hash) + getDescriptor().hashCode();
+          if (hasHeader()) {
+            hash = (37 * hash) + HEADER_FIELD_NUMBER;
+            hash = (53 * hash) + getHeader().hashCode();
+          }
+          if (hasFooter()) {
+            hash = (37 * hash) + FOOTER_FIELD_NUMBER;
+            hash = (53 * hash) + getFooter().hashCode();
+          }
+          if (hasBody()) {
+            hash = (37 * hash) + BODY_FIELD_NUMBER;
+            hash = (53 * hash) + getBody().hashCode();
+          }
           hash = (29 * hash) + getUnknownFields().hashCode();
           memoizedHashCode = hash;
           return hash;
@@ -3837,17 +5740,41 @@ java.lang.String defaultValue) {
 
           // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.newBuilder()
           private Builder() {
-
+            maybeForceBuilderInitialization();
           }
 
           private Builder(
               com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
-
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessage
+                    .alwaysUseFieldBuilders) {
+              getHeaderFieldBuilder();
+              getFooterFieldBuilder();
+              getBodyFieldBuilder();
+            }
           }
           @java.lang.Override
           public Builder clear() {
             super.clear();
+            bitField0_ = 0;
+            header_ = null;
+            if (headerBuilder_ != null) {
+              headerBuilder_.dispose();
+              headerBuilder_ = null;
+            }
+            footer_ = null;
+            if (footerBuilder_ != null) {
+              footerBuilder_.dispose();
+              footerBuilder_ = null;
+            }
+            body_ = null;
+            if (bodyBuilder_ != null) {
+              bodyBuilder_.dispose();
+              bodyBuilder_ = null;
+            }
             return this;
           }
 
@@ -3874,8 +5801,33 @@ java.lang.String defaultValue) {
           @java.lang.Override
           public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data buildPartial() {
             com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data result = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data(this);
+            if (bitField0_ != 0) { buildPartial0(result); }
             onBuilt();
             return result;
+          }
+
+          private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data result) {
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            if (((from_bitField0_ & 0x00000001) != 0)) {
+              result.header_ = headerBuilder_ == null
+                  ? header_
+                  : headerBuilder_.build();
+              to_bitField0_ |= 0x00000001;
+            }
+            if (((from_bitField0_ & 0x00000002) != 0)) {
+              result.footer_ = footerBuilder_ == null
+                  ? footer_
+                  : footerBuilder_.build();
+              to_bitField0_ |= 0x00000002;
+            }
+            if (((from_bitField0_ & 0x00000004) != 0)) {
+              result.body_ = bodyBuilder_ == null
+                  ? body_
+                  : bodyBuilder_.build();
+              to_bitField0_ |= 0x00000004;
+            }
+            result.bitField0_ |= to_bitField0_;
           }
 
           @java.lang.Override
@@ -3890,6 +5842,15 @@ java.lang.String defaultValue) {
 
           public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data other) {
             if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.getDefaultInstance()) return this;
+            if (other.hasHeader()) {
+              mergeHeader(other.getHeader());
+            }
+            if (other.hasFooter()) {
+              mergeFooter(other.getFooter());
+            }
+            if (other.hasBody()) {
+              mergeBody(other.getBody());
+            }
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
@@ -3916,6 +5877,27 @@ java.lang.String defaultValue) {
                   case 0:
                     done = true;
                     break;
+                  case 10: {
+                    input.readMessage(
+                        getHeaderFieldBuilder().getBuilder(),
+                        extensionRegistry);
+                    bitField0_ |= 0x00000001;
+                    break;
+                  } // case 10
+                  case 18: {
+                    input.readMessage(
+                        getFooterFieldBuilder().getBuilder(),
+                        extensionRegistry);
+                    bitField0_ |= 0x00000002;
+                    break;
+                  } // case 18
+                  case 26: {
+                    input.readMessage(
+                        getBodyFieldBuilder().getBuilder(),
+                        extensionRegistry);
+                    bitField0_ |= 0x00000004;
+                    break;
+                  } // case 26
                   default: {
                     if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                       done = true; // was an endgroup tag
@@ -3930,6 +5912,370 @@ java.lang.String defaultValue) {
               onChanged();
             } // finally
             return this;
+          }
+          private int bitField0_;
+
+          private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header header_;
+          private com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.HeaderOrBuilder> headerBuilder_;
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           * @return Whether the header field is set.
+           */
+          public boolean hasHeader() {
+            return ((bitField0_ & 0x00000001) != 0);
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           * @return The header.
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header getHeader() {
+            if (headerBuilder_ == null) {
+              return header_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.getDefaultInstance() : header_;
+            } else {
+              return headerBuilder_.getMessage();
+            }
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          public Builder setHeader(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header value) {
+            if (headerBuilder_ == null) {
+              if (value == null) {
+                throw new NullPointerException();
+              }
+              header_ = value;
+            } else {
+              headerBuilder_.setMessage(value);
+            }
+            bitField0_ |= 0x00000001;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          public Builder setHeader(
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.Builder builderForValue) {
+            if (headerBuilder_ == null) {
+              header_ = builderForValue.build();
+            } else {
+              headerBuilder_.setMessage(builderForValue.build());
+            }
+            bitField0_ |= 0x00000001;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          public Builder mergeHeader(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header value) {
+            if (headerBuilder_ == null) {
+              if (((bitField0_ & 0x00000001) != 0) &&
+                header_ != null &&
+                header_ != com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.getDefaultInstance()) {
+                getHeaderBuilder().mergeFrom(value);
+              } else {
+                header_ = value;
+              }
+            } else {
+              headerBuilder_.mergeFrom(value);
+            }
+            if (header_ != null) {
+              bitField0_ |= 0x00000001;
+              onChanged();
+            }
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          public Builder clearHeader() {
+            bitField0_ = (bitField0_ & ~0x00000001);
+            header_ = null;
+            if (headerBuilder_ != null) {
+              headerBuilder_.dispose();
+              headerBuilder_ = null;
+            }
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.Builder getHeaderBuilder() {
+            bitField0_ |= 0x00000001;
+            onChanged();
+            return getHeaderFieldBuilder().getBuilder();
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.HeaderOrBuilder getHeaderOrBuilder() {
+            if (headerBuilder_ != null) {
+              return headerBuilder_.getMessageOrBuilder();
+            } else {
+              return header_ == null ?
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.getDefaultInstance() : header_;
+            }
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;</code>
+           */
+          private com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.HeaderOrBuilder> 
+              getHeaderFieldBuilder() {
+            if (headerBuilder_ == null) {
+              headerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Header.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.HeaderOrBuilder>(
+                      getHeader(),
+                      getParentForChildren(),
+                      isClean());
+              header_ = null;
+            }
+            return headerBuilder_;
+          }
+
+          private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer_;
+          private com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.FooterOrBuilder> footerBuilder_;
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           * @return Whether the footer field is set.
+           */
+          public boolean hasFooter() {
+            return ((bitField0_ & 0x00000002) != 0);
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           * @return The footer.
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer getFooter() {
+            if (footerBuilder_ == null) {
+              return footer_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.getDefaultInstance() : footer_;
+            } else {
+              return footerBuilder_.getMessage();
+            }
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          public Builder setFooter(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer value) {
+            if (footerBuilder_ == null) {
+              if (value == null) {
+                throw new NullPointerException();
+              }
+              footer_ = value;
+            } else {
+              footerBuilder_.setMessage(value);
+            }
+            bitField0_ |= 0x00000002;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          public Builder setFooter(
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.Builder builderForValue) {
+            if (footerBuilder_ == null) {
+              footer_ = builderForValue.build();
+            } else {
+              footerBuilder_.setMessage(builderForValue.build());
+            }
+            bitField0_ |= 0x00000002;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          public Builder mergeFooter(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer value) {
+            if (footerBuilder_ == null) {
+              if (((bitField0_ & 0x00000002) != 0) &&
+                footer_ != null &&
+                footer_ != com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.getDefaultInstance()) {
+                getFooterBuilder().mergeFrom(value);
+              } else {
+                footer_ = value;
+              }
+            } else {
+              footerBuilder_.mergeFrom(value);
+            }
+            if (footer_ != null) {
+              bitField0_ |= 0x00000002;
+              onChanged();
+            }
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          public Builder clearFooter() {
+            bitField0_ = (bitField0_ & ~0x00000002);
+            footer_ = null;
+            if (footerBuilder_ != null) {
+              footerBuilder_.dispose();
+              footerBuilder_ = null;
+            }
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.Builder getFooterBuilder() {
+            bitField0_ |= 0x00000002;
+            onChanged();
+            return getFooterFieldBuilder().getBuilder();
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.FooterOrBuilder getFooterOrBuilder() {
+            if (footerBuilder_ != null) {
+              return footerBuilder_.getMessageOrBuilder();
+            } else {
+              return footer_ == null ?
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.getDefaultInstance() : footer_;
+            }
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;</code>
+           */
+          private com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.FooterOrBuilder> 
+              getFooterFieldBuilder() {
+            if (footerBuilder_ == null) {
+              footerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Footer.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.FooterOrBuilder>(
+                      getFooter(),
+                      getParentForChildren(),
+                      isClean());
+              footer_ = null;
+            }
+            return footerBuilder_;
+          }
+
+          private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body body_;
+          private com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.BodyOrBuilder> bodyBuilder_;
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           * @return Whether the body field is set.
+           */
+          public boolean hasBody() {
+            return ((bitField0_ & 0x00000004) != 0);
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           * @return The body.
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body getBody() {
+            if (bodyBuilder_ == null) {
+              return body_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.getDefaultInstance() : body_;
+            } else {
+              return bodyBuilder_.getMessage();
+            }
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          public Builder setBody(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body value) {
+            if (bodyBuilder_ == null) {
+              if (value == null) {
+                throw new NullPointerException();
+              }
+              body_ = value;
+            } else {
+              bodyBuilder_.setMessage(value);
+            }
+            bitField0_ |= 0x00000004;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          public Builder setBody(
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Builder builderForValue) {
+            if (bodyBuilder_ == null) {
+              body_ = builderForValue.build();
+            } else {
+              bodyBuilder_.setMessage(builderForValue.build());
+            }
+            bitField0_ |= 0x00000004;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          public Builder mergeBody(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body value) {
+            if (bodyBuilder_ == null) {
+              if (((bitField0_ & 0x00000004) != 0) &&
+                body_ != null &&
+                body_ != com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.getDefaultInstance()) {
+                getBodyBuilder().mergeFrom(value);
+              } else {
+                body_ = value;
+              }
+            } else {
+              bodyBuilder_.mergeFrom(value);
+            }
+            if (body_ != null) {
+              bitField0_ |= 0x00000004;
+              onChanged();
+            }
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          public Builder clearBody() {
+            bitField0_ = (bitField0_ & ~0x00000004);
+            body_ = null;
+            if (bodyBuilder_ != null) {
+              bodyBuilder_.dispose();
+              bodyBuilder_ = null;
+            }
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Builder getBodyBuilder() {
+            bitField0_ |= 0x00000004;
+            onChanged();
+            return getBodyFieldBuilder().getBuilder();
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.BodyOrBuilder getBodyOrBuilder() {
+            if (bodyBuilder_ != null) {
+              return bodyBuilder_.getMessageOrBuilder();
+            } else {
+              return body_ == null ?
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.getDefaultInstance() : body_;
+            }
+          }
+          /**
+           * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;</code>
+           */
+          private com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.BodyOrBuilder> 
+              getBodyFieldBuilder() {
+            if (bodyBuilder_ == null) {
+              bodyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Body.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.BodyOrBuilder>(
+                      getBody(),
+                      getParentForChildren(),
+                      isClean());
+              body_ = null;
+            }
+            return bodyBuilder_;
           }
 
           // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data)
@@ -3983,7 +6329,6 @@ java.lang.String defaultValue) {
 
       }
 
-      private int bitField0_;
       public static final int TEMPLATES_FIELD_NUMBER = 1;
       private static final class TemplatesDefaultEntryHolder {
         static final com.google.protobuf.MapEntry<
@@ -4064,29 +6409,42 @@ java.lang.String defaultValue) {
       }
 
       public static final int DATA_FIELD_NUMBER = 2;
-      private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data data_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object data_ = "";
       /**
-       * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
-       * @return Whether the data field is set.
-       */
-      @java.lang.Override
-      public boolean hasData() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+       * <code>string data = 2;</code>
        * @return The data.
        */
       @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data getData() {
-        return data_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.getDefaultInstance() : data_;
+      public java.lang.String getData() {
+        java.lang.Object ref = data_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          data_ = s;
+          return s;
+        }
       }
       /**
-       * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+       * <code>string data = 2;</code>
+       * @return The bytes for data.
        */
       @java.lang.Override
-      public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.DataOrBuilder getDataOrBuilder() {
-        return data_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.getDefaultInstance() : data_;
+      public com.google.protobuf.ByteString
+          getDataBytes() {
+        java.lang.Object ref = data_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          data_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
 
       private byte memoizedIsInitialized = -1;
@@ -4109,8 +6467,8 @@ java.lang.String defaultValue) {
             internalGetTemplates(),
             TemplatesDefaultEntryHolder.defaultEntry,
             1);
-        if (((bitField0_ & 0x00000001) != 0)) {
-          output.writeMessage(2, getData());
+        if (!com.google.protobuf.GeneratedMessage.isStringEmpty(data_)) {
+          com.google.protobuf.GeneratedMessage.writeString(output, 2, data_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -4131,9 +6489,8 @@ java.lang.String defaultValue) {
           size += com.google.protobuf.CodedOutputStream
               .computeMessageSize(1, templates__);
         }
-        if (((bitField0_ & 0x00000001) != 0)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, getData());
+        if (!com.google.protobuf.GeneratedMessage.isStringEmpty(data_)) {
+          size += com.google.protobuf.GeneratedMessage.computeStringSize(2, data_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
@@ -4152,11 +6509,8 @@ java.lang.String defaultValue) {
 
         if (!internalGetTemplates().equals(
             other.internalGetTemplates())) return false;
-        if (hasData() != other.hasData()) return false;
-        if (hasData()) {
-          if (!getData()
-              .equals(other.getData())) return false;
-        }
+        if (!getData()
+            .equals(other.getData())) return false;
         if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
@@ -4172,10 +6526,8 @@ java.lang.String defaultValue) {
           hash = (37 * hash) + TEMPLATES_FIELD_NUMBER;
           hash = (53 * hash) + internalGetTemplates().hashCode();
         }
-        if (hasData()) {
-          hash = (37 * hash) + DATA_FIELD_NUMBER;
-          hash = (53 * hash) + getData().hashCode();
-        }
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getData().hashCode();
         hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -4274,6 +6626,10 @@ java.lang.String defaultValue) {
         return builder;
       }
       /**
+       * <pre>
+       * --------------------------------
+       * </pre>
+       *
        * Protobuf type {@code palm.portal.v1.Theme.Bootstrap.Sample}
        */
       public static final class Builder extends
@@ -4317,30 +6673,20 @@ java.lang.String defaultValue) {
 
         // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessage
-                  .alwaysUseFieldBuilders) {
-            getDataFieldBuilder();
-          }
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
           bitField0_ = 0;
           internalGetMutableTemplates().clear();
-          data_ = null;
-          if (dataBuilder_ != null) {
-            dataBuilder_.dispose();
-            dataBuilder_ = null;
-          }
+          data_ = "";
           return this;
         }
 
@@ -4378,14 +6724,9 @@ java.lang.String defaultValue) {
             result.templates_ = internalGetTemplates();
             result.templates_.makeImmutable();
           }
-          int to_bitField0_ = 0;
           if (((from_bitField0_ & 0x00000002) != 0)) {
-            result.data_ = dataBuilder_ == null
-                ? data_
-                : dataBuilder_.build();
-            to_bitField0_ |= 0x00000001;
+            result.data_ = data_;
           }
-          result.bitField0_ |= to_bitField0_;
         }
 
         @java.lang.Override
@@ -4403,8 +6744,10 @@ java.lang.String defaultValue) {
           internalGetMutableTemplates().mergeFrom(
               other.internalGetTemplates());
           bitField0_ |= 0x00000001;
-          if (other.hasData()) {
-            mergeData(other.getData());
+          if (!other.getData().isEmpty()) {
+            data_ = other.data_;
+            bitField0_ |= 0x00000002;
+            onChanged();
           }
           this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
@@ -4442,9 +6785,7 @@ java.lang.String defaultValue) {
                   break;
                 } // case 10
                 case 18: {
-                  input.readMessage(
-                      getDataFieldBuilder().getBuilder(),
-                      extensionRegistry);
+                  data_ = input.readStringRequireUtf8();
                   bitField0_ |= 0x00000002;
                   break;
                 } // case 18
@@ -4592,125 +6933,76 @@ java.lang.String defaultValue) {
           return this;
         }
 
-        private com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data data_;
-        private com.google.protobuf.SingleFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.DataOrBuilder> dataBuilder_;
+        private java.lang.Object data_ = "";
         /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
-         * @return Whether the data field is set.
-         */
-        public boolean hasData() {
-          return ((bitField0_ & 0x00000002) != 0);
-        }
-        /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+         * <code>string data = 2;</code>
          * @return The data.
          */
-        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data getData() {
-          if (dataBuilder_ == null) {
-            return data_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.getDefaultInstance() : data_;
+        public java.lang.String getData() {
+          java.lang.Object ref = data_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            data_ = s;
+            return s;
           } else {
-            return dataBuilder_.getMessage();
+            return (java.lang.String) ref;
           }
         }
         /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+         * <code>string data = 2;</code>
+         * @return The bytes for data.
          */
-        public Builder setData(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data value) {
-          if (dataBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            data_ = value;
+        public com.google.protobuf.ByteString
+            getDataBytes() {
+          java.lang.Object ref = data_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            data_ = b;
+            return b;
           } else {
-            dataBuilder_.setMessage(value);
+            return (com.google.protobuf.ByteString) ref;
           }
-          bitField0_ |= 0x00000002;
-          onChanged();
-          return this;
         }
         /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+         * <code>string data = 2;</code>
+         * @param value The data to set.
+         * @return This builder for chaining.
          */
         public Builder setData(
-            com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Builder builderForValue) {
-          if (dataBuilder_ == null) {
-            data_ = builderForValue.build();
-          } else {
-            dataBuilder_.setMessage(builderForValue.build());
-          }
+            java.lang.String value) {
+          if (value == null) { throw new NullPointerException(); }
+          data_ = value;
           bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
         /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
-         */
-        public Builder mergeData(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data value) {
-          if (dataBuilder_ == null) {
-            if (((bitField0_ & 0x00000002) != 0) &&
-              data_ != null &&
-              data_ != com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.getDefaultInstance()) {
-              getDataBuilder().mergeFrom(value);
-            } else {
-              data_ = value;
-            }
-          } else {
-            dataBuilder_.mergeFrom(value);
-          }
-          if (data_ != null) {
-            bitField0_ |= 0x00000002;
-            onChanged();
-          }
-          return this;
-        }
-        /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+         * <code>string data = 2;</code>
+         * @return This builder for chaining.
          */
         public Builder clearData() {
+          data_ = getDefaultInstance().getData();
           bitField0_ = (bitField0_ & ~0x00000002);
-          data_ = null;
-          if (dataBuilder_ != null) {
-            dataBuilder_.dispose();
-            dataBuilder_ = null;
-          }
           onChanged();
           return this;
         }
         /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
+         * <code>string data = 2;</code>
+         * @param value The bytes for data to set.
+         * @return This builder for chaining.
          */
-        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Builder getDataBuilder() {
+        public Builder setDataBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
+          data_ = value;
           bitField0_ |= 0x00000002;
           onChanged();
-          return getDataFieldBuilder().getBuilder();
-        }
-        /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
-         */
-        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.DataOrBuilder getDataOrBuilder() {
-          if (dataBuilder_ != null) {
-            return dataBuilder_.getMessageOrBuilder();
-          } else {
-            return data_ == null ?
-                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.getDefaultInstance() : data_;
-          }
-        }
-        /**
-         * <code>.palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.DataOrBuilder> 
-            getDataFieldBuilder() {
-          if (dataBuilder_ == null) {
-            dataBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.Data.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap.Sample.DataOrBuilder>(
-                    getData(),
-                    getParentForChildren(),
-                    isClean());
-            data_ = null;
-          }
-          return dataBuilder_;
+          return this;
         }
 
         // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bootstrap.Sample)
@@ -5073,6 +7365,724 @@ java.lang.String defaultValue) {
 
     @java.lang.Override
     public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bootstrap getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BulmaOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.portal.v1.Theme.Bulma)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code palm.portal.v1.Theme.Bulma}
+   */
+  public static final class Bulma extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.portal.v1.Theme.Bulma)
+      BulmaOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 3,
+        /* suffix= */ "",
+        Bulma.class.getName());
+    }
+    // Use Bulma.newBuilder() to construct.
+    private Bulma(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Bulma() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Builder.class);
+    }
+
+    public interface HomeOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:palm.portal.v1.Theme.Bulma.Home)
+        com.google.protobuf.MessageOrBuilder {
+    }
+    /**
+     * <pre>
+     * --------------------------------
+     * </pre>
+     *
+     * Protobuf type {@code palm.portal.v1.Theme.Bulma.Home}
+     */
+    public static final class Home extends
+        com.google.protobuf.GeneratedMessage implements
+        // @@protoc_insertion_point(message_implements:palm.portal.v1.Theme.Bulma.Home)
+        HomeOrBuilder {
+    private static final long serialVersionUID = 0L;
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 29,
+          /* patch= */ 3,
+          /* suffix= */ "",
+          Home.class.getName());
+      }
+      // Use Home.newBuilder() to construct.
+      private Home(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+      }
+      private Home() {
+      }
+
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_Home_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_Home_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.Builder.class);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getUnknownFields().writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home)) {
+          return super.equals(obj);
+        }
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home other = (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home) obj;
+
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * <pre>
+       * --------------------------------
+       * </pre>
+       *
+       * Protobuf type {@code palm.portal.v1.Theme.Bulma.Home}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:palm.portal.v1.Theme.Bulma.Home)
+          com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.HomeOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_Home_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_Home_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.Builder.class);
+        }
+
+        // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.newBuilder()
+        private Builder() {
+
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_Home_descriptor;
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home getDefaultInstanceForType() {
+          return com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home build() {
+          com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home buildPartial() {
+          com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home result = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home(this);
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home) {
+            return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home other) {
+          if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home.getDefaultInstance()) return this;
+          this.mergeUnknownFields(other.getUnknownFields());
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.unwrapIOException();
+          } finally {
+            onChanged();
+          } // finally
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bulma.Home)
+      }
+
+      // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bulma.Home)
+      private static final com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home();
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Home>
+          PARSER = new com.google.protobuf.AbstractParser<Home>() {
+        @java.lang.Override
+        public Home parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
+        }
+      };
+
+      public static com.google.protobuf.Parser<Home> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Home> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Home getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma other = (com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma) obj;
+
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.portal.v1.Theme.Bulma}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.portal.v1.Theme.Bulma)
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.BulmaOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.class, com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_Theme_Bulma_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma build() {
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma buildPartial() {
+        com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma result = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma other) {
+        if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.portal.v1.Theme.Bulma)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bulma)
+    private static final com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Bulma>
+        PARSER = new com.google.protobuf.AbstractParser<Bulma>() {
+      @java.lang.Override
+      public Bulma parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Bulma> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Bulma> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.portal.v1.Theme.Bulma getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 

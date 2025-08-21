@@ -11,6 +11,7 @@ import (
 	"reflect"
 	"strings"
 
+	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -50,6 +51,20 @@ func ProtoBufMessageFromString(s string, m proto.Message) error {
 		return err
 	}
 	return proto.Unmarshal(buf, m)
+}
+
+// ----------------------------------------------------------------------------
+
+func ProtoBufMessageToJson(m proto.Message) ([]byte, error) {
+	out, err := protojson.Marshal(m)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func ProtoBufMessageFromJson(b []byte, m proto.Message) error {
+	return protojson.Unmarshal(b, m)
 }
 
 // ----------------------------------------------------------------------------

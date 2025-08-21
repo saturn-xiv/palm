@@ -227,9 +227,15 @@ extern Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal _Theme_Bootstrap_Samp
 class Theme_Bootstrap_Sample_Data_Body_Item;
 struct Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal;
 extern Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_default_instance_;
-class Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse;
-struct Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUseDefaultTypeInternal;
-extern Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUseDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse_default_instance_;
+class Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse;
+struct Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUseDefaultTypeInternal;
+extern Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUseDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse_default_instance_;
+class Theme_Bootstrap_Sample_Data_Body_Link;
+struct Theme_Bootstrap_Sample_Data_Body_LinkDefaultTypeInternal;
+extern Theme_Bootstrap_Sample_Data_Body_LinkDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Link_default_instance_;
+class Theme_Bootstrap_Sample_Data_Body_Panel;
+struct Theme_Bootstrap_Sample_Data_Body_PanelDefaultTypeInternal;
+extern Theme_Bootstrap_Sample_Data_Body_PanelDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Panel_default_instance_;
 class Theme_Bootstrap_Sample_Data_Footer;
 struct Theme_Bootstrap_Sample_Data_FooterDefaultTypeInternal;
 extern Theme_Bootstrap_Sample_Data_FooterDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Footer_default_instance_;
@@ -239,6 +245,12 @@ extern Theme_Bootstrap_Sample_Data_HeaderDefaultTypeInternal _Theme_Bootstrap_Sa
 class Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse;
 struct Theme_Bootstrap_Sample_TemplatesEntry_DoNotUseDefaultTypeInternal;
 extern Theme_Bootstrap_Sample_TemplatesEntry_DoNotUseDefaultTypeInternal _Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse_default_instance_;
+class Theme_Bulma;
+struct Theme_BulmaDefaultTypeInternal;
+extern Theme_BulmaDefaultTypeInternal _Theme_Bulma_default_instance_;
+class Theme_Bulma_Home;
+struct Theme_Bulma_HomeDefaultTypeInternal;
+extern Theme_Bulma_HomeDefaultTypeInternal _Theme_Bulma_Home_default_instance_;
 class UserGetVRequest;
 struct UserGetVRequestDefaultTypeInternal;
 extern UserGetVRequestDefaultTypeInternal _UserGetVRequest_default_instance_;
@@ -1658,6 +1670,297 @@ class UserGetVRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Theme_Bulma_Home final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bulma.Home) */ {
+ public:
+  inline Theme_Bulma_Home() : Theme_Bulma_Home(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bulma_Home* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bulma_Home));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bulma_Home(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bulma_Home(const Theme_Bulma_Home& from) : Theme_Bulma_Home(nullptr, from) {}
+  inline Theme_Bulma_Home(Theme_Bulma_Home&& from) noexcept
+      : Theme_Bulma_Home(nullptr, std::move(from)) {}
+  inline Theme_Bulma_Home& operator=(const Theme_Bulma_Home& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bulma_Home& operator=(Theme_Bulma_Home&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bulma_Home& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bulma_Home* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bulma_Home*>(
+        &_Theme_Bulma_Home_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 71;
+  friend void swap(Theme_Bulma_Home& a, Theme_Bulma_Home& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bulma_Home* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bulma_Home* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bulma_Home* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bulma_Home>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme_Bulma_Home& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme_Bulma_Home& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bulma.Home"; }
+
+ protected:
+  explicit Theme_Bulma_Home(::google::protobuf::Arena* arena);
+  Theme_Bulma_Home(::google::protobuf::Arena* arena, const Theme_Bulma_Home& from);
+  Theme_Bulma_Home(::google::protobuf::Arena* arena, Theme_Bulma_Home&& from) noexcept
+      : Theme_Bulma_Home(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bulma.Home)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bulma_Home& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_portal_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Theme_Bulma final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bulma) */ {
+ public:
+  inline Theme_Bulma() : Theme_Bulma(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bulma* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bulma));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bulma(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bulma(const Theme_Bulma& from) : Theme_Bulma(nullptr, from) {}
+  inline Theme_Bulma(Theme_Bulma&& from) noexcept
+      : Theme_Bulma(nullptr, std::move(from)) {}
+  inline Theme_Bulma& operator=(const Theme_Bulma& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bulma& operator=(Theme_Bulma&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bulma& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bulma* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bulma*>(
+        &_Theme_Bulma_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 72;
+  friend void swap(Theme_Bulma& a, Theme_Bulma& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bulma* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bulma* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bulma* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bulma>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const Theme_Bulma& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const Theme_Bulma& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bulma"; }
+
+ protected:
+  explicit Theme_Bulma(::google::protobuf::Arena* arena);
+  Theme_Bulma(::google::protobuf::Arena* arena, const Theme_Bulma& from);
+  Theme_Bulma(::google::protobuf::Arena* arena, Theme_Bulma&& from) noexcept
+      : Theme_Bulma(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Home = Theme_Bulma_Home;
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bulma)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bulma& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_portal_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           std::string, std::string,
@@ -2089,69 +2392,31 @@ class Theme_Bootstrap_Sample_Data_Footer final : public ::google::protobuf::Mess
 };
 // -------------------------------------------------------------------
 
-class Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse final
-    : public ::google::protobuf::internal::MapEntry<
-          std::string, std::string,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+class Theme_Bootstrap_Sample_Data_Body_Link final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link) */ {
  public:
-  using SuperType = ::google::protobuf::internal::MapEntry<
-      std::string, std::string,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
-  Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse();
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse(
-      ::google::protobuf::internal::ConstantInitialized);
-  explicit Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse*>(
-        &_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse_default_instance_);
-  }
-
-
- private:
-  friend class ::google::protobuf::MessageLite;
-  friend struct ::TableStruct_portal_2eproto;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      85, 2>
-      _table_;
-
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-};
-// -------------------------------------------------------------------
-
-class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data) */ {
- public:
-  inline Theme_Bootstrap_Sample_Data() : Theme_Bootstrap_Sample_Data(nullptr) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Link() : Theme_Bootstrap_Sample_Data_Body_Link(nullptr) {}
+  ~Theme_Bootstrap_Sample_Data_Body_Link() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Theme_Bootstrap_Sample_Data* msg, std::destroying_delete_t) {
+  void operator delete(Theme_Bootstrap_Sample_Data_Body_Link* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data_Body_Link));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data(
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Link(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline Theme_Bootstrap_Sample_Data(const Theme_Bootstrap_Sample_Data& from) : Theme_Bootstrap_Sample_Data(nullptr, from) {}
-  inline Theme_Bootstrap_Sample_Data(Theme_Bootstrap_Sample_Data&& from) noexcept
-      : Theme_Bootstrap_Sample_Data(nullptr, std::move(from)) {}
-  inline Theme_Bootstrap_Sample_Data& operator=(const Theme_Bootstrap_Sample_Data& from) {
+  inline Theme_Bootstrap_Sample_Data_Body_Link(const Theme_Bootstrap_Sample_Data_Body_Link& from) : Theme_Bootstrap_Sample_Data_Body_Link(nullptr, from) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Link(Theme_Bootstrap_Sample_Data_Body_Link&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body_Link(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Link& operator=(const Theme_Bootstrap_Sample_Data_Body_Link& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Theme_Bootstrap_Sample_Data& operator=(Theme_Bootstrap_Sample_Data&& from) noexcept {
+  inline Theme_Bootstrap_Sample_Data_Body_Link& operator=(Theme_Bootstrap_Sample_Data_Body_Link&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2179,16 +2444,16 @@ class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::internal::Z
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Theme_Bootstrap_Sample_Data& default_instance() {
+  static const Theme_Bootstrap_Sample_Data_Body_Link& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Theme_Bootstrap_Sample_Data* internal_default_instance() {
-    return reinterpret_cast<const Theme_Bootstrap_Sample_Data*>(
-        &_Theme_Bootstrap_Sample_Data_default_instance_);
+  static inline const Theme_Bootstrap_Sample_Data_Body_Link* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Link*>(
+        &_Theme_Bootstrap_Sample_Data_Body_Link_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 65;
-  friend void swap(Theme_Bootstrap_Sample_Data& a, Theme_Bootstrap_Sample_Data& b) { a.Swap(&b); }
-  inline void Swap(Theme_Bootstrap_Sample_Data* other) {
+  static constexpr int kIndexInFileMessages = 62;
+  friend void swap(Theme_Bootstrap_Sample_Data_Body_Link& a, Theme_Bootstrap_Sample_Data_Body_Link& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Sample_Data_Body_Link* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2196,7 +2461,7 @@ class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::internal::Z
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data* other) {
+  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data_Body_Link* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2204,33 +2469,61 @@ class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::internal::Z
 
   // implements Message ----------------------------------------------
 
-  Theme_Bootstrap_Sample_Data* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Theme_Bootstrap_Sample_Data>(arena);
+  Theme_Bootstrap_Sample_Data_Body_Link* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data_Body_Link>(arena);
   }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Theme_Bootstrap_Sample_Data& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Theme_Bootstrap_Sample_Data& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Theme_Bootstrap_Sample_Data_Body_Link& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Sample_Data_Body_Link& from) { Theme_Bootstrap_Sample_Data_Body_Link::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
 
   public:
   bool IsInitialized() const {
     return true;
   }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Theme_Bootstrap_Sample_Data_Body_Link* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data"; }
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link"; }
 
  protected:
-  explicit Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena);
-  Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data& from);
-  Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data&& from) noexcept
-      : Theme_Bootstrap_Sample_Data(arena) {
+  explicit Theme_Bootstrap_Sample_Data_Body_Link(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Sample_Data_Body_Link(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data_Body_Link& from);
+  Theme_Bootstrap_Sample_Data_Body_Link(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data_Body_Link&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body_Link(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -2242,18 +2535,51 @@ class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::internal::Z
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
-  using Header = Theme_Bootstrap_Sample_Data_Header;
-  using Footer = Theme_Bootstrap_Sample_Data_Footer;
-  using Body = Theme_Bootstrap_Sample_Data_Body;
 
   // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+  enum : int {
+    kLabelFieldNumber = 1,
+    kHrefFieldNumber = 2,
+  };
+  // string label = 1;
+  void clear_label() ;
+  const std::string& label() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_label(Arg_&& arg, Args_... args);
+  std::string* mutable_label();
+  PROTOBUF_NODISCARD std::string* release_label();
+  void set_allocated_label(std::string* value);
+
+  private:
+  const std::string& _internal_label() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_label(
+      const std::string& value);
+  std::string* _internal_mutable_label();
+
+  public:
+  // string href = 2;
+  void clear_href() ;
+  const std::string& href() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_href(Arg_&& arg, Args_... args);
+  std::string* mutable_href();
+  PROTOBUF_NODISCARD std::string* release_href();
+  void set_allocated_href(std::string* value);
+
+  private:
+  const std::string& _internal_href() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_href(
+      const std::string& value);
+  std::string* _internal_mutable_href();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
+      1, 2, 0,
+      70, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2269,9 +2595,13 @@ class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::internal::Z
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Theme_Bootstrap_Sample_Data& from_msg);
+                          const Theme_Bootstrap_Sample_Data_Body_Link& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr label_;
+    ::google::protobuf::internal::ArenaStringPtr href_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_portal_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2479,7 +2809,7 @@ class Theme_Bootstrap final : public ::google::protobuf::internal::ZeroFieldsBas
     return reinterpret_cast<const Theme_Bootstrap*>(
         &_Theme_Bootstrap_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 68;
+  static constexpr int kIndexInFileMessages = 70;
   friend void swap(Theme_Bootstrap& a, Theme_Bootstrap& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap* other) {
     if (other == this) return;
@@ -2626,7 +2956,7 @@ class Theme final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Theme*>(
         &_Theme_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 69;
+  static constexpr int kIndexInFileMessages = 73;
   friend void swap(Theme& a, Theme& b) { a.Swap(&b); }
   inline void Swap(Theme* other) {
     if (other == this) return;
@@ -2683,6 +3013,7 @@ class Theme final : public ::google::protobuf::internal::ZeroFieldsBase
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Bootstrap = Theme_Bootstrap;
+  using Bulma = Theme_Bulma;
 
   // accessors -------------------------------------------------------
   // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme)
@@ -10315,31 +10646,31 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item) */ {
+class Theme_Bootstrap_Sample_Data_Body_Panel final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel) */ {
  public:
-  inline Theme_Bootstrap_Sample_Data_Body_Item() : Theme_Bootstrap_Sample_Data_Body_Item(nullptr) {}
-  ~Theme_Bootstrap_Sample_Data_Body_Item() PROTOBUF_FINAL;
+  inline Theme_Bootstrap_Sample_Data_Body_Panel() : Theme_Bootstrap_Sample_Data_Body_Panel(nullptr) {}
+  ~Theme_Bootstrap_Sample_Data_Body_Panel() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Theme_Bootstrap_Sample_Data_Body_Item* msg, std::destroying_delete_t) {
+  void operator delete(Theme_Bootstrap_Sample_Data_Body_Panel* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data_Body_Item));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data_Body_Panel));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item(
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Panel(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline Theme_Bootstrap_Sample_Data_Body_Item(const Theme_Bootstrap_Sample_Data_Body_Item& from) : Theme_Bootstrap_Sample_Data_Body_Item(nullptr, from) {}
-  inline Theme_Bootstrap_Sample_Data_Body_Item(Theme_Bootstrap_Sample_Data_Body_Item&& from) noexcept
-      : Theme_Bootstrap_Sample_Data_Body_Item(nullptr, std::move(from)) {}
-  inline Theme_Bootstrap_Sample_Data_Body_Item& operator=(const Theme_Bootstrap_Sample_Data_Body_Item& from) {
+  inline Theme_Bootstrap_Sample_Data_Body_Panel(const Theme_Bootstrap_Sample_Data_Body_Panel& from) : Theme_Bootstrap_Sample_Data_Body_Panel(nullptr, from) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Panel(Theme_Bootstrap_Sample_Data_Body_Panel&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body_Panel(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Panel& operator=(const Theme_Bootstrap_Sample_Data_Body_Panel& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Theme_Bootstrap_Sample_Data_Body_Item& operator=(Theme_Bootstrap_Sample_Data_Body_Item&& from) noexcept {
+  inline Theme_Bootstrap_Sample_Data_Body_Panel& operator=(Theme_Bootstrap_Sample_Data_Body_Panel&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -10367,16 +10698,16 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Theme_Bootstrap_Sample_Data_Body_Item& default_instance() {
+  static const Theme_Bootstrap_Sample_Data_Body_Panel& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Theme_Bootstrap_Sample_Data_Body_Item* internal_default_instance() {
-    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Item*>(
-        &_Theme_Bootstrap_Sample_Data_Body_Item_default_instance_);
+  static inline const Theme_Bootstrap_Sample_Data_Body_Panel* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Panel*>(
+        &_Theme_Bootstrap_Sample_Data_Body_Panel_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 63;
-  friend void swap(Theme_Bootstrap_Sample_Data_Body_Item& a, Theme_Bootstrap_Sample_Data_Body_Item& b) { a.Swap(&b); }
-  inline void Swap(Theme_Bootstrap_Sample_Data_Body_Item* other) {
+  friend void swap(Theme_Bootstrap_Sample_Data_Body_Panel& a, Theme_Bootstrap_Sample_Data_Body_Panel& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Sample_Data_Body_Panel* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -10384,7 +10715,7 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data_Body_Item* other) {
+  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data_Body_Panel* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -10392,13 +10723,13 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
 
   // implements Message ----------------------------------------------
 
-  Theme_Bootstrap_Sample_Data_Body_Item* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data_Body_Item>(arena);
+  Theme_Bootstrap_Sample_Data_Body_Panel* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data_Body_Panel>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Theme_Bootstrap_Sample_Data_Body_Item& from);
+  void CopyFrom(const Theme_Bootstrap_Sample_Data_Body_Panel& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Theme_Bootstrap_Sample_Data_Body_Item& from) { Theme_Bootstrap_Sample_Data_Body_Item::MergeImpl(*this, from); }
+  void MergeFrom(const Theme_Bootstrap_Sample_Data_Body_Panel& from) { Theme_Bootstrap_Sample_Data_Body_Panel::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -10435,18 +10766,18 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(Theme_Bootstrap_Sample_Data_Body_Item* other);
+  void InternalSwap(Theme_Bootstrap_Sample_Data_Body_Panel* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item"; }
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel"; }
 
  protected:
-  explicit Theme_Bootstrap_Sample_Data_Body_Item(::google::protobuf::Arena* arena);
-  Theme_Bootstrap_Sample_Data_Body_Item(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data_Body_Item& from);
-  Theme_Bootstrap_Sample_Data_Body_Item(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data_Body_Item&& from) noexcept
-      : Theme_Bootstrap_Sample_Data_Body_Item(arena) {
+  explicit Theme_Bootstrap_Sample_Data_Body_Panel(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Sample_Data_Body_Panel(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data_Body_Panel& from);
+  Theme_Bootstrap_Sample_Data_Body_Panel(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data_Body_Panel&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body_Panel(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -10461,25 +10792,27 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
 
   // accessors -------------------------------------------------------
   enum : int {
-    kPropertiesFieldNumber = 3,
+    kLinksFieldNumber = 3,
     kTitleFieldNumber = 1,
     kDescriptionFieldNumber = 2,
   };
-  // map<string, string> properties = 3;
-  int properties_size() const;
+  // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;
+  int links_size() const;
   private:
-  int _internal_properties_size() const;
+  int _internal_links_size() const;
 
   public:
-  void clear_properties() ;
-  const ::google::protobuf::Map<std::string, std::string>& properties() const;
-  ::google::protobuf::Map<std::string, std::string>* mutable_properties();
+  void clear_links() ;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link* mutable_links(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>* mutable_links();
 
   private:
-  const ::google::protobuf::Map<std::string, std::string>& _internal_properties() const;
-  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_properties();
-
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>& _internal_links() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>* _internal_mutable_links();
   public:
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link& links(int index) const;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link* add_links();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>& links() const;
   // string title = 1;
   void clear_title() ;
   const std::string& title() const;
@@ -10512,13 +10845,13 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
   std::string* _internal_mutable_description();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item)
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 3, 1,
-      87, 2>
+      2, 3, 1,
+      78, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -10534,11 +10867,8 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Theme_Bootstrap_Sample_Data_Body_Item& from_msg);
-    ::google::protobuf::internal::MapField<Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, std::string, std::string,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
-        properties_;
+                          const Theme_Bootstrap_Sample_Data_Body_Panel& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link > links_;
     ::google::protobuf::internal::ArenaStringPtr title_;
     ::google::protobuf::internal::ArenaStringPtr description_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -10608,7 +10938,7 @@ class Theme_Bootstrap_Sample final : public ::google::protobuf::Message
     return reinterpret_cast<const Theme_Bootstrap_Sample*>(
         &_Theme_Bootstrap_Sample_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 67;
+  static constexpr int kIndexInFileMessages = 69;
   friend void swap(Theme_Bootstrap_Sample& a, Theme_Bootstrap_Sample& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample* other) {
     if (other == this) return;
@@ -10714,19 +11044,20 @@ class Theme_Bootstrap_Sample final : public ::google::protobuf::Message
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_templates();
 
   public:
-  // .palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;
-  bool has_data() const;
+  // string data = 2;
   void clear_data() ;
-  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data& data() const;
-  PROTOBUF_NODISCARD ::palm::portal::v1::Theme_Bootstrap_Sample_Data* release_data();
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data* mutable_data();
-  void set_allocated_data(::palm::portal::v1::Theme_Bootstrap_Sample_Data* value);
-  void unsafe_arena_set_allocated_data(::palm::portal::v1::Theme_Bootstrap_Sample_Data* value);
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data* unsafe_arena_release_data();
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
 
   private:
-  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data& _internal_data() const;
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data* _internal_mutable_data();
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
 
   public:
   // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample)
@@ -10734,8 +11065,8 @@ class Theme_Bootstrap_Sample final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 2, 2,
-      55, 2>
+      0, 2, 1,
+      59, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -10752,13 +11083,12 @@ class Theme_Bootstrap_Sample final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Theme_Bootstrap_Sample& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::MapField<Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
         templates_;
-    ::palm::portal::v1::Theme_Bootstrap_Sample_Data* data_;
+    ::google::protobuf::internal::ArenaStringPtr data_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -13084,237 +13414,42 @@ class UserIndexResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class Theme_Bootstrap_Sample_Data_Body final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body) */ {
+class Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, ::google::protobuf::Message,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE> {
  public:
-  inline Theme_Bootstrap_Sample_Data_Body() : Theme_Bootstrap_Sample_Data_Body(nullptr) {}
-  ~Theme_Bootstrap_Sample_Data_Body() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Theme_Bootstrap_Sample_Data_Body* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data_Body));
-  }
-#endif
-
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, ::google::protobuf::Message,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>;
+  Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body(
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-
-  inline Theme_Bootstrap_Sample_Data_Body(const Theme_Bootstrap_Sample_Data_Body& from) : Theme_Bootstrap_Sample_Data_Body(nullptr, from) {}
-  inline Theme_Bootstrap_Sample_Data_Body(Theme_Bootstrap_Sample_Data_Body&& from) noexcept
-      : Theme_Bootstrap_Sample_Data_Body(nullptr, std::move(from)) {}
-  inline Theme_Bootstrap_Sample_Data_Body& operator=(const Theme_Bootstrap_Sample_Data_Body& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Theme_Bootstrap_Sample_Data_Body& operator=(Theme_Bootstrap_Sample_Data_Body&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
+  explicit Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse*>(
+        &_Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse_default_instance_);
   }
 
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
 
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Theme_Bootstrap_Sample_Data_Body& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Theme_Bootstrap_Sample_Data_Body* internal_default_instance() {
-    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body*>(
-        &_Theme_Bootstrap_Sample_Data_Body_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 64;
-  friend void swap(Theme_Bootstrap_Sample_Data_Body& a, Theme_Bootstrap_Sample_Data_Body& b) { a.Swap(&b); }
-  inline void Swap(Theme_Bootstrap_Sample_Data_Body* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data_Body* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Theme_Bootstrap_Sample_Data_Body* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data_Body>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Theme_Bootstrap_Sample_Data_Body& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Theme_Bootstrap_Sample_Data_Body& from) { Theme_Bootstrap_Sample_Data_Body::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Theme_Bootstrap_Sample_Data_Body* other);
  private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body"; }
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_portal_2eproto;
 
- protected:
-  explicit Theme_Bootstrap_Sample_Data_Body(::google::protobuf::Arena* arena);
-  Theme_Bootstrap_Sample_Data_Body(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data_Body& from);
-  Theme_Bootstrap_Sample_Data_Body(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data_Body&& from) noexcept
-      : Theme_Bootstrap_Sample_Data_Body(arena) {
-    *this = ::std::move(from);
-  }
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      76, 2>
+      _table_;
+
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
   static void* PlacementNew_(const void*, void* mem,
                              ::google::protobuf::Arena* arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Item = Theme_Bootstrap_Sample_Data_Body_Item;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kItemsFieldNumber = 2,
-    kTitleFieldNumber = 1,
-    kCreatedAtFieldNumber = 9,
-  };
-  // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item items = 2;
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-
-  public:
-  void clear_items() ;
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item* mutable_items(int index);
-  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>* mutable_items();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>& _internal_items() const;
-  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>* _internal_mutable_items();
-  public:
-  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item& items(int index) const;
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item* add_items();
-  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>& items() const;
-  // string title = 1;
-  void clear_title() ;
-  const std::string& title() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_title(Arg_&& arg, Args_... args);
-  std::string* mutable_title();
-  PROTOBUF_NODISCARD std::string* release_title();
-  void set_allocated_title(std::string* value);
-
-  private:
-  const std::string& _internal_title() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(
-      const std::string& value);
-  std::string* _internal_mutable_title();
-
-  public:
-  // .google.protobuf.Timestamp created_at = 9;
-  bool has_created_at() const;
-  void clear_created_at() ;
-  const ::google::protobuf::Timestamp& created_at() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_created_at();
-  ::google::protobuf::Timestamp* mutable_created_at();
-  void set_allocated_created_at(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_created_at();
-
-  private:
-  const ::google::protobuf::Timestamp& _internal_created_at() const;
-  ::google::protobuf::Timestamp* _internal_mutable_created_at();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 3, 2,
-      61, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Theme_Bootstrap_Sample_Data_Body& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item > items_;
-    ::google::protobuf::internal::ArenaStringPtr title_;
-    ::google::protobuf::Timestamp* created_at_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_portal_2eproto;
 };
 // -------------------------------------------------------------------
 
@@ -14545,6 +14680,240 @@ class EmailUserIndexResponse_Item final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item) */ {
+ public:
+  inline Theme_Bootstrap_Sample_Data_Body_Item() : Theme_Bootstrap_Sample_Data_Body_Item(nullptr) {}
+  ~Theme_Bootstrap_Sample_Data_Body_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap_Sample_Data_Body_Item* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data_Body_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap_Sample_Data_Body_Item(const Theme_Bootstrap_Sample_Data_Body_Item& from) : Theme_Bootstrap_Sample_Data_Body_Item(nullptr, from) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Item(Theme_Bootstrap_Sample_Data_Body_Item&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body_Item(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Sample_Data_Body_Item& operator=(const Theme_Bootstrap_Sample_Data_Body_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap_Sample_Data_Body_Item& operator=(Theme_Bootstrap_Sample_Data_Body_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap_Sample_Data_Body_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap_Sample_Data_Body_Item* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Item*>(
+        &_Theme_Bootstrap_Sample_Data_Body_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 65;
+  friend void swap(Theme_Bootstrap_Sample_Data_Body_Item& a, Theme_Bootstrap_Sample_Data_Body_Item& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Sample_Data_Body_Item* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data_Body_Item* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap_Sample_Data_Body_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data_Body_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Theme_Bootstrap_Sample_Data_Body_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Sample_Data_Body_Item& from) { Theme_Bootstrap_Sample_Data_Body_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Theme_Bootstrap_Sample_Data_Body_Item* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item"; }
+
+ protected:
+  explicit Theme_Bootstrap_Sample_Data_Body_Item(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Sample_Data_Body_Item(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data_Body_Item& from);
+  Theme_Bootstrap_Sample_Data_Body_Item(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data_Body_Item&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPanelsFieldNumber = 3,
+    kTitleFieldNumber = 1,
+    kDescriptionFieldNumber = 2,
+  };
+  // map<string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> panels = 3;
+  int panels_size() const;
+  private:
+  int _internal_panels_size() const;
+
+  public:
+  void clear_panels() ;
+  const ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>& panels() const;
+  ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>* mutable_panels();
+
+  private:
+  const ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>& _internal_panels() const;
+  ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>* _internal_mutable_panels();
+
+  public:
+  // string title = 1;
+  void clear_title() ;
+  const std::string& title() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_title(Arg_&& arg, Args_... args);
+  std::string* mutable_title();
+  PROTOBUF_NODISCARD std::string* release_title();
+  void set_allocated_title(std::string* value);
+
+  private:
+  const std::string& _internal_title() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(
+      const std::string& value);
+  std::string* _internal_mutable_title();
+
+  public:
+  // string description = 2;
+  void clear_description() ;
+  const std::string& description() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_description(Arg_&& arg, Args_... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* value);
+
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(
+      const std::string& value);
+  std::string* _internal_mutable_description();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 3, 2,
+      83, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap_Sample_Data_Body_Item& from_msg);
+    ::google::protobuf::internal::MapField<Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>
+        panels_;
+    ::google::protobuf::internal::ArenaStringPtr title_;
+    ::google::protobuf::internal::ArenaStringPtr description_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Sitemap_ItemsEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           std::string, ::google::protobuf::Message,
@@ -14997,6 +15366,242 @@ class EmailUserIndexResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Theme_Bootstrap_Sample_Data_Body final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body) */ {
+ public:
+  inline Theme_Bootstrap_Sample_Data_Body() : Theme_Bootstrap_Sample_Data_Body(nullptr) {}
+  ~Theme_Bootstrap_Sample_Data_Body() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap_Sample_Data_Body* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data_Body));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap_Sample_Data_Body(const Theme_Bootstrap_Sample_Data_Body& from) : Theme_Bootstrap_Sample_Data_Body(nullptr, from) {}
+  inline Theme_Bootstrap_Sample_Data_Body(Theme_Bootstrap_Sample_Data_Body&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Sample_Data_Body& operator=(const Theme_Bootstrap_Sample_Data_Body& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap_Sample_Data_Body& operator=(Theme_Bootstrap_Sample_Data_Body&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap_Sample_Data_Body& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap_Sample_Data_Body* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body*>(
+        &_Theme_Bootstrap_Sample_Data_Body_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 66;
+  friend void swap(Theme_Bootstrap_Sample_Data_Body& a, Theme_Bootstrap_Sample_Data_Body& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Sample_Data_Body* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data_Body* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap_Sample_Data_Body* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data_Body>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Theme_Bootstrap_Sample_Data_Body& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Sample_Data_Body& from) { Theme_Bootstrap_Sample_Data_Body::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Theme_Bootstrap_Sample_Data_Body* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body"; }
+
+ protected:
+  explicit Theme_Bootstrap_Sample_Data_Body(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Sample_Data_Body(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data_Body& from);
+  Theme_Bootstrap_Sample_Data_Body(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data_Body&& from) noexcept
+      : Theme_Bootstrap_Sample_Data_Body(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Link = Theme_Bootstrap_Sample_Data_Body_Link;
+  using Panel = Theme_Bootstrap_Sample_Data_Body_Panel;
+  using Item = Theme_Bootstrap_Sample_Data_Body_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 2,
+    kTitleFieldNumber = 1,
+    kCreatedAtFieldNumber = 9,
+  };
+  // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item items = 2;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>* _internal_mutable_items();
+  public:
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item& items(int index) const;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item* add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item>& items() const;
+  // string title = 1;
+  void clear_title() ;
+  const std::string& title() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_title(Arg_&& arg, Args_... args);
+  std::string* mutable_title();
+  PROTOBUF_NODISCARD std::string* release_title();
+  void set_allocated_title(std::string* value);
+
+  private:
+  const std::string& _internal_title() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(
+      const std::string& value);
+  std::string* _internal_mutable_title();
+
+  public:
+  // .google.protobuf.Timestamp created_at = 9;
+  bool has_created_at() const;
+  void clear_created_at() ;
+  const ::google::protobuf::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_created_at();
+  ::google::protobuf::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_created_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_created_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_created_at();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 3, 2,
+      61, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap_Sample_Data_Body& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item > items_;
+    ::google::protobuf::internal::ArenaStringPtr title_;
+    ::google::protobuf::Timestamp* created_at_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Sitemap final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.Sitemap) */ {
  public:
@@ -15190,6 +15795,239 @@ class Sitemap final : public ::google::protobuf::Message
                       ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>
         items_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Theme.Bootstrap.Sample.Data) */ {
+ public:
+  inline Theme_Bootstrap_Sample_Data() : Theme_Bootstrap_Sample_Data(nullptr) {}
+  ~Theme_Bootstrap_Sample_Data() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Theme_Bootstrap_Sample_Data* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Theme_Bootstrap_Sample_Data));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Theme_Bootstrap_Sample_Data(const Theme_Bootstrap_Sample_Data& from) : Theme_Bootstrap_Sample_Data(nullptr, from) {}
+  inline Theme_Bootstrap_Sample_Data(Theme_Bootstrap_Sample_Data&& from) noexcept
+      : Theme_Bootstrap_Sample_Data(nullptr, std::move(from)) {}
+  inline Theme_Bootstrap_Sample_Data& operator=(const Theme_Bootstrap_Sample_Data& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Theme_Bootstrap_Sample_Data& operator=(Theme_Bootstrap_Sample_Data&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Theme_Bootstrap_Sample_Data& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Theme_Bootstrap_Sample_Data* internal_default_instance() {
+    return reinterpret_cast<const Theme_Bootstrap_Sample_Data*>(
+        &_Theme_Bootstrap_Sample_Data_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 67;
+  friend void swap(Theme_Bootstrap_Sample_Data& a, Theme_Bootstrap_Sample_Data& b) { a.Swap(&b); }
+  inline void Swap(Theme_Bootstrap_Sample_Data* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Theme_Bootstrap_Sample_Data* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Theme_Bootstrap_Sample_Data* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Theme_Bootstrap_Sample_Data>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Theme_Bootstrap_Sample_Data& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Theme_Bootstrap_Sample_Data& from) { Theme_Bootstrap_Sample_Data::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Theme_Bootstrap_Sample_Data* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Theme.Bootstrap.Sample.Data"; }
+
+ protected:
+  explicit Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena);
+  Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena, const Theme_Bootstrap_Sample_Data& from);
+  Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena, Theme_Bootstrap_Sample_Data&& from) noexcept
+      : Theme_Bootstrap_Sample_Data(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Header = Theme_Bootstrap_Sample_Data_Header;
+  using Footer = Theme_Bootstrap_Sample_Data_Footer;
+  using Body = Theme_Bootstrap_Sample_Data_Body;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kHeaderFieldNumber = 1,
+    kFooterFieldNumber = 2,
+    kBodyFieldNumber = 3,
+  };
+  // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;
+  bool has_header() const;
+  void clear_header() ;
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header& header() const;
+  PROTOBUF_NODISCARD ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* release_header();
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* mutable_header();
+  void set_allocated_header(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* value);
+  void unsafe_arena_set_allocated_header(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* value);
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* unsafe_arena_release_header();
+
+  private:
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header& _internal_header() const;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* _internal_mutable_header();
+
+  public:
+  // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;
+  bool has_footer() const;
+  void clear_footer() ;
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer& footer() const;
+  PROTOBUF_NODISCARD ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* release_footer();
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* mutable_footer();
+  void set_allocated_footer(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* value);
+  void unsafe_arena_set_allocated_footer(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* value);
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* unsafe_arena_release_footer();
+
+  private:
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer& _internal_footer() const;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* _internal_mutable_footer();
+
+  public:
+  // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;
+  bool has_body() const;
+  void clear_body() ;
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body& body() const;
+  PROTOBUF_NODISCARD ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* release_body();
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* mutable_body();
+  void set_allocated_body(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* value);
+  void unsafe_arena_set_allocated_body(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* value);
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* unsafe_arena_release_body();
+
+  private:
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body& _internal_body() const;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* _internal_mutable_body();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 3,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Theme_Bootstrap_Sample_Data& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* header_;
+    ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* footer_;
+    ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* body_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -23570,6 +24408,255 @@ inline void Theme_Bootstrap_Sample_Data_Footer::set_allocated_copyright(std::str
 
 // -------------------------------------------------------------------
 
+// Theme_Bootstrap_Sample_Data_Body_Link
+
+// string label = 1;
+inline void Theme_Bootstrap_Sample_Data_Body_Link::clear_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.label_.ClearToEmpty();
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Link::label() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.label)
+  return _internal_label();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Theme_Bootstrap_Sample_Data_Body_Link::set_label(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.label_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.label)
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Link::mutable_label() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_label();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.label)
+  return _s;
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Link::_internal_label() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.label_.Get();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Link::_internal_set_label(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.label_.Set(value, GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Link::_internal_mutable_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.label_.Mutable( GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Link::release_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.label)
+  return _impl_.label_.Release();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Link::set_allocated_label(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.label_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.label_.IsDefault()) {
+    _impl_.label_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.label)
+}
+
+// string href = 2;
+inline void Theme_Bootstrap_Sample_Data_Body_Link::clear_href() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.href_.ClearToEmpty();
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Link::href() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.href)
+  return _internal_href();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Theme_Bootstrap_Sample_Data_Body_Link::set_href(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.href_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.href)
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Link::mutable_href() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_href();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.href)
+  return _s;
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Link::_internal_href() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.href_.Get();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Link::_internal_set_href(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.href_.Set(value, GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Link::_internal_mutable_href() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.href_.Mutable( GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Link::release_href() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.href)
+  return _impl_.href_.Release();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Link::set_allocated_href(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.href_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.href_.IsDefault()) {
+    _impl_.href_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.href)
+}
+
+// -------------------------------------------------------------------
+
+// Theme_Bootstrap_Sample_Data_Body_Panel
+
+// string title = 1;
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::clear_title() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.title_.ClearToEmpty();
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Panel::title() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.title)
+  return _internal_title();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Theme_Bootstrap_Sample_Data_Body_Panel::set_title(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.title_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.title)
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Panel::mutable_title() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_title();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.title)
+  return _s;
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Panel::_internal_title() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.title_.Get();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::_internal_set_title(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.title_.Set(value, GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Panel::_internal_mutable_title() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.title_.Mutable( GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Panel::release_title() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.title)
+  return _impl_.title_.Release();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::set_allocated_title(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.title_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.title_.IsDefault()) {
+    _impl_.title_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.title)
+}
+
+// string description = 2;
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::clear_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.ClearToEmpty();
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Panel::description() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.description)
+  return _internal_description();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Theme_Bootstrap_Sample_Data_Body_Panel::set_description(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.description)
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Panel::mutable_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.description)
+  return _s;
+}
+inline const std::string& Theme_Bootstrap_Sample_Data_Body_Panel::_internal_description() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.description_.Get();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::_internal_set_description(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(value, GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Panel::_internal_mutable_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.description_.Mutable( GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample_Data_Body_Panel::release_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.description)
+  return _impl_.description_.Release();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::set_allocated_description(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.description_.IsDefault()) {
+    _impl_.description_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.description)
+}
+
+// repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;
+inline int Theme_Bootstrap_Sample_Data_Body_Panel::_internal_links_size() const {
+  return _internal_links().size();
+}
+inline int Theme_Bootstrap_Sample_Data_Body_Panel::links_size() const {
+  return _internal_links_size();
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::clear_links() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.links_.Clear();
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link* Theme_Bootstrap_Sample_Data_Body_Panel::mutable_links(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.links)
+  return _internal_mutable_links()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>* Theme_Bootstrap_Sample_Data_Body_Panel::mutable_links()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.links)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_links();
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link& Theme_Bootstrap_Sample_Data_Body_Panel::links(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.links)
+  return _internal_links().Get(index);
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link* Theme_Bootstrap_Sample_Data_Body_Panel::add_links() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link* _add = _internal_mutable_links()->Add();
+  // @@protoc_insertion_point(field_add:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.links)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>& Theme_Bootstrap_Sample_Data_Body_Panel::links() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.links)
+  return _internal_links();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>&
+Theme_Bootstrap_Sample_Data_Body_Panel::_internal_links() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.links_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>*
+Theme_Bootstrap_Sample_Data_Body_Panel::_internal_mutable_links() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.links_;
+}
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // Theme_Bootstrap_Sample_Data_Body_Item
@@ -23670,32 +24757,32 @@ inline void Theme_Bootstrap_Sample_Data_Body_Item::set_allocated_description(std
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.description)
 }
 
-// map<string, string> properties = 3;
-inline int Theme_Bootstrap_Sample_Data_Body_Item::_internal_properties_size() const {
-  return _internal_properties().size();
+// map<string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> panels = 3;
+inline int Theme_Bootstrap_Sample_Data_Body_Item::_internal_panels_size() const {
+  return _internal_panels().size();
 }
-inline int Theme_Bootstrap_Sample_Data_Body_Item::properties_size() const {
-  return _internal_properties_size();
+inline int Theme_Bootstrap_Sample_Data_Body_Item::panels_size() const {
+  return _internal_panels_size();
 }
-inline void Theme_Bootstrap_Sample_Data_Body_Item::clear_properties() {
+inline void Theme_Bootstrap_Sample_Data_Body_Item::clear_panels() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.properties_.Clear();
+  _impl_.panels_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& Theme_Bootstrap_Sample_Data_Body_Item::_internal_properties() const {
+inline const ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>& Theme_Bootstrap_Sample_Data_Body_Item::_internal_panels() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.properties_.GetMap();
+  return _impl_.panels_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& Theme_Bootstrap_Sample_Data_Body_Item::properties() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties)
-  return _internal_properties();
+inline const ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>& Theme_Bootstrap_Sample_Data_Body_Item::panels() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.panels)
+  return _internal_panels();
 }
-inline ::google::protobuf::Map<std::string, std::string>* Theme_Bootstrap_Sample_Data_Body_Item::_internal_mutable_properties() {
+inline ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>* Theme_Bootstrap_Sample_Data_Body_Item::_internal_mutable_panels() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.properties_.MutableMap();
+  return _impl_.panels_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* Theme_Bootstrap_Sample_Data_Body_Item::mutable_properties() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties)
-  return _internal_mutable_properties();
+inline ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>* Theme_Bootstrap_Sample_Data_Body_Item::mutable_panels() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.panels)
+  return _internal_mutable_panels();
 }
 
 // -------------------------------------------------------------------
@@ -23894,6 +24981,294 @@ inline void Theme_Bootstrap_Sample_Data_Body::set_allocated_created_at(::google:
 
 // Theme_Bootstrap_Sample_Data
 
+// .palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;
+inline bool Theme_Bootstrap_Sample_Data::has_header() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.header_ != nullptr);
+  return value;
+}
+inline void Theme_Bootstrap_Sample_Data::clear_header() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.header_ != nullptr) _impl_.header_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header& Theme_Bootstrap_Sample_Data::_internal_header() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* p = _impl_.header_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header&>(::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Header_default_instance_);
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header& Theme_Bootstrap_Sample_Data::header() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.header)
+  return _internal_header();
+}
+inline void Theme_Bootstrap_Sample_Data::unsafe_arena_set_allocated_header(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.header_);
+  }
+  _impl_.header_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.header)
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* Theme_Bootstrap_Sample_Data::release_header() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* released = _impl_.header_;
+  _impl_.header_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* Theme_Bootstrap_Sample_Data::unsafe_arena_release_header() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.header)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* temp = _impl_.header_;
+  _impl_.header_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* Theme_Bootstrap_Sample_Data::_internal_mutable_header() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.header_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header>(GetArena());
+    _impl_.header_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header*>(p);
+  }
+  return _impl_.header_;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* Theme_Bootstrap_Sample_Data::mutable_header() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* _msg = _internal_mutable_header();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.header)
+  return _msg;
+}
+inline void Theme_Bootstrap_Sample_Data::set_allocated_header(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.header_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.header_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.header)
+}
+
+// .palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;
+inline bool Theme_Bootstrap_Sample_Data::has_footer() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.footer_ != nullptr);
+  return value;
+}
+inline void Theme_Bootstrap_Sample_Data::clear_footer() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.footer_ != nullptr) _impl_.footer_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer& Theme_Bootstrap_Sample_Data::_internal_footer() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* p = _impl_.footer_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer&>(::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Footer_default_instance_);
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer& Theme_Bootstrap_Sample_Data::footer() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.footer)
+  return _internal_footer();
+}
+inline void Theme_Bootstrap_Sample_Data::unsafe_arena_set_allocated_footer(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.footer_);
+  }
+  _impl_.footer_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.footer)
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* Theme_Bootstrap_Sample_Data::release_footer() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* released = _impl_.footer_;
+  _impl_.footer_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* Theme_Bootstrap_Sample_Data::unsafe_arena_release_footer() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.footer)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* temp = _impl_.footer_;
+  _impl_.footer_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* Theme_Bootstrap_Sample_Data::_internal_mutable_footer() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.footer_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer>(GetArena());
+    _impl_.footer_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer*>(p);
+  }
+  return _impl_.footer_;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* Theme_Bootstrap_Sample_Data::mutable_footer() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* _msg = _internal_mutable_footer();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.footer)
+  return _msg;
+}
+inline void Theme_Bootstrap_Sample_Data::set_allocated_footer(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.footer_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.footer_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.footer)
+}
+
+// .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;
+inline bool Theme_Bootstrap_Sample_Data::has_body() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.body_ != nullptr);
+  return value;
+}
+inline void Theme_Bootstrap_Sample_Data::clear_body() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.body_ != nullptr) _impl_.body_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body& Theme_Bootstrap_Sample_Data::_internal_body() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* p = _impl_.body_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body&>(::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_default_instance_);
+}
+inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body& Theme_Bootstrap_Sample_Data::body() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.Data.body)
+  return _internal_body();
+}
+inline void Theme_Bootstrap_Sample_Data::unsafe_arena_set_allocated_body(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.body_);
+  }
+  _impl_.body_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.body)
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* Theme_Bootstrap_Sample_Data::release_body() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* released = _impl_.body_;
+  _impl_.body_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* Theme_Bootstrap_Sample_Data::unsafe_arena_release_body() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.Data.body)
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* temp = _impl_.body_;
+  _impl_.body_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* Theme_Bootstrap_Sample_Data::_internal_mutable_body() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.body_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body>(GetArena());
+    _impl_.body_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body*>(p);
+  }
+  return _impl_.body_;
+}
+inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* Theme_Bootstrap_Sample_Data::mutable_body() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000004u;
+  ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* _msg = _internal_mutable_body();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.Data.body)
+  return _msg;
+}
+inline void Theme_Bootstrap_Sample_Data::set_allocated_body(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.body_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+
+  _impl_.body_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.Data.body)
+}
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -23928,105 +25303,65 @@ inline ::google::protobuf::Map<std::string, std::string>* Theme_Bootstrap_Sample
   return _internal_mutable_templates();
 }
 
-// .palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;
-inline bool Theme_Bootstrap_Sample::has_data() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.data_ != nullptr);
-  return value;
-}
+// string data = 2;
 inline void Theme_Bootstrap_Sample::clear_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.data_ != nullptr) _impl_.data_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_.data_.ClearToEmpty();
 }
-inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data& Theme_Bootstrap_Sample::_internal_data() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::portal::v1::Theme_Bootstrap_Sample_Data* p = _impl_.data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Theme_Bootstrap_Sample_Data&>(::palm::portal::v1::_Theme_Bootstrap_Sample_Data_default_instance_);
-}
-inline const ::palm::portal::v1::Theme_Bootstrap_Sample_Data& Theme_Bootstrap_Sample::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const std::string& Theme_Bootstrap_Sample::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.portal.v1.Theme.Bootstrap.Sample.data)
   return _internal_data();
 }
-inline void Theme_Bootstrap_Sample::unsafe_arena_set_allocated_data(::palm::portal::v1::Theme_Bootstrap_Sample_Data* value) {
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Theme_Bootstrap_Sample::set_data(Arg_&& arg,
+                                                     Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.data_);
-  }
-  _impl_.data_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.data)
+  _impl_.data_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Theme.Bootstrap.Sample.data)
 }
-inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data* Theme_Bootstrap_Sample::release_data() {
+inline std::string* Theme_Bootstrap_Sample::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.data)
+  return _s;
+}
+inline const std::string& Theme_Bootstrap_Sample::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void Theme_Bootstrap_Sample::_internal_set_data(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data* released = _impl_.data_;
-  _impl_.data_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
+  _impl_.data_.Set(value, GetArena());
 }
-inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data* Theme_Bootstrap_Sample::unsafe_arena_release_data() {
+inline std::string* Theme_Bootstrap_Sample::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* Theme_Bootstrap_Sample::release_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.portal.v1.Theme.Bootstrap.Sample.data)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data* temp = _impl_.data_;
-  _impl_.data_ = nullptr;
-  return temp;
+  return _impl_.data_.Release();
 }
-inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data* Theme_Bootstrap_Sample::_internal_mutable_data() {
+inline void Theme_Bootstrap_Sample::set_allocated_data(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.data_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data>(GetArena());
-    _impl_.data_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data*>(p);
+  _impl_.data_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.data_.IsDefault()) {
+    _impl_.data_.Set("", GetArena());
   }
-  return _impl_.data_;
-}
-inline ::palm::portal::v1::Theme_Bootstrap_Sample_Data* Theme_Bootstrap_Sample::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::palm::portal::v1::Theme_Bootstrap_Sample_Data* _msg = _internal_mutable_data();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Theme.Bootstrap.Sample.data)
-  return _msg;
-}
-inline void Theme_Bootstrap_Sample::set_allocated_data(::palm::portal::v1::Theme_Bootstrap_Sample_Data* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.data_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.data_ = reinterpret_cast<::palm::portal::v1::Theme_Bootstrap_Sample_Data*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Theme.Bootstrap.Sample.data)
 }
 
 // -------------------------------------------------------------------
 
 // Theme_Bootstrap
+
+// -------------------------------------------------------------------
+
+// Theme_Bulma_Home
+
+// -------------------------------------------------------------------
+
+// Theme_Bulma
 
 // -------------------------------------------------------------------
 

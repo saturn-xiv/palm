@@ -91,7 +91,7 @@ func Launch(port uint16, config_file string, theme string, version string) error
 		router.HandleFunc("/sitemap.xml", web.WarpXml(controllers.SitemapIndex(&ctx))).Methods(http_.MethodGet).Name("sitemap.index")
 		router.HandleFunc("/sitemap/{lang}.xml", web.WarpXml(controllers.SitemapByLang(&ctx))).Methods(http_.MethodGet).Name("sitemap.by-lang")
 		router.HandleFunc("/rss/{lang}.xml", web.WarpXml(controllers.Rss(&ctx))).Methods(http_.MethodGet).Name("rss.by-lang")
-		router.HandleFunc("/{tid}-{oid}.html", home(&ctx, h_tpl)).Methods(http_.MethodGet).Name("pages.show")
+		router.HandleFunc("/{tid}-{oid}.html", web.WarpHtml(h_tpl, controllers.ShowPage(&ctx))).Methods(http_.MethodGet).Name("pages.show")
 		router.HandleFunc("/{lang}/", web.WarpHtml(h_tpl, controllers.HomeByLang(&ctx))).Methods(http_.MethodGet).Name("home.by-lang")
 		router.HandleFunc("/", web.WarpHtml(h_tpl, controllers.Home(&ctx))).Methods(http_.MethodGet).Name("home.index")
 	}
@@ -138,10 +138,4 @@ func start(router http_.Handler, port uint16) {
 
 	slog.Warn("server stopped gracefully")
 	os.Exit(0)
-}
-
-func home(ctx *controllers.Context, tpl *h_template.Template) http_.HandlerFunc {
-	// TODO redirect if setting.get "home.direct"(url, permanent)
-
-	return web.WarpHtml(tpl, controllers.ShowPage(ctx))
 }

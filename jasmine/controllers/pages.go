@@ -11,11 +11,15 @@ import (
 
 func ShowPage(ctx *Context) web.HtmlHttpHandler {
 	return func(r *http.Request) (string, interface{}, error) {
-		// TODO
 		vars := mux.Vars(r)
 		tid := vars["tid"]
 		oid := vars["oid"]
-		slog.Debug("load page", slog.String("template", tid), slog.String("object", oid))
-		return tid, web.H{}, nil
+		return show_page(ctx, tid, oid)
 	}
+}
+
+func show_page(ctx *Context, tid string, oid string) (string, interface{}, error) {
+	slog.Debug("load page", slog.String("template", tid), slog.String("object", oid))
+	// TODO
+	return tid, web.H{}, nil
 }

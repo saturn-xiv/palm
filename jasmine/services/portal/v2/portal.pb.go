@@ -3576,6 +3576,43 @@ func (*Theme_Bootstrap) Descriptor() ([]byte, []int) {
 	return file_portal_proto_rawDescGZIP(), []int{48, 0}
 }
 
+type Theme_Bulma struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Theme_Bulma) Reset() {
+	*x = Theme_Bulma{}
+	mi := &file_portal_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Theme_Bulma) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Theme_Bulma) ProtoMessage() {}
+
+func (x *Theme_Bulma) ProtoReflect() protoreflect.Message {
+	mi := &file_portal_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Theme_Bulma.ProtoReflect.Descriptor instead.
+func (*Theme_Bulma) Descriptor() ([]byte, []int) {
+	return file_portal_proto_rawDescGZIP(), []int{48, 1}
+}
+
+// --------------------------------
 type Theme_Bootstrap_Home struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -3584,7 +3621,7 @@ type Theme_Bootstrap_Home struct {
 
 func (x *Theme_Bootstrap_Home) Reset() {
 	*x = Theme_Bootstrap_Home{}
-	mi := &file_portal_proto_msgTypes[61]
+	mi := &file_portal_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3596,7 +3633,7 @@ func (x *Theme_Bootstrap_Home) String() string {
 func (*Theme_Bootstrap_Home) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Home) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[61]
+	mi := &file_portal_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3612,17 +3649,18 @@ func (*Theme_Bootstrap_Home) Descriptor() ([]byte, []int) {
 	return file_portal_proto_rawDescGZIP(), []int{48, 0, 0}
 }
 
+// --------------------------------
 type Theme_Bootstrap_Sample struct {
-	state         protoimpl.MessageState       `protogen:"open.v1"`
-	Templates     map[string]string            `protobuf:"bytes,1,rep,name=templates,proto3" json:"templates,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Data          *Theme_Bootstrap_Sample_Data `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Templates     map[string]string      `protobuf:"bytes,1,rep,name=templates,proto3" json:"templates,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Data          string                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Theme_Bootstrap_Sample) Reset() {
 	*x = Theme_Bootstrap_Sample{}
-	mi := &file_portal_proto_msgTypes[62]
+	mi := &file_portal_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3634,7 +3672,7 @@ func (x *Theme_Bootstrap_Sample) String() string {
 func (*Theme_Bootstrap_Sample) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[62]
+	mi := &file_portal_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3657,22 +3695,25 @@ func (x *Theme_Bootstrap_Sample) GetTemplates() map[string]string {
 	return nil
 }
 
-func (x *Theme_Bootstrap_Sample) GetData() *Theme_Bootstrap_Sample_Data {
+func (x *Theme_Bootstrap_Sample) GetData() string {
 	if x != nil {
 		return x.Data
 	}
-	return nil
+	return ""
 }
 
 type Theme_Bootstrap_Sample_Data struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state         protoimpl.MessageState              `protogen:"open.v1"`
+	Header        *Theme_Bootstrap_Sample_Data_Header `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
+	Footer        *Theme_Bootstrap_Sample_Data_Footer `protobuf:"bytes,2,opt,name=footer,proto3" json:"footer,omitempty"`
+	Body          *Theme_Bootstrap_Sample_Data_Body   `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Theme_Bootstrap_Sample_Data) Reset() {
 	*x = Theme_Bootstrap_Sample_Data{}
-	mi := &file_portal_proto_msgTypes[63]
+	mi := &file_portal_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3684,7 +3725,7 @@ func (x *Theme_Bootstrap_Sample_Data) String() string {
 func (*Theme_Bootstrap_Sample_Data) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Sample_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[63]
+	mi := &file_portal_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3700,6 +3741,27 @@ func (*Theme_Bootstrap_Sample_Data) Descriptor() ([]byte, []int) {
 	return file_portal_proto_rawDescGZIP(), []int{48, 0, 1, 0}
 }
 
+func (x *Theme_Bootstrap_Sample_Data) GetHeader() *Theme_Bootstrap_Sample_Data_Header {
+	if x != nil {
+		return x.Header
+	}
+	return nil
+}
+
+func (x *Theme_Bootstrap_Sample_Data) GetFooter() *Theme_Bootstrap_Sample_Data_Footer {
+	if x != nil {
+		return x.Footer
+	}
+	return nil
+}
+
+func (x *Theme_Bootstrap_Sample_Data) GetBody() *Theme_Bootstrap_Sample_Data_Body {
+	if x != nil {
+		return x.Body
+	}
+	return nil
+}
+
 type Theme_Bootstrap_Sample_Data_Header struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
@@ -3709,7 +3771,7 @@ type Theme_Bootstrap_Sample_Data_Header struct {
 
 func (x *Theme_Bootstrap_Sample_Data_Header) Reset() {
 	*x = Theme_Bootstrap_Sample_Data_Header{}
-	mi := &file_portal_proto_msgTypes[65]
+	mi := &file_portal_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3721,7 +3783,7 @@ func (x *Theme_Bootstrap_Sample_Data_Header) String() string {
 func (*Theme_Bootstrap_Sample_Data_Header) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Sample_Data_Header) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[65]
+	mi := &file_portal_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3753,7 +3815,7 @@ type Theme_Bootstrap_Sample_Data_Footer struct {
 
 func (x *Theme_Bootstrap_Sample_Data_Footer) Reset() {
 	*x = Theme_Bootstrap_Sample_Data_Footer{}
-	mi := &file_portal_proto_msgTypes[66]
+	mi := &file_portal_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3765,7 +3827,7 @@ func (x *Theme_Bootstrap_Sample_Data_Footer) String() string {
 func (*Theme_Bootstrap_Sample_Data_Footer) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Sample_Data_Footer) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[66]
+	mi := &file_portal_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3799,7 +3861,7 @@ type Theme_Bootstrap_Sample_Data_Body struct {
 
 func (x *Theme_Bootstrap_Sample_Data_Body) Reset() {
 	*x = Theme_Bootstrap_Sample_Data_Body{}
-	mi := &file_portal_proto_msgTypes[67]
+	mi := &file_portal_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3811,7 +3873,7 @@ func (x *Theme_Bootstrap_Sample_Data_Body) String() string {
 func (*Theme_Bootstrap_Sample_Data_Body) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Sample_Data_Body) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[67]
+	mi := &file_portal_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3848,18 +3910,130 @@ func (x *Theme_Bootstrap_Sample_Data_Body) GetCreatedAt() *timestamppb.Timestamp
 	return nil
 }
 
-type Theme_Bootstrap_Sample_Data_Body_Item struct {
+type Theme_Bootstrap_Sample_Data_Body_Link struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	Properties    map[string]string      `protobuf:"bytes,3,rep,name=properties,proto3" json:"properties,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Label         string                 `protobuf:"bytes,1,opt,name=label,proto3" json:"label,omitempty"`
+	Href          string                 `protobuf:"bytes,2,opt,name=href,proto3" json:"href,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Link) Reset() {
+	*x = Theme_Bootstrap_Sample_Data_Body_Link{}
+	mi := &file_portal_proto_msgTypes[69]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Link) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Theme_Bootstrap_Sample_Data_Body_Link) ProtoMessage() {}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Link) ProtoReflect() protoreflect.Message {
+	mi := &file_portal_proto_msgTypes[69]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Theme_Bootstrap_Sample_Data_Body_Link.ProtoReflect.Descriptor instead.
+func (*Theme_Bootstrap_Sample_Data_Body_Link) Descriptor() ([]byte, []int) {
+	return file_portal_proto_rawDescGZIP(), []int{48, 0, 1, 0, 2, 0}
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Link) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Link) GetHref() string {
+	if x != nil {
+		return x.Href
+	}
+	return ""
+}
+
+type Theme_Bootstrap_Sample_Data_Body_Panel struct {
+	state         protoimpl.MessageState                   `protogen:"open.v1"`
+	Title         string                                   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                                   `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Links         []*Theme_Bootstrap_Sample_Data_Body_Link `protobuf:"bytes,3,rep,name=links,proto3" json:"links,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Panel) Reset() {
+	*x = Theme_Bootstrap_Sample_Data_Body_Panel{}
+	mi := &file_portal_proto_msgTypes[70]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Panel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Theme_Bootstrap_Sample_Data_Body_Panel) ProtoMessage() {}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Panel) ProtoReflect() protoreflect.Message {
+	mi := &file_portal_proto_msgTypes[70]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Theme_Bootstrap_Sample_Data_Body_Panel.ProtoReflect.Descriptor instead.
+func (*Theme_Bootstrap_Sample_Data_Body_Panel) Descriptor() ([]byte, []int) {
+	return file_portal_proto_rawDescGZIP(), []int{48, 0, 1, 0, 2, 1}
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Panel) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Panel) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Theme_Bootstrap_Sample_Data_Body_Panel) GetLinks() []*Theme_Bootstrap_Sample_Data_Body_Link {
+	if x != nil {
+		return x.Links
+	}
+	return nil
+}
+
+type Theme_Bootstrap_Sample_Data_Body_Item struct {
+	state         protoimpl.MessageState                             `protogen:"open.v1"`
+	Title         string                                             `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                                             `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Panels        map[string]*Theme_Bootstrap_Sample_Data_Body_Panel `protobuf:"bytes,3,rep,name=panels,proto3" json:"panels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Theme_Bootstrap_Sample_Data_Body_Item) Reset() {
 	*x = Theme_Bootstrap_Sample_Data_Body_Item{}
-	mi := &file_portal_proto_msgTypes[68]
+	mi := &file_portal_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3871,7 +4045,7 @@ func (x *Theme_Bootstrap_Sample_Data_Body_Item) String() string {
 func (*Theme_Bootstrap_Sample_Data_Body_Item) ProtoMessage() {}
 
 func (x *Theme_Bootstrap_Sample_Data_Body_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_portal_proto_msgTypes[68]
+	mi := &file_portal_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3884,7 +4058,7 @@ func (x *Theme_Bootstrap_Sample_Data_Body_Item) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use Theme_Bootstrap_Sample_Data_Body_Item.ProtoReflect.Descriptor instead.
 func (*Theme_Bootstrap_Sample_Data_Body_Item) Descriptor() ([]byte, []int) {
-	return file_portal_proto_rawDescGZIP(), []int{48, 0, 1, 0, 2, 0}
+	return file_portal_proto_rawDescGZIP(), []int{48, 0, 1, 0, 2, 2}
 }
 
 func (x *Theme_Bootstrap_Sample_Data_Body_Item) GetTitle() string {
@@ -3901,11 +4075,48 @@ func (x *Theme_Bootstrap_Sample_Data_Body_Item) GetDescription() string {
 	return ""
 }
 
-func (x *Theme_Bootstrap_Sample_Data_Body_Item) GetProperties() map[string]string {
+func (x *Theme_Bootstrap_Sample_Data_Body_Item) GetPanels() map[string]*Theme_Bootstrap_Sample_Data_Body_Panel {
 	if x != nil {
-		return x.Properties
+		return x.Panels
 	}
 	return nil
+}
+
+// --------------------------------
+type Theme_Bulma_Home struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Theme_Bulma_Home) Reset() {
+	*x = Theme_Bulma_Home{}
+	mi := &file_portal_proto_msgTypes[73]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Theme_Bulma_Home) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Theme_Bulma_Home) ProtoMessage() {}
+
+func (x *Theme_Bulma_Home) ProtoReflect() protoreflect.Message {
+	mi := &file_portal_proto_msgTypes[73]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Theme_Bulma_Home.ProtoReflect.Descriptor instead.
+func (*Theme_Bulma_Home) Descriptor() ([]byte, []int) {
+	return file_portal_proto_rawDescGZIP(), []int{48, 1, 0}
 }
 
 var File_portal_proto protoreflect.FileDescriptor
@@ -4186,35 +4397,45 @@ const file_portal_proto_rawDesc = "" +
 	"\bHtmlPage\x12\x12\n" +
 	"\x04lang\x18\x01 \x01(\tR\x04lang\x12\x1a\n" +
 	"\btemplate\x18\x02 \x01(\tR\btemplate\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"\xdb\x05\n" +
-	"\x05Theme\x1a\xd1\x05\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"\x86\t\n" +
+	"\x05Theme\x1a\xeb\b\n" +
 	"\tBootstrap\x1a\x06\n" +
-	"\x04Home\x1a\xbb\x05\n" +
+	"\x04Home\x1a\xd5\b\n" +
 	"\x06Sample\x12S\n" +
-	"\ttemplates\x18\x01 \x03(\v25.palm.portal.v1.Theme.Bootstrap.Sample.TemplatesEntryR\ttemplates\x12?\n" +
-	"\x04data\x18\x02 \x01(\v2+.palm.portal.v1.Theme.Bootstrap.Sample.DataR\x04data\x1a\xdc\x03\n" +
-	"\x04Data\x1a\x1e\n" +
+	"\ttemplates\x18\x01 \x03(\v25.palm.portal.v1.Theme.Bootstrap.Sample.TemplatesEntryR\ttemplates\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\tR\x04data\x1a\xa3\a\n" +
+	"\x04Data\x12J\n" +
+	"\x06header\x18\x01 \x01(\v22.palm.portal.v1.Theme.Bootstrap.Sample.Data.HeaderR\x06header\x12J\n" +
+	"\x06footer\x18\x02 \x01(\v22.palm.portal.v1.Theme.Bootstrap.Sample.Data.FooterR\x06footer\x12D\n" +
+	"\x04body\x18\x03 \x01(\v20.palm.portal.v1.Theme.Bootstrap.Sample.Data.BodyR\x04body\x1a\x1e\n" +
 	"\x06Header\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x1a&\n" +
 	"\x06Footer\x12\x1c\n" +
-	"\tcopyright\x18\x01 \x01(\tR\tcopyright\x1a\x8b\x03\n" +
+	"\tcopyright\x18\x01 \x01(\tR\tcopyright\x1a\xf4\x04\n" +
 	"\x04Body\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12K\n" +
 	"\x05items\x18\x02 \x03(\v25.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.ItemR\x05items\x129\n" +
 	"\n" +
-	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a\xe4\x01\n" +
+	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a0\n" +
+	"\x04Link\x12\x14\n" +
+	"\x05label\x18\x01 \x01(\tR\x05label\x12\x12\n" +
+	"\x04href\x18\x02 \x01(\tR\x04href\x1a\x8c\x01\n" +
+	"\x05Panel\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12K\n" +
+	"\x05links\x18\x03 \x03(\v25.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.LinkR\x05links\x1a\x8c\x02\n" +
 	"\x04Item\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\x12e\n" +
-	"\n" +
-	"properties\x18\x03 \x03(\v2E.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PropertiesEntryR\n" +
-	"properties\x1a=\n" +
-	"\x0fPropertiesEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a<\n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12Y\n" +
+	"\x06panels\x18\x03 \x03(\v2A.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PanelsEntryR\x06panels\x1aq\n" +
+	"\vPanelsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12L\n" +
+	"\x05value\x18\x02 \x01(\v26.palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.PanelR\x05value:\x028\x01\x1a<\n" +
 	"\x0eTemplatesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xf7\x02\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\x0f\n" +
+	"\x05Bulma\x1a\x06\n" +
+	"\x04Home2\xf7\x02\n" +
 	"\x06Locale\x12D\n" +
 	"\x05Index\x12\x14.palm.portal.v1.Page\x1a#.palm.portal.v1.LocaleIndexResponse\"\x00\x12G\n" +
 	"\x06Create\x12#.palm.portal.v1.LocaleCreateRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n" +
@@ -4295,84 +4516,88 @@ func file_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 70)
+var file_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 74)
 var file_portal_proto_goTypes = []any{
-	(UserIndexResponse_Item_Type)(0),              // 0: palm.portal.v1.UserIndexResponse.Item.Type
-	(UserLogsResponse_Item_Level)(0),              // 1: palm.portal.v1.UserLogsResponse.Item.Level
-	(Sitemap_Url_ChangeFreq)(0),                   // 2: palm.portal.v1.Sitemap.Url.ChangeFreq
-	(*Page)(nil),                                  // 3: palm.portal.v1.Page
-	(*Pagination)(nil),                            // 4: palm.portal.v1.Pagination
-	(*IdRequest)(nil),                             // 5: palm.portal.v1.IdRequest
-	(*LocaleByLangRequest)(nil),                   // 6: palm.portal.v1.LocaleByLangRequest
-	(*LocaleByLangResponse)(nil),                  // 7: palm.portal.v1.LocaleByLangResponse
-	(*LocaleUpdateRequest)(nil),                   // 8: palm.portal.v1.LocaleUpdateRequest
-	(*LocaleCreateRequest)(nil),                   // 9: palm.portal.v1.LocaleCreateRequest
-	(*LocaleIndexResponse)(nil),                   // 10: palm.portal.v1.LocaleIndexResponse
-	(*Resource)(nil),                              // 11: palm.portal.v1.Resource
-	(*EmailUserIndexResponse)(nil),                // 12: palm.portal.v1.EmailUserIndexResponse
-	(*EmailUserDeleteByEmailRequest)(nil),         // 13: palm.portal.v1.EmailUserDeleteByEmailRequest
-	(*EmailUserUploadAvatarResponse)(nil),         // 14: palm.portal.v1.EmailUserUploadAvatarResponse
-	(*EmailUserSetAvatarRequest)(nil),             // 15: palm.portal.v1.EmailUserSetAvatarRequest
-	(*EmailUserSetRealNameRequest)(nil),           // 16: palm.portal.v1.EmailUserSetRealNameRequest
-	(*EmailUserSetPasswordRequest)(nil),           // 17: palm.portal.v1.EmailUserSetPasswordRequest
-	(*EmailUserChangePasswordRequest)(nil),        // 18: palm.portal.v1.EmailUserChangePasswordRequest
-	(*EmailUserResetPasswordRequest)(nil),         // 19: palm.portal.v1.EmailUserResetPasswordRequest
-	(*EmailUserByTokenRequest)(nil),               // 20: palm.portal.v1.EmailUserByTokenRequest
-	(*EmailUserRequest)(nil),                      // 21: palm.portal.v1.EmailUserRequest
-	(*EmailUserSignUpRequest)(nil),                // 22: palm.portal.v1.EmailUserSignUpRequest
-	(*EmailUserSignInRequest)(nil),                // 23: palm.portal.v1.EmailUserSignInRequest
-	(*UserUploadRequest)(nil),                     // 24: palm.portal.v1.UserUploadRequest
-	(*UserUploadResponse)(nil),                    // 25: palm.portal.v1.UserUploadResponse
-	(*UserSetVRequest)(nil),                       // 26: palm.portal.v1.UserSetVRequest
-	(*UserGetVRequest)(nil),                       // 27: palm.portal.v1.UserGetVRequest
-	(*UserGetVResponse)(nil),                      // 28: palm.portal.v1.UserGetVResponse
-	(*UserSetLocationRequest)(nil),                // 29: palm.portal.v1.UserSetLocationRequest
-	(*SetupUserRequest)(nil),                      // 30: palm.portal.v1.SetupUserRequest
-	(*UserIndexResponse)(nil),                     // 31: palm.portal.v1.UserIndexResponse
-	(*UserLogsResponse)(nil),                      // 32: palm.portal.v1.UserLogsResponse
-	(*UserSignInResponse)(nil),                    // 33: palm.portal.v1.UserSignInResponse
-	(*SiteSetMaintenanceModeRequest)(nil),         // 34: palm.portal.v1.SiteSetMaintenanceModeRequest
-	(*SiteUploadFaviconResponse)(nil),             // 35: palm.portal.v1.SiteUploadFaviconResponse
-	(*SiteFaviconProfile)(nil),                    // 36: palm.portal.v1.SiteFaviconProfile
-	(*SiteAuthorProfile)(nil),                     // 37: palm.portal.v1.SiteAuthorProfile
-	(*GetSiteInfoByLangRequest)(nil),              // 38: palm.portal.v1.GetSiteInfoByLangRequest
-	(*SetSiteInfoByLangRequest)(nil),              // 39: palm.portal.v1.SetSiteInfoByLangRequest
-	(*GetSiteInfoByLangResponse)(nil),             // 40: palm.portal.v1.GetSiteInfoByLangResponse
-	(*BaiduSiteOwnershipVerification)(nil),        // 41: palm.portal.v1.BaiduSiteOwnershipVerification
-	(*ReCaptchaProfile)(nil),                      // 42: palm.portal.v1.ReCaptchaProfile
-	(*GoogleSiteOwnershipVerification)(nil),       // 43: palm.portal.v1.GoogleSiteOwnershipVerification
-	(*IndexNowProfile)(nil),                       // 44: palm.portal.v1.IndexNowProfile
-	(*SiteTimezonesResponse)(nil),                 // 45: palm.portal.v1.SiteTimezonesResponse
-	(*SiteLanguagesResponse)(nil),                 // 46: palm.portal.v1.SiteLanguagesResponse
-	(*SiteCurrenciesResponse)(nil),                // 47: palm.portal.v1.SiteCurrenciesResponse
-	(*Rss)(nil),                                   // 48: palm.portal.v1.Rss
-	(*Sitemap)(nil),                               // 49: palm.portal.v1.Sitemap
-	(*HtmlPage)(nil),                              // 50: palm.portal.v1.HtmlPage
-	(*Theme)(nil),                                 // 51: palm.portal.v1.Theme
-	(*LocaleIndexResponse_Item)(nil),              // 52: palm.portal.v1.LocaleIndexResponse.Item
-	(*EmailUserIndexResponse_Item)(nil),           // 53: palm.portal.v1.EmailUserIndexResponse.Item
-	(*UserIndexResponse_Item)(nil),                // 54: palm.portal.v1.UserIndexResponse.Item
-	(*UserLogsResponse_Item)(nil),                 // 55: palm.portal.v1.UserLogsResponse.Item
-	(*SiteCurrenciesResponse_Item)(nil),           // 56: palm.portal.v1.SiteCurrenciesResponse.Item
-	(*Rss_Channel)(nil),                           // 57: palm.portal.v1.Rss.Channel
-	(*Rss_Channel_Item)(nil),                      // 58: palm.portal.v1.Rss.Channel.Item
-	(*Rss_Channel_Item_Guid)(nil),                 // 59: palm.portal.v1.Rss.Channel.Item.Guid
-	(*Sitemap_Url)(nil),                           // 60: palm.portal.v1.Sitemap.Url
-	(*Sitemap_UrlSet)(nil),                        // 61: palm.portal.v1.Sitemap.UrlSet
-	nil,                                           // 62: palm.portal.v1.Sitemap.ItemsEntry
-	(*Theme_Bootstrap)(nil),                       // 63: palm.portal.v1.Theme.Bootstrap
-	(*Theme_Bootstrap_Home)(nil),                  // 64: palm.portal.v1.Theme.Bootstrap.Home
-	(*Theme_Bootstrap_Sample)(nil),                // 65: palm.portal.v1.Theme.Bootstrap.Sample
-	(*Theme_Bootstrap_Sample_Data)(nil),           // 66: palm.portal.v1.Theme.Bootstrap.Sample.Data
-	nil,                                           // 67: palm.portal.v1.Theme.Bootstrap.Sample.TemplatesEntry
-	(*Theme_Bootstrap_Sample_Data_Header)(nil),    // 68: palm.portal.v1.Theme.Bootstrap.Sample.Data.Header
-	(*Theme_Bootstrap_Sample_Data_Footer)(nil),    // 69: palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer
-	(*Theme_Bootstrap_Sample_Data_Body)(nil),      // 70: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body
-	(*Theme_Bootstrap_Sample_Data_Body_Item)(nil), // 71: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item
-	nil,                           // 72: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PropertiesEntry
-	(*durationpb.Duration)(nil),   // 73: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil), // 74: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),         // 75: google.protobuf.Empty
+	(UserIndexResponse_Item_Type)(0),               // 0: palm.portal.v1.UserIndexResponse.Item.Type
+	(UserLogsResponse_Item_Level)(0),               // 1: palm.portal.v1.UserLogsResponse.Item.Level
+	(Sitemap_Url_ChangeFreq)(0),                    // 2: palm.portal.v1.Sitemap.Url.ChangeFreq
+	(*Page)(nil),                                   // 3: palm.portal.v1.Page
+	(*Pagination)(nil),                             // 4: palm.portal.v1.Pagination
+	(*IdRequest)(nil),                              // 5: palm.portal.v1.IdRequest
+	(*LocaleByLangRequest)(nil),                    // 6: palm.portal.v1.LocaleByLangRequest
+	(*LocaleByLangResponse)(nil),                   // 7: palm.portal.v1.LocaleByLangResponse
+	(*LocaleUpdateRequest)(nil),                    // 8: palm.portal.v1.LocaleUpdateRequest
+	(*LocaleCreateRequest)(nil),                    // 9: palm.portal.v1.LocaleCreateRequest
+	(*LocaleIndexResponse)(nil),                    // 10: palm.portal.v1.LocaleIndexResponse
+	(*Resource)(nil),                               // 11: palm.portal.v1.Resource
+	(*EmailUserIndexResponse)(nil),                 // 12: palm.portal.v1.EmailUserIndexResponse
+	(*EmailUserDeleteByEmailRequest)(nil),          // 13: palm.portal.v1.EmailUserDeleteByEmailRequest
+	(*EmailUserUploadAvatarResponse)(nil),          // 14: palm.portal.v1.EmailUserUploadAvatarResponse
+	(*EmailUserSetAvatarRequest)(nil),              // 15: palm.portal.v1.EmailUserSetAvatarRequest
+	(*EmailUserSetRealNameRequest)(nil),            // 16: palm.portal.v1.EmailUserSetRealNameRequest
+	(*EmailUserSetPasswordRequest)(nil),            // 17: palm.portal.v1.EmailUserSetPasswordRequest
+	(*EmailUserChangePasswordRequest)(nil),         // 18: palm.portal.v1.EmailUserChangePasswordRequest
+	(*EmailUserResetPasswordRequest)(nil),          // 19: palm.portal.v1.EmailUserResetPasswordRequest
+	(*EmailUserByTokenRequest)(nil),                // 20: palm.portal.v1.EmailUserByTokenRequest
+	(*EmailUserRequest)(nil),                       // 21: palm.portal.v1.EmailUserRequest
+	(*EmailUserSignUpRequest)(nil),                 // 22: palm.portal.v1.EmailUserSignUpRequest
+	(*EmailUserSignInRequest)(nil),                 // 23: palm.portal.v1.EmailUserSignInRequest
+	(*UserUploadRequest)(nil),                      // 24: palm.portal.v1.UserUploadRequest
+	(*UserUploadResponse)(nil),                     // 25: palm.portal.v1.UserUploadResponse
+	(*UserSetVRequest)(nil),                        // 26: palm.portal.v1.UserSetVRequest
+	(*UserGetVRequest)(nil),                        // 27: palm.portal.v1.UserGetVRequest
+	(*UserGetVResponse)(nil),                       // 28: palm.portal.v1.UserGetVResponse
+	(*UserSetLocationRequest)(nil),                 // 29: palm.portal.v1.UserSetLocationRequest
+	(*SetupUserRequest)(nil),                       // 30: palm.portal.v1.SetupUserRequest
+	(*UserIndexResponse)(nil),                      // 31: palm.portal.v1.UserIndexResponse
+	(*UserLogsResponse)(nil),                       // 32: palm.portal.v1.UserLogsResponse
+	(*UserSignInResponse)(nil),                     // 33: palm.portal.v1.UserSignInResponse
+	(*SiteSetMaintenanceModeRequest)(nil),          // 34: palm.portal.v1.SiteSetMaintenanceModeRequest
+	(*SiteUploadFaviconResponse)(nil),              // 35: palm.portal.v1.SiteUploadFaviconResponse
+	(*SiteFaviconProfile)(nil),                     // 36: palm.portal.v1.SiteFaviconProfile
+	(*SiteAuthorProfile)(nil),                      // 37: palm.portal.v1.SiteAuthorProfile
+	(*GetSiteInfoByLangRequest)(nil),               // 38: palm.portal.v1.GetSiteInfoByLangRequest
+	(*SetSiteInfoByLangRequest)(nil),               // 39: palm.portal.v1.SetSiteInfoByLangRequest
+	(*GetSiteInfoByLangResponse)(nil),              // 40: palm.portal.v1.GetSiteInfoByLangResponse
+	(*BaiduSiteOwnershipVerification)(nil),         // 41: palm.portal.v1.BaiduSiteOwnershipVerification
+	(*ReCaptchaProfile)(nil),                       // 42: palm.portal.v1.ReCaptchaProfile
+	(*GoogleSiteOwnershipVerification)(nil),        // 43: palm.portal.v1.GoogleSiteOwnershipVerification
+	(*IndexNowProfile)(nil),                        // 44: palm.portal.v1.IndexNowProfile
+	(*SiteTimezonesResponse)(nil),                  // 45: palm.portal.v1.SiteTimezonesResponse
+	(*SiteLanguagesResponse)(nil),                  // 46: palm.portal.v1.SiteLanguagesResponse
+	(*SiteCurrenciesResponse)(nil),                 // 47: palm.portal.v1.SiteCurrenciesResponse
+	(*Rss)(nil),                                    // 48: palm.portal.v1.Rss
+	(*Sitemap)(nil),                                // 49: palm.portal.v1.Sitemap
+	(*HtmlPage)(nil),                               // 50: palm.portal.v1.HtmlPage
+	(*Theme)(nil),                                  // 51: palm.portal.v1.Theme
+	(*LocaleIndexResponse_Item)(nil),               // 52: palm.portal.v1.LocaleIndexResponse.Item
+	(*EmailUserIndexResponse_Item)(nil),            // 53: palm.portal.v1.EmailUserIndexResponse.Item
+	(*UserIndexResponse_Item)(nil),                 // 54: palm.portal.v1.UserIndexResponse.Item
+	(*UserLogsResponse_Item)(nil),                  // 55: palm.portal.v1.UserLogsResponse.Item
+	(*SiteCurrenciesResponse_Item)(nil),            // 56: palm.portal.v1.SiteCurrenciesResponse.Item
+	(*Rss_Channel)(nil),                            // 57: palm.portal.v1.Rss.Channel
+	(*Rss_Channel_Item)(nil),                       // 58: palm.portal.v1.Rss.Channel.Item
+	(*Rss_Channel_Item_Guid)(nil),                  // 59: palm.portal.v1.Rss.Channel.Item.Guid
+	(*Sitemap_Url)(nil),                            // 60: palm.portal.v1.Sitemap.Url
+	(*Sitemap_UrlSet)(nil),                         // 61: palm.portal.v1.Sitemap.UrlSet
+	nil,                                            // 62: palm.portal.v1.Sitemap.ItemsEntry
+	(*Theme_Bootstrap)(nil),                        // 63: palm.portal.v1.Theme.Bootstrap
+	(*Theme_Bulma)(nil),                            // 64: palm.portal.v1.Theme.Bulma
+	(*Theme_Bootstrap_Home)(nil),                   // 65: palm.portal.v1.Theme.Bootstrap.Home
+	(*Theme_Bootstrap_Sample)(nil),                 // 66: palm.portal.v1.Theme.Bootstrap.Sample
+	(*Theme_Bootstrap_Sample_Data)(nil),            // 67: palm.portal.v1.Theme.Bootstrap.Sample.Data
+	nil,                                            // 68: palm.portal.v1.Theme.Bootstrap.Sample.TemplatesEntry
+	(*Theme_Bootstrap_Sample_Data_Header)(nil),     // 69: palm.portal.v1.Theme.Bootstrap.Sample.Data.Header
+	(*Theme_Bootstrap_Sample_Data_Footer)(nil),     // 70: palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer
+	(*Theme_Bootstrap_Sample_Data_Body)(nil),       // 71: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body
+	(*Theme_Bootstrap_Sample_Data_Body_Link)(nil),  // 72: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link
+	(*Theme_Bootstrap_Sample_Data_Body_Panel)(nil), // 73: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel
+	(*Theme_Bootstrap_Sample_Data_Body_Item)(nil),  // 74: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item
+	nil,                           // 75: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PanelsEntry
+	(*Theme_Bulma_Home)(nil),      // 76: palm.portal.v1.Theme.Bulma.Home
+	(*durationpb.Duration)(nil),   // 77: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil), // 78: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 79: google.protobuf.Empty
 }
 var file_portal_proto_depIdxs = []int32{
 	52,  // 0: palm.portal.v1.LocaleByLangResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
@@ -4380,163 +4605,167 @@ var file_portal_proto_depIdxs = []int32{
 	4,   // 2: palm.portal.v1.LocaleIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
 	53,  // 3: palm.portal.v1.EmailUserIndexResponse.items:type_name -> palm.portal.v1.EmailUserIndexResponse.Item
 	4,   // 4: palm.portal.v1.EmailUserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
-	73,  // 5: palm.portal.v1.EmailUserUploadAvatarResponse.ttl:type_name -> google.protobuf.Duration
-	73,  // 6: palm.portal.v1.EmailUserSignInRequest.ttl:type_name -> google.protobuf.Duration
-	73,  // 7: palm.portal.v1.UserUploadRequest.ttl:type_name -> google.protobuf.Duration
+	77,  // 5: palm.portal.v1.EmailUserUploadAvatarResponse.ttl:type_name -> google.protobuf.Duration
+	77,  // 6: palm.portal.v1.EmailUserSignInRequest.ttl:type_name -> google.protobuf.Duration
+	77,  // 7: palm.portal.v1.UserUploadRequest.ttl:type_name -> google.protobuf.Duration
 	54,  // 8: palm.portal.v1.UserIndexResponse.items:type_name -> palm.portal.v1.UserIndexResponse.Item
 	4,   // 9: palm.portal.v1.UserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
 	55,  // 10: palm.portal.v1.UserLogsResponse.items:type_name -> palm.portal.v1.UserLogsResponse.Item
 	4,   // 11: palm.portal.v1.UserLogsResponse.pagination:type_name -> palm.portal.v1.Pagination
-	73,  // 12: palm.portal.v1.SiteUploadFaviconResponse.ttl:type_name -> google.protobuf.Duration
+	77,  // 12: palm.portal.v1.SiteUploadFaviconResponse.ttl:type_name -> google.protobuf.Duration
 	40,  // 13: palm.portal.v1.SetSiteInfoByLangRequest.item:type_name -> palm.portal.v1.GetSiteInfoByLangResponse
 	56,  // 14: palm.portal.v1.SiteCurrenciesResponse.items:type_name -> palm.portal.v1.SiteCurrenciesResponse.Item
 	57,  // 15: palm.portal.v1.Rss.channel:type_name -> palm.portal.v1.Rss.Channel
 	62,  // 16: palm.portal.v1.Sitemap.items:type_name -> palm.portal.v1.Sitemap.ItemsEntry
-	74,  // 17: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	74,  // 18: palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at:type_name -> google.protobuf.Timestamp
-	74,  // 19: palm.portal.v1.EmailUserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
-	74,  // 20: palm.portal.v1.EmailUserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	78,  // 17: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	78,  // 18: palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at:type_name -> google.protobuf.Timestamp
+	78,  // 19: palm.portal.v1.EmailUserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
+	78,  // 20: palm.portal.v1.EmailUserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
 	54,  // 21: palm.portal.v1.EmailUserIndexResponse.Item.user:type_name -> palm.portal.v1.UserIndexResponse.Item
-	74,  // 22: palm.portal.v1.UserIndexResponse.Item.current_sign_in_at:type_name -> google.protobuf.Timestamp
-	74,  // 23: palm.portal.v1.UserIndexResponse.Item.last_sign_in_at:type_name -> google.protobuf.Timestamp
-	74,  // 24: palm.portal.v1.UserIndexResponse.Item.locked_at:type_name -> google.protobuf.Timestamp
-	74,  // 25: palm.portal.v1.UserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
-	74,  // 26: palm.portal.v1.UserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	78,  // 22: palm.portal.v1.UserIndexResponse.Item.current_sign_in_at:type_name -> google.protobuf.Timestamp
+	78,  // 23: palm.portal.v1.UserIndexResponse.Item.last_sign_in_at:type_name -> google.protobuf.Timestamp
+	78,  // 24: palm.portal.v1.UserIndexResponse.Item.locked_at:type_name -> google.protobuf.Timestamp
+	78,  // 25: palm.portal.v1.UserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
+	78,  // 26: palm.portal.v1.UserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
 	1,   // 27: palm.portal.v1.UserLogsResponse.Item.level:type_name -> palm.portal.v1.UserLogsResponse.Item.Level
 	11,  // 28: palm.portal.v1.UserLogsResponse.Item.resource:type_name -> palm.portal.v1.Resource
-	74,  // 29: palm.portal.v1.UserLogsResponse.Item.created_at:type_name -> google.protobuf.Timestamp
-	74,  // 30: palm.portal.v1.Rss.Channel.last_build_date:type_name -> google.protobuf.Timestamp
-	74,  // 31: palm.portal.v1.Rss.Channel.pub_date:type_name -> google.protobuf.Timestamp
-	73,  // 32: palm.portal.v1.Rss.Channel.ttl:type_name -> google.protobuf.Duration
+	78,  // 29: palm.portal.v1.UserLogsResponse.Item.created_at:type_name -> google.protobuf.Timestamp
+	78,  // 30: palm.portal.v1.Rss.Channel.last_build_date:type_name -> google.protobuf.Timestamp
+	78,  // 31: palm.portal.v1.Rss.Channel.pub_date:type_name -> google.protobuf.Timestamp
+	77,  // 32: palm.portal.v1.Rss.Channel.ttl:type_name -> google.protobuf.Duration
 	58,  // 33: palm.portal.v1.Rss.Channel.items:type_name -> palm.portal.v1.Rss.Channel.Item
-	74,  // 34: palm.portal.v1.Rss.Channel.Item.pub_date:type_name -> google.protobuf.Timestamp
-	74,  // 35: palm.portal.v1.Sitemap.Url.last_mod:type_name -> google.protobuf.Timestamp
+	78,  // 34: palm.portal.v1.Rss.Channel.Item.pub_date:type_name -> google.protobuf.Timestamp
+	78,  // 35: palm.portal.v1.Sitemap.Url.last_mod:type_name -> google.protobuf.Timestamp
 	60,  // 36: palm.portal.v1.Sitemap.UrlSet.items:type_name -> palm.portal.v1.Sitemap.Url
 	61,  // 37: palm.portal.v1.Sitemap.ItemsEntry.value:type_name -> palm.portal.v1.Sitemap.UrlSet
-	67,  // 38: palm.portal.v1.Theme.Bootstrap.Sample.templates:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.TemplatesEntry
-	66,  // 39: palm.portal.v1.Theme.Bootstrap.Sample.data:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data
-	71,  // 40: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.items:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item
-	74,  // 41: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.created_at:type_name -> google.protobuf.Timestamp
-	72,  // 42: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PropertiesEntry
-	3,   // 43: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
-	9,   // 44: palm.portal.v1.Locale.Create:input_type -> palm.portal.v1.LocaleCreateRequest
-	8,   // 45: palm.portal.v1.Locale.Update:input_type -> palm.portal.v1.LocaleUpdateRequest
-	5,   // 46: palm.portal.v1.Locale.Destroy:input_type -> palm.portal.v1.IdRequest
-	6,   // 47: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
-	23,  // 48: palm.portal.v1.EmailUser.SignIn:input_type -> palm.portal.v1.EmailUserSignInRequest
-	22,  // 49: palm.portal.v1.EmailUser.SignUp:input_type -> palm.portal.v1.EmailUserSignUpRequest
-	21,  // 50: palm.portal.v1.EmailUser.ConfirmByEmail:input_type -> palm.portal.v1.EmailUserRequest
-	20,  // 51: palm.portal.v1.EmailUser.ConfirmByToken:input_type -> palm.portal.v1.EmailUserByTokenRequest
-	21,  // 52: palm.portal.v1.EmailUser.UnlockByEmail:input_type -> palm.portal.v1.EmailUserRequest
-	20,  // 53: palm.portal.v1.EmailUser.UnlockByToken:input_type -> palm.portal.v1.EmailUserByTokenRequest
-	21,  // 54: palm.portal.v1.EmailUser.ForgotPassword:input_type -> palm.portal.v1.EmailUserRequest
-	19,  // 55: palm.portal.v1.EmailUser.ResetPassword:input_type -> palm.portal.v1.EmailUserResetPasswordRequest
-	18,  // 56: palm.portal.v1.EmailUser.ChangePassword:input_type -> palm.portal.v1.EmailUserChangePasswordRequest
-	16,  // 57: palm.portal.v1.EmailUser.SetRealName:input_type -> palm.portal.v1.EmailUserSetRealNameRequest
-	15,  // 58: palm.portal.v1.EmailUser.SetAvatar:input_type -> palm.portal.v1.EmailUserSetAvatarRequest
-	75,  // 59: palm.portal.v1.EmailUser.UploadAvatar:input_type -> google.protobuf.Empty
-	13,  // 60: palm.portal.v1.EmailUser.DeleteByEmail:input_type -> palm.portal.v1.EmailUserDeleteByEmailRequest
-	20,  // 61: palm.portal.v1.EmailUser.DeleteByToken:input_type -> palm.portal.v1.EmailUserByTokenRequest
-	17,  // 62: palm.portal.v1.EmailUser.SetPassword:input_type -> palm.portal.v1.EmailUserSetPasswordRequest
-	18,  // 63: palm.portal.v1.EmailUser.Confirm:input_type -> palm.portal.v1.EmailUserChangePasswordRequest
-	30,  // 64: palm.portal.v1.EmailUser.Disable:input_type -> palm.portal.v1.SetupUserRequest
-	30,  // 65: palm.portal.v1.EmailUser.Enable:input_type -> palm.portal.v1.SetupUserRequest
-	3,   // 66: palm.portal.v1.EmailUser.Index:input_type -> palm.portal.v1.Page
-	3,   // 67: palm.portal.v1.User.Logs:input_type -> palm.portal.v1.Page
-	3,   // 68: palm.portal.v1.User.Index:input_type -> palm.portal.v1.Page
-	29,  // 69: palm.portal.v1.User.SetLocation:input_type -> palm.portal.v1.UserSetLocationRequest
-	26,  // 70: palm.portal.v1.User.SetV:input_type -> palm.portal.v1.UserSetVRequest
-	27,  // 71: palm.portal.v1.User.GetV:input_type -> palm.portal.v1.UserGetVRequest
-	24,  // 72: palm.portal.v1.User.Upload:input_type -> palm.portal.v1.UserUploadRequest
-	75,  // 73: palm.portal.v1.User.SignOut:input_type -> google.protobuf.Empty
-	30,  // 74: palm.portal.v1.User.Lock:input_type -> palm.portal.v1.SetupUserRequest
-	30,  // 75: palm.portal.v1.User.Unlock:input_type -> palm.portal.v1.SetupUserRequest
-	30,  // 76: palm.portal.v1.User.Disable:input_type -> palm.portal.v1.SetupUserRequest
-	30,  // 77: palm.portal.v1.User.Enable:input_type -> palm.portal.v1.SetupUserRequest
-	39,  // 78: palm.portal.v1.Site.SetInfoByLang:input_type -> palm.portal.v1.SetSiteInfoByLangRequest
-	38,  // 79: palm.portal.v1.Site.GetInfoByLang:input_type -> palm.portal.v1.GetSiteInfoByLangRequest
-	37,  // 80: palm.portal.v1.Site.SetAuthor:input_type -> palm.portal.v1.SiteAuthorProfile
-	75,  // 81: palm.portal.v1.Site.GetAuthor:input_type -> google.protobuf.Empty
-	36,  // 82: palm.portal.v1.Site.SetFavicon:input_type -> palm.portal.v1.SiteFaviconProfile
-	75,  // 83: palm.portal.v1.Site.GetFavicon:input_type -> google.protobuf.Empty
-	75,  // 84: palm.portal.v1.Site.UploadFavicon:input_type -> google.protobuf.Empty
-	43,  // 85: palm.portal.v1.Site.SetGoogleSiteOwnershipVerification:input_type -> palm.portal.v1.GoogleSiteOwnershipVerification
-	75,  // 86: palm.portal.v1.Site.GetGoogleSiteOwnershipVerification:input_type -> google.protobuf.Empty
-	42,  // 87: palm.portal.v1.Site.SetReCaptcha:input_type -> palm.portal.v1.ReCaptchaProfile
-	75,  // 88: palm.portal.v1.Site.GetReCaptcha:input_type -> google.protobuf.Empty
-	41,  // 89: palm.portal.v1.Site.SetBaiduSiteOwnershipVerification:input_type -> palm.portal.v1.BaiduSiteOwnershipVerification
-	75,  // 90: palm.portal.v1.Site.GetBaiduSiteOwnershipVerification:input_type -> google.protobuf.Empty
-	75,  // 91: palm.portal.v1.Site.PingBaidu:input_type -> google.protobuf.Empty
-	44,  // 92: palm.portal.v1.Site.SetIndexNow:input_type -> palm.portal.v1.IndexNowProfile
-	75,  // 93: palm.portal.v1.Site.GetIndexNow:input_type -> google.protobuf.Empty
-	75,  // 94: palm.portal.v1.Site.PingIndexNow:input_type -> google.protobuf.Empty
-	75,  // 95: palm.portal.v1.Site.ClearCache:input_type -> google.protobuf.Empty
-	34,  // 96: palm.portal.v1.Site.SetMaintenanceMode:input_type -> palm.portal.v1.SiteSetMaintenanceModeRequest
-	75,  // 97: palm.portal.v1.Site.Timezones:input_type -> google.protobuf.Empty
-	75,  // 98: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
-	75,  // 99: palm.portal.v1.Site.Languages:input_type -> google.protobuf.Empty
-	10,  // 100: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
-	75,  // 101: palm.portal.v1.Locale.Create:output_type -> google.protobuf.Empty
-	75,  // 102: palm.portal.v1.Locale.Update:output_type -> google.protobuf.Empty
-	75,  // 103: palm.portal.v1.Locale.Destroy:output_type -> google.protobuf.Empty
-	7,   // 104: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
-	33,  // 105: palm.portal.v1.EmailUser.SignIn:output_type -> palm.portal.v1.UserSignInResponse
-	75,  // 106: palm.portal.v1.EmailUser.SignUp:output_type -> google.protobuf.Empty
-	75,  // 107: palm.portal.v1.EmailUser.ConfirmByEmail:output_type -> google.protobuf.Empty
-	75,  // 108: palm.portal.v1.EmailUser.ConfirmByToken:output_type -> google.protobuf.Empty
-	75,  // 109: palm.portal.v1.EmailUser.UnlockByEmail:output_type -> google.protobuf.Empty
-	75,  // 110: palm.portal.v1.EmailUser.UnlockByToken:output_type -> google.protobuf.Empty
-	75,  // 111: palm.portal.v1.EmailUser.ForgotPassword:output_type -> google.protobuf.Empty
-	75,  // 112: palm.portal.v1.EmailUser.ResetPassword:output_type -> google.protobuf.Empty
-	75,  // 113: palm.portal.v1.EmailUser.ChangePassword:output_type -> google.protobuf.Empty
-	75,  // 114: palm.portal.v1.EmailUser.SetRealName:output_type -> google.protobuf.Empty
-	75,  // 115: palm.portal.v1.EmailUser.SetAvatar:output_type -> google.protobuf.Empty
-	14,  // 116: palm.portal.v1.EmailUser.UploadAvatar:output_type -> palm.portal.v1.EmailUserUploadAvatarResponse
-	75,  // 117: palm.portal.v1.EmailUser.DeleteByEmail:output_type -> google.protobuf.Empty
-	75,  // 118: palm.portal.v1.EmailUser.DeleteByToken:output_type -> google.protobuf.Empty
-	75,  // 119: palm.portal.v1.EmailUser.SetPassword:output_type -> google.protobuf.Empty
-	75,  // 120: palm.portal.v1.EmailUser.Confirm:output_type -> google.protobuf.Empty
-	75,  // 121: palm.portal.v1.EmailUser.Disable:output_type -> google.protobuf.Empty
-	75,  // 122: palm.portal.v1.EmailUser.Enable:output_type -> google.protobuf.Empty
-	12,  // 123: palm.portal.v1.EmailUser.Index:output_type -> palm.portal.v1.EmailUserIndexResponse
-	32,  // 124: palm.portal.v1.User.Logs:output_type -> palm.portal.v1.UserLogsResponse
-	31,  // 125: palm.portal.v1.User.Index:output_type -> palm.portal.v1.UserIndexResponse
-	75,  // 126: palm.portal.v1.User.SetLocation:output_type -> google.protobuf.Empty
-	75,  // 127: palm.portal.v1.User.SetV:output_type -> google.protobuf.Empty
-	28,  // 128: palm.portal.v1.User.GetV:output_type -> palm.portal.v1.UserGetVResponse
-	25,  // 129: palm.portal.v1.User.Upload:output_type -> palm.portal.v1.UserUploadResponse
-	75,  // 130: palm.portal.v1.User.SignOut:output_type -> google.protobuf.Empty
-	75,  // 131: palm.portal.v1.User.Lock:output_type -> google.protobuf.Empty
-	75,  // 132: palm.portal.v1.User.Unlock:output_type -> google.protobuf.Empty
-	75,  // 133: palm.portal.v1.User.Disable:output_type -> google.protobuf.Empty
-	75,  // 134: palm.portal.v1.User.Enable:output_type -> google.protobuf.Empty
-	75,  // 135: palm.portal.v1.Site.SetInfoByLang:output_type -> google.protobuf.Empty
-	40,  // 136: palm.portal.v1.Site.GetInfoByLang:output_type -> palm.portal.v1.GetSiteInfoByLangResponse
-	75,  // 137: palm.portal.v1.Site.SetAuthor:output_type -> google.protobuf.Empty
-	37,  // 138: palm.portal.v1.Site.GetAuthor:output_type -> palm.portal.v1.SiteAuthorProfile
-	75,  // 139: palm.portal.v1.Site.SetFavicon:output_type -> google.protobuf.Empty
-	36,  // 140: palm.portal.v1.Site.GetFavicon:output_type -> palm.portal.v1.SiteFaviconProfile
-	35,  // 141: palm.portal.v1.Site.UploadFavicon:output_type -> palm.portal.v1.SiteUploadFaviconResponse
-	75,  // 142: palm.portal.v1.Site.SetGoogleSiteOwnershipVerification:output_type -> google.protobuf.Empty
-	43,  // 143: palm.portal.v1.Site.GetGoogleSiteOwnershipVerification:output_type -> palm.portal.v1.GoogleSiteOwnershipVerification
-	75,  // 144: palm.portal.v1.Site.SetReCaptcha:output_type -> google.protobuf.Empty
-	42,  // 145: palm.portal.v1.Site.GetReCaptcha:output_type -> palm.portal.v1.ReCaptchaProfile
-	75,  // 146: palm.portal.v1.Site.SetBaiduSiteOwnershipVerification:output_type -> google.protobuf.Empty
-	41,  // 147: palm.portal.v1.Site.GetBaiduSiteOwnershipVerification:output_type -> palm.portal.v1.BaiduSiteOwnershipVerification
-	75,  // 148: palm.portal.v1.Site.PingBaidu:output_type -> google.protobuf.Empty
-	75,  // 149: palm.portal.v1.Site.SetIndexNow:output_type -> google.protobuf.Empty
-	44,  // 150: palm.portal.v1.Site.GetIndexNow:output_type -> palm.portal.v1.IndexNowProfile
-	75,  // 151: palm.portal.v1.Site.PingIndexNow:output_type -> google.protobuf.Empty
-	75,  // 152: palm.portal.v1.Site.ClearCache:output_type -> google.protobuf.Empty
-	75,  // 153: palm.portal.v1.Site.SetMaintenanceMode:output_type -> google.protobuf.Empty
-	45,  // 154: palm.portal.v1.Site.Timezones:output_type -> palm.portal.v1.SiteTimezonesResponse
-	47,  // 155: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.SiteCurrenciesResponse
-	46,  // 156: palm.portal.v1.Site.Languages:output_type -> palm.portal.v1.SiteLanguagesResponse
-	100, // [100:157] is the sub-list for method output_type
-	43,  // [43:100] is the sub-list for method input_type
-	43,  // [43:43] is the sub-list for extension type_name
-	43,  // [43:43] is the sub-list for extension extendee
-	0,   // [0:43] is the sub-list for field type_name
+	68,  // 38: palm.portal.v1.Theme.Bootstrap.Sample.templates:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.TemplatesEntry
+	69,  // 39: palm.portal.v1.Theme.Bootstrap.Sample.Data.header:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Header
+	70,  // 40: palm.portal.v1.Theme.Bootstrap.Sample.Data.footer:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer
+	71,  // 41: palm.portal.v1.Theme.Bootstrap.Sample.Data.body:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body
+	74,  // 42: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.items:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item
+	78,  // 43: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.created_at:type_name -> google.protobuf.Timestamp
+	72,  // 44: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.links:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link
+	75,  // 45: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.panels:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PanelsEntry
+	73,  // 46: palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PanelsEntry.value:type_name -> palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel
+	3,   // 47: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
+	9,   // 48: palm.portal.v1.Locale.Create:input_type -> palm.portal.v1.LocaleCreateRequest
+	8,   // 49: palm.portal.v1.Locale.Update:input_type -> palm.portal.v1.LocaleUpdateRequest
+	5,   // 50: palm.portal.v1.Locale.Destroy:input_type -> palm.portal.v1.IdRequest
+	6,   // 51: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
+	23,  // 52: palm.portal.v1.EmailUser.SignIn:input_type -> palm.portal.v1.EmailUserSignInRequest
+	22,  // 53: palm.portal.v1.EmailUser.SignUp:input_type -> palm.portal.v1.EmailUserSignUpRequest
+	21,  // 54: palm.portal.v1.EmailUser.ConfirmByEmail:input_type -> palm.portal.v1.EmailUserRequest
+	20,  // 55: palm.portal.v1.EmailUser.ConfirmByToken:input_type -> palm.portal.v1.EmailUserByTokenRequest
+	21,  // 56: palm.portal.v1.EmailUser.UnlockByEmail:input_type -> palm.portal.v1.EmailUserRequest
+	20,  // 57: palm.portal.v1.EmailUser.UnlockByToken:input_type -> palm.portal.v1.EmailUserByTokenRequest
+	21,  // 58: palm.portal.v1.EmailUser.ForgotPassword:input_type -> palm.portal.v1.EmailUserRequest
+	19,  // 59: palm.portal.v1.EmailUser.ResetPassword:input_type -> palm.portal.v1.EmailUserResetPasswordRequest
+	18,  // 60: palm.portal.v1.EmailUser.ChangePassword:input_type -> palm.portal.v1.EmailUserChangePasswordRequest
+	16,  // 61: palm.portal.v1.EmailUser.SetRealName:input_type -> palm.portal.v1.EmailUserSetRealNameRequest
+	15,  // 62: palm.portal.v1.EmailUser.SetAvatar:input_type -> palm.portal.v1.EmailUserSetAvatarRequest
+	79,  // 63: palm.portal.v1.EmailUser.UploadAvatar:input_type -> google.protobuf.Empty
+	13,  // 64: palm.portal.v1.EmailUser.DeleteByEmail:input_type -> palm.portal.v1.EmailUserDeleteByEmailRequest
+	20,  // 65: palm.portal.v1.EmailUser.DeleteByToken:input_type -> palm.portal.v1.EmailUserByTokenRequest
+	17,  // 66: palm.portal.v1.EmailUser.SetPassword:input_type -> palm.portal.v1.EmailUserSetPasswordRequest
+	18,  // 67: palm.portal.v1.EmailUser.Confirm:input_type -> palm.portal.v1.EmailUserChangePasswordRequest
+	30,  // 68: palm.portal.v1.EmailUser.Disable:input_type -> palm.portal.v1.SetupUserRequest
+	30,  // 69: palm.portal.v1.EmailUser.Enable:input_type -> palm.portal.v1.SetupUserRequest
+	3,   // 70: palm.portal.v1.EmailUser.Index:input_type -> palm.portal.v1.Page
+	3,   // 71: palm.portal.v1.User.Logs:input_type -> palm.portal.v1.Page
+	3,   // 72: palm.portal.v1.User.Index:input_type -> palm.portal.v1.Page
+	29,  // 73: palm.portal.v1.User.SetLocation:input_type -> palm.portal.v1.UserSetLocationRequest
+	26,  // 74: palm.portal.v1.User.SetV:input_type -> palm.portal.v1.UserSetVRequest
+	27,  // 75: palm.portal.v1.User.GetV:input_type -> palm.portal.v1.UserGetVRequest
+	24,  // 76: palm.portal.v1.User.Upload:input_type -> palm.portal.v1.UserUploadRequest
+	79,  // 77: palm.portal.v1.User.SignOut:input_type -> google.protobuf.Empty
+	30,  // 78: palm.portal.v1.User.Lock:input_type -> palm.portal.v1.SetupUserRequest
+	30,  // 79: palm.portal.v1.User.Unlock:input_type -> palm.portal.v1.SetupUserRequest
+	30,  // 80: palm.portal.v1.User.Disable:input_type -> palm.portal.v1.SetupUserRequest
+	30,  // 81: palm.portal.v1.User.Enable:input_type -> palm.portal.v1.SetupUserRequest
+	39,  // 82: palm.portal.v1.Site.SetInfoByLang:input_type -> palm.portal.v1.SetSiteInfoByLangRequest
+	38,  // 83: palm.portal.v1.Site.GetInfoByLang:input_type -> palm.portal.v1.GetSiteInfoByLangRequest
+	37,  // 84: palm.portal.v1.Site.SetAuthor:input_type -> palm.portal.v1.SiteAuthorProfile
+	79,  // 85: palm.portal.v1.Site.GetAuthor:input_type -> google.protobuf.Empty
+	36,  // 86: palm.portal.v1.Site.SetFavicon:input_type -> palm.portal.v1.SiteFaviconProfile
+	79,  // 87: palm.portal.v1.Site.GetFavicon:input_type -> google.protobuf.Empty
+	79,  // 88: palm.portal.v1.Site.UploadFavicon:input_type -> google.protobuf.Empty
+	43,  // 89: palm.portal.v1.Site.SetGoogleSiteOwnershipVerification:input_type -> palm.portal.v1.GoogleSiteOwnershipVerification
+	79,  // 90: palm.portal.v1.Site.GetGoogleSiteOwnershipVerification:input_type -> google.protobuf.Empty
+	42,  // 91: palm.portal.v1.Site.SetReCaptcha:input_type -> palm.portal.v1.ReCaptchaProfile
+	79,  // 92: palm.portal.v1.Site.GetReCaptcha:input_type -> google.protobuf.Empty
+	41,  // 93: palm.portal.v1.Site.SetBaiduSiteOwnershipVerification:input_type -> palm.portal.v1.BaiduSiteOwnershipVerification
+	79,  // 94: palm.portal.v1.Site.GetBaiduSiteOwnershipVerification:input_type -> google.protobuf.Empty
+	79,  // 95: palm.portal.v1.Site.PingBaidu:input_type -> google.protobuf.Empty
+	44,  // 96: palm.portal.v1.Site.SetIndexNow:input_type -> palm.portal.v1.IndexNowProfile
+	79,  // 97: palm.portal.v1.Site.GetIndexNow:input_type -> google.protobuf.Empty
+	79,  // 98: palm.portal.v1.Site.PingIndexNow:input_type -> google.protobuf.Empty
+	79,  // 99: palm.portal.v1.Site.ClearCache:input_type -> google.protobuf.Empty
+	34,  // 100: palm.portal.v1.Site.SetMaintenanceMode:input_type -> palm.portal.v1.SiteSetMaintenanceModeRequest
+	79,  // 101: palm.portal.v1.Site.Timezones:input_type -> google.protobuf.Empty
+	79,  // 102: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
+	79,  // 103: palm.portal.v1.Site.Languages:input_type -> google.protobuf.Empty
+	10,  // 104: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
+	79,  // 105: palm.portal.v1.Locale.Create:output_type -> google.protobuf.Empty
+	79,  // 106: palm.portal.v1.Locale.Update:output_type -> google.protobuf.Empty
+	79,  // 107: palm.portal.v1.Locale.Destroy:output_type -> google.protobuf.Empty
+	7,   // 108: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
+	33,  // 109: palm.portal.v1.EmailUser.SignIn:output_type -> palm.portal.v1.UserSignInResponse
+	79,  // 110: palm.portal.v1.EmailUser.SignUp:output_type -> google.protobuf.Empty
+	79,  // 111: palm.portal.v1.EmailUser.ConfirmByEmail:output_type -> google.protobuf.Empty
+	79,  // 112: palm.portal.v1.EmailUser.ConfirmByToken:output_type -> google.protobuf.Empty
+	79,  // 113: palm.portal.v1.EmailUser.UnlockByEmail:output_type -> google.protobuf.Empty
+	79,  // 114: palm.portal.v1.EmailUser.UnlockByToken:output_type -> google.protobuf.Empty
+	79,  // 115: palm.portal.v1.EmailUser.ForgotPassword:output_type -> google.protobuf.Empty
+	79,  // 116: palm.portal.v1.EmailUser.ResetPassword:output_type -> google.protobuf.Empty
+	79,  // 117: palm.portal.v1.EmailUser.ChangePassword:output_type -> google.protobuf.Empty
+	79,  // 118: palm.portal.v1.EmailUser.SetRealName:output_type -> google.protobuf.Empty
+	79,  // 119: palm.portal.v1.EmailUser.SetAvatar:output_type -> google.protobuf.Empty
+	14,  // 120: palm.portal.v1.EmailUser.UploadAvatar:output_type -> palm.portal.v1.EmailUserUploadAvatarResponse
+	79,  // 121: palm.portal.v1.EmailUser.DeleteByEmail:output_type -> google.protobuf.Empty
+	79,  // 122: palm.portal.v1.EmailUser.DeleteByToken:output_type -> google.protobuf.Empty
+	79,  // 123: palm.portal.v1.EmailUser.SetPassword:output_type -> google.protobuf.Empty
+	79,  // 124: palm.portal.v1.EmailUser.Confirm:output_type -> google.protobuf.Empty
+	79,  // 125: palm.portal.v1.EmailUser.Disable:output_type -> google.protobuf.Empty
+	79,  // 126: palm.portal.v1.EmailUser.Enable:output_type -> google.protobuf.Empty
+	12,  // 127: palm.portal.v1.EmailUser.Index:output_type -> palm.portal.v1.EmailUserIndexResponse
+	32,  // 128: palm.portal.v1.User.Logs:output_type -> palm.portal.v1.UserLogsResponse
+	31,  // 129: palm.portal.v1.User.Index:output_type -> palm.portal.v1.UserIndexResponse
+	79,  // 130: palm.portal.v1.User.SetLocation:output_type -> google.protobuf.Empty
+	79,  // 131: palm.portal.v1.User.SetV:output_type -> google.protobuf.Empty
+	28,  // 132: palm.portal.v1.User.GetV:output_type -> palm.portal.v1.UserGetVResponse
+	25,  // 133: palm.portal.v1.User.Upload:output_type -> palm.portal.v1.UserUploadResponse
+	79,  // 134: palm.portal.v1.User.SignOut:output_type -> google.protobuf.Empty
+	79,  // 135: palm.portal.v1.User.Lock:output_type -> google.protobuf.Empty
+	79,  // 136: palm.portal.v1.User.Unlock:output_type -> google.protobuf.Empty
+	79,  // 137: palm.portal.v1.User.Disable:output_type -> google.protobuf.Empty
+	79,  // 138: palm.portal.v1.User.Enable:output_type -> google.protobuf.Empty
+	79,  // 139: palm.portal.v1.Site.SetInfoByLang:output_type -> google.protobuf.Empty
+	40,  // 140: palm.portal.v1.Site.GetInfoByLang:output_type -> palm.portal.v1.GetSiteInfoByLangResponse
+	79,  // 141: palm.portal.v1.Site.SetAuthor:output_type -> google.protobuf.Empty
+	37,  // 142: palm.portal.v1.Site.GetAuthor:output_type -> palm.portal.v1.SiteAuthorProfile
+	79,  // 143: palm.portal.v1.Site.SetFavicon:output_type -> google.protobuf.Empty
+	36,  // 144: palm.portal.v1.Site.GetFavicon:output_type -> palm.portal.v1.SiteFaviconProfile
+	35,  // 145: palm.portal.v1.Site.UploadFavicon:output_type -> palm.portal.v1.SiteUploadFaviconResponse
+	79,  // 146: palm.portal.v1.Site.SetGoogleSiteOwnershipVerification:output_type -> google.protobuf.Empty
+	43,  // 147: palm.portal.v1.Site.GetGoogleSiteOwnershipVerification:output_type -> palm.portal.v1.GoogleSiteOwnershipVerification
+	79,  // 148: palm.portal.v1.Site.SetReCaptcha:output_type -> google.protobuf.Empty
+	42,  // 149: palm.portal.v1.Site.GetReCaptcha:output_type -> palm.portal.v1.ReCaptchaProfile
+	79,  // 150: palm.portal.v1.Site.SetBaiduSiteOwnershipVerification:output_type -> google.protobuf.Empty
+	41,  // 151: palm.portal.v1.Site.GetBaiduSiteOwnershipVerification:output_type -> palm.portal.v1.BaiduSiteOwnershipVerification
+	79,  // 152: palm.portal.v1.Site.PingBaidu:output_type -> google.protobuf.Empty
+	79,  // 153: palm.portal.v1.Site.SetIndexNow:output_type -> google.protobuf.Empty
+	44,  // 154: palm.portal.v1.Site.GetIndexNow:output_type -> palm.portal.v1.IndexNowProfile
+	79,  // 155: palm.portal.v1.Site.PingIndexNow:output_type -> google.protobuf.Empty
+	79,  // 156: palm.portal.v1.Site.ClearCache:output_type -> google.protobuf.Empty
+	79,  // 157: palm.portal.v1.Site.SetMaintenanceMode:output_type -> google.protobuf.Empty
+	45,  // 158: palm.portal.v1.Site.Timezones:output_type -> palm.portal.v1.SiteTimezonesResponse
+	47,  // 159: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.SiteCurrenciesResponse
+	46,  // 160: palm.portal.v1.Site.Languages:output_type -> palm.portal.v1.SiteLanguagesResponse
+	104, // [104:161] is the sub-list for method output_type
+	47,  // [47:104] is the sub-list for method input_type
+	47,  // [47:47] is the sub-list for extension type_name
+	47,  // [47:47] is the sub-list for extension extendee
+	0,   // [0:47] is the sub-list for field type_name
 }
 
 func init() { file_portal_proto_init() }
@@ -4558,7 +4787,7 @@ func file_portal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_portal_proto_rawDesc), len(file_portal_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   70,
+			NumMessages:   74,
 			NumExtensions: 0,
 			NumServices:   4,
 		},

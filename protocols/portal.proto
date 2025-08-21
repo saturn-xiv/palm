@@ -406,7 +406,9 @@ message HtmlPage {
 }
 message Theme {
   message Bootstrap {
+    // --------------------------------
     message Home {}
+    // --------------------------------
     message Sample {
       message Data {
         message Header {
@@ -416,19 +418,38 @@ message Theme {
           string copyright = 1;
         }
         message Body {
+          message Link {
+            string label = 1;
+            string href = 2;
+          }
+          message Panel {
+            string title = 1;
+            string description = 2;
+            repeated Link links = 3;
+          }
           message Item {
             string title = 1;
             string description = 2;
-            map<string, string> properties = 3;
+            map<string, Panel> panels = 3;
           }
           string title = 1;
           repeated Item items = 2;
           google.protobuf.Timestamp created_at = 9;
         }
+        Header header = 1;
+        Footer footer = 2;
+        Body body = 3;
       }
       map<string, string> templates = 1;
-      Data data = 2;
+      string data = 2;
     }
+    // --------------------------------
+  }
+
+  message Bulma {
+    // --------------------------------
+    message Home {}
+    // --------------------------------
   }
 }
 // ----------------------------------------------------------------------------

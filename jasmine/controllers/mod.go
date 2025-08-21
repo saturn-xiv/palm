@@ -2,15 +2,15 @@ package controllers
 
 import (
 	"github.com/gorilla/sessions"
-	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
+	"github.com/saturn-xiv/palm/jasmine/env/redis"
 )
 
 type Context struct {
 	DB      *gorm.DB
-	Redis   *redis.ClusterClient
+	Redis   *redis.Client
 	Session sessions.Store
 	Jwt     *crypto.Jwt
 }

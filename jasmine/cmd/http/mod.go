@@ -15,7 +15,7 @@ import (
 //go:embed templates/*
 var gl_templates_fs embed.FS
 
-//go:embed views/*/*
+//go:embed views/**/*
 var gl_views_fs embed.FS
 
 //go:embed assets/**/*

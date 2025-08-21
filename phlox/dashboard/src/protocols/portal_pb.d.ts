@@ -1697,10 +1697,8 @@ export namespace Theme {
       getTemplatesMap(): jspb.Map<string, string>;
       clearTemplatesMap(): Sample;
 
-      getData(): Theme.Bootstrap.Sample.Data | undefined;
-      setData(value?: Theme.Bootstrap.Sample.Data): Sample;
-      hasData(): boolean;
-      clearData(): Sample;
+      getData(): string;
+      setData(value: string): Sample;
 
       serializeBinary(): Uint8Array;
       toObject(includeInstance?: boolean): Sample.AsObject;
@@ -1713,10 +1711,25 @@ export namespace Theme {
     export namespace Sample {
       export type AsObject = {
         templatesMap: Array<[string, string]>,
-        data?: Theme.Bootstrap.Sample.Data.AsObject,
+        data: string,
       }
 
       export class Data extends jspb.Message {
+        getHeader(): Theme.Bootstrap.Sample.Data.Header | undefined;
+        setHeader(value?: Theme.Bootstrap.Sample.Data.Header): Data;
+        hasHeader(): boolean;
+        clearHeader(): Data;
+
+        getFooter(): Theme.Bootstrap.Sample.Data.Footer | undefined;
+        setFooter(value?: Theme.Bootstrap.Sample.Data.Footer): Data;
+        hasFooter(): boolean;
+        clearFooter(): Data;
+
+        getBody(): Theme.Bootstrap.Sample.Data.Body | undefined;
+        setBody(value?: Theme.Bootstrap.Sample.Data.Body): Data;
+        hasBody(): boolean;
+        clearBody(): Data;
+
         serializeBinary(): Uint8Array;
         toObject(includeInstance?: boolean): Data.AsObject;
         static toObject(includeInstance: boolean, msg: Data): Data.AsObject;
@@ -1727,6 +1740,9 @@ export namespace Theme {
 
       export namespace Data {
         export type AsObject = {
+          header?: Theme.Bootstrap.Sample.Data.Header.AsObject,
+          footer?: Theme.Bootstrap.Sample.Data.Footer.AsObject,
+          body?: Theme.Bootstrap.Sample.Data.Body.AsObject,
         }
 
         export class Header extends jspb.Message {
@@ -1796,6 +1812,58 @@ export namespace Theme {
             createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
           }
 
+          export class Link extends jspb.Message {
+            getLabel(): string;
+            setLabel(value: string): Link;
+
+            getHref(): string;
+            setHref(value: string): Link;
+
+            serializeBinary(): Uint8Array;
+            toObject(includeInstance?: boolean): Link.AsObject;
+            static toObject(includeInstance: boolean, msg: Link): Link.AsObject;
+            static serializeBinaryToWriter(message: Link, writer: jspb.BinaryWriter): void;
+            static deserializeBinary(bytes: Uint8Array): Link;
+            static deserializeBinaryFromReader(message: Link, reader: jspb.BinaryReader): Link;
+          }
+
+          export namespace Link {
+            export type AsObject = {
+              label: string,
+              href: string,
+            }
+          }
+
+
+          export class Panel extends jspb.Message {
+            getTitle(): string;
+            setTitle(value: string): Panel;
+
+            getDescription(): string;
+            setDescription(value: string): Panel;
+
+            getLinksList(): Array<Theme.Bootstrap.Sample.Data.Body.Link>;
+            setLinksList(value: Array<Theme.Bootstrap.Sample.Data.Body.Link>): Panel;
+            clearLinksList(): Panel;
+            addLinks(value?: Theme.Bootstrap.Sample.Data.Body.Link, index?: number): Theme.Bootstrap.Sample.Data.Body.Link;
+
+            serializeBinary(): Uint8Array;
+            toObject(includeInstance?: boolean): Panel.AsObject;
+            static toObject(includeInstance: boolean, msg: Panel): Panel.AsObject;
+            static serializeBinaryToWriter(message: Panel, writer: jspb.BinaryWriter): void;
+            static deserializeBinary(bytes: Uint8Array): Panel;
+            static deserializeBinaryFromReader(message: Panel, reader: jspb.BinaryReader): Panel;
+          }
+
+          export namespace Panel {
+            export type AsObject = {
+              title: string,
+              description: string,
+              linksList: Array<Theme.Bootstrap.Sample.Data.Body.Link.AsObject>,
+            }
+          }
+
+
           export class Item extends jspb.Message {
             getTitle(): string;
             setTitle(value: string): Item;
@@ -1803,8 +1871,8 @@ export namespace Theme {
             getDescription(): string;
             setDescription(value: string): Item;
 
-            getPropertiesMap(): jspb.Map<string, string>;
-            clearPropertiesMap(): Item;
+            getPanelsMap(): jspb.Map<string, Theme.Bootstrap.Sample.Data.Body.Panel>;
+            clearPanelsMap(): Item;
 
             serializeBinary(): Uint8Array;
             toObject(includeInstance?: boolean): Item.AsObject;
@@ -1818,7 +1886,7 @@ export namespace Theme {
             export type AsObject = {
               title: string,
               description: string,
-              propertiesMap: Array<[string, string]>,
+              panelsMap: Array<[string, Theme.Bootstrap.Sample.Data.Body.Panel.AsObject]>,
             }
           }
 
@@ -1826,6 +1894,36 @@ export namespace Theme {
 
       }
 
+    }
+
+  }
+
+
+  export class Bulma extends jspb.Message {
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Bulma.AsObject;
+    static toObject(includeInstance: boolean, msg: Bulma): Bulma.AsObject;
+    static serializeBinaryToWriter(message: Bulma, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Bulma;
+    static deserializeBinaryFromReader(message: Bulma, reader: jspb.BinaryReader): Bulma;
+  }
+
+  export namespace Bulma {
+    export type AsObject = {
+    }
+
+    export class Home extends jspb.Message {
+      serializeBinary(): Uint8Array;
+      toObject(includeInstance?: boolean): Home.AsObject;
+      static toObject(includeInstance: boolean, msg: Home): Home.AsObject;
+      static serializeBinaryToWriter(message: Home, writer: jspb.BinaryWriter): void;
+      static deserializeBinary(bytes: Uint8Array): Home;
+      static deserializeBinaryFromReader(message: Home, reader: jspb.BinaryReader): Home;
+    }
+
+    export namespace Home {
+      export type AsObject = {
+      }
     }
 
   }

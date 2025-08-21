@@ -203,6 +203,42 @@ struct UserGetVRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserGetVRequestDefaultTypeInternal _UserGetVRequest_default_instance_;
               template <typename>
+PROTOBUF_CONSTEXPR Theme_Bulma_Home::Theme_Bulma_Home(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_Bulma_HomeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bulma_HomeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bulma_HomeDefaultTypeInternal() {}
+  union {
+    Theme_Bulma_Home _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bulma_HomeDefaultTypeInternal _Theme_Bulma_Home_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Theme_Bulma::Theme_Bulma(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_BulmaDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_BulmaDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_BulmaDefaultTypeInternal() {}
+  union {
+    Theme_Bulma _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_BulmaDefaultTypeInternal _Theme_Bulma_default_instance_;
+              template <typename>
 PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse::MapEntry(_class_data_.base()){}
@@ -274,42 +310,36 @@ struct Theme_Bootstrap_Sample_Data_FooterDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_FooterDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Footer_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse(::_pbi::ConstantInitialized)
+
+inline constexpr Theme_Bootstrap_Sample_Data_Body_Link::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : label_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        href_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Link::Theme_Bootstrap_Sample_Data_Body_Link(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::MapEntry(_class_data_.base()){}
+    : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::MapEntry() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
-struct Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUseDefaultTypeInternal() {}
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Theme_Bootstrap_Sample_Data_Body_LinkDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_LinkDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_Sample_Data_Body_LinkDefaultTypeInternal() {}
   union {
-    Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse _instance;
+    Theme_Bootstrap_Sample_Data_Body_Link _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUseDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data::Theme_Bootstrap_Sample_Data(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
-#endif  // PROTOBUF_CUSTOM_VTABLE
-struct Theme_Bootstrap_Sample_DataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_DataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Theme_Bootstrap_Sample_DataDefaultTypeInternal() {}
-  union {
-    Theme_Bootstrap_Sample_Data _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_DataDefaultTypeInternal _Theme_Bootstrap_Sample_Data_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_Body_LinkDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Link_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR Theme_Bootstrap_Home::Theme_Bootstrap_Home(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -1386,9 +1416,9 @@ struct UserIndexResponse_ItemDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponse_ItemDefaultTypeInternal _UserIndexResponse_Item_default_instance_;
 
-inline constexpr Theme_Bootstrap_Sample_Data_Body_Item::Impl_::Impl_(
+inline constexpr Theme_Bootstrap_Sample_Data_Body_Panel::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : properties_{},
+      : links_{},
         title_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -1398,7 +1428,7 @@ inline constexpr Theme_Bootstrap_Sample_Data_Body_Item::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item::Theme_Bootstrap_Sample_Data_Body_Item(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Panel::Theme_Bootstrap_Sample_Data_Body_Panel(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -1406,22 +1436,24 @@ PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item::Theme_Bootstrap_Sample
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal() {}
+struct Theme_Bootstrap_Sample_Data_Body_PanelDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_PanelDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_Sample_Data_Body_PanelDefaultTypeInternal() {}
   union {
-    Theme_Bootstrap_Sample_Data_Body_Item _instance;
+    Theme_Bootstrap_Sample_Data_Body_Panel _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_Body_PanelDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Panel_default_instance_;
 
 inline constexpr Theme_Bootstrap_Sample::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        templates_{},
-        data_{nullptr} {}
+      : templates_{},
+        data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample::Theme_Bootstrap_Sample(::_pbi::ConstantInitialized)
@@ -1739,35 +1771,24 @@ struct UserIndexResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
-
-inline constexpr Theme_Bootstrap_Sample_Data_Body::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        items_{},
-        title_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        created_at_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body::Theme_Bootstrap_Sample_Data_Body(::_pbi::ConstantInitialized)
+              template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
+    : Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::MapEntry(_class_data_.base()){}
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
+    : Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::MapEntry() {
 }
-struct Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal() {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    Theme_Bootstrap_Sample_Data_Body _instance;
+    Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUseDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse_default_instance_;
 
 inline constexpr Sitemap_UrlSet::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1919,6 +1940,37 @@ struct EmailUserIndexResponse_ItemDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailUserIndexResponse_ItemDefaultTypeInternal _EmailUserIndexResponse_Item_default_instance_;
+
+inline constexpr Theme_Bootstrap_Sample_Data_Body_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : panels_{},
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        description_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_Item::Theme_Bootstrap_Sample_Data_Body_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap_Sample_Data_Body_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_Body_ItemDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_Item_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR Sitemap_ItemsEntry_DoNotUse::Sitemap_ItemsEntry_DoNotUse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -1989,6 +2041,35 @@ struct EmailUserIndexResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailUserIndexResponseDefaultTypeInternal _EmailUserIndexResponse_default_instance_;
 
+inline constexpr Theme_Bootstrap_Sample_Data_Body::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        created_at_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_Body::Theme_Bootstrap_Sample_Data_Body(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap_Sample_Data_Body _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_Data_BodyDefaultTypeInternal _Theme_Bootstrap_Sample_Data_Body_default_instance_;
+
 inline constexpr Sitemap::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : items_{},
@@ -2013,6 +2094,33 @@ struct SitemapDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SitemapDefaultTypeInternal _Sitemap_default_instance_;
+
+inline constexpr Theme_Bootstrap_Sample_Data::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        header_{nullptr},
+        footer_{nullptr},
+        body_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_Data::Theme_Bootstrap_Sample_Data(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Theme_Bootstrap_Sample_DataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Theme_Bootstrap_Sample_DataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Theme_Bootstrap_Sample_DataDefaultTypeInternal() {}
+  union {
+    Theme_Bootstrap_Sample_Data _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Theme_Bootstrap_Sample_DataDefaultTypeInternal _Theme_Bootstrap_Sample_Data_default_instance_;
 }  // namespace v1
 }  // namespace portal
 }  // namespace palm
@@ -2760,16 +2868,37 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer, _impl_.copyright_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_.key_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_.value_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link, _impl_.label_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link, _impl_.href_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.title_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.description_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.links_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_.value_),
         0,
         1,
         ~0u,  // no _has_bits_
@@ -2782,7 +2911,7 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item, _impl_.title_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item, _impl_.description_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item, _impl_.properties_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item, _impl_.panels_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -2797,7 +2926,7 @@ const ::uint32_t
         ~0u,
         ~0u,
         0,
-        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -2805,6 +2934,12 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data, _impl_.header_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data, _impl_.footer_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_Data, _impl_.body_),
+        0,
+        1,
+        2,
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -2817,7 +2952,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse, _impl_.value_),
         0,
         1,
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample, _impl_._has_bits_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -2827,10 +2962,24 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample, _impl_.templates_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Sample, _impl_.data_),
-        ~0u,
-        0,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bulma_Home, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bulma, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
@@ -2911,14 +3060,18 @@ static const ::_pbi::MigrationSchema
         {712, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Home)},
         {720, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header)},
         {729, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer)},
-        {738, 748, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse)},
-        {750, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item)},
-        {761, 772, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body)},
-        {775, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data)},
-        {783, 793, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse)},
-        {795, 805, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample)},
-        {807, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap)},
-        {815, -1, -1, sizeof(::palm::portal::v1::Theme)},
+        {738, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link)},
+        {748, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel)},
+        {759, 769, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse)},
+        {771, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item)},
+        {782, 793, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body)},
+        {796, 807, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data)},
+        {810, 820, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse)},
+        {822, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample)},
+        {832, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap)},
+        {840, -1, -1, sizeof(::palm::portal::v1::Theme_Bulma_Home)},
+        {848, -1, -1, sizeof(::palm::portal::v1::Theme_Bulma)},
+        {856, -1, -1, sizeof(::palm::portal::v1::Theme)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::portal::v1::_Page_default_instance_._instance,
@@ -2983,13 +3136,17 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::portal::v1::_Theme_Bootstrap_Home_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Header_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Footer_default_instance_._instance,
-    &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse_default_instance_._instance,
+    &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_Link_default_instance_._instance,
+    &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_Panel_default_instance_._instance,
+    &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_Item_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_Body_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_Data_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_Sample_default_instance_._instance,
     &::palm::portal::v1::_Theme_Bootstrap_default_instance_._instance,
+    &::palm::portal::v1::_Theme_Bulma_Home_default_instance_._instance,
+    &::palm::portal::v1::_Theme_Bulma_default_instance_._instance,
     &::palm::portal::v1::_Theme_default_instance_._instance,
 };
 const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
@@ -3134,139 +3291,149 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "v1.Sitemap.Url\032L\n\nItemsEntry\022\013\n\003key\030\001 \001("
     "\t\022-\n\005value\030\002 \001(\0132\036.palm.portal.v1.Sitema"
     "p.UrlSet:\0028\001\"8\n\010HtmlPage\022\014\n\004lang\030\001 \001(\t\022\020"
-    "\n\010template\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"\347\004\n\005Theme"
-    "\032\335\004\n\tBootstrap\032\006\n\004Home\032\307\004\n\006Sample\022H\n\ttem"
+    "\n\010template\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"\327\007\n\005Theme"
+    "\032\274\007\n\tBootstrap\032\006\n\004Home\032\246\007\n\006Sample\022H\n\ttem"
     "plates\030\001 \003(\01325.palm.portal.v1.Theme.Boot"
-    "strap.Sample.TemplatesEntry\0229\n\004data\030\002 \001("
-    "\0132+.palm.portal.v1.Theme.Bootstrap.Sampl"
-    "e.Data\032\205\003\n\004Data\032\027\n\006Header\022\r\n\005title\030\001 \001(\t"
-    "\032\033\n\006Footer\022\021\n\tcopyright\030\001 \001(\t\032\306\002\n\004Body\022\r"
-    "\n\005title\030\001 \001(\t\022D\n\005items\030\002 \003(\01325.palm.port"
-    "al.v1.Theme.Bootstrap.Sample.Data.Body.I"
-    "tem\022.\n\ncreated_at\030\t \001(\0132\032.google.protobu"
-    "f.Timestamp\032\270\001\n\004Item\022\r\n\005title\030\001 \001(\t\022\023\n\013d"
-    "escription\030\002 \001(\t\022Y\n\nproperties\030\003 \003(\0132E.p"
-    "alm.portal.v1.Theme.Bootstrap.Sample.Dat"
-    "a.Body.Item.PropertiesEntry\0321\n\017Propertie"
-    "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0320"
-    "\n\016TemplatesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002"
-    " \001(\t:\0028\0012\367\002\n\006Locale\022D\n\005Index\022\024.palm.port"
-    "al.v1.Page\032#.palm.portal.v1.LocaleIndexR"
-    "esponse\"\000\022G\n\006Create\022#.palm.portal.v1.Loc"
-    "aleCreateRequest\032\026.google.protobuf.Empty"
-    "\"\000\022G\n\006Update\022#.palm.portal.v1.LocaleUpda"
-    "teRequest\032\026.google.protobuf.Empty\"\000\022>\n\007D"
-    "estroy\022\031.palm.portal.v1.IdRequest\032\026.goog"
-    "le.protobuf.Empty\"\000\022U\n\006ByLang\022#.palm.por"
-    "tal.v1.LocaleByLangRequest\032$.palm.portal"
-    ".v1.LocaleByLangResponse\"\0002\247\014\n\tEmailUser"
-    "\022V\n\006SignIn\022&.palm.portal.v1.EmailUserSig"
-    "nInRequest\032\".palm.portal.v1.UserSignInRe"
-    "sponse\"\000\022J\n\006SignUp\022&.palm.portal.v1.Emai"
-    "lUserSignUpRequest\032\026.google.protobuf.Emp"
-    "ty\"\000\022L\n\016ConfirmByEmail\022 .palm.portal.v1."
-    "EmailUserRequest\032\026.google.protobuf.Empty"
-    "\"\000\022S\n\016ConfirmByToken\022\'.palm.portal.v1.Em"
-    "ailUserByTokenRequest\032\026.google.protobuf."
-    "Empty\"\000\022K\n\rUnlockByEmail\022 .palm.portal.v"
-    "1.EmailUserRequest\032\026.google.protobuf.Emp"
-    "ty\"\000\022R\n\rUnlockByToken\022\'.palm.portal.v1.E"
-    "mailUserByTokenRequest\032\026.google.protobuf"
-    ".Empty\"\000\022L\n\016ForgotPassword\022 .palm.portal"
-    ".v1.EmailUserRequest\032\026.google.protobuf.E"
-    "mpty\"\000\022X\n\rResetPassword\022-.palm.portal.v1"
-    ".EmailUserResetPasswordRequest\032\026.google."
-    "protobuf.Empty\"\000\022Z\n\016ChangePassword\022..pal"
-    "m.portal.v1.EmailUserChangePasswordReque"
-    "st\032\026.google.protobuf.Empty\"\000\022T\n\013SetRealN"
-    "ame\022+.palm.portal.v1.EmailUserSetRealNam"
-    "eRequest\032\026.google.protobuf.Empty\"\000\022P\n\tSe"
-    "tAvatar\022).palm.portal.v1.EmailUserSetAva"
-    "tarRequest\032\026.google.protobuf.Empty\"\000\022W\n\014"
-    "UploadAvatar\022\026.google.protobuf.Empty\032-.p"
-    "alm.portal.v1.EmailUserUploadAvatarRespo"
-    "nse\"\000\022X\n\rDeleteByEmail\022-.palm.portal.v1."
-    "EmailUserDeleteByEmailRequest\032\026.google.p"
-    "rotobuf.Empty\"\000\022R\n\rDeleteByToken\022\'.palm."
-    "portal.v1.EmailUserByTokenRequest\032\026.goog"
-    "le.protobuf.Empty\"\000\022T\n\013SetPassword\022+.pal"
-    "m.portal.v1.EmailUserSetPasswordRequest\032"
-    "\026.google.protobuf.Empty\"\000\022S\n\007Confirm\022..p"
-    "alm.portal.v1.EmailUserChangePasswordReq"
-    "uest\032\026.google.protobuf.Empty\"\000\022E\n\007Disabl"
-    "e\022 .palm.portal.v1.SetupUserRequest\032\026.go"
-    "ogle.protobuf.Empty\"\000\022D\n\006Enable\022 .palm.p"
-    "ortal.v1.SetupUserRequest\032\026.google.proto"
-    "buf.Empty\"\000\022G\n\005Index\022\024.palm.portal.v1.Pa"
-    "ge\032&.palm.portal.v1.EmailUserIndexRespon"
-    "se\"\0002\224\006\n\004User\022@\n\004Logs\022\024.palm.portal.v1.P"
-    "age\032 .palm.portal.v1.UserLogsResponse\"\000\022"
-    "B\n\005Index\022\024.palm.portal.v1.Page\032!.palm.po"
-    "rtal.v1.UserIndexResponse\"\000\022O\n\013SetLocati"
-    "on\022&.palm.portal.v1.UserSetLocationReque"
-    "st\032\026.google.protobuf.Empty\"\000\022A\n\004SetV\022\037.p"
-    "alm.portal.v1.UserSetVRequest\032\026.google.p"
-    "rotobuf.Empty\"\000\022K\n\004GetV\022\037.palm.portal.v1"
-    ".UserGetVRequest\032 .palm.portal.v1.UserGe"
-    "tVResponse\"\000\022Q\n\006Upload\022!.palm.portal.v1."
-    "UserUploadRequest\032\".palm.portal.v1.UserU"
-    "ploadResponse\"\000\022;\n\007SignOut\022\026.google.prot"
-    "obuf.Empty\032\026.google.protobuf.Empty\"\000\022B\n\004"
-    "Lock\022 .palm.portal.v1.SetupUserRequest\032\026"
-    ".google.protobuf.Empty\"\000\022D\n\006Unlock\022 .pal"
-    "m.portal.v1.SetupUserRequest\032\026.google.pr"
-    "otobuf.Empty\"\000\022E\n\007Disable\022 .palm.portal."
-    "v1.SetupUserRequest\032\026.google.protobuf.Em"
-    "pty\"\000\022D\n\006Enable\022 .palm.portal.v1.SetupUs"
-    "erRequest\032\026.google.protobuf.Empty\"\0002\275\016\n\004"
-    "Site\022S\n\rSetInfoByLang\022(.palm.portal.v1.S"
-    "etSiteInfoByLangRequest\032\026.google.protobu"
-    "f.Empty\"\000\022f\n\rGetInfoByLang\022(.palm.portal"
-    ".v1.GetSiteInfoByLangRequest\032).palm.port"
-    "al.v1.GetSiteInfoByLangResponse\"\000\022H\n\tSet"
-    "Author\022!.palm.portal.v1.SiteAuthorProfil"
-    "e\032\026.google.protobuf.Empty\"\000\022H\n\tGetAuthor"
-    "\022\026.google.protobuf.Empty\032!.palm.portal.v"
-    "1.SiteAuthorProfile\"\000\022J\n\nSetFavicon\022\".pa"
-    "lm.portal.v1.SiteFaviconProfile\032\026.google"
-    ".protobuf.Empty\"\000\022J\n\nGetFavicon\022\026.google"
-    ".protobuf.Empty\032\".palm.portal.v1.SiteFav"
-    "iconProfile\"\000\022T\n\rUploadFavicon\022\026.google."
-    "protobuf.Empty\032).palm.portal.v1.SiteUplo"
-    "adFaviconResponse\"\000\022o\n\"SetGoogleSiteOwne"
-    "rshipVerification\022/.palm.portal.v1.Googl"
-    "eSiteOwnershipVerification\032\026.google.prot"
-    "obuf.Empty\"\000\022o\n\"GetGoogleSiteOwnershipVe"
-    "rification\022\026.google.protobuf.Empty\032/.pal"
-    "m.portal.v1.GoogleSiteOwnershipVerificat"
-    "ion\"\000\022J\n\014SetReCaptcha\022 .palm.portal.v1.R"
-    "eCaptchaProfile\032\026.google.protobuf.Empty\""
-    "\000\022J\n\014GetReCaptcha\022\026.google.protobuf.Empt"
-    "y\032 .palm.portal.v1.ReCaptchaProfile\"\000\022m\n"
-    "!SetBaiduSiteOwnershipVerification\022..pal"
-    "m.portal.v1.BaiduSiteOwnershipVerificati"
-    "on\032\026.google.protobuf.Empty\"\000\022m\n!GetBaidu"
-    "SiteOwnershipVerification\022\026.google.proto"
-    "buf.Empty\032..palm.portal.v1.BaiduSiteOwne"
-    "rshipVerification\"\000\022=\n\tPingBaidu\022\026.googl"
-    "e.protobuf.Empty\032\026.google.protobuf.Empty"
-    "\"\000\022H\n\013SetIndexNow\022\037.palm.portal.v1.Index"
-    "NowProfile\032\026.google.protobuf.Empty\"\000\022H\n\013"
-    "GetIndexNow\022\026.google.protobuf.Empty\032\037.pa"
-    "lm.portal.v1.IndexNowProfile\"\000\022@\n\014PingIn"
-    "dexNow\022\026.google.protobuf.Empty\032\026.google."
-    "protobuf.Empty\"\000\022>\n\nClearCache\022\026.google."
-    "protobuf.Empty\032\026.google.protobuf.Empty\"\000"
-    "\022]\n\022SetMaintenanceMode\022-.palm.portal.v1."
-    "SiteSetMaintenanceModeRequest\032\026.google.p"
-    "rotobuf.Empty\"\000\022L\n\tTimezones\022\026.google.pr"
-    "otobuf.Empty\032%.palm.portal.v1.SiteTimezo"
-    "nesResponse\"\000\022N\n\nCurrencies\022\026.google.pro"
-    "tobuf.Empty\032&.palm.portal.v1.SiteCurrenc"
-    "iesResponse\"\000\022L\n\tLanguages\022\026.google.prot"
-    "obuf.Empty\032%.palm.portal.v1.SiteLanguage"
-    "sResponse\"\000B7\n,com.github.saturn_xiv.pal"
-    "m.plugins.portal.v1P\001Z\005./;v2b\006proto3"
+    "strap.Sample.TemplatesEntry\022\014\n\004data\030\002 \001("
+    "\t\032\221\006\n\004Data\022B\n\006header\030\001 \001(\01322.palm.portal"
+    ".v1.Theme.Bootstrap.Sample.Data.Header\022B"
+    "\n\006footer\030\002 \001(\01322.palm.portal.v1.Theme.Bo"
+    "otstrap.Sample.Data.Footer\022>\n\004body\030\003 \001(\013"
+    "20.palm.portal.v1.Theme.Bootstrap.Sample"
+    ".Data.Body\032\027\n\006Header\022\r\n\005title\030\001 \001(\t\032\033\n\006F"
+    "ooter\022\021\n\tcopyright\030\001 \001(\t\032\212\004\n\004Body\022\r\n\005tit"
+    "le\030\001 \001(\t\022D\n\005items\030\002 \003(\01325.palm.portal.v1"
+    ".Theme.Bootstrap.Sample.Data.Body.Item\022."
+    "\n\ncreated_at\030\t \001(\0132\032.google.protobuf.Tim"
+    "estamp\032#\n\004Link\022\r\n\005label\030\001 \001(\t\022\014\n\004href\030\002 "
+    "\001(\t\032q\n\005Panel\022\r\n\005title\030\001 \001(\t\022\023\n\013descripti"
+    "on\030\002 \001(\t\022D\n\005links\030\003 \003(\01325.palm.portal.v1"
+    ".Theme.Bootstrap.Sample.Data.Body.Link\032\344"
+    "\001\n\004Item\022\r\n\005title\030\001 \001(\t\022\023\n\013description\030\002 "
+    "\001(\t\022Q\n\006panels\030\003 \003(\0132A.palm.portal.v1.The"
+    "me.Bootstrap.Sample.Data.Body.Item.Panel"
+    "sEntry\032e\n\013PanelsEntry\022\013\n\003key\030\001 \001(\t\022E\n\005va"
+    "lue\030\002 \001(\01326.palm.portal.v1.Theme.Bootstr"
+    "ap.Sample.Data.Body.Panel:\0028\001\0320\n\016Templat"
+    "esEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032"
+    "\017\n\005Bulma\032\006\n\004Home2\367\002\n\006Locale\022D\n\005Index\022\024.p"
+    "alm.portal.v1.Page\032#.palm.portal.v1.Loca"
+    "leIndexResponse\"\000\022G\n\006Create\022#.palm.porta"
+    "l.v1.LocaleCreateRequest\032\026.google.protob"
+    "uf.Empty\"\000\022G\n\006Update\022#.palm.portal.v1.Lo"
+    "caleUpdateRequest\032\026.google.protobuf.Empt"
+    "y\"\000\022>\n\007Destroy\022\031.palm.portal.v1.IdReques"
+    "t\032\026.google.protobuf.Empty\"\000\022U\n\006ByLang\022#."
+    "palm.portal.v1.LocaleByLangRequest\032$.pal"
+    "m.portal.v1.LocaleByLangResponse\"\0002\247\014\n\tE"
+    "mailUser\022V\n\006SignIn\022&.palm.portal.v1.Emai"
+    "lUserSignInRequest\032\".palm.portal.v1.User"
+    "SignInResponse\"\000\022J\n\006SignUp\022&.palm.portal"
+    ".v1.EmailUserSignUpRequest\032\026.google.prot"
+    "obuf.Empty\"\000\022L\n\016ConfirmByEmail\022 .palm.po"
+    "rtal.v1.EmailUserRequest\032\026.google.protob"
+    "uf.Empty\"\000\022S\n\016ConfirmByToken\022\'.palm.port"
+    "al.v1.EmailUserByTokenRequest\032\026.google.p"
+    "rotobuf.Empty\"\000\022K\n\rUnlockByEmail\022 .palm."
+    "portal.v1.EmailUserRequest\032\026.google.prot"
+    "obuf.Empty\"\000\022R\n\rUnlockByToken\022\'.palm.por"
+    "tal.v1.EmailUserByTokenRequest\032\026.google."
+    "protobuf.Empty\"\000\022L\n\016ForgotPassword\022 .pal"
+    "m.portal.v1.EmailUserRequest\032\026.google.pr"
+    "otobuf.Empty\"\000\022X\n\rResetPassword\022-.palm.p"
+    "ortal.v1.EmailUserResetPasswordRequest\032\026"
+    ".google.protobuf.Empty\"\000\022Z\n\016ChangePasswo"
+    "rd\022..palm.portal.v1.EmailUserChangePassw"
+    "ordRequest\032\026.google.protobuf.Empty\"\000\022T\n\013"
+    "SetRealName\022+.palm.portal.v1.EmailUserSe"
+    "tRealNameRequest\032\026.google.protobuf.Empty"
+    "\"\000\022P\n\tSetAvatar\022).palm.portal.v1.EmailUs"
+    "erSetAvatarRequest\032\026.google.protobuf.Emp"
+    "ty\"\000\022W\n\014UploadAvatar\022\026.google.protobuf.E"
+    "mpty\032-.palm.portal.v1.EmailUserUploadAva"
+    "tarResponse\"\000\022X\n\rDeleteByEmail\022-.palm.po"
+    "rtal.v1.EmailUserDeleteByEmailRequest\032\026."
+    "google.protobuf.Empty\"\000\022R\n\rDeleteByToken"
+    "\022\'.palm.portal.v1.EmailUserByTokenReques"
+    "t\032\026.google.protobuf.Empty\"\000\022T\n\013SetPasswo"
+    "rd\022+.palm.portal.v1.EmailUserSetPassword"
+    "Request\032\026.google.protobuf.Empty\"\000\022S\n\007Con"
+    "firm\022..palm.portal.v1.EmailUserChangePas"
+    "swordRequest\032\026.google.protobuf.Empty\"\000\022E"
+    "\n\007Disable\022 .palm.portal.v1.SetupUserRequ"
+    "est\032\026.google.protobuf.Empty\"\000\022D\n\006Enable\022"
+    " .palm.portal.v1.SetupUserRequest\032\026.goog"
+    "le.protobuf.Empty\"\000\022G\n\005Index\022\024.palm.port"
+    "al.v1.Page\032&.palm.portal.v1.EmailUserInd"
+    "exResponse\"\0002\224\006\n\004User\022@\n\004Logs\022\024.palm.por"
+    "tal.v1.Page\032 .palm.portal.v1.UserLogsRes"
+    "ponse\"\000\022B\n\005Index\022\024.palm.portal.v1.Page\032!"
+    ".palm.portal.v1.UserIndexResponse\"\000\022O\n\013S"
+    "etLocation\022&.palm.portal.v1.UserSetLocat"
+    "ionRequest\032\026.google.protobuf.Empty\"\000\022A\n\004"
+    "SetV\022\037.palm.portal.v1.UserSetVRequest\032\026."
+    "google.protobuf.Empty\"\000\022K\n\004GetV\022\037.palm.p"
+    "ortal.v1.UserGetVRequest\032 .palm.portal.v"
+    "1.UserGetVResponse\"\000\022Q\n\006Upload\022!.palm.po"
+    "rtal.v1.UserUploadRequest\032\".palm.portal."
+    "v1.UserUploadResponse\"\000\022;\n\007SignOut\022\026.goo"
+    "gle.protobuf.Empty\032\026.google.protobuf.Emp"
+    "ty\"\000\022B\n\004Lock\022 .palm.portal.v1.SetupUserR"
+    "equest\032\026.google.protobuf.Empty\"\000\022D\n\006Unlo"
+    "ck\022 .palm.portal.v1.SetupUserRequest\032\026.g"
+    "oogle.protobuf.Empty\"\000\022E\n\007Disable\022 .palm"
+    ".portal.v1.SetupUserRequest\032\026.google.pro"
+    "tobuf.Empty\"\000\022D\n\006Enable\022 .palm.portal.v1"
+    ".SetupUserRequest\032\026.google.protobuf.Empt"
+    "y\"\0002\275\016\n\004Site\022S\n\rSetInfoByLang\022(.palm.por"
+    "tal.v1.SetSiteInfoByLangRequest\032\026.google"
+    ".protobuf.Empty\"\000\022f\n\rGetInfoByLang\022(.pal"
+    "m.portal.v1.GetSiteInfoByLangRequest\032).p"
+    "alm.portal.v1.GetSiteInfoByLangResponse\""
+    "\000\022H\n\tSetAuthor\022!.palm.portal.v1.SiteAuth"
+    "orProfile\032\026.google.protobuf.Empty\"\000\022H\n\tG"
+    "etAuthor\022\026.google.protobuf.Empty\032!.palm."
+    "portal.v1.SiteAuthorProfile\"\000\022J\n\nSetFavi"
+    "con\022\".palm.portal.v1.SiteFaviconProfile\032"
+    "\026.google.protobuf.Empty\"\000\022J\n\nGetFavicon\022"
+    "\026.google.protobuf.Empty\032\".palm.portal.v1"
+    ".SiteFaviconProfile\"\000\022T\n\rUploadFavicon\022\026"
+    ".google.protobuf.Empty\032).palm.portal.v1."
+    "SiteUploadFaviconResponse\"\000\022o\n\"SetGoogle"
+    "SiteOwnershipVerification\022/.palm.portal."
+    "v1.GoogleSiteOwnershipVerification\032\026.goo"
+    "gle.protobuf.Empty\"\000\022o\n\"GetGoogleSiteOwn"
+    "ershipVerification\022\026.google.protobuf.Emp"
+    "ty\032/.palm.portal.v1.GoogleSiteOwnershipV"
+    "erification\"\000\022J\n\014SetReCaptcha\022 .palm.por"
+    "tal.v1.ReCaptchaProfile\032\026.google.protobu"
+    "f.Empty\"\000\022J\n\014GetReCaptcha\022\026.google.proto"
+    "buf.Empty\032 .palm.portal.v1.ReCaptchaProf"
+    "ile\"\000\022m\n!SetBaiduSiteOwnershipVerificati"
+    "on\022..palm.portal.v1.BaiduSiteOwnershipVe"
+    "rification\032\026.google.protobuf.Empty\"\000\022m\n!"
+    "GetBaiduSiteOwnershipVerification\022\026.goog"
+    "le.protobuf.Empty\032..palm.portal.v1.Baidu"
+    "SiteOwnershipVerification\"\000\022=\n\tPingBaidu"
+    "\022\026.google.protobuf.Empty\032\026.google.protob"
+    "uf.Empty\"\000\022H\n\013SetIndexNow\022\037.palm.portal."
+    "v1.IndexNowProfile\032\026.google.protobuf.Emp"
+    "ty\"\000\022H\n\013GetIndexNow\022\026.google.protobuf.Em"
+    "pty\032\037.palm.portal.v1.IndexNowProfile\"\000\022@"
+    "\n\014PingIndexNow\022\026.google.protobuf.Empty\032\026"
+    ".google.protobuf.Empty\"\000\022>\n\nClearCache\022\026"
+    ".google.protobuf.Empty\032\026.google.protobuf"
+    ".Empty\"\000\022]\n\022SetMaintenanceMode\022-.palm.po"
+    "rtal.v1.SiteSetMaintenanceModeRequest\032\026."
+    "google.protobuf.Empty\"\000\022L\n\tTimezones\022\026.g"
+    "oogle.protobuf.Empty\032%.palm.portal.v1.Si"
+    "teTimezonesResponse\"\000\022N\n\nCurrencies\022\026.go"
+    "ogle.protobuf.Empty\032&.palm.portal.v1.Sit"
+    "eCurrenciesResponse\"\000\022L\n\tLanguages\022\026.goo"
+    "gle.protobuf.Empty\032%.palm.portal.v1.Site"
+    "LanguagesResponse\"\000B7\n,com.github.saturn"
+    "_xiv.palm.plugins.portal.v1P\001Z\005./;v2b\006pr"
+    "oto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_portal_2eproto_deps[3] =
     {
@@ -3278,13 +3445,13 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    10916,
+    11284,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
     descriptor_table_portal_2eproto_deps,
     3,
-    70,
+    74,
     schemas,
     file_default_instances,
     TableStruct_portal_2eproto::offsets,
@@ -20886,55 +21053,104 @@ void Theme_Bootstrap_Sample_Data_Footer::InternalSwap(Theme_Bootstrap_Sample_Dat
 }
 // ===================================================================
 
+class Theme_Bootstrap_Sample_Data_Body_Link::_Internal {
+ public:
+};
+
+Theme_Bootstrap_Sample_Data_Body_Link::Theme_Bootstrap_Sample_Data_Body_Link(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-              Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse() : SuperType(_class_data_.base()) {}
-              Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse(::google::protobuf::Arena* arena)
-                  : SuperType(arena, _class_data_.base()) {}
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-              Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse() : SuperType() {}
-              Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-              inline void* Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::PlacementNew_(const void*, void* mem,
-                                                      ::google::protobuf::Arena* arena) {
-                return ::new (mem) Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse(arena);
-              }
-              constexpr auto Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::InternalNewImpl_() {
-                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse),
-                                                          alignof(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse));
-              }
-              PROTOBUF_CONSTINIT
-              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-              const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::_class_data_ = {
-                  ::google::protobuf::internal::ClassData{
-                      &_Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse_default_instance_._instance,
-                      &_table_.header,
-                      nullptr,  // OnDemandRegisterArenaDtor
-                      nullptr,  // IsInitialized
-                      &Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::MergeImpl,
-                      ::google::protobuf::Message::GetNewImpl<Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse>(),
-              #if defined(PROTOBUF_CUSTOM_VTABLE)
-                      &Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::SharedDtor,
-                      static_cast<void (::google::protobuf::MessageLite::*)()>(
-                          &Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::ClearImpl),
-                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
-                          ,
-              #endif  // PROTOBUF_CUSTOM_VTABLE
-                      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_._cached_size_),
-                      false,
-                  },
-                  &Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::kDescriptorMethods,
-                  &descriptor_table_portal_2eproto,
-                  nullptr,  // tracker
-              };
-              const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::GetClassData() const {
-                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-                return _class_data_.base();
-              }
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+}
+inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data_Body_Link::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link& from_msg)
+      : label_(arena, from.label_),
+        href_(arena, from.href_),
+        _cached_size_{0} {}
+
+Theme_Bootstrap_Sample_Data_Body_Link::Theme_Bootstrap_Sample_Data_Body_Link(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bootstrap_Sample_Data_Body_Link& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bootstrap_Sample_Data_Body_Link* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+}
+inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data_Body_Link::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : label_(arena),
+        href_(arena),
+        _cached_size_{0} {}
+
+inline void Theme_Bootstrap_Sample_Data_Body_Link::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Theme_Bootstrap_Sample_Data_Body_Link::~Theme_Bootstrap_Sample_Data_Body_Link() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+  SharedDtor(*this);
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Link::SharedDtor(MessageLite& self) {
+  Theme_Bootstrap_Sample_Data_Body_Link& this_ = static_cast<Theme_Bootstrap_Sample_Data_Body_Link&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.label_.Destroy();
+  this_._impl_.href_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Theme_Bootstrap_Sample_Data_Body_Link::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bootstrap_Sample_Data_Body_Link(arena);
+}
+constexpr auto Theme_Bootstrap_Sample_Data_Body_Link::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Theme_Bootstrap_Sample_Data_Body_Link),
+                                            alignof(Theme_Bootstrap_Sample_Data_Body_Link));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Sample_Data_Body_Link::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bootstrap_Sample_Data_Body_Link_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bootstrap_Sample_Data_Body_Link::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Theme_Bootstrap_Sample_Data_Body_Link>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bootstrap_Sample_Data_Body_Link::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Theme_Bootstrap_Sample_Data_Body_Link>(), &Theme_Bootstrap_Sample_Data_Body_Link::ByteSizeLong,
+            &Theme_Bootstrap_Sample_Data_Body_Link::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Link, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bootstrap_Sample_Data_Body_Link::kDescriptorMethods,
+    &descriptor_table_portal_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample_Data_Body_Link::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 85, 2> Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 70, 2> Theme_Bootstrap_Sample_Data_Body_Link::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -20945,33 +21161,548 @@ const ::_pbi::TcParseTable<1, 2, 0, 85, 2> Theme_Bootstrap_Sample_Data_Body_Item
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
-    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string value = 2;
+    // string href = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_.value_)}},
-    // string key = 1;
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Link, _impl_.href_)}},
+    // string label = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_.key_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Link, _impl_.label_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string key = 1;
-    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_.key_), -1, 0,
+    // string label = 1;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Link, _impl_.label_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string value = 2;
-    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PropertiesEntry_DoNotUse, _impl_.value_), -1, 0,
+    // string href = 2;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Link, _impl_.href_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\104\3\5\0\0\0\0\0"
-    "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PropertiesEntry"
+    "\64\5\4\0\0\0\0\0"
+    "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link"
+    "label"
+    "href"
+  }},
+};
+
+PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Link::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.label_.ClearToEmpty();
+  _impl_.href_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Theme_Bootstrap_Sample_Data_Body_Link::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Theme_Bootstrap_Sample_Data_Body_Link& this_ = static_cast<const Theme_Bootstrap_Sample_Data_Body_Link&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Theme_Bootstrap_Sample_Data_Body_Link::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Theme_Bootstrap_Sample_Data_Body_Link& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string label = 1;
+          if (!this_._internal_label().empty()) {
+            const std::string& _s = this_._internal_label();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.label");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string href = 2;
+          if (!this_._internal_href().empty()) {
+            const std::string& _s = this_._internal_href();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link.href");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Theme_Bootstrap_Sample_Data_Body_Link::ByteSizeLong(const MessageLite& base) {
+          const Theme_Bootstrap_Sample_Data_Body_Link& this_ = static_cast<const Theme_Bootstrap_Sample_Data_Body_Link&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Theme_Bootstrap_Sample_Data_Body_Link::ByteSizeLong() const {
+          const Theme_Bootstrap_Sample_Data_Body_Link& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string label = 1;
+            if (!this_._internal_label().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_label());
+            }
+            // string href = 2;
+            if (!this_._internal_href().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_href());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Theme_Bootstrap_Sample_Data_Body_Link::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Theme_Bootstrap_Sample_Data_Body_Link*>(&to_msg);
+  auto& from = static_cast<const Theme_Bootstrap_Sample_Data_Body_Link&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_label().empty()) {
+    _this->_internal_set_label(from._internal_label());
+  }
+  if (!from._internal_href().empty()) {
+    _this->_internal_set_href(from._internal_href());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Theme_Bootstrap_Sample_Data_Body_Link::CopyFrom(const Theme_Bootstrap_Sample_Data_Body_Link& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Theme_Bootstrap_Sample_Data_Body_Link::InternalSwap(Theme_Bootstrap_Sample_Data_Body_Link* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.label_, &other->_impl_.label_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.href_, &other->_impl_.href_, arena);
+}
+
+::google::protobuf::Metadata Theme_Bootstrap_Sample_Data_Body_Link::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme_Bootstrap_Sample_Data_Body_Panel::_Internal {
+ public:
+};
+
+Theme_Bootstrap_Sample_Data_Body_Panel::Theme_Bootstrap_Sample_Data_Body_Panel(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+}
+inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data_Body_Panel::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel& from_msg)
+      : links_{visibility, arena, from.links_},
+        title_(arena, from.title_),
+        description_(arena, from.description_),
+        _cached_size_{0} {}
+
+Theme_Bootstrap_Sample_Data_Body_Panel::Theme_Bootstrap_Sample_Data_Body_Panel(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bootstrap_Sample_Data_Body_Panel& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bootstrap_Sample_Data_Body_Panel* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+}
+inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data_Body_Panel::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : links_{visibility, arena},
+        title_(arena),
+        description_(arena),
+        _cached_size_{0} {}
+
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Theme_Bootstrap_Sample_Data_Body_Panel::~Theme_Bootstrap_Sample_Data_Body_Panel() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+  SharedDtor(*this);
+}
+inline void Theme_Bootstrap_Sample_Data_Body_Panel::SharedDtor(MessageLite& self) {
+  Theme_Bootstrap_Sample_Data_Body_Panel& this_ = static_cast<Theme_Bootstrap_Sample_Data_Body_Panel&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.title_.Destroy();
+  this_._impl_.description_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Theme_Bootstrap_Sample_Data_Body_Panel::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bootstrap_Sample_Data_Body_Panel(arena);
+}
+constexpr auto Theme_Bootstrap_Sample_Data_Body_Panel::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.links_) +
+          decltype(Theme_Bootstrap_Sample_Data_Body_Panel::_impl_.links_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(Theme_Bootstrap_Sample_Data_Body_Panel), alignof(Theme_Bootstrap_Sample_Data_Body_Panel), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Theme_Bootstrap_Sample_Data_Body_Panel::PlacementNew_,
+                                 sizeof(Theme_Bootstrap_Sample_Data_Body_Panel),
+                                 alignof(Theme_Bootstrap_Sample_Data_Body_Panel));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Sample_Data_Body_Panel::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bootstrap_Sample_Data_Body_Panel_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bootstrap_Sample_Data_Body_Panel::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Theme_Bootstrap_Sample_Data_Body_Panel>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bootstrap_Sample_Data_Body_Panel::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Theme_Bootstrap_Sample_Data_Body_Panel>(), &Theme_Bootstrap_Sample_Data_Body_Panel::ByteSizeLong,
+            &Theme_Bootstrap_Sample_Data_Body_Panel::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bootstrap_Sample_Data_Body_Panel::kDescriptorMethods,
+    &descriptor_table_portal_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample_Data_Body_Panel::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 78, 2> Theme_Bootstrap_Sample_Data_Body_Panel::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string title = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.title_)}},
+    // string description = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.description_)}},
+    // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;
+    {::_pbi::TcParser::FastMtR1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.links_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string title = 1;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.title_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string description = 2;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.description_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Panel, _impl_.links_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link>()},
+  }}, {{
+    "\65\5\13\0\0\0\0\0"
+    "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel"
+    "title"
+    "description"
+  }},
+};
+
+PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Panel::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.links_.Clear();
+  _impl_.title_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Theme_Bootstrap_Sample_Data_Body_Panel::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Theme_Bootstrap_Sample_Data_Body_Panel& this_ = static_cast<const Theme_Bootstrap_Sample_Data_Body_Panel&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Theme_Bootstrap_Sample_Data_Body_Panel::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Theme_Bootstrap_Sample_Data_Body_Panel& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string title = 1;
+          if (!this_._internal_title().empty()) {
+            const std::string& _s = this_._internal_title();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.title");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string description = 2;
+          if (!this_._internal_description().empty()) {
+            const std::string& _s = this_._internal_description();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel.description");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_links_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_links().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    3, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Theme_Bootstrap_Sample_Data_Body_Panel::ByteSizeLong(const MessageLite& base) {
+          const Theme_Bootstrap_Sample_Data_Body_Panel& this_ = static_cast<const Theme_Bootstrap_Sample_Data_Body_Panel&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Theme_Bootstrap_Sample_Data_Body_Panel::ByteSizeLong() const {
+          const Theme_Bootstrap_Sample_Data_Body_Panel& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Link links = 3;
+            {
+              total_size += 1UL * this_._internal_links_size();
+              for (const auto& msg : this_._internal_links()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // string title = 1;
+            if (!this_._internal_title().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_title());
+            }
+            // string description = 2;
+            if (!this_._internal_description().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_description());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Theme_Bootstrap_Sample_Data_Body_Panel::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Theme_Bootstrap_Sample_Data_Body_Panel*>(&to_msg);
+  auto& from = static_cast<const Theme_Bootstrap_Sample_Data_Body_Panel&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_links()->MergeFrom(
+      from._internal_links());
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (!from._internal_description().empty()) {
+    _this->_internal_set_description(from._internal_description());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Theme_Bootstrap_Sample_Data_Body_Panel::CopyFrom(const Theme_Bootstrap_Sample_Data_Body_Panel& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Theme_Bootstrap_Sample_Data_Body_Panel::InternalSwap(Theme_Bootstrap_Sample_Data_Body_Panel* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.links_.InternalSwap(&other->_impl_.links_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
+}
+
+::google::protobuf::Metadata Theme_Bootstrap_Sample_Data_Body_Panel::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse() : SuperType() {}
+              Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse(arena);
+              }
+              constexpr auto Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse),
+                                                          alignof(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_portal_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 76, 2> Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel value = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel value = 2;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse, _impl_.value_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>()},
+  }}, {{
+    "\100\3\0\0\0\0\0\0"
+    "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.PanelsEntry"
     "key"
-    "value"
   }},
 };
 
@@ -20993,7 +21724,7 @@ Theme_Bootstrap_Sample_Data_Body_Item::Theme_Bootstrap_Sample_Data_Body_Item(::g
 inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data_Body_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item& from_msg)
-      : properties_{visibility, arena, from.properties_},
+      : panels_{visibility, arena, from.panels_},
         title_(arena, from.title_),
         description_(arena, from.description_),
         _cached_size_{0} {}
@@ -21017,7 +21748,7 @@ Theme_Bootstrap_Sample_Data_Body_Item::Theme_Bootstrap_Sample_Data_Body_Item(
 inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data_Body_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : properties_{visibility, arena},
+      : panels_{visibility, arena},
         title_(arena),
         description_(arena),
         _cached_size_{0} {}
@@ -21044,12 +21775,12 @@ inline void* Theme_Bootstrap_Sample_Data_Body_Item::PlacementNew_(const void*, v
 }
 constexpr auto Theme_Bootstrap_Sample_Data_Body_Item::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.properties_) +
-          decltype(Theme_Bootstrap_Sample_Data_Body_Item::_impl_.properties_)::
+      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.panels_) +
+          decltype(Theme_Bootstrap_Sample_Data_Body_Item::_impl_.panels_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
-      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.properties_) +
-          decltype(Theme_Bootstrap_Sample_Data_Body_Item::_impl_.properties_)::
+      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.panels_) +
+          decltype(Theme_Bootstrap_Sample_Data_Body_Item::_impl_.panels_)::
               InternalGetArenaOffsetAlt(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -21090,7 +21821,7 @@ const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample_Data_Body_
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 87, 2> Theme_Bootstrap_Sample_Data_Body_Item::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 2, 83, 2> Theme_Bootstrap_Sample_Data_Body_Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -21099,7 +21830,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 87, 2> Theme_Bootstrap_Sample_Data_Body_Item
     4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
     3,  // num_field_entries
-    1,  // num_aux_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -21123,20 +21854,21 @@ const ::_pbi::TcParseTable<1, 3, 1, 87, 2> Theme_Bootstrap_Sample_Data_Body_Item
     // string description = 2;
     {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.description_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // map<string, string> properties = 3;
-    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.properties_), 0, 0,
+    // map<string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> panels = 3;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data_Body_Item, _impl_.panels_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(Theme_Bootstrap_Sample_Data_Body_Item()._impl_.properties_)>(
+        decltype(Theme_Bootstrap_Sample_Data_Body_Item()._impl_.panels_)>(
         1, 0, 0, 9,
-        9)},
+        11)},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>()},
   }}, {{
-    "\64\5\13\12\0\0\0\0"
+    "\64\5\13\6\0\0\0\0"
     "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item"
     "title"
     "description"
-    "properties"
+    "panels"
   }},
 };
 
@@ -21147,7 +21879,7 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Item::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.properties_.Clear();
+  _impl_.panels_.Clear();
   _impl_.title_.ClearToEmpty();
   _impl_.description_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -21184,13 +21916,13 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Item::Clear() {
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // map<string, string> properties = 3;
-          if (!this_._internal_properties().empty()) {
-            using MapType = ::google::protobuf::Map<std::string, std::string>;
-            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+          // map<string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> panels = 3;
+          if (!this_._internal_panels().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel,
                                            _pbi::WireFormatLite::TYPE_STRING,
-                                           _pbi::WireFormatLite::TYPE_STRING>;
-            const auto& field = this_._internal_properties();
+                                           _pbi::WireFormatLite::TYPE_MESSAGE>;
+            const auto& field = this_._internal_panels();
 
             if (stream->IsSerializationDeterministic() && field.size() > 1) {
               for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
@@ -21198,10 +21930,7 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Item::Clear() {
                     3, entry.first, entry.second, target, stream);
                 ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                     entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties");
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.panels");
               }
             } else {
               for (const auto& entry : field) {
@@ -21209,10 +21938,7 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Item::Clear() {
                     3, entry.first, entry.second, target, stream);
                 ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                     entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties");
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.properties");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Item.panels");
               }
             }
           }
@@ -21242,14 +21968,14 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data_Body_Item::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // map<string, string> properties = 3;
+            // map<string, .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body.Panel> panels = 3;
             {
               total_size +=
-                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_properties_size());
-              for (const auto& entry : this_._internal_properties()) {
-                total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_panels_size());
+              for (const auto& entry : this_._internal_panels()) {
+                total_size += _pbi::MapEntryFuncs<std::string, ::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel,
                                                _pbi::WireFormatLite::TYPE_STRING,
-                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                               _pbi::WireFormatLite::TYPE_MESSAGE>::ByteSizeLong(entry.first, entry.second);
               }
             }
           }
@@ -21277,7 +22003,7 @@ void Theme_Bootstrap_Sample_Data_Body_Item::MergeImpl(::google::protobuf::Messag
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.properties_.MergeFrom(from._impl_.properties_);
+  _this->_impl_.panels_.MergeFrom(from._impl_.panels_);
   if (!from._internal_title().empty()) {
     _this->_internal_set_title(from._internal_title());
   }
@@ -21300,7 +22026,7 @@ void Theme_Bootstrap_Sample_Data_Body_Item::InternalSwap(Theme_Bootstrap_Sample_
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.properties_.InternalSwap(&other->_impl_.properties_);
+  _impl_.panels_.InternalSwap(&other->_impl_.panels_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
 }
@@ -21644,30 +22370,79 @@ void Theme_Bootstrap_Sample_Data_Body::InternalSwap(Theme_Bootstrap_Sample_Data_
 
 class Theme_Bootstrap_Sample_Data::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<Theme_Bootstrap_Sample_Data>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_._has_bits_);
 };
 
 Theme_Bootstrap_Sample_Data::Theme_Bootstrap_Sample_Data(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Theme.Bootstrap.Sample.Data)
 }
+inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::portal::v1::Theme_Bootstrap_Sample_Data& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
 Theme_Bootstrap_Sample_Data::Theme_Bootstrap_Sample_Data(
     ::google::protobuf::Arena* arena,
     const Theme_Bootstrap_Sample_Data& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   Theme_Bootstrap_Sample_Data* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.header_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header>(
+                              arena, *from._impl_.header_)
+                        : nullptr;
+  _impl_.footer_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer>(
+                              arena, *from._impl_.footer_)
+                        : nullptr;
+  _impl_.body_ = (cached_has_bits & 0x00000004u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body>(
+                              arena, *from._impl_.body_)
+                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+}
+inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample_Data::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void Theme_Bootstrap_Sample_Data::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, header_),
+           0,
+           offsetof(Impl_, body_) -
+               offsetof(Impl_, header_) +
+               sizeof(Impl_::body_));
+}
+Theme_Bootstrap_Sample_Data::~Theme_Bootstrap_Sample_Data() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+  SharedDtor(*this);
+}
+inline void Theme_Bootstrap_Sample_Data::SharedDtor(MessageLite& self) {
+  Theme_Bootstrap_Sample_Data& this_ = static_cast<Theme_Bootstrap_Sample_Data&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.header_;
+  delete this_._impl_.footer_;
+  delete this_._impl_.body_;
+  this_._impl_.~Impl_();
 }
 
 inline void* Theme_Bootstrap_Sample_Data::PlacementNew_(const void*, void* mem,
@@ -21687,10 +22462,10 @@ const ::google::protobuf::internal::ClassDataFull Theme_Bootstrap_Sample_Data::_
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
         &Theme_Bootstrap_Sample_Data::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bootstrap_Sample_Data>(),
+        ::google::protobuf::Message::GetNewImpl<Theme_Bootstrap_Sample_Data>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
         &Theme_Bootstrap_Sample_Data::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bootstrap_Sample_Data>(), &Theme_Bootstrap_Sample_Data::ByteSizeLong,
+        ::google::protobuf::Message::GetClearImpl<Theme_Bootstrap_Sample_Data>(), &Theme_Bootstrap_Sample_Data::ByteSizeLong,
             &Theme_Bootstrap_Sample_Data::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
         PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_._cached_size_),
@@ -21706,17 +22481,17 @@ const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample_Data::GetC
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap_Sample_Data::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 3, 0, 2> Theme_Bootstrap_Sample_Data::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_._has_bits_),
     0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    3,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -21725,23 +22500,209 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap_Sample_Data::_table_ =
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.header_)}},
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.footer_)}},
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 2, 2, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.body_)}},
   }}, {{
     65535, 65535
-  }},
-  // no field_entries, or aux_entries
-  {{
+  }}, {{
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.header_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.footer_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.body_), _Internal::kHasBitsOffset + 2, 2,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer>()},
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body>()},
+  }}, {{
   }},
 };
 
+PROTOBUF_NOINLINE void Theme_Bootstrap_Sample_Data::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.header_ != nullptr);
+      _impl_.header_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.footer_ != nullptr);
+      _impl_.footer_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(_impl_.body_ != nullptr);
+      _impl_.body_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Theme_Bootstrap_Sample_Data::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Theme_Bootstrap_Sample_Data& this_ = static_cast<const Theme_Bootstrap_Sample_Data&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Theme_Bootstrap_Sample_Data::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Theme_Bootstrap_Sample_Data& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                1, *this_._impl_.header_, this_._impl_.header_->GetCachedSize(), target,
+                stream);
+          }
+
+          // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;
+          if (cached_has_bits & 0x00000002u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.footer_, this_._impl_.footer_->GetCachedSize(), target,
+                stream);
+          }
+
+          // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;
+          if (cached_has_bits & 0x00000004u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.body_, this_._impl_.body_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Theme_Bootstrap_Sample_Data::ByteSizeLong(const MessageLite& base) {
+          const Theme_Bootstrap_Sample_Data& this_ = static_cast<const Theme_Bootstrap_Sample_Data&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Theme_Bootstrap_Sample_Data::ByteSizeLong() const {
+          const Theme_Bootstrap_Sample_Data& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000007u) {
+            // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Header header = 1;
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.header_);
+            }
+            // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Footer footer = 2;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.footer_);
+            }
+            // .palm.portal.v1.Theme.Bootstrap.Sample.Data.Body body = 3;
+            if (cached_has_bits & 0x00000004u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.body_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Theme_Bootstrap_Sample_Data::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Theme_Bootstrap_Sample_Data*>(&to_msg);
+  auto& from = static_cast<const Theme_Bootstrap_Sample_Data&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.header_ != nullptr);
+      if (_this->_impl_.header_ == nullptr) {
+        _this->_impl_.header_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header>(arena, *from._impl_.header_);
+      } else {
+        _this->_impl_.header_->MergeFrom(*from._impl_.header_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.footer_ != nullptr);
+      if (_this->_impl_.footer_ == nullptr) {
+        _this->_impl_.footer_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer>(arena, *from._impl_.footer_);
+      } else {
+        _this->_impl_.footer_->MergeFrom(*from._impl_.footer_);
+      }
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(from._impl_.body_ != nullptr);
+      if (_this->_impl_.body_ == nullptr) {
+        _this->_impl_.body_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body>(arena, *from._impl_.body_);
+      } else {
+        _this->_impl_.body_->MergeFrom(*from._impl_.body_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Theme_Bootstrap_Sample_Data::CopyFrom(const Theme_Bootstrap_Sample_Data& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.Theme.Bootstrap.Sample.Data)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
 
-
-
-
-
+void Theme_Bootstrap_Sample_Data::InternalSwap(Theme_Bootstrap_Sample_Data* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.body_)
+      + sizeof(Theme_Bootstrap_Sample_Data::_impl_.body_)
+      - PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample_Data, _impl_.header_)>(
+          reinterpret_cast<char*>(&_impl_.header_),
+          reinterpret_cast<char*>(&other->_impl_.header_));
+}
 
 ::google::protobuf::Metadata Theme_Bootstrap_Sample_Data::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
@@ -21838,10 +22799,6 @@ const ::_pbi::TcParseTable<1, 2, 0, 69, 2> Theme_Bootstrap_Sample_TemplatesEntry
 
 class Theme_Bootstrap_Sample::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<Theme_Bootstrap_Sample>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_._has_bits_);
 };
 
 Theme_Bootstrap_Sample::Theme_Bootstrap_Sample(::google::protobuf::Arena* arena)
@@ -21856,9 +22813,9 @@ Theme_Bootstrap_Sample::Theme_Bootstrap_Sample(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::portal::v1::Theme_Bootstrap_Sample& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        templates_{visibility, arena, from.templates_} {}
+      : templates_{visibility, arena, from.templates_},
+        data_(arena, from.data_),
+        _cached_size_{0} {}
 
 Theme_Bootstrap_Sample::Theme_Bootstrap_Sample(
     ::google::protobuf::Arena* arena,
@@ -21873,22 +22830,18 @@ Theme_Bootstrap_Sample::Theme_Bootstrap_Sample(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.data_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data>(
-                              arena, *from._impl_.data_)
-                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Theme.Bootstrap.Sample)
 }
 inline PROTOBUF_NDEBUG_INLINE Theme_Bootstrap_Sample::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        templates_{visibility, arena} {}
+      : templates_{visibility, arena},
+        data_(arena),
+        _cached_size_{0} {}
 
 inline void Theme_Bootstrap_Sample::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.data_ = {};
 }
 Theme_Bootstrap_Sample::~Theme_Bootstrap_Sample() {
   // @@protoc_insertion_point(destructor:palm.portal.v1.Theme.Bootstrap.Sample)
@@ -21898,7 +22851,7 @@ inline void Theme_Bootstrap_Sample::SharedDtor(MessageLite& self) {
   Theme_Bootstrap_Sample& this_ = static_cast<Theme_Bootstrap_Sample&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.data_;
+  this_._impl_.data_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -21954,16 +22907,16 @@ const ::google::protobuf::internal::ClassData* Theme_Bootstrap_Sample::GetClassD
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 2, 2, 55, 2> Theme_Bootstrap_Sample::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 1, 59, 2> Theme_Bootstrap_Sample::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
     2, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
     2,  // num_field_entries
-    2,  // num_aux_entries
+    1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -21972,28 +22925,28 @@ const ::_pbi::TcParseTable<0, 2, 2, 55, 2> Theme_Bootstrap_Sample::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_.data_)}},
+    // string data = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_.data_)}},
   }}, {{
     65535, 65535
   }}, {{
     // map<string, string> templates = 1;
-    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_.templates_), -1, 1,
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_.templates_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-    // .palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;
-    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_.data_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string data = 2;
+    {PROTOBUF_FIELD_OFFSET(Theme_Bootstrap_Sample, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bootstrap_Sample_Data>()},
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(Theme_Bootstrap_Sample()._impl_.templates_)>(
         1, 0, 0, 9,
         9)},
   }}, {{
-    "\45\11\0\0\0\0\0\0"
+    "\45\11\4\0\0\0\0\0"
     "palm.portal.v1.Theme.Bootstrap.Sample"
     "templates"
+    "data"
   }},
 };
 
@@ -22005,12 +22958,7 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample::Clear() {
   (void) cached_has_bits;
 
   _impl_.templates_.Clear();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.data_ != nullptr);
-    _impl_.data_->Clear();
-  }
-  _impl_._has_bits_.Clear();
+  _impl_.data_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -22062,12 +23010,12 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample::Clear() {
             }
           }
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                2, *this_._impl_.data_, this_._impl_.data_->GetCachedSize(), target,
-                stream);
+          // string data = 2;
+          if (!this_._internal_data().empty()) {
+            const std::string& _s = this_._internal_data();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Theme.Bootstrap.Sample.data");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -22107,11 +23055,10 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample::Clear() {
             }
           }
            {
-            // .palm.portal.v1.Theme.Bootstrap.Sample.Data data = 2;
-            cached_has_bits = this_._impl_._has_bits_[0];
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.data_);
+            // string data = 2;
+            if (!this_._internal_data().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_data());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -22121,24 +23068,15 @@ PROTOBUF_NOINLINE void Theme_Bootstrap_Sample::Clear() {
 void Theme_Bootstrap_Sample::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Theme_Bootstrap_Sample*>(&to_msg);
   auto& from = static_cast<const Theme_Bootstrap_Sample&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.Theme.Bootstrap.Sample)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   _this->_impl_.templates_.MergeFrom(from._impl_.templates_);
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.data_ != nullptr);
-    if (_this->_impl_.data_ == nullptr) {
-      _this->_impl_.data_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Theme_Bootstrap_Sample_Data>(arena, *from._impl_.data_);
-    } else {
-      _this->_impl_.data_->MergeFrom(*from._impl_.data_);
-    }
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
   }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -22152,10 +23090,11 @@ void Theme_Bootstrap_Sample::CopyFrom(const Theme_Bootstrap_Sample& from) {
 
 void Theme_Bootstrap_Sample::InternalSwap(Theme_Bootstrap_Sample* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.templates_.InternalSwap(&other->_impl_.templates_);
-  swap(_impl_.data_, other->_impl_.data_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
 }
 
 ::google::protobuf::Metadata Theme_Bootstrap_Sample::GetMetadata() const {
@@ -22262,6 +23201,212 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bootstrap::_table_ = {
 
 
 ::google::protobuf::Metadata Theme_Bootstrap::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme_Bulma_Home::_Internal {
+ public:
+};
+
+Theme_Bulma_Home::Theme_Bulma_Home(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Theme.Bulma.Home)
+}
+Theme_Bulma_Home::Theme_Bulma_Home(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bulma_Home& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bulma_Home* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Theme.Bulma.Home)
+}
+
+inline void* Theme_Bulma_Home::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bulma_Home(arena);
+}
+constexpr auto Theme_Bulma_Home::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme_Bulma_Home),
+                                            alignof(Theme_Bulma_Home));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bulma_Home::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bulma_Home_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bulma_Home::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bulma_Home>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bulma_Home::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bulma_Home>(), &Theme_Bulma_Home::ByteSizeLong,
+            &Theme_Bulma_Home::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bulma_Home, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bulma_Home::kDescriptorMethods,
+    &descriptor_table_portal_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bulma_Home::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bulma_Home::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bulma_Home>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme_Bulma_Home::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Theme_Bulma::_Internal {
+ public:
+};
+
+Theme_Bulma::Theme_Bulma(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Theme.Bulma)
+}
+Theme_Bulma::Theme_Bulma(
+    ::google::protobuf::Arena* arena,
+    const Theme_Bulma& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Theme_Bulma* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Theme.Bulma)
+}
+
+inline void* Theme_Bulma::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Theme_Bulma(arena);
+}
+constexpr auto Theme_Bulma::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Theme_Bulma),
+                                            alignof(Theme_Bulma));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Theme_Bulma::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Theme_Bulma_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Theme_Bulma::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Theme_Bulma>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Theme_Bulma::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Theme_Bulma>(), &Theme_Bulma::ByteSizeLong,
+            &Theme_Bulma::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Theme_Bulma, _impl_._cached_size_),
+        false,
+    },
+    &Theme_Bulma::kDescriptorMethods,
+    &descriptor_table_portal_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Theme_Bulma::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Theme_Bulma::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Theme_Bulma>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Theme_Bulma::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
