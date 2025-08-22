@@ -29,7 +29,7 @@ configure_file(begonia/include/palm/version.h.in ${PROJECT_SOURCE_DIR}/begonia/i
 add_subdirectory(chrysanthemum)
 add_subdirectory(begonia)
 add_subdirectory(bamboo)
-add_subdirectory(lavender)
+# add_subdirectory(lavender)
 add_subdirectory(phlox)
 add_subdirectory(aloe)
 add_subdirectory(tests)

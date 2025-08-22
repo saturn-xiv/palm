@@ -112,9 +112,9 @@ TEST_CASE("grpc client", "[grpc]") {
   }
 
   SECTION("to_json") {
-    palm::portal::v1::UserSignInByEmailRequest* req =
+    palm::portal::v1::EmailUserSignInRequest* req =
         google::protobuf::Arena::Create<
-            palm::portal::v1::UserSignInByEmailRequest>(&arena);
+            palm::portal::v1::EmailUserSignInRequest>(&arena);
     {
       req->set_email("who-ami-i@local");
       req->set_password("change-me");
@@ -134,9 +134,9 @@ TEST_CASE("grpc client", "[grpc]") {
     }
 
     {
-      palm::portal::v1::UserSignInByEmailRequest* tmp =
+      palm::portal::v1::EmailUserSignInRequest* tmp =
           google::protobuf::Arena::Create<
-              palm::portal::v1::UserSignInByEmailRequest>(&arena);
+              palm::portal::v1::EmailUserSignInRequest>(&arena);
       const auto status = google::protobuf::util::JsonStringToMessage(buf, tmp);
       REQUIRE(status.ok());
       REQUIRE(tmp->email() == req->email());
