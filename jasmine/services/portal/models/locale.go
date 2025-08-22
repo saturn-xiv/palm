@@ -36,7 +36,7 @@ type localeItem struct {
 
 func Languages(db *gorm.DB) ([]string, error) {
 	items := []string{}
-	if err := db.Model(&Locale{}).Distinct("lang").Order("lang ASC").Find(items).Error; err != nil {
+	if err := db.Model(&Locale{}).Distinct("lang").Order("lang ASC").Find(&items).Error; err != nil {
 		return nil, err
 	}
 	return items, nil

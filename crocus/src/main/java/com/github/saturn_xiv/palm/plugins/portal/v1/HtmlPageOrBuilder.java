@@ -10,31 +10,19 @@ public interface HtmlPageOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string lang = 1;</code>
-   * @return The lang.
-   */
-  java.lang.String getLang();
-  /**
-   * <code>string lang = 1;</code>
-   * @return The bytes for lang.
-   */
-  com.google.protobuf.ByteString
-      getLangBytes();
-
-  /**
-   * <code>string template = 2;</code>
+   * <code>string template = 1;</code>
    * @return The template.
    */
   java.lang.String getTemplate();
   /**
-   * <code>string template = 2;</code>
+   * <code>string template = 1;</code>
    * @return The bytes for template.
    */
   com.google.protobuf.ByteString
       getTemplateBytes();
 
   /**
-   * <code>bytes data = 3;</code>
+   * <code>bytes data = 2;</code>
    * @return The data.
    */
   com.google.protobuf.ByteString getData();

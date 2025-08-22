@@ -12945,8 +12945,7 @@ proto.palm.portal.v1.HtmlPage.prototype.toObject = function(opt_includeInstance)
  */
 proto.palm.portal.v1.HtmlPage.toObject = function(includeInstance, msg) {
   var f, obj = {
-lang: jspb.Message.getFieldWithDefault(msg, 1, ""),
-template: jspb.Message.getFieldWithDefault(msg, 2, ""),
+template: jspb.Message.getFieldWithDefault(msg, 1, ""),
 data: msg.getData_asB64()
   };
 
@@ -12986,13 +12985,9 @@ proto.palm.portal.v1.HtmlPage.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLang(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
       msg.setTemplate(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setData(value);
       break;
@@ -13025,24 +13020,17 @@ proto.palm.portal.v1.HtmlPage.prototype.serializeBinary = function() {
  */
 proto.palm.portal.v1.HtmlPage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getLang();
+  f = message.getTemplate();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getTemplate();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
   f = message.getData_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      3,
+      2,
       f
     );
   }
@@ -13050,10 +13038,10 @@ proto.palm.portal.v1.HtmlPage.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string lang = 1;
+ * optional string template = 1;
  * @return {string}
  */
-proto.palm.portal.v1.HtmlPage.prototype.getLang = function() {
+proto.palm.portal.v1.HtmlPage.prototype.getTemplate = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -13062,40 +13050,22 @@ proto.palm.portal.v1.HtmlPage.prototype.getLang = function() {
  * @param {string} value
  * @return {!proto.palm.portal.v1.HtmlPage} returns this
  */
-proto.palm.portal.v1.HtmlPage.prototype.setLang = function(value) {
+proto.palm.portal.v1.HtmlPage.prototype.setTemplate = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string template = 2;
- * @return {string}
- */
-proto.palm.portal.v1.HtmlPage.prototype.getTemplate = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.palm.portal.v1.HtmlPage} returns this
- */
-proto.palm.portal.v1.HtmlPage.prototype.setTemplate = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional bytes data = 3;
+ * optional bytes data = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.palm.portal.v1.HtmlPage.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes data = 3;
+ * optional bytes data = 2;
  * This is a type-conversion wrapper around `getData()`
  * @return {string}
  */
@@ -13106,7 +13076,7 @@ proto.palm.portal.v1.HtmlPage.prototype.getData_asB64 = function() {
 
 
 /**
- * optional bytes data = 3;
+ * optional bytes data = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getData()`
@@ -13123,7 +13093,7 @@ proto.palm.portal.v1.HtmlPage.prototype.getData_asU8 = function() {
  * @return {!proto.palm.portal.v1.HtmlPage} returns this
  */
 proto.palm.portal.v1.HtmlPage.prototype.setData = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
+  return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 

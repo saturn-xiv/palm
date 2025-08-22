@@ -11,6 +11,8 @@ import (
 	"gorm.io/gorm"
 
 	http_ "github.com/saturn-xiv/palm/jasmine/cmd/http"
+	"github.com/saturn-xiv/palm/jasmine/controllers"
+	"github.com/saturn-xiv/palm/jasmine/env/crypto"
 	"github.com/saturn-xiv/palm/jasmine/env/redis"
 	"github.com/saturn-xiv/palm/jasmine/services/portal/models"
 	portal_v2 "github.com/saturn-xiv/palm/jasmine/services/portal/v2"
@@ -24,6 +26,10 @@ func Seed(config_file string, locales_folder string) error {
 		return err
 	}
 
+	aes, _, _, err := crypto.Open(config.SecretsStore)
+	if err != nil {
+		return err
+	}
 	db, err := config.Database.Open()
 	if err != nil {
 		return err
@@ -47,12 +53,38 @@ func Seed(config_file string, locales_folder string) error {
 	if err != nil {
 		return err
 	}
-
+	if err = set_home_page(ctx, db, cache, aes); err != nil {
+		return err
+	}
 	if err = set_sample_page(ctx, cache); err != nil {
 		return err
 	}
 
 	slog.Info("done.")
+	return nil
+}
+
+func set_home_page(ctx context.Context, db *gorm.DB, redis *redis.Client, aes *crypto.Aes) error {
+	languages, err := models.Languages(db)
+	if err != nil {
+		return err
+	}
+	for _, lang := range languages {
+		hash := fmt.Sprintf("home.%s", lang)
+
+		if _, err := controllers.GetHtmlPage(ctx, redis, hash); err != nil {
+			page := portal_v2.HtmlPage{Template: "home"}
+			slog.Warn("set homepage", slog.String("lang", lang), slog.String("hash", hash), slog.String("template", page.Template))
+			page.Data, err = web.ProtoBufMessageToJson(&portal_v2.Theme_Bootstrap_Home{})
+			if err != nil {
+				return err
+			}
+			if err = controllers.SetHtmlPage(ctx, redis, hash, &page, 0); err != nil {
+				return err
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -96,29 +128,27 @@ func build_sample_data() *portal_v2.Theme_Bootstrap_Sample_Data {
 }
 
 func set_sample_page(ctx context.Context, cli *redis.Client) error {
-	sample := build_sample_data()
-	data, err := web.ProtoBufMessageToJson(sample)
+
+	sample, err := web.ProtoBufMessageToJson(build_sample_data())
 	if err != nil {
 		return err
 	}
 
 	{
-		tpl := "sample.show"
-		key := "sample.show.data.en_US"
-		url := fmt.Sprintf("/%s-%s.html", tpl, key)
-		slog.Info("setup sample-show page", slog.String("path", url))
-		if err = cli.Set(ctx, key, data, 0); err != nil {
+		hash := "samples.tpl.show"
+		slog.Info("setup page", slog.String("url", fmt.Sprintf("/p-%s.html", hash)))
+		page := portal_v2.HtmlPage{Template: "sample.tpl.show", Data: sample}
+		if err := controllers.SetHtmlPage(ctx, cli, hash, &page, 0); err != nil {
 			return err
 		}
 	}
+
 	{
-		tpl := "sample.details"
-		key := "sample.details.data.en_US"
-		url := fmt.Sprintf("/%s-%s.html", tpl, key)
-		slog.Info("setup sample-tpl page", slog.String("path", url))
+		hash := "samples.tpl.index"
+		slog.Info("setup page", slog.String("url", fmt.Sprintf("/p-%s.html", hash)))
 
 		arg := portal_v2.Theme_Bootstrap_Sample{
-			Data:      string(data),
+			Data:      string(sample),
 			Templates: make(map[string]string),
 		}
 		for _, it := range []string{"layout/footer", "layout/header", "item", "show"} {
@@ -129,11 +159,12 @@ func set_sample_page(ctx context.Context, cli *redis.Client) error {
 			}
 			arg.Templates[name] = string(buf)
 		}
-		val, err := web.ProtoBufMessageToJson(&arg)
+		data, err := web.ProtoBufMessageToJson(&arg)
 		if err != nil {
 			return err
 		}
-		if err = cli.Set(ctx, key, val, 0); err != nil {
+		page := portal_v2.HtmlPage{Template: "sample.tpl.index", Data: data}
+		if err := controllers.SetHtmlPage(ctx, cli, hash, &page, 0); err != nil {
 			return err
 		}
 	}

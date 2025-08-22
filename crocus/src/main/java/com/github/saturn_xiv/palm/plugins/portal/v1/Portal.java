@@ -543,150 +543,149 @@ public final class Portal {
       "\0324\n\006UrlSet\022*\n\005items\030\001 \003(\0132\033.palm.portal." +
       "v1.Sitemap.Url\032L\n\nItemsEntry\022\013\n\003key\030\001 \001(" +
       "\t\022-\n\005value\030\002 \001(\0132\036.palm.portal.v1.Sitema" +
-      "p.UrlSet:\0028\001\"8\n\010HtmlPage\022\014\n\004lang\030\001 \001(\t\022\020" +
-      "\n\010template\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"\327\007\n\005Theme" +
-      "\032\274\007\n\tBootstrap\032\006\n\004Home\032\246\007\n\006Sample\022H\n\ttem" +
-      "plates\030\001 \003(\01325.palm.portal.v1.Theme.Boot" +
-      "strap.Sample.TemplatesEntry\022\014\n\004data\030\002 \001(" +
-      "\t\032\221\006\n\004Data\022B\n\006header\030\001 \001(\01322.palm.portal" +
-      ".v1.Theme.Bootstrap.Sample.Data.Header\022B" +
-      "\n\006footer\030\002 \001(\01322.palm.portal.v1.Theme.Bo" +
-      "otstrap.Sample.Data.Footer\022>\n\004body\030\003 \001(\013" +
-      "20.palm.portal.v1.Theme.Bootstrap.Sample" +
-      ".Data.Body\032\027\n\006Header\022\r\n\005title\030\001 \001(\t\032\033\n\006F" +
-      "ooter\022\021\n\tcopyright\030\001 \001(\t\032\212\004\n\004Body\022\r\n\005tit" +
-      "le\030\001 \001(\t\022D\n\005items\030\002 \003(\01325.palm.portal.v1" +
-      ".Theme.Bootstrap.Sample.Data.Body.Item\022." +
-      "\n\ncreated_at\030\t \001(\0132\032.google.protobuf.Tim" +
-      "estamp\032#\n\004Link\022\r\n\005label\030\001 \001(\t\022\014\n\004href\030\002 " +
-      "\001(\t\032q\n\005Panel\022\r\n\005title\030\001 \001(\t\022\023\n\013descripti" +
-      "on\030\002 \001(\t\022D\n\005links\030\003 \003(\01325.palm.portal.v1" +
-      ".Theme.Bootstrap.Sample.Data.Body.Link\032\344" +
-      "\001\n\004Item\022\r\n\005title\030\001 \001(\t\022\023\n\013description\030\002 " +
-      "\001(\t\022Q\n\006panels\030\003 \003(\0132A.palm.portal.v1.The" +
-      "me.Bootstrap.Sample.Data.Body.Item.Panel" +
-      "sEntry\032e\n\013PanelsEntry\022\013\n\003key\030\001 \001(\t\022E\n\005va" +
-      "lue\030\002 \001(\01326.palm.portal.v1.Theme.Bootstr" +
-      "ap.Sample.Data.Body.Panel:\0028\001\0320\n\016Templat" +
-      "esEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032" +
-      "\017\n\005Bulma\032\006\n\004Home2\367\002\n\006Locale\022D\n\005Index\022\024.p" +
-      "alm.portal.v1.Page\032#.palm.portal.v1.Loca" +
-      "leIndexResponse\"\000\022G\n\006Create\022#.palm.porta" +
-      "l.v1.LocaleCreateRequest\032\026.google.protob" +
-      "uf.Empty\"\000\022G\n\006Update\022#.palm.portal.v1.Lo" +
-      "caleUpdateRequest\032\026.google.protobuf.Empt" +
-      "y\"\000\022>\n\007Destroy\022\031.palm.portal.v1.IdReques" +
-      "t\032\026.google.protobuf.Empty\"\000\022U\n\006ByLang\022#." +
-      "palm.portal.v1.LocaleByLangRequest\032$.pal" +
-      "m.portal.v1.LocaleByLangResponse\"\0002\247\014\n\tE" +
-      "mailUser\022V\n\006SignIn\022&.palm.portal.v1.Emai" +
-      "lUserSignInRequest\032\".palm.portal.v1.User" +
-      "SignInResponse\"\000\022J\n\006SignUp\022&.palm.portal" +
-      ".v1.EmailUserSignUpRequest\032\026.google.prot" +
-      "obuf.Empty\"\000\022L\n\016ConfirmByEmail\022 .palm.po" +
-      "rtal.v1.EmailUserRequest\032\026.google.protob" +
-      "uf.Empty\"\000\022S\n\016ConfirmByToken\022\'.palm.port" +
-      "al.v1.EmailUserByTokenRequest\032\026.google.p" +
-      "rotobuf.Empty\"\000\022K\n\rUnlockByEmail\022 .palm." +
-      "portal.v1.EmailUserRequest\032\026.google.prot" +
-      "obuf.Empty\"\000\022R\n\rUnlockByToken\022\'.palm.por" +
-      "tal.v1.EmailUserByTokenRequest\032\026.google." +
-      "protobuf.Empty\"\000\022L\n\016ForgotPassword\022 .pal" +
-      "m.portal.v1.EmailUserRequest\032\026.google.pr" +
-      "otobuf.Empty\"\000\022X\n\rResetPassword\022-.palm.p" +
-      "ortal.v1.EmailUserResetPasswordRequest\032\026" +
-      ".google.protobuf.Empty\"\000\022Z\n\016ChangePasswo" +
-      "rd\022..palm.portal.v1.EmailUserChangePassw" +
-      "ordRequest\032\026.google.protobuf.Empty\"\000\022T\n\013" +
-      "SetRealName\022+.palm.portal.v1.EmailUserSe" +
-      "tRealNameRequest\032\026.google.protobuf.Empty" +
-      "\"\000\022P\n\tSetAvatar\022).palm.portal.v1.EmailUs" +
-      "erSetAvatarRequest\032\026.google.protobuf.Emp" +
-      "ty\"\000\022W\n\014UploadAvatar\022\026.google.protobuf.E" +
-      "mpty\032-.palm.portal.v1.EmailUserUploadAva" +
-      "tarResponse\"\000\022X\n\rDeleteByEmail\022-.palm.po" +
-      "rtal.v1.EmailUserDeleteByEmailRequest\032\026." +
-      "google.protobuf.Empty\"\000\022R\n\rDeleteByToken" +
-      "\022\'.palm.portal.v1.EmailUserByTokenReques" +
-      "t\032\026.google.protobuf.Empty\"\000\022T\n\013SetPasswo" +
-      "rd\022+.palm.portal.v1.EmailUserSetPassword" +
-      "Request\032\026.google.protobuf.Empty\"\000\022S\n\007Con" +
-      "firm\022..palm.portal.v1.EmailUserChangePas" +
-      "swordRequest\032\026.google.protobuf.Empty\"\000\022E" +
-      "\n\007Disable\022 .palm.portal.v1.SetupUserRequ" +
-      "est\032\026.google.protobuf.Empty\"\000\022D\n\006Enable\022" +
-      " .palm.portal.v1.SetupUserRequest\032\026.goog" +
-      "le.protobuf.Empty\"\000\022G\n\005Index\022\024.palm.port" +
-      "al.v1.Page\032&.palm.portal.v1.EmailUserInd" +
-      "exResponse\"\0002\224\006\n\004User\022@\n\004Logs\022\024.palm.por" +
-      "tal.v1.Page\032 .palm.portal.v1.UserLogsRes" +
-      "ponse\"\000\022B\n\005Index\022\024.palm.portal.v1.Page\032!" +
-      ".palm.portal.v1.UserIndexResponse\"\000\022O\n\013S" +
-      "etLocation\022&.palm.portal.v1.UserSetLocat" +
-      "ionRequest\032\026.google.protobuf.Empty\"\000\022A\n\004" +
-      "SetV\022\037.palm.portal.v1.UserSetVRequest\032\026." +
-      "google.protobuf.Empty\"\000\022K\n\004GetV\022\037.palm.p" +
-      "ortal.v1.UserGetVRequest\032 .palm.portal.v" +
-      "1.UserGetVResponse\"\000\022Q\n\006Upload\022!.palm.po" +
-      "rtal.v1.UserUploadRequest\032\".palm.portal." +
-      "v1.UserUploadResponse\"\000\022;\n\007SignOut\022\026.goo" +
-      "gle.protobuf.Empty\032\026.google.protobuf.Emp" +
-      "ty\"\000\022B\n\004Lock\022 .palm.portal.v1.SetupUserR" +
-      "equest\032\026.google.protobuf.Empty\"\000\022D\n\006Unlo" +
-      "ck\022 .palm.portal.v1.SetupUserRequest\032\026.g" +
-      "oogle.protobuf.Empty\"\000\022E\n\007Disable\022 .palm" +
-      ".portal.v1.SetupUserRequest\032\026.google.pro" +
-      "tobuf.Empty\"\000\022D\n\006Enable\022 .palm.portal.v1" +
-      ".SetupUserRequest\032\026.google.protobuf.Empt" +
-      "y\"\0002\275\016\n\004Site\022S\n\rSetInfoByLang\022(.palm.por" +
-      "tal.v1.SetSiteInfoByLangRequest\032\026.google" +
-      ".protobuf.Empty\"\000\022f\n\rGetInfoByLang\022(.pal" +
-      "m.portal.v1.GetSiteInfoByLangRequest\032).p" +
-      "alm.portal.v1.GetSiteInfoByLangResponse\"" +
-      "\000\022H\n\tSetAuthor\022!.palm.portal.v1.SiteAuth" +
-      "orProfile\032\026.google.protobuf.Empty\"\000\022H\n\tG" +
-      "etAuthor\022\026.google.protobuf.Empty\032!.palm." +
-      "portal.v1.SiteAuthorProfile\"\000\022J\n\nSetFavi" +
-      "con\022\".palm.portal.v1.SiteFaviconProfile\032" +
-      "\026.google.protobuf.Empty\"\000\022J\n\nGetFavicon\022" +
-      "\026.google.protobuf.Empty\032\".palm.portal.v1" +
-      ".SiteFaviconProfile\"\000\022T\n\rUploadFavicon\022\026" +
-      ".google.protobuf.Empty\032).palm.portal.v1." +
-      "SiteUploadFaviconResponse\"\000\022o\n\"SetGoogle" +
-      "SiteOwnershipVerification\022/.palm.portal." +
-      "v1.GoogleSiteOwnershipVerification\032\026.goo" +
-      "gle.protobuf.Empty\"\000\022o\n\"GetGoogleSiteOwn" +
-      "ershipVerification\022\026.google.protobuf.Emp" +
-      "ty\032/.palm.portal.v1.GoogleSiteOwnershipV" +
-      "erification\"\000\022J\n\014SetReCaptcha\022 .palm.por" +
-      "tal.v1.ReCaptchaProfile\032\026.google.protobu" +
-      "f.Empty\"\000\022J\n\014GetReCaptcha\022\026.google.proto" +
-      "buf.Empty\032 .palm.portal.v1.ReCaptchaProf" +
-      "ile\"\000\022m\n!SetBaiduSiteOwnershipVerificati" +
-      "on\022..palm.portal.v1.BaiduSiteOwnershipVe" +
-      "rification\032\026.google.protobuf.Empty\"\000\022m\n!" +
-      "GetBaiduSiteOwnershipVerification\022\026.goog" +
-      "le.protobuf.Empty\032..palm.portal.v1.Baidu" +
-      "SiteOwnershipVerification\"\000\022=\n\tPingBaidu" +
+      "p.UrlSet:\0028\001\"*\n\010HtmlPage\022\020\n\010template\030\001 \001" +
+      "(\t\022\014\n\004data\030\002 \001(\014\"\327\007\n\005Theme\032\274\007\n\tBootstrap" +
+      "\032\006\n\004Home\032\246\007\n\006Sample\022H\n\ttemplates\030\001 \003(\01325" +
+      ".palm.portal.v1.Theme.Bootstrap.Sample.T" +
+      "emplatesEntry\022\014\n\004data\030\002 \001(\t\032\221\006\n\004Data\022B\n\006" +
+      "header\030\001 \001(\01322.palm.portal.v1.Theme.Boot" +
+      "strap.Sample.Data.Header\022B\n\006footer\030\002 \001(\013" +
+      "22.palm.portal.v1.Theme.Bootstrap.Sample" +
+      ".Data.Footer\022>\n\004body\030\003 \001(\01320.palm.portal" +
+      ".v1.Theme.Bootstrap.Sample.Data.Body\032\027\n\006" +
+      "Header\022\r\n\005title\030\001 \001(\t\032\033\n\006Footer\022\021\n\tcopyr" +
+      "ight\030\001 \001(\t\032\212\004\n\004Body\022\r\n\005title\030\001 \001(\t\022D\n\005it" +
+      "ems\030\002 \003(\01325.palm.portal.v1.Theme.Bootstr" +
+      "ap.Sample.Data.Body.Item\022.\n\ncreated_at\030\t" +
+      " \001(\0132\032.google.protobuf.Timestamp\032#\n\004Link" +
+      "\022\r\n\005label\030\001 \001(\t\022\014\n\004href\030\002 \001(\t\032q\n\005Panel\022\r" +
+      "\n\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022D\n\005li" +
+      "nks\030\003 \003(\01325.palm.portal.v1.Theme.Bootstr" +
+      "ap.Sample.Data.Body.Link\032\344\001\n\004Item\022\r\n\005tit" +
+      "le\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022Q\n\006panels\030" +
+      "\003 \003(\0132A.palm.portal.v1.Theme.Bootstrap.S" +
+      "ample.Data.Body.Item.PanelsEntry\032e\n\013Pane" +
+      "lsEntry\022\013\n\003key\030\001 \001(\t\022E\n\005value\030\002 \001(\01326.pa" +
+      "lm.portal.v1.Theme.Bootstrap.Sample.Data" +
+      ".Body.Panel:\0028\001\0320\n\016TemplatesEntry\022\013\n\003key" +
+      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\017\n\005Bulma\032\006\n\004Ho" +
+      "me2\367\002\n\006Locale\022D\n\005Index\022\024.palm.portal.v1." +
+      "Page\032#.palm.portal.v1.LocaleIndexRespons" +
+      "e\"\000\022G\n\006Create\022#.palm.portal.v1.LocaleCre" +
+      "ateRequest\032\026.google.protobuf.Empty\"\000\022G\n\006" +
+      "Update\022#.palm.portal.v1.LocaleUpdateRequ" +
+      "est\032\026.google.protobuf.Empty\"\000\022>\n\007Destroy" +
+      "\022\031.palm.portal.v1.IdRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\022U\n\006ByLang\022#.palm.portal.v1" +
+      ".LocaleByLangRequest\032$.palm.portal.v1.Lo" +
+      "caleByLangResponse\"\0002\247\014\n\tEmailUser\022V\n\006Si" +
+      "gnIn\022&.palm.portal.v1.EmailUserSignInReq" +
+      "uest\032\".palm.portal.v1.UserSignInResponse" +
+      "\"\000\022J\n\006SignUp\022&.palm.portal.v1.EmailUserS" +
+      "ignUpRequest\032\026.google.protobuf.Empty\"\000\022L" +
+      "\n\016ConfirmByEmail\022 .palm.portal.v1.EmailU" +
+      "serRequest\032\026.google.protobuf.Empty\"\000\022S\n\016" +
+      "ConfirmByToken\022\'.palm.portal.v1.EmailUse" +
+      "rByTokenRequest\032\026.google.protobuf.Empty\"" +
+      "\000\022K\n\rUnlockByEmail\022 .palm.portal.v1.Emai" +
+      "lUserRequest\032\026.google.protobuf.Empty\"\000\022R" +
+      "\n\rUnlockByToken\022\'.palm.portal.v1.EmailUs" +
+      "erByTokenRequest\032\026.google.protobuf.Empty" +
+      "\"\000\022L\n\016ForgotPassword\022 .palm.portal.v1.Em" +
+      "ailUserRequest\032\026.google.protobuf.Empty\"\000" +
+      "\022X\n\rResetPassword\022-.palm.portal.v1.Email" +
+      "UserResetPasswordRequest\032\026.google.protob" +
+      "uf.Empty\"\000\022Z\n\016ChangePassword\022..palm.port" +
+      "al.v1.EmailUserChangePasswordRequest\032\026.g" +
+      "oogle.protobuf.Empty\"\000\022T\n\013SetRealName\022+." +
+      "palm.portal.v1.EmailUserSetRealNameReque" +
+      "st\032\026.google.protobuf.Empty\"\000\022P\n\tSetAvata" +
+      "r\022).palm.portal.v1.EmailUserSetAvatarReq" +
+      "uest\032\026.google.protobuf.Empty\"\000\022W\n\014Upload" +
+      "Avatar\022\026.google.protobuf.Empty\032-.palm.po" +
+      "rtal.v1.EmailUserUploadAvatarResponse\"\000\022" +
+      "X\n\rDeleteByEmail\022-.palm.portal.v1.EmailU" +
+      "serDeleteByEmailRequest\032\026.google.protobu" +
+      "f.Empty\"\000\022R\n\rDeleteByToken\022\'.palm.portal" +
+      ".v1.EmailUserByTokenRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\022T\n\013SetPassword\022+.palm.port" +
+      "al.v1.EmailUserSetPasswordRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022S\n\007Confirm\022..palm.po" +
+      "rtal.v1.EmailUserChangePasswordRequest\032\026" +
+      ".google.protobuf.Empty\"\000\022E\n\007Disable\022 .pa" +
+      "lm.portal.v1.SetupUserRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022D\n\006Enable\022 .palm.portal." +
+      "v1.SetupUserRequest\032\026.google.protobuf.Em" +
+      "pty\"\000\022G\n\005Index\022\024.palm.portal.v1.Page\032&.p" +
+      "alm.portal.v1.EmailUserIndexResponse\"\0002\224" +
+      "\006\n\004User\022@\n\004Logs\022\024.palm.portal.v1.Page\032 ." +
+      "palm.portal.v1.UserLogsResponse\"\000\022B\n\005Ind" +
+      "ex\022\024.palm.portal.v1.Page\032!.palm.portal.v" +
+      "1.UserIndexResponse\"\000\022O\n\013SetLocation\022&.p" +
+      "alm.portal.v1.UserSetLocationRequest\032\026.g" +
+      "oogle.protobuf.Empty\"\000\022A\n\004SetV\022\037.palm.po" +
+      "rtal.v1.UserSetVRequest\032\026.google.protobu" +
+      "f.Empty\"\000\022K\n\004GetV\022\037.palm.portal.v1.UserG" +
+      "etVRequest\032 .palm.portal.v1.UserGetVResp" +
+      "onse\"\000\022Q\n\006Upload\022!.palm.portal.v1.UserUp" +
+      "loadRequest\032\".palm.portal.v1.UserUploadR" +
+      "esponse\"\000\022;\n\007SignOut\022\026.google.protobuf.E" +
+      "mpty\032\026.google.protobuf.Empty\"\000\022B\n\004Lock\022 " +
+      ".palm.portal.v1.SetupUserRequest\032\026.googl" +
+      "e.protobuf.Empty\"\000\022D\n\006Unlock\022 .palm.port" +
+      "al.v1.SetupUserRequest\032\026.google.protobuf" +
+      ".Empty\"\000\022E\n\007Disable\022 .palm.portal.v1.Set" +
+      "upUserRequest\032\026.google.protobuf.Empty\"\000\022" +
+      "D\n\006Enable\022 .palm.portal.v1.SetupUserRequ" +
+      "est\032\026.google.protobuf.Empty\"\0002\275\016\n\004Site\022S" +
+      "\n\rSetInfoByLang\022(.palm.portal.v1.SetSite" +
+      "InfoByLangRequest\032\026.google.protobuf.Empt" +
+      "y\"\000\022f\n\rGetInfoByLang\022(.palm.portal.v1.Ge" +
+      "tSiteInfoByLangRequest\032).palm.portal.v1." +
+      "GetSiteInfoByLangResponse\"\000\022H\n\tSetAuthor" +
+      "\022!.palm.portal.v1.SiteAuthorProfile\032\026.go" +
+      "ogle.protobuf.Empty\"\000\022H\n\tGetAuthor\022\026.goo" +
+      "gle.protobuf.Empty\032!.palm.portal.v1.Site" +
+      "AuthorProfile\"\000\022J\n\nSetFavicon\022\".palm.por" +
+      "tal.v1.SiteFaviconProfile\032\026.google.proto" +
+      "buf.Empty\"\000\022J\n\nGetFavicon\022\026.google.proto" +
+      "buf.Empty\032\".palm.portal.v1.SiteFaviconPr" +
+      "ofile\"\000\022T\n\rUploadFavicon\022\026.google.protob" +
+      "uf.Empty\032).palm.portal.v1.SiteUploadFavi" +
+      "conResponse\"\000\022o\n\"SetGoogleSiteOwnershipV" +
+      "erification\022/.palm.portal.v1.GoogleSiteO" +
+      "wnershipVerification\032\026.google.protobuf.E" +
+      "mpty\"\000\022o\n\"GetGoogleSiteOwnershipVerifica" +
+      "tion\022\026.google.protobuf.Empty\032/.palm.port" +
+      "al.v1.GoogleSiteOwnershipVerification\"\000\022" +
+      "J\n\014SetReCaptcha\022 .palm.portal.v1.ReCaptc" +
+      "haProfile\032\026.google.protobuf.Empty\"\000\022J\n\014G" +
+      "etReCaptcha\022\026.google.protobuf.Empty\032 .pa" +
+      "lm.portal.v1.ReCaptchaProfile\"\000\022m\n!SetBa" +
+      "iduSiteOwnershipVerification\022..palm.port" +
+      "al.v1.BaiduSiteOwnershipVerification\032\026.g" +
+      "oogle.protobuf.Empty\"\000\022m\n!GetBaiduSiteOw" +
+      "nershipVerification\022\026.google.protobuf.Em" +
+      "pty\032..palm.portal.v1.BaiduSiteOwnershipV" +
+      "erification\"\000\022=\n\tPingBaidu\022\026.google.prot" +
+      "obuf.Empty\032\026.google.protobuf.Empty\"\000\022H\n\013" +
+      "SetIndexNow\022\037.palm.portal.v1.IndexNowPro" +
+      "file\032\026.google.protobuf.Empty\"\000\022H\n\013GetInd" +
+      "exNow\022\026.google.protobuf.Empty\032\037.palm.por" +
+      "tal.v1.IndexNowProfile\"\000\022@\n\014PingIndexNow" +
       "\022\026.google.protobuf.Empty\032\026.google.protob" +
-      "uf.Empty\"\000\022H\n\013SetIndexNow\022\037.palm.portal." +
-      "v1.IndexNowProfile\032\026.google.protobuf.Emp" +
-      "ty\"\000\022H\n\013GetIndexNow\022\026.google.protobuf.Em" +
-      "pty\032\037.palm.portal.v1.IndexNowProfile\"\000\022@" +
-      "\n\014PingIndexNow\022\026.google.protobuf.Empty\032\026" +
-      ".google.protobuf.Empty\"\000\022>\n\nClearCache\022\026" +
-      ".google.protobuf.Empty\032\026.google.protobuf" +
-      ".Empty\"\000\022]\n\022SetMaintenanceMode\022-.palm.po" +
-      "rtal.v1.SiteSetMaintenanceModeRequest\032\026." +
-      "google.protobuf.Empty\"\000\022L\n\tTimezones\022\026.g" +
-      "oogle.protobuf.Empty\032%.palm.portal.v1.Si" +
-      "teTimezonesResponse\"\000\022N\n\nCurrencies\022\026.go" +
-      "ogle.protobuf.Empty\032&.palm.portal.v1.Sit" +
-      "eCurrenciesResponse\"\000\022L\n\tLanguages\022\026.goo" +
-      "gle.protobuf.Empty\032%.palm.portal.v1.Site" +
-      "LanguagesResponse\"\000B7\n,com.github.saturn" +
-      "_xiv.palm.plugins.portal.v1P\001Z\005./;v2b\006pr" +
-      "oto3"
+      "uf.Empty\"\000\022>\n\nClearCache\022\026.google.protob" +
+      "uf.Empty\032\026.google.protobuf.Empty\"\000\022]\n\022Se" +
+      "tMaintenanceMode\022-.palm.portal.v1.SiteSe" +
+      "tMaintenanceModeRequest\032\026.google.protobu" +
+      "f.Empty\"\000\022L\n\tTimezones\022\026.google.protobuf" +
+      ".Empty\032%.palm.portal.v1.SiteTimezonesRes" +
+      "ponse\"\000\022N\n\nCurrencies\022\026.google.protobuf." +
+      "Empty\032&.palm.portal.v1.SiteCurrenciesRes" +
+      "ponse\"\000\022L\n\tLanguages\022\026.google.protobuf.E" +
+      "mpty\032%.palm.portal.v1.SiteLanguagesRespo" +
+      "nse\"\000B7\n,com.github.saturn_xiv.palm.plug" +
+      "ins.portal.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1048,7 +1047,7 @@ public final class Portal {
     internal_static_palm_portal_v1_HtmlPage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_HtmlPage_descriptor,
-        new java.lang.String[] { "Lang", "Template", "Data", });
+        new java.lang.String[] { "Template", "Data", });
     internal_static_palm_portal_v1_Theme_descriptor =
       getDescriptor().getMessageTypes().get(48);
     internal_static_palm_portal_v1_Theme_fieldAccessorTable = new

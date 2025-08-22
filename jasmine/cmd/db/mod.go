@@ -6,6 +6,7 @@ import (
 )
 
 type Config struct {
-	Database env.Database  `toml:"database"`
-	Redis    redis.Cluster `toml:"redis"`
+	SecretsStore string        `toml:"secrets-store"`
+	Database     env.Database  `toml:"database"`
+	Redis        redis.Cluster `toml:"redis"`
 }

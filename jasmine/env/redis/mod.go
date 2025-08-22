@@ -48,6 +48,10 @@ type Client struct {
 	namespace string
 }
 
+func (p *Client) Execute(f func(*redis.ClusterClient, func(string) string) error) error {
+	return f(p.db, p.key)
+}
+
 func (p *Client) Set(ctx context.Context, key string, value []byte, ttl time.Duration) error {
 	return p.db.Set(ctx, p.key(key), value, ttl).Err()
 }

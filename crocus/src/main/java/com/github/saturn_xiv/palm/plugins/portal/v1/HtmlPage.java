@@ -31,7 +31,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private HtmlPage() {
-    lang_ = "";
     template_ = "";
     data_ = com.google.protobuf.ByteString.EMPTY;
   }
@@ -49,50 +48,11 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.class, com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.Builder.class);
   }
 
-  public static final int LANG_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object lang_ = "";
-  /**
-   * <code>string lang = 1;</code>
-   * @return The lang.
-   */
-  @java.lang.Override
-  public java.lang.String getLang() {
-    java.lang.Object ref = lang_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      lang_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string lang = 1;</code>
-   * @return The bytes for lang.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getLangBytes() {
-    java.lang.Object ref = lang_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      lang_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int TEMPLATE_FIELD_NUMBER = 2;
+  public static final int TEMPLATE_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
   private volatile java.lang.Object template_ = "";
   /**
-   * <code>string template = 2;</code>
+   * <code>string template = 1;</code>
    * @return The template.
    */
   @java.lang.Override
@@ -109,7 +69,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string template = 2;</code>
+   * <code>string template = 1;</code>
    * @return The bytes for template.
    */
   @java.lang.Override
@@ -127,10 +87,10 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DATA_FIELD_NUMBER = 3;
+  public static final int DATA_FIELD_NUMBER = 2;
   private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
   /**
-   * <code>bytes data = 3;</code>
+   * <code>bytes data = 2;</code>
    * @return The data.
    */
   @java.lang.Override
@@ -152,14 +112,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(lang_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, lang_);
-    }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(template_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 2, template_);
+      com.google.protobuf.GeneratedMessage.writeString(output, 1, template_);
     }
     if (!data_.isEmpty()) {
-      output.writeBytes(3, data_);
+      output.writeBytes(2, data_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -170,15 +127,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(lang_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, lang_);
-    }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(template_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, template_);
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, template_);
     }
     if (!data_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(3, data_);
+        .computeBytesSize(2, data_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -195,8 +149,6 @@ private static final long serialVersionUID = 0L;
     }
     com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage other = (com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage) obj;
 
-    if (!getLang()
-        .equals(other.getLang())) return false;
     if (!getTemplate()
         .equals(other.getTemplate())) return false;
     if (!getData()
@@ -212,8 +164,6 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + LANG_FIELD_NUMBER;
-    hash = (53 * hash) + getLang().hashCode();
     hash = (37 * hash) + TEMPLATE_FIELD_NUMBER;
     hash = (53 * hash) + getTemplate().hashCode();
     hash = (37 * hash) + DATA_FIELD_NUMBER;
@@ -353,7 +303,6 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      lang_ = "";
       template_ = "";
       data_ = com.google.protobuf.ByteString.EMPTY;
       return this;
@@ -390,12 +339,9 @@ private static final long serialVersionUID = 0L;
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.lang_ = lang_;
-      }
-      if (((from_bitField0_ & 0x00000002) != 0)) {
         result.template_ = template_;
       }
-      if (((from_bitField0_ & 0x00000004) != 0)) {
+      if (((from_bitField0_ & 0x00000002) != 0)) {
         result.data_ = data_;
       }
     }
@@ -412,14 +358,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage other) {
       if (other == com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.getDefaultInstance()) return this;
-      if (!other.getLang().isEmpty()) {
-        lang_ = other.lang_;
-        bitField0_ |= 0x00000001;
-        onChanged();
-      }
       if (!other.getTemplate().isEmpty()) {
         template_ = other.template_;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
@@ -452,20 +393,15 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              lang_ = input.readStringRequireUtf8();
+              template_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
             case 18: {
-              template_ = input.readStringRequireUtf8();
+              data_ = input.readBytes();
               bitField0_ |= 0x00000002;
               break;
             } // case 18
-            case 26: {
-              data_ = input.readBytes();
-              bitField0_ |= 0x00000004;
-              break;
-            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -483,81 +419,9 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object lang_ = "";
-    /**
-     * <code>string lang = 1;</code>
-     * @return The lang.
-     */
-    public java.lang.String getLang() {
-      java.lang.Object ref = lang_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        lang_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string lang = 1;</code>
-     * @return The bytes for lang.
-     */
-    public com.google.protobuf.ByteString
-        getLangBytes() {
-      java.lang.Object ref = lang_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        lang_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string lang = 1;</code>
-     * @param value The lang to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLang(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      lang_ = value;
-      bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string lang = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearLang() {
-      lang_ = getDefaultInstance().getLang();
-      bitField0_ = (bitField0_ & ~0x00000001);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string lang = 1;</code>
-     * @param value The bytes for lang to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLangBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      lang_ = value;
-      bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object template_ = "";
     /**
-     * <code>string template = 2;</code>
+     * <code>string template = 1;</code>
      * @return The template.
      */
     public java.lang.String getTemplate() {
@@ -573,7 +437,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string template = 2;</code>
+     * <code>string template = 1;</code>
      * @return The bytes for template.
      */
     public com.google.protobuf.ByteString
@@ -590,7 +454,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string template = 2;</code>
+     * <code>string template = 1;</code>
      * @param value The template to set.
      * @return This builder for chaining.
      */
@@ -598,22 +462,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       template_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string template = 2;</code>
+     * <code>string template = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearTemplate() {
       template_ = getDefaultInstance().getTemplate();
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
     /**
-     * <code>string template = 2;</code>
+     * <code>string template = 1;</code>
      * @param value The bytes for template to set.
      * @return This builder for chaining.
      */
@@ -622,14 +486,14 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       template_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
 
     private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes data = 3;</code>
+     * <code>bytes data = 2;</code>
      * @return The data.
      */
     @java.lang.Override
@@ -637,23 +501,23 @@ private static final long serialVersionUID = 0L;
       return data_;
     }
     /**
-     * <code>bytes data = 3;</code>
+     * <code>bytes data = 2;</code>
      * @param value The data to set.
      * @return This builder for chaining.
      */
     public Builder setData(com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       data_ = value;
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>bytes data = 3;</code>
+     * <code>bytes data = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearData() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       data_ = getDefaultInstance().getData();
       onChanged();
       return this;

@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt  update
 RUN apt -y upgrade
@@ -44,7 +44,7 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf
 
 # https://github.com/crosstool-ng/crosstool-ng
 # https://crosstool-ng.github.io/docs/
-ENV CROSSTOOLNG_VERSION "crosstool-ng-1.27.0"
+ENV CROSSTOOLNG_VERSION="crosstool-ng-1.27.0"
 RUN git clone -b ${CROSSTOOLNG_VERSION} https://github.com/crosstool-ng/crosstool-ng.git $HOME/downloads/crosstool-ng
 RUN cd $HOME/downloads/crosstool-ng \
     && ./bootstrap \
@@ -59,7 +59,7 @@ ADD --chown=deploy crosstool-ng/toolchains/ /home/deploy/x-tools/
 
 # https://github.com/buildroot/buildroot
 # https://buildroot.org/downloads/manual/manual.html#requirement
-ENV BUILDROOT_VERSION "2025.02.4"
+ENV BUILDROOT_VERSION="2025.05.1"
 RUN git clone -b ${BUILDROOT_VERSION} https://github.com/buildroot/buildroot.git $HOME/downloads/buildroot
 RUN echo 'export BR2_DL_DIR=$HOME/downloads' >> $HOME/.bashrc
 # make list-defconfigs
@@ -83,7 +83,7 @@ RUN bash -c "source $HOME/.bashrc \
     && make source"
 
 # https://github.com/openwrt/openwrt
-ENV OPENWRT_VERSION "v24.10.2"
+ENV OPENWRT_VERSION="v24.10.2"
 RUN git clone -b ${OPENWRT_VERSION} https://github.com/openwrt/openwrt.git $HOME/downloads/openwrt
 RUN bash -c "source $HOME/.bashrc \
     && cd $HOME/downloads/openwrt \
@@ -94,9 +94,14 @@ RUN bash -c "source $HOME/.bashrc \
 RUN git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
-ADD vcpkg.patch /opt/
-RUN cd $HOME/local/vcpkg && git apply /opt/vcpkg.patch
-ADD --chown=deploy crosstool-ng/triplets/ /home/deploy/local/vcpkg/triplets/community/
+
+# https://go.dev/doc/install
+ENV GO_VERSION="1.25.0"
+RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
+RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
+RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.bashrc \
+    && echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc \
+    && echo 'export PATH="$(go env GOPATH)/bin:$PATH"' >> $HOME/.bashrc
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 

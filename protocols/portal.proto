@@ -400,9 +400,8 @@ message Sitemap {
 }
 // ----------------------------------------------------------------------------
 message HtmlPage {
-  string lang = 1;
-  string template = 2;
-  bytes data = 3;
+  string template = 1;
+  bytes data = 2;
 }
 message Theme {
   message Bootstrap {

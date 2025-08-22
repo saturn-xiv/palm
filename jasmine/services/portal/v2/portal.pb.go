@@ -2622,9 +2622,8 @@ func (x *Sitemap) GetItems() map[string]*Sitemap_UrlSet {
 // ----------------------------------------------------------------------------
 type HtmlPage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Lang          string                 `protobuf:"bytes,1,opt,name=lang,proto3" json:"lang,omitempty"`
-	Template      string                 `protobuf:"bytes,2,opt,name=template,proto3" json:"template,omitempty"`
-	Data          []byte                 `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	Template      string                 `protobuf:"bytes,1,opt,name=template,proto3" json:"template,omitempty"`
+	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2657,13 +2656,6 @@ func (x *HtmlPage) ProtoReflect() protoreflect.Message {
 // Deprecated: Use HtmlPage.ProtoReflect.Descriptor instead.
 func (*HtmlPage) Descriptor() ([]byte, []int) {
 	return file_portal_proto_rawDescGZIP(), []int{47}
-}
-
-func (x *HtmlPage) GetLang() string {
-	if x != nil {
-		return x.Lang
-	}
-	return ""
 }
 
 func (x *HtmlPage) GetTemplate() string {
@@ -4393,11 +4385,10 @@ const file_portal_proto_rawDesc = "" +
 	"\n" +
 	"ItemsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
-	"\x05value\x18\x02 \x01(\v2\x1e.palm.portal.v1.Sitemap.UrlSetR\x05value:\x028\x01\"N\n" +
-	"\bHtmlPage\x12\x12\n" +
-	"\x04lang\x18\x01 \x01(\tR\x04lang\x12\x1a\n" +
-	"\btemplate\x18\x02 \x01(\tR\btemplate\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"\x86\t\n" +
+	"\x05value\x18\x02 \x01(\v2\x1e.palm.portal.v1.Sitemap.UrlSetR\x05value:\x028\x01\":\n" +
+	"\bHtmlPage\x12\x1a\n" +
+	"\btemplate\x18\x01 \x01(\tR\btemplate\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\"\x86\t\n" +
 	"\x05Theme\x1a\xeb\b\n" +
 	"\tBootstrap\x1a\x06\n" +
 	"\x04Home\x1a\xd5\b\n" +

@@ -1625,9 +1625,6 @@ export namespace Sitemap {
 }
 
 export class HtmlPage extends jspb.Message {
-  getLang(): string;
-  setLang(value: string): HtmlPage;
-
   getTemplate(): string;
   setTemplate(value: string): HtmlPage;
 
@@ -1646,7 +1643,6 @@ export class HtmlPage extends jspb.Message {
 
 export namespace HtmlPage {
   export type AsObject = {
-    lang: string,
     template: string,
     data: Uint8Array | string,
   }

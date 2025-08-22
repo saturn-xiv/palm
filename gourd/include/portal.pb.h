@@ -6746,27 +6746,10 @@ class HtmlPage final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kLangFieldNumber = 1,
-    kTemplateFieldNumber = 2,
-    kDataFieldNumber = 3,
+    kTemplateFieldNumber = 1,
+    kDataFieldNumber = 2,
   };
-  // string lang = 1;
-  void clear_lang() ;
-  const std::string& lang() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_lang(Arg_&& arg, Args_... args);
-  std::string* mutable_lang();
-  PROTOBUF_NODISCARD std::string* release_lang();
-  void set_allocated_lang(std::string* value);
-
-  private:
-  const std::string& _internal_lang() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_lang(
-      const std::string& value);
-  std::string* _internal_mutable_lang();
-
-  public:
-  // string template = 2;
+  // string template = 1;
   void clear_template_() ;
   const std::string& template_() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -6782,7 +6765,7 @@ class HtmlPage final : public ::google::protobuf::Message
   std::string* _internal_mutable_template_();
 
   public:
-  // bytes data = 3;
+  // bytes data = 2;
   void clear_data() ;
   const std::string& data() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -6803,8 +6786,8 @@ class HtmlPage final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      44, 2>
+      1, 2, 0,
+      40, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -6821,7 +6804,6 @@ class HtmlPage final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const HtmlPage& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr lang_;
     ::google::protobuf::internal::ArenaStringPtr template__;
     ::google::protobuf::internal::ArenaStringPtr data_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -24154,55 +24136,7 @@ inline ::google::protobuf::Map<std::string, ::palm::portal::v1::Sitemap_UrlSet>*
 
 // HtmlPage
 
-// string lang = 1;
-inline void HtmlPage::clear_lang() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.lang_.ClearToEmpty();
-}
-inline const std::string& HtmlPage::lang() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.HtmlPage.lang)
-  return _internal_lang();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void HtmlPage::set_lang(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.HtmlPage.lang)
-}
-inline std::string* HtmlPage::mutable_lang() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_lang();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.HtmlPage.lang)
-  return _s;
-}
-inline const std::string& HtmlPage::_internal_lang() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.lang_.Get();
-}
-inline void HtmlPage::_internal_set_lang(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.lang_.Set(value, GetArena());
-}
-inline std::string* HtmlPage::_internal_mutable_lang() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.lang_.Mutable( GetArena());
-}
-inline std::string* HtmlPage::release_lang() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.HtmlPage.lang)
-  return _impl_.lang_.Release();
-}
-inline void HtmlPage::set_allocated_lang(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.lang_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
-    _impl_.lang_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.HtmlPage.lang)
-}
-
-// string template = 2;
+// string template = 1;
 inline void HtmlPage::clear_template_() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.template__.ClearToEmpty();
@@ -24250,7 +24184,7 @@ inline void HtmlPage::set_allocated_template_(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.HtmlPage.template)
 }
 
-// bytes data = 3;
+// bytes data = 2;
 inline void HtmlPage::clear_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.data_.ClearToEmpty();
