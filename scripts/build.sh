@@ -18,9 +18,9 @@ function build_on_arch() {
     cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/arch
 
-    build_go jasmine amd64 x86_64-linux-gnu
-    build_go jasmine arm64 aarch64-linux-gnu
-    build_go jasmine riscv64 riscv64-linux-gnu
+    build_go jasmine amd64 x86_64
+    build_go jasmine arm64 aarch64
+    build_go jasmine riscv64 riscv64
 }
 
 function build_on_crosstool_ng() {
@@ -66,7 +66,7 @@ function build_go() {
     local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1.$2 on $3"
-    CC=$3-gcc CGO_ENABLED=1 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2
+    CC=$3-linux-gnu-gcc CGO_ENABLED=1 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORK_DIR/tmp/$1.$2
     # if [ $2 == "arm64" ]
     # then
     #     
@@ -155,7 +155,7 @@ EOF
     build_dashboard phlox/dashboard $target/usr/share/palm/phlox/dashboard
 
     build_hyacinth_and_crocus $target/var/lib/palm/hyacinth
-    build_go jasmine $2 $1-linux-gnu
+    build_go jasmine $2 $1
     cp -v $WORK_DIR/tmp/jasmine.$2 $target/usr/bin/jasmine
 
     build_assets $target
