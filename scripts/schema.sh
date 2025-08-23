@@ -102,7 +102,10 @@ generate_jasmine mail
 generate_jasmine s3
 generate_jasmine casbin
 generate_jasmine portal
-generate_jasmine wechatpay
+generate_jasmine wechat-pay
+generate_jasmine wechat-subscription
+generate_jasmine wechat-service
+generate_jasmine wechat-miniprogram
 
 echo 'done.'
 exit 0

@@ -30,3 +30,4 @@ $ ./docker/begonia/start.sh
 - [ProtoJSON Format](https://protobuf.dev/programming-guides/json/)
 - [Protocol Buffers Version Support](https://protobuf.dev/support/version-support/)
 - [Maven Quickstart Archetype](https://maven.apache.org/archetypes/maven-archetype-quickstart/)
+- [WeUI - tailor-made for WeChat web service](https://github.com/Tencent/weui)

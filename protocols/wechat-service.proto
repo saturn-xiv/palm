@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.wechat.service.v1";
+option go_package = "./;v2";
+package palm.wechat.service.v1;
+
+// https://developers.weixin.qq.com/doc/service/guide/
+
+service User {}
