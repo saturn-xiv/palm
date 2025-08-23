@@ -1,0 +1,44 @@
+
+{{ define "samples.tpl.index" }}
+<!doctype html>
+<html lang="en">
+    <head>        
+        {{ template "samples.layout.assets" "html template samples(index)"}}
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>TEMPLATES <a href="/p-samples-tpl-show.html" target="_blank" class="btn btn-info">Show</a></h1>
+                <hr/>
+            </div>
+            <div class="row">
+                <br />
+                {{range $k, $v := .templates}} 
+                    <div class="col-md-12">
+                        <fieldset>
+                            <legend>File {{ $k }}</legend>
+                            <div class="form-group">                            
+                                <textarea class="form-control" rows="6" readonly>{{ $v }}</textarea>
+                            </div>        
+                        </fieldset>                
+                    </div>                    
+                {{end}}
+            </div>
+            <p>&nbsp;</p>
+            <div class="row">
+                <h1>DATA</h1>
+                <hr/>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">                            
+                        <textarea class="form-control" rows="12" readonly>{{ .data }}</textarea>
+                    </div>                     
+                </div>                
+            </div>
+        </div>
+    </body>
+</html>
+
+{{ end }}
+

@@ -1,0 +1,25 @@
+
+{{ define "samples.layout.assets" }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ . }}</title>
+  <link href="/static/assets/vendors/bootstrap-5.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/static/assets/vendors/bootstrap-5.3.7/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      color: #5a5a5a;
+    }
+  </style>
+{{ end }}
+
+{{ define "samples.layout.header" }}
+    <h1>header - {{ .title }} - T</h1>
+{{ end }} 
+
+{{ define "samples.layout.footer" }}
+<div class="row">
+  <div class="col-md-4 offset-md-4">footer (show html) {{ .copyright | noescape }}</div>
+</div>
+{{ end }}

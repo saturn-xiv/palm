@@ -1,0 +1,18 @@
+{{ define "samples.tpl.show" }}
+<!doctype html>
+<html lang="en">
+    <head>        
+        {{ template "samples.layout.assets" .title }}
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ .title }}
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+{{ end }}

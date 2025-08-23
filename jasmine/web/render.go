@@ -30,7 +30,7 @@ func Abort(w http.ResponseWriter, e error, s int) {
 }
 
 func HTML(w http.ResponseWriter, t *h_template.Template, n string, o interface{}, s int) error {
-	w.Header().Set(HeaderContentType, ContentTypeText)
+	w.Header().Set(HeaderContentType, ContentTypeHTML)
 	w.WriteHeader(s)
 	return t.ExecuteTemplate(w, n, o)
 }

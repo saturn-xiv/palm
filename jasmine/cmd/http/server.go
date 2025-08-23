@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/signal"
 	"path"
+	"strings"
 	t_template "text/template"
 	"time"
 
@@ -30,15 +31,22 @@ func Launch(port uint16, config_file string, theme string, version string) error
 	}
 
 	slog.Debug("load embed html views", slog.String("theme", theme))
-	h_tpl, err := h_template.ParseFS(gl_views_fs, path.Join("views", theme, "*"))
+	h_tpl, err := h_template.New("").Funcs(h_template.FuncMap{
+		"join": strings.Join,
+		"trim": strings.TrimSpace,
+		"noescape": func(s string) h_template.HTML {
+			return h_template.HTML(s)
+		},
+	}).ParseFS(gl_views_fs, path.Join("views", theme, "**", "*"))
 	if err != nil {
 		return err
 	}
+
 	{
 		root := "views"
 		if _, err = os.Stat(root); err == nil {
 			slog.Debug("load html views from filesystem", slog.String("folder", root))
-			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "*")); err != nil {
+			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "**", "*")); err != nil {
 				return err
 			}
 		}
@@ -79,31 +87,52 @@ func Launch(port uint16, config_file string, theme string, version string) error
 	router := mux.NewRouter()
 
 	{
-		router.PathPrefix("/static/").Handler(http_.StripPrefix("/static/", http_.FileServerFS(gl_assets_fs))).Methods(http_.MethodGet)
+		router.PathPrefix("/static/").Handler(http_.StripPrefix("/static/", http_.FileServerFS(gl_assets_fs))).Methods(http_.MethodGet).Name("static")
 		{
 			root := "public"
 			if _, err = os.Stat(root); err == nil {
 				slog.Debug("mount public folder from filesystem")
-				router.PathPrefix("/public/").Handler(http_.StripPrefix("/public/", http_.FileServer(http_.Dir(root)))).Methods(http_.MethodGet)
+				router.PathPrefix("/public/").Handler(http_.StripPrefix("/public/", http_.FileServer(http_.Dir(root)))).Methods(http_.MethodGet).Name(root)
 			}
 		}
 		router.HandleFunc("/robots.txt", web.WarpPlain(t_tpl, controllers.RobotsTxt)).Methods(http_.MethodGet).Name("robots.txt")
 		router.HandleFunc("/sitemap.xml", web.WarpXml(controllers.SitemapIndex(&ctx))).Methods(http_.MethodGet).Name("sitemap.index")
 		router.HandleFunc("/sitemap/{lang}.xml", web.WarpXml(controllers.SitemapByLang(&ctx))).Methods(http_.MethodGet).Name("sitemap.by-lang")
 		router.HandleFunc("/rss/{lang}.xml", web.WarpXml(controllers.Rss(&ctx))).Methods(http_.MethodGet).Name("rss.by-lang")
-		router.HandleFunc("/{tid}-{oid}.html", web.WarpHtml(h_tpl, controllers.ShowPage(&ctx))).Methods(http_.MethodGet).Name("pages.show")
+		router.HandleFunc("/p-{hash}.html", web.WarpHtml(h_tpl, controllers.ShowPage(&ctx))).Methods(http_.MethodGet).Name("pages.show.by-hash")
 		router.HandleFunc("/{lang}/", web.WarpHtml(h_tpl, controllers.HomeByLang(&ctx))).Methods(http_.MethodGet).Name("home.by-lang")
 		router.HandleFunc("/", web.WarpHtml(h_tpl, controllers.Home(&ctx))).Methods(http_.MethodGet).Name("home.index")
 	}
 	{
-		api := router.PathPrefix("/api").Subrouter()
-		csrf, err := config.OpenCsrf()
+		// api := router.PathPrefix("/api").Subrouter()
+		// csrf, err := config.OpenCsrf()
+		// if err != nil {
+		// 	return err
+		// }
+		// api.Use(csrf)
+	}
+
+	for _, t := range t_tpl.Templates() {
+		slog.Debug("found text template", slog.String("name", t.Name()))
+	}
+	for _, t := range h_tpl.Templates() {
+		slog.Debug("found html template", slog.String("name", t.Name()))
+	}
+	if err := router.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
+		methods, err := route.GetMethods()
 		if err != nil {
 			return err
 		}
-		api.Use(csrf)
-		// TODO
+		path, err := route.GetPathTemplate()
+		if err != nil {
+			return err
+		}
+		slog.Debug("found route", slog.String("name", route.GetName()), slog.String("methods", strings.Join(methods, ",")), slog.String("path", path))
+		return nil
+	}); err != nil {
+		return err
 	}
+
 	start(handlers.CORS(
 		handlers.AllowedMethods([]string{http_.MethodGet, http_.MethodPost, http_.MethodPut, http_.MethodPatch, http_.MethodDelete}),
 		handlers.AllowCredentials(),

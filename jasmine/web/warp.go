@@ -1,6 +1,7 @@
 package web
 
 import (
+	"log/slog"
 	"net/http"
 
 	h_template "html/template"
@@ -14,7 +15,9 @@ func WarpJson(h JsonHttpHandler) http.HandlerFunc {
 			Abort(w, e, http.StatusInternalServerError)
 			return
 		}
-		JSON(w, o, http.StatusOK)
+		if e = JSON(w, o, http.StatusOK); e != nil {
+			slog.Error(e.Error())
+		}
 	}
 }
 
@@ -25,7 +28,9 @@ func WarpXml(h XmlHttpHandler) http.HandlerFunc {
 			Abort(w, e, http.StatusInternalServerError)
 			return
 		}
-		XML(w, o, http.StatusOK)
+		if e = XML(w, o, http.StatusOK); e != nil {
+			slog.Error(e.Error())
+		}
 	}
 }
 
@@ -36,7 +41,9 @@ func WarpPlain(t *t_template.Template, h PlainHttpHandler) http.HandlerFunc {
 			Abort(w, e, http.StatusInternalServerError)
 			return
 		}
-		Plain(w, t, n, o, http.StatusOK)
+		if e = Plain(w, t, n, o, http.StatusOK); e != nil {
+			slog.Error(e.Error())
+		}
 	}
 }
 
@@ -47,6 +54,8 @@ func WarpHtml(t *h_template.Template, h HtmlHttpHandler) http.HandlerFunc {
 			Abort(w, e, http.StatusInternalServerError)
 			return
 		}
-		HTML(w, t, n, o, http.StatusOK)
+		if e = HTML(w, t, n, o, http.StatusOK); e != nil {
+			slog.Error(e.Error())
+		}
 	}
 }

@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/BurntSushi/toml"
+	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
 
@@ -128,32 +129,35 @@ func build_sample_data() *portal_v2.Theme_Bootstrap_Sample_Data {
 }
 
 func set_sample_page(ctx context.Context, cli *redis.Client) error {
+	opts := protojson.MarshalOptions{
+		Indent: "  ",
+	}
 
-	sample, err := web.ProtoBufMessageToJson(build_sample_data())
+	sample, err := opts.Marshal(build_sample_data())
 	if err != nil {
 		return err
 	}
 
 	{
-		hash := "samples.tpl.show"
-		slog.Info("setup page", slog.String("url", fmt.Sprintf("/p-%s.html", hash)))
-		page := portal_v2.HtmlPage{Template: "sample.tpl.show", Data: sample}
+		hash := "samples-tpl-show"
+
+		page := portal_v2.HtmlPage{Template: "samples.tpl.show", Data: sample}
+		slog.Info("setup page", slog.String("path", fmt.Sprintf("/p-%s.html", hash)), slog.String("template", page.Template))
 		if err := controllers.SetHtmlPage(ctx, cli, hash, &page, 0); err != nil {
 			return err
 		}
 	}
 
 	{
-		hash := "samples.tpl.index"
-		slog.Info("setup page", slog.String("url", fmt.Sprintf("/p-%s.html", hash)))
+		hash := "samples-tpl"
 
 		arg := portal_v2.Theme_Bootstrap_Sample{
 			Data:      string(sample),
 			Templates: make(map[string]string),
 		}
-		for _, it := range []string{"layout/footer", "layout/header", "item", "show"} {
-			name := filepath.Join("views", "bootstrap", "sample", fmt.Sprintf("%s.html", it))
-			buf, err := http_.ReadHtmlTemplate(name)
+		for _, it := range []string{"layout", "item", "show"} {
+			name := filepath.Join("bootstrap", "sample", fmt.Sprintf("%s.html", it))
+			buf, err := http_.ReadHtmlTemplate(filepath.Join("views", name))
 			if err != nil {
 				return err
 			}
@@ -163,7 +167,8 @@ func set_sample_page(ctx context.Context, cli *redis.Client) error {
 		if err != nil {
 			return err
 		}
-		page := portal_v2.HtmlPage{Template: "sample.tpl.index", Data: data}
+		page := portal_v2.HtmlPage{Template: "samples.tpl.index", Data: data}
+		slog.Info("setup page", slog.String("path", fmt.Sprintf("/p-%s.html", hash)), slog.String("template", page.Template))
 		if err := controllers.SetHtmlPage(ctx, cli, hash, &page, 0); err != nil {
 			return err
 		}
