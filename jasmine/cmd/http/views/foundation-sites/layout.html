@@ -1,0 +1,22 @@
+{{ define "foundation-sites.layouts.base" }}
+{{/* https://get.foundation/sites/docs/installation.html#html-starter-template */}}
+<!doctype html>
+<html class="no-js" lang="{{ .locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <link rel="stylesheet" href="/static/assets/vendors/foundation-sites-6.9.0/css/foundation.css" />    
+    <script src="/static/assets/vendors/foundation-sites-6.9.0/js/vendor/jquery.js"></script>
+    <script src="/static/assets/vendors/foundation-sites-6.9.0/js/vendor/what-input.js"></script>
+    <script src="/static/assets/vendors/foundation-sites-6.9.0/js/vendor/foundation.min.js"></script>    
+    {{ block "header" . }}{{ end }}
+  </head>
+  <body>    
+    {{ block "content" . }}{{ end }}
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
+{{ end }}

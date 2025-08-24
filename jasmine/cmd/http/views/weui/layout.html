@@ -1,6 +1,15 @@
-{{ define "weui.layout.assets" }}
+{{ define "weui.layouts.base" }}
     {{/* https://github.com/Tencent/weui/wiki/getting-started#link */}}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />  
-    <link href="/static/assets/vendors/weui-2.6.11/style/weui.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="{{ .locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">        
+        <link rel="stylesheet" href="/static/assets/vendors/weui-2.6.11/style/weui.min.css"/>
+        {{ block "header" . }}{{ end }}
+    </head>
+    <body>
+        {{ block "content" . }}{{ end }}
+    </body>
+</html>
 {{ end }}
