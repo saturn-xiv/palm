@@ -37,7 +37,7 @@ func Launch(port uint16, config_file string, version string) error {
 		"noescape": func(s string) h_template.HTML {
 			return h_template.HTML(s)
 		},
-	}).ParseFS(gl_views_fs, path.Join("views", "**", "**"))
+	}).ParseFS(gl_views_fs, path.Join("views", "**", "*.html"))
 	if err != nil {
 		return err
 	}
@@ -46,7 +46,7 @@ func Launch(port uint16, config_file string, version string) error {
 		root := "views"
 		if _, err = os.Stat(root); err == nil {
 			slog.Debug("load html views from filesystem", slog.String("folder", root))
-			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "**", "**")); err != nil {
+			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "**", "*.html")); err != nil {
 				return err
 			}
 		}

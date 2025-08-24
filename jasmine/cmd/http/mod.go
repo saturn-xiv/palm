@@ -12,13 +12,13 @@ import (
 	redis_ "github.com/saturn-xiv/palm/jasmine/env/redis"
 )
 
-//go:embed templates/*
+//go:embed all:templates
 var gl_templates_fs embed.FS
 
-//go:embed views/**/**
+//go:embed all:views
 var gl_views_fs embed.FS
 
-//go:embed assets/**/**
+//go:embed all:assets
 var gl_assets_fs embed.FS
 
 type Config struct {
