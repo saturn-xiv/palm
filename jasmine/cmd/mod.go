@@ -45,9 +45,8 @@ var (
 	gl_debug  bool
 	gl_config string
 
-	gl_rpc_port  uint16
-	gl_web_port  uint16
-	gl_web_theme string
+	gl_rpc_port uint16
+	gl_web_port uint16
 
 	gl_etc_domain string
 
@@ -103,14 +102,13 @@ func init() {
 			Short: "Start a HTTP server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := http.Launch(gl_web_port, gl_config, gl_web_theme, git_version); err != nil {
+				if err := http.Launch(gl_web_port, gl_config, git_version); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},
 		}
 
 		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
-		cmd.Flags().StringVarP(&gl_web_theme, "theme", "t", "bootstrap", "website's theme")
 		root_cmd.AddCommand(cmd)
 	}
 	{

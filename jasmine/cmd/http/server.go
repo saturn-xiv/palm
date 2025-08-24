@@ -22,7 +22,7 @@ import (
 	"github.com/saturn-xiv/palm/jasmine/web"
 )
 
-func Launch(port uint16, config_file string, theme string, version string) error {
+func Launch(port uint16, config_file string, version string) error {
 	web.EnsureStopped()
 	slog.Debug("load embed text templates")
 	t_tpl, err := t_template.ParseFS(gl_templates_fs, path.Join("templates", "*"))
@@ -30,14 +30,14 @@ func Launch(port uint16, config_file string, theme string, version string) error
 		return err
 	}
 
-	slog.Debug("load embed html views", slog.String("theme", theme))
+	slog.Debug("load embed html views")
 	h_tpl, err := h_template.New("").Funcs(h_template.FuncMap{
 		"join": strings.Join,
 		"trim": strings.TrimSpace,
 		"noescape": func(s string) h_template.HTML {
 			return h_template.HTML(s)
 		},
-	}).ParseFS(gl_views_fs, path.Join("views", theme, "**", "*"))
+	}).ParseFS(gl_views_fs, path.Join("views", "**", "**"))
 	if err != nil {
 		return err
 	}
@@ -46,7 +46,7 @@ func Launch(port uint16, config_file string, theme string, version string) error
 		root := "views"
 		if _, err = os.Stat(root); err == nil {
 			slog.Debug("load html views from filesystem", slog.String("folder", root))
-			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "**", "*")); err != nil {
+			if h_tpl, err = h_tpl.ParseGlob(path.Join(root, "**", "**")); err != nil {
 				return err
 			}
 		}
