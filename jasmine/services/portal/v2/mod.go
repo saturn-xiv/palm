@@ -1,11 +1,11 @@
 package v2
 
 import (
-	context "context"
+	"fmt"
+	"io"
 	"log/slog"
-	"time"
+	"net/http"
 
-	"github.com/redis/go-redis/v9"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 )
@@ -19,54 +19,36 @@ var (
 	ErrorBadRequest               = status.Error(codes.InvalidArgument, "bad request")
 )
 
-const (
-	gl_html_page_template = "template"
-	gl_html_page_data     = "data"
-)
-
-func (p *HtmlPage) Save(ctx context.Context, db *redis.ClusterClient, key string, ttl time.Duration) error {
-	if _, err := db.HSet(ctx, key, gl_html_page_template, p.Template, gl_html_page_data, p.Data).Result(); err != nil {
-		return err
-	}
-
-	// FIXME https://redis.io/docs/latest/commands/hpexpire/
-	if ttl > 0 {
-		slog.Warn("HPEXPIRE Command available since: Redis Open Source 7.4.0")
-	}
-	// if _, err := db.HExpire(ctx, key, ttl, gl_html_page_template, gl_html_page_data).Result(); err != nil {
-	// 	return err
-	// }
-	return nil
+func (p *HtmlPage) Key() string {
+	return fmt.Sprintf("pages.%s", p.Hash)
 }
 
-func (p *HtmlPage) Load(ctx context.Context, db *redis.ClusterClient, key string) error {
-	tpl, err := db.HGet(ctx, key, gl_html_page_template).Result()
-	if err != nil {
-		return err
-	}
-	data, err := db.HGet(ctx, key, gl_html_page_data).Bytes()
-	if err != nil {
-		return err
-	}
-	p.Template = tpl
-	p.Data = data
-	return nil
+func (p *HtmlPage) Path() string {
+	return fmt.Sprintf("/p-%s.html", p.Hash)
 }
 
-func DelHtmlPage(ctx context.Context, db *redis.ClusterClient, key string) error {
-	_, err := db.HDel(ctx, key, gl_html_page_template, gl_html_page_data).Result()
-	return err
-}
+func (p *HtmlPage) Buffer() ([]byte, error) {
+	switch x := p.Body.(type) {
+	case *HtmlPage_Url:
+		slog.Debug("fetch data from", slog.String("url", x.Url))
+		res, err := http.Get(x.Url)
+		if err != nil {
+			return nil, err
+		}
+		defer res.Body.Close()
+		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			return nil, err
+		}
+		if res.StatusCode != http.StatusOK {
+			slog.Error("failed", slog.Int("status", res.StatusCode), slog.String("body", string(body)))
+			return nil, fmt.Errorf("failed to fetch %s", x.Url)
+		}
+		return body, nil
+	case *HtmlPage_Data:
+		return x.Data, nil
 
-func ExistsHtmlPage(ctx context.Context, db *redis.ClusterClient, key string) (bool, error) {
-	ok_t, err := db.HExists(ctx, key, gl_html_page_template).Result()
-	if err != nil {
-		return false, err
+	default:
+		return nil, fmt.Errorf("unexpected type %T", x)
 	}
-	ok_d, err := db.HExists(ctx, key, gl_html_page_data).Result()
-	if err != nil {
-		return false, err
-	}
-
-	return ok_t && ok_d, nil
 }

@@ -1625,6 +1625,9 @@ export namespace Sitemap {
 }
 
 export class HtmlPage extends jspb.Message {
+  getHash(): string;
+  setHash(value: string): HtmlPage;
+
   getTemplate(): string;
   setTemplate(value: string): HtmlPage;
 
@@ -1632,6 +1635,11 @@ export class HtmlPage extends jspb.Message {
   getData_asU8(): Uint8Array;
   getData_asB64(): string;
   setData(value: Uint8Array | string): HtmlPage;
+
+  getUrl(): string;
+  setUrl(value: string): HtmlPage;
+
+  getBodyCase(): HtmlPage.BodyCase;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HtmlPage.AsObject;
@@ -1643,8 +1651,16 @@ export class HtmlPage extends jspb.Message {
 
 export namespace HtmlPage {
   export type AsObject = {
+    hash: string,
     template: string,
     data: Uint8Array | string,
+    url: string,
+  }
+
+  export enum BodyCase { 
+    BODY_NOT_SET = 0,
+    DATA = 11,
+    URL = 12,
   }
 }
 

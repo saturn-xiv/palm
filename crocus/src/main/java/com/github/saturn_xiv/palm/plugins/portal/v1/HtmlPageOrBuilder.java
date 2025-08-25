@@ -10,20 +10,56 @@ public interface HtmlPageOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string template = 1;</code>
+   * <code>string hash = 1;</code>
+   * @return The hash.
+   */
+  java.lang.String getHash();
+  /**
+   * <code>string hash = 1;</code>
+   * @return The bytes for hash.
+   */
+  com.google.protobuf.ByteString
+      getHashBytes();
+
+  /**
+   * <code>string template = 2;</code>
    * @return The template.
    */
   java.lang.String getTemplate();
   /**
-   * <code>string template = 1;</code>
+   * <code>string template = 2;</code>
    * @return The bytes for template.
    */
   com.google.protobuf.ByteString
       getTemplateBytes();
 
   /**
-   * <code>bytes data = 2;</code>
+   * <code>bytes data = 11;</code>
+   * @return Whether the data field is set.
+   */
+  boolean hasData();
+  /**
+   * <code>bytes data = 11;</code>
    * @return The data.
    */
   com.google.protobuf.ByteString getData();
+
+  /**
+   * <code>string url = 12;</code>
+   * @return Whether the url field is set.
+   */
+  boolean hasUrl();
+  /**
+   * <code>string url = 12;</code>
+   * @return The url.
+   */
+  java.lang.String getUrl();
+  /**
+   * <code>string url = 12;</code>
+   * @return The bytes for url.
+   */
+  com.google.protobuf.ByteString
+      getUrlBytes();
+
+  com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.BodyCase getBodyCase();
 }

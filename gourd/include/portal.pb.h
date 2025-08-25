@@ -6655,6 +6655,11 @@ class HtmlPage final : public ::google::protobuf::Message
   static const HtmlPage& default_instance() {
     return *internal_default_instance();
   }
+  enum BodyCase {
+    kData = 11,
+    kUrl = 12,
+    BODY_NOT_SET = 0,
+  };
   static inline const HtmlPage* internal_default_instance() {
     return reinterpret_cast<const HtmlPage*>(
         &_HtmlPage_default_instance_);
@@ -6746,10 +6751,28 @@ class HtmlPage final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kTemplateFieldNumber = 1,
-    kDataFieldNumber = 2,
+    kHashFieldNumber = 1,
+    kTemplateFieldNumber = 2,
+    kDataFieldNumber = 11,
+    kUrlFieldNumber = 12,
   };
-  // string template = 1;
+  // string hash = 1;
+  void clear_hash() ;
+  const std::string& hash() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_hash(Arg_&& arg, Args_... args);
+  std::string* mutable_hash();
+  PROTOBUF_NODISCARD std::string* release_hash();
+  void set_allocated_hash(std::string* value);
+
+  private:
+  const std::string& _internal_hash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_hash(
+      const std::string& value);
+  std::string* _internal_mutable_hash();
+
+  public:
+  // string template = 2;
   void clear_template_() ;
   const std::string& template_() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -6765,7 +6788,8 @@ class HtmlPage final : public ::google::protobuf::Message
   std::string* _internal_mutable_template_();
 
   public:
-  // bytes data = 2;
+  // bytes data = 11;
+  bool has_data() const;
   void clear_data() ;
   const std::string& data() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -6781,13 +6805,36 @@ class HtmlPage final : public ::google::protobuf::Message
   std::string* _internal_mutable_data();
 
   public:
+  // string url = 12;
+  bool has_url() const;
+  void clear_url() ;
+  const std::string& url() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_url(Arg_&& arg, Args_... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* value);
+
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(
+      const std::string& value);
+  std::string* _internal_mutable_url();
+
+  public:
+  void clear_body();
+  BodyCase body_case() const;
   // @@protoc_insertion_point(class_scope:palm.portal.v1.HtmlPage)
  private:
   class _Internal;
+  void set_has_data();
+  void set_has_url();
+  inline bool has_body() const;
+  inline void clear_has_body();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      40, 2>
+      1, 4, 0,
+      47, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -6804,9 +6851,16 @@ class HtmlPage final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const HtmlPage& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr hash_;
     ::google::protobuf::internal::ArenaStringPtr template__;
-    ::google::protobuf::internal::ArenaStringPtr data_;
+    union BodyUnion {
+      constexpr BodyUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::google::protobuf::internal::ArenaStringPtr data_;
+      ::google::protobuf::internal::ArenaStringPtr url_;
+    } body_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -24136,7 +24190,55 @@ inline ::google::protobuf::Map<std::string, ::palm::portal::v1::Sitemap_UrlSet>*
 
 // HtmlPage
 
-// string template = 1;
+// string hash = 1;
+inline void HtmlPage::clear_hash() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.hash_.ClearToEmpty();
+}
+inline const std::string& HtmlPage::hash() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.HtmlPage.hash)
+  return _internal_hash();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void HtmlPage::set_hash(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.hash_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.HtmlPage.hash)
+}
+inline std::string* HtmlPage::mutable_hash() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_hash();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.HtmlPage.hash)
+  return _s;
+}
+inline const std::string& HtmlPage::_internal_hash() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.hash_.Get();
+}
+inline void HtmlPage::_internal_set_hash(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.hash_.Set(value, GetArena());
+}
+inline std::string* HtmlPage::_internal_mutable_hash() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.hash_.Mutable( GetArena());
+}
+inline std::string* HtmlPage::release_hash() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.HtmlPage.hash)
+  return _impl_.hash_.Release();
+}
+inline void HtmlPage::set_allocated_hash(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.hash_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.hash_.IsDefault()) {
+    _impl_.hash_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.HtmlPage.hash)
+}
+
+// string template = 2;
 inline void HtmlPage::clear_template_() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.template__.ClearToEmpty();
@@ -24184,10 +24286,19 @@ inline void HtmlPage::set_allocated_template_(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.HtmlPage.template)
 }
 
-// bytes data = 2;
+// bytes data = 11;
+inline bool HtmlPage::has_data() const {
+  return body_case() == kData;
+}
+inline void HtmlPage::set_has_data() {
+  _impl_._oneof_case_[0] = kData;
+}
 inline void HtmlPage::clear_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.data_.ClearToEmpty();
+  if (body_case() == kData) {
+    _impl_.body_.data_.Destroy();
+    clear_has_body();
+  }
 }
 inline const std::string& HtmlPage::data() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -24198,7 +24309,13 @@ template <typename Arg_, typename... Args_>
 inline PROTOBUF_ALWAYS_INLINE void HtmlPage::set_data(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  if (body_case() != kData) {
+    clear_body();
+
+    set_has_data();
+    _impl_.body_.data_.InitDefault();
+  }
+  _impl_.body_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:palm.portal.v1.HtmlPage.data)
 }
 inline std::string* HtmlPage::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -24208,30 +24325,146 @@ inline std::string* HtmlPage::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
 }
 inline const std::string& HtmlPage::_internal_data() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.data_.Get();
+  if (body_case() != kData) {
+    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
+  }
+  return _impl_.body_.data_.Get();
 }
 inline void HtmlPage::_internal_set_data(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.data_.Set(value, GetArena());
+  if (body_case() != kData) {
+    clear_body();
+
+    set_has_data();
+    _impl_.body_.data_.InitDefault();
+  }
+  _impl_.body_.data_.Set(value, GetArena());
 }
 inline std::string* HtmlPage::_internal_mutable_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.data_.Mutable( GetArena());
+  if (body_case() != kData) {
+    clear_body();
+
+    set_has_data();
+    _impl_.body_.data_.InitDefault();
+  }
+  return _impl_.body_.data_.Mutable( GetArena());
 }
 inline std::string* HtmlPage::release_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.portal.v1.HtmlPage.data)
-  return _impl_.data_.Release();
+  if (body_case() != kData) {
+    return nullptr;
+  }
+  clear_has_body();
+  return _impl_.body_.data_.Release();
 }
 inline void HtmlPage::set_allocated_data(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.data_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.data_.IsDefault()) {
-    _impl_.data_.Set("", GetArena());
+  if (has_body()) {
+    clear_body();
+  }
+  if (value != nullptr) {
+    set_has_data();
+    _impl_.body_.data_.InitAllocated(value, GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.HtmlPage.data)
 }
 
+// string url = 12;
+inline bool HtmlPage::has_url() const {
+  return body_case() == kUrl;
+}
+inline void HtmlPage::set_has_url() {
+  _impl_._oneof_case_[0] = kUrl;
+}
+inline void HtmlPage::clear_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (body_case() == kUrl) {
+    _impl_.body_.url_.Destroy();
+    clear_has_body();
+  }
+}
+inline const std::string& HtmlPage::url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.HtmlPage.url)
+  return _internal_url();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void HtmlPage::set_url(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (body_case() != kUrl) {
+    clear_body();
+
+    set_has_url();
+    _impl_.body_.url_.InitDefault();
+  }
+  _impl_.body_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.HtmlPage.url)
+}
+inline std::string* HtmlPage::mutable_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.HtmlPage.url)
+  return _s;
+}
+inline const std::string& HtmlPage::_internal_url() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  if (body_case() != kUrl) {
+    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
+  }
+  return _impl_.body_.url_.Get();
+}
+inline void HtmlPage::_internal_set_url(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (body_case() != kUrl) {
+    clear_body();
+
+    set_has_url();
+    _impl_.body_.url_.InitDefault();
+  }
+  _impl_.body_.url_.Set(value, GetArena());
+}
+inline std::string* HtmlPage::_internal_mutable_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (body_case() != kUrl) {
+    clear_body();
+
+    set_has_url();
+    _impl_.body_.url_.InitDefault();
+  }
+  return _impl_.body_.url_.Mutable( GetArena());
+}
+inline std::string* HtmlPage::release_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.HtmlPage.url)
+  if (body_case() != kUrl) {
+    return nullptr;
+  }
+  clear_has_body();
+  return _impl_.body_.url_.Release();
+}
+inline void HtmlPage::set_allocated_url(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (has_body()) {
+    clear_body();
+  }
+  if (value != nullptr) {
+    set_has_url();
+    _impl_.body_.url_.InitAllocated(value, GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.HtmlPage.url)
+}
+
+inline bool HtmlPage::has_body() const {
+  return body_case() != BODY_NOT_SET;
+}
+inline void HtmlPage::clear_has_body() {
+  _impl_._oneof_case_[0] = BODY_NOT_SET;
+}
+inline HtmlPage::BodyCase HtmlPage::body_case() const {
+  return HtmlPage::BodyCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // Theme_Bootstrap_Home

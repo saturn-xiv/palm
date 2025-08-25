@@ -31,8 +31,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private HtmlPage() {
+    hash_ = "";
     template_ = "";
-    data_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -48,11 +48,92 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.class, com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.Builder.class);
   }
 
-  public static final int TEMPLATE_FIELD_NUMBER = 1;
+  private int bodyCase_ = 0;
+  @SuppressWarnings("serial")
+  private java.lang.Object body_;
+  public enum BodyCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    DATA(11),
+    URL(12),
+    BODY_NOT_SET(0);
+    private final int value;
+    private BodyCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static BodyCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static BodyCase forNumber(int value) {
+      switch (value) {
+        case 11: return DATA;
+        case 12: return URL;
+        case 0: return BODY_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public BodyCase
+  getBodyCase() {
+    return BodyCase.forNumber(
+        bodyCase_);
+  }
+
+  public static final int HASH_FIELD_NUMBER = 1;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object hash_ = "";
+  /**
+   * <code>string hash = 1;</code>
+   * @return The hash.
+   */
+  @java.lang.Override
+  public java.lang.String getHash() {
+    java.lang.Object ref = hash_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      hash_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string hash = 1;</code>
+   * @return The bytes for hash.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getHashBytes() {
+    java.lang.Object ref = hash_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      hash_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int TEMPLATE_FIELD_NUMBER = 2;
   @SuppressWarnings("serial")
   private volatile java.lang.Object template_ = "";
   /**
-   * <code>string template = 1;</code>
+   * <code>string template = 2;</code>
    * @return The template.
    */
   @java.lang.Override
@@ -69,7 +150,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string template = 1;</code>
+   * <code>string template = 2;</code>
    * @return The bytes for template.
    */
   @java.lang.Override
@@ -87,15 +168,77 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DATA_FIELD_NUMBER = 2;
-  private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+  public static final int DATA_FIELD_NUMBER = 11;
   /**
-   * <code>bytes data = 2;</code>
+   * <code>bytes data = 11;</code>
+   * @return Whether the data field is set.
+   */
+  @java.lang.Override
+  public boolean hasData() {
+    return bodyCase_ == 11;
+  }
+  /**
+   * <code>bytes data = 11;</code>
    * @return The data.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString getData() {
-    return data_;
+    if (bodyCase_ == 11) {
+      return (com.google.protobuf.ByteString) body_;
+    }
+    return com.google.protobuf.ByteString.EMPTY;
+  }
+
+  public static final int URL_FIELD_NUMBER = 12;
+  /**
+   * <code>string url = 12;</code>
+   * @return Whether the url field is set.
+   */
+  public boolean hasUrl() {
+    return bodyCase_ == 12;
+  }
+  /**
+   * <code>string url = 12;</code>
+   * @return The url.
+   */
+  public java.lang.String getUrl() {
+    java.lang.Object ref = "";
+    if (bodyCase_ == 12) {
+      ref = body_;
+    }
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      if (bodyCase_ == 12) {
+        body_ = s;
+      }
+      return s;
+    }
+  }
+  /**
+   * <code>string url = 12;</code>
+   * @return The bytes for url.
+   */
+  public com.google.protobuf.ByteString
+      getUrlBytes() {
+    java.lang.Object ref = "";
+    if (bodyCase_ == 12) {
+      ref = body_;
+    }
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      if (bodyCase_ == 12) {
+        body_ = b;
+      }
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -112,11 +255,18 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(template_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, template_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(hash_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 1, hash_);
     }
-    if (!data_.isEmpty()) {
-      output.writeBytes(2, data_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(template_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 2, template_);
+    }
+    if (bodyCase_ == 11) {
+      output.writeBytes(
+          11, (com.google.protobuf.ByteString) body_);
+    }
+    if (bodyCase_ == 12) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 12, body_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -127,12 +277,19 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(template_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, template_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(hash_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, hash_);
     }
-    if (!data_.isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(template_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, template_);
+    }
+    if (bodyCase_ == 11) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(2, data_);
+        .computeBytesSize(
+            11, (com.google.protobuf.ByteString) body_);
+    }
+    if (bodyCase_ == 12) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(12, body_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -149,10 +306,23 @@ private static final long serialVersionUID = 0L;
     }
     com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage other = (com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage) obj;
 
+    if (!getHash()
+        .equals(other.getHash())) return false;
     if (!getTemplate()
         .equals(other.getTemplate())) return false;
-    if (!getData()
-        .equals(other.getData())) return false;
+    if (!getBodyCase().equals(other.getBodyCase())) return false;
+    switch (bodyCase_) {
+      case 11:
+        if (!getData()
+            .equals(other.getData())) return false;
+        break;
+      case 12:
+        if (!getUrl()
+            .equals(other.getUrl())) return false;
+        break;
+      case 0:
+      default:
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -164,10 +334,22 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + HASH_FIELD_NUMBER;
+    hash = (53 * hash) + getHash().hashCode();
     hash = (37 * hash) + TEMPLATE_FIELD_NUMBER;
     hash = (53 * hash) + getTemplate().hashCode();
-    hash = (37 * hash) + DATA_FIELD_NUMBER;
-    hash = (53 * hash) + getData().hashCode();
+    switch (bodyCase_) {
+      case 11:
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getData().hashCode();
+        break;
+      case 12:
+        hash = (37 * hash) + URL_FIELD_NUMBER;
+        hash = (53 * hash) + getUrl().hashCode();
+        break;
+      case 0:
+      default:
+    }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -303,8 +485,10 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
+      hash_ = "";
       template_ = "";
-      data_ = com.google.protobuf.ByteString.EMPTY;
+      bodyCase_ = 0;
+      body_ = null;
       return this;
     }
 
@@ -332,6 +516,7 @@ private static final long serialVersionUID = 0L;
     public com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage buildPartial() {
       com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage result = new com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage(this);
       if (bitField0_ != 0) { buildPartial0(result); }
+      buildPartialOneofs(result);
       onBuilt();
       return result;
     }
@@ -339,11 +524,16 @@ private static final long serialVersionUID = 0L;
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.template_ = template_;
+        result.hash_ = hash_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.data_ = data_;
+        result.template_ = template_;
       }
+    }
+
+    private void buildPartialOneofs(com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage result) {
+      result.bodyCase_ = bodyCase_;
+      result.body_ = this.body_;
     }
 
     @java.lang.Override
@@ -358,13 +548,30 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage other) {
       if (other == com.github.saturn_xiv.palm.plugins.portal.v1.HtmlPage.getDefaultInstance()) return this;
-      if (!other.getTemplate().isEmpty()) {
-        template_ = other.template_;
+      if (!other.getHash().isEmpty()) {
+        hash_ = other.hash_;
         bitField0_ |= 0x00000001;
         onChanged();
       }
-      if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
-        setData(other.getData());
+      if (!other.getTemplate().isEmpty()) {
+        template_ = other.template_;
+        bitField0_ |= 0x00000002;
+        onChanged();
+      }
+      switch (other.getBodyCase()) {
+        case DATA: {
+          setData(other.getData());
+          break;
+        }
+        case URL: {
+          bodyCase_ = 12;
+          body_ = other.body_;
+          onChanged();
+          break;
+        }
+        case BODY_NOT_SET: {
+          break;
+        }
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -393,15 +600,26 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              template_ = input.readStringRequireUtf8();
+              hash_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
             case 18: {
-              data_ = input.readBytes();
+              template_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000002;
               break;
             } // case 18
+            case 90: {
+              body_ = input.readBytes();
+              bodyCase_ = 11;
+              break;
+            } // case 90
+            case 98: {
+              java.lang.String s = input.readStringRequireUtf8();
+              bodyCase_ = 12;
+              body_ = s;
+              break;
+            } // case 98
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -417,11 +635,98 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
+    private int bodyCase_ = 0;
+    private java.lang.Object body_;
+    public BodyCase
+        getBodyCase() {
+      return BodyCase.forNumber(
+          bodyCase_);
+    }
+
+    public Builder clearBody() {
+      bodyCase_ = 0;
+      body_ = null;
+      onChanged();
+      return this;
+    }
+
     private int bitField0_;
+
+    private java.lang.Object hash_ = "";
+    /**
+     * <code>string hash = 1;</code>
+     * @return The hash.
+     */
+    public java.lang.String getHash() {
+      java.lang.Object ref = hash_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        hash_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string hash = 1;</code>
+     * @return The bytes for hash.
+     */
+    public com.google.protobuf.ByteString
+        getHashBytes() {
+      java.lang.Object ref = hash_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        hash_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string hash = 1;</code>
+     * @param value The hash to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHash(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      hash_ = value;
+      bitField0_ |= 0x00000001;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string hash = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearHash() {
+      hash_ = getDefaultInstance().getHash();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string hash = 1;</code>
+     * @param value The bytes for hash to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHashBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      hash_ = value;
+      bitField0_ |= 0x00000001;
+      onChanged();
+      return this;
+    }
 
     private java.lang.Object template_ = "";
     /**
-     * <code>string template = 1;</code>
+     * <code>string template = 2;</code>
      * @return The template.
      */
     public java.lang.String getTemplate() {
@@ -437,7 +742,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string template = 1;</code>
+     * <code>string template = 2;</code>
      * @return The bytes for template.
      */
     public com.google.protobuf.ByteString
@@ -454,7 +759,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string template = 1;</code>
+     * <code>string template = 2;</code>
      * @param value The template to set.
      * @return This builder for chaining.
      */
@@ -462,22 +767,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       template_ = value;
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>string template = 1;</code>
+     * <code>string template = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearTemplate() {
       template_ = getDefaultInstance().getTemplate();
-      bitField0_ = (bitField0_ & ~0x00000001);
+      bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
     /**
-     * <code>string template = 1;</code>
+     * <code>string template = 2;</code>
      * @param value The bytes for template to set.
      * @return This builder for chaining.
      */
@@ -486,39 +791,142 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       template_ = value;
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes data = 2;</code>
-     * @return The data.
+     * <code>bytes data = 11;</code>
+     * @return Whether the data field is set.
      */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getData() {
-      return data_;
+    public boolean hasData() {
+      return bodyCase_ == 11;
     }
     /**
-     * <code>bytes data = 2;</code>
+     * <code>bytes data = 11;</code>
+     * @return The data.
+     */
+    public com.google.protobuf.ByteString getData() {
+      if (bodyCase_ == 11) {
+        return (com.google.protobuf.ByteString) body_;
+      }
+      return com.google.protobuf.ByteString.EMPTY;
+    }
+    /**
+     * <code>bytes data = 11;</code>
      * @param value The data to set.
      * @return This builder for chaining.
      */
     public Builder setData(com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
-      data_ = value;
-      bitField0_ |= 0x00000002;
+      bodyCase_ = 11;
+      body_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bytes data = 2;</code>
+     * <code>bytes data = 11;</code>
      * @return This builder for chaining.
      */
     public Builder clearData() {
-      bitField0_ = (bitField0_ & ~0x00000002);
-      data_ = getDefaultInstance().getData();
+      if (bodyCase_ == 11) {
+        bodyCase_ = 0;
+        body_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>string url = 12;</code>
+     * @return Whether the url field is set.
+     */
+    @java.lang.Override
+    public boolean hasUrl() {
+      return bodyCase_ == 12;
+    }
+    /**
+     * <code>string url = 12;</code>
+     * @return The url.
+     */
+    @java.lang.Override
+    public java.lang.String getUrl() {
+      java.lang.Object ref = "";
+      if (bodyCase_ == 12) {
+        ref = body_;
+      }
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bodyCase_ == 12) {
+          body_ = s;
+        }
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string url = 12;</code>
+     * @return The bytes for url.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      java.lang.Object ref = "";
+      if (bodyCase_ == 12) {
+        ref = body_;
+      }
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        if (bodyCase_ == 12) {
+          body_ = b;
+        }
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string url = 12;</code>
+     * @param value The url to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUrl(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      bodyCase_ = 12;
+      body_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string url = 12;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUrl() {
+      if (bodyCase_ == 12) {
+        bodyCase_ = 0;
+        body_ = null;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>string url = 12;</code>
+     * @param value The bytes for url to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      bodyCase_ = 12;
+      body_ = value;
       onChanged();
       return this;
     }

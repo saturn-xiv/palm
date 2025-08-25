@@ -872,13 +872,15 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr HtmlPage::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : template__(
+      : hash_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        data_(
+        template__(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
+        body_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR HtmlPage::HtmlPage(::_pbi::ConstantInitialized)
@@ -2831,13 +2833,16 @@ const ::uint32_t
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _internal_metadata_),
         ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _impl_._oneof_case_[0]),
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _impl_.hash_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _impl_.template__),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _impl_.data_),
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _impl_.body_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Theme_Bootstrap_Home, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -3053,21 +3058,21 @@ static const ::_pbi::MigrationSchema
         {680, 690, -1, sizeof(::palm::portal::v1::Sitemap_ItemsEntry_DoNotUse)},
         {692, -1, -1, sizeof(::palm::portal::v1::Sitemap)},
         {701, -1, -1, sizeof(::palm::portal::v1::HtmlPage)},
-        {711, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Home)},
-        {719, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header)},
-        {728, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer)},
-        {737, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link)},
-        {747, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel)},
-        {758, 768, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse)},
-        {770, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item)},
-        {781, 792, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body)},
-        {795, 806, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data)},
-        {809, 819, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse)},
-        {821, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample)},
-        {831, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap)},
-        {839, -1, -1, sizeof(::palm::portal::v1::Theme_Bulma_Home)},
-        {847, -1, -1, sizeof(::palm::portal::v1::Theme_Bulma)},
-        {855, -1, -1, sizeof(::palm::portal::v1::Theme)},
+        {714, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Home)},
+        {722, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Header)},
+        {731, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Footer)},
+        {740, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Link)},
+        {750, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Panel)},
+        {761, 771, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item_PanelsEntry_DoNotUse)},
+        {773, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body_Item)},
+        {784, 795, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data_Body)},
+        {798, 809, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_Data)},
+        {812, 822, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample_TemplatesEntry_DoNotUse)},
+        {824, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap_Sample)},
+        {834, -1, -1, sizeof(::palm::portal::v1::Theme_Bootstrap)},
+        {842, -1, -1, sizeof(::palm::portal::v1::Theme_Bulma_Home)},
+        {850, -1, -1, sizeof(::palm::portal::v1::Theme_Bulma)},
+        {858, -1, -1, sizeof(::palm::portal::v1::Theme)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::portal::v1::_Page_default_instance_._instance,
@@ -3286,149 +3291,150 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\0324\n\006UrlSet\022*\n\005items\030\001 \003(\0132\033.palm.portal."
     "v1.Sitemap.Url\032L\n\nItemsEntry\022\013\n\003key\030\001 \001("
     "\t\022-\n\005value\030\002 \001(\0132\036.palm.portal.v1.Sitema"
-    "p.UrlSet:\0028\001\"*\n\010HtmlPage\022\020\n\010template\030\001 \001"
-    "(\t\022\014\n\004data\030\002 \001(\014\"\327\007\n\005Theme\032\274\007\n\tBootstrap"
-    "\032\006\n\004Home\032\246\007\n\006Sample\022H\n\ttemplates\030\001 \003(\01325"
-    ".palm.portal.v1.Theme.Bootstrap.Sample.T"
-    "emplatesEntry\022\014\n\004data\030\002 \001(\t\032\221\006\n\004Data\022B\n\006"
-    "header\030\001 \001(\01322.palm.portal.v1.Theme.Boot"
-    "strap.Sample.Data.Header\022B\n\006footer\030\002 \001(\013"
-    "22.palm.portal.v1.Theme.Bootstrap.Sample"
-    ".Data.Footer\022>\n\004body\030\003 \001(\01320.palm.portal"
-    ".v1.Theme.Bootstrap.Sample.Data.Body\032\027\n\006"
-    "Header\022\r\n\005title\030\001 \001(\t\032\033\n\006Footer\022\021\n\tcopyr"
-    "ight\030\001 \001(\t\032\212\004\n\004Body\022\r\n\005title\030\001 \001(\t\022D\n\005it"
-    "ems\030\002 \003(\01325.palm.portal.v1.Theme.Bootstr"
-    "ap.Sample.Data.Body.Item\022.\n\ncreated_at\030\t"
-    " \001(\0132\032.google.protobuf.Timestamp\032#\n\004Link"
-    "\022\r\n\005label\030\001 \001(\t\022\014\n\004href\030\002 \001(\t\032q\n\005Panel\022\r"
-    "\n\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022D\n\005li"
-    "nks\030\003 \003(\01325.palm.portal.v1.Theme.Bootstr"
-    "ap.Sample.Data.Body.Link\032\344\001\n\004Item\022\r\n\005tit"
-    "le\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022Q\n\006panels\030"
-    "\003 \003(\0132A.palm.portal.v1.Theme.Bootstrap.S"
-    "ample.Data.Body.Item.PanelsEntry\032e\n\013Pane"
-    "lsEntry\022\013\n\003key\030\001 \001(\t\022E\n\005value\030\002 \001(\01326.pa"
-    "lm.portal.v1.Theme.Bootstrap.Sample.Data"
-    ".Body.Panel:\0028\001\0320\n\016TemplatesEntry\022\013\n\003key"
-    "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\017\n\005Bulma\032\006\n\004Ho"
-    "me2\367\002\n\006Locale\022D\n\005Index\022\024.palm.portal.v1."
-    "Page\032#.palm.portal.v1.LocaleIndexRespons"
-    "e\"\000\022G\n\006Create\022#.palm.portal.v1.LocaleCre"
-    "ateRequest\032\026.google.protobuf.Empty\"\000\022G\n\006"
-    "Update\022#.palm.portal.v1.LocaleUpdateRequ"
-    "est\032\026.google.protobuf.Empty\"\000\022>\n\007Destroy"
-    "\022\031.palm.portal.v1.IdRequest\032\026.google.pro"
-    "tobuf.Empty\"\000\022U\n\006ByLang\022#.palm.portal.v1"
-    ".LocaleByLangRequest\032$.palm.portal.v1.Lo"
-    "caleByLangResponse\"\0002\247\014\n\tEmailUser\022V\n\006Si"
-    "gnIn\022&.palm.portal.v1.EmailUserSignInReq"
-    "uest\032\".palm.portal.v1.UserSignInResponse"
-    "\"\000\022J\n\006SignUp\022&.palm.portal.v1.EmailUserS"
-    "ignUpRequest\032\026.google.protobuf.Empty\"\000\022L"
-    "\n\016ConfirmByEmail\022 .palm.portal.v1.EmailU"
-    "serRequest\032\026.google.protobuf.Empty\"\000\022S\n\016"
-    "ConfirmByToken\022\'.palm.portal.v1.EmailUse"
+    "p.UrlSet:\0028\001\"Q\n\010HtmlPage\022\014\n\004hash\030\001 \001(\t\022\020"
+    "\n\010template\030\002 \001(\t\022\016\n\004data\030\013 \001(\014H\000\022\r\n\003url\030"
+    "\014 \001(\tH\000B\006\n\004body\"\327\007\n\005Theme\032\274\007\n\tBootstrap\032"
+    "\006\n\004Home\032\246\007\n\006Sample\022H\n\ttemplates\030\001 \003(\01325."
+    "palm.portal.v1.Theme.Bootstrap.Sample.Te"
+    "mplatesEntry\022\014\n\004data\030\002 \001(\t\032\221\006\n\004Data\022B\n\006h"
+    "eader\030\001 \001(\01322.palm.portal.v1.Theme.Boots"
+    "trap.Sample.Data.Header\022B\n\006footer\030\002 \001(\0132"
+    "2.palm.portal.v1.Theme.Bootstrap.Sample."
+    "Data.Footer\022>\n\004body\030\003 \001(\01320.palm.portal."
+    "v1.Theme.Bootstrap.Sample.Data.Body\032\027\n\006H"
+    "eader\022\r\n\005title\030\001 \001(\t\032\033\n\006Footer\022\021\n\tcopyri"
+    "ght\030\001 \001(\t\032\212\004\n\004Body\022\r\n\005title\030\001 \001(\t\022D\n\005ite"
+    "ms\030\002 \003(\01325.palm.portal.v1.Theme.Bootstra"
+    "p.Sample.Data.Body.Item\022.\n\ncreated_at\030\t "
+    "\001(\0132\032.google.protobuf.Timestamp\032#\n\004Link\022"
+    "\r\n\005label\030\001 \001(\t\022\014\n\004href\030\002 \001(\t\032q\n\005Panel\022\r\n"
+    "\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022D\n\005lin"
+    "ks\030\003 \003(\01325.palm.portal.v1.Theme.Bootstra"
+    "p.Sample.Data.Body.Link\032\344\001\n\004Item\022\r\n\005titl"
+    "e\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022Q\n\006panels\030\003"
+    " \003(\0132A.palm.portal.v1.Theme.Bootstrap.Sa"
+    "mple.Data.Body.Item.PanelsEntry\032e\n\013Panel"
+    "sEntry\022\013\n\003key\030\001 \001(\t\022E\n\005value\030\002 \001(\01326.pal"
+    "m.portal.v1.Theme.Bootstrap.Sample.Data."
+    "Body.Panel:\0028\001\0320\n\016TemplatesEntry\022\013\n\003key\030"
+    "\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\017\n\005Bulma\032\006\n\004Hom"
+    "e2\367\002\n\006Locale\022D\n\005Index\022\024.palm.portal.v1.P"
+    "age\032#.palm.portal.v1.LocaleIndexResponse"
+    "\"\000\022G\n\006Create\022#.palm.portal.v1.LocaleCrea"
+    "teRequest\032\026.google.protobuf.Empty\"\000\022G\n\006U"
+    "pdate\022#.palm.portal.v1.LocaleUpdateReque"
+    "st\032\026.google.protobuf.Empty\"\000\022>\n\007Destroy\022"
+    "\031.palm.portal.v1.IdRequest\032\026.google.prot"
+    "obuf.Empty\"\000\022U\n\006ByLang\022#.palm.portal.v1."
+    "LocaleByLangRequest\032$.palm.portal.v1.Loc"
+    "aleByLangResponse\"\0002\247\014\n\tEmailUser\022V\n\006Sig"
+    "nIn\022&.palm.portal.v1.EmailUserSignInRequ"
+    "est\032\".palm.portal.v1.UserSignInResponse\""
+    "\000\022J\n\006SignUp\022&.palm.portal.v1.EmailUserSi"
+    "gnUpRequest\032\026.google.protobuf.Empty\"\000\022L\n"
+    "\016ConfirmByEmail\022 .palm.portal.v1.EmailUs"
+    "erRequest\032\026.google.protobuf.Empty\"\000\022S\n\016C"
+    "onfirmByToken\022\'.palm.portal.v1.EmailUser"
+    "ByTokenRequest\032\026.google.protobuf.Empty\"\000"
+    "\022K\n\rUnlockByEmail\022 .palm.portal.v1.Email"
+    "UserRequest\032\026.google.protobuf.Empty\"\000\022R\n"
+    "\rUnlockByToken\022\'.palm.portal.v1.EmailUse"
     "rByTokenRequest\032\026.google.protobuf.Empty\""
-    "\000\022K\n\rUnlockByEmail\022 .palm.portal.v1.Emai"
-    "lUserRequest\032\026.google.protobuf.Empty\"\000\022R"
-    "\n\rUnlockByToken\022\'.palm.portal.v1.EmailUs"
-    "erByTokenRequest\032\026.google.protobuf.Empty"
-    "\"\000\022L\n\016ForgotPassword\022 .palm.portal.v1.Em"
-    "ailUserRequest\032\026.google.protobuf.Empty\"\000"
-    "\022X\n\rResetPassword\022-.palm.portal.v1.Email"
-    "UserResetPasswordRequest\032\026.google.protob"
-    "uf.Empty\"\000\022Z\n\016ChangePassword\022..palm.port"
-    "al.v1.EmailUserChangePasswordRequest\032\026.g"
-    "oogle.protobuf.Empty\"\000\022T\n\013SetRealName\022+."
-    "palm.portal.v1.EmailUserSetRealNameReque"
-    "st\032\026.google.protobuf.Empty\"\000\022P\n\tSetAvata"
-    "r\022).palm.portal.v1.EmailUserSetAvatarReq"
-    "uest\032\026.google.protobuf.Empty\"\000\022W\n\014Upload"
-    "Avatar\022\026.google.protobuf.Empty\032-.palm.po"
-    "rtal.v1.EmailUserUploadAvatarResponse\"\000\022"
-    "X\n\rDeleteByEmail\022-.palm.portal.v1.EmailU"
-    "serDeleteByEmailRequest\032\026.google.protobu"
-    "f.Empty\"\000\022R\n\rDeleteByToken\022\'.palm.portal"
-    ".v1.EmailUserByTokenRequest\032\026.google.pro"
-    "tobuf.Empty\"\000\022T\n\013SetPassword\022+.palm.port"
-    "al.v1.EmailUserSetPasswordRequest\032\026.goog"
-    "le.protobuf.Empty\"\000\022S\n\007Confirm\022..palm.po"
-    "rtal.v1.EmailUserChangePasswordRequest\032\026"
-    ".google.protobuf.Empty\"\000\022E\n\007Disable\022 .pa"
-    "lm.portal.v1.SetupUserRequest\032\026.google.p"
-    "rotobuf.Empty\"\000\022D\n\006Enable\022 .palm.portal."
-    "v1.SetupUserRequest\032\026.google.protobuf.Em"
-    "pty\"\000\022G\n\005Index\022\024.palm.portal.v1.Page\032&.p"
-    "alm.portal.v1.EmailUserIndexResponse\"\0002\224"
-    "\006\n\004User\022@\n\004Logs\022\024.palm.portal.v1.Page\032 ."
-    "palm.portal.v1.UserLogsResponse\"\000\022B\n\005Ind"
-    "ex\022\024.palm.portal.v1.Page\032!.palm.portal.v"
-    "1.UserIndexResponse\"\000\022O\n\013SetLocation\022&.p"
-    "alm.portal.v1.UserSetLocationRequest\032\026.g"
-    "oogle.protobuf.Empty\"\000\022A\n\004SetV\022\037.palm.po"
-    "rtal.v1.UserSetVRequest\032\026.google.protobu"
-    "f.Empty\"\000\022K\n\004GetV\022\037.palm.portal.v1.UserG"
-    "etVRequest\032 .palm.portal.v1.UserGetVResp"
-    "onse\"\000\022Q\n\006Upload\022!.palm.portal.v1.UserUp"
-    "loadRequest\032\".palm.portal.v1.UserUploadR"
-    "esponse\"\000\022;\n\007SignOut\022\026.google.protobuf.E"
-    "mpty\032\026.google.protobuf.Empty\"\000\022B\n\004Lock\022 "
-    ".palm.portal.v1.SetupUserRequest\032\026.googl"
-    "e.protobuf.Empty\"\000\022D\n\006Unlock\022 .palm.port"
-    "al.v1.SetupUserRequest\032\026.google.protobuf"
-    ".Empty\"\000\022E\n\007Disable\022 .palm.portal.v1.Set"
-    "upUserRequest\032\026.google.protobuf.Empty\"\000\022"
-    "D\n\006Enable\022 .palm.portal.v1.SetupUserRequ"
-    "est\032\026.google.protobuf.Empty\"\0002\275\016\n\004Site\022S"
-    "\n\rSetInfoByLang\022(.palm.portal.v1.SetSite"
-    "InfoByLangRequest\032\026.google.protobuf.Empt"
-    "y\"\000\022f\n\rGetInfoByLang\022(.palm.portal.v1.Ge"
-    "tSiteInfoByLangRequest\032).palm.portal.v1."
-    "GetSiteInfoByLangResponse\"\000\022H\n\tSetAuthor"
-    "\022!.palm.portal.v1.SiteAuthorProfile\032\026.go"
-    "ogle.protobuf.Empty\"\000\022H\n\tGetAuthor\022\026.goo"
-    "gle.protobuf.Empty\032!.palm.portal.v1.Site"
-    "AuthorProfile\"\000\022J\n\nSetFavicon\022\".palm.por"
-    "tal.v1.SiteFaviconProfile\032\026.google.proto"
-    "buf.Empty\"\000\022J\n\nGetFavicon\022\026.google.proto"
-    "buf.Empty\032\".palm.portal.v1.SiteFaviconPr"
-    "ofile\"\000\022T\n\rUploadFavicon\022\026.google.protob"
-    "uf.Empty\032).palm.portal.v1.SiteUploadFavi"
-    "conResponse\"\000\022o\n\"SetGoogleSiteOwnershipV"
-    "erification\022/.palm.portal.v1.GoogleSiteO"
-    "wnershipVerification\032\026.google.protobuf.E"
-    "mpty\"\000\022o\n\"GetGoogleSiteOwnershipVerifica"
-    "tion\022\026.google.protobuf.Empty\032/.palm.port"
-    "al.v1.GoogleSiteOwnershipVerification\"\000\022"
-    "J\n\014SetReCaptcha\022 .palm.portal.v1.ReCaptc"
-    "haProfile\032\026.google.protobuf.Empty\"\000\022J\n\014G"
-    "etReCaptcha\022\026.google.protobuf.Empty\032 .pa"
-    "lm.portal.v1.ReCaptchaProfile\"\000\022m\n!SetBa"
-    "iduSiteOwnershipVerification\022..palm.port"
-    "al.v1.BaiduSiteOwnershipVerification\032\026.g"
-    "oogle.protobuf.Empty\"\000\022m\n!GetBaiduSiteOw"
-    "nershipVerification\022\026.google.protobuf.Em"
-    "pty\032..palm.portal.v1.BaiduSiteOwnershipV"
-    "erification\"\000\022=\n\tPingBaidu\022\026.google.prot"
-    "obuf.Empty\032\026.google.protobuf.Empty\"\000\022H\n\013"
-    "SetIndexNow\022\037.palm.portal.v1.IndexNowPro"
-    "file\032\026.google.protobuf.Empty\"\000\022H\n\013GetInd"
-    "exNow\022\026.google.protobuf.Empty\032\037.palm.por"
-    "tal.v1.IndexNowProfile\"\000\022@\n\014PingIndexNow"
-    "\022\026.google.protobuf.Empty\032\026.google.protob"
-    "uf.Empty\"\000\022>\n\nClearCache\022\026.google.protob"
-    "uf.Empty\032\026.google.protobuf.Empty\"\000\022]\n\022Se"
-    "tMaintenanceMode\022-.palm.portal.v1.SiteSe"
-    "tMaintenanceModeRequest\032\026.google.protobu"
-    "f.Empty\"\000\022L\n\tTimezones\022\026.google.protobuf"
-    ".Empty\032%.palm.portal.v1.SiteTimezonesRes"
-    "ponse\"\000\022N\n\nCurrencies\022\026.google.protobuf."
-    "Empty\032&.palm.portal.v1.SiteCurrenciesRes"
-    "ponse\"\000\022L\n\tLanguages\022\026.google.protobuf.E"
-    "mpty\032%.palm.portal.v1.SiteLanguagesRespo"
-    "nse\"\000B7\n,com.github.saturn_xiv.palm.plug"
-    "ins.portal.v1P\001Z\005./;v2b\006proto3"
+    "\000\022L\n\016ForgotPassword\022 .palm.portal.v1.Ema"
+    "ilUserRequest\032\026.google.protobuf.Empty\"\000\022"
+    "X\n\rResetPassword\022-.palm.portal.v1.EmailU"
+    "serResetPasswordRequest\032\026.google.protobu"
+    "f.Empty\"\000\022Z\n\016ChangePassword\022..palm.porta"
+    "l.v1.EmailUserChangePasswordRequest\032\026.go"
+    "ogle.protobuf.Empty\"\000\022T\n\013SetRealName\022+.p"
+    "alm.portal.v1.EmailUserSetRealNameReques"
+    "t\032\026.google.protobuf.Empty\"\000\022P\n\tSetAvatar"
+    "\022).palm.portal.v1.EmailUserSetAvatarRequ"
+    "est\032\026.google.protobuf.Empty\"\000\022W\n\014UploadA"
+    "vatar\022\026.google.protobuf.Empty\032-.palm.por"
+    "tal.v1.EmailUserUploadAvatarResponse\"\000\022X"
+    "\n\rDeleteByEmail\022-.palm.portal.v1.EmailUs"
+    "erDeleteByEmailRequest\032\026.google.protobuf"
+    ".Empty\"\000\022R\n\rDeleteByToken\022\'.palm.portal."
+    "v1.EmailUserByTokenRequest\032\026.google.prot"
+    "obuf.Empty\"\000\022T\n\013SetPassword\022+.palm.porta"
+    "l.v1.EmailUserSetPasswordRequest\032\026.googl"
+    "e.protobuf.Empty\"\000\022S\n\007Confirm\022..palm.por"
+    "tal.v1.EmailUserChangePasswordRequest\032\026."
+    "google.protobuf.Empty\"\000\022E\n\007Disable\022 .pal"
+    "m.portal.v1.SetupUserRequest\032\026.google.pr"
+    "otobuf.Empty\"\000\022D\n\006Enable\022 .palm.portal.v"
+    "1.SetupUserRequest\032\026.google.protobuf.Emp"
+    "ty\"\000\022G\n\005Index\022\024.palm.portal.v1.Page\032&.pa"
+    "lm.portal.v1.EmailUserIndexResponse\"\0002\224\006"
+    "\n\004User\022@\n\004Logs\022\024.palm.portal.v1.Page\032 .p"
+    "alm.portal.v1.UserLogsResponse\"\000\022B\n\005Inde"
+    "x\022\024.palm.portal.v1.Page\032!.palm.portal.v1"
+    ".UserIndexResponse\"\000\022O\n\013SetLocation\022&.pa"
+    "lm.portal.v1.UserSetLocationRequest\032\026.go"
+    "ogle.protobuf.Empty\"\000\022A\n\004SetV\022\037.palm.por"
+    "tal.v1.UserSetVRequest\032\026.google.protobuf"
+    ".Empty\"\000\022K\n\004GetV\022\037.palm.portal.v1.UserGe"
+    "tVRequest\032 .palm.portal.v1.UserGetVRespo"
+    "nse\"\000\022Q\n\006Upload\022!.palm.portal.v1.UserUpl"
+    "oadRequest\032\".palm.portal.v1.UserUploadRe"
+    "sponse\"\000\022;\n\007SignOut\022\026.google.protobuf.Em"
+    "pty\032\026.google.protobuf.Empty\"\000\022B\n\004Lock\022 ."
+    "palm.portal.v1.SetupUserRequest\032\026.google"
+    ".protobuf.Empty\"\000\022D\n\006Unlock\022 .palm.porta"
+    "l.v1.SetupUserRequest\032\026.google.protobuf."
+    "Empty\"\000\022E\n\007Disable\022 .palm.portal.v1.Setu"
+    "pUserRequest\032\026.google.protobuf.Empty\"\000\022D"
+    "\n\006Enable\022 .palm.portal.v1.SetupUserReque"
+    "st\032\026.google.protobuf.Empty\"\0002\275\016\n\004Site\022S\n"
+    "\rSetInfoByLang\022(.palm.portal.v1.SetSiteI"
+    "nfoByLangRequest\032\026.google.protobuf.Empty"
+    "\"\000\022f\n\rGetInfoByLang\022(.palm.portal.v1.Get"
+    "SiteInfoByLangRequest\032).palm.portal.v1.G"
+    "etSiteInfoByLangResponse\"\000\022H\n\tSetAuthor\022"
+    "!.palm.portal.v1.SiteAuthorProfile\032\026.goo"
+    "gle.protobuf.Empty\"\000\022H\n\tGetAuthor\022\026.goog"
+    "le.protobuf.Empty\032!.palm.portal.v1.SiteA"
+    "uthorProfile\"\000\022J\n\nSetFavicon\022\".palm.port"
+    "al.v1.SiteFaviconProfile\032\026.google.protob"
+    "uf.Empty\"\000\022J\n\nGetFavicon\022\026.google.protob"
+    "uf.Empty\032\".palm.portal.v1.SiteFaviconPro"
+    "file\"\000\022T\n\rUploadFavicon\022\026.google.protobu"
+    "f.Empty\032).palm.portal.v1.SiteUploadFavic"
+    "onResponse\"\000\022o\n\"SetGoogleSiteOwnershipVe"
+    "rification\022/.palm.portal.v1.GoogleSiteOw"
+    "nershipVerification\032\026.google.protobuf.Em"
+    "pty\"\000\022o\n\"GetGoogleSiteOwnershipVerificat"
+    "ion\022\026.google.protobuf.Empty\032/.palm.porta"
+    "l.v1.GoogleSiteOwnershipVerification\"\000\022J"
+    "\n\014SetReCaptcha\022 .palm.portal.v1.ReCaptch"
+    "aProfile\032\026.google.protobuf.Empty\"\000\022J\n\014Ge"
+    "tReCaptcha\022\026.google.protobuf.Empty\032 .pal"
+    "m.portal.v1.ReCaptchaProfile\"\000\022m\n!SetBai"
+    "duSiteOwnershipVerification\022..palm.porta"
+    "l.v1.BaiduSiteOwnershipVerification\032\026.go"
+    "ogle.protobuf.Empty\"\000\022m\n!GetBaiduSiteOwn"
+    "ershipVerification\022\026.google.protobuf.Emp"
+    "ty\032..palm.portal.v1.BaiduSiteOwnershipVe"
+    "rification\"\000\022=\n\tPingBaidu\022\026.google.proto"
+    "buf.Empty\032\026.google.protobuf.Empty\"\000\022H\n\013S"
+    "etIndexNow\022\037.palm.portal.v1.IndexNowProf"
+    "ile\032\026.google.protobuf.Empty\"\000\022H\n\013GetInde"
+    "xNow\022\026.google.protobuf.Empty\032\037.palm.port"
+    "al.v1.IndexNowProfile\"\000\022@\n\014PingIndexNow\022"
+    "\026.google.protobuf.Empty\032\026.google.protobu"
+    "f.Empty\"\000\022>\n\nClearCache\022\026.google.protobu"
+    "f.Empty\032\026.google.protobuf.Empty\"\000\022]\n\022Set"
+    "MaintenanceMode\022-.palm.portal.v1.SiteSet"
+    "MaintenanceModeRequest\032\026.google.protobuf"
+    ".Empty\"\000\022L\n\tTimezones\022\026.google.protobuf."
+    "Empty\032%.palm.portal.v1.SiteTimezonesResp"
+    "onse\"\000\022N\n\nCurrencies\022\026.google.protobuf.E"
+    "mpty\032&.palm.portal.v1.SiteCurrenciesResp"
+    "onse\"\000\022L\n\tLanguages\022\026.google.protobuf.Em"
+    "pty\032%.palm.portal.v1.SiteLanguagesRespon"
+    "se\"\000B7\n,com.github.saturn_xiv.palm.plugi"
+    "ns.portal.v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_portal_2eproto_deps[3] =
     {
@@ -3440,7 +3446,7 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    11270,
+    11309,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
@@ -20199,6 +20205,8 @@ void Sitemap::InternalSwap(Sitemap* PROTOBUF_RESTRICT other) {
 
 class HtmlPage::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::portal::v1::HtmlPage, _impl_._oneof_case_);
 };
 
 HtmlPage::HtmlPage(::google::protobuf::Arena* arena)
@@ -20213,9 +20221,11 @@ HtmlPage::HtmlPage(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE HtmlPage::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::portal::v1::HtmlPage& from_msg)
-      : template__(arena, from.template__),
-        data_(arena, from.data_),
-        _cached_size_{0} {}
+      : hash_(arena, from.hash_),
+        template__(arena, from.template__),
+        body_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
 
 HtmlPage::HtmlPage(
     ::google::protobuf::Arena* arena,
@@ -20230,15 +20240,27 @@ HtmlPage::HtmlPage(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (body_case()) {
+    case BODY_NOT_SET:
+      break;
+      case kData:
+        new (&_impl_.body_.data_) decltype(_impl_.body_.data_){arena, from._impl_.body_.data_};
+        break;
+      case kUrl:
+        new (&_impl_.body_.url_) decltype(_impl_.body_.url_){arena, from._impl_.body_.url_};
+        break;
+  }
 
   // @@protoc_insertion_point(copy_constructor:palm.portal.v1.HtmlPage)
 }
 inline PROTOBUF_NDEBUG_INLINE HtmlPage::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : template__(arena),
-        data_(arena),
-        _cached_size_{0} {}
+      : hash_(arena),
+        template__(arena),
+        body_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
 inline void HtmlPage::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -20251,10 +20273,33 @@ inline void HtmlPage::SharedDtor(MessageLite& self) {
   HtmlPage& this_ = static_cast<HtmlPage&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.hash_.Destroy();
   this_._impl_.template__.Destroy();
-  this_._impl_.data_.Destroy();
+  if (this_.has_body()) {
+    this_.clear_body();
+  }
   this_._impl_.~Impl_();
 }
+
+void HtmlPage::clear_body() {
+// @@protoc_insertion_point(one_of_clear_start:palm.portal.v1.HtmlPage)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (body_case()) {
+    case kData: {
+      _impl_.body_.data_.Destroy();
+      break;
+    }
+    case kUrl: {
+      _impl_.body_.url_.Destroy();
+      break;
+    }
+    case BODY_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = BODY_NOT_SET;
+}
+
 
 inline void* HtmlPage::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
@@ -20292,15 +20337,15 @@ const ::google::protobuf::internal::ClassData* HtmlPage::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 40, 2> HtmlPage::_table_ = {
+const ::_pbi::TcParseTable<1, 4, 0, 47, 2> HtmlPage::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    12, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294964220,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -20310,27 +20355,35 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> HtmlPage::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::portal::v1::HtmlPage>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bytes data = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.data_)}},
-    // string template = 1;
+    // string template = 2;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.template__)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.template__)}},
+    // string hash = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.hash_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string template = 1;
+    // string hash = 1;
+    {PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.hash_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string template = 2;
     {PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.template__), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bytes data = 2;
-    {PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.data_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes data = 11;
+    {PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.body_.data_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kBytes | ::_fl::kRepAString)},
+    // string url = 12;
+    {PROTOBUF_FIELD_OFFSET(HtmlPage, _impl_.body_.url_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\27\10\0\0\0\0\0\0"
+    "\27\4\10\0\3\0\0\0"
     "palm.portal.v1.HtmlPage"
+    "hash"
     "template"
+    "url"
   }},
 };
 
@@ -20341,8 +20394,9 @@ PROTOBUF_NOINLINE void HtmlPage::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.hash_.ClearToEmpty();
   _impl_.template__.ClearToEmpty();
-  _impl_.data_.ClearToEmpty();
+  clear_body();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -20361,20 +20415,38 @@ PROTOBUF_NOINLINE void HtmlPage::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string template = 1;
+          // string hash = 1;
+          if (!this_._internal_hash().empty()) {
+            const std::string& _s = this_._internal_hash();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.HtmlPage.hash");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string template = 2;
           if (!this_._internal_template_().empty()) {
             const std::string& _s = this_._internal_template_();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.HtmlPage.template");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
+            target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // bytes data = 2;
-          if (!this_._internal_data().empty()) {
-            const std::string& _s = this_._internal_data();
-            target = stream->WriteBytesMaybeAliased(2, _s, target);
+          switch (this_.body_case()) {
+            case kData: {
+              const std::string& _s = this_._internal_data();
+              target = stream->WriteBytesMaybeAliased(11, _s, target);
+              break;
+            }
+            case kUrl: {
+              const std::string& _s = this_._internal_url();
+              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.HtmlPage.url");
+              target = stream->WriteStringMaybeAliased(12, _s, target);
+              break;
+            }
+            default:
+              break;
           }
-
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -20400,15 +20472,32 @@ PROTOBUF_NOINLINE void HtmlPage::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // string template = 1;
+            // string hash = 1;
+            if (!this_._internal_hash().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_hash());
+            }
+            // string template = 2;
             if (!this_._internal_template_().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_template_());
             }
-            // bytes data = 2;
-            if (!this_._internal_data().empty()) {
+          }
+          switch (this_.body_case()) {
+            // bytes data = 11;
+            case kData: {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                               this_._internal_data());
+              break;
+            }
+            // string url = 12;
+            case kUrl: {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_url());
+              break;
+            }
+            case BODY_NOT_SET: {
+              break;
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -20418,16 +20507,46 @@ PROTOBUF_NOINLINE void HtmlPage::Clear() {
 void HtmlPage::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<HtmlPage*>(&to_msg);
   auto& from = static_cast<const HtmlPage&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.HtmlPage)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_hash().empty()) {
+    _this->_internal_set_hash(from._internal_hash());
+  }
   if (!from._internal_template_().empty()) {
     _this->_internal_set_template_(from._internal_template_());
   }
-  if (!from._internal_data().empty()) {
-    _this->_internal_set_data(from._internal_data());
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_body();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kData: {
+        if (oneof_needs_init) {
+          _this->_impl_.body_.data_.InitDefault();
+        }
+        _this->_impl_.body_.data_.Set(from._internal_data(), arena);
+        break;
+      }
+      case kUrl: {
+        if (oneof_needs_init) {
+          _this->_impl_.body_.url_.InitDefault();
+        }
+        _this->_impl_.body_.url_.Set(from._internal_url(), arena);
+        break;
+      }
+      case BODY_NOT_SET:
+        break;
+    }
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -20445,8 +20564,10 @@ void HtmlPage::InternalSwap(HtmlPage* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.hash_, &other->_impl_.hash_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.template__, &other->_impl_.template__, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+  swap(_impl_.body_, other->_impl_.body_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::google::protobuf::Metadata HtmlPage::GetMetadata() const {

@@ -400,8 +400,12 @@ message Sitemap {
 }
 // ----------------------------------------------------------------------------
 message HtmlPage {
-  string template = 1;
-  bytes data = 2;
+  string hash = 1;
+  string template = 2;
+  oneof body {
+    bytes data = 11;
+    string url = 12;
+  }
 }
 message Theme {
   message Bootstrap {

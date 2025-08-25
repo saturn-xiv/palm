@@ -12,7 +12,6 @@ import (
 	"gorm.io/gorm"
 
 	http_ "github.com/saturn-xiv/palm/jasmine/cmd/http"
-	"github.com/saturn-xiv/palm/jasmine/controllers"
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
 	"github.com/saturn-xiv/palm/jasmine/env/redis"
 	"github.com/saturn-xiv/palm/jasmine/services/portal/models"
@@ -71,16 +70,16 @@ func set_home_page(ctx context.Context, db *gorm.DB, redis *redis.Client, aes *c
 		return err
 	}
 	for _, lang := range languages {
-		hash := fmt.Sprintf("home.%s", lang)
-
-		if _, err := controllers.GetHtmlPage(ctx, redis, hash); err != nil {
-			page := portal_v2.HtmlPage{Template: "home"}
-			slog.Warn("set homepage", slog.String("lang", lang), slog.String("hash", hash), slog.String("template", page.Template))
-			page.Data, err = web.ProtoBufMessageToJson(&portal_v2.Theme_Bootstrap_Home{})
+		page := portal_v2.HtmlPage{Hash: fmt.Sprintf("home.%s", lang)}
+		if err = redis.GetJson(ctx, &page); err != nil {
+			page.Template = "home"
+			slog.Warn("set homepage", slog.String("lang", lang), slog.String("hash", page.Hash), slog.String("template", page.Template))
+			buf, err := web.ProtoBufMessageToJson(&portal_v2.Theme_Bootstrap_Home{})
 			if err != nil {
 				return err
 			}
-			if err = controllers.SetHtmlPage(ctx, redis, hash, &page, 0); err != nil {
+			page.Body = &portal_v2.HtmlPage_Data{Data: buf}
+			if err = redis.SetJson(ctx, &page, 0); err != nil {
 				return err
 			}
 		}
@@ -139,17 +138,15 @@ func set_sample_page(ctx context.Context, cli *redis.Client) error {
 	}
 
 	{
-		hash := "samples-tpl-show"
 
-		page := portal_v2.HtmlPage{Template: "samples.tpl.show", Data: sample}
-		slog.Info("setup page", slog.String("path", fmt.Sprintf("/p-%s.html", hash)), slog.String("template", page.Template))
-		if err := controllers.SetHtmlPage(ctx, cli, hash, &page, 0); err != nil {
+		page := portal_v2.HtmlPage{Hash: "samples-tpl-show", Template: "samples.tpl.show", Body: &portal_v2.HtmlPage_Data{Data: sample}}
+		slog.Info("setup page", slog.String("path", page.Path()), slog.String("template", page.Template))
+		if err := cli.SetJson(ctx, &page, 0); err != nil {
 			return err
 		}
 	}
 
 	{
-		hash := "samples-tpl"
 
 		arg := portal_v2.Theme_Bootstrap_Sample{
 			Data:      string(sample),
@@ -167,9 +164,9 @@ func set_sample_page(ctx context.Context, cli *redis.Client) error {
 		if err != nil {
 			return err
 		}
-		page := portal_v2.HtmlPage{Template: "samples.tpl.index", Data: data}
-		slog.Info("setup page", slog.String("path", fmt.Sprintf("/p-%s.html", hash)), slog.String("template", page.Template))
-		if err := controllers.SetHtmlPage(ctx, cli, hash, &page, 0); err != nil {
+		page := portal_v2.HtmlPage{Hash: "samples-tpl", Template: "samples.tpl.index", Body: &portal_v2.HtmlPage_Data{Data: data}}
+		slog.Info("setup page", slog.String("path", page.Path()), slog.String("template", page.Template))
+		if err := cli.SetJson(ctx, &page, 0); err != nil {
 			return err
 		}
 	}

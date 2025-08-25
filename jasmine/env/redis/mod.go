@@ -2,6 +2,7 @@ package redis
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log/slog"
 	"time"
@@ -50,6 +51,25 @@ type Client struct {
 
 func (p *Client) Execute(f func(*redis.ClusterClient, func(string) string) error) error {
 	return f(p.db, p.key)
+}
+
+type Object interface {
+	Key() string
+}
+
+func (p *Client) SetJson(ctx context.Context, obj Object, ttl time.Duration) error {
+	buf, err := json.Marshal(obj)
+	if err != nil {
+		return err
+	}
+	return p.db.Set(ctx, p.key(obj.Key()), buf, ttl).Err()
+}
+func (p *Client) GetJson(ctx context.Context, obj Object) error {
+	buf, err := p.db.Get(ctx, obj.Key()).Bytes()
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(buf, obj)
 }
 
 func (p *Client) Set(ctx context.Context, key string, value []byte, ttl time.Duration) error {

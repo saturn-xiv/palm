@@ -45,6 +45,7 @@ goog.exportSymbol('proto.palm.portal.v1.GetSiteInfoByLangRequest', null, global)
 goog.exportSymbol('proto.palm.portal.v1.GetSiteInfoByLangResponse', null, global);
 goog.exportSymbol('proto.palm.portal.v1.GoogleSiteOwnershipVerification', null, global);
 goog.exportSymbol('proto.palm.portal.v1.HtmlPage', null, global);
+goog.exportSymbol('proto.palm.portal.v1.HtmlPage.BodyCase', null, global);
 goog.exportSymbol('proto.palm.portal.v1.IdRequest', null, global);
 goog.exportSymbol('proto.palm.portal.v1.IndexNowProfile', null, global);
 goog.exportSymbol('proto.palm.portal.v1.LocaleByLangRequest', null, global);
@@ -1309,7 +1310,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.palm.portal.v1.HtmlPage = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.palm.portal.v1.HtmlPage.oneofGroups_);
 };
 goog.inherits(proto.palm.portal.v1.HtmlPage, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -12914,6 +12915,32 @@ proto.palm.portal.v1.Sitemap.prototype.clearItemsMap = function() {
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.palm.portal.v1.HtmlPage.oneofGroups_ = [[11,12]];
+
+/**
+ * @enum {number}
+ */
+proto.palm.portal.v1.HtmlPage.BodyCase = {
+  BODY_NOT_SET: 0,
+  DATA: 11,
+  URL: 12
+};
+
+/**
+ * @return {proto.palm.portal.v1.HtmlPage.BodyCase}
+ */
+proto.palm.portal.v1.HtmlPage.prototype.getBodyCase = function() {
+  return /** @type {proto.palm.portal.v1.HtmlPage.BodyCase} */(jspb.Message.computeOneofCase(this, proto.palm.portal.v1.HtmlPage.oneofGroups_[0]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -12945,8 +12972,10 @@ proto.palm.portal.v1.HtmlPage.prototype.toObject = function(opt_includeInstance)
  */
 proto.palm.portal.v1.HtmlPage.toObject = function(includeInstance, msg) {
   var f, obj = {
-template: jspb.Message.getFieldWithDefault(msg, 1, ""),
-data: msg.getData_asB64()
+hash: jspb.Message.getFieldWithDefault(msg, 1, ""),
+template: jspb.Message.getFieldWithDefault(msg, 2, ""),
+data: msg.getData_asB64(),
+url: (f = jspb.Message.getField(msg, 12)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -12985,11 +13014,19 @@ proto.palm.portal.v1.HtmlPage.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTemplate(value);
+      msg.setHash(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTemplate(value);
+      break;
+    case 11:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setData(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
       break;
     default:
       reader.skipField();
@@ -13020,17 +13057,31 @@ proto.palm.portal.v1.HtmlPage.prototype.serializeBinary = function() {
  */
 proto.palm.portal.v1.HtmlPage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTemplate();
+  f = message.getHash();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getData_asU8();
+  f = message.getTemplate();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       2,
+      f
+    );
+  }
+  f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 11));
+  if (f != null) {
+    writer.writeBytes(
+      11,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 12));
+  if (f != null) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -13038,10 +13089,10 @@ proto.palm.portal.v1.HtmlPage.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string template = 1;
+ * optional string hash = 1;
  * @return {string}
  */
-proto.palm.portal.v1.HtmlPage.prototype.getTemplate = function() {
+proto.palm.portal.v1.HtmlPage.prototype.getHash = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -13050,22 +13101,40 @@ proto.palm.portal.v1.HtmlPage.prototype.getTemplate = function() {
  * @param {string} value
  * @return {!proto.palm.portal.v1.HtmlPage} returns this
  */
-proto.palm.portal.v1.HtmlPage.prototype.setTemplate = function(value) {
+proto.palm.portal.v1.HtmlPage.prototype.setHash = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional bytes data = 2;
- * @return {!(string|Uint8Array)}
+ * optional string template = 2;
+ * @return {string}
  */
-proto.palm.portal.v1.HtmlPage.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.palm.portal.v1.HtmlPage.prototype.getTemplate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes data = 2;
+ * @param {string} value
+ * @return {!proto.palm.portal.v1.HtmlPage} returns this
+ */
+proto.palm.portal.v1.HtmlPage.prototype.setTemplate = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bytes data = 11;
+ * @return {!(string|Uint8Array)}
+ */
+proto.palm.portal.v1.HtmlPage.prototype.getData = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * optional bytes data = 11;
  * This is a type-conversion wrapper around `getData()`
  * @return {string}
  */
@@ -13076,7 +13145,7 @@ proto.palm.portal.v1.HtmlPage.prototype.getData_asB64 = function() {
 
 
 /**
- * optional bytes data = 2;
+ * optional bytes data = 11;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getData()`
@@ -13093,7 +13162,61 @@ proto.palm.portal.v1.HtmlPage.prototype.getData_asU8 = function() {
  * @return {!proto.palm.portal.v1.HtmlPage} returns this
  */
 proto.palm.portal.v1.HtmlPage.prototype.setData = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+  return jspb.Message.setOneofField(this, 11, proto.palm.portal.v1.HtmlPage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.palm.portal.v1.HtmlPage} returns this
+ */
+proto.palm.portal.v1.HtmlPage.prototype.clearData = function() {
+  return jspb.Message.setOneofField(this, 11, proto.palm.portal.v1.HtmlPage.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.palm.portal.v1.HtmlPage.prototype.hasData = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional string url = 12;
+ * @return {string}
+ */
+proto.palm.portal.v1.HtmlPage.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.palm.portal.v1.HtmlPage} returns this
+ */
+proto.palm.portal.v1.HtmlPage.prototype.setUrl = function(value) {
+  return jspb.Message.setOneofField(this, 12, proto.palm.portal.v1.HtmlPage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.palm.portal.v1.HtmlPage} returns this
+ */
+proto.palm.portal.v1.HtmlPage.prototype.clearUrl = function() {
+  return jspb.Message.setOneofField(this, 12, proto.palm.portal.v1.HtmlPage.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.palm.portal.v1.HtmlPage.prototype.hasUrl = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
