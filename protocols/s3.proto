@@ -9,6 +9,8 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
+// ----------------------------------------------------------------------------
+
 service S3 {
   rpc ListBuckets(google.protobuf.Empty) returns (ListBucketsResponse) {}
   rpc BucketExists(BucketRequest) returns (BucketExistsResponse) {}

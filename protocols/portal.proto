@@ -155,6 +155,53 @@ message EmailUserSignInRequest {
   string salt = 3;
   optional google.protobuf.Duration ttl = 9;
 }
+
+// ----------------------------------------------------------------------------
+service Attachment {
+  rpc Index(Page) returns (AttachmentIndexResponse) {}
+  rpc Upload(AttachmentUploadRequest) returns (AttachmentUploadResponse) {}
+  rpc Show(AttachmentShowRequest) returns (AttachmentShowResponse) {}
+}
+message AttachmentShowRequest {
+  string bucket = 1;
+  string object = 2;
+  string file_name = 3;
+  string content_type = 5;
+  bool inline = 6;
+  optional google.protobuf.Duration expires = 9;
+}
+message AttachmentShowResponse {
+  string url = 1;
+}
+message AttachmentUploadRequest {
+  message Bucket {
+    bool public = 1;
+    optional uint32 expiration_days = 2;
+  }
+  Bucket bucket = 1;
+  string file_name = 2;
+  google.protobuf.Duration expires = 9;
+}
+message AttachmentUploadResponse {
+  string bucket = 1;
+  string object = 2;
+  string url = 3;
+}
+message AttachmentIndexResponse {
+  message Item {
+    uint32 id = 1;
+    uint32 user_id = 2;
+    string name = 3;
+    string bucket = 4;
+    string object = 5;
+    uint64 size = 6;
+    string content_type = 7;
+    optional google.protobuf.Timestamp uploaded_at = 18;
+    optional google.protobuf.Timestamp deleted_at = 19;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 9;
+}
 // ----------------------------------------------------------------------------
 
 service User {

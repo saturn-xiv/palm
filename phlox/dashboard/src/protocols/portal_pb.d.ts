@@ -622,6 +622,246 @@ export namespace EmailUserSignInRequest {
   }
 }
 
+export class AttachmentShowRequest extends jspb.Message {
+  getBucket(): string;
+  setBucket(value: string): AttachmentShowRequest;
+
+  getObject(): string;
+  setObject(value: string): AttachmentShowRequest;
+
+  getFileName(): string;
+  setFileName(value: string): AttachmentShowRequest;
+
+  getContentType(): string;
+  setContentType(value: string): AttachmentShowRequest;
+
+  getInline(): boolean;
+  setInline(value: boolean): AttachmentShowRequest;
+
+  getExpires(): google_protobuf_duration_pb.Duration | undefined;
+  setExpires(value?: google_protobuf_duration_pb.Duration): AttachmentShowRequest;
+  hasExpires(): boolean;
+  clearExpires(): AttachmentShowRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AttachmentShowRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AttachmentShowRequest): AttachmentShowRequest.AsObject;
+  static serializeBinaryToWriter(message: AttachmentShowRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AttachmentShowRequest;
+  static deserializeBinaryFromReader(message: AttachmentShowRequest, reader: jspb.BinaryReader): AttachmentShowRequest;
+}
+
+export namespace AttachmentShowRequest {
+  export type AsObject = {
+    bucket: string,
+    object: string,
+    fileName: string,
+    contentType: string,
+    inline: boolean,
+    expires?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+
+  export enum ExpiresCase { 
+    _EXPIRES_NOT_SET = 0,
+    EXPIRES = 9,
+  }
+}
+
+export class AttachmentShowResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): AttachmentShowResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AttachmentShowResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AttachmentShowResponse): AttachmentShowResponse.AsObject;
+  static serializeBinaryToWriter(message: AttachmentShowResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AttachmentShowResponse;
+  static deserializeBinaryFromReader(message: AttachmentShowResponse, reader: jspb.BinaryReader): AttachmentShowResponse;
+}
+
+export namespace AttachmentShowResponse {
+  export type AsObject = {
+    url: string,
+  }
+}
+
+export class AttachmentUploadRequest extends jspb.Message {
+  getBucket(): AttachmentUploadRequest.Bucket | undefined;
+  setBucket(value?: AttachmentUploadRequest.Bucket): AttachmentUploadRequest;
+  hasBucket(): boolean;
+  clearBucket(): AttachmentUploadRequest;
+
+  getFileName(): string;
+  setFileName(value: string): AttachmentUploadRequest;
+
+  getExpires(): google_protobuf_duration_pb.Duration | undefined;
+  setExpires(value?: google_protobuf_duration_pb.Duration): AttachmentUploadRequest;
+  hasExpires(): boolean;
+  clearExpires(): AttachmentUploadRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AttachmentUploadRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AttachmentUploadRequest): AttachmentUploadRequest.AsObject;
+  static serializeBinaryToWriter(message: AttachmentUploadRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AttachmentUploadRequest;
+  static deserializeBinaryFromReader(message: AttachmentUploadRequest, reader: jspb.BinaryReader): AttachmentUploadRequest;
+}
+
+export namespace AttachmentUploadRequest {
+  export type AsObject = {
+    bucket?: AttachmentUploadRequest.Bucket.AsObject,
+    fileName: string,
+    expires?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+
+  export class Bucket extends jspb.Message {
+    getPublic(): boolean;
+    setPublic(value: boolean): Bucket;
+
+    getExpirationDays(): number;
+    setExpirationDays(value: number): Bucket;
+    hasExpirationDays(): boolean;
+    clearExpirationDays(): Bucket;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Bucket.AsObject;
+    static toObject(includeInstance: boolean, msg: Bucket): Bucket.AsObject;
+    static serializeBinaryToWriter(message: Bucket, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Bucket;
+    static deserializeBinaryFromReader(message: Bucket, reader: jspb.BinaryReader): Bucket;
+  }
+
+  export namespace Bucket {
+    export type AsObject = {
+      pb_public: boolean,
+      expirationDays?: number,
+    }
+
+    export enum ExpirationDaysCase { 
+      _EXPIRATION_DAYS_NOT_SET = 0,
+      EXPIRATION_DAYS = 2,
+    }
+  }
+
+}
+
+export class AttachmentUploadResponse extends jspb.Message {
+  getBucket(): string;
+  setBucket(value: string): AttachmentUploadResponse;
+
+  getObject(): string;
+  setObject(value: string): AttachmentUploadResponse;
+
+  getUrl(): string;
+  setUrl(value: string): AttachmentUploadResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AttachmentUploadResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AttachmentUploadResponse): AttachmentUploadResponse.AsObject;
+  static serializeBinaryToWriter(message: AttachmentUploadResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AttachmentUploadResponse;
+  static deserializeBinaryFromReader(message: AttachmentUploadResponse, reader: jspb.BinaryReader): AttachmentUploadResponse;
+}
+
+export namespace AttachmentUploadResponse {
+  export type AsObject = {
+    bucket: string,
+    object: string,
+    url: string,
+  }
+}
+
+export class AttachmentIndexResponse extends jspb.Message {
+  getItemsList(): Array<AttachmentIndexResponse.Item>;
+  setItemsList(value: Array<AttachmentIndexResponse.Item>): AttachmentIndexResponse;
+  clearItemsList(): AttachmentIndexResponse;
+  addItems(value?: AttachmentIndexResponse.Item, index?: number): AttachmentIndexResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): AttachmentIndexResponse;
+  hasPagination(): boolean;
+  clearPagination(): AttachmentIndexResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AttachmentIndexResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AttachmentIndexResponse): AttachmentIndexResponse.AsObject;
+  static serializeBinaryToWriter(message: AttachmentIndexResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AttachmentIndexResponse;
+  static deserializeBinaryFromReader(message: AttachmentIndexResponse, reader: jspb.BinaryReader): AttachmentIndexResponse;
+}
+
+export namespace AttachmentIndexResponse {
+  export type AsObject = {
+    itemsList: Array<AttachmentIndexResponse.Item.AsObject>,
+    pagination?: Pagination.AsObject,
+  }
+
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getUserId(): number;
+    setUserId(value: number): Item;
+
+    getName(): string;
+    setName(value: string): Item;
+
+    getBucket(): string;
+    setBucket(value: string): Item;
+
+    getObject(): string;
+    setObject(value: string): Item;
+
+    getSize(): number;
+    setSize(value: number): Item;
+
+    getContentType(): string;
+    setContentType(value: string): Item;
+
+    getUploadedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUploadedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUploadedAt(): boolean;
+    clearUploadedAt(): Item;
+
+    getDeletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setDeletedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasDeletedAt(): boolean;
+    clearDeletedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number,
+      userId: number,
+      name: string,
+      bucket: string,
+      object: string,
+      size: number,
+      contentType: string,
+      uploadedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      deletedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
+
+    export enum UploadedAtCase { 
+      _UPLOADED_AT_NOT_SET = 0,
+      UPLOADED_AT = 18,
+    }
+
+    export enum DeletedAtCase { 
+      _DELETED_AT_NOT_SET = 0,
+      DELETED_AT = 19,
+    }
+  }
+
+}
+
 export class UserUploadRequest extends jspb.Message {
   getPublic(): boolean;
   setPublic(value: boolean): UserUploadRequest;

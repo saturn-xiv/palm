@@ -1068,6 +1068,188 @@ var EmailUser_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Attachment_Index_FullMethodName  = "/palm.portal.v1.Attachment/Index"
+	Attachment_Upload_FullMethodName = "/palm.portal.v1.Attachment/Upload"
+	Attachment_Show_FullMethodName   = "/palm.portal.v1.Attachment/Show"
+)
+
+// AttachmentClient is the client API for Attachment service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type AttachmentClient interface {
+	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	Upload(ctx context.Context, in *AttachmentUploadRequest, opts ...grpc.CallOption) (*AttachmentUploadResponse, error)
+	Show(ctx context.Context, in *AttachmentShowRequest, opts ...grpc.CallOption) (*AttachmentShowResponse, error)
+}
+
+type attachmentClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAttachmentClient(cc grpc.ClientConnInterface) AttachmentClient {
+	return &attachmentClient{cc}
+}
+
+func (c *attachmentClient) Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Upload(ctx context.Context, in *AttachmentUploadRequest, opts ...grpc.CallOption) (*AttachmentUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentUploadResponse)
+	err := c.cc.Invoke(ctx, Attachment_Upload_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Show(ctx context.Context, in *AttachmentShowRequest, opts ...grpc.CallOption) (*AttachmentShowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentShowResponse)
+	err := c.cc.Invoke(ctx, Attachment_Show_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AttachmentServer is the server API for Attachment service.
+// All implementations must embed UnimplementedAttachmentServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type AttachmentServer interface {
+	Index(context.Context, *Page) (*AttachmentIndexResponse, error)
+	Upload(context.Context, *AttachmentUploadRequest) (*AttachmentUploadResponse, error)
+	Show(context.Context, *AttachmentShowRequest) (*AttachmentShowResponse, error)
+	mustEmbedUnimplementedAttachmentServer()
+}
+
+// UnimplementedAttachmentServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedAttachmentServer struct{}
+
+func (UnimplementedAttachmentServer) Index(context.Context, *Page) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedAttachmentServer) Upload(context.Context, *AttachmentUploadRequest) (*AttachmentUploadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
+}
+func (UnimplementedAttachmentServer) Show(context.Context, *AttachmentShowRequest) (*AttachmentShowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Show not implemented")
+}
+func (UnimplementedAttachmentServer) mustEmbedUnimplementedAttachmentServer() {}
+func (UnimplementedAttachmentServer) testEmbeddedByValue()                    {}
+
+// UnsafeAttachmentServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AttachmentServer will
+// result in compilation errors.
+type UnsafeAttachmentServer interface {
+	mustEmbedUnimplementedAttachmentServer()
+}
+
+func RegisterAttachmentServer(s grpc.ServiceRegistrar, srv AttachmentServer) {
+	// If the following call pancis, it indicates UnimplementedAttachmentServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Attachment_ServiceDesc, srv)
+}
+
+func _Attachment_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Index(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Upload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Upload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Upload(ctx, req.(*AttachmentUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Show_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentShowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Show(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Show_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Show(ctx, req.(*AttachmentShowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Attachment_ServiceDesc is the grpc.ServiceDesc for Attachment service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Attachment_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.Attachment",
+	HandlerType: (*AttachmentServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Index",
+			Handler:    _Attachment_Index_Handler,
+		},
+		{
+			MethodName: "Upload",
+			Handler:    _Attachment_Upload_Handler,
+		},
+		{
+			MethodName: "Show",
+			Handler:    _Attachment_Show_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "portal.proto",
+}
+
+const (
 	User_Logs_FullMethodName        = "/palm.portal.v1.User/Logs"
 	User_Index_FullMethodName       = "/palm.portal.v1.User/Index"
 	User_SetLocation_FullMethodName = "/palm.portal.v1.User/SetLocation"

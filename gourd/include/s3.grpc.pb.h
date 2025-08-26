@@ -30,6 +30,8 @@ namespace palm {
 namespace s3 {
 namespace v1 {
 
+// ----------------------------------------------------------------------------
+//
 class S3 final {
  public:
   static constexpr char const* service_full_name() {

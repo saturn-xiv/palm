@@ -14,6 +14,7 @@ type Minio struct {
 	AccessKey string `toml:"access-key"`
 	SecretKey string `toml:"secret-key"`
 	Secure    bool   `toml:"secure"`
+	Namespace string `toml:"namespace,omitempty"`
 }
 
 func (p *Minio) Open() (*minio.Client, error) {

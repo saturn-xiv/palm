@@ -16,6 +16,8 @@ import (
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
 	"github.com/saturn-xiv/palm/jasmine/services/casbin"
 	casbin_v2 "github.com/saturn-xiv/palm/jasmine/services/casbin/v2"
+	"github.com/saturn-xiv/palm/jasmine/services/portal"
+	portal_v2 "github.com/saturn-xiv/palm/jasmine/services/portal/v2"
 	"github.com/saturn-xiv/palm/jasmine/services/s3"
 	s3_v2 "github.com/saturn-xiv/palm/jasmine/services/s3/v2"
 	"github.com/saturn-xiv/palm/jasmine/web"
@@ -48,6 +50,7 @@ func Launch(port uint16, config_file string, version string) error {
 	server := grpc.NewServer()
 	casbin_v2.RegisterSessionServer(server, casbin.NewSessionServer(db, jwt, enf))
 	casbin_v2.RegisterPolicyServer(server, casbin.NewPolicyServer(db, jwt, enf))
+	portal_v2.RegisterAttachmentServer(server, portal.NewAttachmentServer(db, jwt, enf, minio_client, config.Minio.Namespace))
 	s3_v2.RegisterS3Server(server, s3.NewS3Server(db, jwt, enf, minio_client))
 	grpc_health.RegisterHealthServer(server, health.NewServer())
 

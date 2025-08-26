@@ -1095,6 +1095,156 @@ export class EmailUserClient {
 
 }
 
+export class AttachmentClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'binary';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname.replace(/\/+$/, '');
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodDescriptorIndex = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Attachment/Index',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.Page,
+    portal_pb.AttachmentIndexResponse,
+    (request: portal_pb.Page) => {
+      return request.serializeBinary();
+    },
+    portal_pb.AttachmentIndexResponse.deserializeBinary
+  );
+
+  index(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.AttachmentIndexResponse>;
+
+  index(
+    request: portal_pb.Page,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.AttachmentIndexResponse) => void): grpcWeb.ClientReadableStream<portal_pb.AttachmentIndexResponse>;
+
+  index(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.AttachmentIndexResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Attachment/Index',
+        request,
+        metadata || {},
+        this.methodDescriptorIndex,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Attachment/Index',
+    request,
+    metadata || {},
+    this.methodDescriptorIndex);
+  }
+
+  methodDescriptorUpload = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Attachment/Upload',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.AttachmentUploadRequest,
+    portal_pb.AttachmentUploadResponse,
+    (request: portal_pb.AttachmentUploadRequest) => {
+      return request.serializeBinary();
+    },
+    portal_pb.AttachmentUploadResponse.deserializeBinary
+  );
+
+  upload(
+    request: portal_pb.AttachmentUploadRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.AttachmentUploadResponse>;
+
+  upload(
+    request: portal_pb.AttachmentUploadRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.AttachmentUploadResponse) => void): grpcWeb.ClientReadableStream<portal_pb.AttachmentUploadResponse>;
+
+  upload(
+    request: portal_pb.AttachmentUploadRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.AttachmentUploadResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Attachment/Upload',
+        request,
+        metadata || {},
+        this.methodDescriptorUpload,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Attachment/Upload',
+    request,
+    metadata || {},
+    this.methodDescriptorUpload);
+  }
+
+  methodDescriptorShow = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Attachment/Show',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.AttachmentShowRequest,
+    portal_pb.AttachmentShowResponse,
+    (request: portal_pb.AttachmentShowRequest) => {
+      return request.serializeBinary();
+    },
+    portal_pb.AttachmentShowResponse.deserializeBinary
+  );
+
+  show(
+    request: portal_pb.AttachmentShowRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.AttachmentShowResponse>;
+
+  show(
+    request: portal_pb.AttachmentShowRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.AttachmentShowResponse) => void): grpcWeb.ClientReadableStream<portal_pb.AttachmentShowResponse>;
+
+  show(
+    request: portal_pb.AttachmentShowRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.AttachmentShowResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Attachment/Show',
+        request,
+        metadata || {},
+        this.methodDescriptorShow,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Attachment/Show',
+    request,
+    metadata || {},
+    this.methodDescriptorShow);
+  }
+
+}
+
 export class UserClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;

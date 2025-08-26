@@ -20,12 +20,20 @@ const (
 	ContentTypeXML  = "application/xml"
 	ContentTypeHTML = "text/html; charset=utf-8"
 	ContentTypeText = "text/plain; charset=utf-8"
+
+	ContentDispositionInline = "inline"
 )
 
+func ContentDispositionAttachment(name string) string {
+	return fmt.Sprintf("attachment; filename=\"%s\"", name)
+}
+
 const (
-	HeaderContentType   = "Content-Type"
-	HeaderAuthorization = "Authorization"
-	BearerTokenPrefix   = "Bearer "
+	HeaderContentType        = "Content-Type"
+	HeaderAuthorization      = "Authorization"
+	HeaderContentDisposition = "Content-Disposition"
+
+	BearerTokenPrefix = "Bearer "
 )
 
 type H map[string]interface{}
