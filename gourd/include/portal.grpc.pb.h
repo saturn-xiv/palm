@@ -3930,6 +3930,13 @@ class Attachment final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::AttachmentShowResponse>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::AttachmentShowResponse>>(PrepareAsyncShowRaw(context, request, cq));
     }
+    virtual ::grpc::Status SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetUploadedAtRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetUploadedAtRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -3939,6 +3946,8 @@ class Attachment final {
       virtual void Upload(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentUploadRequest* request, ::palm::portal::v1::AttachmentUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Show(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest* request, ::palm::portal::v1::AttachmentShowResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Show(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest* request, ::palm::portal::v1::AttachmentShowResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -3950,6 +3959,8 @@ class Attachment final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::AttachmentUploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentUploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::AttachmentShowResponse>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::AttachmentShowResponse>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -3975,6 +3986,13 @@ class Attachment final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::AttachmentShowResponse>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::AttachmentShowResponse>>(PrepareAsyncShowRaw(context, request, cq));
     }
+    ::grpc::Status SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetUploadedAtRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetUploadedAtRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -3984,6 +4002,8 @@ class Attachment final {
       void Upload(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentUploadRequest* request, ::palm::portal::v1::AttachmentUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Show(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest* request, ::palm::portal::v1::AttachmentShowResponse* response, std::function<void(::grpc::Status)>) override;
       void Show(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest* request, ::palm::portal::v1::AttachmentShowResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -4001,9 +4021,12 @@ class Attachment final {
     ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::AttachmentUploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentUploadRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::AttachmentShowResponse>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::AttachmentShowResponse>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentShowRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Index_;
     const ::grpc::internal::RpcMethod rpcmethod_Upload_;
     const ::grpc::internal::RpcMethod rpcmethod_Show_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetUploadedAt_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -4014,6 +4037,7 @@ class Attachment final {
     virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::AttachmentIndexResponse* response);
     virtual ::grpc::Status Upload(::grpc::ServerContext* context, const ::palm::portal::v1::AttachmentUploadRequest* request, ::palm::portal::v1::AttachmentUploadResponse* response);
     virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::portal::v1::AttachmentShowRequest* request, ::palm::portal::v1::AttachmentShowResponse* response);
+    virtual ::grpc::Status SetUploadedAt(::grpc::ServerContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Index : public BaseClass {
@@ -4075,7 +4099,27 @@ class Attachment final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Index<WithAsyncMethod_Upload<WithAsyncMethod_Show<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SetUploadedAt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetUploadedAt() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_SetUploadedAt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetUploadedAt(::grpc::ServerContext* context, ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Index<WithAsyncMethod_Upload<WithAsyncMethod_Show<WithAsyncMethod_SetUploadedAt<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Index : public BaseClass {
    private:
@@ -4157,7 +4201,34 @@ class Attachment final {
     virtual ::grpc::ServerUnaryReactor* Show(
       ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::AttachmentShowRequest* /*request*/, ::palm::portal::v1::AttachmentShowResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Index<WithCallbackMethod_Upload<WithCallbackMethod_Show<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SetUploadedAt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetUploadedAt() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response) { return this->SetUploadedAt(context, request, response); }));}
+    void SetMessageAllocatorFor_SetUploadedAt(
+        ::grpc::MessageAllocator< ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetUploadedAt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetUploadedAt(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Index<WithCallbackMethod_Upload<WithCallbackMethod_Show<WithCallbackMethod_SetUploadedAt<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Index : public BaseClass {
@@ -4206,6 +4277,23 @@ class Attachment final {
     }
     // disable synchronous version of this method
     ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentShowRequest* /*request*/, ::palm::portal::v1::AttachmentShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetUploadedAt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetUploadedAt() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_SetUploadedAt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4268,6 +4356,26 @@ class Attachment final {
     }
     void RequestShow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetUploadedAt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetUploadedAt() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_SetUploadedAt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetUploadedAt(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4334,6 +4442,28 @@ class Attachment final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetUploadedAt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetUploadedAt() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetUploadedAt(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetUploadedAt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetUploadedAt(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -4417,9 +4547,36 @@ class Attachment final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::AttachmentShowRequest,::palm::portal::v1::AttachmentShowResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Show<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetUploadedAt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetUploadedAt() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSetUploadedAt(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetUploadedAt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetUploadedAt(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::AttachmentSetUploadedAtRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_SetUploadedAt<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Show<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_SetUploadedAt<Service > > > > StreamedService;
 };
 
 class User final {

@@ -94,6 +94,7 @@ RUN bash -c "source $HOME/.bashrc \
 RUN git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
+ADD --chown=deploy crosstool-ng/triplets/ /home/deploy/local/vcpkg/triplets/
 
 # https://go.dev/doc/install
 ENV GO_VERSION="1.25.0"

@@ -5,8 +5,8 @@
 
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
-public interface AttachmentShowRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.portal.v1.AttachmentShowRequest)
+public interface AttachmentSetUploadedAtRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.portal.v1.AttachmentSetUploadedAtRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -34,23 +34,32 @@ public interface AttachmentShowRequestOrBuilder extends
       getObjectBytes();
 
   /**
-   * <code>bool inline = 6;</code>
-   * @return The inline.
+   * <code>string file_name = 3;</code>
+   * @return The fileName.
    */
-  boolean getInline();
+  java.lang.String getFileName();
+  /**
+   * <code>string file_name = 3;</code>
+   * @return The bytes for fileName.
+   */
+  com.google.protobuf.ByteString
+      getFileNameBytes();
 
   /**
-   * <code>optional .google.protobuf.Duration expires = 9;</code>
-   * @return Whether the expires field is set.
+   * <code>string content_type = 4;</code>
+   * @return The contentType.
    */
-  boolean hasExpires();
+  java.lang.String getContentType();
   /**
-   * <code>optional .google.protobuf.Duration expires = 9;</code>
-   * @return The expires.
+   * <code>string content_type = 4;</code>
+   * @return The bytes for contentType.
    */
-  com.google.protobuf.Duration getExpires();
+  com.google.protobuf.ByteString
+      getContentTypeBytes();
+
   /**
-   * <code>optional .google.protobuf.Duration expires = 9;</code>
+   * <code>uint32 size = 5;</code>
+   * @return The size.
    */
-  com.google.protobuf.DurationOrBuilder getExpiresOrBuilder();
+  int getSize();
 }

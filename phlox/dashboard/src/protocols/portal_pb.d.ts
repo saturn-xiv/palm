@@ -622,18 +622,46 @@ export namespace EmailUserSignInRequest {
   }
 }
 
+export class AttachmentSetUploadedAtRequest extends jspb.Message {
+  getBucket(): string;
+  setBucket(value: string): AttachmentSetUploadedAtRequest;
+
+  getObject(): string;
+  setObject(value: string): AttachmentSetUploadedAtRequest;
+
+  getFileName(): string;
+  setFileName(value: string): AttachmentSetUploadedAtRequest;
+
+  getContentType(): string;
+  setContentType(value: string): AttachmentSetUploadedAtRequest;
+
+  getSize(): number;
+  setSize(value: number): AttachmentSetUploadedAtRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AttachmentSetUploadedAtRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AttachmentSetUploadedAtRequest): AttachmentSetUploadedAtRequest.AsObject;
+  static serializeBinaryToWriter(message: AttachmentSetUploadedAtRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AttachmentSetUploadedAtRequest;
+  static deserializeBinaryFromReader(message: AttachmentSetUploadedAtRequest, reader: jspb.BinaryReader): AttachmentSetUploadedAtRequest;
+}
+
+export namespace AttachmentSetUploadedAtRequest {
+  export type AsObject = {
+    bucket: string,
+    object: string,
+    fileName: string,
+    contentType: string,
+    size: number,
+  }
+}
+
 export class AttachmentShowRequest extends jspb.Message {
   getBucket(): string;
   setBucket(value: string): AttachmentShowRequest;
 
   getObject(): string;
   setObject(value: string): AttachmentShowRequest;
-
-  getFileName(): string;
-  setFileName(value: string): AttachmentShowRequest;
-
-  getContentType(): string;
-  setContentType(value: string): AttachmentShowRequest;
 
   getInline(): boolean;
   setInline(value: boolean): AttachmentShowRequest;
@@ -655,8 +683,6 @@ export namespace AttachmentShowRequest {
   export type AsObject = {
     bucket: string,
     object: string,
-    fileName: string,
-    contentType: string,
     inline: boolean,
     expires?: google_protobuf_duration_pb.Duration.AsObject,
   }

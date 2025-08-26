@@ -161,12 +161,19 @@ service Attachment {
   rpc Index(Page) returns (AttachmentIndexResponse) {}
   rpc Upload(AttachmentUploadRequest) returns (AttachmentUploadResponse) {}
   rpc Show(AttachmentShowRequest) returns (AttachmentShowResponse) {}
+  rpc SetUploadedAt(AttachmentSetUploadedAtRequest)
+      returns (google.protobuf.Empty) {}
+}
+message AttachmentSetUploadedAtRequest {
+  string bucket = 1;
+  string object = 2;
+  string file_name = 3;
+  string content_type = 4;
+  uint32 size = 5;
 }
 message AttachmentShowRequest {
   string bucket = 1;
   string object = 2;
-  string file_name = 3;
-  string content_type = 5;
   bool inline = 6;
   optional google.protobuf.Duration expires = 9;
 }

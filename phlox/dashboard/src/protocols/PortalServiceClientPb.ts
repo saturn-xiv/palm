@@ -1243,6 +1243,49 @@ export class AttachmentClient {
     this.methodDescriptorShow);
   }
 
+  methodDescriptorSetUploadedAt = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Attachment/SetUploadedAt',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.AttachmentSetUploadedAtRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.AttachmentSetUploadedAtRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setUploadedAt(
+    request: portal_pb.AttachmentSetUploadedAtRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setUploadedAt(
+    request: portal_pb.AttachmentSetUploadedAtRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setUploadedAt(
+    request: portal_pb.AttachmentSetUploadedAtRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Attachment/SetUploadedAt',
+        request,
+        metadata || {},
+        this.methodDescriptorSetUploadedAt,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Attachment/SetUploadedAt',
+    request,
+    metadata || {},
+    this.methodDescriptorSetUploadedAt);
+  }
+
 }
 
 export class UserClient {

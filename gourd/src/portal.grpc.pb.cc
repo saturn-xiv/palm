@@ -1073,6 +1073,7 @@ static const char* Attachment_method_names[] = {
   "/palm.portal.v1.Attachment/Index",
   "/palm.portal.v1.Attachment/Upload",
   "/palm.portal.v1.Attachment/Show",
+  "/palm.portal.v1.Attachment/SetUploadedAt",
 };
 
 std::unique_ptr< Attachment::Stub> Attachment::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -1085,6 +1086,7 @@ Attachment::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   : channel_(channel), rpcmethod_Index_(Attachment_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Upload_(Attachment_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Show_(Attachment_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetUploadedAt_(Attachment_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Attachment::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::AttachmentIndexResponse* response) {
@@ -1156,6 +1158,29 @@ void Attachment::Stub::async::Show(::grpc::ClientContext* context, const ::palm:
   return result;
 }
 
+::grpc::Status Attachment::Stub::SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetUploadedAt_, context, request, response);
+}
+
+void Attachment::Stub::async::SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetUploadedAt_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::SetUploadedAt(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetUploadedAt_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetUploadedAt_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetUploadedAtRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Attachment::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Attachment_method_names[0],
@@ -1187,6 +1212,16 @@ Attachment::Service::Service() {
              ::palm::portal::v1::AttachmentShowResponse* resp) {
                return service->Show(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::portal::v1::AttachmentSetUploadedAtRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::AttachmentSetUploadedAtRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetUploadedAt(ctx, req, resp);
+             }, this)));
 }
 
 Attachment::Service::~Service() {
@@ -1207,6 +1242,13 @@ Attachment::Service::~Service() {
 }
 
 ::grpc::Status Attachment::Service::Show(::grpc::ServerContext* context, const ::palm::portal::v1::AttachmentShowRequest* request, ::palm::portal::v1::AttachmentShowResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::SetUploadedAt(::grpc::ServerContext* context, const ::palm::portal::v1::AttachmentSetUploadedAtRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

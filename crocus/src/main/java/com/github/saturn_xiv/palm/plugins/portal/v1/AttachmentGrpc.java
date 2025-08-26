@@ -111,6 +111,37 @@ public final class AttachmentGrpc {
     return getShowMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest,
+      com.google.protobuf.Empty> getSetUploadedAtMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SetUploadedAt",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest,
+      com.google.protobuf.Empty> getSetUploadedAtMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest, com.google.protobuf.Empty> getSetUploadedAtMethod;
+    if ((getSetUploadedAtMethod = AttachmentGrpc.getSetUploadedAtMethod) == null) {
+      synchronized (AttachmentGrpc.class) {
+        if ((getSetUploadedAtMethod = AttachmentGrpc.getSetUploadedAtMethod) == null) {
+          AttachmentGrpc.getSetUploadedAtMethod = getSetUploadedAtMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SetUploadedAt"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new AttachmentMethodDescriptorSupplier("SetUploadedAt"))
+              .build();
+        }
+      }
+    }
+    return getSetUploadedAtMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -182,6 +213,13 @@ public final class AttachmentGrpc {
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getShowMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void setUploadedAt(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetUploadedAtMethod(), responseObserver);
+    }
   }
 
   /**
@@ -240,6 +278,14 @@ public final class AttachmentGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getShowMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void setUploadedAt(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSetUploadedAtMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -280,6 +326,13 @@ public final class AttachmentGrpc {
     public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse show(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getShowMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty setUploadedAt(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSetUploadedAtMethod(), getCallOptions(), request);
     }
   }
 
@@ -325,11 +378,20 @@ public final class AttachmentGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getShowMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> setUploadedAt(
+        com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSetUploadedAtMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_INDEX = 0;
   private static final int METHODID_UPLOAD = 1;
   private static final int METHODID_SHOW = 2;
+  private static final int METHODID_SET_UPLOADED_AT = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -359,6 +421,10 @@ public final class AttachmentGrpc {
         case METHODID_SHOW:
           serviceImpl.show((com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse>) responseObserver);
+          break;
+        case METHODID_SET_UPLOADED_AT:
+          serviceImpl.setUploadedAt((com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -399,6 +465,13 @@ public final class AttachmentGrpc {
               com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest,
               com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse>(
                 service, METHODID_SHOW)))
+        .addMethod(
+          getSetUploadedAtMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_SET_UPLOADED_AT)))
         .build();
   }
 
@@ -450,6 +523,7 @@ public final class AttachmentGrpc {
               .addMethod(getIndexMethod())
               .addMethod(getUploadMethod())
               .addMethod(getShowMethod())
+              .addMethod(getSetUploadedAtMethod())
               .build();
         }
       }

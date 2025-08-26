@@ -18,9 +18,11 @@ import (
 	"github.com/google/uuid"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
+	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/jasmine/env/crypto"
+	casbin_v2 "github.com/saturn-xiv/palm/jasmine/services/casbin/v2"
 	"github.com/saturn-xiv/palm/jasmine/services/portal/models"
 	v2 "github.com/saturn-xiv/palm/jasmine/services/portal/v2"
 	"github.com/saturn-xiv/palm/jasmine/web"
@@ -45,6 +47,10 @@ type AttachmentServer struct {
 func (p *AttachmentServer) Index(ctx context.Context, req *v2.Page) (*v2.AttachmentIndexResponse, error) {
 	// TOTO
 	return &v2.AttachmentIndexResponse{}, nil
+}
+func (p *AttachmentServer) SetUploadedAt(ctx context.Context, req *v2.AttachmentSetUploadedAtRequest) (*emptypb.Empty, error) {
+	// TOTO
+	return &emptypb.Empty{}, nil
 }
 func (p *AttachmentServer) Upload(ctx context.Context, req *v2.AttachmentUploadRequest) (*v2.AttachmentUploadResponse, error) {
 	ss := models.SessionFromGrpc(p.db, p.enforcer, p.jwt, ctx)
@@ -121,7 +127,6 @@ func (p *AttachmentServer) Upload(ctx context.Context, req *v2.AttachmentUploadR
 }
 
 func (p *AttachmentServer) Show(ctx context.Context, req *v2.AttachmentShowRequest) (*v2.AttachmentShowResponse, error) {
-
 	var res v2.AttachmentShowResponse
 	{
 		bucket, err := new_s3_bucket(req.Bucket)
@@ -140,13 +145,23 @@ func (p *AttachmentServer) Show(ctx context.Context, req *v2.AttachmentShowReque
 	if !ss.IsSignedIn() {
 		return nil, v2.ErrorUserIsNotSignedIn
 	}
-	// TODO CHECK permission
+	var it models.Attachment
+	{
+		if err := p.db.Where("bucket = ? AND object = ?", req.Bucket, req.Object).First(&it).Error; err != nil {
+			return nil, err
+		}
+		if it.UserID != ss.ID() {
+			if !ss.Can(casbin_v2.NewReadAction(), web.ResourceType((*models.Attachment)(nil)), &it.ID) {
+				return nil, casbin_v2.ErrorPermissionDenied
+			}
+		}
+	}
 	params := make(url.Values)
-	params.Set(gl_minio_response_content_type, req.ContentType)
+	params.Set(gl_minio_response_content_type, it.ContentType)
 	if req.Inline {
 		params.Set(gl_minio_response_content_disposition, web.ContentDispositionInline)
 	} else {
-		params.Set(gl_minio_response_content_disposition, web.ContentDispositionAttachment(req.FileName))
+		params.Set(gl_minio_response_content_disposition, web.ContentDispositionAttachment(it.Title))
 	}
 	expires := time.Duration(24*7) * time.Hour
 	if req.Expires != nil {

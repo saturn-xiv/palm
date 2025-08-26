@@ -68,6 +68,9 @@ extern AttachmentIndexResponseDefaultTypeInternal _AttachmentIndexResponse_defau
 class AttachmentIndexResponse_Item;
 struct AttachmentIndexResponse_ItemDefaultTypeInternal;
 extern AttachmentIndexResponse_ItemDefaultTypeInternal _AttachmentIndexResponse_Item_default_instance_;
+class AttachmentSetUploadedAtRequest;
+struct AttachmentSetUploadedAtRequestDefaultTypeInternal;
+extern AttachmentSetUploadedAtRequestDefaultTypeInternal _AttachmentSetUploadedAtRequest_default_instance_;
 class AttachmentShowRequest;
 struct AttachmentShowRequestDefaultTypeInternal;
 extern AttachmentShowRequestDefaultTypeInternal _AttachmentShowRequest_default_instance_;
@@ -490,7 +493,7 @@ class UserUploadResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserUploadResponse*>(
         &_UserUploadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 31;
+  static constexpr int kIndexInFileMessages = 32;
   friend void swap(UserUploadResponse& a, UserUploadResponse& b) { a.Swap(&b); }
   inline void Swap(UserUploadResponse* other) {
     if (other == this) return;
@@ -722,7 +725,7 @@ class UserSignInResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSignInResponse*>(
         &_UserSignInResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 41;
+  static constexpr int kIndexInFileMessages = 42;
   friend void swap(UserSignInResponse& a, UserSignInResponse& b) { a.Swap(&b); }
   inline void Swap(UserSignInResponse* other) {
     if (other == this) return;
@@ -918,7 +921,7 @@ class UserSetVRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetVRequest*>(
         &_UserSetVRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 32;
+  static constexpr int kIndexInFileMessages = 33;
   friend void swap(UserSetVRequest& a, UserSetVRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetVRequest* other) {
     if (other == this) return;
@@ -1144,7 +1147,7 @@ class UserSetLocationRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetLocationRequest*>(
         &_UserSetLocationRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 35;
+  static constexpr int kIndexInFileMessages = 36;
   friend void swap(UserSetLocationRequest& a, UserSetLocationRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetLocationRequest* other) {
     if (other == this) return;
@@ -1358,7 +1361,7 @@ class UserGetVResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserGetVResponse*>(
         &_UserGetVResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 34;
+  static constexpr int kIndexInFileMessages = 35;
   friend void swap(UserGetVResponse& a, UserGetVResponse& b) { a.Swap(&b); }
   inline void Swap(UserGetVResponse* other) {
     if (other == this) return;
@@ -1554,7 +1557,7 @@ class UserGetVRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserGetVRequest*>(
         &_UserGetVRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 33;
+  static constexpr int kIndexInFileMessages = 34;
   friend void swap(UserGetVRequest& a, UserGetVRequest& b) { a.Swap(&b); }
   inline void Swap(UserGetVRequest* other) {
     if (other == this) return;
@@ -1749,7 +1752,7 @@ class Theme_Bulma_Home final : public ::google::protobuf::internal::ZeroFieldsBa
     return reinterpret_cast<const Theme_Bulma_Home*>(
         &_Theme_Bulma_Home_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 78;
+  static constexpr int kIndexInFileMessages = 79;
   friend void swap(Theme_Bulma_Home& a, Theme_Bulma_Home& b) { a.Swap(&b); }
   inline void Swap(Theme_Bulma_Home* other) {
     if (other == this) return;
@@ -1894,7 +1897,7 @@ class Theme_Bulma final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Theme_Bulma*>(
         &_Theme_Bulma_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 79;
+  static constexpr int kIndexInFileMessages = 80;
   friend void swap(Theme_Bulma& a, Theme_Bulma& b) { a.Swap(&b); }
   inline void Swap(Theme_Bulma* other) {
     if (other == this) return;
@@ -2080,7 +2083,7 @@ class Theme_Bootstrap_Sample_Data_Header final : public ::google::protobuf::Mess
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Header*>(
         &_Theme_Bootstrap_Sample_Data_Header_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 67;
+  static constexpr int kIndexInFileMessages = 68;
   friend void swap(Theme_Bootstrap_Sample_Data_Header& a, Theme_Bootstrap_Sample_Data_Header& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data_Header* other) {
     if (other == this) return;
@@ -2276,7 +2279,7 @@ class Theme_Bootstrap_Sample_Data_Footer final : public ::google::protobuf::Mess
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Footer*>(
         &_Theme_Bootstrap_Sample_Data_Footer_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 68;
+  static constexpr int kIndexInFileMessages = 69;
   friend void swap(Theme_Bootstrap_Sample_Data_Footer& a, Theme_Bootstrap_Sample_Data_Footer& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data_Footer* other) {
     if (other == this) return;
@@ -2472,7 +2475,7 @@ class Theme_Bootstrap_Sample_Data_Body_Link final : public ::google::protobuf::M
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Link*>(
         &_Theme_Bootstrap_Sample_Data_Body_Link_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 69;
+  static constexpr int kIndexInFileMessages = 70;
   friend void swap(Theme_Bootstrap_Sample_Data_Body_Link& a, Theme_Bootstrap_Sample_Data_Body_Link& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data_Body_Link* other) {
     if (other == this) return;
@@ -2685,7 +2688,7 @@ class Theme_Bootstrap_Home final : public ::google::protobuf::internal::ZeroFiel
     return reinterpret_cast<const Theme_Bootstrap_Home*>(
         &_Theme_Bootstrap_Home_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 66;
+  static constexpr int kIndexInFileMessages = 67;
   friend void swap(Theme_Bootstrap_Home& a, Theme_Bootstrap_Home& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Home* other) {
     if (other == this) return;
@@ -2830,7 +2833,7 @@ class Theme_Bootstrap final : public ::google::protobuf::internal::ZeroFieldsBas
     return reinterpret_cast<const Theme_Bootstrap*>(
         &_Theme_Bootstrap_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 77;
+  static constexpr int kIndexInFileMessages = 78;
   friend void swap(Theme_Bootstrap& a, Theme_Bootstrap& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap* other) {
     if (other == this) return;
@@ -2977,7 +2980,7 @@ class Theme final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Theme*>(
         &_Theme_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 80;
+  static constexpr int kIndexInFileMessages = 81;
   friend void swap(Theme& a, Theme& b) { a.Swap(&b); }
   inline void Swap(Theme* other) {
     if (other == this) return;
@@ -3125,7 +3128,7 @@ class SiteTimezonesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteTimezonesResponse*>(
         &_SiteTimezonesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 53;
+  static constexpr int kIndexInFileMessages = 54;
   friend void swap(SiteTimezonesResponse& a, SiteTimezonesResponse& b) { a.Swap(&b); }
   inline void Swap(SiteTimezonesResponse* other) {
     if (other == this) return;
@@ -3327,7 +3330,7 @@ class SiteSetMaintenanceModeRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteSetMaintenanceModeRequest*>(
         &_SiteSetMaintenanceModeRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 42;
+  static constexpr int kIndexInFileMessages = 43;
   friend void swap(SiteSetMaintenanceModeRequest& a, SiteSetMaintenanceModeRequest& b) { a.Swap(&b); }
   inline void Swap(SiteSetMaintenanceModeRequest* other) {
     if (other == this) return;
@@ -3535,7 +3538,7 @@ class SiteLanguagesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteLanguagesResponse*>(
         &_SiteLanguagesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 54;
+  static constexpr int kIndexInFileMessages = 55;
   friend void swap(SiteLanguagesResponse& a, SiteLanguagesResponse& b) { a.Swap(&b); }
   inline void Swap(SiteLanguagesResponse* other) {
     if (other == this) return;
@@ -3737,7 +3740,7 @@ class SiteFaviconProfile final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteFaviconProfile*>(
         &_SiteFaviconProfile_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 44;
+  static constexpr int kIndexInFileMessages = 45;
   friend void swap(SiteFaviconProfile& a, SiteFaviconProfile& b) { a.Swap(&b); }
   inline void Swap(SiteFaviconProfile* other) {
     if (other == this) return;
@@ -3933,7 +3936,7 @@ class SiteCurrenciesResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteCurrenciesResponse_Item*>(
         &_SiteCurrenciesResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 55;
+  static constexpr int kIndexInFileMessages = 56;
   friend void swap(SiteCurrenciesResponse_Item& a, SiteCurrenciesResponse_Item& b) { a.Swap(&b); }
   inline void Swap(SiteCurrenciesResponse_Item* other) {
     if (other == this) return;
@@ -4204,7 +4207,7 @@ class SiteAuthorProfile final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteAuthorProfile*>(
         &_SiteAuthorProfile_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 45;
+  static constexpr int kIndexInFileMessages = 46;
   friend void swap(SiteAuthorProfile& a, SiteAuthorProfile& b) { a.Swap(&b); }
   inline void Swap(SiteAuthorProfile* other) {
     if (other == this) return;
@@ -4418,7 +4421,7 @@ class SetupUserRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SetupUserRequest*>(
         &_SetupUserRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 36;
+  static constexpr int kIndexInFileMessages = 37;
   friend void swap(SetupUserRequest& a, SetupUserRequest& b) { a.Swap(&b); }
   inline void Swap(SetupUserRequest* other) {
     if (other == this) return;
@@ -4628,7 +4631,7 @@ class Rss_Channel_Item_Guid final : public ::google::protobuf::Message
     return reinterpret_cast<const Rss_Channel_Item_Guid*>(
         &_Rss_Channel_Item_Guid_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 57;
+  static constexpr int kIndexInFileMessages = 58;
   friend void swap(Rss_Channel_Item_Guid& a, Rss_Channel_Item_Guid& b) { a.Swap(&b); }
   inline void Swap(Rss_Channel_Item_Guid* other) {
     if (other == this) return;
@@ -5046,7 +5049,7 @@ class ReCaptchaProfile final : public ::google::protobuf::Message
     return reinterpret_cast<const ReCaptchaProfile*>(
         &_ReCaptchaProfile_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 50;
+  static constexpr int kIndexInFileMessages = 51;
   friend void swap(ReCaptchaProfile& a, ReCaptchaProfile& b) { a.Swap(&b); }
   inline void Swap(ReCaptchaProfile* other) {
     if (other == this) return;
@@ -6294,7 +6297,7 @@ class IndexNowProfile final : public ::google::protobuf::Message
     return reinterpret_cast<const IndexNowProfile*>(
         &_IndexNowProfile_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 52;
+  static constexpr int kIndexInFileMessages = 53;
   friend void swap(IndexNowProfile& a, IndexNowProfile& b) { a.Swap(&b); }
   inline void Swap(IndexNowProfile* other) {
     if (other == this) return;
@@ -6685,7 +6688,7 @@ class HtmlPage final : public ::google::protobuf::Message
     return reinterpret_cast<const HtmlPage*>(
         &_HtmlPage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 65;
+  static constexpr int kIndexInFileMessages = 66;
   friend void swap(HtmlPage& a, HtmlPage& b) { a.Swap(&b); }
   inline void Swap(HtmlPage* other) {
     if (other == this) return;
@@ -6948,7 +6951,7 @@ class GoogleSiteOwnershipVerification final : public ::google::protobuf::Message
     return reinterpret_cast<const GoogleSiteOwnershipVerification*>(
         &_GoogleSiteOwnershipVerification_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 51;
+  static constexpr int kIndexInFileMessages = 52;
   friend void swap(GoogleSiteOwnershipVerification& a, GoogleSiteOwnershipVerification& b) { a.Swap(&b); }
   inline void Swap(GoogleSiteOwnershipVerification* other) {
     if (other == this) return;
@@ -7144,7 +7147,7 @@ class GetSiteInfoByLangResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetSiteInfoByLangResponse*>(
         &_GetSiteInfoByLangResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 48;
+  static constexpr int kIndexInFileMessages = 49;
   friend void swap(GetSiteInfoByLangResponse& a, GetSiteInfoByLangResponse& b) { a.Swap(&b); }
   inline void Swap(GetSiteInfoByLangResponse* other) {
     if (other == this) return;
@@ -7418,7 +7421,7 @@ class GetSiteInfoByLangRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetSiteInfoByLangRequest*>(
         &_GetSiteInfoByLangRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 46;
+  static constexpr int kIndexInFileMessages = 47;
   friend void swap(GetSiteInfoByLangRequest& a, GetSiteInfoByLangRequest& b) { a.Swap(&b); }
   inline void Swap(GetSiteInfoByLangRequest* other) {
     if (other == this) return;
@@ -9626,7 +9629,7 @@ class BaiduSiteOwnershipVerification final : public ::google::protobuf::Message
     return reinterpret_cast<const BaiduSiteOwnershipVerification*>(
         &_BaiduSiteOwnershipVerification_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 49;
+  static constexpr int kIndexInFileMessages = 50;
   friend void swap(BaiduSiteOwnershipVerification& a, BaiduSiteOwnershipVerification& b) { a.Swap(&b); }
   inline void Swap(BaiduSiteOwnershipVerification* other) {
     if (other == this) return;
@@ -9822,7 +9825,7 @@ class AttachmentUploadResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentUploadResponse*>(
         &_AttachmentUploadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(AttachmentUploadResponse& a, AttachmentUploadResponse& b) { a.Swap(&b); }
   inline void Swap(AttachmentUploadResponse* other) {
     if (other == this) return;
@@ -10054,7 +10057,7 @@ class AttachmentUploadRequest_Bucket final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentUploadRequest_Bucket*>(
         &_AttachmentUploadRequest_Bucket_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(AttachmentUploadRequest_Bucket& a, AttachmentUploadRequest_Bucket& b) { a.Swap(&b); }
   inline void Swap(AttachmentUploadRequest_Bucket* other) {
     if (other == this) return;
@@ -10258,7 +10261,7 @@ class AttachmentShowResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentShowResponse*>(
         &_AttachmentShowResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(AttachmentShowResponse& a, AttachmentShowResponse& b) { a.Swap(&b); }
   inline void Swap(AttachmentShowResponse* other) {
     if (other == this) return;
@@ -10395,6 +10398,268 @@ class AttachmentShowResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class AttachmentSetUploadedAtRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.AttachmentSetUploadedAtRequest) */ {
+ public:
+  inline AttachmentSetUploadedAtRequest() : AttachmentSetUploadedAtRequest(nullptr) {}
+  ~AttachmentSetUploadedAtRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AttachmentSetUploadedAtRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AttachmentSetUploadedAtRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AttachmentSetUploadedAtRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AttachmentSetUploadedAtRequest(const AttachmentSetUploadedAtRequest& from) : AttachmentSetUploadedAtRequest(nullptr, from) {}
+  inline AttachmentSetUploadedAtRequest(AttachmentSetUploadedAtRequest&& from) noexcept
+      : AttachmentSetUploadedAtRequest(nullptr, std::move(from)) {}
+  inline AttachmentSetUploadedAtRequest& operator=(const AttachmentSetUploadedAtRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AttachmentSetUploadedAtRequest& operator=(AttachmentSetUploadedAtRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AttachmentSetUploadedAtRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AttachmentSetUploadedAtRequest* internal_default_instance() {
+    return reinterpret_cast<const AttachmentSetUploadedAtRequest*>(
+        &_AttachmentSetUploadedAtRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 23;
+  friend void swap(AttachmentSetUploadedAtRequest& a, AttachmentSetUploadedAtRequest& b) { a.Swap(&b); }
+  inline void Swap(AttachmentSetUploadedAtRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AttachmentSetUploadedAtRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AttachmentSetUploadedAtRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AttachmentSetUploadedAtRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AttachmentSetUploadedAtRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AttachmentSetUploadedAtRequest& from) { AttachmentSetUploadedAtRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AttachmentSetUploadedAtRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.AttachmentSetUploadedAtRequest"; }
+
+ protected:
+  explicit AttachmentSetUploadedAtRequest(::google::protobuf::Arena* arena);
+  AttachmentSetUploadedAtRequest(::google::protobuf::Arena* arena, const AttachmentSetUploadedAtRequest& from);
+  AttachmentSetUploadedAtRequest(::google::protobuf::Arena* arena, AttachmentSetUploadedAtRequest&& from) noexcept
+      : AttachmentSetUploadedAtRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBucketFieldNumber = 1,
+    kObjectFieldNumber = 2,
+    kFileNameFieldNumber = 3,
+    kContentTypeFieldNumber = 4,
+    kSizeFieldNumber = 5,
+  };
+  // string bucket = 1;
+  void clear_bucket() ;
+  const std::string& bucket() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_bucket(Arg_&& arg, Args_... args);
+  std::string* mutable_bucket();
+  PROTOBUF_NODISCARD std::string* release_bucket();
+  void set_allocated_bucket(std::string* value);
+
+  private:
+  const std::string& _internal_bucket() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(
+      const std::string& value);
+  std::string* _internal_mutable_bucket();
+
+  public:
+  // string object = 2;
+  void clear_object() ;
+  const std::string& object() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_object(Arg_&& arg, Args_... args);
+  std::string* mutable_object();
+  PROTOBUF_NODISCARD std::string* release_object();
+  void set_allocated_object(std::string* value);
+
+  private:
+  const std::string& _internal_object() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_object(
+      const std::string& value);
+  std::string* _internal_mutable_object();
+
+  public:
+  // string file_name = 3;
+  void clear_file_name() ;
+  const std::string& file_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_file_name(Arg_&& arg, Args_... args);
+  std::string* mutable_file_name();
+  PROTOBUF_NODISCARD std::string* release_file_name();
+  void set_allocated_file_name(std::string* value);
+
+  private:
+  const std::string& _internal_file_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_name(
+      const std::string& value);
+  std::string* _internal_mutable_file_name();
+
+  public:
+  // string content_type = 4;
+  void clear_content_type() ;
+  const std::string& content_type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_content_type(Arg_&& arg, Args_... args);
+  std::string* mutable_content_type();
+  PROTOBUF_NODISCARD std::string* release_content_type();
+  void set_allocated_content_type(std::string* value);
+
+  private:
+  const std::string& _internal_content_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(
+      const std::string& value);
+  std::string* _internal_mutable_content_type();
+
+  public:
+  // uint32 size = 5;
+  void clear_size() ;
+  ::uint32_t size() const;
+  void set_size(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_size() const;
+  void _internal_set_size(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.AttachmentSetUploadedAtRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 0,
+      87, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AttachmentSetUploadedAtRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr bucket_;
+    ::google::protobuf::internal::ArenaStringPtr object_;
+    ::google::protobuf::internal::ArenaStringPtr file_name_;
+    ::google::protobuf::internal::ArenaStringPtr content_type_;
+    ::uint32_t size_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+// -------------------------------------------------------------------
+
 class UserUploadRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.UserUploadRequest) */ {
  public:
@@ -10454,7 +10719,7 @@ class UserUploadRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserUploadRequest*>(
         &_UserUploadRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 30;
+  static constexpr int kIndexInFileMessages = 31;
   friend void swap(UserUploadRequest& a, UserUploadRequest& b) { a.Swap(&b); }
   inline void Swap(UserUploadRequest* other) {
     if (other == this) return;
@@ -10662,7 +10927,7 @@ class UserLogsResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const UserLogsResponse_Item*>(
         &_UserLogsResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 39;
+  static constexpr int kIndexInFileMessages = 40;
   friend void swap(UserLogsResponse_Item& a, UserLogsResponse_Item& b) { a.Swap(&b); }
   inline void Swap(UserLogsResponse_Item* other) {
     if (other == this) return;
@@ -10974,7 +11239,7 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item*>(
         &_UserIndexResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 37;
+  static constexpr int kIndexInFileMessages = 38;
   friend void swap(UserIndexResponse_Item& a, UserIndexResponse_Item& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item* other) {
     if (other == this) return;
@@ -11394,7 +11659,7 @@ class Theme_Bootstrap_Sample_Data_Body_Panel final : public ::google::protobuf::
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Panel*>(
         &_Theme_Bootstrap_Sample_Data_Body_Panel_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 70;
+  static constexpr int kIndexInFileMessages = 71;
   friend void swap(Theme_Bootstrap_Sample_Data_Body_Panel& a, Theme_Bootstrap_Sample_Data_Body_Panel& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data_Body_Panel* other) {
     if (other == this) return;
@@ -11627,7 +11892,7 @@ class Theme_Bootstrap_Sample final : public ::google::protobuf::Message
     return reinterpret_cast<const Theme_Bootstrap_Sample*>(
         &_Theme_Bootstrap_Sample_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 76;
+  static constexpr int kIndexInFileMessages = 77;
   friend void swap(Theme_Bootstrap_Sample& a, Theme_Bootstrap_Sample& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample* other) {
     if (other == this) return;
@@ -11844,7 +12109,7 @@ class Sitemap_Url final : public ::google::protobuf::Message
     return reinterpret_cast<const Sitemap_Url*>(
         &_Sitemap_Url_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 61;
+  static constexpr int kIndexInFileMessages = 62;
   friend void swap(Sitemap_Url& a, Sitemap_Url& b) { a.Swap(&b); }
   inline void Swap(Sitemap_Url* other) {
     if (other == this) return;
@@ -12127,7 +12392,7 @@ class SiteUploadFaviconResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteUploadFaviconResponse*>(
         &_SiteUploadFaviconResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 43;
+  static constexpr int kIndexInFileMessages = 44;
   friend void swap(SiteUploadFaviconResponse& a, SiteUploadFaviconResponse& b) { a.Swap(&b); }
   inline void Swap(SiteUploadFaviconResponse* other) {
     if (other == this) return;
@@ -12341,7 +12606,7 @@ class SiteCurrenciesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SiteCurrenciesResponse*>(
         &_SiteCurrenciesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 56;
+  static constexpr int kIndexInFileMessages = 57;
   friend void swap(SiteCurrenciesResponse& a, SiteCurrenciesResponse& b) { a.Swap(&b); }
   inline void Swap(SiteCurrenciesResponse* other) {
     if (other == this) return;
@@ -12539,7 +12804,7 @@ class SetSiteInfoByLangRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SetSiteInfoByLangRequest*>(
         &_SetSiteInfoByLangRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 47;
+  static constexpr int kIndexInFileMessages = 48;
   friend void swap(SetSiteInfoByLangRequest& a, SetSiteInfoByLangRequest& b) { a.Swap(&b); }
   inline void Swap(SetSiteInfoByLangRequest* other) {
     if (other == this) return;
@@ -12753,7 +13018,7 @@ class Rss_Channel_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const Rss_Channel_Item*>(
         &_Rss_Channel_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 58;
+  static constexpr int kIndexInFileMessages = 59;
   friend void swap(Rss_Channel_Item& a, Rss_Channel_Item& b) { a.Swap(&b); }
   inline void Swap(Rss_Channel_Item* other) {
     if (other == this) return;
@@ -13730,7 +13995,7 @@ class AttachmentUploadRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentUploadRequest*>(
         &_AttachmentUploadRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(AttachmentUploadRequest& a, AttachmentUploadRequest& b) { a.Swap(&b); }
   inline void Swap(AttachmentUploadRequest* other) {
     if (other == this) return;
@@ -13962,7 +14227,7 @@ class AttachmentShowRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentShowRequest*>(
         &_AttachmentShowRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(AttachmentShowRequest& a, AttachmentShowRequest& b) { a.Swap(&b); }
   inline void Swap(AttachmentShowRequest* other) {
     if (other == this) return;
@@ -14051,8 +14316,6 @@ class AttachmentShowRequest final : public ::google::protobuf::Message
   enum : int {
     kBucketFieldNumber = 1,
     kObjectFieldNumber = 2,
-    kFileNameFieldNumber = 3,
-    kContentTypeFieldNumber = 5,
     kExpiresFieldNumber = 9,
     kInlineFieldNumber = 6,
   };
@@ -14088,38 +14351,6 @@ class AttachmentShowRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_object();
 
   public:
-  // string file_name = 3;
-  void clear_file_name() ;
-  const std::string& file_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_file_name(Arg_&& arg, Args_... args);
-  std::string* mutable_file_name();
-  PROTOBUF_NODISCARD std::string* release_file_name();
-  void set_allocated_file_name(std::string* value);
-
-  private:
-  const std::string& _internal_file_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_name(
-      const std::string& value);
-  std::string* _internal_mutable_file_name();
-
-  public:
-  // string content_type = 5;
-  void clear_content_type() ;
-  const std::string& content_type() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_content_type(Arg_&& arg, Args_... args);
-  std::string* mutable_content_type();
-  PROTOBUF_NODISCARD std::string* release_content_type();
-  void set_allocated_content_type(std::string* value);
-
-  private:
-  const std::string& _internal_content_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(
-      const std::string& value);
-  std::string* _internal_mutable_content_type();
-
-  public:
   // optional .google.protobuf.Duration expires = 9;
   bool has_expires() const;
   void clear_expires() ;
@@ -14150,8 +14381,8 @@ class AttachmentShowRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 1,
-      78, 2>
+      3, 4, 1,
+      57, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -14172,8 +14403,6 @@ class AttachmentShowRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr bucket_;
     ::google::protobuf::internal::ArenaStringPtr object_;
-    ::google::protobuf::internal::ArenaStringPtr file_name_;
-    ::google::protobuf::internal::ArenaStringPtr content_type_;
     ::google::protobuf::Duration* expires_;
     bool inline__;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -14242,7 +14471,7 @@ class AttachmentIndexResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentIndexResponse_Item*>(
         &_AttachmentIndexResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 28;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(AttachmentIndexResponse_Item& a, AttachmentIndexResponse_Item& b) { a.Swap(&b); }
   inline void Swap(AttachmentIndexResponse_Item* other) {
     if (other == this) return;
@@ -14563,7 +14792,7 @@ class UserLogsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserLogsResponse*>(
         &_UserLogsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 40;
+  static constexpr int kIndexInFileMessages = 41;
   friend void swap(UserLogsResponse& a, UserLogsResponse& b) { a.Swap(&b); }
   inline void Swap(UserLogsResponse* other) {
     if (other == this) return;
@@ -14779,7 +15008,7 @@ class UserIndexResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse*>(
         &_UserIndexResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 38;
+  static constexpr int kIndexInFileMessages = 39;
   friend void swap(UserIndexResponse& a, UserIndexResponse& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse* other) {
     if (other == this) return;
@@ -15034,7 +15263,7 @@ class Sitemap_UrlSet final : public ::google::protobuf::Message
     return reinterpret_cast<const Sitemap_UrlSet*>(
         &_Sitemap_UrlSet_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 62;
+  static constexpr int kIndexInFileMessages = 63;
   friend void swap(Sitemap_UrlSet& a, Sitemap_UrlSet& b) { a.Swap(&b); }
   inline void Swap(Sitemap_UrlSet* other) {
     if (other == this) return;
@@ -15231,7 +15460,7 @@ class Rss_Channel final : public ::google::protobuf::Message
     return reinterpret_cast<const Rss_Channel*>(
         &_Rss_Channel_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 59;
+  static constexpr int kIndexInFileMessages = 60;
   friend void swap(Rss_Channel& a, Rss_Channel& b) { a.Swap(&b); }
   inline void Swap(Rss_Channel* other) {
     if (other == this) return;
@@ -16261,7 +16490,7 @@ class AttachmentIndexResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const AttachmentIndexResponse*>(
         &_AttachmentIndexResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 29;
+  static constexpr int kIndexInFileMessages = 30;
   friend void swap(AttachmentIndexResponse& a, AttachmentIndexResponse& b) { a.Swap(&b); }
   inline void Swap(AttachmentIndexResponse* other) {
     if (other == this) return;
@@ -16477,7 +16706,7 @@ class Theme_Bootstrap_Sample_Data_Body_Item final : public ::google::protobuf::M
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body_Item*>(
         &_Theme_Bootstrap_Sample_Data_Body_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 72;
+  static constexpr int kIndexInFileMessages = 73;
   friend void swap(Theme_Bootstrap_Sample_Data_Body_Item& a, Theme_Bootstrap_Sample_Data_Body_Item& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data_Body_Item* other) {
     if (other == this) return;
@@ -16750,7 +16979,7 @@ class Rss final : public ::google::protobuf::Message
     return reinterpret_cast<const Rss*>(
         &_Rss_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 60;
+  static constexpr int kIndexInFileMessages = 61;
   friend void swap(Rss& a, Rss& b) { a.Swap(&b); }
   inline void Swap(Rss* other) {
     if (other == this) return;
@@ -17163,7 +17392,7 @@ class Theme_Bootstrap_Sample_Data_Body final : public ::google::protobuf::Messag
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data_Body*>(
         &_Theme_Bootstrap_Sample_Data_Body_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 73;
+  static constexpr int kIndexInFileMessages = 74;
   friend void swap(Theme_Bootstrap_Sample_Data_Body& a, Theme_Bootstrap_Sample_Data_Body& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data_Body* other) {
     if (other == this) return;
@@ -17399,7 +17628,7 @@ class Sitemap final : public ::google::protobuf::Message
     return reinterpret_cast<const Sitemap*>(
         &_Sitemap_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 64;
+  static constexpr int kIndexInFileMessages = 65;
   friend void swap(Sitemap& a, Sitemap& b) { a.Swap(&b); }
   inline void Swap(Sitemap* other) {
     if (other == this) return;
@@ -17599,7 +17828,7 @@ class Theme_Bootstrap_Sample_Data final : public ::google::protobuf::Message
     return reinterpret_cast<const Theme_Bootstrap_Sample_Data*>(
         &_Theme_Bootstrap_Sample_Data_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 74;
+  static constexpr int kIndexInFileMessages = 75;
   friend void swap(Theme_Bootstrap_Sample_Data& a, Theme_Bootstrap_Sample_Data& b) { a.Swap(&b); }
   inline void Swap(Theme_Bootstrap_Sample_Data* other) {
     if (other == this) return;
@@ -20904,6 +21133,224 @@ inline void EmailUserSignInRequest::set_allocated_ttl(::google::protobuf::Durati
 
 // -------------------------------------------------------------------
 
+// AttachmentSetUploadedAtRequest
+
+// string bucket = 1;
+inline void AttachmentSetUploadedAtRequest::clear_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.ClearToEmpty();
+}
+inline const std::string& AttachmentSetUploadedAtRequest::bucket() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentSetUploadedAtRequest.bucket)
+  return _internal_bucket();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AttachmentSetUploadedAtRequest::set_bucket(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentSetUploadedAtRequest.bucket)
+}
+inline std::string* AttachmentSetUploadedAtRequest::mutable_bucket() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_bucket();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.AttachmentSetUploadedAtRequest.bucket)
+  return _s;
+}
+inline const std::string& AttachmentSetUploadedAtRequest::_internal_bucket() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bucket_.Get();
+}
+inline void AttachmentSetUploadedAtRequest::_internal_set_bucket(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.Set(value, GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::_internal_mutable_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.bucket_.Mutable( GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::release_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.AttachmentSetUploadedAtRequest.bucket)
+  return _impl_.bucket_.Release();
+}
+inline void AttachmentSetUploadedAtRequest::set_allocated_bucket(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.bucket_.IsDefault()) {
+    _impl_.bucket_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentSetUploadedAtRequest.bucket)
+}
+
+// string object = 2;
+inline void AttachmentSetUploadedAtRequest::clear_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.ClearToEmpty();
+}
+inline const std::string& AttachmentSetUploadedAtRequest::object() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentSetUploadedAtRequest.object)
+  return _internal_object();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AttachmentSetUploadedAtRequest::set_object(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentSetUploadedAtRequest.object)
+}
+inline std::string* AttachmentSetUploadedAtRequest::mutable_object() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_object();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.AttachmentSetUploadedAtRequest.object)
+  return _s;
+}
+inline const std::string& AttachmentSetUploadedAtRequest::_internal_object() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.object_.Get();
+}
+inline void AttachmentSetUploadedAtRequest::_internal_set_object(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.Set(value, GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::_internal_mutable_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.object_.Mutable( GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::release_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.AttachmentSetUploadedAtRequest.object)
+  return _impl_.object_.Release();
+}
+inline void AttachmentSetUploadedAtRequest::set_allocated_object(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.object_.IsDefault()) {
+    _impl_.object_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentSetUploadedAtRequest.object)
+}
+
+// string file_name = 3;
+inline void AttachmentSetUploadedAtRequest::clear_file_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.file_name_.ClearToEmpty();
+}
+inline const std::string& AttachmentSetUploadedAtRequest::file_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentSetUploadedAtRequest.file_name)
+  return _internal_file_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AttachmentSetUploadedAtRequest::set_file_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.file_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentSetUploadedAtRequest.file_name)
+}
+inline std::string* AttachmentSetUploadedAtRequest::mutable_file_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_file_name();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.AttachmentSetUploadedAtRequest.file_name)
+  return _s;
+}
+inline const std::string& AttachmentSetUploadedAtRequest::_internal_file_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.file_name_.Get();
+}
+inline void AttachmentSetUploadedAtRequest::_internal_set_file_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.file_name_.Set(value, GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::_internal_mutable_file_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.file_name_.Mutable( GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::release_file_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.AttachmentSetUploadedAtRequest.file_name)
+  return _impl_.file_name_.Release();
+}
+inline void AttachmentSetUploadedAtRequest::set_allocated_file_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.file_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.file_name_.IsDefault()) {
+    _impl_.file_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentSetUploadedAtRequest.file_name)
+}
+
+// string content_type = 4;
+inline void AttachmentSetUploadedAtRequest::clear_content_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.ClearToEmpty();
+}
+inline const std::string& AttachmentSetUploadedAtRequest::content_type() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentSetUploadedAtRequest.content_type)
+  return _internal_content_type();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AttachmentSetUploadedAtRequest::set_content_type(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentSetUploadedAtRequest.content_type)
+}
+inline std::string* AttachmentSetUploadedAtRequest::mutable_content_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_content_type();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.AttachmentSetUploadedAtRequest.content_type)
+  return _s;
+}
+inline const std::string& AttachmentSetUploadedAtRequest::_internal_content_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.content_type_.Get();
+}
+inline void AttachmentSetUploadedAtRequest::_internal_set_content_type(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.Set(value, GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::_internal_mutable_content_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.content_type_.Mutable( GetArena());
+}
+inline std::string* AttachmentSetUploadedAtRequest::release_content_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.AttachmentSetUploadedAtRequest.content_type)
+  return _impl_.content_type_.Release();
+}
+inline void AttachmentSetUploadedAtRequest::set_allocated_content_type(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.content_type_.IsDefault()) {
+    _impl_.content_type_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentSetUploadedAtRequest.content_type)
+}
+
+// uint32 size = 5;
+inline void AttachmentSetUploadedAtRequest::clear_size() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.size_ = 0u;
+}
+inline ::uint32_t AttachmentSetUploadedAtRequest::size() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentSetUploadedAtRequest.size)
+  return _internal_size();
+}
+inline void AttachmentSetUploadedAtRequest::set_size(::uint32_t value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentSetUploadedAtRequest.size)
+}
+inline ::uint32_t AttachmentSetUploadedAtRequest::_internal_size() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.size_;
+}
+inline void AttachmentSetUploadedAtRequest::_internal_set_size(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.size_ = value;
+}
+
+// -------------------------------------------------------------------
+
 // AttachmentShowRequest
 
 // string bucket = 1;
@@ -21000,102 +21447,6 @@ inline void AttachmentShowRequest::set_allocated_object(std::string* value) {
     _impl_.object_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentShowRequest.object)
-}
-
-// string file_name = 3;
-inline void AttachmentShowRequest::clear_file_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.file_name_.ClearToEmpty();
-}
-inline const std::string& AttachmentShowRequest::file_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentShowRequest.file_name)
-  return _internal_file_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AttachmentShowRequest::set_file_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.file_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentShowRequest.file_name)
-}
-inline std::string* AttachmentShowRequest::mutable_file_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_file_name();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.AttachmentShowRequest.file_name)
-  return _s;
-}
-inline const std::string& AttachmentShowRequest::_internal_file_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.file_name_.Get();
-}
-inline void AttachmentShowRequest::_internal_set_file_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.file_name_.Set(value, GetArena());
-}
-inline std::string* AttachmentShowRequest::_internal_mutable_file_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.file_name_.Mutable( GetArena());
-}
-inline std::string* AttachmentShowRequest::release_file_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.AttachmentShowRequest.file_name)
-  return _impl_.file_name_.Release();
-}
-inline void AttachmentShowRequest::set_allocated_file_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.file_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.file_name_.IsDefault()) {
-    _impl_.file_name_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentShowRequest.file_name)
-}
-
-// string content_type = 5;
-inline void AttachmentShowRequest::clear_content_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.content_type_.ClearToEmpty();
-}
-inline const std::string& AttachmentShowRequest::content_type() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.AttachmentShowRequest.content_type)
-  return _internal_content_type();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AttachmentShowRequest::set_content_type(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.content_type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.AttachmentShowRequest.content_type)
-}
-inline std::string* AttachmentShowRequest::mutable_content_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_content_type();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.AttachmentShowRequest.content_type)
-  return _s;
-}
-inline const std::string& AttachmentShowRequest::_internal_content_type() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.content_type_.Get();
-}
-inline void AttachmentShowRequest::_internal_set_content_type(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.content_type_.Set(value, GetArena());
-}
-inline std::string* AttachmentShowRequest::_internal_mutable_content_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.content_type_.Mutable( GetArena());
-}
-inline std::string* AttachmentShowRequest::release_content_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.AttachmentShowRequest.content_type)
-  return _impl_.content_type_.Release();
-}
-inline void AttachmentShowRequest::set_allocated_content_type(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.content_type_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.content_type_.IsDefault()) {
-    _impl_.content_type_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.AttachmentShowRequest.content_type)
 }
 
 // bool inline = 6;

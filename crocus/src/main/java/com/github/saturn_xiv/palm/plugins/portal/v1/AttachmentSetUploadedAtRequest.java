@@ -6,12 +6,12 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.AttachmentShowRequest}
+ * Protobuf type {@code palm.portal.v1.AttachmentSetUploadedAtRequest}
  */
-public final class AttachmentShowRequest extends
+public final class AttachmentSetUploadedAtRequest extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.AttachmentShowRequest)
-    AttachmentShowRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.AttachmentSetUploadedAtRequest)
+    AttachmentSetUploadedAtRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -20,31 +20,32 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 29,
       /* patch= */ 3,
       /* suffix= */ "",
-      AttachmentShowRequest.class.getName());
+      AttachmentSetUploadedAtRequest.class.getName());
   }
-  // Use AttachmentShowRequest.newBuilder() to construct.
-  private AttachmentShowRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use AttachmentSetUploadedAtRequest.newBuilder() to construct.
+  private AttachmentSetUploadedAtRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private AttachmentShowRequest() {
+  private AttachmentSetUploadedAtRequest() {
     bucket_ = "";
     object_ = "";
+    fileName_ = "";
+    contentType_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentShowRequest_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentSetUploadedAtRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentShowRequest_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentSetUploadedAtRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.Builder.class);
   }
 
-  private int bitField0_;
   public static final int BUCKET_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
   private volatile java.lang.Object bucket_ = "";
@@ -123,41 +124,93 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int INLINE_FIELD_NUMBER = 6;
-  private boolean inline_ = false;
+  public static final int FILE_NAME_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object fileName_ = "";
   /**
-   * <code>bool inline = 6;</code>
-   * @return The inline.
+   * <code>string file_name = 3;</code>
+   * @return The fileName.
    */
   @java.lang.Override
-  public boolean getInline() {
-    return inline_;
+  public java.lang.String getFileName() {
+    java.lang.Object ref = fileName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      fileName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string file_name = 3;</code>
+   * @return The bytes for fileName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getFileNameBytes() {
+    java.lang.Object ref = fileName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      fileName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
-  public static final int EXPIRES_FIELD_NUMBER = 9;
-  private com.google.protobuf.Duration expires_;
+  public static final int CONTENT_TYPE_FIELD_NUMBER = 4;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object contentType_ = "";
   /**
-   * <code>optional .google.protobuf.Duration expires = 9;</code>
-   * @return Whether the expires field is set.
+   * <code>string content_type = 4;</code>
+   * @return The contentType.
    */
   @java.lang.Override
-  public boolean hasExpires() {
-    return ((bitField0_ & 0x00000001) != 0);
+  public java.lang.String getContentType() {
+    java.lang.Object ref = contentType_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      contentType_ = s;
+      return s;
+    }
   }
   /**
-   * <code>optional .google.protobuf.Duration expires = 9;</code>
-   * @return The expires.
+   * <code>string content_type = 4;</code>
+   * @return The bytes for contentType.
    */
   @java.lang.Override
-  public com.google.protobuf.Duration getExpires() {
-    return expires_ == null ? com.google.protobuf.Duration.getDefaultInstance() : expires_;
+  public com.google.protobuf.ByteString
+      getContentTypeBytes() {
+    java.lang.Object ref = contentType_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      contentType_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
+
+  public static final int SIZE_FIELD_NUMBER = 5;
+  private int size_ = 0;
   /**
-   * <code>optional .google.protobuf.Duration expires = 9;</code>
+   * <code>uint32 size = 5;</code>
+   * @return The size.
    */
   @java.lang.Override
-  public com.google.protobuf.DurationOrBuilder getExpiresOrBuilder() {
-    return expires_ == null ? com.google.protobuf.Duration.getDefaultInstance() : expires_;
+  public int getSize() {
+    return size_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -180,11 +233,14 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(object_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 2, object_);
     }
-    if (inline_ != false) {
-      output.writeBool(6, inline_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(fileName_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 3, fileName_);
     }
-    if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(9, getExpires());
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(contentType_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 4, contentType_);
+    }
+    if (size_ != 0) {
+      output.writeUInt32(5, size_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -201,13 +257,15 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(object_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(2, object_);
     }
-    if (inline_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(6, inline_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(fileName_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(3, fileName_);
     }
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(contentType_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(4, contentType_);
+    }
+    if (size_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(9, getExpires());
+        .computeUInt32Size(5, size_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -219,22 +277,21 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest) obj;
 
     if (!getBucket()
         .equals(other.getBucket())) return false;
     if (!getObject()
         .equals(other.getObject())) return false;
-    if (getInline()
-        != other.getInline()) return false;
-    if (hasExpires() != other.hasExpires()) return false;
-    if (hasExpires()) {
-      if (!getExpires()
-          .equals(other.getExpires())) return false;
-    }
+    if (!getFileName()
+        .equals(other.getFileName())) return false;
+    if (!getContentType()
+        .equals(other.getContentType())) return false;
+    if (getSize()
+        != other.getSize()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -250,56 +307,55 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getBucket().hashCode();
     hash = (37 * hash) + OBJECT_FIELD_NUMBER;
     hash = (53 * hash) + getObject().hashCode();
-    hash = (37 * hash) + INLINE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getInline());
-    if (hasExpires()) {
-      hash = (37 * hash) + EXPIRES_FIELD_NUMBER;
-      hash = (53 * hash) + getExpires().hashCode();
-    }
+    hash = (37 * hash) + FILE_NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getFileName().hashCode();
+    hash = (37 * hash) + CONTENT_TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + getContentType().hashCode();
+    hash = (37 * hash) + SIZE_FIELD_NUMBER;
+    hash = (53 * hash) + getSize();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -307,26 +363,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -339,7 +395,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -355,40 +411,34 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.AttachmentShowRequest}
+   * Protobuf type {@code palm.portal.v1.AttachmentSetUploadedAtRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.AttachmentShowRequest)
-      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.AttachmentSetUploadedAtRequest)
+      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentShowRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentSetUploadedAtRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentShowRequest_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentSetUploadedAtRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessage
-              .alwaysUseFieldBuilders) {
-        getExpiresFieldBuilder();
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
@@ -396,29 +446,26 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       bucket_ = "";
       object_ = "";
-      inline_ = false;
-      expires_ = null;
-      if (expiresBuilder_ != null) {
-        expiresBuilder_.dispose();
-        expiresBuilder_ = null;
-      }
+      fileName_ = "";
+      contentType_ = "";
+      size_ = 0;
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentShowRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_AttachmentSetUploadedAtRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -426,14 +473,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.bucket_ = bucket_;
@@ -442,30 +489,28 @@ private static final long serialVersionUID = 0L;
         result.object_ = object_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.inline_ = inline_;
+        result.fileName_ = fileName_;
       }
-      int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.expires_ = expiresBuilder_ == null
-            ? expires_
-            : expiresBuilder_.build();
-        to_bitField0_ |= 0x00000001;
+        result.contentType_ = contentType_;
       }
-      result.bitField0_ |= to_bitField0_;
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.size_ = size_;
+      }
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest.getDefaultInstance()) return this;
       if (!other.getBucket().isEmpty()) {
         bucket_ = other.bucket_;
         bitField0_ |= 0x00000001;
@@ -476,11 +521,18 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
         onChanged();
       }
-      if (other.getInline() != false) {
-        setInline(other.getInline());
+      if (!other.getFileName().isEmpty()) {
+        fileName_ = other.fileName_;
+        bitField0_ |= 0x00000004;
+        onChanged();
       }
-      if (other.hasExpires()) {
-        mergeExpires(other.getExpires());
+      if (!other.getContentType().isEmpty()) {
+        contentType_ = other.contentType_;
+        bitField0_ |= 0x00000008;
+        onChanged();
+      }
+      if (other.getSize() != 0) {
+        setSize(other.getSize());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -518,18 +570,21 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 18
-            case 48: {
-              inline_ = input.readBool();
+            case 26: {
+              fileName_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000004;
               break;
-            } // case 48
-            case 74: {
-              input.readMessage(
-                  getExpiresFieldBuilder().getBuilder(),
-                  extensionRegistry);
+            } // case 26
+            case 34: {
+              contentType_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000008;
               break;
-            } // case 74
+            } // case 34
+            case 40: {
+              size_ = input.readUInt32();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 40
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -691,176 +746,199 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private boolean inline_ ;
+    private java.lang.Object fileName_ = "";
     /**
-     * <code>bool inline = 6;</code>
-     * @return The inline.
+     * <code>string file_name = 3;</code>
+     * @return The fileName.
      */
-    @java.lang.Override
-    public boolean getInline() {
-      return inline_;
+    public java.lang.String getFileName() {
+      java.lang.Object ref = fileName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fileName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>bool inline = 6;</code>
-     * @param value The inline to set.
+     * <code>string file_name = 3;</code>
+     * @return The bytes for fileName.
+     */
+    public com.google.protobuf.ByteString
+        getFileNameBytes() {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fileName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string file_name = 3;</code>
+     * @param value The fileName to set.
      * @return This builder for chaining.
      */
-    public Builder setInline(boolean value) {
-
-      inline_ = value;
+    public Builder setFileName(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      fileName_ = value;
       bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
     /**
-     * <code>bool inline = 6;</code>
+     * <code>string file_name = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearInline() {
+    public Builder clearFileName() {
+      fileName_ = getDefaultInstance().getFileName();
       bitField0_ = (bitField0_ & ~0x00000004);
-      inline_ = false;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string file_name = 3;</code>
+     * @param value The bytes for fileName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFileNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      fileName_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.Duration expires_;
-    private com.google.protobuf.SingleFieldBuilder<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> expiresBuilder_;
+    private java.lang.Object contentType_ = "";
     /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
-     * @return Whether the expires field is set.
+     * <code>string content_type = 4;</code>
+     * @return The contentType.
      */
-    public boolean hasExpires() {
-      return ((bitField0_ & 0x00000008) != 0);
-    }
-    /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
-     * @return The expires.
-     */
-    public com.google.protobuf.Duration getExpires() {
-      if (expiresBuilder_ == null) {
-        return expires_ == null ? com.google.protobuf.Duration.getDefaultInstance() : expires_;
+    public java.lang.String getContentType() {
+      java.lang.Object ref = contentType_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        contentType_ = s;
+        return s;
       } else {
-        return expiresBuilder_.getMessage();
+        return (java.lang.String) ref;
       }
     }
     /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
+     * <code>string content_type = 4;</code>
+     * @return The bytes for contentType.
      */
-    public Builder setExpires(com.google.protobuf.Duration value) {
-      if (expiresBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        expires_ = value;
+    public com.google.protobuf.ByteString
+        getContentTypeBytes() {
+      java.lang.Object ref = contentType_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        contentType_ = b;
+        return b;
       } else {
-        expiresBuilder_.setMessage(value);
+        return (com.google.protobuf.ByteString) ref;
       }
+    }
+    /**
+     * <code>string content_type = 4;</code>
+     * @param value The contentType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setContentType(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      contentType_ = value;
       bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
+     * <code>string content_type = 4;</code>
+     * @return This builder for chaining.
      */
-    public Builder setExpires(
-        com.google.protobuf.Duration.Builder builderForValue) {
-      if (expiresBuilder_ == null) {
-        expires_ = builderForValue.build();
-      } else {
-        expiresBuilder_.setMessage(builderForValue.build());
-      }
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
-     */
-    public Builder mergeExpires(com.google.protobuf.Duration value) {
-      if (expiresBuilder_ == null) {
-        if (((bitField0_ & 0x00000008) != 0) &&
-          expires_ != null &&
-          expires_ != com.google.protobuf.Duration.getDefaultInstance()) {
-          getExpiresBuilder().mergeFrom(value);
-        } else {
-          expires_ = value;
-        }
-      } else {
-        expiresBuilder_.mergeFrom(value);
-      }
-      if (expires_ != null) {
-        bitField0_ |= 0x00000008;
-        onChanged();
-      }
-      return this;
-    }
-    /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
-     */
-    public Builder clearExpires() {
+    public Builder clearContentType() {
+      contentType_ = getDefaultInstance().getContentType();
       bitField0_ = (bitField0_ & ~0x00000008);
-      expires_ = null;
-      if (expiresBuilder_ != null) {
-        expiresBuilder_.dispose();
-        expiresBuilder_ = null;
-      }
       onChanged();
       return this;
     }
     /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
+     * <code>string content_type = 4;</code>
+     * @param value The bytes for contentType to set.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.Duration.Builder getExpiresBuilder() {
+    public Builder setContentTypeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      contentType_ = value;
       bitField0_ |= 0x00000008;
       onChanged();
-      return getExpiresFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
-     */
-    public com.google.protobuf.DurationOrBuilder getExpiresOrBuilder() {
-      if (expiresBuilder_ != null) {
-        return expiresBuilder_.getMessageOrBuilder();
-      } else {
-        return expires_ == null ?
-            com.google.protobuf.Duration.getDefaultInstance() : expires_;
-      }
-    }
-    /**
-     * <code>optional .google.protobuf.Duration expires = 9;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilder<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
-        getExpiresFieldBuilder() {
-      if (expiresBuilder_ == null) {
-        expiresBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
-                getExpires(),
-                getParentForChildren(),
-                isClean());
-        expires_ = null;
-      }
-      return expiresBuilder_;
+      return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.AttachmentShowRequest)
+    private int size_ ;
+    /**
+     * <code>uint32 size = 5;</code>
+     * @return The size.
+     */
+    @java.lang.Override
+    public int getSize() {
+      return size_;
+    }
+    /**
+     * <code>uint32 size = 5;</code>
+     * @param value The size to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSize(int value) {
+
+      size_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>uint32 size = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSize() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      size_ = 0;
+      onChanged();
+      return this;
+    }
+
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.AttachmentSetUploadedAtRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.AttachmentShowRequest)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.AttachmentSetUploadedAtRequest)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<AttachmentShowRequest>
-      PARSER = new com.google.protobuf.AbstractParser<AttachmentShowRequest>() {
+  private static final com.google.protobuf.Parser<AttachmentSetUploadedAtRequest>
+      PARSER = new com.google.protobuf.AbstractParser<AttachmentSetUploadedAtRequest>() {
     @java.lang.Override
-    public AttachmentShowRequest parsePartialFrom(
+    public AttachmentSetUploadedAtRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -879,17 +957,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<AttachmentShowRequest> parser() {
+  public static com.google.protobuf.Parser<AttachmentSetUploadedAtRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<AttachmentShowRequest> getParserForType() {
+  public com.google.protobuf.Parser<AttachmentSetUploadedAtRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

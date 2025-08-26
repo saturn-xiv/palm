@@ -196,3 +196,7 @@ func Can(permissions [][]string, obj_ *Object, act_ *Action) bool {
 func ErrorUnknownPermissionRule(rule []string) error {
 	return status.Errorf(codes.PermissionDenied, "unknown permission rule %s", strings.Join(rule, ","))
 }
+
+var (
+	ErrorPermissionDenied = status.Error(codes.PermissionDenied, "permission denied")
+)

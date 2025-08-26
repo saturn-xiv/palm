@@ -22,6 +22,10 @@ type Session struct {
 	permissions [][]string
 }
 
+func (p *Session) ID() uint32 {
+	return p.user.ID
+}
+
 func (p *Session) IsSignedIn() bool {
 	return p.user != nil
 }

@@ -1068,9 +1068,10 @@ var EmailUser_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Attachment_Index_FullMethodName  = "/palm.portal.v1.Attachment/Index"
-	Attachment_Upload_FullMethodName = "/palm.portal.v1.Attachment/Upload"
-	Attachment_Show_FullMethodName   = "/palm.portal.v1.Attachment/Show"
+	Attachment_Index_FullMethodName         = "/palm.portal.v1.Attachment/Index"
+	Attachment_Upload_FullMethodName        = "/palm.portal.v1.Attachment/Upload"
+	Attachment_Show_FullMethodName          = "/palm.portal.v1.Attachment/Show"
+	Attachment_SetUploadedAt_FullMethodName = "/palm.portal.v1.Attachment/SetUploadedAt"
 )
 
 // AttachmentClient is the client API for Attachment service.
@@ -1082,6 +1083,7 @@ type AttachmentClient interface {
 	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
 	Upload(ctx context.Context, in *AttachmentUploadRequest, opts ...grpc.CallOption) (*AttachmentUploadResponse, error)
 	Show(ctx context.Context, in *AttachmentShowRequest, opts ...grpc.CallOption) (*AttachmentShowResponse, error)
+	SetUploadedAt(ctx context.Context, in *AttachmentSetUploadedAtRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type attachmentClient struct {
@@ -1122,6 +1124,16 @@ func (c *attachmentClient) Show(ctx context.Context, in *AttachmentShowRequest, 
 	return out, nil
 }
 
+func (c *attachmentClient) SetUploadedAt(ctx context.Context, in *AttachmentSetUploadedAtRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_SetUploadedAt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AttachmentServer is the server API for Attachment service.
 // All implementations must embed UnimplementedAttachmentServer
 // for forward compatibility.
@@ -1131,6 +1143,7 @@ type AttachmentServer interface {
 	Index(context.Context, *Page) (*AttachmentIndexResponse, error)
 	Upload(context.Context, *AttachmentUploadRequest) (*AttachmentUploadResponse, error)
 	Show(context.Context, *AttachmentShowRequest) (*AttachmentShowResponse, error)
+	SetUploadedAt(context.Context, *AttachmentSetUploadedAtRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedAttachmentServer()
 }
 
@@ -1149,6 +1162,9 @@ func (UnimplementedAttachmentServer) Upload(context.Context, *AttachmentUploadRe
 }
 func (UnimplementedAttachmentServer) Show(context.Context, *AttachmentShowRequest) (*AttachmentShowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Show not implemented")
+}
+func (UnimplementedAttachmentServer) SetUploadedAt(context.Context, *AttachmentSetUploadedAtRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetUploadedAt not implemented")
 }
 func (UnimplementedAttachmentServer) mustEmbedUnimplementedAttachmentServer() {}
 func (UnimplementedAttachmentServer) testEmbeddedByValue()                    {}
@@ -1225,6 +1241,24 @@ func _Attachment_Show_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Attachment_SetUploadedAt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentSetUploadedAtRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).SetUploadedAt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_SetUploadedAt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).SetUploadedAt(ctx, req.(*AttachmentSetUploadedAtRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Attachment_ServiceDesc is the grpc.ServiceDesc for Attachment service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1243,6 +1277,10 @@ var Attachment_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Show",
 			Handler:    _Attachment_Show_Handler,
+		},
+		{
+			MethodName: "SetUploadedAt",
+			Handler:    _Attachment_SetUploadedAt_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
