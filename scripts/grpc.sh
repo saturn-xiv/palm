@@ -2,8 +2,6 @@
 
 set -e
 
-. /etc/os-release
-
 export SOURCE_ROOT=$HOME/downloads/grpc
 export BUILD_ROOT=$HOME/build/grpc
 export INSTALL_ROOT=$HOME/.local
@@ -12,7 +10,8 @@ export INSTALL_ROOT=$HOME/.local
 
 function build_grpc() {
     # https://grpc.io/docs/languages/cpp/quickstart/
-    if [ -L $HOME/.local/bin/protoc ]; then
+    if [ -L $INSTALL_ROOT/bin/protoc ]; then
+        $INSTALL_ROOT/bin/protoc --version
         echo 'already exists!'
         exit 0
     fi
