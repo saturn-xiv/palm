@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayJsapiGrpc {
@@ -154,6 +154,21 @@ public final class WeChatPayJsapiGrpc {
   }
 
   /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static WeChatPayJsapiBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<WeChatPayJsapiBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<WeChatPayJsapiBlockingV2Stub>() {
+        @java.lang.Override
+        public WeChatPayJsapiBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new WeChatPayJsapiBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return WeChatPayJsapiBlockingV2Stub.newStub(factory, channel);
+  }
+
+  /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static WeChatPayJsapiBlockingStub newBlockingStub(
@@ -278,6 +293,51 @@ public final class WeChatPayJsapiGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service WeChatPayJsapi.
+   */
+  public static final class WeChatPayJsapiBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<WeChatPayJsapiBlockingV2Stub> {
+    private WeChatPayJsapiBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected WeChatPayJsapiBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new WeChatPayJsapiBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayJsapiPrepayIdResponse prepay(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayPrepayRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getPrepayMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeResponse queryOrderByOutTradeNo(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryOrderByOutTradeNoRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryOrderByOutTradeNoMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeResponse queryOrderById(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryOrderByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryOrderByIdMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty closeOrder(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayCloseOrderRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCloseOrderMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service WeChatPayJsapi.
    */
   public static final class WeChatPayJsapiBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<WeChatPayJsapiBlockingStub> {

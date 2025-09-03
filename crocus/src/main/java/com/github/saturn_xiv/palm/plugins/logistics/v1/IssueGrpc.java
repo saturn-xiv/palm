@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: logistics.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class IssueGrpc {
@@ -27,6 +27,21 @@ public final class IssueGrpc {
         }
       };
     return IssueStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static IssueBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<IssueBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<IssueBlockingV2Stub>() {
+        @java.lang.Override
+        public IssueBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new IssueBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return IssueBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class IssueGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Issue.
+   */
+  public static final class IssueBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<IssueBlockingV2Stub> {
+    private IssueBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected IssueBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new IssueBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Issue.
    */
   public static final class IssueBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<IssueBlockingStub> {

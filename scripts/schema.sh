@@ -93,7 +93,7 @@ mkdir -p $WORK_DIR/gourd/include $WORK_DIR/gourd/src
 generate_gourd_thrift
 generate_gourd_grpc
 
-generate_phlox_dashboard
+# generate_phlox_dashboard
 
 generate_crocus
 generate_jasmine sms

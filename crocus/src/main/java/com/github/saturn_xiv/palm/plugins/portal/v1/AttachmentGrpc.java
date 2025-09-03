@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AttachmentGrpc {
@@ -157,6 +157,21 @@ public final class AttachmentGrpc {
   }
 
   /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static AttachmentBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<AttachmentBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<AttachmentBlockingV2Stub>() {
+        @java.lang.Override
+        public AttachmentBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new AttachmentBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return AttachmentBlockingV2Stub.newStub(factory, channel);
+  }
+
+  /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static AttachmentBlockingStub newBlockingStub(
@@ -290,6 +305,54 @@ public final class AttachmentGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Attachment.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
+   */
+  public static final class AttachmentBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<AttachmentBlockingV2Stub> {
+    private AttachmentBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected AttachmentBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new AttachmentBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentUploadResponse upload(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentUploadRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUploadMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse show(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getShowMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty setUploadedAt(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSetUploadedAtMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Attachment.
    * <pre>
    * ----------------------------------------------------------------------------
    * </pre>

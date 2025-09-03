@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: mall.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WishlistGrpc {
@@ -27,6 +27,21 @@ public final class WishlistGrpc {
         }
       };
     return WishlistStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static WishlistBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<WishlistBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<WishlistBlockingV2Stub>() {
+        @java.lang.Override
+        public WishlistBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new WishlistBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return WishlistBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class WishlistGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Wishlist.
+   */
+  public static final class WishlistBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<WishlistBlockingV2Stub> {
+    private WishlistBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected WishlistBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new WishlistBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Wishlist.
    */
   public static final class WishlistBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<WishlistBlockingStub> {

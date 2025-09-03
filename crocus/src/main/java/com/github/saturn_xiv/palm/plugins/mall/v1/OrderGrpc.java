@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: mall.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class OrderGrpc {
@@ -27,6 +27,21 @@ public final class OrderGrpc {
         }
       };
     return OrderStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static OrderBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<OrderBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<OrderBlockingV2Stub>() {
+        @java.lang.Override
+        public OrderBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new OrderBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return OrderBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class OrderGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Order.
+   */
+  public static final class OrderBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<OrderBlockingV2Stub> {
+    private OrderBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected OrderBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new OrderBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Order.
    */
   public static final class OrderBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<OrderBlockingStub> {

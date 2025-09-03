@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayRefundGrpc {
@@ -89,6 +89,21 @@ public final class WeChatPayRefundGrpc {
         }
       };
     return WeChatPayRefundStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static WeChatPayRefundBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<WeChatPayRefundBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<WeChatPayRefundBlockingV2Stub>() {
+        @java.lang.Override
+        public WeChatPayRefundBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new WeChatPayRefundBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return WeChatPayRefundBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -186,6 +201,37 @@ public final class WeChatPayRefundGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service WeChatPayRefund.
+   */
+  public static final class WeChatPayRefundBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<WeChatPayRefundBlockingV2Stub> {
+    private WeChatPayRefundBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected WeChatPayRefundBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new WeChatPayRefundBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayRefundResponse create(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayCreateRefundRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayRefundResponse query(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryRefundRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service WeChatPayRefund.
    */
   public static final class WeChatPayRefundBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<WeChatPayRefundBlockingStub> {

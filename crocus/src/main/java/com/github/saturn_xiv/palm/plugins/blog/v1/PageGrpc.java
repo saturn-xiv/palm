@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: blog.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class PageGrpc {
@@ -27,6 +27,21 @@ public final class PageGrpc {
         }
       };
     return PageStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static PageBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<PageBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PageBlockingV2Stub>() {
+        @java.lang.Override
+        public PageBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PageBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return PageBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class PageGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Page.
+   */
+  public static final class PageBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<PageBlockingV2Stub> {
+    private PageBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected PageBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new PageBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Page.
    */
   public static final class PageBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<PageBlockingStub> {

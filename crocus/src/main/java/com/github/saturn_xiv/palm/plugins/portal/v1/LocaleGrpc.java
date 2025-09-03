@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class LocaleGrpc {
@@ -188,6 +188,21 @@ public final class LocaleGrpc {
   }
 
   /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static LocaleBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<LocaleBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<LocaleBlockingV2Stub>() {
+        @java.lang.Override
+        public LocaleBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new LocaleBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return LocaleBlockingV2Stub.newStub(factory, channel);
+  }
+
+  /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static LocaleBlockingStub newBlockingStub(
@@ -336,6 +351,61 @@ public final class LocaleGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Locale.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
+   */
+  public static final class LocaleBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<LocaleBlockingV2Stub> {
+    private LocaleBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected LocaleBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new LocaleBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleCreateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleUpdateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDestroyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse byLang(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByLangMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Locale.
    * <pre>
    * ----------------------------------------------------------------------------
    * </pre>

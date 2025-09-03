@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: router.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class HostGrpc {
@@ -27,6 +27,21 @@ public final class HostGrpc {
         }
       };
     return HostStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static HostBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<HostBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<HostBlockingV2Stub>() {
+        @java.lang.Override
+        public HostBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new HostBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return HostBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class HostGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Host.
+   */
+  public static final class HostBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<HostBlockingV2Stub> {
+    private HostBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected HostBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new HostBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Host.
    */
   public static final class HostBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<HostBlockingStub> {

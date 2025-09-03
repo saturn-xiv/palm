@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: vpn.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class MemberGrpc {
@@ -27,6 +27,21 @@ public final class MemberGrpc {
         }
       };
     return MemberStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static MemberBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<MemberBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<MemberBlockingV2Stub>() {
+        @java.lang.Override
+        public MemberBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new MemberBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return MemberBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class MemberGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Member.
+   */
+  public static final class MemberBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<MemberBlockingV2Stub> {
+    private MemberBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected MemberBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new MemberBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Member.
    */
   public static final class MemberBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<MemberBlockingStub> {

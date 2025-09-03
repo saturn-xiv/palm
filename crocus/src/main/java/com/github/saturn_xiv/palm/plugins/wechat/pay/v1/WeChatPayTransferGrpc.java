@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayTransferGrpc {
@@ -185,6 +185,21 @@ public final class WeChatPayTransferGrpc {
   }
 
   /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static WeChatPayTransferBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<WeChatPayTransferBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<WeChatPayTransferBlockingV2Stub>() {
+        @java.lang.Override
+        public WeChatPayTransferBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new WeChatPayTransferBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return WeChatPayTransferBlockingV2Stub.newStub(factory, channel);
+  }
+
+  /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static WeChatPayTransferBlockingStub newBlockingStub(
@@ -324,6 +339,58 @@ public final class WeChatPayTransferGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service WeChatPayTransfer.
+   */
+  public static final class WeChatPayTransferBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<WeChatPayTransferBlockingV2Stub> {
+    private WeChatPayTransferBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected WeChatPayTransferBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new WeChatPayTransferBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayExecuteBatchTransferResponse executeBatch(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayExecuteBatchTransferRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getExecuteBatchMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryBatchTransferResponse queryBatch(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryBatchTransferRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryBatchMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryTransferDetailResponse queryDetail(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryTransferDetailRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryDetailMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetReceiptResponse getBillReceipt(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetBillReceiptRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetBillReceiptMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetReceiptResponse getElectronicReceipt(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetElectronicReceiptRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetElectronicReceiptMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service WeChatPayTransfer.
    */
   public static final class WeChatPayTransferBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<WeChatPayTransferBlockingStub> {

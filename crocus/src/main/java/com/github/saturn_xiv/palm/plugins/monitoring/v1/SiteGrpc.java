@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: monitoring.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SiteGrpc {
@@ -61,6 +61,21 @@ public final class SiteGrpc {
         }
       };
     return SiteStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static SiteBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<SiteBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<SiteBlockingV2Stub>() {
+        @java.lang.Override
+        public SiteBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new SiteBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return SiteBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -152,6 +167,33 @@ public final class SiteGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Site.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
+   */
+  public static final class SiteBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<SiteBlockingV2Stub> {
+    private SiteBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected SiteBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new SiteBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.SiteLayoutResponse layout(com.github.saturn_xiv.palm.plugins.monitoring.v1.SiteLayoutRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getLayoutMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Site.
    * <pre>
    * ----------------------------------------------------------------------------
    * </pre>

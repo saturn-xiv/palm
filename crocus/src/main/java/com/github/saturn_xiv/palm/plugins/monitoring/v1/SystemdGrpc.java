@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: monitoring.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SystemdGrpc {
@@ -61,6 +61,21 @@ public final class SystemdGrpc {
         }
       };
     return SystemdStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static SystemdBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<SystemdBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<SystemdBlockingV2Stub>() {
+        @java.lang.Override
+        public SystemdBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new SystemdBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return SystemdBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -152,6 +167,33 @@ public final class SystemdGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Systemd.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
+   */
+  public static final class SystemdBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<SystemdBlockingV2Stub> {
+    private SystemdBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected SystemdBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new SystemdBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.SystemdJournalResponse journal(com.github.saturn_xiv.palm.plugins.monitoring.v1.SystemdJournalRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getJournalMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Systemd.
    * <pre>
    * ----------------------------------------------------------------------------
    * </pre>

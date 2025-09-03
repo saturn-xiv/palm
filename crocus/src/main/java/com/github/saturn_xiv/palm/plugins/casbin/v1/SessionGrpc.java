@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: casbin.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SessionGrpc {
@@ -219,6 +219,21 @@ public final class SessionGrpc {
   }
 
   /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static SessionBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<SessionBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<SessionBlockingV2Stub>() {
+        @java.lang.Override
+        public SessionBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new SessionBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return SessionBlockingV2Stub.newStub(factory, channel);
+  }
+
+  /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static SessionBlockingStub newBlockingStub(
@@ -382,6 +397,68 @@ public final class SessionGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Session.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
+   */
+  public static final class SessionBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<SessionBlockingV2Stub> {
+    private SessionBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected SessionBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new SessionBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse has(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getHasMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse can(com.github.saturn_xiv.palm.plugins.casbin.v1.SessionCanRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCanMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse roles(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRolesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse permissions(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getPermissionsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse implicitRoles(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getImplicitRolesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse implicitPermissions(com.google.protobuf.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getImplicitPermissionsMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Session.
    * <pre>
    * ----------------------------------------------------------------------------
    * </pre>

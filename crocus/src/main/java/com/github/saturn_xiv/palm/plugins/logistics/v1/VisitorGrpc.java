@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: logistics.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class VisitorGrpc {
@@ -27,6 +27,21 @@ public final class VisitorGrpc {
         }
       };
     return VisitorStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static VisitorBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<VisitorBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<VisitorBlockingV2Stub>() {
+        @java.lang.Override
+        public VisitorBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new VisitorBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return VisitorBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class VisitorGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Visitor.
+   */
+  public static final class VisitorBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<VisitorBlockingV2Stub> {
+    private VisitorBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected VisitorBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new VisitorBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Visitor.
    */
   public static final class VisitorBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<VisitorBlockingStub> {

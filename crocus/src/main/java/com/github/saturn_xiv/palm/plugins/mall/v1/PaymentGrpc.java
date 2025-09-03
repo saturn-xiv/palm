@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: mall.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class PaymentGrpc {
@@ -27,6 +27,21 @@ public final class PaymentGrpc {
         }
       };
     return PaymentStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static PaymentBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<PaymentBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PaymentBlockingV2Stub>() {
+        @java.lang.Override
+        public PaymentBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PaymentBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return PaymentBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -94,6 +109,23 @@ public final class PaymentGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Payment.
+   */
+  public static final class PaymentBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<PaymentBlockingV2Stub> {
+    private PaymentBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected PaymentBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new PaymentBlockingV2Stub(channel, callOptions);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Payment.
    */
   public static final class PaymentBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<PaymentBlockingStub> {

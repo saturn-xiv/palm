@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayNativeGrpc {
@@ -58,6 +58,21 @@ public final class WeChatPayNativeGrpc {
         }
       };
     return WeChatPayNativeStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static WeChatPayNativeBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<WeChatPayNativeBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<WeChatPayNativeBlockingV2Stub>() {
+        @java.lang.Override
+        public WeChatPayNativeBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new WeChatPayNativeBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return WeChatPayNativeBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -140,6 +155,30 @@ public final class WeChatPayNativeGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service WeChatPayNative.
+   */
+  public static final class WeChatPayNativeBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<WeChatPayNativeBlockingV2Stub> {
+    private WeChatPayNativeBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected WeChatPayNativeBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new WeChatPayNativeBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayNativeQrCodeUrlResponse prepay(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayPrepayRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getPrepayMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service WeChatPayNative.
    */
   public static final class WeChatPayNativeBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<WeChatPayNativeBlockingStub> {

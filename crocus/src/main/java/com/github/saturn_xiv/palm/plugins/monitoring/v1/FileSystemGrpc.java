@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: monitoring.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class FileSystemGrpc {
@@ -58,6 +58,21 @@ public final class FileSystemGrpc {
         }
       };
     return FileSystemStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static FileSystemBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<FileSystemBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<FileSystemBlockingV2Stub>() {
+        @java.lang.Override
+        public FileSystemBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new FileSystemBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return FileSystemBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -140,6 +155,30 @@ public final class FileSystemGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service FileSystem.
+   */
+  public static final class FileSystemBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<FileSystemBlockingV2Stub> {
+    private FileSystemBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected FileSystemBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new FileSystemBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.FileSystemLogsResponse logs(com.github.saturn_xiv.palm.plugins.monitoring.v1.FileSystemLogsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getLogsMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service FileSystem.
    */
   public static final class FileSystemBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<FileSystemBlockingStub> {

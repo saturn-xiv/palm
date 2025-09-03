@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayBillGrpc {
@@ -89,6 +89,21 @@ public final class WeChatPayBillGrpc {
         }
       };
     return WeChatPayBillStub.newStub(factory, channel);
+  }
+
+  /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static WeChatPayBillBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<WeChatPayBillBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<WeChatPayBillBlockingV2Stub>() {
+        @java.lang.Override
+        public WeChatPayBillBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new WeChatPayBillBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return WeChatPayBillBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
@@ -186,6 +201,37 @@ public final class WeChatPayBillGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service WeChatPayBill.
+   */
+  public static final class WeChatPayBillBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<WeChatPayBillBlockingV2Stub> {
+    private WeChatPayBillBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected WeChatPayBillBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new WeChatPayBillBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayBillResponse trade(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeBillRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getTradeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayBillResponse fundFlow(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayFundFlowBillRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getFundFlowMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service WeChatPayBill.
    */
   public static final class WeChatPayBillBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<WeChatPayBillBlockingStub> {

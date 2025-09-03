@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.68.1)",
+    value = "by gRPC proto compiler (version 1.71.0)",
     comments = "Source: monitoring.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class DockerGrpc {
@@ -123,6 +123,21 @@ public final class DockerGrpc {
   }
 
   /**
+   * Creates a new blocking-style stub that supports all types of calls on the service
+   */
+  public static DockerBlockingV2Stub newBlockingV2Stub(
+      io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<DockerBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<DockerBlockingV2Stub>() {
+        @java.lang.Override
+        public DockerBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new DockerBlockingV2Stub(channel, callOptions);
+        }
+      };
+    return DockerBlockingV2Stub.newStub(factory, channel);
+  }
+
+  /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static DockerBlockingStub newBlockingStub(
@@ -232,6 +247,44 @@ public final class DockerGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Docker.
+   */
+  public static final class DockerBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<DockerBlockingV2Stub> {
+    private DockerBlockingV2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      super(channel, callOptions);
+    }
+
+    @java.lang.Override
+    protected DockerBlockingV2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+      return new DockerBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.DockerContainersResponse containers(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getContainersMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.DockerStatisticsResponse statistics(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getStatisticsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanLogsResponse logs(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getLogsMethod(), getCallOptions(), request);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do limited synchronous rpc calls to service Docker.
    */
   public static final class DockerBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<DockerBlockingStub> {
