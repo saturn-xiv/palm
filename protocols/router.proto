@@ -5,4 +5,137 @@ option java_package = "com.github.saturn_xiv.palm.plugins.router.v1";
 option go_package = "./;v2";
 package palm.router.v1;
 
-service Host {}
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message Wan {
+  string device = 1;
+  string address = 11;
+  string netmask = 12;
+  string gateway = 13;
+  repeated string dns = 14;
+  string description = 99;
+}
+message Lan {
+  string device = 1;
+  string address = 11;
+  bool dhcp = 12;
+  map<string, string> reserved_ips = 13;
+  string description = 99;
+}
+
+message Network {
+  Wan wan = 1;
+  repeated Lan lan = 2;
+}
+
+message Host {
+  string mac = 1;
+  string ip = 2;
+  string name = 3;
+  google.protobuf.Timestamp last_found = 9;
+}
+
+// ----------------------------------------------------------------------------
+service Administrator {
+  rpc SignIn(AdministratorSignInRequest) returns (AdministratorSignInResponse) {
+  }
+  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc SetPassword(AdministratorSetPasswordRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+message AdministratorSignInRequest {
+  string name = 1;
+  string password = 2;
+  google.protobuf.Duration ttl = 9;
+}
+
+message AdministratorSignInResponse {
+  string token = 1;
+  string name = 2;
+  string locale = 11;
+  string timezone = 12;
+  repeated string languages = 19;
+}
+
+message AdministratorSetPasswordRequest {
+  string current_password = 1;
+  string new_password = 2;
+}
+
+// ----------------------------------------------------------------------------
+
+service Router {
+  rpc SetEthernet(RouterIndexEthernetResponse.Item)
+      returns (google.protobuf.Empty) {}
+  rpc IndexEthernet(google.protobuf.Empty)
+      returns (RouterIndexEthernetResponse) {}
+  rpc Reboot(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Apply(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc FactoryReset(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+message RouterIndexEthernetResponse {
+  message Item {
+    oneof ethernet {
+      Wan wan = 1;
+      Lan lan = 2;
+    }
+    bool enable = 9;
+  }
+  repeated Item items = 1;
+}
+
+// ----------------------------------------------------------------------------
+
+service User {
+  rpc Index(google.protobuf.Empty) returns (UserIndexResponse) {}
+  rpc Create(UserCreateRequest) returns (google.protobuf.Empty) {}
+  rpc SetRealName(UserSetRealNameRequest) returns (google.protobuf.Empty) {}
+  rpc SetContact(UserSetContactRequest) returns (google.protobuf.Empty) {}
+  rpc SetWifi(UserSetWifiRequest) returns (google.protobuf.Empty) {}
+}
+message UserSetRealNameRequest {
+  uint32 id = 1;
+  string real_name = 2;
+}
+message UserSetWifiRequest {
+  uint32 id = 1;
+  UserIndexResponse.Item.Wifi wifi = 2;
+}
+message UserSetDetailsRequest {
+  uint32 id = 1;
+  string real_name = 2;
+  UserIndexResponse.Item.Wifi wifi = 3;
+}
+message UserSetContactRequest {
+  uint32 id = 1;
+  UserIndexResponse.Item.Contact contact = 2;
+}
+message UserCreateRequest {
+  string real_name = 1;
+  UserIndexResponse.Item.Wifi wifi = 2;
+}
+message UserIndexResponse {
+  message Item {
+    message Wifi {
+      string nickname = 1;
+      string password = 2;
+      google.protobuf.Timestamp begin_at = 3;
+      google.protobuf.Timestamp end_at = 4;
+    }
+    message Contact {
+      optional string wechat = 1;
+      optional string address = 2;
+      optional string phone = 3;
+      optional string email = 4;
+    }
+    uint32 id = 1;
+    string real_name = 2;
+    Wifi wifi = 3;
+    Contact contact = 9;
+  }
+  repeated Item items = 1;
+}

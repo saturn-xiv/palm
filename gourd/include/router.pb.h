@@ -24,8 +24,17 @@
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
 #include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/message.h"
+#include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/map.h"  // IWYU pragma: export
+#include "google/protobuf/map_entry.h"
+#include "google/protobuf/map_field_inl.h"
+#include "google/protobuf/unknown_field_set.h"
+#include "google/protobuf/empty.pb.h"
+#include "google/protobuf/timestamp.pb.h"
+#include "google/protobuf/duration.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -48,6 +57,69 @@ struct TableStruct_router_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_router_2eproto;
+namespace palm {
+namespace router {
+namespace v1 {
+class AdministratorSetPasswordRequest;
+struct AdministratorSetPasswordRequestDefaultTypeInternal;
+extern AdministratorSetPasswordRequestDefaultTypeInternal _AdministratorSetPasswordRequest_default_instance_;
+class AdministratorSignInRequest;
+struct AdministratorSignInRequestDefaultTypeInternal;
+extern AdministratorSignInRequestDefaultTypeInternal _AdministratorSignInRequest_default_instance_;
+class AdministratorSignInResponse;
+struct AdministratorSignInResponseDefaultTypeInternal;
+extern AdministratorSignInResponseDefaultTypeInternal _AdministratorSignInResponse_default_instance_;
+class Host;
+struct HostDefaultTypeInternal;
+extern HostDefaultTypeInternal _Host_default_instance_;
+class Lan;
+struct LanDefaultTypeInternal;
+extern LanDefaultTypeInternal _Lan_default_instance_;
+class Lan_ReservedIpsEntry_DoNotUse;
+struct Lan_ReservedIpsEntry_DoNotUseDefaultTypeInternal;
+extern Lan_ReservedIpsEntry_DoNotUseDefaultTypeInternal _Lan_ReservedIpsEntry_DoNotUse_default_instance_;
+class Network;
+struct NetworkDefaultTypeInternal;
+extern NetworkDefaultTypeInternal _Network_default_instance_;
+class RouterIndexEthernetResponse;
+struct RouterIndexEthernetResponseDefaultTypeInternal;
+extern RouterIndexEthernetResponseDefaultTypeInternal _RouterIndexEthernetResponse_default_instance_;
+class RouterIndexEthernetResponse_Item;
+struct RouterIndexEthernetResponse_ItemDefaultTypeInternal;
+extern RouterIndexEthernetResponse_ItemDefaultTypeInternal _RouterIndexEthernetResponse_Item_default_instance_;
+class UserCreateRequest;
+struct UserCreateRequestDefaultTypeInternal;
+extern UserCreateRequestDefaultTypeInternal _UserCreateRequest_default_instance_;
+class UserIndexResponse;
+struct UserIndexResponseDefaultTypeInternal;
+extern UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
+class UserIndexResponse_Item;
+struct UserIndexResponse_ItemDefaultTypeInternal;
+extern UserIndexResponse_ItemDefaultTypeInternal _UserIndexResponse_Item_default_instance_;
+class UserIndexResponse_Item_Contact;
+struct UserIndexResponse_Item_ContactDefaultTypeInternal;
+extern UserIndexResponse_Item_ContactDefaultTypeInternal _UserIndexResponse_Item_Contact_default_instance_;
+class UserIndexResponse_Item_Wifi;
+struct UserIndexResponse_Item_WifiDefaultTypeInternal;
+extern UserIndexResponse_Item_WifiDefaultTypeInternal _UserIndexResponse_Item_Wifi_default_instance_;
+class UserSetContactRequest;
+struct UserSetContactRequestDefaultTypeInternal;
+extern UserSetContactRequestDefaultTypeInternal _UserSetContactRequest_default_instance_;
+class UserSetDetailsRequest;
+struct UserSetDetailsRequestDefaultTypeInternal;
+extern UserSetDetailsRequestDefaultTypeInternal _UserSetDetailsRequest_default_instance_;
+class UserSetRealNameRequest;
+struct UserSetRealNameRequestDefaultTypeInternal;
+extern UserSetRealNameRequestDefaultTypeInternal _UserSetRealNameRequest_default_instance_;
+class UserSetWifiRequest;
+struct UserSetWifiRequestDefaultTypeInternal;
+extern UserSetWifiRequestDefaultTypeInternal _UserSetWifiRequest_default_instance_;
+class Wan;
+struct WanDefaultTypeInternal;
+extern WanDefaultTypeInternal _Wan_default_instance_;
+}  // namespace v1
+}  // namespace router
+}  // namespace palm
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
@@ -60,6 +132,4243 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class Wan final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.Wan) */ {
+ public:
+  inline Wan() : Wan(nullptr) {}
+  ~Wan() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Wan* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Wan));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Wan(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Wan(const Wan& from) : Wan(nullptr, from) {}
+  inline Wan(Wan&& from) noexcept
+      : Wan(nullptr, std::move(from)) {}
+  inline Wan& operator=(const Wan& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Wan& operator=(Wan&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Wan& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Wan* internal_default_instance() {
+    return reinterpret_cast<const Wan*>(
+        &_Wan_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Wan& a, Wan& b) { a.Swap(&b); }
+  inline void Swap(Wan* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Wan* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Wan* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Wan>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Wan& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Wan& from) { Wan::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Wan* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.Wan"; }
+
+ protected:
+  explicit Wan(::google::protobuf::Arena* arena);
+  Wan(::google::protobuf::Arena* arena, const Wan& from);
+  Wan(::google::protobuf::Arena* arena, Wan&& from) noexcept
+      : Wan(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDnsFieldNumber = 14,
+    kDeviceFieldNumber = 1,
+    kAddressFieldNumber = 11,
+    kNetmaskFieldNumber = 12,
+    kGatewayFieldNumber = 13,
+    kDescriptionFieldNumber = 99,
+  };
+  // repeated string dns = 14;
+  int dns_size() const;
+  private:
+  int _internal_dns_size() const;
+
+  public:
+  void clear_dns() ;
+  const std::string& dns(int index) const;
+  std::string* mutable_dns(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_dns(int index, Arg_&& value, Args_... args);
+  std::string* add_dns();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_dns(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& dns() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_dns();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_dns() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_dns();
+
+  public:
+  // string device = 1;
+  void clear_device() ;
+  const std::string& device() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_device(Arg_&& arg, Args_... args);
+  std::string* mutable_device();
+  PROTOBUF_NODISCARD std::string* release_device();
+  void set_allocated_device(std::string* value);
+
+  private:
+  const std::string& _internal_device() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device(
+      const std::string& value);
+  std::string* _internal_mutable_device();
+
+  public:
+  // string address = 11;
+  void clear_address() ;
+  const std::string& address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_address(Arg_&& arg, Args_... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* value);
+
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
+      const std::string& value);
+  std::string* _internal_mutable_address();
+
+  public:
+  // string netmask = 12;
+  void clear_netmask() ;
+  const std::string& netmask() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_netmask(Arg_&& arg, Args_... args);
+  std::string* mutable_netmask();
+  PROTOBUF_NODISCARD std::string* release_netmask();
+  void set_allocated_netmask(std::string* value);
+
+  private:
+  const std::string& _internal_netmask() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_netmask(
+      const std::string& value);
+  std::string* _internal_mutable_netmask();
+
+  public:
+  // string gateway = 13;
+  void clear_gateway() ;
+  const std::string& gateway() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_gateway(Arg_&& arg, Args_... args);
+  std::string* mutable_gateway();
+  PROTOBUF_NODISCARD std::string* release_gateway();
+  void set_allocated_gateway(std::string* value);
+
+  private:
+  const std::string& _internal_gateway() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_gateway(
+      const std::string& value);
+  std::string* _internal_mutable_gateway();
+
+  public:
+  // string description = 99;
+  void clear_description() ;
+  const std::string& description() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_description(Arg_&& arg, Args_... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* value);
+
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(
+      const std::string& value);
+  std::string* _internal_mutable_description();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.Wan)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 6, 0,
+      68, 7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Wan& from_msg);
+    ::google::protobuf::RepeatedPtrField<std::string> dns_;
+    ::google::protobuf::internal::ArenaStringPtr device_;
+    ::google::protobuf::internal::ArenaStringPtr address_;
+    ::google::protobuf::internal::ArenaStringPtr netmask_;
+    ::google::protobuf::internal::ArenaStringPtr gateway_;
+    ::google::protobuf::internal::ArenaStringPtr description_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserSetRealNameRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserSetRealNameRequest) */ {
+ public:
+  inline UserSetRealNameRequest() : UserSetRealNameRequest(nullptr) {}
+  ~UserSetRealNameRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSetRealNameRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSetRealNameRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSetRealNameRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSetRealNameRequest(const UserSetRealNameRequest& from) : UserSetRealNameRequest(nullptr, from) {}
+  inline UserSetRealNameRequest(UserSetRealNameRequest&& from) noexcept
+      : UserSetRealNameRequest(nullptr, std::move(from)) {}
+  inline UserSetRealNameRequest& operator=(const UserSetRealNameRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSetRealNameRequest& operator=(UserSetRealNameRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSetRealNameRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserSetRealNameRequest* internal_default_instance() {
+    return reinterpret_cast<const UserSetRealNameRequest*>(
+        &_UserSetRealNameRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(UserSetRealNameRequest& a, UserSetRealNameRequest& b) { a.Swap(&b); }
+  inline void Swap(UserSetRealNameRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSetRealNameRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSetRealNameRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSetRealNameRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSetRealNameRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSetRealNameRequest& from) { UserSetRealNameRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSetRealNameRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserSetRealNameRequest"; }
+
+ protected:
+  explicit UserSetRealNameRequest(::google::protobuf::Arena* arena);
+  UserSetRealNameRequest(::google::protobuf::Arena* arena, const UserSetRealNameRequest& from);
+  UserSetRealNameRequest(::google::protobuf::Arena* arena, UserSetRealNameRequest&& from) noexcept
+      : UserSetRealNameRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRealNameFieldNumber = 2,
+    kIdFieldNumber = 1,
+  };
+  // string real_name = 2;
+  void clear_real_name() ;
+  const std::string& real_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_real_name(Arg_&& arg, Args_... args);
+  std::string* mutable_real_name();
+  PROTOBUF_NODISCARD std::string* release_real_name();
+  void set_allocated_real_name(std::string* value);
+
+  private:
+  const std::string& _internal_real_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_real_name(
+      const std::string& value);
+  std::string* _internal_mutable_real_name();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserSetRealNameRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      55, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserSetRealNameRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr real_name_;
+    ::uint32_t id_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserIndexResponse_Item_Contact final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserIndexResponse.Item.Contact) */ {
+ public:
+  inline UserIndexResponse_Item_Contact() : UserIndexResponse_Item_Contact(nullptr) {}
+  ~UserIndexResponse_Item_Contact() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserIndexResponse_Item_Contact* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserIndexResponse_Item_Contact));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserIndexResponse_Item_Contact(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserIndexResponse_Item_Contact(const UserIndexResponse_Item_Contact& from) : UserIndexResponse_Item_Contact(nullptr, from) {}
+  inline UserIndexResponse_Item_Contact(UserIndexResponse_Item_Contact&& from) noexcept
+      : UserIndexResponse_Item_Contact(nullptr, std::move(from)) {}
+  inline UserIndexResponse_Item_Contact& operator=(const UserIndexResponse_Item_Contact& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserIndexResponse_Item_Contact& operator=(UserIndexResponse_Item_Contact&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserIndexResponse_Item_Contact& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserIndexResponse_Item_Contact* internal_default_instance() {
+    return reinterpret_cast<const UserIndexResponse_Item_Contact*>(
+        &_UserIndexResponse_Item_Contact_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 16;
+  friend void swap(UserIndexResponse_Item_Contact& a, UserIndexResponse_Item_Contact& b) { a.Swap(&b); }
+  inline void Swap(UserIndexResponse_Item_Contact* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserIndexResponse_Item_Contact* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserIndexResponse_Item_Contact* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserIndexResponse_Item_Contact>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserIndexResponse_Item_Contact& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserIndexResponse_Item_Contact& from) { UserIndexResponse_Item_Contact::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserIndexResponse_Item_Contact* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserIndexResponse.Item.Contact"; }
+
+ protected:
+  explicit UserIndexResponse_Item_Contact(::google::protobuf::Arena* arena);
+  UserIndexResponse_Item_Contact(::google::protobuf::Arena* arena, const UserIndexResponse_Item_Contact& from);
+  UserIndexResponse_Item_Contact(::google::protobuf::Arena* arena, UserIndexResponse_Item_Contact&& from) noexcept
+      : UserIndexResponse_Item_Contact(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kWechatFieldNumber = 1,
+    kAddressFieldNumber = 2,
+    kPhoneFieldNumber = 3,
+    kEmailFieldNumber = 4,
+  };
+  // optional string wechat = 1;
+  bool has_wechat() const;
+  void clear_wechat() ;
+  const std::string& wechat() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_wechat(Arg_&& arg, Args_... args);
+  std::string* mutable_wechat();
+  PROTOBUF_NODISCARD std::string* release_wechat();
+  void set_allocated_wechat(std::string* value);
+
+  private:
+  const std::string& _internal_wechat() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_wechat(
+      const std::string& value);
+  std::string* _internal_mutable_wechat();
+
+  public:
+  // optional string address = 2;
+  bool has_address() const;
+  void clear_address() ;
+  const std::string& address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_address(Arg_&& arg, Args_... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* value);
+
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
+      const std::string& value);
+  std::string* _internal_mutable_address();
+
+  public:
+  // optional string phone = 3;
+  bool has_phone() const;
+  void clear_phone() ;
+  const std::string& phone() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_phone(Arg_&& arg, Args_... args);
+  std::string* mutable_phone();
+  PROTOBUF_NODISCARD std::string* release_phone();
+  void set_allocated_phone(std::string* value);
+
+  private:
+  const std::string& _internal_phone() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_phone(
+      const std::string& value);
+  std::string* _internal_mutable_phone();
+
+  public:
+  // optional string email = 4;
+  bool has_email() const;
+  void clear_email() ;
+  const std::string& email() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  std::string* mutable_email();
+  PROTOBUF_NODISCARD std::string* release_email();
+  void set_allocated_email(std::string* value);
+
+  private:
+  const std::string& _internal_email() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(
+      const std::string& value);
+  std::string* _internal_mutable_email();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserIndexResponse.Item.Contact)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      77, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserIndexResponse_Item_Contact& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr wechat_;
+    ::google::protobuf::internal::ArenaStringPtr address_;
+    ::google::protobuf::internal::ArenaStringPtr phone_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Lan_ReservedIpsEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  Lan_ReservedIpsEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Lan_ReservedIpsEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Lan_ReservedIpsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Lan_ReservedIpsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Lan_ReservedIpsEntry_DoNotUse*>(
+        &_Lan_ReservedIpsEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_router_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      52, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class AdministratorSignInResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorSignInResponse) */ {
+ public:
+  inline AdministratorSignInResponse() : AdministratorSignInResponse(nullptr) {}
+  ~AdministratorSignInResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AdministratorSignInResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AdministratorSignInResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AdministratorSignInResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AdministratorSignInResponse(const AdministratorSignInResponse& from) : AdministratorSignInResponse(nullptr, from) {}
+  inline AdministratorSignInResponse(AdministratorSignInResponse&& from) noexcept
+      : AdministratorSignInResponse(nullptr, std::move(from)) {}
+  inline AdministratorSignInResponse& operator=(const AdministratorSignInResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AdministratorSignInResponse& operator=(AdministratorSignInResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AdministratorSignInResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AdministratorSignInResponse* internal_default_instance() {
+    return reinterpret_cast<const AdministratorSignInResponse*>(
+        &_AdministratorSignInResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(AdministratorSignInResponse& a, AdministratorSignInResponse& b) { a.Swap(&b); }
+  inline void Swap(AdministratorSignInResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AdministratorSignInResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AdministratorSignInResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AdministratorSignInResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AdministratorSignInResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AdministratorSignInResponse& from) { AdministratorSignInResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AdministratorSignInResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.AdministratorSignInResponse"; }
+
+ protected:
+  explicit AdministratorSignInResponse(::google::protobuf::Arena* arena);
+  AdministratorSignInResponse(::google::protobuf::Arena* arena, const AdministratorSignInResponse& from);
+  AdministratorSignInResponse(::google::protobuf::Arena* arena, AdministratorSignInResponse&& from) noexcept
+      : AdministratorSignInResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLanguagesFieldNumber = 19,
+    kTokenFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kLocaleFieldNumber = 11,
+    kTimezoneFieldNumber = 12,
+  };
+  // repeated string languages = 19;
+  int languages_size() const;
+  private:
+  int _internal_languages_size() const;
+
+  public:
+  void clear_languages() ;
+  const std::string& languages(int index) const;
+  std::string* mutable_languages(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_languages(int index, Arg_&& value, Args_... args);
+  std::string* add_languages();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_languages(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& languages() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_languages();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_languages() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_languages();
+
+  public:
+  // string token = 1;
+  void clear_token() ;
+  const std::string& token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_token(Arg_&& arg, Args_... args);
+  std::string* mutable_token();
+  PROTOBUF_NODISCARD std::string* release_token();
+  void set_allocated_token(std::string* value);
+
+  private:
+  const std::string& _internal_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(
+      const std::string& value);
+  std::string* _internal_mutable_token();
+
+  public:
+  // string name = 2;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string locale = 11;
+  void clear_locale() ;
+  const std::string& locale() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_locale(Arg_&& arg, Args_... args);
+  std::string* mutable_locale();
+  PROTOBUF_NODISCARD std::string* release_locale();
+  void set_allocated_locale(std::string* value);
+
+  private:
+  const std::string& _internal_locale() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_locale(
+      const std::string& value);
+  std::string* _internal_mutable_locale();
+
+  public:
+  // string timezone = 12;
+  void clear_timezone() ;
+  const std::string& timezone() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_timezone(Arg_&& arg, Args_... args);
+  std::string* mutable_timezone();
+  PROTOBUF_NODISCARD std::string* release_timezone();
+  void set_allocated_timezone(std::string* value);
+
+  private:
+  const std::string& _internal_timezone() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_timezone(
+      const std::string& value);
+  std::string* _internal_mutable_timezone();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.AdministratorSignInResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 5, 0,
+      83, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AdministratorSignInResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField<std::string> languages_;
+    ::google::protobuf::internal::ArenaStringPtr token_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr locale_;
+    ::google::protobuf::internal::ArenaStringPtr timezone_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AdministratorSetPasswordRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorSetPasswordRequest) */ {
+ public:
+  inline AdministratorSetPasswordRequest() : AdministratorSetPasswordRequest(nullptr) {}
+  ~AdministratorSetPasswordRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AdministratorSetPasswordRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AdministratorSetPasswordRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AdministratorSetPasswordRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AdministratorSetPasswordRequest(const AdministratorSetPasswordRequest& from) : AdministratorSetPasswordRequest(nullptr, from) {}
+  inline AdministratorSetPasswordRequest(AdministratorSetPasswordRequest&& from) noexcept
+      : AdministratorSetPasswordRequest(nullptr, std::move(from)) {}
+  inline AdministratorSetPasswordRequest& operator=(const AdministratorSetPasswordRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AdministratorSetPasswordRequest& operator=(AdministratorSetPasswordRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AdministratorSetPasswordRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AdministratorSetPasswordRequest* internal_default_instance() {
+    return reinterpret_cast<const AdministratorSetPasswordRequest*>(
+        &_AdministratorSetPasswordRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(AdministratorSetPasswordRequest& a, AdministratorSetPasswordRequest& b) { a.Swap(&b); }
+  inline void Swap(AdministratorSetPasswordRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AdministratorSetPasswordRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AdministratorSetPasswordRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AdministratorSetPasswordRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AdministratorSetPasswordRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AdministratorSetPasswordRequest& from) { AdministratorSetPasswordRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AdministratorSetPasswordRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.AdministratorSetPasswordRequest"; }
+
+ protected:
+  explicit AdministratorSetPasswordRequest(::google::protobuf::Arena* arena);
+  AdministratorSetPasswordRequest(::google::protobuf::Arena* arena, const AdministratorSetPasswordRequest& from);
+  AdministratorSetPasswordRequest(::google::protobuf::Arena* arena, AdministratorSetPasswordRequest&& from) noexcept
+      : AdministratorSetPasswordRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCurrentPasswordFieldNumber = 1,
+    kNewPasswordFieldNumber = 2,
+  };
+  // string current_password = 1;
+  void clear_current_password() ;
+  const std::string& current_password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_current_password(Arg_&& arg, Args_... args);
+  std::string* mutable_current_password();
+  PROTOBUF_NODISCARD std::string* release_current_password();
+  void set_allocated_current_password(std::string* value);
+
+  private:
+  const std::string& _internal_current_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_current_password(
+      const std::string& value);
+  std::string* _internal_mutable_current_password();
+
+  public:
+  // string new_password = 2;
+  void clear_new_password() ;
+  const std::string& new_password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_new_password(Arg_&& arg, Args_... args);
+  std::string* mutable_new_password();
+  PROTOBUF_NODISCARD std::string* release_new_password();
+  void set_allocated_new_password(std::string* value);
+
+  private:
+  const std::string& _internal_new_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_new_password(
+      const std::string& value);
+  std::string* _internal_mutable_new_password();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.AdministratorSetPasswordRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      83, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AdministratorSetPasswordRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr current_password_;
+    ::google::protobuf::internal::ArenaStringPtr new_password_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserSetContactRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserSetContactRequest) */ {
+ public:
+  inline UserSetContactRequest() : UserSetContactRequest(nullptr) {}
+  ~UserSetContactRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSetContactRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSetContactRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSetContactRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSetContactRequest(const UserSetContactRequest& from) : UserSetContactRequest(nullptr, from) {}
+  inline UserSetContactRequest(UserSetContactRequest&& from) noexcept
+      : UserSetContactRequest(nullptr, std::move(from)) {}
+  inline UserSetContactRequest& operator=(const UserSetContactRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSetContactRequest& operator=(UserSetContactRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSetContactRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserSetContactRequest* internal_default_instance() {
+    return reinterpret_cast<const UserSetContactRequest*>(
+        &_UserSetContactRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(UserSetContactRequest& a, UserSetContactRequest& b) { a.Swap(&b); }
+  inline void Swap(UserSetContactRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSetContactRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSetContactRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSetContactRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSetContactRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSetContactRequest& from) { UserSetContactRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSetContactRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserSetContactRequest"; }
+
+ protected:
+  explicit UserSetContactRequest(::google::protobuf::Arena* arena);
+  UserSetContactRequest(::google::protobuf::Arena* arena, const UserSetContactRequest& from);
+  UserSetContactRequest(::google::protobuf::Arena* arena, UserSetContactRequest&& from) noexcept
+      : UserSetContactRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kContactFieldNumber = 2,
+    kIdFieldNumber = 1,
+  };
+  // .palm.router.v1.UserIndexResponse.Item.Contact contact = 2;
+  bool has_contact() const;
+  void clear_contact() ;
+  const ::palm::router::v1::UserIndexResponse_Item_Contact& contact() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::UserIndexResponse_Item_Contact* release_contact();
+  ::palm::router::v1::UserIndexResponse_Item_Contact* mutable_contact();
+  void set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value);
+  void unsafe_arena_set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value);
+  ::palm::router::v1::UserIndexResponse_Item_Contact* unsafe_arena_release_contact();
+
+  private:
+  const ::palm::router::v1::UserIndexResponse_Item_Contact& _internal_contact() const;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* _internal_mutable_contact();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserSetContactRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserSetContactRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::palm::router::v1::UserIndexResponse_Item_Contact* contact_;
+    ::uint32_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserIndexResponse_Item_Wifi final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserIndexResponse.Item.Wifi) */ {
+ public:
+  inline UserIndexResponse_Item_Wifi() : UserIndexResponse_Item_Wifi(nullptr) {}
+  ~UserIndexResponse_Item_Wifi() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserIndexResponse_Item_Wifi* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserIndexResponse_Item_Wifi));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserIndexResponse_Item_Wifi(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserIndexResponse_Item_Wifi(const UserIndexResponse_Item_Wifi& from) : UserIndexResponse_Item_Wifi(nullptr, from) {}
+  inline UserIndexResponse_Item_Wifi(UserIndexResponse_Item_Wifi&& from) noexcept
+      : UserIndexResponse_Item_Wifi(nullptr, std::move(from)) {}
+  inline UserIndexResponse_Item_Wifi& operator=(const UserIndexResponse_Item_Wifi& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserIndexResponse_Item_Wifi& operator=(UserIndexResponse_Item_Wifi&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserIndexResponse_Item_Wifi& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserIndexResponse_Item_Wifi* internal_default_instance() {
+    return reinterpret_cast<const UserIndexResponse_Item_Wifi*>(
+        &_UserIndexResponse_Item_Wifi_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(UserIndexResponse_Item_Wifi& a, UserIndexResponse_Item_Wifi& b) { a.Swap(&b); }
+  inline void Swap(UserIndexResponse_Item_Wifi* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserIndexResponse_Item_Wifi* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserIndexResponse_Item_Wifi* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserIndexResponse_Item_Wifi>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserIndexResponse_Item_Wifi& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserIndexResponse_Item_Wifi& from) { UserIndexResponse_Item_Wifi::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserIndexResponse_Item_Wifi* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserIndexResponse.Item.Wifi"; }
+
+ protected:
+  explicit UserIndexResponse_Item_Wifi(::google::protobuf::Arena* arena);
+  UserIndexResponse_Item_Wifi(::google::protobuf::Arena* arena, const UserIndexResponse_Item_Wifi& from);
+  UserIndexResponse_Item_Wifi(::google::protobuf::Arena* arena, UserIndexResponse_Item_Wifi&& from) noexcept
+      : UserIndexResponse_Item_Wifi(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNicknameFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+    kBeginAtFieldNumber = 3,
+    kEndAtFieldNumber = 4,
+  };
+  // string nickname = 1;
+  void clear_nickname() ;
+  const std::string& nickname() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_nickname(Arg_&& arg, Args_... args);
+  std::string* mutable_nickname();
+  PROTOBUF_NODISCARD std::string* release_nickname();
+  void set_allocated_nickname(std::string* value);
+
+  private:
+  const std::string& _internal_nickname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nickname(
+      const std::string& value);
+  std::string* _internal_mutable_nickname();
+
+  public:
+  // string password = 2;
+  void clear_password() ;
+  const std::string& password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  std::string* mutable_password();
+  PROTOBUF_NODISCARD std::string* release_password();
+  void set_allocated_password(std::string* value);
+
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+      const std::string& value);
+  std::string* _internal_mutable_password();
+
+  public:
+  // .google.protobuf.Timestamp begin_at = 3;
+  bool has_begin_at() const;
+  void clear_begin_at() ;
+  const ::google::protobuf::Timestamp& begin_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_begin_at();
+  ::google::protobuf::Timestamp* mutable_begin_at();
+  void set_allocated_begin_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_begin_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_begin_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_begin_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_begin_at();
+
+  public:
+  // .google.protobuf.Timestamp end_at = 4;
+  bool has_end_at() const;
+  void clear_end_at() ;
+  const ::google::protobuf::Timestamp& end_at() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_end_at();
+  ::google::protobuf::Timestamp* mutable_end_at();
+  void set_allocated_end_at(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_end_at(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_end_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_end_at() const;
+  ::google::protobuf::Timestamp* _internal_mutable_end_at();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserIndexResponse.Item.Wifi)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 2,
+      67, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserIndexResponse_Item_Wifi& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr nickname_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::Timestamp* begin_at_;
+    ::google::protobuf::Timestamp* end_at_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Lan final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.Lan) */ {
+ public:
+  inline Lan() : Lan(nullptr) {}
+  ~Lan() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Lan* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Lan));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Lan(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Lan(const Lan& from) : Lan(nullptr, from) {}
+  inline Lan(Lan&& from) noexcept
+      : Lan(nullptr, std::move(from)) {}
+  inline Lan& operator=(const Lan& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Lan& operator=(Lan&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Lan& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Lan* internal_default_instance() {
+    return reinterpret_cast<const Lan*>(
+        &_Lan_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(Lan& a, Lan& b) { a.Swap(&b); }
+  inline void Swap(Lan* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Lan* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Lan* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Lan>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Lan& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Lan& from) { Lan::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Lan* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.Lan"; }
+
+ protected:
+  explicit Lan(::google::protobuf::Arena* arena);
+  Lan(::google::protobuf::Arena* arena, const Lan& from);
+  Lan(::google::protobuf::Arena* arena, Lan&& from) noexcept
+      : Lan(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kReservedIpsFieldNumber = 13,
+    kDeviceFieldNumber = 1,
+    kAddressFieldNumber = 11,
+    kDescriptionFieldNumber = 99,
+    kDhcpFieldNumber = 12,
+  };
+  // map<string, string> reserved_ips = 13;
+  int reserved_ips_size() const;
+  private:
+  int _internal_reserved_ips_size() const;
+
+  public:
+  void clear_reserved_ips() ;
+  const ::google::protobuf::Map<std::string, std::string>& reserved_ips() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_reserved_ips();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_reserved_ips() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_reserved_ips();
+
+  public:
+  // string device = 1;
+  void clear_device() ;
+  const std::string& device() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_device(Arg_&& arg, Args_... args);
+  std::string* mutable_device();
+  PROTOBUF_NODISCARD std::string* release_device();
+  void set_allocated_device(std::string* value);
+
+  private:
+  const std::string& _internal_device() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device(
+      const std::string& value);
+  std::string* _internal_mutable_device();
+
+  public:
+  // string address = 11;
+  void clear_address() ;
+  const std::string& address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_address(Arg_&& arg, Args_... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* value);
+
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
+      const std::string& value);
+  std::string* _internal_mutable_address();
+
+  public:
+  // string description = 99;
+  void clear_description() ;
+  const std::string& description() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_description(Arg_&& arg, Args_... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* value);
+
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(
+      const std::string& value);
+  std::string* _internal_mutable_description();
+
+  public:
+  // bool dhcp = 12;
+  void clear_dhcp() ;
+  bool dhcp() const;
+  void set_dhcp(bool value);
+
+  private:
+  bool _internal_dhcp() const;
+  void _internal_set_dhcp(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.Lan)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 5, 1,
+      63, 7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Lan& from_msg);
+    ::google::protobuf::internal::MapField<Lan_ReservedIpsEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        reserved_ips_;
+    ::google::protobuf::internal::ArenaStringPtr device_;
+    ::google::protobuf::internal::ArenaStringPtr address_;
+    ::google::protobuf::internal::ArenaStringPtr description_;
+    bool dhcp_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Host final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.Host) */ {
+ public:
+  inline Host() : Host(nullptr) {}
+  ~Host() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Host* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Host));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Host(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Host(const Host& from) : Host(nullptr, from) {}
+  inline Host(Host&& from) noexcept
+      : Host(nullptr, std::move(from)) {}
+  inline Host& operator=(const Host& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Host& operator=(Host&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Host& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Host* internal_default_instance() {
+    return reinterpret_cast<const Host*>(
+        &_Host_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(Host& a, Host& b) { a.Swap(&b); }
+  inline void Swap(Host* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Host* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Host* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Host>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Host& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Host& from) { Host::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Host* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.Host"; }
+
+ protected:
+  explicit Host(::google::protobuf::Arena* arena);
+  Host(::google::protobuf::Arena* arena, const Host& from);
+  Host(::google::protobuf::Arena* arena, Host&& from) noexcept
+      : Host(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMacFieldNumber = 1,
+    kIpFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kLastFoundFieldNumber = 9,
+  };
+  // string mac = 1;
+  void clear_mac() ;
+  const std::string& mac() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_mac(Arg_&& arg, Args_... args);
+  std::string* mutable_mac();
+  PROTOBUF_NODISCARD std::string* release_mac();
+  void set_allocated_mac(std::string* value);
+
+  private:
+  const std::string& _internal_mac() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mac(
+      const std::string& value);
+  std::string* _internal_mutable_mac();
+
+  public:
+  // string ip = 2;
+  void clear_ip() ;
+  const std::string& ip() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ip(Arg_&& arg, Args_... args);
+  std::string* mutable_ip();
+  PROTOBUF_NODISCARD std::string* release_ip();
+  void set_allocated_ip(std::string* value);
+
+  private:
+  const std::string& _internal_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip(
+      const std::string& value);
+  std::string* _internal_mutable_ip();
+
+  public:
+  // string name = 3;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // .google.protobuf.Timestamp last_found = 9;
+  bool has_last_found() const;
+  void clear_last_found() ;
+  const ::google::protobuf::Timestamp& last_found() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_last_found();
+  ::google::protobuf::Timestamp* mutable_last_found();
+  void set_allocated_last_found(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_last_found(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_last_found();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_last_found() const;
+  ::google::protobuf::Timestamp* _internal_mutable_last_found();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.Host)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 1,
+      37, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Host& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr mac_;
+    ::google::protobuf::internal::ArenaStringPtr ip_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::Timestamp* last_found_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AdministratorSignInRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorSignInRequest) */ {
+ public:
+  inline AdministratorSignInRequest() : AdministratorSignInRequest(nullptr) {}
+  ~AdministratorSignInRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AdministratorSignInRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AdministratorSignInRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AdministratorSignInRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AdministratorSignInRequest(const AdministratorSignInRequest& from) : AdministratorSignInRequest(nullptr, from) {}
+  inline AdministratorSignInRequest(AdministratorSignInRequest&& from) noexcept
+      : AdministratorSignInRequest(nullptr, std::move(from)) {}
+  inline AdministratorSignInRequest& operator=(const AdministratorSignInRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AdministratorSignInRequest& operator=(AdministratorSignInRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AdministratorSignInRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AdministratorSignInRequest* internal_default_instance() {
+    return reinterpret_cast<const AdministratorSignInRequest*>(
+        &_AdministratorSignInRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(AdministratorSignInRequest& a, AdministratorSignInRequest& b) { a.Swap(&b); }
+  inline void Swap(AdministratorSignInRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AdministratorSignInRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AdministratorSignInRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AdministratorSignInRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AdministratorSignInRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AdministratorSignInRequest& from) { AdministratorSignInRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AdministratorSignInRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.AdministratorSignInRequest"; }
+
+ protected:
+  explicit AdministratorSignInRequest(::google::protobuf::Arena* arena);
+  AdministratorSignInRequest(::google::protobuf::Arena* arena, const AdministratorSignInRequest& from);
+  AdministratorSignInRequest(::google::protobuf::Arena* arena, AdministratorSignInRequest&& from) noexcept
+      : AdministratorSignInRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNameFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+    kTtlFieldNumber = 9,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string password = 2;
+  void clear_password() ;
+  const std::string& password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  std::string* mutable_password();
+  PROTOBUF_NODISCARD std::string* release_password();
+  void set_allocated_password(std::string* value);
+
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+      const std::string& value);
+  std::string* _internal_mutable_password();
+
+  public:
+  // .google.protobuf.Duration ttl = 9;
+  bool has_ttl() const;
+  void clear_ttl() ;
+  const ::google::protobuf::Duration& ttl() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_ttl();
+  ::google::protobuf::Duration* mutable_ttl();
+  void set_allocated_ttl(::google::protobuf::Duration* value);
+  void unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value);
+  ::google::protobuf::Duration* unsafe_arena_release_ttl();
+
+  private:
+  const ::google::protobuf::Duration& _internal_ttl() const;
+  ::google::protobuf::Duration* _internal_mutable_ttl();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.AdministratorSignInRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 3, 1,
+      62, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AdministratorSignInRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::Duration* ttl_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserSetWifiRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserSetWifiRequest) */ {
+ public:
+  inline UserSetWifiRequest() : UserSetWifiRequest(nullptr) {}
+  ~UserSetWifiRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSetWifiRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSetWifiRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSetWifiRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSetWifiRequest(const UserSetWifiRequest& from) : UserSetWifiRequest(nullptr, from) {}
+  inline UserSetWifiRequest(UserSetWifiRequest&& from) noexcept
+      : UserSetWifiRequest(nullptr, std::move(from)) {}
+  inline UserSetWifiRequest& operator=(const UserSetWifiRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSetWifiRequest& operator=(UserSetWifiRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSetWifiRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserSetWifiRequest* internal_default_instance() {
+    return reinterpret_cast<const UserSetWifiRequest*>(
+        &_UserSetWifiRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 11;
+  friend void swap(UserSetWifiRequest& a, UserSetWifiRequest& b) { a.Swap(&b); }
+  inline void Swap(UserSetWifiRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSetWifiRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSetWifiRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSetWifiRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSetWifiRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSetWifiRequest& from) { UserSetWifiRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSetWifiRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserSetWifiRequest"; }
+
+ protected:
+  explicit UserSetWifiRequest(::google::protobuf::Arena* arena);
+  UserSetWifiRequest(::google::protobuf::Arena* arena, const UserSetWifiRequest& from);
+  UserSetWifiRequest(::google::protobuf::Arena* arena, UserSetWifiRequest&& from) noexcept
+      : UserSetWifiRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kWifiFieldNumber = 2,
+    kIdFieldNumber = 1,
+  };
+  // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 2;
+  bool has_wifi() const;
+  void clear_wifi() ;
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& wifi() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::UserIndexResponse_Item_Wifi* release_wifi();
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* mutable_wifi();
+  void set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  void unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* unsafe_arena_release_wifi();
+
+  private:
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& _internal_wifi() const;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _internal_mutable_wifi();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserSetWifiRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserSetWifiRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::palm::router::v1::UserIndexResponse_Item_Wifi* wifi_;
+    ::uint32_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserSetDetailsRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserSetDetailsRequest) */ {
+ public:
+  inline UserSetDetailsRequest() : UserSetDetailsRequest(nullptr) {}
+  ~UserSetDetailsRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSetDetailsRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSetDetailsRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSetDetailsRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSetDetailsRequest(const UserSetDetailsRequest& from) : UserSetDetailsRequest(nullptr, from) {}
+  inline UserSetDetailsRequest(UserSetDetailsRequest&& from) noexcept
+      : UserSetDetailsRequest(nullptr, std::move(from)) {}
+  inline UserSetDetailsRequest& operator=(const UserSetDetailsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSetDetailsRequest& operator=(UserSetDetailsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSetDetailsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserSetDetailsRequest* internal_default_instance() {
+    return reinterpret_cast<const UserSetDetailsRequest*>(
+        &_UserSetDetailsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 12;
+  friend void swap(UserSetDetailsRequest& a, UserSetDetailsRequest& b) { a.Swap(&b); }
+  inline void Swap(UserSetDetailsRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSetDetailsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSetDetailsRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSetDetailsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSetDetailsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSetDetailsRequest& from) { UserSetDetailsRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSetDetailsRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserSetDetailsRequest"; }
+
+ protected:
+  explicit UserSetDetailsRequest(::google::protobuf::Arena* arena);
+  UserSetDetailsRequest(::google::protobuf::Arena* arena, const UserSetDetailsRequest& from);
+  UserSetDetailsRequest(::google::protobuf::Arena* arena, UserSetDetailsRequest&& from) noexcept
+      : UserSetDetailsRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRealNameFieldNumber = 2,
+    kWifiFieldNumber = 3,
+    kIdFieldNumber = 1,
+  };
+  // string real_name = 2;
+  void clear_real_name() ;
+  const std::string& real_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_real_name(Arg_&& arg, Args_... args);
+  std::string* mutable_real_name();
+  PROTOBUF_NODISCARD std::string* release_real_name();
+  void set_allocated_real_name(std::string* value);
+
+  private:
+  const std::string& _internal_real_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_real_name(
+      const std::string& value);
+  std::string* _internal_mutable_real_name();
+
+  public:
+  // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+  bool has_wifi() const;
+  void clear_wifi() ;
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& wifi() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::UserIndexResponse_Item_Wifi* release_wifi();
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* mutable_wifi();
+  void set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  void unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* unsafe_arena_release_wifi();
+
+  private:
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& _internal_wifi() const;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _internal_mutable_wifi();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserSetDetailsRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      54, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserSetDetailsRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr real_name_;
+    ::palm::router::v1::UserIndexResponse_Item_Wifi* wifi_;
+    ::uint32_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserIndexResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserIndexResponse.Item) */ {
+ public:
+  inline UserIndexResponse_Item() : UserIndexResponse_Item(nullptr) {}
+  ~UserIndexResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserIndexResponse_Item* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserIndexResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserIndexResponse_Item(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserIndexResponse_Item(const UserIndexResponse_Item& from) : UserIndexResponse_Item(nullptr, from) {}
+  inline UserIndexResponse_Item(UserIndexResponse_Item&& from) noexcept
+      : UserIndexResponse_Item(nullptr, std::move(from)) {}
+  inline UserIndexResponse_Item& operator=(const UserIndexResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserIndexResponse_Item& operator=(UserIndexResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserIndexResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserIndexResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const UserIndexResponse_Item*>(
+        &_UserIndexResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 17;
+  friend void swap(UserIndexResponse_Item& a, UserIndexResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(UserIndexResponse_Item* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserIndexResponse_Item* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserIndexResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserIndexResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserIndexResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserIndexResponse_Item& from) { UserIndexResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserIndexResponse_Item* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserIndexResponse.Item"; }
+
+ protected:
+  explicit UserIndexResponse_Item(::google::protobuf::Arena* arena);
+  UserIndexResponse_Item(::google::protobuf::Arena* arena, const UserIndexResponse_Item& from);
+  UserIndexResponse_Item(::google::protobuf::Arena* arena, UserIndexResponse_Item&& from) noexcept
+      : UserIndexResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Wifi = UserIndexResponse_Item_Wifi;
+  using Contact = UserIndexResponse_Item_Contact;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRealNameFieldNumber = 2,
+    kWifiFieldNumber = 3,
+    kContactFieldNumber = 9,
+    kIdFieldNumber = 1,
+  };
+  // string real_name = 2;
+  void clear_real_name() ;
+  const std::string& real_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_real_name(Arg_&& arg, Args_... args);
+  std::string* mutable_real_name();
+  PROTOBUF_NODISCARD std::string* release_real_name();
+  void set_allocated_real_name(std::string* value);
+
+  private:
+  const std::string& _internal_real_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_real_name(
+      const std::string& value);
+  std::string* _internal_mutable_real_name();
+
+  public:
+  // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+  bool has_wifi() const;
+  void clear_wifi() ;
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& wifi() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::UserIndexResponse_Item_Wifi* release_wifi();
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* mutable_wifi();
+  void set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  void unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* unsafe_arena_release_wifi();
+
+  private:
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& _internal_wifi() const;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _internal_mutable_wifi();
+
+  public:
+  // .palm.router.v1.UserIndexResponse.Item.Contact contact = 9;
+  bool has_contact() const;
+  void clear_contact() ;
+  const ::palm::router::v1::UserIndexResponse_Item_Contact& contact() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::UserIndexResponse_Item_Contact* release_contact();
+  ::palm::router::v1::UserIndexResponse_Item_Contact* mutable_contact();
+  void set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value);
+  void unsafe_arena_set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value);
+  ::palm::router::v1::UserIndexResponse_Item_Contact* unsafe_arena_release_contact();
+
+  private:
+  const ::palm::router::v1::UserIndexResponse_Item_Contact& _internal_contact() const;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* _internal_mutable_contact();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserIndexResponse.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 2,
+      55, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserIndexResponse_Item& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr real_name_;
+    ::palm::router::v1::UserIndexResponse_Item_Wifi* wifi_;
+    ::palm::router::v1::UserIndexResponse_Item_Contact* contact_;
+    ::uint32_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserCreateRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserCreateRequest) */ {
+ public:
+  inline UserCreateRequest() : UserCreateRequest(nullptr) {}
+  ~UserCreateRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserCreateRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserCreateRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserCreateRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserCreateRequest(const UserCreateRequest& from) : UserCreateRequest(nullptr, from) {}
+  inline UserCreateRequest(UserCreateRequest&& from) noexcept
+      : UserCreateRequest(nullptr, std::move(from)) {}
+  inline UserCreateRequest& operator=(const UserCreateRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserCreateRequest& operator=(UserCreateRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserCreateRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserCreateRequest* internal_default_instance() {
+    return reinterpret_cast<const UserCreateRequest*>(
+        &_UserCreateRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 14;
+  friend void swap(UserCreateRequest& a, UserCreateRequest& b) { a.Swap(&b); }
+  inline void Swap(UserCreateRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserCreateRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserCreateRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserCreateRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserCreateRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserCreateRequest& from) { UserCreateRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserCreateRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserCreateRequest"; }
+
+ protected:
+  explicit UserCreateRequest(::google::protobuf::Arena* arena);
+  UserCreateRequest(::google::protobuf::Arena* arena, const UserCreateRequest& from);
+  UserCreateRequest(::google::protobuf::Arena* arena, UserCreateRequest&& from) noexcept
+      : UserCreateRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRealNameFieldNumber = 1,
+    kWifiFieldNumber = 2,
+  };
+  // string real_name = 1;
+  void clear_real_name() ;
+  const std::string& real_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_real_name(Arg_&& arg, Args_... args);
+  std::string* mutable_real_name();
+  PROTOBUF_NODISCARD std::string* release_real_name();
+  void set_allocated_real_name(std::string* value);
+
+  private:
+  const std::string& _internal_real_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_real_name(
+      const std::string& value);
+  std::string* _internal_mutable_real_name();
+
+  public:
+  // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 2;
+  bool has_wifi() const;
+  void clear_wifi() ;
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& wifi() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::UserIndexResponse_Item_Wifi* release_wifi();
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* mutable_wifi();
+  void set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  void unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value);
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* unsafe_arena_release_wifi();
+
+  private:
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi& _internal_wifi() const;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _internal_mutable_wifi();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserCreateRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      50, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserCreateRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr real_name_;
+    ::palm::router::v1::UserIndexResponse_Item_Wifi* wifi_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item) */ {
+ public:
+  inline RouterIndexEthernetResponse_Item() : RouterIndexEthernetResponse_Item(nullptr) {}
+  ~RouterIndexEthernetResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RouterIndexEthernetResponse_Item* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse_Item(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RouterIndexEthernetResponse_Item(const RouterIndexEthernetResponse_Item& from) : RouterIndexEthernetResponse_Item(nullptr, from) {}
+  inline RouterIndexEthernetResponse_Item(RouterIndexEthernetResponse_Item&& from) noexcept
+      : RouterIndexEthernetResponse_Item(nullptr, std::move(from)) {}
+  inline RouterIndexEthernetResponse_Item& operator=(const RouterIndexEthernetResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RouterIndexEthernetResponse_Item& operator=(RouterIndexEthernetResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RouterIndexEthernetResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  enum EthernetCase {
+    kWan = 1,
+    kLan = 2,
+    ETHERNET_NOT_SET = 0,
+  };
+  static inline const RouterIndexEthernetResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const RouterIndexEthernetResponse_Item*>(
+        &_RouterIndexEthernetResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(RouterIndexEthernetResponse_Item& a, RouterIndexEthernetResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(RouterIndexEthernetResponse_Item* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RouterIndexEthernetResponse_Item* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RouterIndexEthernetResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RouterIndexEthernetResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RouterIndexEthernetResponse_Item& from) { RouterIndexEthernetResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RouterIndexEthernetResponse_Item* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse.Item"; }
+
+ protected:
+  explicit RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena);
+  RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse_Item& from);
+  RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena, RouterIndexEthernetResponse_Item&& from) noexcept
+      : RouterIndexEthernetResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEnableFieldNumber = 9,
+    kWanFieldNumber = 1,
+    kLanFieldNumber = 2,
+  };
+  // bool enable = 9;
+  void clear_enable() ;
+  bool enable() const;
+  void set_enable(bool value);
+
+  private:
+  bool _internal_enable() const;
+  void _internal_set_enable(bool value);
+
+  public:
+  // .palm.router.v1.Wan wan = 1;
+  bool has_wan() const;
+  private:
+  bool _internal_has_wan() const;
+
+  public:
+  void clear_wan() ;
+  const ::palm::router::v1::Wan& wan() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::Wan* release_wan();
+  ::palm::router::v1::Wan* mutable_wan();
+  void set_allocated_wan(::palm::router::v1::Wan* value);
+  void unsafe_arena_set_allocated_wan(::palm::router::v1::Wan* value);
+  ::palm::router::v1::Wan* unsafe_arena_release_wan();
+
+  private:
+  const ::palm::router::v1::Wan& _internal_wan() const;
+  ::palm::router::v1::Wan* _internal_mutable_wan();
+
+  public:
+  // .palm.router.v1.Lan lan = 2;
+  bool has_lan() const;
+  private:
+  bool _internal_has_lan() const;
+
+  public:
+  void clear_lan() ;
+  const ::palm::router::v1::Lan& lan() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::Lan* release_lan();
+  ::palm::router::v1::Lan* mutable_lan();
+  void set_allocated_lan(::palm::router::v1::Lan* value);
+  void unsafe_arena_set_allocated_lan(::palm::router::v1::Lan* value);
+  ::palm::router::v1::Lan* unsafe_arena_release_lan();
+
+  private:
+  const ::palm::router::v1::Lan& _internal_lan() const;
+  ::palm::router::v1::Lan* _internal_mutable_lan();
+
+  public:
+  void clear_ethernet();
+  EthernetCase ethernet_case() const;
+  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse.Item)
+ private:
+  class _Internal;
+  void set_has_wan();
+  void set_has_lan();
+  inline bool has_ethernet() const;
+  inline void clear_has_ethernet();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 3, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RouterIndexEthernetResponse_Item& from_msg);
+    bool enable_;
+    union EthernetUnion {
+      constexpr EthernetUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::palm::router::v1::Wan* wan_;
+      ::palm::router::v1::Lan* lan_;
+    } ethernet_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Network final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.Network) */ {
+ public:
+  inline Network() : Network(nullptr) {}
+  ~Network() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Network* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Network));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Network(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Network(const Network& from) : Network(nullptr, from) {}
+  inline Network(Network&& from) noexcept
+      : Network(nullptr, std::move(from)) {}
+  inline Network& operator=(const Network& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Network& operator=(Network&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Network& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Network* internal_default_instance() {
+    return reinterpret_cast<const Network*>(
+        &_Network_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(Network& a, Network& b) { a.Swap(&b); }
+  inline void Swap(Network* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Network* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Network* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Network>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Network& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Network& from) { Network::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Network* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.Network"; }
+
+ protected:
+  explicit Network(::google::protobuf::Arena* arena);
+  Network(::google::protobuf::Arena* arena, const Network& from);
+  Network(::google::protobuf::Arena* arena, Network&& from) noexcept
+      : Network(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLanFieldNumber = 2,
+    kWanFieldNumber = 1,
+  };
+  // repeated .palm.router.v1.Lan lan = 2;
+  int lan_size() const;
+  private:
+  int _internal_lan_size() const;
+
+  public:
+  void clear_lan() ;
+  ::palm::router::v1::Lan* mutable_lan(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>* mutable_lan();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>& _internal_lan() const;
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>* _internal_mutable_lan();
+  public:
+  const ::palm::router::v1::Lan& lan(int index) const;
+  ::palm::router::v1::Lan* add_lan();
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>& lan() const;
+  // .palm.router.v1.Wan wan = 1;
+  bool has_wan() const;
+  void clear_wan() ;
+  const ::palm::router::v1::Wan& wan() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::Wan* release_wan();
+  ::palm::router::v1::Wan* mutable_wan();
+  void set_allocated_wan(::palm::router::v1::Wan* value);
+  void unsafe_arena_set_allocated_wan(::palm::router::v1::Wan* value);
+  ::palm::router::v1::Wan* unsafe_arena_release_wan();
+
+  private:
+  const ::palm::router::v1::Wan& _internal_wan() const;
+  ::palm::router::v1::Wan* _internal_mutable_wan();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.Network)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Network& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::router::v1::Lan > lan_;
+    ::palm::router::v1::Wan* wan_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserIndexResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.UserIndexResponse) */ {
+ public:
+  inline UserIndexResponse() : UserIndexResponse(nullptr) {}
+  ~UserIndexResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserIndexResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserIndexResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserIndexResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UserIndexResponse(const UserIndexResponse& from) : UserIndexResponse(nullptr, from) {}
+  inline UserIndexResponse(UserIndexResponse&& from) noexcept
+      : UserIndexResponse(nullptr, std::move(from)) {}
+  inline UserIndexResponse& operator=(const UserIndexResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserIndexResponse& operator=(UserIndexResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserIndexResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserIndexResponse* internal_default_instance() {
+    return reinterpret_cast<const UserIndexResponse*>(
+        &_UserIndexResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 18;
+  friend void swap(UserIndexResponse& a, UserIndexResponse& b) { a.Swap(&b); }
+  inline void Swap(UserIndexResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserIndexResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserIndexResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserIndexResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserIndexResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserIndexResponse& from) { UserIndexResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserIndexResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.UserIndexResponse"; }
+
+ protected:
+  explicit UserIndexResponse(::google::protobuf::Arena* arena);
+  UserIndexResponse(::google::protobuf::Arena* arena, const UserIndexResponse& from);
+  UserIndexResponse(::google::protobuf::Arena* arena, UserIndexResponse&& from) noexcept
+      : UserIndexResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = UserIndexResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.router.v1.UserIndexResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::router::v1::UserIndexResponse_Item* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>* _internal_mutable_items();
+  public:
+  const ::palm::router::v1::UserIndexResponse_Item& items(int index) const;
+  ::palm::router::v1::UserIndexResponse_Item* add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>& items() const;
+  // @@protoc_insertion_point(class_scope:palm.router.v1.UserIndexResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UserIndexResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::palm::router::v1::UserIndexResponse_Item > items_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RouterIndexEthernetResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse) */ {
+ public:
+  inline RouterIndexEthernetResponse() : RouterIndexEthernetResponse(nullptr) {}
+  ~RouterIndexEthernetResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RouterIndexEthernetResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RouterIndexEthernetResponse(const RouterIndexEthernetResponse& from) : RouterIndexEthernetResponse(nullptr, from) {}
+  inline RouterIndexEthernetResponse(RouterIndexEthernetResponse&& from) noexcept
+      : RouterIndexEthernetResponse(nullptr, std::move(from)) {}
+  inline RouterIndexEthernetResponse& operator=(const RouterIndexEthernetResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RouterIndexEthernetResponse& operator=(RouterIndexEthernetResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RouterIndexEthernetResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RouterIndexEthernetResponse* internal_default_instance() {
+    return reinterpret_cast<const RouterIndexEthernetResponse*>(
+        &_RouterIndexEthernetResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 9;
+  friend void swap(RouterIndexEthernetResponse& a, RouterIndexEthernetResponse& b) { a.Swap(&b); }
+  inline void Swap(RouterIndexEthernetResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RouterIndexEthernetResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RouterIndexEthernetResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RouterIndexEthernetResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RouterIndexEthernetResponse& from) { RouterIndexEthernetResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RouterIndexEthernetResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse"; }
+
+ protected:
+  explicit RouterIndexEthernetResponse(::google::protobuf::Arena* arena);
+  RouterIndexEthernetResponse(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse& from);
+  RouterIndexEthernetResponse(::google::protobuf::Arena* arena, RouterIndexEthernetResponse&& from) noexcept
+      : RouterIndexEthernetResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = RouterIndexEthernetResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.router.v1.RouterIndexEthernetResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::router::v1::RouterIndexEthernetResponse_Item* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* _internal_mutable_items();
+  public:
+  const ::palm::router::v1::RouterIndexEthernetResponse_Item& items(int index) const;
+  ::palm::router::v1::RouterIndexEthernetResponse_Item* add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& items() const;
+  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RouterIndexEthernetResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::palm::router::v1::RouterIndexEthernetResponse_Item > items_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
 
 // ===================================================================
 
@@ -73,6 +4382,3216 @@ namespace v1 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// Wan
+
+// string device = 1;
+inline void Wan::clear_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.ClearToEmpty();
+}
+inline const std::string& Wan::device() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Wan.device)
+  return _internal_device();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Wan::set_device(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Wan.device)
+}
+inline std::string* Wan::mutable_device() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_device();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Wan.device)
+  return _s;
+}
+inline const std::string& Wan::_internal_device() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.device_.Get();
+}
+inline void Wan::_internal_set_device(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(value, GetArena());
+}
+inline std::string* Wan::_internal_mutable_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.device_.Mutable( GetArena());
+}
+inline std::string* Wan::release_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Wan.device)
+  return _impl_.device_.Release();
+}
+inline void Wan::set_allocated_device(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.device_.IsDefault()) {
+    _impl_.device_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Wan.device)
+}
+
+// string address = 11;
+inline void Wan::clear_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.ClearToEmpty();
+}
+inline const std::string& Wan::address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Wan.address)
+  return _internal_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Wan::set_address(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Wan.address)
+}
+inline std::string* Wan::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Wan.address)
+  return _s;
+}
+inline const std::string& Wan::_internal_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.address_.Get();
+}
+inline void Wan::_internal_set_address(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.Set(value, GetArena());
+}
+inline std::string* Wan::_internal_mutable_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.address_.Mutable( GetArena());
+}
+inline std::string* Wan::release_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Wan.address)
+  return _impl_.address_.Release();
+}
+inline void Wan::set_allocated_address(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.address_.IsDefault()) {
+    _impl_.address_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Wan.address)
+}
+
+// string netmask = 12;
+inline void Wan::clear_netmask() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.ClearToEmpty();
+}
+inline const std::string& Wan::netmask() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Wan.netmask)
+  return _internal_netmask();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Wan::set_netmask(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Wan.netmask)
+}
+inline std::string* Wan::mutable_netmask() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_netmask();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Wan.netmask)
+  return _s;
+}
+inline const std::string& Wan::_internal_netmask() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.netmask_.Get();
+}
+inline void Wan::_internal_set_netmask(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.Set(value, GetArena());
+}
+inline std::string* Wan::_internal_mutable_netmask() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.netmask_.Mutable( GetArena());
+}
+inline std::string* Wan::release_netmask() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Wan.netmask)
+  return _impl_.netmask_.Release();
+}
+inline void Wan::set_allocated_netmask(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.netmask_.IsDefault()) {
+    _impl_.netmask_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Wan.netmask)
+}
+
+// string gateway = 13;
+inline void Wan::clear_gateway() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.ClearToEmpty();
+}
+inline const std::string& Wan::gateway() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Wan.gateway)
+  return _internal_gateway();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Wan::set_gateway(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Wan.gateway)
+}
+inline std::string* Wan::mutable_gateway() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_gateway();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Wan.gateway)
+  return _s;
+}
+inline const std::string& Wan::_internal_gateway() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.gateway_.Get();
+}
+inline void Wan::_internal_set_gateway(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.Set(value, GetArena());
+}
+inline std::string* Wan::_internal_mutable_gateway() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.gateway_.Mutable( GetArena());
+}
+inline std::string* Wan::release_gateway() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Wan.gateway)
+  return _impl_.gateway_.Release();
+}
+inline void Wan::set_allocated_gateway(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.gateway_.IsDefault()) {
+    _impl_.gateway_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Wan.gateway)
+}
+
+// repeated string dns = 14;
+inline int Wan::_internal_dns_size() const {
+  return _internal_dns().size();
+}
+inline int Wan::dns_size() const {
+  return _internal_dns_size();
+}
+inline void Wan::clear_dns() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.dns_.Clear();
+}
+inline std::string* Wan::add_dns() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_dns()->Add();
+  // @@protoc_insertion_point(field_add_mutable:palm.router.v1.Wan.dns)
+  return _s;
+}
+inline const std::string& Wan::dns(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Wan.dns)
+  return _internal_dns().Get(index);
+}
+inline std::string* Wan::mutable_dns(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Wan.dns)
+  return _internal_mutable_dns()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void Wan::set_dns(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_dns()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:palm.router.v1.Wan.dns)
+}
+template <typename Arg_, typename... Args_>
+inline void Wan::add_dns(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_dns(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:palm.router.v1.Wan.dns)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+Wan::dns() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.router.v1.Wan.dns)
+  return _internal_dns();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+Wan::mutable_dns() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.Wan.dns)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_dns();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+Wan::_internal_dns() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.dns_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+Wan::_internal_mutable_dns() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.dns_;
+}
+
+// string description = 99;
+inline void Wan::clear_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.ClearToEmpty();
+}
+inline const std::string& Wan::description() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Wan.description)
+  return _internal_description();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Wan::set_description(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Wan.description)
+}
+inline std::string* Wan::mutable_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Wan.description)
+  return _s;
+}
+inline const std::string& Wan::_internal_description() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.description_.Get();
+}
+inline void Wan::_internal_set_description(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(value, GetArena());
+}
+inline std::string* Wan::_internal_mutable_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.description_.Mutable( GetArena());
+}
+inline std::string* Wan::release_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Wan.description)
+  return _impl_.description_.Release();
+}
+inline void Wan::set_allocated_description(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.description_.IsDefault()) {
+    _impl_.description_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Wan.description)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Lan
+
+// string device = 1;
+inline void Lan::clear_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.ClearToEmpty();
+}
+inline const std::string& Lan::device() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Lan.device)
+  return _internal_device();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Lan::set_device(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Lan.device)
+}
+inline std::string* Lan::mutable_device() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_device();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Lan.device)
+  return _s;
+}
+inline const std::string& Lan::_internal_device() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.device_.Get();
+}
+inline void Lan::_internal_set_device(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(value, GetArena());
+}
+inline std::string* Lan::_internal_mutable_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.device_.Mutable( GetArena());
+}
+inline std::string* Lan::release_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Lan.device)
+  return _impl_.device_.Release();
+}
+inline void Lan::set_allocated_device(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.device_.IsDefault()) {
+    _impl_.device_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Lan.device)
+}
+
+// string address = 11;
+inline void Lan::clear_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.ClearToEmpty();
+}
+inline const std::string& Lan::address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Lan.address)
+  return _internal_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Lan::set_address(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Lan.address)
+}
+inline std::string* Lan::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Lan.address)
+  return _s;
+}
+inline const std::string& Lan::_internal_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.address_.Get();
+}
+inline void Lan::_internal_set_address(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.Set(value, GetArena());
+}
+inline std::string* Lan::_internal_mutable_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.address_.Mutable( GetArena());
+}
+inline std::string* Lan::release_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Lan.address)
+  return _impl_.address_.Release();
+}
+inline void Lan::set_allocated_address(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.address_.IsDefault()) {
+    _impl_.address_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Lan.address)
+}
+
+// bool dhcp = 12;
+inline void Lan::clear_dhcp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.dhcp_ = false;
+}
+inline bool Lan::dhcp() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Lan.dhcp)
+  return _internal_dhcp();
+}
+inline void Lan::set_dhcp(bool value) {
+  _internal_set_dhcp(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.Lan.dhcp)
+}
+inline bool Lan::_internal_dhcp() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.dhcp_;
+}
+inline void Lan::_internal_set_dhcp(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.dhcp_ = value;
+}
+
+// map<string, string> reserved_ips = 13;
+inline int Lan::_internal_reserved_ips_size() const {
+  return _internal_reserved_ips().size();
+}
+inline int Lan::reserved_ips_size() const {
+  return _internal_reserved_ips_size();
+}
+inline void Lan::clear_reserved_ips() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reserved_ips_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Lan::_internal_reserved_ips() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.reserved_ips_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Lan::reserved_ips() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:palm.router.v1.Lan.reserved_ips)
+  return _internal_reserved_ips();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Lan::_internal_mutable_reserved_ips() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.reserved_ips_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Lan::mutable_reserved_ips() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:palm.router.v1.Lan.reserved_ips)
+  return _internal_mutable_reserved_ips();
+}
+
+// string description = 99;
+inline void Lan::clear_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.ClearToEmpty();
+}
+inline const std::string& Lan::description() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Lan.description)
+  return _internal_description();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Lan::set_description(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Lan.description)
+}
+inline std::string* Lan::mutable_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Lan.description)
+  return _s;
+}
+inline const std::string& Lan::_internal_description() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.description_.Get();
+}
+inline void Lan::_internal_set_description(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(value, GetArena());
+}
+inline std::string* Lan::_internal_mutable_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.description_.Mutable( GetArena());
+}
+inline std::string* Lan::release_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Lan.description)
+  return _impl_.description_.Release();
+}
+inline void Lan::set_allocated_description(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.description_.IsDefault()) {
+    _impl_.description_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Lan.description)
+}
+
+// -------------------------------------------------------------------
+
+// Network
+
+// .palm.router.v1.Wan wan = 1;
+inline bool Network::has_wan() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.wan_ != nullptr);
+  return value;
+}
+inline void Network::clear_wan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wan_ != nullptr) _impl_.wan_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::router::v1::Wan& Network::_internal_wan() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::Wan* p = _impl_.wan_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::Wan&>(::palm::router::v1::_Wan_default_instance_);
+}
+inline const ::palm::router::v1::Wan& Network::wan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Network.wan)
+  return _internal_wan();
+}
+inline void Network::unsafe_arena_set_allocated_wan(::palm::router::v1::Wan* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.wan_);
+  }
+  _impl_.wan_ = reinterpret_cast<::palm::router::v1::Wan*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.Network.wan)
+}
+inline ::palm::router::v1::Wan* Network::release_wan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::Wan* released = _impl_.wan_;
+  _impl_.wan_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::Wan* Network::unsafe_arena_release_wan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Network.wan)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::Wan* temp = _impl_.wan_;
+  _impl_.wan_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::Wan* Network::_internal_mutable_wan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wan_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::Wan>(GetArena());
+    _impl_.wan_ = reinterpret_cast<::palm::router::v1::Wan*>(p);
+  }
+  return _impl_.wan_;
+}
+inline ::palm::router::v1::Wan* Network::mutable_wan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::Wan* _msg = _internal_mutable_wan();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Network.wan)
+  return _msg;
+}
+inline void Network::set_allocated_wan(::palm::router::v1::Wan* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.wan_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.wan_ = reinterpret_cast<::palm::router::v1::Wan*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Network.wan)
+}
+
+// repeated .palm.router.v1.Lan lan = 2;
+inline int Network::_internal_lan_size() const {
+  return _internal_lan().size();
+}
+inline int Network::lan_size() const {
+  return _internal_lan_size();
+}
+inline void Network::clear_lan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lan_.Clear();
+}
+inline ::palm::router::v1::Lan* Network::mutable_lan(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Network.lan)
+  return _internal_mutable_lan()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>* Network::mutable_lan()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.Network.lan)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_lan();
+}
+inline const ::palm::router::v1::Lan& Network::lan(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Network.lan)
+  return _internal_lan().Get(index);
+}
+inline ::palm::router::v1::Lan* Network::add_lan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::router::v1::Lan* _add = _internal_mutable_lan()->Add();
+  // @@protoc_insertion_point(field_add:palm.router.v1.Network.lan)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>& Network::lan() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.router.v1.Network.lan)
+  return _internal_lan();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>&
+Network::_internal_lan() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lan_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::Lan>*
+Network::_internal_mutable_lan() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.lan_;
+}
+
+// -------------------------------------------------------------------
+
+// Host
+
+// string mac = 1;
+inline void Host::clear_mac() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.ClearToEmpty();
+}
+inline const std::string& Host::mac() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Host.mac)
+  return _internal_mac();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Host::set_mac(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Host.mac)
+}
+inline std::string* Host::mutable_mac() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_mac();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Host.mac)
+  return _s;
+}
+inline const std::string& Host::_internal_mac() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mac_.Get();
+}
+inline void Host::_internal_set_mac(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.Set(value, GetArena());
+}
+inline std::string* Host::_internal_mutable_mac() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.mac_.Mutable( GetArena());
+}
+inline std::string* Host::release_mac() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Host.mac)
+  return _impl_.mac_.Release();
+}
+inline void Host::set_allocated_mac(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.mac_.IsDefault()) {
+    _impl_.mac_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Host.mac)
+}
+
+// string ip = 2;
+inline void Host::clear_ip() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_.ClearToEmpty();
+}
+inline const std::string& Host::ip() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Host.ip)
+  return _internal_ip();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Host::set_ip(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Host.ip)
+}
+inline std::string* Host::mutable_ip() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_ip();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Host.ip)
+  return _s;
+}
+inline const std::string& Host::_internal_ip() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.ip_.Get();
+}
+inline void Host::_internal_set_ip(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_.Set(value, GetArena());
+}
+inline std::string* Host::_internal_mutable_ip() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.ip_.Mutable( GetArena());
+}
+inline std::string* Host::release_ip() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Host.ip)
+  return _impl_.ip_.Release();
+}
+inline void Host::set_allocated_ip(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.ip_.IsDefault()) {
+    _impl_.ip_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Host.ip)
+}
+
+// string name = 3;
+inline void Host::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& Host::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Host.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Host::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.Host.name)
+}
+inline std::string* Host::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Host.name)
+  return _s;
+}
+inline const std::string& Host::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void Host::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* Host::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* Host::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Host.name)
+  return _impl_.name_.Release();
+}
+inline void Host::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Host.name)
+}
+
+// .google.protobuf.Timestamp last_found = 9;
+inline bool Host::has_last_found() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.last_found_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& Host::_internal_last_found() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.last_found_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& Host::last_found() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Host.last_found)
+  return _internal_last_found();
+}
+inline void Host::unsafe_arena_set_allocated_last_found(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_found_);
+  }
+  _impl_.last_found_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.Host.last_found)
+}
+inline ::google::protobuf::Timestamp* Host::release_last_found() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.last_found_;
+  _impl_.last_found_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* Host::unsafe_arena_release_last_found() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.Host.last_found)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.last_found_;
+  _impl_.last_found_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* Host::_internal_mutable_last_found() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.last_found_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.last_found_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.last_found_;
+}
+inline ::google::protobuf::Timestamp* Host::mutable_last_found() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_last_found();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.Host.last_found)
+  return _msg;
+}
+inline void Host::set_allocated_last_found(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_found_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.last_found_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Host.last_found)
+}
+
+// -------------------------------------------------------------------
+
+// AdministratorSignInRequest
+
+// string name = 1;
+inline void AdministratorSignInRequest::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& AdministratorSignInRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInRequest.name)
+}
+inline std::string* AdministratorSignInRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.name)
+  return _s;
+}
+inline const std::string& AdministratorSignInRequest::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void AdministratorSignInRequest::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* AdministratorSignInRequest::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* AdministratorSignInRequest::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.name)
+  return _impl_.name_.Release();
+}
+inline void AdministratorSignInRequest::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInRequest.name)
+}
+
+// string password = 2;
+inline void AdministratorSignInRequest::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+}
+inline const std::string& AdministratorSignInRequest::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInRequest.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInRequest::set_password(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInRequest.password)
+}
+inline std::string* AdministratorSignInRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.password)
+  return _s;
+}
+inline const std::string& AdministratorSignInRequest::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void AdministratorSignInRequest::_internal_set_password(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.Set(value, GetArena());
+}
+inline std::string* AdministratorSignInRequest::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.password_.Mutable( GetArena());
+}
+inline std::string* AdministratorSignInRequest::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.password)
+  return _impl_.password_.Release();
+}
+inline void AdministratorSignInRequest::set_allocated_password(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInRequest.password)
+}
+
+// .google.protobuf.Duration ttl = 9;
+inline bool AdministratorSignInRequest::has_ttl() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Duration& AdministratorSignInRequest::_internal_ttl() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Duration* p = _impl_.ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+}
+inline const ::google::protobuf::Duration& AdministratorSignInRequest::ttl() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInRequest.ttl)
+  return _internal_ttl();
+}
+inline void AdministratorSignInRequest::unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.AdministratorSignInRequest.ttl)
+}
+inline ::google::protobuf::Duration* AdministratorSignInRequest::release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Duration* released = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Duration* AdministratorSignInRequest::unsafe_arena_release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.ttl)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Duration* temp = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Duration* AdministratorSignInRequest::_internal_mutable_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ttl_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Duration>(GetArena());
+    _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  }
+  return _impl_.ttl_;
+}
+inline ::google::protobuf::Duration* AdministratorSignInRequest::mutable_ttl() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.ttl)
+  return _msg;
+}
+inline void AdministratorSignInRequest::set_allocated_ttl(::google::protobuf::Duration* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInRequest.ttl)
+}
+
+// -------------------------------------------------------------------
+
+// AdministratorSignInResponse
+
+// string token = 1;
+inline void AdministratorSignInResponse::clear_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.ClearToEmpty();
+}
+inline const std::string& AdministratorSignInResponse::token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInResponse.token)
+  return _internal_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInResponse::set_token(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInResponse.token)
+}
+inline std::string* AdministratorSignInResponse::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInResponse.token)
+  return _s;
+}
+inline const std::string& AdministratorSignInResponse::_internal_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.token_.Get();
+}
+inline void AdministratorSignInResponse::_internal_set_token(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.Set(value, GetArena());
+}
+inline std::string* AdministratorSignInResponse::_internal_mutable_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.token_.Mutable( GetArena());
+}
+inline std::string* AdministratorSignInResponse::release_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInResponse.token)
+  return _impl_.token_.Release();
+}
+inline void AdministratorSignInResponse::set_allocated_token(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInResponse.token)
+}
+
+// string name = 2;
+inline void AdministratorSignInResponse::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& AdministratorSignInResponse::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInResponse.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInResponse::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInResponse.name)
+}
+inline std::string* AdministratorSignInResponse::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInResponse.name)
+  return _s;
+}
+inline const std::string& AdministratorSignInResponse::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void AdministratorSignInResponse::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* AdministratorSignInResponse::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* AdministratorSignInResponse::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInResponse.name)
+  return _impl_.name_.Release();
+}
+inline void AdministratorSignInResponse::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInResponse.name)
+}
+
+// string locale = 11;
+inline void AdministratorSignInResponse::clear_locale() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.ClearToEmpty();
+}
+inline const std::string& AdministratorSignInResponse::locale() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInResponse.locale)
+  return _internal_locale();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInResponse::set_locale(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInResponse.locale)
+}
+inline std::string* AdministratorSignInResponse::mutable_locale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_locale();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInResponse.locale)
+  return _s;
+}
+inline const std::string& AdministratorSignInResponse::_internal_locale() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.locale_.Get();
+}
+inline void AdministratorSignInResponse::_internal_set_locale(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.Set(value, GetArena());
+}
+inline std::string* AdministratorSignInResponse::_internal_mutable_locale() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.locale_.Mutable( GetArena());
+}
+inline std::string* AdministratorSignInResponse::release_locale() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInResponse.locale)
+  return _impl_.locale_.Release();
+}
+inline void AdministratorSignInResponse::set_allocated_locale(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.locale_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.locale_.IsDefault()) {
+    _impl_.locale_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInResponse.locale)
+}
+
+// string timezone = 12;
+inline void AdministratorSignInResponse::clear_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timezone_.ClearToEmpty();
+}
+inline const std::string& AdministratorSignInResponse::timezone() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInResponse.timezone)
+  return _internal_timezone();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInResponse::set_timezone(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timezone_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInResponse.timezone)
+}
+inline std::string* AdministratorSignInResponse::mutable_timezone() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_timezone();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInResponse.timezone)
+  return _s;
+}
+inline const std::string& AdministratorSignInResponse::_internal_timezone() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.timezone_.Get();
+}
+inline void AdministratorSignInResponse::_internal_set_timezone(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timezone_.Set(value, GetArena());
+}
+inline std::string* AdministratorSignInResponse::_internal_mutable_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.timezone_.Mutable( GetArena());
+}
+inline std::string* AdministratorSignInResponse::release_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInResponse.timezone)
+  return _impl_.timezone_.Release();
+}
+inline void AdministratorSignInResponse::set_allocated_timezone(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timezone_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.timezone_.IsDefault()) {
+    _impl_.timezone_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInResponse.timezone)
+}
+
+// repeated string languages = 19;
+inline int AdministratorSignInResponse::_internal_languages_size() const {
+  return _internal_languages().size();
+}
+inline int AdministratorSignInResponse::languages_size() const {
+  return _internal_languages_size();
+}
+inline void AdministratorSignInResponse::clear_languages() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.languages_.Clear();
+}
+inline std::string* AdministratorSignInResponse::add_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_languages()->Add();
+  // @@protoc_insertion_point(field_add_mutable:palm.router.v1.AdministratorSignInResponse.languages)
+  return _s;
+}
+inline const std::string& AdministratorSignInResponse::languages(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInResponse.languages)
+  return _internal_languages().Get(index);
+}
+inline std::string* AdministratorSignInResponse::mutable_languages(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInResponse.languages)
+  return _internal_mutable_languages()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void AdministratorSignInResponse::set_languages(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_languages()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInResponse.languages)
+}
+template <typename Arg_, typename... Args_>
+inline void AdministratorSignInResponse::add_languages(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_languages(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:palm.router.v1.AdministratorSignInResponse.languages)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+AdministratorSignInResponse::languages() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.router.v1.AdministratorSignInResponse.languages)
+  return _internal_languages();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+AdministratorSignInResponse::mutable_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.AdministratorSignInResponse.languages)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_languages();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+AdministratorSignInResponse::_internal_languages() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.languages_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+AdministratorSignInResponse::_internal_mutable_languages() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.languages_;
+}
+
+// -------------------------------------------------------------------
+
+// AdministratorSetPasswordRequest
+
+// string current_password = 1;
+inline void AdministratorSetPasswordRequest::clear_current_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_password_.ClearToEmpty();
+}
+inline const std::string& AdministratorSetPasswordRequest::current_password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+  return _internal_current_password();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSetPasswordRequest::set_current_password(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+}
+inline std::string* AdministratorSetPasswordRequest::mutable_current_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_current_password();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+  return _s;
+}
+inline const std::string& AdministratorSetPasswordRequest::_internal_current_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.current_password_.Get();
+}
+inline void AdministratorSetPasswordRequest::_internal_set_current_password(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_password_.Set(value, GetArena());
+}
+inline std::string* AdministratorSetPasswordRequest::_internal_mutable_current_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.current_password_.Mutable( GetArena());
+}
+inline std::string* AdministratorSetPasswordRequest::release_current_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+  return _impl_.current_password_.Release();
+}
+inline void AdministratorSetPasswordRequest::set_allocated_current_password(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.current_password_.IsDefault()) {
+    _impl_.current_password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+}
+
+// string new_password = 2;
+inline void AdministratorSetPasswordRequest::clear_new_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.new_password_.ClearToEmpty();
+}
+inline const std::string& AdministratorSetPasswordRequest::new_password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+  return _internal_new_password();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AdministratorSetPasswordRequest::set_new_password(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.new_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+}
+inline std::string* AdministratorSetPasswordRequest::mutable_new_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_new_password();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+  return _s;
+}
+inline const std::string& AdministratorSetPasswordRequest::_internal_new_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.new_password_.Get();
+}
+inline void AdministratorSetPasswordRequest::_internal_set_new_password(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.new_password_.Set(value, GetArena());
+}
+inline std::string* AdministratorSetPasswordRequest::_internal_mutable_new_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.new_password_.Mutable( GetArena());
+}
+inline std::string* AdministratorSetPasswordRequest::release_new_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+  return _impl_.new_password_.Release();
+}
+inline void AdministratorSetPasswordRequest::set_allocated_new_password(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.new_password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.new_password_.IsDefault()) {
+    _impl_.new_password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+}
+
+// -------------------------------------------------------------------
+
+// RouterIndexEthernetResponse_Item
+
+// .palm.router.v1.Wan wan = 1;
+inline bool RouterIndexEthernetResponse_Item::has_wan() const {
+  return ethernet_case() == kWan;
+}
+inline bool RouterIndexEthernetResponse_Item::_internal_has_wan() const {
+  return ethernet_case() == kWan;
+}
+inline void RouterIndexEthernetResponse_Item::set_has_wan() {
+  _impl_._oneof_case_[0] = kWan;
+}
+inline void RouterIndexEthernetResponse_Item::clear_wan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (ethernet_case() == kWan) {
+    if (GetArena() == nullptr) {
+      delete _impl_.ethernet_.wan_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.ethernet_.wan_);
+    }
+    clear_has_ethernet();
+  }
+}
+inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::release_wan() {
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
+  if (ethernet_case() == kWan) {
+    clear_has_ethernet();
+    auto* temp = _impl_.ethernet_.wan_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.ethernet_.wan_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::router::v1::Wan& RouterIndexEthernetResponse_Item::_internal_wan() const {
+  return ethernet_case() == kWan ? *_impl_.ethernet_.wan_ : reinterpret_cast<::palm::router::v1::Wan&>(::palm::router::v1::_Wan_default_instance_);
+}
+inline const ::palm::router::v1::Wan& RouterIndexEthernetResponse_Item::wan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
+  return _internal_wan();
+}
+inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::unsafe_arena_release_wan() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
+  if (ethernet_case() == kWan) {
+    clear_has_ethernet();
+    auto* temp = _impl_.ethernet_.wan_;
+    _impl_.ethernet_.wan_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_wan(::palm::router::v1::Wan* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_ethernet();
+  if (value) {
+    set_has_wan();
+    _impl_.ethernet_.wan_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
+}
+inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::_internal_mutable_wan() {
+  if (ethernet_case() != kWan) {
+    clear_ethernet();
+    set_has_wan();
+    _impl_.ethernet_.wan_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::Wan>(GetArena());
+  }
+  return _impl_.ethernet_.wan_;
+}
+inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::mutable_wan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::router::v1::Wan* _msg = _internal_mutable_wan();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
+  return _msg;
+}
+
+// .palm.router.v1.Lan lan = 2;
+inline bool RouterIndexEthernetResponse_Item::has_lan() const {
+  return ethernet_case() == kLan;
+}
+inline bool RouterIndexEthernetResponse_Item::_internal_has_lan() const {
+  return ethernet_case() == kLan;
+}
+inline void RouterIndexEthernetResponse_Item::set_has_lan() {
+  _impl_._oneof_case_[0] = kLan;
+}
+inline void RouterIndexEthernetResponse_Item::clear_lan() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (ethernet_case() == kLan) {
+    if (GetArena() == nullptr) {
+      delete _impl_.ethernet_.lan_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.ethernet_.lan_);
+    }
+    clear_has_ethernet();
+  }
+}
+inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::release_lan() {
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
+  if (ethernet_case() == kLan) {
+    clear_has_ethernet();
+    auto* temp = _impl_.ethernet_.lan_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.ethernet_.lan_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::router::v1::Lan& RouterIndexEthernetResponse_Item::_internal_lan() const {
+  return ethernet_case() == kLan ? *_impl_.ethernet_.lan_ : reinterpret_cast<::palm::router::v1::Lan&>(::palm::router::v1::_Lan_default_instance_);
+}
+inline const ::palm::router::v1::Lan& RouterIndexEthernetResponse_Item::lan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
+  return _internal_lan();
+}
+inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::unsafe_arena_release_lan() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
+  if (ethernet_case() == kLan) {
+    clear_has_ethernet();
+    auto* temp = _impl_.ethernet_.lan_;
+    _impl_.ethernet_.lan_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_lan(::palm::router::v1::Lan* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_ethernet();
+  if (value) {
+    set_has_lan();
+    _impl_.ethernet_.lan_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
+}
+inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::_internal_mutable_lan() {
+  if (ethernet_case() != kLan) {
+    clear_ethernet();
+    set_has_lan();
+    _impl_.ethernet_.lan_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::Lan>(GetArena());
+  }
+  return _impl_.ethernet_.lan_;
+}
+inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::mutable_lan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::router::v1::Lan* _msg = _internal_mutable_lan();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
+  return _msg;
+}
+
+// bool enable = 9;
+inline void RouterIndexEthernetResponse_Item::clear_enable() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_ = false;
+}
+inline bool RouterIndexEthernetResponse_Item::enable() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.enable)
+  return _internal_enable();
+}
+inline void RouterIndexEthernetResponse_Item::set_enable(bool value) {
+  _internal_set_enable(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.enable)
+}
+inline bool RouterIndexEthernetResponse_Item::_internal_enable() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enable_;
+}
+inline void RouterIndexEthernetResponse_Item::_internal_set_enable(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_ = value;
+}
+
+inline bool RouterIndexEthernetResponse_Item::has_ethernet() const {
+  return ethernet_case() != ETHERNET_NOT_SET;
+}
+inline void RouterIndexEthernetResponse_Item::clear_has_ethernet() {
+  _impl_._oneof_case_[0] = ETHERNET_NOT_SET;
+}
+inline RouterIndexEthernetResponse_Item::EthernetCase RouterIndexEthernetResponse_Item::ethernet_case() const {
+  return RouterIndexEthernetResponse_Item::EthernetCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// RouterIndexEthernetResponse
+
+// repeated .palm.router.v1.RouterIndexEthernetResponse.Item items = 1;
+inline int RouterIndexEthernetResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int RouterIndexEthernetResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void RouterIndexEthernetResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item* RouterIndexEthernetResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* RouterIndexEthernetResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.RouterIndexEthernetResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::router::v1::RouterIndexEthernetResponse_Item& RouterIndexEthernetResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item* RouterIndexEthernetResponse::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::router::v1::RouterIndexEthernetResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.router.v1.RouterIndexEthernetResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& RouterIndexEthernetResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.router.v1.RouterIndexEthernetResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>&
+RouterIndexEthernetResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>*
+RouterIndexEthernetResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// -------------------------------------------------------------------
+
+// UserSetRealNameRequest
+
+// uint32 id = 1;
+inline void UserSetRealNameRequest::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+}
+inline ::uint32_t UserSetRealNameRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetRealNameRequest.id)
+  return _internal_id();
+}
+inline void UserSetRealNameRequest::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserSetRealNameRequest.id)
+}
+inline ::uint32_t UserSetRealNameRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void UserSetRealNameRequest::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string real_name = 2;
+inline void UserSetRealNameRequest::clear_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.ClearToEmpty();
+}
+inline const std::string& UserSetRealNameRequest::real_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetRealNameRequest.real_name)
+  return _internal_real_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserSetRealNameRequest::set_real_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserSetRealNameRequest.real_name)
+}
+inline std::string* UserSetRealNameRequest::mutable_real_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_real_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserSetRealNameRequest.real_name)
+  return _s;
+}
+inline const std::string& UserSetRealNameRequest::_internal_real_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.real_name_.Get();
+}
+inline void UserSetRealNameRequest::_internal_set_real_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(value, GetArena());
+}
+inline std::string* UserSetRealNameRequest::_internal_mutable_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.real_name_.Mutable( GetArena());
+}
+inline std::string* UserSetRealNameRequest::release_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserSetRealNameRequest.real_name)
+  return _impl_.real_name_.Release();
+}
+inline void UserSetRealNameRequest::set_allocated_real_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.real_name_.IsDefault()) {
+    _impl_.real_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserSetRealNameRequest.real_name)
+}
+
+// -------------------------------------------------------------------
+
+// UserSetWifiRequest
+
+// uint32 id = 1;
+inline void UserSetWifiRequest::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+}
+inline ::uint32_t UserSetWifiRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetWifiRequest.id)
+  return _internal_id();
+}
+inline void UserSetWifiRequest::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserSetWifiRequest.id)
+}
+inline ::uint32_t UserSetWifiRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void UserSetWifiRequest::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 2;
+inline bool UserSetWifiRequest::has_wifi() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.wifi_ != nullptr);
+  return value;
+}
+inline void UserSetWifiRequest::clear_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ != nullptr) _impl_.wifi_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserSetWifiRequest::_internal_wifi() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi* p = _impl_.wifi_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::UserIndexResponse_Item_Wifi&>(::palm::router::v1::_UserIndexResponse_Item_Wifi_default_instance_);
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserSetWifiRequest::wifi() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetWifiRequest.wifi)
+  return _internal_wifi();
+}
+inline void UserSetWifiRequest::unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.wifi_);
+  }
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserSetWifiRequest.wifi)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetWifiRequest::release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* released = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetWifiRequest::unsafe_arena_release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserSetWifiRequest.wifi)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* temp = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetWifiRequest::_internal_mutable_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::UserIndexResponse_Item_Wifi>(GetArena());
+    _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(p);
+  }
+  return _impl_.wifi_;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetWifiRequest::mutable_wifi() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _msg = _internal_mutable_wifi();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserSetWifiRequest.wifi)
+  return _msg;
+}
+inline void UserSetWifiRequest::set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.wifi_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserSetWifiRequest.wifi)
+}
+
+// -------------------------------------------------------------------
+
+// UserSetDetailsRequest
+
+// uint32 id = 1;
+inline void UserSetDetailsRequest::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+}
+inline ::uint32_t UserSetDetailsRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetDetailsRequest.id)
+  return _internal_id();
+}
+inline void UserSetDetailsRequest::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserSetDetailsRequest.id)
+}
+inline ::uint32_t UserSetDetailsRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void UserSetDetailsRequest::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string real_name = 2;
+inline void UserSetDetailsRequest::clear_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.ClearToEmpty();
+}
+inline const std::string& UserSetDetailsRequest::real_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetDetailsRequest.real_name)
+  return _internal_real_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserSetDetailsRequest::set_real_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserSetDetailsRequest.real_name)
+}
+inline std::string* UserSetDetailsRequest::mutable_real_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_real_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserSetDetailsRequest.real_name)
+  return _s;
+}
+inline const std::string& UserSetDetailsRequest::_internal_real_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.real_name_.Get();
+}
+inline void UserSetDetailsRequest::_internal_set_real_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(value, GetArena());
+}
+inline std::string* UserSetDetailsRequest::_internal_mutable_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.real_name_.Mutable( GetArena());
+}
+inline std::string* UserSetDetailsRequest::release_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserSetDetailsRequest.real_name)
+  return _impl_.real_name_.Release();
+}
+inline void UserSetDetailsRequest::set_allocated_real_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.real_name_.IsDefault()) {
+    _impl_.real_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserSetDetailsRequest.real_name)
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+inline bool UserSetDetailsRequest::has_wifi() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.wifi_ != nullptr);
+  return value;
+}
+inline void UserSetDetailsRequest::clear_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ != nullptr) _impl_.wifi_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserSetDetailsRequest::_internal_wifi() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi* p = _impl_.wifi_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::UserIndexResponse_Item_Wifi&>(::palm::router::v1::_UserIndexResponse_Item_Wifi_default_instance_);
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserSetDetailsRequest::wifi() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetDetailsRequest.wifi)
+  return _internal_wifi();
+}
+inline void UserSetDetailsRequest::unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.wifi_);
+  }
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserSetDetailsRequest.wifi)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetDetailsRequest::release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* released = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetDetailsRequest::unsafe_arena_release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserSetDetailsRequest.wifi)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* temp = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetDetailsRequest::_internal_mutable_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::UserIndexResponse_Item_Wifi>(GetArena());
+    _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(p);
+  }
+  return _impl_.wifi_;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserSetDetailsRequest::mutable_wifi() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _msg = _internal_mutable_wifi();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserSetDetailsRequest.wifi)
+  return _msg;
+}
+inline void UserSetDetailsRequest::set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.wifi_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserSetDetailsRequest.wifi)
+}
+
+// -------------------------------------------------------------------
+
+// UserSetContactRequest
+
+// uint32 id = 1;
+inline void UserSetContactRequest::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+}
+inline ::uint32_t UserSetContactRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetContactRequest.id)
+  return _internal_id();
+}
+inline void UserSetContactRequest::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserSetContactRequest.id)
+}
+inline ::uint32_t UserSetContactRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void UserSetContactRequest::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Contact contact = 2;
+inline bool UserSetContactRequest::has_contact() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.contact_ != nullptr);
+  return value;
+}
+inline void UserSetContactRequest::clear_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.contact_ != nullptr) _impl_.contact_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Contact& UserSetContactRequest::_internal_contact() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::UserIndexResponse_Item_Contact* p = _impl_.contact_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::UserIndexResponse_Item_Contact&>(::palm::router::v1::_UserIndexResponse_Item_Contact_default_instance_);
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Contact& UserSetContactRequest::contact() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserSetContactRequest.contact)
+  return _internal_contact();
+}
+inline void UserSetContactRequest::unsafe_arena_set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.contact_);
+  }
+  _impl_.contact_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Contact*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserSetContactRequest.contact)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserSetContactRequest::release_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* released = _impl_.contact_;
+  _impl_.contact_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserSetContactRequest::unsafe_arena_release_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserSetContactRequest.contact)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* temp = _impl_.contact_;
+  _impl_.contact_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserSetContactRequest::_internal_mutable_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.contact_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::UserIndexResponse_Item_Contact>(GetArena());
+    _impl_.contact_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Contact*>(p);
+  }
+  return _impl_.contact_;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserSetContactRequest::mutable_contact() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* _msg = _internal_mutable_contact();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserSetContactRequest.contact)
+  return _msg;
+}
+inline void UserSetContactRequest::set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.contact_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.contact_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Contact*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserSetContactRequest.contact)
+}
+
+// -------------------------------------------------------------------
+
+// UserCreateRequest
+
+// string real_name = 1;
+inline void UserCreateRequest::clear_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.ClearToEmpty();
+}
+inline const std::string& UserCreateRequest::real_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserCreateRequest.real_name)
+  return _internal_real_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserCreateRequest::set_real_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserCreateRequest.real_name)
+}
+inline std::string* UserCreateRequest::mutable_real_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_real_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserCreateRequest.real_name)
+  return _s;
+}
+inline const std::string& UserCreateRequest::_internal_real_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.real_name_.Get();
+}
+inline void UserCreateRequest::_internal_set_real_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(value, GetArena());
+}
+inline std::string* UserCreateRequest::_internal_mutable_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.real_name_.Mutable( GetArena());
+}
+inline std::string* UserCreateRequest::release_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserCreateRequest.real_name)
+  return _impl_.real_name_.Release();
+}
+inline void UserCreateRequest::set_allocated_real_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.real_name_.IsDefault()) {
+    _impl_.real_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserCreateRequest.real_name)
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 2;
+inline bool UserCreateRequest::has_wifi() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.wifi_ != nullptr);
+  return value;
+}
+inline void UserCreateRequest::clear_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ != nullptr) _impl_.wifi_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserCreateRequest::_internal_wifi() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi* p = _impl_.wifi_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::UserIndexResponse_Item_Wifi&>(::palm::router::v1::_UserIndexResponse_Item_Wifi_default_instance_);
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserCreateRequest::wifi() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserCreateRequest.wifi)
+  return _internal_wifi();
+}
+inline void UserCreateRequest::unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.wifi_);
+  }
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserCreateRequest.wifi)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserCreateRequest::release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* released = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserCreateRequest::unsafe_arena_release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserCreateRequest.wifi)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* temp = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserCreateRequest::_internal_mutable_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::UserIndexResponse_Item_Wifi>(GetArena());
+    _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(p);
+  }
+  return _impl_.wifi_;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserCreateRequest::mutable_wifi() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _msg = _internal_mutable_wifi();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserCreateRequest.wifi)
+  return _msg;
+}
+inline void UserCreateRequest::set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.wifi_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserCreateRequest.wifi)
+}
+
+// -------------------------------------------------------------------
+
+// UserIndexResponse_Item_Wifi
+
+// string nickname = 1;
+inline void UserIndexResponse_Item_Wifi::clear_nickname() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nickname_.ClearToEmpty();
+}
+inline const std::string& UserIndexResponse_Item_Wifi::nickname() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Wifi.nickname)
+  return _internal_nickname();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item_Wifi::set_nickname(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nickname_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.Wifi.nickname)
+}
+inline std::string* UserIndexResponse_Item_Wifi::mutable_nickname() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_nickname();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Wifi.nickname)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item_Wifi::_internal_nickname() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.nickname_.Get();
+}
+inline void UserIndexResponse_Item_Wifi::_internal_set_nickname(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nickname_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item_Wifi::_internal_mutable_nickname() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.nickname_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item_Wifi::release_nickname() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Wifi.nickname)
+  return _impl_.nickname_.Release();
+}
+inline void UserIndexResponse_Item_Wifi::set_allocated_nickname(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nickname_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.nickname_.IsDefault()) {
+    _impl_.nickname_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Wifi.nickname)
+}
+
+// string password = 2;
+inline void UserIndexResponse_Item_Wifi::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+}
+inline const std::string& UserIndexResponse_Item_Wifi::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Wifi.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item_Wifi::set_password(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.Wifi.password)
+}
+inline std::string* UserIndexResponse_Item_Wifi::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Wifi.password)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item_Wifi::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void UserIndexResponse_Item_Wifi::_internal_set_password(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item_Wifi::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.password_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item_Wifi::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Wifi.password)
+  return _impl_.password_.Release();
+}
+inline void UserIndexResponse_Item_Wifi::set_allocated_password(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Wifi.password)
+}
+
+// .google.protobuf.Timestamp begin_at = 3;
+inline bool UserIndexResponse_Item_Wifi::has_begin_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.begin_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& UserIndexResponse_Item_Wifi::_internal_begin_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.begin_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& UserIndexResponse_Item_Wifi::begin_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Wifi.begin_at)
+  return _internal_begin_at();
+}
+inline void UserIndexResponse_Item_Wifi::unsafe_arena_set_allocated_begin_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.begin_at_);
+  }
+  _impl_.begin_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserIndexResponse.Item.Wifi.begin_at)
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::release_begin_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.begin_at_;
+  _impl_.begin_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::unsafe_arena_release_begin_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Wifi.begin_at)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.begin_at_;
+  _impl_.begin_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::_internal_mutable_begin_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.begin_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.begin_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.begin_at_;
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::mutable_begin_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_begin_at();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Wifi.begin_at)
+  return _msg;
+}
+inline void UserIndexResponse_Item_Wifi::set_allocated_begin_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.begin_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.begin_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Wifi.begin_at)
+}
+
+// .google.protobuf.Timestamp end_at = 4;
+inline bool UserIndexResponse_Item_Wifi::has_end_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.end_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& UserIndexResponse_Item_Wifi::_internal_end_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.end_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& UserIndexResponse_Item_Wifi::end_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Wifi.end_at)
+  return _internal_end_at();
+}
+inline void UserIndexResponse_Item_Wifi::unsafe_arena_set_allocated_end_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_at_);
+  }
+  _impl_.end_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserIndexResponse.Item.Wifi.end_at)
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::release_end_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* released = _impl_.end_at_;
+  _impl_.end_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::unsafe_arena_release_end_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Wifi.end_at)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* temp = _impl_.end_at_;
+  _impl_.end_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::_internal_mutable_end_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.end_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.end_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.end_at_;
+}
+inline ::google::protobuf::Timestamp* UserIndexResponse_Item_Wifi::mutable_end_at() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_end_at();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Wifi.end_at)
+  return _msg;
+}
+inline void UserIndexResponse_Item_Wifi::set_allocated_end_at(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.end_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Wifi.end_at)
+}
+
+// -------------------------------------------------------------------
+
+// UserIndexResponse_Item_Contact
+
+// optional string wechat = 1;
+inline bool UserIndexResponse_Item_Contact::has_wechat() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void UserIndexResponse_Item_Contact::clear_wechat() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.wechat_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UserIndexResponse_Item_Contact::wechat() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Contact.wechat)
+  return _internal_wechat();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item_Contact::set_wechat(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.wechat_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.Contact.wechat)
+}
+inline std::string* UserIndexResponse_Item_Contact::mutable_wechat() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_wechat();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Contact.wechat)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item_Contact::_internal_wechat() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.wechat_.Get();
+}
+inline void UserIndexResponse_Item_Contact::_internal_set_wechat(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.wechat_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::_internal_mutable_wechat() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.wechat_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::release_wechat() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Contact.wechat)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.wechat_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.wechat_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexResponse_Item_Contact::set_allocated_wechat(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.wechat_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.wechat_.IsDefault()) {
+    _impl_.wechat_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Contact.wechat)
+}
+
+// optional string address = 2;
+inline bool UserIndexResponse_Item_Contact::has_address() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void UserIndexResponse_Item_Contact::clear_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& UserIndexResponse_Item_Contact::address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Contact.address)
+  return _internal_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item_Contact::set_address(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.Contact.address)
+}
+inline std::string* UserIndexResponse_Item_Contact::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Contact.address)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item_Contact::_internal_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.address_.Get();
+}
+inline void UserIndexResponse_Item_Contact::_internal_set_address(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.address_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::_internal_mutable_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.address_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::release_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Contact.address)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.address_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.address_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexResponse_Item_Contact::set_allocated_address(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.address_.IsDefault()) {
+    _impl_.address_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Contact.address)
+}
+
+// optional string phone = 3;
+inline bool UserIndexResponse_Item_Contact::has_phone() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void UserIndexResponse_Item_Contact::clear_phone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.phone_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& UserIndexResponse_Item_Contact::phone() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Contact.phone)
+  return _internal_phone();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item_Contact::set_phone(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.phone_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.Contact.phone)
+}
+inline std::string* UserIndexResponse_Item_Contact::mutable_phone() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_phone();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Contact.phone)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item_Contact::_internal_phone() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.phone_.Get();
+}
+inline void UserIndexResponse_Item_Contact::_internal_set_phone(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.phone_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::_internal_mutable_phone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.phone_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::release_phone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Contact.phone)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.phone_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.phone_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexResponse_Item_Contact::set_allocated_phone(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.phone_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.phone_.IsDefault()) {
+    _impl_.phone_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Contact.phone)
+}
+
+// optional string email = 4;
+inline bool UserIndexResponse_Item_Contact::has_email() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void UserIndexResponse_Item_Contact::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const std::string& UserIndexResponse_Item_Contact::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.Contact.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item_Contact::set_email(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.Contact.email)
+}
+inline std::string* UserIndexResponse_Item_Contact::mutable_email() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.Contact.email)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item_Contact::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void UserIndexResponse_Item_Contact::_internal_set_email(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item_Contact::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.Contact.email)
+  if ((_impl_._has_bits_[0] & 0x00000008u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexResponse_Item_Contact::set_allocated_email(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.Contact.email)
+}
+
+// -------------------------------------------------------------------
+
+// UserIndexResponse_Item
+
+// uint32 id = 1;
+inline void UserIndexResponse_Item::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+}
+inline ::uint32_t UserIndexResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.id)
+  return _internal_id();
+}
+inline void UserIndexResponse_Item::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.id)
+}
+inline ::uint32_t UserIndexResponse_Item::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void UserIndexResponse_Item::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string real_name = 2;
+inline void UserIndexResponse_Item::clear_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.ClearToEmpty();
+}
+inline const std::string& UserIndexResponse_Item::real_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.real_name)
+  return _internal_real_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UserIndexResponse_Item::set_real_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.real_name)
+}
+inline std::string* UserIndexResponse_Item::mutable_real_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_real_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.real_name)
+  return _s;
+}
+inline const std::string& UserIndexResponse_Item::_internal_real_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.real_name_.Get();
+}
+inline void UserIndexResponse_Item::_internal_set_real_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.Set(value, GetArena());
+}
+inline std::string* UserIndexResponse_Item::_internal_mutable_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.real_name_.Mutable( GetArena());
+}
+inline std::string* UserIndexResponse_Item::release_real_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.real_name)
+  return _impl_.real_name_.Release();
+}
+inline void UserIndexResponse_Item::set_allocated_real_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.real_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.real_name_.IsDefault()) {
+    _impl_.real_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.real_name)
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+inline bool UserIndexResponse_Item::has_wifi() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.wifi_ != nullptr);
+  return value;
+}
+inline void UserIndexResponse_Item::clear_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ != nullptr) _impl_.wifi_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserIndexResponse_Item::_internal_wifi() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::UserIndexResponse_Item_Wifi* p = _impl_.wifi_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::UserIndexResponse_Item_Wifi&>(::palm::router::v1::_UserIndexResponse_Item_Wifi_default_instance_);
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Wifi& UserIndexResponse_Item::wifi() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.wifi)
+  return _internal_wifi();
+}
+inline void UserIndexResponse_Item::unsafe_arena_set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.wifi_);
+  }
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserIndexResponse.Item.wifi)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserIndexResponse_Item::release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* released = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserIndexResponse_Item::unsafe_arena_release_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.wifi)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* temp = _impl_.wifi_;
+  _impl_.wifi_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserIndexResponse_Item::_internal_mutable_wifi() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.wifi_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::UserIndexResponse_Item_Wifi>(GetArena());
+    _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(p);
+  }
+  return _impl_.wifi_;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Wifi* UserIndexResponse_Item::mutable_wifi() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::UserIndexResponse_Item_Wifi* _msg = _internal_mutable_wifi();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.wifi)
+  return _msg;
+}
+inline void UserIndexResponse_Item::set_allocated_wifi(::palm::router::v1::UserIndexResponse_Item_Wifi* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.wifi_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.wifi_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Wifi*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.wifi)
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Contact contact = 9;
+inline bool UserIndexResponse_Item::has_contact() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.contact_ != nullptr);
+  return value;
+}
+inline void UserIndexResponse_Item::clear_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.contact_ != nullptr) _impl_.contact_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Contact& UserIndexResponse_Item::_internal_contact() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::router::v1::UserIndexResponse_Item_Contact* p = _impl_.contact_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::UserIndexResponse_Item_Contact&>(::palm::router::v1::_UserIndexResponse_Item_Contact_default_instance_);
+}
+inline const ::palm::router::v1::UserIndexResponse_Item_Contact& UserIndexResponse_Item::contact() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.contact)
+  return _internal_contact();
+}
+inline void UserIndexResponse_Item::unsafe_arena_set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.contact_);
+  }
+  _impl_.contact_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Contact*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.UserIndexResponse.Item.contact)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserIndexResponse_Item::release_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* released = _impl_.contact_;
+  _impl_.contact_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserIndexResponse_Item::unsafe_arena_release_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.UserIndexResponse.Item.contact)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* temp = _impl_.contact_;
+  _impl_.contact_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserIndexResponse_Item::_internal_mutable_contact() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.contact_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::UserIndexResponse_Item_Contact>(GetArena());
+    _impl_.contact_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Contact*>(p);
+  }
+  return _impl_.contact_;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Contact* UserIndexResponse_Item::mutable_contact() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::palm::router::v1::UserIndexResponse_Item_Contact* _msg = _internal_mutable_contact();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.Item.contact)
+  return _msg;
+}
+inline void UserIndexResponse_Item::set_allocated_contact(::palm::router::v1::UserIndexResponse_Item_Contact* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.contact_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.contact_ = reinterpret_cast<::palm::router::v1::UserIndexResponse_Item_Contact*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.contact)
+}
+
+// -------------------------------------------------------------------
+
+// UserIndexResponse
+
+// repeated .palm.router.v1.UserIndexResponse.Item items = 1;
+inline int UserIndexResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int UserIndexResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void UserIndexResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::router::v1::UserIndexResponse_Item* UserIndexResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.UserIndexResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>* UserIndexResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.UserIndexResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::router::v1::UserIndexResponse_Item& UserIndexResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::router::v1::UserIndexResponse_Item* UserIndexResponse::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::router::v1::UserIndexResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.router.v1.UserIndexResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>& UserIndexResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.router.v1.UserIndexResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>&
+UserIndexResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::UserIndexResponse_Item>*
+UserIndexResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
