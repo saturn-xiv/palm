@@ -91,7 +91,7 @@ RUN bash -c "source $HOME/.bashrc \
     && ./scripts/feeds install -a"
 
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash 
-RUN git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+RUN git clone -b 2025.08.27 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.bashrc
 ADD --chown=deploy crosstool-ng/triplets/ /home/deploy/local/vcpkg/triplets/
