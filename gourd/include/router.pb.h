@@ -2023,6 +2023,7 @@ class Lan final : public ::google::protobuf::Message
     kDeviceFieldNumber = 1,
     kAddressFieldNumber = 11,
     kDescriptionFieldNumber = 99,
+    kBlacklistModeFieldNumber = 9,
     kDhcpFieldNumber = 12,
   };
   // map<string, string> reserved_ips = 13;
@@ -2088,6 +2089,16 @@ class Lan final : public ::google::protobuf::Message
   std::string* _internal_mutable_description();
 
   public:
+  // bool blacklist_mode = 9;
+  void clear_blacklist_mode() ;
+  bool blacklist_mode() const;
+  void set_blacklist_mode(bool value);
+
+  private:
+  bool _internal_blacklist_mode() const;
+  void _internal_set_blacklist_mode(bool value);
+
+  public:
   // bool dhcp = 12;
   void clear_dhcp() ;
   bool dhcp() const;
@@ -2103,7 +2114,7 @@ class Lan final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 5, 1,
+      2, 6, 1,
       63, 7>
       _table_;
 
@@ -2128,6 +2139,7 @@ class Lan final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr device_;
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr description_;
+    bool blacklist_mode_;
     bool dhcp_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -4742,6 +4754,28 @@ inline void Lan::set_allocated_device(std::string* value) {
     _impl_.device_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Lan.device)
+}
+
+// bool blacklist_mode = 9;
+inline void Lan::clear_blacklist_mode() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.blacklist_mode_ = false;
+}
+inline bool Lan::blacklist_mode() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.Lan.blacklist_mode)
+  return _internal_blacklist_mode();
+}
+inline void Lan::set_blacklist_mode(bool value) {
+  _internal_set_blacklist_mode(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.Lan.blacklist_mode)
+}
+inline bool Lan::_internal_blacklist_mode() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.blacklist_mode_;
+}
+inline void Lan::_internal_set_blacklist_mode(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.blacklist_mode_ = value;
 }
 
 // string address = 11;

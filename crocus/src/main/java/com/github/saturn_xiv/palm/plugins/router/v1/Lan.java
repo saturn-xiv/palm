@@ -96,6 +96,17 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int BLACKLIST_MODE_FIELD_NUMBER = 9;
+  private boolean blacklistMode_ = false;
+  /**
+   * <code>bool blacklist_mode = 9;</code>
+   * @return The blacklistMode.
+   */
+  @java.lang.Override
+  public boolean getBlacklistMode() {
+    return blacklistMode_;
+  }
+
   public static final int ADDRESS_FIELD_NUMBER = 11;
   @SuppressWarnings("serial")
   private volatile java.lang.Object address_ = "";
@@ -281,6 +292,9 @@ java.lang.String defaultValue) {
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 1, device_);
     }
+    if (blacklistMode_ != false) {
+      output.writeBool(9, blacklistMode_);
+    }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 11, address_);
     }
@@ -307,6 +321,10 @@ java.lang.String defaultValue) {
     size = 0;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(1, device_);
+    }
+    if (blacklistMode_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(9, blacklistMode_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(11, address_);
@@ -345,6 +363,8 @@ java.lang.String defaultValue) {
 
     if (!getDevice()
         .equals(other.getDevice())) return false;
+    if (getBlacklistMode()
+        != other.getBlacklistMode()) return false;
     if (!getAddress()
         .equals(other.getAddress())) return false;
     if (getDhcp()
@@ -366,6 +386,9 @@ java.lang.String defaultValue) {
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + DEVICE_FIELD_NUMBER;
     hash = (53 * hash) + getDevice().hashCode();
+    hash = (37 * hash) + BLACKLIST_MODE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getBlacklistMode());
     hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
     hash = (53 * hash) + getAddress().hashCode();
     hash = (37 * hash) + DHCP_FIELD_NUMBER;
@@ -531,6 +554,7 @@ java.lang.String defaultValue) {
       super.clear();
       bitField0_ = 0;
       device_ = "";
+      blacklistMode_ = false;
       address_ = "";
       dhcp_ = false;
       internalGetMutableReservedIps().clear();
@@ -572,16 +596,19 @@ java.lang.String defaultValue) {
         result.device_ = device_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.address_ = address_;
+        result.blacklistMode_ = blacklistMode_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.dhcp_ = dhcp_;
+        result.address_ = address_;
       }
       if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.dhcp_ = dhcp_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
         result.reservedIps_ = internalGetReservedIps();
         result.reservedIps_.makeImmutable();
       }
-      if (((from_bitField0_ & 0x00000010) != 0)) {
+      if (((from_bitField0_ & 0x00000020) != 0)) {
         result.description_ = description_;
       }
     }
@@ -603,9 +630,12 @@ java.lang.String defaultValue) {
         bitField0_ |= 0x00000001;
         onChanged();
       }
+      if (other.getBlacklistMode() != false) {
+        setBlacklistMode(other.getBlacklistMode());
+      }
       if (!other.getAddress().isEmpty()) {
         address_ = other.address_;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
       if (other.getDhcp() != false) {
@@ -613,10 +643,10 @@ java.lang.String defaultValue) {
       }
       internalGetMutableReservedIps().mergeFrom(
           other.internalGetReservedIps());
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       if (!other.getDescription().isEmpty()) {
         description_ = other.description_;
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -650,14 +680,19 @@ java.lang.String defaultValue) {
               bitField0_ |= 0x00000001;
               break;
             } // case 10
+            case 72: {
+              blacklistMode_ = input.readBool();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 72
             case 90: {
               address_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               break;
             } // case 90
             case 96: {
               dhcp_ = input.readBool();
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               break;
             } // case 96
             case 106: {
@@ -666,12 +701,12 @@ java.lang.String defaultValue) {
                   ReservedIpsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
               internalGetMutableReservedIps().getMutableMap().put(
                   reservedIps__.getKey(), reservedIps__.getValue());
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000010;
               break;
             } // case 106
             case 794: {
               description_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000020;
               break;
             } // case 794
             default: {
@@ -763,6 +798,38 @@ java.lang.String defaultValue) {
       return this;
     }
 
+    private boolean blacklistMode_ ;
+    /**
+     * <code>bool blacklist_mode = 9;</code>
+     * @return The blacklistMode.
+     */
+    @java.lang.Override
+    public boolean getBlacklistMode() {
+      return blacklistMode_;
+    }
+    /**
+     * <code>bool blacklist_mode = 9;</code>
+     * @param value The blacklistMode to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBlacklistMode(boolean value) {
+
+      blacklistMode_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool blacklist_mode = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBlacklistMode() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      blacklistMode_ = false;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object address_ = "";
     /**
      * <code>string address = 11;</code>
@@ -806,7 +873,7 @@ java.lang.String defaultValue) {
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       address_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -816,7 +883,7 @@ java.lang.String defaultValue) {
      */
     public Builder clearAddress() {
       address_ = getDefaultInstance().getAddress();
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
@@ -830,7 +897,7 @@ java.lang.String defaultValue) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       address_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -852,7 +919,7 @@ java.lang.String defaultValue) {
     public Builder setDhcp(boolean value) {
 
       dhcp_ = value;
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -861,7 +928,7 @@ java.lang.String defaultValue) {
      * @return This builder for chaining.
      */
     public Builder clearDhcp() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000008);
       dhcp_ = false;
       onChanged();
       return this;
@@ -886,7 +953,7 @@ java.lang.String defaultValue) {
       if (!reservedIps_.isMutable()) {
         reservedIps_ = reservedIps_.copy();
       }
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       onChanged();
       return reservedIps_;
     }
@@ -946,7 +1013,7 @@ java.lang.String defaultValue) {
       return map.get(key);
     }
     public Builder clearReservedIps() {
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000010);
       internalGetMutableReservedIps().getMutableMap()
           .clear();
       return this;
@@ -967,7 +1034,7 @@ java.lang.String defaultValue) {
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String>
         getMutableReservedIps() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return internalGetMutableReservedIps().getMutableMap();
     }
     /**
@@ -980,7 +1047,7 @@ java.lang.String defaultValue) {
       if (value == null) { throw new NullPointerException("map value"); }
       internalGetMutableReservedIps().getMutableMap()
           .put(key, value);
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return this;
     }
     /**
@@ -990,7 +1057,7 @@ java.lang.String defaultValue) {
         java.util.Map<java.lang.String, java.lang.String> values) {
       internalGetMutableReservedIps().getMutableMap()
           .putAll(values);
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       return this;
     }
 
@@ -1037,7 +1104,7 @@ java.lang.String defaultValue) {
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       description_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1047,7 +1114,7 @@ java.lang.String defaultValue) {
      */
     public Builder clearDescription() {
       description_ = getDefaultInstance().getDescription();
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000020);
       onChanged();
       return this;
     }
@@ -1061,7 +1128,7 @@ java.lang.String defaultValue) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       description_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }

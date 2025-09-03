@@ -22,6 +22,12 @@ public interface LanOrBuilder extends
       getDeviceBytes();
 
   /**
+   * <code>bool blacklist_mode = 9;</code>
+   * @return The blacklistMode.
+   */
+  boolean getBlacklistMode();
+
+  /**
    * <code>string address = 11;</code>
    * @return The address.
    */

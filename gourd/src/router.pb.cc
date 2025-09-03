@@ -287,6 +287,7 @@ inline constexpr Lan::Impl_::Impl_(
         description_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        blacklist_mode_{false},
         dhcp_{false},
         _cached_size_{0} {}
 
@@ -635,6 +636,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.device_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.blacklist_mode_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.address_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.dhcp_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.reserved_ips_),
@@ -849,22 +851,22 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::palm::router::v1::Wan)},
         {14, 24, -1, sizeof(::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse)},
         {26, -1, -1, sizeof(::palm::router::v1::Lan)},
-        {39, 49, -1, sizeof(::palm::router::v1::Network)},
-        {51, 63, -1, sizeof(::palm::router::v1::Host)},
-        {67, 78, -1, sizeof(::palm::router::v1::AdministratorSignInRequest)},
-        {81, -1, -1, sizeof(::palm::router::v1::AdministratorSignInResponse)},
-        {94, -1, -1, sizeof(::palm::router::v1::AdministratorSetPasswordRequest)},
-        {104, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item)},
-        {116, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse)},
-        {125, -1, -1, sizeof(::palm::router::v1::UserSetRealNameRequest)},
-        {135, 145, -1, sizeof(::palm::router::v1::UserSetWifiRequest)},
-        {147, 158, -1, sizeof(::palm::router::v1::UserSetDetailsRequest)},
-        {161, 171, -1, sizeof(::palm::router::v1::UserSetContactRequest)},
-        {173, 183, -1, sizeof(::palm::router::v1::UserCreateRequest)},
-        {185, 197, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
-        {201, 213, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
-        {217, 229, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
-        {233, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
+        {40, 50, -1, sizeof(::palm::router::v1::Network)},
+        {52, 64, -1, sizeof(::palm::router::v1::Host)},
+        {68, 79, -1, sizeof(::palm::router::v1::AdministratorSignInRequest)},
+        {82, -1, -1, sizeof(::palm::router::v1::AdministratorSignInResponse)},
+        {95, -1, -1, sizeof(::palm::router::v1::AdministratorSetPasswordRequest)},
+        {105, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item)},
+        {117, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse)},
+        {126, -1, -1, sizeof(::palm::router::v1::UserSetRealNameRequest)},
+        {136, 146, -1, sizeof(::palm::router::v1::UserSetWifiRequest)},
+        {148, 159, -1, sizeof(::palm::router::v1::UserSetDetailsRequest)},
+        {162, 172, -1, sizeof(::palm::router::v1::UserSetContactRequest)},
+        {174, 184, -1, sizeof(::palm::router::v1::UserCreateRequest)},
+        {186, 198, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
+        {202, 214, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
+        {218, 230, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
+        {234, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::router::v1::_Wan_default_instance_._instance,
@@ -894,81 +896,81 @@ const char descriptor_table_protodef_router_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "estamp.proto\032\036google/protobuf/duration.p"
     "roto\"j\n\003Wan\022\016\n\006device\030\001 \001(\t\022\017\n\007address\030\013"
     " \001(\t\022\017\n\007netmask\030\014 \001(\t\022\017\n\007gateway\030\r \001(\t\022\013"
-    "\n\003dns\030\016 \003(\t\022\023\n\013description\030c \001(\t\"\271\001\n\003Lan"
-    "\022\016\n\006device\030\001 \001(\t\022\017\n\007address\030\013 \001(\t\022\014\n\004dhc"
-    "p\030\014 \001(\010\022:\n\014reserved_ips\030\r \003(\0132$.palm.rou"
-    "ter.v1.Lan.ReservedIpsEntry\022\023\n\013descripti"
-    "on\030c \001(\t\0322\n\020ReservedIpsEntry\022\013\n\003key\030\001 \001("
-    "\t\022\r\n\005value\030\002 \001(\t:\0028\001\"M\n\007Network\022 \n\003wan\030\001"
-    " \001(\0132\023.palm.router.v1.Wan\022 \n\003lan\030\002 \003(\0132\023"
-    ".palm.router.v1.Lan\"]\n\004Host\022\013\n\003mac\030\001 \001(\t"
-    "\022\n\n\002ip\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022.\n\nlast_found"
-    "\030\t \001(\0132\032.google.protobuf.Timestamp\"d\n\032Ad"
-    "ministratorSignInRequest\022\014\n\004name\030\001 \001(\t\022\020"
-    "\n\010password\030\002 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google.p"
-    "rotobuf.Duration\"o\n\033AdministratorSignInR"
-    "esponse\022\r\n\005token\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006"
-    "locale\030\013 \001(\t\022\020\n\010timezone\030\014 \001(\t\022\021\n\tlangua"
-    "ges\030\023 \003(\t\"Q\n\037AdministratorSetPasswordReq"
-    "uest\022\030\n\020current_password\030\001 \001(\t\022\024\n\014new_pa"
-    "ssword\030\002 \001(\t\"\312\001\n\033RouterIndexEthernetResp"
-    "onse\022\?\n\005items\030\001 \003(\01320.palm.router.v1.Rou"
-    "terIndexEthernetResponse.Item\032j\n\004Item\022\"\n"
-    "\003wan\030\001 \001(\0132\023.palm.router.v1.WanH\000\022\"\n\003lan"
-    "\030\002 \001(\0132\023.palm.router.v1.LanH\000\022\016\n\006enable\030"
-    "\t \001(\010B\n\n\010ethernet\"7\n\026UserSetRealNameRequ"
-    "est\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\"[\n\022Us"
-    "erSetWifiRequest\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001"
-    "(\0132+.palm.router.v1.UserIndexResponse.It"
-    "em.Wifi\"q\n\025UserSetDetailsRequest\022\n\n\002id\030\001"
-    " \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+."
-    "palm.router.v1.UserIndexResponse.Item.Wi"
-    "fi\"d\n\025UserSetContactRequest\022\n\n\002id\030\001 \001(\r\022"
-    "\?\n\007contact\030\002 \001(\0132..palm.router.v1.UserIn"
-    "dexResponse.Item.Contact\"a\n\021UserCreateRe"
-    "quest\022\021\n\treal_name\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+"
+    "\n\003dns\030\016 \003(\t\022\023\n\013description\030c \001(\t\"\321\001\n\003Lan"
+    "\022\016\n\006device\030\001 \001(\t\022\026\n\016blacklist_mode\030\t \001(\010"
+    "\022\017\n\007address\030\013 \001(\t\022\014\n\004dhcp\030\014 \001(\010\022:\n\014reser"
+    "ved_ips\030\r \003(\0132$.palm.router.v1.Lan.Reser"
+    "vedIpsEntry\022\023\n\013description\030c \001(\t\0322\n\020Rese"
+    "rvedIpsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t"
+    ":\0028\001\"M\n\007Network\022 \n\003wan\030\001 \001(\0132\023.palm.rout"
+    "er.v1.Wan\022 \n\003lan\030\002 \003(\0132\023.palm.router.v1."
+    "Lan\"]\n\004Host\022\013\n\003mac\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004"
+    "name\030\003 \001(\t\022.\n\nlast_found\030\t \001(\0132\032.google."
+    "protobuf.Timestamp\"d\n\032AdministratorSignI"
+    "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t"
+    "\022&\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration"
+    "\"o\n\033AdministratorSignInResponse\022\r\n\005token"
+    "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006locale\030\013 \001(\t\022\020\n\010"
+    "timezone\030\014 \001(\t\022\021\n\tlanguages\030\023 \003(\t\"Q\n\037Adm"
+    "inistratorSetPasswordRequest\022\030\n\020current_"
+    "password\030\001 \001(\t\022\024\n\014new_password\030\002 \001(\t\"\312\001\n"
+    "\033RouterIndexEthernetResponse\022\?\n\005items\030\001 "
+    "\003(\01320.palm.router.v1.RouterIndexEthernet"
+    "Response.Item\032j\n\004Item\022\"\n\003wan\030\001 \001(\0132\023.pal"
+    "m.router.v1.WanH\000\022\"\n\003lan\030\002 \001(\0132\023.palm.ro"
+    "uter.v1.LanH\000\022\016\n\006enable\030\t \001(\010B\n\n\010etherne"
+    "t\"7\n\026UserSetRealNameRequest\022\n\n\002id\030\001 \001(\r\022"
+    "\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWifiRequest"
+    "\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.palm.router"
+    ".v1.UserIndexResponse.Item.Wifi\"q\n\025UserS"
+    "etDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_nam"
+    "e\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.U"
+    "serIndexResponse.Item.Wifi\"d\n\025UserSetCon"
+    "tactRequest\022\n\n\002id\030\001 \001(\r\022\?\n\007contact\030\002 \001(\013"
+    "2..palm.router.v1.UserIndexResponse.Item"
+    ".Contact\"a\n\021UserCreateRequest\022\021\n\treal_na"
+    "me\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1."
+    "UserIndexResponse.Item.Wifi\"\377\003\n\021UserInde"
+    "xResponse\0225\n\005items\030\001 \003(\0132&.palm.router.v"
+    "1.UserIndexResponse.Item\032\262\003\n\004Item\022\n\n\002id\030"
+    "\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+"
     ".palm.router.v1.UserIndexResponse.Item.W"
-    "ifi\"\377\003\n\021UserIndexResponse\0225\n\005items\030\001 \003(\013"
-    "2&.palm.router.v1.UserIndexResponse.Item"
-    "\032\262\003\n\004Item\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t"
-    "\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.UserInde"
-    "xResponse.Item.Wifi\022\?\n\007contact\030\t \001(\0132..p"
-    "alm.router.v1.UserIndexResponse.Item.Con"
-    "tact\032\204\001\n\004Wifi\022\020\n\010nickname\030\001 \001(\t\022\020\n\010passw"
-    "ord\030\002 \001(\t\022,\n\010begin_at\030\003 \001(\0132\032.google.pro"
-    "tobuf.Timestamp\022*\n\006end_at\030\004 \001(\0132\032.google"
-    ".protobuf.Timestamp\032\207\001\n\007Contact\022\023\n\006wecha"
-    "t\030\001 \001(\tH\000\210\001\001\022\024\n\007address\030\002 \001(\tH\001\210\001\001\022\022\n\005ph"
-    "one\030\003 \001(\tH\002\210\001\001\022\022\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_w"
-    "echatB\n\n\010_addressB\010\n\006_phoneB\010\n\006_email2\213\002"
-    "\n\rAdministrator\022c\n\006SignIn\022*.palm.router."
-    "v1.AdministratorSignInRequest\032+.palm.rou"
-    "ter.v1.AdministratorSignInResponse\"\000\022;\n\007"
-    "SignOut\022\026.google.protobuf.Empty\032\026.google"
-    ".protobuf.Empty\"\000\022X\n\013SetPassword\022/.palm."
-    "router.v1.AdministratorSetPasswordReques"
-    "t\032\026.google.protobuf.Empty\"\0002\364\002\n\006Router\022Y"
-    "\n\013SetEthernet\0220.palm.router.v1.RouterInd"
-    "exEthernetResponse.Item\032\026.google.protobu"
-    "f.Empty\"\000\022V\n\rIndexEthernet\022\026.google.prot"
-    "obuf.Empty\032+.palm.router.v1.RouterIndexE"
-    "thernetResponse\"\000\022:\n\006Reboot\022\026.google.pro"
-    "tobuf.Empty\032\026.google.protobuf.Empty\"\000\0229\n"
-    "\005Apply\022\026.google.protobuf.Empty\032\026.google."
-    "protobuf.Empty\"\000\022@\n\014FactoryReset\022\026.googl"
-    "e.protobuf.Empty\032\026.google.protobuf.Empty"
-    "\"\0002\374\002\n\004User\022D\n\005Index\022\026.google.protobuf.E"
-    "mpty\032!.palm.router.v1.UserIndexResponse\""
-    "\000\022E\n\006Create\022!.palm.router.v1.UserCreateR"
-    "equest\032\026.google.protobuf.Empty\"\000\022O\n\013SetR"
-    "ealName\022&.palm.router.v1.UserSetRealName"
-    "Request\032\026.google.protobuf.Empty\"\000\022M\n\nSet"
-    "Contact\022%.palm.router.v1.UserSetContactR"
-    "equest\032\026.google.protobuf.Empty\"\000\022G\n\007SetW"
-    "ifi\022\".palm.router.v1.UserSetWifiRequest\032"
-    "\026.google.protobuf.Empty\"\000B7\n,com.github."
-    "saturn_xiv.palm.plugins.router.v1P\001Z\005./;"
-    "v2b\006proto3"
+    "ifi\022\?\n\007contact\030\t \001(\0132..palm.router.v1.Us"
+    "erIndexResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n"
+    "\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010beg"
+    "in_at\030\003 \001(\0132\032.google.protobuf.Timestamp\022"
+    "*\n\006end_at\030\004 \001(\0132\032.google.protobuf.Timest"
+    "amp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007"
+    "address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022"
+    "\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addres"
+    "sB\010\n\006_phoneB\010\n\006_email2\213\002\n\rAdministrator\022"
+    "c\n\006SignIn\022*.palm.router.v1.Administrator"
+    "SignInRequest\032+.palm.router.v1.Administr"
+    "atorSignInResponse\"\000\022;\n\007SignOut\022\026.google"
+    ".protobuf.Empty\032\026.google.protobuf.Empty\""
+    "\000\022X\n\013SetPassword\022/.palm.router.v1.Admini"
+    "stratorSetPasswordRequest\032\026.google.proto"
+    "buf.Empty\"\0002\364\002\n\006Router\022Y\n\013SetEthernet\0220."
+    "palm.router.v1.RouterIndexEthernetRespon"
+    "se.Item\032\026.google.protobuf.Empty\"\000\022V\n\rInd"
+    "exEthernet\022\026.google.protobuf.Empty\032+.pal"
+    "m.router.v1.RouterIndexEthernetResponse\""
+    "\000\022:\n\006Reboot\022\026.google.protobuf.Empty\032\026.go"
+    "ogle.protobuf.Empty\"\000\0229\n\005Apply\022\026.google."
+    "protobuf.Empty\032\026.google.protobuf.Empty\"\000"
+    "\022@\n\014FactoryReset\022\026.google.protobuf.Empty"
+    "\032\026.google.protobuf.Empty\"\0002\374\002\n\004User\022D\n\005I"
+    "ndex\022\026.google.protobuf.Empty\032!.palm.rout"
+    "er.v1.UserIndexResponse\"\000\022E\n\006Create\022!.pa"
+    "lm.router.v1.UserCreateRequest\032\026.google."
+    "protobuf.Empty\"\000\022O\n\013SetRealName\022&.palm.r"
+    "outer.v1.UserSetRealNameRequest\032\026.google"
+    ".protobuf.Empty\"\000\022M\n\nSetContact\022%.palm.r"
+    "outer.v1.UserSetContactRequest\032\026.google."
+    "protobuf.Empty\"\000\022G\n\007SetWifi\022\".palm.route"
+    "r.v1.UserSetWifiRequest\032\026.google.protobu"
+    "f.Empty\"\000B7\n,com.github.saturn_xiv.palm."
+    "plugins.router.v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_router_2eproto_deps[3] =
     {
@@ -980,7 +982,7 @@ static ::absl::once_flag descriptor_table_router_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto = {
     false,
     false,
-    3170,
+    3194,
     descriptor_table_protodef_router_2eproto,
     "router.proto",
     &descriptor_table_router_2eproto_once,
@@ -1513,7 +1515,13 @@ Lan::Lan(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.dhcp_ = from._impl_.dhcp_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, blacklist_mode_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, blacklist_mode_),
+           offsetof(Impl_, dhcp_) -
+               offsetof(Impl_, blacklist_mode_) +
+               sizeof(Impl_::dhcp_));
 
   // @@protoc_insertion_point(copy_constructor:palm.router.v1.Lan)
 }
@@ -1528,7 +1536,12 @@ inline PROTOBUF_NDEBUG_INLINE Lan::Impl_::Impl_(
 
 inline void Lan::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.dhcp_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, blacklist_mode_),
+           0,
+           offsetof(Impl_, dhcp_) -
+               offsetof(Impl_, blacklist_mode_) +
+               sizeof(Impl_::dhcp_));
 }
 Lan::~Lan() {
   // @@protoc_insertion_point(destructor:palm.router.v1.Lan)
@@ -1596,15 +1609,15 @@ const ::google::protobuf::internal::ClassData* Lan::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 5, 1, 63, 7> Lan::_table_ = {
+const ::_pbi::TcParseTable<2, 6, 1, 63, 7> Lan::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
     99, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294960126,  // skipmap
+    4294959870,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    6,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -1626,12 +1639,15 @@ const ::_pbi::TcParseTable<2, 5, 1, 63, 7> Lan::_table_ = {
      {90, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.address_)}},
   }}, {{
     99, 0, 1,
-    65534, 4,
+    65534, 5,
     65535, 65535
   }}, {{
     // string device = 1;
     {PROTOBUF_FIELD_OFFSET(Lan, _impl_.device_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool blacklist_mode = 9;
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.blacklist_mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string address = 11;
     {PROTOBUF_FIELD_OFFSET(Lan, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -1650,7 +1666,7 @@ const ::_pbi::TcParseTable<2, 5, 1, 63, 7> Lan::_table_ = {
         1, 0, 0, 9,
         9)},
   }}, {{
-    "\22\6\7\0\14\13\0\0"
+    "\22\6\0\7\0\14\13\0"
     "palm.router.v1.Lan"
     "device"
     "address"
@@ -1670,7 +1686,9 @@ PROTOBUF_NOINLINE void Lan::Clear() {
   _impl_.device_.ClearToEmpty();
   _impl_.address_.ClearToEmpty();
   _impl_.description_.ClearToEmpty();
-  _impl_.dhcp_ = false;
+  ::memset(&_impl_.blacklist_mode_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.dhcp_) -
+      reinterpret_cast<char*>(&_impl_.blacklist_mode_)) + sizeof(_impl_.dhcp_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1695,6 +1713,13 @@ PROTOBUF_NOINLINE void Lan::Clear() {
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.device");
             target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // bool blacklist_mode = 9;
+          if (this_._internal_blacklist_mode() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                9, this_._internal_blacklist_mode(), target);
           }
 
           // string address = 11;
@@ -1805,6 +1830,10 @@ PROTOBUF_NOINLINE void Lan::Clear() {
               total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_description());
             }
+            // bool blacklist_mode = 9;
+            if (this_._internal_blacklist_mode() != 0) {
+              total_size += 2;
+            }
             // bool dhcp = 12;
             if (this_._internal_dhcp() != 0) {
               total_size += 2;
@@ -1832,6 +1861,9 @@ void Lan::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::pro
   if (!from._internal_description().empty()) {
     _this->_internal_set_description(from._internal_description());
   }
+  if (from._internal_blacklist_mode() != 0) {
+    _this->_impl_.blacklist_mode_ = from._impl_.blacklist_mode_;
+  }
   if (from._internal_dhcp() != 0) {
     _this->_impl_.dhcp_ = from._impl_.dhcp_;
   }
@@ -1855,7 +1887,12 @@ void Lan::InternalSwap(Lan* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.device_, &other->_impl_.device_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
-        swap(_impl_.dhcp_, other->_impl_.dhcp_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_)
+      + sizeof(Lan::_impl_.dhcp_)
+      - PROTOBUF_FIELD_OFFSET(Lan, _impl_.blacklist_mode_)>(
+          reinterpret_cast<char*>(&_impl_.blacklist_mode_),
+          reinterpret_cast<char*>(&other->_impl_.blacklist_mode_));
 }
 
 ::google::protobuf::Metadata Lan::GetMetadata() const {

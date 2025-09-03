@@ -19,6 +19,7 @@ message Wan {
 }
 message Lan {
   string device = 1;
+  bool blacklist_mode = 9;
   string address = 11;
   bool dhcp = 12;
   map<string, string> reserved_ips = 13;

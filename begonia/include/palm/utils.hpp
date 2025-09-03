@@ -18,6 +18,7 @@
 namespace palm {
 
 void init(bool debug);
+void reboot();
 inline bool is_root() {
   // {
   //   uid_t it = getuid();
