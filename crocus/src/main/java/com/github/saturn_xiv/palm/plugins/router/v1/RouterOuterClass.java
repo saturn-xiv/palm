@@ -26,25 +26,70 @@ public final class RouterOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Firewall_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Firewall_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Firewall_Input_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Firewall_Input_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Firewall_Nat_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Firewall_Nat_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Firewall_Nat_Destination_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Firewall_Nat_Destination_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_router_v1_Wan_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_router_v1_Wan_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Wan_Nat_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Wan_Nat_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_router_v1_Lan_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_router_v1_Lan_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_router_v1_Lan_ReservedIpsEntry_descriptor;
+    internal_static_palm_router_v1_Lan_Dhcp_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_router_v1_Lan_ReservedIpsEntry_fieldAccessorTable;
+      internal_static_palm_router_v1_Lan_Dhcp_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Lan_Dhcp_Host_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Lan_Dhcp_Host_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Lan_Dhcp_ReservedHostsEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Lan_Dhcp_ReservedHostsEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_router_v1_Network_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_router_v1_Network_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Network_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Network_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_router_v1_Network_ItemsEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_router_v1_Network_ItemsEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_router_v1_Host_descriptor;
   static final 
@@ -132,83 +177,105 @@ public final class RouterOuterClass {
       "\n\014router.proto\022\016palm.router.v1\032\033google/p" +
       "rotobuf/empty.proto\032\037google/protobuf/tim" +
       "estamp.proto\032\036google/protobuf/duration.p" +
-      "roto\"j\n\003Wan\022\016\n\006device\030\001 \001(\t\022\017\n\007address\030\013" +
-      " \001(\t\022\017\n\007netmask\030\014 \001(\t\022\017\n\007gateway\030\r \001(\t\022\013" +
-      "\n\003dns\030\016 \003(\t\022\023\n\013description\030c \001(\t\"\321\001\n\003Lan" +
-      "\022\016\n\006device\030\001 \001(\t\022\026\n\016blacklist_mode\030\t \001(\010" +
-      "\022\017\n\007address\030\013 \001(\t\022\014\n\004dhcp\030\014 \001(\010\022:\n\014reser" +
-      "ved_ips\030\r \003(\0132$.palm.router.v1.Lan.Reser" +
-      "vedIpsEntry\022\023\n\013description\030c \001(\t\0322\n\020Rese" +
-      "rvedIpsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t" +
-      ":\0028\001\"M\n\007Network\022 \n\003wan\030\001 \001(\0132\023.palm.rout" +
-      "er.v1.Wan\022 \n\003lan\030\002 \003(\0132\023.palm.router.v1." +
-      "Lan\"]\n\004Host\022\013\n\003mac\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004" +
-      "name\030\003 \001(\t\022.\n\nlast_found\030\t \001(\0132\032.google." +
-      "protobuf.Timestamp\"d\n\032AdministratorSignI" +
-      "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
-      "\022&\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration" +
-      "\"o\n\033AdministratorSignInResponse\022\r\n\005token" +
-      "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006locale\030\013 \001(\t\022\020\n\010" +
-      "timezone\030\014 \001(\t\022\021\n\tlanguages\030\023 \003(\t\"Q\n\037Adm" +
-      "inistratorSetPasswordRequest\022\030\n\020current_" +
-      "password\030\001 \001(\t\022\024\n\014new_password\030\002 \001(\t\"\312\001\n" +
-      "\033RouterIndexEthernetResponse\022?\n\005items\030\001 " +
-      "\003(\01320.palm.router.v1.RouterIndexEthernet" +
-      "Response.Item\032j\n\004Item\022\"\n\003wan\030\001 \001(\0132\023.pal" +
-      "m.router.v1.WanH\000\022\"\n\003lan\030\002 \001(\0132\023.palm.ro" +
-      "uter.v1.LanH\000\022\016\n\006enable\030\t \001(\010B\n\n\010etherne" +
-      "t\"7\n\026UserSetRealNameRequest\022\n\n\002id\030\001 \001(\r\022" +
-      "\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWifiRequest" +
-      "\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.palm.router" +
-      ".v1.UserIndexResponse.Item.Wifi\"q\n\025UserS" +
-      "etDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_nam" +
-      "e\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.U" +
-      "serIndexResponse.Item.Wifi\"d\n\025UserSetCon" +
-      "tactRequest\022\n\n\002id\030\001 \001(\r\022?\n\007contact\030\002 \001(\013" +
-      "2..palm.router.v1.UserIndexResponse.Item" +
-      ".Contact\"a\n\021UserCreateRequest\022\021\n\treal_na" +
-      "me\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1." +
-      "UserIndexResponse.Item.Wifi\"\377\003\n\021UserInde" +
-      "xResponse\0225\n\005items\030\001 \003(\0132&.palm.router.v" +
-      "1.UserIndexResponse.Item\032\262\003\n\004Item\022\n\n\002id\030" +
-      "\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+" +
-      ".palm.router.v1.UserIndexResponse.Item.W" +
-      "ifi\022?\n\007contact\030\t \001(\0132..palm.router.v1.Us" +
-      "erIndexResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n" +
-      "\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010beg" +
-      "in_at\030\003 \001(\0132\032.google.protobuf.Timestamp\022" +
-      "*\n\006end_at\030\004 \001(\0132\032.google.protobuf.Timest" +
-      "amp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007" +
-      "address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022" +
-      "\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addres" +
-      "sB\010\n\006_phoneB\010\n\006_email2\213\002\n\rAdministrator\022" +
-      "c\n\006SignIn\022*.palm.router.v1.Administrator" +
-      "SignInRequest\032+.palm.router.v1.Administr" +
-      "atorSignInResponse\"\000\022;\n\007SignOut\022\026.google" +
-      ".protobuf.Empty\032\026.google.protobuf.Empty\"" +
-      "\000\022X\n\013SetPassword\022/.palm.router.v1.Admini" +
-      "stratorSetPasswordRequest\032\026.google.proto" +
-      "buf.Empty\"\0002\364\002\n\006Router\022Y\n\013SetEthernet\0220." +
-      "palm.router.v1.RouterIndexEthernetRespon" +
-      "se.Item\032\026.google.protobuf.Empty\"\000\022V\n\rInd" +
-      "exEthernet\022\026.google.protobuf.Empty\032+.pal" +
-      "m.router.v1.RouterIndexEthernetResponse\"" +
-      "\000\022:\n\006Reboot\022\026.google.protobuf.Empty\032\026.go" +
-      "ogle.protobuf.Empty\"\000\0229\n\005Apply\022\026.google." +
-      "protobuf.Empty\032\026.google.protobuf.Empty\"\000" +
-      "\022@\n\014FactoryReset\022\026.google.protobuf.Empty" +
-      "\032\026.google.protobuf.Empty\"\0002\374\002\n\004User\022D\n\005I" +
-      "ndex\022\026.google.protobuf.Empty\032!.palm.rout" +
-      "er.v1.UserIndexResponse\"\000\022E\n\006Create\022!.pa" +
-      "lm.router.v1.UserCreateRequest\032\026.google." +
-      "protobuf.Empty\"\000\022O\n\013SetRealName\022&.palm.r" +
-      "outer.v1.UserSetRealNameRequest\032\026.google" +
-      ".protobuf.Empty\"\000\022M\n\nSetContact\022%.palm.r" +
-      "outer.v1.UserSetContactRequest\032\026.google." +
-      "protobuf.Empty\"\000\022G\n\007SetWifi\022\".palm.route" +
-      "r.v1.UserSetWifiRequest\032\026.google.protobu" +
-      "f.Empty\"\000B7\n,com.github.saturn_xiv.palm." +
-      "plugins.router.v1P\001Z\005./;v2b\006proto3"
+      "roto\"\217\003\n\010Firewall\022-\n\005input\030\001 \003(\0132\036.palm." +
+      "router.v1.Firewall.Input\022)\n\003nat\030\002 \003(\0132\034." +
+      "palm.router.v1.Firewall.Nat\022\014\n\004ping\030\t \001(" +
+      "\010\032J\n\005Input\0223\n\010protocol\030\001 \001(\0162!.palm.rout" +
+      "er.v1.Firewall.Protocol\022\014\n\004port\030\002 \001(\r\032\260\001" +
+      "\n\003Nat\0223\n\010protocol\030\001 \001(\0162!.palm.router.v1" +
+      ".Firewall.Protocol\022\014\n\004port\030\002 \001(\r\022=\n\013dest" +
+      "ination\030\003 \001(\0132(.palm.router.v1.Firewall." +
+      "Nat.Destination\032\'\n\013Destination\022\n\n\002ip\030\001 \001" +
+      "(\t\022\014\n\004port\030\002 \001(\r\"\034\n\010Protocol\022\007\n\003Tcp\020\000\022\007\n" +
+      "\003Udp\020\001\"\271\001\n\003Wan\022\014\n\004name\030\001 \001(\t\022\017\n\007address\030" +
+      "\013 \001(\t\022\017\n\007netmask\030\014 \001(\t\022\017\n\007gateway\030\r \001(\t\022" +
+      "\014\n\004cidr\030\023 \001(\r\022\013\n\003dns\030\016 \003(\t\022*\n\010firewall\030\017" +
+      " \001(\0132\030.palm.router.v1.Firewall\022\016\n\006weight" +
+      "\030b \001(\r\022\023\n\013description\030c \001(\t\032\005\n\003Nat\"\246\003\n\003L" +
+      "an\022\014\n\004name\030\001 \001(\t\022\026\n\016blacklist_mode\030\t \001(\010" +
+      "\022\017\n\007address\030\013 \001(\t\022\017\n\007netmask\030\014 \001(\t\022\014\n\004ci" +
+      "dr\030\r \001(\r\022\017\n\007network\030\016 \001(\t\022+\n\004dhcp\030\023 \001(\0132" +
+      "\030.palm.router.v1.Lan.DhcpH\000\210\001\001\022\023\n\013descri" +
+      "ption\030c \001(\t\032\354\001\n\004Dhcp\022\r\n\005begin\030\001 \001(\t\022\013\n\003e" +
+      "nd\030\002 \001(\t\022\013\n\003dns\030\003 \003(\t\022C\n\016reserved_hosts\030" +
+      "\t \003(\0132+.palm.router.v1.Lan.Dhcp.Reserved" +
+      "HostsEntry\032!\n\004Host\022\014\n\004name\030\001 \001(\t\022\013\n\003mac\030" +
+      "\002 \001(\t\032S\n\022ReservedHostsEntry\022\013\n\003key\030\001 \001(\t" +
+      "\022,\n\005value\030\002 \001(\0132\035.palm.router.v1.Lan.Dhc" +
+      "p.Host:\0028\001B\007\n\005_dhcp\"\345\001\n\007Network\0221\n\005items" +
+      "\030\001 \003(\0132\".palm.router.v1.Network.ItemsEnt" +
+      "ry\032[\n\004Item\022\"\n\003wan\030\001 \001(\0132\023.palm.router.v1" +
+      ".WanH\000\022\"\n\003lan\030\002 \001(\0132\023.palm.router.v1.Lan" +
+      "H\000B\013\n\tinterface\032J\n\nItemsEntry\022\013\n\003key\030\001 \001" +
+      "(\t\022+\n\005value\030\002 \001(\0132\034.palm.router.v1.Netwo" +
+      "rk.Item:\0028\001\"]\n\004Host\022\013\n\003mac\030\001 \001(\t\022\n\n\002ip\030\002" +
+      " \001(\t\022\014\n\004name\030\003 \001(\t\022.\n\nlast_found\030\t \001(\0132\032" +
+      ".google.protobuf.Timestamp\"d\n\032Administra" +
+      "torSignInRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010passwo" +
+      "rd\030\002 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google.protobuf." +
+      "Duration\"o\n\033AdministratorSignInResponse\022" +
+      "\r\n\005token\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006locale\030\013" +
+      " \001(\t\022\020\n\010timezone\030\014 \001(\t\022\021\n\tlanguages\030\023 \003(" +
+      "\t\"Q\n\037AdministratorSetPasswordRequest\022\030\n\020" +
+      "current_password\030\001 \001(\t\022\024\n\014new_password\030\002" +
+      " \001(\t\"\312\001\n\033RouterIndexEthernetResponse\022?\n\005" +
+      "items\030\001 \003(\01320.palm.router.v1.RouterIndex" +
+      "EthernetResponse.Item\032j\n\004Item\022\"\n\003wan\030\001 \001" +
+      "(\0132\023.palm.router.v1.WanH\000\022\"\n\003lan\030\002 \001(\0132\023" +
+      ".palm.router.v1.LanH\000\022\016\n\006enable\030\t \001(\010B\n\n" +
+      "\010ethernet\"7\n\026UserSetRealNameRequest\022\n\n\002i" +
+      "d\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWif" +
+      "iRequest\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.pal" +
+      "m.router.v1.UserIndexResponse.Item.Wifi\"" +
+      "q\n\025UserSetDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\t" +
+      "real_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.rou" +
+      "ter.v1.UserIndexResponse.Item.Wifi\"d\n\025Us" +
+      "erSetContactRequest\022\n\n\002id\030\001 \001(\r\022?\n\007conta" +
+      "ct\030\002 \001(\0132..palm.router.v1.UserIndexRespo" +
+      "nse.Item.Contact\"a\n\021UserCreateRequest\022\021\n" +
+      "\treal_name\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.ro" +
+      "uter.v1.UserIndexResponse.Item.Wifi\"\377\003\n\021" +
+      "UserIndexResponse\0225\n\005items\030\001 \003(\0132&.palm." +
+      "router.v1.UserIndexResponse.Item\032\262\003\n\004Ite" +
+      "m\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi" +
+      "\030\003 \001(\0132+.palm.router.v1.UserIndexRespons" +
+      "e.Item.Wifi\022?\n\007contact\030\t \001(\0132..palm.rout" +
+      "er.v1.UserIndexResponse.Item.Contact\032\204\001\n" +
+      "\004Wifi\022\020\n\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
+      "\t\022,\n\010begin_at\030\003 \001(\0132\032.google.protobuf.Ti" +
+      "mestamp\022*\n\006end_at\030\004 \001(\0132\032.google.protobu" +
+      "f.Timestamp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH" +
+      "\000\210\001\001\022\024\n\007address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(" +
+      "\tH\002\210\001\001\022\022\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n" +
+      "\010_addressB\010\n\006_phoneB\010\n\006_email2\213\002\n\rAdmini" +
+      "strator\022c\n\006SignIn\022*.palm.router.v1.Admin" +
+      "istratorSignInRequest\032+.palm.router.v1.A" +
+      "dministratorSignInResponse\"\000\022;\n\007SignOut\022" +
+      "\026.google.protobuf.Empty\032\026.google.protobu" +
+      "f.Empty\"\000\022X\n\013SetPassword\022/.palm.router.v" +
+      "1.AdministratorSetPasswordRequest\032\026.goog" +
+      "le.protobuf.Empty\"\0002\364\002\n\006Router\022Y\n\013SetEth" +
+      "ernet\0220.palm.router.v1.RouterIndexEthern" +
+      "etResponse.Item\032\026.google.protobuf.Empty\"" +
+      "\000\022V\n\rIndexEthernet\022\026.google.protobuf.Emp" +
+      "ty\032+.palm.router.v1.RouterIndexEthernetR" +
+      "esponse\"\000\022:\n\006Reboot\022\026.google.protobuf.Em" +
+      "pty\032\026.google.protobuf.Empty\"\000\0229\n\005Apply\022\026" +
+      ".google.protobuf.Empty\032\026.google.protobuf" +
+      ".Empty\"\000\022@\n\014FactoryReset\022\026.google.protob" +
+      "uf.Empty\032\026.google.protobuf.Empty\"\0002\374\002\n\004U" +
+      "ser\022D\n\005Index\022\026.google.protobuf.Empty\032!.p" +
+      "alm.router.v1.UserIndexResponse\"\000\022E\n\006Cre" +
+      "ate\022!.palm.router.v1.UserCreateRequest\032\026" +
+      ".google.protobuf.Empty\"\000\022O\n\013SetRealName\022" +
+      "&.palm.router.v1.UserSetRealNameRequest\032" +
+      "\026.google.protobuf.Empty\"\000\022M\n\nSetContact\022" +
+      "%.palm.router.v1.UserSetContactRequest\032\026" +
+      ".google.protobuf.Empty\"\000\022G\n\007SetWifi\022\".pa" +
+      "lm.router.v1.UserSetWifiRequest\032\026.google" +
+      ".protobuf.Empty\"\000B7\n,com.github.saturn_x" +
+      "iv.palm.plugins.router.v1P\001Z\005./;v2b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -217,56 +284,110 @@ public final class RouterOuterClass {
           com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
         });
-    internal_static_palm_router_v1_Wan_descriptor =
+    internal_static_palm_router_v1_Firewall_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_palm_router_v1_Firewall_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Firewall_descriptor,
+        new java.lang.String[] { "Input", "Nat", "Ping", });
+    internal_static_palm_router_v1_Firewall_Input_descriptor =
+      internal_static_palm_router_v1_Firewall_descriptor.getNestedTypes().get(0);
+    internal_static_palm_router_v1_Firewall_Input_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Firewall_Input_descriptor,
+        new java.lang.String[] { "Protocol", "Port", });
+    internal_static_palm_router_v1_Firewall_Nat_descriptor =
+      internal_static_palm_router_v1_Firewall_descriptor.getNestedTypes().get(1);
+    internal_static_palm_router_v1_Firewall_Nat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Firewall_Nat_descriptor,
+        new java.lang.String[] { "Protocol", "Port", "Destination", });
+    internal_static_palm_router_v1_Firewall_Nat_Destination_descriptor =
+      internal_static_palm_router_v1_Firewall_Nat_descriptor.getNestedTypes().get(0);
+    internal_static_palm_router_v1_Firewall_Nat_Destination_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Firewall_Nat_Destination_descriptor,
+        new java.lang.String[] { "Ip", "Port", });
+    internal_static_palm_router_v1_Wan_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_palm_router_v1_Wan_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_Wan_descriptor,
-        new java.lang.String[] { "Device", "Address", "Netmask", "Gateway", "Dns", "Description", });
+        new java.lang.String[] { "Name", "Address", "Netmask", "Gateway", "Cidr", "Dns", "Firewall", "Weight", "Description", });
+    internal_static_palm_router_v1_Wan_Nat_descriptor =
+      internal_static_palm_router_v1_Wan_descriptor.getNestedTypes().get(0);
+    internal_static_palm_router_v1_Wan_Nat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Wan_Nat_descriptor,
+        new java.lang.String[] { });
     internal_static_palm_router_v1_Lan_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_palm_router_v1_Lan_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_Lan_descriptor,
-        new java.lang.String[] { "Device", "BlacklistMode", "Address", "Dhcp", "ReservedIps", "Description", });
-    internal_static_palm_router_v1_Lan_ReservedIpsEntry_descriptor =
+        new java.lang.String[] { "Name", "BlacklistMode", "Address", "Netmask", "Cidr", "Network", "Dhcp", "Description", });
+    internal_static_palm_router_v1_Lan_Dhcp_descriptor =
       internal_static_palm_router_v1_Lan_descriptor.getNestedTypes().get(0);
-    internal_static_palm_router_v1_Lan_ReservedIpsEntry_fieldAccessorTable = new
+    internal_static_palm_router_v1_Lan_Dhcp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_router_v1_Lan_ReservedIpsEntry_descriptor,
+        internal_static_palm_router_v1_Lan_Dhcp_descriptor,
+        new java.lang.String[] { "Begin", "End", "Dns", "ReservedHosts", });
+    internal_static_palm_router_v1_Lan_Dhcp_Host_descriptor =
+      internal_static_palm_router_v1_Lan_Dhcp_descriptor.getNestedTypes().get(0);
+    internal_static_palm_router_v1_Lan_Dhcp_Host_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Lan_Dhcp_Host_descriptor,
+        new java.lang.String[] { "Name", "Mac", });
+    internal_static_palm_router_v1_Lan_Dhcp_ReservedHostsEntry_descriptor =
+      internal_static_palm_router_v1_Lan_Dhcp_descriptor.getNestedTypes().get(1);
+    internal_static_palm_router_v1_Lan_Dhcp_ReservedHostsEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Lan_Dhcp_ReservedHostsEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_palm_router_v1_Network_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_palm_router_v1_Network_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_Network_descriptor,
-        new java.lang.String[] { "Wan", "Lan", });
+        new java.lang.String[] { "Items", });
+    internal_static_palm_router_v1_Network_Item_descriptor =
+      internal_static_palm_router_v1_Network_descriptor.getNestedTypes().get(0);
+    internal_static_palm_router_v1_Network_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Network_Item_descriptor,
+        new java.lang.String[] { "Wan", "Lan", "Interface", });
+    internal_static_palm_router_v1_Network_ItemsEntry_descriptor =
+      internal_static_palm_router_v1_Network_descriptor.getNestedTypes().get(1);
+    internal_static_palm_router_v1_Network_ItemsEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_router_v1_Network_ItemsEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_palm_router_v1_Host_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_palm_router_v1_Host_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_Host_descriptor,
         new java.lang.String[] { "Mac", "Ip", "Name", "LastFound", });
     internal_static_palm_router_v1_AdministratorSignInRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_palm_router_v1_AdministratorSignInRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_AdministratorSignInRequest_descriptor,
         new java.lang.String[] { "Name", "Password", "Ttl", });
     internal_static_palm_router_v1_AdministratorSignInResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_palm_router_v1_AdministratorSignInResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_AdministratorSignInResponse_descriptor,
         new java.lang.String[] { "Token", "Name", "Locale", "Timezone", "Languages", });
     internal_static_palm_router_v1_AdministratorSetPasswordRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_palm_router_v1_AdministratorSetPasswordRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_AdministratorSetPasswordRequest_descriptor,
         new java.lang.String[] { "CurrentPassword", "NewPassword", });
     internal_static_palm_router_v1_RouterIndexEthernetResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_palm_router_v1_RouterIndexEthernetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_RouterIndexEthernetResponse_descriptor,
@@ -278,37 +399,37 @@ public final class RouterOuterClass {
         internal_static_palm_router_v1_RouterIndexEthernetResponse_Item_descriptor,
         new java.lang.String[] { "Wan", "Lan", "Enable", "Ethernet", });
     internal_static_palm_router_v1_UserSetRealNameRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_palm_router_v1_UserSetRealNameRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserSetRealNameRequest_descriptor,
         new java.lang.String[] { "Id", "RealName", });
     internal_static_palm_router_v1_UserSetWifiRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_palm_router_v1_UserSetWifiRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserSetWifiRequest_descriptor,
         new java.lang.String[] { "Id", "Wifi", });
     internal_static_palm_router_v1_UserSetDetailsRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_palm_router_v1_UserSetDetailsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserSetDetailsRequest_descriptor,
         new java.lang.String[] { "Id", "RealName", "Wifi", });
     internal_static_palm_router_v1_UserSetContactRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_palm_router_v1_UserSetContactRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserSetContactRequest_descriptor,
         new java.lang.String[] { "Id", "Contact", });
     internal_static_palm_router_v1_UserCreateRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_palm_router_v1_UserCreateRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserCreateRequest_descriptor,
         new java.lang.String[] { "RealName", "Wifi", });
     internal_static_palm_router_v1_UserIndexResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_palm_router_v1_UserIndexResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserIndexResponse_descriptor,

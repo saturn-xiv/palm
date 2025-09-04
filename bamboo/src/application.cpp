@@ -1,4 +1,5 @@
 #include "bamboo/application.hpp"
+#include "bamboo/network.hpp"
 #include "bamboo/services.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
@@ -59,7 +60,7 @@ void bamboo::Application::launch(int argc, char* argv[]) {
   sample_command.add_description("generate a sample resource file");
   sample_command.add_argument("-o", "--output")
       .default_value("config.json")
-      .store_into(apply_input_file)
+      .store_into(sample_output_file)
       .help("configuration file");
 
   program.add_subparser(rpc_command);
@@ -136,10 +137,166 @@ void bamboo::Application::reboot() {
   palm::reboot();
 }
 void bamboo::Application::apply(const std::string& input, bool run) {
-  // TODO
+  spdlog::info("load network configuration from {}", input);
+  palm::router::v1::Network it;
+  {
+    std::ifstream fs(input);
+    std::string buf((std::istreambuf_iterator<char>(fs)),
+                    std::istreambuf_iterator<char>());
+    const auto st = palm::from_json(buf, &it);
+    if (!st.ok()) {
+      spdlog::error("failed to parse json {}", st.error_message());
+      return;
+    }
+  }
+  bamboo::network::apply(it, run);
 }
 void bamboo::Application::sample(const std::string& output) {
-  // TODO
+  if (std::filesystem::exists(output)) {
+    spdlog::error("file {} already exists", output);
+    return;
+  }
+
+  google::protobuf::Arena arena;
+  auto network =
+      google::protobuf::Arena::Create<palm::router::v1::Network>(&arena);
+  auto items = network->mutable_items();
+  {
+    auto eth =
+        google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
+    auto it = eth->mutable_wan();
+
+    it->set_name("wan-0");
+    it->set_address("x.x.x.x");
+    it->set_netmask("255.255.255.0");
+    it->set_cidr(24);
+    it->set_gateway("x.x.x.1");
+    it->add_dns("8.8.8.8");
+    it->add_dns("8.8.4.4");
+    it->set_weight(6);
+    it->set_description("Wan");
+    {
+      auto fw = it->mutable_firewall();
+      fw->set_ping(true);
+      {
+        auto in = fw->add_input();
+        in->set_protocol(palm::router::v1::Firewall_Protocol_Tcp);
+        in->set_port(22);
+      }
+      {
+        auto in = fw->add_input();
+        in->set_protocol(palm::router::v1::Firewall_Protocol_Tcp);
+        in->set_port(80);
+      }
+      {
+        auto nat = fw->add_nat();
+        nat->set_protocol(palm::router::v1::Firewall_Protocol_Tcp);
+        nat->set_port(10022);
+        {
+          auto dest = nat->mutable_destination();
+          dest->set_ip("192.168.2.10");
+          dest->set_port(22);
+        }
+      }
+      {
+        auto nat = fw->add_nat();
+        nat->set_protocol(palm::router::v1::Firewall_Protocol_Tcp);
+        nat->set_port(10080);
+        {
+          auto dest = nat->mutable_destination();
+          dest->set_ip("192.168.2.10");
+          dest->set_port(80);
+        }
+      }
+    }
+
+    (*items)["eth0"] = *eth;
+  }
+
+  {
+    auto eth =
+        google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
+    auto it = eth->mutable_lan();
+
+    it->set_name("lan");
+    it->set_address("192.168.1.1");
+    it->set_netmask("255.255.255.0");
+    it->set_blacklist_mode(true);
+    it->set_cidr(24);
+    it->set_network("192.168.1.0/24");
+    it->set_description("Lan");
+    {
+      auto dhcp = it->mutable_dhcp();
+      dhcp->set_begin("192.168.1.2");
+      dhcp->set_end("192.168.1.254");
+      dhcp->add_dns("8.8.8.8");
+      dhcp->add_dns("8.8.4.4");
+    }
+
+    (*items)["eth1"] = *eth;
+  }
+  {
+    auto eth =
+        google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
+    auto it = eth->mutable_lan();
+
+    it->set_name("dmz");
+    it->set_address("192.168.2.1");
+    it->set_netmask("255.255.255.0");
+    it->set_blacklist_mode(true);
+    it->set_cidr(24);
+    it->set_network("192.168.2.0/24");
+    {
+      auto dhcp = it->mutable_dhcp();
+      dhcp->set_begin("192.168.2.2");
+      dhcp->set_end("192.168.2.254");
+      dhcp->add_dns("8.8.8.8");
+      dhcp->add_dns("8.8.4.4");
+      {
+        auto hosts = dhcp->mutable_reserved_hosts();
+        {
+          auto ih =
+              google::protobuf::Arena::Create<palm::router::v1::Lan_Dhcp_Host>(
+                  &arena);
+          ih->set_mac("xx:xx:xx:xx:xx:10");
+          ih->set_name("host-10");
+          (*hosts)["192.168.2.10"] = *ih;
+        }
+        {
+          auto ih =
+              google::protobuf::Arena::Create<palm::router::v1::Lan_Dhcp_Host>(
+                  &arena);
+          ih->set_mac("xx:xx:xx:xx:xx:11");
+          ih->set_name("host-11");
+          (*hosts)["192.168.2.11"] = *ih;
+        }
+        {
+          auto ih =
+              google::protobuf::Arena::Create<palm::router::v1::Lan_Dhcp_Host>(
+                  &arena);
+          ih->set_mac("xx:xx:xx:xx:xx:12");
+          ih->set_name("host-12");
+          (*hosts)["192.168.2.12"] = *ih;
+        }
+      }
+    }
+
+    it->set_description("Dmz");
+
+    (*items)["eth2"] = *eth;
+  }
+
+  auto body = palm::to_json(*network, true);
+  if (!body) {
+    return;
+  }
+  {
+    spdlog::info("generate file {}", output);
+    std::ofstream out(output);
+    out << body.value();
+    out.close();
+  }
+  spdlog::info("done.");
 }
 
 std::shared_ptr<soci::session> bamboo::Application::db(

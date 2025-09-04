@@ -10,16 +10,16 @@ public interface WanOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string device = 1;</code>
-   * @return The device.
+   * <code>string name = 1;</code>
+   * @return The name.
    */
-  java.lang.String getDevice();
+  java.lang.String getName();
   /**
-   * <code>string device = 1;</code>
-   * @return The bytes for device.
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-      getDeviceBytes();
+      getNameBytes();
 
   /**
    * <code>string address = 11;</code>
@@ -58,6 +58,12 @@ public interface WanOrBuilder extends
       getGatewayBytes();
 
   /**
+   * <code>uint32 cidr = 19;</code>
+   * @return The cidr.
+   */
+  int getCidr();
+
+  /**
    * <code>repeated string dns = 14;</code>
    * @return A list containing the dns.
    */
@@ -81,6 +87,27 @@ public interface WanOrBuilder extends
    */
   com.google.protobuf.ByteString
       getDnsBytes(int index);
+
+  /**
+   * <code>.palm.router.v1.Firewall firewall = 15;</code>
+   * @return Whether the firewall field is set.
+   */
+  boolean hasFirewall();
+  /**
+   * <code>.palm.router.v1.Firewall firewall = 15;</code>
+   * @return The firewall.
+   */
+  com.github.saturn_xiv.palm.plugins.router.v1.Firewall getFirewall();
+  /**
+   * <code>.palm.router.v1.Firewall firewall = 15;</code>
+   */
+  com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder getFirewallOrBuilder();
+
+  /**
+   * <code>uint32 weight = 98;</code>
+   * @return The weight.
+   */
+  int getWeight();
 
   /**
    * <code>string description = 99;</code>

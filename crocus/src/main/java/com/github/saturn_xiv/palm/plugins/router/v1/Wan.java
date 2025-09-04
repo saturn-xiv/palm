@@ -27,7 +27,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Wan() {
-    device_ = "";
+    name_ = "";
     address_ = "";
     netmask_ = "";
     gateway_ = "";
@@ -49,39 +49,395 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.router.v1.Wan.class, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder.class);
   }
 
-  public static final int DEVICE_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object device_ = "";
+  public interface NatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.router.v1.Wan.Nat)
+      com.google.protobuf.MessageOrBuilder {
+  }
   /**
-   * <code>string device = 1;</code>
-   * @return The device.
+   * Protobuf type {@code palm.router.v1.Wan.Nat}
+   */
+  public static final class Nat extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.router.v1.Wan.Nat)
+      NatOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        Nat.class.getName());
+    }
+    // Use Nat.newBuilder() to construct.
+    private Nat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Nat() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Nat_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Nat_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.class, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat other = (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat) obj;
+
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Wan.Nat}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.router.v1.Wan.Nat)
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.NatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Nat_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Nat_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.class, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Nat_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat build() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat buildPartial() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat result = new com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat other) {
+        if (other == com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.router.v1.Wan.Nat)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.router.v1.Wan.Nat)
+    private static final com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Nat>
+        PARSER = new com.google.protobuf.AbstractParser<Nat>() {
+      @java.lang.Override
+      public Nat parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Nat> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Nat> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Nat getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private int bitField0_;
+  public static final int NAME_FIELD_NUMBER = 1;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object name_ = "";
+  /**
+   * <code>string name = 1;</code>
+   * @return The name.
    */
   @java.lang.Override
-  public java.lang.String getDevice() {
-    java.lang.Object ref = device_;
+  public java.lang.String getName() {
+    java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      device_ = s;
+      name_ = s;
       return s;
     }
   }
   /**
-   * <code>string device = 1;</code>
-   * @return The bytes for device.
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getDeviceBytes() {
-    java.lang.Object ref = device_;
+      getNameBytes() {
+    java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      device_ = b;
+      name_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -205,6 +561,17 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int CIDR_FIELD_NUMBER = 19;
+  private int cidr_ = 0;
+  /**
+   * <code>uint32 cidr = 19;</code>
+   * @return The cidr.
+   */
+  @java.lang.Override
+  public int getCidr() {
+    return cidr_;
+  }
+
   public static final int DNS_FIELD_NUMBER = 14;
   @SuppressWarnings("serial")
   private com.google.protobuf.LazyStringArrayList dns_ =
@@ -240,6 +607,43 @@ private static final long serialVersionUID = 0L;
   public com.google.protobuf.ByteString
       getDnsBytes(int index) {
     return dns_.getByteString(index);
+  }
+
+  public static final int FIREWALL_FIELD_NUMBER = 15;
+  private com.github.saturn_xiv.palm.plugins.router.v1.Firewall firewall_;
+  /**
+   * <code>.palm.router.v1.Firewall firewall = 15;</code>
+   * @return Whether the firewall field is set.
+   */
+  @java.lang.Override
+  public boolean hasFirewall() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <code>.palm.router.v1.Firewall firewall = 15;</code>
+   * @return The firewall.
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.router.v1.Firewall getFirewall() {
+    return firewall_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+  }
+  /**
+   * <code>.palm.router.v1.Firewall firewall = 15;</code>
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder getFirewallOrBuilder() {
+    return firewall_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+  }
+
+  public static final int WEIGHT_FIELD_NUMBER = 98;
+  private int weight_ = 0;
+  /**
+   * <code>uint32 weight = 98;</code>
+   * @return The weight.
+   */
+  @java.lang.Override
+  public int getWeight() {
+    return weight_;
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 99;
@@ -295,8 +699,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, device_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 11, address_);
@@ -310,6 +714,15 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < dns_.size(); i++) {
       com.google.protobuf.GeneratedMessage.writeString(output, 14, dns_.getRaw(i));
     }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(15, getFirewall());
+    }
+    if (cidr_ != 0) {
+      output.writeUInt32(19, cidr_);
+    }
+    if (weight_ != 0) {
+      output.writeUInt32(98, weight_);
+    }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 99, description_);
     }
@@ -322,8 +735,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, device_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(11, address_);
@@ -341,6 +754,18 @@ private static final long serialVersionUID = 0L;
       }
       size += dataSize;
       size += 1 * getDnsList().size();
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(15, getFirewall());
+    }
+    if (cidr_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt32Size(19, cidr_);
+    }
+    if (weight_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt32Size(98, weight_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(99, description_);
@@ -360,16 +785,25 @@ private static final long serialVersionUID = 0L;
     }
     com.github.saturn_xiv.palm.plugins.router.v1.Wan other = (com.github.saturn_xiv.palm.plugins.router.v1.Wan) obj;
 
-    if (!getDevice()
-        .equals(other.getDevice())) return false;
+    if (!getName()
+        .equals(other.getName())) return false;
     if (!getAddress()
         .equals(other.getAddress())) return false;
     if (!getNetmask()
         .equals(other.getNetmask())) return false;
     if (!getGateway()
         .equals(other.getGateway())) return false;
+    if (getCidr()
+        != other.getCidr()) return false;
     if (!getDnsList()
         .equals(other.getDnsList())) return false;
+    if (hasFirewall() != other.hasFirewall()) return false;
+    if (hasFirewall()) {
+      if (!getFirewall()
+          .equals(other.getFirewall())) return false;
+    }
+    if (getWeight()
+        != other.getWeight()) return false;
     if (!getDescription()
         .equals(other.getDescription())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -383,18 +817,26 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + DEVICE_FIELD_NUMBER;
-    hash = (53 * hash) + getDevice().hashCode();
+    hash = (37 * hash) + NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
     hash = (53 * hash) + getAddress().hashCode();
     hash = (37 * hash) + NETMASK_FIELD_NUMBER;
     hash = (53 * hash) + getNetmask().hashCode();
     hash = (37 * hash) + GATEWAY_FIELD_NUMBER;
     hash = (53 * hash) + getGateway().hashCode();
+    hash = (37 * hash) + CIDR_FIELD_NUMBER;
+    hash = (53 * hash) + getCidr();
     if (getDnsCount() > 0) {
       hash = (37 * hash) + DNS_FIELD_NUMBER;
       hash = (53 * hash) + getDnsList().hashCode();
     }
+    if (hasFirewall()) {
+      hash = (37 * hash) + FIREWALL_FIELD_NUMBER;
+      hash = (53 * hash) + getFirewall().hashCode();
+    }
+    hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+    hash = (53 * hash) + getWeight();
     hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getDescription().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -516,24 +958,37 @@ private static final long serialVersionUID = 0L;
 
     // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Wan.newBuilder()
     private Builder() {
-
+      maybeForceBuilderInitialization();
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-
+      maybeForceBuilderInitialization();
+    }
+    private void maybeForceBuilderInitialization() {
+      if (com.google.protobuf.GeneratedMessage
+              .alwaysUseFieldBuilders) {
+        getFirewallFieldBuilder();
+      }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      device_ = "";
+      name_ = "";
       address_ = "";
       netmask_ = "";
       gateway_ = "";
+      cidr_ = 0;
       dns_ =
           com.google.protobuf.LazyStringArrayList.emptyList();
+      firewall_ = null;
+      if (firewallBuilder_ != null) {
+        firewallBuilder_.dispose();
+        firewallBuilder_ = null;
+      }
+      weight_ = 0;
       description_ = "";
       return this;
     }
@@ -569,7 +1024,7 @@ private static final long serialVersionUID = 0L;
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Wan result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.device_ = device_;
+        result.name_ = name_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.address_ = address_;
@@ -581,12 +1036,26 @@ private static final long serialVersionUID = 0L;
         result.gateway_ = gateway_;
       }
       if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.cidr_ = cidr_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
         dns_.makeImmutable();
         result.dns_ = dns_;
       }
-      if (((from_bitField0_ & 0x00000020) != 0)) {
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.firewall_ = firewallBuilder_ == null
+            ? firewall_
+            : firewallBuilder_.build();
+        to_bitField0_ |= 0x00000001;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        result.weight_ = weight_;
+      }
+      if (((from_bitField0_ & 0x00000100) != 0)) {
         result.description_ = description_;
       }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -601,8 +1070,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Wan other) {
       if (other == com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance()) return this;
-      if (!other.getDevice().isEmpty()) {
-        device_ = other.device_;
+      if (!other.getName().isEmpty()) {
+        name_ = other.name_;
         bitField0_ |= 0x00000001;
         onChanged();
       }
@@ -621,19 +1090,28 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000008;
         onChanged();
       }
+      if (other.getCidr() != 0) {
+        setCidr(other.getCidr());
+      }
       if (!other.dns_.isEmpty()) {
         if (dns_.isEmpty()) {
           dns_ = other.dns_;
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000020;
         } else {
           ensureDnsIsMutable();
           dns_.addAll(other.dns_);
         }
         onChanged();
       }
+      if (other.hasFirewall()) {
+        mergeFirewall(other.getFirewall());
+      }
+      if (other.getWeight() != 0) {
+        setWeight(other.getWeight());
+      }
       if (!other.getDescription().isEmpty()) {
         description_ = other.description_;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000100;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -663,7 +1141,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              device_ = input.readStringRequireUtf8();
+              name_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
@@ -688,9 +1166,26 @@ private static final long serialVersionUID = 0L;
               dns_.add(s);
               break;
             } // case 114
+            case 122: {
+              input.readMessage(
+                  getFirewallFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 122
+            case 152: {
+              cidr_ = input.readUInt32();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 152
+            case 784: {
+              weight_ = input.readUInt32();
+              bitField0_ |= 0x00000080;
+              break;
+            } // case 784
             case 794: {
               description_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000100;
               break;
             } // case 794
             default: {
@@ -710,73 +1205,73 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object device_ = "";
+    private java.lang.Object name_ = "";
     /**
-     * <code>string device = 1;</code>
-     * @return The device.
+     * <code>string name = 1;</code>
+     * @return The name.
      */
-    public java.lang.String getDevice() {
-      java.lang.Object ref = device_;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        device_ = s;
+        name_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string device = 1;</code>
-     * @return The bytes for device.
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
-        getDeviceBytes() {
-      java.lang.Object ref = device_;
+        getNameBytes() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        device_ = b;
+        name_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string device = 1;</code>
-     * @param value The device to set.
+     * <code>string name = 1;</code>
+     * @param value The name to set.
      * @return This builder for chaining.
      */
-    public Builder setDevice(
+    public Builder setName(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      device_ = value;
+      name_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string device = 1;</code>
+     * <code>string name = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearDevice() {
-      device_ = getDefaultInstance().getDevice();
+    public Builder clearName() {
+      name_ = getDefaultInstance().getName();
       bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
     /**
-     * <code>string device = 1;</code>
-     * @param value The bytes for device to set.
+     * <code>string name = 1;</code>
+     * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
-    public Builder setDeviceBytes(
+    public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      device_ = value;
+      name_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
@@ -998,13 +1493,45 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private int cidr_ ;
+    /**
+     * <code>uint32 cidr = 19;</code>
+     * @return The cidr.
+     */
+    @java.lang.Override
+    public int getCidr() {
+      return cidr_;
+    }
+    /**
+     * <code>uint32 cidr = 19;</code>
+     * @param value The cidr to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCidr(int value) {
+
+      cidr_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>uint32 cidr = 19;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCidr() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      cidr_ = 0;
+      onChanged();
+      return this;
+    }
+
     private com.google.protobuf.LazyStringArrayList dns_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureDnsIsMutable() {
       if (!dns_.isModifiable()) {
         dns_ = new com.google.protobuf.LazyStringArrayList(dns_);
       }
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
     }
     /**
      * <code>repeated string dns = 14;</code>
@@ -1050,7 +1577,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       ensureDnsIsMutable();
       dns_.set(index, value);
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1064,7 +1591,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       ensureDnsIsMutable();
       dns_.add(value);
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1078,7 +1605,7 @@ private static final long serialVersionUID = 0L;
       ensureDnsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, dns_);
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1089,7 +1616,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearDns() {
       dns_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000010);;
+      bitField0_ = (bitField0_ & ~0x00000020);;
       onChanged();
       return this;
     }
@@ -1104,7 +1631,160 @@ private static final long serialVersionUID = 0L;
       checkByteStringIsUtf8(value);
       ensureDnsIsMutable();
       dns_.add(value);
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+
+    private com.github.saturn_xiv.palm.plugins.router.v1.Firewall firewall_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder, com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder> firewallBuilder_;
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * @return Whether the firewall field is set.
+     */
+    public boolean hasFirewall() {
+      return ((bitField0_ & 0x00000040) != 0);
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * @return The firewall.
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall getFirewall() {
+      if (firewallBuilder_ == null) {
+        return firewall_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+      } else {
+        return firewallBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    public Builder setFirewall(com.github.saturn_xiv.palm.plugins.router.v1.Firewall value) {
+      if (firewallBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        firewall_ = value;
+      } else {
+        firewallBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    public Builder setFirewall(
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder builderForValue) {
+      if (firewallBuilder_ == null) {
+        firewall_ = builderForValue.build();
+      } else {
+        firewallBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    public Builder mergeFirewall(com.github.saturn_xiv.palm.plugins.router.v1.Firewall value) {
+      if (firewallBuilder_ == null) {
+        if (((bitField0_ & 0x00000040) != 0) &&
+          firewall_ != null &&
+          firewall_ != com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance()) {
+          getFirewallBuilder().mergeFrom(value);
+        } else {
+          firewall_ = value;
+        }
+      } else {
+        firewallBuilder_.mergeFrom(value);
+      }
+      if (firewall_ != null) {
+        bitField0_ |= 0x00000040;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    public Builder clearFirewall() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      firewall_ = null;
+      if (firewallBuilder_ != null) {
+        firewallBuilder_.dispose();
+        firewallBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder getFirewallBuilder() {
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return getFirewallFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder getFirewallOrBuilder() {
+      if (firewallBuilder_ != null) {
+        return firewallBuilder_.getMessageOrBuilder();
+      } else {
+        return firewall_ == null ?
+            com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+      }
+    }
+    /**
+     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder, com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder> 
+        getFirewallFieldBuilder() {
+      if (firewallBuilder_ == null) {
+        firewallBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.router.v1.Firewall, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder, com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder>(
+                getFirewall(),
+                getParentForChildren(),
+                isClean());
+        firewall_ = null;
+      }
+      return firewallBuilder_;
+    }
+
+    private int weight_ ;
+    /**
+     * <code>uint32 weight = 98;</code>
+     * @return The weight.
+     */
+    @java.lang.Override
+    public int getWeight() {
+      return weight_;
+    }
+    /**
+     * <code>uint32 weight = 98;</code>
+     * @param value The weight to set.
+     * @return This builder for chaining.
+     */
+    public Builder setWeight(int value) {
+
+      weight_ = value;
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>uint32 weight = 98;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearWeight() {
+      bitField0_ = (bitField0_ & ~0x00000080);
+      weight_ = 0;
       onChanged();
       return this;
     }
@@ -1152,7 +1832,7 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       description_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000100;
       onChanged();
       return this;
     }
@@ -1162,7 +1842,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearDescription() {
       description_ = getDefaultInstance().getDescription();
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000100);
       onChanged();
       return this;
     }
@@ -1176,7 +1856,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       description_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000100;
       onChanged();
       return this;
     }

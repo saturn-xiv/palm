@@ -27,7 +27,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Network() {
-    lan_ = java.util.Collections.emptyList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -35,6 +34,18 @@ private static final long serialVersionUID = 0L;
     return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_descriptor;
   }
 
+  @SuppressWarnings({"rawtypes"})
+  @java.lang.Override
+  protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
+      int number) {
+    switch (number) {
+      case 1:
+        return internalGetItems();
+      default:
+        throw new RuntimeException(
+            "Invalid map field number: " + number);
+    }
+  }
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
@@ -43,72 +54,968 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.router.v1.Network.class, com.github.saturn_xiv.palm.plugins.router.v1.Network.Builder.class);
   }
 
-  private int bitField0_;
-  public static final int WAN_FIELD_NUMBER = 1;
-  private com.github.saturn_xiv.palm.plugins.router.v1.Wan wan_;
-  /**
-   * <code>.palm.router.v1.Wan wan = 1;</code>
-   * @return Whether the wan field is set.
-   */
-  @java.lang.Override
-  public boolean hasWan() {
-    return ((bitField0_ & 0x00000001) != 0);
+  public interface ItemOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.router.v1.Network.Item)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * @return Whether the wan field is set.
+     */
+    boolean hasWan();
+    /**
+     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * @return The wan.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Wan getWan();
+    /**
+     * <code>.palm.router.v1.Wan wan = 1;</code>
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder getWanOrBuilder();
+
+    /**
+     * <code>.palm.router.v1.Lan lan = 2;</code>
+     * @return Whether the lan field is set.
+     */
+    boolean hasLan();
+    /**
+     * <code>.palm.router.v1.Lan lan = 2;</code>
+     * @return The lan.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Lan getLan();
+    /**
+     * <code>.palm.router.v1.Lan lan = 2;</code>
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder getLanOrBuilder();
+
+    com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.InterfaceCase getInterfaceCase();
   }
   /**
-   * <code>.palm.router.v1.Wan wan = 1;</code>
-   * @return The wan.
+   * Protobuf type {@code palm.router.v1.Network.Item}
    */
-  @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.router.v1.Wan getWan() {
-    return wan_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance() : wan_;
-  }
-  /**
-   * <code>.palm.router.v1.Wan wan = 1;</code>
-   */
-  @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder getWanOrBuilder() {
-    return wan_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance() : wan_;
+  public static final class Item extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.router.v1.Network.Item)
+      ItemOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        Item.class.getName());
+    }
+    // Use Item.newBuilder() to construct.
+    private Item(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Item() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_Item_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_Item_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.class, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder.class);
+    }
+
+    private int interfaceCase_ = 0;
+    @SuppressWarnings("serial")
+    private java.lang.Object interface_;
+    public enum InterfaceCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      WAN(1),
+      LAN(2),
+      INTERFACE_NOT_SET(0);
+      private final int value;
+      private InterfaceCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static InterfaceCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static InterfaceCase forNumber(int value) {
+        switch (value) {
+          case 1: return WAN;
+          case 2: return LAN;
+          case 0: return INTERFACE_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public InterfaceCase
+    getInterfaceCase() {
+      return InterfaceCase.forNumber(
+          interfaceCase_);
+    }
+
+    public static final int WAN_FIELD_NUMBER = 1;
+    /**
+     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * @return Whether the wan field is set.
+     */
+    @java.lang.Override
+    public boolean hasWan() {
+      return interfaceCase_ == 1;
+    }
+    /**
+     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * @return The wan.
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Wan getWan() {
+      if (interfaceCase_ == 1) {
+         return (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_;
+      }
+      return com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance();
+    }
+    /**
+     * <code>.palm.router.v1.Wan wan = 1;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder getWanOrBuilder() {
+      if (interfaceCase_ == 1) {
+         return (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_;
+      }
+      return com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance();
+    }
+
+    public static final int LAN_FIELD_NUMBER = 2;
+    /**
+     * <code>.palm.router.v1.Lan lan = 2;</code>
+     * @return Whether the lan field is set.
+     */
+    @java.lang.Override
+    public boolean hasLan() {
+      return interfaceCase_ == 2;
+    }
+    /**
+     * <code>.palm.router.v1.Lan lan = 2;</code>
+     * @return The lan.
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Lan getLan() {
+      if (interfaceCase_ == 2) {
+         return (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_;
+      }
+      return com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance();
+    }
+    /**
+     * <code>.palm.router.v1.Lan lan = 2;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder getLanOrBuilder() {
+      if (interfaceCase_ == 2) {
+         return (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_;
+      }
+      return com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (interfaceCase_ == 1) {
+        output.writeMessage(1, (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_);
+      }
+      if (interfaceCase_ == 2) {
+        output.writeMessage(2, (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (interfaceCase_ == 1) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_);
+      }
+      if (interfaceCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Network.Item)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.router.v1.Network.Item other = (com.github.saturn_xiv.palm.plugins.router.v1.Network.Item) obj;
+
+      if (!getInterfaceCase().equals(other.getInterfaceCase())) return false;
+      switch (interfaceCase_) {
+        case 1:
+          if (!getWan()
+              .equals(other.getWan())) return false;
+          break;
+        case 2:
+          if (!getLan()
+              .equals(other.getLan())) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      switch (interfaceCase_) {
+        case 1:
+          hash = (37 * hash) + WAN_FIELD_NUMBER;
+          hash = (53 * hash) + getWan().hashCode();
+          break;
+        case 2:
+          hash = (37 * hash) + LAN_FIELD_NUMBER;
+          hash = (53 * hash) + getLan().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Network.Item prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Network.Item}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.router.v1.Network.Item)
+        com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_Item_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_Item_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.class, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (wanBuilder_ != null) {
+          wanBuilder_.clear();
+        }
+        if (lanBuilder_ != null) {
+          lanBuilder_.clear();
+        }
+        interfaceCase_ = 0;
+        interface_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_Item_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item build() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Network.Item result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item buildPartial() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Network.Item result = new com.github.saturn_xiv.palm.plugins.router.v1.Network.Item(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Network.Item result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(com.github.saturn_xiv.palm.plugins.router.v1.Network.Item result) {
+        result.interfaceCase_ = interfaceCase_;
+        result.interface_ = this.interface_;
+        if (interfaceCase_ == 1 &&
+            wanBuilder_ != null) {
+          result.interface_ = wanBuilder_.build();
+        }
+        if (interfaceCase_ == 2 &&
+            lanBuilder_ != null) {
+          result.interface_ = lanBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Network.Item) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Network.Item)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Network.Item other) {
+        if (other == com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.getDefaultInstance()) return this;
+        switch (other.getInterfaceCase()) {
+          case WAN: {
+            mergeWan(other.getWan());
+            break;
+          }
+          case LAN: {
+            mergeLan(other.getLan());
+            break;
+          }
+          case INTERFACE_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getWanFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                interfaceCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getLanFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                interfaceCase_ = 2;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int interfaceCase_ = 0;
+      private java.lang.Object interface_;
+      public InterfaceCase
+          getInterfaceCase() {
+        return InterfaceCase.forNumber(
+            interfaceCase_);
+      }
+
+      public Builder clearInterface() {
+        interfaceCase_ = 0;
+        interface_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Wan, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder> wanBuilder_;
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       * @return Whether the wan field is set.
+       */
+      @java.lang.Override
+      public boolean hasWan() {
+        return interfaceCase_ == 1;
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       * @return The wan.
+       */
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan getWan() {
+        if (wanBuilder_ == null) {
+          if (interfaceCase_ == 1) {
+            return (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_;
+          }
+          return com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance();
+        } else {
+          if (interfaceCase_ == 1) {
+            return wanBuilder_.getMessage();
+          }
+          return com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      public Builder setWan(com.github.saturn_xiv.palm.plugins.router.v1.Wan value) {
+        if (wanBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          interface_ = value;
+          onChanged();
+        } else {
+          wanBuilder_.setMessage(value);
+        }
+        interfaceCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      public Builder setWan(
+          com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder builderForValue) {
+        if (wanBuilder_ == null) {
+          interface_ = builderForValue.build();
+          onChanged();
+        } else {
+          wanBuilder_.setMessage(builderForValue.build());
+        }
+        interfaceCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      public Builder mergeWan(com.github.saturn_xiv.palm.plugins.router.v1.Wan value) {
+        if (wanBuilder_ == null) {
+          if (interfaceCase_ == 1 &&
+              interface_ != com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance()) {
+            interface_ = com.github.saturn_xiv.palm.plugins.router.v1.Wan.newBuilder((com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            interface_ = value;
+          }
+          onChanged();
+        } else {
+          if (interfaceCase_ == 1) {
+            wanBuilder_.mergeFrom(value);
+          } else {
+            wanBuilder_.setMessage(value);
+          }
+        }
+        interfaceCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      public Builder clearWan() {
+        if (wanBuilder_ == null) {
+          if (interfaceCase_ == 1) {
+            interfaceCase_ = 0;
+            interface_ = null;
+            onChanged();
+          }
+        } else {
+          if (interfaceCase_ == 1) {
+            interfaceCase_ = 0;
+            interface_ = null;
+          }
+          wanBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder getWanBuilder() {
+        return getWanFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder getWanOrBuilder() {
+        if ((interfaceCase_ == 1) && (wanBuilder_ != null)) {
+          return wanBuilder_.getMessageOrBuilder();
+        } else {
+          if (interfaceCase_ == 1) {
+            return (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_;
+          }
+          return com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Wan wan = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Wan, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder> 
+          getWanFieldBuilder() {
+        if (wanBuilder_ == null) {
+          if (!(interfaceCase_ == 1)) {
+            interface_ = com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance();
+          }
+          wanBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.router.v1.Wan, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder>(
+                  (com.github.saturn_xiv.palm.plugins.router.v1.Wan) interface_,
+                  getParentForChildren(),
+                  isClean());
+          interface_ = null;
+        }
+        interfaceCase_ = 1;
+        onChanged();
+        return wanBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> lanBuilder_;
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       * @return Whether the lan field is set.
+       */
+      @java.lang.Override
+      public boolean hasLan() {
+        return interfaceCase_ == 2;
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       * @return The lan.
+       */
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan getLan() {
+        if (lanBuilder_ == null) {
+          if (interfaceCase_ == 2) {
+            return (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_;
+          }
+          return com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance();
+        } else {
+          if (interfaceCase_ == 2) {
+            return lanBuilder_.getMessage();
+          }
+          return com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      public Builder setLan(com.github.saturn_xiv.palm.plugins.router.v1.Lan value) {
+        if (lanBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          interface_ = value;
+          onChanged();
+        } else {
+          lanBuilder_.setMessage(value);
+        }
+        interfaceCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      public Builder setLan(
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder builderForValue) {
+        if (lanBuilder_ == null) {
+          interface_ = builderForValue.build();
+          onChanged();
+        } else {
+          lanBuilder_.setMessage(builderForValue.build());
+        }
+        interfaceCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      public Builder mergeLan(com.github.saturn_xiv.palm.plugins.router.v1.Lan value) {
+        if (lanBuilder_ == null) {
+          if (interfaceCase_ == 2 &&
+              interface_ != com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance()) {
+            interface_ = com.github.saturn_xiv.palm.plugins.router.v1.Lan.newBuilder((com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            interface_ = value;
+          }
+          onChanged();
+        } else {
+          if (interfaceCase_ == 2) {
+            lanBuilder_.mergeFrom(value);
+          } else {
+            lanBuilder_.setMessage(value);
+          }
+        }
+        interfaceCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      public Builder clearLan() {
+        if (lanBuilder_ == null) {
+          if (interfaceCase_ == 2) {
+            interfaceCase_ = 0;
+            interface_ = null;
+            onChanged();
+          }
+        } else {
+          if (interfaceCase_ == 2) {
+            interfaceCase_ = 0;
+            interface_ = null;
+          }
+          lanBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder getLanBuilder() {
+        return getLanFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder getLanOrBuilder() {
+        if ((interfaceCase_ == 2) && (lanBuilder_ != null)) {
+          return lanBuilder_.getMessageOrBuilder();
+        } else {
+          if (interfaceCase_ == 2) {
+            return (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_;
+          }
+          return com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Lan lan = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> 
+          getLanFieldBuilder() {
+        if (lanBuilder_ == null) {
+          if (!(interfaceCase_ == 2)) {
+            interface_ = com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance();
+          }
+          lanBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.router.v1.Lan, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder>(
+                  (com.github.saturn_xiv.palm.plugins.router.v1.Lan) interface_,
+                  getParentForChildren(),
+                  isClean());
+          interface_ = null;
+        }
+        interfaceCase_ = 2;
+        onChanged();
+        return lanBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.router.v1.Network.Item)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.router.v1.Network.Item)
+    private static final com.github.saturn_xiv.palm.plugins.router.v1.Network.Item DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Network.Item();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Item>
+        PARSER = new com.google.protobuf.AbstractParser<Item>() {
+      @java.lang.Override
+      public Item parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Item> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Item> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
-  public static final int LAN_FIELD_NUMBER = 2;
+  public static final int ITEMS_FIELD_NUMBER = 1;
+  private static final class ItemsDefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>newDefaultInstance(
+                com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_ItemsEntry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.getDefaultInstance());
+  }
   @SuppressWarnings("serial")
-  private java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Lan> lan_;
-  /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-   */
-  @java.lang.Override
-  public java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Lan> getLanList() {
-    return lan_;
+  private com.google.protobuf.MapField<
+      java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> items_;
+  private com.google.protobuf.MapField<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>
+  internalGetItems() {
+    if (items_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          ItemsDefaultEntryHolder.defaultEntry);
+    }
+    return items_;
+  }
+  public int getItemsCount() {
+    return internalGetItems().getMap().size();
   }
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> 
-      getLanOrBuilderList() {
-    return lan_;
+  public boolean containsItems(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    return internalGetItems().getMap().containsKey(key);
   }
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * Use {@link #getItemsMap()} instead.
    */
   @java.lang.Override
-  public int getLanCount() {
-    return lan_.size();
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> getItems() {
+    return getItemsMap();
   }
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.router.v1.Lan getLan(int index) {
-    return lan_.get(index);
+  public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> getItemsMap() {
+    return internalGetItems().getMap();
   }
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder getLanOrBuilder(
-      int index) {
-    return lan_.get(index);
+  public /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getItemsOrDefault(
+      java.lang.String key,
+      /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Network.Item defaultValue) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> map =
+        internalGetItems().getMap();
+    return map.containsKey(key) ? map.get(key) : defaultValue;
+  }
+  /**
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getItemsOrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> map =
+        internalGetItems().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return map.get(key);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -125,12 +1032,12 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(1, getWan());
-    }
-    for (int i = 0; i < lan_.size(); i++) {
-      output.writeMessage(2, lan_.get(i));
-    }
+    com.google.protobuf.GeneratedMessage
+      .serializeStringMapTo(
+        output,
+        internalGetItems(),
+        ItemsDefaultEntryHolder.defaultEntry,
+        1);
     getUnknownFields().writeTo(output);
   }
 
@@ -140,13 +1047,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (((bitField0_ & 0x00000001) != 0)) {
+    for (java.util.Map.Entry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> entry
+         : internalGetItems().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>
+      items__ = ItemsDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getWan());
-    }
-    for (int i = 0; i < lan_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, lan_.get(i));
+          .computeMessageSize(1, items__);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -163,13 +1072,8 @@ private static final long serialVersionUID = 0L;
     }
     com.github.saturn_xiv.palm.plugins.router.v1.Network other = (com.github.saturn_xiv.palm.plugins.router.v1.Network) obj;
 
-    if (hasWan() != other.hasWan()) return false;
-    if (hasWan()) {
-      if (!getWan()
-          .equals(other.getWan())) return false;
-    }
-    if (!getLanList()
-        .equals(other.getLanList())) return false;
+    if (!internalGetItems().equals(
+        other.internalGetItems())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -181,13 +1085,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasWan()) {
-      hash = (37 * hash) + WAN_FIELD_NUMBER;
-      hash = (53 * hash) + getWan().hashCode();
-    }
-    if (getLanCount() > 0) {
-      hash = (37 * hash) + LAN_FIELD_NUMBER;
-      hash = (53 * hash) + getLanList().hashCode();
+    if (!internalGetItems().getMap().isEmpty()) {
+      hash = (37 * hash) + ITEMS_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetItems().hashCode();
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
@@ -298,6 +1198,28 @@ private static final long serialVersionUID = 0L;
       return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Network_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetItems();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapFieldReflectionAccessor internalGetMutableMapFieldReflection(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetMutableItems();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -308,37 +1230,19 @@ private static final long serialVersionUID = 0L;
 
     // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Network.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessage
-              .alwaysUseFieldBuilders) {
-        getWanFieldBuilder();
-        getLanFieldBuilder();
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      wan_ = null;
-      if (wanBuilder_ != null) {
-        wanBuilder_.dispose();
-        wanBuilder_ = null;
-      }
-      if (lanBuilder_ == null) {
-        lan_ = java.util.Collections.emptyList();
-      } else {
-        lan_ = null;
-        lanBuilder_.clear();
-      }
-      bitField0_ = (bitField0_ & ~0x00000002);
+      internalGetMutableItems().clear();
       return this;
     }
 
@@ -365,34 +1269,16 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.github.saturn_xiv.palm.plugins.router.v1.Network buildPartial() {
       com.github.saturn_xiv.palm.plugins.router.v1.Network result = new com.github.saturn_xiv.palm.plugins.router.v1.Network(this);
-      buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartialRepeatedFields(com.github.saturn_xiv.palm.plugins.router.v1.Network result) {
-      if (lanBuilder_ == null) {
-        if (((bitField0_ & 0x00000002) != 0)) {
-          lan_ = java.util.Collections.unmodifiableList(lan_);
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.lan_ = lan_;
-      } else {
-        result.lan_ = lanBuilder_.build();
-      }
-    }
-
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Network result) {
       int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.wan_ = wanBuilder_ == null
-            ? wan_
-            : wanBuilder_.build();
-        to_bitField0_ |= 0x00000001;
+        result.items_ = internalGetItems().build(ItemsDefaultEntryHolder.defaultEntry);
       }
-      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -407,35 +1293,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Network other) {
       if (other == com.github.saturn_xiv.palm.plugins.router.v1.Network.getDefaultInstance()) return this;
-      if (other.hasWan()) {
-        mergeWan(other.getWan());
-      }
-      if (lanBuilder_ == null) {
-        if (!other.lan_.isEmpty()) {
-          if (lan_.isEmpty()) {
-            lan_ = other.lan_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureLanIsMutable();
-            lan_.addAll(other.lan_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.lan_.isEmpty()) {
-          if (lanBuilder_.isEmpty()) {
-            lanBuilder_.dispose();
-            lanBuilder_ = null;
-            lan_ = other.lan_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-            lanBuilder_ = 
-              com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                 getLanFieldBuilder() : null;
-          } else {
-            lanBuilder_.addAllMessages(other.lan_);
-          }
-        }
-      }
+      internalGetMutableItems().mergeFrom(
+          other.internalGetItems());
+      bitField0_ |= 0x00000001;
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -463,25 +1323,14 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              input.readMessage(
-                  getWanFieldBuilder().getBuilder(),
-                  extensionRegistry);
+              com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>
+              items__ = input.readMessage(
+                  ItemsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              internalGetMutableItems().ensureBuilderMap().put(
+                  items__.getKey(), items__.getValue());
               bitField0_ |= 0x00000001;
               break;
             } // case 10
-            case 18: {
-              com.github.saturn_xiv.palm.plugins.router.v1.Lan m =
-                  input.readMessage(
-                      com.github.saturn_xiv.palm.plugins.router.v1.Lan.parser(),
-                      extensionRegistry);
-              if (lanBuilder_ == null) {
-                ensureLanIsMutable();
-                lan_.add(m);
-              } else {
-                lanBuilder_.addMessage(m);
-              }
-              break;
-            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -499,365 +1348,159 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private com.github.saturn_xiv.palm.plugins.router.v1.Wan wan_;
-    private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.router.v1.Wan, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder> wanBuilder_;
-    /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
-     * @return Whether the wan field is set.
-     */
-    public boolean hasWan() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
-     * @return The wan.
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Wan getWan() {
-      if (wanBuilder_ == null) {
-        return wan_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance() : wan_;
-      } else {
-        return wanBuilder_.getMessage();
+    private static final class ItemsConverter implements com.google.protobuf.MapFieldBuilder.Converter<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> {
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item build(com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder val) {
+        if (val instanceof com.github.saturn_xiv.palm.plugins.router.v1.Network.Item) { return (com.github.saturn_xiv.palm.plugins.router.v1.Network.Item) val; }
+        return ((com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder) val).build();
       }
+
+      @java.lang.Override
+      public com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> defaultEntry() {
+        return ItemsDefaultEntryHolder.defaultEntry;
+      }
+    };
+    private static final ItemsConverter itemsConverter = new ItemsConverter();
+
+    private com.google.protobuf.MapFieldBuilder<
+        java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder> items_;
+    private com.google.protobuf.MapFieldBuilder<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder>
+        internalGetItems() {
+      if (items_ == null) {
+        return new com.google.protobuf.MapFieldBuilder<>(itemsConverter);
+      }
+      return items_;
     }
-    /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
-     */
-    public Builder setWan(com.github.saturn_xiv.palm.plugins.router.v1.Wan value) {
-      if (wanBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        wan_ = value;
-      } else {
-        wanBuilder_.setMessage(value);
+    private com.google.protobuf.MapFieldBuilder<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder>
+        internalGetMutableItems() {
+      if (items_ == null) {
+        items_ = new com.google.protobuf.MapFieldBuilder<>(itemsConverter);
       }
       bitField0_ |= 0x00000001;
       onChanged();
-      return this;
+      return items_;
+    }
+    public int getItemsCount() {
+      return internalGetItems().ensureBuilderMap().size();
     }
     /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
      */
-    public Builder setWan(
-        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder builderForValue) {
-      if (wanBuilder_ == null) {
-        wan_ = builderForValue.build();
-      } else {
-        wanBuilder_.setMessage(builderForValue.build());
-      }
-      bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
+    @java.lang.Override
+    public boolean containsItems(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetItems().ensureBuilderMap().containsKey(key);
     }
     /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * Use {@link #getItemsMap()} instead.
      */
-    public Builder mergeWan(com.github.saturn_xiv.palm.plugins.router.v1.Wan value) {
-      if (wanBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0) &&
-          wan_ != null &&
-          wan_ != com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance()) {
-          getWanBuilder().mergeFrom(value);
-        } else {
-          wan_ = value;
-        }
-      } else {
-        wanBuilder_.mergeFrom(value);
-      }
-      if (wan_ != null) {
-        bitField0_ |= 0x00000001;
-        onChanged();
-      }
-      return this;
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> getItems() {
+      return getItemsMap();
     }
     /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
      */
-    public Builder clearWan() {
+    @java.lang.Override
+    public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> getItemsMap() {
+      return internalGetItems().getImmutableMap();
+    }
+    /**
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
+     */
+    @java.lang.Override
+    public /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getItemsOrDefault(
+        java.lang.String key,
+        /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Network.Item defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder> map = internalGetMutableItems().ensureBuilderMap();
+      return map.containsKey(key) ? itemsConverter.build(map.get(key)) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getItemsOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder> map = internalGetMutableItems().ensureBuilderMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return itemsConverter.build(map.get(key));
+    }
+    public Builder clearItems() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      wan_ = null;
-      if (wanBuilder_ != null) {
-        wanBuilder_.dispose();
-        wanBuilder_ = null;
-      }
-      onChanged();
+      internalGetMutableItems().clear();
       return this;
     }
     /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder getWanBuilder() {
+    public Builder removeItems(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      internalGetMutableItems().ensureBuilderMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>
+        getMutableItems() {
       bitField0_ |= 0x00000001;
-      onChanged();
-      return getWanFieldBuilder().getBuilder();
+      return internalGetMutableItems().ensureMessageMap();
     }
     /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder getWanOrBuilder() {
-      if (wanBuilder_ != null) {
-        return wanBuilder_.getMessageOrBuilder();
-      } else {
-        return wan_ == null ?
-            com.github.saturn_xiv.palm.plugins.router.v1.Wan.getDefaultInstance() : wan_;
-      }
+    public Builder putItems(
+        java.lang.String key,
+        com.github.saturn_xiv.palm.plugins.router.v1.Network.Item value) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      if (value == null) { throw new NullPointerException("map value"); }
+      internalGetMutableItems().ensureBuilderMap()
+          .put(key, value);
+      bitField0_ |= 0x00000001;
+      return this;
     }
     /**
-     * <code>.palm.router.v1.Wan wan = 1;</code>
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
      */
-    private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.router.v1.Wan, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder> 
-        getWanFieldBuilder() {
-      if (wanBuilder_ == null) {
-        wanBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.router.v1.Wan, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder>(
-                getWan(),
-                getParentForChildren(),
-                isClean());
-        wan_ = null;
-      }
-      return wanBuilder_;
-    }
-
-    private java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Lan> lan_ =
-      java.util.Collections.emptyList();
-    private void ensureLanIsMutable() {
-      if (!((bitField0_ & 0x00000002) != 0)) {
-        lan_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.router.v1.Lan>(lan_);
-        bitField0_ |= 0x00000002;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.router.v1.Lan, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> lanBuilder_;
-
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Lan> getLanList() {
-      if (lanBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(lan_);
-      } else {
-        return lanBuilder_.getMessageList();
-      }
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public int getLanCount() {
-      if (lanBuilder_ == null) {
-        return lan_.size();
-      } else {
-        return lanBuilder_.getCount();
-      }
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Lan getLan(int index) {
-      if (lanBuilder_ == null) {
-        return lan_.get(index);
-      } else {
-        return lanBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder setLan(
-        int index, com.github.saturn_xiv.palm.plugins.router.v1.Lan value) {
-      if (lanBuilder_ == null) {
-        if (value == null) {
+    public Builder putAllItems(
+        java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> values) {
+      for (java.util.Map.Entry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item> e : values.entrySet()) {
+        if (e.getKey() == null || e.getValue() == null) {
           throw new NullPointerException();
         }
-        ensureLanIsMutable();
-        lan_.set(index, value);
-        onChanged();
-      } else {
-        lanBuilder_.setMessage(index, value);
       }
+      internalGetMutableItems().ensureBuilderMap()
+          .putAll(values);
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+     * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
      */
-    public Builder setLan(
-        int index, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder builderForValue) {
-      if (lanBuilder_ == null) {
-        ensureLanIsMutable();
-        lan_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        lanBuilder_.setMessage(index, builderForValue.build());
+    public com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder putItemsBuilderIfAbsent(
+        java.lang.String key) {
+      java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder> builderMap = internalGetMutableItems().ensureBuilderMap();
+      com.github.saturn_xiv.palm.plugins.router.v1.Network.ItemOrBuilder entry = builderMap.get(key);
+      if (entry == null) {
+        entry = com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.newBuilder();
+        builderMap.put(key, entry);
       }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder addLan(com.github.saturn_xiv.palm.plugins.router.v1.Lan value) {
-      if (lanBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureLanIsMutable();
-        lan_.add(value);
-        onChanged();
-      } else {
-        lanBuilder_.addMessage(value);
+      if (entry instanceof com.github.saturn_xiv.palm.plugins.router.v1.Network.Item) {
+        entry = ((com.github.saturn_xiv.palm.plugins.router.v1.Network.Item) entry).toBuilder();
+        builderMap.put(key, entry);
       }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder addLan(
-        int index, com.github.saturn_xiv.palm.plugins.router.v1.Lan value) {
-      if (lanBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureLanIsMutable();
-        lan_.add(index, value);
-        onChanged();
-      } else {
-        lanBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder addLan(
-        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder builderForValue) {
-      if (lanBuilder_ == null) {
-        ensureLanIsMutable();
-        lan_.add(builderForValue.build());
-        onChanged();
-      } else {
-        lanBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder addLan(
-        int index, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder builderForValue) {
-      if (lanBuilder_ == null) {
-        ensureLanIsMutable();
-        lan_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        lanBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder addAllLan(
-        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.router.v1.Lan> values) {
-      if (lanBuilder_ == null) {
-        ensureLanIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, lan_);
-        onChanged();
-      } else {
-        lanBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder clearLan() {
-      if (lanBuilder_ == null) {
-        lan_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-      } else {
-        lanBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public Builder removeLan(int index) {
-      if (lanBuilder_ == null) {
-        ensureLanIsMutable();
-        lan_.remove(index);
-        onChanged();
-      } else {
-        lanBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder getLanBuilder(
-        int index) {
-      return getLanFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder getLanOrBuilder(
-        int index) {
-      if (lanBuilder_ == null) {
-        return lan_.get(index);  } else {
-        return lanBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> 
-         getLanOrBuilderList() {
-      if (lanBuilder_ != null) {
-        return lanBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(lan_);
-      }
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder addLanBuilder() {
-      return getLanFieldBuilder().addBuilder(
-          com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder addLanBuilder(
-        int index) {
-      return getLanFieldBuilder().addBuilder(
-          index, com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-     */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder> 
-         getLanBuilderList() {
-      return getLanFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.router.v1.Lan, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> 
-        getLanFieldBuilder() {
-      if (lanBuilder_ == null) {
-        lanBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.router.v1.Lan, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder, com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder>(
-                lan_,
-                ((bitField0_ & 0x00000002) != 0),
-                getParentForChildren(),
-                isClean());
-        lan_ = null;
-      }
-      return lanBuilder_;
+      return (com.github.saturn_xiv.palm.plugins.router.v1.Network.Item.Builder) entry;
     }
 
     // @@protoc_insertion_point(builder_scope:palm.router.v1.Network)

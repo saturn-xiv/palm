@@ -10,16 +10,16 @@ public interface LanOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string device = 1;</code>
-   * @return The device.
+   * <code>string name = 1;</code>
+   * @return The name.
    */
-  java.lang.String getDevice();
+  java.lang.String getName();
   /**
-   * <code>string device = 1;</code>
-   * @return The bytes for device.
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-      getDeviceBytes();
+      getNameBytes();
 
   /**
    * <code>bool blacklist_mode = 9;</code>
@@ -40,44 +40,49 @@ public interface LanOrBuilder extends
       getAddressBytes();
 
   /**
-   * <code>bool dhcp = 12;</code>
-   * @return The dhcp.
+   * <code>string netmask = 12;</code>
+   * @return The netmask.
    */
-  boolean getDhcp();
+  java.lang.String getNetmask();
+  /**
+   * <code>string netmask = 12;</code>
+   * @return The bytes for netmask.
+   */
+  com.google.protobuf.ByteString
+      getNetmaskBytes();
 
   /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+   * <code>uint32 cidr = 13;</code>
+   * @return The cidr.
    */
-  int getReservedIpsCount();
+  int getCidr();
+
   /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+   * <code>string network = 14;</code>
+   * @return The network.
    */
-  boolean containsReservedIps(
-      java.lang.String key);
+  java.lang.String getNetwork();
   /**
-   * Use {@link #getReservedIpsMap()} instead.
+   * <code>string network = 14;</code>
+   * @return The bytes for network.
    */
-  @java.lang.Deprecated
-  java.util.Map<java.lang.String, java.lang.String>
-  getReservedIps();
+  com.google.protobuf.ByteString
+      getNetworkBytes();
+
   /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+   * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+   * @return Whether the dhcp field is set.
    */
-  java.util.Map<java.lang.String, java.lang.String>
-  getReservedIpsMap();
+  boolean hasDhcp();
   /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+   * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+   * @return The dhcp.
    */
-  /* nullable */
-java.lang.String getReservedIpsOrDefault(
-      java.lang.String key,
-      /* nullable */
-java.lang.String defaultValue);
+  com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp getDhcp();
   /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+   * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
    */
-  java.lang.String getReservedIpsOrThrow(
-      java.lang.String key);
+  com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder getDhcpOrBuilder();
 
   /**
    * <code>string description = 99;</code>

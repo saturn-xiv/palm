@@ -10,41 +10,36 @@ public interface NetworkOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.palm.router.v1.Wan wan = 1;</code>
-   * @return Whether the wan field is set.
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
-  boolean hasWan();
+  int getItemsCount();
   /**
-   * <code>.palm.router.v1.Wan wan = 1;</code>
-   * @return The wan.
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
-  com.github.saturn_xiv.palm.plugins.router.v1.Wan getWan();
+  boolean containsItems(
+      java.lang.String key);
   /**
-   * <code>.palm.router.v1.Wan wan = 1;</code>
+   * Use {@link #getItemsMap()} instead.
    */
-  com.github.saturn_xiv.palm.plugins.router.v1.WanOrBuilder getWanOrBuilder();
-
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>
+  getItems();
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
-  java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Lan> 
-      getLanList();
+  java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Network.Item>
+  getItemsMap();
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
-  com.github.saturn_xiv.palm.plugins.router.v1.Lan getLan(int index);
+  /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getItemsOrDefault(
+      java.lang.String key,
+      /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Network.Item defaultValue);
   /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
+   * <code>map&lt;string, .palm.router.v1.Network.Item&gt; items = 1;</code>
    */
-  int getLanCount();
-  /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-   */
-  java.util.List<? extends com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder> 
-      getLanOrBuilderList();
-  /**
-   * <code>repeated .palm.router.v1.Lan lan = 2;</code>
-   */
-  com.github.saturn_xiv.palm.plugins.router.v1.LanOrBuilder getLanOrBuilder(
-      int index);
+  com.github.saturn_xiv.palm.plugins.router.v1.Network.Item getItemsOrThrow(
+      java.lang.String key);
 }

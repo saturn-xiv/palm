@@ -27,46 +27,24 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace router {
 namespace v1 {
-
-inline constexpr Wan::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : dns_{},
-        device_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        address_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        netmask_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        gateway_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        description_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Wan::Wan(::_pbi::ConstantInitialized)
+              template <typename>
+PROTOBUF_CONSTEXPR Wan_Nat::Wan_Nat(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
+    : ::google::protobuf::internal::ZeroFieldsBase() {
 }
-struct WanDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR WanDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~WanDefaultTypeInternal() {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Wan_NatDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Wan_NatDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Wan_NatDefaultTypeInternal() {}
   union {
-    Wan _instance;
+    Wan_Nat _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WanDefaultTypeInternal _Wan_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Wan_NatDefaultTypeInternal _Wan_Nat_default_instance_;
 
 inline constexpr UserSetRealNameRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -131,24 +109,90 @@ struct UserIndexResponse_Item_ContactDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponse_Item_ContactDefaultTypeInternal _UserIndexResponse_Item_Contact_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR Lan_ReservedIpsEntry_DoNotUse::Lan_ReservedIpsEntry_DoNotUse(::_pbi::ConstantInitialized)
+
+inline constexpr Lan_Dhcp_Host::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        mac_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Lan_Dhcp_Host::Lan_Dhcp_Host(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : Lan_ReservedIpsEntry_DoNotUse::MapEntry(_class_data_.base()){}
+    : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : Lan_ReservedIpsEntry_DoNotUse::MapEntry() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
-struct Lan_ReservedIpsEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Lan_ReservedIpsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Lan_ReservedIpsEntry_DoNotUseDefaultTypeInternal() {}
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Lan_Dhcp_HostDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Lan_Dhcp_HostDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Lan_Dhcp_HostDefaultTypeInternal() {}
   union {
-    Lan_ReservedIpsEntry_DoNotUse _instance;
+    Lan_Dhcp_Host _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Lan_ReservedIpsEntry_DoNotUseDefaultTypeInternal _Lan_ReservedIpsEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Lan_Dhcp_HostDefaultTypeInternal _Lan_Dhcp_Host_default_instance_;
+
+inline constexpr Firewall_Nat_Destination::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : ip_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        port_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Firewall_Nat_Destination::Firewall_Nat_Destination(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Firewall_Nat_DestinationDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Firewall_Nat_DestinationDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Firewall_Nat_DestinationDefaultTypeInternal() {}
+  union {
+    Firewall_Nat_Destination _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Firewall_Nat_DestinationDefaultTypeInternal _Firewall_Nat_Destination_default_instance_;
+
+inline constexpr Firewall_Input::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : protocol_{static_cast< ::palm::router::v1::Firewall_Protocol >(0)},
+        port_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Firewall_Input::Firewall_Input(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Firewall_InputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Firewall_InputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Firewall_InputDefaultTypeInternal() {}
+  union {
+    Firewall_Input _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Firewall_InputDefaultTypeInternal _Firewall_Input_default_instance_;
 
 inline constexpr AdministratorSignInResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -274,42 +318,24 @@ struct UserIndexResponse_Item_WifiDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponse_Item_WifiDefaultTypeInternal _UserIndexResponse_Item_Wifi_default_instance_;
-
-inline constexpr Lan::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : reserved_ips_{},
-        device_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        address_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        description_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        blacklist_mode_{false},
-        dhcp_{false},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Lan::Lan(::_pbi::ConstantInitialized)
+              template <typename>
+PROTOBUF_CONSTEXPR Lan_Dhcp_ReservedHostsEntry_DoNotUse::Lan_Dhcp_ReservedHostsEntry_DoNotUse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
+    : Lan_Dhcp_ReservedHostsEntry_DoNotUse::MapEntry(_class_data_.base()){}
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
+    : Lan_Dhcp_ReservedHostsEntry_DoNotUse::MapEntry() {
 }
-struct LanDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR LanDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~LanDefaultTypeInternal() {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Lan_Dhcp_ReservedHostsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Lan_Dhcp_ReservedHostsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Lan_Dhcp_ReservedHostsEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    Lan _instance;
+    Lan_Dhcp_ReservedHostsEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LanDefaultTypeInternal _Lan_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Lan_Dhcp_ReservedHostsEntry_DoNotUseDefaultTypeInternal _Lan_Dhcp_ReservedHostsEntry_DoNotUse_default_instance_;
 
 inline constexpr Host::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -344,6 +370,33 @@ struct HostDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HostDefaultTypeInternal _Host_default_instance_;
+
+inline constexpr Firewall_Nat::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        destination_{nullptr},
+        protocol_{static_cast< ::palm::router::v1::Firewall_Protocol >(0)},
+        port_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Firewall_Nat::Firewall_Nat(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Firewall_NatDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Firewall_NatDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Firewall_NatDefaultTypeInternal() {}
+  union {
+    Firewall_Nat _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Firewall_NatDefaultTypeInternal _Firewall_Nat_default_instance_;
 
 inline constexpr AdministratorSignInRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -489,6 +542,175 @@ struct UserCreateRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserCreateRequestDefaultTypeInternal _UserCreateRequest_default_instance_;
 
+inline constexpr Lan_Dhcp::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : dns_{},
+        reserved_hosts_{},
+        begin_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        end_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Lan_Dhcp::Lan_Dhcp(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Lan_DhcpDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Lan_DhcpDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Lan_DhcpDefaultTypeInternal() {}
+  union {
+    Lan_Dhcp _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Lan_DhcpDefaultTypeInternal _Lan_Dhcp_default_instance_;
+
+inline constexpr Firewall::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : input_{},
+        nat_{},
+        ping_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Firewall::Firewall(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct FirewallDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FirewallDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FirewallDefaultTypeInternal() {}
+  union {
+    Firewall _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FirewallDefaultTypeInternal _Firewall_default_instance_;
+
+inline constexpr Wan::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        dns_{},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        netmask_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        gateway_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        description_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        firewall_{nullptr},
+        cidr_{0u},
+        weight_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Wan::Wan(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct WanDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WanDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WanDefaultTypeInternal() {}
+  union {
+    Wan _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WanDefaultTypeInternal _Wan_default_instance_;
+
+inline constexpr UserIndexResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserIndexResponse::UserIndexResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserIndexResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserIndexResponseDefaultTypeInternal() {}
+  union {
+    UserIndexResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
+
+inline constexpr Lan::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        netmask_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        network_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        description_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        dhcp_{nullptr},
+        blacklist_mode_{false},
+        cidr_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Lan::Lan(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LanDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LanDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LanDefaultTypeInternal() {}
+  union {
+    Lan _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LanDefaultTypeInternal _Lan_default_instance_;
+
 inline constexpr RouterIndexEthernetResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : enable_{false},
@@ -516,14 +738,14 @@ struct RouterIndexEthernetResponse_ItemDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RouterIndexEthernetResponse_ItemDefaultTypeInternal _RouterIndexEthernetResponse_Item_default_instance_;
 
-inline constexpr Network::Impl_::Impl_(
+inline constexpr Network_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        lan_{},
-        wan_{nullptr} {}
+      : interface_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR Network::Network(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR Network_Item::Network_Item(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -531,41 +753,16 @@ PROTOBUF_CONSTEXPR Network::Network(::_pbi::ConstantInitialized)
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct NetworkDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR NetworkDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~NetworkDefaultTypeInternal() {}
+struct Network_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Network_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Network_ItemDefaultTypeInternal() {}
   union {
-    Network _instance;
+    Network_Item _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NetworkDefaultTypeInternal _Network_default_instance_;
-
-inline constexpr UserIndexResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : items_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR UserIndexResponse::UserIndexResponse(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct UserIndexResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UserIndexResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UserIndexResponseDefaultTypeInternal() {}
-  union {
-    UserIndexResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Network_ItemDefaultTypeInternal _Network_Item_default_instance_;
 
 inline constexpr RouterIndexEthernetResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -591,17 +788,112 @@ struct RouterIndexEthernetResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RouterIndexEthernetResponseDefaultTypeInternal _RouterIndexEthernetResponse_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Network_ItemsEntry_DoNotUse::Network_ItemsEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : Network_ItemsEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : Network_ItemsEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Network_ItemsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Network_ItemsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Network_ItemsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Network_ItemsEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Network_ItemsEntry_DoNotUseDefaultTypeInternal _Network_ItemsEntry_DoNotUse_default_instance_;
+
+inline constexpr Network::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Network::Network(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct NetworkDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NetworkDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NetworkDefaultTypeInternal() {}
+  union {
+    Network _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NetworkDefaultTypeInternal _Network_default_instance_;
 }  // namespace v1
 }  // namespace router
 }  // namespace palm
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_router_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_router_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_router_2eproto = nullptr;
 const ::uint32_t
     TableStruct_router_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Input, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Input, _impl_.protocol_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Input, _impl_.port_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat_Destination, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat_Destination, _impl_.ip_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat_Destination, _impl_.port_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat, _impl_.protocol_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat, _impl_.port_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall_Nat, _impl_.destination_),
+        ~0u,
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall, _impl_.input_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall, _impl_.nat_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Firewall, _impl_.ping_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan_Nat, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -609,25 +901,59 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.device_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.address_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.netmask_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.gateway_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.cidr_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.dns_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.firewall_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.weight_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Wan, _impl_.description_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse, _internal_metadata_),
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        ~0u,
+        ~0u,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_Host, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse, _impl_.key_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse, _impl_.value_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_Host, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_Host, _impl_.mac_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_ReservedHostsEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_.value_),
         0,
         1,
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp, _impl_.begin_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp, _impl_.end_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp, _impl_.dns_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan_Dhcp, _impl_.reserved_hosts_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -635,13 +961,46 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.device_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.blacklist_mode_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.address_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.netmask_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.cidr_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.network_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.dhcp_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.reserved_ips_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Lan, _impl_.description_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network, _impl_._has_bits_),
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        ~0u,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_Item, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_Item, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_Item, _impl_.interface_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_ItemsEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_ItemsEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_ItemsEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_ItemsEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -649,10 +1008,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network, _impl_.wan_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network, _impl_.lan_),
-        0,
-        ~0u,
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network, _impl_.items_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Host, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::Host, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -848,30 +1204,48 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::palm::router::v1::Wan)},
-        {14, 24, -1, sizeof(::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse)},
-        {26, -1, -1, sizeof(::palm::router::v1::Lan)},
-        {40, 50, -1, sizeof(::palm::router::v1::Network)},
-        {52, 64, -1, sizeof(::palm::router::v1::Host)},
-        {68, 79, -1, sizeof(::palm::router::v1::AdministratorSignInRequest)},
-        {82, -1, -1, sizeof(::palm::router::v1::AdministratorSignInResponse)},
-        {95, -1, -1, sizeof(::palm::router::v1::AdministratorSetPasswordRequest)},
-        {105, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item)},
-        {117, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse)},
-        {126, -1, -1, sizeof(::palm::router::v1::UserSetRealNameRequest)},
-        {136, 146, -1, sizeof(::palm::router::v1::UserSetWifiRequest)},
-        {148, 159, -1, sizeof(::palm::router::v1::UserSetDetailsRequest)},
-        {162, 172, -1, sizeof(::palm::router::v1::UserSetContactRequest)},
-        {174, 184, -1, sizeof(::palm::router::v1::UserCreateRequest)},
-        {186, 198, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
-        {202, 214, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
-        {218, 230, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
-        {234, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
+        {0, -1, -1, sizeof(::palm::router::v1::Firewall_Input)},
+        {10, -1, -1, sizeof(::palm::router::v1::Firewall_Nat_Destination)},
+        {20, 31, -1, sizeof(::palm::router::v1::Firewall_Nat)},
+        {34, -1, -1, sizeof(::palm::router::v1::Firewall)},
+        {45, -1, -1, sizeof(::palm::router::v1::Wan_Nat)},
+        {53, 70, -1, sizeof(::palm::router::v1::Wan)},
+        {79, -1, -1, sizeof(::palm::router::v1::Lan_Dhcp_Host)},
+        {89, 99, -1, sizeof(::palm::router::v1::Lan_Dhcp_ReservedHostsEntry_DoNotUse)},
+        {101, -1, -1, sizeof(::palm::router::v1::Lan_Dhcp)},
+        {113, 129, -1, sizeof(::palm::router::v1::Lan)},
+        {137, -1, -1, sizeof(::palm::router::v1::Network_Item)},
+        {148, 158, -1, sizeof(::palm::router::v1::Network_ItemsEntry_DoNotUse)},
+        {160, -1, -1, sizeof(::palm::router::v1::Network)},
+        {169, 181, -1, sizeof(::palm::router::v1::Host)},
+        {185, 196, -1, sizeof(::palm::router::v1::AdministratorSignInRequest)},
+        {199, -1, -1, sizeof(::palm::router::v1::AdministratorSignInResponse)},
+        {212, -1, -1, sizeof(::palm::router::v1::AdministratorSetPasswordRequest)},
+        {222, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item)},
+        {234, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse)},
+        {243, -1, -1, sizeof(::palm::router::v1::UserSetRealNameRequest)},
+        {253, 263, -1, sizeof(::palm::router::v1::UserSetWifiRequest)},
+        {265, 276, -1, sizeof(::palm::router::v1::UserSetDetailsRequest)},
+        {279, 289, -1, sizeof(::palm::router::v1::UserSetContactRequest)},
+        {291, 301, -1, sizeof(::palm::router::v1::UserCreateRequest)},
+        {303, 315, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
+        {319, 331, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
+        {335, 347, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
+        {351, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::palm::router::v1::_Firewall_Input_default_instance_._instance,
+    &::palm::router::v1::_Firewall_Nat_Destination_default_instance_._instance,
+    &::palm::router::v1::_Firewall_Nat_default_instance_._instance,
+    &::palm::router::v1::_Firewall_default_instance_._instance,
+    &::palm::router::v1::_Wan_Nat_default_instance_._instance,
     &::palm::router::v1::_Wan_default_instance_._instance,
-    &::palm::router::v1::_Lan_ReservedIpsEntry_DoNotUse_default_instance_._instance,
+    &::palm::router::v1::_Lan_Dhcp_Host_default_instance_._instance,
+    &::palm::router::v1::_Lan_Dhcp_ReservedHostsEntry_DoNotUse_default_instance_._instance,
+    &::palm::router::v1::_Lan_Dhcp_default_instance_._instance,
     &::palm::router::v1::_Lan_default_instance_._instance,
+    &::palm::router::v1::_Network_Item_default_instance_._instance,
+    &::palm::router::v1::_Network_ItemsEntry_DoNotUse_default_instance_._instance,
     &::palm::router::v1::_Network_default_instance_._instance,
     &::palm::router::v1::_Host_default_instance_._instance,
     &::palm::router::v1::_AdministratorSignInRequest_default_instance_._instance,
@@ -894,83 +1268,105 @@ const char descriptor_table_protodef_router_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\n\014router.proto\022\016palm.router.v1\032\033google/p"
     "rotobuf/empty.proto\032\037google/protobuf/tim"
     "estamp.proto\032\036google/protobuf/duration.p"
-    "roto\"j\n\003Wan\022\016\n\006device\030\001 \001(\t\022\017\n\007address\030\013"
-    " \001(\t\022\017\n\007netmask\030\014 \001(\t\022\017\n\007gateway\030\r \001(\t\022\013"
-    "\n\003dns\030\016 \003(\t\022\023\n\013description\030c \001(\t\"\321\001\n\003Lan"
-    "\022\016\n\006device\030\001 \001(\t\022\026\n\016blacklist_mode\030\t \001(\010"
-    "\022\017\n\007address\030\013 \001(\t\022\014\n\004dhcp\030\014 \001(\010\022:\n\014reser"
-    "ved_ips\030\r \003(\0132$.palm.router.v1.Lan.Reser"
-    "vedIpsEntry\022\023\n\013description\030c \001(\t\0322\n\020Rese"
-    "rvedIpsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t"
-    ":\0028\001\"M\n\007Network\022 \n\003wan\030\001 \001(\0132\023.palm.rout"
-    "er.v1.Wan\022 \n\003lan\030\002 \003(\0132\023.palm.router.v1."
-    "Lan\"]\n\004Host\022\013\n\003mac\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004"
-    "name\030\003 \001(\t\022.\n\nlast_found\030\t \001(\0132\032.google."
-    "protobuf.Timestamp\"d\n\032AdministratorSignI"
-    "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t"
-    "\022&\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration"
-    "\"o\n\033AdministratorSignInResponse\022\r\n\005token"
-    "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006locale\030\013 \001(\t\022\020\n\010"
-    "timezone\030\014 \001(\t\022\021\n\tlanguages\030\023 \003(\t\"Q\n\037Adm"
-    "inistratorSetPasswordRequest\022\030\n\020current_"
-    "password\030\001 \001(\t\022\024\n\014new_password\030\002 \001(\t\"\312\001\n"
-    "\033RouterIndexEthernetResponse\022\?\n\005items\030\001 "
-    "\003(\01320.palm.router.v1.RouterIndexEthernet"
-    "Response.Item\032j\n\004Item\022\"\n\003wan\030\001 \001(\0132\023.pal"
-    "m.router.v1.WanH\000\022\"\n\003lan\030\002 \001(\0132\023.palm.ro"
-    "uter.v1.LanH\000\022\016\n\006enable\030\t \001(\010B\n\n\010etherne"
-    "t\"7\n\026UserSetRealNameRequest\022\n\n\002id\030\001 \001(\r\022"
-    "\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWifiRequest"
-    "\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.palm.router"
-    ".v1.UserIndexResponse.Item.Wifi\"q\n\025UserS"
-    "etDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_nam"
-    "e\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.U"
-    "serIndexResponse.Item.Wifi\"d\n\025UserSetCon"
-    "tactRequest\022\n\n\002id\030\001 \001(\r\022\?\n\007contact\030\002 \001(\013"
-    "2..palm.router.v1.UserIndexResponse.Item"
-    ".Contact\"a\n\021UserCreateRequest\022\021\n\treal_na"
-    "me\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1."
-    "UserIndexResponse.Item.Wifi\"\377\003\n\021UserInde"
-    "xResponse\0225\n\005items\030\001 \003(\0132&.palm.router.v"
-    "1.UserIndexResponse.Item\032\262\003\n\004Item\022\n\n\002id\030"
-    "\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+"
-    ".palm.router.v1.UserIndexResponse.Item.W"
-    "ifi\022\?\n\007contact\030\t \001(\0132..palm.router.v1.Us"
-    "erIndexResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n"
-    "\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010beg"
-    "in_at\030\003 \001(\0132\032.google.protobuf.Timestamp\022"
-    "*\n\006end_at\030\004 \001(\0132\032.google.protobuf.Timest"
-    "amp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007"
-    "address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022"
-    "\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addres"
-    "sB\010\n\006_phoneB\010\n\006_email2\213\002\n\rAdministrator\022"
-    "c\n\006SignIn\022*.palm.router.v1.Administrator"
-    "SignInRequest\032+.palm.router.v1.Administr"
-    "atorSignInResponse\"\000\022;\n\007SignOut\022\026.google"
-    ".protobuf.Empty\032\026.google.protobuf.Empty\""
-    "\000\022X\n\013SetPassword\022/.palm.router.v1.Admini"
-    "stratorSetPasswordRequest\032\026.google.proto"
-    "buf.Empty\"\0002\364\002\n\006Router\022Y\n\013SetEthernet\0220."
-    "palm.router.v1.RouterIndexEthernetRespon"
-    "se.Item\032\026.google.protobuf.Empty\"\000\022V\n\rInd"
-    "exEthernet\022\026.google.protobuf.Empty\032+.pal"
-    "m.router.v1.RouterIndexEthernetResponse\""
-    "\000\022:\n\006Reboot\022\026.google.protobuf.Empty\032\026.go"
-    "ogle.protobuf.Empty\"\000\0229\n\005Apply\022\026.google."
-    "protobuf.Empty\032\026.google.protobuf.Empty\"\000"
-    "\022@\n\014FactoryReset\022\026.google.protobuf.Empty"
-    "\032\026.google.protobuf.Empty\"\0002\374\002\n\004User\022D\n\005I"
-    "ndex\022\026.google.protobuf.Empty\032!.palm.rout"
-    "er.v1.UserIndexResponse\"\000\022E\n\006Create\022!.pa"
-    "lm.router.v1.UserCreateRequest\032\026.google."
-    "protobuf.Empty\"\000\022O\n\013SetRealName\022&.palm.r"
-    "outer.v1.UserSetRealNameRequest\032\026.google"
-    ".protobuf.Empty\"\000\022M\n\nSetContact\022%.palm.r"
-    "outer.v1.UserSetContactRequest\032\026.google."
-    "protobuf.Empty\"\000\022G\n\007SetWifi\022\".palm.route"
-    "r.v1.UserSetWifiRequest\032\026.google.protobu"
-    "f.Empty\"\000B7\n,com.github.saturn_xiv.palm."
-    "plugins.router.v1P\001Z\005./;v2b\006proto3"
+    "roto\"\217\003\n\010Firewall\022-\n\005input\030\001 \003(\0132\036.palm."
+    "router.v1.Firewall.Input\022)\n\003nat\030\002 \003(\0132\034."
+    "palm.router.v1.Firewall.Nat\022\014\n\004ping\030\t \001("
+    "\010\032J\n\005Input\0223\n\010protocol\030\001 \001(\0162!.palm.rout"
+    "er.v1.Firewall.Protocol\022\014\n\004port\030\002 \001(\r\032\260\001"
+    "\n\003Nat\0223\n\010protocol\030\001 \001(\0162!.palm.router.v1"
+    ".Firewall.Protocol\022\014\n\004port\030\002 \001(\r\022=\n\013dest"
+    "ination\030\003 \001(\0132(.palm.router.v1.Firewall."
+    "Nat.Destination\032\'\n\013Destination\022\n\n\002ip\030\001 \001"
+    "(\t\022\014\n\004port\030\002 \001(\r\"\034\n\010Protocol\022\007\n\003Tcp\020\000\022\007\n"
+    "\003Udp\020\001\"\271\001\n\003Wan\022\014\n\004name\030\001 \001(\t\022\017\n\007address\030"
+    "\013 \001(\t\022\017\n\007netmask\030\014 \001(\t\022\017\n\007gateway\030\r \001(\t\022"
+    "\014\n\004cidr\030\023 \001(\r\022\013\n\003dns\030\016 \003(\t\022*\n\010firewall\030\017"
+    " \001(\0132\030.palm.router.v1.Firewall\022\016\n\006weight"
+    "\030b \001(\r\022\023\n\013description\030c \001(\t\032\005\n\003Nat\"\246\003\n\003L"
+    "an\022\014\n\004name\030\001 \001(\t\022\026\n\016blacklist_mode\030\t \001(\010"
+    "\022\017\n\007address\030\013 \001(\t\022\017\n\007netmask\030\014 \001(\t\022\014\n\004ci"
+    "dr\030\r \001(\r\022\017\n\007network\030\016 \001(\t\022+\n\004dhcp\030\023 \001(\0132"
+    "\030.palm.router.v1.Lan.DhcpH\000\210\001\001\022\023\n\013descri"
+    "ption\030c \001(\t\032\354\001\n\004Dhcp\022\r\n\005begin\030\001 \001(\t\022\013\n\003e"
+    "nd\030\002 \001(\t\022\013\n\003dns\030\003 \003(\t\022C\n\016reserved_hosts\030"
+    "\t \003(\0132+.palm.router.v1.Lan.Dhcp.Reserved"
+    "HostsEntry\032!\n\004Host\022\014\n\004name\030\001 \001(\t\022\013\n\003mac\030"
+    "\002 \001(\t\032S\n\022ReservedHostsEntry\022\013\n\003key\030\001 \001(\t"
+    "\022,\n\005value\030\002 \001(\0132\035.palm.router.v1.Lan.Dhc"
+    "p.Host:\0028\001B\007\n\005_dhcp\"\345\001\n\007Network\0221\n\005items"
+    "\030\001 \003(\0132\".palm.router.v1.Network.ItemsEnt"
+    "ry\032[\n\004Item\022\"\n\003wan\030\001 \001(\0132\023.palm.router.v1"
+    ".WanH\000\022\"\n\003lan\030\002 \001(\0132\023.palm.router.v1.Lan"
+    "H\000B\013\n\tinterface\032J\n\nItemsEntry\022\013\n\003key\030\001 \001"
+    "(\t\022+\n\005value\030\002 \001(\0132\034.palm.router.v1.Netwo"
+    "rk.Item:\0028\001\"]\n\004Host\022\013\n\003mac\030\001 \001(\t\022\n\n\002ip\030\002"
+    " \001(\t\022\014\n\004name\030\003 \001(\t\022.\n\nlast_found\030\t \001(\0132\032"
+    ".google.protobuf.Timestamp\"d\n\032Administra"
+    "torSignInRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010passwo"
+    "rd\030\002 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google.protobuf."
+    "Duration\"o\n\033AdministratorSignInResponse\022"
+    "\r\n\005token\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006locale\030\013"
+    " \001(\t\022\020\n\010timezone\030\014 \001(\t\022\021\n\tlanguages\030\023 \003("
+    "\t\"Q\n\037AdministratorSetPasswordRequest\022\030\n\020"
+    "current_password\030\001 \001(\t\022\024\n\014new_password\030\002"
+    " \001(\t\"\312\001\n\033RouterIndexEthernetResponse\022\?\n\005"
+    "items\030\001 \003(\01320.palm.router.v1.RouterIndex"
+    "EthernetResponse.Item\032j\n\004Item\022\"\n\003wan\030\001 \001"
+    "(\0132\023.palm.router.v1.WanH\000\022\"\n\003lan\030\002 \001(\0132\023"
+    ".palm.router.v1.LanH\000\022\016\n\006enable\030\t \001(\010B\n\n"
+    "\010ethernet\"7\n\026UserSetRealNameRequest\022\n\n\002i"
+    "d\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWif"
+    "iRequest\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.pal"
+    "m.router.v1.UserIndexResponse.Item.Wifi\""
+    "q\n\025UserSetDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\t"
+    "real_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.rou"
+    "ter.v1.UserIndexResponse.Item.Wifi\"d\n\025Us"
+    "erSetContactRequest\022\n\n\002id\030\001 \001(\r\022\?\n\007conta"
+    "ct\030\002 \001(\0132..palm.router.v1.UserIndexRespo"
+    "nse.Item.Contact\"a\n\021UserCreateRequest\022\021\n"
+    "\treal_name\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.ro"
+    "uter.v1.UserIndexResponse.Item.Wifi\"\377\003\n\021"
+    "UserIndexResponse\0225\n\005items\030\001 \003(\0132&.palm."
+    "router.v1.UserIndexResponse.Item\032\262\003\n\004Ite"
+    "m\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi"
+    "\030\003 \001(\0132+.palm.router.v1.UserIndexRespons"
+    "e.Item.Wifi\022\?\n\007contact\030\t \001(\0132..palm.rout"
+    "er.v1.UserIndexResponse.Item.Contact\032\204\001\n"
+    "\004Wifi\022\020\n\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001("
+    "\t\022,\n\010begin_at\030\003 \001(\0132\032.google.protobuf.Ti"
+    "mestamp\022*\n\006end_at\030\004 \001(\0132\032.google.protobu"
+    "f.Timestamp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH"
+    "\000\210\001\001\022\024\n\007address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001("
+    "\tH\002\210\001\001\022\022\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n"
+    "\010_addressB\010\n\006_phoneB\010\n\006_email2\213\002\n\rAdmini"
+    "strator\022c\n\006SignIn\022*.palm.router.v1.Admin"
+    "istratorSignInRequest\032+.palm.router.v1.A"
+    "dministratorSignInResponse\"\000\022;\n\007SignOut\022"
+    "\026.google.protobuf.Empty\032\026.google.protobu"
+    "f.Empty\"\000\022X\n\013SetPassword\022/.palm.router.v"
+    "1.AdministratorSetPasswordRequest\032\026.goog"
+    "le.protobuf.Empty\"\0002\364\002\n\006Router\022Y\n\013SetEth"
+    "ernet\0220.palm.router.v1.RouterIndexEthern"
+    "etResponse.Item\032\026.google.protobuf.Empty\""
+    "\000\022V\n\rIndexEthernet\022\026.google.protobuf.Emp"
+    "ty\032+.palm.router.v1.RouterIndexEthernetR"
+    "esponse\"\000\022:\n\006Reboot\022\026.google.protobuf.Em"
+    "pty\032\026.google.protobuf.Empty\"\000\0229\n\005Apply\022\026"
+    ".google.protobuf.Empty\032\026.google.protobuf"
+    ".Empty\"\000\022@\n\014FactoryReset\022\026.google.protob"
+    "uf.Empty\032\026.google.protobuf.Empty\"\0002\374\002\n\004U"
+    "ser\022D\n\005Index\022\026.google.protobuf.Empty\032!.p"
+    "alm.router.v1.UserIndexResponse\"\000\022E\n\006Cre"
+    "ate\022!.palm.router.v1.UserCreateRequest\032\026"
+    ".google.protobuf.Empty\"\000\022O\n\013SetRealName\022"
+    "&.palm.router.v1.UserSetRealNameRequest\032"
+    "\026.google.protobuf.Empty\"\000\022M\n\nSetContact\022"
+    "%.palm.router.v1.UserSetContactRequest\032\026"
+    ".google.protobuf.Empty\"\000\022G\n\007SetWifi\022\".pa"
+    "lm.router.v1.UserSetWifiRequest\032\026.google"
+    ".protobuf.Empty\"\000B7\n,com.github.saturn_x"
+    "iv.palm.plugins.router.v1P\001Z\005./;v2b\006prot"
+    "o3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_router_2eproto_deps[3] =
     {
@@ -982,13 +1378,13 @@ static ::absl::once_flag descriptor_table_router_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto = {
     false,
     false,
-    3194,
+    4042,
     descriptor_table_protodef_router_2eproto,
     "router.proto",
     &descriptor_table_router_2eproto_once,
     descriptor_table_router_2eproto_deps,
     3,
-    19,
+    28,
     schemas,
     file_default_instances,
     TableStruct_router_2eproto::offsets,
@@ -998,10 +1394,1251 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto
 namespace palm {
 namespace router {
 namespace v1 {
+const ::google::protobuf::EnumDescriptor* Firewall_Protocol_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_router_2eproto);
+  return file_level_enum_descriptors_router_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t Firewall_Protocol_internal_data_[] = {
+    131072u, 0u, };
+bool Firewall_Protocol_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Firewall_Protocol Firewall::Tcp;
+constexpr Firewall_Protocol Firewall::Udp;
+constexpr Firewall_Protocol Firewall::Protocol_MIN;
+constexpr Firewall_Protocol Firewall::Protocol_MAX;
+constexpr int Firewall::Protocol_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+// ===================================================================
+
+class Firewall_Input::_Internal {
+ public:
+};
+
+Firewall_Input::Firewall_Input(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Firewall.Input)
+}
+Firewall_Input::Firewall_Input(
+    ::google::protobuf::Arena* arena, const Firewall_Input& from)
+    : Firewall_Input(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall_Input::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void Firewall_Input::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, protocol_),
+           0,
+           offsetof(Impl_, port_) -
+               offsetof(Impl_, protocol_) +
+               sizeof(Impl_::port_));
+}
+Firewall_Input::~Firewall_Input() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Firewall.Input)
+  SharedDtor(*this);
+}
+inline void Firewall_Input::SharedDtor(MessageLite& self) {
+  Firewall_Input& this_ = static_cast<Firewall_Input&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* Firewall_Input::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Firewall_Input(arena);
+}
+constexpr auto Firewall_Input::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Firewall_Input),
+                                            alignof(Firewall_Input));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Firewall_Input::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Firewall_Input_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Firewall_Input::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Firewall_Input>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Firewall_Input::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Firewall_Input>(), &Firewall_Input::ByteSizeLong,
+            &Firewall_Input::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_._cached_size_),
+        false,
+    },
+    &Firewall_Input::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Firewall_Input::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Firewall_Input::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Firewall_Input>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // uint32 port = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Firewall_Input, _impl_.port_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_.port_)}},
+    // .palm.router.v1.Firewall.Protocol protocol = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Firewall_Input, _impl_.protocol_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_.protocol_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.router.v1.Firewall.Protocol protocol = 1;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_.protocol_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint32 port = 2;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Firewall_Input::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Firewall.Input)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.protocol_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.port_) -
+      reinterpret_cast<char*>(&_impl_.protocol_)) + sizeof(_impl_.port_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Firewall_Input::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Firewall_Input& this_ = static_cast<const Firewall_Input&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Firewall_Input::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Firewall_Input& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Firewall.Input)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // .palm.router.v1.Firewall.Protocol protocol = 1;
+          if (this_._internal_protocol() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_protocol(), target);
+          }
+
+          // uint32 port = 2;
+          if (this_._internal_port() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_port(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Firewall.Input)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Firewall_Input::ByteSizeLong(const MessageLite& base) {
+          const Firewall_Input& this_ = static_cast<const Firewall_Input&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Firewall_Input::ByteSizeLong() const {
+          const Firewall_Input& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Firewall.Input)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .palm.router.v1.Firewall.Protocol protocol = 1;
+            if (this_._internal_protocol() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_protocol());
+            }
+            // uint32 port = 2;
+            if (this_._internal_port() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_port());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Firewall_Input::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Firewall_Input*>(&to_msg);
+  auto& from = static_cast<const Firewall_Input&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Firewall.Input)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_protocol() != 0) {
+    _this->_impl_.protocol_ = from._impl_.protocol_;
+  }
+  if (from._internal_port() != 0) {
+    _this->_impl_.port_ = from._impl_.port_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Firewall_Input::CopyFrom(const Firewall_Input& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Firewall.Input)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Firewall_Input::InternalSwap(Firewall_Input* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_.port_)
+      + sizeof(Firewall_Input::_impl_.port_)
+      - PROTOBUF_FIELD_OFFSET(Firewall_Input, _impl_.protocol_)>(
+          reinterpret_cast<char*>(&_impl_.protocol_),
+          reinterpret_cast<char*>(&other->_impl_.protocol_));
+}
+
+::google::protobuf::Metadata Firewall_Input::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Firewall_Nat_Destination::_Internal {
+ public:
+};
+
+Firewall_Nat_Destination::Firewall_Nat_Destination(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Firewall.Nat.Destination)
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall_Nat_Destination::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::router::v1::Firewall_Nat_Destination& from_msg)
+      : ip_(arena, from.ip_),
+        _cached_size_{0} {}
+
+Firewall_Nat_Destination::Firewall_Nat_Destination(
+    ::google::protobuf::Arena* arena,
+    const Firewall_Nat_Destination& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Firewall_Nat_Destination* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.port_ = from._impl_.port_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Firewall.Nat.Destination)
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall_Nat_Destination::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : ip_(arena),
+        _cached_size_{0} {}
+
+inline void Firewall_Nat_Destination::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.port_ = {};
+}
+Firewall_Nat_Destination::~Firewall_Nat_Destination() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Firewall.Nat.Destination)
+  SharedDtor(*this);
+}
+inline void Firewall_Nat_Destination::SharedDtor(MessageLite& self) {
+  Firewall_Nat_Destination& this_ = static_cast<Firewall_Nat_Destination&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.ip_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Firewall_Nat_Destination::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Firewall_Nat_Destination(arena);
+}
+constexpr auto Firewall_Nat_Destination::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Firewall_Nat_Destination),
+                                            alignof(Firewall_Nat_Destination));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Firewall_Nat_Destination::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Firewall_Nat_Destination_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Firewall_Nat_Destination::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Firewall_Nat_Destination>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Firewall_Nat_Destination::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Firewall_Nat_Destination>(), &Firewall_Nat_Destination::ByteSizeLong,
+            &Firewall_Nat_Destination::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Firewall_Nat_Destination, _impl_._cached_size_),
+        false,
+    },
+    &Firewall_Nat_Destination::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Firewall_Nat_Destination::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 50, 2> Firewall_Nat_Destination::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Firewall_Nat_Destination>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // uint32 port = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Firewall_Nat_Destination, _impl_.port_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall_Nat_Destination, _impl_.port_)}},
+    // string ip = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall_Nat_Destination, _impl_.ip_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string ip = 1;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Nat_Destination, _impl_.ip_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 port = 2;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Nat_Destination, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\47\2\0\0\0\0\0\0"
+    "palm.router.v1.Firewall.Nat.Destination"
+    "ip"
+  }},
+};
+
+PROTOBUF_NOINLINE void Firewall_Nat_Destination::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Firewall.Nat.Destination)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.ip_.ClearToEmpty();
+  _impl_.port_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Firewall_Nat_Destination::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Firewall_Nat_Destination& this_ = static_cast<const Firewall_Nat_Destination&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Firewall_Nat_Destination::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Firewall_Nat_Destination& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Firewall.Nat.Destination)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string ip = 1;
+          if (!this_._internal_ip().empty()) {
+            const std::string& _s = this_._internal_ip();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Firewall.Nat.Destination.ip");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // uint32 port = 2;
+          if (this_._internal_port() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_port(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Firewall.Nat.Destination)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Firewall_Nat_Destination::ByteSizeLong(const MessageLite& base) {
+          const Firewall_Nat_Destination& this_ = static_cast<const Firewall_Nat_Destination&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Firewall_Nat_Destination::ByteSizeLong() const {
+          const Firewall_Nat_Destination& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Firewall.Nat.Destination)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string ip = 1;
+            if (!this_._internal_ip().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_ip());
+            }
+            // uint32 port = 2;
+            if (this_._internal_port() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_port());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Firewall_Nat_Destination::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Firewall_Nat_Destination*>(&to_msg);
+  auto& from = static_cast<const Firewall_Nat_Destination&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Firewall.Nat.Destination)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_ip().empty()) {
+    _this->_internal_set_ip(from._internal_ip());
+  }
+  if (from._internal_port() != 0) {
+    _this->_impl_.port_ = from._impl_.port_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Firewall_Nat_Destination::CopyFrom(const Firewall_Nat_Destination& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Firewall.Nat.Destination)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Firewall_Nat_Destination::InternalSwap(Firewall_Nat_Destination* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.ip_, &other->_impl_.ip_, arena);
+        swap(_impl_.port_, other->_impl_.port_);
+}
+
+::google::protobuf::Metadata Firewall_Nat_Destination::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Firewall_Nat::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<Firewall_Nat>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_._has_bits_);
+};
+
+Firewall_Nat::Firewall_Nat(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Firewall.Nat)
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall_Nat::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::router::v1::Firewall_Nat& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+Firewall_Nat::Firewall_Nat(
+    ::google::protobuf::Arena* arena,
+    const Firewall_Nat& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Firewall_Nat* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.destination_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Firewall_Nat_Destination>(
+                              arena, *from._impl_.destination_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, protocol_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, protocol_),
+           offsetof(Impl_, port_) -
+               offsetof(Impl_, protocol_) +
+               sizeof(Impl_::port_));
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Firewall.Nat)
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall_Nat::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void Firewall_Nat::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, destination_),
+           0,
+           offsetof(Impl_, port_) -
+               offsetof(Impl_, destination_) +
+               sizeof(Impl_::port_));
+}
+Firewall_Nat::~Firewall_Nat() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Firewall.Nat)
+  SharedDtor(*this);
+}
+inline void Firewall_Nat::SharedDtor(MessageLite& self) {
+  Firewall_Nat& this_ = static_cast<Firewall_Nat&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.destination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* Firewall_Nat::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Firewall_Nat(arena);
+}
+constexpr auto Firewall_Nat::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Firewall_Nat),
+                                            alignof(Firewall_Nat));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Firewall_Nat::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Firewall_Nat_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Firewall_Nat::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Firewall_Nat>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Firewall_Nat::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Firewall_Nat>(), &Firewall_Nat::ByteSizeLong,
+            &Firewall_Nat::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_._cached_size_),
+        false,
+    },
+    &Firewall_Nat::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Firewall_Nat::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> Firewall_Nat::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Firewall_Nat>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.router.v1.Firewall.Protocol protocol = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Firewall_Nat, _impl_.protocol_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.protocol_)}},
+    // uint32 port = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Firewall_Nat, _impl_.port_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.port_)}},
+    // .palm.router.v1.Firewall.Nat.Destination destination = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.destination_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.router.v1.Firewall.Protocol protocol = 1;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.protocol_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint32 port = 2;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.port_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .palm.router.v1.Firewall.Nat.Destination destination = 3;
+    {PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.destination_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Firewall_Nat_Destination>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Firewall_Nat::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Firewall.Nat)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.destination_ != nullptr);
+    _impl_.destination_->Clear();
+  }
+  ::memset(&_impl_.protocol_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.port_) -
+      reinterpret_cast<char*>(&_impl_.protocol_)) + sizeof(_impl_.port_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Firewall_Nat::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Firewall_Nat& this_ = static_cast<const Firewall_Nat&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Firewall_Nat::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Firewall_Nat& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Firewall.Nat)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // .palm.router.v1.Firewall.Protocol protocol = 1;
+          if (this_._internal_protocol() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_protocol(), target);
+          }
+
+          // uint32 port = 2;
+          if (this_._internal_port() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_port(), target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.router.v1.Firewall.Nat.Destination destination = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.destination_, this_._impl_.destination_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Firewall.Nat)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Firewall_Nat::ByteSizeLong(const MessageLite& base) {
+          const Firewall_Nat& this_ = static_cast<const Firewall_Nat&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Firewall_Nat::ByteSizeLong() const {
+          const Firewall_Nat& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Firewall.Nat)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .palm.router.v1.Firewall.Nat.Destination destination = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.destination_);
+            }
+          }
+           {
+            // .palm.router.v1.Firewall.Protocol protocol = 1;
+            if (this_._internal_protocol() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_protocol());
+            }
+            // uint32 port = 2;
+            if (this_._internal_port() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_port());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Firewall_Nat::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Firewall_Nat*>(&to_msg);
+  auto& from = static_cast<const Firewall_Nat&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Firewall.Nat)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.destination_ != nullptr);
+    if (_this->_impl_.destination_ == nullptr) {
+      _this->_impl_.destination_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Firewall_Nat_Destination>(arena, *from._impl_.destination_);
+    } else {
+      _this->_impl_.destination_->MergeFrom(*from._impl_.destination_);
+    }
+  }
+  if (from._internal_protocol() != 0) {
+    _this->_impl_.protocol_ = from._impl_.protocol_;
+  }
+  if (from._internal_port() != 0) {
+    _this->_impl_.port_ = from._impl_.port_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Firewall_Nat::CopyFrom(const Firewall_Nat& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Firewall.Nat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Firewall_Nat::InternalSwap(Firewall_Nat* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.port_)
+      + sizeof(Firewall_Nat::_impl_.port_)
+      - PROTOBUF_FIELD_OFFSET(Firewall_Nat, _impl_.destination_)>(
+          reinterpret_cast<char*>(&_impl_.destination_),
+          reinterpret_cast<char*>(&other->_impl_.destination_));
+}
+
+::google::protobuf::Metadata Firewall_Nat::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Firewall::_Internal {
+ public:
+};
+
+Firewall::Firewall(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Firewall)
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::router::v1::Firewall& from_msg)
+      : input_{visibility, arena, from.input_},
+        nat_{visibility, arena, from.nat_},
+        _cached_size_{0} {}
+
+Firewall::Firewall(
+    ::google::protobuf::Arena* arena,
+    const Firewall& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Firewall* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.ping_ = from._impl_.ping_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Firewall)
+}
+inline PROTOBUF_NDEBUG_INLINE Firewall::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : input_{visibility, arena},
+        nat_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void Firewall::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.ping_ = {};
+}
+Firewall::~Firewall() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Firewall)
+  SharedDtor(*this);
+}
+inline void Firewall::SharedDtor(MessageLite& self) {
+  Firewall& this_ = static_cast<Firewall&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* Firewall::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Firewall(arena);
+}
+constexpr auto Firewall::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Firewall, _impl_.input_) +
+          decltype(Firewall::_impl_.input_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Firewall, _impl_.nat_) +
+          decltype(Firewall::_impl_.nat_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(Firewall), alignof(Firewall), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Firewall::PlacementNew_,
+                                 sizeof(Firewall),
+                                 alignof(Firewall));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Firewall::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Firewall_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Firewall::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Firewall>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Firewall::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Firewall>(), &Firewall::ByteSizeLong,
+            &Firewall::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Firewall, _impl_._cached_size_),
+        false,
+    },
+    &Firewall::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Firewall::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 3, 2, 0, 2> Firewall::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Firewall>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.router.v1.Firewall.Nat nat = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(Firewall, _impl_.nat_)}},
+    // repeated .palm.router.v1.Firewall.Input input = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Firewall, _impl_.input_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.router.v1.Firewall.Input input = 1;
+    {PROTOBUF_FIELD_OFFSET(Firewall, _impl_.input_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.router.v1.Firewall.Nat nat = 2;
+    {PROTOBUF_FIELD_OFFSET(Firewall, _impl_.nat_), 0, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // bool ping = 9;
+    {PROTOBUF_FIELD_OFFSET(Firewall, _impl_.ping_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Firewall_Input>()},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Firewall_Nat>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Firewall::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Firewall)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.input_.Clear();
+  _impl_.nat_.Clear();
+  _impl_.ping_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Firewall::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Firewall& this_ = static_cast<const Firewall&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Firewall::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Firewall& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Firewall)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .palm.router.v1.Firewall.Input input = 1;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_input_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_input().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    1, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          // repeated .palm.router.v1.Firewall.Nat nat = 2;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_nat_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_nat().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    2, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          // bool ping = 9;
+          if (this_._internal_ping() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                9, this_._internal_ping(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Firewall)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Firewall::ByteSizeLong(const MessageLite& base) {
+          const Firewall& this_ = static_cast<const Firewall&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Firewall::ByteSizeLong() const {
+          const Firewall& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Firewall)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .palm.router.v1.Firewall.Input input = 1;
+            {
+              total_size += 1UL * this_._internal_input_size();
+              for (const auto& msg : this_._internal_input()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+            // repeated .palm.router.v1.Firewall.Nat nat = 2;
+            {
+              total_size += 1UL * this_._internal_nat_size();
+              for (const auto& msg : this_._internal_nat()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // bool ping = 9;
+            if (this_._internal_ping() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Firewall::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Firewall*>(&to_msg);
+  auto& from = static_cast<const Firewall&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Firewall)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_input()->MergeFrom(
+      from._internal_input());
+  _this->_internal_mutable_nat()->MergeFrom(
+      from._internal_nat());
+  if (from._internal_ping() != 0) {
+    _this->_impl_.ping_ = from._impl_.ping_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Firewall::CopyFrom(const Firewall& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Firewall)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Firewall::InternalSwap(Firewall* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.input_.InternalSwap(&other->_impl_.input_);
+  _impl_.nat_.InternalSwap(&other->_impl_.nat_);
+        swap(_impl_.ping_, other->_impl_.ping_);
+}
+
+::google::protobuf::Metadata Firewall::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Wan_Nat::_Internal {
+ public:
+};
+
+Wan_Nat::Wan_Nat(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Wan.Nat)
+}
+Wan_Nat::Wan_Nat(
+    ::google::protobuf::Arena* arena,
+    const Wan_Nat& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Wan_Nat* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Wan.Nat)
+}
+
+inline void* Wan_Nat::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Wan_Nat(arena);
+}
+constexpr auto Wan_Nat::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Wan_Nat),
+                                            alignof(Wan_Nat));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Wan_Nat::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Wan_Nat_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Wan_Nat::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Wan_Nat>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Wan_Nat::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Wan_Nat>(), &Wan_Nat::ByteSizeLong,
+            &Wan_Nat::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Wan_Nat, _impl_._cached_size_),
+        false,
+    },
+    &Wan_Nat::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Wan_Nat::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> Wan_Nat::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Wan_Nat>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata Wan_Nat::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
 // ===================================================================
 
 class Wan::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<Wan>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Wan, _impl_._has_bits_);
 };
 
 Wan::Wan(::google::protobuf::Arena* arena)
@@ -1016,13 +2653,14 @@ Wan::Wan(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Wan::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::router::v1::Wan& from_msg)
-      : dns_{visibility, arena, from.dns_},
-        device_(arena, from.device_),
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        dns_{visibility, arena, from.dns_},
+        name_(arena, from.name_),
         address_(arena, from.address_),
         netmask_(arena, from.netmask_),
         gateway_(arena, from.gateway_),
-        description_(arena, from.description_),
-        _cached_size_{0} {}
+        description_(arena, from.description_) {}
 
 Wan::Wan(
     ::google::protobuf::Arena* arena,
@@ -1037,22 +2675,39 @@ Wan::Wan(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.firewall_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Firewall>(
+                              arena, *from._impl_.firewall_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, cidr_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, cidr_),
+           offsetof(Impl_, weight_) -
+               offsetof(Impl_, cidr_) +
+               sizeof(Impl_::weight_));
 
   // @@protoc_insertion_point(copy_constructor:palm.router.v1.Wan)
 }
 inline PROTOBUF_NDEBUG_INLINE Wan::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : dns_{visibility, arena},
-        device_(arena),
+      : _cached_size_{0},
+        dns_{visibility, arena},
+        name_(arena),
         address_(arena),
         netmask_(arena),
         gateway_(arena),
-        description_(arena),
-        _cached_size_{0} {}
+        description_(arena) {}
 
 inline void Wan::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, firewall_),
+           0,
+           offsetof(Impl_, weight_) -
+               offsetof(Impl_, firewall_) +
+               sizeof(Impl_::weight_));
 }
 Wan::~Wan() {
   // @@protoc_insertion_point(destructor:palm.router.v1.Wan)
@@ -1062,11 +2717,12 @@ inline void Wan::SharedDtor(MessageLite& self) {
   Wan& this_ = static_cast<Wan&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.device_.Destroy();
+  this_._impl_.name_.Destroy();
   this_._impl_.address_.Destroy();
   this_._impl_.netmask_.Destroy();
   this_._impl_.gateway_.Destroy();
   this_._impl_.description_.Destroy();
+  delete this_._impl_.firewall_;
   this_._impl_.~Impl_();
 }
 
@@ -1118,17 +2774,17 @@ const ::google::protobuf::internal::ClassData* Wan::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 0, 68, 7> Wan::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 1, 74, 7> Wan::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(Wan, _impl_._has_bits_),
     0, // no _extensions_
-    99, 56,  // max_field_number, fast_idx_mask
+    99, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294951934,  // skipmap
+    4294673406,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    9,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1137,9 +2793,21 @@ const ::_pbi::TcParseTable<3, 6, 0, 68, 7> Wan::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // string device = 1;
+    // string name = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Wan, _impl_.device_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Wan, _impl_.name_)}},
+    // uint32 weight = 98;
+    {::_pbi::TcParser::FastV32S2,
+     {1680, 63, 0, PROTOBUF_FIELD_OFFSET(Wan, _impl_.weight_)}},
+    // uint32 cidr = 19;
+    {::_pbi::TcParser::FastV32S2,
+     {408, 63, 0, PROTOBUF_FIELD_OFFSET(Wan, _impl_.cidr_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     // string address = 11;
     {::_pbi::TcParser::FastUS1,
@@ -1153,36 +2821,47 @@ const ::_pbi::TcParseTable<3, 6, 0, 68, 7> Wan::_table_ = {
     // repeated string dns = 14;
     {::_pbi::TcParser::FastUR1,
      {114, 63, 0, PROTOBUF_FIELD_OFFSET(Wan, _impl_.dns_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.router.v1.Firewall firewall = 15;
+    {::_pbi::TcParser::FastMtS1,
+     {122, 0, 0, PROTOBUF_FIELD_OFFSET(Wan, _impl_.firewall_)}},
   }}, {{
-    99, 0, 1,
-    65534, 5,
+    98, 0, 1,
+    65532, 7,
     65535, 65535
   }}, {{
-    // string device = 1;
-    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.device_), 0, 0,
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string address = 11;
-    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.address_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.address_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string netmask = 12;
-    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.netmask_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.netmask_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string gateway = 13;
-    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.gateway_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.gateway_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated string dns = 14;
-    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.dns_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.dns_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // .palm.router.v1.Firewall firewall = 15;
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.firewall_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // uint32 cidr = 19;
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.cidr_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 weight = 98;
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.weight_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // string description = 99;
-    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.description_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Wan, _impl_.description_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\22\6\7\7\7\3\13\0"
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Firewall>()},
+  }}, {{
+    "\22\4\7\7\7\3\0\0\0\13\0\0\0\0\0\0"
     "palm.router.v1.Wan"
-    "device"
+    "name"
     "address"
     "netmask"
     "gateway"
@@ -1199,11 +2878,20 @@ PROTOBUF_NOINLINE void Wan::Clear() {
   (void) cached_has_bits;
 
   _impl_.dns_.Clear();
-  _impl_.device_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
   _impl_.address_.ClearToEmpty();
   _impl_.netmask_.ClearToEmpty();
   _impl_.gateway_.ClearToEmpty();
   _impl_.description_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.firewall_ != nullptr);
+    _impl_.firewall_->Clear();
+  }
+  ::memset(&_impl_.cidr_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.weight_) -
+      reinterpret_cast<char*>(&_impl_.cidr_)) + sizeof(_impl_.weight_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1222,11 +2910,11 @@ PROTOBUF_NOINLINE void Wan::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string device = 1;
-          if (!this_._internal_device().empty()) {
-            const std::string& _s = this_._internal_device();
+          // string name = 1;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Wan.device");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Wan.name");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
@@ -1260,6 +2948,28 @@ PROTOBUF_NOINLINE void Wan::Clear() {
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Wan.dns");
             target = stream->WriteString(14, s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.router.v1.Firewall firewall = 15;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                15, *this_._impl_.firewall_, this_._impl_.firewall_->GetCachedSize(), target,
+                stream);
+          }
+
+          // uint32 cidr = 19;
+          if (this_._internal_cidr() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                19, this_._internal_cidr(), target);
+          }
+
+          // uint32 weight = 98;
+          if (this_._internal_weight() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                98, this_._internal_weight(), target);
           }
 
           // string description = 99;
@@ -1306,10 +3016,10 @@ PROTOBUF_NOINLINE void Wan::Clear() {
             }
           }
            {
-            // string device = 1;
-            if (!this_._internal_device().empty()) {
+            // string name = 1;
+            if (!this_._internal_name().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_device());
+                                              this_._internal_name());
             }
             // string address = 11;
             if (!this_._internal_address().empty()) {
@@ -1332,6 +3042,26 @@ PROTOBUF_NOINLINE void Wan::Clear() {
                                               this_._internal_description());
             }
           }
+           {
+            // .palm.router.v1.Firewall firewall = 15;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.firewall_);
+            }
+          }
+           {
+            // uint32 cidr = 19;
+            if (this_._internal_cidr() != 0) {
+              total_size += 2 + ::_pbi::WireFormatLite::UInt32Size(
+                                              this_._internal_cidr());
+            }
+            // uint32 weight = 98;
+            if (this_._internal_weight() != 0) {
+              total_size += 2 + ::_pbi::WireFormatLite::UInt32Size(
+                                              this_._internal_weight());
+            }
+          }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
@@ -1339,14 +3069,15 @@ PROTOBUF_NOINLINE void Wan::Clear() {
 void Wan::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Wan*>(&to_msg);
   auto& from = static_cast<const Wan&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Wan)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   _this->_internal_mutable_dns()->MergeFrom(from._internal_dns());
-  if (!from._internal_device().empty()) {
-    _this->_internal_set_device(from._internal_device());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_address().empty()) {
     _this->_internal_set_address(from._internal_address());
@@ -1360,6 +3091,23 @@ void Wan::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::pro
   if (!from._internal_description().empty()) {
     _this->_internal_set_description(from._internal_description());
   }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.firewall_ != nullptr);
+    if (_this->_impl_.firewall_ == nullptr) {
+      _this->_impl_.firewall_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Firewall>(arena, *from._impl_.firewall_);
+    } else {
+      _this->_impl_.firewall_->MergeFrom(*from._impl_.firewall_);
+    }
+  }
+  if (from._internal_cidr() != 0) {
+    _this->_impl_.cidr_ = from._impl_.cidr_;
+  }
+  if (from._internal_weight() != 0) {
+    _this->_impl_.weight_ = from._impl_.weight_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1376,12 +3124,19 @@ void Wan::InternalSwap(Wan* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.dns_.InternalSwap(&other->_impl_.dns_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.device_, &other->_impl_.device_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.netmask_, &other->_impl_.netmask_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.gateway_, &other->_impl_.gateway_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Wan, _impl_.weight_)
+      + sizeof(Wan::_impl_.weight_)
+      - PROTOBUF_FIELD_OFFSET(Wan, _impl_.firewall_)>(
+          reinterpret_cast<char*>(&_impl_.firewall_),
+          reinterpret_cast<char*>(&other->_impl_.firewall_));
 }
 
 ::google::protobuf::Metadata Wan::GetMetadata() const {
@@ -1389,55 +3144,104 @@ void Wan::InternalSwap(Wan* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class Lan_Dhcp_Host::_Internal {
+ public:
+};
+
+Lan_Dhcp_Host::Lan_Dhcp_Host(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-              Lan_ReservedIpsEntry_DoNotUse::Lan_ReservedIpsEntry_DoNotUse() : SuperType(_class_data_.base()) {}
-              Lan_ReservedIpsEntry_DoNotUse::Lan_ReservedIpsEntry_DoNotUse(::google::protobuf::Arena* arena)
-                  : SuperType(arena, _class_data_.base()) {}
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-              Lan_ReservedIpsEntry_DoNotUse::Lan_ReservedIpsEntry_DoNotUse() : SuperType() {}
-              Lan_ReservedIpsEntry_DoNotUse::Lan_ReservedIpsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-              inline void* Lan_ReservedIpsEntry_DoNotUse::PlacementNew_(const void*, void* mem,
-                                                      ::google::protobuf::Arena* arena) {
-                return ::new (mem) Lan_ReservedIpsEntry_DoNotUse(arena);
-              }
-              constexpr auto Lan_ReservedIpsEntry_DoNotUse::InternalNewImpl_() {
-                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Lan_ReservedIpsEntry_DoNotUse),
-                                                          alignof(Lan_ReservedIpsEntry_DoNotUse));
-              }
-              PROTOBUF_CONSTINIT
-              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-              const ::google::protobuf::internal::ClassDataFull Lan_ReservedIpsEntry_DoNotUse::_class_data_ = {
-                  ::google::protobuf::internal::ClassData{
-                      &_Lan_ReservedIpsEntry_DoNotUse_default_instance_._instance,
-                      &_table_.header,
-                      nullptr,  // OnDemandRegisterArenaDtor
-                      nullptr,  // IsInitialized
-                      &Lan_ReservedIpsEntry_DoNotUse::MergeImpl,
-                      ::google::protobuf::Message::GetNewImpl<Lan_ReservedIpsEntry_DoNotUse>(),
-              #if defined(PROTOBUF_CUSTOM_VTABLE)
-                      &Lan_ReservedIpsEntry_DoNotUse::SharedDtor,
-                      static_cast<void (::google::protobuf::MessageLite::*)()>(
-                          &Lan_ReservedIpsEntry_DoNotUse::ClearImpl),
-                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
-                          ,
-              #endif  // PROTOBUF_CUSTOM_VTABLE
-                      PROTOBUF_FIELD_OFFSET(Lan_ReservedIpsEntry_DoNotUse, _impl_._cached_size_),
-                      false,
-                  },
-                  &Lan_ReservedIpsEntry_DoNotUse::kDescriptorMethods,
-                  &descriptor_table_router_2eproto,
-                  nullptr,  // tracker
-              };
-              const ::google::protobuf::internal::ClassData* Lan_ReservedIpsEntry_DoNotUse::GetClassData() const {
-                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-                return _class_data_.base();
-              }
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Lan.Dhcp.Host)
+}
+inline PROTOBUF_NDEBUG_INLINE Lan_Dhcp_Host::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::router::v1::Lan_Dhcp_Host& from_msg)
+      : name_(arena, from.name_),
+        mac_(arena, from.mac_),
+        _cached_size_{0} {}
+
+Lan_Dhcp_Host::Lan_Dhcp_Host(
+    ::google::protobuf::Arena* arena,
+    const Lan_Dhcp_Host& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Lan_Dhcp_Host* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Lan.Dhcp.Host)
+}
+inline PROTOBUF_NDEBUG_INLINE Lan_Dhcp_Host::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        mac_(arena),
+        _cached_size_{0} {}
+
+inline void Lan_Dhcp_Host::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Lan_Dhcp_Host::~Lan_Dhcp_Host() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Lan.Dhcp.Host)
+  SharedDtor(*this);
+}
+inline void Lan_Dhcp_Host::SharedDtor(MessageLite& self) {
+  Lan_Dhcp_Host& this_ = static_cast<Lan_Dhcp_Host&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.name_.Destroy();
+  this_._impl_.mac_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Lan_Dhcp_Host::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Lan_Dhcp_Host(arena);
+}
+constexpr auto Lan_Dhcp_Host::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Lan_Dhcp_Host),
+                                            alignof(Lan_Dhcp_Host));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Lan_Dhcp_Host::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Lan_Dhcp_Host_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Lan_Dhcp_Host::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Lan_Dhcp_Host>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Lan_Dhcp_Host::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Lan_Dhcp_Host>(), &Lan_Dhcp_Host::ByteSizeLong,
+            &Lan_Dhcp_Host::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Lan_Dhcp_Host, _impl_._cached_size_),
+        false,
+    },
+    &Lan_Dhcp_Host::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Lan_Dhcp_Host::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 52, 2> Lan_ReservedIpsEntry_DoNotUse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 44, 2> Lan_Dhcp_Host::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Lan_ReservedIpsEntry_DoNotUse, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -1448,40 +3252,616 @@ const ::_pbi::TcParseTable<1, 2, 0, 52, 2> Lan_ReservedIpsEntry_DoNotUse::_table
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
-    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::Lan_ReservedIpsEntry_DoNotUse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Lan_Dhcp_Host>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string value = 2;
+    // string mac = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_ReservedIpsEntry_DoNotUse, _impl_.value_)}},
-    // string key = 1;
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp_Host, _impl_.mac_)}},
+    // string name = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_ReservedIpsEntry_DoNotUse, _impl_.key_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp_Host, _impl_.name_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string key = 1;
-    {PROTOBUF_FIELD_OFFSET(Lan_ReservedIpsEntry_DoNotUse, _impl_.key_), -1, 0,
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp_Host, _impl_.name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string value = 2;
-    {PROTOBUF_FIELD_OFFSET(Lan_ReservedIpsEntry_DoNotUse, _impl_.value_), -1, 0,
+    // string mac = 2;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp_Host, _impl_.mac_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\43\3\5\0\0\0\0\0"
-    "palm.router.v1.Lan.ReservedIpsEntry"
+    "\34\4\3\0\0\0\0\0"
+    "palm.router.v1.Lan.Dhcp.Host"
+    "name"
+    "mac"
+  }},
+};
+
+PROTOBUF_NOINLINE void Lan_Dhcp_Host::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Lan.Dhcp.Host)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.mac_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Lan_Dhcp_Host::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Lan_Dhcp_Host& this_ = static_cast<const Lan_Dhcp_Host&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Lan_Dhcp_Host::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Lan_Dhcp_Host& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Lan.Dhcp.Host)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string name = 1;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.Host.name");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string mac = 2;
+          if (!this_._internal_mac().empty()) {
+            const std::string& _s = this_._internal_mac();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.Host.mac");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Lan.Dhcp.Host)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Lan_Dhcp_Host::ByteSizeLong(const MessageLite& base) {
+          const Lan_Dhcp_Host& this_ = static_cast<const Lan_Dhcp_Host&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Lan_Dhcp_Host::ByteSizeLong() const {
+          const Lan_Dhcp_Host& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Lan.Dhcp.Host)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string name = 1;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+            // string mac = 2;
+            if (!this_._internal_mac().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_mac());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Lan_Dhcp_Host::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Lan_Dhcp_Host*>(&to_msg);
+  auto& from = static_cast<const Lan_Dhcp_Host&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Lan.Dhcp.Host)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_mac().empty()) {
+    _this->_internal_set_mac(from._internal_mac());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Lan_Dhcp_Host::CopyFrom(const Lan_Dhcp_Host& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Lan.Dhcp.Host)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Lan_Dhcp_Host::InternalSwap(Lan_Dhcp_Host* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mac_, &other->_impl_.mac_, arena);
+}
+
+::google::protobuf::Metadata Lan_Dhcp_Host::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Lan_Dhcp_ReservedHostsEntry_DoNotUse::Lan_Dhcp_ReservedHostsEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Lan_Dhcp_ReservedHostsEntry_DoNotUse::Lan_Dhcp_ReservedHostsEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Lan_Dhcp_ReservedHostsEntry_DoNotUse::Lan_Dhcp_ReservedHostsEntry_DoNotUse() : SuperType() {}
+              Lan_Dhcp_ReservedHostsEntry_DoNotUse::Lan_Dhcp_ReservedHostsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Lan_Dhcp_ReservedHostsEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Lan_Dhcp_ReservedHostsEntry_DoNotUse(arena);
+              }
+              constexpr auto Lan_Dhcp_ReservedHostsEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Lan_Dhcp_ReservedHostsEntry_DoNotUse),
+                                                          alignof(Lan_Dhcp_ReservedHostsEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Lan_Dhcp_ReservedHostsEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Lan_Dhcp_ReservedHostsEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Lan_Dhcp_ReservedHostsEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Lan_Dhcp_ReservedHostsEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Lan_Dhcp_ReservedHostsEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Lan_Dhcp_ReservedHostsEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Lan_Dhcp_ReservedHostsEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_router_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Lan_Dhcp_ReservedHostsEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 54, 2> Lan_Dhcp_ReservedHostsEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Lan_Dhcp_ReservedHostsEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.router.v1.Lan.Dhcp.Host value = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.router.v1.Lan.Dhcp.Host value = 2;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp_ReservedHostsEntry_DoNotUse, _impl_.value_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Lan_Dhcp_Host>()},
+  }}, {{
+    "\52\3\0\0\0\0\0\0"
+    "palm.router.v1.Lan.Dhcp.ReservedHostsEntry"
     "key"
-    "value"
   }},
 };
 
 // ===================================================================
 
+class Lan_Dhcp::_Internal {
+ public:
+};
+
+Lan_Dhcp::Lan_Dhcp(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Lan.Dhcp)
+}
+inline PROTOBUF_NDEBUG_INLINE Lan_Dhcp::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::router::v1::Lan_Dhcp& from_msg)
+      : dns_{visibility, arena, from.dns_},
+        reserved_hosts_{visibility, arena, from.reserved_hosts_},
+        begin_(arena, from.begin_),
+        end_(arena, from.end_),
+        _cached_size_{0} {}
+
+Lan_Dhcp::Lan_Dhcp(
+    ::google::protobuf::Arena* arena,
+    const Lan_Dhcp& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Lan_Dhcp* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Lan.Dhcp)
+}
+inline PROTOBUF_NDEBUG_INLINE Lan_Dhcp::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : dns_{visibility, arena},
+        reserved_hosts_{visibility, arena},
+        begin_(arena),
+        end_(arena),
+        _cached_size_{0} {}
+
+inline void Lan_Dhcp::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Lan_Dhcp::~Lan_Dhcp() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Lan.Dhcp)
+  SharedDtor(*this);
+}
+inline void Lan_Dhcp::SharedDtor(MessageLite& self) {
+  Lan_Dhcp& this_ = static_cast<Lan_Dhcp&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.begin_.Destroy();
+  this_._impl_.end_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Lan_Dhcp::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Lan_Dhcp(arena);
+}
+constexpr auto Lan_Dhcp::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.dns_) +
+          decltype(Lan_Dhcp::_impl_.dns_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.reserved_hosts_) +
+          decltype(Lan_Dhcp::_impl_.reserved_hosts_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.reserved_hosts_) +
+          decltype(Lan_Dhcp::_impl_.reserved_hosts_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(Lan_Dhcp), alignof(Lan_Dhcp), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Lan_Dhcp::PlacementNew_,
+                                 sizeof(Lan_Dhcp),
+                                 alignof(Lan_Dhcp));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Lan_Dhcp::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Lan_Dhcp_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Lan_Dhcp::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Lan_Dhcp>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Lan_Dhcp::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Lan_Dhcp>(), &Lan_Dhcp::ByteSizeLong,
+            &Lan_Dhcp::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_._cached_size_),
+        false,
+    },
+    &Lan_Dhcp::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Lan_Dhcp::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 2, 57, 2> Lan_Dhcp::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967032,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Lan_Dhcp>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string begin = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.begin_)}},
+    // string end = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.end_)}},
+    // repeated string dns = 3;
+    {::_pbi::TcParser::FastUR1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.dns_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string begin = 1;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.begin_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string end = 2;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.end_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string dns = 3;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.dns_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // map<string, .palm.router.v1.Lan.Dhcp.Host> reserved_hosts = 9;
+    {PROTOBUF_FIELD_OFFSET(Lan_Dhcp, _impl_.reserved_hosts_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+  }}, {{
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Lan_Dhcp()._impl_.reserved_hosts_)>(
+        1, 0, 0, 9,
+        11)},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Lan_Dhcp_Host>()},
+  }}, {{
+    "\27\5\3\3\16\0\0\0"
+    "palm.router.v1.Lan.Dhcp"
+    "begin"
+    "end"
+    "dns"
+    "reserved_hosts"
+  }},
+};
+
+PROTOBUF_NOINLINE void Lan_Dhcp::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Lan.Dhcp)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.dns_.Clear();
+  _impl_.reserved_hosts_.Clear();
+  _impl_.begin_.ClearToEmpty();
+  _impl_.end_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Lan_Dhcp::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Lan_Dhcp& this_ = static_cast<const Lan_Dhcp&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Lan_Dhcp::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Lan_Dhcp& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Lan.Dhcp)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string begin = 1;
+          if (!this_._internal_begin().empty()) {
+            const std::string& _s = this_._internal_begin();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.begin");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string end = 2;
+          if (!this_._internal_end().empty()) {
+            const std::string& _s = this_._internal_end();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.end");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // repeated string dns = 3;
+          for (int i = 0, n = this_._internal_dns_size(); i < n; ++i) {
+            const auto& s = this_._internal_dns().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.dns");
+            target = stream->WriteString(3, s, target);
+          }
+
+          // map<string, .palm.router.v1.Lan.Dhcp.Host> reserved_hosts = 9;
+          if (!this_._internal_reserved_hosts().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, ::palm::router::v1::Lan_Dhcp_Host>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, ::palm::router::v1::Lan_Dhcp_Host,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_MESSAGE>;
+            const auto& field = this_._internal_reserved_hosts();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    9, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.reserved_hosts");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    9, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.Dhcp.reserved_hosts");
+              }
+            }
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Lan.Dhcp)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Lan_Dhcp::ByteSizeLong(const MessageLite& base) {
+          const Lan_Dhcp& this_ = static_cast<const Lan_Dhcp&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Lan_Dhcp::ByteSizeLong() const {
+          const Lan_Dhcp& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Lan.Dhcp)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated string dns = 3;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_dns().size());
+              for (int i = 0, n = this_._internal_dns().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_dns().Get(i));
+              }
+            }
+            // map<string, .palm.router.v1.Lan.Dhcp.Host> reserved_hosts = 9;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_reserved_hosts_size());
+              for (const auto& entry : this_._internal_reserved_hosts()) {
+                total_size += _pbi::MapEntryFuncs<std::string, ::palm::router::v1::Lan_Dhcp_Host,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_MESSAGE>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+          }
+           {
+            // string begin = 1;
+            if (!this_._internal_begin().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_begin());
+            }
+            // string end = 2;
+            if (!this_._internal_end().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_end());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Lan_Dhcp::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Lan_Dhcp*>(&to_msg);
+  auto& from = static_cast<const Lan_Dhcp&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Lan.Dhcp)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_dns()->MergeFrom(from._internal_dns());
+  _this->_impl_.reserved_hosts_.MergeFrom(from._impl_.reserved_hosts_);
+  if (!from._internal_begin().empty()) {
+    _this->_internal_set_begin(from._internal_begin());
+  }
+  if (!from._internal_end().empty()) {
+    _this->_internal_set_end(from._internal_end());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Lan_Dhcp::CopyFrom(const Lan_Dhcp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Lan.Dhcp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Lan_Dhcp::InternalSwap(Lan_Dhcp* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.dns_.InternalSwap(&other->_impl_.dns_);
+  _impl_.reserved_hosts_.InternalSwap(&other->_impl_.reserved_hosts_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.begin_, &other->_impl_.begin_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.end_, &other->_impl_.end_, arena);
+}
+
+::google::protobuf::Metadata Lan_Dhcp::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class Lan::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<Lan>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Lan, _impl_._has_bits_);
 };
 
 Lan::Lan(::google::protobuf::Arena* arena)
@@ -1496,11 +3876,13 @@ Lan::Lan(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Lan::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::router::v1::Lan& from_msg)
-      : reserved_ips_{visibility, arena, from.reserved_ips_},
-        device_(arena, from.device_),
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_),
         address_(arena, from.address_),
-        description_(arena, from.description_),
-        _cached_size_{0} {}
+        netmask_(arena, from.netmask_),
+        network_(arena, from.network_),
+        description_(arena, from.description_) {}
 
 Lan::Lan(
     ::google::protobuf::Arena* arena,
@@ -1515,33 +3897,38 @@ Lan::Lan(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.dhcp_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Lan_Dhcp>(
+                              arena, *from._impl_.dhcp_)
+                        : nullptr;
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, blacklist_mode_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, blacklist_mode_),
-           offsetof(Impl_, dhcp_) -
+           offsetof(Impl_, cidr_) -
                offsetof(Impl_, blacklist_mode_) +
-               sizeof(Impl_::dhcp_));
+               sizeof(Impl_::cidr_));
 
   // @@protoc_insertion_point(copy_constructor:palm.router.v1.Lan)
 }
 inline PROTOBUF_NDEBUG_INLINE Lan::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : reserved_ips_{visibility, arena},
-        device_(arena),
+      : _cached_size_{0},
+        name_(arena),
         address_(arena),
-        description_(arena),
-        _cached_size_{0} {}
+        netmask_(arena),
+        network_(arena),
+        description_(arena) {}
 
 inline void Lan::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, blacklist_mode_),
+               offsetof(Impl_, dhcp_),
            0,
-           offsetof(Impl_, dhcp_) -
-               offsetof(Impl_, blacklist_mode_) +
-               sizeof(Impl_::dhcp_));
+           offsetof(Impl_, cidr_) -
+               offsetof(Impl_, dhcp_) +
+               sizeof(Impl_::cidr_));
 }
 Lan::~Lan() {
   // @@protoc_insertion_point(destructor:palm.router.v1.Lan)
@@ -1551,9 +3938,12 @@ inline void Lan::SharedDtor(MessageLite& self) {
   Lan& this_ = static_cast<Lan&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.device_.Destroy();
+  this_._impl_.name_.Destroy();
   this_._impl_.address_.Destroy();
+  this_._impl_.netmask_.Destroy();
+  this_._impl_.network_.Destroy();
   this_._impl_.description_.Destroy();
+  delete this_._impl_.dhcp_;
   this_._impl_.~Impl_();
 }
 
@@ -1562,24 +3952,8 @@ inline void* Lan::PlacementNew_(const void*, void* mem,
   return ::new (mem) Lan(arena);
 }
 constexpr auto Lan::InternalNewImpl_() {
-  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(Lan, _impl_.reserved_ips_) +
-          decltype(Lan::_impl_.reserved_ips_)::
-              InternalGetArenaOffset(
-                  ::google::protobuf::Message::internal_visibility()),
-      PROTOBUF_FIELD_OFFSET(Lan, _impl_.reserved_ips_) +
-          decltype(Lan::_impl_.reserved_ips_)::
-              InternalGetArenaOffsetAlt(
-                  ::google::protobuf::Message::internal_visibility()),
-  });
-  if (arena_bits.has_value()) {
-    return ::google::protobuf::internal::MessageCreator::CopyInit(
-        sizeof(Lan), alignof(Lan), *arena_bits);
-  } else {
-    return ::google::protobuf::internal::MessageCreator(&Lan::PlacementNew_,
-                                 sizeof(Lan),
-                                 alignof(Lan));
-  }
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Lan),
+                                            alignof(Lan));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
@@ -1609,15 +3983,15 @@ const ::google::protobuf::internal::ClassData* Lan::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 6, 1, 63, 7> Lan::_table_ = {
+const ::_pbi::TcParseTable<4, 8, 1, 71, 7> Lan::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(Lan, _impl_._has_bits_),
     0, // no _extensions_
-    99, 24,  // max_field_number, fast_idx_mask
+    99, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294959870,  // skipmap
+    4294689534,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    8,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -1627,50 +4001,74 @@ const ::_pbi::TcParseTable<2, 6, 1, 63, 7> Lan::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::router::v1::Lan>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool dhcp = 12;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Lan, _impl_.dhcp_), 63>(),
-     {96, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_)}},
-    // string device = 1;
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.device_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // optional .palm.router.v1.Lan.Dhcp dhcp = 19;
+    {::_pbi::TcParser::FastMtS2,
+     {410, 0, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool blacklist_mode = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Lan, _impl_.blacklist_mode_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.blacklist_mode_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // string address = 11;
     {::_pbi::TcParser::FastUS1,
      {90, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.address_)}},
+    // string netmask = 12;
+    {::_pbi::TcParser::FastUS1,
+     {98, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.netmask_)}},
+    // uint32 cidr = 13;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Lan, _impl_.cidr_), 63>(),
+     {104, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.cidr_)}},
+    // string network = 14;
+    {::_pbi::TcParser::FastUS1,
+     {114, 63, 0, PROTOBUF_FIELD_OFFSET(Lan, _impl_.network_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     99, 0, 1,
-    65534, 5,
+    65534, 7,
     65535, 65535
   }}, {{
-    // string device = 1;
-    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.device_), 0, 0,
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // bool blacklist_mode = 9;
-    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.blacklist_mode_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.blacklist_mode_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string address = 11;
-    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.address_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.address_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bool dhcp = 12;
-    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // map<string, string> reserved_ips = 13;
-    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.reserved_ips_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // string netmask = 12;
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.netmask_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 cidr = 13;
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.cidr_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string network = 14;
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.network_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional .palm.router.v1.Lan.Dhcp dhcp = 19;
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string description = 99;
-    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.description_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Lan, _impl_.description_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
-    {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(Lan()._impl_.reserved_ips_)>(
-        1, 0, 0, 9,
-        9)},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Lan_Dhcp>()},
   }}, {{
-    "\22\6\0\7\0\14\13\0"
+    "\22\4\0\7\7\0\7\0\13\0\0\0\0\0\0\0"
     "palm.router.v1.Lan"
-    "device"
+    "name"
     "address"
-    "reserved_ips"
+    "netmask"
+    "network"
     "description"
   }},
 };
@@ -1682,13 +4080,20 @@ PROTOBUF_NOINLINE void Lan::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.reserved_ips_.Clear();
-  _impl_.device_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
   _impl_.address_.ClearToEmpty();
+  _impl_.netmask_.ClearToEmpty();
+  _impl_.network_.ClearToEmpty();
   _impl_.description_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.dhcp_ != nullptr);
+    _impl_.dhcp_->Clear();
+  }
   ::memset(&_impl_.blacklist_mode_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.dhcp_) -
-      reinterpret_cast<char*>(&_impl_.blacklist_mode_)) + sizeof(_impl_.dhcp_));
+      reinterpret_cast<char*>(&_impl_.cidr_) -
+      reinterpret_cast<char*>(&_impl_.blacklist_mode_)) + sizeof(_impl_.cidr_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1707,11 +4112,11 @@ PROTOBUF_NOINLINE void Lan::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string device = 1;
-          if (!this_._internal_device().empty()) {
-            const std::string& _s = this_._internal_device();
+          // string name = 1;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.device");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.name");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
@@ -1730,44 +4135,35 @@ PROTOBUF_NOINLINE void Lan::Clear() {
             target = stream->WriteStringMaybeAliased(11, _s, target);
           }
 
-          // bool dhcp = 12;
-          if (this_._internal_dhcp() != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                12, this_._internal_dhcp(), target);
+          // string netmask = 12;
+          if (!this_._internal_netmask().empty()) {
+            const std::string& _s = this_._internal_netmask();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.netmask");
+            target = stream->WriteStringMaybeAliased(12, _s, target);
           }
 
-          // map<string, string> reserved_ips = 13;
-          if (!this_._internal_reserved_ips().empty()) {
-            using MapType = ::google::protobuf::Map<std::string, std::string>;
-            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
-                                           _pbi::WireFormatLite::TYPE_STRING,
-                                           _pbi::WireFormatLite::TYPE_STRING>;
-            const auto& field = this_._internal_reserved_ips();
+          // uint32 cidr = 13;
+          if (this_._internal_cidr() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                13, this_._internal_cidr(), target);
+          }
 
-            if (stream->IsSerializationDeterministic() && field.size() > 1) {
-              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
-                target = WireHelper::InternalSerialize(
-                    13, entry.first, entry.second, target, stream);
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.reserved_ips");
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.reserved_ips");
-              }
-            } else {
-              for (const auto& entry : field) {
-                target = WireHelper::InternalSerialize(
-                    13, entry.first, entry.second, target, stream);
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.reserved_ips");
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.reserved_ips");
-              }
-            }
+          // string network = 14;
+          if (!this_._internal_network().empty()) {
+            const std::string& _s = this_._internal_network();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Lan.network");
+            target = stream->WriteStringMaybeAliased(14, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional .palm.router.v1.Lan.Dhcp dhcp = 19;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                19, *this_._impl_.dhcp_, this_._impl_.dhcp_->GetCachedSize(), target,
+                stream);
           }
 
           // string description = 99;
@@ -1803,40 +4199,49 @@ PROTOBUF_NOINLINE void Lan::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // map<string, string> reserved_ips = 13;
-            {
-              total_size +=
-                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_reserved_ips_size());
-              for (const auto& entry : this_._internal_reserved_ips()) {
-                total_size += _pbi::MapEntryFuncs<std::string, std::string,
-                                               _pbi::WireFormatLite::TYPE_STRING,
-                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
-              }
-            }
-          }
-           {
-            // string device = 1;
-            if (!this_._internal_device().empty()) {
+            // string name = 1;
+            if (!this_._internal_name().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_device());
+                                              this_._internal_name());
             }
             // string address = 11;
             if (!this_._internal_address().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_address());
             }
+            // string netmask = 12;
+            if (!this_._internal_netmask().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_netmask());
+            }
+            // string network = 14;
+            if (!this_._internal_network().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_network());
+            }
             // string description = 99;
             if (!this_._internal_description().empty()) {
               total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_description());
             }
+          }
+           {
+            // optional .palm.router.v1.Lan.Dhcp dhcp = 19;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 2 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.dhcp_);
+            }
+          }
+           {
             // bool blacklist_mode = 9;
             if (this_._internal_blacklist_mode() != 0) {
               total_size += 2;
             }
-            // bool dhcp = 12;
-            if (this_._internal_dhcp() != 0) {
-              total_size += 2;
+            // uint32 cidr = 13;
+            if (this_._internal_cidr() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_cidr());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1846,27 +4251,44 @@ PROTOBUF_NOINLINE void Lan::Clear() {
 void Lan::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Lan*>(&to_msg);
   auto& from = static_cast<const Lan&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Lan)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.reserved_ips_.MergeFrom(from._impl_.reserved_ips_);
-  if (!from._internal_device().empty()) {
-    _this->_internal_set_device(from._internal_device());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_address().empty()) {
     _this->_internal_set_address(from._internal_address());
   }
+  if (!from._internal_netmask().empty()) {
+    _this->_internal_set_netmask(from._internal_netmask());
+  }
+  if (!from._internal_network().empty()) {
+    _this->_internal_set_network(from._internal_network());
+  }
   if (!from._internal_description().empty()) {
     _this->_internal_set_description(from._internal_description());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.dhcp_ != nullptr);
+    if (_this->_impl_.dhcp_ == nullptr) {
+      _this->_impl_.dhcp_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Lan_Dhcp>(arena, *from._impl_.dhcp_);
+    } else {
+      _this->_impl_.dhcp_->MergeFrom(*from._impl_.dhcp_);
+    }
   }
   if (from._internal_blacklist_mode() != 0) {
     _this->_impl_.blacklist_mode_ = from._impl_.blacklist_mode_;
   }
-  if (from._internal_dhcp() != 0) {
-    _this->_impl_.dhcp_ = from._impl_.dhcp_;
+  if (from._internal_cidr() != 0) {
+    _this->_impl_.cidr_ = from._impl_.cidr_;
   }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1883,16 +4305,18 @@ void Lan::InternalSwap(Lan* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.reserved_ips_.InternalSwap(&other->_impl_.reserved_ips_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.device_, &other->_impl_.device_, arena);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.netmask_, &other->_impl_.netmask_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.network_, &other->_impl_.network_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_)
-      + sizeof(Lan::_impl_.dhcp_)
-      - PROTOBUF_FIELD_OFFSET(Lan, _impl_.blacklist_mode_)>(
-          reinterpret_cast<char*>(&_impl_.blacklist_mode_),
-          reinterpret_cast<char*>(&other->_impl_.blacklist_mode_));
+      PROTOBUF_FIELD_OFFSET(Lan, _impl_.cidr_)
+      + sizeof(Lan::_impl_.cidr_)
+      - PROTOBUF_FIELD_OFFSET(Lan, _impl_.dhcp_)>(
+          reinterpret_cast<char*>(&_impl_.dhcp_),
+          reinterpret_cast<char*>(&other->_impl_.dhcp_));
 }
 
 ::google::protobuf::Metadata Lan::GetMetadata() const {
@@ -1900,12 +4324,446 @@ void Lan::InternalSwap(Lan* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class Network_Item::_Internal {
+ public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::palm::router::v1::Network_Item, _impl_._oneof_case_);
+};
+
+void Network_Item::set_allocated_wan(::palm::router::v1::Wan* wan) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_interface();
+  if (wan) {
+    ::google::protobuf::Arena* submessage_arena = wan->GetArena();
+    if (message_arena != submessage_arena) {
+      wan = ::google::protobuf::internal::GetOwnedMessage(message_arena, wan, submessage_arena);
+    }
+    set_has_wan();
+    _impl_.interface_.wan_ = wan;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Network.Item.wan)
+}
+void Network_Item::set_allocated_lan(::palm::router::v1::Lan* lan) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_interface();
+  if (lan) {
+    ::google::protobuf::Arena* submessage_arena = lan->GetArena();
+    if (message_arena != submessage_arena) {
+      lan = ::google::protobuf::internal::GetOwnedMessage(message_arena, lan, submessage_arena);
+    }
+    set_has_lan();
+    _impl_.interface_.lan_ = lan;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.Network.Item.lan)
+}
+Network_Item::Network_Item(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.Network.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE Network_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::router::v1::Network_Item& from_msg)
+      : interface_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+Network_Item::Network_Item(
+    ::google::protobuf::Arena* arena,
+    const Network_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Network_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (interface_case()) {
+    case INTERFACE_NOT_SET:
+      break;
+      case kWan:
+        _impl_.interface_.wan_ = ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Wan>(arena, *from._impl_.interface_.wan_);
+        break;
+      case kLan:
+        _impl_.interface_.lan_ = ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Lan>(arena, *from._impl_.interface_.lan_);
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.Network.Item)
+}
+inline PROTOBUF_NDEBUG_INLINE Network_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : interface_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void Network_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Network_Item::~Network_Item() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.Network.Item)
+  SharedDtor(*this);
+}
+inline void Network_Item::SharedDtor(MessageLite& self) {
+  Network_Item& this_ = static_cast<Network_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  if (this_.has_interface()) {
+    this_.clear_interface();
+  }
+  this_._impl_.~Impl_();
+}
+
+void Network_Item::clear_interface() {
+// @@protoc_insertion_point(one_of_clear_start:palm.router.v1.Network.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (interface_case()) {
+    case kWan: {
+      if (GetArena() == nullptr) {
+        delete _impl_.interface_.wan_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.interface_.wan_);
+      }
+      break;
+    }
+    case kLan: {
+      if (GetArena() == nullptr) {
+        delete _impl_.interface_.lan_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.interface_.lan_);
+      }
+      break;
+    }
+    case INTERFACE_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = INTERFACE_NOT_SET;
+}
+
+
+inline void* Network_Item::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Network_Item(arena);
+}
+constexpr auto Network_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Network_Item),
+                                            alignof(Network_Item));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Network_Item::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Network_Item_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Network_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Network_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Network_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Network_Item>(), &Network_Item::ByteSizeLong,
+            &Network_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Network_Item, _impl_._cached_size_),
+        false,
+    },
+    &Network_Item::kDescriptorMethods,
+    &descriptor_table_router_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Network_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> Network_Item::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Network_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.router.v1.Wan wan = 1;
+    {PROTOBUF_FIELD_OFFSET(Network_Item, _impl_.interface_.wan_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.router.v1.Lan lan = 2;
+    {PROTOBUF_FIELD_OFFSET(Network_Item, _impl_.interface_.lan_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Wan>()},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Lan>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Network_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.Network.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_interface();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Network_Item::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Network_Item& this_ = static_cast<const Network_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Network_Item::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Network_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.Network.Item)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.interface_case()) {
+            case kWan: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.interface_.wan_, this_._impl_.interface_.wan_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kLan: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  2, *this_._impl_.interface_.lan_, this_._impl_.interface_.lan_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.Network.Item)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Network_Item::ByteSizeLong(const MessageLite& base) {
+          const Network_Item& this_ = static_cast<const Network_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Network_Item::ByteSizeLong() const {
+          const Network_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.Network.Item)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          switch (this_.interface_case()) {
+            // .palm.router.v1.Wan wan = 1;
+            case kWan: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.interface_.wan_);
+              break;
+            }
+            // .palm.router.v1.Lan lan = 2;
+            case kLan: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.interface_.lan_);
+              break;
+            }
+            case INTERFACE_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Network_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Network_Item*>(&to_msg);
+  auto& from = static_cast<const Network_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Network.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_interface();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kWan: {
+        if (oneof_needs_init) {
+          _this->_impl_.interface_.wan_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Wan>(arena, *from._impl_.interface_.wan_);
+        } else {
+          _this->_impl_.interface_.wan_->MergeFrom(from._internal_wan());
+        }
+        break;
+      }
+      case kLan: {
+        if (oneof_needs_init) {
+          _this->_impl_.interface_.lan_ =
+              ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Lan>(arena, *from._impl_.interface_.lan_);
+        } else {
+          _this->_impl_.interface_.lan_->MergeFrom(from._internal_lan());
+        }
+        break;
+      }
+      case INTERFACE_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Network_Item::CopyFrom(const Network_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.Network.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Network_Item::InternalSwap(Network_Item* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.interface_, other->_impl_.interface_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata Network_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Network_ItemsEntry_DoNotUse::Network_ItemsEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Network_ItemsEntry_DoNotUse::Network_ItemsEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Network_ItemsEntry_DoNotUse::Network_ItemsEntry_DoNotUse() : SuperType() {}
+              Network_ItemsEntry_DoNotUse::Network_ItemsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Network_ItemsEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Network_ItemsEntry_DoNotUse(arena);
+              }
+              constexpr auto Network_ItemsEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Network_ItemsEntry_DoNotUse),
+                                                          alignof(Network_ItemsEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Network_ItemsEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Network_ItemsEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Network_ItemsEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Network_ItemsEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Network_ItemsEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Network_ItemsEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Network_ItemsEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Network_ItemsEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_router_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Network_ItemsEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 45, 2> Network_ItemsEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Network_ItemsEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::router::v1::Network_ItemsEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.router.v1.Network.Item value = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Network_ItemsEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Network_ItemsEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Network_ItemsEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.router.v1.Network.Item value = 2;
+    {PROTOBUF_FIELD_OFFSET(Network_ItemsEntry_DoNotUse, _impl_.value_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Network_Item>()},
+  }}, {{
+    "\41\3\0\0\0\0\0\0"
+    "palm.router.v1.Network.ItemsEntry"
+    "key"
+  }},
+};
+
+// ===================================================================
+
 class Network::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<Network>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Network, _impl_._has_bits_);
 };
 
 Network::Network(::google::protobuf::Arena* arena)
@@ -1920,9 +4778,8 @@ Network::Network(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Network::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::router::v1::Network& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        lan_{visibility, arena, from.lan_} {}
+      : items_{visibility, arena, from.items_},
+        _cached_size_{0} {}
 
 Network::Network(
     ::google::protobuf::Arena* arena,
@@ -1937,22 +4794,17 @@ Network::Network(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.wan_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Wan>(
-                              arena, *from._impl_.wan_)
-                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:palm.router.v1.Network)
 }
 inline PROTOBUF_NDEBUG_INLINE Network::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        lan_{visibility, arena} {}
+      : items_{visibility, arena},
+        _cached_size_{0} {}
 
 inline void Network::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.wan_ = {};
 }
 Network::~Network() {
   // @@protoc_insertion_point(destructor:palm.router.v1.Network)
@@ -1962,7 +4814,6 @@ inline void Network::SharedDtor(MessageLite& self) {
   Network& this_ = static_cast<Network&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.wan_;
   this_._impl_.~Impl_();
 }
 
@@ -1972,13 +4823,17 @@ inline void* Network::PlacementNew_(const void*, void* mem,
 }
 constexpr auto Network::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(Network, _impl_.lan_) +
-          decltype(Network::_impl_.lan_)::
+      PROTOBUF_FIELD_OFFSET(Network, _impl_.items_) +
+          decltype(Network::_impl_.items_)::
               InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Network, _impl_.items_) +
+          decltype(Network::_impl_.items_)::
+              InternalGetArenaOffsetAlt(
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
-    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
         sizeof(Network), alignof(Network), *arena_bits);
   } else {
     return ::google::protobuf::internal::MessageCreator(&Network::PlacementNew_,
@@ -2014,15 +4869,15 @@ const ::google::protobuf::internal::ClassData* Network::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 2, 0, 2> Network::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 2, 36, 2> Network::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Network, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    1,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -2032,25 +4887,23 @@ const ::_pbi::TcParseTable<1, 2, 2, 0, 2> Network::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::router::v1::Network>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated .palm.router.v1.Lan lan = 2;
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 1, PROTOBUF_FIELD_OFFSET(Network, _impl_.lan_)}},
-    // .palm.router.v1.Wan wan = 1;
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Network, _impl_.wan_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .palm.router.v1.Wan wan = 1;
-    {PROTOBUF_FIELD_OFFSET(Network, _impl_.wan_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .palm.router.v1.Lan lan = 2;
-    {PROTOBUF_FIELD_OFFSET(Network, _impl_.lan_), -1, 1,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // map<string, .palm.router.v1.Network.Item> items = 1;
+    {PROTOBUF_FIELD_OFFSET(Network, _impl_.items_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::router::v1::Wan>()},
-    {::_pbi::TcParser::GetTable<::palm::router::v1::Lan>()},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Network()._impl_.items_)>(
+        1, 0, 0, 9,
+        11)},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::Network_Item>()},
   }}, {{
+    "\26\5\0\0\0\0\0\0"
+    "palm.router.v1.Network"
+    "items"
   }},
 };
 
@@ -2061,13 +4914,7 @@ PROTOBUF_NOINLINE void Network::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.lan_.Clear();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.wan_ != nullptr);
-    _impl_.wan_->Clear();
-  }
-  _impl_._has_bits_.Clear();
+  _impl_.items_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -2086,23 +4933,31 @@ PROTOBUF_NOINLINE void Network::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .palm.router.v1.Wan wan = 1;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                1, *this_._impl_.wan_, this_._impl_.wan_->GetCachedSize(), target,
-                stream);
-          }
+          // map<string, .palm.router.v1.Network.Item> items = 1;
+          if (!this_._internal_items().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, ::palm::router::v1::Network_Item>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, ::palm::router::v1::Network_Item,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_MESSAGE>;
+            const auto& field = this_._internal_items();
 
-          // repeated .palm.router.v1.Lan lan = 2;
-          for (unsigned i = 0, n = static_cast<unsigned>(
-                                   this_._internal_lan_size());
-               i < n; i++) {
-            const auto& repfield = this_._internal_lan().Get(i);
-            target =
-                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    2, repfield, repfield.GetCachedSize(),
-                    target, stream);
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    1, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Network.items");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    1, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.Network.items");
+              }
+            }
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -2130,20 +4985,15 @@ PROTOBUF_NOINLINE void Network::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .palm.router.v1.Lan lan = 2;
+            // map<string, .palm.router.v1.Network.Item> items = 1;
             {
-              total_size += 1UL * this_._internal_lan_size();
-              for (const auto& msg : this_._internal_lan()) {
-                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_items_size());
+              for (const auto& entry : this_._internal_items()) {
+                total_size += _pbi::MapEntryFuncs<std::string, ::palm::router::v1::Network_Item,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_MESSAGE>::ByteSizeLong(entry.first, entry.second);
               }
-            }
-          }
-           {
-            // .palm.router.v1.Wan wan = 1;
-            cached_has_bits = this_._impl_._has_bits_[0];
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.wan_);
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -2153,25 +5003,12 @@ PROTOBUF_NOINLINE void Network::Clear() {
 void Network::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Network*>(&to_msg);
   auto& from = static_cast<const Network&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.Network)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_lan()->MergeFrom(
-      from._internal_lan());
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.wan_ != nullptr);
-    if (_this->_impl_.wan_ == nullptr) {
-      _this->_impl_.wan_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::router::v1::Wan>(arena, *from._impl_.wan_);
-    } else {
-      _this->_impl_.wan_->MergeFrom(*from._impl_.wan_);
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2186,9 +5023,7 @@ void Network::CopyFrom(const Network& from) {
 void Network::InternalSwap(Network* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.lan_.InternalSwap(&other->_impl_.lan_);
-  swap(_impl_.wan_, other->_impl_.wan_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
 }
 
 ::google::protobuf::Metadata Network::GetMetadata() const {

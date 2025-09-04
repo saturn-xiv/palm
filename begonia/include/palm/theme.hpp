@@ -58,15 +58,19 @@ inline void now(google::protobuf::Timestamp* timestamp) {
   timestamp->set_seconds(it.seconds());
   timestamp->set_nanos(it.nanos());
 }
+
 /*
 PostgreSQL: timestamp without time zone
 2025-07-13 10:49:04.782031+00
 */
 inline std::optional<std::string> to_json(
-    const google::protobuf::Message& message) {
+    const google::protobuf::Message& message, bool pretty=false) {
   std::string buf;
+  google::protobuf::util::JsonPrintOptions options;
+  options.add_whitespace = pretty;
+  options.always_print_fields_with_no_presence = true;
   const auto status =
-      google::protobuf::util::MessageToJsonString(message, &buf);
+      google::protobuf::util::MessageToJsonString(message, &buf, options);
   if (status.ok()) {
     return buf;
   }
@@ -82,6 +86,15 @@ inline grpc::Status from_json(const std::string buffer,
   return status.ok()
              ? grpc::Status::OK
              : grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid json");
+}
+
+inline void render(const std::string& tpl, const google::protobuf::Message& message, std::ostream& out){
+  const auto buf = to_json(message);
+  if(!buf){
+    return;
+  }
+  const auto data = nlohmann::json::parse(buf.value());
+  inja::render_to(out, tpl, data);
 }
 
 namespace http {

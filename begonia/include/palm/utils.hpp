@@ -17,6 +17,20 @@
 
 namespace palm {
 
+namespace bash {
+  inline static const std::string HEADER = R"SHELL(#!/bin/bash
+set -e
+)SHELL";
+  inline static const std::string REQUIRE_ROOT = R"SHELL(
+if [ $(id -u) -ne 0 ]
+then
+  echo 'please run this script as root.'
+  exit 1
+fi
+)SHELL";
+  inline static const std::string FOOTER = "exit 0"; 
+}
+
 void init(bool debug);
 void reboot();
 inline bool is_root() {

@@ -27,8 +27,10 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Lan() {
-    device_ = "";
+    name_ = "";
     address_ = "";
+    netmask_ = "";
+    network_ = "";
     description_ = "";
   }
 
@@ -37,18 +39,6 @@ private static final long serialVersionUID = 0L;
     return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_descriptor;
   }
 
-  @SuppressWarnings({"rawtypes"})
-  @java.lang.Override
-  protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
-      int number) {
-    switch (number) {
-      case 13:
-        return internalGetReservedIps();
-      default:
-        throw new RuntimeException(
-            "Invalid map field number: " + number);
-    }
-  }
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
@@ -57,39 +47,1910 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.router.v1.Lan.class, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Builder.class);
   }
 
-  public static final int DEVICE_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object device_ = "";
+  public interface DhcpOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.router.v1.Lan.Dhcp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string begin = 1;</code>
+     * @return The begin.
+     */
+    java.lang.String getBegin();
+    /**
+     * <code>string begin = 1;</code>
+     * @return The bytes for begin.
+     */
+    com.google.protobuf.ByteString
+        getBeginBytes();
+
+    /**
+     * <code>string end = 2;</code>
+     * @return The end.
+     */
+    java.lang.String getEnd();
+    /**
+     * <code>string end = 2;</code>
+     * @return The bytes for end.
+     */
+    com.google.protobuf.ByteString
+        getEndBytes();
+
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @return A list containing the dns.
+     */
+    java.util.List<java.lang.String>
+        getDnsList();
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @return The count of dns.
+     */
+    int getDnsCount();
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @param index The index of the element to return.
+     * @return The dns at the given index.
+     */
+    java.lang.String getDns(int index);
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the dns at the given index.
+     */
+    com.google.protobuf.ByteString
+        getDnsBytes(int index);
+
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    int getReservedHostsCount();
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    boolean containsReservedHosts(
+        java.lang.String key);
+    /**
+     * Use {@link #getReservedHostsMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>
+    getReservedHosts();
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>
+    getReservedHostsMap();
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getReservedHostsOrDefault(
+        java.lang.String key,
+        /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getReservedHostsOrThrow(
+        java.lang.String key);
+  }
   /**
-   * <code>string device = 1;</code>
-   * @return The device.
+   * Protobuf type {@code palm.router.v1.Lan.Dhcp}
+   */
+  public static final class Dhcp extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.router.v1.Lan.Dhcp)
+      DhcpOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        Dhcp.class.getName());
+    }
+    // Use Dhcp.newBuilder() to construct.
+    private Dhcp(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Dhcp() {
+      begin_ = "";
+      end_ = "";
+      dns_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
+        int number) {
+      switch (number) {
+        case 9:
+          return internalGetReservedHosts();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.class, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder.class);
+    }
+
+    public interface HostOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:palm.router.v1.Lan.Dhcp.Host)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string name = 1;</code>
+       * @return The name.
+       */
+      java.lang.String getName();
+      /**
+       * <code>string name = 1;</code>
+       * @return The bytes for name.
+       */
+      com.google.protobuf.ByteString
+          getNameBytes();
+
+      /**
+       * <code>string mac = 2;</code>
+       * @return The mac.
+       */
+      java.lang.String getMac();
+      /**
+       * <code>string mac = 2;</code>
+       * @return The bytes for mac.
+       */
+      com.google.protobuf.ByteString
+          getMacBytes();
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Lan.Dhcp.Host}
+     */
+    public static final class Host extends
+        com.google.protobuf.GeneratedMessage implements
+        // @@protoc_insertion_point(message_implements:palm.router.v1.Lan.Dhcp.Host)
+        HostOrBuilder {
+    private static final long serialVersionUID = 0L;
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 29,
+          /* patch= */ 5,
+          /* suffix= */ "",
+          Host.class.getName());
+      }
+      // Use Host.newBuilder() to construct.
+      private Host(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+      }
+      private Host() {
+        name_ = "";
+        mac_ = "";
+      }
+
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_Host_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_Host_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.class, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder.class);
+      }
+
+      public static final int NAME_FIELD_NUMBER = 1;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object name_ = "";
+      /**
+       * <code>string name = 1;</code>
+       * @return The name.
+       */
+      @java.lang.Override
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return The bytes for name.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int MAC_FIELD_NUMBER = 2;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object mac_ = "";
+      /**
+       * <code>string mac = 2;</code>
+       * @return The mac.
+       */
+      @java.lang.Override
+      public java.lang.String getMac() {
+        java.lang.Object ref = mac_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mac_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string mac = 2;</code>
+       * @return The bytes for mac.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getMacBytes() {
+        java.lang.Object ref = mac_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mac_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+          com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
+        }
+        if (!com.google.protobuf.GeneratedMessage.isStringEmpty(mac_)) {
+          com.google.protobuf.GeneratedMessage.writeString(output, 2, mac_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+          size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
+        }
+        if (!com.google.protobuf.GeneratedMessage.isStringEmpty(mac_)) {
+          size += com.google.protobuf.GeneratedMessage.computeStringSize(2, mac_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host)) {
+          return super.equals(obj);
+        }
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host other = (com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host) obj;
+
+        if (!getName()
+            .equals(other.getName())) return false;
+        if (!getMac()
+            .equals(other.getMac())) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + NAME_FIELD_NUMBER;
+        hash = (53 * hash) + getName().hashCode();
+        hash = (37 * hash) + MAC_FIELD_NUMBER;
+        hash = (53 * hash) + getMac().hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code palm.router.v1.Lan.Dhcp.Host}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:palm.router.v1.Lan.Dhcp.Host)
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_Host_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_Host_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.class, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder.class);
+        }
+
+        // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.newBuilder()
+        private Builder() {
+
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          bitField0_ = 0;
+          name_ = "";
+          mac_ = "";
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_Host_descriptor;
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getDefaultInstanceForType() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host build() {
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host buildPartial() {
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host result = new com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host(this);
+          if (bitField0_ != 0) { buildPartial0(result); }
+          onBuilt();
+          return result;
+        }
+
+        private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.name_ = name_;
+          }
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.mac_ = mac_;
+          }
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host) {
+            return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host other) {
+          if (other == com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.getDefaultInstance()) return this;
+          if (!other.getName().isEmpty()) {
+            name_ = other.name_;
+            bitField0_ |= 0x00000001;
+            onChanged();
+          }
+          if (!other.getMac().isEmpty()) {
+            mac_ = other.mac_;
+            bitField0_ |= 0x00000002;
+            onChanged();
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 10: {
+                  name_ = input.readStringRequireUtf8();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 10
+                case 18: {
+                  mac_ = input.readStringRequireUtf8();
+                  bitField0_ |= 0x00000002;
+                  break;
+                } // case 18
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.unwrapIOException();
+          } finally {
+            onChanged();
+          } // finally
+          return this;
+        }
+        private int bitField0_;
+
+        private java.lang.Object name_ = "";
+        /**
+         * <code>string name = 1;</code>
+         * @return The name.
+         */
+        public java.lang.String getName() {
+          java.lang.Object ref = name_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            name_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string name = 1;</code>
+         * @return The bytes for name.
+         */
+        public com.google.protobuf.ByteString
+            getNameBytes() {
+          java.lang.Object ref = name_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            name_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string name = 1;</code>
+         * @param value The name to set.
+         * @return This builder for chaining.
+         */
+        public Builder setName(
+            java.lang.String value) {
+          if (value == null) { throw new NullPointerException(); }
+          name_ = value;
+          bitField0_ |= 0x00000001;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string name = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearName() {
+          name_ = getDefaultInstance().getName();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string name = 1;</code>
+         * @param value The bytes for name to set.
+         * @return This builder for chaining.
+         */
+        public Builder setNameBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
+          name_ = value;
+          bitField0_ |= 0x00000001;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object mac_ = "";
+        /**
+         * <code>string mac = 2;</code>
+         * @return The mac.
+         */
+        public java.lang.String getMac() {
+          java.lang.Object ref = mac_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            mac_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string mac = 2;</code>
+         * @return The bytes for mac.
+         */
+        public com.google.protobuf.ByteString
+            getMacBytes() {
+          java.lang.Object ref = mac_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            mac_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string mac = 2;</code>
+         * @param value The mac to set.
+         * @return This builder for chaining.
+         */
+        public Builder setMac(
+            java.lang.String value) {
+          if (value == null) { throw new NullPointerException(); }
+          mac_ = value;
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string mac = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearMac() {
+          mac_ = getDefaultInstance().getMac();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string mac = 2;</code>
+         * @param value The bytes for mac to set.
+         * @return This builder for chaining.
+         */
+        public Builder setMacBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
+          mac_ = value;
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:palm.router.v1.Lan.Dhcp.Host)
+      }
+
+      // @@protoc_insertion_point(class_scope:palm.router.v1.Lan.Dhcp.Host)
+      private static final com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host();
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Host>
+          PARSER = new com.google.protobuf.AbstractParser<Host>() {
+        @java.lang.Override
+        public Host parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
+        }
+      };
+
+      public static com.google.protobuf.Parser<Host> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Host> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int BEGIN_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object begin_ = "";
+    /**
+     * <code>string begin = 1;</code>
+     * @return The begin.
+     */
+    @java.lang.Override
+    public java.lang.String getBegin() {
+      java.lang.Object ref = begin_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        begin_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string begin = 1;</code>
+     * @return The bytes for begin.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getBeginBytes() {
+      java.lang.Object ref = begin_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        begin_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int END_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object end_ = "";
+    /**
+     * <code>string end = 2;</code>
+     * @return The end.
+     */
+    @java.lang.Override
+    public java.lang.String getEnd() {
+      java.lang.Object ref = end_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        end_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string end = 2;</code>
+     * @return The bytes for end.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getEndBytes() {
+      java.lang.Object ref = end_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        end_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DNS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList dns_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @return A list containing the dns.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getDnsList() {
+      return dns_;
+    }
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @return The count of dns.
+     */
+    public int getDnsCount() {
+      return dns_.size();
+    }
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @param index The index of the element to return.
+     * @return The dns at the given index.
+     */
+    public java.lang.String getDns(int index) {
+      return dns_.get(index);
+    }
+    /**
+     * <code>repeated string dns = 3;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the dns at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getDnsBytes(int index) {
+      return dns_.getByteString(index);
+    }
+
+    public static final int RESERVED_HOSTS_FIELD_NUMBER = 9;
+    private static final class ReservedHostsDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>newDefaultInstance(
+                  com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_ReservedHostsEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.getDefaultInstance());
+    }
+    @SuppressWarnings("serial")
+    private com.google.protobuf.MapField<
+        java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> reservedHosts_;
+    private com.google.protobuf.MapField<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>
+    internalGetReservedHosts() {
+      if (reservedHosts_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            ReservedHostsDefaultEntryHolder.defaultEntry);
+      }
+      return reservedHosts_;
+    }
+    public int getReservedHostsCount() {
+      return internalGetReservedHosts().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    @java.lang.Override
+    public boolean containsReservedHosts(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetReservedHosts().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getReservedHostsMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> getReservedHosts() {
+      return getReservedHostsMap();
+    }
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    @java.lang.Override
+    public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> getReservedHostsMap() {
+      return internalGetReservedHosts().getMap();
+    }
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    @java.lang.Override
+    public /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getReservedHostsOrDefault(
+        java.lang.String key,
+        /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> map =
+          internalGetReservedHosts().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getReservedHostsOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> map =
+          internalGetReservedHosts().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(begin_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, begin_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(end_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, end_);
+      }
+      for (int i = 0; i < dns_.size(); i++) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, dns_.getRaw(i));
+      }
+      com.google.protobuf.GeneratedMessage
+        .serializeStringMapTo(
+          output,
+          internalGetReservedHosts(),
+          ReservedHostsDefaultEntryHolder.defaultEntry,
+          9);
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(begin_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, begin_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(end_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, end_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < dns_.size(); i++) {
+          dataSize += computeStringSizeNoTag(dns_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getDnsList().size();
+      }
+      for (java.util.Map.Entry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> entry
+           : internalGetReservedHosts().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>
+        reservedHosts__ = ReservedHostsDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(9, reservedHosts__);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp other = (com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp) obj;
+
+      if (!getBegin()
+          .equals(other.getBegin())) return false;
+      if (!getEnd()
+          .equals(other.getEnd())) return false;
+      if (!getDnsList()
+          .equals(other.getDnsList())) return false;
+      if (!internalGetReservedHosts().equals(
+          other.internalGetReservedHosts())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BEGIN_FIELD_NUMBER;
+      hash = (53 * hash) + getBegin().hashCode();
+      hash = (37 * hash) + END_FIELD_NUMBER;
+      hash = (53 * hash) + getEnd().hashCode();
+      if (getDnsCount() > 0) {
+        hash = (37 * hash) + DNS_FIELD_NUMBER;
+        hash = (53 * hash) + getDnsList().hashCode();
+      }
+      if (!internalGetReservedHosts().getMap().isEmpty()) {
+        hash = (37 * hash) + RESERVED_HOSTS_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetReservedHosts().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Lan.Dhcp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.router.v1.Lan.Dhcp)
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
+          int number) {
+        switch (number) {
+          case 9:
+            return internalGetReservedHosts();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapFieldReflectionAccessor internalGetMutableMapFieldReflection(
+          int number) {
+        switch (number) {
+          case 9:
+            return internalGetMutableReservedHosts();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.class, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        begin_ = "";
+        end_ = "";
+        dns_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        internalGetMutableReservedHosts().clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_Dhcp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp build() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp buildPartial() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp result = new com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.begin_ = begin_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.end_ = end_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          dns_.makeImmutable();
+          result.dns_ = dns_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.reservedHosts_ = internalGetReservedHosts().build(ReservedHostsDefaultEntryHolder.defaultEntry);
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp other) {
+        if (other == com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance()) return this;
+        if (!other.getBegin().isEmpty()) {
+          begin_ = other.begin_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getEnd().isEmpty()) {
+          end_ = other.end_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.dns_.isEmpty()) {
+          if (dns_.isEmpty()) {
+            dns_ = other.dns_;
+            bitField0_ |= 0x00000004;
+          } else {
+            ensureDnsIsMutable();
+            dns_.addAll(other.dns_);
+          }
+          onChanged();
+        }
+        internalGetMutableReservedHosts().mergeFrom(
+            other.internalGetReservedHosts());
+        bitField0_ |= 0x00000008;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                begin_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                end_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureDnsIsMutable();
+                dns_.add(s);
+                break;
+              } // case 26
+              case 74: {
+                com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>
+                reservedHosts__ = input.readMessage(
+                    ReservedHostsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableReservedHosts().ensureBuilderMap().put(
+                    reservedHosts__.getKey(), reservedHosts__.getValue());
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 74
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object begin_ = "";
+      /**
+       * <code>string begin = 1;</code>
+       * @return The begin.
+       */
+      public java.lang.String getBegin() {
+        java.lang.Object ref = begin_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          begin_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string begin = 1;</code>
+       * @return The bytes for begin.
+       */
+      public com.google.protobuf.ByteString
+          getBeginBytes() {
+        java.lang.Object ref = begin_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          begin_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string begin = 1;</code>
+       * @param value The begin to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBegin(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        begin_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string begin = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBegin() {
+        begin_ = getDefaultInstance().getBegin();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string begin = 1;</code>
+       * @param value The bytes for begin to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBeginBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        begin_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object end_ = "";
+      /**
+       * <code>string end = 2;</code>
+       * @return The end.
+       */
+      public java.lang.String getEnd() {
+        java.lang.Object ref = end_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          end_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string end = 2;</code>
+       * @return The bytes for end.
+       */
+      public com.google.protobuf.ByteString
+          getEndBytes() {
+        java.lang.Object ref = end_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          end_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string end = 2;</code>
+       * @param value The end to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEnd(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        end_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string end = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEnd() {
+        end_ = getDefaultInstance().getEnd();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string end = 2;</code>
+       * @param value The bytes for end to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEndBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        end_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringArrayList dns_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureDnsIsMutable() {
+        if (!dns_.isModifiable()) {
+          dns_ = new com.google.protobuf.LazyStringArrayList(dns_);
+        }
+        bitField0_ |= 0x00000004;
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @return A list containing the dns.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getDnsList() {
+        dns_.makeImmutable();
+        return dns_;
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @return The count of dns.
+       */
+      public int getDnsCount() {
+        return dns_.size();
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @param index The index of the element to return.
+       * @return The dns at the given index.
+       */
+      public java.lang.String getDns(int index) {
+        return dns_.get(index);
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the dns at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getDnsBytes(int index) {
+        return dns_.getByteString(index);
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @param index The index to set the value at.
+       * @param value The dns to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDns(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureDnsIsMutable();
+        dns_.set(index, value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @param value The dns to add.
+       * @return This builder for chaining.
+       */
+      public Builder addDns(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureDnsIsMutable();
+        dns_.add(value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @param values The dns to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllDns(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureDnsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, dns_);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDns() {
+        dns_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 3;</code>
+       * @param value The bytes of the dns to add.
+       * @return This builder for chaining.
+       */
+      public Builder addDnsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureDnsIsMutable();
+        dns_.add(value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+
+      private static final class ReservedHostsConverter implements com.google.protobuf.MapFieldBuilder.Converter<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> {
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host build(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder val) {
+          if (val instanceof com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host) { return (com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host) val; }
+          return ((com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder) val).build();
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.MapEntry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> defaultEntry() {
+          return ReservedHostsDefaultEntryHolder.defaultEntry;
+        }
+      };
+      private static final ReservedHostsConverter reservedHostsConverter = new ReservedHostsConverter();
+
+      private com.google.protobuf.MapFieldBuilder<
+          java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder> reservedHosts_;
+      private com.google.protobuf.MapFieldBuilder<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder>
+          internalGetReservedHosts() {
+        if (reservedHosts_ == null) {
+          return new com.google.protobuf.MapFieldBuilder<>(reservedHostsConverter);
+        }
+        return reservedHosts_;
+      }
+      private com.google.protobuf.MapFieldBuilder<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder>
+          internalGetMutableReservedHosts() {
+        if (reservedHosts_ == null) {
+          reservedHosts_ = new com.google.protobuf.MapFieldBuilder<>(reservedHostsConverter);
+        }
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return reservedHosts_;
+      }
+      public int getReservedHostsCount() {
+        return internalGetReservedHosts().ensureBuilderMap().size();
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      @java.lang.Override
+      public boolean containsReservedHosts(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        return internalGetReservedHosts().ensureBuilderMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getReservedHostsMap()} instead.
+       */
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> getReservedHosts() {
+        return getReservedHostsMap();
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      @java.lang.Override
+      public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> getReservedHostsMap() {
+        return internalGetReservedHosts().getImmutableMap();
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      @java.lang.Override
+      public /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getReservedHostsOrDefault(
+          java.lang.String key,
+          /* nullable */
+com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder> map = internalGetMutableReservedHosts().ensureBuilderMap();
+        return map.containsKey(key) ? reservedHostsConverter.build(map.get(key)) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host getReservedHostsOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder> map = internalGetMutableReservedHosts().ensureBuilderMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return reservedHostsConverter.build(map.get(key));
+      }
+      public Builder clearReservedHosts() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        internalGetMutableReservedHosts().clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      public Builder removeReservedHosts(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        internalGetMutableReservedHosts().ensureBuilderMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host>
+          getMutableReservedHosts() {
+        bitField0_ |= 0x00000008;
+        return internalGetMutableReservedHosts().ensureMessageMap();
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      public Builder putReservedHosts(
+          java.lang.String key,
+          com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host value) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
+        internalGetMutableReservedHosts().ensureBuilderMap()
+            .put(key, value);
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      public Builder putAllReservedHosts(
+          java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> values) {
+        for (java.util.Map.Entry<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host> e : values.entrySet()) {
+          if (e.getKey() == null || e.getValue() == null) {
+            throw new NullPointerException();
+          }
+        }
+        internalGetMutableReservedHosts().ensureBuilderMap()
+            .putAll(values);
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .palm.router.v1.Lan.Dhcp.Host&gt; reserved_hosts = 9;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder putReservedHostsBuilderIfAbsent(
+          java.lang.String key) {
+        java.util.Map<java.lang.String, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder> builderMap = internalGetMutableReservedHosts().ensureBuilderMap();
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.HostOrBuilder entry = builderMap.get(key);
+        if (entry == null) {
+          entry = com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.newBuilder();
+          builderMap.put(key, entry);
+        }
+        if (entry instanceof com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host) {
+          entry = ((com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host) entry).toBuilder();
+          builderMap.put(key, entry);
+        }
+        return (com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host.Builder) entry;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.router.v1.Lan.Dhcp)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.router.v1.Lan.Dhcp)
+    private static final com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Dhcp>
+        PARSER = new com.google.protobuf.AbstractParser<Dhcp>() {
+      @java.lang.Override
+      public Dhcp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Dhcp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Dhcp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private int bitField0_;
+  public static final int NAME_FIELD_NUMBER = 1;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object name_ = "";
+  /**
+   * <code>string name = 1;</code>
+   * @return The name.
    */
   @java.lang.Override
-  public java.lang.String getDevice() {
-    java.lang.Object ref = device_;
+  public java.lang.String getName() {
+    java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      device_ = s;
+      name_ = s;
       return s;
     }
   }
   /**
-   * <code>string device = 1;</code>
-   * @return The bytes for device.
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getDeviceBytes() {
-    java.lang.Object ref = device_;
+      getNameBytes() {
+    java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      device_ = b;
+      name_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -146,94 +2007,119 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DHCP_FIELD_NUMBER = 12;
-  private boolean dhcp_ = false;
+  public static final int NETMASK_FIELD_NUMBER = 12;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object netmask_ = "";
   /**
-   * <code>bool dhcp = 12;</code>
+   * <code>string netmask = 12;</code>
+   * @return The netmask.
+   */
+  @java.lang.Override
+  public java.lang.String getNetmask() {
+    java.lang.Object ref = netmask_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      netmask_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string netmask = 12;</code>
+   * @return The bytes for netmask.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getNetmaskBytes() {
+    java.lang.Object ref = netmask_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      netmask_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int CIDR_FIELD_NUMBER = 13;
+  private int cidr_ = 0;
+  /**
+   * <code>uint32 cidr = 13;</code>
+   * @return The cidr.
+   */
+  @java.lang.Override
+  public int getCidr() {
+    return cidr_;
+  }
+
+  public static final int NETWORK_FIELD_NUMBER = 14;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object network_ = "";
+  /**
+   * <code>string network = 14;</code>
+   * @return The network.
+   */
+  @java.lang.Override
+  public java.lang.String getNetwork() {
+    java.lang.Object ref = network_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      network_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string network = 14;</code>
+   * @return The bytes for network.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getNetworkBytes() {
+    java.lang.Object ref = network_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      network_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int DHCP_FIELD_NUMBER = 19;
+  private com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp dhcp_;
+  /**
+   * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+   * @return Whether the dhcp field is set.
+   */
+  @java.lang.Override
+  public boolean hasDhcp() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
    * @return The dhcp.
    */
   @java.lang.Override
-  public boolean getDhcp() {
-    return dhcp_;
-  }
-
-  public static final int RESERVED_IPS_FIELD_NUMBER = 13;
-  private static final class ReservedIpsDefaultEntryHolder {
-    static final com.google.protobuf.MapEntry<
-        java.lang.String, java.lang.String> defaultEntry =
-            com.google.protobuf.MapEntry
-            .<java.lang.String, java.lang.String>newDefaultInstance(
-                com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_ReservedIpsEntry_descriptor, 
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "",
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "");
-  }
-  @SuppressWarnings("serial")
-  private com.google.protobuf.MapField<
-      java.lang.String, java.lang.String> reservedIps_;
-  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-  internalGetReservedIps() {
-    if (reservedIps_ == null) {
-      return com.google.protobuf.MapField.emptyMapField(
-          ReservedIpsDefaultEntryHolder.defaultEntry);
-    }
-    return reservedIps_;
-  }
-  public int getReservedIpsCount() {
-    return internalGetReservedIps().getMap().size();
+  public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp getDhcp() {
+    return dhcp_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance() : dhcp_;
   }
   /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+   * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
    */
   @java.lang.Override
-  public boolean containsReservedIps(
-      java.lang.String key) {
-    if (key == null) { throw new NullPointerException("map key"); }
-    return internalGetReservedIps().getMap().containsKey(key);
-  }
-  /**
-   * Use {@link #getReservedIpsMap()} instead.
-   */
-  @java.lang.Override
-  @java.lang.Deprecated
-  public java.util.Map<java.lang.String, java.lang.String> getReservedIps() {
-    return getReservedIpsMap();
-  }
-  /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
-   */
-  @java.lang.Override
-  public java.util.Map<java.lang.String, java.lang.String> getReservedIpsMap() {
-    return internalGetReservedIps().getMap();
-  }
-  /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
-   */
-  @java.lang.Override
-  public /* nullable */
-java.lang.String getReservedIpsOrDefault(
-      java.lang.String key,
-      /* nullable */
-java.lang.String defaultValue) {
-    if (key == null) { throw new NullPointerException("map key"); }
-    java.util.Map<java.lang.String, java.lang.String> map =
-        internalGetReservedIps().getMap();
-    return map.containsKey(key) ? map.get(key) : defaultValue;
-  }
-  /**
-   * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
-   */
-  @java.lang.Override
-  public java.lang.String getReservedIpsOrThrow(
-      java.lang.String key) {
-    if (key == null) { throw new NullPointerException("map key"); }
-    java.util.Map<java.lang.String, java.lang.String> map =
-        internalGetReservedIps().getMap();
-    if (!map.containsKey(key)) {
-      throw new java.lang.IllegalArgumentException();
-    }
-    return map.get(key);
+  public com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder getDhcpOrBuilder() {
+    return dhcp_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance() : dhcp_;
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 99;
@@ -289,8 +2175,8 @@ java.lang.String defaultValue) {
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, device_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
     }
     if (blacklistMode_ != false) {
       output.writeBool(9, blacklistMode_);
@@ -298,15 +2184,18 @@ java.lang.String defaultValue) {
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 11, address_);
     }
-    if (dhcp_ != false) {
-      output.writeBool(12, dhcp_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 12, netmask_);
     }
-    com.google.protobuf.GeneratedMessage
-      .serializeStringMapTo(
-        output,
-        internalGetReservedIps(),
-        ReservedIpsDefaultEntryHolder.defaultEntry,
-        13);
+    if (cidr_ != 0) {
+      output.writeUInt32(13, cidr_);
+    }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(network_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 14, network_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(19, getDhcp());
+    }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 99, description_);
     }
@@ -319,8 +2208,8 @@ java.lang.String defaultValue) {
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, device_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
     }
     if (blacklistMode_ != false) {
       size += com.google.protobuf.CodedOutputStream
@@ -329,19 +2218,19 @@ java.lang.String defaultValue) {
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(11, address_);
     }
-    if (dhcp_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(12, dhcp_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(12, netmask_);
     }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-         : internalGetReservedIps().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      reservedIps__ = ReservedIpsDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
+    if (cidr_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, reservedIps__);
+        .computeUInt32Size(13, cidr_);
+    }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(network_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(14, network_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(19, getDhcp());
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(99, description_);
@@ -361,16 +2250,23 @@ java.lang.String defaultValue) {
     }
     com.github.saturn_xiv.palm.plugins.router.v1.Lan other = (com.github.saturn_xiv.palm.plugins.router.v1.Lan) obj;
 
-    if (!getDevice()
-        .equals(other.getDevice())) return false;
+    if (!getName()
+        .equals(other.getName())) return false;
     if (getBlacklistMode()
         != other.getBlacklistMode()) return false;
     if (!getAddress()
         .equals(other.getAddress())) return false;
-    if (getDhcp()
-        != other.getDhcp()) return false;
-    if (!internalGetReservedIps().equals(
-        other.internalGetReservedIps())) return false;
+    if (!getNetmask()
+        .equals(other.getNetmask())) return false;
+    if (getCidr()
+        != other.getCidr()) return false;
+    if (!getNetwork()
+        .equals(other.getNetwork())) return false;
+    if (hasDhcp() != other.hasDhcp()) return false;
+    if (hasDhcp()) {
+      if (!getDhcp()
+          .equals(other.getDhcp())) return false;
+    }
     if (!getDescription()
         .equals(other.getDescription())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -384,19 +2280,22 @@ java.lang.String defaultValue) {
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + DEVICE_FIELD_NUMBER;
-    hash = (53 * hash) + getDevice().hashCode();
+    hash = (37 * hash) + NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + BLACKLIST_MODE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getBlacklistMode());
     hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
     hash = (53 * hash) + getAddress().hashCode();
-    hash = (37 * hash) + DHCP_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getDhcp());
-    if (!internalGetReservedIps().getMap().isEmpty()) {
-      hash = (37 * hash) + RESERVED_IPS_FIELD_NUMBER;
-      hash = (53 * hash) + internalGetReservedIps().hashCode();
+    hash = (37 * hash) + NETMASK_FIELD_NUMBER;
+    hash = (53 * hash) + getNetmask().hashCode();
+    hash = (37 * hash) + CIDR_FIELD_NUMBER;
+    hash = (53 * hash) + getCidr();
+    hash = (37 * hash) + NETWORK_FIELD_NUMBER;
+    hash = (53 * hash) + getNetwork().hashCode();
+    if (hasDhcp()) {
+      hash = (37 * hash) + DHCP_FIELD_NUMBER;
+      hash = (53 * hash) + getDhcp().hashCode();
     }
     hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getDescription().hashCode();
@@ -509,28 +2408,6 @@ java.lang.String defaultValue) {
       return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Lan_descriptor;
     }
 
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
-        int number) {
-      switch (number) {
-        case 13:
-          return internalGetReservedIps();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapFieldReflectionAccessor internalGetMutableMapFieldReflection(
-        int number) {
-      switch (number) {
-        case 13:
-          return internalGetMutableReservedIps();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -541,23 +2418,35 @@ java.lang.String defaultValue) {
 
     // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Lan.newBuilder()
     private Builder() {
-
+      maybeForceBuilderInitialization();
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-
+      maybeForceBuilderInitialization();
+    }
+    private void maybeForceBuilderInitialization() {
+      if (com.google.protobuf.GeneratedMessage
+              .alwaysUseFieldBuilders) {
+        getDhcpFieldBuilder();
+      }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      device_ = "";
+      name_ = "";
       blacklistMode_ = false;
       address_ = "";
-      dhcp_ = false;
-      internalGetMutableReservedIps().clear();
+      netmask_ = "";
+      cidr_ = 0;
+      network_ = "";
+      dhcp_ = null;
+      if (dhcpBuilder_ != null) {
+        dhcpBuilder_.dispose();
+        dhcpBuilder_ = null;
+      }
       description_ = "";
       return this;
     }
@@ -593,7 +2482,7 @@ java.lang.String defaultValue) {
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Lan result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.device_ = device_;
+        result.name_ = name_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.blacklistMode_ = blacklistMode_;
@@ -602,15 +2491,25 @@ java.lang.String defaultValue) {
         result.address_ = address_;
       }
       if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.dhcp_ = dhcp_;
+        result.netmask_ = netmask_;
       }
       if (((from_bitField0_ & 0x00000010) != 0)) {
-        result.reservedIps_ = internalGetReservedIps();
-        result.reservedIps_.makeImmutable();
+        result.cidr_ = cidr_;
       }
       if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.network_ = network_;
+      }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.dhcp_ = dhcpBuilder_ == null
+            ? dhcp_
+            : dhcpBuilder_.build();
+        to_bitField0_ |= 0x00000001;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
         result.description_ = description_;
       }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -625,8 +2524,8 @@ java.lang.String defaultValue) {
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Lan other) {
       if (other == com.github.saturn_xiv.palm.plugins.router.v1.Lan.getDefaultInstance()) return this;
-      if (!other.getDevice().isEmpty()) {
-        device_ = other.device_;
+      if (!other.getName().isEmpty()) {
+        name_ = other.name_;
         bitField0_ |= 0x00000001;
         onChanged();
       }
@@ -638,15 +2537,25 @@ java.lang.String defaultValue) {
         bitField0_ |= 0x00000004;
         onChanged();
       }
-      if (other.getDhcp() != false) {
-        setDhcp(other.getDhcp());
+      if (!other.getNetmask().isEmpty()) {
+        netmask_ = other.netmask_;
+        bitField0_ |= 0x00000008;
+        onChanged();
       }
-      internalGetMutableReservedIps().mergeFrom(
-          other.internalGetReservedIps());
-      bitField0_ |= 0x00000010;
+      if (other.getCidr() != 0) {
+        setCidr(other.getCidr());
+      }
+      if (!other.getNetwork().isEmpty()) {
+        network_ = other.network_;
+        bitField0_ |= 0x00000020;
+        onChanged();
+      }
+      if (other.hasDhcp()) {
+        mergeDhcp(other.getDhcp());
+      }
       if (!other.getDescription().isEmpty()) {
         description_ = other.description_;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000080;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -676,7 +2585,7 @@ java.lang.String defaultValue) {
               done = true;
               break;
             case 10: {
-              device_ = input.readStringRequireUtf8();
+              name_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
@@ -690,23 +2599,31 @@ java.lang.String defaultValue) {
               bitField0_ |= 0x00000004;
               break;
             } // case 90
-            case 96: {
-              dhcp_ = input.readBool();
+            case 98: {
+              netmask_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000008;
               break;
-            } // case 96
-            case 106: {
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              reservedIps__ = input.readMessage(
-                  ReservedIpsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              internalGetMutableReservedIps().getMutableMap().put(
-                  reservedIps__.getKey(), reservedIps__.getValue());
+            } // case 98
+            case 104: {
+              cidr_ = input.readUInt32();
               bitField0_ |= 0x00000010;
               break;
-            } // case 106
+            } // case 104
+            case 114: {
+              network_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 114
+            case 154: {
+              input.readMessage(
+                  getDhcpFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 154
             case 794: {
               description_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000080;
               break;
             } // case 794
             default: {
@@ -726,73 +2643,73 @@ java.lang.String defaultValue) {
     }
     private int bitField0_;
 
-    private java.lang.Object device_ = "";
+    private java.lang.Object name_ = "";
     /**
-     * <code>string device = 1;</code>
-     * @return The device.
+     * <code>string name = 1;</code>
+     * @return The name.
      */
-    public java.lang.String getDevice() {
-      java.lang.Object ref = device_;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        device_ = s;
+        name_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string device = 1;</code>
-     * @return The bytes for device.
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
-        getDeviceBytes() {
-      java.lang.Object ref = device_;
+        getNameBytes() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        device_ = b;
+        name_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string device = 1;</code>
-     * @param value The device to set.
+     * <code>string name = 1;</code>
+     * @param value The name to set.
      * @return This builder for chaining.
      */
-    public Builder setDevice(
+    public Builder setName(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      device_ = value;
+      name_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string device = 1;</code>
+     * <code>string name = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearDevice() {
-      device_ = getDefaultInstance().getDevice();
+    public Builder clearName() {
+      name_ = getDefaultInstance().getName();
       bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
     /**
-     * <code>string device = 1;</code>
-     * @param value The bytes for device to set.
+     * <code>string name = 1;</code>
+     * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
-    public Builder setDeviceBytes(
+    public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      device_ = value;
+      name_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
@@ -902,163 +2819,301 @@ java.lang.String defaultValue) {
       return this;
     }
 
-    private boolean dhcp_ ;
+    private java.lang.Object netmask_ = "";
     /**
-     * <code>bool dhcp = 12;</code>
-     * @return The dhcp.
+     * <code>string netmask = 12;</code>
+     * @return The netmask.
      */
-    @java.lang.Override
-    public boolean getDhcp() {
-      return dhcp_;
+    public java.lang.String getNetmask() {
+      java.lang.Object ref = netmask_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        netmask_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>bool dhcp = 12;</code>
-     * @param value The dhcp to set.
+     * <code>string netmask = 12;</code>
+     * @return The bytes for netmask.
+     */
+    public com.google.protobuf.ByteString
+        getNetmaskBytes() {
+      java.lang.Object ref = netmask_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        netmask_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string netmask = 12;</code>
+     * @param value The netmask to set.
      * @return This builder for chaining.
      */
-    public Builder setDhcp(boolean value) {
-
-      dhcp_ = value;
+    public Builder setNetmask(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      netmask_ = value;
       bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
     /**
-     * <code>bool dhcp = 12;</code>
+     * <code>string netmask = 12;</code>
      * @return This builder for chaining.
      */
-    public Builder clearDhcp() {
+    public Builder clearNetmask() {
+      netmask_ = getDefaultInstance().getNetmask();
       bitField0_ = (bitField0_ & ~0x00000008);
-      dhcp_ = false;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string netmask = 12;</code>
+     * @param value The bytes for netmask to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNetmaskBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      netmask_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> reservedIps_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-        internalGetReservedIps() {
-      if (reservedIps_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            ReservedIpsDefaultEntryHolder.defaultEntry);
-      }
-      return reservedIps_;
+    private int cidr_ ;
+    /**
+     * <code>uint32 cidr = 13;</code>
+     * @return The cidr.
+     */
+    @java.lang.Override
+    public int getCidr() {
+      return cidr_;
     }
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-        internalGetMutableReservedIps() {
-      if (reservedIps_ == null) {
-        reservedIps_ = com.google.protobuf.MapField.newMapField(
-            ReservedIpsDefaultEntryHolder.defaultEntry);
-      }
-      if (!reservedIps_.isMutable()) {
-        reservedIps_ = reservedIps_.copy();
-      }
+    /**
+     * <code>uint32 cidr = 13;</code>
+     * @param value The cidr to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCidr(int value) {
+
+      cidr_ = value;
       bitField0_ |= 0x00000010;
       onChanged();
-      return reservedIps_;
-    }
-    public int getReservedIpsCount() {
-      return internalGetReservedIps().getMap().size();
+      return this;
     }
     /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+     * <code>uint32 cidr = 13;</code>
+     * @return This builder for chaining.
      */
-    @java.lang.Override
-    public boolean containsReservedIps(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      return internalGetReservedIps().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getReservedIpsMap()} instead.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getReservedIps() {
-      return getReservedIpsMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
-     */
-    @java.lang.Override
-    public java.util.Map<java.lang.String, java.lang.String> getReservedIpsMap() {
-      return internalGetReservedIps().getMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
-     */
-    @java.lang.Override
-    public /* nullable */
-java.lang.String getReservedIpsOrDefault(
-        java.lang.String key,
-        /* nullable */
-java.lang.String defaultValue) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetReservedIps().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
-     */
-    @java.lang.Override
-    public java.lang.String getReservedIpsOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetReservedIps().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-    public Builder clearReservedIps() {
+    public Builder clearCidr() {
       bitField0_ = (bitField0_ & ~0x00000010);
-      internalGetMutableReservedIps().getMutableMap()
-          .clear();
+      cidr_ = 0;
+      onChanged();
       return this;
     }
+
+    private java.lang.Object network_ = "";
     /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+     * <code>string network = 14;</code>
+     * @return The network.
      */
-    public Builder removeReservedIps(
-        java.lang.String key) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      internalGetMutableReservedIps().getMutableMap()
-          .remove(key);
-      return this;
+    public java.lang.String getNetwork() {
+      java.lang.Object ref = network_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        network_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * Use alternate mutation accessors instead.
+     * <code>string network = 14;</code>
+     * @return The bytes for network.
      */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String>
-        getMutableReservedIps() {
-      bitField0_ |= 0x00000010;
-      return internalGetMutableReservedIps().getMutableMap();
+    public com.google.protobuf.ByteString
+        getNetworkBytes() {
+      java.lang.Object ref = network_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        network_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+     * <code>string network = 14;</code>
+     * @param value The network to set.
+     * @return This builder for chaining.
      */
-    public Builder putReservedIps(
-        java.lang.String key,
+    public Builder setNetwork(
         java.lang.String value) {
-      if (key == null) { throw new NullPointerException("map key"); }
-      if (value == null) { throw new NullPointerException("map value"); }
-      internalGetMutableReservedIps().getMutableMap()
-          .put(key, value);
-      bitField0_ |= 0x00000010;
+      if (value == null) { throw new NullPointerException(); }
+      network_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
       return this;
     }
     /**
-     * <code>map&lt;string, string&gt; reserved_ips = 13;</code>
+     * <code>string network = 14;</code>
+     * @return This builder for chaining.
      */
-    public Builder putAllReservedIps(
-        java.util.Map<java.lang.String, java.lang.String> values) {
-      internalGetMutableReservedIps().getMutableMap()
-          .putAll(values);
-      bitField0_ |= 0x00000010;
+    public Builder clearNetwork() {
+      network_ = getDefaultInstance().getNetwork();
+      bitField0_ = (bitField0_ & ~0x00000020);
+      onChanged();
       return this;
+    }
+    /**
+     * <code>string network = 14;</code>
+     * @param value The bytes for network to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNetworkBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      network_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+
+    private com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp dhcp_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder> dhcpBuilder_;
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     * @return Whether the dhcp field is set.
+     */
+    public boolean hasDhcp() {
+      return ((bitField0_ & 0x00000040) != 0);
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     * @return The dhcp.
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp getDhcp() {
+      if (dhcpBuilder_ == null) {
+        return dhcp_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance() : dhcp_;
+      } else {
+        return dhcpBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    public Builder setDhcp(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp value) {
+      if (dhcpBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        dhcp_ = value;
+      } else {
+        dhcpBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    public Builder setDhcp(
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder builderForValue) {
+      if (dhcpBuilder_ == null) {
+        dhcp_ = builderForValue.build();
+      } else {
+        dhcpBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    public Builder mergeDhcp(com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp value) {
+      if (dhcpBuilder_ == null) {
+        if (((bitField0_ & 0x00000040) != 0) &&
+          dhcp_ != null &&
+          dhcp_ != com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance()) {
+          getDhcpBuilder().mergeFrom(value);
+        } else {
+          dhcp_ = value;
+        }
+      } else {
+        dhcpBuilder_.mergeFrom(value);
+      }
+      if (dhcp_ != null) {
+        bitField0_ |= 0x00000040;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    public Builder clearDhcp() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      dhcp_ = null;
+      if (dhcpBuilder_ != null) {
+        dhcpBuilder_.dispose();
+        dhcpBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder getDhcpBuilder() {
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return getDhcpFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder getDhcpOrBuilder() {
+      if (dhcpBuilder_ != null) {
+        return dhcpBuilder_.getMessageOrBuilder();
+      } else {
+        return dhcp_ == null ?
+            com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.getDefaultInstance() : dhcp_;
+      }
+    }
+    /**
+     * <code>optional .palm.router.v1.Lan.Dhcp dhcp = 19;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder> 
+        getDhcpFieldBuilder() {
+      if (dhcpBuilder_ == null) {
+        dhcpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp, com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Lan.DhcpOrBuilder>(
+                getDhcp(),
+                getParentForChildren(),
+                isClean());
+        dhcp_ = null;
+      }
+      return dhcpBuilder_;
     }
 
     private java.lang.Object description_ = "";
@@ -1104,7 +3159,7 @@ java.lang.String defaultValue) {
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       description_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
@@ -1114,7 +3169,7 @@ java.lang.String defaultValue) {
      */
     public Builder clearDescription() {
       description_ = getDefaultInstance().getDescription();
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000080);
       onChanged();
       return this;
     }
@@ -1128,7 +3183,7 @@ java.lang.String defaultValue) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       description_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }

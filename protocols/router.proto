@@ -9,26 +9,70 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
+message Firewall {
+  enum Protocol {
+    Tcp = 0;
+    Udp = 1;
+  }
+  message Input {
+    Protocol protocol = 1;
+    uint32 port = 2;
+  }
+  message Nat {
+    message Destination {
+      string ip = 1;
+      uint32 port = 2;
+    }
+    Protocol protocol = 1;
+    uint32 port = 2;
+    Destination destination = 3;
+  }
+  repeated Input input = 1;
+  repeated Nat nat = 2;
+  bool ping = 9;
+}
+
 message Wan {
-  string device = 1;
+  message Nat {}
+  string name = 1;
   string address = 11;
   string netmask = 12;
   string gateway = 13;
+  uint32 cidr = 19;
   repeated string dns = 14;
+  Firewall firewall = 15;
+  uint32 weight = 98;
   string description = 99;
 }
 message Lan {
-  string device = 1;
+  message Dhcp {
+    message Host {
+      string name = 1;
+      string mac = 2;
+    }
+    string begin = 1;
+    string end = 2;
+    repeated string dns = 3;
+    map<string, Host> reserved_hosts = 9;
+  }
+  string name = 1;
   bool blacklist_mode = 9;
   string address = 11;
-  bool dhcp = 12;
-  map<string, string> reserved_ips = 13;
+  string netmask = 12;
+  uint32 cidr = 13;
+  string network = 14;
+  optional Dhcp dhcp = 19;
   string description = 99;
 }
 
 message Network {
-  Wan wan = 1;
-  repeated Lan lan = 2;
+  message Item {
+    oneof interface {
+      Wan wan = 1;
+      Lan lan = 2;
+    }
+  }
+  map<string, Item> items = 1;
 }
 
 message Host {
