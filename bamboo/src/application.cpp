@@ -235,7 +235,7 @@ void bamboo::Application::sample(const std::string& output) {
         google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
     auto it = eth->mutable_lan();
 
-    it->set_name("lan");
+    it->set_name("lan");    
     it->set_address("192.168.1.1");
     it->set_netmask("255.255.255.0");
     it->set_blacklist_mode(true);
@@ -257,7 +257,7 @@ void bamboo::Application::sample(const std::string& output) {
         google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
     auto it = eth->mutable_lan();
 
-    it->set_name("dmz");
+    it->set_name("dmz");    
     it->set_address("192.168.2.1");
     it->set_netmask("255.255.255.0");
     it->set_blacklist_mode(true);

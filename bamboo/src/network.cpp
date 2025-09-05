@@ -95,7 +95,7 @@ dhcp-option=option:router,{{ net.lan.address }}
 dhcp-authoritative
 
 {% for ip, it in net.lan.dhcp.reservedHosts -%}
-dhcp-host={{ it.mac }},{{ it.name }},{{ ip }}
+dhcp-host={{ lower(it.mac) }},{{ it.name }},{{ ip }}
 {% endfor -%}
 EOF
 
@@ -150,7 +150,7 @@ iptables -P FORWARD ACCEPT
 
 {% for dev, net in items -%}
 {% if existsIn(net, "lan") -%}
-iptables -t nat -s {{ net.lan.network }} -A POSTROUTING -j MASQUERADE
+iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -i {{ dev }} -j MASQUERADE
 {% endif -%}
 {% endfor -%}
 )TEMPLATE",
@@ -165,35 +165,57 @@ static void setup_firewall(const palm::router::v1::Network& network,
 echo 'setup iptables'
 iptables -P INPUT DROP
 iptables -P OUTPUT ACCEPT
-iptables -P FORWARD ACCEPT
+iptables -P FORWARD DROP
 
 # Allowing Loopback Connections
 iptables -A INPUT -i lo -j ACCEPT
-iptables -A OUTPUT -o lo -j ACCEPT
+
+# Allowing All Incoming SSH
+iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# Allow wlan ping
+{% for dev, net in items -%}
+{% if existsIn(net, "wan") -%}
+iptables -A INPUT -i {{ dev }} -p icmp --icmp-type 8 -j ACCEPT
+{% endif -%}
+{% endfor -%}
+
+# Allowing Internal Connections
+{% for dev, net in items -%}
+{% if existsIn(net, "lan") -%}
+iptables -A INPUT -i {{ dev }} -j ACCEPT
+{% endif -%}
+{% endfor -%}
 
 # Allowing Established and Related Incoming Connections
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-# Allowing Established Outgoing Connections
-iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
-
-# Allowing Internal Network to access External
-# iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
-
 # Dropping Invalid Packets
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
 
-# Blocking an IP Address
-# iptables -A INPUT -i eth0 -s 203.0.113.51 -j DROP
+# INPUT rules
+{% for dev, net in items -%}
+{% if existsIn(net, "wan") -%}
+{% for it in net.wan.firewall.input -%}
+iptables -A INPUT -i {{ dev }} -p {{ lower(it.protocol) }} --dport {{ it.port }} -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+{% endfor -%}
+{% endif -%}
+{% endfor -%}
 
-# iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-# iptables -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-# iptables -A INPUT -i eth1 -p tcp --dport 5432 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-# iptables -A OUTPUT -o eth1 -p tcp --sport 5432 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+# WAN NAT rules
+{% for dev, net in items -%}
+{% if existsIn(net, "wan") -%}
+{% for it in net.wan.firewall.nat -%}
+iptables -t nat -A PREROUTING -i {{ dev }} -p {{ lower(it.protocol) }} --dport {{ it.port }} -j DNAT --to-destination {{ it.destination.ip }}:{{ it.destination.port }}
+iptables -t nat -A POSTROUTING -p {{ lower(it.protocol) }} -d {{ it.destination.ip }} --dport {{ it.destination.port }} -j ACCEPT
+{% endfor -%}
+{% endif -%}
+{% endfor -%}
 
+# LAN NAT rules
 {% for dev, net in items -%}
 {% if existsIn(net, "lan") -%}
-iptables -t nat -s {{ net.lan.network }} -A POSTROUTING -j MASQUERADE
+iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -i {{ dev }} -j MASQUERADE
 {% endif -%}
 {% endfor -%}
 )TEMPLATE",
