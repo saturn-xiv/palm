@@ -16,6 +16,8 @@ class Application {
   void reboot();
   void apply(const std::string& input, bool run = false);
   void sample(const std::string& output);
+  void scan(const toml::table& config);
+
   std::shared_ptr<soci::session> db(const toml::table& config);
   std::shared_ptr<palm::Jwt> jwt(const toml::table& config);
   std::shared_ptr<palm::Aes> aes(const toml::table& config);

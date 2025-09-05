@@ -3,8 +3,12 @@
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
 
+#include <pugixml.hpp>
+
 // https://www.linode.com/docs/guides/linux-router-and-ip-forwarding/
+// https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
 // sudo pacman -S dnsmasq man-pages net-tools iproute2 dnsutils inetutils
+// sudo apt install iptables-persistent netfilter-persistent
 
 static void setup_systemd_networkd(const palm::router::v1::Network& network,
                                    std::ostream& out) {
@@ -98,57 +102,139 @@ EOF
 systemctl daemon-reload
 systemctl enable dnsmasq-{{ dev }}.service
 systemctl restart dnsmasq-{{ dev }}.service
-{% endif %}
-{% endfor %}
+{% endif -%}
+{% endfor -%}
 )TEMPLATE",
                network, out);
 }
-static void setup_firewall(const palm::router::v1::Network& network,
-                           std::ostream& out) {
-  spdlog::debug("render firewall");
-  palm::render(R"TEMPLATE(
 
+static const std::string KERNEL_ENABLE_FORWARD = R"SHELL(
 echo 'enable ipv4 forward'
 cat >/etc/sysctl.d/100-router.conf <<EOF
 net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
 EOF
 systemctl restart systemd-sysctl
+)SHELL";
 
-echo 'setup iptables'
+static const std::string IPTABLES_CLEAR = R"SHELL(
+echo 'clear firewall rules'
 iptables -F
 iptables -X
 iptables -t nat -F
 iptables -t nat -X
 iptables -t mangle -F
 iptables -t mangle -X
+)SHELL";
+
+static const std::string IPTABLES_SAVE = R"SHELL(
+if [ -f /etc/iptables/iptables.rules ]
+then
+  mv /etc/iptables/iptables.rules /etc/iptables/$(date +"%Y%m%d%H%M%S").rules
+fi
+iptables-save -f /etc/iptables/iptables.rules
+# iptables-restore /etc/iptables/iptables.rules
+systemctl enable iptables
+)SHELL";
+
+static const std::string ECHO_DONE = "echo 'done.'";
+
+static void set_firewall_public(const palm::router::v1::Network& network,
+                                std::ostream& out) {
+  spdlog::debug("render public firewall rules");
+  palm::render(R"TEMPLATE(
+echo 'setup iptables'
 iptables -P INPUT ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
-iptables -A FORWARD -j ACCEPT
 
-iptables -t nat -s 192.168.11.0/24 -A POSTROUTING -j MASQUERADE
-iptables -t nat -s 192.168.12.0/24 -A POSTROUTING -j MASQUERADE
+{% for dev, net in items -%}
+{% if existsIn(net, "lan") -%}
+iptables -t nat -s {{ net.lan.network }} -A POSTROUTING -j MASQUERADE
+{% endif -%}
+{% endfor -%}
+)TEMPLATE",
+               network, out);
+}
 
-iptables-save > /tmp/firewall-$(date +"%Y%m%d%H%M%S").sh
+static void setup_firewall(const palm::router::v1::Network& network,
+                           std::ostream& out) {
+  spdlog::debug("render firewall rules");
+  palm::render(R"TEMPLATE(
+
+echo 'setup iptables'
+iptables -P INPUT DROP
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+
+# Allowing Loopback Connections
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+# Allowing Established and Related Incoming Connections
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Allowing Established Outgoing Connections
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+# Allowing Internal Network to access External
+# iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+
+# Dropping Invalid Packets
+iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+
+# Blocking an IP Address
+# iptables -A INPUT -i eth0 -s 203.0.113.51 -j DROP
+
+# iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+# iptables -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+# iptables -A INPUT -i eth1 -p tcp --dport 5432 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+# iptables -A OUTPUT -o eth1 -p tcp --sport 5432 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+{% for dev, net in items -%}
+{% if existsIn(net, "lan") -%}
+iptables -t nat -s {{ net.lan.network }} -A POSTROUTING -j MASQUERADE
+{% endif -%}
+{% endfor -%}
 )TEMPLATE",
                network, out);
 }
 
 void bamboo::network::apply(const palm::router::v1::Network& it, bool run) {
-  std::string tmp = std::format("{}.sh", palm::timestamp());
+  const auto cur = palm::timestamp();
   {
-    spdlog::info("generate file {}", tmp);
-    std::ofstream out(tmp);
+    std::string clear = std::format("{}-clear.sh", cur);
+    {
+      spdlog::info("generate file {}", clear);
+      std::ofstream out(clear);
+      out << palm::bash::HEADER << palm::bash::REQUIRE_ROOT;
+      setup_systemd_networkd(it, out);
+      setup_dnsmasq(it, out);
+      out << KERNEL_ENABLE_FORWARD << IPTABLES_CLEAR;
+      set_firewall_public(it, out);
+      out << IPTABLES_SAVE << std::endl
+          << ECHO_DONE << std::endl
+          << palm::bash::FOOTER;
+      out.close();
+    }
+  }
+  std::string apply = std::format("{}-apply.sh", cur);
+  {
+    spdlog::info("generate file {}", apply);
+    std::ofstream out(apply);
     out << palm::bash::HEADER << palm::bash::REQUIRE_ROOT;
     setup_systemd_networkd(it, out);
     setup_dnsmasq(it, out);
+    out << KERNEL_ENABLE_FORWARD << IPTABLES_CLEAR;
     setup_firewall(it, out);
-    out << "echo 'done.'" << palm::bash::FOOTER;
+    out << IPTABLES_SAVE << std::endl
+        << ECHO_DONE << std::endl
+        << palm::bash::FOOTER;
     out.close();
   }
   if (run) {
-    spdlog::info("run script {}", tmp);
-    const auto& [status, out, err] = palm::shell("/bin/bash", {tmp});
+    spdlog::info("run script {}", apply);
+    const auto& [status, out, err] = palm::shell("/bin/bash", {apply});
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
       return;
@@ -170,4 +256,66 @@ std::optional<uint8_t> bamboo::network::netmask_to_cidr(const std::string& s) {
     return 23;
   }
   return std::nullopt;
+}
+
+static void load_nmap_host(const pugi::xml_node& node,
+                           bamboo::network::Host& host) {
+  for (const pugi::xml_node& it : node.children("address")) {
+    const std::string addr = it.attribute("addr").value();
+    const std::string addr_type = it.attribute("addrtype").value();
+    if (addr_type == "ipv4") {
+      host.ip = addr;
+      continue;
+    }
+    if (addr_type == "mac") {
+      host.mac = addr;
+      const auto vendor = it.attribute("vendor");
+      if (vendor) {
+        host.vendor = vendor.value();
+      }
+
+      continue;
+    }
+  }
+}
+
+std::vector<bamboo::network::Host> bamboo::network::scan(
+    const std::vector<std::string>& networks) {
+  // sudo nmap -sn 192.168.11.0/24 192.168.12.0/24 -oX /tmp/aaa.xml
+
+  const auto tmp = std::format("/tmp/{}.xml", palm::timestamp());
+
+  {
+    std::vector<std::string> args = {"-oX", tmp, "-sn"};
+    args.insert(args.end(), networks.begin(), networks.end());
+    const auto& [status, out, err] = palm::shell("/usr/bin/nmap", args);
+    if (status != EXIT_SUCCESS) {
+      spdlog::error("{} {}", status, err);
+      return {};
+    }
+    spdlog::debug("{}", out);
+  }
+
+  std::vector<bamboo::network::Host> items;
+  pugi::xml_document doc;
+
+  {
+    spdlog::debug("parse file {}", tmp);
+    pugi::xml_parse_result rst = doc.load_file(tmp.c_str());
+    if (!rst) {
+      spdlog::error("failed to parse xml {}", rst.description());
+      return {};
+    }
+  }
+
+  pugi::xpath_node_set nodes = doc.select_nodes("/nmaprun/host");
+  for (const pugi::xpath_node& node : nodes) {
+    bamboo::network::Host it;
+    load_nmap_host(node.node(), it);
+    if (!it.mac.empty() && !it.ip.empty()) {
+      items.push_back(it);
+    }
+  }
+  //   nmaprun/host/address addr addrtype
+  return items;
 }

@@ -20,6 +20,8 @@ void bamboo::Application::launch(int argc, char* argv[]) {
 
   std::string sample_output_file;
 
+  std::string scan_config_file;
+
   argparse::ArgumentParser program(
       "bamboo", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
   program.add_description("A smart router inspired by OpenWrt.");
@@ -45,8 +47,15 @@ void bamboo::Application::launch(int argc, char* argv[]) {
   argparse::ArgumentParser reboot_command("reboot");
   reboot_command.add_description("reboot the system");
 
+  argparse::ArgumentParser scan_command("scan");
+  scan_command.add_description("scan the internal hosts");
+  scan_command.add_argument("-c", "--config")
+      .default_value("config.toml")
+      .store_into(scan_config_file)
+      .help("configuration file");
+
   argparse::ArgumentParser apply_command("apply");
-  apply_command.add_description("apply");
+  apply_command.add_description("apply from configuration");
   apply_command.add_argument("-i", "--input")
       .default_value("config.json")
       .store_into(apply_input_file)
@@ -64,6 +73,7 @@ void bamboo::Application::launch(int argc, char* argv[]) {
       .help("configuration file");
 
   program.add_subparser(rpc_command);
+  program.add_subparser(scan_command);
   program.add_subparser(reboot_command);
   program.add_subparser(sample_command);
   program.add_subparser(apply_command);
@@ -94,6 +104,13 @@ void bamboo::Application::launch(int argc, char* argv[]) {
       this->rpc_server(config, rpc_listen_host, rpc_listen_port);
       return;
     }
+  }
+  if (program.is_subcommand_used(scan_command)) {
+    palm::init(debug);
+    spdlog::info("load configuration from {}", scan_config_file);
+    toml::table config = toml::parse_file(scan_config_file);
+    this->scan(config);
+    return;
   }
   std::cout << program << std::endl;
 }
@@ -401,4 +418,15 @@ std::shared_ptr<palm::HMac> bamboo::Application::hmac(
   std::shared_ptr<palm::HMac> it =
       std::make_shared<palm::HMac>((*cfg)["key"].value<std::string>().value());
   return it;
+}
+
+void bamboo::Application::scan(const toml::table& config) {
+  // TODO load network from db
+  auto items = bamboo::network::scan({"192.168.11.0/24", "192.168.12.0/24"});
+  for (const auto& it : items) {
+    spdlog::debug("found host({}, {}, {})", it.mac, it.ip,
+                  it.vendor.value_or(""));
+  }
+  // TODO sync hosts into db
+  spdlog::info("done.");
 }
