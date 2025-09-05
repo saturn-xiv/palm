@@ -113,6 +113,12 @@ extern RouterIndexEthernetResponseDefaultTypeInternal _RouterIndexEthernetRespon
 class RouterIndexEthernetResponse_Item;
 struct RouterIndexEthernetResponse_ItemDefaultTypeInternal;
 extern RouterIndexEthernetResponse_ItemDefaultTypeInternal _RouterIndexEthernetResponse_Item_default_instance_;
+class RouterIndexEthernetResponse_Item_Lan;
+struct RouterIndexEthernetResponse_Item_LanDefaultTypeInternal;
+extern RouterIndexEthernetResponse_Item_LanDefaultTypeInternal _RouterIndexEthernetResponse_Item_Lan_default_instance_;
+class RouterIndexEthernetResponse_Item_Wan;
+struct RouterIndexEthernetResponse_Item_WanDefaultTypeInternal;
+extern RouterIndexEthernetResponse_Item_WanDefaultTypeInternal _RouterIndexEthernetResponse_Item_Wan_default_instance_;
 class UserCreateRequest;
 struct UserCreateRequestDefaultTypeInternal;
 extern UserCreateRequestDefaultTypeInternal _UserCreateRequest_default_instance_;
@@ -400,7 +406,7 @@ class UserSetRealNameRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetRealNameRequest*>(
         &_UserSetRealNameRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(UserSetRealNameRequest& a, UserSetRealNameRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetRealNameRequest* other) {
     if (other == this) return;
@@ -608,7 +614,7 @@ class UserIndexResponse_Item_Contact final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item_Contact*>(
         &_UserIndexResponse_Item_Contact_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(UserIndexResponse_Item_Contact& a, UserIndexResponse_Item_Contact& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item_Contact* other) {
     if (other == this) return;
@@ -797,6 +803,458 @@ class UserIndexResponse_Item_Contact final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr phone_;
     ::google::protobuf::internal::ArenaStringPtr email_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RouterIndexEthernetResponse_Item_Wan final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item.Wan) */ {
+ public:
+  inline RouterIndexEthernetResponse_Item_Wan() : RouterIndexEthernetResponse_Item_Wan(nullptr) {}
+  ~RouterIndexEthernetResponse_Item_Wan() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RouterIndexEthernetResponse_Item_Wan* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse_Item_Wan));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse_Item_Wan(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RouterIndexEthernetResponse_Item_Wan(const RouterIndexEthernetResponse_Item_Wan& from) : RouterIndexEthernetResponse_Item_Wan(nullptr, from) {}
+  inline RouterIndexEthernetResponse_Item_Wan(RouterIndexEthernetResponse_Item_Wan&& from) noexcept
+      : RouterIndexEthernetResponse_Item_Wan(nullptr, std::move(from)) {}
+  inline RouterIndexEthernetResponse_Item_Wan& operator=(const RouterIndexEthernetResponse_Item_Wan& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RouterIndexEthernetResponse_Item_Wan& operator=(RouterIndexEthernetResponse_Item_Wan&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RouterIndexEthernetResponse_Item_Wan& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RouterIndexEthernetResponse_Item_Wan* internal_default_instance() {
+    return reinterpret_cast<const RouterIndexEthernetResponse_Item_Wan*>(
+        &_RouterIndexEthernetResponse_Item_Wan_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 17;
+  friend void swap(RouterIndexEthernetResponse_Item_Wan& a, RouterIndexEthernetResponse_Item_Wan& b) { a.Swap(&b); }
+  inline void Swap(RouterIndexEthernetResponse_Item_Wan* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RouterIndexEthernetResponse_Item_Wan* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RouterIndexEthernetResponse_Item_Wan* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse_Item_Wan>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RouterIndexEthernetResponse_Item_Wan& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RouterIndexEthernetResponse_Item_Wan& from) { RouterIndexEthernetResponse_Item_Wan::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RouterIndexEthernetResponse_Item_Wan* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse.Item.Wan"; }
+
+ protected:
+  explicit RouterIndexEthernetResponse_Item_Wan(::google::protobuf::Arena* arena);
+  RouterIndexEthernetResponse_Item_Wan(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse_Item_Wan& from);
+  RouterIndexEthernetResponse_Item_Wan(::google::protobuf::Arena* arena, RouterIndexEthernetResponse_Item_Wan&& from) noexcept
+      : RouterIndexEthernetResponse_Item_Wan(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDnsFieldNumber = 4,
+    kAddressFieldNumber = 1,
+    kNetmaskFieldNumber = 2,
+    kGatewayFieldNumber = 3,
+  };
+  // repeated string dns = 4;
+  int dns_size() const;
+  private:
+  int _internal_dns_size() const;
+
+  public:
+  void clear_dns() ;
+  const std::string& dns(int index) const;
+  std::string* mutable_dns(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_dns(int index, Arg_&& value, Args_... args);
+  std::string* add_dns();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_dns(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& dns() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_dns();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_dns() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_dns();
+
+  public:
+  // string address = 1;
+  void clear_address() ;
+  const std::string& address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_address(Arg_&& arg, Args_... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* value);
+
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
+      const std::string& value);
+  std::string* _internal_mutable_address();
+
+  public:
+  // string netmask = 2;
+  void clear_netmask() ;
+  const std::string& netmask() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_netmask(Arg_&& arg, Args_... args);
+  std::string* mutable_netmask();
+  PROTOBUF_NODISCARD std::string* release_netmask();
+  void set_allocated_netmask(std::string* value);
+
+  private:
+  const std::string& _internal_netmask() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_netmask(
+      const std::string& value);
+  std::string* _internal_mutable_netmask();
+
+  public:
+  // string gateway = 3;
+  void clear_gateway() ;
+  const std::string& gateway() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_gateway(Arg_&& arg, Args_... args);
+  std::string* mutable_gateway();
+  PROTOBUF_NODISCARD std::string* release_gateway();
+  void set_allocated_gateway(std::string* value);
+
+  private:
+  const std::string& _internal_gateway() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_gateway(
+      const std::string& value);
+  std::string* _internal_mutable_gateway();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse.Item.Wan)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      84, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RouterIndexEthernetResponse_Item_Wan& from_msg);
+    ::google::protobuf::RepeatedPtrField<std::string> dns_;
+    ::google::protobuf::internal::ArenaStringPtr address_;
+    ::google::protobuf::internal::ArenaStringPtr netmask_;
+    ::google::protobuf::internal::ArenaStringPtr gateway_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RouterIndexEthernetResponse_Item_Lan final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item.Lan) */ {
+ public:
+  inline RouterIndexEthernetResponse_Item_Lan() : RouterIndexEthernetResponse_Item_Lan(nullptr) {}
+  ~RouterIndexEthernetResponse_Item_Lan() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RouterIndexEthernetResponse_Item_Lan* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse_Item_Lan));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse_Item_Lan(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RouterIndexEthernetResponse_Item_Lan(const RouterIndexEthernetResponse_Item_Lan& from) : RouterIndexEthernetResponse_Item_Lan(nullptr, from) {}
+  inline RouterIndexEthernetResponse_Item_Lan(RouterIndexEthernetResponse_Item_Lan&& from) noexcept
+      : RouterIndexEthernetResponse_Item_Lan(nullptr, std::move(from)) {}
+  inline RouterIndexEthernetResponse_Item_Lan& operator=(const RouterIndexEthernetResponse_Item_Lan& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RouterIndexEthernetResponse_Item_Lan& operator=(RouterIndexEthernetResponse_Item_Lan&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RouterIndexEthernetResponse_Item_Lan& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RouterIndexEthernetResponse_Item_Lan* internal_default_instance() {
+    return reinterpret_cast<const RouterIndexEthernetResponse_Item_Lan*>(
+        &_RouterIndexEthernetResponse_Item_Lan_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 18;
+  friend void swap(RouterIndexEthernetResponse_Item_Lan& a, RouterIndexEthernetResponse_Item_Lan& b) { a.Swap(&b); }
+  inline void Swap(RouterIndexEthernetResponse_Item_Lan* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RouterIndexEthernetResponse_Item_Lan* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RouterIndexEthernetResponse_Item_Lan* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse_Item_Lan>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RouterIndexEthernetResponse_Item_Lan& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RouterIndexEthernetResponse_Item_Lan& from) { RouterIndexEthernetResponse_Item_Lan::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RouterIndexEthernetResponse_Item_Lan* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse.Item.Lan"; }
+
+ protected:
+  explicit RouterIndexEthernetResponse_Item_Lan(::google::protobuf::Arena* arena);
+  RouterIndexEthernetResponse_Item_Lan(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse_Item_Lan& from);
+  RouterIndexEthernetResponse_Item_Lan(::google::protobuf::Arena* arena, RouterIndexEthernetResponse_Item_Lan&& from) noexcept
+      : RouterIndexEthernetResponse_Item_Lan(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNetworkFieldNumber = 1,
+  };
+  // string network = 1;
+  void clear_network() ;
+  const std::string& network() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_network(Arg_&& arg, Args_... args);
+  std::string* mutable_network();
+  PROTOBUF_NODISCARD std::string* release_network();
+  void set_allocated_network(std::string* value);
+
+  private:
+  const std::string& _internal_network() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_network(
+      const std::string& value);
+  std::string* _internal_mutable_network();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse.Item.Lan)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      67, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RouterIndexEthernetResponse_Item_Lan& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr network_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1975,7 +2433,7 @@ class UserSetContactRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetContactRequest*>(
         &_UserSetContactRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(UserSetContactRequest& a, UserSetContactRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetContactRequest* other) {
     if (other == this) return;
@@ -2183,7 +2641,7 @@ class UserIndexResponse_Item_Wifi final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item_Wifi*>(
         &_UserIndexResponse_Item_Wifi_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(UserIndexResponse_Item_Wifi& a, UserIndexResponse_Item_Wifi& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item_Wifi* other) {
     if (other == this) return;
@@ -2366,6 +2824,333 @@ class UserIndexResponse_Item_Wifi final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr password_;
     ::google::protobuf::Timestamp* begin_at_;
     ::google::protobuf::Timestamp* end_at_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item) */ {
+ public:
+  inline RouterIndexEthernetResponse_Item() : RouterIndexEthernetResponse_Item(nullptr) {}
+  ~RouterIndexEthernetResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RouterIndexEthernetResponse_Item* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse_Item(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RouterIndexEthernetResponse_Item(const RouterIndexEthernetResponse_Item& from) : RouterIndexEthernetResponse_Item(nullptr, from) {}
+  inline RouterIndexEthernetResponse_Item(RouterIndexEthernetResponse_Item&& from) noexcept
+      : RouterIndexEthernetResponse_Item(nullptr, std::move(from)) {}
+  inline RouterIndexEthernetResponse_Item& operator=(const RouterIndexEthernetResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RouterIndexEthernetResponse_Item& operator=(RouterIndexEthernetResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RouterIndexEthernetResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  enum EthernetCase {
+    kWan = 11,
+    kLan = 12,
+    kEmpty = 19,
+    ETHERNET_NOT_SET = 0,
+  };
+  static inline const RouterIndexEthernetResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const RouterIndexEthernetResponse_Item*>(
+        &_RouterIndexEthernetResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(RouterIndexEthernetResponse_Item& a, RouterIndexEthernetResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(RouterIndexEthernetResponse_Item* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RouterIndexEthernetResponse_Item* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RouterIndexEthernetResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RouterIndexEthernetResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RouterIndexEthernetResponse_Item& from) { RouterIndexEthernetResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RouterIndexEthernetResponse_Item* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse.Item"; }
+
+ protected:
+  explicit RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena);
+  RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse_Item& from);
+  RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena, RouterIndexEthernetResponse_Item&& from) noexcept
+      : RouterIndexEthernetResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Wan = RouterIndexEthernetResponse_Item_Wan;
+  using Lan = RouterIndexEthernetResponse_Item_Lan;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDeviceFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kDescriptionFieldNumber = 98,
+    kEnableFieldNumber = 99,
+    kWanFieldNumber = 11,
+    kLanFieldNumber = 12,
+    kEmptyFieldNumber = 19,
+  };
+  // string device = 1;
+  void clear_device() ;
+  const std::string& device() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_device(Arg_&& arg, Args_... args);
+  std::string* mutable_device();
+  PROTOBUF_NODISCARD std::string* release_device();
+  void set_allocated_device(std::string* value);
+
+  private:
+  const std::string& _internal_device() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device(
+      const std::string& value);
+  std::string* _internal_mutable_device();
+
+  public:
+  // string name = 2;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string description = 98;
+  void clear_description() ;
+  const std::string& description() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_description(Arg_&& arg, Args_... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* value);
+
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(
+      const std::string& value);
+  std::string* _internal_mutable_description();
+
+  public:
+  // bool enable = 99;
+  void clear_enable() ;
+  bool enable() const;
+  void set_enable(bool value);
+
+  private:
+  bool _internal_enable() const;
+  void _internal_set_enable(bool value);
+
+  public:
+  // .palm.router.v1.RouterIndexEthernetResponse.Item.Wan wan = 11;
+  bool has_wan() const;
+  private:
+  bool _internal_has_wan() const;
+
+  public:
+  void clear_wan() ;
+  const ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan& wan() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* release_wan();
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* mutable_wan();
+  void set_allocated_wan(::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* value);
+  void unsafe_arena_set_allocated_wan(::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* value);
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* unsafe_arena_release_wan();
+
+  private:
+  const ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan& _internal_wan() const;
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* _internal_mutable_wan();
+
+  public:
+  // .palm.router.v1.RouterIndexEthernetResponse.Item.Lan lan = 12;
+  bool has_lan() const;
+  private:
+  bool _internal_has_lan() const;
+
+  public:
+  void clear_lan() ;
+  const ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan& lan() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* release_lan();
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* mutable_lan();
+  void set_allocated_lan(::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* value);
+  void unsafe_arena_set_allocated_lan(::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* value);
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* unsafe_arena_release_lan();
+
+  private:
+  const ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan& _internal_lan() const;
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* _internal_mutable_lan();
+
+  public:
+  // .google.protobuf.Empty empty = 19;
+  bool has_empty() const;
+  private:
+  bool _internal_has_empty() const;
+
+  public:
+  void clear_empty() ;
+  const ::google::protobuf::Empty& empty() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Empty* release_empty();
+  ::google::protobuf::Empty* mutable_empty();
+  void set_allocated_empty(::google::protobuf::Empty* value);
+  void unsafe_arena_set_allocated_empty(::google::protobuf::Empty* value);
+  ::google::protobuf::Empty* unsafe_arena_release_empty();
+
+  private:
+  const ::google::protobuf::Empty& _internal_empty() const;
+  ::google::protobuf::Empty* _internal_mutable_empty();
+
+  public:
+  void clear_ethernet();
+  EthernetCase ethernet_case() const;
+  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse.Item)
+ private:
+  class _Internal;
+  void set_has_wan();
+  void set_has_lan();
+  void set_has_empty();
+  inline bool has_ethernet() const;
+  inline void clear_has_ethernet();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 7, 3,
+      77, 7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RouterIndexEthernetResponse_Item& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr device_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr description_;
+    bool enable_;
+    union EthernetUnion {
+      constexpr EthernetUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* wan_;
+      ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* lan_;
+      ::google::protobuf::Empty* empty_;
+    } ethernet_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3174,7 +3959,7 @@ class UserSetWifiRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetWifiRequest*>(
         &_UserSetWifiRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(UserSetWifiRequest& a, UserSetWifiRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetWifiRequest* other) {
     if (other == this) return;
@@ -3382,7 +4167,7 @@ class UserSetDetailsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetDetailsRequest*>(
         &_UserSetDetailsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(UserSetDetailsRequest& a, UserSetDetailsRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetDetailsRequest* other) {
     if (other == this) return;
@@ -3608,7 +4393,7 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item*>(
         &_UserIndexResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(UserIndexResponse_Item& a, UserIndexResponse_Item& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item* other) {
     if (other == this) return;
@@ -3853,7 +4638,7 @@ class UserCreateRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserCreateRequest*>(
         &_UserCreateRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(UserCreateRequest& a, UserCreateRequest& b) { a.Swap(&b); }
   inline void Swap(UserCreateRequest* other) {
     if (other == this) return;
@@ -4001,6 +4786,204 @@ class UserCreateRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr real_name_;
     ::palm::router::v1::UserIndexResponse_Item_Wifi* wifi_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RouterIndexEthernetResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse) */ {
+ public:
+  inline RouterIndexEthernetResponse() : RouterIndexEthernetResponse(nullptr) {}
+  ~RouterIndexEthernetResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RouterIndexEthernetResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RouterIndexEthernetResponse(const RouterIndexEthernetResponse& from) : RouterIndexEthernetResponse(nullptr, from) {}
+  inline RouterIndexEthernetResponse(RouterIndexEthernetResponse&& from) noexcept
+      : RouterIndexEthernetResponse(nullptr, std::move(from)) {}
+  inline RouterIndexEthernetResponse& operator=(const RouterIndexEthernetResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RouterIndexEthernetResponse& operator=(RouterIndexEthernetResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RouterIndexEthernetResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RouterIndexEthernetResponse* internal_default_instance() {
+    return reinterpret_cast<const RouterIndexEthernetResponse*>(
+        &_RouterIndexEthernetResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 20;
+  friend void swap(RouterIndexEthernetResponse& a, RouterIndexEthernetResponse& b) { a.Swap(&b); }
+  inline void Swap(RouterIndexEthernetResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RouterIndexEthernetResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RouterIndexEthernetResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RouterIndexEthernetResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RouterIndexEthernetResponse& from) { RouterIndexEthernetResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RouterIndexEthernetResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse"; }
+
+ protected:
+  explicit RouterIndexEthernetResponse(::google::protobuf::Arena* arena);
+  RouterIndexEthernetResponse(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse& from);
+  RouterIndexEthernetResponse(::google::protobuf::Arena* arena, RouterIndexEthernetResponse&& from) noexcept
+      : RouterIndexEthernetResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = RouterIndexEthernetResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.router.v1.RouterIndexEthernetResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::router::v1::RouterIndexEthernetResponse_Item* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* _internal_mutable_items();
+  public:
+  const ::palm::router::v1::RouterIndexEthernetResponse_Item& items(int index) const;
+  ::palm::router::v1::RouterIndexEthernetResponse_Item* add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& items() const;
+  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RouterIndexEthernetResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::palm::router::v1::RouterIndexEthernetResponse_Item > items_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4910,7 +5893,7 @@ class UserIndexResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse*>(
         &_UserIndexResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(UserIndexResponse& a, UserIndexResponse& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse* other) {
     if (other == this) return;
@@ -5360,254 +6343,6 @@ class Lan final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item) */ {
- public:
-  inline RouterIndexEthernetResponse_Item() : RouterIndexEthernetResponse_Item(nullptr) {}
-  ~RouterIndexEthernetResponse_Item() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RouterIndexEthernetResponse_Item* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse_Item));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse_Item(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RouterIndexEthernetResponse_Item(const RouterIndexEthernetResponse_Item& from) : RouterIndexEthernetResponse_Item(nullptr, from) {}
-  inline RouterIndexEthernetResponse_Item(RouterIndexEthernetResponse_Item&& from) noexcept
-      : RouterIndexEthernetResponse_Item(nullptr, std::move(from)) {}
-  inline RouterIndexEthernetResponse_Item& operator=(const RouterIndexEthernetResponse_Item& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RouterIndexEthernetResponse_Item& operator=(RouterIndexEthernetResponse_Item&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RouterIndexEthernetResponse_Item& default_instance() {
-    return *internal_default_instance();
-  }
-  enum EthernetCase {
-    kWan = 1,
-    kLan = 2,
-    ETHERNET_NOT_SET = 0,
-  };
-  static inline const RouterIndexEthernetResponse_Item* internal_default_instance() {
-    return reinterpret_cast<const RouterIndexEthernetResponse_Item*>(
-        &_RouterIndexEthernetResponse_Item_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 17;
-  friend void swap(RouterIndexEthernetResponse_Item& a, RouterIndexEthernetResponse_Item& b) { a.Swap(&b); }
-  inline void Swap(RouterIndexEthernetResponse_Item* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RouterIndexEthernetResponse_Item* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RouterIndexEthernetResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse_Item>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RouterIndexEthernetResponse_Item& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RouterIndexEthernetResponse_Item& from) { RouterIndexEthernetResponse_Item::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RouterIndexEthernetResponse_Item* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse.Item"; }
-
- protected:
-  explicit RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena);
-  RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse_Item& from);
-  RouterIndexEthernetResponse_Item(::google::protobuf::Arena* arena, RouterIndexEthernetResponse_Item&& from) noexcept
-      : RouterIndexEthernetResponse_Item(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kEnableFieldNumber = 9,
-    kWanFieldNumber = 1,
-    kLanFieldNumber = 2,
-  };
-  // bool enable = 9;
-  void clear_enable() ;
-  bool enable() const;
-  void set_enable(bool value);
-
-  private:
-  bool _internal_enable() const;
-  void _internal_set_enable(bool value);
-
-  public:
-  // .palm.router.v1.Wan wan = 1;
-  bool has_wan() const;
-  private:
-  bool _internal_has_wan() const;
-
-  public:
-  void clear_wan() ;
-  const ::palm::router::v1::Wan& wan() const;
-  PROTOBUF_NODISCARD ::palm::router::v1::Wan* release_wan();
-  ::palm::router::v1::Wan* mutable_wan();
-  void set_allocated_wan(::palm::router::v1::Wan* value);
-  void unsafe_arena_set_allocated_wan(::palm::router::v1::Wan* value);
-  ::palm::router::v1::Wan* unsafe_arena_release_wan();
-
-  private:
-  const ::palm::router::v1::Wan& _internal_wan() const;
-  ::palm::router::v1::Wan* _internal_mutable_wan();
-
-  public:
-  // .palm.router.v1.Lan lan = 2;
-  bool has_lan() const;
-  private:
-  bool _internal_has_lan() const;
-
-  public:
-  void clear_lan() ;
-  const ::palm::router::v1::Lan& lan() const;
-  PROTOBUF_NODISCARD ::palm::router::v1::Lan* release_lan();
-  ::palm::router::v1::Lan* mutable_lan();
-  void set_allocated_lan(::palm::router::v1::Lan* value);
-  void unsafe_arena_set_allocated_lan(::palm::router::v1::Lan* value);
-  ::palm::router::v1::Lan* unsafe_arena_release_lan();
-
-  private:
-  const ::palm::router::v1::Lan& _internal_lan() const;
-  ::palm::router::v1::Lan* _internal_mutable_lan();
-
-  public:
-  void clear_ethernet();
-  EthernetCase ethernet_case() const;
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse.Item)
- private:
-  class _Internal;
-  void set_has_wan();
-  void set_has_lan();
-  inline bool has_ethernet() const;
-  inline void clear_has_ethernet();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 3, 2,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RouterIndexEthernetResponse_Item& from_msg);
-    bool enable_;
-    union EthernetUnion {
-      constexpr EthernetUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::palm::router::v1::Wan* wan_;
-      ::palm::router::v1::Lan* lan_;
-    } ethernet_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Network_Item final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.router.v1.Network.Item) */ {
  public:
@@ -5837,204 +6572,6 @@ class Network_Item final : public ::google::protobuf::Message
     } interface_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RouterIndexEthernetResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse) */ {
- public:
-  inline RouterIndexEthernetResponse() : RouterIndexEthernetResponse(nullptr) {}
-  ~RouterIndexEthernetResponse() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RouterIndexEthernetResponse* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RouterIndexEthernetResponse));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RouterIndexEthernetResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RouterIndexEthernetResponse(const RouterIndexEthernetResponse& from) : RouterIndexEthernetResponse(nullptr, from) {}
-  inline RouterIndexEthernetResponse(RouterIndexEthernetResponse&& from) noexcept
-      : RouterIndexEthernetResponse(nullptr, std::move(from)) {}
-  inline RouterIndexEthernetResponse& operator=(const RouterIndexEthernetResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RouterIndexEthernetResponse& operator=(RouterIndexEthernetResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RouterIndexEthernetResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RouterIndexEthernetResponse* internal_default_instance() {
-    return reinterpret_cast<const RouterIndexEthernetResponse*>(
-        &_RouterIndexEthernetResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 18;
-  friend void swap(RouterIndexEthernetResponse& a, RouterIndexEthernetResponse& b) { a.Swap(&b); }
-  inline void Swap(RouterIndexEthernetResponse* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RouterIndexEthernetResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RouterIndexEthernetResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RouterIndexEthernetResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RouterIndexEthernetResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RouterIndexEthernetResponse& from) { RouterIndexEthernetResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RouterIndexEthernetResponse* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RouterIndexEthernetResponse"; }
-
- protected:
-  explicit RouterIndexEthernetResponse(::google::protobuf::Arena* arena);
-  RouterIndexEthernetResponse(::google::protobuf::Arena* arena, const RouterIndexEthernetResponse& from);
-  RouterIndexEthernetResponse(::google::protobuf::Arena* arena, RouterIndexEthernetResponse&& from) noexcept
-      : RouterIndexEthernetResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Item = RouterIndexEthernetResponse_Item;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kItemsFieldNumber = 1,
-  };
-  // repeated .palm.router.v1.RouterIndexEthernetResponse.Item items = 1;
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-
-  public:
-  void clear_items() ;
-  ::palm::router::v1::RouterIndexEthernetResponse_Item* mutable_items(int index);
-  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* mutable_items();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& _internal_items() const;
-  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>* _internal_mutable_items();
-  public:
-  const ::palm::router::v1::RouterIndexEthernetResponse_Item& items(int index) const;
-  ::palm::router::v1::RouterIndexEthernetResponse_Item* add_items();
-  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RouterIndexEthernetResponse_Item>& items() const;
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RouterIndexEthernetResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RouterIndexEthernetResponse& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::palm::router::v1::RouterIndexEthernetResponse_Item > items_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8808,9 +9345,369 @@ inline void AdministratorSetPasswordRequest::set_allocated_new_password(std::str
 
 // -------------------------------------------------------------------
 
+// RouterIndexEthernetResponse_Item_Wan
+
+// string address = 1;
+inline void RouterIndexEthernetResponse_Item_Wan::clear_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.address)
+  return _internal_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item_Wan::set_address(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.address)
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.address)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::_internal_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.address_.Get();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::_internal_set_address(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::_internal_mutable_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.address_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::release_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.address)
+  return _impl_.address_.Release();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::set_allocated_address(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.address_.IsDefault()) {
+    _impl_.address_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.address)
+}
+
+// string netmask = 2;
+inline void RouterIndexEthernetResponse_Item_Wan::clear_netmask() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::netmask() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.netmask)
+  return _internal_netmask();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item_Wan::set_netmask(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.netmask)
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::mutable_netmask() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_netmask();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.netmask)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::_internal_netmask() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.netmask_.Get();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::_internal_set_netmask(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::_internal_mutable_netmask() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.netmask_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::release_netmask() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.netmask)
+  return _impl_.netmask_.Release();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::set_allocated_netmask(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.netmask_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.netmask_.IsDefault()) {
+    _impl_.netmask_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.netmask)
+}
+
+// string gateway = 3;
+inline void RouterIndexEthernetResponse_Item_Wan::clear_gateway() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::gateway() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.gateway)
+  return _internal_gateway();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item_Wan::set_gateway(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.gateway)
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::mutable_gateway() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_gateway();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.gateway)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::_internal_gateway() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.gateway_.Get();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::_internal_set_gateway(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::_internal_mutable_gateway() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.gateway_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::release_gateway() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.gateway)
+  return _impl_.gateway_.Release();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::set_allocated_gateway(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gateway_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.gateway_.IsDefault()) {
+    _impl_.gateway_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.gateway)
+}
+
+// repeated string dns = 4;
+inline int RouterIndexEthernetResponse_Item_Wan::_internal_dns_size() const {
+  return _internal_dns().size();
+}
+inline int RouterIndexEthernetResponse_Item_Wan::dns_size() const {
+  return _internal_dns_size();
+}
+inline void RouterIndexEthernetResponse_Item_Wan::clear_dns() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.dns_.Clear();
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::add_dns() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_dns()->Add();
+  // @@protoc_insertion_point(field_add_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Wan::dns(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+  return _internal_dns().Get(index);
+}
+inline std::string* RouterIndexEthernetResponse_Item_Wan::mutable_dns(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+  return _internal_mutable_dns()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void RouterIndexEthernetResponse_Item_Wan::set_dns(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_dns()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+}
+template <typename Arg_, typename... Args_>
+inline void RouterIndexEthernetResponse_Item_Wan::add_dns(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_dns(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+RouterIndexEthernetResponse_Item_Wan::dns() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+  return _internal_dns();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+RouterIndexEthernetResponse_Item_Wan::mutable_dns() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.RouterIndexEthernetResponse.Item.Wan.dns)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_dns();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+RouterIndexEthernetResponse_Item_Wan::_internal_dns() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.dns_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+RouterIndexEthernetResponse_Item_Wan::_internal_mutable_dns() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.dns_;
+}
+
+// -------------------------------------------------------------------
+
+// RouterIndexEthernetResponse_Item_Lan
+
+// string network = 1;
+inline void RouterIndexEthernetResponse_Item_Lan::clear_network() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.network_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Lan::network() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.Lan.network)
+  return _internal_network();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item_Lan::set_network(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.network_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.Lan.network)
+}
+inline std::string* RouterIndexEthernetResponse_Item_Lan::mutable_network() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_network();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.Lan.network)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item_Lan::_internal_network() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.network_.Get();
+}
+inline void RouterIndexEthernetResponse_Item_Lan::_internal_set_network(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.network_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Lan::_internal_mutable_network() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.network_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item_Lan::release_network() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.Lan.network)
+  return _impl_.network_.Release();
+}
+inline void RouterIndexEthernetResponse_Item_Lan::set_allocated_network(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.network_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.network_.IsDefault()) {
+    _impl_.network_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.Lan.network)
+}
+
+// -------------------------------------------------------------------
+
 // RouterIndexEthernetResponse_Item
 
-// .palm.router.v1.Wan wan = 1;
+// string device = 1;
+inline void RouterIndexEthernetResponse_Item::clear_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item::device() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.device)
+  return _internal_device();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item::set_device(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.device)
+}
+inline std::string* RouterIndexEthernetResponse_Item::mutable_device() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_device();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.device)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item::_internal_device() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.device_.Get();
+}
+inline void RouterIndexEthernetResponse_Item::_internal_set_device(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::_internal_mutable_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.device_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::release_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.device)
+  return _impl_.device_.Release();
+}
+inline void RouterIndexEthernetResponse_Item::set_allocated_device(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.device_.IsDefault()) {
+    _impl_.device_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.device)
+}
+
+// string name = 2;
+inline void RouterIndexEthernetResponse_Item::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.name)
+}
+inline std::string* RouterIndexEthernetResponse_Item::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.name)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void RouterIndexEthernetResponse_Item::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.name)
+  return _impl_.name_.Release();
+}
+inline void RouterIndexEthernetResponse_Item::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.name)
+}
+
+// .palm.router.v1.RouterIndexEthernetResponse.Item.Wan wan = 11;
 inline bool RouterIndexEthernetResponse_Item::has_wan() const {
   return ethernet_case() == kWan;
 }
@@ -8831,7 +9728,7 @@ inline void RouterIndexEthernetResponse_Item::clear_wan() {
     clear_has_ethernet();
   }
 }
-inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::release_wan() {
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* RouterIndexEthernetResponse_Item::release_wan() {
   // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
   if (ethernet_case() == kWan) {
     clear_has_ethernet();
@@ -8845,14 +9742,14 @@ inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::release_wan() 
     return nullptr;
   }
 }
-inline const ::palm::router::v1::Wan& RouterIndexEthernetResponse_Item::_internal_wan() const {
-  return ethernet_case() == kWan ? *_impl_.ethernet_.wan_ : reinterpret_cast<::palm::router::v1::Wan&>(::palm::router::v1::_Wan_default_instance_);
+inline const ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan& RouterIndexEthernetResponse_Item::_internal_wan() const {
+  return ethernet_case() == kWan ? *_impl_.ethernet_.wan_ : reinterpret_cast<::palm::router::v1::RouterIndexEthernetResponse_Item_Wan&>(::palm::router::v1::_RouterIndexEthernetResponse_Item_Wan_default_instance_);
 }
-inline const ::palm::router::v1::Wan& RouterIndexEthernetResponse_Item::wan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan& RouterIndexEthernetResponse_Item::wan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
   return _internal_wan();
 }
-inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::unsafe_arena_release_wan() {
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* RouterIndexEthernetResponse_Item::unsafe_arena_release_wan() {
   // @@protoc_insertion_point(field_unsafe_arena_release:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
   if (ethernet_case() == kWan) {
     clear_has_ethernet();
@@ -8863,7 +9760,7 @@ inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::unsafe_arena_r
     return nullptr;
   }
 }
-inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_wan(::palm::router::v1::Wan* value) {
+inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_wan(::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -8874,22 +9771,22 @@ inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_wan(::p
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
 }
-inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::_internal_mutable_wan() {
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* RouterIndexEthernetResponse_Item::_internal_mutable_wan() {
   if (ethernet_case() != kWan) {
     clear_ethernet();
     set_has_wan();
     _impl_.ethernet_.wan_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::Wan>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::RouterIndexEthernetResponse_Item_Wan>(GetArena());
   }
   return _impl_.ethernet_.wan_;
 }
-inline ::palm::router::v1::Wan* RouterIndexEthernetResponse_Item::mutable_wan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::router::v1::Wan* _msg = _internal_mutable_wan();
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* RouterIndexEthernetResponse_Item::mutable_wan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Wan* _msg = _internal_mutable_wan();
   // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.wan)
   return _msg;
 }
 
-// .palm.router.v1.Lan lan = 2;
+// .palm.router.v1.RouterIndexEthernetResponse.Item.Lan lan = 12;
 inline bool RouterIndexEthernetResponse_Item::has_lan() const {
   return ethernet_case() == kLan;
 }
@@ -8910,7 +9807,7 @@ inline void RouterIndexEthernetResponse_Item::clear_lan() {
     clear_has_ethernet();
   }
 }
-inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::release_lan() {
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* RouterIndexEthernetResponse_Item::release_lan() {
   // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
   if (ethernet_case() == kLan) {
     clear_has_ethernet();
@@ -8924,14 +9821,14 @@ inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::release_lan() 
     return nullptr;
   }
 }
-inline const ::palm::router::v1::Lan& RouterIndexEthernetResponse_Item::_internal_lan() const {
-  return ethernet_case() == kLan ? *_impl_.ethernet_.lan_ : reinterpret_cast<::palm::router::v1::Lan&>(::palm::router::v1::_Lan_default_instance_);
+inline const ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan& RouterIndexEthernetResponse_Item::_internal_lan() const {
+  return ethernet_case() == kLan ? *_impl_.ethernet_.lan_ : reinterpret_cast<::palm::router::v1::RouterIndexEthernetResponse_Item_Lan&>(::palm::router::v1::_RouterIndexEthernetResponse_Item_Lan_default_instance_);
 }
-inline const ::palm::router::v1::Lan& RouterIndexEthernetResponse_Item::lan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan& RouterIndexEthernetResponse_Item::lan() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
   return _internal_lan();
 }
-inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::unsafe_arena_release_lan() {
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* RouterIndexEthernetResponse_Item::unsafe_arena_release_lan() {
   // @@protoc_insertion_point(field_unsafe_arena_release:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
   if (ethernet_case() == kLan) {
     clear_has_ethernet();
@@ -8942,7 +9839,7 @@ inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::unsafe_arena_r
     return nullptr;
   }
 }
-inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_lan(::palm::router::v1::Lan* value) {
+inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_lan(::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -8953,22 +9850,138 @@ inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_lan(::p
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
 }
-inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::_internal_mutable_lan() {
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* RouterIndexEthernetResponse_Item::_internal_mutable_lan() {
   if (ethernet_case() != kLan) {
     clear_ethernet();
     set_has_lan();
     _impl_.ethernet_.lan_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::Lan>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::RouterIndexEthernetResponse_Item_Lan>(GetArena());
   }
   return _impl_.ethernet_.lan_;
 }
-inline ::palm::router::v1::Lan* RouterIndexEthernetResponse_Item::mutable_lan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::router::v1::Lan* _msg = _internal_mutable_lan();
+inline ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* RouterIndexEthernetResponse_Item::mutable_lan() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::router::v1::RouterIndexEthernetResponse_Item_Lan* _msg = _internal_mutable_lan();
   // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.lan)
   return _msg;
 }
 
-// bool enable = 9;
+// .google.protobuf.Empty empty = 19;
+inline bool RouterIndexEthernetResponse_Item::has_empty() const {
+  return ethernet_case() == kEmpty;
+}
+inline bool RouterIndexEthernetResponse_Item::_internal_has_empty() const {
+  return ethernet_case() == kEmpty;
+}
+inline void RouterIndexEthernetResponse_Item::set_has_empty() {
+  _impl_._oneof_case_[0] = kEmpty;
+}
+inline ::google::protobuf::Empty* RouterIndexEthernetResponse_Item::release_empty() {
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.empty)
+  if (ethernet_case() == kEmpty) {
+    clear_has_ethernet();
+    auto* temp = _impl_.ethernet_.empty_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.ethernet_.empty_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::google::protobuf::Empty& RouterIndexEthernetResponse_Item::_internal_empty() const {
+  return ethernet_case() == kEmpty ? *_impl_.ethernet_.empty_ : reinterpret_cast<::google::protobuf::Empty&>(::google::protobuf::_Empty_default_instance_);
+}
+inline const ::google::protobuf::Empty& RouterIndexEthernetResponse_Item::empty() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.empty)
+  return _internal_empty();
+}
+inline ::google::protobuf::Empty* RouterIndexEthernetResponse_Item::unsafe_arena_release_empty() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.router.v1.RouterIndexEthernetResponse.Item.empty)
+  if (ethernet_case() == kEmpty) {
+    clear_has_ethernet();
+    auto* temp = _impl_.ethernet_.empty_;
+    _impl_.ethernet_.empty_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RouterIndexEthernetResponse_Item::unsafe_arena_set_allocated_empty(::google::protobuf::Empty* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_ethernet();
+  if (value) {
+    set_has_empty();
+    _impl_.ethernet_.empty_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.empty)
+}
+inline ::google::protobuf::Empty* RouterIndexEthernetResponse_Item::_internal_mutable_empty() {
+  if (ethernet_case() != kEmpty) {
+    clear_ethernet();
+    set_has_empty();
+    _impl_.ethernet_.empty_ =
+        ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Empty>(GetArena());
+  }
+  return _impl_.ethernet_.empty_;
+}
+inline ::google::protobuf::Empty* RouterIndexEthernetResponse_Item::mutable_empty() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::Empty* _msg = _internal_mutable_empty();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.empty)
+  return _msg;
+}
+
+// string description = 98;
+inline void RouterIndexEthernetResponse_Item::clear_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item::description() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.description)
+  return _internal_description();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item::set_description(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.description)
+}
+inline std::string* RouterIndexEthernetResponse_Item::mutable_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.description)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item::_internal_description() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.description_.Get();
+}
+inline void RouterIndexEthernetResponse_Item::_internal_set_description(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::_internal_mutable_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.description_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::release_description() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.description)
+  return _impl_.description_.Release();
+}
+inline void RouterIndexEthernetResponse_Item::set_allocated_description(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.description_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.description_.IsDefault()) {
+    _impl_.description_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.description)
+}
+
+// bool enable = 99;
 inline void RouterIndexEthernetResponse_Item::clear_enable() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.enable_ = false;

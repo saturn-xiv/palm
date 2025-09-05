@@ -22,6 +22,8 @@ class Application {
   std::shared_ptr<palm::Jwt> jwt(const toml::table& config);
   std::shared_ptr<palm::Aes> aes(const toml::table& config);
   std::shared_ptr<palm::HMac> hmac(const toml::table& config);
+  // mac - 32u
+  std::optional<std::vector<uint8_t>> secrets(const toml::table& config);
 };
 
 }  // namespace bamboo

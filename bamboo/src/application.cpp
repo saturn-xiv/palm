@@ -6,6 +6,7 @@
 
 #include <grpcpp/health_check_service_interface.h>
 #include <grpcpp/security/server_credentials.h>
+#include <sodium.h>
 #include <argparse/argparse.hpp>
 
 void bamboo::Application::launch(int argc, char* argv[]) {
@@ -235,7 +236,7 @@ void bamboo::Application::sample(const std::string& output) {
         google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
     auto it = eth->mutable_lan();
 
-    it->set_name("lan");    
+    it->set_name("lan");
     it->set_address("192.168.1.1");
     it->set_netmask("255.255.255.0");
     it->set_blacklist_mode(true);
@@ -257,7 +258,7 @@ void bamboo::Application::sample(const std::string& output) {
         google::protobuf::Arena::Create<palm::router::v1::Network_Item>(&arena);
     auto it = eth->mutable_lan();
 
-    it->set_name("dmz");    
+    it->set_name("dmz");
     it->set_address("192.168.2.1");
     it->set_netmask("255.255.255.0");
     it->set_blacklist_mode(true);
@@ -316,6 +317,26 @@ void bamboo::Application::sample(const std::string& output) {
   spdlog::info("done.");
 }
 
+std::optional<std::vector<uint8_t>> bamboo::Application::secrets(
+    const toml::table& config) {
+  const auto it = config["secrets"].value<std::string>();
+  if (!it) {
+    return std::nullopt;
+  }
+  const auto buf = palm::base64::from_string(it.value());
+  // if (buf.size() != crypto_auth_KEYBYTES) {
+  //   spdlog::error("invalid mac key length({},{})", buf.size(),
+  //                 crypto_auth_KEYBYTES);
+  //   return std::nullopt;
+  // }
+  if (buf.size() != crypto_secretbox_KEYBYTES) {
+    spdlog::error("invalid encrypt key length({},{})", buf.size(),
+                  crypto_secretbox_KEYBYTES);
+    return std::nullopt;
+  }
+  return buf;
+}
+
 std::shared_ptr<soci::session> bamboo::Application::db(
     const toml::table& config) {
   const std::string db_file =
@@ -361,6 +382,7 @@ CREATE TABLE IF NOT EXISTS hosts (
   mac CHAR(17) NOT NULL,
   ip VARCHAR(45) NOT NULL,
   name VARCHAR(63) NOT NULL,
+  vendor VARCHAR(63) NOT NULL,
   deleted_at TIMESTAMP,
   version INTEGER NOT NULL DEFAULT 0, 
   updated_at TIMESTAMP NOT NULL,
@@ -369,6 +391,7 @@ CREATE TABLE IF NOT EXISTS hosts (
 CREATE UNIQUE INDEX IF NOT EXISTS idx_hosts_mac ON idx_hosts(mac);
 CREATE INDEX IF NOT EXISTS idx_hosts_ip ON idx_hosts(ip);
 CREATE INDEX IF NOT EXISTS idx_hosts_name ON idx_hosts(name);
+CREATE INDEX IF NOT EXISTS idx_hosts_vendor ON idx_hosts(vendor);
 )SQL";
 
     *db << R"SQL(
@@ -421,12 +444,46 @@ std::shared_ptr<palm::HMac> bamboo::Application::hmac(
 }
 
 void bamboo::Application::scan(const toml::table& config) {
-  // TODO load network from db
-  auto items = bamboo::network::scan({"192.168.11.0/24", "192.168.12.0/24"});
-  for (const auto& it : items) {
-    spdlog::debug("found host({}, {}, {})", it.mac, it.ip,
-                  it.vendor.value_or(""));
+  auto db = this->db(config);
+  std::vector<std::string> networks;
+  for (const auto& name : bamboo::network::interfaces()) {
+    const auto mac = bamboo::network::mac(name);
+    spdlog::debug("found network interface {} {}", name, mac);
+    const std::string key = std::format("network.interface.{}", name);
+    const auto buf = bamboo::dao::get(*db, key);
+    if (!buf) {
+      continue;
+    }
+    palm::router::v1::RouterIndexEthernetResponse_Item it;
+    if (!it.ParseFromArray(buf->data(), buf->size())) {
+      spdlog::error("failed to parse configuration for {}", name);
+      continue;
+    }
+    if (!it.enable()) {
+      spdlog::warn("{} isn't enabled", name);
+      continue;
+    }
+    if (!it.has_lan()) {
+      spdlog::debug("ignore {}", name);
+      continue;
+    }
+    networks.push_back(it.lan().network());
   }
-  // TODO sync hosts into db
+
+  if (networks.empty()) {
+    spdlog::warn("couldn't found available network interfaces");
+    return;
+  }
+  auto items = bamboo::network::scan(networks);
+
+  {
+    soci::transaction tr(*db);
+    for (const auto& it : items) {
+      spdlog::debug("found host({}, {}, {})", it.mac, it.ip,
+                    it.vendor.value_or(""));
+      bamboo::dao::host::save(*db, it.mac, "", it.ip, it.vendor.value_or(""));
+    }
+    tr.commit();
+  }
   spdlog::info("done.");
 }

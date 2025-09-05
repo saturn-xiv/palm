@@ -13,5 +13,7 @@ struct Host {
   std::optional<std::string> vendor;
 };
 std::vector<Host> scan(const std::vector<std::string>& networks);
+std::vector<std::string> interfaces();
+std::string mac(const std::string& interface);
 }  // namespace network
 }  // namespace bamboo

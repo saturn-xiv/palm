@@ -303,8 +303,6 @@ static void load_nmap_host(const pugi::xml_node& node,
 
 std::vector<bamboo::network::Host> bamboo::network::scan(
     const std::vector<std::string>& networks) {
-  // sudo nmap -sn 192.168.11.0/24 192.168.12.0/24 -oX /tmp/aaa.xml
-
   const auto tmp = std::format("/tmp/{}.xml", palm::timestamp());
 
   {

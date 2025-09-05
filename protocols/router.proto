@@ -124,11 +124,24 @@ service Router {
 
 message RouterIndexEthernetResponse {
   message Item {
-    oneof ethernet {
-      Wan wan = 1;
-      Lan lan = 2;
+    message Wan {
+      string address = 1;
+      string netmask = 2;
+      string gateway = 3;
+      repeated string dns = 4;
     }
-    bool enable = 9;
+    message Lan {
+      string network = 1;
+    }
+    string device = 1;
+    string name = 2;
+    oneof ethernet {
+      Wan wan = 11;
+      Lan lan = 12;
+      google.protobuf.Empty empty = 19;
+    }
+    string description = 98;
+    bool enable = 99;
   }
   repeated Item items = 1;
 }
