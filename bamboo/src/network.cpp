@@ -51,7 +51,7 @@ static void setup_dnsmasq(const palm::router::v1::Network& network,
 echo "setup dnsmasq"
 systemctl stop dnsmasq
 systemctl disable dnsmasq
-rm -v /usr/lib/systemd/system/dnsmasq-*.service
+rm -fv /usr/lib/systemd/system/dnsmasq-*.service
 
 {% for dev, net in items -%}
 {% if existsIn(net, "lan") and existsIn(net.lan, "dhcp") -%}
@@ -150,7 +150,7 @@ iptables -P FORWARD ACCEPT
 
 {% for dev, net in items -%}
 {% if existsIn(net, "lan") -%}
-iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -i {{ dev }} -j MASQUERADE
+iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -j MASQUERADE
 {% endif -%}
 {% endfor -%}
 )TEMPLATE",
@@ -215,7 +215,7 @@ iptables -t nat -A POSTROUTING -p {{ lower(it.protocol) }} -d {{ it.destination.
 # LAN NAT rules
 {% for dev, net in items -%}
 {% if existsIn(net, "lan") -%}
-iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -i {{ dev }} -j MASQUERADE
+iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -j MASQUERADE
 {% endif -%}
 {% endfor -%}
 )TEMPLATE",

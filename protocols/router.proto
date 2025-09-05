@@ -47,6 +47,7 @@ message Wan {
 message Lan {
   message Dhcp {
     message Host {
+      // -.a-zA-Z0-9
       string name = 1;
       string mac = 2;
     }
