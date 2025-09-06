@@ -3,6 +3,9 @@ package com.github.saturn_xiv.palm.plugins.bbs.v1;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ * <pre>
+ * ----------------------------------------------------------------------------
+ * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.71.0)",
@@ -15,6 +18,161 @@ public final class PostGrpc {
   public static final java.lang.String SERVICE_NAME = "palm.bbs.v1.Post";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getIndexMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Index",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
+      responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getIndexMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getIndexMethod;
+    if ((getIndexMethod = PostGrpc.getIndexMethod) == null) {
+      synchronized (PostGrpc.class) {
+        if ((getIndexMethod = PostGrpc.getIndexMethod) == null) {
+          PostGrpc.getIndexMethod = getIndexMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Index"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PostMethodDescriptorSupplier("Index"))
+              .build();
+        }
+      }
+    }
+    return getIndexMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ByArticle",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod;
+    if ((getByArticleMethod = PostGrpc.getByArticleMethod) == null) {
+      synchronized (PostGrpc.class) {
+        if ((getByArticleMethod = PostGrpc.getByArticleMethod) == null) {
+          PostGrpc.getByArticleMethod = getByArticleMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ByArticle"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PostMethodDescriptorSupplier("ByArticle"))
+              .build();
+        }
+      }
+    }
+    return getByArticleMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest,
+      com.google.protobuf.Empty> getCreateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Create",
+      requestType = com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest,
+      com.google.protobuf.Empty> getCreateMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest, com.google.protobuf.Empty> getCreateMethod;
+    if ((getCreateMethod = PostGrpc.getCreateMethod) == null) {
+      synchronized (PostGrpc.class) {
+        if ((getCreateMethod = PostGrpc.getCreateMethod) == null) {
+          PostGrpc.getCreateMethod = getCreateMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Create"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new PostMethodDescriptorSupplier("Create"))
+              .build();
+        }
+      }
+    }
+    return getCreateMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest,
+      com.google.protobuf.Empty> getUpdateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Update",
+      requestType = com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest,
+      com.google.protobuf.Empty> getUpdateMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest, com.google.protobuf.Empty> getUpdateMethod;
+    if ((getUpdateMethod = PostGrpc.getUpdateMethod) == null) {
+      synchronized (PostGrpc.class) {
+        if ((getUpdateMethod = PostGrpc.getUpdateMethod) == null) {
+          PostGrpc.getUpdateMethod = getUpdateMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Update"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new PostMethodDescriptorSupplier("Update"))
+              .build();
+        }
+      }
+    }
+    return getUpdateMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest,
+      com.google.protobuf.Empty> getDeleteMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Delete",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest,
+      com.google.protobuf.Empty> getDeleteMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest, com.google.protobuf.Empty> getDeleteMethod;
+    if ((getDeleteMethod = PostGrpc.getDeleteMethod) == null) {
+      synchronized (PostGrpc.class) {
+        if ((getDeleteMethod = PostGrpc.getDeleteMethod) == null) {
+          PostGrpc.getDeleteMethod = getDeleteMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Delete"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new PostMethodDescriptorSupplier("Delete"))
+              .build();
+        }
+      }
+    }
+    return getDeleteMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -75,12 +233,53 @@ public final class PostGrpc {
   }
 
   /**
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public interface AsyncService {
+
+    /**
+     */
+    default void index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByArticleMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void create(com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void update(com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
+    }
   }
 
   /**
    * Base class for the server implementation of the service Post.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static abstract class PostImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -92,6 +291,9 @@ public final class PostGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service Post.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PostStub
       extends io.grpc.stub.AbstractAsyncStub<PostStub> {
@@ -105,10 +307,53 @@ public final class PostGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PostStub(channel, callOptions);
     }
+
+    /**
+     */
+    public void index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getByArticleMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void create(com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCreateMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void update(com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDeleteMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Post.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PostBlockingV2Stub
       extends io.grpc.stub.AbstractBlockingStub<PostBlockingV2Stub> {
@@ -122,10 +367,48 @@ public final class PostGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PostBlockingV2Stub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByArticleMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteMethod(), getCallOptions(), request);
+    }
   }
 
   /**
    * A stub to allow clients to do limited synchronous rpc calls to service Post.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PostBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<PostBlockingStub> {
@@ -139,10 +422,48 @@ public final class PostGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PostBlockingStub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByArticleMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteMethod(), getCallOptions(), request);
+    }
   }
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service Post.
+   * <pre>
+   * ----------------------------------------------------------------------------
+   * </pre>
    */
   public static final class PostFutureStub
       extends io.grpc.stub.AbstractFutureStub<PostFutureStub> {
@@ -156,8 +477,53 @@ public final class PostGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PostFutureStub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> index(
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> byArticle(
+        com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getByArticleMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> create(
+        com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCreateMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> update(
+        com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> delete(
+        com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDeleteMethod(), getCallOptions()), request);
+    }
   }
 
+  private static final int METHODID_INDEX = 0;
+  private static final int METHODID_BY_ARTICLE = 1;
+  private static final int METHODID_CREATE = 2;
+  private static final int METHODID_UPDATE = 3;
+  private static final int METHODID_DELETE = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -176,6 +542,26 @@ public final class PostGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_INDEX:
+          serviceImpl.index((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>) responseObserver);
+          break;
+        case METHODID_BY_ARTICLE:
+          serviceImpl.byArticle((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>) responseObserver);
+          break;
+        case METHODID_CREATE:
+          serviceImpl.create((com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_UPDATE:
+          serviceImpl.update((com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_DELETE:
+          serviceImpl.delete((com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -194,6 +580,41 @@ public final class PostGrpc {
 
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getIndexMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+              com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>(
+                service, METHODID_INDEX)))
+        .addMethod(
+          getByArticleMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+              com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>(
+                service, METHODID_BY_ARTICLE)))
+        .addMethod(
+          getCreateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_CREATE)))
+        .addMethod(
+          getUpdateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_UPDATE)))
+        .addMethod(
+          getDeleteMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_DELETE)))
         .build();
   }
 
@@ -242,6 +663,11 @@ public final class PostGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new PostFileDescriptorSupplier())
+              .addMethod(getIndexMethod())
+              .addMethod(getByArticleMethod())
+              .addMethod(getCreateMethod())
+              .addMethod(getUpdateMethod())
+              .addMethod(getDeleteMethod())
               .build();
         }
       }

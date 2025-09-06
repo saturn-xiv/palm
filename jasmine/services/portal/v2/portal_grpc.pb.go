@@ -36,7 +36,7 @@ type LocaleClient interface {
 	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
 	Create(ctx context.Context, in *LocaleCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Update(ctx context.Context, in *LocaleUpdateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Destroy(ctx context.Context, in *ByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error)
 }
 
@@ -78,7 +78,7 @@ func (c *localeClient) Update(ctx context.Context, in *LocaleUpdateRequest, opts
 	return out, nil
 }
 
-func (c *localeClient) Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *localeClient) Destroy(ctx context.Context, in *ByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Locale_Destroy_FullMethodName, in, out, cOpts...)
@@ -107,7 +107,7 @@ type LocaleServer interface {
 	Index(context.Context, *Page) (*LocaleIndexResponse, error)
 	Create(context.Context, *LocaleCreateRequest) (*emptypb.Empty, error)
 	Update(context.Context, *LocaleUpdateRequest) (*emptypb.Empty, error)
-	Destroy(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Destroy(context.Context, *ByIdRequest) (*emptypb.Empty, error)
 	ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error)
 	mustEmbedUnimplementedLocaleServer()
 }
@@ -128,7 +128,7 @@ func (UnimplementedLocaleServer) Create(context.Context, *LocaleCreateRequest) (
 func (UnimplementedLocaleServer) Update(context.Context, *LocaleUpdateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedLocaleServer) Destroy(context.Context, *IdRequest) (*emptypb.Empty, error) {
+func (UnimplementedLocaleServer) Destroy(context.Context, *ByIdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Destroy not implemented")
 }
 func (UnimplementedLocaleServer) ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error) {
@@ -210,7 +210,7 @@ func _Locale_Update_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _Locale_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdRequest)
+	in := new(ByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -222,7 +222,7 @@ func _Locale_Destroy_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Locale_Destroy_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocaleServer).Destroy(ctx, req.(*IdRequest))
+		return srv.(LocaleServer).Destroy(ctx, req.(*ByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

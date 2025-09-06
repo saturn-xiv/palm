@@ -5,12 +5,155 @@ option java_package = "com.github.saturn_xiv.palm.plugins.bbs.v1";
 option go_package = "./;v2";
 package palm.bbs.v1;
 
-service Forum {}
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
-service Topic {}
+import "portal.proto";
 
-service Post {}
+message UserDetails {
+  palm.bbs.v1.UserDetails info = 1;
+  uint32 posts = 2;
+  optional google.protobuf.Timestamp last_posted_at = 98;
+}
+message LastPostedDetails {
+  UserDetails user = 1;
+  google.protobuf.Timestamp at = 2;
+}
+// ----------------------------------------------------------------------------
+service Board {
+  rpc Index(google.protobuf.Empty) returns (BoardIndexResponse) {}
+  rpc ByLang(palm.portal.v1.ByLangRequest) returns (BoardIndexResponse) {}
+  rpc Create(BoardCreateRequest) returns (google.protobuf.Empty) {}
+}
 
+message BoardCreateRequest {
+  string title = 1;
+  string lang = 2;
+}
+message BoardIndexResponse {
+  message Item {
+    uint32 id = 1;
+    string title = 2;
+    repeated ForumIndexResponse.Item items = 3;
+  }
+  message Status {
+    palm.portal.v1.Layout.Status site = 1;
+    uint32 total_topics = 5;
+    uint32 total_posts = 6;
+  }
+  repeated Item items = 1;
+  Status status = 2;
+}
+// ----------------------------------------------------------------------------
+service Forum {
+  rpc Index(google.protobuf.Empty) returns (ForumIndexResponse) {}
+  rpc ByBoard(palm.portal.v1.ByIdRequest) returns (ForumIndexResponse) {}
+  rpc Create(ForumCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(ForumUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Lock(palm.portal.v1.IdWithReasonRequest) returns (google.protobuf.Empty) {
+  }
+  rpc Unlock(palm.portal.v1.IdWithReasonRequest)
+      returns (google.protobuf.Empty) {}
+  rpc Delete(palm.portal.v1.IdWithReasonRequest)
+      returns (google.protobuf.Empty) {}
+}
+message ForumCreateRequest {
+  uint32 board = 1;
+  string title = 2;
+  string description = 3;
+}
+message ForumUpdateRequest {
+  uint32 id = 1;
+  string title = 2;
+  string description = 3;
+}
+message ForumIndexResponse {
+  message Item {
+    uint32 id = 1;
+    uint32 board = 2;
+    string title = 3;
+    string description = 4;
+    optional LastPostedDetails last_posted = 98;
+  }
+  repeated Item items = 1;
+}
+// ----------------------------------------------------------------------------
+service Topic {
+  rpc Index(palm.portal.v1.Page) returns (TopicIndexResponse) {}
+  rpc ByForum(palm.portal.v1.ByIdRequest) returns (TopicIndexResponse) {}
+  rpc Show(palm.portal.v1.ByIdRequest) returns (TopicShowResponse) {}
+  rpc Active(google.protobuf.Empty) returns (TopicIndexResponse) {}
+  rpc Unanswered(google.protobuf.Empty) returns (TopicIndexResponse) {}
+  rpc Create(TopicCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(TopicUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Lock(palm.portal.v1.IdWithReasonRequest) returns (google.protobuf.Empty) {
+  }
+  rpc Unlock(palm.portal.v1.IdWithReasonRequest)
+      returns (google.protobuf.Empty) {}
+  rpc Delete(palm.portal.v1.IdWithReasonRequest)
+      returns (google.protobuf.Empty) {}
+}
+message TopicShowResponse {
+  string title = 1;
+  string body = 2;
+  UserDetails author = 9;
+  uint32 replies = 91;
+  uint32 views = 92;
+  optional LastPostedDetails last_posted = 98;
+  google.protobuf.Timestamp updated_at = 99;
+}
+message TopicCreateRequest {
+  uint32 forum = 1;
+  string title = 2;
+  string body = 3;
+}
+message TopicUpdateRequest {
+  uint32 id = 1;
+  string title = 2;
+  string body = 3;
+}
+message TopicIndexResponse {
+  message Item {
+    uint32 id = 1;
+    uint32 forum = 2;
+    string title = 3;
+    UserDetails author = 9;
+    uint32 replies = 91;
+    uint32 views = 92;
+    optional LastPostedDetails last_posted = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+// ----------------------------------------------------------------------------
+service Post {
+  rpc Index(palm.portal.v1.Page) returns (PostIndexResponse) {}
+  rpc ByArticle(palm.portal.v1.ByIdRequest) returns (PostIndexResponse) {}
+  rpc Create(CreatePostRequest) returns (google.protobuf.Empty) {}
+  rpc Update(UpdatePostRequest) returns (google.protobuf.Empty) {}
+  rpc Delete(palm.portal.v1.IdWithReasonRequest)
+      returns (google.protobuf.Empty) {}
+}
+message PostIndexResponse {
+  message Item {
+    uint32 id = 1;
+    uint32 article = 2;
+    string body = 3;
+    UserDetails author = 9;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+message CreatePostRequest {
+  uint32 topic = 1;
+  string body = 2;
+}
+message UpdatePostRequest {
+  uint32 id = 1;
+  string body = 2;
+}
 // ----------------------------------------------------------------------------
 
 message Theme {

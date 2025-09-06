@@ -111,27 +111,27 @@ public final class LocaleGrpc {
     return getUpdateMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
       com.google.protobuf.Empty> getDestroyMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Destroy",
-      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class,
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
       com.google.protobuf.Empty> getDestroyMethod() {
-    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty> getDestroyMethod;
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.google.protobuf.Empty> getDestroyMethod;
     if ((getDestroyMethod = LocaleGrpc.getDestroyMethod) == null) {
       synchronized (LocaleGrpc.class) {
         if ((getDestroyMethod = LocaleGrpc.getDestroyMethod) == null) {
           LocaleGrpc.getDestroyMethod = getDestroyMethod =
-              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Destroy"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance()))
+                  com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new LocaleMethodDescriptorSupplier("Destroy"))
@@ -262,7 +262,7 @@ public final class LocaleGrpc {
 
     /**
      */
-    default void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+    default void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDestroyMethod(), responseObserver);
     }
@@ -334,7 +334,7 @@ public final class LocaleGrpc {
 
     /**
      */
-    public void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+    public void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDestroyMethod(), getCallOptions()), request, responseObserver);
@@ -391,7 +391,7 @@ public final class LocaleGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDestroyMethod(), getCallOptions(), request);
     }
@@ -446,7 +446,7 @@ public final class LocaleGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDestroyMethod(), getCallOptions(), request);
     }
@@ -505,7 +505,7 @@ public final class LocaleGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> destroy(
-        com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDestroyMethod(), getCallOptions()), request);
     }
@@ -555,7 +555,7 @@ public final class LocaleGrpc {
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_DESTROY:
-          serviceImpl.destroy((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) request,
+          serviceImpl.destroy((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_BY_LANG:
@@ -605,7 +605,7 @@ public final class LocaleGrpc {
           getDestroyMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+              com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
               com.google.protobuf.Empty>(
                 service, METHODID_DESTROY)))
         .addMethod(

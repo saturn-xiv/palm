@@ -6,12 +6,12 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.IdRequest}
+ * Protobuf type {@code palm.portal.v1.IdWithReasonRequest}
  */
-public final class IdRequest extends
+public final class IdWithReasonRequest extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.IdRequest)
-    IdRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.IdWithReasonRequest)
+    IdWithReasonRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -20,26 +20,27 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 29,
       /* patch= */ 5,
       /* suffix= */ "",
-      IdRequest.class.getName());
+      IdWithReasonRequest.class.getName());
   }
-  // Use IdRequest.newBuilder() to construct.
-  private IdRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use IdWithReasonRequest.newBuilder() to construct.
+  private IdWithReasonRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private IdRequest() {
+  private IdWithReasonRequest() {
+    reason_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdRequest_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdWithReasonRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdRequest_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdWithReasonRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.Builder.class);
   }
 
   public static final int ID_FIELD_NUMBER = 1;
@@ -51,6 +52,45 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getId() {
     return id_;
+  }
+
+  public static final int REASON_FIELD_NUMBER = 2;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object reason_ = "";
+  /**
+   * <code>string reason = 2;</code>
+   * @return The reason.
+   */
+  @java.lang.Override
+  public java.lang.String getReason() {
+    java.lang.Object ref = reason_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      reason_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string reason = 2;</code>
+   * @return The bytes for reason.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getReasonBytes() {
+    java.lang.Object ref = reason_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      reason_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -70,6 +110,9 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0) {
       output.writeUInt32(1, id_);
     }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(reason_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 2, reason_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -83,6 +126,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeUInt32Size(1, id_);
     }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(reason_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, reason_);
+    }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -93,13 +139,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest) obj;
 
     if (getId()
         != other.getId()) return false;
+    if (!getReason()
+        .equals(other.getReason())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -113,49 +161,51 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId();
+    hash = (37 * hash) + REASON_FIELD_NUMBER;
+    hash = (53 * hash) + getReason().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -163,26 +213,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -195,7 +245,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -211,26 +261,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.IdRequest}
+   * Protobuf type {@code palm.portal.v1.IdWithReasonRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.IdRequest)
-      com.github.saturn_xiv.palm.plugins.portal.v1.IdRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.IdWithReasonRequest)
+      com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdWithReasonRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdRequest_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdWithReasonRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.newBuilder()
     private Builder() {
 
     }
@@ -245,23 +295,24 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       id_ = 0;
+      reason_ = "";
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdRequest_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Portal.internal_static_palm_portal_v1_IdWithReasonRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -269,34 +320,42 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.id_ = id_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.reason_ = reason_;
       }
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest.getDefaultInstance()) return this;
       if (other.getId() != 0) {
         setId(other.getId());
+      }
+      if (!other.getReason().isEmpty()) {
+        reason_ = other.reason_;
+        bitField0_ |= 0x00000002;
+        onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -329,6 +388,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
+            case 18: {
+              reason_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -378,23 +442,95 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.IdRequest)
+    private java.lang.Object reason_ = "";
+    /**
+     * <code>string reason = 2;</code>
+     * @return The reason.
+     */
+    public java.lang.String getReason() {
+      java.lang.Object ref = reason_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        reason_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string reason = 2;</code>
+     * @return The bytes for reason.
+     */
+    public com.google.protobuf.ByteString
+        getReasonBytes() {
+      java.lang.Object ref = reason_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        reason_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string reason = 2;</code>
+     * @param value The reason to set.
+     * @return This builder for chaining.
+     */
+    public Builder setReason(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      reason_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string reason = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearReason() {
+      reason_ = getDefaultInstance().getReason();
+      bitField0_ = (bitField0_ & ~0x00000002);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string reason = 2;</code>
+     * @param value The bytes for reason to set.
+     * @return This builder for chaining.
+     */
+    public Builder setReasonBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      reason_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.IdWithReasonRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.IdRequest)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.IdWithReasonRequest)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<IdRequest>
-      PARSER = new com.google.protobuf.AbstractParser<IdRequest>() {
+  private static final com.google.protobuf.Parser<IdWithReasonRequest>
+      PARSER = new com.google.protobuf.AbstractParser<IdWithReasonRequest>() {
     @java.lang.Override
-    public IdRequest parsePartialFrom(
+    public IdWithReasonRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -413,17 +549,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<IdRequest> parser() {
+  public static com.google.protobuf.Parser<IdWithReasonRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<IdRequest> getParserForType() {
+  public com.google.protobuf.Parser<IdWithReasonRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

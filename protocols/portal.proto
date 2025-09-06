@@ -19,16 +19,37 @@ message Pagination {
   uint32 index = 2;
   uint32 size = 3;
 }
-message IdRequest {
+message ByIdRequest {
   uint32 id = 1;
 }
+message ByLangRequest {
+  string lang = 1;
+}
+message IdWithReasonRequest {
+  uint32 id = 1;
+  string reason = 2;
+}
+message UserDetails {
+  string uid = 1;
+  string name = 2;
+  bool online = 98;
+  google.protobuf.Timestamp registered_at = 99;
+}
 
+message Layout {
+  message Status {
+    string newest_registered_user = 1;
+    uint32 registered_users_online = 2;
+    uint32 guests_online = 3;
+    uint32 total_registered_user = 4;
+  }
+}
 // ----------------------------------------------------------------------------
 service Locale {
   rpc Index(Page) returns (LocaleIndexResponse) {}
   rpc Create(LocaleCreateRequest) returns (google.protobuf.Empty) {}
   rpc Update(LocaleUpdateRequest) returns (google.protobuf.Empty) {}
-  rpc Destroy(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Destroy(ByIdRequest) returns (google.protobuf.Empty) {}
   rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
 }
 message LocaleByLangRequest {

@@ -192,11 +192,19 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
         com.google.protobuf.MessageOrBuilder {
 
       /**
+       * <pre>
+       * -.a-zA-Z0-9
+       * </pre>
+       *
        * <code>string name = 1;</code>
        * @return The name.
        */
       java.lang.String getName();
       /**
+       * <pre>
+       * -.a-zA-Z0-9
+       * </pre>
+       *
        * <code>string name = 1;</code>
        * @return The bytes for name.
        */
@@ -258,6 +266,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
       @SuppressWarnings("serial")
       private volatile java.lang.Object name_ = "";
       /**
+       * <pre>
+       * -.a-zA-Z0-9
+       * </pre>
+       *
        * <code>string name = 1;</code>
        * @return The name.
        */
@@ -275,6 +287,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
         }
       }
       /**
+       * <pre>
+       * -.a-zA-Z0-9
+       * </pre>
+       *
        * <code>string name = 1;</code>
        * @return The bytes for name.
        */
@@ -652,6 +668,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
 
         private java.lang.Object name_ = "";
         /**
+         * <pre>
+         * -.a-zA-Z0-9
+         * </pre>
+         *
          * <code>string name = 1;</code>
          * @return The name.
          */
@@ -668,6 +688,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
           }
         }
         /**
+         * <pre>
+         * -.a-zA-Z0-9
+         * </pre>
+         *
          * <code>string name = 1;</code>
          * @return The bytes for name.
          */
@@ -685,6 +709,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
           }
         }
         /**
+         * <pre>
+         * -.a-zA-Z0-9
+         * </pre>
+         *
          * <code>string name = 1;</code>
          * @param value The name to set.
          * @return This builder for chaining.
@@ -698,6 +726,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
           return this;
         }
         /**
+         * <pre>
+         * -.a-zA-Z0-9
+         * </pre>
+         *
          * <code>string name = 1;</code>
          * @return This builder for chaining.
          */
@@ -708,6 +740,10 @@ com.github.saturn_xiv.palm.plugins.router.v1.Lan.Dhcp.Host defaultValue);
           return this;
         }
         /**
+         * <pre>
+         * -.a-zA-Z0-9
+         * </pre>
+         *
          * <code>string name = 1;</code>
          * @param value The bytes for name to set.
          * @return This builder for chaining.

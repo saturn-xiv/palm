@@ -5,13 +5,7 @@
 
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
-public interface IdRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.portal.v1.IdRequest)
+public interface LayoutOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.portal.v1.Layout)
     com.google.protobuf.MessageOrBuilder {
-
-  /**
-   * <code>uint32 id = 1;</code>
-   * @return The id.
-   */
-  int getId();
 }
