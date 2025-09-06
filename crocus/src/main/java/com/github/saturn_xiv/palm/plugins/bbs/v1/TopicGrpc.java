@@ -49,27 +49,27 @@ public final class TopicGrpc {
     return getIndexMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest,
       com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getByForumMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ByForum",
-      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.class,
+      requestType = com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest.class,
       responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest,
       com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getByForumMethod() {
-    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getByForumMethod;
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getByForumMethod;
     if ((getByForumMethod = TopicGrpc.getByForumMethod) == null) {
       synchronized (TopicGrpc.class) {
         if ((getByForumMethod = TopicGrpc.getByForumMethod) == null) {
           TopicGrpc.getByForumMethod = getByForumMethod =
-              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ByForum"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.getDefaultInstance()))
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse.getDefaultInstance()))
               .setSchemaDescriptor(new TopicMethodDescriptorSupplier("ByForum"))
@@ -78,6 +78,37 @@ public final class TopicGrpc {
       }
     }
     return getByForumMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByUserMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ByUser",
+      requestType = com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByUserMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByUserMethod;
+    if ((getByUserMethod = TopicGrpc.getByUserMethod) == null) {
+      synchronized (TopicGrpc.class) {
+        if ((getByUserMethod = TopicGrpc.getByUserMethod) == null) {
+          TopicGrpc.getByUserMethod = getByUserMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ByUser"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new TopicMethodDescriptorSupplier("ByUser"))
+              .build();
+        }
+      }
+    }
+    return getByUserMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
@@ -111,27 +142,27 @@ public final class TopicGrpc {
     return getShowMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
       com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getActiveMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Active",
-      requestType = com.google.protobuf.Empty.class,
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
       responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
       com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getActiveMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getActiveMethod;
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getActiveMethod;
     if ((getActiveMethod = TopicGrpc.getActiveMethod) == null) {
       synchronized (TopicGrpc.class) {
         if ((getActiveMethod = TopicGrpc.getActiveMethod) == null) {
           TopicGrpc.getActiveMethod = getActiveMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Active"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse.getDefaultInstance()))
               .setSchemaDescriptor(new TopicMethodDescriptorSupplier("Active"))
@@ -142,27 +173,27 @@ public final class TopicGrpc {
     return getActiveMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
       com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getUnansweredMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Unanswered",
-      requestType = com.google.protobuf.Empty.class,
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
       responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
       com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getUnansweredMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getUnansweredMethod;
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> getUnansweredMethod;
     if ((getUnansweredMethod = TopicGrpc.getUnansweredMethod) == null) {
       synchronized (TopicGrpc.class) {
         if ((getUnansweredMethod = TopicGrpc.getUnansweredMethod) == null) {
           TopicGrpc.getUnansweredMethod = getUnansweredMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Unanswered"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse.getDefaultInstance()))
               .setSchemaDescriptor(new TopicMethodDescriptorSupplier("Unanswered"))
@@ -403,9 +434,16 @@ public final class TopicGrpc {
 
     /**
      */
-    default void byForum(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+    default void byForum(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByForumMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByUserMethod(), responseObserver);
     }
 
     /**
@@ -417,14 +455,14 @@ public final class TopicGrpc {
 
     /**
      */
-    default void active(com.google.protobuf.Empty request,
+    default void active(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getActiveMethod(), responseObserver);
     }
 
     /**
      */
-    default void unanswered(com.google.protobuf.Empty request,
+    default void unanswered(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUnansweredMethod(), responseObserver);
     }
@@ -508,10 +546,18 @@ public final class TopicGrpc {
 
     /**
      */
-    public void byForum(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+    public void byForum(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getByForumMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getByUserMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -524,7 +570,7 @@ public final class TopicGrpc {
 
     /**
      */
-    public void active(com.google.protobuf.Empty request,
+    public void active(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getActiveMethod(), getCallOptions()), request, responseObserver);
@@ -532,7 +578,7 @@ public final class TopicGrpc {
 
     /**
      */
-    public void unanswered(com.google.protobuf.Empty request,
+    public void unanswered(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getUnansweredMethod(), getCallOptions()), request, responseObserver);
@@ -607,9 +653,16 @@ public final class TopicGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse byForum(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse byForum(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getByForumMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByUserMethod(), getCallOptions(), request);
     }
 
     /**
@@ -621,14 +674,14 @@ public final class TopicGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse active(com.google.protobuf.Empty request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse active(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getActiveMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse unanswered(com.google.protobuf.Empty request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse unanswered(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUnansweredMethod(), getCallOptions(), request);
     }
@@ -697,9 +750,16 @@ public final class TopicGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse byForum(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse byForum(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getByForumMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByUserMethod(), getCallOptions(), request);
     }
 
     /**
@@ -711,14 +771,14 @@ public final class TopicGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse active(com.google.protobuf.Empty request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse active(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getActiveMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse unanswered(com.google.protobuf.Empty request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse unanswered(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUnansweredMethod(), getCallOptions(), request);
     }
@@ -789,9 +849,17 @@ public final class TopicGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> byForum(
-        com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+        com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getByForumMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> byUser(
+        com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getByUserMethod(), getCallOptions()), request);
     }
 
     /**
@@ -805,7 +873,7 @@ public final class TopicGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> active(
-        com.google.protobuf.Empty request) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getActiveMethod(), getCallOptions()), request);
     }
@@ -813,7 +881,7 @@ public final class TopicGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse> unanswered(
-        com.google.protobuf.Empty request) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getUnansweredMethod(), getCallOptions()), request);
     }
@@ -861,14 +929,15 @@ public final class TopicGrpc {
 
   private static final int METHODID_INDEX = 0;
   private static final int METHODID_BY_FORUM = 1;
-  private static final int METHODID_SHOW = 2;
-  private static final int METHODID_ACTIVE = 3;
-  private static final int METHODID_UNANSWERED = 4;
-  private static final int METHODID_CREATE = 5;
-  private static final int METHODID_UPDATE = 6;
-  private static final int METHODID_LOCK = 7;
-  private static final int METHODID_UNLOCK = 8;
-  private static final int METHODID_DELETE = 9;
+  private static final int METHODID_BY_USER = 2;
+  private static final int METHODID_SHOW = 3;
+  private static final int METHODID_ACTIVE = 4;
+  private static final int METHODID_UNANSWERED = 5;
+  private static final int METHODID_CREATE = 6;
+  private static final int METHODID_UPDATE = 7;
+  private static final int METHODID_LOCK = 8;
+  private static final int METHODID_UNLOCK = 9;
+  private static final int METHODID_DELETE = 10;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -892,19 +961,23 @@ public final class TopicGrpc {
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>) responseObserver);
           break;
         case METHODID_BY_FORUM:
-          serviceImpl.byForum((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
+          serviceImpl.byForum((com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>) responseObserver);
+          break;
+        case METHODID_BY_USER:
+          serviceImpl.byUser((com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>) responseObserver);
           break;
         case METHODID_SHOW:
           serviceImpl.show((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicShowResponse>) responseObserver);
           break;
         case METHODID_ACTIVE:
-          serviceImpl.active((com.google.protobuf.Empty) request,
+          serviceImpl.active((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>) responseObserver);
           break;
         case METHODID_UNANSWERED:
-          serviceImpl.unanswered((com.google.protobuf.Empty) request,
+          serviceImpl.unanswered((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>) responseObserver);
           break;
         case METHODID_CREATE:
@@ -956,9 +1029,16 @@ public final class TopicGrpc {
           getByForumMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+              com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByForumRequest,
               com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>(
                 service, METHODID_BY_FORUM)))
+        .addMethod(
+          getByUserMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.bbs.v1.TopicByUserRequest,
+              com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>(
+                service, METHODID_BY_USER)))
         .addMethod(
           getShowMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -970,14 +1050,14 @@ public final class TopicGrpc {
           getActiveMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.google.protobuf.Empty,
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
               com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>(
                 service, METHODID_ACTIVE)))
         .addMethod(
           getUnansweredMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.google.protobuf.Empty,
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
               com.github.saturn_xiv.palm.plugins.bbs.v1.TopicIndexResponse>(
                 service, METHODID_UNANSWERED)))
         .addMethod(
@@ -1065,6 +1145,7 @@ public final class TopicGrpc {
               .setSchemaDescriptor(new TopicFileDescriptorSupplier())
               .addMethod(getIndexMethod())
               .addMethod(getByForumMethod())
+              .addMethod(getByUserMethod())
               .addMethod(getShowMethod())
               .addMethod(getActiveMethod())
               .addMethod(getUnansweredMethod())

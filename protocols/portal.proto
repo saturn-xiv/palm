@@ -25,6 +25,9 @@ message ByIdRequest {
 message ByLangRequest {
   string lang = 1;
 }
+message ByCodeRequest {
+  string code = 1;
+}
 message IdWithReasonRequest {
   uint32 id = 1;
   string reason = 2;
@@ -36,6 +39,21 @@ message UserDetails {
   google.protobuf.Timestamp registered_at = 99;
 }
 
+message Map {
+  message Google {
+    string label = 1;
+    string url = 2;
+  }
+  message Gaode {
+    string label = 1;
+    string url = 2;
+  }
+  oneof by {
+    Google google = 1;
+    Gaode gaode = 2;
+  }
+}
+
 message Layout {
   message Status {
     string newest_registered_user = 1;
@@ -43,6 +61,35 @@ message Layout {
     uint32 guests_online = 3;
     uint32 total_registered_user = 4;
   }
+}
+// ----------------------------------------------------------------------------
+service Category {
+  rpc Index(google.protobuf.Empty) returns (CategoryIndexResponse) {}
+  rpc ByCode(ByCodeRequest) returns (CategoryIndexResponse) {}
+}
+message CategoryIndexResponse {
+  message Item {
+    uint32 id = 1;
+    string code = 2;
+    string label = 3;
+    uint32 left = 11;
+    uint32 right = 12;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+}
+// ----------------------------------------------------------------------------
+service Tag {
+  rpc Index(google.protobuf.Empty) returns (TagIndexResponse) {}
+}
+message TagIndexResponse {
+  message Item {
+    uint32 id = 1;
+    string label = 2;
+    int32 sort_order = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
 }
 // ----------------------------------------------------------------------------
 service Locale {

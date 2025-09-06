@@ -30,6 +30,8 @@ namespace palm {
 namespace cms {
 namespace v1 {
 
+// ----------------------------------------------------------------------------
+//
 class Page final {
  public:
   static constexpr char const* service_full_name() {
@@ -38,21 +40,121 @@ class Page final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
+    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::cms::v1::PageIndexResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageIndexResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageIndexResponse>>(AsyncIndexRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageIndexResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageIndexResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDelete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDeleteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDeleteRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::palm::cms::v1::PageShowResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageShowResponse>> AsyncShow(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageShowResponse>>(AsyncShowRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageShowResponse>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageShowResponse>>(PrepareAsyncShowRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
+      virtual void Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::cms::v1::PageIndexResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::cms::v1::PageIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::cms::v1::PageShowResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::cms::v1::PageShowResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageShowResponse>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::cms::v1::PageShowResponse>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::cms::v1::PageIndexResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageIndexResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageIndexResponse>>(AsyncIndexRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageIndexResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageIndexResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
+    }
+    ::grpc::Status Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDelete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDeleteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDeleteRaw(context, request, cq));
+    }
+    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::palm::cms::v1::PageShowResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageShowResponse>> AsyncShow(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageShowResponse>>(AsyncShowRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageShowResponse>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageShowResponse>>(PrepareAsyncShowRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
+      void Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::cms::v1::PageIndexResponse* response, std::function<void(::grpc::Status)>) override;
+      void Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::cms::v1::PageIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Create(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Update(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Update(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::cms::v1::PageShowResponse* response, std::function<void(::grpc::Status)>) override;
+      void Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::cms::v1::PageShowResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -64,6 +166,21 @@ class Page final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::cms::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageShowResponse>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::cms::v1::PageShowResponse>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Index_;
+    const ::grpc::internal::RpcMethod rpcmethod_Create_;
+    const ::grpc::internal::RpcMethod rpcmethod_Update_;
+    const ::grpc::internal::RpcMethod rpcmethod_Delete_;
+    const ::grpc::internal::RpcMethod rpcmethod_Show_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -71,13 +188,683 @@ class Page final {
    public:
     Service();
     virtual ~Service();
+    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::cms::v1::PageIndexResponse* response);
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::cms::v1::PageCreateRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::cms::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::cms::v1::PageShowResponse* response);
   };
-  typedef Service AsyncService;
-  typedef Service CallbackService;
+  template <class BaseClass>
+  class WithAsyncMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Index() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::palm::portal::v1::Page* request, ::grpc::ServerAsyncResponseWriter< ::palm::cms::v1::PageIndexResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Create() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::palm::cms::v1::PageCreateRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Update() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdate(::grpc::ServerContext* context, ::palm::cms::v1::PageUpdateRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Delete() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDelete(::grpc::ServerContext* context, ::palm::portal::v1::ByIdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Show() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShow(::grpc::ServerContext* context, ::palm::portal::v1::ByIdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::cms::v1::PageShowResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Index<WithAsyncMethod_Create<WithAsyncMethod_Update<WithAsyncMethod_Delete<WithAsyncMethod_Show<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Index() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::cms::v1::PageIndexResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::Page* request, ::palm::cms::v1::PageIndexResponse* response) { return this->Index(context, request, response); }));}
+    void SetMessageAllocatorFor_Index(
+        ::grpc::MessageAllocator< ::palm::portal::v1::Page, ::palm::cms::v1::PageIndexResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::cms::v1::PageIndexResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Create() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::cms::v1::PageCreateRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::cms::v1::PageCreateRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
+    void SetMessageAllocatorFor_Create(
+        ::grpc::MessageAllocator< ::palm::cms::v1::PageCreateRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::cms::v1::PageCreateRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Update() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::cms::v1::PageUpdateRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::cms::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
+    void SetMessageAllocatorFor_Update(
+        ::grpc::MessageAllocator< ::palm::cms::v1::PageUpdateRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::cms::v1::PageUpdateRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Update(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Delete() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response) { return this->Delete(context, request, response); }));}
+    void SetMessageAllocatorFor_Delete(
+        ::grpc::MessageAllocator< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Delete(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Show() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::ByIdRequest, ::palm::cms::v1::PageShowResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::cms::v1::PageShowResponse* response) { return this->Show(context, request, response); }));}
+    void SetMessageAllocatorFor_Show(
+        ::grpc::MessageAllocator< ::palm::portal::v1::ByIdRequest, ::palm::cms::v1::PageShowResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::ByIdRequest, ::palm::cms::v1::PageShowResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Index<WithCallbackMethod_Create<WithCallbackMethod_Update<WithCallbackMethod_Delete<WithCallbackMethod_Show<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class WithGenericMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Index() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Create() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Update() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Delete() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Show() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Index() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Create() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Update() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Delete() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDelete(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Show() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Index() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Index(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Create() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Create(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Update() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Update(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Update(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Delete() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Delete(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Delete(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Show() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Show(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Index() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::Page, ::palm::cms::v1::PageIndexResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::Page, ::palm::cms::v1::PageIndexResponse>* streamer) {
+                       return this->StreamedIndex(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::cms::v1::PageIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::Page,::palm::cms::v1::PageIndexResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Create() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::cms::v1::PageCreateRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::cms::v1::PageCreateRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedCreate(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::cms::v1::PageCreateRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Update() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::cms::v1::PageUpdateRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::cms::v1::PageUpdateRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedUpdate(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::cms::v1::PageUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::cms::v1::PageUpdateRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Delete() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedDelete(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::ByIdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Show() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::ByIdRequest, ::palm::cms::v1::PageShowResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::ByIdRequest, ::palm::cms::v1::PageShowResponse>* streamer) {
+                       return this->StreamedShow(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::ByIdRequest* /*request*/, ::palm::cms::v1::PageShowResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::ByIdRequest,::palm::cms::v1::PageShowResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Show<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef Service StreamedService;
+  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Show<Service > > > > > StreamedService;
 };
 
 }  // namespace v1

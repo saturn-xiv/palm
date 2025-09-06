@@ -20,6 +20,256 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Category_Index_FullMethodName  = "/palm.portal.v1.Category/Index"
+	Category_ByCode_FullMethodName = "/palm.portal.v1.Category/ByCode"
+)
+
+// CategoryClient is the client API for Category service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type CategoryClient interface {
+	Index(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CategoryIndexResponse, error)
+	ByCode(ctx context.Context, in *ByCodeRequest, opts ...grpc.CallOption) (*CategoryIndexResponse, error)
+}
+
+type categoryClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCategoryClient(cc grpc.ClientConnInterface) CategoryClient {
+	return &categoryClient{cc}
+}
+
+func (c *categoryClient) Index(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CategoryIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CategoryIndexResponse)
+	err := c.cc.Invoke(ctx, Category_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryClient) ByCode(ctx context.Context, in *ByCodeRequest, opts ...grpc.CallOption) (*CategoryIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CategoryIndexResponse)
+	err := c.cc.Invoke(ctx, Category_ByCode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CategoryServer is the server API for Category service.
+// All implementations must embed UnimplementedCategoryServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type CategoryServer interface {
+	Index(context.Context, *emptypb.Empty) (*CategoryIndexResponse, error)
+	ByCode(context.Context, *ByCodeRequest) (*CategoryIndexResponse, error)
+	mustEmbedUnimplementedCategoryServer()
+}
+
+// UnimplementedCategoryServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedCategoryServer struct{}
+
+func (UnimplementedCategoryServer) Index(context.Context, *emptypb.Empty) (*CategoryIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedCategoryServer) ByCode(context.Context, *ByCodeRequest) (*CategoryIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByCode not implemented")
+}
+func (UnimplementedCategoryServer) mustEmbedUnimplementedCategoryServer() {}
+func (UnimplementedCategoryServer) testEmbeddedByValue()                  {}
+
+// UnsafeCategoryServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CategoryServer will
+// result in compilation errors.
+type UnsafeCategoryServer interface {
+	mustEmbedUnimplementedCategoryServer()
+}
+
+func RegisterCategoryServer(s grpc.ServiceRegistrar, srv CategoryServer) {
+	// If the following call pancis, it indicates UnimplementedCategoryServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Category_ServiceDesc, srv)
+}
+
+func _Category_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Category_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServer).Index(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Category_ByCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ByCodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServer).ByCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Category_ByCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServer).ByCode(ctx, req.(*ByCodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Category_ServiceDesc is the grpc.ServiceDesc for Category service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Category_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.Category",
+	HandlerType: (*CategoryServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Index",
+			Handler:    _Category_Index_Handler,
+		},
+		{
+			MethodName: "ByCode",
+			Handler:    _Category_ByCode_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "portal.proto",
+}
+
+const (
+	Tag_Index_FullMethodName = "/palm.portal.v1.Tag/Index"
+)
+
+// TagClient is the client API for Tag service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type TagClient interface {
+	Index(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TagIndexResponse, error)
+}
+
+type tagClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTagClient(cc grpc.ClientConnInterface) TagClient {
+	return &tagClient{cc}
+}
+
+func (c *tagClient) Index(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TagIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TagIndexResponse)
+	err := c.cc.Invoke(ctx, Tag_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TagServer is the server API for Tag service.
+// All implementations must embed UnimplementedTagServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type TagServer interface {
+	Index(context.Context, *emptypb.Empty) (*TagIndexResponse, error)
+	mustEmbedUnimplementedTagServer()
+}
+
+// UnimplementedTagServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTagServer struct{}
+
+func (UnimplementedTagServer) Index(context.Context, *emptypb.Empty) (*TagIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedTagServer) mustEmbedUnimplementedTagServer() {}
+func (UnimplementedTagServer) testEmbeddedByValue()             {}
+
+// UnsafeTagServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TagServer will
+// result in compilation errors.
+type UnsafeTagServer interface {
+	mustEmbedUnimplementedTagServer()
+}
+
+func RegisterTagServer(s grpc.ServiceRegistrar, srv TagServer) {
+	// If the following call pancis, it indicates UnimplementedTagServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Tag_ServiceDesc, srv)
+}
+
+func _Tag_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TagServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tag_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TagServer).Index(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Tag_ServiceDesc is the grpc.ServiceDesc for Tag service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Tag_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.Tag",
+	HandlerType: (*TagServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Index",
+			Handler:    _Tag_Index_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "portal.proto",
+}
+
+const (
 	Locale_Index_FullMethodName   = "/palm.portal.v1.Locale/Index"
 	Locale_Create_FullMethodName  = "/palm.portal.v1.Locale/Create"
 	Locale_Update_FullMethodName  = "/palm.portal.v1.Locale/Update"

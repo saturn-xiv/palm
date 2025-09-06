@@ -80,10 +80,11 @@ message ForumIndexResponse {
 // ----------------------------------------------------------------------------
 service Topic {
   rpc Index(palm.portal.v1.Page) returns (TopicIndexResponse) {}
-  rpc ByForum(palm.portal.v1.ByIdRequest) returns (TopicIndexResponse) {}
+  rpc ByForum(TopicByForumRequest) returns (TopicIndexResponse) {}
+  rpc ByUser(TopicByUserRequest) returns (PostIndexResponse) {}
   rpc Show(palm.portal.v1.ByIdRequest) returns (TopicShowResponse) {}
-  rpc Active(google.protobuf.Empty) returns (TopicIndexResponse) {}
-  rpc Unanswered(google.protobuf.Empty) returns (TopicIndexResponse) {}
+  rpc Active(palm.portal.v1.Page) returns (TopicIndexResponse) {}
+  rpc Unanswered(palm.portal.v1.Page) returns (TopicIndexResponse) {}
   rpc Create(TopicCreateRequest) returns (google.protobuf.Empty) {}
   rpc Update(TopicUpdateRequest) returns (google.protobuf.Empty) {}
   rpc Lock(palm.portal.v1.IdWithReasonRequest) returns (google.protobuf.Empty) {
@@ -92,6 +93,14 @@ service Topic {
       returns (google.protobuf.Empty) {}
   rpc Delete(palm.portal.v1.IdWithReasonRequest)
       returns (google.protobuf.Empty) {}
+}
+message TopicByUserRequest {
+  uint32 user = 1;
+  palm.portal.v1.Page page = 2;
+}
+message TopicByForumRequest {
+  uint32 forum = 1;
+  palm.portal.v1.Page page = 2;
 }
 message TopicShowResponse {
   string title = 1;
@@ -129,11 +138,20 @@ message TopicIndexResponse {
 // ----------------------------------------------------------------------------
 service Post {
   rpc Index(palm.portal.v1.Page) returns (PostIndexResponse) {}
-  rpc ByArticle(palm.portal.v1.ByIdRequest) returns (PostIndexResponse) {}
+  rpc ByArticle(PostByArticleRequest) returns (PostIndexResponse) {}
+  rpc ByUser(PostByUserRequest) returns (PostIndexResponse) {}
   rpc Create(CreatePostRequest) returns (google.protobuf.Empty) {}
   rpc Update(UpdatePostRequest) returns (google.protobuf.Empty) {}
   rpc Delete(palm.portal.v1.IdWithReasonRequest)
       returns (google.protobuf.Empty) {}
+}
+message PostByUserRequest {
+  uint32 user = 1;
+  palm.portal.v1.Page page = 2;
+}
+message PostByArticleRequest {
+  uint32 article = 1;
+  palm.portal.v1.Page page = 2;
 }
 message PostIndexResponse {
   message Item {

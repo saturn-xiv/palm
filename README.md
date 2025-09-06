@@ -32,3 +32,4 @@ $ ./docker/begonia/start.sh
 - [Protocol Buffers Version Support](https://protobuf.dev/support/version-support/)
 - [Maven Quickstart Archetype](https://maven.apache.org/archetypes/maven-archetype-quickstart/)
 - [WeUI - tailor-made for WeChat web service](https://github.com/Tencent/weui)
+- [Modified Preorder Tree Traversal](https://gist.github.com/tmilos/f2f999b5839e2d42d751)

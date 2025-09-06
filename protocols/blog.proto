@@ -5,9 +5,104 @@ option java_package = "com.github.saturn_xiv.palm.plugins.blog.v1";
 option go_package = "./;v2";
 package palm.blog.v1;
 
-service Page {}
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
-service Post {}
+import "portal.proto";
+
+// ----------------------------------------------------------------------------
+
+service Page {
+  rpc Index(palm.portal.v1.Page) returns (PageIndexResponse) {}
+  rpc ByAuthor(PageByAuthorRequest) returns (PageIndexResponse) {}
+  rpc Create(PageCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(PageUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
+  rpc Show(palm.portal.v1.ByIdRequest) returns (PageShowResponse) {}
+}
+message PageByAuthorRequest {
+  uint32 author = 1;
+  palm.portal.v1.Page page = 2;
+}
+message PageCreateRequest {
+  string slug = 1;
+  string title = 2;
+  string body = 3;
+  repeated uint32 tags = 4;
+  optional palm.portal.v1.Map location = 5;
+  string lang = 6;
+}
+message PageUpdateRequest {
+  uint32 id = 1;
+  string title = 2;
+  string body = 3;
+  repeated uint32 tags = 4;
+  optional palm.portal.v1.Map location = 5;
+}
+message PageIndexResponse {
+  message Item {
+    uint32 id = 1;
+    string slug = 2;
+    string title = 3;
+    string body = 4;
+    repeated palm.portal.v1.TagIndexResponse.Item tags = 5;
+    optional palm.portal.v1.Map location = 6;
+    string lang = 7;
+    palm.portal.v1.UserDetails author = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+message PageShowResponse {
+  uint32 id = 1;
+  string slug = 2;
+  string title = 3;
+  string body = 4;
+  repeated palm.portal.v1.TagIndexResponse.Item tags = 5;
+  optional palm.portal.v1.Map location = 6;
+  repeated CommentIndexResponse.Item comments = 9;
+  palm.portal.v1.UserDetails author = 98;
+  google.protobuf.Timestamp updated_at = 99;
+}
+// ----------------------------------------------------------------------------
+
+service Comment {
+  rpc Create(CommentCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(CommentUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(palm.portal.v1.Page) returns (CommentIndexResponse) {}
+  rpc ByUser(CommentByUserRequest) returns (CommentIndexResponse) {}
+}
+message CommentByUserRequest {
+  uint32 user = 1;
+  palm.portal.v1.Page page = 2;
+}
+message CommentCreateRequest {
+  uint32 page = 1;
+  optional uint32 comment = 2;
+  string body = 3;
+  optional palm.portal.v1.Map location = 9;
+}
+message CommentUpdateRequest {
+  uint32 id = 1;
+  string body = 2;
+  optional palm.portal.v1.Map location = 9;
+}
+
+message CommentIndexResponse {
+  message Item {
+    uint32 id = 1;
+    uint32 page = 2;
+    optional uint32 comment = 3;
+    string body = 4;
+    optional palm.portal.v1.Map location = 9;
+    palm.portal.v1.UserDetails author = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
 
 // ----------------------------------------------------------------------------
 

@@ -26,6 +26,61 @@ public final class Blog {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_PageByAuthorRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_PageByAuthorRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_PageCreateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_PageCreateRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_PageUpdateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_PageUpdateRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_PageIndexResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_PageIndexResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_PageIndexResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_PageIndexResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_PageShowResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_PageShowResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_CommentByUserRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_CommentByUserRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_CommentCreateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_CommentCreateRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_CommentUpdateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_CommentUpdateRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_CommentIndexResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_CommentIndexResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_blog_v1_CommentIndexResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_blog_v1_CommentIndexResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_blog_v1_Theme_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -59,17 +114,153 @@ public final class Blog {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nblog.proto\022\014palm.blog.v1\"0\n\005Theme\032\'\n\tB" +
-      "ootstrap\032\006\n\004Show\032\007\n\005Index\032\t\n\007Archive2\006\n\004" +
-      "Page2\006\n\004PostB5\n*com.github.saturn_xiv.pa" +
-      "lm.plugins.blog.v1P\001Z\005./;v2b\006proto3"
+      "\n\nblog.proto\022\014palm.blog.v1\032\037google/proto" +
+      "buf/timestamp.proto\032\033google/protobuf/emp" +
+      "ty.proto\032\014portal.proto\"I\n\023PageByAuthorRe" +
+      "quest\022\016\n\006author\030\001 \001(\r\022\"\n\004page\030\002 \001(\0132\024.pa" +
+      "lm.portal.v1.Page\"\223\001\n\021PageCreateRequest\022" +
+      "\014\n\004slug\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\014\n\004body\030\003 \001" +
+      "(\t\022\014\n\004tags\030\004 \003(\r\022*\n\010location\030\005 \001(\0132\023.pal" +
+      "m.portal.v1.MapH\000\210\001\001\022\014\n\004lang\030\006 \001(\tB\013\n\t_l" +
+      "ocation\"\203\001\n\021PageUpdateRequest\022\n\n\002id\030\001 \001(" +
+      "\r\022\r\n\005title\030\002 \001(\t\022\014\n\004body\030\003 \001(\t\022\014\n\004tags\030\004" +
+      " \003(\r\022*\n\010location\030\005 \001(\0132\023.palm.portal.v1." +
+      "MapH\000\210\001\001B\013\n\t_location\"\221\003\n\021PageIndexRespo" +
+      "nse\0223\n\005items\030\001 \003(\0132$.palm.blog.v1.PageIn" +
+      "dexResponse.Item\022.\n\npagination\030\t \001(\0132\032.p" +
+      "alm.portal.v1.Pagination\032\226\002\n\004Item\022\n\n\002id\030" +
+      "\001 \001(\r\022\014\n\004slug\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\014\n\004bo" +
+      "dy\030\004 \001(\t\0223\n\004tags\030\005 \003(\0132%.palm.portal.v1." +
+      "TagIndexResponse.Item\022*\n\010location\030\006 \001(\0132" +
+      "\023.palm.portal.v1.MapH\000\210\001\001\022\014\n\004lang\030\007 \001(\t\022" +
+      "+\n\006author\030b \001(\0132\033.palm.portal.v1.UserDet" +
+      "ails\022.\n\nupdated_at\030c \001(\0132\032.google.protob" +
+      "uf.TimestampB\013\n\t_location\"\317\002\n\020PageShowRe" +
+      "sponse\022\n\n\002id\030\001 \001(\r\022\014\n\004slug\030\002 \001(\t\022\r\n\005titl" +
+      "e\030\003 \001(\t\022\014\n\004body\030\004 \001(\t\0223\n\004tags\030\005 \003(\0132%.pa" +
+      "lm.portal.v1.TagIndexResponse.Item\022*\n\010lo" +
+      "cation\030\006 \001(\0132\023.palm.portal.v1.MapH\000\210\001\001\0229" +
+      "\n\010comments\030\t \003(\0132\'.palm.blog.v1.CommentI" +
+      "ndexResponse.Item\022+\n\006author\030b \001(\0132\033.palm" +
+      ".portal.v1.UserDetails\022.\n\nupdated_at\030c \001" +
+      "(\0132\032.google.protobuf.TimestampB\013\n\t_locat" +
+      "ion\"H\n\024CommentByUserRequest\022\014\n\004user\030\001 \001(" +
+      "\r\022\"\n\004page\030\002 \001(\0132\024.palm.portal.v1.Page\"\215\001" +
+      "\n\024CommentCreateRequest\022\014\n\004page\030\001 \001(\r\022\024\n\007" +
+      "comment\030\002 \001(\rH\000\210\001\001\022\014\n\004body\030\003 \001(\t\022*\n\010loca" +
+      "tion\030\t \001(\0132\023.palm.portal.v1.MapH\001\210\001\001B\n\n\010" +
+      "_commentB\013\n\t_location\"i\n\024CommentUpdateRe" +
+      "quest\022\n\n\002id\030\001 \001(\r\022\014\n\004body\030\002 \001(\t\022*\n\010locat" +
+      "ion\030\t \001(\0132\023.palm.portal.v1.MapH\000\210\001\001B\013\n\t_" +
+      "location\"\347\002\n\024CommentIndexResponse\0226\n\005ite" +
+      "ms\030\001 \003(\0132\'.palm.blog.v1.CommentIndexResp" +
+      "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por" +
+      "tal.v1.Pagination\032\346\001\n\004Item\022\n\n\002id\030\001 \001(\r\022\014" +
+      "\n\004page\030\002 \001(\r\022\024\n\007comment\030\003 \001(\rH\000\210\001\001\022\014\n\004bo" +
+      "dy\030\004 \001(\t\022*\n\010location\030\t \001(\0132\023.palm.portal" +
+      ".v1.MapH\001\210\001\001\022+\n\006author\030b \001(\0132\033.palm.port" +
+      "al.v1.UserDetails\022.\n\nupdated_at\030c \001(\0132\032." +
+      "google.protobuf.TimestampB\n\n\010_commentB\013\n" +
+      "\t_location\"0\n\005Theme\032\'\n\tBootstrap\032\006\n\004Show" +
+      "\032\007\n\005Index\032\t\n\007Archive2\254\003\n\004Page\022@\n\005Index\022\024" +
+      ".palm.portal.v1.Page\032\037.palm.blog.v1.Page" +
+      "IndexResponse\"\000\022P\n\010ByAuthor\022!.palm.blog." +
+      "v1.PageByAuthorRequest\032\037.palm.blog.v1.Pa" +
+      "geIndexResponse\"\000\022C\n\006Create\022\037.palm.blog." +
+      "v1.PageCreateRequest\032\026.google.protobuf.E" +
+      "mpty\"\000\022C\n\006Update\022\037.palm.blog.v1.PageUpda" +
+      "teRequest\032\026.google.protobuf.Empty\"\000\022?\n\006D" +
+      "elete\022\033.palm.portal.v1.ByIdRequest\032\026.goo" +
+      "gle.protobuf.Empty\"\000\022E\n\004Show\022\033.palm.port" +
+      "al.v1.ByIdRequest\032\036.palm.blog.v1.PageSho" +
+      "wResponse\"\0002\363\002\n\007Comment\022F\n\006Create\022\".palm" +
+      ".blog.v1.CommentCreateRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022F\n\006Update\022\".palm.blog.v1" +
+      ".CommentUpdateRequest\032\026.google.protobuf." +
+      "Empty\"\000\022?\n\006Delete\022\033.palm.portal.v1.ByIdR" +
+      "equest\032\026.google.protobuf.Empty\"\000\022C\n\005Inde" +
+      "x\022\024.palm.portal.v1.Page\032\".palm.blog.v1.C" +
+      "ommentIndexResponse\"\000\022R\n\006ByUser\022\".palm.b" +
+      "log.v1.CommentByUserRequest\032\".palm.blog." +
+      "v1.CommentIndexResponse\"\000B5\n*com.github." +
+      "saturn_xiv.palm.plugins.blog.v1P\001Z\005./;v2" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.TimestampProto.getDescriptor(),
+          com.google.protobuf.EmptyProto.getDescriptor(),
+          com.github.saturn_xiv.palm.plugins.portal.v1.Portal.getDescriptor(),
         });
-    internal_static_palm_blog_v1_Theme_descriptor =
+    internal_static_palm_blog_v1_PageByAuthorRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_palm_blog_v1_PageByAuthorRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_PageByAuthorRequest_descriptor,
+        new java.lang.String[] { "Author", "Page", });
+    internal_static_palm_blog_v1_PageCreateRequest_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_palm_blog_v1_PageCreateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_PageCreateRequest_descriptor,
+        new java.lang.String[] { "Slug", "Title", "Body", "Tags", "Location", "Lang", });
+    internal_static_palm_blog_v1_PageUpdateRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_palm_blog_v1_PageUpdateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_PageUpdateRequest_descriptor,
+        new java.lang.String[] { "Id", "Title", "Body", "Tags", "Location", });
+    internal_static_palm_blog_v1_PageIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_palm_blog_v1_PageIndexResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_PageIndexResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_blog_v1_PageIndexResponse_Item_descriptor =
+      internal_static_palm_blog_v1_PageIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_blog_v1_PageIndexResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_PageIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Slug", "Title", "Body", "Tags", "Location", "Lang", "Author", "UpdatedAt", });
+    internal_static_palm_blog_v1_PageShowResponse_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_palm_blog_v1_PageShowResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_PageShowResponse_descriptor,
+        new java.lang.String[] { "Id", "Slug", "Title", "Body", "Tags", "Location", "Comments", "Author", "UpdatedAt", });
+    internal_static_palm_blog_v1_CommentByUserRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_palm_blog_v1_CommentByUserRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_CommentByUserRequest_descriptor,
+        new java.lang.String[] { "User", "Page", });
+    internal_static_palm_blog_v1_CommentCreateRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_palm_blog_v1_CommentCreateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_CommentCreateRequest_descriptor,
+        new java.lang.String[] { "Page", "Comment", "Body", "Location", });
+    internal_static_palm_blog_v1_CommentUpdateRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_palm_blog_v1_CommentUpdateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_CommentUpdateRequest_descriptor,
+        new java.lang.String[] { "Id", "Body", "Location", });
+    internal_static_palm_blog_v1_CommentIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_palm_blog_v1_CommentIndexResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_CommentIndexResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_blog_v1_CommentIndexResponse_Item_descriptor =
+      internal_static_palm_blog_v1_CommentIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_blog_v1_CommentIndexResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_blog_v1_CommentIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Page", "Comment", "Body", "Location", "Author", "UpdatedAt", });
+    internal_static_palm_blog_v1_Theme_descriptor =
+      getDescriptor().getMessageTypes().get(9);
     internal_static_palm_blog_v1_Theme_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_blog_v1_Theme_descriptor,
@@ -99,6 +290,9 @@ public final class Blog {
         internal_static_palm_blog_v1_Theme_Bootstrap_Archive_descriptor,
         new java.lang.String[] { });
     descriptor.resolveAllFeaturesImmutable();
+    com.google.protobuf.TimestampProto.getDescriptor();
+    com.google.protobuf.EmptyProto.getDescriptor();
+    com.github.saturn_xiv.palm.plugins.portal.v1.Portal.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -5,8 +5,65 @@ option java_package = "com.github.saturn_xiv.palm.plugins.cms.v1";
 option go_package = "./;v2";
 package palm.cms.v1;
 
-service Page {}
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
+import "portal.proto";
+
+// ----------------------------------------------------------------------------
+
+service Page {
+  rpc Index(palm.portal.v1.Page) returns (PageIndexResponse) {}
+  rpc Create(PageCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(PageUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
+  rpc Show(palm.portal.v1.ByIdRequest) returns (PageShowResponse) {}
+}
+
+message PageCreateRequest {
+  string slug = 1;
+  string lang = 2;
+  string title = 3;
+  string body = 4;
+  repeated uint32 tags = 5;
+  repeated uint32 categories = 6;
+}
+message PageUpdateRequest {
+  uint32 id = 1;
+  string title = 2;
+  string body = 3;
+  repeated uint32 tags = 4;
+  repeated uint32 categories = 5;
+  optional palm.portal.v1.Map location = 6;
+}
+message PageIndexResponse {
+  message Item {
+    uint32 id = 1;
+    string lang = 2;
+    string slug = 3;
+    string title = 4;
+    string summary = 5;
+    string body = 6;
+    repeated palm.portal.v1.TagIndexResponse.Item tags = 7;
+    repeated palm.portal.v1.CategoryIndexResponse.Item categories = 8;
+    palm.portal.v1.UserDetails author = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+message PageShowResponse {
+  message Related {
+    uint32 id = 1;
+    string lang = 2;
+    string slug = 3;
+    string title = 4;
+    string summary = 5;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  PageIndexResponse.Item item = 1;
+  repeated Related related = 2;
+}
 // ----------------------------------------------------------------------------
 
 message Theme {

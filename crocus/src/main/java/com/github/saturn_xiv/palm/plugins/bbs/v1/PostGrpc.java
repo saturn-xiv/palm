@@ -49,27 +49,27 @@ public final class PostGrpc {
     return getIndexMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest,
       com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ByArticle",
-      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.class,
+      requestType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest.class,
       responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest,
       com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod() {
-    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod;
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByArticleMethod;
     if ((getByArticleMethod = PostGrpc.getByArticleMethod) == null) {
       synchronized (PostGrpc.class) {
         if ((getByArticleMethod = PostGrpc.getByArticleMethod) == null) {
           PostGrpc.getByArticleMethod = getByArticleMethod =
-              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ByArticle"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.getDefaultInstance()))
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.getDefaultInstance()))
               .setSchemaDescriptor(new PostMethodDescriptorSupplier("ByArticle"))
@@ -78,6 +78,37 @@ public final class PostGrpc {
       }
     }
     return getByArticleMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByUserMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ByUser",
+      requestType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest,
+      com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByUserMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> getByUserMethod;
+    if ((getByUserMethod = PostGrpc.getByUserMethod) == null) {
+      synchronized (PostGrpc.class) {
+        if ((getByUserMethod = PostGrpc.getByUserMethod) == null) {
+          PostGrpc.getByUserMethod = getByUserMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest, com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ByUser"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PostMethodDescriptorSupplier("ByUser"))
+              .build();
+        }
+      }
+    }
+    return getByUserMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest,
@@ -248,9 +279,16 @@ public final class PostGrpc {
 
     /**
      */
-    default void byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+    default void byArticle(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByArticleMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByUserMethod(), responseObserver);
     }
 
     /**
@@ -318,10 +356,18 @@ public final class PostGrpc {
 
     /**
      */
-    public void byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+    public void byArticle(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getByArticleMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getByUserMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -377,9 +423,16 @@ public final class PostGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getByArticleMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByUserMethod(), getCallOptions(), request);
     }
 
     /**
@@ -432,9 +485,16 @@ public final class PostGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getByArticleMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByUserMethod(), getCallOptions(), request);
     }
 
     /**
@@ -489,9 +549,17 @@ public final class PostGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> byArticle(
-        com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+        com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getByArticleMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse> byUser(
+        com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getByUserMethod(), getCallOptions()), request);
     }
 
     /**
@@ -521,9 +589,10 @@ public final class PostGrpc {
 
   private static final int METHODID_INDEX = 0;
   private static final int METHODID_BY_ARTICLE = 1;
-  private static final int METHODID_CREATE = 2;
-  private static final int METHODID_UPDATE = 3;
-  private static final int METHODID_DELETE = 4;
+  private static final int METHODID_BY_USER = 2;
+  private static final int METHODID_CREATE = 3;
+  private static final int METHODID_UPDATE = 4;
+  private static final int METHODID_DELETE = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -547,7 +616,11 @@ public final class PostGrpc {
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>) responseObserver);
           break;
         case METHODID_BY_ARTICLE:
-          serviceImpl.byArticle((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
+          serviceImpl.byArticle((com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>) responseObserver);
+          break;
+        case METHODID_BY_USER:
+          serviceImpl.byUser((com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>) responseObserver);
           break;
         case METHODID_CREATE:
@@ -591,9 +664,16 @@ public final class PostGrpc {
           getByArticleMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+              com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest,
               com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>(
                 service, METHODID_BY_ARTICLE)))
+        .addMethod(
+          getByUserMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest,
+              com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse>(
+                service, METHODID_BY_USER)))
         .addMethod(
           getCreateMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -665,6 +745,7 @@ public final class PostGrpc {
               .setSchemaDescriptor(new PostFileDescriptorSupplier())
               .addMethod(getIndexMethod())
               .addMethod(getByArticleMethod())
+              .addMethod(getByUserMethod())
               .addMethod(getCreateMethod())
               .addMethod(getUpdateMethod())
               .addMethod(getDeleteMethod())

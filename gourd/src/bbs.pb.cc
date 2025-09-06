@@ -409,6 +409,110 @@ struct UserDetailsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDetailsDefaultTypeInternal _UserDetails_default_instance_;
 
+inline constexpr TopicByUserRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        page_{nullptr},
+        user_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TopicByUserRequest::TopicByUserRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct TopicByUserRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TopicByUserRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TopicByUserRequestDefaultTypeInternal() {}
+  union {
+    TopicByUserRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TopicByUserRequestDefaultTypeInternal _TopicByUserRequest_default_instance_;
+
+inline constexpr TopicByForumRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        page_{nullptr},
+        forum_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TopicByForumRequest::TopicByForumRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct TopicByForumRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TopicByForumRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TopicByForumRequestDefaultTypeInternal() {}
+  union {
+    TopicByForumRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TopicByForumRequestDefaultTypeInternal _TopicByForumRequest_default_instance_;
+
+inline constexpr PostByUserRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        page_{nullptr},
+        user_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PostByUserRequest::PostByUserRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PostByUserRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PostByUserRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PostByUserRequestDefaultTypeInternal() {}
+  union {
+    PostByUserRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PostByUserRequestDefaultTypeInternal _PostByUserRequest_default_instance_;
+
+inline constexpr PostByArticleRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        page_{nullptr},
+        article_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PostByArticleRequest::PostByArticleRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PostByArticleRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PostByArticleRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PostByArticleRequestDefaultTypeInternal() {}
+  union {
+    PostByArticleRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PostByArticleRequestDefaultTypeInternal _PostByArticleRequest_default_instance_;
+
 inline constexpr BoardIndexResponse_Status::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -858,6 +962,30 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::ForumIndexResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByUserRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByUserRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByUserRequest, _impl_.user_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByUserRequest, _impl_.page_),
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByForumRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByForumRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByForumRequest, _impl_.forum_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicByForumRequest, _impl_.page_),
+        ~0u,
+        0,
         PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicShowResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicShowResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -936,6 +1064,30 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicIndexResponse, _impl_.items_),
         PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::TopicIndexResponse, _impl_.pagination_),
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByUserRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByUserRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByUserRequest, _impl_.user_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByUserRequest, _impl_.page_),
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByArticleRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByArticleRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByArticleRequest, _impl_.article_),
+        PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostByArticleRequest, _impl_.page_),
         ~0u,
         0,
         PROTOBUF_FIELD_OFFSET(::palm::bbs::v1::PostIndexResponse_Item, _impl_._has_bits_),
@@ -1066,23 +1218,27 @@ static const ::_pbi::MigrationSchema
         {84, -1, -1, sizeof(::palm::bbs::v1::ForumUpdateRequest)},
         {95, 108, -1, sizeof(::palm::bbs::v1::ForumIndexResponse_Item)},
         {113, -1, -1, sizeof(::palm::bbs::v1::ForumIndexResponse)},
-        {122, 137, -1, sizeof(::palm::bbs::v1::TopicShowResponse)},
-        {144, -1, -1, sizeof(::palm::bbs::v1::TopicCreateRequest)},
-        {155, -1, -1, sizeof(::palm::bbs::v1::TopicUpdateRequest)},
-        {166, 182, -1, sizeof(::palm::bbs::v1::TopicIndexResponse_Item)},
-        {190, 200, -1, sizeof(::palm::bbs::v1::TopicIndexResponse)},
-        {202, 215, -1, sizeof(::palm::bbs::v1::PostIndexResponse_Item)},
-        {220, 230, -1, sizeof(::palm::bbs::v1::PostIndexResponse)},
-        {232, -1, -1, sizeof(::palm::bbs::v1::CreatePostRequest)},
-        {242, -1, -1, sizeof(::palm::bbs::v1::UpdatePostRequest)},
-        {252, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_Index)},
-        {260, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_ForumShow)},
-        {268, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_ForumIndex)},
-        {276, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_TopicShow)},
-        {284, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_TopicIndex)},
-        {292, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_PostIndex)},
-        {300, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap)},
-        {308, -1, -1, sizeof(::palm::bbs::v1::Theme)},
+        {122, 132, -1, sizeof(::palm::bbs::v1::TopicByUserRequest)},
+        {134, 144, -1, sizeof(::palm::bbs::v1::TopicByForumRequest)},
+        {146, 161, -1, sizeof(::palm::bbs::v1::TopicShowResponse)},
+        {168, -1, -1, sizeof(::palm::bbs::v1::TopicCreateRequest)},
+        {179, -1, -1, sizeof(::palm::bbs::v1::TopicUpdateRequest)},
+        {190, 206, -1, sizeof(::palm::bbs::v1::TopicIndexResponse_Item)},
+        {214, 224, -1, sizeof(::palm::bbs::v1::TopicIndexResponse)},
+        {226, 236, -1, sizeof(::palm::bbs::v1::PostByUserRequest)},
+        {238, 248, -1, sizeof(::palm::bbs::v1::PostByArticleRequest)},
+        {250, 263, -1, sizeof(::palm::bbs::v1::PostIndexResponse_Item)},
+        {268, 278, -1, sizeof(::palm::bbs::v1::PostIndexResponse)},
+        {280, -1, -1, sizeof(::palm::bbs::v1::CreatePostRequest)},
+        {290, -1, -1, sizeof(::palm::bbs::v1::UpdatePostRequest)},
+        {300, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_Index)},
+        {308, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_ForumShow)},
+        {316, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_ForumIndex)},
+        {324, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_TopicShow)},
+        {332, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_TopicIndex)},
+        {340, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap_PostIndex)},
+        {348, -1, -1, sizeof(::palm::bbs::v1::Theme_Bootstrap)},
+        {356, -1, -1, sizeof(::palm::bbs::v1::Theme)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::bbs::v1::_UserDetails_default_instance_._instance,
@@ -1095,11 +1251,15 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::bbs::v1::_ForumUpdateRequest_default_instance_._instance,
     &::palm::bbs::v1::_ForumIndexResponse_Item_default_instance_._instance,
     &::palm::bbs::v1::_ForumIndexResponse_default_instance_._instance,
+    &::palm::bbs::v1::_TopicByUserRequest_default_instance_._instance,
+    &::palm::bbs::v1::_TopicByForumRequest_default_instance_._instance,
     &::palm::bbs::v1::_TopicShowResponse_default_instance_._instance,
     &::palm::bbs::v1::_TopicCreateRequest_default_instance_._instance,
     &::palm::bbs::v1::_TopicUpdateRequest_default_instance_._instance,
     &::palm::bbs::v1::_TopicIndexResponse_Item_default_instance_._instance,
     &::palm::bbs::v1::_TopicIndexResponse_default_instance_._instance,
+    &::palm::bbs::v1::_PostByUserRequest_default_instance_._instance,
+    &::palm::bbs::v1::_PostByArticleRequest_default_instance_._instance,
     &::palm::bbs::v1::_PostIndexResponse_Item_default_instance_._instance,
     &::palm::bbs::v1::_PostIndexResponse_default_instance_._instance,
     &::palm::bbs::v1::_CreatePostRequest_default_instance_._instance,
@@ -1142,83 +1302,95 @@ const char descriptor_table_protodef_bbs_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIAB
     "\005board\030\002 \001(\r\022\r\n\005title\030\003 \001(\t\022\023\n\013descripti"
     "on\030\004 \001(\t\0228\n\013last_posted\030b \001(\0132\036.palm.bbs"
     ".v1.LastPostedDetailsH\000\210\001\001B\016\n\014_last_post"
-    "ed\"\364\001\n\021TopicShowResponse\022\r\n\005title\030\001 \001(\t\022"
-    "\014\n\004body\030\002 \001(\t\022(\n\006author\030\t \001(\0132\030.palm.bbs"
-    ".v1.UserDetails\022\017\n\007replies\030[ \001(\r\022\r\n\005view"
-    "s\030\\ \001(\r\0228\n\013last_posted\030b \001(\0132\036.palm.bbs."
-    "v1.LastPostedDetailsH\000\210\001\001\022.\n\nupdated_at\030"
-    "c \001(\0132\032.google.protobuf.TimestampB\016\n\014_la"
-    "st_posted\"@\n\022TopicCreateRequest\022\r\n\005forum"
-    "\030\001 \001(\r\022\r\n\005title\030\002 \001(\t\022\014\n\004body\030\003 \001(\t\"=\n\022T"
-    "opicUpdateRequest\022\n\n\002id\030\001 \001(\r\022\r\n\005title\030\002"
-    " \001(\t\022\014\n\004body\030\003 \001(\t\"\360\002\n\022TopicIndexRespons"
-    "e\0223\n\005items\030\001 \003(\0132$.palm.bbs.v1.TopicInde"
-    "xResponse.Item\022.\n\npagination\030\t \001(\0132\032.pal"
-    "m.portal.v1.Pagination\032\364\001\n\004Item\022\n\n\002id\030\001 "
-    "\001(\r\022\r\n\005forum\030\002 \001(\r\022\r\n\005title\030\003 \001(\t\022(\n\006aut"
-    "hor\030\t \001(\0132\030.palm.bbs.v1.UserDetails\022\017\n\007r"
-    "eplies\030[ \001(\r\022\r\n\005views\030\\ \001(\r\0228\n\013last_post"
-    "ed\030b \001(\0132\036.palm.bbs.v1.LastPostedDetails"
-    "H\000\210\001\001\022.\n\nupdated_at\030c \001(\0132\032.google.proto"
-    "buf.TimestampB\016\n\014_last_posted\"\205\002\n\021PostIn"
-    "dexResponse\0222\n\005items\030\001 \003(\0132#.palm.bbs.v1"
-    ".PostIndexResponse.Item\022.\n\npagination\030\t "
-    "\001(\0132\032.palm.portal.v1.Pagination\032\213\001\n\004Item"
-    "\022\n\n\002id\030\001 \001(\r\022\017\n\007article\030\002 \001(\r\022\014\n\004body\030\003 "
-    "\001(\t\022(\n\006author\030\t \001(\0132\030.palm.bbs.v1.UserDe"
-    "tails\022.\n\nupdated_at\030c \001(\0132\032.google.proto"
-    "buf.Timestamp\"0\n\021CreatePostRequest\022\r\n\005to"
-    "pic\030\001 \001(\r\022\014\n\004body\030\002 \001(\t\"-\n\021UpdatePostReq"
-    "uest\022\n\n\002id\030\001 \001(\r\022\014\n\004body\030\002 \001(\t\"`\n\005Theme\032"
-    "W\n\tBootstrap\032\007\n\005Index\032\013\n\tForumShow\032\014\n\nFo"
-    "rumIndex\032\013\n\tTopicShow\032\014\n\nTopicIndex\032\013\n\tP"
-    "ostIndex2\334\001\n\005Board\022B\n\005Index\022\026.google.pro"
-    "tobuf.Empty\032\037.palm.bbs.v1.BoardIndexResp"
-    "onse\"\000\022J\n\006ByLang\022\035.palm.portal.v1.ByLang"
-    "Request\032\037.palm.bbs.v1.BoardIndexResponse"
-    "\"\000\022C\n\006Create\022\037.palm.bbs.v1.BoardCreateRe"
-    "quest\032\026.google.protobuf.Empty\"\0002\371\003\n\005Foru"
-    "m\022B\n\005Index\022\026.google.protobuf.Empty\032\037.pal"
-    "m.bbs.v1.ForumIndexResponse\"\000\022I\n\007ByBoard"
-    "\022\033.palm.portal.v1.ByIdRequest\032\037.palm.bbs"
-    ".v1.ForumIndexResponse\"\000\022C\n\006Create\022\037.pal"
-    "m.bbs.v1.ForumCreateRequest\032\026.google.pro"
-    "tobuf.Empty\"\000\022C\n\006Update\022\037.palm.bbs.v1.Fo"
-    "rumUpdateRequest\032\026.google.protobuf.Empty"
-    "\"\000\022E\n\004Lock\022#.palm.portal.v1.IdWithReason"
-    "Request\032\026.google.protobuf.Empty\"\000\022G\n\006Unl"
-    "ock\022#.palm.portal.v1.IdWithReasonRequest"
-    "\032\026.google.protobuf.Empty\"\000\022G\n\006Delete\022#.p"
-    "alm.portal.v1.IdWithReasonRequest\032\026.goog"
-    "le.protobuf.Empty\"\0002\314\005\n\005Topic\022@\n\005Index\022\024"
-    ".palm.portal.v1.Page\032\037.palm.bbs.v1.Topic"
-    "IndexResponse\"\000\022I\n\007ByForum\022\033.palm.portal"
-    ".v1.ByIdRequest\032\037.palm.bbs.v1.TopicIndex"
-    "Response\"\000\022E\n\004Show\022\033.palm.portal.v1.ById"
-    "Request\032\036.palm.bbs.v1.TopicShowResponse\""
-    "\000\022C\n\006Active\022\026.google.protobuf.Empty\032\037.pa"
-    "lm.bbs.v1.TopicIndexResponse\"\000\022G\n\nUnansw"
-    "ered\022\026.google.protobuf.Empty\032\037.palm.bbs."
-    "v1.TopicIndexResponse\"\000\022C\n\006Create\022\037.palm"
-    ".bbs.v1.TopicCreateRequest\032\026.google.prot"
-    "obuf.Empty\"\000\022C\n\006Update\022\037.palm.bbs.v1.Top"
-    "icUpdateRequest\032\026.google.protobuf.Empty\""
-    "\000\022E\n\004Lock\022#.palm.portal.v1.IdWithReasonR"
-    "equest\032\026.google.protobuf.Empty\"\000\022G\n\006Unlo"
-    "ck\022#.palm.portal.v1.IdWithReasonRequest\032"
-    "\026.google.protobuf.Empty\"\000\022G\n\006Delete\022#.pa"
-    "lm.portal.v1.IdWithReasonRequest\032\026.googl"
-    "e.protobuf.Empty\"\0002\344\002\n\004Post\022\?\n\005Index\022\024.p"
-    "alm.portal.v1.Page\032\036.palm.bbs.v1.PostInd"
-    "exResponse\"\000\022J\n\tByArticle\022\033.palm.portal."
-    "v1.ByIdRequest\032\036.palm.bbs.v1.PostIndexRe"
-    "sponse\"\000\022B\n\006Create\022\036.palm.bbs.v1.CreateP"
-    "ostRequest\032\026.google.protobuf.Empty\"\000\022B\n\006"
-    "Update\022\036.palm.bbs.v1.UpdatePostRequest\032\026"
-    ".google.protobuf.Empty\"\000\022G\n\006Delete\022#.pal"
-    "m.portal.v1.IdWithReasonRequest\032\026.google"
-    ".protobuf.Empty\"\000B4\n)com.github.saturn_x"
-    "iv.palm.plugins.bbs.v1P\001Z\005./;v2b\006proto3"
+    "ed\"F\n\022TopicByUserRequest\022\014\n\004user\030\001 \001(\r\022\""
+    "\n\004page\030\002 \001(\0132\024.palm.portal.v1.Page\"H\n\023To"
+    "picByForumRequest\022\r\n\005forum\030\001 \001(\r\022\"\n\004page"
+    "\030\002 \001(\0132\024.palm.portal.v1.Page\"\364\001\n\021TopicSh"
+    "owResponse\022\r\n\005title\030\001 \001(\t\022\014\n\004body\030\002 \001(\t\022"
+    "(\n\006author\030\t \001(\0132\030.palm.bbs.v1.UserDetail"
+    "s\022\017\n\007replies\030[ \001(\r\022\r\n\005views\030\\ \001(\r\0228\n\013las"
+    "t_posted\030b \001(\0132\036.palm.bbs.v1.LastPostedD"
+    "etailsH\000\210\001\001\022.\n\nupdated_at\030c \001(\0132\032.google"
+    ".protobuf.TimestampB\016\n\014_last_posted\"@\n\022T"
+    "opicCreateRequest\022\r\n\005forum\030\001 \001(\r\022\r\n\005titl"
+    "e\030\002 \001(\t\022\014\n\004body\030\003 \001(\t\"=\n\022TopicUpdateRequ"
+    "est\022\n\n\002id\030\001 \001(\r\022\r\n\005title\030\002 \001(\t\022\014\n\004body\030\003"
+    " \001(\t\"\360\002\n\022TopicIndexResponse\0223\n\005items\030\001 \003"
+    "(\0132$.palm.bbs.v1.TopicIndexResponse.Item"
+    "\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pa"
+    "gination\032\364\001\n\004Item\022\n\n\002id\030\001 \001(\r\022\r\n\005forum\030\002"
+    " \001(\r\022\r\n\005title\030\003 \001(\t\022(\n\006author\030\t \001(\0132\030.pa"
+    "lm.bbs.v1.UserDetails\022\017\n\007replies\030[ \001(\r\022\r"
+    "\n\005views\030\\ \001(\r\0228\n\013last_posted\030b \001(\0132\036.pal"
+    "m.bbs.v1.LastPostedDetailsH\000\210\001\001\022.\n\nupdat"
+    "ed_at\030c \001(\0132\032.google.protobuf.TimestampB"
+    "\016\n\014_last_posted\"E\n\021PostByUserRequest\022\014\n\004"
+    "user\030\001 \001(\r\022\"\n\004page\030\002 \001(\0132\024.palm.portal.v"
+    "1.Page\"K\n\024PostByArticleRequest\022\017\n\007articl"
+    "e\030\001 \001(\r\022\"\n\004page\030\002 \001(\0132\024.palm.portal.v1.P"
+    "age\"\205\002\n\021PostIndexResponse\0222\n\005items\030\001 \003(\013"
+    "2#.palm.bbs.v1.PostIndexResponse.Item\022.\n"
+    "\npagination\030\t \001(\0132\032.palm.portal.v1.Pagin"
+    "ation\032\213\001\n\004Item\022\n\n\002id\030\001 \001(\r\022\017\n\007article\030\002 "
+    "\001(\r\022\014\n\004body\030\003 \001(\t\022(\n\006author\030\t \001(\0132\030.palm"
+    ".bbs.v1.UserDetails\022.\n\nupdated_at\030c \001(\0132"
+    "\032.google.protobuf.Timestamp\"0\n\021CreatePos"
+    "tRequest\022\r\n\005topic\030\001 \001(\r\022\014\n\004body\030\002 \001(\t\"-\n"
+    "\021UpdatePostRequest\022\n\n\002id\030\001 \001(\r\022\014\n\004body\030\002"
+    " \001(\t\"`\n\005Theme\032W\n\tBootstrap\032\007\n\005Index\032\013\n\tF"
+    "orumShow\032\014\n\nForumIndex\032\013\n\tTopicShow\032\014\n\nT"
+    "opicIndex\032\013\n\tPostIndex2\334\001\n\005Board\022B\n\005Inde"
+    "x\022\026.google.protobuf.Empty\032\037.palm.bbs.v1."
+    "BoardIndexResponse\"\000\022J\n\006ByLang\022\035.palm.po"
+    "rtal.v1.ByLangRequest\032\037.palm.bbs.v1.Boar"
+    "dIndexResponse\"\000\022C\n\006Create\022\037.palm.bbs.v1"
+    ".BoardCreateRequest\032\026.google.protobuf.Em"
+    "pty\"\0002\371\003\n\005Forum\022B\n\005Index\022\026.google.protob"
+    "uf.Empty\032\037.palm.bbs.v1.ForumIndexRespons"
+    "e\"\000\022I\n\007ByBoard\022\033.palm.portal.v1.ByIdRequ"
+    "est\032\037.palm.bbs.v1.ForumIndexResponse\"\000\022C"
+    "\n\006Create\022\037.palm.bbs.v1.ForumCreateReques"
+    "t\032\026.google.protobuf.Empty\"\000\022C\n\006Update\022\037."
+    "palm.bbs.v1.ForumUpdateRequest\032\026.google."
+    "protobuf.Empty\"\000\022E\n\004Lock\022#.palm.portal.v"
+    "1.IdWithReasonRequest\032\026.google.protobuf."
+    "Empty\"\000\022G\n\006Unlock\022#.palm.portal.v1.IdWit"
+    "hReasonRequest\032\026.google.protobuf.Empty\"\000"
+    "\022G\n\006Delete\022#.palm.portal.v1.IdWithReason"
+    "Request\032\026.google.protobuf.Empty\"\0002\232\006\n\005To"
+    "pic\022@\n\005Index\022\024.palm.portal.v1.Page\032\037.pal"
+    "m.bbs.v1.TopicIndexResponse\"\000\022N\n\007ByForum"
+    "\022 .palm.bbs.v1.TopicByForumRequest\032\037.pal"
+    "m.bbs.v1.TopicIndexResponse\"\000\022K\n\006ByUser\022"
+    "\037.palm.bbs.v1.TopicByUserRequest\032\036.palm."
+    "bbs.v1.PostIndexResponse\"\000\022E\n\004Show\022\033.pal"
+    "m.portal.v1.ByIdRequest\032\036.palm.bbs.v1.To"
+    "picShowResponse\"\000\022A\n\006Active\022\024.palm.porta"
+    "l.v1.Page\032\037.palm.bbs.v1.TopicIndexRespon"
+    "se\"\000\022E\n\nUnanswered\022\024.palm.portal.v1.Page"
+    "\032\037.palm.bbs.v1.TopicIndexResponse\"\000\022C\n\006C"
+    "reate\022\037.palm.bbs.v1.TopicCreateRequest\032\026"
+    ".google.protobuf.Empty\"\000\022C\n\006Update\022\037.pal"
+    "m.bbs.v1.TopicUpdateRequest\032\026.google.pro"
+    "tobuf.Empty\"\000\022E\n\004Lock\022#.palm.portal.v1.I"
+    "dWithReasonRequest\032\026.google.protobuf.Emp"
+    "ty\"\000\022G\n\006Unlock\022#.palm.portal.v1.IdWithRe"
+    "asonRequest\032\026.google.protobuf.Empty\"\000\022G\n"
+    "\006Delete\022#.palm.portal.v1.IdWithReasonReq"
+    "uest\032\026.google.protobuf.Empty\"\0002\266\003\n\004Post\022"
+    "\?\n\005Index\022\024.palm.portal.v1.Page\032\036.palm.bb"
+    "s.v1.PostIndexResponse\"\000\022P\n\tByArticle\022!."
+    "palm.bbs.v1.PostByArticleRequest\032\036.palm."
+    "bbs.v1.PostIndexResponse\"\000\022J\n\006ByUser\022\036.p"
+    "alm.bbs.v1.PostByUserRequest\032\036.palm.bbs."
+    "v1.PostIndexResponse\"\000\022B\n\006Create\022\036.palm."
+    "bbs.v1.CreatePostRequest\032\026.google.protob"
+    "uf.Empty\"\000\022B\n\006Update\022\036.palm.bbs.v1.Updat"
+    "ePostRequest\032\026.google.protobuf.Empty\"\000\022G"
+    "\n\006Delete\022#.palm.portal.v1.IdWithReasonRe"
+    "quest\032\026.google.protobuf.Empty\"\000B4\n)com.g"
+    "ithub.saturn_xiv.palm.plugins.bbs.v1P\001Z\005"
+    "./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_bbs_2eproto_deps[3] =
     {
@@ -1230,13 +1402,13 @@ static ::absl::once_flag descriptor_table_bbs_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_bbs_2eproto = {
     false,
     false,
-    4159,
+    4613,
     descriptor_table_protodef_bbs_2eproto,
     "bbs.proto",
     &descriptor_table_bbs_2eproto_once,
     descriptor_table_bbs_2eproto_deps,
     3,
-    27,
+    31,
     schemas,
     file_default_instances,
     TableStruct_bbs_2eproto::offsets,
@@ -4249,6 +4421,588 @@ void ForumIndexResponse::InternalSwap(ForumIndexResponse* PROTOBUF_RESTRICT othe
 }
 // ===================================================================
 
+class TopicByUserRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<TopicByUserRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_._has_bits_);
+};
+
+void TopicByUserRequest::clear_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.page_ != nullptr) _impl_.page_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+TopicByUserRequest::TopicByUserRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.bbs.v1.TopicByUserRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE TopicByUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::bbs::v1::TopicByUserRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+TopicByUserRequest::TopicByUserRequest(
+    ::google::protobuf::Arena* arena,
+    const TopicByUserRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  TopicByUserRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.page_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(
+                              arena, *from._impl_.page_)
+                        : nullptr;
+  _impl_.user_ = from._impl_.user_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.bbs.v1.TopicByUserRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE TopicByUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void TopicByUserRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, page_),
+           0,
+           offsetof(Impl_, user_) -
+               offsetof(Impl_, page_) +
+               sizeof(Impl_::user_));
+}
+TopicByUserRequest::~TopicByUserRequest() {
+  // @@protoc_insertion_point(destructor:palm.bbs.v1.TopicByUserRequest)
+  SharedDtor(*this);
+}
+inline void TopicByUserRequest::SharedDtor(MessageLite& self) {
+  TopicByUserRequest& this_ = static_cast<TopicByUserRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.page_;
+  this_._impl_.~Impl_();
+}
+
+inline void* TopicByUserRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) TopicByUserRequest(arena);
+}
+constexpr auto TopicByUserRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(TopicByUserRequest),
+                                            alignof(TopicByUserRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull TopicByUserRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_TopicByUserRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &TopicByUserRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<TopicByUserRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &TopicByUserRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<TopicByUserRequest>(), &TopicByUserRequest::ByteSizeLong,
+            &TopicByUserRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_._cached_size_),
+        false,
+    },
+    &TopicByUserRequest::kDescriptorMethods,
+    &descriptor_table_bbs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* TopicByUserRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> TopicByUserRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::bbs::v1::TopicByUserRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Page page = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_.page_)}},
+    // uint32 user = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TopicByUserRequest, _impl_.user_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_.user_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 user = 1;
+    {PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_.user_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .palm.portal.v1.Page page = 2;
+    {PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void TopicByUserRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.bbs.v1.TopicByUserRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.page_ != nullptr);
+    _impl_.page_->Clear();
+  }
+  _impl_.user_ = 0u;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* TopicByUserRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const TopicByUserRequest& this_ = static_cast<const TopicByUserRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* TopicByUserRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const TopicByUserRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.bbs.v1.TopicByUserRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 user = 1;
+          if (this_._internal_user() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_user(), target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Page page = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.page_, this_._impl_.page_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.bbs.v1.TopicByUserRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t TopicByUserRequest::ByteSizeLong(const MessageLite& base) {
+          const TopicByUserRequest& this_ = static_cast<const TopicByUserRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t TopicByUserRequest::ByteSizeLong() const {
+          const TopicByUserRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.bbs.v1.TopicByUserRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .palm.portal.v1.Page page = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.page_);
+            }
+          }
+           {
+            // uint32 user = 1;
+            if (this_._internal_user() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_user());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void TopicByUserRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<TopicByUserRequest*>(&to_msg);
+  auto& from = static_cast<const TopicByUserRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.bbs.v1.TopicByUserRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.page_ != nullptr);
+    if (_this->_impl_.page_ == nullptr) {
+      _this->_impl_.page_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(arena, *from._impl_.page_);
+    } else {
+      _this->_impl_.page_->MergeFrom(*from._impl_.page_);
+    }
+  }
+  if (from._internal_user() != 0) {
+    _this->_impl_.user_ = from._impl_.user_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TopicByUserRequest::CopyFrom(const TopicByUserRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.bbs.v1.TopicByUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void TopicByUserRequest::InternalSwap(TopicByUserRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_.user_)
+      + sizeof(TopicByUserRequest::_impl_.user_)
+      - PROTOBUF_FIELD_OFFSET(TopicByUserRequest, _impl_.page_)>(
+          reinterpret_cast<char*>(&_impl_.page_),
+          reinterpret_cast<char*>(&other->_impl_.page_));
+}
+
+::google::protobuf::Metadata TopicByUserRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class TopicByForumRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<TopicByForumRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_._has_bits_);
+};
+
+void TopicByForumRequest::clear_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.page_ != nullptr) _impl_.page_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+TopicByForumRequest::TopicByForumRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.bbs.v1.TopicByForumRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE TopicByForumRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::bbs::v1::TopicByForumRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+TopicByForumRequest::TopicByForumRequest(
+    ::google::protobuf::Arena* arena,
+    const TopicByForumRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  TopicByForumRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.page_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(
+                              arena, *from._impl_.page_)
+                        : nullptr;
+  _impl_.forum_ = from._impl_.forum_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.bbs.v1.TopicByForumRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE TopicByForumRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void TopicByForumRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, page_),
+           0,
+           offsetof(Impl_, forum_) -
+               offsetof(Impl_, page_) +
+               sizeof(Impl_::forum_));
+}
+TopicByForumRequest::~TopicByForumRequest() {
+  // @@protoc_insertion_point(destructor:palm.bbs.v1.TopicByForumRequest)
+  SharedDtor(*this);
+}
+inline void TopicByForumRequest::SharedDtor(MessageLite& self) {
+  TopicByForumRequest& this_ = static_cast<TopicByForumRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.page_;
+  this_._impl_.~Impl_();
+}
+
+inline void* TopicByForumRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) TopicByForumRequest(arena);
+}
+constexpr auto TopicByForumRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(TopicByForumRequest),
+                                            alignof(TopicByForumRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull TopicByForumRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_TopicByForumRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &TopicByForumRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<TopicByForumRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &TopicByForumRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<TopicByForumRequest>(), &TopicByForumRequest::ByteSizeLong,
+            &TopicByForumRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_._cached_size_),
+        false,
+    },
+    &TopicByForumRequest::kDescriptorMethods,
+    &descriptor_table_bbs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* TopicByForumRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> TopicByForumRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::bbs::v1::TopicByForumRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Page page = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_.page_)}},
+    // uint32 forum = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TopicByForumRequest, _impl_.forum_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_.forum_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 forum = 1;
+    {PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_.forum_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .palm.portal.v1.Page page = 2;
+    {PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void TopicByForumRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.bbs.v1.TopicByForumRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.page_ != nullptr);
+    _impl_.page_->Clear();
+  }
+  _impl_.forum_ = 0u;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* TopicByForumRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const TopicByForumRequest& this_ = static_cast<const TopicByForumRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* TopicByForumRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const TopicByForumRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.bbs.v1.TopicByForumRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 forum = 1;
+          if (this_._internal_forum() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_forum(), target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Page page = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.page_, this_._impl_.page_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.bbs.v1.TopicByForumRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t TopicByForumRequest::ByteSizeLong(const MessageLite& base) {
+          const TopicByForumRequest& this_ = static_cast<const TopicByForumRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t TopicByForumRequest::ByteSizeLong() const {
+          const TopicByForumRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.bbs.v1.TopicByForumRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .palm.portal.v1.Page page = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.page_);
+            }
+          }
+           {
+            // uint32 forum = 1;
+            if (this_._internal_forum() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_forum());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void TopicByForumRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<TopicByForumRequest*>(&to_msg);
+  auto& from = static_cast<const TopicByForumRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.bbs.v1.TopicByForumRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.page_ != nullptr);
+    if (_this->_impl_.page_ == nullptr) {
+      _this->_impl_.page_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(arena, *from._impl_.page_);
+    } else {
+      _this->_impl_.page_->MergeFrom(*from._impl_.page_);
+    }
+  }
+  if (from._internal_forum() != 0) {
+    _this->_impl_.forum_ = from._impl_.forum_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TopicByForumRequest::CopyFrom(const TopicByForumRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.bbs.v1.TopicByForumRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void TopicByForumRequest::InternalSwap(TopicByForumRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_.forum_)
+      + sizeof(TopicByForumRequest::_impl_.forum_)
+      - PROTOBUF_FIELD_OFFSET(TopicByForumRequest, _impl_.page_)>(
+          reinterpret_cast<char*>(&_impl_.page_),
+          reinterpret_cast<char*>(&other->_impl_.page_));
+}
+
+::google::protobuf::Metadata TopicByForumRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class TopicShowResponse::_Internal {
  public:
   using HasBits =
@@ -6044,6 +6798,588 @@ void TopicIndexResponse::InternalSwap(TopicIndexResponse* PROTOBUF_RESTRICT othe
 }
 
 ::google::protobuf::Metadata TopicIndexResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PostByUserRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PostByUserRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_._has_bits_);
+};
+
+void PostByUserRequest::clear_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.page_ != nullptr) _impl_.page_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PostByUserRequest::PostByUserRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.bbs.v1.PostByUserRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE PostByUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::bbs::v1::PostByUserRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+PostByUserRequest::PostByUserRequest(
+    ::google::protobuf::Arena* arena,
+    const PostByUserRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PostByUserRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.page_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(
+                              arena, *from._impl_.page_)
+                        : nullptr;
+  _impl_.user_ = from._impl_.user_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.bbs.v1.PostByUserRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE PostByUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void PostByUserRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, page_),
+           0,
+           offsetof(Impl_, user_) -
+               offsetof(Impl_, page_) +
+               sizeof(Impl_::user_));
+}
+PostByUserRequest::~PostByUserRequest() {
+  // @@protoc_insertion_point(destructor:palm.bbs.v1.PostByUserRequest)
+  SharedDtor(*this);
+}
+inline void PostByUserRequest::SharedDtor(MessageLite& self) {
+  PostByUserRequest& this_ = static_cast<PostByUserRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.page_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PostByUserRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PostByUserRequest(arena);
+}
+constexpr auto PostByUserRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(PostByUserRequest),
+                                            alignof(PostByUserRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PostByUserRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PostByUserRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PostByUserRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PostByUserRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PostByUserRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PostByUserRequest>(), &PostByUserRequest::ByteSizeLong,
+            &PostByUserRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_._cached_size_),
+        false,
+    },
+    &PostByUserRequest::kDescriptorMethods,
+    &descriptor_table_bbs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PostByUserRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> PostByUserRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::bbs::v1::PostByUserRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Page page = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_.page_)}},
+    // uint32 user = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PostByUserRequest, _impl_.user_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_.user_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 user = 1;
+    {PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_.user_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .palm.portal.v1.Page page = 2;
+    {PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PostByUserRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.bbs.v1.PostByUserRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.page_ != nullptr);
+    _impl_.page_->Clear();
+  }
+  _impl_.user_ = 0u;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PostByUserRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PostByUserRequest& this_ = static_cast<const PostByUserRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PostByUserRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PostByUserRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.bbs.v1.PostByUserRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 user = 1;
+          if (this_._internal_user() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_user(), target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Page page = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.page_, this_._impl_.page_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.bbs.v1.PostByUserRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PostByUserRequest::ByteSizeLong(const MessageLite& base) {
+          const PostByUserRequest& this_ = static_cast<const PostByUserRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PostByUserRequest::ByteSizeLong() const {
+          const PostByUserRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.bbs.v1.PostByUserRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .palm.portal.v1.Page page = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.page_);
+            }
+          }
+           {
+            // uint32 user = 1;
+            if (this_._internal_user() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_user());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PostByUserRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PostByUserRequest*>(&to_msg);
+  auto& from = static_cast<const PostByUserRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.bbs.v1.PostByUserRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.page_ != nullptr);
+    if (_this->_impl_.page_ == nullptr) {
+      _this->_impl_.page_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(arena, *from._impl_.page_);
+    } else {
+      _this->_impl_.page_->MergeFrom(*from._impl_.page_);
+    }
+  }
+  if (from._internal_user() != 0) {
+    _this->_impl_.user_ = from._impl_.user_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PostByUserRequest::CopyFrom(const PostByUserRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.bbs.v1.PostByUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PostByUserRequest::InternalSwap(PostByUserRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_.user_)
+      + sizeof(PostByUserRequest::_impl_.user_)
+      - PROTOBUF_FIELD_OFFSET(PostByUserRequest, _impl_.page_)>(
+          reinterpret_cast<char*>(&_impl_.page_),
+          reinterpret_cast<char*>(&other->_impl_.page_));
+}
+
+::google::protobuf::Metadata PostByUserRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PostByArticleRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PostByArticleRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_._has_bits_);
+};
+
+void PostByArticleRequest::clear_page() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.page_ != nullptr) _impl_.page_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+PostByArticleRequest::PostByArticleRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.bbs.v1.PostByArticleRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE PostByArticleRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::bbs::v1::PostByArticleRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+PostByArticleRequest::PostByArticleRequest(
+    ::google::protobuf::Arena* arena,
+    const PostByArticleRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PostByArticleRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.page_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(
+                              arena, *from._impl_.page_)
+                        : nullptr;
+  _impl_.article_ = from._impl_.article_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.bbs.v1.PostByArticleRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE PostByArticleRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void PostByArticleRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, page_),
+           0,
+           offsetof(Impl_, article_) -
+               offsetof(Impl_, page_) +
+               sizeof(Impl_::article_));
+}
+PostByArticleRequest::~PostByArticleRequest() {
+  // @@protoc_insertion_point(destructor:palm.bbs.v1.PostByArticleRequest)
+  SharedDtor(*this);
+}
+inline void PostByArticleRequest::SharedDtor(MessageLite& self) {
+  PostByArticleRequest& this_ = static_cast<PostByArticleRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.page_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PostByArticleRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) PostByArticleRequest(arena);
+}
+constexpr auto PostByArticleRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(PostByArticleRequest),
+                                            alignof(PostByArticleRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull PostByArticleRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_PostByArticleRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &PostByArticleRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<PostByArticleRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &PostByArticleRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<PostByArticleRequest>(), &PostByArticleRequest::ByteSizeLong,
+            &PostByArticleRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_._cached_size_),
+        false,
+    },
+    &PostByArticleRequest::kDescriptorMethods,
+    &descriptor_table_bbs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* PostByArticleRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> PostByArticleRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::bbs::v1::PostByArticleRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Page page = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_.page_)}},
+    // uint32 article = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PostByArticleRequest, _impl_.article_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_.article_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 article = 1;
+    {PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_.article_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .palm.portal.v1.Page page = 2;
+    {PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_.page_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PostByArticleRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.bbs.v1.PostByArticleRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.page_ != nullptr);
+    _impl_.page_->Clear();
+  }
+  _impl_.article_ = 0u;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* PostByArticleRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const PostByArticleRequest& this_ = static_cast<const PostByArticleRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* PostByArticleRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const PostByArticleRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:palm.bbs.v1.PostByArticleRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 article = 1;
+          if (this_._internal_article() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_article(), target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .palm.portal.v1.Page page = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.page_, this_._impl_.page_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:palm.bbs.v1.PostByArticleRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t PostByArticleRequest::ByteSizeLong(const MessageLite& base) {
+          const PostByArticleRequest& this_ = static_cast<const PostByArticleRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t PostByArticleRequest::ByteSizeLong() const {
+          const PostByArticleRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:palm.bbs.v1.PostByArticleRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .palm.portal.v1.Page page = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.page_);
+            }
+          }
+           {
+            // uint32 article = 1;
+            if (this_._internal_article() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_article());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void PostByArticleRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PostByArticleRequest*>(&to_msg);
+  auto& from = static_cast<const PostByArticleRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.bbs.v1.PostByArticleRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.page_ != nullptr);
+    if (_this->_impl_.page_ == nullptr) {
+      _this->_impl_.page_ =
+          ::google::protobuf::Message::CopyConstruct<::palm::portal::v1::Page>(arena, *from._impl_.page_);
+    } else {
+      _this->_impl_.page_->MergeFrom(*from._impl_.page_);
+    }
+  }
+  if (from._internal_article() != 0) {
+    _this->_impl_.article_ = from._impl_.article_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PostByArticleRequest::CopyFrom(const PostByArticleRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.bbs.v1.PostByArticleRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PostByArticleRequest::InternalSwap(PostByArticleRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_.article_)
+      + sizeof(PostByArticleRequest::_impl_.article_)
+      - PROTOBUF_FIELD_OFFSET(PostByArticleRequest, _impl_.page_)>(
+          reinterpret_cast<char*>(&_impl_.page_),
+          reinterpret_cast<char*>(&other->_impl_.page_));
+}
+
+::google::protobuf::Metadata PostByArticleRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

@@ -15,6 +15,192 @@ public final class PageGrpc {
   public static final java.lang.String SERVICE_NAME = "palm.blog.v1.Page";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> getIndexMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Index",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
+      responseType = com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> getIndexMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> getIndexMethod;
+    if ((getIndexMethod = PageGrpc.getIndexMethod) == null) {
+      synchronized (PageGrpc.class) {
+        if ((getIndexMethod = PageGrpc.getIndexMethod) == null) {
+          PageGrpc.getIndexMethod = getIndexMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Index"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PageMethodDescriptorSupplier("Index"))
+              .build();
+        }
+      }
+    }
+    return getIndexMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest,
+      com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> getByAuthorMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ByAuthor",
+      requestType = com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest,
+      com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> getByAuthorMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest, com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> getByAuthorMethod;
+    if ((getByAuthorMethod = PageGrpc.getByAuthorMethod) == null) {
+      synchronized (PageGrpc.class) {
+        if ((getByAuthorMethod = PageGrpc.getByAuthorMethod) == null) {
+          PageGrpc.getByAuthorMethod = getByAuthorMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest, com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ByAuthor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PageMethodDescriptorSupplier("ByAuthor"))
+              .build();
+        }
+      }
+    }
+    return getByAuthorMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest,
+      com.google.protobuf.Empty> getCreateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Create",
+      requestType = com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest,
+      com.google.protobuf.Empty> getCreateMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest, com.google.protobuf.Empty> getCreateMethod;
+    if ((getCreateMethod = PageGrpc.getCreateMethod) == null) {
+      synchronized (PageGrpc.class) {
+        if ((getCreateMethod = PageGrpc.getCreateMethod) == null) {
+          PageGrpc.getCreateMethod = getCreateMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Create"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new PageMethodDescriptorSupplier("Create"))
+              .build();
+        }
+      }
+    }
+    return getCreateMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest,
+      com.google.protobuf.Empty> getUpdateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Update",
+      requestType = com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest,
+      com.google.protobuf.Empty> getUpdateMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest, com.google.protobuf.Empty> getUpdateMethod;
+    if ((getUpdateMethod = PageGrpc.getUpdateMethod) == null) {
+      synchronized (PageGrpc.class) {
+        if ((getUpdateMethod = PageGrpc.getUpdateMethod) == null) {
+          PageGrpc.getUpdateMethod = getUpdateMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Update"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new PageMethodDescriptorSupplier("Update"))
+              .build();
+        }
+      }
+    }
+    return getUpdateMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+      com.google.protobuf.Empty> getDeleteMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Delete",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+      com.google.protobuf.Empty> getDeleteMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.google.protobuf.Empty> getDeleteMethod;
+    if ((getDeleteMethod = PageGrpc.getDeleteMethod) == null) {
+      synchronized (PageGrpc.class) {
+        if ((getDeleteMethod = PageGrpc.getDeleteMethod) == null) {
+          PageGrpc.getDeleteMethod = getDeleteMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Delete"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new PageMethodDescriptorSupplier("Delete"))
+              .build();
+        }
+      }
+    }
+    return getDeleteMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+      com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse> getShowMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Show",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+      com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse> getShowMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse> getShowMethod;
+    if ((getShowMethod = PageGrpc.getShowMethod) == null) {
+      synchronized (PageGrpc.class) {
+        if ((getShowMethod = PageGrpc.getShowMethod) == null) {
+          PageGrpc.getShowMethod = getShowMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest, com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Show"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PageMethodDescriptorSupplier("Show"))
+              .build();
+        }
+      }
+    }
+    return getShowMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -77,6 +263,48 @@ public final class PageGrpc {
   /**
    */
   public interface AsyncService {
+
+    /**
+     */
+    default void index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void byAuthor(com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByAuthorMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void create(com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void update(com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void delete(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void show(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getShowMethod(), responseObserver);
+    }
   }
 
   /**
@@ -105,6 +333,54 @@ public final class PageGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PageStub(channel, callOptions);
     }
+
+    /**
+     */
+    public void index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void byAuthor(com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getByAuthorMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void create(com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCreateMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void update(com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void delete(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDeleteMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void show(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getShowMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -121,6 +397,48 @@ public final class PageGrpc {
     protected PageBlockingV2Stub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PageBlockingV2Stub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse byAuthor(com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByAuthorMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse show(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getShowMethod(), getCallOptions(), request);
     }
   }
 
@@ -139,6 +457,48 @@ public final class PageGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PageBlockingStub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse byAuthor(com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getByAuthorMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCreateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse show(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getShowMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -156,8 +516,62 @@ public final class PageGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new PageFutureStub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> index(
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse> byAuthor(
+        com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getByAuthorMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> create(
+        com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCreateMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> update(
+        com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> delete(
+        com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDeleteMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse> show(
+        com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getShowMethod(), getCallOptions()), request);
+    }
   }
 
+  private static final int METHODID_INDEX = 0;
+  private static final int METHODID_BY_AUTHOR = 1;
+  private static final int METHODID_CREATE = 2;
+  private static final int METHODID_UPDATE = 3;
+  private static final int METHODID_DELETE = 4;
+  private static final int METHODID_SHOW = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -176,6 +590,30 @@ public final class PageGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_INDEX:
+          serviceImpl.index((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse>) responseObserver);
+          break;
+        case METHODID_BY_AUTHOR:
+          serviceImpl.byAuthor((com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse>) responseObserver);
+          break;
+        case METHODID_CREATE:
+          serviceImpl.create((com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_UPDATE:
+          serviceImpl.update((com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_DELETE:
+          serviceImpl.delete((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_SHOW:
+          serviceImpl.show((com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -194,6 +632,48 @@ public final class PageGrpc {
 
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getIndexMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+              com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse>(
+                service, METHODID_INDEX)))
+        .addMethod(
+          getByAuthorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.blog.v1.PageByAuthorRequest,
+              com.github.saturn_xiv.palm.plugins.blog.v1.PageIndexResponse>(
+                service, METHODID_BY_AUTHOR)))
+        .addMethod(
+          getCreateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.blog.v1.PageCreateRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_CREATE)))
+        .addMethod(
+          getUpdateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.blog.v1.PageUpdateRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_UPDATE)))
+        .addMethod(
+          getDeleteMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_DELETE)))
+        .addMethod(
+          getShowMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest,
+              com.github.saturn_xiv.palm.plugins.blog.v1.PageShowResponse>(
+                service, METHODID_SHOW)))
         .build();
   }
 
@@ -242,6 +722,12 @@ public final class PageGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new PageFileDescriptorSupplier())
+              .addMethod(getIndexMethod())
+              .addMethod(getByAuthorMethod())
+              .addMethod(getCreateMethod())
+              .addMethod(getUpdateMethod())
+              .addMethod(getDeleteMethod())
+              .addMethod(getShowMethod())
               .build();
         }
       }

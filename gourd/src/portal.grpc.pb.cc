@@ -23,6 +23,170 @@ namespace palm {
 namespace portal {
 namespace v1 {
 
+static const char* Category_method_names[] = {
+  "/palm.portal.v1.Category/Index",
+  "/palm.portal.v1.Category/ByCode",
+};
+
+std::unique_ptr< Category::Stub> Category::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Category::Stub> stub(new Category::Stub(channel, options));
+  return stub;
+}
+
+Category::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Category_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByCode_(Category_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Category::Stub::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::CategoryIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::CategoryIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Category::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CategoryIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::CategoryIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Category::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CategoryIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CategoryIndexResponse>* Category::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::CategoryIndexResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CategoryIndexResponse>* Category::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Category::Stub::ByCode(::grpc::ClientContext* context, const ::palm::portal::v1::ByCodeRequest& request, ::palm::portal::v1::CategoryIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByCodeRequest, ::palm::portal::v1::CategoryIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByCode_, context, request, response);
+}
+
+void Category::Stub::async::ByCode(::grpc::ClientContext* context, const ::palm::portal::v1::ByCodeRequest* request, ::palm::portal::v1::CategoryIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByCodeRequest, ::palm::portal::v1::CategoryIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByCode_, context, request, response, std::move(f));
+}
+
+void Category::Stub::async::ByCode(::grpc::ClientContext* context, const ::palm::portal::v1::ByCodeRequest* request, ::palm::portal::v1::CategoryIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByCode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CategoryIndexResponse>* Category::Stub::PrepareAsyncByCodeRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByCodeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::CategoryIndexResponse, ::palm::portal::v1::ByCodeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByCode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CategoryIndexResponse>* Category::Stub::AsyncByCodeRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByCodeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByCodeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Category::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Category_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Category::Service, ::google::protobuf::Empty, ::palm::portal::v1::CategoryIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Category::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::CategoryIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Category_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Category::Service, ::palm::portal::v1::ByCodeRequest, ::palm::portal::v1::CategoryIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Category::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ByCodeRequest* req,
+             ::palm::portal::v1::CategoryIndexResponse* resp) {
+               return service->ByCode(ctx, req, resp);
+             }, this)));
+}
+
+Category::Service::~Service() {
+}
+
+::grpc::Status Category::Service::Index(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CategoryIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Category::Service::ByCode(::grpc::ServerContext* context, const ::palm::portal::v1::ByCodeRequest* request, ::palm::portal::v1::CategoryIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Tag_method_names[] = {
+  "/palm.portal.v1.Tag/Index",
+};
+
+std::unique_ptr< Tag::Stub> Tag::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Tag::Stub> stub(new Tag::Stub(channel, options));
+  return stub;
+}
+
+Tag::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Tag_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Tag::Stub::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::TagIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::TagIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Tag::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::TagIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::TagIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Tag::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::TagIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::TagIndexResponse>* Tag::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::TagIndexResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::TagIndexResponse>* Tag::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Tag::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tag_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tag::Service, ::google::protobuf::Empty, ::palm::portal::v1::TagIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tag::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::TagIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+}
+
+Tag::Service::~Service() {
+}
+
+::grpc::Status Tag::Service::Index(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::TagIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 static const char* Locale_method_names[] = {
   "/palm.portal.v1.Locale/Index",
   "/palm.portal.v1.Locale/Create",

@@ -26,6 +26,36 @@ public final class Cms {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_cms_v1_PageCreateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_cms_v1_PageCreateRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_cms_v1_PageUpdateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_cms_v1_PageUpdateRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_cms_v1_PageIndexResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_cms_v1_PageIndexResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_cms_v1_PageIndexResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_cms_v1_PageIndexResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_cms_v1_PageShowResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_cms_v1_PageShowResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_cms_v1_PageShowResponse_Related_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_cms_v1_PageShowResponse_Related_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_cms_v1_Theme_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -59,17 +89,90 @@ public final class Cms {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tcms.proto\022\013palm.cms.v1\"0\n\005Theme\032\'\n\tBoo" +
-      "tstrap\032\006\n\004Show\032\007\n\005Index\032\t\n\007Archive2\006\n\004Pa" +
-      "geB4\n)com.github.saturn_xiv.palm.plugins" +
-      ".cms.v1P\001Z\005./;v2b\006proto3"
+      "\n\tcms.proto\022\013palm.cms.v1\032\037google/protobu" +
+      "f/timestamp.proto\032\033google/protobuf/empty" +
+      ".proto\032\014portal.proto\"n\n\021PageCreateReques" +
+      "t\022\014\n\004slug\030\001 \001(\t\022\014\n\004lang\030\002 \001(\t\022\r\n\005title\030\003" +
+      " \001(\t\022\014\n\004body\030\004 \001(\t\022\014\n\004tags\030\005 \003(\r\022\022\n\ncate" +
+      "gories\030\006 \003(\r\"\227\001\n\021PageUpdateRequest\022\n\n\002id" +
+      "\030\001 \001(\r\022\r\n\005title\030\002 \001(\t\022\014\n\004body\030\003 \001(\t\022\014\n\004t" +
+      "ags\030\004 \003(\r\022\022\n\ncategories\030\005 \003(\r\022*\n\010locatio" +
+      "n\030\006 \001(\0132\023.palm.portal.v1.MapH\000\210\001\001B\013\n\t_lo" +
+      "cation\"\250\003\n\021PageIndexResponse\0222\n\005items\030\001 " +
+      "\003(\0132#.palm.cms.v1.PageIndexResponse.Item" +
+      "\022.\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pa" +
+      "gination\032\256\002\n\004Item\022\n\n\002id\030\001 \001(\r\022\014\n\004lang\030\002 " +
+      "\001(\t\022\014\n\004slug\030\003 \001(\t\022\r\n\005title\030\004 \001(\t\022\017\n\007summ" +
+      "ary\030\005 \001(\t\022\014\n\004body\030\006 \001(\t\0223\n\004tags\030\007 \003(\0132%." +
+      "palm.portal.v1.TagIndexResponse.Item\022>\n\n" +
+      "categories\030\010 \003(\0132*.palm.portal.v1.Catego" +
+      "ryIndexResponse.Item\022+\n\006author\030b \001(\0132\033.p" +
+      "alm.portal.v1.UserDetails\022.\n\nupdated_at\030" +
+      "c \001(\0132\032.google.protobuf.Timestamp\"\201\002\n\020Pa" +
+      "geShowResponse\0221\n\004item\030\001 \001(\0132#.palm.cms." +
+      "v1.PageIndexResponse.Item\0226\n\007related\030\002 \003" +
+      "(\0132%.palm.cms.v1.PageShowResponse.Relate" +
+      "d\032\201\001\n\007Related\022\n\n\002id\030\001 \001(\r\022\014\n\004lang\030\002 \001(\t\022" +
+      "\014\n\004slug\030\003 \001(\t\022\r\n\005title\030\004 \001(\t\022\017\n\007summary\030" +
+      "\005 \001(\t\022.\n\nupdated_at\030c \001(\0132\032.google.proto" +
+      "buf.Timestamp\"0\n\005Theme\032\'\n\tBootstrap\032\006\n\004S" +
+      "how\032\007\n\005Index\032\t\n\007Archive2\326\002\n\004Page\022?\n\005Inde" +
+      "x\022\024.palm.portal.v1.Page\032\036.palm.cms.v1.Pa" +
+      "geIndexResponse\"\000\022B\n\006Create\022\036.palm.cms.v" +
+      "1.PageCreateRequest\032\026.google.protobuf.Em" +
+      "pty\"\000\022B\n\006Update\022\036.palm.cms.v1.PageUpdate" +
+      "Request\032\026.google.protobuf.Empty\"\000\022?\n\006Del" +
+      "ete\022\033.palm.portal.v1.ByIdRequest\032\026.googl" +
+      "e.protobuf.Empty\"\000\022D\n\004Show\022\033.palm.portal" +
+      ".v1.ByIdRequest\032\035.palm.cms.v1.PageShowRe" +
+      "sponse\"\000B4\n)com.github.saturn_xiv.palm.p" +
+      "lugins.cms.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.TimestampProto.getDescriptor(),
+          com.google.protobuf.EmptyProto.getDescriptor(),
+          com.github.saturn_xiv.palm.plugins.portal.v1.Portal.getDescriptor(),
         });
-    internal_static_palm_cms_v1_Theme_descriptor =
+    internal_static_palm_cms_v1_PageCreateRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_palm_cms_v1_PageCreateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_cms_v1_PageCreateRequest_descriptor,
+        new java.lang.String[] { "Slug", "Lang", "Title", "Body", "Tags", "Categories", });
+    internal_static_palm_cms_v1_PageUpdateRequest_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_palm_cms_v1_PageUpdateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_cms_v1_PageUpdateRequest_descriptor,
+        new java.lang.String[] { "Id", "Title", "Body", "Tags", "Categories", "Location", });
+    internal_static_palm_cms_v1_PageIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_palm_cms_v1_PageIndexResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_cms_v1_PageIndexResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_cms_v1_PageIndexResponse_Item_descriptor =
+      internal_static_palm_cms_v1_PageIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_cms_v1_PageIndexResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_cms_v1_PageIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Lang", "Slug", "Title", "Summary", "Body", "Tags", "Categories", "Author", "UpdatedAt", });
+    internal_static_palm_cms_v1_PageShowResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_palm_cms_v1_PageShowResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_cms_v1_PageShowResponse_descriptor,
+        new java.lang.String[] { "Item", "Related", });
+    internal_static_palm_cms_v1_PageShowResponse_Related_descriptor =
+      internal_static_palm_cms_v1_PageShowResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_cms_v1_PageShowResponse_Related_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_cms_v1_PageShowResponse_Related_descriptor,
+        new java.lang.String[] { "Id", "Lang", "Slug", "Title", "Summary", "UpdatedAt", });
+    internal_static_palm_cms_v1_Theme_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_palm_cms_v1_Theme_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_cms_v1_Theme_descriptor,
@@ -99,6 +202,9 @@ public final class Cms {
         internal_static_palm_cms_v1_Theme_Bootstrap_Archive_descriptor,
         new java.lang.String[] { });
     descriptor.resolveAllFeaturesImmutable();
+    com.google.protobuf.TimestampProto.getDescriptor();
+    com.google.protobuf.EmptyProto.getDescriptor();
+    com.github.saturn_xiv.palm.plugins.portal.v1.Portal.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

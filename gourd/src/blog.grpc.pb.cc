@@ -23,6 +23,15 @@ namespace palm {
 namespace blog {
 namespace v1 {
 
+static const char* Page_method_names[] = {
+  "/palm.blog.v1.Page/Index",
+  "/palm.blog.v1.Page/ByAuthor",
+  "/palm.blog.v1.Page/Create",
+  "/palm.blog.v1.Page/Update",
+  "/palm.blog.v1.Page/Delete",
+  "/palm.blog.v1.Page/Show",
+};
+
 std::unique_ptr< Page::Stub> Page::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
   std::unique_ptr< Page::Stub> stub(new Page::Stub(channel, options));
@@ -30,28 +39,487 @@ std::unique_ptr< Page::Stub> Page::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 Page::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel){}
+  : channel_(channel), rpcmethod_Index_(Page_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByAuthor_(Page_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Page_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Page_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Delete_(Page_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Page_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Page::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::blog::v1::PageIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::PageIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Page::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::PageIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::PageIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Page::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::PageIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::PageIndexResponse>* Page::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::PageIndexResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::PageIndexResponse>* Page::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Page::Stub::ByAuthor(::grpc::ClientContext* context, const ::palm::blog::v1::PageByAuthorRequest& request, ::palm::blog::v1::PageIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::blog::v1::PageByAuthorRequest, ::palm::blog::v1::PageIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByAuthor_, context, request, response);
+}
+
+void Page::Stub::async::ByAuthor(::grpc::ClientContext* context, const ::palm::blog::v1::PageByAuthorRequest* request, ::palm::blog::v1::PageIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::blog::v1::PageByAuthorRequest, ::palm::blog::v1::PageIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByAuthor_, context, request, response, std::move(f));
+}
+
+void Page::Stub::async::ByAuthor(::grpc::ClientContext* context, const ::palm::blog::v1::PageByAuthorRequest* request, ::palm::blog::v1::PageIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByAuthor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::PageIndexResponse>* Page::Stub::PrepareAsyncByAuthorRaw(::grpc::ClientContext* context, const ::palm::blog::v1::PageByAuthorRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::PageIndexResponse, ::palm::blog::v1::PageByAuthorRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByAuthor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::PageIndexResponse>* Page::Stub::AsyncByAuthorRaw(::grpc::ClientContext* context, const ::palm::blog::v1::PageByAuthorRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByAuthorRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Page::Stub::Create(::grpc::ClientContext* context, const ::palm::blog::v1::PageCreateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::blog::v1::PageCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Page::Stub::async::Create(::grpc::ClientContext* context, const ::palm::blog::v1::PageCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::blog::v1::PageCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Page::Stub::async::Create(::grpc::ClientContext* context, const ::palm::blog::v1::PageCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Page::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::blog::v1::PageCreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Page::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::PageCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Page::Stub::Update(::grpc::ClientContext* context, const ::palm::blog::v1::PageUpdateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::blog::v1::PageUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Page::Stub::async::Update(::grpc::ClientContext* context, const ::palm::blog::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::blog::v1::PageUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Page::Stub::async::Update(::grpc::ClientContext* context, const ::palm::blog::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Page::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::blog::v1::PageUpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Page::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::PageUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Page::Stub::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
+}
+
+void Page::Stub::async::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
+}
+
+void Page::Stub::async::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Page::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::ByIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Page::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Page::Stub::Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::palm::blog::v1::PageShowResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByIdRequest, ::palm::blog::v1::PageShowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Page::Stub::async::Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::blog::v1::PageShowResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByIdRequest, ::palm::blog::v1::PageShowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Page::Stub::async::Show(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::blog::v1::PageShowResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::PageShowResponse>* Page::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::PageShowResponse, ::palm::portal::v1::ByIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::PageShowResponse>* Page::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 Page::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Page_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::portal::v1::Page, ::palm::blog::v1::PageIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Page::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::Page* req,
+             ::palm::blog::v1::PageIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Page_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::blog::v1::PageByAuthorRequest, ::palm::blog::v1::PageIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Page::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::blog::v1::PageByAuthorRequest* req,
+             ::palm::blog::v1::PageIndexResponse* resp) {
+               return service->ByAuthor(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Page_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::blog::v1::PageCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Page::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::blog::v1::PageCreateRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Page_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::blog::v1::PageUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Page::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::blog::v1::PageUpdateRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Page_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Page::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ByIdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Delete(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Page_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::portal::v1::ByIdRequest, ::palm::blog::v1::PageShowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Page::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ByIdRequest* req,
+             ::palm::blog::v1::PageShowResponse* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
 }
 
 Page::Service::~Service() {
 }
 
+::grpc::Status Page::Service::Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::PageIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
 
-std::unique_ptr< Post::Stub> Post::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+::grpc::Status Page::Service::ByAuthor(::grpc::ServerContext* context, const ::palm::blog::v1::PageByAuthorRequest* request, ::palm::blog::v1::PageIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Page::Service::Create(::grpc::ServerContext* context, const ::palm::blog::v1::PageCreateRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Page::Service::Update(::grpc::ServerContext* context, const ::palm::blog::v1::PageUpdateRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Page::Service::Delete(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Page::Service::Show(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::palm::blog::v1::PageShowResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Comment_method_names[] = {
+  "/palm.blog.v1.Comment/Create",
+  "/palm.blog.v1.Comment/Update",
+  "/palm.blog.v1.Comment/Delete",
+  "/palm.blog.v1.Comment/Index",
+  "/palm.blog.v1.Comment/ByUser",
+};
+
+std::unique_ptr< Comment::Stub> Comment::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Post::Stub> stub(new Post::Stub(channel, options));
+  std::unique_ptr< Comment::Stub> stub(new Comment::Stub(channel, options));
   return stub;
 }
 
-Post::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel){}
+Comment::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Create_(Comment_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Comment_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Delete_(Comment_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(Comment_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUser_(Comment_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
 
-Post::Service::Service() {
+::grpc::Status Comment::Stub::Create(::grpc::ClientContext* context, const ::palm::blog::v1::CommentCreateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::blog::v1::CommentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
 }
 
-Post::Service::~Service() {
+void Comment::Stub::async::Create(::grpc::ClientContext* context, const ::palm::blog::v1::CommentCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::blog::v1::CommentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Comment::Stub::async::Create(::grpc::ClientContext* context, const ::palm::blog::v1::CommentCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Comment::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::CommentCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::blog::v1::CommentCreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Comment::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::CommentCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Comment::Stub::Update(::grpc::ClientContext* context, const ::palm::blog::v1::CommentUpdateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::blog::v1::CommentUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Comment::Stub::async::Update(::grpc::ClientContext* context, const ::palm::blog::v1::CommentUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::blog::v1::CommentUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Comment::Stub::async::Update(::grpc::ClientContext* context, const ::palm::blog::v1::CommentUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Comment::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::CommentUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::blog::v1::CommentUpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Comment::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::blog::v1::CommentUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Comment::Stub::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
+}
+
+void Comment::Stub::async::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
+}
+
+void Comment::Stub::async::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Comment::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::ByIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Comment::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Comment::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::blog::v1::CommentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::CommentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Comment::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::CommentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::CommentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Comment::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::CommentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::CommentIndexResponse>* Comment::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::CommentIndexResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::CommentIndexResponse>* Comment::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Comment::Stub::ByUser(::grpc::ClientContext* context, const ::palm::blog::v1::CommentByUserRequest& request, ::palm::blog::v1::CommentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::blog::v1::CommentByUserRequest, ::palm::blog::v1::CommentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUser_, context, request, response);
+}
+
+void Comment::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::blog::v1::CommentByUserRequest* request, ::palm::blog::v1::CommentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::blog::v1::CommentByUserRequest, ::palm::blog::v1::CommentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, std::move(f));
+}
+
+void Comment::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::blog::v1::CommentByUserRequest* request, ::palm::blog::v1::CommentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::CommentIndexResponse>* Comment::Stub::PrepareAsyncByUserRaw(::grpc::ClientContext* context, const ::palm::blog::v1::CommentByUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::CommentIndexResponse, ::palm::blog::v1::CommentByUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::CommentIndexResponse>* Comment::Stub::AsyncByUserRaw(::grpc::ClientContext* context, const ::palm::blog::v1::CommentByUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Comment::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Comment_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Comment::Service, ::palm::blog::v1::CommentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Comment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::blog::v1::CommentCreateRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Comment_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Comment::Service, ::palm::blog::v1::CommentUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Comment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::blog::v1::CommentUpdateRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Comment_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Comment::Service, ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Comment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ByIdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Delete(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Comment_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Comment::Service, ::palm::portal::v1::Page, ::palm::blog::v1::CommentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Comment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::Page* req,
+             ::palm::blog::v1::CommentIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Comment_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Comment::Service, ::palm::blog::v1::CommentByUserRequest, ::palm::blog::v1::CommentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Comment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::blog::v1::CommentByUserRequest* req,
+             ::palm::blog::v1::CommentIndexResponse* resp) {
+               return service->ByUser(ctx, req, resp);
+             }, this)));
+}
+
+Comment::Service::~Service() {
+}
+
+::grpc::Status Comment::Service::Create(::grpc::ServerContext* context, const ::palm::blog::v1::CommentCreateRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Comment::Service::Update(::grpc::ServerContext* context, const ::palm::blog::v1::CommentUpdateRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Comment::Service::Delete(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Comment::Service::Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::CommentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Comment::Service::ByUser(::grpc::ServerContext* context, const ::palm::blog::v1::CommentByUserRequest* request, ::palm::blog::v1::CommentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 
