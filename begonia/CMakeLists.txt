@@ -16,6 +16,7 @@ find_package(boost_property_tree CONFIG REQUIRED)
 find_package(boost_algorithm CONFIG REQUIRED)
 find_package(boost_locale CONFIG REQUIRED)
 find_package(boost_process CONFIG REQUIRED)
+find_package(boost_hana CONFIG REQUIRED)
 find_package(jwt-cpp CONFIG REQUIRED)
 find_package(mailio CONFIG REQUIRED)
 find_package(libgit2 CONFIG REQUIRED)
@@ -50,7 +51,12 @@ FetchContent_Declare(casbin
   UPDATE_DISCONNECTED 1
 )
 
-FetchContent_MakeAvailable(thrift casbin)
+FetchContent_Declare(cpp_validator
+  GIT_REPOSITORY      "https://github.com/evgeniums/cpp-validator.git"
+  GIT_TAG             "c98bbd2"
+)
+
+FetchContent_MakeAvailable(thrift casbin cpp_validator)
 # -----------------------------------------------------------------------------
 
 add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
@@ -80,4 +86,5 @@ target_include_directories(begonia PUBLIC
   ${thrift_SOURCE_DIR}/compiler/cpp/src
   ${thrift_BINARY_DIR}
   ${casbin_SOURCE_DIR}/include
+  ${cpp_validator_SOURCE_DIR}/include
 )

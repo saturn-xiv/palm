@@ -4,6 +4,9 @@
 #include <regex>
 #include <string>
 
+#include <hatn/validator/validator.hpp>
+#include <hatn/validator/validate.hpp>
+
 namespace palm {
 namespace validator {
 std::optional<std::string> code(const std::string& s);
