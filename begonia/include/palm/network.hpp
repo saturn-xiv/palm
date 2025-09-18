@@ -14,7 +14,7 @@ class Ipv4 {
   void address(const std::string& v);
   void cidr(uint8_t v);
   void netmask(const std::string& v);
-  uint16_t cidr() const;
+  uint8_t cidr() const;
   inline std::string netmask() const { return this->_netmask; }
 
  private:
