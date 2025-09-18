@@ -110,77 +110,6 @@ struct UserIndexResponse_Item_ContactDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponse_Item_ContactDefaultTypeInternal _UserIndexResponse_Item_Contact_default_instance_;
 
-inline constexpr RuleUpdateRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : id_{0u},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR RuleUpdateRequest::RuleUpdateRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct RuleUpdateRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RuleUpdateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RuleUpdateRequestDefaultTypeInternal() {}
-  union {
-    RuleUpdateRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleUpdateRequestDefaultTypeInternal _RuleUpdateRequest_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR RuleIndexResponse_Item_Nat::RuleIndexResponse_Item_Nat(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
-#endif  // PROTOBUF_CUSTOM_VTABLE
-struct RuleIndexResponse_Item_NatDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RuleIndexResponse_Item_NatDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RuleIndexResponse_Item_NatDefaultTypeInternal() {}
-  union {
-    RuleIndexResponse_Item_Nat _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleIndexResponse_Item_NatDefaultTypeInternal _RuleIndexResponse_Item_Nat_default_instance_;
-
-inline constexpr RuleIndexResponse_Item::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : device_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        id_{0u},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR RuleIndexResponse_Item::RuleIndexResponse_Item(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct RuleIndexResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RuleIndexResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RuleIndexResponse_ItemDefaultTypeInternal() {}
-  union {
-    RuleIndexResponse_Item _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleIndexResponse_ItemDefaultTypeInternal _RuleIndexResponse_Item_default_instance_;
-
 inline constexpr RouterIndexEthernetResponse_Item_Wan::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : dns_{},
@@ -352,13 +281,40 @@ struct Firewall_InputDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Firewall_InputDefaultTypeInternal _Firewall_Input_default_instance_;
 
+inline constexpr AdministratorUpdateRequest_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        password_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AdministratorUpdateRequest_Item::AdministratorUpdateRequest_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AdministratorUpdateRequest_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AdministratorUpdateRequest_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AdministratorUpdateRequest_ItemDefaultTypeInternal() {}
+  union {
+    AdministratorUpdateRequest_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AdministratorUpdateRequest_ItemDefaultTypeInternal _AdministratorUpdateRequest_Item_default_instance_;
+
 inline constexpr AdministratorSignInResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : languages_{},
         token_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         locale_(
@@ -388,36 +344,6 @@ struct AdministratorSignInResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AdministratorSignInResponseDefaultTypeInternal _AdministratorSignInResponse_default_instance_;
-
-inline constexpr AdministratorSetPasswordRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : current_password_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        new_password_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR AdministratorSetPasswordRequest::AdministratorSetPasswordRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct AdministratorSetPasswordRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AdministratorSetPasswordRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AdministratorSetPasswordRequestDefaultTypeInternal() {}
-  union {
-    AdministratorSetPasswordRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AdministratorSetPasswordRequestDefaultTypeInternal _AdministratorSetPasswordRequest_default_instance_;
 
 inline constexpr UserSetContactRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -476,59 +402,6 @@ struct UserIndexResponse_Item_WifiDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponse_Item_WifiDefaultTypeInternal _UserIndexResponse_Item_Wifi_default_instance_;
-
-inline constexpr RuleIndexResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : items_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR RuleIndexResponse::RuleIndexResponse(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct RuleIndexResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RuleIndexResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RuleIndexResponseDefaultTypeInternal() {}
-  union {
-    RuleIndexResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleIndexResponseDefaultTypeInternal _RuleIndexResponse_default_instance_;
-
-inline constexpr RuleCreateRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        device_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        item_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR RuleCreateRequest::RuleCreateRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct RuleCreateRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RuleCreateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RuleCreateRequestDefaultTypeInternal() {}
-  union {
-    RuleCreateRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleCreateRequestDefaultTypeInternal _RuleCreateRequest_default_instance_;
 
 inline constexpr RouterIndexEthernetResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -671,15 +544,36 @@ struct Firewall_NatDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Firewall_NatDefaultTypeInternal _Firewall_Nat_default_instance_;
 
+inline constexpr AdministratorUpdateRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        current_{nullptr},
+        new__{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AdministratorUpdateRequest::AdministratorUpdateRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AdministratorUpdateRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AdministratorUpdateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AdministratorUpdateRequestDefaultTypeInternal() {}
+  union {
+    AdministratorUpdateRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AdministratorUpdateRequestDefaultTypeInternal _AdministratorUpdateRequest_default_instance_;
+
 inline constexpr AdministratorSignInRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        password_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
+        user_{nullptr},
         ttl_{nullptr} {}
 
 template <typename>
@@ -1352,12 +1246,10 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInRequest, _impl_.name_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInRequest, _impl_.password_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInRequest, _impl_.user_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInRequest, _impl_.ttl_),
-        ~0u,
-        ~0u,
         0,
+        1,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1367,68 +1259,31 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInResponse, _impl_.token_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInResponse, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInResponse, _impl_.locale_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInResponse, _impl_.timezone_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSignInResponse, _impl_.languages_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSetPasswordRequest, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest_Item, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSetPasswordRequest, _impl_.current_password_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorSetPasswordRequest, _impl_.new_password_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleCreateRequest, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleCreateRequest, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest_Item, _impl_.password_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleCreateRequest, _impl_.device_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleCreateRequest, _impl_.item_),
-        ~0u,
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest, _impl_.current_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::AdministratorUpdateRequest, _impl_.new__),
         0,
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleUpdateRequest, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleUpdateRequest, _impl_.id_),
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleIndexResponse_Item_Nat, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleIndexResponse_Item, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleIndexResponse_Item, _impl_.id_),
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleIndexResponse_Item, _impl_.device_),
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleIndexResponse, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::router::v1::RuleIndexResponse, _impl_.items_),
+        1,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::RouterIndexEthernetResponse_Item_Wan, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1613,27 +1468,23 @@ static const ::_pbi::MigrationSchema
         {189, 199, -1, sizeof(::palm::router::v1::Network_ItemsEntry_DoNotUse)},
         {201, -1, -1, sizeof(::palm::router::v1::Network)},
         {210, 222, -1, sizeof(::palm::router::v1::Host)},
-        {226, 237, -1, sizeof(::palm::router::v1::AdministratorSignInRequest)},
-        {240, -1, -1, sizeof(::palm::router::v1::AdministratorSignInResponse)},
-        {253, -1, -1, sizeof(::palm::router::v1::AdministratorSetPasswordRequest)},
-        {263, 273, -1, sizeof(::palm::router::v1::RuleCreateRequest)},
-        {275, -1, -1, sizeof(::palm::router::v1::RuleUpdateRequest)},
-        {284, -1, -1, sizeof(::palm::router::v1::RuleIndexResponse_Item_Nat)},
-        {292, -1, -1, sizeof(::palm::router::v1::RuleIndexResponse_Item)},
-        {302, -1, -1, sizeof(::palm::router::v1::RuleIndexResponse)},
-        {311, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item_Wan)},
-        {323, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item_Lan)},
-        {332, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item)},
-        {348, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse)},
-        {357, -1, -1, sizeof(::palm::router::v1::UserSetRealNameRequest)},
-        {367, 377, -1, sizeof(::palm::router::v1::UserSetWifiRequest)},
-        {379, 390, -1, sizeof(::palm::router::v1::UserSetDetailsRequest)},
-        {393, 403, -1, sizeof(::palm::router::v1::UserSetContactRequest)},
-        {405, 415, -1, sizeof(::palm::router::v1::UserCreateRequest)},
-        {417, 429, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
-        {433, 445, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
-        {449, 461, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
-        {465, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
+        {226, 236, -1, sizeof(::palm::router::v1::AdministratorSignInRequest)},
+        {238, -1, -1, sizeof(::palm::router::v1::AdministratorSignInResponse)},
+        {250, -1, -1, sizeof(::palm::router::v1::AdministratorUpdateRequest_Item)},
+        {260, 270, -1, sizeof(::palm::router::v1::AdministratorUpdateRequest)},
+        {272, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item_Wan)},
+        {284, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item_Lan)},
+        {293, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse_Item)},
+        {309, -1, -1, sizeof(::palm::router::v1::RouterIndexEthernetResponse)},
+        {318, -1, -1, sizeof(::palm::router::v1::UserSetRealNameRequest)},
+        {328, 338, -1, sizeof(::palm::router::v1::UserSetWifiRequest)},
+        {340, 351, -1, sizeof(::palm::router::v1::UserSetDetailsRequest)},
+        {354, 364, -1, sizeof(::palm::router::v1::UserSetContactRequest)},
+        {366, 376, -1, sizeof(::palm::router::v1::UserCreateRequest)},
+        {378, 390, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
+        {394, 406, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
+        {410, 422, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
+        {426, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::router::v1::_Firewall_Input_default_instance_._instance,
@@ -1655,12 +1506,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::router::v1::_Host_default_instance_._instance,
     &::palm::router::v1::_AdministratorSignInRequest_default_instance_._instance,
     &::palm::router::v1::_AdministratorSignInResponse_default_instance_._instance,
-    &::palm::router::v1::_AdministratorSetPasswordRequest_default_instance_._instance,
-    &::palm::router::v1::_RuleCreateRequest_default_instance_._instance,
-    &::palm::router::v1::_RuleUpdateRequest_default_instance_._instance,
-    &::palm::router::v1::_RuleIndexResponse_Item_Nat_default_instance_._instance,
-    &::palm::router::v1::_RuleIndexResponse_Item_default_instance_._instance,
-    &::palm::router::v1::_RuleIndexResponse_default_instance_._instance,
+    &::palm::router::v1::_AdministratorUpdateRequest_Item_default_instance_._instance,
+    &::palm::router::v1::_AdministratorUpdateRequest_default_instance_._instance,
     &::palm::router::v1::_RouterIndexEthernetResponse_Item_Wan_default_instance_._instance,
     &::palm::router::v1::_RouterIndexEthernetResponse_Item_Lan_default_instance_._instance,
     &::palm::router::v1::_RouterIndexEthernetResponse_Item_default_instance_._instance,
@@ -1724,91 +1571,81 @@ const char descriptor_table_protodef_router_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\030\001 \001(\t\022+\n\005value\030\002 \001(\0132\034.palm.router.v1.N"
     "etwork.Item:\0028\001\"]\n\004Host\022\013\n\003mac\030\001 \001(\t\022\n\n\002"
     "ip\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022.\n\nlast_found\030\t \001"
-    "(\0132\032.google.protobuf.Timestamp\"d\n\032Admini"
-    "stratorSignInRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010pa"
-    "ssword\030\002 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google.proto"
-    "buf.Duration\"o\n\033AdministratorSignInRespo"
-    "nse\022\r\n\005token\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\016\n\006loca"
-    "le\030\013 \001(\t\022\020\n\010timezone\030\014 \001(\t\022\021\n\tlanguages\030"
-    "\023 \003(\t\"Q\n\037AdministratorSetPasswordRequest"
-    "\022\030\n\020current_password\030\001 \001(\t\022\024\n\014new_passwo"
-    "rd\030\002 \001(\t\"Y\n\021RuleCreateRequest\022\016\n\006device\030"
-    "\001 \001(\t\0224\n\004item\030\002 \001(\0132&.palm.router.v1.Rul"
-    "eIndexResponse.Item\"\037\n\021RuleUpdateRequest"
-    "\022\n\n\002id\030\001 \001(\r\"u\n\021RuleIndexResponse\0225\n\005ite"
-    "ms\030\001 \003(\0132&.palm.router.v1.RuleIndexRespo"
-    "nse.Item\032)\n\004Item\022\n\n\002id\030\001 \001(\r\022\016\n\006device\030\002"
-    " \001(\t\032\005\n\003Nat\"\310\003\n\033RouterIndexEthernetRespo"
-    "nse\022\?\n\005items\030\001 \003(\01320.palm.router.v1.Rout"
-    "erIndexEthernetResponse.Item\032\347\002\n\004Item\022\016\n"
-    "\006device\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022C\n\003wan\030\013 \001(\013"
+    "(\0132\032.google.protobuf.Timestamp\"\203\001\n\032Admin"
+    "istratorSignInRequest\022=\n\004user\030\001 \001(\0132/.pa"
+    "lm.router.v1.AdministratorUpdateRequest."
+    "Item\022&\n\003ttl\030\t \001(\0132\031.google.protobuf.Dura"
+    "tion\"a\n\033AdministratorSignInResponse\022\r\n\005t"
+    "oken\030\001 \001(\t\022\016\n\006locale\030\013 \001(\t\022\020\n\010timezone\030\014"
+    " \001(\t\022\021\n\tlanguages\030\023 \003(\t\"\304\001\n\032Administrato"
+    "rUpdateRequest\022@\n\007current\030\001 \001(\0132/.palm.r"
+    "outer.v1.AdministratorUpdateRequest.Item"
+    "\022<\n\003new\030\002 \001(\0132/.palm.router.v1.Administr"
+    "atorUpdateRequest.Item\032&\n\004Item\022\014\n\004name\030\001"
+    " \001(\t\022\020\n\010password\030\002 \001(\t\"\310\003\n\033RouterIndexEt"
+    "hernetResponse\022\?\n\005items\030\001 \003(\01320.palm.rou"
+    "ter.v1.RouterIndexEthernetResponse.Item\032"
+    "\347\002\n\004Item\022\016\n\006device\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022C"
+    "\n\003wan\030\013 \001(\01324.palm.router.v1.RouterIndex"
+    "EthernetResponse.Item.WanH\000\022C\n\003lan\030\014 \001(\013"
     "24.palm.router.v1.RouterIndexEthernetRes"
-    "ponse.Item.WanH\000\022C\n\003lan\030\014 \001(\01324.palm.rou"
-    "ter.v1.RouterIndexEthernetResponse.Item."
-    "LanH\000\022\'\n\005empty\030\023 \001(\0132\026.google.protobuf.E"
-    "mptyH\000\022\023\n\013description\030b \001(\t\022\016\n\006enable\030c "
-    "\001(\010\032E\n\003Wan\022\017\n\007address\030\001 \001(\t\022\017\n\007netmask\030\002"
-    " \001(\t\022\017\n\007gateway\030\003 \001(\t\022\013\n\003dns\030\004 \003(\t\032\026\n\003La"
-    "n\022\017\n\007network\030\001 \001(\tB\n\n\010ethernet\"7\n\026UserSe"
-    "tRealNameRequest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_nam"
-    "e\030\002 \001(\t\"[\n\022UserSetWifiRequest\022\n\n\002id\030\001 \001("
-    "\r\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1.UserInd"
-    "exResponse.Item.Wifi\"q\n\025UserSetDetailsRe"
-    "quest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004"
-    "wifi\030\003 \001(\0132+.palm.router.v1.UserIndexRes"
-    "ponse.Item.Wifi\"d\n\025UserSetContactRequest"
-    "\022\n\n\002id\030\001 \001(\r\022\?\n\007contact\030\002 \001(\0132..palm.rou"
-    "ter.v1.UserIndexResponse.Item.Contact\"a\n"
-    "\021UserCreateRequest\022\021\n\treal_name\030\001 \001(\t\0229\n"
-    "\004wifi\030\002 \001(\0132+.palm.router.v1.UserIndexRe"
-    "sponse.Item.Wifi\"\377\003\n\021UserIndexResponse\0225"
-    "\n\005items\030\001 \003(\0132&.palm.router.v1.UserIndex"
-    "Response.Item\032\262\003\n\004Item\022\n\n\002id\030\001 \001(\r\022\021\n\tre"
-    "al_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.route"
-    "r.v1.UserIndexResponse.Item.Wifi\022\?\n\007cont"
-    "act\030\t \001(\0132..palm.router.v1.UserIndexResp"
-    "onse.Item.Contact\032\204\001\n\004Wifi\022\020\n\010nickname\030\001"
-    " \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010begin_at\030\003 \001(\013"
-    "2\032.google.protobuf.Timestamp\022*\n\006end_at\030\004"
-    " \001(\0132\032.google.protobuf.Timestamp\032\207\001\n\007Con"
-    "tact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007address\030\002 \001"
-    "(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022\n\005email\030\004 \001"
-    "(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addressB\010\n\006_phone"
-    "B\010\n\006_email2\213\002\n\rAdministrator\022c\n\006SignIn\022*"
-    ".palm.router.v1.AdministratorSignInReque"
-    "st\032+.palm.router.v1.AdministratorSignInR"
-    "esponse\"\000\022;\n\007SignOut\022\026.google.protobuf.E"
-    "mpty\032\026.google.protobuf.Empty\"\000\022X\n\013SetPas"
-    "sword\022/.palm.router.v1.AdministratorSetP"
-    "asswordRequest\032\026.google.protobuf.Empty\"\000"
-    "2\233\002\n\004Rule\022D\n\005Index\022\026.google.protobuf.Emp"
-    "ty\032!.palm.router.v1.RuleIndexResponse\"\000\022"
-    "E\n\006Create\022!.palm.router.v1.RuleCreateReq"
-    "uest\032\026.google.protobuf.Empty\"\000\022E\n\006Update"
-    "\022!.palm.router.v1.RuleUpdateRequest\032\026.go"
-    "ogle.protobuf.Empty\"\000\022\?\n\006Delete\022\033.palm.p"
-    "ortal.v1.ByIdRequest\032\026.google.protobuf.E"
-    "mpty\"\0002\364\002\n\006Router\022Y\n\013SetEthernet\0220.palm."
-    "router.v1.RouterIndexEthernetResponse.It"
-    "em\032\026.google.protobuf.Empty\"\000\022V\n\rIndexEth"
-    "ernet\022\026.google.protobuf.Empty\032+.palm.rou"
-    "ter.v1.RouterIndexEthernetResponse\"\000\022:\n\006"
-    "Reboot\022\026.google.protobuf.Empty\032\026.google."
-    "protobuf.Empty\"\000\0229\n\005Apply\022\026.google.proto"
-    "buf.Empty\032\026.google.protobuf.Empty\"\000\022@\n\014F"
-    "actoryReset\022\026.google.protobuf.Empty\032\026.go"
-    "ogle.protobuf.Empty\"\0002\374\002\n\004User\022D\n\005Index\022"
-    "\026.google.protobuf.Empty\032!.palm.router.v1"
-    ".UserIndexResponse\"\000\022E\n\006Create\022!.palm.ro"
-    "uter.v1.UserCreateRequest\032\026.google.proto"
-    "buf.Empty\"\000\022O\n\013SetRealName\022&.palm.router"
-    ".v1.UserSetRealNameRequest\032\026.google.prot"
-    "obuf.Empty\"\000\022M\n\nSetContact\022%.palm.router"
-    ".v1.UserSetContactRequest\032\026.google.proto"
-    "buf.Empty\"\000\022G\n\007SetWifi\022\".palm.router.v1."
-    "UserSetWifiRequest\032\026.google.protobuf.Emp"
-    "ty\"\000B7\n,com.github.saturn_xiv.palm.plugi"
-    "ns.router.v1P\001Z\005./;v2b\006proto3"
+    "ponse.Item.LanH\000\022\'\n\005empty\030\023 \001(\0132\026.google"
+    ".protobuf.EmptyH\000\022\023\n\013description\030b \001(\t\022\016"
+    "\n\006enable\030c \001(\010\032E\n\003Wan\022\017\n\007address\030\001 \001(\t\022\017"
+    "\n\007netmask\030\002 \001(\t\022\017\n\007gateway\030\003 \001(\t\022\013\n\003dns\030"
+    "\004 \003(\t\032\026\n\003Lan\022\017\n\007network\030\001 \001(\tB\n\n\010etherne"
+    "t\"7\n\026UserSetRealNameRequest\022\n\n\002id\030\001 \001(\r\022"
+    "\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWifiRequest"
+    "\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.palm.router"
+    ".v1.UserIndexResponse.Item.Wifi\"q\n\025UserS"
+    "etDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_nam"
+    "e\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.U"
+    "serIndexResponse.Item.Wifi\"d\n\025UserSetCon"
+    "tactRequest\022\n\n\002id\030\001 \001(\r\022\?\n\007contact\030\002 \001(\013"
+    "2..palm.router.v1.UserIndexResponse.Item"
+    ".Contact\"a\n\021UserCreateRequest\022\021\n\treal_na"
+    "me\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1."
+    "UserIndexResponse.Item.Wifi\"\377\003\n\021UserInde"
+    "xResponse\0225\n\005items\030\001 \003(\0132&.palm.router.v"
+    "1.UserIndexResponse.Item\032\262\003\n\004Item\022\n\n\002id\030"
+    "\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+"
+    ".palm.router.v1.UserIndexResponse.Item.W"
+    "ifi\022\?\n\007contact\030\t \001(\0132..palm.router.v1.Us"
+    "erIndexResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n"
+    "\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010beg"
+    "in_at\030\003 \001(\0132\032.google.protobuf.Timestamp\022"
+    "*\n\006end_at\030\004 \001(\0132\032.google.protobuf.Timest"
+    "amp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007"
+    "address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022"
+    "\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addres"
+    "sB\010\n\006_phoneB\010\n\006_email2\201\002\n\rAdministrator\022"
+    "c\n\006SignIn\022*.palm.router.v1.Administrator"
+    "SignInRequest\032+.palm.router.v1.Administr"
+    "atorSignInResponse\"\000\022;\n\007SignOut\022\026.google"
+    ".protobuf.Empty\032\026.google.protobuf.Empty\""
+    "\000\022N\n\006Update\022*.palm.router.v1.Administrat"
+    "orUpdateRequest\032\026.google.protobuf.Empty\""
+    "\0002\364\002\n\006Router\022Y\n\013SetEthernet\0220.palm.route"
+    "r.v1.RouterIndexEthernetResponse.Item\032\026."
+    "google.protobuf.Empty\"\000\022V\n\rIndexEthernet"
+    "\022\026.google.protobuf.Empty\032+.palm.router.v"
+    "1.RouterIndexEthernetResponse\"\000\022:\n\006Reboo"
+    "t\022\026.google.protobuf.Empty\032\026.google.proto"
+    "buf.Empty\"\000\0229\n\005Apply\022\026.google.protobuf.E"
+    "mpty\032\026.google.protobuf.Empty\"\000\022@\n\014Factor"
+    "yReset\022\026.google.protobuf.Empty\032\026.google."
+    "protobuf.Empty\"\0002\374\002\n\004User\022D\n\005Index\022\026.goo"
+    "gle.protobuf.Empty\032!.palm.router.v1.User"
+    "IndexResponse\"\000\022E\n\006Create\022!.palm.router."
+    "v1.UserCreateRequest\032\026.google.protobuf.E"
+    "mpty\"\000\022O\n\013SetRealName\022&.palm.router.v1.U"
+    "serSetRealNameRequest\032\026.google.protobuf."
+    "Empty\"\000\022M\n\nSetContact\022%.palm.router.v1.U"
+    "serSetContactRequest\032\026.google.protobuf.E"
+    "mpty\"\000\022G\n\007SetWifi\022\".palm.router.v1.UserS"
+    "etWifiRequest\032\026.google.protobuf.Empty\"\000B"
+    "7\n,com.github.saturn_xiv.palm.plugins.ro"
+    "uter.v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_router_2eproto_deps[4] =
     {
@@ -1821,13 +1658,13 @@ static ::absl::once_flag descriptor_table_router_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto = {
     false,
     false,
-    5269,
+    4864,
     descriptor_table_protodef_router_2eproto,
     "router.proto",
     &descriptor_table_router_2eproto_once,
     descriptor_table_router_2eproto_deps,
     4,
-    38,
+    34,
     schemas,
     file_default_instances,
     TableStruct_router_2eproto::offsets,
@@ -6835,7 +6672,7 @@ class AdministratorSignInRequest::_Internal {
 void AdministratorSignInRequest::clear_ttl() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.ttl_ != nullptr) _impl_.ttl_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 AdministratorSignInRequest::AdministratorSignInRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -6850,9 +6687,7 @@ inline PROTOBUF_NDEBUG_INLINE AdministratorSignInRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::router::v1::AdministratorSignInRequest& from_msg)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        name_(arena, from.name_),
-        password_(arena, from.password_) {}
+        _cached_size_{0} {}
 
 AdministratorSignInRequest::AdministratorSignInRequest(
     ::google::protobuf::Arena* arena,
@@ -6868,7 +6703,10 @@ AdministratorSignInRequest::AdministratorSignInRequest(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.ttl_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Duration>(
+  _impl_.user_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(
+                              arena, *from._impl_.user_)
+                        : nullptr;
+  _impl_.ttl_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Duration>(
                               arena, *from._impl_.ttl_)
                         : nullptr;
 
@@ -6877,13 +6715,16 @@ AdministratorSignInRequest::AdministratorSignInRequest(
 inline PROTOBUF_NDEBUG_INLINE AdministratorSignInRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        name_(arena),
-        password_(arena) {}
+      : _cached_size_{0} {}
 
 inline void AdministratorSignInRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.ttl_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, user_),
+           0,
+           offsetof(Impl_, ttl_) -
+               offsetof(Impl_, user_) +
+               sizeof(Impl_::ttl_));
 }
 AdministratorSignInRequest::~AdministratorSignInRequest() {
   // @@protoc_insertion_point(destructor:palm.router.v1.AdministratorSignInRequest)
@@ -6893,8 +6734,7 @@ inline void AdministratorSignInRequest::SharedDtor(MessageLite& self) {
   AdministratorSignInRequest& this_ = static_cast<AdministratorSignInRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.name_.Destroy();
-  this_._impl_.password_.Destroy();
+  delete this_._impl_.user_;
   delete this_._impl_.ttl_;
   this_._impl_.~Impl_();
 }
@@ -6904,7 +6744,7 @@ inline void* AdministratorSignInRequest::PlacementNew_(const void*, void* mem,
   return ::new (mem) AdministratorSignInRequest(arena);
 }
 constexpr auto AdministratorSignInRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AdministratorSignInRequest),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(AdministratorSignInRequest),
                                             alignof(AdministratorSignInRequest));
 }
 PROTOBUF_CONSTINIT
@@ -6935,16 +6775,16 @@ const ::google::protobuf::internal::ClassData* AdministratorSignInRequest::GetCl
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 62, 2> AdministratorSignInRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2> AdministratorSignInRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_._has_bits_),
     0, // no _extensions_
-    9, 8,  // max_field_number, fast_idx_mask
+    9, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967036,  // skipmap
+    4294967038,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
+    2,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -6953,31 +6793,22 @@ const ::_pbi::TcParseTable<1, 3, 1, 62, 2> AdministratorSignInRequest::_table_ =
     ::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorSignInRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string password = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.password_)}},
-    // string name = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.name_)}},
+    // .palm.router.v1.AdministratorUpdateRequest.Item user = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.user_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string name = 1;
-    {PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.name_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string password = 2;
-    {PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.password_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.router.v1.AdministratorUpdateRequest.Item user = 1;
+    {PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.user_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .google.protobuf.Duration ttl = 9;
-    {PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.ttl_), _Internal::kHasBitsOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.ttl_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
+    {::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorUpdateRequest_Item>()},
     {::_pbi::TcParser::GetTable<::google::protobuf::Duration>()},
   }}, {{
-    "\51\4\10\0\0\0\0\0"
-    "palm.router.v1.AdministratorSignInRequest"
-    "name"
-    "password"
   }},
 };
 
@@ -6988,12 +6819,16 @@ PROTOBUF_NOINLINE void AdministratorSignInRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.password_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.ttl_ != nullptr);
-    _impl_.ttl_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.user_ != nullptr);
+      _impl_.user_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.ttl_ != nullptr);
+      _impl_.ttl_->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -7014,25 +6849,16 @@ PROTOBUF_NOINLINE void AdministratorSignInRequest::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string name = 1;
-          if (!this_._internal_name().empty()) {
-            const std::string& _s = this_._internal_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorSignInRequest.name");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
-          // string password = 2;
-          if (!this_._internal_password().empty()) {
-            const std::string& _s = this_._internal_password();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorSignInRequest.password");
-            target = stream->WriteStringMaybeAliased(2, _s, target);
-          }
-
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .google.protobuf.Duration ttl = 9;
+          // .palm.router.v1.AdministratorUpdateRequest.Item user = 1;
           if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                1, *this_._impl_.user_, this_._impl_.user_->GetCachedSize(), target,
+                stream);
+          }
+
+          // .google.protobuf.Duration ttl = 9;
+          if (cached_has_bits & 0x00000002u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
                 9, *this_._impl_.ttl_, this_._impl_.ttl_->GetCachedSize(), target,
                 stream);
@@ -7062,22 +6888,15 @@ PROTOBUF_NOINLINE void AdministratorSignInRequest::Clear() {
           (void)cached_has_bits;
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // string name = 1;
-            if (!this_._internal_name().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_name());
-            }
-            // string password = 2;
-            if (!this_._internal_password().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_password());
-            }
-          }
-           {
-            // .google.protobuf.Duration ttl = 9;
-            cached_has_bits = this_._impl_._has_bits_[0];
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000003u) {
+            // .palm.router.v1.AdministratorUpdateRequest.Item user = 1;
             if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.user_);
+            }
+            // .google.protobuf.Duration ttl = 9;
+            if (cached_has_bits & 0x00000002u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.ttl_);
             }
@@ -7095,20 +6914,25 @@ void AdministratorSignInRequest::MergeImpl(::google::protobuf::MessageLite& to_m
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
-  }
-  if (!from._internal_password().empty()) {
-    _this->_internal_set_password(from._internal_password());
-  }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.ttl_ != nullptr);
-    if (_this->_impl_.ttl_ == nullptr) {
-      _this->_impl_.ttl_ =
-          ::google::protobuf::Message::CopyConstruct<::google::protobuf::Duration>(arena, *from._impl_.ttl_);
-    } else {
-      _this->_impl_.ttl_->MergeFrom(*from._impl_.ttl_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.user_ != nullptr);
+      if (_this->_impl_.user_ == nullptr) {
+        _this->_impl_.user_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(arena, *from._impl_.user_);
+      } else {
+        _this->_impl_.user_->MergeFrom(*from._impl_.user_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.ttl_ != nullptr);
+      if (_this->_impl_.ttl_ == nullptr) {
+        _this->_impl_.ttl_ =
+            ::google::protobuf::Message::CopyConstruct<::google::protobuf::Duration>(arena, *from._impl_.ttl_);
+      } else {
+        _this->_impl_.ttl_->MergeFrom(*from._impl_.ttl_);
+      }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -7125,13 +6949,14 @@ void AdministratorSignInRequest::CopyFrom(const AdministratorSignInRequest& from
 
 void AdministratorSignInRequest::InternalSwap(AdministratorSignInRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.password_, &other->_impl_.password_, arena);
-  swap(_impl_.ttl_, other->_impl_.ttl_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.ttl_)
+      + sizeof(AdministratorSignInRequest::_impl_.ttl_)
+      - PROTOBUF_FIELD_OFFSET(AdministratorSignInRequest, _impl_.user_)>(
+          reinterpret_cast<char*>(&_impl_.user_),
+          reinterpret_cast<char*>(&other->_impl_.user_));
 }
 
 ::google::protobuf::Metadata AdministratorSignInRequest::GetMetadata() const {
@@ -7157,7 +6982,6 @@ inline PROTOBUF_NDEBUG_INLINE AdministratorSignInResponse::Impl_::Impl_(
     const Impl_& from, const ::palm::router::v1::AdministratorSignInResponse& from_msg)
       : languages_{visibility, arena, from.languages_},
         token_(arena, from.token_),
-        name_(arena, from.name_),
         locale_(arena, from.locale_),
         timezone_(arena, from.timezone_),
         _cached_size_{0} {}
@@ -7183,7 +7007,6 @@ inline PROTOBUF_NDEBUG_INLINE AdministratorSignInResponse::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : languages_{visibility, arena},
         token_(arena),
-        name_(arena),
         locale_(arena),
         timezone_(arena),
         _cached_size_{0} {}
@@ -7200,7 +7023,6 @@ inline void AdministratorSignInResponse::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.token_.Destroy();
-  this_._impl_.name_.Destroy();
   this_._impl_.locale_.Destroy();
   this_._impl_.timezone_.Destroy();
   this_._impl_.~Impl_();
@@ -7254,15 +7076,15 @@ const ::google::protobuf::internal::ClassData* AdministratorSignInResponse::GetC
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 5, 0, 83, 2> AdministratorSignInResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 0, 79, 2> AdministratorSignInResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
     19, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294702076,  // skipmap
+    4294702078,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -7278,9 +7100,7 @@ const ::_pbi::TcParseTable<2, 5, 0, 83, 2> AdministratorSignInResponse::_table_ 
     // string token = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSignInResponse, _impl_.token_)}},
-    // string name = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSignInResponse, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string locale = 11;
     {::_pbi::TcParser::FastUS1,
      {90, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSignInResponse, _impl_.locale_)}},
@@ -7289,9 +7109,6 @@ const ::_pbi::TcParseTable<2, 5, 0, 83, 2> AdministratorSignInResponse::_table_ 
   }}, {{
     // string token = 1;
     {PROTOBUF_FIELD_OFFSET(AdministratorSignInResponse, _impl_.token_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string name = 2;
-    {PROTOBUF_FIELD_OFFSET(AdministratorSignInResponse, _impl_.name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string locale = 11;
     {PROTOBUF_FIELD_OFFSET(AdministratorSignInResponse, _impl_.locale_), 0, 0,
@@ -7305,10 +7122,9 @@ const ::_pbi::TcParseTable<2, 5, 0, 83, 2> AdministratorSignInResponse::_table_ 
   }},
   // no aux_entries
   {{
-    "\52\5\4\6\10\11\0\0"
+    "\52\5\6\10\11\0\0\0"
     "palm.router.v1.AdministratorSignInResponse"
     "token"
-    "name"
     "locale"
     "timezone"
     "languages"
@@ -7324,7 +7140,6 @@ PROTOBUF_NOINLINE void AdministratorSignInResponse::Clear() {
 
   _impl_.languages_.Clear();
   _impl_.token_.ClearToEmpty();
-  _impl_.name_.ClearToEmpty();
   _impl_.locale_.ClearToEmpty();
   _impl_.timezone_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -7351,14 +7166,6 @@ PROTOBUF_NOINLINE void AdministratorSignInResponse::Clear() {
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorSignInResponse.token");
             target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
-          // string name = 2;
-          if (!this_._internal_name().empty()) {
-            const std::string& _s = this_._internal_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorSignInResponse.name");
-            target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
           // string locale = 11;
@@ -7426,11 +7233,6 @@ PROTOBUF_NOINLINE void AdministratorSignInResponse::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_token());
             }
-            // string name = 2;
-            if (!this_._internal_name().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_name());
-            }
             // string locale = 11;
             if (!this_._internal_locale().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -7458,9 +7260,6 @@ void AdministratorSignInResponse::MergeImpl(::google::protobuf::MessageLite& to_
   if (!from._internal_token().empty()) {
     _this->_internal_set_token(from._internal_token());
   }
-  if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
-  }
   if (!from._internal_locale().empty()) {
     _this->_internal_set_locale(from._internal_locale());
   }
@@ -7485,7 +7284,6 @@ void AdministratorSignInResponse::InternalSwap(AdministratorSignInResponse* PROT
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.languages_.InternalSwap(&other->_impl_.languages_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locale_, &other->_impl_.locale_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.timezone_, &other->_impl_.timezone_, arena);
 }
@@ -7495,102 +7293,102 @@ void AdministratorSignInResponse::InternalSwap(AdministratorSignInResponse* PROT
 }
 // ===================================================================
 
-class AdministratorSetPasswordRequest::_Internal {
+class AdministratorUpdateRequest_Item::_Internal {
  public:
 };
 
-AdministratorSetPasswordRequest::AdministratorSetPasswordRequest(::google::protobuf::Arena* arena)
+AdministratorUpdateRequest_Item::AdministratorUpdateRequest_Item(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.router.v1.AdministratorSetPasswordRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.AdministratorUpdateRequest.Item)
 }
-inline PROTOBUF_NDEBUG_INLINE AdministratorSetPasswordRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE AdministratorUpdateRequest_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::router::v1::AdministratorSetPasswordRequest& from_msg)
-      : current_password_(arena, from.current_password_),
-        new_password_(arena, from.new_password_),
+    const Impl_& from, const ::palm::router::v1::AdministratorUpdateRequest_Item& from_msg)
+      : name_(arena, from.name_),
+        password_(arena, from.password_),
         _cached_size_{0} {}
 
-AdministratorSetPasswordRequest::AdministratorSetPasswordRequest(
+AdministratorUpdateRequest_Item::AdministratorUpdateRequest_Item(
     ::google::protobuf::Arena* arena,
-    const AdministratorSetPasswordRequest& from)
+    const AdministratorUpdateRequest_Item& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  AdministratorSetPasswordRequest* const _this = this;
+  AdministratorUpdateRequest_Item* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.router.v1.AdministratorSetPasswordRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.AdministratorUpdateRequest.Item)
 }
-inline PROTOBUF_NDEBUG_INLINE AdministratorSetPasswordRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE AdministratorUpdateRequest_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : current_password_(arena),
-        new_password_(arena),
+      : name_(arena),
+        password_(arena),
         _cached_size_{0} {}
 
-inline void AdministratorSetPasswordRequest::SharedCtor(::_pb::Arena* arena) {
+inline void AdministratorUpdateRequest_Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-AdministratorSetPasswordRequest::~AdministratorSetPasswordRequest() {
-  // @@protoc_insertion_point(destructor:palm.router.v1.AdministratorSetPasswordRequest)
+AdministratorUpdateRequest_Item::~AdministratorUpdateRequest_Item() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.AdministratorUpdateRequest.Item)
   SharedDtor(*this);
 }
-inline void AdministratorSetPasswordRequest::SharedDtor(MessageLite& self) {
-  AdministratorSetPasswordRequest& this_ = static_cast<AdministratorSetPasswordRequest&>(self);
+inline void AdministratorUpdateRequest_Item::SharedDtor(MessageLite& self) {
+  AdministratorUpdateRequest_Item& this_ = static_cast<AdministratorUpdateRequest_Item&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.current_password_.Destroy();
-  this_._impl_.new_password_.Destroy();
+  this_._impl_.name_.Destroy();
+  this_._impl_.password_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* AdministratorSetPasswordRequest::PlacementNew_(const void*, void* mem,
+inline void* AdministratorUpdateRequest_Item::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) AdministratorSetPasswordRequest(arena);
+  return ::new (mem) AdministratorUpdateRequest_Item(arena);
 }
-constexpr auto AdministratorSetPasswordRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AdministratorSetPasswordRequest),
-                                            alignof(AdministratorSetPasswordRequest));
+constexpr auto AdministratorUpdateRequest_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AdministratorUpdateRequest_Item),
+                                            alignof(AdministratorUpdateRequest_Item));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull AdministratorSetPasswordRequest::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull AdministratorUpdateRequest_Item::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_AdministratorSetPasswordRequest_default_instance_._instance,
+        &_AdministratorUpdateRequest_Item_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &AdministratorSetPasswordRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<AdministratorSetPasswordRequest>(),
+        &AdministratorUpdateRequest_Item::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AdministratorUpdateRequest_Item>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &AdministratorSetPasswordRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<AdministratorSetPasswordRequest>(), &AdministratorSetPasswordRequest::ByteSizeLong,
-            &AdministratorSetPasswordRequest::_InternalSerialize,
+        &AdministratorUpdateRequest_Item::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AdministratorUpdateRequest_Item>(), &AdministratorUpdateRequest_Item::ByteSizeLong,
+            &AdministratorUpdateRequest_Item::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(AdministratorSetPasswordRequest, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest_Item, _impl_._cached_size_),
         false,
     },
-    &AdministratorSetPasswordRequest::kDescriptorMethods,
+    &AdministratorUpdateRequest_Item::kDescriptorMethods,
     &descriptor_table_router_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* AdministratorSetPasswordRequest::GetClassData() const {
+const ::google::protobuf::internal::ClassData* AdministratorUpdateRequest_Item::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 83, 2> AdministratorSetPasswordRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 67, 2> AdministratorUpdateRequest_Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -7605,74 +7403,74 @@ const ::_pbi::TcParseTable<1, 2, 0, 83, 2> AdministratorSetPasswordRequest::_tab
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorSetPasswordRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorUpdateRequest_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string new_password = 2;
+    // string password = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSetPasswordRequest, _impl_.new_password_)}},
-    // string current_password = 1;
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest_Item, _impl_.password_)}},
+    // string name = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorSetPasswordRequest, _impl_.current_password_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest_Item, _impl_.name_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string current_password = 1;
-    {PROTOBUF_FIELD_OFFSET(AdministratorSetPasswordRequest, _impl_.current_password_), 0, 0,
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest_Item, _impl_.name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string new_password = 2;
-    {PROTOBUF_FIELD_OFFSET(AdministratorSetPasswordRequest, _impl_.new_password_), 0, 0,
+    // string password = 2;
+    {PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest_Item, _impl_.password_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\56\20\14\0\0\0\0\0"
-    "palm.router.v1.AdministratorSetPasswordRequest"
-    "current_password"
-    "new_password"
+    "\56\4\10\0\0\0\0\0"
+    "palm.router.v1.AdministratorUpdateRequest.Item"
+    "name"
+    "password"
   }},
 };
 
-PROTOBUF_NOINLINE void AdministratorSetPasswordRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.router.v1.AdministratorSetPasswordRequest)
+PROTOBUF_NOINLINE void AdministratorUpdateRequest_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.AdministratorUpdateRequest.Item)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.current_password_.ClearToEmpty();
-  _impl_.new_password_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _impl_.password_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* AdministratorSetPasswordRequest::_InternalSerialize(
+        ::uint8_t* AdministratorUpdateRequest_Item::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const AdministratorSetPasswordRequest& this_ = static_cast<const AdministratorSetPasswordRequest&>(base);
+          const AdministratorUpdateRequest_Item& this_ = static_cast<const AdministratorUpdateRequest_Item&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* AdministratorSetPasswordRequest::_InternalSerialize(
+        ::uint8_t* AdministratorUpdateRequest_Item::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const AdministratorSetPasswordRequest& this_ = *this;
+          const AdministratorUpdateRequest_Item& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.AdministratorSetPasswordRequest)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.AdministratorUpdateRequest.Item)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string current_password = 1;
-          if (!this_._internal_current_password().empty()) {
-            const std::string& _s = this_._internal_current_password();
+          // string name = 1;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorSetPasswordRequest.current_password");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorUpdateRequest.Item.name");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // string new_password = 2;
-          if (!this_._internal_new_password().empty()) {
-            const std::string& _s = this_._internal_new_password();
+          // string password = 2;
+          if (!this_._internal_password().empty()) {
+            const std::string& _s = this_._internal_password();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorSetPasswordRequest.new_password");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.AdministratorUpdateRequest.Item.password");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -7681,18 +7479,18 @@ PROTOBUF_NOINLINE void AdministratorSetPasswordRequest::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.AdministratorSetPasswordRequest)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.AdministratorUpdateRequest.Item)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t AdministratorSetPasswordRequest::ByteSizeLong(const MessageLite& base) {
-          const AdministratorSetPasswordRequest& this_ = static_cast<const AdministratorSetPasswordRequest&>(base);
+        ::size_t AdministratorUpdateRequest_Item::ByteSizeLong(const MessageLite& base) {
+          const AdministratorUpdateRequest_Item& this_ = static_cast<const AdministratorUpdateRequest_Item&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t AdministratorSetPasswordRequest::ByteSizeLong() const {
-          const AdministratorSetPasswordRequest& this_ = *this;
+        ::size_t AdministratorUpdateRequest_Item::ByteSizeLong() const {
+          const AdministratorUpdateRequest_Item& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.AdministratorSetPasswordRequest)
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.AdministratorUpdateRequest.Item)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -7701,250 +7499,258 @@ PROTOBUF_NOINLINE void AdministratorSetPasswordRequest::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // string current_password = 1;
-            if (!this_._internal_current_password().empty()) {
+            // string name = 1;
+            if (!this_._internal_name().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_current_password());
+                                              this_._internal_name());
             }
-            // string new_password = 2;
-            if (!this_._internal_new_password().empty()) {
+            // string password = 2;
+            if (!this_._internal_password().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_new_password());
+                                              this_._internal_password());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
 
-void AdministratorSetPasswordRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<AdministratorSetPasswordRequest*>(&to_msg);
-  auto& from = static_cast<const AdministratorSetPasswordRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.AdministratorSetPasswordRequest)
+void AdministratorUpdateRequest_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AdministratorUpdateRequest_Item*>(&to_msg);
+  auto& from = static_cast<const AdministratorUpdateRequest_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.AdministratorUpdateRequest.Item)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_current_password().empty()) {
-    _this->_internal_set_current_password(from._internal_current_password());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
-  if (!from._internal_new_password().empty()) {
-    _this->_internal_set_new_password(from._internal_new_password());
+  if (!from._internal_password().empty()) {
+    _this->_internal_set_password(from._internal_password());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void AdministratorSetPasswordRequest::CopyFrom(const AdministratorSetPasswordRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.AdministratorSetPasswordRequest)
+void AdministratorUpdateRequest_Item::CopyFrom(const AdministratorUpdateRequest_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.AdministratorUpdateRequest.Item)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void AdministratorSetPasswordRequest::InternalSwap(AdministratorSetPasswordRequest* PROTOBUF_RESTRICT other) {
+void AdministratorUpdateRequest_Item::InternalSwap(AdministratorUpdateRequest_Item* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.current_password_, &other->_impl_.current_password_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.new_password_, &other->_impl_.new_password_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.password_, &other->_impl_.password_, arena);
 }
 
-::google::protobuf::Metadata AdministratorSetPasswordRequest::GetMetadata() const {
+::google::protobuf::Metadata AdministratorUpdateRequest_Item::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class RuleCreateRequest::_Internal {
+class AdministratorUpdateRequest::_Internal {
  public:
   using HasBits =
-      decltype(std::declval<RuleCreateRequest>()._impl_._has_bits_);
+      decltype(std::declval<AdministratorUpdateRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_._has_bits_);
 };
 
-RuleCreateRequest::RuleCreateRequest(::google::protobuf::Arena* arena)
+AdministratorUpdateRequest::AdministratorUpdateRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.router.v1.RuleCreateRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.router.v1.AdministratorUpdateRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE RuleCreateRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE AdministratorUpdateRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::router::v1::RuleCreateRequest& from_msg)
+    const Impl_& from, const ::palm::router::v1::AdministratorUpdateRequest& from_msg)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        device_(arena, from.device_) {}
+        _cached_size_{0} {}
 
-RuleCreateRequest::RuleCreateRequest(
+AdministratorUpdateRequest::AdministratorUpdateRequest(
     ::google::protobuf::Arena* arena,
-    const RuleCreateRequest& from)
+    const AdministratorUpdateRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  RuleCreateRequest* const _this = this;
+  AdministratorUpdateRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.item_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::RuleIndexResponse_Item>(
-                              arena, *from._impl_.item_)
+  _impl_.current_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(
+                              arena, *from._impl_.current_)
+                        : nullptr;
+  _impl_.new__ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(
+                              arena, *from._impl_.new__)
                         : nullptr;
 
-  // @@protoc_insertion_point(copy_constructor:palm.router.v1.RuleCreateRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.router.v1.AdministratorUpdateRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE RuleCreateRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE AdministratorUpdateRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        device_(arena) {}
+      : _cached_size_{0} {}
 
-inline void RuleCreateRequest::SharedCtor(::_pb::Arena* arena) {
+inline void AdministratorUpdateRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.item_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, current_),
+           0,
+           offsetof(Impl_, new__) -
+               offsetof(Impl_, current_) +
+               sizeof(Impl_::new__));
 }
-RuleCreateRequest::~RuleCreateRequest() {
-  // @@protoc_insertion_point(destructor:palm.router.v1.RuleCreateRequest)
+AdministratorUpdateRequest::~AdministratorUpdateRequest() {
+  // @@protoc_insertion_point(destructor:palm.router.v1.AdministratorUpdateRequest)
   SharedDtor(*this);
 }
-inline void RuleCreateRequest::SharedDtor(MessageLite& self) {
-  RuleCreateRequest& this_ = static_cast<RuleCreateRequest&>(self);
+inline void AdministratorUpdateRequest::SharedDtor(MessageLite& self) {
+  AdministratorUpdateRequest& this_ = static_cast<AdministratorUpdateRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.device_.Destroy();
-  delete this_._impl_.item_;
+  delete this_._impl_.current_;
+  delete this_._impl_.new__;
   this_._impl_.~Impl_();
 }
 
-inline void* RuleCreateRequest::PlacementNew_(const void*, void* mem,
+inline void* AdministratorUpdateRequest::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) RuleCreateRequest(arena);
+  return ::new (mem) AdministratorUpdateRequest(arena);
 }
-constexpr auto RuleCreateRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(RuleCreateRequest),
-                                            alignof(RuleCreateRequest));
+constexpr auto AdministratorUpdateRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(AdministratorUpdateRequest),
+                                            alignof(AdministratorUpdateRequest));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull RuleCreateRequest::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull AdministratorUpdateRequest::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_RuleCreateRequest_default_instance_._instance,
+        &_AdministratorUpdateRequest_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &RuleCreateRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<RuleCreateRequest>(),
+        &AdministratorUpdateRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AdministratorUpdateRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &RuleCreateRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<RuleCreateRequest>(), &RuleCreateRequest::ByteSizeLong,
-            &RuleCreateRequest::_InternalSerialize,
+        &AdministratorUpdateRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AdministratorUpdateRequest>(), &AdministratorUpdateRequest::ByteSizeLong,
+            &AdministratorUpdateRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_._cached_size_),
         false,
     },
-    &RuleCreateRequest::kDescriptorMethods,
+    &AdministratorUpdateRequest::kDescriptorMethods,
     &descriptor_table_router_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* RuleCreateRequest::GetClassData() const {
+const ::google::protobuf::internal::ClassData* AdministratorUpdateRequest::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 47, 2> RuleCreateRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> AdministratorUpdateRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_._has_bits_),
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
     2,  // num_field_entries
-    1,  // num_aux_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::RuleCreateRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorUpdateRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.router.v1.RuleIndexResponse.Item item = 2;
+    // .palm.router.v1.AdministratorUpdateRequest.Item new = 2;
     {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_.item_)}},
-    // string device = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_.device_)}},
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_.new__)}},
+    // .palm.router.v1.AdministratorUpdateRequest.Item current = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_.current_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string device = 1;
-    {PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_.device_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.router.v1.RuleIndexResponse.Item item = 2;
-    {PROTOBUF_FIELD_OFFSET(RuleCreateRequest, _impl_.item_), _Internal::kHasBitsOffset + 0, 0,
+    // .palm.router.v1.AdministratorUpdateRequest.Item current = 1;
+    {PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_.current_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.router.v1.AdministratorUpdateRequest.Item new = 2;
+    {PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_.new__), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::router::v1::RuleIndexResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorUpdateRequest_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::router::v1::AdministratorUpdateRequest_Item>()},
   }}, {{
-    "\40\6\0\0\0\0\0\0"
-    "palm.router.v1.RuleCreateRequest"
-    "device"
   }},
 };
 
-PROTOBUF_NOINLINE void RuleCreateRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.router.v1.RuleCreateRequest)
+PROTOBUF_NOINLINE void AdministratorUpdateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.router.v1.AdministratorUpdateRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.device_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.item_ != nullptr);
-    _impl_.item_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.current_ != nullptr);
+      _impl_.current_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.new__ != nullptr);
+      _impl_.new__->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* RuleCreateRequest::_InternalSerialize(
+        ::uint8_t* AdministratorUpdateRequest::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const RuleCreateRequest& this_ = static_cast<const RuleCreateRequest&>(base);
+          const AdministratorUpdateRequest& this_ = static_cast<const AdministratorUpdateRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* RuleCreateRequest::_InternalSerialize(
+        ::uint8_t* AdministratorUpdateRequest::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const RuleCreateRequest& this_ = *this;
+          const AdministratorUpdateRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.RuleCreateRequest)
+          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.AdministratorUpdateRequest)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string device = 1;
-          if (!this_._internal_device().empty()) {
-            const std::string& _s = this_._internal_device();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.RuleCreateRequest.device");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .palm.router.v1.RuleIndexResponse.Item item = 2;
+          // .palm.router.v1.AdministratorUpdateRequest.Item current = 1;
           if (cached_has_bits & 0x00000001u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                2, *this_._impl_.item_, this_._impl_.item_->GetCachedSize(), target,
+                1, *this_._impl_.current_, this_._impl_.current_->GetCachedSize(), target,
+                stream);
+          }
+
+          // .palm.router.v1.AdministratorUpdateRequest.Item new = 2;
+          if (cached_has_bits & 0x00000002u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.new__, this_._impl_.new__->GetCachedSize(), target,
                 stream);
           }
 
@@ -7953,18 +7759,18 @@ PROTOBUF_NOINLINE void RuleCreateRequest::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.RuleCreateRequest)
+          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.AdministratorUpdateRequest)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t RuleCreateRequest::ByteSizeLong(const MessageLite& base) {
-          const RuleCreateRequest& this_ = static_cast<const RuleCreateRequest&>(base);
+        ::size_t AdministratorUpdateRequest::ByteSizeLong(const MessageLite& base) {
+          const AdministratorUpdateRequest& this_ = static_cast<const AdministratorUpdateRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t RuleCreateRequest::ByteSizeLong() const {
-          const RuleCreateRequest& this_ = *this;
+        ::size_t AdministratorUpdateRequest::ByteSizeLong() const {
+          const AdministratorUpdateRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.RuleCreateRequest)
+          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.AdministratorUpdateRequest)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -7972,879 +7778,78 @@ PROTOBUF_NOINLINE void RuleCreateRequest::Clear() {
           (void)cached_has_bits;
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // string device = 1;
-            if (!this_._internal_device().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_device());
-            }
-          }
-           {
-            // .palm.router.v1.RuleIndexResponse.Item item = 2;
-            cached_has_bits = this_._impl_._has_bits_[0];
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000003u) {
+            // .palm.router.v1.AdministratorUpdateRequest.Item current = 1;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.item_);
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.current_);
+            }
+            // .palm.router.v1.AdministratorUpdateRequest.Item new = 2;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.new__);
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
 
-void RuleCreateRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<RuleCreateRequest*>(&to_msg);
-  auto& from = static_cast<const RuleCreateRequest&>(from_msg);
+void AdministratorUpdateRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AdministratorUpdateRequest*>(&to_msg);
+  auto& from = static_cast<const AdministratorUpdateRequest&>(from_msg);
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.RuleCreateRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.AdministratorUpdateRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_device().empty()) {
-    _this->_internal_set_device(from._internal_device());
-  }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.item_ != nullptr);
-    if (_this->_impl_.item_ == nullptr) {
-      _this->_impl_.item_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::router::v1::RuleIndexResponse_Item>(arena, *from._impl_.item_);
-    } else {
-      _this->_impl_.item_->MergeFrom(*from._impl_.item_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.current_ != nullptr);
+      if (_this->_impl_.current_ == nullptr) {
+        _this->_impl_.current_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(arena, *from._impl_.current_);
+      } else {
+        _this->_impl_.current_->MergeFrom(*from._impl_.current_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.new__ != nullptr);
+      if (_this->_impl_.new__ == nullptr) {
+        _this->_impl_.new__ =
+            ::google::protobuf::Message::CopyConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(arena, *from._impl_.new__);
+      } else {
+        _this->_impl_.new__->MergeFrom(*from._impl_.new__);
+      }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RuleCreateRequest::CopyFrom(const RuleCreateRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.RuleCreateRequest)
+void AdministratorUpdateRequest::CopyFrom(const AdministratorUpdateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.AdministratorUpdateRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void RuleCreateRequest::InternalSwap(RuleCreateRequest* PROTOBUF_RESTRICT other) {
+void AdministratorUpdateRequest::InternalSwap(AdministratorUpdateRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.device_, &other->_impl_.device_, arena);
-  swap(_impl_.item_, other->_impl_.item_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_.new__)
+      + sizeof(AdministratorUpdateRequest::_impl_.new__)
+      - PROTOBUF_FIELD_OFFSET(AdministratorUpdateRequest, _impl_.current_)>(
+          reinterpret_cast<char*>(&_impl_.current_),
+          reinterpret_cast<char*>(&other->_impl_.current_));
 }
 
-::google::protobuf::Metadata RuleCreateRequest::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class RuleUpdateRequest::_Internal {
- public:
-};
-
-RuleUpdateRequest::RuleUpdateRequest(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.router.v1.RuleUpdateRequest)
-}
-RuleUpdateRequest::RuleUpdateRequest(
-    ::google::protobuf::Arena* arena, const RuleUpdateRequest& from)
-    : RuleUpdateRequest(arena) {
-  MergeFrom(from);
-}
-inline PROTOBUF_NDEBUG_INLINE RuleUpdateRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void RuleUpdateRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
-}
-RuleUpdateRequest::~RuleUpdateRequest() {
-  // @@protoc_insertion_point(destructor:palm.router.v1.RuleUpdateRequest)
-  SharedDtor(*this);
-}
-inline void RuleUpdateRequest::SharedDtor(MessageLite& self) {
-  RuleUpdateRequest& this_ = static_cast<RuleUpdateRequest&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.~Impl_();
-}
-
-inline void* RuleUpdateRequest::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) RuleUpdateRequest(arena);
-}
-constexpr auto RuleUpdateRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(RuleUpdateRequest),
-                                            alignof(RuleUpdateRequest));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull RuleUpdateRequest::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_RuleUpdateRequest_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &RuleUpdateRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<RuleUpdateRequest>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &RuleUpdateRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<RuleUpdateRequest>(), &RuleUpdateRequest::ByteSizeLong,
-            &RuleUpdateRequest::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(RuleUpdateRequest, _impl_._cached_size_),
-        false,
-    },
-    &RuleUpdateRequest::kDescriptorMethods,
-    &descriptor_table_router_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* RuleUpdateRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> RuleUpdateRequest::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::RuleUpdateRequest>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // uint32 id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RuleUpdateRequest, _impl_.id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RuleUpdateRequest, _impl_.id_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(RuleUpdateRequest, _impl_.id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-
-PROTOBUF_NOINLINE void RuleUpdateRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.router.v1.RuleUpdateRequest)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.id_ = 0u;
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* RuleUpdateRequest::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const RuleUpdateRequest& this_ = static_cast<const RuleUpdateRequest&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* RuleUpdateRequest::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const RuleUpdateRequest& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.RuleUpdateRequest)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // uint32 id = 1;
-          if (this_._internal_id() != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                1, this_._internal_id(), target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.RuleUpdateRequest)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t RuleUpdateRequest::ByteSizeLong(const MessageLite& base) {
-          const RuleUpdateRequest& this_ = static_cast<const RuleUpdateRequest&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t RuleUpdateRequest::ByteSizeLong() const {
-          const RuleUpdateRequest& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.RuleUpdateRequest)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-           {
-            // uint32 id = 1;
-            if (this_._internal_id() != 0) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_id());
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void RuleUpdateRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<RuleUpdateRequest*>(&to_msg);
-  auto& from = static_cast<const RuleUpdateRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.RuleUpdateRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_id() != 0) {
-    _this->_impl_.id_ = from._impl_.id_;
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void RuleUpdateRequest::CopyFrom(const RuleUpdateRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.RuleUpdateRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void RuleUpdateRequest::InternalSwap(RuleUpdateRequest* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.id_, other->_impl_.id_);
-}
-
-::google::protobuf::Metadata RuleUpdateRequest::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class RuleIndexResponse_Item_Nat::_Internal {
- public:
-};
-
-RuleIndexResponse_Item_Nat::RuleIndexResponse_Item_Nat(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.router.v1.RuleIndexResponse.Item.Nat)
-}
-RuleIndexResponse_Item_Nat::RuleIndexResponse_Item_Nat(
-    ::google::protobuf::Arena* arena,
-    const RuleIndexResponse_Item_Nat& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  RuleIndexResponse_Item_Nat* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-
-  // @@protoc_insertion_point(copy_constructor:palm.router.v1.RuleIndexResponse.Item.Nat)
-}
-
-inline void* RuleIndexResponse_Item_Nat::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) RuleIndexResponse_Item_Nat(arena);
-}
-constexpr auto RuleIndexResponse_Item_Nat::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(RuleIndexResponse_Item_Nat),
-                                            alignof(RuleIndexResponse_Item_Nat));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull RuleIndexResponse_Item_Nat::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_RuleIndexResponse_Item_Nat_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &RuleIndexResponse_Item_Nat::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<RuleIndexResponse_Item_Nat>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &RuleIndexResponse_Item_Nat::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<RuleIndexResponse_Item_Nat>(), &RuleIndexResponse_Item_Nat::ByteSizeLong,
-            &RuleIndexResponse_Item_Nat::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(RuleIndexResponse_Item_Nat, _impl_._cached_size_),
-        false,
-    },
-    &RuleIndexResponse_Item_Nat::kDescriptorMethods,
-    &descriptor_table_router_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* RuleIndexResponse_Item_Nat::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> RuleIndexResponse_Item_Nat::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::RuleIndexResponse_Item_Nat>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    65535, 65535
-  }},
-  // no field_entries, or aux_entries
-  {{
-  }},
-};
-
-
-
-
-
-
-
-
-::google::protobuf::Metadata RuleIndexResponse_Item_Nat::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class RuleIndexResponse_Item::_Internal {
- public:
-};
-
-RuleIndexResponse_Item::RuleIndexResponse_Item(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.router.v1.RuleIndexResponse.Item)
-}
-inline PROTOBUF_NDEBUG_INLINE RuleIndexResponse_Item::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::router::v1::RuleIndexResponse_Item& from_msg)
-      : device_(arena, from.device_),
-        _cached_size_{0} {}
-
-RuleIndexResponse_Item::RuleIndexResponse_Item(
-    ::google::protobuf::Arena* arena,
-    const RuleIndexResponse_Item& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  RuleIndexResponse_Item* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.id_ = from._impl_.id_;
-
-  // @@protoc_insertion_point(copy_constructor:palm.router.v1.RuleIndexResponse.Item)
-}
-inline PROTOBUF_NDEBUG_INLINE RuleIndexResponse_Item::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : device_(arena),
-        _cached_size_{0} {}
-
-inline void RuleIndexResponse_Item::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
-}
-RuleIndexResponse_Item::~RuleIndexResponse_Item() {
-  // @@protoc_insertion_point(destructor:palm.router.v1.RuleIndexResponse.Item)
-  SharedDtor(*this);
-}
-inline void RuleIndexResponse_Item::SharedDtor(MessageLite& self) {
-  RuleIndexResponse_Item& this_ = static_cast<RuleIndexResponse_Item&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.device_.Destroy();
-  this_._impl_.~Impl_();
-}
-
-inline void* RuleIndexResponse_Item::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) RuleIndexResponse_Item(arena);
-}
-constexpr auto RuleIndexResponse_Item::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(RuleIndexResponse_Item),
-                                            alignof(RuleIndexResponse_Item));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull RuleIndexResponse_Item::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_RuleIndexResponse_Item_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &RuleIndexResponse_Item::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<RuleIndexResponse_Item>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &RuleIndexResponse_Item::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<RuleIndexResponse_Item>(), &RuleIndexResponse_Item::ByteSizeLong,
-            &RuleIndexResponse_Item::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(RuleIndexResponse_Item, _impl_._cached_size_),
-        false,
-    },
-    &RuleIndexResponse_Item::kDescriptorMethods,
-    &descriptor_table_router_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* RuleIndexResponse_Item::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 52, 2> RuleIndexResponse_Item::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::RuleIndexResponse_Item>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // string device = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RuleIndexResponse_Item, _impl_.device_)}},
-    // uint32 id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RuleIndexResponse_Item, _impl_.id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RuleIndexResponse_Item, _impl_.id_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(RuleIndexResponse_Item, _impl_.id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // string device = 2;
-    {PROTOBUF_FIELD_OFFSET(RuleIndexResponse_Item, _impl_.device_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\45\0\6\0\0\0\0\0"
-    "palm.router.v1.RuleIndexResponse.Item"
-    "device"
-  }},
-};
-
-PROTOBUF_NOINLINE void RuleIndexResponse_Item::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.router.v1.RuleIndexResponse.Item)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.device_.ClearToEmpty();
-  _impl_.id_ = 0u;
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* RuleIndexResponse_Item::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const RuleIndexResponse_Item& this_ = static_cast<const RuleIndexResponse_Item&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* RuleIndexResponse_Item::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const RuleIndexResponse_Item& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.RuleIndexResponse.Item)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // uint32 id = 1;
-          if (this_._internal_id() != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                1, this_._internal_id(), target);
-          }
-
-          // string device = 2;
-          if (!this_._internal_device().empty()) {
-            const std::string& _s = this_._internal_device();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.router.v1.RuleIndexResponse.Item.device");
-            target = stream->WriteStringMaybeAliased(2, _s, target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.RuleIndexResponse.Item)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t RuleIndexResponse_Item::ByteSizeLong(const MessageLite& base) {
-          const RuleIndexResponse_Item& this_ = static_cast<const RuleIndexResponse_Item&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t RuleIndexResponse_Item::ByteSizeLong() const {
-          const RuleIndexResponse_Item& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.RuleIndexResponse.Item)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // string device = 2;
-            if (!this_._internal_device().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_device());
-            }
-            // uint32 id = 1;
-            if (this_._internal_id() != 0) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_id());
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void RuleIndexResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<RuleIndexResponse_Item*>(&to_msg);
-  auto& from = static_cast<const RuleIndexResponse_Item&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.RuleIndexResponse.Item)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_device().empty()) {
-    _this->_internal_set_device(from._internal_device());
-  }
-  if (from._internal_id() != 0) {
-    _this->_impl_.id_ = from._impl_.id_;
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void RuleIndexResponse_Item::CopyFrom(const RuleIndexResponse_Item& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.RuleIndexResponse.Item)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void RuleIndexResponse_Item::InternalSwap(RuleIndexResponse_Item* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.device_, &other->_impl_.device_, arena);
-        swap(_impl_.id_, other->_impl_.id_);
-}
-
-::google::protobuf::Metadata RuleIndexResponse_Item::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class RuleIndexResponse::_Internal {
- public:
-};
-
-RuleIndexResponse::RuleIndexResponse(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.router.v1.RuleIndexResponse)
-}
-inline PROTOBUF_NDEBUG_INLINE RuleIndexResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::router::v1::RuleIndexResponse& from_msg)
-      : items_{visibility, arena, from.items_},
-        _cached_size_{0} {}
-
-RuleIndexResponse::RuleIndexResponse(
-    ::google::protobuf::Arena* arena,
-    const RuleIndexResponse& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  RuleIndexResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-
-  // @@protoc_insertion_point(copy_constructor:palm.router.v1.RuleIndexResponse)
-}
-inline PROTOBUF_NDEBUG_INLINE RuleIndexResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : items_{visibility, arena},
-        _cached_size_{0} {}
-
-inline void RuleIndexResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-RuleIndexResponse::~RuleIndexResponse() {
-  // @@protoc_insertion_point(destructor:palm.router.v1.RuleIndexResponse)
-  SharedDtor(*this);
-}
-inline void RuleIndexResponse::SharedDtor(MessageLite& self) {
-  RuleIndexResponse& this_ = static_cast<RuleIndexResponse&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.~Impl_();
-}
-
-inline void* RuleIndexResponse::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) RuleIndexResponse(arena);
-}
-constexpr auto RuleIndexResponse::InternalNewImpl_() {
-  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(RuleIndexResponse, _impl_.items_) +
-          decltype(RuleIndexResponse::_impl_.items_)::
-              InternalGetArenaOffset(
-                  ::google::protobuf::Message::internal_visibility()),
-  });
-  if (arena_bits.has_value()) {
-    return ::google::protobuf::internal::MessageCreator::ZeroInit(
-        sizeof(RuleIndexResponse), alignof(RuleIndexResponse), *arena_bits);
-  } else {
-    return ::google::protobuf::internal::MessageCreator(&RuleIndexResponse::PlacementNew_,
-                                 sizeof(RuleIndexResponse),
-                                 alignof(RuleIndexResponse));
-  }
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull RuleIndexResponse::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_RuleIndexResponse_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &RuleIndexResponse::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<RuleIndexResponse>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &RuleIndexResponse::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<RuleIndexResponse>(), &RuleIndexResponse::ByteSizeLong,
-            &RuleIndexResponse::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(RuleIndexResponse, _impl_._cached_size_),
-        false,
-    },
-    &RuleIndexResponse::kDescriptorMethods,
-    &descriptor_table_router_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* RuleIndexResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> RuleIndexResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::router::v1::RuleIndexResponse>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // repeated .palm.router.v1.RuleIndexResponse.Item items = 1;
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RuleIndexResponse, _impl_.items_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .palm.router.v1.RuleIndexResponse.Item items = 1;
-    {PROTOBUF_FIELD_OFFSET(RuleIndexResponse, _impl_.items_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::palm::router::v1::RuleIndexResponse_Item>()},
-  }}, {{
-  }},
-};
-
-PROTOBUF_NOINLINE void RuleIndexResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.router.v1.RuleIndexResponse)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.items_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* RuleIndexResponse::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const RuleIndexResponse& this_ = static_cast<const RuleIndexResponse&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* RuleIndexResponse::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const RuleIndexResponse& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:palm.router.v1.RuleIndexResponse)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // repeated .palm.router.v1.RuleIndexResponse.Item items = 1;
-          for (unsigned i = 0, n = static_cast<unsigned>(
-                                   this_._internal_items_size());
-               i < n; i++) {
-            const auto& repfield = this_._internal_items().Get(i);
-            target =
-                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    1, repfield, repfield.GetCachedSize(),
-                    target, stream);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:palm.router.v1.RuleIndexResponse)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t RuleIndexResponse::ByteSizeLong(const MessageLite& base) {
-          const RuleIndexResponse& this_ = static_cast<const RuleIndexResponse&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t RuleIndexResponse::ByteSizeLong() const {
-          const RuleIndexResponse& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:palm.router.v1.RuleIndexResponse)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // repeated .palm.router.v1.RuleIndexResponse.Item items = 1;
-            {
-              total_size += 1UL * this_._internal_items_size();
-              for (const auto& msg : this_._internal_items()) {
-                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-              }
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void RuleIndexResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<RuleIndexResponse*>(&to_msg);
-  auto& from = static_cast<const RuleIndexResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.router.v1.RuleIndexResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_internal_mutable_items()->MergeFrom(
-      from._internal_items());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void RuleIndexResponse::CopyFrom(const RuleIndexResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.router.v1.RuleIndexResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void RuleIndexResponse::InternalSwap(RuleIndexResponse* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.items_.InternalSwap(&other->_impl_.items_);
-}
-
-::google::protobuf::Metadata RuleIndexResponse::GetMetadata() const {
+::google::protobuf::Metadata AdministratorUpdateRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

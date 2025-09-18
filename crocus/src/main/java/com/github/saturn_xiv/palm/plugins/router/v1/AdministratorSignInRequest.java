@@ -27,8 +27,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private AdministratorSignInRequest() {
-    name_ = "";
-    password_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -45,82 +43,30 @@ private static final long serialVersionUID = 0L;
   }
 
   private int bitField0_;
-  public static final int NAME_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object name_ = "";
+  public static final int USER_FIELD_NUMBER = 1;
+  private com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item user_;
   /**
-   * <code>string name = 1;</code>
-   * @return The name.
+   * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+   * @return Whether the user field is set.
    */
   @java.lang.Override
-  public java.lang.String getName() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      name_ = s;
-      return s;
-    }
+  public boolean hasUser() {
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>string name = 1;</code>
-   * @return The bytes for name.
+   * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+   * @return The user.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getNameBytes() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      name_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int PASSWORD_FIELD_NUMBER = 2;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object password_ = "";
-  /**
-   * <code>string password = 2;</code>
-   * @return The password.
-   */
-  @java.lang.Override
-  public java.lang.String getPassword() {
-    java.lang.Object ref = password_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      password_ = s;
-      return s;
-    }
+  public com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item getUser() {
+    return user_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.getDefaultInstance() : user_;
   }
   /**
-   * <code>string password = 2;</code>
-   * @return The bytes for password.
+   * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPasswordBytes() {
-    java.lang.Object ref = password_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      password_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.ItemOrBuilder getUserOrBuilder() {
+    return user_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.getDefaultInstance() : user_;
   }
 
   public static final int TTL_FIELD_NUMBER = 9;
@@ -131,7 +77,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasTtl() {
-    return ((bitField0_ & 0x00000001) != 0);
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
    * <code>.google.protobuf.Duration ttl = 9;</code>
@@ -163,13 +109,10 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(password_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 2, password_);
-    }
     if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(1, getUser());
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
       output.writeMessage(9, getTtl());
     }
     getUnknownFields().writeTo(output);
@@ -181,13 +124,11 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(password_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, password_);
-    }
     if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getUser());
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, getTtl());
     }
@@ -206,10 +147,11 @@ private static final long serialVersionUID = 0L;
     }
     com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSignInRequest other = (com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSignInRequest) obj;
 
-    if (!getName()
-        .equals(other.getName())) return false;
-    if (!getPassword()
-        .equals(other.getPassword())) return false;
+    if (hasUser() != other.hasUser()) return false;
+    if (hasUser()) {
+      if (!getUser()
+          .equals(other.getUser())) return false;
+    }
     if (hasTtl() != other.hasTtl()) return false;
     if (hasTtl()) {
       if (!getTtl()
@@ -226,10 +168,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-    hash = (53 * hash) + getPassword().hashCode();
+    if (hasUser()) {
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
+    }
     if (hasTtl()) {
       hash = (37 * hash) + TTL_FIELD_NUMBER;
       hash = (53 * hash) + getTtl().hashCode();
@@ -364,6 +306,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessage
               .alwaysUseFieldBuilders) {
+        getUserFieldBuilder();
         getTtlFieldBuilder();
       }
     }
@@ -371,8 +314,11 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      name_ = "";
-      password_ = "";
+      user_ = null;
+      if (userBuilder_ != null) {
+        userBuilder_.dispose();
+        userBuilder_ = null;
+      }
       ttl_ = null;
       if (ttlBuilder_ != null) {
         ttlBuilder_.dispose();
@@ -411,18 +357,18 @@ private static final long serialVersionUID = 0L;
 
     private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSignInRequest result) {
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.name_ = name_;
+        result.user_ = userBuilder_ == null
+            ? user_
+            : userBuilder_.build();
+        to_bitField0_ |= 0x00000001;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.password_ = password_;
-      }
-      int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000004) != 0)) {
         result.ttl_ = ttlBuilder_ == null
             ? ttl_
             : ttlBuilder_.build();
-        to_bitField0_ |= 0x00000001;
+        to_bitField0_ |= 0x00000002;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -439,15 +385,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSignInRequest other) {
       if (other == com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSignInRequest.getDefaultInstance()) return this;
-      if (!other.getName().isEmpty()) {
-        name_ = other.name_;
-        bitField0_ |= 0x00000001;
-        onChanged();
-      }
-      if (!other.getPassword().isEmpty()) {
-        password_ = other.password_;
-        bitField0_ |= 0x00000002;
-        onChanged();
+      if (other.hasUser()) {
+        mergeUser(other.getUser());
       }
       if (other.hasTtl()) {
         mergeTtl(other.getTtl());
@@ -479,20 +418,17 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              name_ = input.readStringRequireUtf8();
+              input.readMessage(
+                  getUserFieldBuilder().getBuilder(),
+                  extensionRegistry);
               bitField0_ |= 0x00000001;
               break;
             } // case 10
-            case 18: {
-              password_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000002;
-              break;
-            } // case 18
             case 74: {
               input.readMessage(
                   getTtlFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000002;
               break;
             } // case 74
             default: {
@@ -512,148 +448,125 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object name_ = "";
+    private com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item user_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item, com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.ItemOrBuilder> userBuilder_;
     /**
-     * <code>string name = 1;</code>
-     * @return The name.
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+     * @return Whether the user field is set.
      */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
+    public boolean hasUser() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+     * @return The user.
+     */
+    public com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item getUser() {
+      if (userBuilder_ == null) {
+        return user_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.getDefaultInstance() : user_;
       } else {
-        return (java.lang.String) ref;
+        return userBuilder_.getMessage();
       }
     }
     /**
-     * <code>string name = 1;</code>
-     * @return The bytes for name.
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
+    public Builder setUser(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item value) {
+      if (userBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        user_ = value;
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        userBuilder_.setMessage(value);
       }
-    }
-    /**
-     * <code>string name = 1;</code>
-     * @param value The name to set.
-     * @return This builder for chaining.
-     */
-    public Builder setName(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      name_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string name = 1;</code>
-     * @return This builder for chaining.
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
      */
-    public Builder clearName() {
-      name_ = getDefaultInstance().getName();
+    public Builder setUser(
+        com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.Builder builderForValue) {
+      if (userBuilder_ == null) {
+        user_ = builderForValue.build();
+      } else {
+        userBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000001;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+     */
+    public Builder mergeUser(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item value) {
+      if (userBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) != 0) &&
+          user_ != null &&
+          user_ != com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.getDefaultInstance()) {
+          getUserBuilder().mergeFrom(value);
+        } else {
+          user_ = value;
+        }
+      } else {
+        userBuilder_.mergeFrom(value);
+      }
+      if (user_ != null) {
+        bitField0_ |= 0x00000001;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+     */
+    public Builder clearUser() {
       bitField0_ = (bitField0_ & ~0x00000001);
+      user_ = null;
+      if (userBuilder_ != null) {
+        userBuilder_.dispose();
+        userBuilder_ = null;
+      }
       onChanged();
       return this;
     }
     /**
-     * <code>string name = 1;</code>
-     * @param value The bytes for name to set.
-     * @return This builder for chaining.
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
      */
-    public Builder setNameBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      name_ = value;
+    public com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.Builder getUserBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
-      return this;
+      return getUserFieldBuilder().getBuilder();
     }
-
-    private java.lang.Object password_ = "";
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
      */
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        password_ = s;
-        return s;
+    public com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.ItemOrBuilder getUserOrBuilder() {
+      if (userBuilder_ != null) {
+        return userBuilder_.getMessageOrBuilder();
       } else {
-        return (java.lang.String) ref;
+        return user_ == null ?
+            com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.getDefaultInstance() : user_;
       }
     }
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item, com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.ItemOrBuilder> 
+        getUserFieldBuilder() {
+      if (userBuilder_ == null) {
+        userBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item, com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.ItemOrBuilder>(
+                getUser(),
+                getParentForChildren(),
+                isClean());
+        user_ = null;
       }
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @param value The password to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPassword(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      password_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearPassword() {
-      password_ = getDefaultInstance().getPassword();
-      bitField0_ = (bitField0_ & ~0x00000002);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string password = 2;</code>
-     * @param value The bytes for password to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPasswordBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      password_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
+      return userBuilder_;
     }
 
     private com.google.protobuf.Duration ttl_;
@@ -664,7 +577,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the ttl field is set.
      */
     public boolean hasTtl() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>.google.protobuf.Duration ttl = 9;</code>
@@ -689,7 +602,7 @@ private static final long serialVersionUID = 0L;
       } else {
         ttlBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -703,7 +616,7 @@ private static final long serialVersionUID = 0L;
       } else {
         ttlBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -712,7 +625,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeTtl(com.google.protobuf.Duration value) {
       if (ttlBuilder_ == null) {
-        if (((bitField0_ & 0x00000004) != 0) &&
+        if (((bitField0_ & 0x00000002) != 0) &&
           ttl_ != null &&
           ttl_ != com.google.protobuf.Duration.getDefaultInstance()) {
           getTtlBuilder().mergeFrom(value);
@@ -723,7 +636,7 @@ private static final long serialVersionUID = 0L;
         ttlBuilder_.mergeFrom(value);
       }
       if (ttl_ != null) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         onChanged();
       }
       return this;
@@ -732,7 +645,7 @@ private static final long serialVersionUID = 0L;
      * <code>.google.protobuf.Duration ttl = 9;</code>
      */
     public Builder clearTtl() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       ttl_ = null;
       if (ttlBuilder_ != null) {
         ttlBuilder_.dispose();
@@ -745,7 +658,7 @@ private static final long serialVersionUID = 0L;
      * <code>.google.protobuf.Duration ttl = 9;</code>
      */
     public com.google.protobuf.Duration.Builder getTtlBuilder() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       onChanged();
       return getTtlFieldBuilder().getBuilder();
     }

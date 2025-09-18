@@ -72,10 +72,8 @@ class AdministratorServiceImpl final
     : public palm::router::v1::Administrator::Service {
  public:
   AdministratorServiceImpl(std::shared_ptr<soci::session> db,
-                           std::shared_ptr<palm::Aes> aes,
-                           std::shared_ptr<palm::HMac> hmac,
                            std::shared_ptr<palm::Jwt> jwt)
-      : _db(db), _aes(aes), _hmac(hmac), _jwt(jwt) {}
+      : _db(db), _jwt(jwt) {}
 
   grpc::Status SignIn(
       grpc::ServerContext* context,
@@ -84,16 +82,16 @@ class AdministratorServiceImpl final
   grpc::Status SignOut(grpc::ServerContext* context,
                        const google::protobuf::Empty* request,
                        google::protobuf::Empty* reply) override;
-  grpc::Status SetPassword(
+  grpc::Status Update(
       grpc::ServerContext* context,
-      const palm::router::v1::AdministratorSetPasswordRequest* request,
+      const palm::router::v1::AdministratorUpdateRequest* request,
       google::protobuf::Empty* reply) override;
 
  private:
   std::shared_ptr<soci::session> _db;
-  std::shared_ptr<palm::Aes> _aes;
   std::shared_ptr<palm::Jwt> _jwt;
-  std::shared_ptr<palm::HMac> _hmac;
 };
 }  // namespace services
+std::optional<std::string> current_administrator(
+    grpc::ServerContext* context, std::shared_ptr<palm::Jwt> jwt);
 }  // namespace bamboo

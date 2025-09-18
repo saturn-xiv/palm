@@ -127,10 +127,24 @@ void bamboo::Application::rpc_server(const toml::table& config,
   auto db = this->db(config);
   auto jwt = this->jwt(config);
   auto aes = this->aes(config);
-  auto hmac = this->hmac(config);
 
-  bamboo::services::AdministratorServiceImpl administrator_service(db, aes,
-                                                                   hmac, jwt);
+  {
+    soci::transaction tr(*db);
+    const std::string installed_at = "site.installed-at";
+    const auto it = bamboo::dao::get(*db, installed_at);
+    if (!it) {
+      spdlog::warn("empty database, will be setup it at first");
+      bamboo::dao::administrator::save(*db, "admin", "123456");
+      {
+        const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
+
+        bamboo::dao::set(*db, installed_at, now);
+      }
+    }
+    tr.commit();
+  }
+
+  bamboo::services::AdministratorServiceImpl administrator_service(db, jwt);
   bamboo::services::RouterServiceImpl router_service(db, jwt);
   bamboo::services::UserServiceImpl user_service(db, aes, jwt);
 

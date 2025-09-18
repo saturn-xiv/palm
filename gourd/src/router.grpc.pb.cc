@@ -26,7 +26,7 @@ namespace v1 {
 static const char* Administrator_method_names[] = {
   "/palm.router.v1.Administrator/SignIn",
   "/palm.router.v1.Administrator/SignOut",
-  "/palm.router.v1.Administrator/SetPassword",
+  "/palm.router.v1.Administrator/Update",
 };
 
 std::unique_ptr< Administrator::Stub> Administrator::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -38,7 +38,7 @@ std::unique_ptr< Administrator::Stub> Administrator::NewStub(const std::shared_p
 Administrator::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SignIn_(Administrator_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SignOut_(Administrator_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPassword_(Administrator_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Administrator_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Administrator::Stub::SignIn(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSignInRequest& request, ::palm::router::v1::AdministratorSignInResponse* response) {
@@ -87,25 +87,25 @@ void Administrator::Stub::async::SignOut(::grpc::ClientContext* context, const :
   return result;
 }
 
-::grpc::Status Administrator::Stub::SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPassword_, context, request, response);
+::grpc::Status Administrator::Stub::Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
 }
 
-void Administrator::Stub::async::SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPassword_, context, request, response, std::move(f));
+void Administrator::Stub::async::Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
 }
 
-void Administrator::Stub::async::SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPassword_, context, request, response, reactor);
+void Administrator::Stub::async::Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::PrepareAsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::AdministratorSetPasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPassword_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::AdministratorUpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::AsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSetPasswordRaw(context, request, cq);
+    this->PrepareAsyncUpdateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -134,12 +134,12 @@ Administrator::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Administrator_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Administrator::Service, ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Administrator::Service, ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Administrator::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::router::v1::AdministratorSetPasswordRequest* req,
+             const ::palm::router::v1::AdministratorUpdateRequest* req,
              ::google::protobuf::Empty* resp) {
-               return service->SetPassword(ctx, req, resp);
+               return service->Update(ctx, req, resp);
              }, this)));
 }
 
@@ -160,194 +160,7 @@ Administrator::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Administrator::Service::SetPassword(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-
-static const char* Rule_method_names[] = {
-  "/palm.router.v1.Rule/Index",
-  "/palm.router.v1.Rule/Create",
-  "/palm.router.v1.Rule/Update",
-  "/palm.router.v1.Rule/Delete",
-};
-
-std::unique_ptr< Rule::Stub> Rule::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
-  (void)options;
-  std::unique_ptr< Rule::Stub> stub(new Rule::Stub(channel, options));
-  return stub;
-}
-
-Rule::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Index_(Rule_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Create_(Rule_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Update_(Rule_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Delete_(Rule_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  {}
-
-::grpc::Status Rule::Stub::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::router::v1::RuleIndexResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::router::v1::RuleIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
-}
-
-void Rule::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::router::v1::RuleIndexResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::router::v1::RuleIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
-}
-
-void Rule::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::router::v1::RuleIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::router::v1::RuleIndexResponse>* Rule::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::router::v1::RuleIndexResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::router::v1::RuleIndexResponse>* Rule::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncIndexRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Rule::Stub::Create(::grpc::ClientContext* context, const ::palm::router::v1::RuleCreateRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::RuleCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
-}
-
-void Rule::Stub::async::Create(::grpc::ClientContext* context, const ::palm::router::v1::RuleCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::RuleCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
-}
-
-void Rule::Stub::async::Create(::grpc::ClientContext* context, const ::palm::router::v1::RuleCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Rule::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::router::v1::RuleCreateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::RuleCreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Rule::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::router::v1::RuleCreateRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncCreateRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Rule::Stub::Update(::grpc::ClientContext* context, const ::palm::router::v1::RuleUpdateRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::RuleUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
-}
-
-void Rule::Stub::async::Update(::grpc::ClientContext* context, const ::palm::router::v1::RuleUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::RuleUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
-}
-
-void Rule::Stub::async::Update(::grpc::ClientContext* context, const ::palm::router::v1::RuleUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Rule::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::RuleUpdateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::RuleUpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Rule::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::RuleUpdateRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUpdateRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Rule::Stub::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
-}
-
-void Rule::Stub::async::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
-}
-
-void Rule::Stub::async::Delete(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Rule::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::ByIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Rule::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDeleteRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-Rule::Service::Service() {
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Rule_method_names[0],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Rule::Service, ::google::protobuf::Empty, ::palm::router::v1::RuleIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Rule::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::google::protobuf::Empty* req,
-             ::palm::router::v1::RuleIndexResponse* resp) {
-               return service->Index(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Rule_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Rule::Service, ::palm::router::v1::RuleCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Rule::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::router::v1::RuleCreateRequest* req,
-             ::google::protobuf::Empty* resp) {
-               return service->Create(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Rule_method_names[2],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Rule::Service, ::palm::router::v1::RuleUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Rule::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::router::v1::RuleUpdateRequest* req,
-             ::google::protobuf::Empty* resp) {
-               return service->Update(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Rule_method_names[3],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Rule::Service, ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Rule::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::portal::v1::ByIdRequest* req,
-             ::google::protobuf::Empty* resp) {
-               return service->Delete(ctx, req, resp);
-             }, this)));
-}
-
-Rule::Service::~Service() {
-}
-
-::grpc::Status Rule::Service::Index(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::router::v1::RuleIndexResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Rule::Service::Create(::grpc::ServerContext* context, const ::palm::router::v1::RuleCreateRequest* request, ::google::protobuf::Empty* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Rule::Service::Update(::grpc::ServerContext* context, const ::palm::router::v1::RuleUpdateRequest* request, ::google::protobuf::Empty* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Rule::Service::Delete(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Administrator::Service::Update(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -22,13 +22,9 @@ void bamboo::dao::host::save(soci::session& db, const std::string& mac,
         soci::use(vendor, "vendor");
   }
 }
-void bamboo::dao::user::save(soci::session& db, const std::string& name,
-                             const std::string& password) {
-  //   uint8_t mac[crypto_auth_BYTES];
-  //   if (0 != crypto_auth(mac, (uint8_t*)password.c_str(), password.length(),
-  //                        secret.data())) {
-  //     return;
-  //   }
+void bamboo::dao::administrator::save(soci::session& db,
+                                      const std::string& name,
+                                      const std::string& password) {
   char hashed_password[crypto_pwhash_STRBYTES];
   if (crypto_pwhash_str(hashed_password, password.c_str(), password.length(),
                         crypto_pwhash_OPSLIMIT_SENSITIVE,
@@ -43,8 +39,9 @@ void bamboo::dao::user::save(soci::session& db, const std::string& name,
   bamboo::dao::set(db, gl_administrator_password, password_);
 }
 
-bool bamboo::dao::user::auth(soci::session& db, const std::string& name,
-                             const std::string& password) {
+bool bamboo::dao::administrator::auth(soci::session& db,
+                                      const std::string& name,
+                                      const std::string& password) {
   {
     const auto val = bamboo::dao::get(db, gl_administrator_name);
     if (!val) {
@@ -60,11 +57,6 @@ bool bamboo::dao::user::auth(soci::session& db, const std::string& name,
   if (!password_) {
     return false;
   }
-  //   if (password_->size() != crypto_auth_BYTES) {
-  //     return false;
-  //   }
-  //   return crypto_auth_verify(password_->data(), (uint8_t*)password.c_str(),
-  //                             password.length(), secret.data()) == 0;
   if (password_->size() != crypto_pwhash_STRBYTES) {
     return false;
   }

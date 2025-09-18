@@ -114,55 +114,57 @@ message Host {
 }
 
 // ----------------------------------------------------------------------------
+
 service Administrator {
   rpc SignIn(AdministratorSignInRequest) returns (AdministratorSignInResponse) {
   }
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  rpc SetPassword(AdministratorSetPasswordRequest)
-      returns (google.protobuf.Empty) {}
+  rpc Update(AdministratorUpdateRequest) returns (google.protobuf.Empty) {}
 }
 
 message AdministratorSignInRequest {
-  string name = 1;
-  string password = 2;
+  AdministratorUpdateRequest.Item user = 1;
   google.protobuf.Duration ttl = 9;
 }
 
 message AdministratorSignInResponse {
   string token = 1;
-  string name = 2;
   string locale = 11;
   string timezone = 12;
   repeated string languages = 19;
 }
 
-message AdministratorSetPasswordRequest {
-  string current_password = 1;
-  string new_password = 2;
+message AdministratorUpdateRequest {
+  message Item {
+    string name = 1;
+    string password = 2;
+  }
+  Item current = 1;
+  Item new = 2;
 }
 
 // ----------------------------------------------------------------------------
-service Rule {
-  rpc Index(google.protobuf.Empty) returns (RuleIndexResponse) {}
-  rpc Create(RuleCreateRequest) returns (google.protobuf.Empty) {}
-  rpc Update(RuleUpdateRequest) returns (google.protobuf.Empty) {}
-  rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
-}
-message RuleCreateRequest {
-  string device = 1;
-  RuleIndexResponse.Item item = 2;
-}
-message RuleUpdateRequest {
-  uint32 id = 1;
-}
-message RuleIndexResponse {
-  message Item {
-    uint32 id = 1;
-    string device = 2;
-    message Nat {}
-  }
-  repeated Item items = 1;
-}
+// service Rule {
+//   rpc Index(google.protobuf.Empty) returns (RuleIndexResponse) {}
+//   rpc Create(RuleCreateRequest) returns (google.protobuf.Empty) {}
+//   rpc Update(RuleUpdateRequest) returns (google.protobuf.Empty) {}
+//   rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
+// }
+// message RuleCreateRequest {
+//   string device = 1;
+//   RuleIndexResponse.Item item = 2;
+// }
+// message RuleUpdateRequest {
+//   uint32 id = 1;
+// }
+// message RuleIndexResponse {
+//   message Item {
+//     uint32 id = 1;
+//     string device = 2;
+//     message Nat {}
+//   }
+//   repeated Item items = 1;
+// }
 // ----------------------------------------------------------------------------
 
 service Router {

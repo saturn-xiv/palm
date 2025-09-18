@@ -63,15 +63,18 @@ extern const ::google::protobuf::internal::DescriptorTable
 namespace palm {
 namespace router {
 namespace v1 {
-class AdministratorSetPasswordRequest;
-struct AdministratorSetPasswordRequestDefaultTypeInternal;
-extern AdministratorSetPasswordRequestDefaultTypeInternal _AdministratorSetPasswordRequest_default_instance_;
 class AdministratorSignInRequest;
 struct AdministratorSignInRequestDefaultTypeInternal;
 extern AdministratorSignInRequestDefaultTypeInternal _AdministratorSignInRequest_default_instance_;
 class AdministratorSignInResponse;
 struct AdministratorSignInResponseDefaultTypeInternal;
 extern AdministratorSignInResponseDefaultTypeInternal _AdministratorSignInResponse_default_instance_;
+class AdministratorUpdateRequest;
+struct AdministratorUpdateRequestDefaultTypeInternal;
+extern AdministratorUpdateRequestDefaultTypeInternal _AdministratorUpdateRequest_default_instance_;
+class AdministratorUpdateRequest_Item;
+struct AdministratorUpdateRequest_ItemDefaultTypeInternal;
+extern AdministratorUpdateRequest_ItemDefaultTypeInternal _AdministratorUpdateRequest_Item_default_instance_;
 class Firewall;
 struct FirewallDefaultTypeInternal;
 extern FirewallDefaultTypeInternal _Firewall_default_instance_;
@@ -129,21 +132,6 @@ extern RouterIndexEthernetResponse_Item_LanDefaultTypeInternal _RouterIndexEther
 class RouterIndexEthernetResponse_Item_Wan;
 struct RouterIndexEthernetResponse_Item_WanDefaultTypeInternal;
 extern RouterIndexEthernetResponse_Item_WanDefaultTypeInternal _RouterIndexEthernetResponse_Item_Wan_default_instance_;
-class RuleCreateRequest;
-struct RuleCreateRequestDefaultTypeInternal;
-extern RuleCreateRequestDefaultTypeInternal _RuleCreateRequest_default_instance_;
-class RuleIndexResponse;
-struct RuleIndexResponseDefaultTypeInternal;
-extern RuleIndexResponseDefaultTypeInternal _RuleIndexResponse_default_instance_;
-class RuleIndexResponse_Item;
-struct RuleIndexResponse_ItemDefaultTypeInternal;
-extern RuleIndexResponse_ItemDefaultTypeInternal _RuleIndexResponse_Item_default_instance_;
-class RuleIndexResponse_Item_Nat;
-struct RuleIndexResponse_Item_NatDefaultTypeInternal;
-extern RuleIndexResponse_Item_NatDefaultTypeInternal _RuleIndexResponse_Item_Nat_default_instance_;
-class RuleUpdateRequest;
-struct RuleUpdateRequestDefaultTypeInternal;
-extern RuleUpdateRequestDefaultTypeInternal _RuleUpdateRequest_default_instance_;
 class UserCreateRequest;
 struct UserCreateRequestDefaultTypeInternal;
 extern UserCreateRequestDefaultTypeInternal _UserCreateRequest_default_instance_;
@@ -469,7 +457,7 @@ class UserSetRealNameRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetRealNameRequest*>(
         &_UserSetRealNameRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 29;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(UserSetRealNameRequest& a, UserSetRealNameRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetRealNameRequest* other) {
     if (other == this) return;
@@ -677,7 +665,7 @@ class UserIndexResponse_Item_Contact final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item_Contact*>(
         &_UserIndexResponse_Item_Contact_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 35;
+  static constexpr int kIndexInFileMessages = 31;
   friend void swap(UserIndexResponse_Item_Contact& a, UserIndexResponse_Item_Contact& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item_Contact* other) {
     if (other == this) return;
@@ -873,550 +861,6 @@ class UserIndexResponse_Item_Contact final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class RuleUpdateRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RuleUpdateRequest) */ {
- public:
-  inline RuleUpdateRequest() : RuleUpdateRequest(nullptr) {}
-  ~RuleUpdateRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RuleUpdateRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RuleUpdateRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RuleUpdateRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RuleUpdateRequest(const RuleUpdateRequest& from) : RuleUpdateRequest(nullptr, from) {}
-  inline RuleUpdateRequest(RuleUpdateRequest&& from) noexcept
-      : RuleUpdateRequest(nullptr, std::move(from)) {}
-  inline RuleUpdateRequest& operator=(const RuleUpdateRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RuleUpdateRequest& operator=(RuleUpdateRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RuleUpdateRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RuleUpdateRequest* internal_default_instance() {
-    return reinterpret_cast<const RuleUpdateRequest*>(
-        &_RuleUpdateRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 21;
-  friend void swap(RuleUpdateRequest& a, RuleUpdateRequest& b) { a.Swap(&b); }
-  inline void Swap(RuleUpdateRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RuleUpdateRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RuleUpdateRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RuleUpdateRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RuleUpdateRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RuleUpdateRequest& from) { RuleUpdateRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RuleUpdateRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RuleUpdateRequest"; }
-
- protected:
-  explicit RuleUpdateRequest(::google::protobuf::Arena* arena);
-  RuleUpdateRequest(::google::protobuf::Arena* arena, const RuleUpdateRequest& from);
-  RuleUpdateRequest(::google::protobuf::Arena* arena, RuleUpdateRequest&& from) noexcept
-      : RuleUpdateRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kIdFieldNumber = 1,
-  };
-  // uint32 id = 1;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RuleUpdateRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RuleUpdateRequest& from_msg);
-    ::uint32_t id_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RuleIndexResponse_Item_Nat final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RuleIndexResponse.Item.Nat) */ {
- public:
-  inline RuleIndexResponse_Item_Nat() : RuleIndexResponse_Item_Nat(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RuleIndexResponse_Item_Nat* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RuleIndexResponse_Item_Nat));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RuleIndexResponse_Item_Nat(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RuleIndexResponse_Item_Nat(const RuleIndexResponse_Item_Nat& from) : RuleIndexResponse_Item_Nat(nullptr, from) {}
-  inline RuleIndexResponse_Item_Nat(RuleIndexResponse_Item_Nat&& from) noexcept
-      : RuleIndexResponse_Item_Nat(nullptr, std::move(from)) {}
-  inline RuleIndexResponse_Item_Nat& operator=(const RuleIndexResponse_Item_Nat& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RuleIndexResponse_Item_Nat& operator=(RuleIndexResponse_Item_Nat&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RuleIndexResponse_Item_Nat& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RuleIndexResponse_Item_Nat* internal_default_instance() {
-    return reinterpret_cast<const RuleIndexResponse_Item_Nat*>(
-        &_RuleIndexResponse_Item_Nat_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 22;
-  friend void swap(RuleIndexResponse_Item_Nat& a, RuleIndexResponse_Item_Nat& b) { a.Swap(&b); }
-  inline void Swap(RuleIndexResponse_Item_Nat* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RuleIndexResponse_Item_Nat* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RuleIndexResponse_Item_Nat* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<RuleIndexResponse_Item_Nat>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const RuleIndexResponse_Item_Nat& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const RuleIndexResponse_Item_Nat& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RuleIndexResponse.Item.Nat"; }
-
- protected:
-  explicit RuleIndexResponse_Item_Nat(::google::protobuf::Arena* arena);
-  RuleIndexResponse_Item_Nat(::google::protobuf::Arena* arena, const RuleIndexResponse_Item_Nat& from);
-  RuleIndexResponse_Item_Nat(::google::protobuf::Arena* arena, RuleIndexResponse_Item_Nat&& from) noexcept
-      : RuleIndexResponse_Item_Nat(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RuleIndexResponse.Item.Nat)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RuleIndexResponse_Item_Nat& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RuleIndexResponse_Item final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RuleIndexResponse.Item) */ {
- public:
-  inline RuleIndexResponse_Item() : RuleIndexResponse_Item(nullptr) {}
-  ~RuleIndexResponse_Item() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RuleIndexResponse_Item* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RuleIndexResponse_Item));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RuleIndexResponse_Item(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RuleIndexResponse_Item(const RuleIndexResponse_Item& from) : RuleIndexResponse_Item(nullptr, from) {}
-  inline RuleIndexResponse_Item(RuleIndexResponse_Item&& from) noexcept
-      : RuleIndexResponse_Item(nullptr, std::move(from)) {}
-  inline RuleIndexResponse_Item& operator=(const RuleIndexResponse_Item& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RuleIndexResponse_Item& operator=(RuleIndexResponse_Item&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RuleIndexResponse_Item& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RuleIndexResponse_Item* internal_default_instance() {
-    return reinterpret_cast<const RuleIndexResponse_Item*>(
-        &_RuleIndexResponse_Item_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 23;
-  friend void swap(RuleIndexResponse_Item& a, RuleIndexResponse_Item& b) { a.Swap(&b); }
-  inline void Swap(RuleIndexResponse_Item* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RuleIndexResponse_Item* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RuleIndexResponse_Item* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RuleIndexResponse_Item>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RuleIndexResponse_Item& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RuleIndexResponse_Item& from) { RuleIndexResponse_Item::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RuleIndexResponse_Item* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RuleIndexResponse.Item"; }
-
- protected:
-  explicit RuleIndexResponse_Item(::google::protobuf::Arena* arena);
-  RuleIndexResponse_Item(::google::protobuf::Arena* arena, const RuleIndexResponse_Item& from);
-  RuleIndexResponse_Item(::google::protobuf::Arena* arena, RuleIndexResponse_Item&& from) noexcept
-      : RuleIndexResponse_Item(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Nat = RuleIndexResponse_Item_Nat;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kDeviceFieldNumber = 2,
-    kIdFieldNumber = 1,
-  };
-  // string device = 2;
-  void clear_device() ;
-  const std::string& device() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_device(Arg_&& arg, Args_... args);
-  std::string* mutable_device();
-  PROTOBUF_NODISCARD std::string* release_device();
-  void set_allocated_device(std::string* value);
-
-  private:
-  const std::string& _internal_device() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device(
-      const std::string& value);
-  std::string* _internal_mutable_device();
-
-  public:
-  // uint32 id = 1;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RuleIndexResponse.Item)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      52, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RuleIndexResponse_Item& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr device_;
-    ::uint32_t id_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
 class RouterIndexEthernetResponse_Item_Wan final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item.Wan) */ {
  public:
@@ -1476,7 +920,7 @@ class RouterIndexEthernetResponse_Item_Wan final : public ::google::protobuf::Me
     return reinterpret_cast<const RouterIndexEthernetResponse_Item_Wan*>(
         &_RouterIndexEthernetResponse_Item_Wan_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(RouterIndexEthernetResponse_Item_Wan& a, RouterIndexEthernetResponse_Item_Wan& b) { a.Swap(&b); }
   inline void Swap(RouterIndexEthernetResponse_Item_Wan* other) {
     if (other == this) return;
@@ -1732,7 +1176,7 @@ class RouterIndexEthernetResponse_Item_Lan final : public ::google::protobuf::Me
     return reinterpret_cast<const RouterIndexEthernetResponse_Item_Lan*>(
         &_RouterIndexEthernetResponse_Item_Lan_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(RouterIndexEthernetResponse_Item_Lan& a, RouterIndexEthernetResponse_Item_Lan& b) { a.Swap(&b); }
   inline void Swap(RouterIndexEthernetResponse_Item_Lan* other) {
     if (other == this) return;
@@ -2695,6 +2139,220 @@ class Firewall_Input final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class AdministratorUpdateRequest_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorUpdateRequest.Item) */ {
+ public:
+  inline AdministratorUpdateRequest_Item() : AdministratorUpdateRequest_Item(nullptr) {}
+  ~AdministratorUpdateRequest_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AdministratorUpdateRequest_Item* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AdministratorUpdateRequest_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AdministratorUpdateRequest_Item(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AdministratorUpdateRequest_Item(const AdministratorUpdateRequest_Item& from) : AdministratorUpdateRequest_Item(nullptr, from) {}
+  inline AdministratorUpdateRequest_Item(AdministratorUpdateRequest_Item&& from) noexcept
+      : AdministratorUpdateRequest_Item(nullptr, std::move(from)) {}
+  inline AdministratorUpdateRequest_Item& operator=(const AdministratorUpdateRequest_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AdministratorUpdateRequest_Item& operator=(AdministratorUpdateRequest_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AdministratorUpdateRequest_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AdministratorUpdateRequest_Item* internal_default_instance() {
+    return reinterpret_cast<const AdministratorUpdateRequest_Item*>(
+        &_AdministratorUpdateRequest_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(AdministratorUpdateRequest_Item& a, AdministratorUpdateRequest_Item& b) { a.Swap(&b); }
+  inline void Swap(AdministratorUpdateRequest_Item* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AdministratorUpdateRequest_Item* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AdministratorUpdateRequest_Item* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AdministratorUpdateRequest_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AdministratorUpdateRequest_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AdministratorUpdateRequest_Item& from) { AdministratorUpdateRequest_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AdministratorUpdateRequest_Item* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.AdministratorUpdateRequest.Item"; }
+
+ protected:
+  explicit AdministratorUpdateRequest_Item(::google::protobuf::Arena* arena);
+  AdministratorUpdateRequest_Item(::google::protobuf::Arena* arena, const AdministratorUpdateRequest_Item& from);
+  AdministratorUpdateRequest_Item(::google::protobuf::Arena* arena, AdministratorUpdateRequest_Item&& from) noexcept
+      : AdministratorUpdateRequest_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNameFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string password = 2;
+  void clear_password() ;
+  const std::string& password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  std::string* mutable_password();
+  PROTOBUF_NODISCARD std::string* release_password();
+  void set_allocated_password(std::string* value);
+
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+      const std::string& value);
+  std::string* _internal_mutable_password();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.AdministratorUpdateRequest.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      67, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AdministratorUpdateRequest_Item& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AdministratorSignInResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorSignInResponse) */ {
  public:
@@ -2843,7 +2501,6 @@ class AdministratorSignInResponse final : public ::google::protobuf::Message
   enum : int {
     kLanguagesFieldNumber = 19,
     kTokenFieldNumber = 1,
-    kNameFieldNumber = 2,
     kLocaleFieldNumber = 11,
     kTimezoneFieldNumber = 12,
   };
@@ -2885,22 +2542,6 @@ class AdministratorSignInResponse final : public ::google::protobuf::Message
   std::string* _internal_mutable_token();
 
   public:
-  // string name = 2;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
   // string locale = 11;
   void clear_locale() ;
   const std::string& locale() const;
@@ -2938,8 +2579,8 @@ class AdministratorSignInResponse final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 5, 0,
-      83, 2>
+      2, 4, 0,
+      79, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2958,223 +2599,8 @@ class AdministratorSignInResponse final : public ::google::protobuf::Message
                           const AdministratorSignInResponse& from_msg);
     ::google::protobuf::RepeatedPtrField<std::string> languages_;
     ::google::protobuf::internal::ArenaStringPtr token_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr locale_;
     ::google::protobuf::internal::ArenaStringPtr timezone_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AdministratorSetPasswordRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorSetPasswordRequest) */ {
- public:
-  inline AdministratorSetPasswordRequest() : AdministratorSetPasswordRequest(nullptr) {}
-  ~AdministratorSetPasswordRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AdministratorSetPasswordRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AdministratorSetPasswordRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AdministratorSetPasswordRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline AdministratorSetPasswordRequest(const AdministratorSetPasswordRequest& from) : AdministratorSetPasswordRequest(nullptr, from) {}
-  inline AdministratorSetPasswordRequest(AdministratorSetPasswordRequest&& from) noexcept
-      : AdministratorSetPasswordRequest(nullptr, std::move(from)) {}
-  inline AdministratorSetPasswordRequest& operator=(const AdministratorSetPasswordRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AdministratorSetPasswordRequest& operator=(AdministratorSetPasswordRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AdministratorSetPasswordRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AdministratorSetPasswordRequest* internal_default_instance() {
-    return reinterpret_cast<const AdministratorSetPasswordRequest*>(
-        &_AdministratorSetPasswordRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 19;
-  friend void swap(AdministratorSetPasswordRequest& a, AdministratorSetPasswordRequest& b) { a.Swap(&b); }
-  inline void Swap(AdministratorSetPasswordRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AdministratorSetPasswordRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AdministratorSetPasswordRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AdministratorSetPasswordRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AdministratorSetPasswordRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AdministratorSetPasswordRequest& from) { AdministratorSetPasswordRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(AdministratorSetPasswordRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.AdministratorSetPasswordRequest"; }
-
- protected:
-  explicit AdministratorSetPasswordRequest(::google::protobuf::Arena* arena);
-  AdministratorSetPasswordRequest(::google::protobuf::Arena* arena, const AdministratorSetPasswordRequest& from);
-  AdministratorSetPasswordRequest(::google::protobuf::Arena* arena, AdministratorSetPasswordRequest&& from) noexcept
-      : AdministratorSetPasswordRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kCurrentPasswordFieldNumber = 1,
-    kNewPasswordFieldNumber = 2,
-  };
-  // string current_password = 1;
-  void clear_current_password() ;
-  const std::string& current_password() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_current_password(Arg_&& arg, Args_... args);
-  std::string* mutable_current_password();
-  PROTOBUF_NODISCARD std::string* release_current_password();
-  void set_allocated_current_password(std::string* value);
-
-  private:
-  const std::string& _internal_current_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_current_password(
-      const std::string& value);
-  std::string* _internal_mutable_current_password();
-
-  public:
-  // string new_password = 2;
-  void clear_new_password() ;
-  const std::string& new_password() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_new_password(Arg_&& arg, Args_... args);
-  std::string* mutable_new_password();
-  PROTOBUF_NODISCARD std::string* release_new_password();
-  void set_allocated_new_password(std::string* value);
-
-  private:
-  const std::string& _internal_new_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_new_password(
-      const std::string& value);
-  std::string* _internal_mutable_new_password();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.router.v1.AdministratorSetPasswordRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      83, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const AdministratorSetPasswordRequest& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr current_password_;
-    ::google::protobuf::internal::ArenaStringPtr new_password_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3242,7 +2668,7 @@ class UserSetContactRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetContactRequest*>(
         &_UserSetContactRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 32;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(UserSetContactRequest& a, UserSetContactRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetContactRequest* other) {
     if (other == this) return;
@@ -3450,7 +2876,7 @@ class UserIndexResponse_Item_Wifi final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item_Wifi*>(
         &_UserIndexResponse_Item_Wifi_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 34;
+  static constexpr int kIndexInFileMessages = 30;
   friend void swap(UserIndexResponse_Item_Wifi& a, UserIndexResponse_Item_Wifi& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item_Wifi* other) {
     if (other == this) return;
@@ -3640,418 +3066,6 @@ class UserIndexResponse_Item_Wifi final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class RuleIndexResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RuleIndexResponse) */ {
- public:
-  inline RuleIndexResponse() : RuleIndexResponse(nullptr) {}
-  ~RuleIndexResponse() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RuleIndexResponse* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RuleIndexResponse));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RuleIndexResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RuleIndexResponse(const RuleIndexResponse& from) : RuleIndexResponse(nullptr, from) {}
-  inline RuleIndexResponse(RuleIndexResponse&& from) noexcept
-      : RuleIndexResponse(nullptr, std::move(from)) {}
-  inline RuleIndexResponse& operator=(const RuleIndexResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RuleIndexResponse& operator=(RuleIndexResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RuleIndexResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RuleIndexResponse* internal_default_instance() {
-    return reinterpret_cast<const RuleIndexResponse*>(
-        &_RuleIndexResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 24;
-  friend void swap(RuleIndexResponse& a, RuleIndexResponse& b) { a.Swap(&b); }
-  inline void Swap(RuleIndexResponse* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RuleIndexResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RuleIndexResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RuleIndexResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RuleIndexResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RuleIndexResponse& from) { RuleIndexResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RuleIndexResponse* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RuleIndexResponse"; }
-
- protected:
-  explicit RuleIndexResponse(::google::protobuf::Arena* arena);
-  RuleIndexResponse(::google::protobuf::Arena* arena, const RuleIndexResponse& from);
-  RuleIndexResponse(::google::protobuf::Arena* arena, RuleIndexResponse&& from) noexcept
-      : RuleIndexResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Item = RuleIndexResponse_Item;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kItemsFieldNumber = 1,
-  };
-  // repeated .palm.router.v1.RuleIndexResponse.Item items = 1;
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-
-  public:
-  void clear_items() ;
-  ::palm::router::v1::RuleIndexResponse_Item* mutable_items(int index);
-  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>* mutable_items();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>& _internal_items() const;
-  ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>* _internal_mutable_items();
-  public:
-  const ::palm::router::v1::RuleIndexResponse_Item& items(int index) const;
-  ::palm::router::v1::RuleIndexResponse_Item* add_items();
-  const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>& items() const;
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RuleIndexResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RuleIndexResponse& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::palm::router::v1::RuleIndexResponse_Item > items_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RuleCreateRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.router.v1.RuleCreateRequest) */ {
- public:
-  inline RuleCreateRequest() : RuleCreateRequest(nullptr) {}
-  ~RuleCreateRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RuleCreateRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RuleCreateRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RuleCreateRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RuleCreateRequest(const RuleCreateRequest& from) : RuleCreateRequest(nullptr, from) {}
-  inline RuleCreateRequest(RuleCreateRequest&& from) noexcept
-      : RuleCreateRequest(nullptr, std::move(from)) {}
-  inline RuleCreateRequest& operator=(const RuleCreateRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RuleCreateRequest& operator=(RuleCreateRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RuleCreateRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RuleCreateRequest* internal_default_instance() {
-    return reinterpret_cast<const RuleCreateRequest*>(
-        &_RuleCreateRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 20;
-  friend void swap(RuleCreateRequest& a, RuleCreateRequest& b) { a.Swap(&b); }
-  inline void Swap(RuleCreateRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RuleCreateRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RuleCreateRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RuleCreateRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RuleCreateRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RuleCreateRequest& from) { RuleCreateRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RuleCreateRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.router.v1.RuleCreateRequest"; }
-
- protected:
-  explicit RuleCreateRequest(::google::protobuf::Arena* arena);
-  RuleCreateRequest(::google::protobuf::Arena* arena, const RuleCreateRequest& from);
-  RuleCreateRequest(::google::protobuf::Arena* arena, RuleCreateRequest&& from) noexcept
-      : RuleCreateRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kDeviceFieldNumber = 1,
-    kItemFieldNumber = 2,
-  };
-  // string device = 1;
-  void clear_device() ;
-  const std::string& device() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_device(Arg_&& arg, Args_... args);
-  std::string* mutable_device();
-  PROTOBUF_NODISCARD std::string* release_device();
-  void set_allocated_device(std::string* value);
-
-  private:
-  const std::string& _internal_device() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device(
-      const std::string& value);
-  std::string* _internal_mutable_device();
-
-  public:
-  // .palm.router.v1.RuleIndexResponse.Item item = 2;
-  bool has_item() const;
-  void clear_item() ;
-  const ::palm::router::v1::RuleIndexResponse_Item& item() const;
-  PROTOBUF_NODISCARD ::palm::router::v1::RuleIndexResponse_Item* release_item();
-  ::palm::router::v1::RuleIndexResponse_Item* mutable_item();
-  void set_allocated_item(::palm::router::v1::RuleIndexResponse_Item* value);
-  void unsafe_arena_set_allocated_item(::palm::router::v1::RuleIndexResponse_Item* value);
-  ::palm::router::v1::RuleIndexResponse_Item* unsafe_arena_release_item();
-
-  private:
-  const ::palm::router::v1::RuleIndexResponse_Item& _internal_item() const;
-  ::palm::router::v1::RuleIndexResponse_Item* _internal_mutable_item();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.router.v1.RuleCreateRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      47, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RuleCreateRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr device_;
-    ::palm::router::v1::RuleIndexResponse_Item* item_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
 class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.router.v1.RouterIndexEthernetResponse.Item) */ {
  public:
@@ -4117,7 +3131,7 @@ class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Messag
     return reinterpret_cast<const RouterIndexEthernetResponse_Item*>(
         &_RouterIndexEthernetResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(RouterIndexEthernetResponse_Item& a, RouterIndexEthernetResponse_Item& b) { a.Swap(&b); }
   inline void Swap(RouterIndexEthernetResponse_Item* other) {
     if (other == this) return;
@@ -5103,6 +4117,220 @@ class Firewall_Nat final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class AdministratorUpdateRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorUpdateRequest) */ {
+ public:
+  inline AdministratorUpdateRequest() : AdministratorUpdateRequest(nullptr) {}
+  ~AdministratorUpdateRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AdministratorUpdateRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AdministratorUpdateRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AdministratorUpdateRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AdministratorUpdateRequest(const AdministratorUpdateRequest& from) : AdministratorUpdateRequest(nullptr, from) {}
+  inline AdministratorUpdateRequest(AdministratorUpdateRequest&& from) noexcept
+      : AdministratorUpdateRequest(nullptr, std::move(from)) {}
+  inline AdministratorUpdateRequest& operator=(const AdministratorUpdateRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AdministratorUpdateRequest& operator=(AdministratorUpdateRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AdministratorUpdateRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AdministratorUpdateRequest* internal_default_instance() {
+    return reinterpret_cast<const AdministratorUpdateRequest*>(
+        &_AdministratorUpdateRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 20;
+  friend void swap(AdministratorUpdateRequest& a, AdministratorUpdateRequest& b) { a.Swap(&b); }
+  inline void Swap(AdministratorUpdateRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AdministratorUpdateRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AdministratorUpdateRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AdministratorUpdateRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AdministratorUpdateRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AdministratorUpdateRequest& from) { AdministratorUpdateRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AdministratorUpdateRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.router.v1.AdministratorUpdateRequest"; }
+
+ protected:
+  explicit AdministratorUpdateRequest(::google::protobuf::Arena* arena);
+  AdministratorUpdateRequest(::google::protobuf::Arena* arena, const AdministratorUpdateRequest& from);
+  AdministratorUpdateRequest(::google::protobuf::Arena* arena, AdministratorUpdateRequest&& from) noexcept
+      : AdministratorUpdateRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = AdministratorUpdateRequest_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCurrentFieldNumber = 1,
+    kNewFieldNumber = 2,
+  };
+  // .palm.router.v1.AdministratorUpdateRequest.Item current = 1;
+  bool has_current() const;
+  void clear_current() ;
+  const ::palm::router::v1::AdministratorUpdateRequest_Item& current() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::AdministratorUpdateRequest_Item* release_current();
+  ::palm::router::v1::AdministratorUpdateRequest_Item* mutable_current();
+  void set_allocated_current(::palm::router::v1::AdministratorUpdateRequest_Item* value);
+  void unsafe_arena_set_allocated_current(::palm::router::v1::AdministratorUpdateRequest_Item* value);
+  ::palm::router::v1::AdministratorUpdateRequest_Item* unsafe_arena_release_current();
+
+  private:
+  const ::palm::router::v1::AdministratorUpdateRequest_Item& _internal_current() const;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* _internal_mutable_current();
+
+  public:
+  // .palm.router.v1.AdministratorUpdateRequest.Item new = 2;
+  bool has_new_() const;
+  void clear_new_() ;
+  const ::palm::router::v1::AdministratorUpdateRequest_Item& new_() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::AdministratorUpdateRequest_Item* release_new_();
+  ::palm::router::v1::AdministratorUpdateRequest_Item* mutable_new_();
+  void set_allocated_new_(::palm::router::v1::AdministratorUpdateRequest_Item* value);
+  void unsafe_arena_set_allocated_new_(::palm::router::v1::AdministratorUpdateRequest_Item* value);
+  ::palm::router::v1::AdministratorUpdateRequest_Item* unsafe_arena_release_new_();
+
+  private:
+  const ::palm::router::v1::AdministratorUpdateRequest_Item& _internal_new_() const;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* _internal_mutable_new_();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.router.v1.AdministratorUpdateRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AdministratorUpdateRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::palm::router::v1::AdministratorUpdateRequest_Item* current_;
+    ::palm::router::v1::AdministratorUpdateRequest_Item* new__;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_router_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AdministratorSignInRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.router.v1.AdministratorSignInRequest) */ {
  public:
@@ -5249,40 +4477,22 @@ class AdministratorSignInRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNameFieldNumber = 1,
-    kPasswordFieldNumber = 2,
+    kUserFieldNumber = 1,
     kTtlFieldNumber = 9,
   };
-  // string name = 1;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
+  // .palm.router.v1.AdministratorUpdateRequest.Item user = 1;
+  bool has_user() const;
+  void clear_user() ;
+  const ::palm::router::v1::AdministratorUpdateRequest_Item& user() const;
+  PROTOBUF_NODISCARD ::palm::router::v1::AdministratorUpdateRequest_Item* release_user();
+  ::palm::router::v1::AdministratorUpdateRequest_Item* mutable_user();
+  void set_allocated_user(::palm::router::v1::AdministratorUpdateRequest_Item* value);
+  void unsafe_arena_set_allocated_user(::palm::router::v1::AdministratorUpdateRequest_Item* value);
+  ::palm::router::v1::AdministratorUpdateRequest_Item* unsafe_arena_release_user();
 
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  // string password = 2;
-  void clear_password() ;
-  const std::string& password() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_password(Arg_&& arg, Args_... args);
-  std::string* mutable_password();
-  PROTOBUF_NODISCARD std::string* release_password();
-  void set_allocated_password(std::string* value);
-
-  private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
-      const std::string& value);
-  std::string* _internal_mutable_password();
+  const ::palm::router::v1::AdministratorUpdateRequest_Item& _internal_user() const;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* _internal_mutable_user();
 
   public:
   // .google.protobuf.Duration ttl = 9;
@@ -5305,8 +4515,8 @@ class AdministratorSignInRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 3, 1,
-      62, 2>
+      0, 2, 2,
+      0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -5325,8 +4535,7 @@ class AdministratorSignInRequest final : public ::google::protobuf::Message
                           const AdministratorSignInRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::palm::router::v1::AdministratorUpdateRequest_Item* user_;
     ::google::protobuf::Duration* ttl_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5394,7 +4603,7 @@ class UserSetWifiRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetWifiRequest*>(
         &_UserSetWifiRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 30;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(UserSetWifiRequest& a, UserSetWifiRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetWifiRequest* other) {
     if (other == this) return;
@@ -5602,7 +4811,7 @@ class UserSetDetailsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserSetDetailsRequest*>(
         &_UserSetDetailsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 31;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(UserSetDetailsRequest& a, UserSetDetailsRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetDetailsRequest* other) {
     if (other == this) return;
@@ -5828,7 +5037,7 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse_Item*>(
         &_UserIndexResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 36;
+  static constexpr int kIndexInFileMessages = 32;
   friend void swap(UserIndexResponse_Item& a, UserIndexResponse_Item& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item* other) {
     if (other == this) return;
@@ -6073,7 +5282,7 @@ class UserCreateRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UserCreateRequest*>(
         &_UserCreateRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 33;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(UserCreateRequest& a, UserCreateRequest& b) { a.Swap(&b); }
   inline void Swap(UserCreateRequest* other) {
     if (other == this) return;
@@ -6287,7 +5496,7 @@ class RouterIndexEthernetResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const RouterIndexEthernetResponse*>(
         &_RouterIndexEthernetResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 28;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(RouterIndexEthernetResponse& a, RouterIndexEthernetResponse& b) { a.Swap(&b); }
   inline void Swap(RouterIndexEthernetResponse* other) {
     if (other == this) return;
@@ -7638,7 +6847,7 @@ class UserIndexResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UserIndexResponse*>(
         &_UserIndexResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 37;
+  static constexpr int kIndexInFileMessages = 33;
   friend void swap(UserIndexResponse& a, UserIndexResponse& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse* other) {
     if (other == this) return;
@@ -11105,105 +10314,105 @@ inline void Host::set_allocated_last_found(::google::protobuf::Timestamp* value)
 
 // AdministratorSignInRequest
 
-// string name = 1;
-inline void AdministratorSignInRequest::clear_name() {
+// .palm.router.v1.AdministratorUpdateRequest.Item user = 1;
+inline bool AdministratorSignInRequest::has_user() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.user_ != nullptr);
+  return value;
+}
+inline void AdministratorSignInRequest::clear_user() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
+  if (_impl_.user_ != nullptr) _impl_.user_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& AdministratorSignInRequest::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInRequest.name)
-  return _internal_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInRequest::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInRequest.name)
-}
-inline std::string* AdministratorSignInRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.name)
-  return _s;
-}
-inline const std::string& AdministratorSignInRequest::_internal_name() const {
+inline const ::palm::router::v1::AdministratorUpdateRequest_Item& AdministratorSignInRequest::_internal_user() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
+  const ::palm::router::v1::AdministratorUpdateRequest_Item* p = _impl_.user_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::AdministratorUpdateRequest_Item&>(::palm::router::v1::_AdministratorUpdateRequest_Item_default_instance_);
 }
-inline void AdministratorSignInRequest::_internal_set_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
+inline const ::palm::router::v1::AdministratorUpdateRequest_Item& AdministratorSignInRequest::user() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInRequest.user)
+  return _internal_user();
 }
-inline std::string* AdministratorSignInRequest::_internal_mutable_name() {
+inline void AdministratorSignInRequest::unsafe_arena_set_allocated_user(::palm::router::v1::AdministratorUpdateRequest_Item* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* AdministratorSignInRequest::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.name)
-  return _impl_.name_.Release();
-}
-inline void AdministratorSignInRequest::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
-    _impl_.name_.Set("", GetArena());
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.user_);
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInRequest.name)
+  _impl_.user_ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.AdministratorSignInRequest.user)
 }
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorSignInRequest::release_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
 
-// string password = 2;
-inline void AdministratorSignInRequest::clear_password() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.ClearToEmpty();
-}
-inline const std::string& AdministratorSignInRequest::password() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInRequest.password)
-  return _internal_password();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInRequest::set_password(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInRequest.password)
-}
-inline std::string* AdministratorSignInRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.password)
-  return _s;
-}
-inline const std::string& AdministratorSignInRequest::_internal_password() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.password_.Get();
-}
-inline void AdministratorSignInRequest::_internal_set_password(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(value, GetArena());
-}
-inline std::string* AdministratorSignInRequest::_internal_mutable_password() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.password_.Mutable( GetArena());
-}
-inline std::string* AdministratorSignInRequest::release_password() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.password)
-  return _impl_.password_.Release();
-}
-inline void AdministratorSignInRequest::set_allocated_password(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
-    _impl_.password_.Set("", GetArena());
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* released = _impl_.user_;
+  _impl_.user_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInRequest.password)
+  return released;
+}
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorSignInRequest::unsafe_arena_release_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.user)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* temp = _impl_.user_;
+  _impl_.user_ = nullptr;
+  return temp;
+}
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorSignInRequest::_internal_mutable_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.user_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(GetArena());
+    _impl_.user_ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(p);
+  }
+  return _impl_.user_;
+}
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorSignInRequest::mutable_user() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* _msg = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.user)
+  return _msg;
+}
+inline void AdministratorSignInRequest::set_allocated_user(::palm::router::v1::AdministratorUpdateRequest_Item* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.user_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.user_ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInRequest.user)
 }
 
 // .google.protobuf.Duration ttl = 9;
 inline bool AdministratorSignInRequest::has_ttl() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
   return value;
 }
@@ -11223,16 +10432,16 @@ inline void AdministratorSignInRequest::unsafe_arena_set_allocated_ttl(::google:
   }
   _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.AdministratorSignInRequest.ttl)
 }
 inline ::google::protobuf::Duration* AdministratorSignInRequest::release_ttl() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::google::protobuf::Duration* released = _impl_.ttl_;
   _impl_.ttl_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -11252,7 +10461,7 @@ inline ::google::protobuf::Duration* AdministratorSignInRequest::unsafe_arena_re
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInRequest.ttl)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::google::protobuf::Duration* temp = _impl_.ttl_;
   _impl_.ttl_ = nullptr;
   return temp;
@@ -11266,7 +10475,7 @@ inline ::google::protobuf::Duration* AdministratorSignInRequest::_internal_mutab
   return _impl_.ttl_;
 }
 inline ::google::protobuf::Duration* AdministratorSignInRequest::mutable_ttl() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
   // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInRequest.ttl)
   return _msg;
@@ -11283,9 +10492,9 @@ inline void AdministratorSignInRequest::set_allocated_ttl(::google::protobuf::Du
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
@@ -11342,54 +10551,6 @@ inline void AdministratorSignInResponse::set_allocated_token(std::string* value)
     _impl_.token_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInResponse.token)
-}
-
-// string name = 2;
-inline void AdministratorSignInResponse::clear_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
-}
-inline const std::string& AdministratorSignInResponse::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSignInResponse.name)
-  return _internal_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AdministratorSignInResponse::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSignInResponse.name)
-}
-inline std::string* AdministratorSignInResponse::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSignInResponse.name)
-  return _s;
-}
-inline const std::string& AdministratorSignInResponse::_internal_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
-}
-inline void AdministratorSignInResponse::_internal_set_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
-}
-inline std::string* AdministratorSignInResponse::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* AdministratorSignInResponse::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSignInResponse.name)
-  return _impl_.name_.Release();
-}
-inline void AdministratorSignInResponse::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
-    _impl_.name_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSignInResponse.name)
 }
 
 // string locale = 11;
@@ -11554,195 +10715,147 @@ AdministratorSignInResponse::_internal_mutable_languages() {
 
 // -------------------------------------------------------------------
 
-// AdministratorSetPasswordRequest
+// AdministratorUpdateRequest_Item
 
-// string current_password = 1;
-inline void AdministratorSetPasswordRequest::clear_current_password() {
+// string name = 1;
+inline void AdministratorUpdateRequest_Item::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.current_password_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
 }
-inline const std::string& AdministratorSetPasswordRequest::current_password() const
+inline const std::string& AdministratorUpdateRequest_Item::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSetPasswordRequest.current_password)
-  return _internal_current_password();
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorUpdateRequest.Item.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AdministratorSetPasswordRequest::set_current_password(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void AdministratorUpdateRequest_Item::set_name(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.current_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorUpdateRequest.Item.name)
 }
-inline std::string* AdministratorSetPasswordRequest::mutable_current_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_current_password();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+inline std::string* AdministratorUpdateRequest_Item::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorUpdateRequest.Item.name)
   return _s;
 }
-inline const std::string& AdministratorSetPasswordRequest::_internal_current_password() const {
+inline const std::string& AdministratorUpdateRequest_Item::_internal_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.current_password_.Get();
+  return _impl_.name_.Get();
 }
-inline void AdministratorSetPasswordRequest::_internal_set_current_password(const std::string& value) {
+inline void AdministratorUpdateRequest_Item::_internal_set_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.current_password_.Set(value, GetArena());
+  _impl_.name_.Set(value, GetArena());
 }
-inline std::string* AdministratorSetPasswordRequest::_internal_mutable_current_password() {
+inline std::string* AdministratorUpdateRequest_Item::_internal_mutable_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.current_password_.Mutable( GetArena());
+  return _impl_.name_.Mutable( GetArena());
 }
-inline std::string* AdministratorSetPasswordRequest::release_current_password() {
+inline std::string* AdministratorUpdateRequest_Item::release_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSetPasswordRequest.current_password)
-  return _impl_.current_password_.Release();
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorUpdateRequest.Item.name)
+  return _impl_.name_.Release();
 }
-inline void AdministratorSetPasswordRequest::set_allocated_current_password(std::string* value) {
+inline void AdministratorUpdateRequest_Item::set_allocated_name(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.current_password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.current_password_.IsDefault()) {
-    _impl_.current_password_.Set("", GetArena());
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSetPasswordRequest.current_password)
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorUpdateRequest.Item.name)
 }
 
-// string new_password = 2;
-inline void AdministratorSetPasswordRequest::clear_new_password() {
+// string password = 2;
+inline void AdministratorUpdateRequest_Item::clear_password() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.new_password_.ClearToEmpty();
+  _impl_.password_.ClearToEmpty();
 }
-inline const std::string& AdministratorSetPasswordRequest::new_password() const
+inline const std::string& AdministratorUpdateRequest_Item::password() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorSetPasswordRequest.new_password)
-  return _internal_new_password();
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorUpdateRequest.Item.password)
+  return _internal_password();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AdministratorSetPasswordRequest::set_new_password(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void AdministratorUpdateRequest_Item::set_password(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.new_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.AdministratorUpdateRequest.Item.password)
 }
-inline std::string* AdministratorSetPasswordRequest::mutable_new_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_new_password();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+inline std::string* AdministratorUpdateRequest_Item::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorUpdateRequest.Item.password)
   return _s;
 }
-inline const std::string& AdministratorSetPasswordRequest::_internal_new_password() const {
+inline const std::string& AdministratorUpdateRequest_Item::_internal_password() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.new_password_.Get();
+  return _impl_.password_.Get();
 }
-inline void AdministratorSetPasswordRequest::_internal_set_new_password(const std::string& value) {
+inline void AdministratorUpdateRequest_Item::_internal_set_password(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.new_password_.Set(value, GetArena());
+  _impl_.password_.Set(value, GetArena());
 }
-inline std::string* AdministratorSetPasswordRequest::_internal_mutable_new_password() {
+inline std::string* AdministratorUpdateRequest_Item::_internal_mutable_password() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.new_password_.Mutable( GetArena());
+  return _impl_.password_.Mutable( GetArena());
 }
-inline std::string* AdministratorSetPasswordRequest::release_new_password() {
+inline std::string* AdministratorUpdateRequest_Item::release_password() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorSetPasswordRequest.new_password)
-  return _impl_.new_password_.Release();
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorUpdateRequest.Item.password)
+  return _impl_.password_.Release();
 }
-inline void AdministratorSetPasswordRequest::set_allocated_new_password(std::string* value) {
+inline void AdministratorUpdateRequest_Item::set_allocated_password(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.new_password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.new_password_.IsDefault()) {
-    _impl_.new_password_.Set("", GetArena());
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorSetPasswordRequest.new_password)
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorUpdateRequest.Item.password)
 }
 
 // -------------------------------------------------------------------
 
-// RuleCreateRequest
+// AdministratorUpdateRequest
 
-// string device = 1;
-inline void RuleCreateRequest::clear_device() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.ClearToEmpty();
-}
-inline const std::string& RuleCreateRequest::device() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.RuleCreateRequest.device)
-  return _internal_device();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RuleCreateRequest::set_device(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.RuleCreateRequest.device)
-}
-inline std::string* RuleCreateRequest::mutable_device() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_device();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.RuleCreateRequest.device)
-  return _s;
-}
-inline const std::string& RuleCreateRequest::_internal_device() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.device_.Get();
-}
-inline void RuleCreateRequest::_internal_set_device(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.Set(value, GetArena());
-}
-inline std::string* RuleCreateRequest::_internal_mutable_device() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.device_.Mutable( GetArena());
-}
-inline std::string* RuleCreateRequest::release_device() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.RuleCreateRequest.device)
-  return _impl_.device_.Release();
-}
-inline void RuleCreateRequest::set_allocated_device(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.device_.IsDefault()) {
-    _impl_.device_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RuleCreateRequest.device)
-}
-
-// .palm.router.v1.RuleIndexResponse.Item item = 2;
-inline bool RuleCreateRequest::has_item() const {
+// .palm.router.v1.AdministratorUpdateRequest.Item current = 1;
+inline bool AdministratorUpdateRequest::has_current() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.item_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.current_ != nullptr);
   return value;
 }
-inline void RuleCreateRequest::clear_item() {
+inline void AdministratorUpdateRequest::clear_current() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.item_ != nullptr) _impl_.item_->Clear();
+  if (_impl_.current_ != nullptr) _impl_.current_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::palm::router::v1::RuleIndexResponse_Item& RuleCreateRequest::_internal_item() const {
+inline const ::palm::router::v1::AdministratorUpdateRequest_Item& AdministratorUpdateRequest::_internal_current() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::router::v1::RuleIndexResponse_Item* p = _impl_.item_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::RuleIndexResponse_Item&>(::palm::router::v1::_RuleIndexResponse_Item_default_instance_);
+  const ::palm::router::v1::AdministratorUpdateRequest_Item* p = _impl_.current_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::AdministratorUpdateRequest_Item&>(::palm::router::v1::_AdministratorUpdateRequest_Item_default_instance_);
 }
-inline const ::palm::router::v1::RuleIndexResponse_Item& RuleCreateRequest::item() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.RuleCreateRequest.item)
-  return _internal_item();
+inline const ::palm::router::v1::AdministratorUpdateRequest_Item& AdministratorUpdateRequest::current() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorUpdateRequest.current)
+  return _internal_current();
 }
-inline void RuleCreateRequest::unsafe_arena_set_allocated_item(::palm::router::v1::RuleIndexResponse_Item* value) {
+inline void AdministratorUpdateRequest::unsafe_arena_set_allocated_current(::palm::router::v1::AdministratorUpdateRequest_Item* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.item_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.current_);
   }
-  _impl_.item_ = reinterpret_cast<::palm::router::v1::RuleIndexResponse_Item*>(value);
+  _impl_.current_ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.RuleCreateRequest.item)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.AdministratorUpdateRequest.current)
 }
-inline ::palm::router::v1::RuleIndexResponse_Item* RuleCreateRequest::release_item() {
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::release_current() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::router::v1::RuleIndexResponse_Item* released = _impl_.item_;
-  _impl_.item_ = nullptr;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* released = _impl_.current_;
+  _impl_.current_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -11756,34 +10869,34 @@ inline ::palm::router::v1::RuleIndexResponse_Item* RuleCreateRequest::release_it
   }
   return released;
 }
-inline ::palm::router::v1::RuleIndexResponse_Item* RuleCreateRequest::unsafe_arena_release_item() {
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::unsafe_arena_release_current() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.RuleCreateRequest.item)
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorUpdateRequest.current)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::router::v1::RuleIndexResponse_Item* temp = _impl_.item_;
-  _impl_.item_ = nullptr;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* temp = _impl_.current_;
+  _impl_.current_ = nullptr;
   return temp;
 }
-inline ::palm::router::v1::RuleIndexResponse_Item* RuleCreateRequest::_internal_mutable_item() {
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::_internal_mutable_current() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.item_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::RuleIndexResponse_Item>(GetArena());
-    _impl_.item_ = reinterpret_cast<::palm::router::v1::RuleIndexResponse_Item*>(p);
+  if (_impl_.current_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(GetArena());
+    _impl_.current_ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(p);
   }
-  return _impl_.item_;
+  return _impl_.current_;
 }
-inline ::palm::router::v1::RuleIndexResponse_Item* RuleCreateRequest::mutable_item() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::mutable_current() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::palm::router::v1::RuleIndexResponse_Item* _msg = _internal_mutable_item();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.RuleCreateRequest.item)
+  ::palm::router::v1::AdministratorUpdateRequest_Item* _msg = _internal_mutable_current();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorUpdateRequest.current)
   return _msg;
 }
-inline void RuleCreateRequest::set_allocated_item(::palm::router::v1::RuleIndexResponse_Item* value) {
+inline void AdministratorUpdateRequest::set_allocated_current(::palm::router::v1::AdministratorUpdateRequest_Item* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete (_impl_.item_);
+    delete (_impl_.current_);
   }
 
   if (value != nullptr) {
@@ -11796,165 +10909,104 @@ inline void RuleCreateRequest::set_allocated_item(::palm::router::v1::RuleIndexR
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.item_ = reinterpret_cast<::palm::router::v1::RuleIndexResponse_Item*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RuleCreateRequest.item)
+  _impl_.current_ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorUpdateRequest.current)
 }
 
-// -------------------------------------------------------------------
-
-// RuleUpdateRequest
-
-// uint32 id = 1;
-inline void RuleUpdateRequest::clear_id() {
+// .palm.router.v1.AdministratorUpdateRequest.Item new = 2;
+inline bool AdministratorUpdateRequest::has_new_() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.new__ != nullptr);
+  return value;
+}
+inline void AdministratorUpdateRequest::clear_new_() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = 0u;
+  if (_impl_.new__ != nullptr) _impl_.new__->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::uint32_t RuleUpdateRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.router.v1.RuleUpdateRequest.id)
-  return _internal_id();
-}
-inline void RuleUpdateRequest::set_id(::uint32_t value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.router.v1.RuleUpdateRequest.id)
-}
-inline ::uint32_t RuleUpdateRequest::_internal_id() const {
+inline const ::palm::router::v1::AdministratorUpdateRequest_Item& AdministratorUpdateRequest::_internal_new_() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.id_;
+  const ::palm::router::v1::AdministratorUpdateRequest_Item* p = _impl_.new__;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::router::v1::AdministratorUpdateRequest_Item&>(::palm::router::v1::_AdministratorUpdateRequest_Item_default_instance_);
 }
-inline void RuleUpdateRequest::_internal_set_id(::uint32_t value) {
+inline const ::palm::router::v1::AdministratorUpdateRequest_Item& AdministratorUpdateRequest::new_() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.AdministratorUpdateRequest.new)
+  return _internal_new_();
+}
+inline void AdministratorUpdateRequest::unsafe_arena_set_allocated_new_(::palm::router::v1::AdministratorUpdateRequest_Item* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// RuleIndexResponse_Item_Nat
-
-// -------------------------------------------------------------------
-
-// RuleIndexResponse_Item
-
-// uint32 id = 1;
-inline void RuleIndexResponse_Item::clear_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = 0u;
-}
-inline ::uint32_t RuleIndexResponse_Item::id() const {
-  // @@protoc_insertion_point(field_get:palm.router.v1.RuleIndexResponse.Item.id)
-  return _internal_id();
-}
-inline void RuleIndexResponse_Item::set_id(::uint32_t value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.router.v1.RuleIndexResponse.Item.id)
-}
-inline ::uint32_t RuleIndexResponse_Item::_internal_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.id_;
-}
-inline void RuleIndexResponse_Item::_internal_set_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = value;
-}
-
-// string device = 2;
-inline void RuleIndexResponse_Item::clear_device() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.ClearToEmpty();
-}
-inline const std::string& RuleIndexResponse_Item::device() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.RuleIndexResponse.Item.device)
-  return _internal_device();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RuleIndexResponse_Item::set_device(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.router.v1.RuleIndexResponse.Item.device)
-}
-inline std::string* RuleIndexResponse_Item::mutable_device() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_device();
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.RuleIndexResponse.Item.device)
-  return _s;
-}
-inline const std::string& RuleIndexResponse_Item::_internal_device() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.device_.Get();
-}
-inline void RuleIndexResponse_Item::_internal_set_device(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.Set(value, GetArena());
-}
-inline std::string* RuleIndexResponse_Item::_internal_mutable_device() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.device_.Mutable( GetArena());
-}
-inline std::string* RuleIndexResponse_Item::release_device() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.router.v1.RuleIndexResponse.Item.device)
-  return _impl_.device_.Release();
-}
-inline void RuleIndexResponse_Item::set_allocated_device(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.device_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.device_.IsDefault()) {
-    _impl_.device_.Set("", GetArena());
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.new__);
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RuleIndexResponse.Item.device)
+  _impl_.new__ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.router.v1.AdministratorUpdateRequest.new)
 }
-
-// -------------------------------------------------------------------
-
-// RuleIndexResponse
-
-// repeated .palm.router.v1.RuleIndexResponse.Item items = 1;
-inline int RuleIndexResponse::_internal_items_size() const {
-  return _internal_items().size();
-}
-inline int RuleIndexResponse::items_size() const {
-  return _internal_items_size();
-}
-inline void RuleIndexResponse::clear_items() {
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::release_new_() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.items_.Clear();
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* released = _impl_.new__;
+  _impl_.new__ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
 }
-inline ::palm::router::v1::RuleIndexResponse_Item* RuleIndexResponse::mutable_items(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:palm.router.v1.RuleIndexResponse.items)
-  return _internal_mutable_items()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>* RuleIndexResponse::mutable_items()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:palm.router.v1.RuleIndexResponse.items)
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::unsafe_arena_release_new_() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_items();
+  // @@protoc_insertion_point(field_release:palm.router.v1.AdministratorUpdateRequest.new)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* temp = _impl_.new__;
+  _impl_.new__ = nullptr;
+  return temp;
 }
-inline const ::palm::router::v1::RuleIndexResponse_Item& RuleIndexResponse::items(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.router.v1.RuleIndexResponse.items)
-  return _internal_items().Get(index);
-}
-inline ::palm::router::v1::RuleIndexResponse_Item* RuleIndexResponse::add_items() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::_internal_mutable_new_() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::palm::router::v1::RuleIndexResponse_Item* _add = _internal_mutable_items()->Add();
-  // @@protoc_insertion_point(field_add:palm.router.v1.RuleIndexResponse.items)
-  return _add;
+  if (_impl_.new__ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::router::v1::AdministratorUpdateRequest_Item>(GetArena());
+    _impl_.new__ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(p);
+  }
+  return _impl_.new__;
 }
-inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>& RuleIndexResponse::items() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:palm.router.v1.RuleIndexResponse.items)
-  return _internal_items();
+inline ::palm::router::v1::AdministratorUpdateRequest_Item* AdministratorUpdateRequest::mutable_new_() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::palm::router::v1::AdministratorUpdateRequest_Item* _msg = _internal_mutable_new_();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.AdministratorUpdateRequest.new)
+  return _msg;
 }
-inline const ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>&
-RuleIndexResponse::_internal_items() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.items_;
-}
-inline ::google::protobuf::RepeatedPtrField<::palm::router::v1::RuleIndexResponse_Item>*
-RuleIndexResponse::_internal_mutable_items() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.items_;
+inline void AdministratorUpdateRequest::set_allocated_new_(::palm::router::v1::AdministratorUpdateRequest_Item* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.new__);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.new__ = reinterpret_cast<::palm::router::v1::AdministratorUpdateRequest_Item*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.AdministratorUpdateRequest.new)
 }
 
 // -------------------------------------------------------------------
