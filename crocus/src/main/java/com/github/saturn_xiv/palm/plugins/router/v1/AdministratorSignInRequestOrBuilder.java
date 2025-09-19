@@ -10,28 +10,19 @@ public interface AdministratorSignInRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string name = 1;</code>
-   * @return The name.
+   * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+   * @return Whether the user field is set.
    */
-  java.lang.String getName();
+  boolean hasUser();
   /**
-   * <code>string name = 1;</code>
-   * @return The bytes for name.
+   * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
+   * @return The user.
    */
-  com.google.protobuf.ByteString
-      getNameBytes();
-
+  com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.Item getUser();
   /**
-   * <code>string password = 2;</code>
-   * @return The password.
+   * <code>.palm.router.v1.AdministratorUpdateRequest.Item user = 1;</code>
    */
-  java.lang.String getPassword();
-  /**
-   * <code>string password = 2;</code>
-   * @return The bytes for password.
-   */
-  com.google.protobuf.ByteString
-      getPasswordBytes();
+  com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.ItemOrBuilder getUserOrBuilder();
 
   /**
    * <code>.google.protobuf.Duration ttl = 9;</code>

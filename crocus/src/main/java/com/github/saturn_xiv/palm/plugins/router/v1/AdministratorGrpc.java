@@ -3,9 +3,6 @@ package com.github.saturn_xiv.palm.plugins.router.v1;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * ----------------------------------------------------------------------------
- * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.71.0)",
@@ -80,35 +77,35 @@ public final class AdministratorGrpc {
     return getSignOutMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest,
-      com.google.protobuf.Empty> getSetPasswordMethod;
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest,
+      com.google.protobuf.Empty> getUpdateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "SetPassword",
-      requestType = com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest.class,
+      fullMethodName = SERVICE_NAME + '/' + "Update",
+      requestType = com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest,
-      com.google.protobuf.Empty> getSetPasswordMethod() {
-    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest, com.google.protobuf.Empty> getSetPasswordMethod;
-    if ((getSetPasswordMethod = AdministratorGrpc.getSetPasswordMethod) == null) {
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest,
+      com.google.protobuf.Empty> getUpdateMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest, com.google.protobuf.Empty> getUpdateMethod;
+    if ((getUpdateMethod = AdministratorGrpc.getUpdateMethod) == null) {
       synchronized (AdministratorGrpc.class) {
-        if ((getSetPasswordMethod = AdministratorGrpc.getSetPasswordMethod) == null) {
-          AdministratorGrpc.getSetPasswordMethod = getSetPasswordMethod =
-              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest, com.google.protobuf.Empty>newBuilder()
+        if ((getUpdateMethod = AdministratorGrpc.getUpdateMethod) == null) {
+          AdministratorGrpc.getUpdateMethod = getUpdateMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SetPassword"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Update"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest.getDefaultInstance()))
+                  com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new AdministratorMethodDescriptorSupplier("SetPassword"))
+              .setSchemaDescriptor(new AdministratorMethodDescriptorSupplier("Update"))
               .build();
         }
       }
     }
-    return getSetPasswordMethod;
+    return getUpdateMethod;
   }
 
   /**
@@ -171,9 +168,6 @@ public final class AdministratorGrpc {
   }
 
   /**
-   * <pre>
-   * ----------------------------------------------------------------------------
-   * </pre>
    */
   public interface AsyncService {
 
@@ -193,17 +187,14 @@ public final class AdministratorGrpc {
 
     /**
      */
-    default void setPassword(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest request,
+    default void update(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetPasswordMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateMethod(), responseObserver);
     }
   }
 
   /**
    * Base class for the server implementation of the service Administrator.
-   * <pre>
-   * ----------------------------------------------------------------------------
-   * </pre>
    */
   public static abstract class AdministratorImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -215,9 +206,6 @@ public final class AdministratorGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service Administrator.
-   * <pre>
-   * ----------------------------------------------------------------------------
-   * </pre>
    */
   public static final class AdministratorStub
       extends io.grpc.stub.AbstractAsyncStub<AdministratorStub> {
@@ -250,18 +238,15 @@ public final class AdministratorGrpc {
 
     /**
      */
-    public void setPassword(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest request,
+    public void update(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getSetPasswordMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Administrator.
-   * <pre>
-   * ----------------------------------------------------------------------------
-   * </pre>
    */
   public static final class AdministratorBlockingV2Stub
       extends io.grpc.stub.AbstractBlockingStub<AdministratorBlockingV2Stub> {
@@ -292,17 +277,14 @@ public final class AdministratorGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty setPassword(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest request) {
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getSetPasswordMethod(), getCallOptions(), request);
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
   }
 
   /**
    * A stub to allow clients to do limited synchronous rpc calls to service Administrator.
-   * <pre>
-   * ----------------------------------------------------------------------------
-   * </pre>
    */
   public static final class AdministratorBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<AdministratorBlockingStub> {
@@ -333,17 +315,14 @@ public final class AdministratorGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty setPassword(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest request) {
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getSetPasswordMethod(), getCallOptions(), request);
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
   }
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service Administrator.
-   * <pre>
-   * ----------------------------------------------------------------------------
-   * </pre>
    */
   public static final class AdministratorFutureStub
       extends io.grpc.stub.AbstractFutureStub<AdministratorFutureStub> {
@@ -376,16 +355,16 @@ public final class AdministratorGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> setPassword(
-        com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> update(
+        com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getSetPasswordMethod(), getCallOptions()), request);
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_SIGN_IN = 0;
   private static final int METHODID_SIGN_OUT = 1;
-  private static final int METHODID_SET_PASSWORD = 2;
+  private static final int METHODID_UPDATE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -412,8 +391,8 @@ public final class AdministratorGrpc {
           serviceImpl.signOut((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
-        case METHODID_SET_PASSWORD:
-          serviceImpl.setPassword((com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest) request,
+        case METHODID_UPDATE:
+          serviceImpl.update((com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -449,12 +428,12 @@ public final class AdministratorGrpc {
               com.google.protobuf.Empty>(
                 service, METHODID_SIGN_OUT)))
         .addMethod(
-          getSetPasswordMethod(),
+          getUpdateMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.github.saturn_xiv.palm.plugins.router.v1.AdministratorSetPasswordRequest,
+              com.github.saturn_xiv.palm.plugins.router.v1.AdministratorUpdateRequest,
               com.google.protobuf.Empty>(
-                service, METHODID_SET_PASSWORD)))
+                service, METHODID_UPDATE)))
         .build();
   }
 
@@ -505,7 +484,7 @@ public final class AdministratorGrpc {
               .setSchemaDescriptor(new AdministratorFileDescriptorSupplier())
               .addMethod(getSignInMethod())
               .addMethod(getSignOutMethod())
-              .addMethod(getSetPasswordMethod())
+              .addMethod(getUpdateMethod())
               .build();
         }
       }

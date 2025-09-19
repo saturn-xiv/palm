@@ -161,6 +161,168 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(enum_scope:palm.router.v1.Firewall.Protocol)
   }
 
+  /**
+   * Protobuf enum {@code palm.router.v1.Firewall.Weekday}
+   */
+  public enum Weekday
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>Sun = 0;</code>
+     */
+    Sun(0),
+    /**
+     * <code>Mon = 1;</code>
+     */
+    Mon(1),
+    /**
+     * <code>Tue = 2;</code>
+     */
+    Tue(2),
+    /**
+     * <code>Wed = 3;</code>
+     */
+    Wed(3),
+    /**
+     * <code>Thu = 4;</code>
+     */
+    Thu(4),
+    /**
+     * <code>Fri = 5;</code>
+     */
+    Fri(5),
+    /**
+     * <code>Sat = 6;</code>
+     */
+    Sat(6),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        Weekday.class.getName());
+    }
+    /**
+     * <code>Sun = 0;</code>
+     */
+    public static final int Sun_VALUE = 0;
+    /**
+     * <code>Mon = 1;</code>
+     */
+    public static final int Mon_VALUE = 1;
+    /**
+     * <code>Tue = 2;</code>
+     */
+    public static final int Tue_VALUE = 2;
+    /**
+     * <code>Wed = 3;</code>
+     */
+    public static final int Wed_VALUE = 3;
+    /**
+     * <code>Thu = 4;</code>
+     */
+    public static final int Thu_VALUE = 4;
+    /**
+     * <code>Fri = 5;</code>
+     */
+    public static final int Fri_VALUE = 5;
+    /**
+     * <code>Sat = 6;</code>
+     */
+    public static final int Sat_VALUE = 6;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static Weekday valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static Weekday forNumber(int value) {
+      switch (value) {
+        case 0: return Sun;
+        case 1: return Mon;
+        case 2: return Tue;
+        case 3: return Wed;
+        case 4: return Thu;
+        case 5: return Fri;
+        case 6: return Sat;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Weekday>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Weekday> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Weekday>() {
+            public Weekday findValueByNumber(int number) {
+              return Weekday.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final Weekday[] VALUES = values();
+
+    public static Weekday valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Weekday(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:palm.router.v1.Firewall.Weekday)
+  }
+
   public interface InputOrBuilder extends
       // @@protoc_insertion_point(interface_extends:palm.router.v1.Firewall.Input)
       com.google.protobuf.MessageOrBuilder {
@@ -695,6 +857,1282 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Input getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TimeRangeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.router.v1.Firewall.TimeRange)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+     * @return Whether the begin field is set.
+     */
+    boolean hasBegin();
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+     * @return The begin.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getBegin();
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder getBeginOrBuilder();
+
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+     * @return Whether the end field is set.
+     */
+    boolean hasEnd();
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+     * @return The end.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getEnd();
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder getEndOrBuilder();
+  }
+  /**
+   * Protobuf type {@code palm.router.v1.Firewall.TimeRange}
+   */
+  public static final class TimeRange extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.router.v1.Firewall.TimeRange)
+      TimeRangeOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        TimeRange.class.getName());
+    }
+    // Use TimeRange.newBuilder() to construct.
+    private TimeRange(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private TimeRange() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.class, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder.class);
+    }
+
+    public interface ItemOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:palm.router.v1.Firewall.TimeRange.Item)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>uint32 hour = 1;</code>
+       * @return The hour.
+       */
+      int getHour();
+
+      /**
+       * <code>uint32 minute = 2;</code>
+       * @return The minute.
+       */
+      int getMinute();
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Firewall.TimeRange.Item}
+     */
+    public static final class Item extends
+        com.google.protobuf.GeneratedMessage implements
+        // @@protoc_insertion_point(message_implements:palm.router.v1.Firewall.TimeRange.Item)
+        ItemOrBuilder {
+    private static final long serialVersionUID = 0L;
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 29,
+          /* patch= */ 5,
+          /* suffix= */ "",
+          Item.class.getName());
+      }
+      // Use Item.newBuilder() to construct.
+      private Item(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+      }
+      private Item() {
+      }
+
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_Item_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_Item_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.class, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder.class);
+      }
+
+      public static final int HOUR_FIELD_NUMBER = 1;
+      private int hour_ = 0;
+      /**
+       * <code>uint32 hour = 1;</code>
+       * @return The hour.
+       */
+      @java.lang.Override
+      public int getHour() {
+        return hour_;
+      }
+
+      public static final int MINUTE_FIELD_NUMBER = 2;
+      private int minute_ = 0;
+      /**
+       * <code>uint32 minute = 2;</code>
+       * @return The minute.
+       */
+      @java.lang.Override
+      public int getMinute() {
+        return minute_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (hour_ != 0) {
+          output.writeUInt32(1, hour_);
+        }
+        if (minute_ != 0) {
+          output.writeUInt32(2, minute_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (hour_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32Size(1, hour_);
+        }
+        if (minute_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32Size(2, minute_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item)) {
+          return super.equals(obj);
+        }
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item other = (com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item) obj;
+
+        if (getHour()
+            != other.getHour()) return false;
+        if (getMinute()
+            != other.getMinute()) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + HOUR_FIELD_NUMBER;
+        hash = (53 * hash) + getHour();
+        hash = (37 * hash) + MINUTE_FIELD_NUMBER;
+        hash = (53 * hash) + getMinute();
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessage
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code palm.router.v1.Firewall.TimeRange.Item}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:palm.router.v1.Firewall.TimeRange.Item)
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_Item_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_Item_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.class, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder.class);
+        }
+
+        // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.newBuilder()
+        private Builder() {
+
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          bitField0_ = 0;
+          hour_ = 0;
+          minute_ = 0;
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_Item_descriptor;
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getDefaultInstanceForType() {
+          return com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item build() {
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item buildPartial() {
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item result = new com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item(this);
+          if (bitField0_ != 0) { buildPartial0(result); }
+          onBuilt();
+          return result;
+        }
+
+        private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.hour_ = hour_;
+          }
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.minute_ = minute_;
+          }
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item) {
+            return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item other) {
+          if (other == com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance()) return this;
+          if (other.getHour() != 0) {
+            setHour(other.getHour());
+          }
+          if (other.getMinute() != 0) {
+            setMinute(other.getMinute());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 8: {
+                  hour_ = input.readUInt32();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 8
+                case 16: {
+                  minute_ = input.readUInt32();
+                  bitField0_ |= 0x00000002;
+                  break;
+                } // case 16
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.unwrapIOException();
+          } finally {
+            onChanged();
+          } // finally
+          return this;
+        }
+        private int bitField0_;
+
+        private int hour_ ;
+        /**
+         * <code>uint32 hour = 1;</code>
+         * @return The hour.
+         */
+        @java.lang.Override
+        public int getHour() {
+          return hour_;
+        }
+        /**
+         * <code>uint32 hour = 1;</code>
+         * @param value The hour to set.
+         * @return This builder for chaining.
+         */
+        public Builder setHour(int value) {
+
+          hour_ = value;
+          bitField0_ |= 0x00000001;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>uint32 hour = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearHour() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          hour_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int minute_ ;
+        /**
+         * <code>uint32 minute = 2;</code>
+         * @return The minute.
+         */
+        @java.lang.Override
+        public int getMinute() {
+          return minute_;
+        }
+        /**
+         * <code>uint32 minute = 2;</code>
+         * @param value The minute to set.
+         * @return This builder for chaining.
+         */
+        public Builder setMinute(int value) {
+
+          minute_ = value;
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>uint32 minute = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearMinute() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          minute_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:palm.router.v1.Firewall.TimeRange.Item)
+      }
+
+      // @@protoc_insertion_point(class_scope:palm.router.v1.Firewall.TimeRange.Item)
+      private static final com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item();
+      }
+
+      public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Item>
+          PARSER = new com.google.protobuf.AbstractParser<Item>() {
+        @java.lang.Override
+        public Item parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
+        }
+      };
+
+      public static com.google.protobuf.Parser<Item> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Item> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    private int bitField0_;
+    public static final int BEGIN_FIELD_NUMBER = 1;
+    private com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item begin_;
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+     * @return Whether the begin field is set.
+     */
+    @java.lang.Override
+    public boolean hasBegin() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+     * @return The begin.
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getBegin() {
+      return begin_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : begin_;
+    }
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder getBeginOrBuilder() {
+      return begin_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : begin_;
+    }
+
+    public static final int END_FIELD_NUMBER = 2;
+    private com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item end_;
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+     * @return Whether the end field is set.
+     */
+    @java.lang.Override
+    public boolean hasEnd() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+     * @return The end.
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getEnd() {
+      return end_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : end_;
+    }
+    /**
+     * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder getEndOrBuilder() {
+      return end_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : end_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(1, getBegin());
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        output.writeMessage(2, getEnd());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getBegin());
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getEnd());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange other = (com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange) obj;
+
+      if (hasBegin() != other.hasBegin()) return false;
+      if (hasBegin()) {
+        if (!getBegin()
+            .equals(other.getBegin())) return false;
+      }
+      if (hasEnd() != other.hasEnd()) return false;
+      if (hasEnd()) {
+        if (!getEnd()
+            .equals(other.getEnd())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasBegin()) {
+        hash = (37 * hash) + BEGIN_FIELD_NUMBER;
+        hash = (53 * hash) + getBegin().hashCode();
+      }
+      if (hasEnd()) {
+        hash = (37 * hash) + END_FIELD_NUMBER;
+        hash = (53 * hash) + getEnd().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Firewall.TimeRange}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.router.v1.Firewall.TimeRange)
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.class, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getBeginFieldBuilder();
+          getEndFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        begin_ = null;
+        if (beginBuilder_ != null) {
+          beginBuilder_.dispose();
+          beginBuilder_ = null;
+        }
+        end_ = null;
+        if (endBuilder_ != null) {
+          endBuilder_.dispose();
+          endBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_TimeRange_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange build() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange buildPartial() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange result = new com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.begin_ = beginBuilder_ == null
+              ? begin_
+              : beginBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.end_ = endBuilder_ == null
+              ? end_
+              : endBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange other) {
+        if (other == com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance()) return this;
+        if (other.hasBegin()) {
+          mergeBegin(other.getBegin());
+        }
+        if (other.hasEnd()) {
+          mergeEnd(other.getEnd());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getBeginFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getEndFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item begin_;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder> beginBuilder_;
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       * @return Whether the begin field is set.
+       */
+      public boolean hasBegin() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       * @return The begin.
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getBegin() {
+        if (beginBuilder_ == null) {
+          return begin_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : begin_;
+        } else {
+          return beginBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      public Builder setBegin(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item value) {
+        if (beginBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          begin_ = value;
+        } else {
+          beginBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      public Builder setBegin(
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder builderForValue) {
+        if (beginBuilder_ == null) {
+          begin_ = builderForValue.build();
+        } else {
+          beginBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      public Builder mergeBegin(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item value) {
+        if (beginBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            begin_ != null &&
+            begin_ != com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance()) {
+            getBeginBuilder().mergeFrom(value);
+          } else {
+            begin_ = value;
+          }
+        } else {
+          beginBuilder_.mergeFrom(value);
+        }
+        if (begin_ != null) {
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      public Builder clearBegin() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        begin_ = null;
+        if (beginBuilder_ != null) {
+          beginBuilder_.dispose();
+          beginBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder getBeginBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getBeginFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder getBeginOrBuilder() {
+        if (beginBuilder_ != null) {
+          return beginBuilder_.getMessageOrBuilder();
+        } else {
+          return begin_ == null ?
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : begin_;
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item begin = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder> 
+          getBeginFieldBuilder() {
+        if (beginBuilder_ == null) {
+          beginBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder>(
+                  getBegin(),
+                  getParentForChildren(),
+                  isClean());
+          begin_ = null;
+        }
+        return beginBuilder_;
+      }
+
+      private com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item end_;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder> endBuilder_;
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       * @return Whether the end field is set.
+       */
+      public boolean hasEnd() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       * @return The end.
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item getEnd() {
+        if (endBuilder_ == null) {
+          return end_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : end_;
+        } else {
+          return endBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      public Builder setEnd(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item value) {
+        if (endBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          end_ = value;
+        } else {
+          endBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      public Builder setEnd(
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder builderForValue) {
+        if (endBuilder_ == null) {
+          end_ = builderForValue.build();
+        } else {
+          endBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      public Builder mergeEnd(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item value) {
+        if (endBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0) &&
+            end_ != null &&
+            end_ != com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance()) {
+            getEndBuilder().mergeFrom(value);
+          } else {
+            end_ = value;
+          }
+        } else {
+          endBuilder_.mergeFrom(value);
+        }
+        if (end_ != null) {
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      public Builder clearEnd() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        end_ = null;
+        if (endBuilder_ != null) {
+          endBuilder_.dispose();
+          endBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder getEndBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getEndFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder getEndOrBuilder() {
+        if (endBuilder_ != null) {
+          return endBuilder_.getMessageOrBuilder();
+        } else {
+          return end_ == null ?
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.getDefaultInstance() : end_;
+        }
+      }
+      /**
+       * <code>.palm.router.v1.Firewall.TimeRange.Item end = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder> 
+          getEndFieldBuilder() {
+        if (endBuilder_ == null) {
+          endBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Item.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.ItemOrBuilder>(
+                  getEnd(),
+                  getParentForChildren(),
+                  isClean());
+          end_ = null;
+        }
+        return endBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.router.v1.Firewall.TimeRange)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.router.v1.Firewall.TimeRange)
+    private static final com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TimeRange>
+        PARSER = new com.google.protobuf.AbstractParser<TimeRange>() {
+      @java.lang.Override
+      public TimeRange parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TimeRange> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TimeRange> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2024,6 +3462,1416 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Nat getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface OutputOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.router.v1.Firewall.Output)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @return A list containing the weekdays.
+     */
+    java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday> getWeekdaysList();
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @return The count of weekdays.
+     */
+    int getWeekdaysCount();
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @param index The index of the element to return.
+     * @return The weekdays at the given index.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday getWeekdays(int index);
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @return A list containing the enum numeric values on the wire for weekdays.
+     */
+    java.util.List<java.lang.Integer>
+    getWeekdaysValueList();
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @param index The index of the value to return.
+     * @return The enum numeric value on the wire of weekdays at the given index.
+     */
+    int getWeekdaysValue(int index);
+
+    /**
+     * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+     * @return Whether the timeRange field is set.
+     */
+    boolean hasTimeRange();
+    /**
+     * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+     * @return The timeRange.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange getTimeRange();
+    /**
+     * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder getTimeRangeOrBuilder();
+
+    /**
+     * <code>string host = 11;</code>
+     * @return Whether the host field is set.
+     */
+    boolean hasHost();
+    /**
+     * <code>string host = 11;</code>
+     * @return The host.
+     */
+    java.lang.String getHost();
+    /**
+     * <code>string host = 11;</code>
+     * @return The bytes for host.
+     */
+    com.google.protobuf.ByteString
+        getHostBytes();
+
+    /**
+     * <pre>
+     * iftop KB
+     * </pre>
+     *
+     * <code>uint32 speed = 12;</code>
+     * @return Whether the speed field is set.
+     */
+    boolean hasSpeed();
+    /**
+     * <pre>
+     * iftop KB
+     * </pre>
+     *
+     * <code>uint32 speed = 12;</code>
+     * @return The speed.
+     */
+    int getSpeed();
+
+    /**
+     * <code>string mac = 99;</code>
+     * @return The mac.
+     */
+    java.lang.String getMac();
+    /**
+     * <code>string mac = 99;</code>
+     * @return The bytes for mac.
+     */
+    com.google.protobuf.ByteString
+        getMacBytes();
+
+    com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.LimitCase getLimitCase();
+  }
+  /**
+   * Protobuf type {@code palm.router.v1.Firewall.Output}
+   */
+  public static final class Output extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.router.v1.Firewall.Output)
+      OutputOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        Output.class.getName());
+    }
+    // Use Output.newBuilder() to construct.
+    private Output(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Output() {
+      weekdays_ = emptyIntList();
+      mac_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_Output_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_Output_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.class, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.Builder.class);
+    }
+
+    private int bitField0_;
+    private int limitCase_ = 0;
+    @SuppressWarnings("serial")
+    private java.lang.Object limit_;
+    public enum LimitCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      HOST(11),
+      SPEED(12),
+      LIMIT_NOT_SET(0);
+      private final int value;
+      private LimitCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static LimitCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static LimitCase forNumber(int value) {
+        switch (value) {
+          case 11: return HOST;
+          case 12: return SPEED;
+          case 0: return LIMIT_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public LimitCase
+    getLimitCase() {
+      return LimitCase.forNumber(
+          limitCase_);
+    }
+
+    public static final int WEEKDAYS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.Internal.IntList weekdays_;
+    private static final com.google.protobuf.Internal.IntListAdapter.IntConverter<
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday> weekdays_converter_ =
+            new com.google.protobuf.Internal.IntListAdapter.IntConverter<
+                com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday>() {
+              public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday convert(int from) {
+                com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday result = com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday.forNumber(from);
+                return result == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday.UNRECOGNIZED : result;
+              }
+            };
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @return A list containing the weekdays.
+     */
+    @java.lang.Override
+    public java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday> getWeekdaysList() {
+      return new com.google.protobuf.Internal.IntListAdapter<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday>(weekdays_, weekdays_converter_);
+    }
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @return The count of weekdays.
+     */
+    @java.lang.Override
+    public int getWeekdaysCount() {
+      return weekdays_.size();
+    }
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @param index The index of the element to return.
+     * @return The weekdays at the given index.
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday getWeekdays(int index) {
+      return weekdays_converter_.convert(weekdays_.getInt(index));
+    }
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @return A list containing the enum numeric values on the wire for weekdays.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+    getWeekdaysValueList() {
+      return weekdays_;
+    }
+    /**
+     * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+     * @param index The index of the value to return.
+     * @return The enum numeric value on the wire of weekdays at the given index.
+     */
+    @java.lang.Override
+    public int getWeekdaysValue(int index) {
+      return weekdays_.getInt(index);
+    }
+    private int weekdaysMemoizedSerializedSize;
+
+    public static final int TIME_RANGE_FIELD_NUMBER = 2;
+    private com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange timeRange_;
+    /**
+     * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+     * @return Whether the timeRange field is set.
+     */
+    @java.lang.Override
+    public boolean hasTimeRange() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+     * @return The timeRange.
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange getTimeRange() {
+      return timeRange_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance() : timeRange_;
+    }
+    /**
+     * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+     */
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder getTimeRangeOrBuilder() {
+      return timeRange_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance() : timeRange_;
+    }
+
+    public static final int HOST_FIELD_NUMBER = 11;
+    /**
+     * <code>string host = 11;</code>
+     * @return Whether the host field is set.
+     */
+    public boolean hasHost() {
+      return limitCase_ == 11;
+    }
+    /**
+     * <code>string host = 11;</code>
+     * @return The host.
+     */
+    public java.lang.String getHost() {
+      java.lang.Object ref = "";
+      if (limitCase_ == 11) {
+        ref = limit_;
+      }
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (limitCase_ == 11) {
+          limit_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>string host = 11;</code>
+     * @return The bytes for host.
+     */
+    public com.google.protobuf.ByteString
+        getHostBytes() {
+      java.lang.Object ref = "";
+      if (limitCase_ == 11) {
+        ref = limit_;
+      }
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        if (limitCase_ == 11) {
+          limit_ = b;
+        }
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SPEED_FIELD_NUMBER = 12;
+    /**
+     * <pre>
+     * iftop KB
+     * </pre>
+     *
+     * <code>uint32 speed = 12;</code>
+     * @return Whether the speed field is set.
+     */
+    @java.lang.Override
+    public boolean hasSpeed() {
+      return limitCase_ == 12;
+    }
+    /**
+     * <pre>
+     * iftop KB
+     * </pre>
+     *
+     * <code>uint32 speed = 12;</code>
+     * @return The speed.
+     */
+    @java.lang.Override
+    public int getSpeed() {
+      if (limitCase_ == 12) {
+        return (java.lang.Integer) limit_;
+      }
+      return 0;
+    }
+
+    public static final int MAC_FIELD_NUMBER = 99;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object mac_ = "";
+    /**
+     * <code>string mac = 99;</code>
+     * @return The mac.
+     */
+    @java.lang.Override
+    public java.lang.String getMac() {
+      java.lang.Object ref = mac_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mac_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string mac = 99;</code>
+     * @return The bytes for mac.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMacBytes() {
+      java.lang.Object ref = mac_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mac_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getWeekdaysList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(weekdaysMemoizedSerializedSize);
+      }
+      for (int i = 0; i < weekdays_.size(); i++) {
+        output.writeEnumNoTag(weekdays_.getInt(i));
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(2, getTimeRange());
+      }
+      if (limitCase_ == 11) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 11, limit_);
+      }
+      if (limitCase_ == 12) {
+        output.writeUInt32(
+            12, (int)((java.lang.Integer) limit_));
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(mac_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 99, mac_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < weekdays_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(weekdays_.getInt(i));
+        }
+        size += dataSize;
+        if (!getWeekdaysList().isEmpty()) {  size += 1;
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(dataSize);
+        }weekdaysMemoizedSerializedSize = dataSize;
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getTimeRange());
+      }
+      if (limitCase_ == 11) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(11, limit_);
+      }
+      if (limitCase_ == 12) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(
+              12, (int)((java.lang.Integer) limit_));
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(mac_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(99, mac_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output other = (com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output) obj;
+
+      if (!weekdays_.equals(other.weekdays_)) return false;
+      if (hasTimeRange() != other.hasTimeRange()) return false;
+      if (hasTimeRange()) {
+        if (!getTimeRange()
+            .equals(other.getTimeRange())) return false;
+      }
+      if (!getMac()
+          .equals(other.getMac())) return false;
+      if (!getLimitCase().equals(other.getLimitCase())) return false;
+      switch (limitCase_) {
+        case 11:
+          if (!getHost()
+              .equals(other.getHost())) return false;
+          break;
+        case 12:
+          if (getSpeed()
+              != other.getSpeed()) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getWeekdaysCount() > 0) {
+        hash = (37 * hash) + WEEKDAYS_FIELD_NUMBER;
+        hash = (53 * hash) + weekdays_.hashCode();
+      }
+      if (hasTimeRange()) {
+        hash = (37 * hash) + TIME_RANGE_FIELD_NUMBER;
+        hash = (53 * hash) + getTimeRange().hashCode();
+      }
+      hash = (37 * hash) + MAC_FIELD_NUMBER;
+      hash = (53 * hash) + getMac().hashCode();
+      switch (limitCase_) {
+        case 11:
+          hash = (37 * hash) + HOST_FIELD_NUMBER;
+          hash = (53 * hash) + getHost().hashCode();
+          break;
+        case 12:
+          hash = (37 * hash) + SPEED_FIELD_NUMBER;
+          hash = (53 * hash) + getSpeed();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Firewall.Output}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.router.v1.Firewall.Output)
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.OutputOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_Output_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_Output_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.class, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getTimeRangeFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        weekdays_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        timeRange_ = null;
+        if (timeRangeBuilder_ != null) {
+          timeRangeBuilder_.dispose();
+          timeRangeBuilder_ = null;
+        }
+        mac_ = "";
+        limitCase_ = 0;
+        limit_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Firewall_Output_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output build() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output buildPartial() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output result = new com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output result) {
+        if (((bitField0_ & 0x00000001) != 0)) {
+          weekdays_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.weekdays_ = weekdays_;
+      }
+
+      private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.timeRange_ = timeRangeBuilder_ == null
+              ? timeRange_
+              : timeRangeBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.mac_ = mac_;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      private void buildPartialOneofs(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output result) {
+        result.limitCase_ = limitCase_;
+        result.limit_ = this.limit_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output other) {
+        if (other == com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output.getDefaultInstance()) return this;
+        if (!other.weekdays_.isEmpty()) {
+          if (weekdays_.isEmpty()) {
+            weekdays_ = other.weekdays_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureWeekdaysIsMutable();
+            weekdays_.addAll(other.weekdays_);
+          }
+          onChanged();
+        }
+        if (other.hasTimeRange()) {
+          mergeTimeRange(other.getTimeRange());
+        }
+        if (!other.getMac().isEmpty()) {
+          mac_ = other.mac_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        switch (other.getLimitCase()) {
+          case HOST: {
+            limitCase_ = 11;
+            limit_ = other.limit_;
+            onChanged();
+            break;
+          }
+          case SPEED: {
+            setSpeed(other.getSpeed());
+            break;
+          }
+          case LIMIT_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                int tmpRaw = input.readEnum();
+                ensureWeekdaysIsMutable();
+                weekdays_.addInt(tmpRaw);
+                break;
+              } // case 8
+              case 10: {
+                int length = input.readRawVarint32();
+                int oldLimit = input.pushLimit(length);
+                while(input.getBytesUntilLimit() > 0) {
+                  int tmpRaw = input.readEnum();
+                  ensureWeekdaysIsMutable();
+                  weekdays_.addInt(tmpRaw);
+                }
+                input.popLimit(oldLimit);
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getTimeRangeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 90: {
+                java.lang.String s = input.readStringRequireUtf8();
+                limitCase_ = 11;
+                limit_ = s;
+                break;
+              } // case 90
+              case 96: {
+                limit_ = input.readUInt32();
+                limitCase_ = 12;
+                break;
+              } // case 96
+              case 794: {
+                mac_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 794
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int limitCase_ = 0;
+      private java.lang.Object limit_;
+      public LimitCase
+          getLimitCase() {
+        return LimitCase.forNumber(
+            limitCase_);
+      }
+
+      public Builder clearLimit() {
+        limitCase_ = 0;
+        limit_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.Internal.IntList weekdays_ =
+        emptyIntList();
+      private void ensureWeekdaysIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          weekdays_ = makeMutableCopy(weekdays_);
+          bitField0_ |= 0x00000001;
+        }
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @return A list containing the weekdays.
+       */
+      public java.util.List<com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday> getWeekdaysList() {
+        return new com.google.protobuf.Internal.IntListAdapter<
+            com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday>(weekdays_, weekdays_converter_);
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @return The count of weekdays.
+       */
+      public int getWeekdaysCount() {
+        return weekdays_.size();
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param index The index of the element to return.
+       * @return The weekdays at the given index.
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday getWeekdays(int index) {
+        return weekdays_converter_.convert(weekdays_.getInt(index));
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The weekdays to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWeekdays(
+          int index, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureWeekdaysIsMutable();
+        weekdays_.setInt(index, value.getNumber());
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param value The weekdays to add.
+       * @return This builder for chaining.
+       */
+      public Builder addWeekdays(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureWeekdaysIsMutable();
+        weekdays_.addInt(value.getNumber());
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param values The weekdays to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllWeekdays(
+          java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday> values) {
+        ensureWeekdaysIsMutable();
+        for (com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Weekday value : values) {
+          weekdays_.addInt(value.getNumber());
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWeekdays() {
+        weekdays_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @return A list containing the enum numeric values on the wire for weekdays.
+       */
+      public java.util.List<java.lang.Integer>
+      getWeekdaysValueList() {
+        return java.util.Collections.unmodifiableList(weekdays_);
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param index The index of the value to return.
+       * @return The enum numeric value on the wire of weekdays at the given index.
+       */
+      public int getWeekdaysValue(int index) {
+        return weekdays_.getInt(index);
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The enum numeric value on the wire for weekdays to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWeekdaysValue(
+          int index, int value) {
+        ensureWeekdaysIsMutable();
+        weekdays_.setInt(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param value The enum numeric value on the wire for weekdays to add.
+       * @return This builder for chaining.
+       */
+      public Builder addWeekdaysValue(int value) {
+        ensureWeekdaysIsMutable();
+        weekdays_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .palm.router.v1.Firewall.Weekday weekdays = 1;</code>
+       * @param values The enum numeric values on the wire for weekdays to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllWeekdaysValue(
+          java.lang.Iterable<java.lang.Integer> values) {
+        ensureWeekdaysIsMutable();
+        for (int value : values) {
+          weekdays_.addInt(value);
+        }
+        onChanged();
+        return this;
+      }
+
+      private com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange timeRange_;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder> timeRangeBuilder_;
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       * @return Whether the timeRange field is set.
+       */
+      public boolean hasTimeRange() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       * @return The timeRange.
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange getTimeRange() {
+        if (timeRangeBuilder_ == null) {
+          return timeRange_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance() : timeRange_;
+        } else {
+          return timeRangeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      public Builder setTimeRange(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange value) {
+        if (timeRangeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          timeRange_ = value;
+        } else {
+          timeRangeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      public Builder setTimeRange(
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder builderForValue) {
+        if (timeRangeBuilder_ == null) {
+          timeRange_ = builderForValue.build();
+        } else {
+          timeRangeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      public Builder mergeTimeRange(com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange value) {
+        if (timeRangeBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0) &&
+            timeRange_ != null &&
+            timeRange_ != com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance()) {
+            getTimeRangeBuilder().mergeFrom(value);
+          } else {
+            timeRange_ = value;
+          }
+        } else {
+          timeRangeBuilder_.mergeFrom(value);
+        }
+        if (timeRange_ != null) {
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      public Builder clearTimeRange() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        timeRange_ = null;
+        if (timeRangeBuilder_ != null) {
+          timeRangeBuilder_.dispose();
+          timeRangeBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder getTimeRangeBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getTimeRangeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder getTimeRangeOrBuilder() {
+        if (timeRangeBuilder_ != null) {
+          return timeRangeBuilder_.getMessageOrBuilder();
+        } else {
+          return timeRange_ == null ?
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.getDefaultInstance() : timeRange_;
+        }
+      }
+      /**
+       * <code>optional .palm.router.v1.Firewall.TimeRange time_range = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder> 
+          getTimeRangeFieldBuilder() {
+        if (timeRangeBuilder_ == null) {
+          timeRangeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRange.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.TimeRangeOrBuilder>(
+                  getTimeRange(),
+                  getParentForChildren(),
+                  isClean());
+          timeRange_ = null;
+        }
+        return timeRangeBuilder_;
+      }
+
+      /**
+       * <code>string host = 11;</code>
+       * @return Whether the host field is set.
+       */
+      @java.lang.Override
+      public boolean hasHost() {
+        return limitCase_ == 11;
+      }
+      /**
+       * <code>string host = 11;</code>
+       * @return The host.
+       */
+      @java.lang.Override
+      public java.lang.String getHost() {
+        java.lang.Object ref = "";
+        if (limitCase_ == 11) {
+          ref = limit_;
+        }
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (limitCase_ == 11) {
+            limit_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string host = 11;</code>
+       * @return The bytes for host.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getHostBytes() {
+        java.lang.Object ref = "";
+        if (limitCase_ == 11) {
+          ref = limit_;
+        }
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          if (limitCase_ == 11) {
+            limit_ = b;
+          }
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string host = 11;</code>
+       * @param value The host to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHost(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        limitCase_ = 11;
+        limit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string host = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHost() {
+        if (limitCase_ == 11) {
+          limitCase_ = 0;
+          limit_ = null;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>string host = 11;</code>
+       * @param value The bytes for host to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHostBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        limitCase_ = 11;
+        limit_ = value;
+        onChanged();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * iftop KB
+       * </pre>
+       *
+       * <code>uint32 speed = 12;</code>
+       * @return Whether the speed field is set.
+       */
+      public boolean hasSpeed() {
+        return limitCase_ == 12;
+      }
+      /**
+       * <pre>
+       * iftop KB
+       * </pre>
+       *
+       * <code>uint32 speed = 12;</code>
+       * @return The speed.
+       */
+      public int getSpeed() {
+        if (limitCase_ == 12) {
+          return (java.lang.Integer) limit_;
+        }
+        return 0;
+      }
+      /**
+       * <pre>
+       * iftop KB
+       * </pre>
+       *
+       * <code>uint32 speed = 12;</code>
+       * @param value The speed to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSpeed(int value) {
+
+        limitCase_ = 12;
+        limit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * iftop KB
+       * </pre>
+       *
+       * <code>uint32 speed = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSpeed() {
+        if (limitCase_ == 12) {
+          limitCase_ = 0;
+          limit_ = null;
+          onChanged();
+        }
+        return this;
+      }
+
+      private java.lang.Object mac_ = "";
+      /**
+       * <code>string mac = 99;</code>
+       * @return The mac.
+       */
+      public java.lang.String getMac() {
+        java.lang.Object ref = mac_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mac_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string mac = 99;</code>
+       * @return The bytes for mac.
+       */
+      public com.google.protobuf.ByteString
+          getMacBytes() {
+        java.lang.Object ref = mac_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mac_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string mac = 99;</code>
+       * @param value The mac to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMac(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        mac_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mac = 99;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMac() {
+        mac_ = getDefaultInstance().getMac();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mac = 99;</code>
+       * @param value The bytes for mac to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMacBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        mac_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.router.v1.Firewall.Output)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.router.v1.Firewall.Output)
+    private static final com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Output>
+        PARSER = new com.google.protobuf.AbstractParser<Output>() {
+      @java.lang.Override
+      public Output parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Output> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Output> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Output getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 

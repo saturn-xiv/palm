@@ -80,3 +80,16 @@ TEST_CASE("booted at", "[datetime]") {
     std::cout << "BOOTED AT: " << std::ctime(&it);
   }
 }
+
+TEST_CASE("validate str", "[validator]") {
+  SECTION("ipv4") {
+    for (const auto it : {"127.0.0.1", "0.0.0.0", "255.255.255.255"}) {
+      const auto v = palm::validator::ipv4(it);
+      REQUIRE(v.has_value());
+    }
+    for (const auto it : {"a127.0.0.1", "0.0.0.0b", "255.255.2c55.255"}) {
+      const auto v = palm::validator::ipv4(it);
+      REQUIRE(!v.has_value());
+    }
+  }
+}

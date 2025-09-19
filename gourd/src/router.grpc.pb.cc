@@ -26,7 +26,7 @@ namespace v1 {
 static const char* Administrator_method_names[] = {
   "/palm.router.v1.Administrator/SignIn",
   "/palm.router.v1.Administrator/SignOut",
-  "/palm.router.v1.Administrator/SetPassword",
+  "/palm.router.v1.Administrator/Update",
 };
 
 std::unique_ptr< Administrator::Stub> Administrator::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -38,7 +38,7 @@ std::unique_ptr< Administrator::Stub> Administrator::NewStub(const std::shared_p
 Administrator::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SignIn_(Administrator_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SignOut_(Administrator_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPassword_(Administrator_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Administrator_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Administrator::Stub::SignIn(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSignInRequest& request, ::palm::router::v1::AdministratorSignInResponse* response) {
@@ -87,25 +87,25 @@ void Administrator::Stub::async::SignOut(::grpc::ClientContext* context, const :
   return result;
 }
 
-::grpc::Status Administrator::Stub::SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPassword_, context, request, response);
+::grpc::Status Administrator::Stub::Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
 }
 
-void Administrator::Stub::async::SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPassword_, context, request, response, std::move(f));
+void Administrator::Stub::async::Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
 }
 
-void Administrator::Stub::async::SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPassword_, context, request, response, reactor);
+void Administrator::Stub::async::Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::PrepareAsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::AdministratorSetPasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPassword_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::AdministratorUpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::AsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Administrator::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSetPasswordRaw(context, request, cq);
+    this->PrepareAsyncUpdateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -134,12 +134,12 @@ Administrator::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Administrator_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Administrator::Service, ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Administrator::Service, ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Administrator::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::router::v1::AdministratorSetPasswordRequest* req,
+             const ::palm::router::v1::AdministratorUpdateRequest* req,
              ::google::protobuf::Empty* resp) {
-               return service->SetPassword(ctx, req, resp);
+               return service->Update(ctx, req, resp);
              }, this)));
 }
 
@@ -160,7 +160,7 @@ Administrator::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Administrator::Service::SetPassword(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Administrator::Service::Update(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

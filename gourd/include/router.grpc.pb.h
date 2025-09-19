@@ -31,6 +31,7 @@ namespace router {
 namespace v1 {
 
 // ----------------------------------------------------------------------------
+//
 class Administrator final {
  public:
   static constexpr char const* service_full_name() {
@@ -53,12 +54,12 @@ class Administrator final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSignOutRaw(context, request, cq));
     }
-    virtual ::grpc::Status SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetPasswordRaw(context, request, cq));
+    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetPasswordRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
     class async_interface {
      public:
@@ -67,8 +68,8 @@ class Administrator final {
       virtual void SignIn(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSignInRequest* request, ::palm::router::v1::AdministratorSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -78,8 +79,8 @@ class Administrator final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::router::v1::AdministratorSignInResponse>* PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSignInRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -98,12 +99,12 @@ class Administrator final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSignOutRaw(context, request, cq));
     }
-    ::grpc::Status SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetPasswordRaw(context, request, cq));
+    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetPasswordRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
@@ -112,8 +113,8 @@ class Administrator final {
       void SignIn(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSignInRequest* request, ::palm::router::v1::AdministratorSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void SetPassword(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Update(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -129,11 +130,11 @@ class Administrator final {
     ::grpc::ClientAsyncResponseReader< ::palm::router::v1::AdministratorSignInResponse>* PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSignInRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetPasswordRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::router::v1::AdministratorUpdateRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SignIn_;
     const ::grpc::internal::RpcMethod rpcmethod_SignOut_;
-    const ::grpc::internal::RpcMethod rpcmethod_SetPassword_;
+    const ::grpc::internal::RpcMethod rpcmethod_Update_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -143,7 +144,7 @@ class Administrator final {
     virtual ~Service();
     virtual ::grpc::Status SignIn(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorSignInRequest* request, ::palm::router::v1::AdministratorSignInResponse* response);
     virtual ::grpc::Status SignOut(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status SetPassword(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SignIn : public BaseClass {
@@ -186,26 +187,26 @@ class Administrator final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SetPassword : public BaseClass {
+  class WithAsyncMethod_Update : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SetPassword() {
+    WithAsyncMethod_Update() {
       ::grpc::Service::MarkMethodAsync(2);
     }
-    ~WithAsyncMethod_SetPassword() override {
+    ~WithAsyncMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPassword(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetPassword(::grpc::ServerContext* context, ::palm::router::v1::AdministratorSetPasswordRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdate(::grpc::ServerContext* context, ::palm::router::v1::AdministratorUpdateRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SignIn<WithAsyncMethod_SignOut<WithAsyncMethod_SetPassword<Service > > > AsyncService;
+  typedef WithAsyncMethod_SignIn<WithAsyncMethod_SignOut<WithAsyncMethod_Update<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SignIn : public BaseClass {
    private:
@@ -261,33 +262,33 @@ class Administrator final {
       ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetPassword : public BaseClass {
+  class WithCallbackMethod_Update : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetPassword() {
+    WithCallbackMethod_Update() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::router::v1::AdministratorSetPasswordRequest* request, ::google::protobuf::Empty* response) { return this->SetPassword(context, request, response); }));}
-    void SetMessageAllocatorFor_SetPassword(
-        ::grpc::MessageAllocator< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::palm::router::v1::AdministratorUpdateRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
+    void SetMessageAllocatorFor_Update(
+        ::grpc::MessageAllocator< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetPassword() override {
+    ~WithCallbackMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPassword(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* SetPassword(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Update(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SignIn<WithCallbackMethod_SignOut<WithCallbackMethod_SetPassword<Service > > > CallbackService;
+  typedef WithCallbackMethod_SignIn<WithCallbackMethod_SignOut<WithCallbackMethod_Update<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SignIn : public BaseClass {
@@ -324,18 +325,18 @@ class Administrator final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SetPassword : public BaseClass {
+  class WithGenericMethod_Update : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SetPassword() {
+    WithGenericMethod_Update() {
       ::grpc::Service::MarkMethodGeneric(2);
     }
-    ~WithGenericMethod_SetPassword() override {
+    ~WithGenericMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPassword(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -381,22 +382,22 @@ class Administrator final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SetPassword : public BaseClass {
+  class WithRawMethod_Update : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SetPassword() {
+    WithRawMethod_Update() {
       ::grpc::Service::MarkMethodRaw(2);
     }
-    ~WithRawMethod_SetPassword() override {
+    ~WithRawMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPassword(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetPassword(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -445,25 +446,25 @@ class Administrator final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetPassword : public BaseClass {
+  class WithRawCallbackMethod_Update : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetPassword() {
+    WithRawCallbackMethod_Update() {
       ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPassword(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Update(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetPassword() override {
+    ~WithRawCallbackMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPassword(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* SetPassword(
+    virtual ::grpc::ServerUnaryReactor* Update(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -521,37 +522,59 @@ class Administrator final {
     virtual ::grpc::Status StreamedSignOut(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SetPassword : public BaseClass {
+  class WithStreamedUnaryMethod_Update : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_SetPassword() {
+    WithStreamedUnaryMethod_Update() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty>(
+          ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::router::v1::AdministratorSetPasswordRequest, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedSetPassword(context,
+                     ::palm::router::v1::AdministratorUpdateRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedUpdate(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_SetPassword() override {
+    ~WithStreamedUnaryMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SetPassword(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorSetPasswordRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::router::v1::AdministratorUpdateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetPassword(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::router::v1::AdministratorSetPasswordRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::router::v1::AdministratorUpdateRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_SetPassword<Service > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_Update<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_SetPassword<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_Update<Service > > > StreamedService;
 };
 
+// ----------------------------------------------------------------------------
+// service Rule {
+//   rpc Index(google.protobuf.Empty) returns (RuleIndexResponse) {}
+//   rpc Create(RuleCreateRequest) returns (google.protobuf.Empty) {}
+//   rpc Update(RuleUpdateRequest) returns (google.protobuf.Empty) {}
+//   rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
+// }
+// message RuleCreateRequest {
+//   string device = 1;
+//   RuleIndexResponse.Item item = 2;
+// }
+// message RuleUpdateRequest {
+//   uint32 id = 1;
+// }
+// message RuleIndexResponse {
+//   message Item {
+//     uint32 id = 1;
+//     string device = 2;
+//     message Nat {}
+//   }
+//   repeated Item items = 1;
+// }
 // ----------------------------------------------------------------------------
 //
 class Router final {

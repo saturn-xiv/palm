@@ -8,6 +8,7 @@
     "boost-url",
     "boost-locale",
     "boost-process",
+    "boost-hana",
     "argparse",
     "spdlog",
     "catch2",

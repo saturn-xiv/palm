@@ -22,18 +22,6 @@ public interface AdministratorSignInResponseOrBuilder extends
       getTokenBytes();
 
   /**
-   * <code>string name = 2;</code>
-   * @return The name.
-   */
-  java.lang.String getName();
-  /**
-   * <code>string name = 2;</code>
-   * @return The bytes for name.
-   */
-  com.google.protobuf.ByteString
-      getNameBytes();
-
-  /**
    * <code>string locale = 11;</code>
    * @return The locale.
    */

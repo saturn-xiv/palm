@@ -1,4 +1,4 @@
-#include "bamboo/network.hpp"
+#include "palm/network.hpp"
 
 #include <ifaddrs.h>
 #include <linux/if.h>
@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <cstring>
 
-std::vector<std::string> bamboo::network::interfaces() {
+std::vector<std::string> palm::network::interfaces() {
   struct ifaddrs *devices;
   getifaddrs(&devices);
 
@@ -28,7 +28,7 @@ std::vector<std::string> bamboo::network::interfaces() {
   return items;
 }
 
-std::string bamboo::network::mac(const std::string &name) {
+std::string palm::network::mac(const std::string &name) {
   int fd = socket(PF_INET, SOCK_DGRAM, IPPROTO_IP);
 
   struct ifreq ifr {};

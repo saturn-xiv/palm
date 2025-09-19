@@ -18,6 +18,24 @@ message Firewall {
     Protocol protocol = 1;
     uint32 port = 2;
   }
+  enum Weekday {
+    Sun = 0;
+    Mon = 1;
+    Tue = 2;
+    Wed = 3;
+    Thu = 4;
+    Fri = 5;
+    Sat = 6;
+  }
+
+  message TimeRange {
+    message Item {
+      uint32 hour = 1;
+      uint32 minute = 2;
+    }
+    Item begin = 1;
+    Item end = 2;
+  }
   message Nat {
     message Destination {
       string ip = 1;
@@ -26,6 +44,16 @@ message Firewall {
     Protocol protocol = 1;
     uint32 port = 2;
     Destination destination = 3;
+  }
+  message Output {
+    repeated Weekday weekdays = 1;
+    optional TimeRange time_range = 2;
+    oneof limit {
+      string host = 11;
+      // iftop KB
+      uint32 speed = 12;
+    }
+    string mac = 99;
   }
   repeated Input input = 1;
   repeated Nat nat = 2;
@@ -84,33 +112,57 @@ message Host {
 }
 
 // ----------------------------------------------------------------------------
+
 service Administrator {
   rpc SignIn(AdministratorSignInRequest) returns (AdministratorSignInResponse) {
   }
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  rpc SetPassword(AdministratorSetPasswordRequest)
-      returns (google.protobuf.Empty) {}
+  rpc Update(AdministratorUpdateRequest) returns (google.protobuf.Empty) {}
 }
 
 message AdministratorSignInRequest {
-  string name = 1;
-  string password = 2;
+  AdministratorUpdateRequest.Item user = 1;
   google.protobuf.Duration ttl = 9;
 }
 
 message AdministratorSignInResponse {
   string token = 1;
-  string name = 2;
   string locale = 11;
   string timezone = 12;
   repeated string languages = 19;
 }
 
-message AdministratorSetPasswordRequest {
-  string current_password = 1;
-  string new_password = 2;
+message AdministratorUpdateRequest {
+  message Item {
+    string name = 1;
+    string password = 2;
+  }
+  Item current = 1;
+  Item new = 2;
 }
 
+// ----------------------------------------------------------------------------
+// service Rule {
+//   rpc Index(google.protobuf.Empty) returns (RuleIndexResponse) {}
+//   rpc Create(RuleCreateRequest) returns (google.protobuf.Empty) {}
+//   rpc Update(RuleUpdateRequest) returns (google.protobuf.Empty) {}
+//   rpc Delete(palm.portal.v1.ByIdRequest) returns (google.protobuf.Empty) {}
+// }
+// message RuleCreateRequest {
+//   string device = 1;
+//   RuleIndexResponse.Item item = 2;
+// }
+// message RuleUpdateRequest {
+//   uint32 id = 1;
+// }
+// message RuleIndexResponse {
+//   message Item {
+//     uint32 id = 1;
+//     string device = 2;
+//     message Nat {}
+//   }
+//   repeated Item items = 1;
+// }
 // ----------------------------------------------------------------------------
 
 service Router {
@@ -126,16 +178,24 @@ service Router {
 message RouterIndexEthernetResponse {
   message Item {
     message Wan {
-      string address = 1;
-      string netmask = 2;
-      string gateway = 3;
-      repeated string dns = 4;
+      message Static {
+        string address = 1;
+        string netmask = 2;
+        string gateway = 3;
+        repeated string dns = 9;
+      }
+      oneof ip {
+        Static static = 1;
+        bool dhcp = 2;
+      }
     }
     message Lan {
-      string network = 1;
+      string address = 1;
+      string netmask = 2;
     }
     string device = 1;
-    string name = 2;
+    string mac = 2;
+    string name = 3;
     oneof ethernet {
       Wan wan = 11;
       Lan lan = 12;

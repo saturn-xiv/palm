@@ -4,16 +4,17 @@
 #include "router.grpc.pb.h"
 
 namespace bamboo {
+namespace router {
+void factory_reset(bool run = false);
+}
 namespace network {
+inline std::string key_of_interface(const std::string& device) {
+  return std::format("network.interface.{}", device);
+}
+// FIXME remove
 void apply(const palm::router::v1::Network& it, bool run = false);
+// FIXME remove
 std::optional<uint8_t> netmask_to_cidr(const std::string& s);
-struct Host {
-  std::string mac;
-  std::string ip;
-  std::optional<std::string> vendor;
-};
-std::vector<Host> scan(const std::vector<std::string>& networks);
-std::vector<std::string> interfaces();
-std::string mac(const std::string& interface);
+
 }  // namespace network
 }  // namespace bamboo

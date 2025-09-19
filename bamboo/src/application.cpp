@@ -1,6 +1,7 @@
 #include "bamboo/application.hpp"
 #include "bamboo/network.hpp"
 #include "bamboo/services.hpp"
+#include "palm/network.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
 
@@ -127,10 +128,23 @@ void bamboo::Application::rpc_server(const toml::table& config,
   auto db = this->db(config);
   auto jwt = this->jwt(config);
   auto aes = this->aes(config);
-  auto hmac = this->hmac(config);
 
-  bamboo::services::AdministratorServiceImpl administrator_service(db, aes,
-                                                                   hmac, jwt);
+  {
+    soci::transaction tr(*db);
+    const std::string installed_at = "site.installed-at";
+    const auto it = bamboo::dao::get(*db, installed_at);
+    if (!it) {
+      spdlog::warn("empty database, will be setup it at first");
+      bamboo::dao::administrator::save(*db, "admin", "123456");
+      {
+        const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
+        bamboo::dao::set(*db, installed_at, now);
+      }
+    }
+    tr.commit();
+  }
+
+  bamboo::services::AdministratorServiceImpl administrator_service(db, jwt);
   bamboo::services::RouterServiceImpl router_service(db, jwt);
   bamboo::services::UserServiceImpl user_service(db, aes, jwt);
 
@@ -446,17 +460,12 @@ std::shared_ptr<palm::HMac> bamboo::Application::hmac(
 void bamboo::Application::scan(const toml::table& config) {
   auto db = this->db(config);
   std::vector<std::string> networks;
-  for (const auto& name : bamboo::network::interfaces()) {
-    const auto mac = bamboo::network::mac(name);
+  for (const auto& name : palm::network::interfaces()) {
+    const auto mac = palm::network::mac(name);
     spdlog::debug("found network interface {} {}", name, mac);
-    const std::string key = std::format("network.interface.{}", name);
-    const auto buf = bamboo::dao::get(*db, key);
-    if (!buf) {
-      continue;
-    }
+    const std::string key = bamboo::network::key_of_interface(name);
     palm::router::v1::RouterIndexEthernetResponse_Item it;
-    if (!it.ParseFromArray(buf->data(), buf->size())) {
-      spdlog::error("failed to parse configuration for {}", name);
+    if (!bamboo::dao::get(*db, key, &it)) {
       continue;
     }
     if (!it.enable()) {
@@ -467,14 +476,16 @@ void bamboo::Application::scan(const toml::table& config) {
       spdlog::debug("ignore {}", name);
       continue;
     }
-    networks.push_back(it.lan().network());
+    palm::network::Ipv4 ip(it.lan().address(), it.lan().netmask());
+    const std::string net = std::format("{}/{}", ip.network(), ip.cidr());
+    networks.push_back(net);
   }
 
   if (networks.empty()) {
     spdlog::warn("couldn't found available network interfaces");
     return;
   }
-  auto items = bamboo::network::scan(networks);
+  auto items = palm::network::scan(networks);
 
   {
     soci::transaction tr(*db);

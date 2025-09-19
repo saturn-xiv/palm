@@ -1,15 +1,42 @@
 #include "bamboo/network.hpp"
 #include "palm/crypto.hpp"
+#include "palm/network.hpp"
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
-
-#include <pugixml.hpp>
 
 // https://www.linode.com/docs/guides/linux-router-and-ip-forwarding/
 // https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
 // sudo pacman -S dnsmasq man-pages net-tools iproute2 dnsutils inetutils
 // sudo apt install iptables-persistent netfilter-persistent
+// https://wiki.archlinux.org/title/Systemd-networkd
 
+static void reset_systemd_networkd(const std::vector<std::string>& devices,
+                                   std::ostream& out) {
+  spdlog::debug("render systemd-networkd");
+  nlohmann::json data;
+  data["devices"] = devices;
+  inja::render_to(out, R"TEMPLATE(
+echo 'setup systemd networkd'
+if [ -d /etc/systemd/network ]
+then 
+    rm -rv /etc/systemd/network
+fi
+mkdir -pv /etc/systemd/network
+
+{% for dev in devices -%}
+echo "setup network for {{ dev }}"
+cat >/etc/systemd/network/20-{{ dev }}.network <<EOF
+[Match]
+Name={{ dev }}
+
+[Network]
+DHCP=yes
+{% endfor -%}
+
+systemctl restart systemd-networkd
+)TEMPLATE",
+                  data);
+}
 static void setup_systemd_networkd(const palm::router::v1::Network& network,
                                    std::ostream& out) {
   spdlog::debug("render systemd-networkd");
@@ -43,6 +70,15 @@ EOF
 systemctl restart systemd-networkd
 )TEMPLATE",
                network, out);
+}
+static void reset_dnsmasq(std::ostream& out) {
+  out << R"TEMPLATE(
+echo "reset dnsmasq"
+systemctl stop dnsmasq
+systemctl disable dnsmasq
+rm -fv /usr/lib/systemd/system/dnsmasq-*.service
+systemctl daemon-reload
+)TEMPLATE";
 }
 static void setup_dnsmasq(const palm::router::v1::Network& network,
                           std::ostream& out) {
@@ -157,6 +193,16 @@ iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -j MASQUERADE
                network, out);
 }
 
+static void reset_firewall(std::ostream& out) {
+  spdlog::debug("render reset firewall rules");
+  out << R"TEMPLATE(
+echo 'setup iptables'
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+)TEMPLATE";
+}
+
 static void setup_firewall(const palm::router::v1::Network& network,
                            std::ostream& out) {
   spdlog::debug("render firewall rules");
@@ -266,7 +312,6 @@ void bamboo::network::apply(const palm::router::v1::Network& it, bool run) {
   spdlog::info("done.");
 }
 
-// https://docs.netgate.com/pfsense/en/latest/network/cidr.html
 std::optional<uint8_t> bamboo::network::netmask_to_cidr(const std::string& s) {
   if (s == "255.255.255.255") {
     return 32;
@@ -280,62 +325,39 @@ std::optional<uint8_t> bamboo::network::netmask_to_cidr(const std::string& s) {
   return std::nullopt;
 }
 
-static void load_nmap_host(const pugi::xml_node& node,
-                           bamboo::network::Host& host) {
-  for (const pugi::xml_node& it : node.children("address")) {
-    const std::string addr = it.attribute("addr").value();
-    const std::string addr_type = it.attribute("addrtype").value();
-    if (addr_type == "ipv4") {
-      host.ip = addr;
-      continue;
-    }
-    if (addr_type == "mac") {
-      host.mac = addr;
-      const auto vendor = it.attribute("vendor");
-      if (vendor) {
-        host.vendor = vendor.value();
-      }
+void bamboo::router::factory_reset(bool run) {
+  auto devices = palm::network::interfaces();
+  devices.erase(std::remove_if(devices.begin(), devices.end(),
+                               [](std::string& it) {
+                                 return !palm::network::is_wired_ethernet(it);
+                               }),
+                devices.end());
 
-      continue;
-    }
-  }
-}
+  const auto cur = palm::timestamp();
 
-std::vector<bamboo::network::Host> bamboo::network::scan(
-    const std::vector<std::string>& networks) {
-  const auto tmp = std::format("/tmp/{}.xml", palm::timestamp());
-
+  std::string reset = std::format("{}-reset.sh", cur);
   {
-    std::vector<std::string> args = {"-oX", tmp, "-sn"};
-    args.insert(args.end(), networks.begin(), networks.end());
-    const auto& [status, out, err] = palm::shell("/usr/bin/nmap", args);
+    spdlog::info("generate file {}", reset);
+    std::ofstream out(reset);
+    out << palm::bash::HEADER << palm::bash::REQUIRE_ROOT;
+    reset_systemd_networkd(devices, out);
+    reset_dnsmasq(out);
+    out << KERNEL_ENABLE_FORWARD << IPTABLES_CLEAR;
+    reset_firewall(out);
+    out << IPTABLES_SAVE << std::endl
+        << ECHO_DONE << std::endl
+        << palm::bash::FOOTER;
+    out.close();
+  }
+
+  if (run) {
+    spdlog::info("run script {}", reset);
+    const auto& [status, out, err] = palm::shell("/bin/bash", {reset});
     if (status != EXIT_SUCCESS) {
       spdlog::error("{} {}", status, err);
-      return {};
+      return;
     }
     spdlog::debug("{}", out);
   }
-
-  std::vector<bamboo::network::Host> items;
-  pugi::xml_document doc;
-
-  {
-    spdlog::debug("parse file {}", tmp);
-    pugi::xml_parse_result rst = doc.load_file(tmp.c_str());
-    if (!rst) {
-      spdlog::error("failed to parse xml {}", rst.description());
-      return {};
-    }
-  }
-
-  pugi::xpath_node_set nodes = doc.select_nodes("/nmaprun/host");
-  for (const pugi::xpath_node& node : nodes) {
-    bamboo::network::Host it;
-    load_nmap_host(node.node(), it);
-    if (!it.mac.empty() && !it.ip.empty()) {
-      items.push_back(it);
-    }
-  }
-  //   nmaprun/host/address addr addrtype
-  return items;
+  spdlog::info("done.");
 }

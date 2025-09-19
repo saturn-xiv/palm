@@ -33,6 +33,8 @@ class Session {
   inline static const std::string BEARER = "Bearer ";
   inline static const std::string LOCALE = "locale";
 
+  inline std::optional<std::string> token() const { return this->_token; }
+
  protected:
   static inline std::optional<std::string> token(grpc::ServerContext* context) {
     const auto metadata = context->client_metadata();
