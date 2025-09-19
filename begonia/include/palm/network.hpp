@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <optional>
 
 namespace palm {
 namespace network {
@@ -15,7 +16,7 @@ class Ipv4 {
   void cidr(uint8_t v);
   void netmask(const std::string& v);
   void address(const std::string& v);
-
+  // https://docs.netgate.com/pfsense/en/latest/network/cidr.html
   uint8_t cidr() const;
   inline std::string netmask() const { return this->_netmask; }
   inline std::string address() const { return this->_address; }
@@ -29,5 +30,15 @@ class Ipv4 {
   std::string _netmask;
   std::string _router;
 };
+
+struct Host {
+  std::string mac;
+  std::string ip;
+  std::optional<std::string> vendor;
+};
+std::vector<Host> scan(const std::vector<std::string>& networks);
+std::vector<std::string> interfaces();
+std::string mac(const std::string& interface);
+
 }  // namespace network
 }  // namespace palm

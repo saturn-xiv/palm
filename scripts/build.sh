@@ -45,6 +45,7 @@ function build_on_crosstool_ng() {
     # cmake --preset=aarch64 -DVCPKG_TARGET_TRIPLET=arm64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$HOME/x-tools/aarch64.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     # cmake --build $WORK_DIR/build/aarch64
 
+    build_hyacinth_and_crocus $WORK_DIR/tmp/hyacinth
 }
 
 function build_x86_64_on_ubuntu() {

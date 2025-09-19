@@ -9,8 +9,6 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
-import "portal.proto";
-
 message Firewall {
   enum Protocol {
     Tcp = 0;
@@ -180,13 +178,20 @@ service Router {
 message RouterIndexEthernetResponse {
   message Item {
     message Wan {
-      string address = 1;
-      string netmask = 2;
-      string gateway = 3;
-      repeated string dns = 4;
+      message Static {
+        string address = 1;
+        string netmask = 2;
+        string gateway = 3;
+        repeated string dns = 9;
+      }
+      oneof ip {
+        Static static = 1;
+        bool dhcp = 2;
+      }
     }
     message Lan {
-      string network = 1;
+      string address = 1;
+      string netmask = 2;
     }
     string device = 1;
     string name = 2;

@@ -1,6 +1,7 @@
 #include "bamboo/application.hpp"
 #include "bamboo/network.hpp"
 #include "bamboo/services.hpp"
+#include "palm/network.hpp"
 #include "palm/utils.hpp"
 #include "palm/version.hpp"
 
@@ -137,7 +138,6 @@ void bamboo::Application::rpc_server(const toml::table& config,
       bamboo::dao::administrator::save(*db, "admin", "123456");
       {
         const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
-
         bamboo::dao::set(*db, installed_at, now);
       }
     }
@@ -460,8 +460,8 @@ std::shared_ptr<palm::HMac> bamboo::Application::hmac(
 void bamboo::Application::scan(const toml::table& config) {
   auto db = this->db(config);
   std::vector<std::string> networks;
-  for (const auto& name : bamboo::network::interfaces()) {
-    const auto mac = bamboo::network::mac(name);
+  for (const auto& name : palm::network::interfaces()) {
+    const auto mac = palm::network::mac(name);
     spdlog::debug("found network interface {} {}", name, mac);
     const std::string key = std::format("network.interface.{}", name);
     const auto buf = bamboo::dao::get(*db, key);
@@ -481,14 +481,16 @@ void bamboo::Application::scan(const toml::table& config) {
       spdlog::debug("ignore {}", name);
       continue;
     }
-    networks.push_back(it.lan().network());
+    palm::network::Ipv4 ip(it.lan().address(), it.lan().netmask());
+    const std::string net = std::format("{}/{}", ip.network(), ip.cidr());
+    networks.push_back(net);
   }
 
   if (networks.empty()) {
     spdlog::warn("couldn't found available network interfaces");
     return;
   }
-  auto items = bamboo::network::scan(networks);
+  auto items = palm::network::scan(networks);
 
   {
     soci::transaction tr(*db);

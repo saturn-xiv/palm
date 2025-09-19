@@ -1,9 +1,8 @@
 #include "bamboo/network.hpp"
 #include "palm/crypto.hpp"
+#include "palm/network.hpp"
 #include "palm/theme.hpp"
 #include "palm/utils.hpp"
-
-#include <pugixml.hpp>
 
 // https://www.linode.com/docs/guides/linux-router-and-ip-forwarding/
 // https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
@@ -266,7 +265,6 @@ void bamboo::network::apply(const palm::router::v1::Network& it, bool run) {
   spdlog::info("done.");
 }
 
-// https://docs.netgate.com/pfsense/en/latest/network/cidr.html
 std::optional<uint8_t> bamboo::network::netmask_to_cidr(const std::string& s) {
   if (s == "255.255.255.255") {
     return 32;
@@ -278,64 +276,4 @@ std::optional<uint8_t> bamboo::network::netmask_to_cidr(const std::string& s) {
     return 23;
   }
   return std::nullopt;
-}
-
-static void load_nmap_host(const pugi::xml_node& node,
-                           bamboo::network::Host& host) {
-  for (const pugi::xml_node& it : node.children("address")) {
-    const std::string addr = it.attribute("addr").value();
-    const std::string addr_type = it.attribute("addrtype").value();
-    if (addr_type == "ipv4") {
-      host.ip = addr;
-      continue;
-    }
-    if (addr_type == "mac") {
-      host.mac = addr;
-      const auto vendor = it.attribute("vendor");
-      if (vendor) {
-        host.vendor = vendor.value();
-      }
-
-      continue;
-    }
-  }
-}
-
-std::vector<bamboo::network::Host> bamboo::network::scan(
-    const std::vector<std::string>& networks) {
-  const auto tmp = std::format("/tmp/{}.xml", palm::timestamp());
-
-  {
-    std::vector<std::string> args = {"-oX", tmp, "-sn"};
-    args.insert(args.end(), networks.begin(), networks.end());
-    const auto& [status, out, err] = palm::shell("/usr/bin/nmap", args);
-    if (status != EXIT_SUCCESS) {
-      spdlog::error("{} {}", status, err);
-      return {};
-    }
-    spdlog::debug("{}", out);
-  }
-
-  std::vector<bamboo::network::Host> items;
-  pugi::xml_document doc;
-
-  {
-    spdlog::debug("parse file {}", tmp);
-    pugi::xml_parse_result rst = doc.load_file(tmp.c_str());
-    if (!rst) {
-      spdlog::error("failed to parse xml {}", rst.description());
-      return {};
-    }
-  }
-
-  pugi::xpath_node_set nodes = doc.select_nodes("/nmaprun/host");
-  for (const pugi::xpath_node& node : nodes) {
-    bamboo::network::Host it;
-    load_nmap_host(node.node(), it);
-    if (!it.mac.empty() && !it.ip.empty()) {
-      items.push_back(it);
-    }
-  }
-  //   nmaprun/host/address addr addrtype
-  return items;
 }

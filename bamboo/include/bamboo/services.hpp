@@ -91,7 +91,16 @@ class AdministratorServiceImpl final
   std::shared_ptr<soci::session> _db;
   std::shared_ptr<palm::Jwt> _jwt;
 };
-}  // namespace services
+
+static const grpc::Status& INVALID_ARGUMENT =
+    grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid arguments");
+static const grpc::Status& INVALID_ADMINISTRATOR = grpc::Status(
+    grpc::StatusCode::UNAUTHENTICATED, "invalid administrator account");
+static const grpc::Status& MUST_SIGNED_IN = grpc::Status(
+    grpc::StatusCode::PERMISSION_DENIED, "please sign in at first");
+
 std::optional<std::string> current_administrator(
     grpc::ServerContext* context, std::shared_ptr<palm::Jwt> jwt);
+}  // namespace services
+
 }  // namespace bamboo
