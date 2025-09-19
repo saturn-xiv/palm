@@ -5514,7 +5514,8 @@ class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Messag
   // accessors -------------------------------------------------------
   enum : int {
     kDeviceFieldNumber = 1,
-    kNameFieldNumber = 2,
+    kMacFieldNumber = 2,
+    kNameFieldNumber = 3,
     kDescriptionFieldNumber = 98,
     kEnableFieldNumber = 99,
     kWanFieldNumber = 11,
@@ -5537,7 +5538,23 @@ class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Messag
   std::string* _internal_mutable_device();
 
   public:
-  // string name = 2;
+  // string mac = 2;
+  void clear_mac() ;
+  const std::string& mac() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_mac(Arg_&& arg, Args_... args);
+  std::string* mutable_mac();
+  PROTOBUF_NODISCARD std::string* release_mac();
+  void set_allocated_mac(std::string* value);
+
+  private:
+  const std::string& _internal_mac() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mac(
+      const std::string& value);
+  std::string* _internal_mutable_mac();
+
+  public:
+  // string name = 3;
   void clear_name() ;
   const std::string& name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -5648,8 +5665,8 @@ class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Messag
   inline void clear_has_ethernet();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 7, 3,
-      77, 7>
+      2, 8, 3,
+      88, 7>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -5667,6 +5684,7 @@ class RouterIndexEthernetResponse_Item final : public ::google::protobuf::Messag
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const RouterIndexEthernetResponse_Item& from_msg);
     ::google::protobuf::internal::ArenaStringPtr device_;
+    ::google::protobuf::internal::ArenaStringPtr mac_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr description_;
     bool enable_;
@@ -11747,7 +11765,55 @@ inline void RouterIndexEthernetResponse_Item::set_allocated_device(std::string* 
   // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.device)
 }
 
-// string name = 2;
+// string mac = 2;
+inline void RouterIndexEthernetResponse_Item::clear_mac() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.ClearToEmpty();
+}
+inline const std::string& RouterIndexEthernetResponse_Item::mac() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.router.v1.RouterIndexEthernetResponse.Item.mac)
+  return _internal_mac();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RouterIndexEthernetResponse_Item::set_mac(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.router.v1.RouterIndexEthernetResponse.Item.mac)
+}
+inline std::string* RouterIndexEthernetResponse_Item::mutable_mac() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_mac();
+  // @@protoc_insertion_point(field_mutable:palm.router.v1.RouterIndexEthernetResponse.Item.mac)
+  return _s;
+}
+inline const std::string& RouterIndexEthernetResponse_Item::_internal_mac() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mac_.Get();
+}
+inline void RouterIndexEthernetResponse_Item::_internal_set_mac(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.Set(value, GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::_internal_mutable_mac() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.mac_.Mutable( GetArena());
+}
+inline std::string* RouterIndexEthernetResponse_Item::release_mac() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.router.v1.RouterIndexEthernetResponse.Item.mac)
+  return _impl_.mac_.Release();
+}
+inline void RouterIndexEthernetResponse_Item::set_allocated_mac(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mac_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.mac_.IsDefault()) {
+    _impl_.mac_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.router.v1.RouterIndexEthernetResponse.Item.mac)
+}
+
+// string name = 3;
 inline void RouterIndexEthernetResponse_Item::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.name_.ClearToEmpty();

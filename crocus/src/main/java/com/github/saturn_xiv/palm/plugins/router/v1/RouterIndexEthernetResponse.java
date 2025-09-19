@@ -60,12 +60,24 @@ private static final long serialVersionUID = 0L;
         getDeviceBytes();
 
     /**
-     * <code>string name = 2;</code>
+     * <code>string mac = 2;</code>
+     * @return The mac.
+     */
+    java.lang.String getMac();
+    /**
+     * <code>string mac = 2;</code>
+     * @return The bytes for mac.
+     */
+    com.google.protobuf.ByteString
+        getMacBytes();
+
+    /**
+     * <code>string name = 3;</code>
      * @return The name.
      */
     java.lang.String getName();
     /**
-     * <code>string name = 2;</code>
+     * <code>string name = 3;</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
@@ -159,6 +171,7 @@ private static final long serialVersionUID = 0L;
     }
     private Item() {
       device_ = "";
+      mac_ = "";
       name_ = "";
       description_ = "";
     }
@@ -2702,11 +2715,50 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int NAME_FIELD_NUMBER = 2;
+    public static final int MAC_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object mac_ = "";
+    /**
+     * <code>string mac = 2;</code>
+     * @return The mac.
+     */
+    @java.lang.Override
+    public java.lang.String getMac() {
+      java.lang.Object ref = mac_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mac_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string mac = 2;</code>
+     * @return The bytes for mac.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMacBytes() {
+      java.lang.Object ref = mac_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mac_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private volatile java.lang.Object name_ = "";
     /**
-     * <code>string name = 2;</code>
+     * <code>string name = 3;</code>
      * @return The name.
      */
     @java.lang.Override
@@ -2723,7 +2775,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string name = 2;</code>
+     * <code>string name = 3;</code>
      * @return The bytes for name.
      */
     @java.lang.Override
@@ -2901,8 +2953,11 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, device_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(mac_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, mac_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 2, name_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, name_);
       }
       if (ethernetCase_ == 11) {
         output.writeMessage(11, (com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse.Item.Wan) ethernet_);
@@ -2931,8 +2986,11 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(device_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, device_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(mac_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, mac_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, name_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, name_);
       }
       if (ethernetCase_ == 11) {
         size += com.google.protobuf.CodedOutputStream
@@ -2970,6 +3028,8 @@ private static final long serialVersionUID = 0L;
 
       if (!getDevice()
           .equals(other.getDevice())) return false;
+      if (!getMac()
+          .equals(other.getMac())) return false;
       if (!getName()
           .equals(other.getName())) return false;
       if (!getDescription()
@@ -3006,6 +3066,8 @@ private static final long serialVersionUID = 0L;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + DEVICE_FIELD_NUMBER;
       hash = (53 * hash) + getDevice().hashCode();
+      hash = (37 * hash) + MAC_FIELD_NUMBER;
+      hash = (53 * hash) + getMac().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
@@ -3161,6 +3223,7 @@ private static final long serialVersionUID = 0L;
         super.clear();
         bitField0_ = 0;
         device_ = "";
+        mac_ = "";
         name_ = "";
         if (wanBuilder_ != null) {
           wanBuilder_.clear();
@@ -3213,12 +3276,15 @@ private static final long serialVersionUID = 0L;
           result.device_ = device_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.mac_ = mac_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.name_ = name_;
         }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
+        if (((from_bitField0_ & 0x00000040) != 0)) {
           result.description_ = description_;
         }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
+        if (((from_bitField0_ & 0x00000080) != 0)) {
           result.enable_ = enable_;
         }
       }
@@ -3257,14 +3323,19 @@ private static final long serialVersionUID = 0L;
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getMac().isEmpty()) {
+          mac_ = other.mac_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (!other.getDescription().isEmpty()) {
           description_ = other.description_;
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000040;
           onChanged();
         }
         if (other.getEnable() != false) {
@@ -3319,10 +3390,15 @@ private static final long serialVersionUID = 0L;
                 break;
               } // case 10
               case 18: {
-                name_ = input.readStringRequireUtf8();
+                mac_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                name_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               case 90: {
                 input.readMessage(
                     getWanFieldBuilder().getBuilder(),
@@ -3346,12 +3422,12 @@ private static final long serialVersionUID = 0L;
               } // case 154
               case 786: {
                 description_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
                 break;
               } // case 786
               case 792: {
                 enable_ = input.readBool();
-                bitField0_ |= 0x00000040;
+                bitField0_ |= 0x00000080;
                 break;
               } // case 792
               default: {
@@ -3458,9 +3534,81 @@ private static final long serialVersionUID = 0L;
         return this;
       }
 
+      private java.lang.Object mac_ = "";
+      /**
+       * <code>string mac = 2;</code>
+       * @return The mac.
+       */
+      public java.lang.String getMac() {
+        java.lang.Object ref = mac_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mac_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string mac = 2;</code>
+       * @return The bytes for mac.
+       */
+      public com.google.protobuf.ByteString
+          getMacBytes() {
+        java.lang.Object ref = mac_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mac_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string mac = 2;</code>
+       * @param value The mac to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMac(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        mac_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mac = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMac() {
+        mac_ = getDefaultInstance().getMac();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mac = 2;</code>
+       * @param value The bytes for mac to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMacBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        mac_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object name_ = "";
       /**
-       * <code>string name = 2;</code>
+       * <code>string name = 3;</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -3476,7 +3624,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>string name = 2;</code>
+       * <code>string name = 3;</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -3493,7 +3641,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>string name = 2;</code>
+       * <code>string name = 3;</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -3501,22 +3649,22 @@ private static final long serialVersionUID = 0L;
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         name_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>string name = 2;</code>
+       * <code>string name = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
         name_ = getDefaultInstance().getName();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
-       * <code>string name = 2;</code>
+       * <code>string name = 3;</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -3525,7 +3673,7 @@ private static final long serialVersionUID = 0L;
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         name_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -3999,7 +4147,7 @@ private static final long serialVersionUID = 0L;
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         description_ = value;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -4009,7 +4157,7 @@ private static final long serialVersionUID = 0L;
        */
       public Builder clearDescription() {
         description_ = getDefaultInstance().getDescription();
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
       }
@@ -4023,7 +4171,7 @@ private static final long serialVersionUID = 0L;
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         description_ = value;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -4045,7 +4193,7 @@ private static final long serialVersionUID = 0L;
       public Builder setEnable(boolean value) {
 
         enable_ = value;
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -4054,7 +4202,7 @@ private static final long serialVersionUID = 0L;
        * @return This builder for chaining.
        */
       public Builder clearEnable() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         enable_ = false;
         onChanged();
         return this;

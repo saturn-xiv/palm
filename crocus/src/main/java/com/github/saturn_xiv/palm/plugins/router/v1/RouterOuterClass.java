@@ -267,73 +267,73 @@ public final class RouterOuterClass {
       "istratorUpdateRequest.Item\022<\n\003new\030\002 \001(\0132" +
       "/.palm.router.v1.AdministratorUpdateRequ" +
       "est.Item\032&\n\004Item\022\014\n\004name\030\001 \001(\t\022\020\n\010passwo" +
-      "rd\030\002 \001(\t\"\311\004\n\033RouterIndexEthernetResponse" +
+      "rd\030\002 \001(\t\"\326\004\n\033RouterIndexEthernetResponse" +
       "\022?\n\005items\030\001 \003(\01320.palm.router.v1.RouterI" +
-      "ndexEthernetResponse.Item\032\350\003\n\004Item\022\016\n\006de" +
-      "vice\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022C\n\003wan\030\013 \001(\01324." +
+      "ndexEthernetResponse.Item\032\365\003\n\004Item\022\016\n\006de" +
+      "vice\030\001 \001(\t\022\013\n\003mac\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022C\n" +
+      "\003wan\030\013 \001(\01324.palm.router.v1.RouterIndexE" +
+      "thernetResponse.Item.WanH\000\022C\n\003lan\030\014 \001(\0132" +
+      "4.palm.router.v1.RouterIndexEthernetResp" +
+      "onse.Item.LanH\000\022\'\n\005empty\030\023 \001(\0132\026.google." +
+      "protobuf.EmptyH\000\022\023\n\013description\030b \001(\t\022\016\n" +
+      "\006enable\030c \001(\010\032\264\001\n\003Wan\022M\n\006static\030\001 \001(\0132;." +
       "palm.router.v1.RouterIndexEthernetRespon" +
-      "se.Item.WanH\000\022C\n\003lan\030\014 \001(\01324.palm.router" +
-      ".v1.RouterIndexEthernetResponse.Item.Lan" +
-      "H\000\022\'\n\005empty\030\023 \001(\0132\026.google.protobuf.Empt" +
-      "yH\000\022\023\n\013description\030b \001(\t\022\016\n\006enable\030c \001(\010" +
-      "\032\264\001\n\003Wan\022M\n\006static\030\001 \001(\0132;.palm.router.v" +
-      "1.RouterIndexEthernetResponse.Item.Wan.S" +
-      "taticH\000\022\016\n\004dhcp\030\002 \001(\010H\000\032H\n\006Static\022\017\n\007add" +
-      "ress\030\001 \001(\t\022\017\n\007netmask\030\002 \001(\t\022\017\n\007gateway\030\003" +
-      " \001(\t\022\013\n\003dns\030\t \003(\tB\004\n\002ip\032\'\n\003Lan\022\017\n\007addres" +
-      "s\030\001 \001(\t\022\017\n\007netmask\030\002 \001(\tB\n\n\010ethernet\"7\n\026" +
-      "UserSetRealNameRequest\022\n\n\002id\030\001 \001(\r\022\021\n\tre" +
-      "al_name\030\002 \001(\t\"[\n\022UserSetWifiRequest\022\n\n\002i" +
-      "d\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1.U" +
-      "serIndexResponse.Item.Wifi\"q\n\025UserSetDet" +
-      "ailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001" +
-      "(\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.UserIn" +
-      "dexResponse.Item.Wifi\"d\n\025UserSetContactR" +
-      "equest\022\n\n\002id\030\001 \001(\r\022?\n\007contact\030\002 \001(\0132..pa" +
-      "lm.router.v1.UserIndexResponse.Item.Cont" +
-      "act\"a\n\021UserCreateRequest\022\021\n\treal_name\030\001 " +
-      "\001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.router.v1.UserI" +
-      "ndexResponse.Item.Wifi\"\377\003\n\021UserIndexResp" +
-      "onse\0225\n\005items\030\001 \003(\0132&.palm.router.v1.Use" +
-      "rIndexResponse.Item\032\262\003\n\004Item\022\n\n\002id\030\001 \001(\r" +
-      "\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm" +
-      ".router.v1.UserIndexResponse.Item.Wifi\022?" +
-      "\n\007contact\030\t \001(\0132..palm.router.v1.UserInd" +
-      "exResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n\010nick" +
-      "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010begin_at" +
-      "\030\003 \001(\0132\032.google.protobuf.Timestamp\022*\n\006en" +
-      "d_at\030\004 \001(\0132\032.google.protobuf.Timestamp\032\207" +
-      "\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007addre" +
-      "ss\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022\n\005ema" +
-      "il\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addressB\010\n\006" +
-      "_phoneB\010\n\006_email2\201\002\n\rAdministrator\022c\n\006Si" +
-      "gnIn\022*.palm.router.v1.AdministratorSignI" +
-      "nRequest\032+.palm.router.v1.AdministratorS" +
-      "ignInResponse\"\000\022;\n\007SignOut\022\026.google.prot" +
-      "obuf.Empty\032\026.google.protobuf.Empty\"\000\022N\n\006" +
-      "Update\022*.palm.router.v1.AdministratorUpd" +
-      "ateRequest\032\026.google.protobuf.Empty\"\0002\364\002\n" +
-      "\006Router\022Y\n\013SetEthernet\0220.palm.router.v1." +
-      "RouterIndexEthernetResponse.Item\032\026.googl" +
-      "e.protobuf.Empty\"\000\022V\n\rIndexEthernet\022\026.go" +
-      "ogle.protobuf.Empty\032+.palm.router.v1.Rou" +
-      "terIndexEthernetResponse\"\000\022:\n\006Reboot\022\026.g" +
-      "oogle.protobuf.Empty\032\026.google.protobuf.E" +
-      "mpty\"\000\0229\n\005Apply\022\026.google.protobuf.Empty\032" +
-      "\026.google.protobuf.Empty\"\000\022@\n\014FactoryRese" +
-      "t\022\026.google.protobuf.Empty\032\026.google.proto" +
-      "buf.Empty\"\0002\374\002\n\004User\022D\n\005Index\022\026.google.p" +
-      "rotobuf.Empty\032!.palm.router.v1.UserIndex" +
-      "Response\"\000\022E\n\006Create\022!.palm.router.v1.Us" +
-      "erCreateRequest\032\026.google.protobuf.Empty\"" +
-      "\000\022O\n\013SetRealName\022&.palm.router.v1.UserSe" +
-      "tRealNameRequest\032\026.google.protobuf.Empty" +
-      "\"\000\022M\n\nSetContact\022%.palm.router.v1.UserSe" +
-      "tContactRequest\032\026.google.protobuf.Empty\"" +
-      "\000\022G\n\007SetWifi\022\".palm.router.v1.UserSetWif" +
-      "iRequest\032\026.google.protobuf.Empty\"\000B7\n,co" +
-      "m.github.saturn_xiv.palm.plugins.router." +
-      "v1P\001Z\005./;v2b\006proto3"
+      "se.Item.Wan.StaticH\000\022\016\n\004dhcp\030\002 \001(\010H\000\032H\n\006" +
+      "Static\022\017\n\007address\030\001 \001(\t\022\017\n\007netmask\030\002 \001(\t" +
+      "\022\017\n\007gateway\030\003 \001(\t\022\013\n\003dns\030\t \003(\tB\004\n\002ip\032\'\n\003" +
+      "Lan\022\017\n\007address\030\001 \001(\t\022\017\n\007netmask\030\002 \001(\tB\n\n" +
+      "\010ethernet\"7\n\026UserSetRealNameRequest\022\n\n\002i" +
+      "d\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\"[\n\022UserSetWif" +
+      "iRequest\022\n\n\002id\030\001 \001(\r\0229\n\004wifi\030\002 \001(\0132+.pal" +
+      "m.router.v1.UserIndexResponse.Item.Wifi\"" +
+      "q\n\025UserSetDetailsRequest\022\n\n\002id\030\001 \001(\r\022\021\n\t" +
+      "real_name\030\002 \001(\t\0229\n\004wifi\030\003 \001(\0132+.palm.rou" +
+      "ter.v1.UserIndexResponse.Item.Wifi\"d\n\025Us" +
+      "erSetContactRequest\022\n\n\002id\030\001 \001(\r\022?\n\007conta" +
+      "ct\030\002 \001(\0132..palm.router.v1.UserIndexRespo" +
+      "nse.Item.Contact\"a\n\021UserCreateRequest\022\021\n" +
+      "\treal_name\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132+.palm.ro" +
+      "uter.v1.UserIndexResponse.Item.Wifi\"\377\003\n\021" +
+      "UserIndexResponse\0225\n\005items\030\001 \003(\0132&.palm." +
+      "router.v1.UserIndexResponse.Item\032\262\003\n\004Ite" +
+      "m\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(\t\0229\n\004wifi" +
+      "\030\003 \001(\0132+.palm.router.v1.UserIndexRespons" +
+      "e.Item.Wifi\022?\n\007contact\030\t \001(\0132..palm.rout" +
+      "er.v1.UserIndexResponse.Item.Contact\032\204\001\n" +
+      "\004Wifi\022\020\n\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
+      "\t\022,\n\010begin_at\030\003 \001(\0132\032.google.protobuf.Ti" +
+      "mestamp\022*\n\006end_at\030\004 \001(\0132\032.google.protobu" +
+      "f.Timestamp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH" +
+      "\000\210\001\001\022\024\n\007address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(" +
+      "\tH\002\210\001\001\022\022\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n" +
+      "\010_addressB\010\n\006_phoneB\010\n\006_email2\201\002\n\rAdmini" +
+      "strator\022c\n\006SignIn\022*.palm.router.v1.Admin" +
+      "istratorSignInRequest\032+.palm.router.v1.A" +
+      "dministratorSignInResponse\"\000\022;\n\007SignOut\022" +
+      "\026.google.protobuf.Empty\032\026.google.protobu" +
+      "f.Empty\"\000\022N\n\006Update\022*.palm.router.v1.Adm" +
+      "inistratorUpdateRequest\032\026.google.protobu" +
+      "f.Empty\"\0002\364\002\n\006Router\022Y\n\013SetEthernet\0220.pa" +
+      "lm.router.v1.RouterIndexEthernetResponse" +
+      ".Item\032\026.google.protobuf.Empty\"\000\022V\n\rIndex" +
+      "Ethernet\022\026.google.protobuf.Empty\032+.palm." +
+      "router.v1.RouterIndexEthernetResponse\"\000\022" +
+      ":\n\006Reboot\022\026.google.protobuf.Empty\032\026.goog" +
+      "le.protobuf.Empty\"\000\0229\n\005Apply\022\026.google.pr" +
+      "otobuf.Empty\032\026.google.protobuf.Empty\"\000\022@" +
+      "\n\014FactoryReset\022\026.google.protobuf.Empty\032\026" +
+      ".google.protobuf.Empty\"\0002\374\002\n\004User\022D\n\005Ind" +
+      "ex\022\026.google.protobuf.Empty\032!.palm.router" +
+      ".v1.UserIndexResponse\"\000\022E\n\006Create\022!.palm" +
+      ".router.v1.UserCreateRequest\032\026.google.pr" +
+      "otobuf.Empty\"\000\022O\n\013SetRealName\022&.palm.rou" +
+      "ter.v1.UserSetRealNameRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022M\n\nSetContact\022%.palm.rou" +
+      "ter.v1.UserSetContactRequest\032\026.google.pr" +
+      "otobuf.Empty\"\000\022G\n\007SetWifi\022\".palm.router." +
+      "v1.UserSetWifiRequest\032\026.google.protobuf." +
+      "Empty\"\000B7\n,com.github.saturn_xiv.palm.pl" +
+      "ugins.router.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -479,7 +479,7 @@ public final class RouterOuterClass {
     internal_static_palm_router_v1_RouterIndexEthernetResponse_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_RouterIndexEthernetResponse_Item_descriptor,
-        new java.lang.String[] { "Device", "Name", "Wan", "Lan", "Empty", "Description", "Enable", "Ethernet", });
+        new java.lang.String[] { "Device", "Mac", "Name", "Wan", "Lan", "Empty", "Description", "Enable", "Ethernet", });
     internal_static_palm_router_v1_RouterIndexEthernetResponse_Item_Wan_descriptor =
       internal_static_palm_router_v1_RouterIndexEthernetResponse_Item_descriptor.getNestedTypes().get(0);
     internal_static_palm_router_v1_RouterIndexEthernetResponse_Item_Wan_fieldAccessorTable = new

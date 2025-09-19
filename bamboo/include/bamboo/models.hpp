@@ -39,16 +39,18 @@ inline void set(soci::session& db, const std::string& key,
   }
   bamboo::dao::set(db, key, buf);
 }
-inline void get(soci::session& db, const std::string& key,
+inline bool get(soci::session& db, const std::string& key,
                 google::protobuf::Message* value) {
   const auto buf = bamboo::dao::get(db, key);
   if (!buf) {
     spdlog::error("empty record");
-    return;
+    return false;
   }
   if (!value->ParseFromArray(buf->data(), buf->size())) {
     spdlog::error("failed to parse protobuf message");
+    return false;
   }
+  return true;
 }
 }  // namespace dao
 }  // namespace bamboo

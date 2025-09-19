@@ -463,14 +463,9 @@ void bamboo::Application::scan(const toml::table& config) {
   for (const auto& name : palm::network::interfaces()) {
     const auto mac = palm::network::mac(name);
     spdlog::debug("found network interface {} {}", name, mac);
-    const std::string key = std::format("network.interface.{}", name);
-    const auto buf = bamboo::dao::get(*db, key);
-    if (!buf) {
-      continue;
-    }
+    const std::string key = bamboo::network::key_of_interface(name);
     palm::router::v1::RouterIndexEthernetResponse_Item it;
-    if (!it.ParseFromArray(buf->data(), buf->size())) {
-      spdlog::error("failed to parse configuration for {}", name);
+    if (!bamboo::dao::get(*db, key, &it)) {
       continue;
     }
     if (!it.enable()) {

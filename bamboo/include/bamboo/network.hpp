@@ -5,6 +5,9 @@
 
 namespace bamboo {
 namespace network {
+inline std::string key_of_interface(const std::string& device) {
+  return std::format("network.interface.{}", device);
+}
 // FIXME remove
 void apply(const palm::router::v1::Network& it, bool run = false);
 // FIXME remove
