@@ -38,7 +38,7 @@ struct Host {
 };
 std::vector<Host> scan(const std::vector<std::string>& networks);
 std::vector<std::string> interfaces();
-std::string mac(const std::string& interface);
-
+std::string mac(const std::string& device);
+bool is_wired_ethernet(const std::string& device);
 }  // namespace network
 }  // namespace palm

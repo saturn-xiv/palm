@@ -8,7 +8,35 @@
 // https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
 // sudo pacman -S dnsmasq man-pages net-tools iproute2 dnsutils inetutils
 // sudo apt install iptables-persistent netfilter-persistent
+// https://wiki.archlinux.org/title/Systemd-networkd
 
+static void reset_systemd_networkd(const std::vector<std::string>& devices,
+                                   std::ostream& out) {
+  spdlog::debug("render systemd-networkd");
+  nlohmann::json data;
+  data["devices"] = devices;
+  inja::render_to(out, R"TEMPLATE(
+echo 'setup systemd networkd'
+if [ -d /etc/systemd/network ]
+then 
+    rm -rv /etc/systemd/network
+fi
+mkdir -pv /etc/systemd/network
+
+{% for dev in devices -%}
+echo "setup network for {{ dev }}"
+cat >/etc/systemd/network/20-{{ dev }}.network <<EOF
+[Match]
+Name={{ dev }}
+
+[Network]
+DHCP=yes
+{% endfor -%}
+
+systemctl restart systemd-networkd
+)TEMPLATE",
+                  data);
+}
 static void setup_systemd_networkd(const palm::router::v1::Network& network,
                                    std::ostream& out) {
   spdlog::debug("render systemd-networkd");
@@ -42,6 +70,15 @@ EOF
 systemctl restart systemd-networkd
 )TEMPLATE",
                network, out);
+}
+static void reset_dnsmasq(std::ostream& out) {
+  out << R"TEMPLATE(
+echo "reset dnsmasq"
+systemctl stop dnsmasq
+systemctl disable dnsmasq
+rm -fv /usr/lib/systemd/system/dnsmasq-*.service
+systemctl daemon-reload
+)TEMPLATE";
 }
 static void setup_dnsmasq(const palm::router::v1::Network& network,
                           std::ostream& out) {
@@ -154,6 +191,16 @@ iptables -t nat -A POSTROUTING -s {{ net.lan.network }} -j MASQUERADE
 {% endfor -%}
 )TEMPLATE",
                network, out);
+}
+
+static void reset_firewall(std::ostream& out) {
+  spdlog::debug("render reset firewall rules");
+  out << R"TEMPLATE(
+echo 'setup iptables'
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+)TEMPLATE";
 }
 
 static void setup_firewall(const palm::router::v1::Network& network,
@@ -276,4 +323,41 @@ std::optional<uint8_t> bamboo::network::netmask_to_cidr(const std::string& s) {
     return 23;
   }
   return std::nullopt;
+}
+
+void bamboo::router::factory_reset(bool run) {
+  auto devices = palm::network::interfaces();
+  devices.erase(std::remove_if(devices.begin(), devices.end(),
+                               [](std::string& it) {
+                                 return !palm::network::is_wired_ethernet(it);
+                               }),
+                devices.end());
+
+  const auto cur = palm::timestamp();
+
+  std::string reset = std::format("{}-reset.sh", cur);
+  {
+    spdlog::info("generate file {}", reset);
+    std::ofstream out(reset);
+    out << palm::bash::HEADER << palm::bash::REQUIRE_ROOT;
+    reset_systemd_networkd(devices, out);
+    reset_dnsmasq(out);
+    out << KERNEL_ENABLE_FORWARD << IPTABLES_CLEAR;
+    reset_firewall(out);
+    out << IPTABLES_SAVE << std::endl
+        << ECHO_DONE << std::endl
+        << palm::bash::FOOTER;
+    out.close();
+  }
+
+  if (run) {
+    spdlog::info("run script {}", reset);
+    const auto& [status, out, err] = palm::shell("/bin/bash", {reset});
+    if (status != EXIT_SUCCESS) {
+      spdlog::error("{} {}", status, err);
+      return;
+    }
+    spdlog::debug("{}", out);
+  }
+  spdlog::info("done.");
 }

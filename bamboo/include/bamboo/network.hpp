@@ -4,6 +4,9 @@
 #include "router.grpc.pb.h"
 
 namespace bamboo {
+namespace router {
+void factory_reset(bool run = false);
+}
 namespace network {
 inline std::string key_of_interface(const std::string& device) {
   return std::format("network.interface.{}", device);

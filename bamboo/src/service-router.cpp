@@ -58,6 +58,9 @@ grpc::Status bamboo::services::RouterServiceImpl::Apply(
 grpc::Status bamboo::services::RouterServiceImpl::FactoryReset(
     grpc::ServerContext* context, const google::protobuf::Empty* request,
     google::protobuf::Empty* reply) {
-  // TODO
+  if (!current_administrator(context, this->_jwt)) {
+    return MUST_SIGNED_IN;
+  }
+  bamboo::router::factory_reset(true);
   return grpc::Status::OK;
 }

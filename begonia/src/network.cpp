@@ -107,3 +107,15 @@ void palm::network::Ipv4::address(const std::string& v) {
   const auto it = palm::validator::ipv4(v);
   this->_address = it.value();
 }
+
+/*
+en: Indicates a wired Ethernet interface.
+p: Denotes a PCI Express device.
+0s3: These numbers refer to the device's location:
+  The first number (e.g., 0) is the bus number.
+  The letter s stands for a hotplug slot.
+  The last number (e.g., 3) is the slot number.
+*/
+bool palm::network::is_wired_ethernet(const std::string& device) {
+  return device.starts_with("en");
+}
