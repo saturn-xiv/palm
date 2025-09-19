@@ -11,6 +11,9 @@ podman build -t $CODE .
 podman save --format=oci-archive -o $TAR.tar $CODE
 md5sum $TAR.tar >$TAR.md5
 
+# xz -z -C sha256 --best -T 1 $TAR.tar
+# md5sum $TAR.tar.xz >>$TAR.md5
+
 echo "done($TAR.tar)."
 
 exit 0
