@@ -1,0 +1,6 @@
+[submodule "vendors/cbeta.org"]
+	path = vendors/cbeta.org
+	url = https://github.com/cbeta-org/xml-p5.git
+[submodule "vendors/tipitaka.org"]
+	path = vendors/tipitaka.org
+	url = https://github.com/VipassanaTech/tipitaka-xml.git
