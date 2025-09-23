@@ -14,13 +14,14 @@
   $ ./saturn-xiv/palm/docker/spring/start.sh
   > sudo supervisord -c /etc/supervisor/supervisord.conf
   # init redis cluster
-  > sudo /etc/redis/clusters-init.sh
+  > /etc/redis/clusters-init.sh
   ```
 
 - PostgreSql
 
   ```bash
-  psql -h 127.0.0.1 -p 5432 -U postgres
+  $ psql -h 127.0.0.1 -p 5432 -U postgres
+  > SELECT VERSION();
   ```
 
 - MySql
@@ -35,16 +36,16 @@
 
   ```bash
   # connect to redis cluster
-  redis-cli -c -h 127.0.0.1 -p 6371
+  $ redis-cli -c -h 127.0.0.1 -p 6371
   # check cluster status
-  redis-cli --cluster check 127.0.0.1:6371
+  $ redis-cli --cluster check 127.0.0.1:6371
   ```
 
 - Minio [dashboard](http://localhost:9091) (`admin:12345678`)
 
 - RabbitMQ [dashboard](http://localhost:15672) (`guest:guest`)
 
-- Php [info.php](http://localhost:8080/info.php) [XDebug](https://wiki.archlinux.org/index.php/PHP#XDebug) [XDebug mode](https://xdebug.org/docs/install#mode)
+- Php [info.php](http://localhost:10080/info.php) [XDebug](https://wiki.archlinux.org/index.php/PHP#XDebug) [XDebug mode](https://xdebug.org/docs/install#mode) [ERR_UNSAFE_PORT](https://stackoverflow.com/questions/58284965/after-publishing-all-code-getting-err-unsafe-port-on-chrome)
 
   ```bash
   php -r "var_dump(extension_loaded('xdebug'));"
@@ -55,7 +56,7 @@
   ```bash
   # show info
   curl -X GET http://localhost:9200
-  curl -X GET http://localhost:9200/_cat/plugins?v
+  curl -X GET "http://localhost:9200/_cat/plugins?v"
   ```
 
 - Vcpkg

@@ -149,7 +149,7 @@ RUN zsh -c "source $HOME/.zshrc \
 
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION="24.0.2-open"
+ENV JDK_VERSION="25-open"
 ENV GRADLE_VERSION="9.1.0"
 ENV THRIFT_JAVA_VERSION="19.0.2-open"
 ENV THRIFT_GRADLE_VERSION="7.6.4"
@@ -157,6 +157,7 @@ RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN zsh -c "source $HOME/.zshrc \
     && sdk install java ${JDK_VERSION} \
+    && sdk install java 25-amzn \
     && sdk install ant \
     && sdk install maven \
     && sdk install gradle ${GRADLE_VERSION} \
@@ -322,8 +323,9 @@ RUN sudo mkdir -p /var/lib/redis \
 
 RUN sudo mkdir -p /var/www/html \
     && echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php \
+    && sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig \
     && echo "daemon off;" | sudo tee -a /etc/nginx/nginx.conf \
-    && sudo sed -i '35,79d' /etc/nginx/nginx.conf \
+    && sudo sed -i '35,82d' /etc/nginx/nginx.conf \
     && sudo sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf \
     && sudo sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
 ADD etc/nginx/sites-enabled/localhost.conf /etc/nginx/sites-enabled/localhost.conf
