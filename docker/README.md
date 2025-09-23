@@ -16,7 +16,7 @@ sudo pacman -S crun podman buildah fuse-overlayfs
 - Podman commands
 
   ```bash
-  podman image prune # removes all dangling images
+  podman image prune -a # removes all dangling images
   podman system reset # clean
   podman images # show images
   podman ps -a # show containers

@@ -23,7 +23,7 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     hspell nuspell libvoikko hunspell hunspell-en_us \
     xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc \
     dart haxe lua \
-    erlang elixir rebar \
+    erlang elixir \
     jdk-openjdk libxcrypt-compat \
     nginx mariadb postgresql rabbitmq redis supervisor
 RUN pacman -Scc --noconfirm
