@@ -21,7 +21,7 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     ttf-arphic-ukai ttf-arphic-uming \
     texlive texlive-lang graphviz pandoc \
     hspell nuspell libvoikko hunspell hunspell-en_us \
-    xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc php-pspell \
+    xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc \
     dart haxe lua \
     erlang elixir rebar \
     jdk-openjdk libxcrypt-compat \
@@ -318,7 +318,7 @@ RUN echo "listen_addresses = '0.0.0.0'" | sudo tee -a /var/lib/postgres/data/pos
 ADD etc/redis/* /etc/redis/
 RUN sudo mkdir -p /var/lib/redis \
     && sudo mkdir /var/lib/redis/single /var/lib/redis/node-1 /var/lib/redis/node-2 /var/lib/redis/node-3 /var/lib/redis/node-4 /var/lib/redis/node-5 /var/lib/redis/node-6 \
-    && sudo chown -R redis:redis /var/lib/redis \
+    && sudo chown -R valkey:valkey /var/lib/redis \
     && sudo chmod 750 /var/lib/redis
 
 RUN sudo mkdir -p /var/www/html \
@@ -352,7 +352,6 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=pdo_pgsql/extension=pdo_pgsql/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=pdo_sqlite/extension=pdo_sqlite/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=pgsql/extension=pgsql/' /etc/php/php.ini \
-    && sudo sed -i 's/;extension=pspell/extension=pspell/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=snmp/extension=snmp/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=soap/extension=soap/' /etc/php/php.ini \
     && sudo sed -i 's/;extension=sockets/extension=sockets/' /etc/php/php.ini \
