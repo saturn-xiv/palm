@@ -3,8 +3,12 @@
 - Start [hyacinth](../hyacinth/)
 
 ```bash
-mvn clean && mvn package
-cp target/crocus-2025.8.15.jar ../hyacinth/libs/
+# build package
+$ mvn clean
+$ mvn package
+
+# install your protocol
+$ cp target/crocus-2025.8.15.jar ../hyacinth/libs/
 ```
 
 - Start backends
@@ -14,4 +18,4 @@ cp target/crocus-2025.8.15.jar ../hyacinth/libs/
 ./phlox/phlox -d -c phlox.toml rpc -p 18081
 ```
 
-- Curl client test: `./*-test.sh`
+- Test clients: `./*-test.sh`

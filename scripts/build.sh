@@ -89,7 +89,7 @@ function build_aarch64_on_ubuntu() {
 }
 
 function build_hyacinth_and_crocus() {
-    local hyacinth_version="2025.8.16"
+    local hyacinth_version="2025.9.24"
     local crocus_version="2025.8.15"
 
     cd $WORK_DIR/hyacinth/
