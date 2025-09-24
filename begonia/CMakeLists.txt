@@ -4,6 +4,7 @@ file(GLOB GOURD_SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/gourd/src/*
 find_package(argparse CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(SOCI CONFIG REQUIRED)
+find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
 find_package(redis++ CONFIG REQUIRED)
 find_package(unofficial-sodium CONFIG REQUIRED)
 find_package(rabbitmq-c CONFIG REQUIRED)
@@ -63,7 +64,7 @@ add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
 
 target_link_libraries(begonia PUBLIC m dl anl
   argparse::argparse spdlog::spdlog_header_only
-  SOCI::soci_core_static SOCI::soci_sqlite3_static SOCI::soci_postgresql_static
+  SOCI::soci_core_static SOCI::soci_sqlite3_static SOCI::soci_postgresql_static unofficial::mariadb-connector-cpp::mariadbcpp
   redis++::redis++_static 
   miniocpp::miniocpp
   rabbitmq::rabbitmq-static

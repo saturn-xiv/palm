@@ -197,7 +197,7 @@ function build_assets() {
 . /etc/os-release
 
 if [ ! -d $HOME/local/vcpkg ]; then
-    git clone -b 2025.07.25 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+    git clone -b 2025.09.17 https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
     $HOME/local/vcpkg/bootstrap-vcpkg.sh    
     cd $HOME/local/vcpkg && git apply $WORK_DIR/docker/buildroot/vcpkg.patch
     cp -v $WORK_DIR/triplets/*.cmake $HOME/local/vcpkg/triplets/community/
