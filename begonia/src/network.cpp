@@ -65,9 +65,15 @@ std::string palm::network::Ipv4::default_gateway() const {
   const auto it = network_and_broadcast(this->_address, this->_netmask);
   return int_to_ip(it.first + 1);
 }
-std::pair<std::string, std::string> palm::network::Ipv4::addresses() const {
+std::vector<std::string> palm::network::Ipv4::addresses() const {
   const auto it = network_and_broadcast(this->_address, this->_netmask);
-  return {int_to_ip(it.first + 2), int_to_ip(it.second - 1)};
+  std::vector<std::string> items;
+  for (int i = it.first + 2; i < it.second; i++) {
+    const auto ip = int_to_ip(i);
+    items.push_back(ip);
+  }
+  return items;
+  // return {int_to_ip(it.first + 2), int_to_ip(it.second - 1)};
 }
 uint8_t palm::network::Ipv4::cidr() const {
   std::istringstream ss(this->_netmask);

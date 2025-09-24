@@ -92,6 +92,42 @@ class AdministratorServiceImpl final
   std::shared_ptr<palm::Jwt> _jwt;
 };
 
+class HostServiceImpl final : public palm::router::v1::Host::Service {
+ public:
+  HostServiceImpl(std::shared_ptr<soci::session> db,
+                  std::shared_ptr<palm::Jwt> jwt)
+      : _db(db), _jwt(jwt) {}
+
+  grpc::Status Index(grpc::ServerContext* context,
+                     const google::protobuf::Empty* request,
+                     palm::router::v1::HostIndexResponse* reply) override;
+  grpc::Status SetDescription(
+      grpc::ServerContext* context,
+      const palm::router::v1::HostSetDescriptionRequest* request,
+      google::protobuf::Empty* reply) override;
+  grpc::Status Enable(grpc::ServerContext* context,
+                      const palm::portal::v1::ByIdRequest* request,
+                      google::protobuf::Empty* reply) override;
+  grpc::Status Disable(grpc::ServerContext* context,
+                       const palm::portal::v1::ByIdRequest* request,
+                       google::protobuf::Empty* reply) override;
+  grpc::Status Block(grpc::ServerContext* context,
+                     const palm::router::v1::HostBlockRequest* request,
+                     google::protobuf::Empty* reply) override;
+  grpc::Status SetStaticIpAddress(
+      grpc::ServerContext* context,
+      const palm::router::v1::HostSetStaticIpAddressRequest* request,
+      google::protobuf::Empty* reply) override;
+  grpc::Status SetDhcpAddress(
+      grpc::ServerContext* context,
+      const palm::router::v1::HostSetDhcpAddressRequest* request,
+      google::protobuf::Empty* reply) override;
+
+ private:
+  std::shared_ptr<soci::session> _db;
+  std::shared_ptr<palm::Jwt> _jwt;
+};
+
 static const grpc::Status& INVALID_ARGUMENT =
     grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid arguments");
 static const grpc::Status& INVALID_ADMINISTRATOR = grpc::Status(

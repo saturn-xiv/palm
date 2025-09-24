@@ -22,86 +22,34 @@ public interface WanOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>string address = 11;</code>
-   * @return The address.
+   * <code>.palm.router.v1.Wan.Static static = 2;</code>
+   * @return Whether the static field is set.
    */
-  java.lang.String getAddress();
+  boolean hasStatic();
   /**
-   * <code>string address = 11;</code>
-   * @return The bytes for address.
+   * <code>.palm.router.v1.Wan.Static static = 2;</code>
+   * @return The static.
    */
-  com.google.protobuf.ByteString
-      getAddressBytes();
+  com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static getStatic();
+  /**
+   * <code>.palm.router.v1.Wan.Static static = 2;</code>
+   */
+  com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder getStaticOrBuilder();
 
   /**
-   * <code>string netmask = 12;</code>
-   * @return The netmask.
+   * <code>.google.protobuf.Empty dhcp = 3;</code>
+   * @return Whether the dhcp field is set.
    */
-  java.lang.String getNetmask();
+  boolean hasDhcp();
   /**
-   * <code>string netmask = 12;</code>
-   * @return The bytes for netmask.
+   * <code>.google.protobuf.Empty dhcp = 3;</code>
+   * @return The dhcp.
    */
-  com.google.protobuf.ByteString
-      getNetmaskBytes();
-
+  com.google.protobuf.Empty getDhcp();
   /**
-   * <code>string gateway = 13;</code>
-   * @return The gateway.
+   * <code>.google.protobuf.Empty dhcp = 3;</code>
    */
-  java.lang.String getGateway();
-  /**
-   * <code>string gateway = 13;</code>
-   * @return The bytes for gateway.
-   */
-  com.google.protobuf.ByteString
-      getGatewayBytes();
-
-  /**
-   * <code>uint32 cidr = 19;</code>
-   * @return The cidr.
-   */
-  int getCidr();
-
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @return A list containing the dns.
-   */
-  java.util.List<java.lang.String>
-      getDnsList();
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @return The count of dns.
-   */
-  int getDnsCount();
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @param index The index of the element to return.
-   * @return The dns at the given index.
-   */
-  java.lang.String getDns(int index);
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the dns at the given index.
-   */
-  com.google.protobuf.ByteString
-      getDnsBytes(int index);
-
-  /**
-   * <code>.palm.router.v1.Firewall firewall = 15;</code>
-   * @return Whether the firewall field is set.
-   */
-  boolean hasFirewall();
-  /**
-   * <code>.palm.router.v1.Firewall firewall = 15;</code>
-   * @return The firewall.
-   */
-  com.github.saturn_xiv.palm.plugins.router.v1.Firewall getFirewall();
-  /**
-   * <code>.palm.router.v1.Firewall firewall = 15;</code>
-   */
-  com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder getFirewallOrBuilder();
+  com.google.protobuf.EmptyOrBuilder getDhcpOrBuilder();
 
   /**
    * <code>uint32 weight = 98;</code>
@@ -120,4 +68,6 @@ public interface WanOrBuilder extends
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();
+
+  com.github.saturn_xiv.palm.plugins.router.v1.Wan.IpCase getIpCase();
 }

@@ -24,8 +24,9 @@ TEST_CASE("network", "[ipv4]") {
 
     {
       const auto ips = it.addresses();
-      REQUIRE(ips.first == "192.168.1.2");
-      REQUIRE(ips.second == "192.168.1.254");
+      REQUIRE(ips.size() > 2);
+      REQUIRE(ips.front() == "192.168.1.2");
+      REQUIRE(ips.back() == "192.168.1.254");
     }
   }
 }

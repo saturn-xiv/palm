@@ -3,167 +3,9 @@
 #include "bamboo/services.hpp"
 #include "palm/network.hpp"
 #include "palm/utils.hpp"
-#include "palm/version.hpp"
 
-#include <grpcpp/health_check_service_interface.h>
-#include <grpcpp/security/server_credentials.h>
 #include <sodium.h>
-#include <argparse/argparse.hpp>
 
-void bamboo::Application::launch(int argc, char* argv[]) {
-  bool debug;
-
-  std::string rpc_config_file;
-  std::string rpc_listen_host;
-  int rpc_listen_port;
-
-  std::string apply_input_file;
-  bool apply_run;
-
-  std::string sample_output_file;
-
-  std::string scan_config_file;
-
-  argparse::ArgumentParser program(
-      "bamboo", std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME));
-  program.add_description("A smart router inspired by OpenWrt.");
-  program.add_epilog(palm::PROJECT_HOME);
-  program.add_argument("-d", "--debug")
-      .flag()
-      .store_into(debug)
-      .help("run on debug mode");
-
-  argparse::ArgumentParser rpc_command("rpc");
-  rpc_command.add_description("start a gRPC server");
-  rpc_command.add_argument("-H", "--host")
-      .default_value("127.0.0.1")
-      .store_into(rpc_listen_host);
-  rpc_command.add_argument("-p", "--port")
-      .default_value(8080)
-      .store_into(rpc_listen_port);
-  rpc_command.add_argument("-c", "--config")
-      .default_value("config.toml")
-      .store_into(rpc_config_file)
-      .help("configuration file");
-
-  argparse::ArgumentParser reboot_command("reboot");
-  reboot_command.add_description("reboot the system");
-
-  argparse::ArgumentParser scan_command("scan");
-  scan_command.add_description("scan the internal hosts");
-  scan_command.add_argument("-c", "--config")
-      .default_value("config.toml")
-      .store_into(scan_config_file)
-      .help("configuration file");
-
-  argparse::ArgumentParser apply_command("apply");
-  apply_command.add_description("apply from configuration");
-  apply_command.add_argument("-i", "--input")
-      .default_value("config.json")
-      .store_into(apply_input_file)
-      .help("configuration file");
-  apply_command.add_argument("-r", "--run")
-      .flag()
-      .store_into(apply_run)
-      .help("run it after generate the script file");
-
-  argparse::ArgumentParser sample_command("sample");
-  sample_command.add_description("generate a sample resource file");
-  sample_command.add_argument("-o", "--output")
-      .default_value("config.json")
-      .store_into(sample_output_file)
-      .help("configuration file");
-
-  program.add_subparser(rpc_command);
-  program.add_subparser(scan_command);
-  program.add_subparser(reboot_command);
-  program.add_subparser(sample_command);
-  program.add_subparser(apply_command);
-  program.parse_args(argc, argv);
-
-  if (program.is_subcommand_used(reboot_command)) {
-    palm::init(debug);
-    this->reboot();
-    return;
-  }
-
-  if (program.is_subcommand_used(apply_command)) {
-    palm::init(debug);
-    this->apply(apply_input_file, apply_run);
-    return;
-  }
-  if (program.is_subcommand_used(sample_command)) {
-    palm::init(debug);
-    this->sample(sample_output_file);
-    return;
-  }
-
-  if (program.is_subcommand_used(rpc_command)) {
-    palm::init(debug);
-    spdlog::info("load configuration from {}", rpc_config_file);
-    toml::table config = toml::parse_file(rpc_config_file);
-    if (program.is_subcommand_used(rpc_command)) {
-      this->rpc_server(config, rpc_listen_host, rpc_listen_port);
-      return;
-    }
-  }
-  if (program.is_subcommand_used(scan_command)) {
-    palm::init(debug);
-    spdlog::info("load configuration from {}", scan_config_file);
-    toml::table config = toml::parse_file(scan_config_file);
-    this->scan(config);
-    return;
-  }
-  std::cout << program << std::endl;
-}
-
-void bamboo::Application::rpc_server(const toml::table& config,
-                                     const std::string& host, uint16_t port) {
-  if (palm::is_stopped()) {
-    return;
-  }
-
-  const std::string address = std::format("{}:{}", host, port);
-
-  auto db = this->db(config);
-  auto jwt = this->jwt(config);
-  auto aes = this->aes(config);
-
-  {
-    soci::transaction tr(*db);
-    const std::string installed_at = "site.installed-at";
-    const auto it = bamboo::dao::get(*db, installed_at);
-    if (!it) {
-      spdlog::warn("empty database, will be setup it at first");
-      bamboo::dao::administrator::save(*db, "admin", "123456");
-      {
-        const auto now = google::protobuf::util::TimeUtil::GetCurrentTime();
-        bamboo::dao::set(*db, installed_at, now);
-      }
-    }
-    tr.commit();
-  }
-
-  bamboo::services::AdministratorServiceImpl administrator_service(db, jwt);
-  bamboo::services::RouterServiceImpl router_service(db, jwt);
-  bamboo::services::UserServiceImpl user_service(db, aes, jwt);
-
-  grpc::EnableDefaultHealthCheckService(true);
-
-  grpc::ServerBuilder builder;
-  builder.AddListeningPort(address, grpc::InsecureServerCredentials());
-
-  {
-    builder.RegisterService(&administrator_service);
-    builder.RegisterService(&router_service);
-    builder.RegisterService(&user_service);
-  }
-
-  std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-  spdlog::info("listen a gRPC server on tcp://{}:{}", host, port);
-
-  server->Wait();
-}
 void bamboo::Application::reboot() {
   spdlog::warn("will reboot the system");
   palm::reboot();
@@ -199,14 +41,18 @@ void bamboo::Application::sample(const std::string& output) {
     auto it = eth->mutable_wan();
 
     it->set_name("wan-0");
-    it->set_address("x.x.x.x");
-    it->set_netmask("255.255.255.0");
-    it->set_cidr(24);
-    it->set_gateway("x.x.x.1");
-    it->add_dns("8.8.8.8");
-    it->add_dns("8.8.4.4");
+    {
+      auto jt = it->mutable_static_();
+      jt->set_address("x.x.x.x");
+      jt->set_netmask("255.255.255.0");
+      jt->set_cidr(24);
+      jt->set_gateway("x.x.x.1");
+      jt->add_dns("8.8.8.8");
+      jt->add_dns("8.8.4.4");
+    }
     it->set_weight(6);
     it->set_description("Wan");
+    /*
     {
       auto fw = it->mutable_firewall();
       fw->set_ping(true);
@@ -241,6 +87,7 @@ void bamboo::Application::sample(const std::string& output) {
         }
       }
     }
+    */
 
     (*items)["eth0"] = *eth;
   }
@@ -397,6 +244,8 @@ CREATE TABLE IF NOT EXISTS hosts (
   ip VARCHAR(45) NOT NULL,
   name VARCHAR(63) NOT NULL,
   vendor VARCHAR(63) NOT NULL,
+  fixed BOOLEAN NOT NULL DEFAULT FALSE,
+  description VARCHAR(1023) NOT NULL DEFAULT '',
   deleted_at TIMESTAMP,
   version INTEGER NOT NULL DEFAULT 0, 
   updated_at TIMESTAMP NOT NULL,
@@ -406,6 +255,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_hosts_mac ON idx_hosts(mac);
 CREATE INDEX IF NOT EXISTS idx_hosts_ip ON idx_hosts(ip);
 CREATE INDEX IF NOT EXISTS idx_hosts_name ON idx_hosts(name);
 CREATE INDEX IF NOT EXISTS idx_hosts_vendor ON idx_hosts(vendor);
+CREATE INDEX IF NOT EXISTS idx_hosts_description ON idx_hosts(description);
 )SQL";
 
     *db << R"SQL(

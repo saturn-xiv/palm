@@ -6,6 +6,18 @@
 static const std::string gl_administrator_name = "administrator.name";
 static const std::string gl_administrator_password = "administrator.password";
 
+boost::fusion::vector<bamboo::dao::host::Item> bamboo::dao::host::all(
+    soci::session& db) {
+  boost::fusion::vector<bamboo::dao::host::Item> items;
+  db << "SELECT * FROM hosts ORDER BY updated_at DESC", soci::into(items);
+  return items;
+}
+
+void bamboo::dao::host::set_description(soci::session& db, uint32_t id,
+                                        const std::string& description) {
+  db << R"SQL(UPDATE hosts SET description=:description, version=version+1, updated_at=CURRENT_TIMESTAMP WHERE id = :id)SQL",
+      soci::use(id, "id"), soci::use(description, "description");
+}
 void bamboo::dao::host::save(soci::session& db, const std::string& mac,
                              const std::string& name, const std::string& ip,
                              const std::string& vendor) {

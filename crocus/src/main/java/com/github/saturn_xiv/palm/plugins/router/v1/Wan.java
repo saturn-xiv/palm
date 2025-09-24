@@ -28,11 +28,6 @@ private static final long serialVersionUID = 0L;
   }
   private Wan() {
     name_ = "";
-    address_ = "";
-    netmask_ = "";
-    gateway_ = "";
-    dns_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
     description_ = "";
   }
 
@@ -404,7 +399,1140 @@ private static final long serialVersionUID = 0L;
 
   }
 
-  private int bitField0_;
+  public interface StaticOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:palm.router.v1.Wan.Static)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string address = 11;</code>
+     * @return The address.
+     */
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 11;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
+
+    /**
+     * <code>string netmask = 12;</code>
+     * @return The netmask.
+     */
+    java.lang.String getNetmask();
+    /**
+     * <code>string netmask = 12;</code>
+     * @return The bytes for netmask.
+     */
+    com.google.protobuf.ByteString
+        getNetmaskBytes();
+
+    /**
+     * <code>string gateway = 13;</code>
+     * @return The gateway.
+     */
+    java.lang.String getGateway();
+    /**
+     * <code>string gateway = 13;</code>
+     * @return The bytes for gateway.
+     */
+    com.google.protobuf.ByteString
+        getGatewayBytes();
+
+    /**
+     * <code>uint32 cidr = 19;</code>
+     * @return The cidr.
+     */
+    int getCidr();
+
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @return A list containing the dns.
+     */
+    java.util.List<java.lang.String>
+        getDnsList();
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @return The count of dns.
+     */
+    int getDnsCount();
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @param index The index of the element to return.
+     * @return The dns at the given index.
+     */
+    java.lang.String getDns(int index);
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the dns at the given index.
+     */
+    com.google.protobuf.ByteString
+        getDnsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code palm.router.v1.Wan.Static}
+   */
+  public static final class Static extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:palm.router.v1.Wan.Static)
+      StaticOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 5,
+        /* suffix= */ "",
+        Static.class.getName());
+    }
+    // Use Static.newBuilder() to construct.
+    private Static(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Static() {
+      address_ = "";
+      netmask_ = "";
+      gateway_ = "";
+      dns_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Static_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Static_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.class, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder.class);
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 11;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object address_ = "";
+    /**
+     * <code>string address = 11;</code>
+     * @return The address.
+     */
+    @java.lang.Override
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 11;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NETMASK_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object netmask_ = "";
+    /**
+     * <code>string netmask = 12;</code>
+     * @return The netmask.
+     */
+    @java.lang.Override
+    public java.lang.String getNetmask() {
+      java.lang.Object ref = netmask_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        netmask_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string netmask = 12;</code>
+     * @return The bytes for netmask.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNetmaskBytes() {
+      java.lang.Object ref = netmask_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        netmask_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int GATEWAY_FIELD_NUMBER = 13;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object gateway_ = "";
+    /**
+     * <code>string gateway = 13;</code>
+     * @return The gateway.
+     */
+    @java.lang.Override
+    public java.lang.String getGateway() {
+      java.lang.Object ref = gateway_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        gateway_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string gateway = 13;</code>
+     * @return The bytes for gateway.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getGatewayBytes() {
+      java.lang.Object ref = gateway_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        gateway_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CIDR_FIELD_NUMBER = 19;
+    private int cidr_ = 0;
+    /**
+     * <code>uint32 cidr = 19;</code>
+     * @return The cidr.
+     */
+    @java.lang.Override
+    public int getCidr() {
+      return cidr_;
+    }
+
+    public static final int DNS_FIELD_NUMBER = 14;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList dns_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @return A list containing the dns.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getDnsList() {
+      return dns_;
+    }
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @return The count of dns.
+     */
+    public int getDnsCount() {
+      return dns_.size();
+    }
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @param index The index of the element to return.
+     * @return The dns at the given index.
+     */
+    public java.lang.String getDns(int index) {
+      return dns_.get(index);
+    }
+    /**
+     * <code>repeated string dns = 14;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the dns at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getDnsBytes(int index) {
+      return dns_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 11, address_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 12, netmask_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gateway_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 13, gateway_);
+      }
+      for (int i = 0; i < dns_.size(); i++) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 14, dns_.getRaw(i));
+      }
+      if (cidr_ != 0) {
+        output.writeUInt32(19, cidr_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(11, address_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(12, netmask_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gateway_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(13, gateway_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < dns_.size(); i++) {
+          dataSize += computeStringSizeNoTag(dns_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getDnsList().size();
+      }
+      if (cidr_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(19, cidr_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static)) {
+        return super.equals(obj);
+      }
+      com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static other = (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) obj;
+
+      if (!getAddress()
+          .equals(other.getAddress())) return false;
+      if (!getNetmask()
+          .equals(other.getNetmask())) return false;
+      if (!getGateway()
+          .equals(other.getGateway())) return false;
+      if (getCidr()
+          != other.getCidr()) return false;
+      if (!getDnsList()
+          .equals(other.getDnsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
+      hash = (37 * hash) + NETMASK_FIELD_NUMBER;
+      hash = (53 * hash) + getNetmask().hashCode();
+      hash = (37 * hash) + GATEWAY_FIELD_NUMBER;
+      hash = (53 * hash) + getGateway().hashCode();
+      hash = (37 * hash) + CIDR_FIELD_NUMBER;
+      hash = (53 * hash) + getCidr();
+      if (getDnsCount() > 0) {
+        hash = (37 * hash) + DNS_FIELD_NUMBER;
+        hash = (53 * hash) + getDnsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code palm.router.v1.Wan.Static}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:palm.router.v1.Wan.Static)
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Static_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Static_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.class, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder.class);
+      }
+
+      // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        address_ = "";
+        netmask_ = "";
+        gateway_ = "";
+        cidr_ = 0;
+        dns_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_Wan_Static_descriptor;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static getDefaultInstanceForType() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static build() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static buildPartial() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static result = new com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.netmask_ = netmask_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.gateway_ = gateway_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.cidr_ = cidr_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          dns_.makeImmutable();
+          result.dns_ = dns_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) {
+          return mergeFrom((com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static other) {
+        if (other == com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance()) return this;
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getNetmask().isEmpty()) {
+          netmask_ = other.netmask_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getGateway().isEmpty()) {
+          gateway_ = other.gateway_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        if (other.getCidr() != 0) {
+          setCidr(other.getCidr());
+        }
+        if (!other.dns_.isEmpty()) {
+          if (dns_.isEmpty()) {
+            dns_ = other.dns_;
+            bitField0_ |= 0x00000010;
+          } else {
+            ensureDnsIsMutable();
+            dns_.addAll(other.dns_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 90: {
+                address_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 90
+              case 98: {
+                netmask_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 98
+              case 106: {
+                gateway_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 106
+              case 114: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureDnsIsMutable();
+                dns_.add(s);
+                break;
+              } // case 114
+              case 152: {
+                cidr_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 152
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object address_ = "";
+      /**
+       * <code>string address = 11;</code>
+       * @return The address.
+       */
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string address = 11;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 11;</code>
+       * @param value The address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddress(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        address_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAddress() {
+        address_ = getDefaultInstance().getAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 11;</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        address_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object netmask_ = "";
+      /**
+       * <code>string netmask = 12;</code>
+       * @return The netmask.
+       */
+      public java.lang.String getNetmask() {
+        java.lang.Object ref = netmask_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          netmask_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string netmask = 12;</code>
+       * @return The bytes for netmask.
+       */
+      public com.google.protobuf.ByteString
+          getNetmaskBytes() {
+        java.lang.Object ref = netmask_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          netmask_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string netmask = 12;</code>
+       * @param value The netmask to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNetmask(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        netmask_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string netmask = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearNetmask() {
+        netmask_ = getDefaultInstance().getNetmask();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string netmask = 12;</code>
+       * @param value The bytes for netmask to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNetmaskBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        netmask_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object gateway_ = "";
+      /**
+       * <code>string gateway = 13;</code>
+       * @return The gateway.
+       */
+      public java.lang.String getGateway() {
+        java.lang.Object ref = gateway_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          gateway_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string gateway = 13;</code>
+       * @return The bytes for gateway.
+       */
+      public com.google.protobuf.ByteString
+          getGatewayBytes() {
+        java.lang.Object ref = gateway_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          gateway_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string gateway = 13;</code>
+       * @param value The gateway to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGateway(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        gateway_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string gateway = 13;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGateway() {
+        gateway_ = getDefaultInstance().getGateway();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string gateway = 13;</code>
+       * @param value The bytes for gateway to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGatewayBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        gateway_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+
+      private int cidr_ ;
+      /**
+       * <code>uint32 cidr = 19;</code>
+       * @return The cidr.
+       */
+      @java.lang.Override
+      public int getCidr() {
+        return cidr_;
+      }
+      /**
+       * <code>uint32 cidr = 19;</code>
+       * @param value The cidr to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCidr(int value) {
+
+        cidr_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 cidr = 19;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCidr() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        cidr_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringArrayList dns_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureDnsIsMutable() {
+        if (!dns_.isModifiable()) {
+          dns_ = new com.google.protobuf.LazyStringArrayList(dns_);
+        }
+        bitField0_ |= 0x00000010;
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @return A list containing the dns.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getDnsList() {
+        dns_.makeImmutable();
+        return dns_;
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @return The count of dns.
+       */
+      public int getDnsCount() {
+        return dns_.size();
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @param index The index of the element to return.
+       * @return The dns at the given index.
+       */
+      public java.lang.String getDns(int index) {
+        return dns_.get(index);
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the dns at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getDnsBytes(int index) {
+        return dns_.getByteString(index);
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @param index The index to set the value at.
+       * @param value The dns to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDns(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureDnsIsMutable();
+        dns_.set(index, value);
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @param value The dns to add.
+       * @return This builder for chaining.
+       */
+      public Builder addDns(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureDnsIsMutable();
+        dns_.add(value);
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @param values The dns to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllDns(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureDnsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, dns_);
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDns() {
+        dns_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dns = 14;</code>
+       * @param value The bytes of the dns to add.
+       * @return This builder for chaining.
+       */
+      public Builder addDnsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureDnsIsMutable();
+        dns_.add(value);
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:palm.router.v1.Wan.Static)
+    }
+
+    // @@protoc_insertion_point(class_scope:palm.router.v1.Wan.Static)
+    private static final com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static();
+    }
+
+    public static com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Static>
+        PARSER = new com.google.protobuf.AbstractParser<Static>() {
+      @java.lang.Override
+      public Static parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Static> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Static> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private int ipCase_ = 0;
+  @SuppressWarnings("serial")
+  private java.lang.Object ip_;
+  public enum IpCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    STATIC(2),
+    DHCP(3),
+    IP_NOT_SET(0);
+    private final int value;
+    private IpCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static IpCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static IpCase forNumber(int value) {
+      switch (value) {
+        case 2: return STATIC;
+        case 3: return DHCP;
+        case 0: return IP_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public IpCase
+  getIpCase() {
+    return IpCase.forNumber(
+        ipCase_);
+  }
+
   public static final int NAME_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
   private volatile java.lang.Object name_ = "";
@@ -444,195 +1572,66 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int ADDRESS_FIELD_NUMBER = 11;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object address_ = "";
+  public static final int STATIC_FIELD_NUMBER = 2;
   /**
-   * <code>string address = 11;</code>
-   * @return The address.
+   * <code>.palm.router.v1.Wan.Static static = 2;</code>
+   * @return Whether the static field is set.
    */
   @java.lang.Override
-  public java.lang.String getAddress() {
-    java.lang.Object ref = address_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      address_ = s;
-      return s;
-    }
+  public boolean hasStatic() {
+    return ipCase_ == 2;
   }
   /**
-   * <code>string address = 11;</code>
-   * @return The bytes for address.
+   * <code>.palm.router.v1.Wan.Static static = 2;</code>
+   * @return The static.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getAddressBytes() {
-    java.lang.Object ref = address_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      address_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
+  public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static getStatic() {
+    if (ipCase_ == 2) {
+       return (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_;
     }
+    return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
+  }
+  /**
+   * <code>.palm.router.v1.Wan.Static static = 2;</code>
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder getStaticOrBuilder() {
+    if (ipCase_ == 2) {
+       return (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_;
+    }
+    return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
   }
 
-  public static final int NETMASK_FIELD_NUMBER = 12;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object netmask_ = "";
+  public static final int DHCP_FIELD_NUMBER = 3;
   /**
-   * <code>string netmask = 12;</code>
-   * @return The netmask.
+   * <code>.google.protobuf.Empty dhcp = 3;</code>
+   * @return Whether the dhcp field is set.
    */
   @java.lang.Override
-  public java.lang.String getNetmask() {
-    java.lang.Object ref = netmask_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      netmask_ = s;
-      return s;
+  public boolean hasDhcp() {
+    return ipCase_ == 3;
+  }
+  /**
+   * <code>.google.protobuf.Empty dhcp = 3;</code>
+   * @return The dhcp.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Empty getDhcp() {
+    if (ipCase_ == 3) {
+       return (com.google.protobuf.Empty) ip_;
     }
+    return com.google.protobuf.Empty.getDefaultInstance();
   }
   /**
-   * <code>string netmask = 12;</code>
-   * @return The bytes for netmask.
+   * <code>.google.protobuf.Empty dhcp = 3;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getNetmaskBytes() {
-    java.lang.Object ref = netmask_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      netmask_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
+  public com.google.protobuf.EmptyOrBuilder getDhcpOrBuilder() {
+    if (ipCase_ == 3) {
+       return (com.google.protobuf.Empty) ip_;
     }
-  }
-
-  public static final int GATEWAY_FIELD_NUMBER = 13;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object gateway_ = "";
-  /**
-   * <code>string gateway = 13;</code>
-   * @return The gateway.
-   */
-  @java.lang.Override
-  public java.lang.String getGateway() {
-    java.lang.Object ref = gateway_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      gateway_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string gateway = 13;</code>
-   * @return The bytes for gateway.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getGatewayBytes() {
-    java.lang.Object ref = gateway_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      gateway_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int CIDR_FIELD_NUMBER = 19;
-  private int cidr_ = 0;
-  /**
-   * <code>uint32 cidr = 19;</code>
-   * @return The cidr.
-   */
-  @java.lang.Override
-  public int getCidr() {
-    return cidr_;
-  }
-
-  public static final int DNS_FIELD_NUMBER = 14;
-  @SuppressWarnings("serial")
-  private com.google.protobuf.LazyStringArrayList dns_ =
-      com.google.protobuf.LazyStringArrayList.emptyList();
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @return A list containing the dns.
-   */
-  public com.google.protobuf.ProtocolStringList
-      getDnsList() {
-    return dns_;
-  }
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @return The count of dns.
-   */
-  public int getDnsCount() {
-    return dns_.size();
-  }
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @param index The index of the element to return.
-   * @return The dns at the given index.
-   */
-  public java.lang.String getDns(int index) {
-    return dns_.get(index);
-  }
-  /**
-   * <code>repeated string dns = 14;</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the dns at the given index.
-   */
-  public com.google.protobuf.ByteString
-      getDnsBytes(int index) {
-    return dns_.getByteString(index);
-  }
-
-  public static final int FIREWALL_FIELD_NUMBER = 15;
-  private com.github.saturn_xiv.palm.plugins.router.v1.Firewall firewall_;
-  /**
-   * <code>.palm.router.v1.Firewall firewall = 15;</code>
-   * @return Whether the firewall field is set.
-   */
-  @java.lang.Override
-  public boolean hasFirewall() {
-    return ((bitField0_ & 0x00000001) != 0);
-  }
-  /**
-   * <code>.palm.router.v1.Firewall firewall = 15;</code>
-   * @return The firewall.
-   */
-  @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.router.v1.Firewall getFirewall() {
-    return firewall_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
-  }
-  /**
-   * <code>.palm.router.v1.Firewall firewall = 15;</code>
-   */
-  @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder getFirewallOrBuilder() {
-    return firewall_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+    return com.google.protobuf.Empty.getDefaultInstance();
   }
 
   public static final int WEIGHT_FIELD_NUMBER = 98;
@@ -702,23 +1701,11 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 11, address_);
+    if (ipCase_ == 2) {
+      output.writeMessage(2, (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 12, netmask_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gateway_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 13, gateway_);
-    }
-    for (int i = 0; i < dns_.size(); i++) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 14, dns_.getRaw(i));
-    }
-    if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(15, getFirewall());
-    }
-    if (cidr_ != 0) {
-      output.writeUInt32(19, cidr_);
+    if (ipCase_ == 3) {
+      output.writeMessage(3, (com.google.protobuf.Empty) ip_);
     }
     if (weight_ != 0) {
       output.writeUInt32(98, weight_);
@@ -738,30 +1725,13 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(11, address_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(12, netmask_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gateway_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(13, gateway_);
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < dns_.size(); i++) {
-        dataSize += computeStringSizeNoTag(dns_.getRaw(i));
-      }
-      size += dataSize;
-      size += 1 * getDnsList().size();
-    }
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (ipCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(15, getFirewall());
+        .computeMessageSize(2, (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_);
     }
-    if (cidr_ != 0) {
+    if (ipCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(19, cidr_);
+        .computeMessageSize(3, (com.google.protobuf.Empty) ip_);
     }
     if (weight_ != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -787,25 +1757,23 @@ private static final long serialVersionUID = 0L;
 
     if (!getName()
         .equals(other.getName())) return false;
-    if (!getAddress()
-        .equals(other.getAddress())) return false;
-    if (!getNetmask()
-        .equals(other.getNetmask())) return false;
-    if (!getGateway()
-        .equals(other.getGateway())) return false;
-    if (getCidr()
-        != other.getCidr()) return false;
-    if (!getDnsList()
-        .equals(other.getDnsList())) return false;
-    if (hasFirewall() != other.hasFirewall()) return false;
-    if (hasFirewall()) {
-      if (!getFirewall()
-          .equals(other.getFirewall())) return false;
-    }
     if (getWeight()
         != other.getWeight()) return false;
     if (!getDescription()
         .equals(other.getDescription())) return false;
+    if (!getIpCase().equals(other.getIpCase())) return false;
+    switch (ipCase_) {
+      case 2:
+        if (!getStatic()
+            .equals(other.getStatic())) return false;
+        break;
+      case 3:
+        if (!getDhcp()
+            .equals(other.getDhcp())) return false;
+        break;
+      case 0:
+      default:
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -819,26 +1787,22 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
-    hash = (53 * hash) + getAddress().hashCode();
-    hash = (37 * hash) + NETMASK_FIELD_NUMBER;
-    hash = (53 * hash) + getNetmask().hashCode();
-    hash = (37 * hash) + GATEWAY_FIELD_NUMBER;
-    hash = (53 * hash) + getGateway().hashCode();
-    hash = (37 * hash) + CIDR_FIELD_NUMBER;
-    hash = (53 * hash) + getCidr();
-    if (getDnsCount() > 0) {
-      hash = (37 * hash) + DNS_FIELD_NUMBER;
-      hash = (53 * hash) + getDnsList().hashCode();
-    }
-    if (hasFirewall()) {
-      hash = (37 * hash) + FIREWALL_FIELD_NUMBER;
-      hash = (53 * hash) + getFirewall().hashCode();
-    }
     hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
     hash = (53 * hash) + getWeight();
     hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getDescription().hashCode();
+    switch (ipCase_) {
+      case 2:
+        hash = (37 * hash) + STATIC_FIELD_NUMBER;
+        hash = (53 * hash) + getStatic().hashCode();
+        break;
+      case 3:
+        hash = (37 * hash) + DHCP_FIELD_NUMBER;
+        hash = (53 * hash) + getDhcp().hashCode();
+        break;
+      case 0:
+      default:
+    }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -958,38 +1922,29 @@ private static final long serialVersionUID = 0L;
 
     // Construct using com.github.saturn_xiv.palm.plugins.router.v1.Wan.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessage
-              .alwaysUseFieldBuilders) {
-        getFirewallFieldBuilder();
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
       name_ = "";
-      address_ = "";
-      netmask_ = "";
-      gateway_ = "";
-      cidr_ = 0;
-      dns_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
-      firewall_ = null;
-      if (firewallBuilder_ != null) {
-        firewallBuilder_.dispose();
-        firewallBuilder_ = null;
+      if (staticBuilder_ != null) {
+        staticBuilder_.clear();
+      }
+      if (dhcpBuilder_ != null) {
+        dhcpBuilder_.clear();
       }
       weight_ = 0;
       description_ = "";
+      ipCase_ = 0;
+      ip_ = null;
       return this;
     }
 
@@ -1017,6 +1972,7 @@ private static final long serialVersionUID = 0L;
     public com.github.saturn_xiv.palm.plugins.router.v1.Wan buildPartial() {
       com.github.saturn_xiv.palm.plugins.router.v1.Wan result = new com.github.saturn_xiv.palm.plugins.router.v1.Wan(this);
       if (bitField0_ != 0) { buildPartial0(result); }
+      buildPartialOneofs(result);
       onBuilt();
       return result;
     }
@@ -1026,36 +1982,25 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.name_ = name_;
       }
-      if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.address_ = address_;
-      }
-      if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.netmask_ = netmask_;
-      }
       if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.gateway_ = gateway_;
-      }
-      if (((from_bitField0_ & 0x00000010) != 0)) {
-        result.cidr_ = cidr_;
-      }
-      if (((from_bitField0_ & 0x00000020) != 0)) {
-        dns_.makeImmutable();
-        result.dns_ = dns_;
-      }
-      int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000040) != 0)) {
-        result.firewall_ = firewallBuilder_ == null
-            ? firewall_
-            : firewallBuilder_.build();
-        to_bitField0_ |= 0x00000001;
-      }
-      if (((from_bitField0_ & 0x00000080) != 0)) {
         result.weight_ = weight_;
       }
-      if (((from_bitField0_ & 0x00000100) != 0)) {
+      if (((from_bitField0_ & 0x00000010) != 0)) {
         result.description_ = description_;
       }
-      result.bitField0_ |= to_bitField0_;
+    }
+
+    private void buildPartialOneofs(com.github.saturn_xiv.palm.plugins.router.v1.Wan result) {
+      result.ipCase_ = ipCase_;
+      result.ip_ = this.ip_;
+      if (ipCase_ == 2 &&
+          staticBuilder_ != null) {
+        result.ip_ = staticBuilder_.build();
+      }
+      if (ipCase_ == 3 &&
+          dhcpBuilder_ != null) {
+        result.ip_ = dhcpBuilder_.build();
+      }
     }
 
     @java.lang.Override
@@ -1075,44 +2020,26 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000001;
         onChanged();
       }
-      if (!other.getAddress().isEmpty()) {
-        address_ = other.address_;
-        bitField0_ |= 0x00000002;
-        onChanged();
-      }
-      if (!other.getNetmask().isEmpty()) {
-        netmask_ = other.netmask_;
-        bitField0_ |= 0x00000004;
-        onChanged();
-      }
-      if (!other.getGateway().isEmpty()) {
-        gateway_ = other.gateway_;
-        bitField0_ |= 0x00000008;
-        onChanged();
-      }
-      if (other.getCidr() != 0) {
-        setCidr(other.getCidr());
-      }
-      if (!other.dns_.isEmpty()) {
-        if (dns_.isEmpty()) {
-          dns_ = other.dns_;
-          bitField0_ |= 0x00000020;
-        } else {
-          ensureDnsIsMutable();
-          dns_.addAll(other.dns_);
-        }
-        onChanged();
-      }
-      if (other.hasFirewall()) {
-        mergeFirewall(other.getFirewall());
-      }
       if (other.getWeight() != 0) {
         setWeight(other.getWeight());
       }
       if (!other.getDescription().isEmpty()) {
         description_ = other.description_;
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000010;
         onChanged();
+      }
+      switch (other.getIpCase()) {
+        case STATIC: {
+          mergeStatic(other.getStatic());
+          break;
+        }
+        case DHCP: {
+          mergeDhcp(other.getDhcp());
+          break;
+        }
+        case IP_NOT_SET: {
+          break;
+        }
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -1145,47 +2072,28 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 10
-            case 90: {
-              address_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000002;
-              break;
-            } // case 90
-            case 98: {
-              netmask_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000004;
-              break;
-            } // case 98
-            case 106: {
-              gateway_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000008;
-              break;
-            } // case 106
-            case 114: {
-              java.lang.String s = input.readStringRequireUtf8();
-              ensureDnsIsMutable();
-              dns_.add(s);
-              break;
-            } // case 114
-            case 122: {
+            case 18: {
               input.readMessage(
-                  getFirewallFieldBuilder().getBuilder(),
+                  getStaticFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField0_ |= 0x00000040;
+              ipCase_ = 2;
               break;
-            } // case 122
-            case 152: {
-              cidr_ = input.readUInt32();
-              bitField0_ |= 0x00000010;
+            } // case 18
+            case 26: {
+              input.readMessage(
+                  getDhcpFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              ipCase_ = 3;
               break;
-            } // case 152
+            } // case 26
             case 784: {
               weight_ = input.readUInt32();
-              bitField0_ |= 0x00000080;
+              bitField0_ |= 0x00000008;
               break;
             } // case 784
             case 794: {
               description_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000100;
+              bitField0_ |= 0x00000010;
               break;
             } // case 794
             default: {
@@ -1203,6 +2111,21 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
+    private int ipCase_ = 0;
+    private java.lang.Object ip_;
+    public IpCase
+        getIpCase() {
+      return IpCase.forNumber(
+          ipCase_);
+    }
+
+    public Builder clearIp() {
+      ipCase_ = 0;
+      ip_ = null;
+      onChanged();
+      return this;
+    }
+
     private int bitField0_;
 
     private java.lang.Object name_ = "";
@@ -1277,484 +2200,288 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object address_ = "";
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder> staticBuilder_;
     /**
-     * <code>string address = 11;</code>
-     * @return The address.
-     */
-    public java.lang.String getAddress() {
-      java.lang.Object ref = address_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        address_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string address = 11;</code>
-     * @return The bytes for address.
-     */
-    public com.google.protobuf.ByteString
-        getAddressBytes() {
-      java.lang.Object ref = address_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        address_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string address = 11;</code>
-     * @param value The address to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAddress(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      address_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string address = 11;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearAddress() {
-      address_ = getDefaultInstance().getAddress();
-      bitField0_ = (bitField0_ & ~0x00000002);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string address = 11;</code>
-     * @param value The bytes for address to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAddressBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      address_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object netmask_ = "";
-    /**
-     * <code>string netmask = 12;</code>
-     * @return The netmask.
-     */
-    public java.lang.String getNetmask() {
-      java.lang.Object ref = netmask_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        netmask_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string netmask = 12;</code>
-     * @return The bytes for netmask.
-     */
-    public com.google.protobuf.ByteString
-        getNetmaskBytes() {
-      java.lang.Object ref = netmask_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        netmask_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string netmask = 12;</code>
-     * @param value The netmask to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNetmask(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      netmask_ = value;
-      bitField0_ |= 0x00000004;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string netmask = 12;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNetmask() {
-      netmask_ = getDefaultInstance().getNetmask();
-      bitField0_ = (bitField0_ & ~0x00000004);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string netmask = 12;</code>
-     * @param value The bytes for netmask to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNetmaskBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      netmask_ = value;
-      bitField0_ |= 0x00000004;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object gateway_ = "";
-    /**
-     * <code>string gateway = 13;</code>
-     * @return The gateway.
-     */
-    public java.lang.String getGateway() {
-      java.lang.Object ref = gateway_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        gateway_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string gateway = 13;</code>
-     * @return The bytes for gateway.
-     */
-    public com.google.protobuf.ByteString
-        getGatewayBytes() {
-      java.lang.Object ref = gateway_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        gateway_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string gateway = 13;</code>
-     * @param value The gateway to set.
-     * @return This builder for chaining.
-     */
-    public Builder setGateway(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      gateway_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string gateway = 13;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearGateway() {
-      gateway_ = getDefaultInstance().getGateway();
-      bitField0_ = (bitField0_ & ~0x00000008);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string gateway = 13;</code>
-     * @param value The bytes for gateway to set.
-     * @return This builder for chaining.
-     */
-    public Builder setGatewayBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      gateway_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
-    }
-
-    private int cidr_ ;
-    /**
-     * <code>uint32 cidr = 19;</code>
-     * @return The cidr.
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
+     * @return Whether the static field is set.
      */
     @java.lang.Override
-    public int getCidr() {
-      return cidr_;
+    public boolean hasStatic() {
+      return ipCase_ == 2;
     }
     /**
-     * <code>uint32 cidr = 19;</code>
-     * @param value The cidr to set.
-     * @return This builder for chaining.
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
+     * @return The static.
      */
-    public Builder setCidr(int value) {
-
-      cidr_ = value;
-      bitField0_ |= 0x00000010;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>uint32 cidr = 19;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearCidr() {
-      bitField0_ = (bitField0_ & ~0x00000010);
-      cidr_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private com.google.protobuf.LazyStringArrayList dns_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
-    private void ensureDnsIsMutable() {
-      if (!dns_.isModifiable()) {
-        dns_ = new com.google.protobuf.LazyStringArrayList(dns_);
-      }
-      bitField0_ |= 0x00000020;
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @return A list containing the dns.
-     */
-    public com.google.protobuf.ProtocolStringList
-        getDnsList() {
-      dns_.makeImmutable();
-      return dns_;
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @return The count of dns.
-     */
-    public int getDnsCount() {
-      return dns_.size();
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @param index The index of the element to return.
-     * @return The dns at the given index.
-     */
-    public java.lang.String getDns(int index) {
-      return dns_.get(index);
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the dns at the given index.
-     */
-    public com.google.protobuf.ByteString
-        getDnsBytes(int index) {
-      return dns_.getByteString(index);
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @param index The index to set the value at.
-     * @param value The dns to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDns(
-        int index, java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      ensureDnsIsMutable();
-      dns_.set(index, value);
-      bitField0_ |= 0x00000020;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @param value The dns to add.
-     * @return This builder for chaining.
-     */
-    public Builder addDns(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      ensureDnsIsMutable();
-      dns_.add(value);
-      bitField0_ |= 0x00000020;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @param values The dns to add.
-     * @return This builder for chaining.
-     */
-    public Builder addAllDns(
-        java.lang.Iterable<java.lang.String> values) {
-      ensureDnsIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, dns_);
-      bitField0_ |= 0x00000020;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearDns() {
-      dns_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000020);;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string dns = 14;</code>
-     * @param value The bytes of the dns to add.
-     * @return This builder for chaining.
-     */
-    public Builder addDnsBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      ensureDnsIsMutable();
-      dns_.add(value);
-      bitField0_ |= 0x00000020;
-      onChanged();
-      return this;
-    }
-
-    private com.github.saturn_xiv.palm.plugins.router.v1.Firewall firewall_;
-    private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.router.v1.Firewall, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder, com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder> firewallBuilder_;
-    /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
-     * @return Whether the firewall field is set.
-     */
-    public boolean hasFirewall() {
-      return ((bitField0_ & 0x00000040) != 0);
-    }
-    /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
-     * @return The firewall.
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall getFirewall() {
-      if (firewallBuilder_ == null) {
-        return firewall_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static getStatic() {
+      if (staticBuilder_ == null) {
+        if (ipCase_ == 2) {
+          return (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_;
+        }
+        return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
       } else {
-        return firewallBuilder_.getMessage();
+        if (ipCase_ == 2) {
+          return staticBuilder_.getMessage();
+        }
+        return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
       }
     }
     /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
      */
-    public Builder setFirewall(com.github.saturn_xiv.palm.plugins.router.v1.Firewall value) {
-      if (firewallBuilder_ == null) {
+    public Builder setStatic(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static value) {
+      if (staticBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        firewall_ = value;
+        ip_ = value;
+        onChanged();
       } else {
-        firewallBuilder_.setMessage(value);
+        staticBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000040;
-      onChanged();
+      ipCase_ = 2;
       return this;
     }
     /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
      */
-    public Builder setFirewall(
-        com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder builderForValue) {
-      if (firewallBuilder_ == null) {
-        firewall_ = builderForValue.build();
+    public Builder setStatic(
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder builderForValue) {
+      if (staticBuilder_ == null) {
+        ip_ = builderForValue.build();
+        onChanged();
       } else {
-        firewallBuilder_.setMessage(builderForValue.build());
+        staticBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000040;
-      onChanged();
+      ipCase_ = 2;
       return this;
     }
     /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
      */
-    public Builder mergeFirewall(com.github.saturn_xiv.palm.plugins.router.v1.Firewall value) {
-      if (firewallBuilder_ == null) {
-        if (((bitField0_ & 0x00000040) != 0) &&
-          firewall_ != null &&
-          firewall_ != com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance()) {
-          getFirewallBuilder().mergeFrom(value);
+    public Builder mergeStatic(com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static value) {
+      if (staticBuilder_ == null) {
+        if (ipCase_ == 2 &&
+            ip_ != com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance()) {
+          ip_ = com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.newBuilder((com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_)
+              .mergeFrom(value).buildPartial();
         } else {
-          firewall_ = value;
+          ip_ = value;
+        }
+        onChanged();
+      } else {
+        if (ipCase_ == 2) {
+          staticBuilder_.mergeFrom(value);
+        } else {
+          staticBuilder_.setMessage(value);
+        }
+      }
+      ipCase_ = 2;
+      return this;
+    }
+    /**
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
+     */
+    public Builder clearStatic() {
+      if (staticBuilder_ == null) {
+        if (ipCase_ == 2) {
+          ipCase_ = 0;
+          ip_ = null;
+          onChanged();
         }
       } else {
-        firewallBuilder_.mergeFrom(value);
-      }
-      if (firewall_ != null) {
-        bitField0_ |= 0x00000040;
-        onChanged();
+        if (ipCase_ == 2) {
+          ipCase_ = 0;
+          ip_ = null;
+        }
+        staticBuilder_.clear();
       }
       return this;
     }
     /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
      */
-    public Builder clearFirewall() {
-      bitField0_ = (bitField0_ & ~0x00000040);
-      firewall_ = null;
-      if (firewallBuilder_ != null) {
-        firewallBuilder_.dispose();
-        firewallBuilder_ = null;
-      }
-      onChanged();
-      return this;
+    public com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder getStaticBuilder() {
+      return getStaticFieldBuilder().getBuilder();
     }
     /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder getFirewallBuilder() {
-      bitField0_ |= 0x00000040;
-      onChanged();
-      return getFirewallFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
-     */
-    public com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder getFirewallOrBuilder() {
-      if (firewallBuilder_ != null) {
-        return firewallBuilder_.getMessageOrBuilder();
+    @java.lang.Override
+    public com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder getStaticOrBuilder() {
+      if ((ipCase_ == 2) && (staticBuilder_ != null)) {
+        return staticBuilder_.getMessageOrBuilder();
       } else {
-        return firewall_ == null ?
-            com.github.saturn_xiv.palm.plugins.router.v1.Firewall.getDefaultInstance() : firewall_;
+        if (ipCase_ == 2) {
+          return (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_;
+        }
+        return com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
       }
     }
     /**
-     * <code>.palm.router.v1.Firewall firewall = 15;</code>
+     * <code>.palm.router.v1.Wan.Static static = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.router.v1.Firewall, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder, com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder> 
-        getFirewallFieldBuilder() {
-      if (firewallBuilder_ == null) {
-        firewallBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.router.v1.Firewall, com.github.saturn_xiv.palm.plugins.router.v1.Firewall.Builder, com.github.saturn_xiv.palm.plugins.router.v1.FirewallOrBuilder>(
-                getFirewall(),
+        com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder> 
+        getStaticFieldBuilder() {
+      if (staticBuilder_ == null) {
+        if (!(ipCase_ == 2)) {
+          ip_ = com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.getDefaultInstance();
+        }
+        staticBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static, com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static.Builder, com.github.saturn_xiv.palm.plugins.router.v1.Wan.StaticOrBuilder>(
+                (com.github.saturn_xiv.palm.plugins.router.v1.Wan.Static) ip_,
                 getParentForChildren(),
                 isClean());
-        firewall_ = null;
+        ip_ = null;
       }
-      return firewallBuilder_;
+      ipCase_ = 2;
+      onChanged();
+      return staticBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder> dhcpBuilder_;
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     * @return Whether the dhcp field is set.
+     */
+    @java.lang.Override
+    public boolean hasDhcp() {
+      return ipCase_ == 3;
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     * @return The dhcp.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Empty getDhcp() {
+      if (dhcpBuilder_ == null) {
+        if (ipCase_ == 3) {
+          return (com.google.protobuf.Empty) ip_;
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
+      } else {
+        if (ipCase_ == 3) {
+          return dhcpBuilder_.getMessage();
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    public Builder setDhcp(com.google.protobuf.Empty value) {
+      if (dhcpBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ip_ = value;
+        onChanged();
+      } else {
+        dhcpBuilder_.setMessage(value);
+      }
+      ipCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    public Builder setDhcp(
+        com.google.protobuf.Empty.Builder builderForValue) {
+      if (dhcpBuilder_ == null) {
+        ip_ = builderForValue.build();
+        onChanged();
+      } else {
+        dhcpBuilder_.setMessage(builderForValue.build());
+      }
+      ipCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    public Builder mergeDhcp(com.google.protobuf.Empty value) {
+      if (dhcpBuilder_ == null) {
+        if (ipCase_ == 3 &&
+            ip_ != com.google.protobuf.Empty.getDefaultInstance()) {
+          ip_ = com.google.protobuf.Empty.newBuilder((com.google.protobuf.Empty) ip_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          ip_ = value;
+        }
+        onChanged();
+      } else {
+        if (ipCase_ == 3) {
+          dhcpBuilder_.mergeFrom(value);
+        } else {
+          dhcpBuilder_.setMessage(value);
+        }
+      }
+      ipCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    public Builder clearDhcp() {
+      if (dhcpBuilder_ == null) {
+        if (ipCase_ == 3) {
+          ipCase_ = 0;
+          ip_ = null;
+          onChanged();
+        }
+      } else {
+        if (ipCase_ == 3) {
+          ipCase_ = 0;
+          ip_ = null;
+        }
+        dhcpBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    public com.google.protobuf.Empty.Builder getDhcpBuilder() {
+      return getDhcpFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.EmptyOrBuilder getDhcpOrBuilder() {
+      if ((ipCase_ == 3) && (dhcpBuilder_ != null)) {
+        return dhcpBuilder_.getMessageOrBuilder();
+      } else {
+        if (ipCase_ == 3) {
+          return (com.google.protobuf.Empty) ip_;
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Empty dhcp = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder> 
+        getDhcpFieldBuilder() {
+      if (dhcpBuilder_ == null) {
+        if (!(ipCase_ == 3)) {
+          ip_ = com.google.protobuf.Empty.getDefaultInstance();
+        }
+        dhcpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder>(
+                (com.google.protobuf.Empty) ip_,
+                getParentForChildren(),
+                isClean());
+        ip_ = null;
+      }
+      ipCase_ = 3;
+      onChanged();
+      return dhcpBuilder_;
     }
 
     private int weight_ ;
@@ -1774,7 +2501,7 @@ private static final long serialVersionUID = 0L;
     public Builder setWeight(int value) {
 
       weight_ = value;
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1783,7 +2510,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearWeight() {
-      bitField0_ = (bitField0_ & ~0x00000080);
+      bitField0_ = (bitField0_ & ~0x00000008);
       weight_ = 0;
       onChanged();
       return this;
@@ -1832,7 +2559,7 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       description_ = value;
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1842,7 +2569,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearDescription() {
       description_ = getDefaultInstance().getDescription();
-      bitField0_ = (bitField0_ & ~0x00000100);
+      bitField0_ = (bitField0_ & ~0x00000010);
       onChanged();
       return this;
     }
@@ -1856,7 +2583,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       description_ = value;
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }

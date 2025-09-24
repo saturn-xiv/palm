@@ -626,6 +626,319 @@ User::Service::~Service() {
 }
 
 
+static const char* Host_method_names[] = {
+  "/palm.router.v1.Host/Index",
+  "/palm.router.v1.Host/SetDescription",
+  "/palm.router.v1.Host/Enable",
+  "/palm.router.v1.Host/Disable",
+  "/palm.router.v1.Host/Block",
+  "/palm.router.v1.Host/SetStaticIpAddress",
+  "/palm.router.v1.Host/SetDhcpAddress",
+};
+
+std::unique_ptr< Host::Stub> Host::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Host::Stub> stub(new Host::Stub(channel, options));
+  return stub;
+}
+
+Host::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Host_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDescription_(Host_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(Host_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Disable_(Host_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Block_(Host_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetStaticIpAddress_(Host_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDhcpAddress_(Host_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Host::Stub::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::router::v1::HostIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::router::v1::HostIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Host::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::router::v1::HostIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::router::v1::HostIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::Index(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::router::v1::HostIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::router::v1::HostIndexResponse>* Host::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::router::v1::HostIndexResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::router::v1::HostIndexResponse>* Host::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Host::Stub::SetDescription(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDescriptionRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::HostSetDescriptionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDescription_, context, request, response);
+}
+
+void Host::Stub::async::SetDescription(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDescriptionRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::HostSetDescriptionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDescription_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::SetDescription(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDescriptionRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDescription_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::PrepareAsyncSetDescriptionRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDescriptionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::HostSetDescriptionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDescription_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::AsyncSetDescriptionRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDescriptionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDescriptionRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Host::Stub::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void Host::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::ByIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Host::Stub::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void Host::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::portal::v1::ByIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::portal::v1::ByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Host::Stub::Block(::grpc::ClientContext* context, const ::palm::router::v1::HostBlockRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::HostBlockRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Block_, context, request, response);
+}
+
+void Host::Stub::async::Block(::grpc::ClientContext* context, const ::palm::router::v1::HostBlockRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::HostBlockRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Block_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::Block(::grpc::ClientContext* context, const ::palm::router::v1::HostBlockRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Block_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::PrepareAsyncBlockRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostBlockRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::HostBlockRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Block_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::AsyncBlockRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostBlockRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncBlockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Host::Stub::SetStaticIpAddress(::grpc::ClientContext* context, const ::palm::router::v1::HostSetStaticIpAddressRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::HostSetStaticIpAddressRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetStaticIpAddress_, context, request, response);
+}
+
+void Host::Stub::async::SetStaticIpAddress(::grpc::ClientContext* context, const ::palm::router::v1::HostSetStaticIpAddressRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::HostSetStaticIpAddressRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetStaticIpAddress_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::SetStaticIpAddress(::grpc::ClientContext* context, const ::palm::router::v1::HostSetStaticIpAddressRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetStaticIpAddress_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::PrepareAsyncSetStaticIpAddressRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostSetStaticIpAddressRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::HostSetStaticIpAddressRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetStaticIpAddress_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::AsyncSetStaticIpAddressRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostSetStaticIpAddressRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetStaticIpAddressRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Host::Stub::SetDhcpAddress(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDhcpAddressRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::router::v1::HostSetDhcpAddressRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDhcpAddress_, context, request, response);
+}
+
+void Host::Stub::async::SetDhcpAddress(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDhcpAddressRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::router::v1::HostSetDhcpAddressRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDhcpAddress_, context, request, response, std::move(f));
+}
+
+void Host::Stub::async::SetDhcpAddress(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDhcpAddressRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDhcpAddress_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::PrepareAsyncSetDhcpAddressRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDhcpAddressRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::router::v1::HostSetDhcpAddressRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDhcpAddress_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Host::Stub::AsyncSetDhcpAddressRaw(::grpc::ClientContext* context, const ::palm::router::v1::HostSetDhcpAddressRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDhcpAddressRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Host::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::google::protobuf::Empty, ::palm::router::v1::HostIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::router::v1::HostIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::palm::router::v1::HostSetDescriptionRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::router::v1::HostSetDescriptionRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetDescription(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ByIdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::palm::portal::v1::ByIdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::portal::v1::ByIdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::palm::router::v1::HostBlockRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::router::v1::HostBlockRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Block(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::palm::router::v1::HostSetStaticIpAddressRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::router::v1::HostSetStaticIpAddressRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetStaticIpAddress(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Host_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Host::Service, ::palm::router::v1::HostSetDhcpAddressRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Host::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::router::v1::HostSetDhcpAddressRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetDhcpAddress(ctx, req, resp);
+             }, this)));
+}
+
+Host::Service::~Service() {
+}
+
+::grpc::Status Host::Service::Index(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::router::v1::HostIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Host::Service::SetDescription(::grpc::ServerContext* context, const ::palm::router::v1::HostSetDescriptionRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Host::Service::Enable(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Host::Service::Disable(::grpc::ServerContext* context, const ::palm::portal::v1::ByIdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Host::Service::Block(::grpc::ServerContext* context, const ::palm::router::v1::HostBlockRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Host::Service::SetStaticIpAddress(::grpc::ServerContext* context, const ::palm::router::v1::HostSetStaticIpAddressRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Host::Service::SetDhcpAddress(::grpc::ServerContext* context, const ::palm::router::v1::HostSetDhcpAddressRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 }  // namespace palm
 }  // namespace router
 }  // namespace v1

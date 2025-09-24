@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.dictionary.v1";
+option go_package = "./;v2";
+package palm.dictionary.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service Dictionary {
+  rpc Search(DirectorySearchRequest) returns (DirectorySearchResponse) {}
+  rpc Index(google.protobuf.Empty) returns (DirectoryIndexResponse) {}
+}
+
+message DirectorySearchRequest {
+  repeated string keywords = 1;
+}
+
+message DirectorySearchResponse {
+  message Item {
+    string keyword = 1;
+    DirectoryIndexResponse.Item directory = 2;
+    google.protobuf.Timestamp created_at = 9;
+  }
+  repeated Item items = 1;
+}
+
+message DirectoryIndexResponse {
+  message Item {
+    string id = 1;
+    string name = 2;
+    uint32 word_count = 3;
+    string author = 4;
+    string description = 9;
+  }
+  repeated Item items = 1;
+}

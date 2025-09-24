@@ -2,10 +2,10 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <optional>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <optional>
 
 namespace palm {
 namespace network {
@@ -23,7 +23,7 @@ class Ipv4 {
   std::string network() const;
   std::string broadcast() const;
   std::string default_gateway() const;
-  std::pair<std::string, std::string> addresses() const;
+  std::vector<std::string> addresses() const;
 
  private:
   std::string _address;

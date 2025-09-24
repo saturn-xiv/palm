@@ -209,15 +209,19 @@ private static final long serialVersionUID = 0L;
       com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse.Item.Wan.StaticOrBuilder getStaticOrBuilder();
 
       /**
-       * <code>bool dhcp = 2;</code>
+       * <code>.google.protobuf.Empty dhcp = 2;</code>
        * @return Whether the dhcp field is set.
        */
       boolean hasDhcp();
       /**
-       * <code>bool dhcp = 2;</code>
+       * <code>.google.protobuf.Empty dhcp = 2;</code>
        * @return The dhcp.
        */
-      boolean getDhcp();
+      com.google.protobuf.Empty getDhcp();
+      /**
+       * <code>.google.protobuf.Empty dhcp = 2;</code>
+       */
+      com.google.protobuf.EmptyOrBuilder getDhcpOrBuilder();
 
       com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse.Item.Wan.IpCase getIpCase();
     }
@@ -1353,7 +1357,7 @@ private static final long serialVersionUID = 0L;
 
       public static final int DHCP_FIELD_NUMBER = 2;
       /**
-       * <code>bool dhcp = 2;</code>
+       * <code>.google.protobuf.Empty dhcp = 2;</code>
        * @return Whether the dhcp field is set.
        */
       @java.lang.Override
@@ -1361,15 +1365,25 @@ private static final long serialVersionUID = 0L;
         return ipCase_ == 2;
       }
       /**
-       * <code>bool dhcp = 2;</code>
+       * <code>.google.protobuf.Empty dhcp = 2;</code>
        * @return The dhcp.
        */
       @java.lang.Override
-      public boolean getDhcp() {
+      public com.google.protobuf.Empty getDhcp() {
         if (ipCase_ == 2) {
-          return (java.lang.Boolean) ip_;
+           return (com.google.protobuf.Empty) ip_;
         }
-        return false;
+        return com.google.protobuf.Empty.getDefaultInstance();
+      }
+      /**
+       * <code>.google.protobuf.Empty dhcp = 2;</code>
+       */
+      @java.lang.Override
+      public com.google.protobuf.EmptyOrBuilder getDhcpOrBuilder() {
+        if (ipCase_ == 2) {
+           return (com.google.protobuf.Empty) ip_;
+        }
+        return com.google.protobuf.Empty.getDefaultInstance();
       }
 
       private byte memoizedIsInitialized = -1;
@@ -1390,8 +1404,7 @@ private static final long serialVersionUID = 0L;
           output.writeMessage(1, (com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse.Item.Wan.Static) ip_);
         }
         if (ipCase_ == 2) {
-          output.writeBool(
-              2, (boolean)((java.lang.Boolean) ip_));
+          output.writeMessage(2, (com.google.protobuf.Empty) ip_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -1408,8 +1421,7 @@ private static final long serialVersionUID = 0L;
         }
         if (ipCase_ == 2) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(
-                2, (boolean)((java.lang.Boolean) ip_));
+            .computeMessageSize(2, (com.google.protobuf.Empty) ip_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
@@ -1433,8 +1445,8 @@ private static final long serialVersionUID = 0L;
                 .equals(other.getStatic())) return false;
             break;
           case 2:
-            if (getDhcp()
-                != other.getDhcp()) return false;
+            if (!getDhcp()
+                .equals(other.getDhcp())) return false;
             break;
           case 0:
           default:
@@ -1457,8 +1469,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 2:
             hash = (37 * hash) + DHCP_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                getDhcp());
+            hash = (53 * hash) + getDhcp().hashCode();
             break;
           case 0:
           default:
@@ -1597,6 +1608,9 @@ private static final long serialVersionUID = 0L;
           if (staticBuilder_ != null) {
             staticBuilder_.clear();
           }
+          if (dhcpBuilder_ != null) {
+            dhcpBuilder_.clear();
+          }
           ipCase_ = 0;
           ip_ = null;
           return this;
@@ -1642,6 +1656,10 @@ private static final long serialVersionUID = 0L;
               staticBuilder_ != null) {
             result.ip_ = staticBuilder_.build();
           }
+          if (ipCase_ == 2 &&
+              dhcpBuilder_ != null) {
+            result.ip_ = dhcpBuilder_.build();
+          }
         }
 
         @java.lang.Override
@@ -1662,7 +1680,7 @@ private static final long serialVersionUID = 0L;
               break;
             }
             case DHCP: {
-              setDhcp(other.getDhcp());
+              mergeDhcp(other.getDhcp());
               break;
             }
             case IP_NOT_SET: {
@@ -1702,11 +1720,13 @@ private static final long serialVersionUID = 0L;
                   ipCase_ = 1;
                   break;
                 } // case 10
-                case 16: {
-                  ip_ = input.readBool();
+                case 18: {
+                  input.readMessage(
+                      getDhcpFieldBuilder().getBuilder(),
+                      extensionRegistry);
                   ipCase_ = 2;
                   break;
-                } // case 16
+                } // case 18
                 default: {
                   if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                     done = true; // was an endgroup tag
@@ -1881,46 +1901,146 @@ private static final long serialVersionUID = 0L;
           return staticBuilder_;
         }
 
+        private com.google.protobuf.SingleFieldBuilder<
+            com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder> dhcpBuilder_;
         /**
-         * <code>bool dhcp = 2;</code>
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
          * @return Whether the dhcp field is set.
          */
+        @java.lang.Override
         public boolean hasDhcp() {
           return ipCase_ == 2;
         }
         /**
-         * <code>bool dhcp = 2;</code>
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
          * @return The dhcp.
          */
-        public boolean getDhcp() {
-          if (ipCase_ == 2) {
-            return (java.lang.Boolean) ip_;
+        @java.lang.Override
+        public com.google.protobuf.Empty getDhcp() {
+          if (dhcpBuilder_ == null) {
+            if (ipCase_ == 2) {
+              return (com.google.protobuf.Empty) ip_;
+            }
+            return com.google.protobuf.Empty.getDefaultInstance();
+          } else {
+            if (ipCase_ == 2) {
+              return dhcpBuilder_.getMessage();
+            }
+            return com.google.protobuf.Empty.getDefaultInstance();
           }
-          return false;
         }
         /**
-         * <code>bool dhcp = 2;</code>
-         * @param value The dhcp to set.
-         * @return This builder for chaining.
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
          */
-        public Builder setDhcp(boolean value) {
-
+        public Builder setDhcp(com.google.protobuf.Empty value) {
+          if (dhcpBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ip_ = value;
+            onChanged();
+          } else {
+            dhcpBuilder_.setMessage(value);
+          }
           ipCase_ = 2;
-          ip_ = value;
-          onChanged();
           return this;
         }
         /**
-         * <code>bool dhcp = 2;</code>
-         * @return This builder for chaining.
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
+         */
+        public Builder setDhcp(
+            com.google.protobuf.Empty.Builder builderForValue) {
+          if (dhcpBuilder_ == null) {
+            ip_ = builderForValue.build();
+            onChanged();
+          } else {
+            dhcpBuilder_.setMessage(builderForValue.build());
+          }
+          ipCase_ = 2;
+          return this;
+        }
+        /**
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
+         */
+        public Builder mergeDhcp(com.google.protobuf.Empty value) {
+          if (dhcpBuilder_ == null) {
+            if (ipCase_ == 2 &&
+                ip_ != com.google.protobuf.Empty.getDefaultInstance()) {
+              ip_ = com.google.protobuf.Empty.newBuilder((com.google.protobuf.Empty) ip_)
+                  .mergeFrom(value).buildPartial();
+            } else {
+              ip_ = value;
+            }
+            onChanged();
+          } else {
+            if (ipCase_ == 2) {
+              dhcpBuilder_.mergeFrom(value);
+            } else {
+              dhcpBuilder_.setMessage(value);
+            }
+          }
+          ipCase_ = 2;
+          return this;
+        }
+        /**
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
          */
         public Builder clearDhcp() {
-          if (ipCase_ == 2) {
-            ipCase_ = 0;
-            ip_ = null;
-            onChanged();
+          if (dhcpBuilder_ == null) {
+            if (ipCase_ == 2) {
+              ipCase_ = 0;
+              ip_ = null;
+              onChanged();
+            }
+          } else {
+            if (ipCase_ == 2) {
+              ipCase_ = 0;
+              ip_ = null;
+            }
+            dhcpBuilder_.clear();
           }
           return this;
+        }
+        /**
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
+         */
+        public com.google.protobuf.Empty.Builder getDhcpBuilder() {
+          return getDhcpFieldBuilder().getBuilder();
+        }
+        /**
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
+         */
+        @java.lang.Override
+        public com.google.protobuf.EmptyOrBuilder getDhcpOrBuilder() {
+          if ((ipCase_ == 2) && (dhcpBuilder_ != null)) {
+            return dhcpBuilder_.getMessageOrBuilder();
+          } else {
+            if (ipCase_ == 2) {
+              return (com.google.protobuf.Empty) ip_;
+            }
+            return com.google.protobuf.Empty.getDefaultInstance();
+          }
+        }
+        /**
+         * <code>.google.protobuf.Empty dhcp = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilder<
+            com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder> 
+            getDhcpFieldBuilder() {
+          if (dhcpBuilder_ == null) {
+            if (!(ipCase_ == 2)) {
+              ip_ = com.google.protobuf.Empty.getDefaultInstance();
+            }
+            dhcpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                com.google.protobuf.Empty, com.google.protobuf.Empty.Builder, com.google.protobuf.EmptyOrBuilder>(
+                    (com.google.protobuf.Empty) ip_,
+                    getParentForChildren(),
+                    isClean());
+            ip_ = null;
+          }
+          ipCase_ = 2;
+          onChanged();
+          return dhcpBuilder_;
         }
 
         // @@protoc_insertion_point(builder_scope:palm.router.v1.RouterIndexEthernetResponse.Item.Wan)
@@ -2001,6 +2121,17 @@ private static final long serialVersionUID = 0L;
        */
       com.google.protobuf.ByteString
           getNetmaskBytes();
+
+      /**
+       * <code>.palm.router.v1.Region region = 9;</code>
+       * @return The enum numeric value on the wire for region.
+       */
+      int getRegionValue();
+      /**
+       * <code>.palm.router.v1.Region region = 9;</code>
+       * @return The region.
+       */
+      com.github.saturn_xiv.palm.plugins.router.v1.Region getRegion();
     }
     /**
      * Protobuf type {@code palm.router.v1.RouterIndexEthernetResponse.Item.Lan}
@@ -2026,6 +2157,7 @@ private static final long serialVersionUID = 0L;
       private Lan() {
         address_ = "";
         netmask_ = "";
+        region_ = 0;
       }
 
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -2119,6 +2251,24 @@ private static final long serialVersionUID = 0L;
         }
       }
 
+      public static final int REGION_FIELD_NUMBER = 9;
+      private int region_ = 0;
+      /**
+       * <code>.palm.router.v1.Region region = 9;</code>
+       * @return The enum numeric value on the wire for region.
+       */
+      @java.lang.Override public int getRegionValue() {
+        return region_;
+      }
+      /**
+       * <code>.palm.router.v1.Region region = 9;</code>
+       * @return The region.
+       */
+      @java.lang.Override public com.github.saturn_xiv.palm.plugins.router.v1.Region getRegion() {
+        com.github.saturn_xiv.palm.plugins.router.v1.Region result = com.github.saturn_xiv.palm.plugins.router.v1.Region.forNumber(region_);
+        return result == null ? com.github.saturn_xiv.palm.plugins.router.v1.Region.UNRECOGNIZED : result;
+      }
+
       private byte memoizedIsInitialized = -1;
       @java.lang.Override
       public final boolean isInitialized() {
@@ -2139,6 +2289,9 @@ private static final long serialVersionUID = 0L;
         if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
           com.google.protobuf.GeneratedMessage.writeString(output, 2, netmask_);
         }
+        if (region_ != com.github.saturn_xiv.palm.plugins.router.v1.Region.Global.getNumber()) {
+          output.writeEnum(9, region_);
+        }
         getUnknownFields().writeTo(output);
       }
 
@@ -2153,6 +2306,10 @@ private static final long serialVersionUID = 0L;
         }
         if (!com.google.protobuf.GeneratedMessage.isStringEmpty(netmask_)) {
           size += com.google.protobuf.GeneratedMessage.computeStringSize(2, netmask_);
+        }
+        if (region_ != com.github.saturn_xiv.palm.plugins.router.v1.Region.Global.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(9, region_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
@@ -2173,6 +2330,7 @@ private static final long serialVersionUID = 0L;
             .equals(other.getAddress())) return false;
         if (!getNetmask()
             .equals(other.getNetmask())) return false;
+        if (region_ != other.region_) return false;
         if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
@@ -2188,6 +2346,8 @@ private static final long serialVersionUID = 0L;
         hash = (53 * hash) + getAddress().hashCode();
         hash = (37 * hash) + NETMASK_FIELD_NUMBER;
         hash = (53 * hash) + getNetmask().hashCode();
+        hash = (37 * hash) + REGION_FIELD_NUMBER;
+        hash = (53 * hash) + region_;
         hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -2321,6 +2481,7 @@ private static final long serialVersionUID = 0L;
           bitField0_ = 0;
           address_ = "";
           netmask_ = "";
+          region_ = 0;
           return this;
         }
 
@@ -2360,6 +2521,9 @@ private static final long serialVersionUID = 0L;
           if (((from_bitField0_ & 0x00000002) != 0)) {
             result.netmask_ = netmask_;
           }
+          if (((from_bitField0_ & 0x00000004) != 0)) {
+            result.region_ = region_;
+          }
         }
 
         @java.lang.Override
@@ -2383,6 +2547,9 @@ private static final long serialVersionUID = 0L;
             netmask_ = other.netmask_;
             bitField0_ |= 0x00000002;
             onChanged();
+          }
+          if (other.region_ != 0) {
+            setRegionValue(other.getRegionValue());
           }
           this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
@@ -2420,6 +2587,11 @@ private static final long serialVersionUID = 0L;
                   bitField0_ |= 0x00000002;
                   break;
                 } // case 18
+                case 72: {
+                  region_ = input.readEnum();
+                  bitField0_ |= 0x00000004;
+                  break;
+                } // case 72
                 default: {
                   if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                     done = true; // was an endgroup tag
@@ -2577,6 +2749,59 @@ private static final long serialVersionUID = 0L;
           checkByteStringIsUtf8(value);
           netmask_ = value;
           bitField0_ |= 0x00000002;
+          onChanged();
+          return this;
+        }
+
+        private int region_ = 0;
+        /**
+         * <code>.palm.router.v1.Region region = 9;</code>
+         * @return The enum numeric value on the wire for region.
+         */
+        @java.lang.Override public int getRegionValue() {
+          return region_;
+        }
+        /**
+         * <code>.palm.router.v1.Region region = 9;</code>
+         * @param value The enum numeric value on the wire for region to set.
+         * @return This builder for chaining.
+         */
+        public Builder setRegionValue(int value) {
+          region_ = value;
+          bitField0_ |= 0x00000004;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.palm.router.v1.Region region = 9;</code>
+         * @return The region.
+         */
+        @java.lang.Override
+        public com.github.saturn_xiv.palm.plugins.router.v1.Region getRegion() {
+          com.github.saturn_xiv.palm.plugins.router.v1.Region result = com.github.saturn_xiv.palm.plugins.router.v1.Region.forNumber(region_);
+          return result == null ? com.github.saturn_xiv.palm.plugins.router.v1.Region.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.palm.router.v1.Region region = 9;</code>
+         * @param value The region to set.
+         * @return This builder for chaining.
+         */
+        public Builder setRegion(com.github.saturn_xiv.palm.plugins.router.v1.Region value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          bitField0_ |= 0x00000004;
+          region_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.palm.router.v1.Region region = 9;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearRegion() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          region_ = 0;
           onChanged();
           return this;
         }
