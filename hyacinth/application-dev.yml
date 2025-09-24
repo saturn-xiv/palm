@@ -7,5 +7,9 @@ spring:
     url: "jdbc:postgresql://127.0.0.1:5432/hyacinth"
     username: www
     password: "change-me"
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
   liquibase:
     change-log: "classpath:/db/postgresql/changelog/master.xml"
