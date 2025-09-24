@@ -1,10 +1,18 @@
 package com.github.saturn_xiv.palm;
 
+import jakarta.inject.Singleton;
+
+import org.glassfish.hk2.api.ServiceLocator;
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
+import org.glassfish.jersey.servlet.ServletContainer;
+
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.migrations.MigrationsBundle;
+
+import com.github.saturn_xiv.palm.health.DatabaseHealthCheck;
 
 public class HyacinthApplication extends Application<HyacinthConfiguration> {
 
@@ -24,18 +32,28 @@ public class HyacinthApplication extends Application<HyacinthConfiguration> {
             public DataSourceFactory getDataSourceFactory(HyacinthConfiguration configuration) {
                 return configuration.getDataSourceFactory();
             }
-
-            // @Override
-            // public String getMigrationsFileName() {
-            // return String.format("%s/migrations.xml", this.name());
-            // }
         });
     }
 
     @Override
     public void run(final HyacinthConfiguration configuration,
             final Environment environment) {
-        // TODO: implement application
+        environment
+                .jersey()
+                .register(
+                        new AbstractBinder() {
+                            @Override
+                            protected void configure() {
+                                bindAsContract(DatabaseHealthCheck.class).in(Singleton.class);
+                            }
+                        });
+
+        {
+            ServiceLocator locator = (ServiceLocator) environment.getJerseyServletContainer().getServletConfig()
+                    .getServletContext()
+                    .getAttribute("todo");
+            environment.healthChecks().register("database", new DatabaseHealthCheck(database));
+        }
     }
 
 }

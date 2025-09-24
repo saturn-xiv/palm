@@ -1,12 +1,12 @@
 package com.github.saturn_xiv.palm;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+
 import io.dropwizard.core.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.*;
-
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
 
 public class HyacinthConfiguration extends Configuration {
     @Valid
