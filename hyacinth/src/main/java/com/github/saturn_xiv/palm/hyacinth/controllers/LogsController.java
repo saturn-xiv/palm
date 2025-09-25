@@ -11,7 +11,7 @@ import com.github.saturn_xiv.palm.hyacinth.repositories.LogRepository;
 @Controller
 public class LogsController {
     @GetMapping("/logs")
-    public String show(Model model) {
+    String show(Model model) {
         var items = logRepository.findTimeTakingLagerThan(500);
         // TODO
         model.addAttribute("hi", "Hello, Palm!");

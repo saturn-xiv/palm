@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
 import com.google.protobuf.MessageOrBuilder;
@@ -39,7 +40,8 @@ public record HttpRequest(String package_, String service, String method,
 
                 Metadata header = new Metadata();
                 if (this.authorization() != null) {
-                        Metadata.Key<String> key = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
+                        Metadata.Key<String> key = Metadata.Key.of(HttpHeaders.AUTHORIZATION.toLowerCase(),
+                                        Metadata.ASCII_STRING_MARSHALLER);
                         header.put(key, this.authorization());
                 }
 

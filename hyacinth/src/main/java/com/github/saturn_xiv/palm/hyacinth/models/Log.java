@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "logs")
 public class Log implements Serializable {
@@ -18,6 +20,7 @@ public class Log implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false, name = "package")
+    @JsonProperty("package")
     private String package_;
     @Column(nullable = false)
     private String service;

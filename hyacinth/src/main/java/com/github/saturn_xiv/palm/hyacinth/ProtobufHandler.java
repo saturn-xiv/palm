@@ -17,7 +17,7 @@ public class ProtobufHandler {
         this.channels = channels;
     }
 
-    HttpResponse handle(final String host, final HttpRequest request) {
+    public HttpResponse handle(final String host, final HttpRequest request) {
         logger.info("handle {}://{}/{}/{}?q={}", host, request.package_(), request.service(),
                 request.method(), request.requestType());
 

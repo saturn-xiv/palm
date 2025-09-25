@@ -14,7 +14,7 @@ import com.github.saturn_xiv.palm.hyacinth.models.HealthCheckResponse;
 @RestController
 public class HealthCheckController {
     @GetMapping("/health-check")
-    public HealthCheckResponse show() {
+    HealthCheckResponse show() {
         Map<String, Optional<String>> rpcClients = new HashMap<>();
         logger.debug("testing rpc client for {}", "jasmine");
         return new HealthCheckResponse(Optional.empty(), rpcClients);
