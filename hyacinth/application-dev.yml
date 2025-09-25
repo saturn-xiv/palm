@@ -1,6 +1,10 @@
 server:
   address: 0.0.0.0
   port: 8180
+logging:
+  level:
+    root: INFO
+    "com.github.saturn_xiv.palm": DEBUG
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -9,7 +13,8 @@ spring:
     password: "change-me"
   jpa:
     open-in-view: false
+    show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
   liquibase:
     change-log: "classpath:/db/postgresql/changelog/master.xml"
