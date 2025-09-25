@@ -89,25 +89,25 @@ function build_aarch64_on_ubuntu() {
 }
 
 function build_hyacinth_and_crocus() {
-    local hyacinth_version="2025.9.24"
+    local hyacinth_version="2025.9.25"
     local crocus_version="2025.8.15"
 
     cd $WORK_DIR/hyacinth/
     mvn clean
-    mvn package
+    mvn package -Dmaven.test.skip=true
     mkdir -p $1
-    cp config-orig.toml logback.xml target/hyacinth-$hyacinth_version-full.jar $1/
-    cat >$1/run.sh <<EOF
-#!/bin/sh
-java -Dlogback.configurationFile=logback.xml -cp 'target/hyacinth-$hyacinth_version-full.jar:libs/*' com.github.saturn_xiv.palm.hyacinth.App -p 8080 -c config.toml
-EOF
-    chmod +x $1/run.sh
-
+    cp -v config-orig.toml logback.xml hyacinth.service target/hyacinth-$hyacinth_version.jar $1/
+    
     cd $WORK_DIR/crocus/
     mvn clean
     mvn package
     mkdir -p $1/libs
-    cp target/crocus-$crocus_version.jar $1/libs/
+    cp -v target/crocus-$crocus_version.jar $1/libs/
+
+    # cp -v \
+    #     $HOME/.m2/repository/com/google/protobuf/protobuf-java/4.29.5/protobuf-java-4.29.5.jar \
+    #     $HOME/.m2/repository/io/grpc/grpc-stub/1.71.0/grpc-stub-1.71.0.jar \
+    #     $1/libs/
 }
 
 
