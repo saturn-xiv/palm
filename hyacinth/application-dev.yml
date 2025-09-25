@@ -18,3 +18,15 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: "classpath:/db/postgresql/changelog/master.xml"
+hyacinth:
+  rpc:
+    endpoints:
+      phlox:
+        host: "127.0.0.1"
+        port: 10801
+      lavender:
+        host: "127.0.0.1"
+        port: 10802
+      jasmine:
+        host: "127.0.0.1"
+        port: 10803

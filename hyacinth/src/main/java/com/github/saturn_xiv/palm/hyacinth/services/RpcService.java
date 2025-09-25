@@ -1,28 +1,25 @@
 package com.github.saturn_xiv.palm.hyacinth.services;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import com.google.protobuf.Empty;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
 import com.github.saturn_xiv.palm.hyacinth.ProtobufHandler;
+import com.github.saturn_xiv.palm.hyacinth.RpcConfig;
 import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 
 @Component
 public class RpcService {
     public ImmutablePair<HttpStatus, String> call(String host, HttpRequest request) {
-        logger.debug("call rpc {}.{}.{}@{}", request.package_(), request.service(), request.method(), host);
         final var reply = this.protobufHandler.handle(host, request);
         final var status = reply.status();
         if (status.isOk()) {
@@ -49,12 +46,14 @@ public class RpcService {
     }
 
     @PostConstruct
-    void init() {
-        Map<String, ManagedChannel> channels = new HashMap<>();
-        // TODO
+    public void init() {
+        final var channels = this.rpcConfig.open();
         this.protobufHandler = new ProtobufHandler(channels);
     }
 
+    @Resource
+    RpcConfig rpcConfig;
     private ProtobufHandler protobufHandler;
+
     private static final Logger logger = LoggerFactory.getLogger(RpcService.class);
 }
