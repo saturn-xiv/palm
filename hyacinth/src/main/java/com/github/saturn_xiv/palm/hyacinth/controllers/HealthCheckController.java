@@ -1,0 +1,19 @@
+package com.github.saturn_xiv.palm.hyacinth.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.github.saturn_xiv.palm.hyacinth.models.HealthCheckResponse;
+
+@RestController
+public class HealthCheckController {
+    @GetMapping("/health-check")
+    public HealthCheckResponse show() {
+        Map<String, Optional<String>> rpcClients = new HashMap<>();
+        return new HealthCheckResponse(Optional.empty(), rpcClients);
+    }
+}

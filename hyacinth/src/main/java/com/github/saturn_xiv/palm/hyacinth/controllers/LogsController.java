@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LogsController {
     @GetMapping("/logs")
-    public String logs(Model model) {
+    public String show(Model model) {
         // TODO
         model.addAttribute("hi", "Hello, Palm!");
         return "logs";
