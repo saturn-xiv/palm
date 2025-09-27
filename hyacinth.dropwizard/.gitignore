@@ -1,7 +1,0 @@
-/target/
-/dependency-reduced-pom.xml
-/config.yml
-
-/libs/*.jar
-*.log
-tmp/
