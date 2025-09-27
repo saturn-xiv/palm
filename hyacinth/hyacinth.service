@@ -8,7 +8,7 @@ Type=notify
 User=nobody
 Group=nobody
 WorkingDirectory=/opt/hyacinth
-ExecStart=/opt/hyacinth/amazon-corretto-25.0.0.36.2-linux-x64/bin/java -cp 'hyacinth-2025.9.25.jar:libs/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=prod
+ExecStart=/opt/hyacinth/amazon-corretto-25.0.0.36.2-linux-x64/bin/java -cp 'target/hyacinth-2025.9.25.jar:libs/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=prod
 Restart=always
 
 [Install]
