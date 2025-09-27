@@ -5,7 +5,6 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.github.saturn_xiv.palm.hyacinth.repositories.LogRepository;
 
 @Controller

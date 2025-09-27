@@ -48,12 +48,6 @@ public class HyacinthApplication extends Application<HyacinthConfiguration> {
                             }
                         });
 
-        {
-            ServiceLocator locator = (ServiceLocator) environment.getJerseyServletContainer().getServletConfig()
-                    .getServletContext()
-                    .getAttribute("todo");
-            environment.healthChecks().register("database", new DatabaseHealthCheck(database));
-        }
     }
 
 }
