@@ -15,6 +15,9 @@ function build_on_arch() {
     # cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORK_DIR/toolchains/arch/clang.cmake $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     # cmake --build $WORK_DIR/build/arch
 
+    local CC="gcc-14"
+    local CXX="g++-14"
+
     cmake --preset=arch -DVCPKG_TARGET_TRIPLET=x64-linux-release $BOOST_FLAGS $THRIFT_FLAGS $CASBIN_FLAGS
     cmake --build $WORK_DIR/build/arch
 
@@ -96,7 +99,7 @@ function build_hyacinth_and_crocus() {
     mvn clean
     mvn package -Dmaven.test.skip=true
     mkdir -p $1
-    cp -v config-orig.toml logback.xml hyacinth.service target/hyacinth-$hyacinth_version.jar $1/
+    cp -v application-dev.yml hyacinth.service README.md target/hyacinth-$hyacinth_version.jar $1/
     
     cd $WORK_DIR/crocus/
     mvn clean
