@@ -62,6 +62,7 @@ function build_x86_64_on_ubuntu() {
     build_deb x86_64 amd64 
 }
 
+# go tool dist list
 function build_go() {
     cd $WORK_DIR/$1/
 

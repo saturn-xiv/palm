@@ -66,17 +66,28 @@ private static final long serialVersionUID = 0L;
         getRealNameBytes();
 
     /**
-     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+     * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+     * @return The enum numeric value on the wire for gender.
+     */
+    int getGenderValue();
+    /**
+     * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+     * @return The gender.
+     */
+    com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender getGender();
+
+    /**
+     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
      * @return Whether the wifi field is set.
      */
     boolean hasWifi();
     /**
-     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
      * @return The wifi.
      */
     com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi getWifi();
     /**
-     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
      */
     com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.WifiOrBuilder getWifiOrBuilder();
 
@@ -118,6 +129,7 @@ private static final long serialVersionUID = 0L;
     }
     private Item() {
       realName_ = "";
+      gender_ = 0;
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -131,6 +143,123 @@ private static final long serialVersionUID = 0L;
       return com.github.saturn_xiv.palm.plugins.router.v1.RouterOuterClass.internal_static_palm_router_v1_UserIndexResponse_Item_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.class, com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code palm.router.v1.UserIndexResponse.Item.Gender}
+     */
+    public enum Gender
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>Male = 0;</code>
+       */
+      Male(0),
+      /**
+       * <code>Female = 1;</code>
+       */
+      Female(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 29,
+          /* patch= */ 5,
+          /* suffix= */ "",
+          Gender.class.getName());
+      }
+      /**
+       * <code>Male = 0;</code>
+       */
+      public static final int Male_VALUE = 0;
+      /**
+       * <code>Female = 1;</code>
+       */
+      public static final int Female_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Gender valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Gender forNumber(int value) {
+        switch (value) {
+          case 0: return Male;
+          case 1: return Female;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Gender>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Gender> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
+              public Gender findValueByNumber(int number) {
+                return Gender.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Gender[] VALUES = values();
+
+      public static Gender valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Gender(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:palm.router.v1.UserIndexResponse.Item.Gender)
     }
 
     public interface WifiOrBuilder extends
@@ -2311,10 +2440,28 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int WIFI_FIELD_NUMBER = 3;
+    public static final int GENDER_FIELD_NUMBER = 3;
+    private int gender_ = 0;
+    /**
+     * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+     * @return The enum numeric value on the wire for gender.
+     */
+    @java.lang.Override public int getGenderValue() {
+      return gender_;
+    }
+    /**
+     * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+     * @return The gender.
+     */
+    @java.lang.Override public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender getGender() {
+      com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender result = com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender.forNumber(gender_);
+      return result == null ? com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender.UNRECOGNIZED : result;
+    }
+
+    public static final int WIFI_FIELD_NUMBER = 8;
     private com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi wifi_;
     /**
-     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
      * @return Whether the wifi field is set.
      */
     @java.lang.Override
@@ -2322,7 +2469,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
      * @return The wifi.
      */
     @java.lang.Override
@@ -2330,7 +2477,7 @@ private static final long serialVersionUID = 0L;
       return wifi_ == null ? com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi.getDefaultInstance() : wifi_;
     }
     /**
-     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+     * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
      */
     @java.lang.Override
     public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.WifiOrBuilder getWifiOrBuilder() {
@@ -2383,8 +2530,11 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(realName_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 2, realName_);
       }
+      if (gender_ != com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender.Male.getNumber()) {
+        output.writeEnum(3, gender_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(3, getWifi());
+        output.writeMessage(8, getWifi());
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(9, getContact());
@@ -2405,9 +2555,13 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(realName_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(2, realName_);
       }
+      if (gender_ != com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender.Male.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, gender_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getWifi());
+          .computeMessageSize(8, getWifi());
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2432,6 +2586,7 @@ private static final long serialVersionUID = 0L;
           != other.getId()) return false;
       if (!getRealName()
           .equals(other.getRealName())) return false;
+      if (gender_ != other.gender_) return false;
       if (hasWifi() != other.hasWifi()) return false;
       if (hasWifi()) {
         if (!getWifi()
@@ -2457,6 +2612,8 @@ private static final long serialVersionUID = 0L;
       hash = (53 * hash) + getId();
       hash = (37 * hash) + REAL_NAME_FIELD_NUMBER;
       hash = (53 * hash) + getRealName().hashCode();
+      hash = (37 * hash) + GENDER_FIELD_NUMBER;
+      hash = (53 * hash) + gender_;
       if (hasWifi()) {
         hash = (37 * hash) + WIFI_FIELD_NUMBER;
         hash = (53 * hash) + getWifi().hashCode();
@@ -2605,6 +2762,7 @@ private static final long serialVersionUID = 0L;
         bitField0_ = 0;
         id_ = 0;
         realName_ = "";
+        gender_ = 0;
         wifi_ = null;
         if (wifiBuilder_ != null) {
           wifiBuilder_.dispose();
@@ -2654,14 +2812,17 @@ private static final long serialVersionUID = 0L;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.realName_ = realName_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.gender_ = gender_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000008) != 0)) {
           result.wifi_ = wifiBuilder_ == null
               ? wifi_
               : wifiBuilder_.build();
           to_bitField0_ |= 0x00000001;
         }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
+        if (((from_bitField0_ & 0x00000010) != 0)) {
           result.contact_ = contactBuilder_ == null
               ? contact_
               : contactBuilder_.build();
@@ -2689,6 +2850,9 @@ private static final long serialVersionUID = 0L;
           realName_ = other.realName_;
           bitField0_ |= 0x00000002;
           onChanged();
+        }
+        if (other.gender_ != 0) {
+          setGenderValue(other.getGenderValue());
         }
         if (other.hasWifi()) {
           mergeWifi(other.getWifi());
@@ -2732,18 +2896,23 @@ private static final long serialVersionUID = 0L;
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
-              case 26: {
+              case 24: {
+                gender_ = input.readEnum();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 66: {
                 input.readMessage(
                     getWifiFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
                 break;
-              } // case 26
+              } // case 66
               case 74: {
                 input.readMessage(
                     getContactFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
                 break;
               } // case 74
               default: {
@@ -2867,18 +3036,71 @@ private static final long serialVersionUID = 0L;
         return this;
       }
 
+      private int gender_ = 0;
+      /**
+       * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+       * @return The enum numeric value on the wire for gender.
+       */
+      @java.lang.Override public int getGenderValue() {
+        return gender_;
+      }
+      /**
+       * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+       * @param value The enum numeric value on the wire for gender to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGenderValue(int value) {
+        gender_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+       * @return The gender.
+       */
+      @java.lang.Override
+      public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender getGender() {
+        com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender result = com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender.forNumber(gender_);
+        return result == null ? com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+       * @param value The gender to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGender(com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Gender value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        gender_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.palm.router.v1.UserIndexResponse.Item.Gender gender = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGender() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        gender_ = 0;
+        onChanged();
+        return this;
+      }
+
       private com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi wifi_;
       private com.google.protobuf.SingleFieldBuilder<
           com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi, com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi.Builder, com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.WifiOrBuilder> wifiBuilder_;
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        * @return Whether the wifi field is set.
        */
       public boolean hasWifi() {
-        return ((bitField0_ & 0x00000004) != 0);
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        * @return The wifi.
        */
       public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi getWifi() {
@@ -2889,7 +3111,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       public Builder setWifi(com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi value) {
         if (wifiBuilder_ == null) {
@@ -2900,12 +3122,12 @@ private static final long serialVersionUID = 0L;
         } else {
           wifiBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       public Builder setWifi(
           com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi.Builder builderForValue) {
@@ -2914,16 +3136,16 @@ private static final long serialVersionUID = 0L;
         } else {
           wifiBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       public Builder mergeWifi(com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi value) {
         if (wifiBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0) &&
+          if (((bitField0_ & 0x00000008) != 0) &&
             wifi_ != null &&
             wifi_ != com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi.getDefaultInstance()) {
             getWifiBuilder().mergeFrom(value);
@@ -2934,16 +3156,16 @@ private static final long serialVersionUID = 0L;
           wifiBuilder_.mergeFrom(value);
         }
         if (wifi_ != null) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         return this;
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       public Builder clearWifi() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         wifi_ = null;
         if (wifiBuilder_ != null) {
           wifiBuilder_.dispose();
@@ -2953,15 +3175,15 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi.Builder getWifiBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getWifiFieldBuilder().getBuilder();
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.WifiOrBuilder getWifiOrBuilder() {
         if (wifiBuilder_ != null) {
@@ -2972,7 +3194,7 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
-       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;</code>
+       * <code>.palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi, com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Wifi.Builder, com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.WifiOrBuilder> 
@@ -2996,7 +3218,7 @@ private static final long serialVersionUID = 0L;
        * @return Whether the contact field is set.
        */
       public boolean hasContact() {
-        return ((bitField0_ & 0x00000008) != 0);
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <code>.palm.router.v1.UserIndexResponse.Item.Contact contact = 9;</code>
@@ -3021,7 +3243,7 @@ private static final long serialVersionUID = 0L;
         } else {
           contactBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -3035,7 +3257,7 @@ private static final long serialVersionUID = 0L;
         } else {
           contactBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -3044,7 +3266,7 @@ private static final long serialVersionUID = 0L;
        */
       public Builder mergeContact(com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Contact value) {
         if (contactBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) != 0) &&
+          if (((bitField0_ & 0x00000010) != 0) &&
             contact_ != null &&
             contact_ != com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Contact.getDefaultInstance()) {
             getContactBuilder().mergeFrom(value);
@@ -3055,7 +3277,7 @@ private static final long serialVersionUID = 0L;
           contactBuilder_.mergeFrom(value);
         }
         if (contact_ != null) {
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
         return this;
@@ -3064,7 +3286,7 @@ private static final long serialVersionUID = 0L;
        * <code>.palm.router.v1.UserIndexResponse.Item.Contact contact = 9;</code>
        */
       public Builder clearContact() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         contact_ = null;
         if (contactBuilder_ != null) {
           contactBuilder_.dispose();
@@ -3077,7 +3299,7 @@ private static final long serialVersionUID = 0L;
        * <code>.palm.router.v1.UserIndexResponse.Item.Contact contact = 9;</code>
        */
       public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse.Item.Contact.Builder getContactBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getContactFieldBuilder().getBuilder();
       }

@@ -733,7 +733,8 @@ inline constexpr UserIndexResponse_Item::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         wifi_{nullptr},
         contact_{nullptr},
-        id_{0u} {}
+        id_{0u},
+        gender_{static_cast< ::palm::router::v1::UserIndexResponse_Item_Gender >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR UserIndexResponse_Item::UserIndexResponse_Item(::_pbi::ConstantInitialized)
@@ -1042,7 +1043,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace v1
 }  // namespace router
 }  // namespace palm
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_router_2eproto[2];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_router_2eproto[3];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_router_2eproto = nullptr;
 const ::uint32_t
@@ -1381,8 +1382,10 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::UserIndexResponse_Item, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::UserIndexResponse_Item, _impl_.real_name_),
+        PROTOBUF_FIELD_OFFSET(::palm::router::v1::UserIndexResponse_Item, _impl_.gender_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::UserIndexResponse_Item, _impl_.wifi_),
         PROTOBUF_FIELD_OFFSET(::palm::router::v1::UserIndexResponse_Item, _impl_.contact_),
+        ~0u,
         ~0u,
         ~0u,
         0,
@@ -1516,15 +1519,15 @@ static const ::_pbi::MigrationSchema
         {279, 289, -1, sizeof(::palm::router::v1::UserCreateRequest)},
         {291, 303, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Wifi)},
         {307, 319, -1, sizeof(::palm::router::v1::UserIndexResponse_Item_Contact)},
-        {323, 335, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
-        {339, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
-        {348, 365, -1, sizeof(::palm::router::v1::HostIndexResponse_Item)},
-        {374, -1, -1, sizeof(::palm::router::v1::HostIndexResponse)},
-        {383, -1, -1, sizeof(::palm::router::v1::HostSetDescriptionRequest)},
-        {393, -1, -1, sizeof(::palm::router::v1::HostBlockRequest_Time)},
-        {403, 415, -1, sizeof(::palm::router::v1::HostBlockRequest)},
-        {419, -1, -1, sizeof(::palm::router::v1::HostSetStaticIpAddressRequest)},
-        {429, -1, -1, sizeof(::palm::router::v1::HostSetDhcpAddressRequest)},
+        {323, 336, -1, sizeof(::palm::router::v1::UserIndexResponse_Item)},
+        {341, -1, -1, sizeof(::palm::router::v1::UserIndexResponse)},
+        {350, 367, -1, sizeof(::palm::router::v1::HostIndexResponse_Item)},
+        {376, -1, -1, sizeof(::palm::router::v1::HostIndexResponse)},
+        {385, -1, -1, sizeof(::palm::router::v1::HostSetDescriptionRequest)},
+        {395, -1, -1, sizeof(::palm::router::v1::HostBlockRequest_Time)},
+        {405, 417, -1, sizeof(::palm::router::v1::HostBlockRequest)},
+        {421, -1, -1, sizeof(::palm::router::v1::HostSetStaticIpAddressRequest)},
+        {431, -1, -1, sizeof(::palm::router::v1::HostSetDhcpAddressRequest)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::router::v1::_Wan_Nat_default_instance_._instance,
@@ -1630,80 +1633,83 @@ const char descriptor_table_protodef_router_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "ndexResponse.Item.Contact\"a\n\021UserCreateR"
     "equest\022\021\n\treal_name\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132"
     "+.palm.router.v1.UserIndexResponse.Item."
-    "Wifi\"\377\003\n\021UserIndexResponse\0225\n\005items\030\001 \003("
+    "Wifi\"\336\004\n\021UserIndexResponse\0225\n\005items\030\001 \003("
     "\0132&.palm.router.v1.UserIndexResponse.Ite"
-    "m\032\262\003\n\004Item\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001("
-    "\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.UserInd"
-    "exResponse.Item.Wifi\022\?\n\007contact\030\t \001(\0132.."
-    "palm.router.v1.UserIndexResponse.Item.Co"
-    "ntact\032\204\001\n\004Wifi\022\020\n\010nickname\030\001 \001(\t\022\020\n\010pass"
-    "word\030\002 \001(\t\022,\n\010begin_at\030\003 \001(\0132\032.google.pr"
-    "otobuf.Timestamp\022*\n\006end_at\030\004 \001(\0132\032.googl"
-    "e.protobuf.Timestamp\032\207\001\n\007Contact\022\023\n\006wech"
-    "at\030\001 \001(\tH\000\210\001\001\022\024\n\007address\030\002 \001(\tH\001\210\001\001\022\022\n\005p"
-    "hone\030\003 \001(\tH\002\210\001\001\022\022\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_"
-    "wechatB\n\n\010_addressB\010\n\006_phoneB\010\n\006_email\"\256"
-    "\002\n\021HostIndexResponse\0225\n\005items\030\001 \003(\0132&.pa"
-    "lm.router.v1.HostIndexResponse.Item\032\341\001\n\004"
-    "Item\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\n\n\002ip\030\003 \001"
-    "(\t\022\013\n\003mac\030\004 \001(\t\022\016\n\006vendor\030\005 \001(\t\022\r\n\005fixed"
-    "\030\006 \001(\010\022\023\n\013description\030\007 \001(\t\0223\n\ndeleted_a"
-    "t\030\010 \001(\0132\032.google.protobuf.TimestampH\000\210\001\001"
-    "\022.\n\nupdated_at\030\t \001(\0132\032.google.protobuf.T"
-    "imestampB\r\n\013_deleted_at\"<\n\031HostSetDescri"
-    "ptionRequest\022\n\n\002id\030\001 \001(\r\022\023\n\013description\030"
-    "\002 \001(\t\"\260\002\n\020HostBlockRequest\022\n\n\002id\030\001 \001(\r\0224"
-    "\n\005begin\030\007 \001(\0132%.palm.router.v1.HostBlock"
-    "Request.Time\0222\n\003end\030\010 \001(\0132%.palm.router."
-    "v1.HostBlockRequest.Time\0226\n\004days\030\t \003(\0162("
-    ".palm.router.v1.HostBlockRequest.Weekday"
-    "\032$\n\004Time\022\014\n\004hour\030\001 \001(\r\022\016\n\006minute\030\002 \001(\r\"H"
-    "\n\007Weekday\022\007\n\003Sun\020\000\022\007\n\003Mon\020\001\022\007\n\003Tue\020\002\022\007\n\003"
-    "Wed\020\003\022\007\n\003Thu\020\004\022\007\n\003Fri\020\005\022\007\n\003Sat\020\006\"7\n\035Host"
-    "SetStaticIpAddressRequest\022\n\n\002id\030\001 \001(\r\022\n\n"
-    "\002ip\030\002 \001(\t\"\'\n\031HostSetDhcpAddressRequest\022\n"
-    "\n\002id\030\001 \001(\r*\037\n\006Region\022\n\n\006Global\020\000\022\t\n\005Chin"
-    "a\020\0012\201\002\n\rAdministrator\022c\n\006SignIn\022*.palm.r"
-    "outer.v1.AdministratorSignInRequest\032+.pa"
-    "lm.router.v1.AdministratorSignInResponse"
-    "\"\000\022;\n\007SignOut\022\026.google.protobuf.Empty\032\026."
-    "google.protobuf.Empty\"\000\022N\n\006Update\022*.palm"
-    ".router.v1.AdministratorUpdateRequest\032\026."
-    "google.protobuf.Empty\"\0002\364\002\n\006Router\022Y\n\013Se"
-    "tEthernet\0220.palm.router.v1.RouterIndexEt"
-    "hernetResponse.Item\032\026.google.protobuf.Em"
-    "pty\"\000\022V\n\rIndexEthernet\022\026.google.protobuf"
-    ".Empty\032+.palm.router.v1.RouterIndexEther"
-    "netResponse\"\000\022:\n\006Reboot\022\026.google.protobu"
-    "f.Empty\032\026.google.protobuf.Empty\"\000\0229\n\005App"
-    "ly\022\026.google.protobuf.Empty\032\026.google.prot"
-    "obuf.Empty\"\000\022@\n\014FactoryReset\022\026.google.pr"
-    "otobuf.Empty\032\026.google.protobuf.Empty\"\0002\374"
-    "\002\n\004User\022D\n\005Index\022\026.google.protobuf.Empty"
-    "\032!.palm.router.v1.UserIndexResponse\"\000\022E\n"
-    "\006Create\022!.palm.router.v1.UserCreateReque"
-    "st\032\026.google.protobuf.Empty\"\000\022O\n\013SetRealN"
-    "ame\022&.palm.router.v1.UserSetRealNameRequ"
-    "est\032\026.google.protobuf.Empty\"\000\022M\n\nSetCont"
-    "act\022%.palm.router.v1.UserSetContactReque"
-    "st\032\026.google.protobuf.Empty\"\000\022G\n\007SetWifi\022"
-    "\".palm.router.v1.UserSetWifiRequest\032\026.go"
-    "ogle.protobuf.Empty\"\0002\241\004\n\004Host\022D\n\005Index\022"
-    "\026.google.protobuf.Empty\032!.palm.router.v1"
-    ".HostIndexResponse\"\000\022U\n\016SetDescription\022)"
-    ".palm.router.v1.HostSetDescriptionReques"
-    "t\032\026.google.protobuf.Empty\"\000\022\?\n\006Enable\022\033."
-    "palm.portal.v1.ByIdRequest\032\026.google.prot"
-    "obuf.Empty\"\000\022@\n\007Disable\022\033.palm.portal.v1"
-    ".ByIdRequest\032\026.google.protobuf.Empty\"\000\022C"
-    "\n\005Block\022 .palm.router.v1.HostBlockReques"
-    "t\032\026.google.protobuf.Empty\"\000\022]\n\022SetStatic"
-    "IpAddress\022-.palm.router.v1.HostSetStatic"
-    "IpAddressRequest\032\026.google.protobuf.Empty"
-    "\"\000\022U\n\016SetDhcpAddress\022).palm.router.v1.Ho"
-    "stSetDhcpAddressRequest\032\026.google.protobu"
-    "f.Empty\"\000B7\n,com.github.saturn_xiv.palm."
-    "plugins.router.v1P\001Z\005./;v2b\006proto3"
+    "m\032\221\004\n\004Item\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001("
+    "\t\022=\n\006gender\030\003 \001(\0162-.palm.router.v1.UserI"
+    "ndexResponse.Item.Gender\0229\n\004wifi\030\010 \001(\0132+"
+    ".palm.router.v1.UserIndexResponse.Item.W"
+    "ifi\022\?\n\007contact\030\t \001(\0132..palm.router.v1.Us"
+    "erIndexResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n"
+    "\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010beg"
+    "in_at\030\003 \001(\0132\032.google.protobuf.Timestamp\022"
+    "*\n\006end_at\030\004 \001(\0132\032.google.protobuf.Timest"
+    "amp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007"
+    "address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022"
+    "\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addres"
+    "sB\010\n\006_phoneB\010\n\006_email\"\036\n\006Gender\022\010\n\004Male\020"
+    "\000\022\n\n\006Female\020\001\"\256\002\n\021HostIndexResponse\0225\n\005i"
+    "tems\030\001 \003(\0132&.palm.router.v1.HostIndexRes"
+    "ponse.Item\032\341\001\n\004Item\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030"
+    "\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022\013\n\003mac\030\004 \001(\t\022\016\n\006vendor"
+    "\030\005 \001(\t\022\r\n\005fixed\030\006 \001(\010\022\023\n\013description\030\007 \001"
+    "(\t\0223\n\ndeleted_at\030\010 \001(\0132\032.google.protobuf"
+    ".TimestampH\000\210\001\001\022.\n\nupdated_at\030\t \001(\0132\032.go"
+    "ogle.protobuf.TimestampB\r\n\013_deleted_at\"<"
+    "\n\031HostSetDescriptionRequest\022\n\n\002id\030\001 \001(\r\022"
+    "\023\n\013description\030\002 \001(\t\"\260\002\n\020HostBlockReques"
+    "t\022\n\n\002id\030\001 \001(\r\0224\n\005begin\030\007 \001(\0132%.palm.rout"
+    "er.v1.HostBlockRequest.Time\0222\n\003end\030\010 \001(\013"
+    "2%.palm.router.v1.HostBlockRequest.Time\022"
+    "6\n\004days\030\t \003(\0162(.palm.router.v1.HostBlock"
+    "Request.Weekday\032$\n\004Time\022\014\n\004hour\030\001 \001(\r\022\016\n"
+    "\006minute\030\002 \001(\r\"H\n\007Weekday\022\007\n\003Sun\020\000\022\007\n\003Mon"
+    "\020\001\022\007\n\003Tue\020\002\022\007\n\003Wed\020\003\022\007\n\003Thu\020\004\022\007\n\003Fri\020\005\022\007"
+    "\n\003Sat\020\006\"7\n\035HostSetStaticIpAddressRequest"
+    "\022\n\n\002id\030\001 \001(\r\022\n\n\002ip\030\002 \001(\t\"\'\n\031HostSetDhcpA"
+    "ddressRequest\022\n\n\002id\030\001 \001(\r*\037\n\006Region\022\n\n\006G"
+    "lobal\020\000\022\t\n\005China\020\0012\201\002\n\rAdministrator\022c\n\006"
+    "SignIn\022*.palm.router.v1.AdministratorSig"
+    "nInRequest\032+.palm.router.v1.Administrato"
+    "rSignInResponse\"\000\022;\n\007SignOut\022\026.google.pr"
+    "otobuf.Empty\032\026.google.protobuf.Empty\"\000\022N"
+    "\n\006Update\022*.palm.router.v1.AdministratorU"
+    "pdateRequest\032\026.google.protobuf.Empty\"\0002\364"
+    "\002\n\006Router\022Y\n\013SetEthernet\0220.palm.router.v"
+    "1.RouterIndexEthernetResponse.Item\032\026.goo"
+    "gle.protobuf.Empty\"\000\022V\n\rIndexEthernet\022\026."
+    "google.protobuf.Empty\032+.palm.router.v1.R"
+    "outerIndexEthernetResponse\"\000\022:\n\006Reboot\022\026"
+    ".google.protobuf.Empty\032\026.google.protobuf"
+    ".Empty\"\000\0229\n\005Apply\022\026.google.protobuf.Empt"
+    "y\032\026.google.protobuf.Empty\"\000\022@\n\014FactoryRe"
+    "set\022\026.google.protobuf.Empty\032\026.google.pro"
+    "tobuf.Empty\"\0002\374\002\n\004User\022D\n\005Index\022\026.google"
+    ".protobuf.Empty\032!.palm.router.v1.UserInd"
+    "exResponse\"\000\022E\n\006Create\022!.palm.router.v1."
+    "UserCreateRequest\032\026.google.protobuf.Empt"
+    "y\"\000\022O\n\013SetRealName\022&.palm.router.v1.User"
+    "SetRealNameRequest\032\026.google.protobuf.Emp"
+    "ty\"\000\022M\n\nSetContact\022%.palm.router.v1.User"
+    "SetContactRequest\032\026.google.protobuf.Empt"
+    "y\"\000\022G\n\007SetWifi\022\".palm.router.v1.UserSetW"
+    "ifiRequest\032\026.google.protobuf.Empty\"\0002\241\004\n"
+    "\004Host\022D\n\005Index\022\026.google.protobuf.Empty\032!"
+    ".palm.router.v1.HostIndexResponse\"\000\022U\n\016S"
+    "etDescription\022).palm.router.v1.HostSetDe"
+    "scriptionRequest\032\026.google.protobuf.Empty"
+    "\"\000\022\?\n\006Enable\022\033.palm.portal.v1.ByIdReques"
+    "t\032\026.google.protobuf.Empty\"\000\022@\n\007Disable\022\033"
+    ".palm.portal.v1.ByIdRequest\032\026.google.pro"
+    "tobuf.Empty\"\000\022C\n\005Block\022 .palm.router.v1."
+    "HostBlockRequest\032\026.google.protobuf.Empty"
+    "\"\000\022]\n\022SetStaticIpAddress\022-.palm.router.v"
+    "1.HostSetStaticIpAddressRequest\032\026.google"
+    ".protobuf.Empty\"\000\022U\n\016SetDhcpAddress\022).pa"
+    "lm.router.v1.HostSetDhcpAddressRequest\032\026"
+    ".google.protobuf.Empty\"\000B7\n,com.github.s"
+    "aturn_xiv.palm.plugins.router.v1P\001Z\005./;v"
+    "2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_router_2eproto_deps[4] =
     {
@@ -1716,7 +1722,7 @@ static ::absl::once_flag descriptor_table_router_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto = {
     false,
     false,
-    5554,
+    5649,
     descriptor_table_protodef_router_2eproto,
     "router.proto",
     &descriptor_table_router_2eproto_once,
@@ -1732,9 +1738,29 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_router_2eproto
 namespace palm {
 namespace router {
 namespace v1 {
-const ::google::protobuf::EnumDescriptor* HostBlockRequest_Weekday_descriptor() {
+const ::google::protobuf::EnumDescriptor* UserIndexResponse_Item_Gender_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_router_2eproto);
   return file_level_enum_descriptors_router_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t UserIndexResponse_Item_Gender_internal_data_[] = {
+    131072u, 0u, };
+bool UserIndexResponse_Item_Gender_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr UserIndexResponse_Item_Gender UserIndexResponse_Item::Male;
+constexpr UserIndexResponse_Item_Gender UserIndexResponse_Item::Female;
+constexpr UserIndexResponse_Item_Gender UserIndexResponse_Item::Gender_MIN;
+constexpr UserIndexResponse_Item_Gender UserIndexResponse_Item::Gender_MAX;
+constexpr int UserIndexResponse_Item::Gender_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* HostBlockRequest_Weekday_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_router_2eproto);
+  return file_level_enum_descriptors_router_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t HostBlockRequest_Weekday_internal_data_[] = {
     458752u, 0u, };
@@ -1759,7 +1785,7 @@ constexpr int HostBlockRequest::Weekday_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 const ::google::protobuf::EnumDescriptor* Region_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_router_2eproto);
-  return file_level_enum_descriptors_router_2eproto[1];
+  return file_level_enum_descriptors_router_2eproto[2];
 }
 PROTOBUF_CONSTINIT const uint32_t Region_internal_data_[] = {
     131072u, 0u, };
@@ -9704,7 +9730,13 @@ UserIndexResponse_Item::UserIndexResponse_Item(
   _impl_.contact_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::palm::router::v1::UserIndexResponse_Item_Contact>(
                               arena, *from._impl_.contact_)
                         : nullptr;
-  _impl_.id_ = from._impl_.id_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, id_),
+           offsetof(Impl_, gender_) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::gender_));
 
   // @@protoc_insertion_point(copy_constructor:palm.router.v1.UserIndexResponse.Item)
 }
@@ -9719,9 +9751,9 @@ inline void UserIndexResponse_Item::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, wifi_),
            0,
-           offsetof(Impl_, id_) -
+           offsetof(Impl_, gender_) -
                offsetof(Impl_, wifi_) +
-               sizeof(Impl_::id_));
+               sizeof(Impl_::gender_));
 }
 UserIndexResponse_Item::~UserIndexResponse_Item() {
   // @@protoc_insertion_point(destructor:palm.router.v1.UserIndexResponse.Item)
@@ -9773,15 +9805,15 @@ const ::google::protobuf::internal::ClassData* UserIndexResponse_Item::GetClassD
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 2, 55, 2> UserIndexResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<2, 5, 2, 55, 2> UserIndexResponse_Item::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_._has_bits_),
     0, // no _extensions_
     9, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967032,  // skipmap
+    4294966904,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -9791,16 +9823,18 @@ const ::_pbi::TcParseTable<2, 4, 2, 55, 2> UserIndexResponse_Item::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::router::v1::UserIndexResponse_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;
+    {::_pbi::TcParser::FastMtS1,
+     {66, 0, 0, PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.wifi_)}},
     // uint32 id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UserIndexResponse_Item, _impl_.id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.id_)}},
     // string real_name = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.real_name_)}},
-    // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
-    {::_pbi::TcParser::FastMtS1,
-     {26, 0, 0, PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.wifi_)}},
+    // .palm.router.v1.UserIndexResponse.Item.Gender gender = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UserIndexResponse_Item, _impl_.gender_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.gender_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -9810,7 +9844,10 @@ const ::_pbi::TcParseTable<2, 4, 2, 55, 2> UserIndexResponse_Item::_table_ = {
     // string real_name = 2;
     {PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.real_name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+    // .palm.router.v1.UserIndexResponse.Item.Gender gender = 3;
+    {PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.gender_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;
     {PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.wifi_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .palm.router.v1.UserIndexResponse.Item.Contact contact = 9;
@@ -9845,7 +9882,9 @@ PROTOBUF_NOINLINE void UserIndexResponse_Item::Clear() {
       _impl_.contact_->Clear();
     }
   }
-  _impl_.id_ = 0u;
+  ::memset(&_impl_.id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.gender_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.gender_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -9880,11 +9919,18 @@ PROTOBUF_NOINLINE void UserIndexResponse_Item::Clear() {
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
+          // .palm.router.v1.UserIndexResponse.Item.Gender gender = 3;
+          if (this_._internal_gender() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                3, this_._internal_gender(), target);
+          }
+
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+          // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;
           if (cached_has_bits & 0x00000001u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                3, *this_._impl_.wifi_, this_._impl_.wifi_->GetCachedSize(), target,
+                8, *this_._impl_.wifi_, this_._impl_.wifi_->GetCachedSize(), target,
                 stream);
           }
 
@@ -9928,7 +9974,7 @@ PROTOBUF_NOINLINE void UserIndexResponse_Item::Clear() {
           }
           cached_has_bits = this_._impl_._has_bits_[0];
           if (cached_has_bits & 0x00000003u) {
-            // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+            // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.wifi_);
@@ -9944,6 +9990,11 @@ PROTOBUF_NOINLINE void UserIndexResponse_Item::Clear() {
             if (this_._internal_id() != 0) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_id());
+            }
+            // .palm.router.v1.UserIndexResponse.Item.Gender gender = 3;
+            if (this_._internal_gender() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_gender());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -9986,6 +10037,9 @@ void UserIndexResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, 
   if (from._internal_id() != 0) {
     _this->_impl_.id_ = from._impl_.id_;
   }
+  if (from._internal_gender() != 0) {
+    _this->_impl_.gender_ = from._impl_.gender_;
+  }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -10006,8 +10060,8 @@ void UserIndexResponse_Item::InternalSwap(UserIndexResponse_Item* PROTOBUF_RESTR
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.real_name_, &other->_impl_.real_name_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.id_)
-      + sizeof(UserIndexResponse_Item::_impl_.id_)
+      PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.gender_)
+      + sizeof(UserIndexResponse_Item::_impl_.gender_)
       - PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.wifi_)>(
           reinterpret_cast<char*>(&_impl_.wifi_),
           reinterpret_cast<char*>(&other->_impl_.wifi_));

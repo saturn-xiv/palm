@@ -274,80 +274,83 @@ public final class RouterOuterClass {
       "ndexResponse.Item.Contact\"a\n\021UserCreateR" +
       "equest\022\021\n\treal_name\030\001 \001(\t\0229\n\004wifi\030\002 \001(\0132" +
       "+.palm.router.v1.UserIndexResponse.Item." +
-      "Wifi\"\377\003\n\021UserIndexResponse\0225\n\005items\030\001 \003(" +
+      "Wifi\"\336\004\n\021UserIndexResponse\0225\n\005items\030\001 \003(" +
       "\0132&.palm.router.v1.UserIndexResponse.Ite" +
-      "m\032\262\003\n\004Item\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(" +
-      "\t\0229\n\004wifi\030\003 \001(\0132+.palm.router.v1.UserInd" +
-      "exResponse.Item.Wifi\022?\n\007contact\030\t \001(\0132.." +
-      "palm.router.v1.UserIndexResponse.Item.Co" +
-      "ntact\032\204\001\n\004Wifi\022\020\n\010nickname\030\001 \001(\t\022\020\n\010pass" +
-      "word\030\002 \001(\t\022,\n\010begin_at\030\003 \001(\0132\032.google.pr" +
-      "otobuf.Timestamp\022*\n\006end_at\030\004 \001(\0132\032.googl" +
-      "e.protobuf.Timestamp\032\207\001\n\007Contact\022\023\n\006wech" +
-      "at\030\001 \001(\tH\000\210\001\001\022\024\n\007address\030\002 \001(\tH\001\210\001\001\022\022\n\005p" +
-      "hone\030\003 \001(\tH\002\210\001\001\022\022\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_" +
-      "wechatB\n\n\010_addressB\010\n\006_phoneB\010\n\006_email\"\256" +
-      "\002\n\021HostIndexResponse\0225\n\005items\030\001 \003(\0132&.pa" +
-      "lm.router.v1.HostIndexResponse.Item\032\341\001\n\004" +
-      "Item\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\n\n\002ip\030\003 \001" +
-      "(\t\022\013\n\003mac\030\004 \001(\t\022\016\n\006vendor\030\005 \001(\t\022\r\n\005fixed" +
-      "\030\006 \001(\010\022\023\n\013description\030\007 \001(\t\0223\n\ndeleted_a" +
-      "t\030\010 \001(\0132\032.google.protobuf.TimestampH\000\210\001\001" +
-      "\022.\n\nupdated_at\030\t \001(\0132\032.google.protobuf.T" +
-      "imestampB\r\n\013_deleted_at\"<\n\031HostSetDescri" +
-      "ptionRequest\022\n\n\002id\030\001 \001(\r\022\023\n\013description\030" +
-      "\002 \001(\t\"\260\002\n\020HostBlockRequest\022\n\n\002id\030\001 \001(\r\0224" +
-      "\n\005begin\030\007 \001(\0132%.palm.router.v1.HostBlock" +
-      "Request.Time\0222\n\003end\030\010 \001(\0132%.palm.router." +
-      "v1.HostBlockRequest.Time\0226\n\004days\030\t \003(\0162(" +
-      ".palm.router.v1.HostBlockRequest.Weekday" +
-      "\032$\n\004Time\022\014\n\004hour\030\001 \001(\r\022\016\n\006minute\030\002 \001(\r\"H" +
-      "\n\007Weekday\022\007\n\003Sun\020\000\022\007\n\003Mon\020\001\022\007\n\003Tue\020\002\022\007\n\003" +
-      "Wed\020\003\022\007\n\003Thu\020\004\022\007\n\003Fri\020\005\022\007\n\003Sat\020\006\"7\n\035Host" +
-      "SetStaticIpAddressRequest\022\n\n\002id\030\001 \001(\r\022\n\n" +
-      "\002ip\030\002 \001(\t\"\'\n\031HostSetDhcpAddressRequest\022\n" +
-      "\n\002id\030\001 \001(\r*\037\n\006Region\022\n\n\006Global\020\000\022\t\n\005Chin" +
-      "a\020\0012\201\002\n\rAdministrator\022c\n\006SignIn\022*.palm.r" +
-      "outer.v1.AdministratorSignInRequest\032+.pa" +
-      "lm.router.v1.AdministratorSignInResponse" +
-      "\"\000\022;\n\007SignOut\022\026.google.protobuf.Empty\032\026." +
-      "google.protobuf.Empty\"\000\022N\n\006Update\022*.palm" +
-      ".router.v1.AdministratorUpdateRequest\032\026." +
-      "google.protobuf.Empty\"\0002\364\002\n\006Router\022Y\n\013Se" +
-      "tEthernet\0220.palm.router.v1.RouterIndexEt" +
-      "hernetResponse.Item\032\026.google.protobuf.Em" +
-      "pty\"\000\022V\n\rIndexEthernet\022\026.google.protobuf" +
-      ".Empty\032+.palm.router.v1.RouterIndexEther" +
-      "netResponse\"\000\022:\n\006Reboot\022\026.google.protobu" +
-      "f.Empty\032\026.google.protobuf.Empty\"\000\0229\n\005App" +
-      "ly\022\026.google.protobuf.Empty\032\026.google.prot" +
-      "obuf.Empty\"\000\022@\n\014FactoryReset\022\026.google.pr" +
-      "otobuf.Empty\032\026.google.protobuf.Empty\"\0002\374" +
-      "\002\n\004User\022D\n\005Index\022\026.google.protobuf.Empty" +
-      "\032!.palm.router.v1.UserIndexResponse\"\000\022E\n" +
-      "\006Create\022!.palm.router.v1.UserCreateReque" +
-      "st\032\026.google.protobuf.Empty\"\000\022O\n\013SetRealN" +
-      "ame\022&.palm.router.v1.UserSetRealNameRequ" +
-      "est\032\026.google.protobuf.Empty\"\000\022M\n\nSetCont" +
-      "act\022%.palm.router.v1.UserSetContactReque" +
-      "st\032\026.google.protobuf.Empty\"\000\022G\n\007SetWifi\022" +
-      "\".palm.router.v1.UserSetWifiRequest\032\026.go" +
-      "ogle.protobuf.Empty\"\0002\241\004\n\004Host\022D\n\005Index\022" +
-      "\026.google.protobuf.Empty\032!.palm.router.v1" +
-      ".HostIndexResponse\"\000\022U\n\016SetDescription\022)" +
-      ".palm.router.v1.HostSetDescriptionReques" +
-      "t\032\026.google.protobuf.Empty\"\000\022?\n\006Enable\022\033." +
-      "palm.portal.v1.ByIdRequest\032\026.google.prot" +
-      "obuf.Empty\"\000\022@\n\007Disable\022\033.palm.portal.v1" +
-      ".ByIdRequest\032\026.google.protobuf.Empty\"\000\022C" +
-      "\n\005Block\022 .palm.router.v1.HostBlockReques" +
-      "t\032\026.google.protobuf.Empty\"\000\022]\n\022SetStatic" +
-      "IpAddress\022-.palm.router.v1.HostSetStatic" +
-      "IpAddressRequest\032\026.google.protobuf.Empty" +
-      "\"\000\022U\n\016SetDhcpAddress\022).palm.router.v1.Ho" +
-      "stSetDhcpAddressRequest\032\026.google.protobu" +
-      "f.Empty\"\000B7\n,com.github.saturn_xiv.palm." +
-      "plugins.router.v1P\001Z\005./;v2b\006proto3"
+      "m\032\221\004\n\004Item\022\n\n\002id\030\001 \001(\r\022\021\n\treal_name\030\002 \001(" +
+      "\t\022=\n\006gender\030\003 \001(\0162-.palm.router.v1.UserI" +
+      "ndexResponse.Item.Gender\0229\n\004wifi\030\010 \001(\0132+" +
+      ".palm.router.v1.UserIndexResponse.Item.W" +
+      "ifi\022?\n\007contact\030\t \001(\0132..palm.router.v1.Us" +
+      "erIndexResponse.Item.Contact\032\204\001\n\004Wifi\022\020\n" +
+      "\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022,\n\010beg" +
+      "in_at\030\003 \001(\0132\032.google.protobuf.Timestamp\022" +
+      "*\n\006end_at\030\004 \001(\0132\032.google.protobuf.Timest" +
+      "amp\032\207\001\n\007Contact\022\023\n\006wechat\030\001 \001(\tH\000\210\001\001\022\024\n\007" +
+      "address\030\002 \001(\tH\001\210\001\001\022\022\n\005phone\030\003 \001(\tH\002\210\001\001\022\022" +
+      "\n\005email\030\004 \001(\tH\003\210\001\001B\t\n\007_wechatB\n\n\010_addres" +
+      "sB\010\n\006_phoneB\010\n\006_email\"\036\n\006Gender\022\010\n\004Male\020" +
+      "\000\022\n\n\006Female\020\001\"\256\002\n\021HostIndexResponse\0225\n\005i" +
+      "tems\030\001 \003(\0132&.palm.router.v1.HostIndexRes" +
+      "ponse.Item\032\341\001\n\004Item\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030" +
+      "\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022\013\n\003mac\030\004 \001(\t\022\016\n\006vendor" +
+      "\030\005 \001(\t\022\r\n\005fixed\030\006 \001(\010\022\023\n\013description\030\007 \001" +
+      "(\t\0223\n\ndeleted_at\030\010 \001(\0132\032.google.protobuf" +
+      ".TimestampH\000\210\001\001\022.\n\nupdated_at\030\t \001(\0132\032.go" +
+      "ogle.protobuf.TimestampB\r\n\013_deleted_at\"<" +
+      "\n\031HostSetDescriptionRequest\022\n\n\002id\030\001 \001(\r\022" +
+      "\023\n\013description\030\002 \001(\t\"\260\002\n\020HostBlockReques" +
+      "t\022\n\n\002id\030\001 \001(\r\0224\n\005begin\030\007 \001(\0132%.palm.rout" +
+      "er.v1.HostBlockRequest.Time\0222\n\003end\030\010 \001(\013" +
+      "2%.palm.router.v1.HostBlockRequest.Time\022" +
+      "6\n\004days\030\t \003(\0162(.palm.router.v1.HostBlock" +
+      "Request.Weekday\032$\n\004Time\022\014\n\004hour\030\001 \001(\r\022\016\n" +
+      "\006minute\030\002 \001(\r\"H\n\007Weekday\022\007\n\003Sun\020\000\022\007\n\003Mon" +
+      "\020\001\022\007\n\003Tue\020\002\022\007\n\003Wed\020\003\022\007\n\003Thu\020\004\022\007\n\003Fri\020\005\022\007" +
+      "\n\003Sat\020\006\"7\n\035HostSetStaticIpAddressRequest" +
+      "\022\n\n\002id\030\001 \001(\r\022\n\n\002ip\030\002 \001(\t\"\'\n\031HostSetDhcpA" +
+      "ddressRequest\022\n\n\002id\030\001 \001(\r*\037\n\006Region\022\n\n\006G" +
+      "lobal\020\000\022\t\n\005China\020\0012\201\002\n\rAdministrator\022c\n\006" +
+      "SignIn\022*.palm.router.v1.AdministratorSig" +
+      "nInRequest\032+.palm.router.v1.Administrato" +
+      "rSignInResponse\"\000\022;\n\007SignOut\022\026.google.pr" +
+      "otobuf.Empty\032\026.google.protobuf.Empty\"\000\022N" +
+      "\n\006Update\022*.palm.router.v1.AdministratorU" +
+      "pdateRequest\032\026.google.protobuf.Empty\"\0002\364" +
+      "\002\n\006Router\022Y\n\013SetEthernet\0220.palm.router.v" +
+      "1.RouterIndexEthernetResponse.Item\032\026.goo" +
+      "gle.protobuf.Empty\"\000\022V\n\rIndexEthernet\022\026." +
+      "google.protobuf.Empty\032+.palm.router.v1.R" +
+      "outerIndexEthernetResponse\"\000\022:\n\006Reboot\022\026" +
+      ".google.protobuf.Empty\032\026.google.protobuf" +
+      ".Empty\"\000\0229\n\005Apply\022\026.google.protobuf.Empt" +
+      "y\032\026.google.protobuf.Empty\"\000\022@\n\014FactoryRe" +
+      "set\022\026.google.protobuf.Empty\032\026.google.pro" +
+      "tobuf.Empty\"\0002\374\002\n\004User\022D\n\005Index\022\026.google" +
+      ".protobuf.Empty\032!.palm.router.v1.UserInd" +
+      "exResponse\"\000\022E\n\006Create\022!.palm.router.v1." +
+      "UserCreateRequest\032\026.google.protobuf.Empt" +
+      "y\"\000\022O\n\013SetRealName\022&.palm.router.v1.User" +
+      "SetRealNameRequest\032\026.google.protobuf.Emp" +
+      "ty\"\000\022M\n\nSetContact\022%.palm.router.v1.User" +
+      "SetContactRequest\032\026.google.protobuf.Empt" +
+      "y\"\000\022G\n\007SetWifi\022\".palm.router.v1.UserSetW" +
+      "ifiRequest\032\026.google.protobuf.Empty\"\0002\241\004\n" +
+      "\004Host\022D\n\005Index\022\026.google.protobuf.Empty\032!" +
+      ".palm.router.v1.HostIndexResponse\"\000\022U\n\016S" +
+      "etDescription\022).palm.router.v1.HostSetDe" +
+      "scriptionRequest\032\026.google.protobuf.Empty" +
+      "\"\000\022?\n\006Enable\022\033.palm.portal.v1.ByIdReques" +
+      "t\032\026.google.protobuf.Empty\"\000\022@\n\007Disable\022\033" +
+      ".palm.portal.v1.ByIdRequest\032\026.google.pro" +
+      "tobuf.Empty\"\000\022C\n\005Block\022 .palm.router.v1." +
+      "HostBlockRequest\032\026.google.protobuf.Empty" +
+      "\"\000\022]\n\022SetStaticIpAddress\022-.palm.router.v" +
+      "1.HostSetStaticIpAddressRequest\032\026.google" +
+      ".protobuf.Empty\"\000\022U\n\016SetDhcpAddress\022).pa" +
+      "lm.router.v1.HostSetDhcpAddressRequest\032\026" +
+      ".google.protobuf.Empty\"\000B7\n,com.github.s" +
+      "aturn_xiv.palm.plugins.router.v1P\001Z\005./;v" +
+      "2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -512,7 +515,7 @@ public final class RouterOuterClass {
     internal_static_palm_router_v1_UserIndexResponse_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_router_v1_UserIndexResponse_Item_descriptor,
-        new java.lang.String[] { "Id", "RealName", "Wifi", "Contact", });
+        new java.lang.String[] { "Id", "RealName", "Gender", "Wifi", "Contact", });
     internal_static_palm_router_v1_UserIndexResponse_Item_Wifi_descriptor =
       internal_static_palm_router_v1_UserIndexResponse_Item_descriptor.getNestedTypes().get(0);
     internal_static_palm_router_v1_UserIndexResponse_Item_Wifi_fieldAccessorTable = new

@@ -2,7 +2,7 @@ file(GLOB BAMBOO_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(bamboo ${BAMBOO_SOURCES})
 target_link_libraries(bamboo PRIVATE begonia)
-target_link_options(bamboo PRIVATE -static-libgcc -static-libstdc++)
+target_link_options(bamboo PRIVATE -static-libgcc -static-libstdc++ -Wl,--build-id=sha1)
 set_target_properties(bamboo PROPERTIES LINK_FLAGS_RELEASE -s)    
 
 target_include_directories(bamboo PUBLIC

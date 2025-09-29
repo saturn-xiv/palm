@@ -8,6 +8,6 @@ foreach(sfn ${TEST_SOURCES})
     add_executable(${it} ${itn})
 
     target_link_libraries(${it} PRIVATE begonia Catch2::Catch2 Catch2::Catch2WithMain)
-    target_link_options(${it} PRIVATE -static-libgcc -static-libstdc++)
+    target_link_options(${it} PRIVATE -static-libgcc -static-libstdc++ -Wl,--build-id=sha1)
     set_target_properties(${it} PROPERTIES LINK_FLAGS_RELEASE -s)
 endforeach(sfn ${TEST_SOURCES})

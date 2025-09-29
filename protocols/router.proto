@@ -254,6 +254,10 @@ message UserCreateRequest {
 }
 message UserIndexResponse {
   message Item {
+    enum Gender {
+      Male = 0;
+      Female = 1;
+    }
     message Wifi {
       string nickname = 1;
       string password = 2;
@@ -268,7 +272,8 @@ message UserIndexResponse {
     }
     uint32 id = 1;
     string real_name = 2;
-    Wifi wifi = 3;
+    Gender gender = 3;
+    Wifi wifi = 8;
     Contact contact = 9;
   }
   repeated Item items = 1;

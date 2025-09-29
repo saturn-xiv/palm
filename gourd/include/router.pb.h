@@ -179,6 +179,39 @@ namespace protobuf {
 namespace palm {
 namespace router {
 namespace v1 {
+enum UserIndexResponse_Item_Gender : int {
+  UserIndexResponse_Item_Gender_Male = 0,
+  UserIndexResponse_Item_Gender_Female = 1,
+  UserIndexResponse_Item_Gender_UserIndexResponse_Item_Gender_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  UserIndexResponse_Item_Gender_UserIndexResponse_Item_Gender_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool UserIndexResponse_Item_Gender_IsValid(int value);
+extern const uint32_t UserIndexResponse_Item_Gender_internal_data_[];
+constexpr UserIndexResponse_Item_Gender UserIndexResponse_Item_Gender_Gender_MIN = static_cast<UserIndexResponse_Item_Gender>(0);
+constexpr UserIndexResponse_Item_Gender UserIndexResponse_Item_Gender_Gender_MAX = static_cast<UserIndexResponse_Item_Gender>(1);
+constexpr int UserIndexResponse_Item_Gender_Gender_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+UserIndexResponse_Item_Gender_descriptor();
+template <typename T>
+const std::string& UserIndexResponse_Item_Gender_Name(T value) {
+  static_assert(std::is_same<T, UserIndexResponse_Item_Gender>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Gender_Name().");
+  return UserIndexResponse_Item_Gender_Name(static_cast<UserIndexResponse_Item_Gender>(value));
+}
+template <>
+inline const std::string& UserIndexResponse_Item_Gender_Name(UserIndexResponse_Item_Gender value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<UserIndexResponse_Item_Gender_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool UserIndexResponse_Item_Gender_Parse(absl::string_view name, UserIndexResponse_Item_Gender* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<UserIndexResponse_Item_Gender>(
+      UserIndexResponse_Item_Gender_descriptor(), name, value);
+}
 enum HostBlockRequest_Weekday : int {
   HostBlockRequest_Weekday_Sun = 0,
   HostBlockRequest_Weekday_Mon = 1,
@@ -5730,13 +5763,33 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
   // nested types ----------------------------------------------------
   using Wifi = UserIndexResponse_Item_Wifi;
   using Contact = UserIndexResponse_Item_Contact;
+  using Gender = UserIndexResponse_Item_Gender;
+  static constexpr Gender Male = UserIndexResponse_Item_Gender_Male;
+  static constexpr Gender Female = UserIndexResponse_Item_Gender_Female;
+  static inline bool Gender_IsValid(int value) {
+    return UserIndexResponse_Item_Gender_IsValid(value);
+  }
+  static constexpr Gender Gender_MIN = UserIndexResponse_Item_Gender_Gender_MIN;
+  static constexpr Gender Gender_MAX = UserIndexResponse_Item_Gender_Gender_MAX;
+  static constexpr int Gender_ARRAYSIZE = UserIndexResponse_Item_Gender_Gender_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Gender_descriptor() {
+    return UserIndexResponse_Item_Gender_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Gender_Name(T value) {
+    return UserIndexResponse_Item_Gender_Name(value);
+  }
+  static inline bool Gender_Parse(absl::string_view name, Gender* value) {
+    return UserIndexResponse_Item_Gender_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
     kRealNameFieldNumber = 2,
-    kWifiFieldNumber = 3,
+    kWifiFieldNumber = 8,
     kContactFieldNumber = 9,
     kIdFieldNumber = 1,
+    kGenderFieldNumber = 3,
   };
   // string real_name = 2;
   void clear_real_name() ;
@@ -5754,7 +5807,7 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_real_name();
 
   public:
-  // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+  // .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;
   bool has_wifi() const;
   void clear_wifi() ;
   const ::palm::router::v1::UserIndexResponse_Item_Wifi& wifi() const;
@@ -5794,12 +5847,22 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
   void _internal_set_id(::uint32_t value);
 
   public:
+  // .palm.router.v1.UserIndexResponse.Item.Gender gender = 3;
+  void clear_gender() ;
+  ::palm::router::v1::UserIndexResponse_Item_Gender gender() const;
+  void set_gender(::palm::router::v1::UserIndexResponse_Item_Gender value);
+
+  private:
+  ::palm::router::v1::UserIndexResponse_Item_Gender _internal_gender() const;
+  void _internal_set_gender(::palm::router::v1::UserIndexResponse_Item_Gender value);
+
+  public:
   // @@protoc_insertion_point(class_scope:palm.router.v1.UserIndexResponse.Item)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
+      2, 5, 2,
       55, 2>
       _table_;
 
@@ -5823,6 +5886,7 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
     ::palm::router::v1::UserIndexResponse_Item_Wifi* wifi_;
     ::palm::router::v1::UserIndexResponse_Item_Contact* contact_;
     ::uint32_t id_;
+    int gender_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -12408,7 +12472,29 @@ inline void UserIndexResponse_Item::set_allocated_real_name(std::string* value) 
   // @@protoc_insertion_point(field_set_allocated:palm.router.v1.UserIndexResponse.Item.real_name)
 }
 
-// .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 3;
+// .palm.router.v1.UserIndexResponse.Item.Gender gender = 3;
+inline void UserIndexResponse_Item::clear_gender() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gender_ = 0;
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Gender UserIndexResponse_Item::gender() const {
+  // @@protoc_insertion_point(field_get:palm.router.v1.UserIndexResponse.Item.gender)
+  return _internal_gender();
+}
+inline void UserIndexResponse_Item::set_gender(::palm::router::v1::UserIndexResponse_Item_Gender value) {
+  _internal_set_gender(value);
+  // @@protoc_insertion_point(field_set:palm.router.v1.UserIndexResponse.Item.gender)
+}
+inline ::palm::router::v1::UserIndexResponse_Item_Gender UserIndexResponse_Item::_internal_gender() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::router::v1::UserIndexResponse_Item_Gender>(_impl_.gender_);
+}
+inline void UserIndexResponse_Item::_internal_set_gender(::palm::router::v1::UserIndexResponse_Item_Gender value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.gender_ = value;
+}
+
+// .palm.router.v1.UserIndexResponse.Item.Wifi wifi = 8;
 inline bool UserIndexResponse_Item::has_wifi() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.wifi_ != nullptr);
@@ -13674,6 +13760,12 @@ inline void HostSetDhcpAddressRequest::_internal_set_id(::uint32_t value) {
 namespace google {
 namespace protobuf {
 
+template <>
+struct is_proto_enum<::palm::router::v1::UserIndexResponse_Item_Gender> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::router::v1::UserIndexResponse_Item_Gender>() {
+  return ::palm::router::v1::UserIndexResponse_Item_Gender_descriptor();
+}
 template <>
 struct is_proto_enum<::palm::router::v1::HostBlockRequest_Weekday> : std::true_type {};
 template <>
