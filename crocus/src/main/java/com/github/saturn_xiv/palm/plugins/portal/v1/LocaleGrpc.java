@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class LocaleGrpc {
 
@@ -370,36 +367,36 @@ public final class LocaleGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleCreateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleCreateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCreateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleUpdateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleUpdateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDestroyMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse byLang(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse byLang(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getByLangMethod(), getCallOptions(), request);
     }
   }

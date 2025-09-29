@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: bbs.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class BoardGrpc {
 
@@ -278,22 +275,22 @@ public final class BoardGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.BoardIndexResponse index(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.BoardIndexResponse index(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.BoardIndexResponse byLang(com.github.saturn_xiv.palm.plugins.portal.v1.ByLangRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.BoardIndexResponse byLang(com.github.saturn_xiv.palm.plugins.portal.v1.ByLangRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getByLangMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.BoardCreateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.BoardCreateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCreateMethod(), getCallOptions(), request);
     }
   }

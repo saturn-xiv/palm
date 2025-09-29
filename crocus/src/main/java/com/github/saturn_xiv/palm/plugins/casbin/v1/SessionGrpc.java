@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: casbin.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SessionGrpc {
 
@@ -416,43 +413,43 @@ public final class SessionGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse has(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse has(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getHasMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse can(com.github.saturn_xiv.palm.plugins.casbin.v1.SessionCanRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse can(com.github.saturn_xiv.palm.plugins.casbin.v1.SessionCanRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCanMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse roles(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse roles(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getRolesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse permissions(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse permissions(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getPermissionsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse implicitRoles(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse implicitRoles(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getImplicitRolesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse implicitPermissions(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse implicitPermissions(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getImplicitPermissionsMethod(), getCallOptions(), request);
     }
   }

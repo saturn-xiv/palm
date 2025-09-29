@@ -15,7 +15,7 @@ $ mvn clean
 $ mvn package -Dmaven.test.skip=true
 
 # start application
-$ java -cp 'target/hyacinth-2025.9.25.jar:libs/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=dev
+$ java --enable-native-access=ALL-UNNAMED -cp 'target/hyacinth-2025.9.25.jar:libs/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=dev
 
 ```
 

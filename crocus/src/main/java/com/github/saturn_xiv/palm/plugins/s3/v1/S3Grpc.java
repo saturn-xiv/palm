@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: s3.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class S3Grpc {
 
@@ -1229,169 +1226,169 @@ public final class S3Grpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.ListBucketsResponse listBuckets(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.ListBucketsResponse listBuckets(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getListBucketsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse bucketExists(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.BucketExistsResponse bucketExists(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getBucketExistsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketEncryptionResponse getBucketEncryption(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketEncryptionResponse getBucketEncryption(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetBucketEncryptionMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketPolicyResponse getBucketPolicy(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketPolicyResponse getBucketPolicy(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetBucketPolicyMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketTagsResponse getBucketTags(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketTagsResponse getBucketTags(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetBucketTagsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketLifecycleResponse getBucketLifecycle(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetBucketLifecycleResponse getBucketLifecycle(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetBucketLifecycleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty makeBucket(com.github.saturn_xiv.palm.plugins.s3.v1.MakeBucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty makeBucket(com.github.saturn_xiv.palm.plugins.s3.v1.MakeBucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getMakeBucketMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty removeBucket(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty removeBucket(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getRemoveBucketMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setBucketTags(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketTagsRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setBucketTags(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketTagsRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetBucketTagsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setBucketPolicy(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketPolicyRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setBucketPolicy(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketPolicyRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetBucketPolicyMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setBucketLifecycle(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketLifecycleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setBucketLifecycle(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketLifecycleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetBucketLifecycleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setBucketEncryption(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketEncryptionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setBucketEncryption(com.github.saturn_xiv.palm.plugins.s3.v1.SetBucketEncryptionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetBucketEncryptionMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteBucketEncryption(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteBucketEncryption(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteBucketEncryptionMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteBucketPolicy(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteBucketPolicy(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteBucketPolicyMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteBucketTags(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteBucketTags(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteBucketTagsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteBucketLifecycle(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteBucketLifecycle(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteBucketLifecycleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedPostFormDataResponse getPresignedPostFormData(com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedPostFormDataRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedPostFormDataResponse getPresignedPostFormData(com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedPostFormDataRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetPresignedPostFormDataMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedObjectUrlResponse getPresignedObjectUrl(com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedObjectUrlRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedObjectUrlResponse getPresignedObjectUrl(com.github.saturn_xiv.palm.plugins.s3.v1.GetPresignedObjectUrlRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetPresignedObjectUrlMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.ListObjectsResponse listObjects(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.ListObjectsResponse listObjects(com.github.saturn_xiv.palm.plugins.s3.v1.BucketRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getListObjectsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectTagsResponse getObjectTags(com.github.saturn_xiv.palm.plugins.s3.v1.ObjectRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectTagsResponse getObjectTags(com.github.saturn_xiv.palm.plugins.s3.v1.ObjectRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetObjectTagsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRetentionResponse getObjectRetention(com.github.saturn_xiv.palm.plugins.s3.v1.ObjectRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRetentionResponse getObjectRetention(com.github.saturn_xiv.palm.plugins.s3.v1.ObjectRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetObjectRetentionMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.s3.v1.StatObjectResponse statObject(com.github.saturn_xiv.palm.plugins.s3.v1.ObjectRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.s3.v1.StatObjectResponse statObject(com.github.saturn_xiv.palm.plugins.s3.v1.ObjectRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getStatObjectMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setObjectTags(com.github.saturn_xiv.palm.plugins.s3.v1.SetObjectTagsRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setObjectTags(com.github.saturn_xiv.palm.plugins.s3.v1.SetObjectTagsRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetObjectTagsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteObjects(com.github.saturn_xiv.palm.plugins.s3.v1.DeleteObjectsRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteObjects(com.github.saturn_xiv.palm.plugins.s3.v1.DeleteObjectsRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteObjectsMethod(), getCallOptions(), request);
     }
   }

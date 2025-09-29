@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayNativeGrpc {
 
@@ -171,8 +168,8 @@ public final class WeChatPayNativeGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayNativeQrCodeUrlResponse prepay(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayPrepayRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayNativeQrCodeUrlResponse prepay(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayPrepayRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getPrepayMethod(), getCallOptions(), request);
     }
   }

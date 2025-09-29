@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: router.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class RouterGrpc {
 
@@ -355,36 +352,36 @@ public final class RouterGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty setEthernet(com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse.Item request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setEthernet(com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse.Item request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetEthernetMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse indexEthernet(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.router.v1.RouterIndexEthernetResponse indexEthernet(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexEthernetMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty reboot(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty reboot(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getRebootMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty apply(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty apply(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getApplyMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty factoryReset(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty factoryReset(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getFactoryResetMethod(), getCallOptions(), request);
     }
   }

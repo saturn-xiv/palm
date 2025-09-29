@@ -31,29 +31,29 @@
   <dependencies>
 
 
-    <!-- https://mvnrepository.com/artifact/io.grpc/grpc-core -->
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-core</artifactId>
-      <version>1.71.0</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
       <version>4.29.5</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/io.grpc/grpc-core -->
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-core</artifactId>
+      <version>1.75.0</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-protobuf</artifactId>
-      <version>1.71.0</version>
+      <version>1.75.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-stub</artifactId>
-      <version>1.71.0</version>
+      <version>1.75.0</version>
     </dependency>
     <!-- https://github.com/grpc/grpc-java/blob/master/README.md -->
     <dependency> <!-- necessary for Java 9+ -->

@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: router.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class HostGrpc {
 
@@ -447,50 +444,50 @@ public final class HostGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.router.v1.HostIndexResponse index(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.router.v1.HostIndexResponse index(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setDescription(com.github.saturn_xiv.palm.plugins.router.v1.HostSetDescriptionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setDescription(com.github.saturn_xiv.palm.plugins.router.v1.HostSetDescriptionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetDescriptionMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty enable(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty enable(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getEnableMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty disable(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty disable(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDisableMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty block(com.github.saturn_xiv.palm.plugins.router.v1.HostBlockRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty block(com.github.saturn_xiv.palm.plugins.router.v1.HostBlockRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getBlockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setStaticIpAddress(com.github.saturn_xiv.palm.plugins.router.v1.HostSetStaticIpAddressRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setStaticIpAddress(com.github.saturn_xiv.palm.plugins.router.v1.HostSetStaticIpAddressRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetStaticIpAddressMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setDhcpAddress(com.github.saturn_xiv.palm.plugins.router.v1.HostSetDhcpAddressRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setDhcpAddress(com.github.saturn_xiv.palm.plugins.router.v1.HostSetDhcpAddressRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetDhcpAddressMethod(), getCallOptions(), request);
     }
   }

@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: wiki.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ArticleGrpc {
 
@@ -309,29 +306,29 @@ public final class ArticleGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty save(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty save(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSaveMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleShowByTitleResponse showByTitle(com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleShowByTitleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleShowByTitleResponse showByTitle(com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleShowByTitleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getShowByTitleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleHistoryResponse history(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wiki.v1.ArticleHistoryResponse history(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getHistoryMethod(), getCallOptions(), request);
     }
   }

@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: casbin.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class PolicyGrpc {
 
@@ -1290,176 +1287,176 @@ public final class PolicyGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.UsersResponse getAllUsers(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.UsersResponse getAllUsers(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetAllUsersMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectsResponse getAllObjects(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.ObjectsResponse getAllObjects(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetAllObjectsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.ActionsResponse getAllActions(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.ActionsResponse getAllActions(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetAllActionsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getAllRoles(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getAllRoles(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetAllRolesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getAllPermissions(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getAllPermissions(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetAllPermissionsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse has(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse has(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getHasMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse can(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse can(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCanMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getRolesForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getRolesForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetRolesForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getImplicitRolesForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.RolesResponse getImplicitRolesForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetImplicitRolesForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.UsersResponse getUsersForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.UsersResponse getUsersForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetUsersForRoleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse hasRoleForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse hasRoleForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getHasRoleForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty addRoleForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty addRoleForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getAddRoleForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteRoleForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteRoleForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserRoleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteRoleForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteRoleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getPermissionsForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getPermissionsForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetPermissionsForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getImplicitPermissionsForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getImplicitPermissionsForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.User request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetImplicitPermissionsForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty addPermissionForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty addPermissionForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getAddPermissionForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deletePermissionForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deletePermissionForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeletePermissionForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse hasPermissionForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse hasPermissionForUser(com.github.saturn_xiv.palm.plugins.casbin.v1.UserPermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getHasPermissionForUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getPermissionsForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getPermissionsForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetPermissionsForRoleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getImplicitPermissionsForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.PermissionsResponse getImplicitPermissionsForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.Role request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetImplicitPermissionsForRoleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty addPermissionForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.RolePermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty addPermissionForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.RolePermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getAddPermissionForRoleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deletePermissionForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.RolePermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deletePermissionForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.RolePermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeletePermissionForRoleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse hasPermissionForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.RolePermissionRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.casbin.v1.BoolResponse hasPermissionForRole(com.github.saturn_xiv.palm.plugins.casbin.v1.RolePermissionRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getHasPermissionForRoleMethod(), getCallOptions(), request);
     }
   }

@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: monitoring.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class DockerGrpc {
 
@@ -263,22 +260,22 @@ public final class DockerGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.monitoring.v1.DockerContainersResponse containers(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.DockerContainersResponse containers(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getContainersMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.monitoring.v1.DockerStatisticsResponse statistics(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.DockerStatisticsResponse statistics(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getStatisticsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanLogsResponse logs(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanLogsResponse logs(com.github.saturn_xiv.palm.plugins.monitoring.v1.PodmanQueryRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getLogsMethod(), getCallOptions(), request);
     }
   }

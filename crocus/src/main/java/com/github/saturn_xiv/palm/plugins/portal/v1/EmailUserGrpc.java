@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class EmailUserGrpc {
 
@@ -1014,134 +1011,134 @@ public final class EmailUserGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInResponse signIn(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSignInRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSignInResponse signIn(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSignInRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSignInMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty signUp(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSignUpRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty signUp(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSignUpRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSignUpMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty confirmByEmail(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty confirmByEmail(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getConfirmByEmailMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty confirmByToken(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserByTokenRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty confirmByToken(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserByTokenRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getConfirmByTokenMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty unlockByEmail(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty unlockByEmail(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUnlockByEmailMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty unlockByToken(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserByTokenRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty unlockByToken(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserByTokenRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUnlockByTokenMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty forgotPassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty forgotPassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getForgotPasswordMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty resetPassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserResetPasswordRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty resetPassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserResetPasswordRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getResetPasswordMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty changePassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserChangePasswordRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty changePassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserChangePasswordRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getChangePasswordMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setRealName(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetRealNameRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setRealName(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetRealNameRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetRealNameMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setAvatar(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetAvatarRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setAvatar(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetAvatarRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetAvatarMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserUploadAvatarResponse uploadAvatar(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserUploadAvatarResponse uploadAvatar(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUploadAvatarMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteByEmail(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserDeleteByEmailRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteByEmail(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserDeleteByEmailRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteByEmailMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteByToken(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserByTokenRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty deleteByToken(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserByTokenRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteByTokenMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setPassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setPassword(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetPasswordMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty confirm(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserChangePasswordRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty confirm(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserChangePasswordRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getConfirmMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty disable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty disable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDisableMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty enable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty enable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getEnableMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
   }

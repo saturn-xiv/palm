@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayJsapiGrpc {
 
@@ -309,29 +306,29 @@ public final class WeChatPayJsapiGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayJsapiPrepayIdResponse prepay(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayPrepayRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayJsapiPrepayIdResponse prepay(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayPrepayRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getPrepayMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeResponse queryOrderByOutTradeNo(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryOrderByOutTradeNoRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeResponse queryOrderByOutTradeNo(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryOrderByOutTradeNoRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getQueryOrderByOutTradeNoMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeResponse queryOrderById(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryOrderByIdRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeResponse queryOrderById(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryOrderByIdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getQueryOrderByIdMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty closeOrder(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayCloseOrderRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty closeOrder(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayCloseOrderRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCloseOrderMethod(), getCallOptions(), request);
     }
   }

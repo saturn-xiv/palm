@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: bbs.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ForumGrpc {
 
@@ -462,50 +459,50 @@ public final class ForumGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.ForumIndexResponse index(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.ForumIndexResponse index(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.ForumIndexResponse byBoard(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.ForumIndexResponse byBoard(com.github.saturn_xiv.palm.plugins.portal.v1.ByIdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getByBoardMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.ForumCreateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.ForumCreateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCreateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.bbs.v1.ForumUpdateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.bbs.v1.ForumUpdateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty lock(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty lock(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getLockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty unlock(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty unlock(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUnlockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteMethod(), getCallOptions(), request);
     }
   }

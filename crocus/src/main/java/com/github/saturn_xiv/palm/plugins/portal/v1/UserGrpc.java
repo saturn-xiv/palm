@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class UserGrpc {
 
@@ -631,78 +628,78 @@ public final class UserGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserLogsResponse logs(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserLogsResponse logs(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getLogsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setLocation(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLocationRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setLocation(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLocationRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetLocationMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setV(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetVRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setV(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetVRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetVMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserGetVResponse getV(com.github.saturn_xiv.palm.plugins.portal.v1.UserGetVRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserGetVResponse getV(com.github.saturn_xiv.palm.plugins.portal.v1.UserGetVRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetVMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserUploadResponse upload(com.github.saturn_xiv.palm.plugins.portal.v1.UserUploadRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserUploadResponse upload(com.github.saturn_xiv.palm.plugins.portal.v1.UserUploadRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUploadMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty signOut(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty signOut(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSignOutMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty lock(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty lock(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getLockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty unlock(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty unlock(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUnlockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty disable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty disable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDisableMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty enable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty enable(com.github.saturn_xiv.palm.plugins.portal.v1.SetupUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getEnableMethod(), getCallOptions(), request);
     }
   }

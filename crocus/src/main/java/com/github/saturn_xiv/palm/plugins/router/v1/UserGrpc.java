@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: router.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class UserGrpc {
 
@@ -355,36 +352,36 @@ public final class UserGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse index(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.router.v1.UserIndexResponse index(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.router.v1.UserCreateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.router.v1.UserCreateRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCreateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setRealName(com.github.saturn_xiv.palm.plugins.router.v1.UserSetRealNameRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setRealName(com.github.saturn_xiv.palm.plugins.router.v1.UserSetRealNameRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetRealNameMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setContact(com.github.saturn_xiv.palm.plugins.router.v1.UserSetContactRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setContact(com.github.saturn_xiv.palm.plugins.router.v1.UserSetContactRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetContactMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setWifi(com.github.saturn_xiv.palm.plugins.router.v1.UserSetWifiRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setWifi(com.github.saturn_xiv.palm.plugins.router.v1.UserSetWifiRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetWifiMethod(), getCallOptions(), request);
     }
   }

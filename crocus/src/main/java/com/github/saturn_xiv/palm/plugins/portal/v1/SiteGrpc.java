@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SiteGrpc {
 
@@ -1152,155 +1149,155 @@ public final class SiteGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty setInfoByLang(com.github.saturn_xiv.palm.plugins.portal.v1.SetSiteInfoByLangRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setInfoByLang(com.github.saturn_xiv.palm.plugins.portal.v1.SetSiteInfoByLangRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetInfoByLangMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.GetSiteInfoByLangResponse getInfoByLang(com.github.saturn_xiv.palm.plugins.portal.v1.GetSiteInfoByLangRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.GetSiteInfoByLangResponse getInfoByLang(com.github.saturn_xiv.palm.plugins.portal.v1.GetSiteInfoByLangRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetInfoByLangMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setAuthor(com.github.saturn_xiv.palm.plugins.portal.v1.SiteAuthorProfile request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setAuthor(com.github.saturn_xiv.palm.plugins.portal.v1.SiteAuthorProfile request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetAuthorMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteAuthorProfile getAuthor(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteAuthorProfile getAuthor(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetAuthorMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setFavicon(com.github.saturn_xiv.palm.plugins.portal.v1.SiteFaviconProfile request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setFavicon(com.github.saturn_xiv.palm.plugins.portal.v1.SiteFaviconProfile request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetFaviconMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteFaviconProfile getFavicon(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteFaviconProfile getFavicon(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetFaviconMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse uploadFavicon(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteUploadFaviconResponse uploadFavicon(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUploadFaviconMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setGoogleSiteOwnershipVerification(com.github.saturn_xiv.palm.plugins.portal.v1.GoogleSiteOwnershipVerification request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setGoogleSiteOwnershipVerification(com.github.saturn_xiv.palm.plugins.portal.v1.GoogleSiteOwnershipVerification request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetGoogleSiteOwnershipVerificationMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.GoogleSiteOwnershipVerification getGoogleSiteOwnershipVerification(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.GoogleSiteOwnershipVerification getGoogleSiteOwnershipVerification(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetGoogleSiteOwnershipVerificationMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setReCaptcha(com.github.saturn_xiv.palm.plugins.portal.v1.ReCaptchaProfile request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setReCaptcha(com.github.saturn_xiv.palm.plugins.portal.v1.ReCaptchaProfile request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetReCaptchaMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.ReCaptchaProfile getReCaptcha(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.ReCaptchaProfile getReCaptcha(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetReCaptchaMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setBaiduSiteOwnershipVerification(com.github.saturn_xiv.palm.plugins.portal.v1.BaiduSiteOwnershipVerification request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setBaiduSiteOwnershipVerification(com.github.saturn_xiv.palm.plugins.portal.v1.BaiduSiteOwnershipVerification request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetBaiduSiteOwnershipVerificationMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.BaiduSiteOwnershipVerification getBaiduSiteOwnershipVerification(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.BaiduSiteOwnershipVerification getBaiduSiteOwnershipVerification(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetBaiduSiteOwnershipVerificationMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty pingBaidu(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty pingBaidu(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getPingBaiduMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setIndexNow(com.github.saturn_xiv.palm.plugins.portal.v1.IndexNowProfile request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setIndexNow(com.github.saturn_xiv.palm.plugins.portal.v1.IndexNowProfile request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetIndexNowMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.IndexNowProfile getIndexNow(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.IndexNowProfile getIndexNow(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetIndexNowMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty pingIndexNow(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty pingIndexNow(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getPingIndexNowMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty clearCache(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty clearCache(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getClearCacheMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setMaintenanceMode(com.github.saturn_xiv.palm.plugins.portal.v1.SiteSetMaintenanceModeRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setMaintenanceMode(com.github.saturn_xiv.palm.plugins.portal.v1.SiteSetMaintenanceModeRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetMaintenanceModeMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse timezones(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteTimezonesResponse timezones(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getTimezonesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteCurrenciesResponse currencies(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteCurrenciesResponse currencies(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCurrenciesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteLanguagesResponse languages(com.google.protobuf.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.SiteLanguagesResponse languages(com.google.protobuf.Empty request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getLanguagesMethod(), getCallOptions(), request);
     }
   }

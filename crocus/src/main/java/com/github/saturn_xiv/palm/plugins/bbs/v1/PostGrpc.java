@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: bbs.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class PostGrpc {
 
@@ -416,43 +413,43 @@ public final class PostGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byArticle(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByArticleRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getByArticleMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.bbs.v1.PostIndexResponse byUser(com.github.saturn_xiv.palm.plugins.bbs.v1.PostByUserRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getByUserMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty create(com.github.saturn_xiv.palm.plugins.bbs.v1.CreatePostRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCreateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty update(com.github.saturn_xiv.palm.plugins.bbs.v1.UpdatePostRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty delete(com.github.saturn_xiv.palm.plugins.portal.v1.IdWithReasonRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteMethod(), getCallOptions(), request);
     }
   }

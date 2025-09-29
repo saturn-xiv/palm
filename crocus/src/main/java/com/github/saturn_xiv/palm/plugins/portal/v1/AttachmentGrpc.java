@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: portal.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AttachmentGrpc {
 
@@ -324,29 +321,29 @@ public final class AttachmentGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentUploadResponse upload(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentUploadRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentUploadResponse upload(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentUploadRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUploadMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse show(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowResponse show(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentShowRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getShowMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty setUploadedAt(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.google.protobuf.Empty setUploadedAt(com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentSetUploadedAtRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSetUploadedAtMethod(), getCallOptions(), request);
     }
   }

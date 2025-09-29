@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayBillGrpc {
 
@@ -217,15 +214,15 @@ public final class WeChatPayBillGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayBillResponse trade(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeBillRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayBillResponse trade(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTradeBillRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getTradeMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayBillResponse fundFlow(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayFundFlowBillRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayBillResponse fundFlow(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayFundFlowBillRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getFundFlowMethod(), getCallOptions(), request);
     }
   }

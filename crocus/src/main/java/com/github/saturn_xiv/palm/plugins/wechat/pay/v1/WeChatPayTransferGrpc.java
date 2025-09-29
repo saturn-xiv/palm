@@ -4,9 +4,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: wechat-pay.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class WeChatPayTransferGrpc {
 
@@ -355,36 +352,36 @@ public final class WeChatPayTransferGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayExecuteBatchTransferResponse executeBatch(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayExecuteBatchTransferRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayExecuteBatchTransferResponse executeBatch(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayExecuteBatchTransferRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getExecuteBatchMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryBatchTransferResponse queryBatch(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryBatchTransferRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryBatchTransferResponse queryBatch(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryBatchTransferRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getQueryBatchMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryTransferDetailResponse queryDetail(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryTransferDetailRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryTransferDetailResponse queryDetail(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayQueryTransferDetailRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getQueryDetailMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetReceiptResponse getBillReceipt(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetBillReceiptRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetReceiptResponse getBillReceipt(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetBillReceiptRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetBillReceiptMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetReceiptResponse getElectronicReceipt(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetElectronicReceiptRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetReceiptResponse getElectronicReceipt(com.github.saturn_xiv.palm.plugins.wechat.pay.v1.WeChatPayTransferGetElectronicReceiptRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetElectronicReceiptMethod(), getCallOptions(), request);
     }
   }

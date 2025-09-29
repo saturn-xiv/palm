@@ -7,9 +7,6 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * ----------------------------------------------------------------------------
  * </pre>
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.71.0)",
-    comments = "Source: monitoring.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SystemdGrpc {
 
@@ -186,8 +183,8 @@ public final class SystemdGrpc {
 
     /**
      */
-    public com.github.saturn_xiv.palm.plugins.monitoring.v1.SystemdJournalResponse journal(com.github.saturn_xiv.palm.plugins.monitoring.v1.SystemdJournalRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public com.github.saturn_xiv.palm.plugins.monitoring.v1.SystemdJournalResponse journal(com.github.saturn_xiv.palm.plugins.monitoring.v1.SystemdJournalRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getJournalMethod(), getCallOptions(), request);
     }
   }
