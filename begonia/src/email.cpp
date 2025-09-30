@@ -6,6 +6,9 @@
 #include <mailio/message.hpp>
 #include <mailio/smtp.hpp>
 
+void palm::email::Imap::fetch(const std::filesystem::path& folder,
+                              const std::tm& begin, const std::tm& end) {}
+
 void palm::email::Smtp::send(const Account& to, const std::vector<Account> cc,
                              const std::vector<Account> bcc,
                              const std::string& subject, const Body& body,
