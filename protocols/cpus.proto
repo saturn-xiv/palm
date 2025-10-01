@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.cups.v1";
+option go_package = "./;v2";
+package palm.cups.v1;
+
+import "google/protobuf/empty.proto";
+
+// https://www.cups.org/doc/cupspm.html
+service Cups {
+  rpc Index(google.protobuf.Empty) returns (CupsIndexResponse) {}
+  rpc Print(CupsPrintRequest) returns (google.protobuf.Empty) {}
+}
+
+message CupsIndexResponse {
+  message Item {
+    enum Status {
+      Idle = 0;
+      Busy = 1;
+      Offline = 2;
+    }
+    string name = 1;
+    Status status = 2;
+  }
+  repeated Item items = 1;
+}
+
+message CupsPrintRequest {
+  enum Type {
+    Pdf = 0;
+    Word = 1;
+  }
+  string name = 1;
+  Type type = 2;
+  bytes content = 3;
+}
