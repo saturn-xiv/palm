@@ -62,6 +62,12 @@ function build_x86_64_on_ubuntu() {
     build_deb x86_64 amd64 
 }
 
+function build_pansy() {
+    cd $WORK_DIR/pansy/
+    cmake --preset=local -DCMAKE_BUILD_TYPE=Release $BOOST_FLAGS
+    cmake --build $WORK_DIR/pansy/build
+}
+
 # go tool dist list
 function build_go() {
     cd $WORK_DIR/$1/
@@ -208,6 +214,8 @@ if [ ! -d $HOME/local/vcpkg ]; then
 fi
 
 export VCPKG_DISABLE_METRICS=1
+
+build_pansy
 
 if [ -d $HOME/x-tools ]; then
     build_on_crosstool_ng

@@ -3,6 +3,9 @@ package com.github.saturn_xiv.palm.plugins.cups.v1;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ * <pre>
+ * https://www.cups.org/doc/cupspm.html
+ * </pre>
  */
 @io.grpc.stub.annotations.GrpcGenerated
 public final class CupsGrpc {
@@ -134,6 +137,9 @@ public final class CupsGrpc {
   }
 
   /**
+   * <pre>
+   * https://www.cups.org/doc/cupspm.html
+   * </pre>
    */
   public interface AsyncService {
 
@@ -154,6 +160,9 @@ public final class CupsGrpc {
 
   /**
    * Base class for the server implementation of the service Cups.
+   * <pre>
+   * https://www.cups.org/doc/cupspm.html
+   * </pre>
    */
   public static abstract class CupsImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -165,6 +174,9 @@ public final class CupsGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service Cups.
+   * <pre>
+   * https://www.cups.org/doc/cupspm.html
+   * </pre>
    */
   public static final class CupsStub
       extends io.grpc.stub.AbstractAsyncStub<CupsStub> {
@@ -198,6 +210,9 @@ public final class CupsGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Cups.
+   * <pre>
+   * https://www.cups.org/doc/cupspm.html
+   * </pre>
    */
   public static final class CupsBlockingV2Stub
       extends io.grpc.stub.AbstractBlockingStub<CupsBlockingV2Stub> {
@@ -229,6 +244,9 @@ public final class CupsGrpc {
 
   /**
    * A stub to allow clients to do limited synchronous rpc calls to service Cups.
+   * <pre>
+   * https://www.cups.org/doc/cupspm.html
+   * </pre>
    */
   public static final class CupsBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<CupsBlockingStub> {
@@ -260,6 +278,9 @@ public final class CupsGrpc {
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service Cups.
+   * <pre>
+   * https://www.cups.org/doc/cupspm.html
+   * </pre>
    */
   public static final class CupsFutureStub
       extends io.grpc.stub.AbstractFutureStub<CupsFutureStub> {
@@ -360,7 +381,7 @@ public final class CupsGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.cups.v1.Cpus.getDescriptor();
+      return com.github.saturn_xiv.palm.plugins.cups.v1.CupsOuterClass.getDescriptor();
     }
 
     @java.lang.Override

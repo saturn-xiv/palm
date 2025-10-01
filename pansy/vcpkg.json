@@ -1,0 +1,21 @@
+{
+  "dependencies": [
+    "boost-algorithm",
+    "boost-uuid",
+    "argparse",
+    "spdlog",
+    "tomlplusplus",
+    "cppcodec",
+    "inja",
+    "cpp-httplib",
+    {
+      "name": "abseil",
+      "features": ["cxx17"]
+    },
+    "protobuf",
+    {
+      "name": "grpc",
+      "features": ["codegen"]
+    }
+  ]
+}

@@ -3,9 +3,9 @@
 #include <string>
 
 // clang-format off
-namespace palm {
+namespace pansy {
 
-inline static const std::string VERSION = "v@palm_VERSION_MAJOR@.@palm_VERSION_MINOR@.@palm_VERSION_PATCH@";
+inline static const std::string VERSION = "v@pansy_VERSION_MAJOR@.@pansy_VERSION_MINOR@.@pansy_VERSION_PATCH@";
 
 inline static const std::string GIT_VERSION = "@GIT_REV@";
 inline static const std::string BUILD_TIME = "@BUILD_TIME@";

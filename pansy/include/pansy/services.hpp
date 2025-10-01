@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cpus.grpc.pb.h"
+#include "cups.grpc.pb.h"
 
 #include <string>
 #include <vector>
