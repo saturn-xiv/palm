@@ -291,11 +291,14 @@ RUN zsh -c "source $HOME/.zshrc \
     && make install"
 
 
+# https://github.com/infinilabs/analysis-stconvert
+RUN cd /opt/opensearch/ \
+    && bin/opensearch-plugin install https://get.infini.cloud/opensearch/analysis-stconvert/2.12.0
+
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
     && echo "discovery.type: single-node" >> /opt/opensearch/config/opensearch.yml \
-    && echo "plugins.security.disabled: true" >> /opt/opensearch/config/opensearch.yml \
-    && sudo chown -R nobody:nobody /opt/opensearch
+    && echo "plugins.security.disabled: true" >> /opt/opensearch/config/opensearch.yml
 
 RUN sudo mkdir -p /var/lib/minio/data && sudo chown -R nobody:nobody /var/lib/minio
 
