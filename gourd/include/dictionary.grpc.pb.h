@@ -30,6 +30,7 @@ namespace palm {
 namespace dictionary {
 namespace v1 {
 
+// https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
 class Dictionary final {
  public:
   static constexpr char const* service_full_name() {

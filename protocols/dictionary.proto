@@ -8,6 +8,7 @@ package palm.dictionary.v1;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
+// https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
 service Dictionary {
   rpc Search(DirectorySearchRequest) returns (DirectorySearchResponse) {}
   rpc Index(google.protobuf.Empty) returns (DirectoryIndexResponse) {}

@@ -3,6 +3,9 @@ package com.github.saturn_xiv.palm.plugins.dictionary.v1;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ * <pre>
+ * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+ * </pre>
  */
 @io.grpc.stub.annotations.GrpcGenerated
 public final class DictionaryGrpc {
@@ -134,6 +137,9 @@ public final class DictionaryGrpc {
   }
 
   /**
+   * <pre>
+   * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+   * </pre>
    */
   public interface AsyncService {
 
@@ -154,6 +160,9 @@ public final class DictionaryGrpc {
 
   /**
    * Base class for the server implementation of the service Dictionary.
+   * <pre>
+   * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+   * </pre>
    */
   public static abstract class DictionaryImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -165,6 +174,9 @@ public final class DictionaryGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service Dictionary.
+   * <pre>
+   * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+   * </pre>
    */
   public static final class DictionaryStub
       extends io.grpc.stub.AbstractAsyncStub<DictionaryStub> {
@@ -198,6 +210,9 @@ public final class DictionaryGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service Dictionary.
+   * <pre>
+   * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+   * </pre>
    */
   public static final class DictionaryBlockingV2Stub
       extends io.grpc.stub.AbstractBlockingStub<DictionaryBlockingV2Stub> {
@@ -229,6 +244,9 @@ public final class DictionaryGrpc {
 
   /**
    * A stub to allow clients to do limited synchronous rpc calls to service Dictionary.
+   * <pre>
+   * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+   * </pre>
    */
   public static final class DictionaryBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<DictionaryBlockingStub> {
@@ -260,6 +278,9 @@ public final class DictionaryGrpc {
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service Dictionary.
+   * <pre>
+   * https://github.com/huzheng001/stardict-3/blob/master/dict/doc/StarDictFileFormat
+   * </pre>
    */
   public static final class DictionaryFutureStub
       extends io.grpc.stub.AbstractFutureStub<DictionaryFutureStub> {

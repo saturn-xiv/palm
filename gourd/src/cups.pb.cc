@@ -61,11 +61,14 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr CupsIndexResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : name_(
+      : _cached_size_{0},
+        name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        status_{static_cast< ::palm::cups::v1::CupsIndexResponse_Item_Status >(0)},
-        _cached_size_{0} {}
+        instance_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        status_{static_cast< ::palm::cups::v1::CupsIndexResponse_Item_Status >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR CupsIndexResponse_Item::CupsIndexResponse_Item(::_pbi::ConstantInitialized)
@@ -120,7 +123,7 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_cups_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsIndexResponse_Item, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsIndexResponse_Item, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -129,7 +132,11 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsIndexResponse_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsIndexResponse_Item, _impl_.instance_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsIndexResponse_Item, _impl_.status_),
+        ~0u,
+        0,
+        ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsIndexResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -154,9 +161,9 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::palm::cups::v1::CupsIndexResponse_Item)},
-        {10, -1, -1, sizeof(::palm::cups::v1::CupsIndexResponse)},
-        {19, -1, -1, sizeof(::palm::cups::v1::CupsPrintRequest)},
+        {0, 11, -1, sizeof(::palm::cups::v1::CupsIndexResponse_Item)},
+        {14, -1, -1, sizeof(::palm::cups::v1::CupsIndexResponse)},
+        {23, -1, -1, sizeof(::palm::cups::v1::CupsPrintRequest)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::cups::v1::_CupsIndexResponse_Item_default_instance_._instance,
@@ -166,20 +173,21 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_cups_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncups.proto\022\014palm.cups.v1\032\033google/proto"
-    "buf/empty.proto\"\306\001\n\021CupsIndexResponse\0223\n"
+    "buf/empty.proto\"\353\001\n\021CupsIndexResponse\0223\n"
     "\005items\030\001 \003(\0132$.palm.cups.v1.CupsIndexRes"
-    "ponse.Item\032|\n\004Item\022\014\n\004name\030\001 \001(\t\022;\n\006stat"
-    "us\030\002 \001(\0162+.palm.cups.v1.CupsIndexRespons"
-    "e.Item.Status\")\n\006Status\022\010\n\004Idle\020\000\022\010\n\004Bus"
-    "y\020\001\022\013\n\007Offline\020\002\"\177\n\020CupsPrintRequest\022\014\n\004"
-    "name\030\001 \001(\t\0221\n\004type\030\002 \001(\0162#.palm.cups.v1."
-    "CupsPrintRequest.Type\022\017\n\007content\030\003 \001(\014\"\031"
-    "\n\004Type\022\007\n\003Pdf\020\000\022\010\n\004Word\020\0012\215\001\n\004Cups\022B\n\005In"
-    "dex\022\026.google.protobuf.Empty\032\037.palm.cups."
-    "v1.CupsIndexResponse\"\000\022A\n\005Print\022\036.palm.c"
-    "ups.v1.CupsPrintRequest\032\026.google.protobu"
-    "f.Empty\"\000B5\n*com.github.saturn_xiv.palm."
-    "plugins.cups.v1P\001Z\005./;v2b\006proto3"
+    "ponse.Item\032\240\001\n\004Item\022\014\n\004name\030\001 \001(\t\022\025\n\010ins"
+    "tance\030\002 \001(\tH\000\210\001\001\022;\n\006status\030\003 \001(\0162+.palm."
+    "cups.v1.CupsIndexResponse.Item.Status\")\n"
+    "\006Status\022\010\n\004Idle\020\000\022\010\n\004Busy\020\001\022\013\n\007Offline\020\002"
+    "B\013\n\t_instance\"\177\n\020CupsPrintRequest\022\014\n\004nam"
+    "e\030\001 \001(\t\0221\n\004type\030\002 \001(\0162#.palm.cups.v1.Cup"
+    "sPrintRequest.Type\022\017\n\007content\030\003 \001(\014\"\031\n\004T"
+    "ype\022\007\n\003Pdf\020\000\022\010\n\004Word\020\0012\215\001\n\004Cups\022B\n\005Index"
+    "\022\026.google.protobuf.Empty\032\037.palm.cups.v1."
+    "CupsIndexResponse\"\000\022A\n\005Print\022\036.palm.cups"
+    ".v1.CupsPrintRequest\032\026.google.protobuf.E"
+    "mpty\"\000B5\n*com.github.saturn_xiv.palm.plu"
+    "gins.cups.v1P\001Z\005./;v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_cups_2eproto_deps[1] =
     {
@@ -189,7 +197,7 @@ static ::absl::once_flag descriptor_table_cups_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_cups_2eproto = {
     false,
     false,
-    592,
+    629,
     descriptor_table_protodef_cups_2eproto,
     "cups.proto",
     &descriptor_table_cups_2eproto_once,
@@ -250,6 +258,10 @@ constexpr int CupsPrintRequest::Type_ARRAYSIZE;
 
 class CupsIndexResponse_Item::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<CupsIndexResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_._has_bits_);
 };
 
 CupsIndexResponse_Item::CupsIndexResponse_Item(::google::protobuf::Arena* arena)
@@ -264,8 +276,10 @@ CupsIndexResponse_Item::CupsIndexResponse_Item(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE CupsIndexResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::cups::v1::CupsIndexResponse_Item& from_msg)
-      : name_(arena, from.name_),
-        _cached_size_{0} {}
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_),
+        instance_(arena, from.instance_) {}
 
 CupsIndexResponse_Item::CupsIndexResponse_Item(
     ::google::protobuf::Arena* arena,
@@ -287,8 +301,9 @@ CupsIndexResponse_Item::CupsIndexResponse_Item(
 inline PROTOBUF_NDEBUG_INLINE CupsIndexResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : name_(arena),
-        _cached_size_{0} {}
+      : _cached_size_{0},
+        name_(arena),
+        instance_(arena) {}
 
 inline void CupsIndexResponse_Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -303,6 +318,7 @@ inline void CupsIndexResponse_Item::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.name_.Destroy();
+  this_._impl_.instance_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -342,15 +358,15 @@ const ::google::protobuf::internal::ClassData* CupsIndexResponse_Item::GetClassD
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 48, 2> CupsIndexResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 56, 2> CupsIndexResponse_Item::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -360,27 +376,35 @@ const ::_pbi::TcParseTable<1, 2, 0, 48, 2> CupsIndexResponse_Item::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::cups::v1::CupsIndexResponse_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.cups.v1.CupsIndexResponse.Item.Status status = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CupsIndexResponse_Item, _impl_.status_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.status_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string name = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.name_)}},
+    // optional string instance = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.instance_)}},
+    // .palm.cups.v1.CupsIndexResponse.Item.Status status = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CupsIndexResponse_Item, _impl_.status_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.status_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string name = 1;
-    {PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.name_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.cups.v1.CupsIndexResponse.Item.Status status = 2;
-    {PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.status_), 0, 0,
+    // optional string instance = 2;
+    {PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.instance_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.cups.v1.CupsIndexResponse.Item.Status status = 3;
+    {PROTOBUF_FIELD_OFFSET(CupsIndexResponse_Item, _impl_.status_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
-    "\43\4\0\0\0\0\0\0"
+    "\43\4\10\0\0\0\0\0"
     "palm.cups.v1.CupsIndexResponse.Item"
     "name"
+    "instance"
   }},
 };
 
@@ -392,7 +416,12 @@ PROTOBUF_NOINLINE void CupsIndexResponse_Item::Clear() {
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.instance_.ClearNonDefaultToEmpty();
+  }
   _impl_.status_ = 0;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -419,11 +448,20 @@ PROTOBUF_NOINLINE void CupsIndexResponse_Item::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // .palm.cups.v1.CupsIndexResponse.Item.Status status = 2;
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional string instance = 2;
+          if (cached_has_bits & 0x00000001u) {
+            const std::string& _s = this_._internal_instance();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.cups.v1.CupsIndexResponse.Item.instance");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // .palm.cups.v1.CupsIndexResponse.Item.Status status = 3;
           if (this_._internal_status() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                2, this_._internal_status(), target);
+                3, this_._internal_status(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -456,7 +494,17 @@ PROTOBUF_NOINLINE void CupsIndexResponse_Item::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_name());
             }
-            // .palm.cups.v1.CupsIndexResponse.Item.Status status = 2;
+          }
+           {
+            // optional string instance = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_instance());
+            }
+          }
+           {
+            // .palm.cups.v1.CupsIndexResponse.Item.Status status = 3;
             if (this_._internal_status() != 0) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_status());
@@ -477,9 +525,14 @@ void CupsIndexResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, 
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _this->_internal_set_instance(from._internal_instance());
+  }
   if (from._internal_status() != 0) {
     _this->_impl_.status_ = from._impl_.status_;
   }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -496,7 +549,9 @@ void CupsIndexResponse_Item::InternalSwap(CupsIndexResponse_Item* PROTOBUF_RESTR
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.instance_, &other->_impl_.instance_, arena);
   swap(_impl_.status_, other->_impl_.status_);
 }
 

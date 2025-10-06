@@ -561,7 +561,8 @@ class CupsIndexResponse_Item final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNameFieldNumber = 1,
-    kStatusFieldNumber = 2,
+    kInstanceFieldNumber = 2,
+    kStatusFieldNumber = 3,
   };
   // string name = 1;
   void clear_name() ;
@@ -579,7 +580,24 @@ class CupsIndexResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
-  // .palm.cups.v1.CupsIndexResponse.Item.Status status = 2;
+  // optional string instance = 2;
+  bool has_instance() const;
+  void clear_instance() ;
+  const std::string& instance() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_instance(Arg_&& arg, Args_... args);
+  std::string* mutable_instance();
+  PROTOBUF_NODISCARD std::string* release_instance();
+  void set_allocated_instance(std::string* value);
+
+  private:
+  const std::string& _internal_instance() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_instance(
+      const std::string& value);
+  std::string* _internal_mutable_instance();
+
+  public:
+  // .palm.cups.v1.CupsIndexResponse.Item.Status status = 3;
   void clear_status() ;
   ::palm::cups::v1::CupsIndexResponse_Item_Status status() const;
   void set_status(::palm::cups::v1::CupsIndexResponse_Item_Status value);
@@ -594,8 +612,8 @@ class CupsIndexResponse_Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      48, 2>
+      2, 3, 0,
+      56, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -612,9 +630,11 @@ class CupsIndexResponse_Item final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const CupsIndexResponse_Item& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    int status_;
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr instance_;
+    int status_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -883,7 +903,76 @@ inline void CupsIndexResponse_Item::set_allocated_name(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsIndexResponse.Item.name)
 }
 
-// .palm.cups.v1.CupsIndexResponse.Item.Status status = 2;
+// optional string instance = 2;
+inline bool CupsIndexResponse_Item::has_instance() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void CupsIndexResponse_Item::clear_instance() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.instance_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& CupsIndexResponse_Item::instance() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.CupsIndexResponse.Item.instance)
+  return _internal_instance();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CupsIndexResponse_Item::set_instance(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.instance_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.cups.v1.CupsIndexResponse.Item.instance)
+}
+inline std::string* CupsIndexResponse_Item::mutable_instance() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_instance();
+  // @@protoc_insertion_point(field_mutable:palm.cups.v1.CupsIndexResponse.Item.instance)
+  return _s;
+}
+inline const std::string& CupsIndexResponse_Item::_internal_instance() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.instance_.Get();
+}
+inline void CupsIndexResponse_Item::_internal_set_instance(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.instance_.Set(value, GetArena());
+}
+inline std::string* CupsIndexResponse_Item::_internal_mutable_instance() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.instance_.Mutable( GetArena());
+}
+inline std::string* CupsIndexResponse_Item::release_instance() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.cups.v1.CupsIndexResponse.Item.instance)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.instance_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.instance_.Set("", GetArena());
+  }
+  return released;
+}
+inline void CupsIndexResponse_Item::set_allocated_instance(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.instance_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.instance_.IsDefault()) {
+    _impl_.instance_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsIndexResponse.Item.instance)
+}
+
+// .palm.cups.v1.CupsIndexResponse.Item.Status status = 3;
 inline void CupsIndexResponse_Item::clear_status() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.status_ = 0;

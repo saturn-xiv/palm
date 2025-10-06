@@ -37,6 +37,7 @@ find_package(protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(PkgConfig REQUIRED)
 
+
 pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
@@ -44,10 +45,10 @@ find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 # ---------------------------------------------------------
 
 file(GLOB PANSY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-file(GLOB GOURD_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../gourd/src/cups.*.cpp)
+file(GLOB GOURD_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../gourd/src/cups.*.cc)
 
 add_executable(pansy ${PANSY_SOURCES} ${GOURD_SOURCES})
-target_link_libraries(pansy PUBLIC m dl anl
+target_link_libraries(pansy PUBLIC m dl anl cups
   argparse::argparse spdlog::spdlog_header_only
   httplib::httplib nlohmann_json::nlohmann_json pantor::inja  
   PkgConfig::tomlplusplus 

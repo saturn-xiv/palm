@@ -23,6 +23,8 @@ sudo pacman -S crun podman buildah fuse-overlayfs
   podman ps --filter status=running
   podman logs xxxx
   podman load -i tmp/palm-CODE-TIMESTAMP.tar # import image
+
+  podman system df
   ```
 
 - Merge file `~/.config/containers/storage.conf` and `~/.config/containers/registries.conf`

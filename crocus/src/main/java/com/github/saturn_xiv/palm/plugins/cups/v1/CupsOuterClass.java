@@ -50,20 +50,21 @@ public final class CupsOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\ncups.proto\022\014palm.cups.v1\032\033google/proto" +
-      "buf/empty.proto\"\306\001\n\021CupsIndexResponse\0223\n" +
+      "buf/empty.proto\"\353\001\n\021CupsIndexResponse\0223\n" +
       "\005items\030\001 \003(\0132$.palm.cups.v1.CupsIndexRes" +
-      "ponse.Item\032|\n\004Item\022\014\n\004name\030\001 \001(\t\022;\n\006stat" +
-      "us\030\002 \001(\0162+.palm.cups.v1.CupsIndexRespons" +
-      "e.Item.Status\")\n\006Status\022\010\n\004Idle\020\000\022\010\n\004Bus" +
-      "y\020\001\022\013\n\007Offline\020\002\"\177\n\020CupsPrintRequest\022\014\n\004" +
-      "name\030\001 \001(\t\0221\n\004type\030\002 \001(\0162#.palm.cups.v1." +
-      "CupsPrintRequest.Type\022\017\n\007content\030\003 \001(\014\"\031" +
-      "\n\004Type\022\007\n\003Pdf\020\000\022\010\n\004Word\020\0012\215\001\n\004Cups\022B\n\005In" +
-      "dex\022\026.google.protobuf.Empty\032\037.palm.cups." +
-      "v1.CupsIndexResponse\"\000\022A\n\005Print\022\036.palm.c" +
-      "ups.v1.CupsPrintRequest\032\026.google.protobu" +
-      "f.Empty\"\000B5\n*com.github.saturn_xiv.palm." +
-      "plugins.cups.v1P\001Z\005./;v2b\006proto3"
+      "ponse.Item\032\240\001\n\004Item\022\014\n\004name\030\001 \001(\t\022\025\n\010ins" +
+      "tance\030\002 \001(\tH\000\210\001\001\022;\n\006status\030\003 \001(\0162+.palm." +
+      "cups.v1.CupsIndexResponse.Item.Status\")\n" +
+      "\006Status\022\010\n\004Idle\020\000\022\010\n\004Busy\020\001\022\013\n\007Offline\020\002" +
+      "B\013\n\t_instance\"\177\n\020CupsPrintRequest\022\014\n\004nam" +
+      "e\030\001 \001(\t\0221\n\004type\030\002 \001(\0162#.palm.cups.v1.Cup" +
+      "sPrintRequest.Type\022\017\n\007content\030\003 \001(\014\"\031\n\004T" +
+      "ype\022\007\n\003Pdf\020\000\022\010\n\004Word\020\0012\215\001\n\004Cups\022B\n\005Index" +
+      "\022\026.google.protobuf.Empty\032\037.palm.cups.v1." +
+      "CupsIndexResponse\"\000\022A\n\005Print\022\036.palm.cups" +
+      ".v1.CupsPrintRequest\032\026.google.protobuf.E" +
+      "mpty\"\000B5\n*com.github.saturn_xiv.palm.plu" +
+      "gins.cups.v1P\001Z\005./;v2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -81,7 +82,7 @@ public final class CupsOuterClass {
     internal_static_palm_cups_v1_CupsIndexResponse_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_cups_v1_CupsIndexResponse_Item_descriptor,
-        new java.lang.String[] { "Name", "Status", });
+        new java.lang.String[] { "Name", "Instance", "Status", });
     internal_static_palm_cups_v1_CupsPrintRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_palm_cups_v1_CupsPrintRequest_fieldAccessorTable = new

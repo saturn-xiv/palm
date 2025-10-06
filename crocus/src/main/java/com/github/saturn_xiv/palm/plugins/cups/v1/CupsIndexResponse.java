@@ -60,12 +60,29 @@ private static final long serialVersionUID = 0L;
         getNameBytes();
 
     /**
-     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+     * <code>optional string instance = 2;</code>
+     * @return Whether the instance field is set.
+     */
+    boolean hasInstance();
+    /**
+     * <code>optional string instance = 2;</code>
+     * @return The instance.
+     */
+    java.lang.String getInstance();
+    /**
+     * <code>optional string instance = 2;</code>
+     * @return The bytes for instance.
+     */
+    com.google.protobuf.ByteString
+        getInstanceBytes();
+
+    /**
+     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
      * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
-     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
      * @return The status.
      */
     com.github.saturn_xiv.palm.plugins.cups.v1.CupsIndexResponse.Item.Status getStatus();
@@ -93,6 +110,7 @@ private static final long serialVersionUID = 0L;
     }
     private Item() {
       name_ = "";
+      instance_ = "";
       status_ = 0;
     }
 
@@ -235,6 +253,7 @@ private static final long serialVersionUID = 0L;
       // @@protoc_insertion_point(enum_scope:palm.cups.v1.CupsIndexResponse.Item.Status)
     }
 
+    private int bitField0_;
     public static final int NAME_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
     private volatile java.lang.Object name_ = "";
@@ -274,17 +293,64 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public static final int STATUS_FIELD_NUMBER = 2;
+    public static final int INSTANCE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object instance_ = "";
+    /**
+     * <code>optional string instance = 2;</code>
+     * @return Whether the instance field is set.
+     */
+    @java.lang.Override
+    public boolean hasInstance() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional string instance = 2;</code>
+     * @return The instance.
+     */
+    @java.lang.Override
+    public java.lang.String getInstance() {
+      java.lang.Object ref = instance_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        instance_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string instance = 2;</code>
+     * @return The bytes for instance.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getInstanceBytes() {
+      java.lang.Object ref = instance_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        instance_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 3;
     private int status_ = 0;
     /**
-     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
      * @return The enum numeric value on the wire for status.
      */
     @java.lang.Override public int getStatusValue() {
       return status_;
     }
     /**
-     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+     * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
      * @return The status.
      */
     @java.lang.Override public com.github.saturn_xiv.palm.plugins.cups.v1.CupsIndexResponse.Item.Status getStatus() {
@@ -309,8 +375,11 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
       }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, instance_);
+      }
       if (status_ != com.github.saturn_xiv.palm.plugins.cups.v1.CupsIndexResponse.Item.Status.Idle.getNumber()) {
-        output.writeEnum(2, status_);
+        output.writeEnum(3, status_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -324,9 +393,12 @@ private static final long serialVersionUID = 0L;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
       }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, instance_);
+      }
       if (status_ != com.github.saturn_xiv.palm.plugins.cups.v1.CupsIndexResponse.Item.Status.Idle.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, status_);
+          .computeEnumSize(3, status_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -345,6 +417,11 @@ private static final long serialVersionUID = 0L;
 
       if (!getName()
           .equals(other.getName())) return false;
+      if (hasInstance() != other.hasInstance()) return false;
+      if (hasInstance()) {
+        if (!getInstance()
+            .equals(other.getInstance())) return false;
+      }
       if (status_ != other.status_) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -359,6 +436,10 @@ private static final long serialVersionUID = 0L;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      if (hasInstance()) {
+        hash = (37 * hash) + INSTANCE_FIELD_NUMBER;
+        hash = (53 * hash) + getInstance().hashCode();
+      }
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + status_;
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -493,6 +574,7 @@ private static final long serialVersionUID = 0L;
         super.clear();
         bitField0_ = 0;
         name_ = "";
+        instance_ = "";
         status_ = 0;
         return this;
       }
@@ -530,9 +612,15 @@ private static final long serialVersionUID = 0L;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.name_ = name_;
         }
+        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.instance_ = instance_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.status_ = status_;
         }
+        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -550,6 +638,11 @@ private static final long serialVersionUID = 0L;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (other.hasInstance()) {
+          instance_ = other.instance_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.status_ != 0) {
@@ -586,11 +679,16 @@ private static final long serialVersionUID = 0L;
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
-              case 16: {
-                status_ = input.readEnum();
+              case 18: {
+                instance_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 16
+              } // case 18
+              case 24: {
+                status_ = input.readEnum();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -680,27 +778,106 @@ private static final long serialVersionUID = 0L;
         return this;
       }
 
+      private java.lang.Object instance_ = "";
+      /**
+       * <code>optional string instance = 2;</code>
+       * @return Whether the instance field is set.
+       */
+      public boolean hasInstance() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>optional string instance = 2;</code>
+       * @return The instance.
+       */
+      public java.lang.String getInstance() {
+        java.lang.Object ref = instance_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          instance_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string instance = 2;</code>
+       * @return The bytes for instance.
+       */
+      public com.google.protobuf.ByteString
+          getInstanceBytes() {
+        java.lang.Object ref = instance_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          instance_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string instance = 2;</code>
+       * @param value The instance to set.
+       * @return This builder for chaining.
+       */
+      public Builder setInstance(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        instance_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string instance = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearInstance() {
+        instance_ = getDefaultInstance().getInstance();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string instance = 2;</code>
+       * @param value The bytes for instance to set.
+       * @return This builder for chaining.
+       */
+      public Builder setInstanceBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        instance_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private int status_ = 0;
       /**
-       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
        * @return The enum numeric value on the wire for status.
        */
       @java.lang.Override public int getStatusValue() {
         return status_;
       }
       /**
-       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
        * @param value The enum numeric value on the wire for status to set.
        * @return This builder for chaining.
        */
       public Builder setStatusValue(int value) {
         status_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
        * @return The status.
        */
       @java.lang.Override
@@ -709,7 +886,7 @@ private static final long serialVersionUID = 0L;
         return result == null ? com.github.saturn_xiv.palm.plugins.cups.v1.CupsIndexResponse.Item.Status.UNRECOGNIZED : result;
       }
       /**
-       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
        * @param value The status to set.
        * @return This builder for chaining.
        */
@@ -717,17 +894,17 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         status_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 2;</code>
+       * <code>.palm.cups.v1.CupsIndexResponse.Item.Status status = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         status_ = 0;
         onChanged();
         return this;
