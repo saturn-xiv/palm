@@ -33,3 +33,4 @@ $ ./docker/begonia/start.sh
 - [Maven Quickstart Archetype](https://maven.apache.org/archetypes/maven-archetype-quickstart/)
 - [WeUI - tailor-made for WeChat web service](https://github.com/Tencent/weui)
 - [Modified Preorder Tree Traversal](https://gist.github.com/tmilos/f2f999b5839e2d42d751)
+- [JSON Web Token (JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)

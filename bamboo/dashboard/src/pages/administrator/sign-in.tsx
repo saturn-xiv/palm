@@ -13,7 +13,7 @@ const Widget = () => {
         <FormattedMessage id="pages.administrator.sign-in.title" />
         <div>#{name || "n/a"}#</div>
         <br />
-        <button onClick={() => dispatch(signIn({ name: "Aaa" }))}>
+        <button onClick={() => dispatch(signIn({ token: "change-me" }))}>
           sign in
         </button>
         &nbsp;
