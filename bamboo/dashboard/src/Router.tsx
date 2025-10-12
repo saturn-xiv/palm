@@ -16,45 +16,48 @@ const AnonymousLayout = lazy(() => import("./layouts/Anonymous"));
 const DashboardLayout = lazy(() => import("./layouts/Dashboard"));
 const Home = lazy(() => import("./pages/home"));
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: RootLayout,
-    children: [
-      { index: true, Component: Home },
-      {
-        path: "anonymous",
-        Component: AnonymousLayout,
-        children: [
-          {
-            path: "administrator",
-            children: [{ path: "sign-in", Component: AdministratorSignIn }],
-          },
-        ],
-      },
-      {
-        path: "dashboard",
-        Component: DashboardLayout,
-        children: [
-          { index: true, Component: DashboardIndex },
-          { path: "hosts", Component: HostsIndex },
-          { path: "users", Component: UsersIndex },
-          { path: "rules", Component: RulesIndex },
-          {
-            path: "administrator",
-            children: [
-              {
-                path: "profile",
-                Component: AdministratorProfile,
-              },
-              { path: "logs", Component: AdministratorLogs },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: RootLayout,
+      children: [
+        { index: true, Component: Home },
+        {
+          path: "anonymous",
+          Component: AnonymousLayout,
+          children: [
+            {
+              path: "administrator",
+              children: [{ path: "sign-in", Component: AdministratorSignIn }],
+            },
+          ],
+        },
+        {
+          path: "dashboard",
+          Component: DashboardLayout,
+          children: [
+            { index: true, Component: DashboardIndex },
+            { path: "hosts", Component: HostsIndex },
+            { path: "users", Component: UsersIndex },
+            { path: "rules", Component: RulesIndex },
+            {
+              path: "administrator",
+              children: [
+                {
+                  path: "profile",
+                  Component: AdministratorProfile,
+                },
+                { path: "logs", Component: AdministratorLogs },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL }
+);
 
 const Widget = () => {
   return <RouterProvider router={router} />;
