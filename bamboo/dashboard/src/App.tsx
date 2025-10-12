@@ -1,8 +1,13 @@
+import { Suspense } from "react";
+
+import Loading from "./components/Loading";
+import Router from "./Router";
+
 const Widget = () => {
   return (
-    <>
-      <h1>Vite + React</h1>
-    </>
+    <Suspense fallback={<Loading />}>
+      <Router />
+    </Suspense>
   );
 };
 
