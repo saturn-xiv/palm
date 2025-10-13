@@ -1,11 +1,17 @@
 import { Outlet } from "react-router";
 
+import NotificationBar from "../components/NotificationBar";
+import FooterBar from "../components/FooterBar";
+
 const Widget = () => {
   return (
-    <>
-      <h1>root layout</h1>
-      <Outlet />
-    </>
+    <div className="container">
+      <NotificationBar />
+      <div className="fixed-grid">
+        <Outlet />
+      </div>
+      <FooterBar />
+    </div>
   );
 };
 
