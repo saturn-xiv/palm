@@ -6,7 +6,7 @@ set -e
 npm install --save \
     bulma \
     react-router react-intl formik \
-    jsonwebtoken @types/jsonwebtoken \
+    jose \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie 
 

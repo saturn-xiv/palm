@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import jwt from "jsonwebtoken";
+import * as jose from "jose";
 
 import type { RootState } from "../store";
 
@@ -21,12 +21,9 @@ export const sessionSlice = createSlice({
       state.name = undefined;
     },
     signIn: (state, action: PayloadAction<ISignIn>) => {
-      const decoded = jwt.decode(action.payload.token, { complete: true });
-      const name = decoded?.payload.sub;
-      if (typeof name === "string") {
-        state.name = name;
-      } else {
-        state.name = undefined;
+      const claims = jose.decodeJwt(action.payload.token);
+      if (claims.sub) {
+        state.name = claims.sub;
       }
     },
   },
