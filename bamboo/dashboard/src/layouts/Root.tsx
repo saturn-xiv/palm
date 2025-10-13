@@ -7,9 +7,7 @@ const Widget = () => {
   return (
     <div className="container">
       <NotificationBar />
-      <div className="fixed-grid">
-        <Outlet />
-      </div>
+      <Outlet />
       <FooterBar />
     </div>
   );

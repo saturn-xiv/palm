@@ -88,6 +88,7 @@ const Widget = () => {
 };
 
 export const Widget1 = () => {
+  // TODO remove
   const name = useSelector(selectName);
   const dispatch = useDispatch();
   return (
