@@ -21,9 +21,14 @@ export const sessionSlice = createSlice({
       state.name = undefined;
     },
     signIn: (state, action: PayloadAction<ISignIn>) => {
-      const claims = jose.decodeJwt(action.payload.token);
-      if (claims.sub) {
-        state.name = claims.sub;
+      try {
+        const claims = jose.decodeJwt(action.payload.token);
+        if (claims.sub) {
+          state.name = claims.sub;
+        }
+      } catch (e) {
+        console.error(e);
+        state.name = undefined;
       }
     },
   },
