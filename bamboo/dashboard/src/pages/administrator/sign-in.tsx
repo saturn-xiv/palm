@@ -4,14 +4,10 @@ import * as Yup from "yup";
 import { withFormik, type FormikProps, Form, Field } from "formik";
 
 import { selectName, signIn, signOut } from "../../reducers/session";
-
-interface IInnerFormValues {
-  username: string;
-  password: string;
-}
+import { type ISignInFormValues } from "../../api/administrator";
 
 const InnerForm = (
-  props: { title: string } & FormikProps<IInnerFormValues>
+  props: { title: string } & FormikProps<ISignInFormValues>
 ) => {
   const { touched, errors, isSubmitting, title } = props;
   return (
@@ -61,7 +57,7 @@ const InnerForm = (
   );
 };
 
-const IForm = withFormik<{ title: string }, IInnerFormValues>({
+const IForm = withFormik<{ title: string }, ISignInFormValues>({
   mapPropsToValues: () => {
     return {
       username: "",

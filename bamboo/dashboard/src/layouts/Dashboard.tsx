@@ -54,7 +54,7 @@ const NavBar = () => {
 
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">
-              <FormattedMessage id="layouts.dashboard.nav-bar.settings" />
+              <FormattedMessage id="layouts.dashboard.nav-bar.account" />
             </a>
 
             <div className="navbar-dropdown">
@@ -78,17 +78,29 @@ const NavBar = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <a className="button is-info" onClick={handleApply} href="#">
+              <a
+                className="button is-info is-small"
+                onClick={handleApply}
+                href="#"
+              >
                 <strong>
                   <FormattedMessage id="layouts.dashboard.nav-bar.apply" />
                 </strong>
               </a>
-              <a className="button is-warning" onClick={handleReboot} href="#">
+              <a
+                className="button is-warning is-small"
+                onClick={handleReboot}
+                href="#"
+              >
                 <strong>
                   <FormattedMessage id="layouts.dashboard.nav-bar.reboot" />
                 </strong>
               </a>
-              <a className="button is-light" onClick={handleSignOut} href="#">
+              <a
+                className="button is-light is-small"
+                onClick={handleSignOut}
+                href="#"
+              >
                 <FormattedMessage id="layouts.dashboard.nav-bar.sign-out" />
               </a>
             </div>
