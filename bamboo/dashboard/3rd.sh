@@ -6,7 +6,7 @@ set -e
 npm install --save \
     bulma \
     react-router react-intl formik \
-    jose \
+    jose dayjs \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie 
 
