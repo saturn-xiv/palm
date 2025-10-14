@@ -387,6 +387,7 @@ RUN mkdir -p $HOME/.ssh \
 ADD etc/envoy.yaml /etc/
 RUN sudo mkdir -p /var/log/envoy
 ADD etc/supervisor /etc/supervisor
+ADD opt/bin /etc/bin
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
