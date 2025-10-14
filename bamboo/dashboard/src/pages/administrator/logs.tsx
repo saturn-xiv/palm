@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { type ILogsResponse, get_logs } from "../../api/administrator";
 import PaginationBar from "../../components/PaginationBar";
+import Timestamp from "../../components/Timestamp";
 import type { IPage } from "../../api";
 
 const Widget = () => {
@@ -57,7 +58,9 @@ const Widget = () => {
               <th>{it.id}</th>
               <td>{it.ip}</td>
               <td>{it.message}</td>
-              <td>{it.createdAt.toISOString()}</td>
+              <td>
+                <Timestamp value={it.createdAt} />
+              </td>
             </tr>
           ))}
         </tbody>
