@@ -3,12 +3,22 @@ package com.github.saturn_xiv.palm.hyacinth.services;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
+import io.grpc.ManagedChannel;
 import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
+import io.grpc.health.v1.HealthCheckRequest;
+import io.grpc.health.v1.HealthCheckResponse.ServingStatus;
+import io.grpc.health.v1.HealthGrpc;
 import com.google.protobuf.Empty;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
@@ -19,6 +29,23 @@ import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 
 @Component("palm.hyacinth.rpc-service")
 public class RpcService {
+    public Map<String, Optional<ServingStatus>> healthCheck() {
+        var items = new HashMap<String, Optional<ServingStatus>>();
+        for (var it : this.channels.entrySet()) {
+            logger.debug("check health of {}", it.getKey());
+            try {
+                var stub = HealthGrpc.newBlockingStub(it.getValue());
+                var request = HealthCheckRequest.getDefaultInstance();
+                var response = stub.check(request);
+                items.put(it.getKey(), Optional.of(response.getStatus()));
+            } catch (StatusRuntimeException e) {
+                logger.error("", e);
+                items.put(it.getKey(), Optional.empty());
+            }
+        }
+        return items;
+    }
+
     public ImmutablePair<HttpStatus, String> call(String host, HttpRequest request) {
         final var reply = this.protobufHandler.handle(host, request);
         final var status = reply.status();
@@ -47,13 +74,14 @@ public class RpcService {
 
     @PostConstruct
     public void init() {
-        final var channels = this.rpcConfig.open();
+        channels = this.rpcConfig.open();
         this.protobufHandler = new ProtobufHandler(channels);
     }
 
     @Resource
     RpcConfig rpcConfig;
     private ProtobufHandler protobufHandler;
+    private Map<String, ManagedChannel> channels;
 
     private static final Logger logger = LoggerFactory.getLogger(RpcService.class);
 }

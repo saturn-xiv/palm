@@ -72,16 +72,10 @@
 			<artifactId>protobuf-java-util</artifactId>
 			<version>4.29.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
+		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-all -->
 		<dependency>
 			<groupId>io.grpc</groupId>
-			<artifactId>grpc-protobuf</artifactId>
-			<version>1.75.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-stub</artifactId>
+			<artifactId>grpc-all</artifactId>
 			<version>1.75.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-netty-shaded -->
