@@ -19,7 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 import com.github.saturn_xiv.palm.hyacinth.services.RpcService;
 
-@RestController
+@RestController("palm.hyacinth.api-controller")
 @RequestMapping("/api")
 public class ApiController {
     @PostMapping(value = "/{host}/{package}/{service}/{method}", produces = MediaType.APPLICATION_JSON_VALUE)

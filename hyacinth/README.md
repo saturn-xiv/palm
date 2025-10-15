@@ -19,6 +19,12 @@ $ java --enable-native-access=ALL-UNNAMED -cp 'target/hyacinth-2025.9.25.jar:lib
 
 ```
 
+## Testing
+
+```bash
+curl -v -X GET "http://127.0.0.1:8180/health-check"
+```
+
 ## Documents
 
 - [Application properties](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)

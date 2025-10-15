@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.github.saturn_xiv.palm.hyacinth.repositories.LogRepository;
 
-@Controller
+@Controller("palm.hyacinth.log-controller")
 public class LogsController {
     @GetMapping("/logs")
     String show(Model model) {

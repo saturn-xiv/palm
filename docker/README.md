@@ -9,23 +9,26 @@ sudo pacman -S crun podman buildah fuse-overlayfs
 
 - Decompress
 
-  ```bash
-  cat palm-spring-TIMESTAMP.tar.0? > palm-spring-TIMESTAMP.tar
-  ```
+```bash
+cat palm-spring-TIMESTAMP.tar.0? > palm-spring-TIMESTAMP.tar
+```
 
 - Podman commands
 
-  ```bash
-  podman image prune -a # removes all dangling images
-  podman system reset # clean
-  podman images # show images
-  podman ps -a # show containers
-  podman ps --filter status=running
-  podman logs xxxx
-  podman load -i tmp/palm-CODE-TIMESTAMP.tar # import image
+```bash
+$ podman image prune -a # removes all dangling images
+podman system reset # clean
+podman images # show images
+podman ps -a # show containers
+podman ps --filter status=running
+podman logs xxxx
+podman load -i tmp/palm-CODE-TIMESTAMP.tar # import image
 
-  podman system df
-  ```
+# checking disk usage
+podman system df
+# cleaning up unused resources
+podman system prune --all --volumes
+```
 
 - Merge file `~/.config/containers/storage.conf` and `~/.config/containers/registries.conf`
 

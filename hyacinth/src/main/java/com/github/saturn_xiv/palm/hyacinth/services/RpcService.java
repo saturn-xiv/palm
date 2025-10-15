@@ -17,7 +17,7 @@ import com.github.saturn_xiv.palm.hyacinth.ProtobufHandler;
 import com.github.saturn_xiv.palm.hyacinth.RpcConfig;
 import com.github.saturn_xiv.palm.hyacinth.models.HttpRequest;
 
-@Component
+@Component("palm.hyacinth.rpc-service")
 public class RpcService {
     public ImmutablePair<HttpStatus, String> call(String host, HttpRequest request) {
         final var reply = this.protobufHandler.handle(host, request);
