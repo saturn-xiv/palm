@@ -18,8 +18,10 @@ import com.github.saturn_xiv.palm.hyacinth.services.LogService;
 public class HealthCheckController {
     @GetMapping("/health-check")
     HealthCheckResponse show() {
-        Map<String, Optional<String>> rpcClients = new HashMap<>();
         logger.debug("testing rpc client for {}", "jasmine");
+        Map<String, Optional<String>> rpcClients = new HashMap<>();
+
+        logger.debug("testing database {}", logService.driver());
         final var version = logService.version();
         return new HealthCheckResponse(Optional.of(version), rpcClients);
     }

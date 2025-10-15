@@ -1,0 +1,31 @@
+server:
+  address: 0.0.0.0
+  port: 8180
+logging:
+  level:
+    root: INFO
+    "com.github.saturn_xiv.palm": DEBUG
+spring:
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: "jdbc:hsqldb:mem:hyacinth"
+    username: sa
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  liquibase:
+    enabled: false
+hyacinth:
+  rpc:
+    endpoints:
+      phlox:
+        host: "127.0.0.1"
+        port: 10801
+      lavender:
+        host: "127.0.0.1"
+        port: 10802
+      jasmine:
+        host: "127.0.0.1"
+        port: 10803

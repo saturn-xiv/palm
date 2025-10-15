@@ -21,6 +21,11 @@ import io.grpc.stub.MetadataUtils;
 public record HttpRequest(String package_, String service, String method,
                 String authorization, String requestType, String requestBody) {
 
+        public void health_check(ManagedChannel channel) {
+                // var stub = HealthGrpc.newBlockingStub(channel);
+                // healthRequest = HealthCheckRequest.getDefaultInstance();
+        }
+
         @SuppressWarnings({ "rawtypes", "unchecked" })
         public Optional<MessageOrBuilder> execute(ManagedChannel channel)
                         throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException,
