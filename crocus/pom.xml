@@ -6,7 +6,7 @@
 
   <groupId>com.github.saturn_xiv.palm</groupId>
   <artifactId>crocus</artifactId>
-  <version>2025.8.15</version>
+  <version>2025.10.15</version>
 
   <name>Crocus</name>
   <url>https://github.com/saturn-xiv/palm/tree/main/crocus</url>
@@ -41,19 +41,19 @@
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-core</artifactId>
-      <version>1.75.0</version>
+      <version>1.76.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-protobuf</artifactId>
-      <version>1.75.0</version>
+      <version>1.76.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-stub</artifactId>
-      <version>1.75.0</version>
+      <version>1.76.0</version>
     </dependency>
     <!-- https://github.com/grpc/grpc-java/blob/master/README.md -->
     <dependency> <!-- necessary for Java 9+ -->

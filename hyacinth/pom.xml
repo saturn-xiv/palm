@@ -76,13 +76,13 @@
 		<dependency>
 			<groupId>io.grpc</groupId>
 			<artifactId>grpc-all</artifactId>
-			<version>1.75.0</version>
+			<version>1.76.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-netty-shaded -->
 		<dependency>
 			<groupId>io.grpc</groupId>
 			<artifactId>grpc-netty-shaded</artifactId>
-			<version>1.75.0</version>
+			<version>1.76.0</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!-- https://github.com/grpc/grpc-java/blob/master/README.md -->
