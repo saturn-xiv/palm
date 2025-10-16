@@ -29,3 +29,7 @@ hyacinth:
       jasmine:
         host: "127.0.0.1"
         port: 10803
+      bamboo:
+        host: '127.0.0.1'
+        port: 10804
+        

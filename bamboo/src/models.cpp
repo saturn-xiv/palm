@@ -1,10 +1,9 @@
 #include "bamboo/models.hpp"
+#include "palm/utils.hpp"
 #include "router.grpc.pb.h"
 
 #include <sodium.h>
-
-static const std::string gl_administrator_name = "administrator.name";
-static const std::string gl_administrator_password = "administrator.password";
+#include <cppcodec/base64_url_unpadded.hpp>
 
 boost::fusion::vector<bamboo::dao::host::Item> bamboo::dao::host::all(
     soci::session& db) {
@@ -44,49 +43,61 @@ void bamboo::dao::administrator::save(soci::session& db,
     spdlog::error("failed to compute password");
     return;
   }
-  std::vector<uint8_t> name_(name.begin(), name.end());
-  std::vector<uint8_t> password_(std::begin(hashed_password),
-                                 std::end(hashed_password));
-  bamboo::dao::set(db, gl_administrator_name, name_);
-  bamboo::dao::set(db, gl_administrator_password, password_);
+
+  palm::router::v1::AdministratorUpdateRequest_Item it;
+  {
+    it.set_name(name);
+    it.set_password(hashed_password);
+  }
+  const std::string key =
+      boost::typeindex::type_id<
+          palm::router::v1::AdministratorUpdateRequest_Item>()
+          .pretty_name();
+
+  bamboo::dao::set(db, key, it);
 }
 
 bool bamboo::dao::administrator::auth(soci::session& db,
                                       const std::string& name,
                                       const std::string& password) {
+  palm::router::v1::AdministratorUpdateRequest_Item it;
   {
-    const auto val = bamboo::dao::get(db, gl_administrator_name);
-    if (!val) {
-      return false;
-    }
-    const std::string str(val->begin(), val->end());
-    if (str != name) {
+    const std::string key =
+        boost::typeindex::type_id<
+            palm::router::v1::AdministratorUpdateRequest_Item>()
+            .pretty_name();
+    if (!bamboo::dao::get(db, key, &it)) {
       return false;
     }
   }
-  const auto password_ = bamboo::dao::get(db, gl_administrator_password);
+  if (it.name() != name) {
+    return false;
+  }
 
-  if (!password_) {
+  if (it.password().size() != crypto_pwhash_STRBYTES) {
     return false;
   }
-  if (password_->size() != crypto_pwhash_STRBYTES) {
-    return false;
-  }
-  return crypto_pwhash_str_verify((char*)password_->data(), password.c_str(),
+  return crypto_pwhash_str_verify((char*)it.password().data(), password.c_str(),
                                   password.length()) == 0;
 }
 
 void bamboo::dao::set(soci::session& db, const std::string& key,
                       const std::vector<uint8_t>& value) {
+  // FIXME write_from_start is not implemented for this backend
+  // soci::blob val(db);
+  // val.write_from_start((const char*)value.data(), value.size());
+
+  const std::string val = cppcodec::base64_url_unpadded::encode(value);
+
   int c;
   db << R"SQL(SELECT COUNT(*) FROM settings WHERE "key" = :key)SQL",
       soci::use(key, "key"), soci::into(c);
   if (c > 0) {
     db << R"SQL(UPDATE settings SET value=:value, version=version+1, updated_at=CURRENT_TIMESTAMP WHERE "key" = :key)SQL",
-        soci::use(key, "key"), soci::use(value, "value");
+        soci::use(key, "key"), soci::use(val, "value");
   } else {
     db << R"SQL(INSERT INTO settings("key", value, updated_at) VALUES(:key, :value, CURRENT_TIMESTAMP))SQL",
-        soci::use(key, "key"), soci::use(value, "value");
+        soci::use(key, "key"), soci::use(val, "value");
   }
 }
 
@@ -94,13 +105,13 @@ std::optional<std::vector<uint8_t>> bamboo::dao::get(soci::session& db,
                                                      const std::string& key) {
   std::string val;
   soci::indicator ind;
-  db << R"SQL(SELECT value FROM settings WHERE "key" = :key)SQL",
+  db << R"SQL(SELECT value FROM settings WHERE "key" = :key LIMIT 1)SQL",
       soci::use(key, "key"), soci::into(val, ind);
   if (ind != soci::i_ok) {
     return std::nullopt;
   }
-
-  std::vector<uint8_t> buf(val.begin(), val.end());
+  const auto buf = cppcodec::base64_url_unpadded::decode(val);
+  // std::vector<uint8_t> buf(val.begin(), val.end());
   return buf;
 }
 

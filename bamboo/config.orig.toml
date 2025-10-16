@@ -1,0 +1,11 @@
+[jwt]
+key = "2RXYkYdv7rWL7cy8SjVpPDzKHBDpsyFURBrLhHTeZ6A="
+
+[aes]
+key = "5TK/1m45A/rAenQSvfIhUtJJHRSjDNrohga1fx44RUM="
+iv = "EBks+Eax2b0khd7neRlm5A=="
+
+[hmac]
+key = "zc0DllK2f8JLQt27nD7ObPZlx8wqFRiI90cdm+0b4EQ="
+
+[db]

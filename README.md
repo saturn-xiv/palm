@@ -20,6 +20,8 @@ $ ./docker/begonia/start.sh
 > cmake --build
 ```
 
+- Generate a random 265-bits key `openssl rand -base64 32`
+
 ## Documents
 
 - [Apache Thrift](https://thrift.apache.org/docs/BuildingFromSource)

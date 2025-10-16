@@ -106,7 +106,7 @@ function build_hyacinth_and_crocus() {
     mvn clean
     mvn package -Dmaven.test.skip=true
     mkdir -p $1
-    cp -v application-dev.yml hyacinth.service README.md target/hyacinth-$hyacinth_version.jar $1/
+    cp -v application-*.yml hyacinth.service README.md target/hyacinth-$hyacinth_version.jar $1/
     
     cd $WORK_DIR/crocus/
     mvn clean

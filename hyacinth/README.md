@@ -15,7 +15,7 @@ $ mvn clean
 $ mvn package -Dmaven.test.skip=true
 
 # start application
-$ java --enable-native-access=ALL-UNNAMED -cp 'target/hyacinth-2025.9.25.jar:libs/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=hsql
+$ java --enable-native-access=ALL-UNNAMED -cp 'target/hyacinth-2025.10.15.jar:libs/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=hsql
 
 ```
 

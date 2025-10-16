@@ -262,7 +262,7 @@ CREATE INDEX IF NOT EXISTS idx_hosts_description ON idx_hosts(description);
 CREATE TABLE IF NOT EXISTS settings (
   id INTEGER PRIMARY KEY,
   "key" VARCHAR(255) NOT NULL,
-  value BLOB NOT NULL,  
+  value TEXT NOT NULL,  
   version INTEGER NOT NULL DEFAULT 0, 
   updated_at TIMESTAMP NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -275,6 +275,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_settings_key ON settings("key");
   return db;
 }
 std::shared_ptr<palm::Jwt> bamboo::Application::jwt(const toml::table& config) {
+  spdlog::debug("load jwt");
   auto cfg = config["jwt"].as_table();
   if (cfg == nullptr) {
     spdlog::error("missing jwt part");
@@ -285,6 +286,7 @@ std::shared_ptr<palm::Jwt> bamboo::Application::jwt(const toml::table& config) {
   return it;
 }
 std::shared_ptr<palm::Aes> bamboo::Application::aes(const toml::table& config) {
+  spdlog::debug("load aes");
   auto cfg = config["aes"].as_table();
   if (cfg == nullptr) {
     spdlog::error("missing aes part");
@@ -297,6 +299,7 @@ std::shared_ptr<palm::Aes> bamboo::Application::aes(const toml::table& config) {
 }
 std::shared_ptr<palm::HMac> bamboo::Application::hmac(
     const toml::table& config) {
+  spdlog::debug("load hmac");
   auto cfg = config["hmac"].as_table();
   if (cfg == nullptr) {
     spdlog::error("missing hmac part");
