@@ -219,9 +219,9 @@ build_pansy
 
 if [ -d $HOME/x-tools ]; then
     build_on_crosstool_ng
-elif [ $ID == "arch" ]; then
+elif [ "$ID" == "arch" ]; then
     build_on_arch
-elif [ $ID == "ubuntu" ]; then
+elif [ "$ID" == "ubuntu" || "$ID" == "debian" ]; then
     build_x86_64_on_ubuntu
     build_aarch64_on_ubuntu
 else

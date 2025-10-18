@@ -496,6 +496,22 @@ Podman::Service::~Service() {
 }
 
 
+std::unique_ptr< Snmp::Stub> Snmp::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Snmp::Stub> stub(new Snmp::Stub(channel, options));
+  return stub;
+}
+
+Snmp::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel){}
+
+Snmp::Service::Service() {
+}
+
+Snmp::Service::~Service() {
+}
+
+
 }  // namespace palm
 }  // namespace monitoring
 }  // namespace v1

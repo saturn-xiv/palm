@@ -2,13 +2,24 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <filesystem>
 #include <optional>
 #include <sstream>
 #include <string>
 #include <vector>
 
+#include "router.grpc.pb.h"
+
 namespace palm {
 namespace network {
+
+void dnsmasq(const palm::router::v1::Network& network,
+             const std::filesystem::path& file);
+void netplan(const palm::router::v1::Network& network,
+             const std::filesystem::path& file);
+void firewalld(const palm::router::v1::Network& network,
+               const std::filesystem::path& file);
+
 class Ipv4 {
  public:
   Ipv4(const std::string& address, const std::string& netmask);
