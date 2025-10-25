@@ -61,14 +61,16 @@ std::string tulip::Jwt::sign(
 std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
            std::optional<std::string>>
 tulip::Jwt::verify(const std::string& token, const std::string& issuer,
-                   const std::string& audience) {
-  spdlog::debug("verify issuer({}) audience({}) token({})", issuer, audience,
-                token);
+                   std::optional<std::string> audience) {
+  spdlog::debug("verify issuer({}) audience({}) token({})", issuer,
+                audience.value_or("n/a"), token);
   auto validator_b = crypto::tink::JwtValidatorBuilder()
                          .IgnoreTypeHeader()
                          .ExpectIssuer(issuer)
-                         .ExpectAudience(audience)
                          .ExpectIssuedInThePast();
+  if (audience) {
+    validator_b = validator_b.ExpectAudience(audience.value());
+  }
 
   auto validator_r = validator_b.Build();
   this->check(validator_r);

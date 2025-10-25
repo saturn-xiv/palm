@@ -94,7 +94,7 @@ class Jwt final : public Keyset {
   std::tuple<std::optional<std::string>, std::optional<std::string>,
              std::string, std::optional<std::string>>
   verify(const std::string& token, const std::string& issuer,
-         const std::string& audience);
+         std::optional<std::string> audience = std::nullopt);
   std::string sign(const std::optional<std::string> jwt_id,
                    const std::optional<std::string> key_id,
                    const std::string& issuer, const std::string& subject,
