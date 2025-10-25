@@ -3,8 +3,8 @@ include(ExternalProject)
 include(FetchContent)
 
 project(
-    loquat
-    VERSION 2025.6.29
+    tulip
+    VERSION 2025.10.25
     DESCRIPTION "A cryptographic thrift service(by Google Tink)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
@@ -21,7 +21,7 @@ execute_process(COMMAND git describe --tags --always --dirty
 )
 string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
-configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/version.hpp)
+configure_file(include/tulip/version.h.in ${PROJECT_SOURCE_DIR}/include/tulip/version.hpp)
 
 # --------------------------------------------------------
 
@@ -34,55 +34,28 @@ FetchContent_Declare(spdlog
   GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
   GIT_TAG         "v1.15.3"
 )
-FetchContent_Declare(argparse
-  GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
-  GIT_TAG         "v3.2"
-)
-FetchContent_Declare(inja
-  GIT_REPOSITORY  "https://github.com/pantor/inja.git"
-  GIT_TAG         "v3.4.0"
-)
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.4.0"
 )
-FetchContent_Declare(libevent
-  GIT_REPOSITORY  "https://github.com/libevent/libevent.git"
-  GIT_TAG         "release-2.1.12-stable"
-)
-FetchContent_Declare(thrift
-  GIT_REPOSITORY      "https://github.com/apache/thrift.git"
-  GIT_TAG             "v0.22.0"
-  PATCH_COMMAND       git apply ${CMAKE_CURRENT_SOURCE_DIR}/patches/thrift.patch
-  UPDATE_DISCONNECTED 1
-)
 
-FetchContent_MakeAvailable(spdlog argparse inja tink libevent thrift)
+FetchContent_MakeAvailable(spdlog tink)
 
 # --------------------------------------------------------
 
-file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/../gourd/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.cc")
+file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_executable(loquat ${SOURCE_LIST})
-target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
-set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
+add_executable(tulip ${SOURCE_LIST})
+target_link_options(tulip PRIVATE -static-libgcc -static-libstdc++)
+set_target_properties(tulip PROPERTIES LINK_FLAGS_RELEASE -s)
 
-target_link_libraries(loquat
+target_link_libraries(tulip
   ${OPENSSL_LIBRARIES}
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  event_core event_openssl
-  thrift thriftnb thriftz
 )
 
-target_include_directories(loquat PUBLIC
-  ${PROJECT_SOURCE_DIR}/../gourd/include
-  ${PROJECT_SOURCE_DIR}/include
+target_include_directories(tulip PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
     
   ${spdlog_SOURCE_DIR}/include
-  ${argparse_SOURCE_DIR}/include
-  ${inja_SOURCE_DIR}/single_include
-  ${inja_SOURCE_DIR}/third_party/include
-  ${thrift_SOURCE_DIR}/lib/cpp/src
-  ${thrift_SOURCE_DIR}/compiler/cpp/src
-  ${thrift_BINARY_DIR}
 )
