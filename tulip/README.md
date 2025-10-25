@@ -3,6 +3,7 @@
 - Testing NIFs
 
 ```erlang
+$ sudo cp libtulip.so /usr/lib/
 $ erl
 > c(tulip).
 > tulip:version().

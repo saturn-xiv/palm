@@ -48,7 +48,6 @@ static int on_load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   return EXIT_SUCCESS;
 }
 
-static ErlNifFunc nif_funcs[] = {
-    {"version", 0, version_nif}};
+static ErlNifFunc nif_funcs[] = {{"version", 0, version_nif}};
 
 ERL_NIF_INIT(marigold, nif_funcs, on_load, NULL, NULL, NULL)

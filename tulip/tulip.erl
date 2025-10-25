@@ -4,7 +4,7 @@
 -on_load(init/0).
 
 init() ->
-    ok = erlang:load_nif("./libtulip", 0).
+    ok = erlang:load_nif("libtulip", 0).
 
 aes_encrypt(_PLAIN) ->
     erlang:nif_error(nif_library_not_loaded).

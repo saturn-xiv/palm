@@ -64,14 +64,18 @@ static ERL_NIF_TERM aes_encrypt_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
   spdlog::debug("encrypt {}", plain.value());
-  const auto code = gl_aes->encrypt(plain.value());
+  try {
+    const auto code = gl_aes->encrypt(plain.value());
 
-  ErlNifBinary code_b;
-  if (!copy_string_to_binary(code, &code_b)) {
+    ErlNifBinary code_b;
+    if (!copy_string_to_binary(code, &code_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_binary(env, &code_b);
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_binary(env, &code_b);
 }
 
 static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
@@ -85,14 +89,19 @@ static ERL_NIF_TERM aes_decrypt_nif(ErlNifEnv* env, int argc,
   if (!code) {
     return enif_make_badarg(env);
   }
-  const auto plain = gl_aes->decrypt(code.value());
 
-  ErlNifBinary plain_b;
-  if (!copy_string_to_binary(plain, &plain_b)) {
+  try {
+    const auto plain = gl_aes->decrypt(code.value());
+
+    ErlNifBinary plain_b;
+    if (!copy_string_to_binary(plain, &plain_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_binary(env, &plain_b);
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_binary(env, &plain_b);
 }
 
 static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
@@ -106,14 +115,19 @@ static ERL_NIF_TERM hmac_sign_nif(ErlNifEnv* env, int argc,
   if (!plain) {
     return enif_make_badarg(env);
   }
-  const auto code = gl_hmac->sign(plain.value());
 
-  ErlNifBinary code_b;
-  if (!copy_string_to_binary(code, &code_b)) {
+  try {
+    const auto code = gl_hmac->sign(plain.value());
+
+    ErlNifBinary code_b;
+    if (!copy_string_to_binary(code, &code_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_binary(env, &code_b);
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_binary(env, &code_b);
 }
 
 static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
@@ -132,14 +146,12 @@ static ERL_NIF_TERM hmac_verify_nif(ErlNifEnv* env, int argc,
     return enif_make_badarg(env);
   }
 
-  bool ok = false;
   try {
     gl_hmac->verify(code.value(), plain.value());
-    ok = true;
+    return enif_make_atom(env, "true");
   } catch (const std::runtime_error& err) {
+    return enif_make_atom(env, "false");
   }
-
-  return enif_make_atom(env, ok ? "true" : "false");
 }
 
 static ERL_NIF_TERM jwt_sign_nif_4(ErlNifEnv* env, int argc,
@@ -168,16 +180,21 @@ static ERL_NIF_TERM jwt_sign_nif_4(ErlNifEnv* env, int argc,
   }
   auto now = absl::Now();
   auto exp = now + absl::Seconds(ttl_in_seconds);
-  const auto token =
-      gl_jwt->sign(std::nullopt, std::nullopt, issuer.value(), subject.value(),
-                   audiences.value(), now, now, exp, std::nullopt);
 
-  ErlNifBinary token_b;
-  if (!copy_string_to_binary(token, &token_b)) {
+  try {
+    const auto token = gl_jwt->sign(std::nullopt, std::nullopt, issuer.value(),
+                                    subject.value(), audiences.value(), now,
+                                    now, exp, std::nullopt);
+
+    ErlNifBinary token_b;
+    if (!copy_string_to_binary(token, &token_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_binary(env, &token_b);
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_binary(env, &token_b);
 }
 
 static ERL_NIF_TERM jwt_sign_nif_3(ErlNifEnv* env, int argc,
@@ -202,16 +219,21 @@ static ERL_NIF_TERM jwt_sign_nif_3(ErlNifEnv* env, int argc,
   }
   auto now = absl::Now();
   auto exp = now + absl::Seconds(ttl_in_seconds);
-  const auto token =
-      gl_jwt->sign(std::nullopt, std::nullopt, issuer.value(), subject.value(),
-                   {}, now, now, exp, std::nullopt);
 
-  ErlNifBinary token_b;
-  if (!copy_string_to_binary(token, &token_b)) {
+  try {
+    const auto token =
+        gl_jwt->sign(std::nullopt, std::nullopt, issuer.value(),
+                     subject.value(), {}, now, now, exp, std::nullopt);
+
+    ErlNifBinary token_b;
+    if (!copy_string_to_binary(token, &token_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_binary(env, &token_b);
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_binary(env, &token_b);
 }
 
 static ERL_NIF_TERM jwt_verify_nif_3(ErlNifEnv* env, int argc,
@@ -233,15 +255,20 @@ static ERL_NIF_TERM jwt_verify_nif_3(ErlNifEnv* env, int argc,
   if (!audience) {
     return enif_make_badarg(env);
   }
-  const auto [jwt_id, key_id, subject, payload] =
-      gl_jwt->verify(token.value(), issuer.value(), audience.value());
 
-  ErlNifBinary subject_b;
-  if (!copy_string_to_binary(subject, &subject_b)) {
+  try {
+    const auto [jwt_id, key_id, subject, payload] =
+        gl_jwt->verify(token.value(), issuer.value(), audience.value());
+
+    ErlNifBinary subject_b;
+    if (!copy_string_to_binary(subject, &subject_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_tuple1(env, enif_make_binary(env, &subject_b));
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_tuple1(env, enif_make_binary(env, &subject_b));
 }
 
 static ERL_NIF_TERM jwt_verify_nif_2(ErlNifEnv* env, int argc,
@@ -259,15 +286,19 @@ static ERL_NIF_TERM jwt_verify_nif_2(ErlNifEnv* env, int argc,
   if (!issuer) {
     return enif_make_badarg(env);
   }
-  const auto [jwt_id, key_id, subject, payload] =
-      gl_jwt->verify(token.value(), issuer.value());
+  try {
+    const auto [jwt_id, key_id, subject, payload] =
+        gl_jwt->verify(token.value(), issuer.value());
 
-  ErlNifBinary subject_b;
-  if (!copy_string_to_binary(subject, &subject_b)) {
+    ErlNifBinary subject_b;
+    if (!copy_string_to_binary(subject, &subject_b)) {
+      return enif_make_badarg(env);
+    }
+
+    return enif_make_tuple1(env, enif_make_binary(env, &subject_b));
+  } catch (const std::runtime_error& err) {
     return enif_make_badarg(env);
   }
-
-  return enif_make_tuple1(env, enif_make_binary(env, &subject_b));
 }
 static ERL_NIF_TERM version_nif(ErlNifEnv* env, int argc,
                                 const ERL_NIF_TERM argv[]) {
