@@ -29,3 +29,4 @@ npm -v
 
 - [Elixir Version Managers](https://elixir-lang.org/install.html#version-managers)
 - [Phoenix installation](https://hexdocs.pm/phoenix/installation.html)
+- [Erlang NIFs](https://www.erlang.org/doc/system/nif.html)

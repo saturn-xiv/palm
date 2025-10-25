@@ -52,7 +52,7 @@
 #include <tink/mac.h>
 #include <tink/mac/mac_key_templates.h>
 
-namespace loquat {
+namespace tulip {
 
 class Keyset {
  public:
@@ -128,4 +128,4 @@ class Aes final : public Keyset {
   std::unique_ptr<crypto::tink::Aead> load();
 };
 
-}  // namespace loquat
+}  // namespace tulip

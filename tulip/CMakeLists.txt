@@ -12,6 +12,7 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # --------------------------------------------------------
 
@@ -26,14 +27,15 @@ configure_file(include/tulip/version.h.in ${PROJECT_SOURCE_DIR}/include/tulip/ve
 # --------------------------------------------------------
 
 find_package(OpenSSL REQUIRED)
-find_package(Boost REQUIRED)
 
 # --------------------------------------------------------
 
+# https://github.com/gabime/spdlog
 FetchContent_Declare(spdlog
   GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
-  GIT_TAG         "v1.15.3"
+  GIT_TAG         "v1.16.0"
 )
+# https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.4.0"
@@ -45,9 +47,9 @@ FetchContent_MakeAvailable(spdlog tink)
 
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_executable(tulip ${SOURCE_LIST})
-target_link_options(tulip PRIVATE -static-libgcc -static-libstdc++)
+add_library(tulip SHARED ${SOURCE_LIST})
 set_target_properties(tulip PROPERTIES LINK_FLAGS_RELEASE -s)
+# set_property(TARGET tulip PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(tulip
   ${OPENSSL_LIBRARIES}
@@ -58,4 +60,5 @@ target_include_directories(tulip PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
     
   ${spdlog_SOURCE_DIR}/include
+  $ENV{HOME}/.asdf/installs/erlang/28.1.1/usr/include
 )

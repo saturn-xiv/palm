@@ -1,4 +1,4 @@
-#include "loquat/tink.hpp"
+#include "tulip/tink.hpp"
 
 #include <tink/aead.h>
 #include <tink/aead/aead_config.h>
@@ -19,7 +19,7 @@
 #include <tink/tink_config.h>
 #include <tink/util/status.h>
 
-std::string loquat::Jwt::sign(
+std::string tulip::Jwt::sign(
     const std::optional<std::string> jwt_id,
     const std::optional<std::string> key_id, const std::string& issuer,
     const std::string& subject, const std::set<std::string> audiences,
@@ -45,7 +45,7 @@ std::string loquat::Jwt::sign(
   }
   if (payload) {
     raw_rb =
-        raw_rb.AddJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
+        raw_rb.AddJsonObjectClaim(tulip::Jwt::PAYLOAD_KEY, payload.value());
   }
 
   auto raw_r = raw_rb.Build();
@@ -60,8 +60,8 @@ std::string loquat::Jwt::sign(
 
 std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
            std::optional<std::string>>
-loquat::Jwt::verify(const std::string& token, const std::string& issuer,
-                    const std::string& audience) {
+tulip::Jwt::verify(const std::string& token, const std::string& issuer,
+                   const std::string& audience) {
   spdlog::debug("verify issuer({}) audience({}) token({})", issuer, audience,
                 token);
   auto validator_b = crypto::tink::JwtValidatorBuilder()
@@ -93,8 +93,8 @@ loquat::Jwt::verify(const std::string& token, const std::string& issuer,
   }
   std::optional<std::string> key_id = std::nullopt;
   std::optional<std::string> payload_ = std::nullopt;
-  if (payload.HasJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY)) {
-    auto ir = payload.GetJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY);
+  if (payload.HasJsonObjectClaim(tulip::Jwt::PAYLOAD_KEY)) {
+    auto ir = payload.GetJsonObjectClaim(tulip::Jwt::PAYLOAD_KEY);
     this->check(ir);
     auto iv = std::move(ir.value());
     payload_ = std::optional<std::string>{iv};
@@ -108,7 +108,7 @@ loquat::Jwt::verify(const std::string& token, const std::string& issuer,
   return it;
 }
 
-std::unique_ptr<crypto::tink::JwtMac> loquat::Jwt::load() {
+std::unique_ptr<crypto::tink::JwtMac> tulip::Jwt::load() {
   auto keyset = this->Keyset::load(crypto::tink::JwtHs512Template());
   auto jwt_r = keyset->GetPrimitive<crypto::tink::JwtMac>(
       crypto::tink::ConfigGlobalRegistry());
@@ -117,7 +117,7 @@ std::unique_ptr<crypto::tink::JwtMac> loquat::Jwt::load() {
   return jwt;
 }
 
-std::string loquat::HMac::sign(const std::string& plain) {
+std::string tulip::HMac::sign(const std::string& plain) {
   auto mac = this->load();
   auto code_r = mac->ComputeMac(plain);
   this->check(code_r);
@@ -125,13 +125,13 @@ std::string loquat::HMac::sign(const std::string& plain) {
   return code;
 }
 
-void loquat::HMac::verify(const std::string& code, const std::string& plain) {
+void tulip::HMac::verify(const std::string& code, const std::string& plain) {
   auto mac = this->load();
   auto status = mac->VerifyMac(code, plain);
   this->check(status);
 }
 
-std::unique_ptr<crypto::tink::Mac> loquat::HMac::load() {
+std::unique_ptr<crypto::tink::Mac> tulip::HMac::load() {
   auto keyset = this->Keyset::load(crypto::tink::MacKeyTemplates::HmacSha512());
   auto mac_r = keyset->GetPrimitive<crypto::tink::Mac>(
       crypto::tink::ConfigGlobalRegistry());
@@ -140,7 +140,7 @@ std::unique_ptr<crypto::tink::Mac> loquat::HMac::load() {
   return mac;
 }
 
-std::string loquat::Aes::encrypt(const std::string& plain) {
+std::string tulip::Aes::encrypt(const std::string& plain) {
   auto aes = this->load();
   auto code_r = aes->Encrypt(plain, "");
   this->check(code_r);
@@ -148,7 +148,7 @@ std::string loquat::Aes::encrypt(const std::string& plain) {
   return code;
 }
 
-std::string loquat::Aes::decrypt(const std::string& code) {
+std::string tulip::Aes::decrypt(const std::string& code) {
   auto aes = this->load();
   auto plain_r = aes->Decrypt(code, "");
   this->check(plain_r);
@@ -156,7 +156,7 @@ std::string loquat::Aes::decrypt(const std::string& code) {
   return plain;
 }
 
-std::unique_ptr<crypto::tink::Aead> loquat::Aes::load() {
+std::unique_ptr<crypto::tink::Aead> tulip::Aes::load() {
   auto keyset = this->Keyset::load(crypto::tink::AeadKeyTemplates::Aes256Gcm());
   auto aes_r = keyset->GetPrimitive<crypto::tink::Aead>(
       crypto::tink::ConfigGlobalRegistry());
@@ -165,7 +165,7 @@ std::unique_ptr<crypto::tink::Aead> loquat::Aes::load() {
   return aes;
 }
 
-std::unique_ptr<crypto::tink::KeysetHandle> loquat::Keyset::load(
+std::unique_ptr<crypto::tink::KeysetHandle> tulip::Keyset::load(
     const google::crypto::tink::KeyTemplate& tpl) {
   const std::lock_guard<std::mutex> lock(this->_locker);
 
