@@ -17,12 +17,17 @@ $ cp ~/.asdf/installs/erlang/28.1.1/lib/jinterface-1.15/priv/OtpErlang.jar lib/
 $ java -cp 'target/camellia-2025.10.25.jar:lib/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=pgsql
 ```
 
-- Testing
+- Testing(`spring` is your hostname)
 
 ```erlang
+$ erl -sname erlangNode -setcookie secret
 > code:root_dir().
-node().
-rpc:call(servernode@byrned.thoughtworks.com, mathserver, add, [1,2]).
+> node().
+> net_adm:ping(javaNode@spring).
+
+> {greeting, javaNode@spring} ! {self(), "Eric"}.
+> receive {Mbox, Msg} -> Msg end.
+
 ```
 
 ## Documents
