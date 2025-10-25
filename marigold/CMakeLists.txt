@@ -26,22 +26,9 @@ configure_file(include/marigold/version.h.in ${PROJECT_SOURCE_DIR}/include/marig
 
 # --------------------------------------------------------
 
-find_package(OpenSSL REQUIRED)
-
-# --------------------------------------------------------
-
-# https://github.com/gabime/spdlog
-FetchContent_Declare(spdlog
-  GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
-  GIT_TAG         "v1.16.0"
-)
-
-# https://github.com/marzer/tomlplusplus
-FetchContent_Declare(tomlplusplus
-  GIT_REPOSITORY  "https://github.com/marzer/tomlplusplus.git"
-  GIT_TAG         "v3.4.0"
-)
-FetchContent_MakeAvailable(spdlog tomlplusplus)
+find_package(miniocpp CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
+find_package(tomlplusplus CONFIG REQUIRED)
 
 # --------------------------------------------------------
 
@@ -49,16 +36,14 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 add_library(marigold SHARED ${SOURCE_LIST})
 set_target_properties(marigold PROPERTIES LINK_FLAGS_RELEASE -s)
-# set_property(TARGET marigold PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(marigold
   ${OPENSSL_LIBRARIES}
+  miniocpp::miniocpp spdlog::spdlog_header_only tomlplusplus::tomlplusplus
 )
 
 target_include_directories(marigold PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
-    
-  ${spdlog_SOURCE_DIR}/include
-  ${tomlplusplus_SOURCE_DIR}/include
+  
   $ENV{HOME}/.asdf/installs/erlang/28.1.1/usr/include
 )

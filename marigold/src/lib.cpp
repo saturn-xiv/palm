@@ -5,6 +5,7 @@
 
 #include <erl_nif.h>
 #include <openssl/opensslv.h>
+#include <miniocpp/client.h>
 
 static std::shared_ptr<marigold::S3> gl_aes;
 
@@ -44,6 +45,7 @@ static int on_load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info) {
   spdlog::set_level(spdlog::level::debug);
 
   spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
+  spdlog::debug("Minio v{}", MINIO_CPP_VERSION);
 
   return EXIT_SUCCESS;
 }

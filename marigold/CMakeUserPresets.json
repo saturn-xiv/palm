@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "x86_64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x86_64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "aarch64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/aarch64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "riscv64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/riscv64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "loongarch64",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/loongarch64",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/local/vcpkg"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ]
+}
