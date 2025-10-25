@@ -3,9 +3,9 @@ include(ExternalProject)
 include(FetchContent)
 
 project(
-    tulip
+    marigold
     VERSION 2025.10.25
-    DESCRIPTION "An erlang NIFs library for Google Tink."
+    DESCRIPTION "An erlang NIFs library for Minio SDK."
     LANGUAGES C CXX)
 # --------------------------------------------------------
 
@@ -22,7 +22,7 @@ execute_process(COMMAND git describe --tags --always --dirty
 )
 string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
-configure_file(include/tulip/version.h.in ${PROJECT_SOURCE_DIR}/include/tulip/version.hpp)
+configure_file(include/marigold/version.h.in ${PROJECT_SOURCE_DIR}/include/marigold/version.hpp)
 
 # --------------------------------------------------------
 
@@ -35,30 +35,30 @@ FetchContent_Declare(spdlog
   GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
   GIT_TAG         "v1.16.0"
 )
-# https://github.com/tink-crypto/tink-cc
-FetchContent_Declare(tink
-  GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  GIT_TAG         "v2.4.0"
-)
 
-FetchContent_MakeAvailable(spdlog tink)
+# https://github.com/marzer/tomlplusplus
+FetchContent_Declare(tomlplusplus
+  GIT_REPOSITORY  "https://github.com/marzer/tomlplusplus.git"
+  GIT_TAG         "v3.4.0"
+)
+FetchContent_MakeAvailable(spdlog tomlplusplus)
 
 # --------------------------------------------------------
 
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_library(tulip SHARED ${SOURCE_LIST})
-set_target_properties(tulip PROPERTIES LINK_FLAGS_RELEASE -s)
-# set_property(TARGET tulip PROPERTY POSITION_INDEPENDENT_CODE ON)
+add_library(marigold SHARED ${SOURCE_LIST})
+set_target_properties(marigold PROPERTIES LINK_FLAGS_RELEASE -s)
+# set_property(TARGET marigold PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-target_link_libraries(tulip
+target_link_libraries(marigold
   ${OPENSSL_LIBRARIES}
-  tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
 )
 
-target_include_directories(tulip PUBLIC
+target_include_directories(marigold PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
     
   ${spdlog_SOURCE_DIR}/include
+  ${tomlplusplus_SOURCE_DIR}/include
   $ENV{HOME}/.asdf/installs/erlang/28.1.1/usr/include
 )
