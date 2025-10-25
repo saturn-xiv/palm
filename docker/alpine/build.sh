@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+export VERSION=$(date "+%4Y%m%d%H%M%S")
+export CODE="palm-alpine"
+export TAR="$CODE-$VERSION-$(uname -m)"
+
+podman pull alpine:latest
+podman build -t $CODE .
+podman save --format=oci-archive -o $TAR.tar $CODE
+md5sum $TAR.tar >$TAR.md5
+
+# xz -z -C sha256 --best -T 1 $TAR.tar
+# md5sum $TAR.tar.xz >>$TAR.md5
+
+echo "done($TAR.tar)."
+
+exit 0
