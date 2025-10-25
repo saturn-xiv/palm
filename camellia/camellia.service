@@ -1,0 +1,15 @@
+[Unit]
+Description=Extension packs for Erlang VM
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+User=nobody
+Group=nobody
+WorkingDirectory=/opt/camellia
+ExecStart=/opt/camellia/amazon-corretto-25.0.0.36.2-linux-x64/bin/java -jar camellia-2025.10.25.jar --spring.profiles.active=prod
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
