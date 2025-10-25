@@ -1,13 +1,12 @@
 package com.github.saturn_xiv.palm;
 
-import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
 
-public class CamelliaApplication extends Application<CamelliaConfiguration> {
+public class Application extends io.dropwizard.core.Application<Configuration> {
 
     public static void main(final String[] args) throws Exception {
-        new CamelliaApplication().run(args);
+        new Application().run(args);
     }
 
     @Override
@@ -16,13 +15,13 @@ public class CamelliaApplication extends Application<CamelliaConfiguration> {
     }
 
     @Override
-    public void initialize(final Bootstrap<CamelliaConfiguration> bootstrap) {
+    public void initialize(final Bootstrap<Configuration> bootstrap) {
         // TODO: application initialization
     }
 
     @Override
-    public void run(final CamelliaConfiguration configuration,
-                    final Environment environment) {
+    public void run(final Configuration configuration,
+            final Environment environment) {
         // TODO: implement application
     }
 

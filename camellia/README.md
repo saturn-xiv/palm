@@ -2,7 +2,8 @@
 
 ```bash
 mvn clean
-java -jar target/camellia-1.0-SNAPSHOT.jar server config.yml
+mvn package -Dmaven.test.skip=true
+java -jar target/camellia-2025.10.25.jar server config.yml
 ```
 
 - To see your applications health enter url `http://localhost:8081/healthcheck`
