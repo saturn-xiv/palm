@@ -70,6 +70,7 @@
   },
   "java.configuration.updateBuildConfiguration": "automatic",
   "ansible.python.interpreterPath": "/bin/python3",
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "cmake.ignoreCMakeListsMissing": true
   
 }
