@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.ericsson.otp.erlang.OtpErlangAtom;
 import com.ericsson.otp.erlang.OtpErlangObject;
 import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangString;
@@ -35,7 +37,7 @@ public abstract class OtpErlangServer {
             }
 
             OtpErlangPid from = (OtpErlangPid) request.elementAt(0);
-            String action = ((OtpErlangString) request.elementAt(1)).stringValue();
+            String action = ((OtpErlangAtom) request.elementAt(1)).atomValue();
             logger.debug("receive message ({}) from {}://{}", action, from.serial(), from.node());
             var response = this.handle(from, action, request);
             response.add(0, box.self());

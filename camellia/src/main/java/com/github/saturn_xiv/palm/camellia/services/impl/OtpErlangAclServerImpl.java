@@ -8,6 +8,8 @@ import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import com.ericsson.otp.erlang.OtpErlangException;
+import com.ericsson.otp.erlang.OtpErlangList;
 import com.ericsson.otp.erlang.OtpErlangObject;
 import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangString;
@@ -25,9 +27,17 @@ public class OtpErlangAclServerImpl extends OtpErlangServer {
             throws OtpException {
         List<OtpErlangObject> items = new ArrayList<>();
 
-        String greeting = String.format("Hello, %s!", action);
-        items.add(new OtpErlangString(greeting));
-        return items;
+        if ("all-roles".equals(action)) {
+            List<OtpErlangObject> roles = new ArrayList<>();
+            for (var it : policyHelper.roles()) {
+                OtpErlangObject role = new OtpErlangString(it);
+                roles.add(role);
+            }
+            OtpErlangList list = new OtpErlangList(roles.stream().toArray(OtpErlangObject[]::new));
+            items.add(list);
+            return items;
+        }
+        throw new OtpErlangException(String.format("unsupported action %s", action));
     }
 
     @Resource

@@ -25,7 +25,7 @@ $ erl -sname erlangNode -setcookie secret
 > node().
 > net_adm:ping(javaNode@spring).
 
-> {acl, javaNode@spring} ! {self(), "version"}.
+> {acl, javaNode@spring} ! {self(), list_to_atom("all-roles")}.
 > receive {Mbox, Msg} -> Msg end.
 
 ```

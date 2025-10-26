@@ -1,6 +1,8 @@
 package com.github.saturn_xiv.palm.camellia.helpers;
 
 import java.io.InputStreamReader;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import jakarta.annotation.PostConstruct;
@@ -21,6 +23,10 @@ import org.springframework.util.FileCopyUtils;
 
 @Component("palm.camellia.policy-helper")
 public class PolicyHelper {
+
+    public List<String> roles() {
+        return enforcer.getAllRoles();
+    }
 
     @PostConstruct
     void init() throws Exception {
