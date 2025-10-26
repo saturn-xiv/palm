@@ -23,8 +23,10 @@ spring:
   liquibase:
     change-log: "classpath:/db/postgresql/change-logs/master.xml"
   graphql:
-    graphiql:
-      enabled: true
+    cors:
+      allowed-origins: "https://change-me.org"
+      allowed-methods: "GET,POST"
+      max-age: 1800s
 camellia:
   opt-erlang:
     node-name: "javaNode"

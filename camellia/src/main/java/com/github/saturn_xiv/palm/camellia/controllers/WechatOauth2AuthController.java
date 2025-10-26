@@ -3,6 +3,8 @@ package com.github.saturn_xiv.palm.camellia.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,7 @@ import com.github.saturn_xiv.palm.camellia.requests.WechatOauth2SignInForm;
 public class WechatOauth2AuthController {
     @MutationMapping
     @SchemaMapping
-    public List<String> wechatOauth2SignIn(WechatOauth2SignInForm form) {
+    public List<String> wechatOauth2SignIn(@Valid WechatOauth2SignInForm form) {
         // TODO
         List<String> items = new ArrayList<>();
         return items;

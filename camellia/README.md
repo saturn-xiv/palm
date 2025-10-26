@@ -18,6 +18,7 @@ $ java -cp 'target/camellia-2025.10.25.jar:lib/*' org.springframework.boot.loade
 ```
 
 - [GraphiQL](http://localhost:8180/graphiql)
+- [GraphQL Schema](http://localhost:8180/graphql/schema)
 
 - Testing(`spring` is your hostname)
 
@@ -37,3 +38,4 @@ $ erl -sname erlangNode -setcookie secret
 - [The Jinterface Package](https://www.erlang.org/doc/apps/jinterface/jinterface_users_guide.html)
 - [Spring Boot Externalized Configuration](https://docs.spring.io/spring-boot/reference/features/external-config.html)
 - [Spring Boot Common Application Properties](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)
+- [Spring GraphQL](https://docs.spring.io/spring-graphql/reference/controllers.html)
