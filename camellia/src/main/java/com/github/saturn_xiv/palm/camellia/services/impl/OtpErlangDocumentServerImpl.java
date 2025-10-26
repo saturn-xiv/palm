@@ -12,20 +12,20 @@ import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpException;
 
-import com.github.saturn_xiv.palm.camellia.helpers.MailHelper;
+import com.github.saturn_xiv.palm.camellia.helpers.S3Helper;
 import com.github.saturn_xiv.palm.camellia.services.OtpErlangServer;
 
-@Component("palm.camellia.otp-erlang-mail-server")
-public class OtpErlangMailServerImpl extends OtpErlangServer {
+@Component("palm.camellia.otp-erlang-tex-server")
+public class OtpErlangDocumentServerImpl extends OtpErlangServer {
 
     @Override
-    protected List<OtpErlangObject> handle(OtpErlangPid from, String action, OtpErlangTuple request)
-            throws OtpException {
+    protected List<OtpErlangObject> handle(OtpErlangPid from,String action, OtpErlangTuple request) throws OtpException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handle'");
     }
 
     @Resource
-    MailHelper mailHelper;
-    private static final Logger logger = LoggerFactory.getLogger(OtpErlangMailServerImpl.class);
+    S3Helper s3Helper;
+    private static final Logger logger = LoggerFactory.getLogger(OtpErlangDocumentServerImpl.class);
+
 }
