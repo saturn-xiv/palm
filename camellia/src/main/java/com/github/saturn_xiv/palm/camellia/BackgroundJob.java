@@ -60,9 +60,9 @@ public class BackgroundJob {
     @Resource
     OtpErlangDocumentServerImpl documentServer;
 
-    @Value("${opt-erlang.node-name}")
+    @Value("${camellia.opt-erlang.node-name}")
     String optErlangNodeName;
-    @Value("${opt-erlang.cookie}")
+    @Value("${camellia.opt-erlang.cookie}")
     String optErlangCookie;
 
 }

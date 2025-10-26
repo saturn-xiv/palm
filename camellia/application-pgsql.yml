@@ -18,6 +18,9 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: "classpath:/db/postgresql/change-logs/master.xml"
-opt-erlang:
-  node-name: "javaNode"
-  cookie: "secret"
+camellia:
+  opt-erlang:
+    node-name: "javaNode"
+    cookie: "secret"
+  casbin:
+    model: "rbac"
