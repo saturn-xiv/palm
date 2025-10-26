@@ -26,7 +26,6 @@ public class OtpErlangAclServerImpl extends OtpErlangServer {
     protected List<OtpErlangObject> handle(OtpErlangPid from, String action, OtpErlangTuple request)
             throws OtpException {
         List<OtpErlangObject> items = new ArrayList<>();
-
         if ("all-roles".equals(action)) {
             List<OtpErlangObject> roles = new ArrayList<>();
             for (var it : policyHelper.roles()) {

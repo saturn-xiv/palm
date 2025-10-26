@@ -29,24 +29,33 @@ public abstract class OtpErlangServer {
 
     private void handle(OtpNode node, OtpMbox box) throws OtpException {
         OtpErlangObject object = box.receive();
-        if (object instanceof OtpErlangTuple) {
-            OtpErlangTuple request = (OtpErlangTuple) object;
-            if (request.elements().length < 1) {
-                logger.error("incomplete message payload");
-                return;
-            }
-
-            OtpErlangPid from = (OtpErlangPid) request.elementAt(0);
-            String action = ((OtpErlangAtom) request.elementAt(1)).atomValue();
-            logger.debug("receive message ({}) from {}://{}", action, from.serial(), from.node());
-            var response = this.handle(from, action, request);
-            response.add(0, box.self());
-            OtpErlangTuple reply = new OtpErlangTuple(response.stream().toArray(OtpErlangObject[]::new));
-            box.send(from, reply);
-
+        if (!(object instanceof OtpErlangTuple)) {
+            logger.error("unsupported message type");
             return;
         }
-        logger.error("unsupported message type");
+        OtpErlangTuple request = (OtpErlangTuple) object;
+        if (request.elements().length < 2) {
+            logger.error("incomplete message payload");
+            return;
+        }
+        var from_o = request.elementAt(0);
+        if (!(from_o instanceof OtpErlangPid)) {
+            logger.error("the first element should be pid");
+            return;
+        }
+        var action_o = request.elementAt(1);
+        if (!(action_o instanceof OtpErlangAtom)) {
+            logger.error("the second element should be atom");
+            return;
+        }
+        OtpErlangPid from = (OtpErlangPid) from_o;
+        String action = ((OtpErlangAtom) action_o).atomValue();
+        logger.debug("receive message ({}) from {}://{}", action, from.serial(), from.node());
+        var response = this.handle(from, action, request);
+        response.add(0, box.self());
+        OtpErlangTuple reply = new OtpErlangTuple(response.stream().toArray(OtpErlangObject[]::new));
+        box.send(from, reply);
+
     }
 
     protected abstract List<OtpErlangObject> handle(OtpErlangPid from, String action, OtpErlangTuple request)
