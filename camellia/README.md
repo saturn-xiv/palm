@@ -33,3 +33,5 @@ $ erl -sname erlangNode -setcookie secret
 ## Documents
 
 - [The Jinterface Package](https://www.erlang.org/doc/apps/jinterface/jinterface_users_guide.html)
+- [Spring Boot Externalized Configuration](https://docs.spring.io/spring-boot/reference/features/external-config.html)
+- [Spring Boot Common Application Properties](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)

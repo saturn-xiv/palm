@@ -16,6 +16,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: validate
+  data:
+    redis:
+      host: "127.0.0.1"
+      port: 6379
   liquibase:
     change-log: "classpath:/db/postgresql/change-logs/master.xml"
 camellia:

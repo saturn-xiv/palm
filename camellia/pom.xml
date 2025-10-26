@@ -88,23 +88,17 @@
 			<artifactId>minio</artifactId>
 			<version>8.6.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.casbin/hibernate-adapter -->
+		<!-- https://mvnrepository.com/artifact/org.casbin/jcasbin-lettuce-redis-watcher -->
 		<dependency>
 			<groupId>org.casbin</groupId>
-			<artifactId>hibernate-adapter</artifactId>
-			<version>1.5.0</version>
+			<artifactId>jcasbin-lettuce-redis-watcher</artifactId>
+			<version>1.1.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.casbin/jdbc-adapter -->
 		<dependency>
 			<groupId>org.casbin</groupId>
 			<artifactId>jdbc-adapter</artifactId>
 			<version>2.10.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.casbin/jcasbin-redis-watcher -->
-		<dependency>
-			<groupId>org.casbin</groupId>
-			<artifactId>jcasbin-redis-watcher</artifactId>
-			<version>1.9.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.crypto.tink/tink -->
 		<dependency>
@@ -129,12 +123,6 @@
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
 			<version>5.27.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>7.0.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
 		<dependency>
