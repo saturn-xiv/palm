@@ -17,6 +17,8 @@ $ cp ~/.asdf/installs/erlang/28.1.1/lib/jinterface-1.15/priv/OtpErlang.jar lib/
 $ java -cp 'target/camellia-2025.10.25.jar:lib/*' org.springframework.boot.loader.launch.JarLauncher --spring.profiles.active=pgsql
 ```
 
+- [GraphiQL](http://localhost:8180/graphiql)
+
 - Testing(`spring` is your hostname)
 
 ```erlang

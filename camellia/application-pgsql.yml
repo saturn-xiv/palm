@@ -22,6 +22,9 @@ spring:
       port: 6379
   liquibase:
     change-log: "classpath:/db/postgresql/change-logs/master.xml"
+  graphql:
+    graphiql:
+      enabled: true
 camellia:
   opt-erlang:
     node-name: "javaNode"
