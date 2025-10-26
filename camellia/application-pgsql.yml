@@ -20,5 +20,4 @@ spring:
     change-log: "classpath:/db/postgresql/change-logs/master.xml"
 opt-erlang:
   node-name: "javaNode"
-  mail-box-name: "greeting"
   cookie: "secret"
