@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :bamboo, Bamboo.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "bamboo_dev",
+  username: "www",
+  password: "change-me",
+  hostname: "127.0.0.1",
+  database: "bamboo",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

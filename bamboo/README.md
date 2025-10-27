@@ -1,18 +1,28 @@
-# Bamboo
+# BAMBOO - A smart router
 
-To start your Phoenix server:
+## Development
 
-* Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+```bash
+# install and setup dependencies
+$ mix setup
+# start Phoenix endpoint: http://localhost:4000
+$ mix phx.server
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- Forwarding remote port to local `ssh -L 14000:localhost:4000 192.168.10.12`
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Deployment
 
-## Learn more
+```bash
+$ mix phx.gen.secret
+$ export SECRET_KEY_BASE="change-me"
+$ export DATABASE_URL="postgresql://USER:PASS@HOST:PORT/DATABASE"
 
-* Official website: https://www.phoenixframework.org/
-* Guides: https://hexdocs.pm/phoenix/overview.html
-* Docs: https://hexdocs.pm/phoenix
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+$ MIX_ENV=prod mix ecto.migrate
+# starting your server in production
+$ PORT=4001 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+
+# Release mode
+$ ./bin/bamboo eval "Bamboo.Release.migrate"
+$ PORT=4001  ./bin/bamboo start
+```

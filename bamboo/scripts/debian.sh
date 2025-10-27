@@ -16,7 +16,7 @@ fi
 apt update
 apt upgrade -y
 apt install -y sudo vim tmux pwgen curl bc \
-    netplan.io firewalld dnsmasq geoip-bin geoip-database inotify-tools \
+    netplan.io firewalld dnsmasq geoip-bin geoip-database inotify-tools watchman \
     net-tools inetutils-tools sysstat iftop nload nethogs nmap \
     cmake ninja-build git build-essential distcc crossbuild-essential-arm64 crossbuild-essential-riscv64 \
     firmware-misc-nonfree firmware-linux-nonfree \
