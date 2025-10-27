@@ -12,11 +12,11 @@ import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpException;
 
-import com.github.saturn_xiv.palm.camellia.helpers.HMacHelper;
+import com.github.saturn_xiv.palm.camellia.helpers.AeadHelper;
 import com.github.saturn_xiv.palm.camellia.services.OtpErlangServer;
 
-@Component("palm.camellia.otp-erlang-hmac-server")
-public class OtpErlangHMacServerImpl extends OtpErlangServer {
+@Component("palm.camellia.otp-erlang-aead-server")
+public class OtpErlangAeadServerImpl extends OtpErlangServer {
     @Override
     protected List<OtpErlangObject> handle(OtpErlangPid from, String action, OtpErlangTuple request)
             throws OtpException {
@@ -25,7 +25,7 @@ public class OtpErlangHMacServerImpl extends OtpErlangServer {
     }
 
     @Resource
-    HMacHelper hmacHelper;
+    AeadHelper aeadHelper;
 
-    private static final Logger logger = LoggerFactory.getLogger(OtpErlangHMacServerImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(OtpErlangAeadServerImpl.class);
 }

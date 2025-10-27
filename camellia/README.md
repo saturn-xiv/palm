@@ -39,3 +39,4 @@ $ erl -sname erlangNode -setcookie secret
 - [Spring Boot Externalized Configuration](https://docs.spring.io/spring-boot/reference/features/external-config.html)
 - [Spring Boot Common Application Properties](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)
 - [Spring GraphQL](https://docs.spring.io/spring-graphql/reference/controllers.html)
+- [Google Tink Key types supported by language](https://developers.google.com/tink/supported-key-types)

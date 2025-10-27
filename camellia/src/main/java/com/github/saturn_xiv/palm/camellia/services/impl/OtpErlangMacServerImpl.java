@@ -12,11 +12,11 @@ import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpException;
 
-import com.github.saturn_xiv.palm.camellia.helpers.AesHelper;
+import com.github.saturn_xiv.palm.camellia.helpers.MacHelper;
 import com.github.saturn_xiv.palm.camellia.services.OtpErlangServer;
 
-@Component("palm.camellia.otp-erlang-aes-server")
-public class OtpErlangAesServerImpl extends OtpErlangServer {
+@Component("palm.camellia.otp-erlang-mac-server")
+public class OtpErlangMacServerImpl extends OtpErlangServer {
     @Override
     protected List<OtpErlangObject> handle(OtpErlangPid from, String action, OtpErlangTuple request)
             throws OtpException {
@@ -25,7 +25,7 @@ public class OtpErlangAesServerImpl extends OtpErlangServer {
     }
 
     @Resource
-    AesHelper aesHelper;
+    MacHelper macHelper;
 
-    private static final Logger logger = LoggerFactory.getLogger(OtpErlangAesServerImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(OtpErlangMacServerImpl.class);
 }

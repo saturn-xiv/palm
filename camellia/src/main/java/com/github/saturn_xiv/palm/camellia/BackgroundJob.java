@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import com.ericsson.otp.erlang.OtpNode;
 
 import com.github.saturn_xiv.palm.camellia.services.OtpErlangRunnableServer;
-import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangAesServerImpl;
+import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangAeadServerImpl;
 import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangDocumentServerImpl;
-import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangHMacServerImpl;
+import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangMacServerImpl;
 import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangJwtServerImpl;
 import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangMailServerImpl;
 import com.github.saturn_xiv.palm.camellia.services.impl.OtpErlangAclServerImpl;
@@ -27,8 +27,8 @@ public class BackgroundJob {
     @PostConstruct
     void init() throws IOException {
         OtpNode node = new OtpNode(optErlangNodeName, optErlangCookie);
-        taskExecutor.execute(new OtpErlangRunnableServer(aesServer, node, "aes"));
-        taskExecutor.execute(new OtpErlangRunnableServer(hmacServer, node, "hmac"));
+        taskExecutor.execute(new OtpErlangRunnableServer(aeadServer, node, "aead"));
+        taskExecutor.execute(new OtpErlangRunnableServer(macServer, node, "mac"));
         taskExecutor.execute(new OtpErlangRunnableServer(jwtServer, node, "jwt"));
         taskExecutor.execute(new OtpErlangRunnableServer(mailServer, node, "mail"));
         taskExecutor.execute(new OtpErlangRunnableServer(twilioServer, node, "twilio"));
@@ -42,9 +42,9 @@ public class BackgroundJob {
     TaskExecutor taskExecutor;
 
     @Resource
-    OtpErlangAesServerImpl aesServer;
+    OtpErlangAeadServerImpl aeadServer;
     @Resource
-    OtpErlangHMacServerImpl hmacServer;
+    OtpErlangMacServerImpl macServer;
     @Resource
     OtpErlangJwtServerImpl jwtServer;
     @Resource
