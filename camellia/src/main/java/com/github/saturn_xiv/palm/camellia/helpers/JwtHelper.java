@@ -20,7 +20,6 @@ import com.google.crypto.tink.jwt.JwtMacConfig;
 import com.google.crypto.tink.jwt.JwtValidator;
 import com.google.crypto.tink.jwt.RawJwt;
 import com.google.crypto.tink.jwt.VerifiedJwt;
-import com.google.crypto.tink.jwt.JwtEcdsaParameters.KidStrategy;
 
 @Component("palm.camellia.jwt-helper")
 public class JwtHelper extends Tink {
