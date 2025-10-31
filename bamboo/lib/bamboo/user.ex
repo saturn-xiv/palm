@@ -11,6 +11,18 @@ defmodule Bamboo.User do
     timestamps(type: :utc_datetime)
   end
 
+  def generate_password(secret_key, plain) do
+    # TODO salt: # :crypto.strong_rand_bytes(8) |> Base.encode64()
+    :crypto.mac(:hmac, :sha512, secret_key, plain) |> Base.encode64()
+  end
+
+  def rules() do
+    %{
+      name: [required: true, type: :string, min: 2, max: 15],
+      password: [required: true, type: :string, min: 6, max: 31]
+    }
+  end
+
   @doc false
   def changeset(user, attrs) do
     user
