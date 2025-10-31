@@ -17,6 +17,9 @@ defmodule BambooWeb.Router do
   scope "/", BambooWeb do
     pipe_through :browser
 
+    get "/nginx.conf", EtcController, :nginx_conf
+    get "/service.conf", EtcController, :service_conf
+
     get "/", PageController, :home
   end
 

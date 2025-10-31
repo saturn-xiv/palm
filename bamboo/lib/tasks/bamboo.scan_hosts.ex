@@ -37,11 +37,11 @@ defmodule Mix.Tasks.Bamboo.ScanHosts do
   def scan_hosts(name, network, cidr) do
     tmp = Path.join("/tmp", "out-#{UUID.uuid4()}.xml")
     Logger.info("scan network #{name} into file #{tmp}")
-    {out, 0} = System.cmd("nmap", ["-oX", tmp, "-n", "-sn", "#{network}/#{cidr}"])
+    {out, 0} = System.cmd("nmap", ["-oX", tmp, "-sn", "#{network}/#{cidr}"])
     Logger.debug(out)
     {:ok, doc} = File.read(tmp)
 
-    # sudo nmap -oX /tmp/aaa.xml -n -sn 192.168.12.0/24 192.168.11.0/24
+    # sudo nmap -oX /tmp/aaa.xml -sn 192.168.12.0/24 192.168.11.0/24
     # {:ok, doc} = File.read("/tmp/aaa.xml")
 
     items = doc |> xpath(
