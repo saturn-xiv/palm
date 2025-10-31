@@ -9,5 +9,7 @@ defmodule Bamboo.Repo.Migrations.CreateLogs do
 
       timestamps(type: :utc_datetime, updated_at: false)
     end
+
+    create index(:logs, [:level])
   end
 end

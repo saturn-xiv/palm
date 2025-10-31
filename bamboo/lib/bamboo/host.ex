@@ -6,6 +6,7 @@ defmodule Bamboo.Host do
     field :name, :string
     field :mac, :string
     field :ip, :string
+    field :fixed, :boolean
     field :version, :integer
     field :deleted_at, :utc_datetime
     belongs_to :member, Bamboo.Member
@@ -17,7 +18,7 @@ defmodule Bamboo.Host do
   @doc false
   def changeset(host, attrs) do
     host
-    |> cast(attrs, [:name, :mac, :ip, :version, :deleted_at])
+    |> cast(attrs, [:name, :mac, :ip, :fixed, :version, :deleted_at])
     |> validate_required([:name, :mac, :ip, :version])
   end
 end

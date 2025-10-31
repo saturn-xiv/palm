@@ -67,7 +67,9 @@ defmodule Bamboo.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       # MY
-      {:validate, "~> 1.3"}
+      {:validate, "~> 1.3"},
+      {:uuid, "~> 1.1"},
+      {:sweet_xml, "~> 0.7"}
     ]
   end
 
