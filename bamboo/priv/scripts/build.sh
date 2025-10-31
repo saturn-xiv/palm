@@ -40,7 +40,7 @@ function build_backend() {
     MIX_ENV=prod mix release
 
     cp -r _build/prod/rel/bamboo $BUILD_DIR/app
-    cp README.md $(dirname $WORK_DIR)/LICENSE scripts/debian.sh $BUILD_DIR/
+    cp README.md $(dirname $WORK_DIR)/LICENSE $BUILD_DIR/
 }
 
 if [ -d $BUILD_DIR ]
