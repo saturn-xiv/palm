@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <title>{assigns[:page_title]}</title>    
-    <link href="/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <%!-- <link href="/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" /> --%>
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
-    <script src="/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <%!-- <script src={Phoenix.VerifiedRoutes.static_path(@conn, "/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js")}></script> --%>
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}></script>
   </head>
   <body>
-    {@inner_content}
+    <div class="container-fluid">
+      {@inner_content}
+    </div>    
   </body>
 </html>
