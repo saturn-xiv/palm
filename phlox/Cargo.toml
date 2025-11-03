@@ -1,0 +1,6 @@
+[package]
+name = "phlox"
+version = "2025.11.2"
+edition = "2024"
+
+[dependencies]
