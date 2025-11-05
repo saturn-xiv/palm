@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.wechat.v1";
+option java_outer_classname = "WechatProto";
+option go_package = "./;proto";
+option csharp_namespace = "Palm.Plugins.Wechat.Grpc";
+package palm.wechat.v1;
+
+// ----------------------------------------------------------------------------
+service Pay {}
+
+// ----------------------------------------------------------------------------
+service Oauth2 {}
+
+// ----------------------------------------------------------------------------
+service MiniProgram {}
