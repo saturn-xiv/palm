@@ -9,7 +9,10 @@ package v2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,23 +23,660 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type AeadEncryptRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Plain         []byte                 `protobuf:"bytes,1,opt,name=plain,proto3" json:"plain,omitempty"`
+	Associated    []byte                 `protobuf:"bytes,2,opt,name=associated,proto3" json:"associated,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AeadEncryptRequest) Reset() {
+	*x = AeadEncryptRequest{}
+	mi := &file_proto_crypto_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AeadEncryptRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AeadEncryptRequest) ProtoMessage() {}
+
+func (x *AeadEncryptRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AeadEncryptRequest.ProtoReflect.Descriptor instead.
+func (*AeadEncryptRequest) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *AeadEncryptRequest) GetPlain() []byte {
+	if x != nil {
+		return x.Plain
+	}
+	return nil
+}
+
+func (x *AeadEncryptRequest) GetAssociated() []byte {
+	if x != nil {
+		return x.Associated
+	}
+	return nil
+}
+
+type AeadEncryptResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Cipher        []byte                 `protobuf:"bytes,1,opt,name=cipher,proto3" json:"cipher,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AeadEncryptResponse) Reset() {
+	*x = AeadEncryptResponse{}
+	mi := &file_proto_crypto_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AeadEncryptResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AeadEncryptResponse) ProtoMessage() {}
+
+func (x *AeadEncryptResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AeadEncryptResponse.ProtoReflect.Descriptor instead.
+func (*AeadEncryptResponse) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *AeadEncryptResponse) GetCipher() []byte {
+	if x != nil {
+		return x.Cipher
+	}
+	return nil
+}
+
+type AeadDecryptRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Cipher        []byte                 `protobuf:"bytes,1,opt,name=cipher,proto3" json:"cipher,omitempty"`
+	Associated    []byte                 `protobuf:"bytes,2,opt,name=associated,proto3" json:"associated,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AeadDecryptRequest) Reset() {
+	*x = AeadDecryptRequest{}
+	mi := &file_proto_crypto_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AeadDecryptRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AeadDecryptRequest) ProtoMessage() {}
+
+func (x *AeadDecryptRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AeadDecryptRequest.ProtoReflect.Descriptor instead.
+func (*AeadDecryptRequest) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AeadDecryptRequest) GetCipher() []byte {
+	if x != nil {
+		return x.Cipher
+	}
+	return nil
+}
+
+func (x *AeadDecryptRequest) GetAssociated() []byte {
+	if x != nil {
+		return x.Associated
+	}
+	return nil
+}
+
+type AeadDecryptResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Plain         []byte                 `protobuf:"bytes,1,opt,name=plain,proto3" json:"plain,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AeadDecryptResponse) Reset() {
+	*x = AeadDecryptResponse{}
+	mi := &file_proto_crypto_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AeadDecryptResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AeadDecryptResponse) ProtoMessage() {}
+
+func (x *AeadDecryptResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AeadDecryptResponse.ProtoReflect.Descriptor instead.
+func (*AeadDecryptResponse) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AeadDecryptResponse) GetPlain() []byte {
+	if x != nil {
+		return x.Plain
+	}
+	return nil
+}
+
+type HMacComputeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []byte                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HMacComputeRequest) Reset() {
+	*x = HMacComputeRequest{}
+	mi := &file_proto_crypto_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HMacComputeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HMacComputeRequest) ProtoMessage() {}
+
+func (x *HMacComputeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HMacComputeRequest.ProtoReflect.Descriptor instead.
+func (*HMacComputeRequest) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *HMacComputeRequest) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type HMacComputeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Mac           []byte                 `protobuf:"bytes,1,opt,name=mac,proto3" json:"mac,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HMacComputeResponse) Reset() {
+	*x = HMacComputeResponse{}
+	mi := &file_proto_crypto_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HMacComputeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HMacComputeResponse) ProtoMessage() {}
+
+func (x *HMacComputeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HMacComputeResponse.ProtoReflect.Descriptor instead.
+func (*HMacComputeResponse) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *HMacComputeResponse) GetMac() []byte {
+	if x != nil {
+		return x.Mac
+	}
+	return nil
+}
+
+type HMacVerifyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Mac           []byte                 `protobuf:"bytes,1,opt,name=mac,proto3" json:"mac,omitempty"`
+	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HMacVerifyRequest) Reset() {
+	*x = HMacVerifyRequest{}
+	mi := &file_proto_crypto_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HMacVerifyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HMacVerifyRequest) ProtoMessage() {}
+
+func (x *HMacVerifyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HMacVerifyRequest.ProtoReflect.Descriptor instead.
+func (*HMacVerifyRequest) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *HMacVerifyRequest) GetMac() []byte {
+	if x != nil {
+		return x.Mac
+	}
+	return nil
+}
+
+func (x *HMacVerifyRequest) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type JwtSignRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Issuer        string                 `protobuf:"bytes,1,opt,name=issuer,proto3" json:"issuer,omitempty"`
+	Subject       string                 `protobuf:"bytes,2,opt,name=subject,proto3" json:"subject,omitempty"`
+	Audiences     []string               `protobuf:"bytes,3,rep,name=audiences,proto3" json:"audiences,omitempty"`
+	Ttl           *durationpb.Duration   `protobuf:"bytes,4,opt,name=ttl,proto3" json:"ttl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *JwtSignRequest) Reset() {
+	*x = JwtSignRequest{}
+	mi := &file_proto_crypto_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JwtSignRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JwtSignRequest) ProtoMessage() {}
+
+func (x *JwtSignRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JwtSignRequest.ProtoReflect.Descriptor instead.
+func (*JwtSignRequest) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *JwtSignRequest) GetIssuer() string {
+	if x != nil {
+		return x.Issuer
+	}
+	return ""
+}
+
+func (x *JwtSignRequest) GetSubject() string {
+	if x != nil {
+		return x.Subject
+	}
+	return ""
+}
+
+func (x *JwtSignRequest) GetAudiences() []string {
+	if x != nil {
+		return x.Audiences
+	}
+	return nil
+}
+
+func (x *JwtSignRequest) GetTtl() *durationpb.Duration {
+	if x != nil {
+		return x.Ttl
+	}
+	return nil
+}
+
+type JwtSignResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *JwtSignResponse) Reset() {
+	*x = JwtSignResponse{}
+	mi := &file_proto_crypto_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JwtSignResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JwtSignResponse) ProtoMessage() {}
+
+func (x *JwtSignResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JwtSignResponse.ProtoReflect.Descriptor instead.
+func (*JwtSignResponse) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *JwtSignResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type JwtVerifyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Issuer        string                 `protobuf:"bytes,2,opt,name=issuer,proto3" json:"issuer,omitempty"`
+	Audience      string                 `protobuf:"bytes,3,opt,name=audience,proto3" json:"audience,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *JwtVerifyRequest) Reset() {
+	*x = JwtVerifyRequest{}
+	mi := &file_proto_crypto_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JwtVerifyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JwtVerifyRequest) ProtoMessage() {}
+
+func (x *JwtVerifyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JwtVerifyRequest.ProtoReflect.Descriptor instead.
+func (*JwtVerifyRequest) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *JwtVerifyRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *JwtVerifyRequest) GetIssuer() string {
+	if x != nil {
+		return x.Issuer
+	}
+	return ""
+}
+
+func (x *JwtVerifyRequest) GetAudience() string {
+	if x != nil {
+		return x.Audience
+	}
+	return ""
+}
+
+type JwtVerifyResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Subject       string                 `protobuf:"bytes,2,opt,name=subject,proto3" json:"subject,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *JwtVerifyResponse) Reset() {
+	*x = JwtVerifyResponse{}
+	mi := &file_proto_crypto_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JwtVerifyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JwtVerifyResponse) ProtoMessage() {}
+
+func (x *JwtVerifyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_crypto_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JwtVerifyResponse.ProtoReflect.Descriptor instead.
+func (*JwtVerifyResponse) Descriptor() ([]byte, []int) {
+	return file_proto_crypto_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *JwtVerifyResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *JwtVerifyResponse) GetSubject() string {
+	if x != nil {
+		return x.Subject
+	}
+	return ""
+}
+
 var File_proto_crypto_proto protoreflect.FileDescriptor
 
 const file_proto_crypto_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/crypto.proto\x12\x0epalm.crypto.v12\a\n" +
-	"\x05Ahead2\x06\n" +
-	"\x04HMac2\x05\n" +
-	"\x03JwtB_\n" +
+	"\x12proto/crypto.proto\x12\x0epalm.crypto.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/duration.proto\"J\n" +
+	"\x12AeadEncryptRequest\x12\x14\n" +
+	"\x05plain\x18\x01 \x01(\fR\x05plain\x12\x1e\n" +
+	"\n" +
+	"associated\x18\x02 \x01(\fR\n" +
+	"associated\"-\n" +
+	"\x13AeadEncryptResponse\x12\x16\n" +
+	"\x06cipher\x18\x01 \x01(\fR\x06cipher\"L\n" +
+	"\x12AeadDecryptRequest\x12\x16\n" +
+	"\x06cipher\x18\x01 \x01(\fR\x06cipher\x12\x1e\n" +
+	"\n" +
+	"associated\x18\x02 \x01(\fR\n" +
+	"associated\"+\n" +
+	"\x13AeadDecryptResponse\x12\x14\n" +
+	"\x05plain\x18\x01 \x01(\fR\x05plain\"(\n" +
+	"\x12HMacComputeRequest\x12\x12\n" +
+	"\x04data\x18\x01 \x01(\fR\x04data\"'\n" +
+	"\x13HMacComputeResponse\x12\x10\n" +
+	"\x03mac\x18\x01 \x01(\fR\x03mac\"9\n" +
+	"\x11HMacVerifyRequest\x12\x10\n" +
+	"\x03mac\x18\x01 \x01(\fR\x03mac\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\"\x8d\x01\n" +
+	"\x0eJwtSignRequest\x12\x16\n" +
+	"\x06issuer\x18\x01 \x01(\tR\x06issuer\x12\x18\n" +
+	"\asubject\x18\x02 \x01(\tR\asubject\x12\x1c\n" +
+	"\taudiences\x18\x03 \x03(\tR\taudiences\x12+\n" +
+	"\x03ttl\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\x03ttl\"'\n" +
+	"\x0fJwtSignResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\\\n" +
+	"\x10JwtVerifyRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
+	"\x06issuer\x18\x02 \x01(\tR\x06issuer\x12\x1a\n" +
+	"\baudience\x18\x03 \x01(\tR\baudience\"=\n" +
+	"\x11JwtVerifyResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
+	"\asubject\x18\x02 \x01(\tR\asubject2\xb2\x01\n" +
+	"\x04Aead\x12T\n" +
+	"\aEncrypt\x12\".palm.crypto.v1.AeadEncryptRequest\x1a#.palm.crypto.v1.AeadEncryptResponse\"\x00\x12T\n" +
+	"\aDecrypt\x12\".palm.crypto.v1.AeadDecryptRequest\x1a#.palm.crypto.v1.AeadDecryptResponse\"\x002\xa3\x01\n" +
+	"\x04HMac\x12T\n" +
+	"\aCompute\x12\".palm.crypto.v1.HMacComputeRequest\x1a#.palm.crypto.v1.HMacComputeResponse\"\x00\x12E\n" +
+	"\x06Verify\x12!.palm.crypto.v1.HMacVerifyRequest\x1a\x16.google.protobuf.Empty\"\x002\xa1\x01\n" +
+	"\x03Jwt\x12I\n" +
+	"\x04Sign\x12\x1e.palm.crypto.v1.JwtSignRequest\x1a\x1f.palm.crypto.v1.JwtSignResponse\"\x00\x12O\n" +
+	"\x06Verify\x12 .palm.crypto.v1.JwtVerifyRequest\x1a!.palm.crypto.v1.JwtVerifyResponse\"\x00B_\n" +
 	",com.github.saturn_xiv.palm.plugins.crypto.v1B\vCryptoProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Crypto.Grpcb\x06proto3"
 
-var file_proto_crypto_proto_goTypes = []any{}
+var (
+	file_proto_crypto_proto_rawDescOnce sync.Once
+	file_proto_crypto_proto_rawDescData []byte
+)
+
+func file_proto_crypto_proto_rawDescGZIP() []byte {
+	file_proto_crypto_proto_rawDescOnce.Do(func() {
+		file_proto_crypto_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_crypto_proto_rawDesc), len(file_proto_crypto_proto_rawDesc)))
+	})
+	return file_proto_crypto_proto_rawDescData
+}
+
+var file_proto_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_proto_crypto_proto_goTypes = []any{
+	(*AeadEncryptRequest)(nil),  // 0: palm.crypto.v1.AeadEncryptRequest
+	(*AeadEncryptResponse)(nil), // 1: palm.crypto.v1.AeadEncryptResponse
+	(*AeadDecryptRequest)(nil),  // 2: palm.crypto.v1.AeadDecryptRequest
+	(*AeadDecryptResponse)(nil), // 3: palm.crypto.v1.AeadDecryptResponse
+	(*HMacComputeRequest)(nil),  // 4: palm.crypto.v1.HMacComputeRequest
+	(*HMacComputeResponse)(nil), // 5: palm.crypto.v1.HMacComputeResponse
+	(*HMacVerifyRequest)(nil),   // 6: palm.crypto.v1.HMacVerifyRequest
+	(*JwtSignRequest)(nil),      // 7: palm.crypto.v1.JwtSignRequest
+	(*JwtSignResponse)(nil),     // 8: palm.crypto.v1.JwtSignResponse
+	(*JwtVerifyRequest)(nil),    // 9: palm.crypto.v1.JwtVerifyRequest
+	(*JwtVerifyResponse)(nil),   // 10: palm.crypto.v1.JwtVerifyResponse
+	(*durationpb.Duration)(nil), // 11: google.protobuf.Duration
+	(*emptypb.Empty)(nil),       // 12: google.protobuf.Empty
+}
 var file_proto_crypto_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	11, // 0: palm.crypto.v1.JwtSignRequest.ttl:type_name -> google.protobuf.Duration
+	0,  // 1: palm.crypto.v1.Aead.Encrypt:input_type -> palm.crypto.v1.AeadEncryptRequest
+	2,  // 2: palm.crypto.v1.Aead.Decrypt:input_type -> palm.crypto.v1.AeadDecryptRequest
+	4,  // 3: palm.crypto.v1.HMac.Compute:input_type -> palm.crypto.v1.HMacComputeRequest
+	6,  // 4: palm.crypto.v1.HMac.Verify:input_type -> palm.crypto.v1.HMacVerifyRequest
+	7,  // 5: palm.crypto.v1.Jwt.Sign:input_type -> palm.crypto.v1.JwtSignRequest
+	9,  // 6: palm.crypto.v1.Jwt.Verify:input_type -> palm.crypto.v1.JwtVerifyRequest
+	1,  // 7: palm.crypto.v1.Aead.Encrypt:output_type -> palm.crypto.v1.AeadEncryptResponse
+	3,  // 8: palm.crypto.v1.Aead.Decrypt:output_type -> palm.crypto.v1.AeadDecryptResponse
+	5,  // 9: palm.crypto.v1.HMac.Compute:output_type -> palm.crypto.v1.HMacComputeResponse
+	12, // 10: palm.crypto.v1.HMac.Verify:output_type -> google.protobuf.Empty
+	8,  // 11: palm.crypto.v1.Jwt.Sign:output_type -> palm.crypto.v1.JwtSignResponse
+	10, // 12: palm.crypto.v1.Jwt.Verify:output_type -> palm.crypto.v1.JwtVerifyResponse
+	7,  // [7:13] is the sub-list for method output_type
+	1,  // [1:7] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_crypto_proto_init() }
@@ -50,12 +690,13 @@ func file_proto_crypto_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_crypto_proto_rawDesc), len(file_proto_crypto_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   3,
 		},
 		GoTypes:           file_proto_crypto_proto_goTypes,
 		DependencyIndexes: file_proto_crypto_proto_depIdxs,
+		MessageInfos:      file_proto_crypto_proto_msgTypes,
 	}.Build()
 	File_proto_crypto_proto = out.File
 	file_proto_crypto_proto_goTypes = nil

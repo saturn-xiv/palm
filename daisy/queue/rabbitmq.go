@@ -4,17 +4,18 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"os"
 
 	"github.com/google/uuid"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 type RabbitMQ struct {
-	Host        string
-	Port        uint16
-	User        string
-	Password    string
-	VirtualHost string
+	Host        string `toml:"host"`
+	Port        uint16 `toml:"port"`
+	User        string `toml:"user"`
+	Password    string `toml:"password"`
+	VirtualHost string `toml:"virtual-host"`
 }
 
 func (p *RabbitMQ) Publish(ctx context.Context, exchange string, content_type string, body []byte) error {
@@ -121,7 +122,12 @@ func send(ctx context.Context, channel *amqp.Channel, exchange string, routing_k
 }
 
 func receive(channel *amqp.Channel, queue string, consumer Consumer) error {
-	msgs, err := channel.Consume(queue, consumer.Name(), true, false, false, false, nil)
+	host, err := os.Hostname()
+	if err != nil {
+		return err
+	}
+
+	msgs, err := channel.Consume(queue, fmt.Sprintf("%s@%s.%d", consumer.Name(), host, os.Getpid()), true, false, false, false, nil)
 	if err != nil {
 		return err
 	}

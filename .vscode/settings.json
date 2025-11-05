@@ -69,6 +69,7 @@
     "editor.defaultFormatter": "lkrms.inifmt"
   },
   "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "automatic",
   "ansible.python.interpreterPath": "/bin/python3",
   "cmake.ignoreCMakeListsMissing": true
 }

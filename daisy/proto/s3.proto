@@ -6,3 +6,16 @@ option java_outer_classname = "S3Proto";
 option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.S3.Grpc";
 package palm.s3.v1;
+
+import "google/protobuf/empty.proto";
+
+service S3 {
+  rpc ListBucket(google.protobuf.Empty) returns (ListBucketResponse) {}
+}
+
+message ListBucketResponse {
+  message Item {
+    string name = 1;
+  }
+  repeated Item items = 1;
+}

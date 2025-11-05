@@ -7,7 +7,11 @@
 package v2
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,70 +19,159 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
-// AheadClient is the client API for Ahead service.
+const (
+	Aead_Encrypt_FullMethodName = "/palm.crypto.v1.Aead/Encrypt"
+	Aead_Decrypt_FullMethodName = "/palm.crypto.v1.Aead/Decrypt"
+)
+
+// AeadClient is the client API for Aead service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AheadClient interface {
+type AeadClient interface {
+	Encrypt(ctx context.Context, in *AeadEncryptRequest, opts ...grpc.CallOption) (*AeadEncryptResponse, error)
+	Decrypt(ctx context.Context, in *AeadDecryptRequest, opts ...grpc.CallOption) (*AeadDecryptResponse, error)
 }
 
-type aheadClient struct {
+type aeadClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAheadClient(cc grpc.ClientConnInterface) AheadClient {
-	return &aheadClient{cc}
+func NewAeadClient(cc grpc.ClientConnInterface) AeadClient {
+	return &aeadClient{cc}
 }
 
-// AheadServer is the server API for Ahead service.
-// All implementations must embed UnimplementedAheadServer
+func (c *aeadClient) Encrypt(ctx context.Context, in *AeadEncryptRequest, opts ...grpc.CallOption) (*AeadEncryptResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AeadEncryptResponse)
+	err := c.cc.Invoke(ctx, Aead_Encrypt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aeadClient) Decrypt(ctx context.Context, in *AeadDecryptRequest, opts ...grpc.CallOption) (*AeadDecryptResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AeadDecryptResponse)
+	err := c.cc.Invoke(ctx, Aead_Decrypt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AeadServer is the server API for Aead service.
+// All implementations must embed UnimplementedAeadServer
 // for forward compatibility.
-type AheadServer interface {
-	mustEmbedUnimplementedAheadServer()
+type AeadServer interface {
+	Encrypt(context.Context, *AeadEncryptRequest) (*AeadEncryptResponse, error)
+	Decrypt(context.Context, *AeadDecryptRequest) (*AeadDecryptResponse, error)
+	mustEmbedUnimplementedAeadServer()
 }
 
-// UnimplementedAheadServer must be embedded to have
+// UnimplementedAeadServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAheadServer struct{}
+type UnimplementedAeadServer struct{}
 
-func (UnimplementedAheadServer) mustEmbedUnimplementedAheadServer() {}
-func (UnimplementedAheadServer) testEmbeddedByValue()               {}
+func (UnimplementedAeadServer) Encrypt(context.Context, *AeadEncryptRequest) (*AeadEncryptResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Encrypt not implemented")
+}
+func (UnimplementedAeadServer) Decrypt(context.Context, *AeadDecryptRequest) (*AeadDecryptResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Decrypt not implemented")
+}
+func (UnimplementedAeadServer) mustEmbedUnimplementedAeadServer() {}
+func (UnimplementedAeadServer) testEmbeddedByValue()              {}
 
-// UnsafeAheadServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AheadServer will
+// UnsafeAeadServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AeadServer will
 // result in compilation errors.
-type UnsafeAheadServer interface {
-	mustEmbedUnimplementedAheadServer()
+type UnsafeAeadServer interface {
+	mustEmbedUnimplementedAeadServer()
 }
 
-func RegisterAheadServer(s grpc.ServiceRegistrar, srv AheadServer) {
-	// If the following call pancis, it indicates UnimplementedAheadServer was
+func RegisterAeadServer(s grpc.ServiceRegistrar, srv AeadServer) {
+	// If the following call pancis, it indicates UnimplementedAeadServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Ahead_ServiceDesc, srv)
+	s.RegisterService(&Aead_ServiceDesc, srv)
 }
 
-// Ahead_ServiceDesc is the grpc.ServiceDesc for Ahead service.
+func _Aead_Encrypt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AeadEncryptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AeadServer).Encrypt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Aead_Encrypt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AeadServer).Encrypt(ctx, req.(*AeadEncryptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Aead_Decrypt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AeadDecryptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AeadServer).Decrypt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Aead_Decrypt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AeadServer).Decrypt(ctx, req.(*AeadDecryptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Aead_ServiceDesc is the grpc.ServiceDesc for Aead service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Ahead_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.crypto.v1.Ahead",
-	HandlerType: (*AheadServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "proto/crypto.proto",
+var Aead_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.crypto.v1.Aead",
+	HandlerType: (*AeadServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Encrypt",
+			Handler:    _Aead_Encrypt_Handler,
+		},
+		{
+			MethodName: "Decrypt",
+			Handler:    _Aead_Decrypt_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/crypto.proto",
 }
+
+const (
+	HMac_Compute_FullMethodName = "/palm.crypto.v1.HMac/Compute"
+	HMac_Verify_FullMethodName  = "/palm.crypto.v1.HMac/Verify"
+)
 
 // HMacClient is the client API for HMac service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
 type HMacClient interface {
+	Compute(ctx context.Context, in *HMacComputeRequest, opts ...grpc.CallOption) (*HMacComputeResponse, error)
+	Verify(ctx context.Context, in *HMacVerifyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type hMacClient struct {
@@ -89,10 +182,34 @@ func NewHMacClient(cc grpc.ClientConnInterface) HMacClient {
 	return &hMacClient{cc}
 }
 
+func (c *hMacClient) Compute(ctx context.Context, in *HMacComputeRequest, opts ...grpc.CallOption) (*HMacComputeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HMacComputeResponse)
+	err := c.cc.Invoke(ctx, HMac_Compute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hMacClient) Verify(ctx context.Context, in *HMacVerifyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, HMac_Verify_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HMacServer is the server API for HMac service.
 // All implementations must embed UnimplementedHMacServer
 // for forward compatibility.
+//
+// ----------------------------------------------------------------------------
 type HMacServer interface {
+	Compute(context.Context, *HMacComputeRequest) (*HMacComputeResponse, error)
+	Verify(context.Context, *HMacVerifyRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedHMacServer()
 }
 
@@ -103,6 +220,12 @@ type HMacServer interface {
 // pointer dereference when methods are called.
 type UnimplementedHMacServer struct{}
 
+func (UnimplementedHMacServer) Compute(context.Context, *HMacComputeRequest) (*HMacComputeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Compute not implemented")
+}
+func (UnimplementedHMacServer) Verify(context.Context, *HMacVerifyRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
+}
 func (UnimplementedHMacServer) mustEmbedUnimplementedHMacServer() {}
 func (UnimplementedHMacServer) testEmbeddedByValue()              {}
 
@@ -124,21 +247,75 @@ func RegisterHMacServer(s grpc.ServiceRegistrar, srv HMacServer) {
 	s.RegisterService(&HMac_ServiceDesc, srv)
 }
 
+func _HMac_Compute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HMacComputeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HMacServer).Compute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HMac_Compute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HMacServer).Compute(ctx, req.(*HMacComputeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HMac_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HMacVerifyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HMacServer).Verify(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HMac_Verify_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HMacServer).Verify(ctx, req.(*HMacVerifyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HMac_ServiceDesc is the grpc.ServiceDesc for HMac service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var HMac_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "palm.crypto.v1.HMac",
 	HandlerType: (*HMacServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "proto/crypto.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Compute",
+			Handler:    _HMac_Compute_Handler,
+		},
+		{
+			MethodName: "Verify",
+			Handler:    _HMac_Verify_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/crypto.proto",
 }
+
+const (
+	Jwt_Sign_FullMethodName   = "/palm.crypto.v1.Jwt/Sign"
+	Jwt_Verify_FullMethodName = "/palm.crypto.v1.Jwt/Verify"
+)
 
 // JwtClient is the client API for Jwt service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
 type JwtClient interface {
+	Sign(ctx context.Context, in *JwtSignRequest, opts ...grpc.CallOption) (*JwtSignResponse, error)
+	Verify(ctx context.Context, in *JwtVerifyRequest, opts ...grpc.CallOption) (*JwtVerifyResponse, error)
 }
 
 type jwtClient struct {
@@ -149,10 +326,34 @@ func NewJwtClient(cc grpc.ClientConnInterface) JwtClient {
 	return &jwtClient{cc}
 }
 
+func (c *jwtClient) Sign(ctx context.Context, in *JwtSignRequest, opts ...grpc.CallOption) (*JwtSignResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JwtSignResponse)
+	err := c.cc.Invoke(ctx, Jwt_Sign_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jwtClient) Verify(ctx context.Context, in *JwtVerifyRequest, opts ...grpc.CallOption) (*JwtVerifyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JwtVerifyResponse)
+	err := c.cc.Invoke(ctx, Jwt_Verify_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // JwtServer is the server API for Jwt service.
 // All implementations must embed UnimplementedJwtServer
 // for forward compatibility.
+//
+// ----------------------------------------------------------------------------
 type JwtServer interface {
+	Sign(context.Context, *JwtSignRequest) (*JwtSignResponse, error)
+	Verify(context.Context, *JwtVerifyRequest) (*JwtVerifyResponse, error)
 	mustEmbedUnimplementedJwtServer()
 }
 
@@ -163,6 +364,12 @@ type JwtServer interface {
 // pointer dereference when methods are called.
 type UnimplementedJwtServer struct{}
 
+func (UnimplementedJwtServer) Sign(context.Context, *JwtSignRequest) (*JwtSignResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sign not implemented")
+}
+func (UnimplementedJwtServer) Verify(context.Context, *JwtVerifyRequest) (*JwtVerifyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
+}
 func (UnimplementedJwtServer) mustEmbedUnimplementedJwtServer() {}
 func (UnimplementedJwtServer) testEmbeddedByValue()             {}
 
@@ -184,13 +391,58 @@ func RegisterJwtServer(s grpc.ServiceRegistrar, srv JwtServer) {
 	s.RegisterService(&Jwt_ServiceDesc, srv)
 }
 
+func _Jwt_Sign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JwtSignRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JwtServer).Sign(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Jwt_Sign_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JwtServer).Sign(ctx, req.(*JwtSignRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Jwt_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JwtVerifyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JwtServer).Verify(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Jwt_Verify_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JwtServer).Verify(ctx, req.(*JwtVerifyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Jwt_ServiceDesc is the grpc.ServiceDesc for Jwt service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Jwt_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "palm.crypto.v1.Jwt",
 	HandlerType: (*JwtServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "proto/crypto.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Sign",
+			Handler:    _Jwt_Sign_Handler,
+		},
+		{
+			MethodName: "Verify",
+			Handler:    _Jwt_Verify_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/crypto.proto",
 }

@@ -12,7 +12,12 @@ function generate_daisy() {
     do
         echo "generate $i for daisy"
         local target=$i/v2
-        mkdir -p $target
+        if [ -d $target ]
+        then
+            rm -f $target/*.pb.go
+        else
+            mkdir -p $target
+        fi
         protoc --go_out=$target --go_opt=paths=import --go-grpc_out=$target --go-grpc_opt=paths=import proto/$i.proto
     done    
 }

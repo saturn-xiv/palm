@@ -1,0 +1,65 @@
+package app
+
+import (
+	"fmt"
+	"log/slog"
+	"net"
+
+	"github.com/BurntSushi/toml"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/health"
+	healthgrpc "google.golang.org/grpc/health/grpc_health_v1"
+
+	"com.github/saturn_xiv/palm/daisy/crypto"
+	crypto_v2 "com.github/saturn_xiv/palm/daisy/crypto/v2"
+	"com.github/saturn_xiv/palm/daisy/queue"
+	"com.github/saturn_xiv/palm/daisy/s3"
+	s3_v2 "com.github/saturn_xiv/palm/daisy/s3/v2"
+)
+
+type RpcServerConfig struct {
+	RabbitMQ *queue.RabbitMQ `toml:"rabbitmq"`
+	Minio    *s3.Config      `toml:"minio"`
+}
+
+func LaunchRpcServer(config_file string, port uint16, debug bool) error {
+	if debug {
+		slog.SetLogLoggerLevel(slog.LevelDebug)
+	} else {
+		slog.SetLogLoggerLevel(slog.LevelInfo)
+	}
+
+	slog.Debug("load configuration from", "file", config_file)
+	var config RpcServerConfig
+	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+
+	aead, err := crypto.NewAead("aead.bin")
+	if err != nil {
+		return err
+	}
+	hmac, err := crypto.NewHmac("hmac.bin")
+	if err != nil {
+		return err
+	}
+	jwt, err := crypto.NewJwt("jwt.bin")
+	if err != nil {
+		return err
+	}
+	listen, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	if err != nil {
+		return err
+	}
+	server := grpc.NewServer()
+	health_server := health.NewServer()
+	healthgrpc.RegisterHealthServer(server, health_server)
+	crypto_v2.RegisterAeadServer(server, crypto.NewAeadServer(aead))
+	crypto_v2.RegisterHMacServer(server, crypto.NewHmacServer(hmac))
+	crypto_v2.RegisterJwtServer(server, crypto.NewJwtServer(jwt))
+	s3_client, err := config.Minio.Open()
+	s3_v2.RegisterS3Server(server, s3.NewServer(s3_client))
+
+	slog.Info("server listening at", "address", listen.Addr())
+	return server.Serve(listen)
+}

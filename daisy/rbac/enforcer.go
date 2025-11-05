@@ -1,0 +1,58 @@
+package rbac
+
+import (
+	_ "embed"
+	"fmt"
+	"log/slog"
+	"strings"
+
+	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v2/model"
+	gormadapter "github.com/casbin/gorm-adapter/v3"
+	rediswatcher "github.com/casbin/redis-watcher/v2"
+	"gorm.io/gorm"
+)
+
+//go:embed rbac_model.conf
+var rbac_model string
+
+func updateCallback(msg string) {
+	slog.Debug(msg)
+}
+
+func NewEnforcer(namespace string, db *gorm.DB, redis_addresses []string) (*casbin.Enforcer, error) {
+	gormadapter.TurnOffAutoMigrate(db)
+	adapter, err := gormadapter.NewAdapterByDB(db)
+	if err != nil {
+		return nil, err
+	}
+	model, err := model.NewModelFromString(rbac_model)
+	if err != nil {
+		return nil, err
+	}
+	watcher, err := rediswatcher.NewWatcherWithCluster(
+		strings.Join(redis_addresses, ","),
+		rediswatcher.WatcherOptions{
+			Channel:    fmt.Sprintf("%s://casbin", namespace),
+			IgnoreSelf: true,
+		})
+	if err != nil {
+		return nil, err
+	}
+	if err = watcher.SetUpdateCallback(updateCallback); err != nil {
+		return nil, err
+	}
+
+	enforcer, err := casbin.NewEnforcer(model, adapter)
+	if err != nil {
+		return nil, err
+	}
+	if err = enforcer.SetWatcher(watcher); err != nil {
+		return nil, err
+	}
+	if err = enforcer.LoadPolicy(); err != nil {
+		return nil, err
+	}
+	return enforcer, nil
+
+}
