@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.s3.v1";
+option java_outer_classname = "S3Proto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.S3.Grpc";
+package palm.s3.v1;

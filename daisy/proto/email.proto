@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.email.v1";
+option java_outer_classname = "EmailProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Email.Grpc";
+package palm.email.v1;
+
+message Task {
+  message Address {
+    string name = 1;
+    string email = 2;
+  }
+  message Body {
+    string content = 1;
+    bool html = 2;
+  }
+  message Attachment {
+    string name = 1;
+    bytes content = 2;
+    bool inline = 3;
+  }
+  Address from = 1;
+  Address to = 2;
+  Address cc = 3;
+  Address bcc = 4;
+  string subject = 11;
+  Body body = 12;
+  repeated Attachment attachments = 13;
+}

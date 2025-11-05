@@ -1,13 +1,12 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.palm.plugins.casbin.v1";
-option java_outer_classname = "CasbinProto";
-option go_package = "./;proto";
-option csharp_namespace = "Palm.Plugins.Casbin.Grpc";
-package palm.casbin.v1;
+option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
+option java_outer_classname = "RbacProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Rbac.Grpc";
+package palm.rbac.v1;
 
-// https://github.com/casbin/casbin-server/blob/master/proto/casbin.proto
 service Enforcer {
   rpc LoadPolicy(EmptyRequest) returns (EmptyReply) {}
   rpc SavePolicy(EmptyRequest) returns (EmptyReply) {}
