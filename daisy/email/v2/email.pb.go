@@ -25,8 +25,8 @@ type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	From          *Task_Address          `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
 	To            *Task_Address          `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
-	Cc            *Task_Address          `protobuf:"bytes,3,opt,name=cc,proto3" json:"cc,omitempty"`
-	Bcc           *Task_Address          `protobuf:"bytes,4,opt,name=bcc,proto3" json:"bcc,omitempty"`
+	Cc            []*Task_Address        `protobuf:"bytes,3,rep,name=cc,proto3" json:"cc,omitempty"`
+	Bcc           []*Task_Address        `protobuf:"bytes,4,rep,name=bcc,proto3" json:"bcc,omitempty"`
 	Subject       string                 `protobuf:"bytes,11,opt,name=subject,proto3" json:"subject,omitempty"`
 	Body          *Task_Body             `protobuf:"bytes,12,opt,name=body,proto3" json:"body,omitempty"`
 	Attachments   []*Task_Attachment     `protobuf:"bytes,13,rep,name=attachments,proto3" json:"attachments,omitempty"`
@@ -78,14 +78,14 @@ func (x *Task) GetTo() *Task_Address {
 	return nil
 }
 
-func (x *Task) GetCc() *Task_Address {
+func (x *Task) GetCc() []*Task_Address {
 	if x != nil {
 		return x.Cc
 	}
 	return nil
 }
 
-func (x *Task) GetBcc() *Task_Address {
+func (x *Task) GetBcc() []*Task_Address {
 	if x != nil {
 		return x.Bcc
 	}
@@ -285,8 +285,8 @@ const file_proto_email_proto_rawDesc = "" +
 	"\x04Task\x12/\n" +
 	"\x04from\x18\x01 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x04from\x12+\n" +
 	"\x02to\x18\x02 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x02to\x12+\n" +
-	"\x02cc\x18\x03 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x02cc\x12-\n" +
-	"\x03bcc\x18\x04 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x03bcc\x12\x18\n" +
+	"\x02cc\x18\x03 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x02cc\x12-\n" +
+	"\x03bcc\x18\x04 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x03bcc\x12\x18\n" +
 	"\asubject\x18\v \x01(\tR\asubject\x12,\n" +
 	"\x04body\x18\f \x01(\v2\x18.palm.email.v1.Task.BodyR\x04body\x12@\n" +
 	"\vattachments\x18\r \x03(\v2\x1e.palm.email.v1.Task.AttachmentR\vattachments\x1a3\n" +

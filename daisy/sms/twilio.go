@@ -12,8 +12,8 @@ import (
 )
 
 type Twilio struct {
-	AccountSid string
-	AuthToken  string
+	AccountSid string `toml:"account-sid"`
+	AuthToken  string `toml:"auth-token"`
 }
 
 func (p *Twilio) Open(from string, to string, body string) *twilio.RestClient {
@@ -43,18 +43,18 @@ func send(client *twilio.RestClient, from string, to string, body string) error 
 	return nil
 }
 
-type TwilioSmsProtobufConsumer struct {
+type TwilioSmsSendProtobufConsumer struct {
 	client *twilio.RestClient
 }
 
-func NewTwilioSmsProtobufConsumer(client *twilio.RestClient) *TwilioSmsProtobufConsumer {
-	return &TwilioSmsProtobufConsumer{client: client}
+func NewTwilioSmsSendProtobufConsumer(client *twilio.RestClient) *TwilioSmsSendProtobufConsumer {
+	return &TwilioSmsSendProtobufConsumer{client: client}
 }
 
-func (p *TwilioSmsProtobufConsumer) Name() string {
-	return "twilio-sms.protobuf"
+func (p *TwilioSmsSendProtobufConsumer) Name() string {
+	return "twilio-sms-send.protobuf"
 }
-func (p *TwilioSmsProtobufConsumer) Execute(id string, content_type string, body []byte) error {
+func (p *TwilioSmsSendProtobufConsumer) Execute(id string, content_type string, body []byte) error {
 	var task v2.Task
 	if err := proto.Unmarshal(body, &task); err != nil {
 		return err

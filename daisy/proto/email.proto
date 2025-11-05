@@ -23,8 +23,8 @@ message Task {
   }
   Address from = 1;
   Address to = 2;
-  Address cc = 3;
-  Address bcc = 4;
+  repeated Address cc = 3;
+  repeated Address bcc = 4;
   string subject = 11;
   Body body = 12;
   repeated Attachment attachments = 13;
