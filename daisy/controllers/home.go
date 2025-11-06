@@ -30,6 +30,7 @@ func NginxConf(ctx *Context, ss *Session) ([]byte, error) {
 }
 
 func ServiceConf(ctx *Context, ss *Session) ([]byte, error) {
+
 	tpl, err := template.New("").Parse(service_conf)
 	if err != nil {
 		return nil, err

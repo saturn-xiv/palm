@@ -64,7 +64,7 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	if err != nil {
 		return err
 	}
-	listen, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	listen, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", port))
 	if err != nil {
 		return err
 	}

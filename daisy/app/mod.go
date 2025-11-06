@@ -1,79 +1,70 @@
 package app
 
 import (
-	"errors"
-	"fmt"
-	"log/slog"
-
-	"gorm.io/driver/mysql"
-	"gorm.io/driver/postgres"
-	"gorm.io/driver/sqlserver"
-	"gorm.io/gorm"
+	"github.com/spf13/cobra"
 )
 
-type Database struct {
-	PostgreSql *PostgreSql `toml:"postgresql"`
-	MySql      *PostgreSql `toml:"mysql"`
-	SqlServer  *PostgreSql `toml:"sqlserver"`
-	PoolSize   uint        `toml:"pool-size"`
-}
+var (
+	gl_config_file      string
+	gl_debug            bool
+	gl_rpc_port         uint16
+	gl_http_port        uint16
+	gl_sms_send_queue   string
+	gl_email_send_queue string
 
-func (p *Database) Open() (*gorm.DB, error) {
-	if p.PostgreSql != nil {
-		return p.PostgreSql.Open()
+	gl_root_cmd = &cobra.Command{
+		Use:     "daisy",
+		Short:   "A total free education &amp; translation solution",
+		Version: "2025.11.6",
 	}
-	if p.MySql != nil {
-		return p.MySql.Open()
+
+	gl_rpc_cmd = &cobra.Command{
+		Use:   "rpc",
+		Short: "Start a gRPC server",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			// TODO
+			return nil
+		},
 	}
-	if p.SqlServer != nil {
-		return p.SqlServer.Open()
+	gl_http_cmd = &cobra.Command{
+		Use:   "http",
+		Short: "Start a HTTP server",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			// TODO
+			return nil
+		},
 	}
-	return nil, errors.New("couldn't open a database")
+	gl_sms_send_cmd = &cobra.Command{
+		Use:   "sms-send-worker",
+		Short: "Start a sms-send worker",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			// TODO
+			return nil
+		},
+	}
+	gl_email_send_cmd = &cobra.Command{
+		Use:   "email-send",
+		Short: "Start a email-send worker",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			// TODO
+			return nil
+		},
+	}
+)
+
+func Execute() error {
+	return gl_root_cmd.Execute()
 }
 
-type PostgreSql struct {
-	Host     string `toml:"host"`
-	Port     uint16 `toml:"port"`
-	DbName   string `toml:"db-name"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
-}
+func init() {
 
-func (p *PostgreSql) Open() (*gorm.DB, error) {
-	slog.Info("open postgresql", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
-	return gorm.Open(postgres.New(postgres.Config{
-		DSN:                  fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%d sslmode=disable TimeZone=UTC", p.User, p.Password, p.DbName, p.Host, p.Port),
-		PreferSimpleProtocol: true,
-	}), &gorm.Config{})
-}
+	gl_root_cmd.PersistentFlags().StringVarP(&gl_config_file, "config", "c", "config.toml", "configuration file")
+	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", true, "run on debug mode")
 
-type MySql struct {
-	Host     string `toml:"host"`
-	Port     uint16 `toml:"port"`
-	DbName   string `toml:"db-name"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
-}
+	gl_http_cmd.PersistentFlags().Uint16VarP(&gl_http_port, "port", "p", 8080, "listening port")
+	gl_rpc_cmd.PersistentFlags().Uint16VarP(&gl_rpc_port, "port", "p", 8080, "listening port")
+	gl_email_send_cmd.PersistentFlags().StringVarP(&gl_email_send_queue, "queue", "q", "emails", "queue name")
+	gl_sms_send_cmd.PersistentFlags().StringVarP(&gl_sms_send_queue, "queue", "q", "sms", "queue name")
 
-func (p *MySql) Open() (*gorm.DB, error) {
-	// https://github.com/go-sql-driver/mysql#dsn-data-source-name
-	slog.Info("open mysql", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
-	return gorm.Open(
-		mysql.Open(fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", p.User, p.Password, p.Host, p.Port, p.DbName)),
-		&gorm.Config{})
-}
-
-type SqlServer struct {
-	Host     string `toml:"host"`
-	Port     uint16 `toml:"port"`
-	DbName   string `toml:"db-name"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
-}
-
-func (p *SqlServer) Open() (*gorm.DB, error) {
-	slog.Info("open sqlserver", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
-	return gorm.Open(
-		sqlserver.Open(fmt.Sprintf("sqlserver://%s:%s@%s:%d?database=%s", p.User, p.Password, p.Host, p.Port, p.DbName)),
-		&gorm.Config{})
+	gl_root_cmd.AddCommand(gl_http_cmd, gl_rpc_cmd, gl_email_send_cmd, gl_sms_send_cmd)
 }

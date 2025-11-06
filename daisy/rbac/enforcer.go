@@ -14,7 +14,7 @@ import (
 )
 
 //go:embed rbac_model.conf
-var rbac_model string
+var gl_rbac_model string
 
 func updateCallback(msg string) {
 	slog.Debug(msg)
@@ -26,7 +26,7 @@ func NewEnforcer(db *gorm.DB, redis_addresses []string, redis_namespace string) 
 	if err != nil {
 		return nil, err
 	}
-	model, err := model.NewModelFromString(rbac_model)
+	model, err := model.NewModelFromString(gl_rbac_model)
 	if err != nil {
 		return nil, err
 	}

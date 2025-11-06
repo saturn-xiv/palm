@@ -27,6 +27,7 @@ type Context struct {
 type Session struct{}
 
 func NewSession(req *http.Request) *Session {
+
 	// TODO
 	return nil
 }
@@ -39,6 +40,7 @@ const (
 	ContentTypeJson   = "application/json"
 	ContentTypeHtml   = "text/html; charset=utf-8"
 	ContentTypeText   = "text/plain; charset=utf-8"
+	ContentTypeXml    = "application/rss+xml"
 
 	ContentType   = "Content-Type"
 	Authorization = "Authorization"
@@ -46,10 +48,16 @@ const (
 )
 
 //go:embed themes/*/*.html
-var themes embed.FS
+var gl_themes embed.FS
 
+//go:embed assets/*/*
+var gl_assets embed.FS
+
+func Assets() http.Handler {
+	return http.FileServerFS(gl_assets)
+}
 func LoadThemes(t *template.Template) (*template.Template, error) {
-	return t.ParseFS(themes)
+	return t.ParseFS(gl_themes)
 }
 
 func Html(ctx *Context, hnd func(*Context, *Session) (string, H, error)) http.HandlerFunc {
@@ -85,6 +93,18 @@ func Text(ctx *Context, hnd func(*Context, *Session) ([]byte, error)) http.Handl
 	}
 }
 
+func Xml(ctx *Context, hnd func(*Context, *Session) (string, error)) http.HandlerFunc {
+	return func(wrt http.ResponseWriter, req *http.Request) {
+		body, err := hnd(ctx, NewSession(req))
+		if err != nil {
+			abort(wrt, err)
+			return
+		}
+		wrt.WriteHeader(http.StatusOK)
+		wrt.Header().Set(ContentType, ContentTypeXml)
+		fmt.Fprintf(wrt, "%s", body)
+	}
+}
 func abort(wrt http.ResponseWriter, err error) {
 	wrt.WriteHeader(http.StatusInternalServerError)
 	wrt.Header().Set(ContentType, ContentTypeText)

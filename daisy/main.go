@@ -1,9 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
+
+	"github.com/saturn_xiv/palm/daisy/app"
 )
 
 func main() {
-	fmt.Println("Hello, Daisy")
+	if err := app.Execute(); err != nil {
+		log.Fatal(err)
+	}
 }

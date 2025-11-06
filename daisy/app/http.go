@@ -7,6 +7,7 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/BurntSushi/toml"
 	"github.com/gorilla/csrf"
@@ -15,6 +16,7 @@ import (
 
 	"github.com/saturn_xiv/palm/daisy/cache"
 	"github.com/saturn_xiv/palm/daisy/controllers"
+	"github.com/saturn_xiv/palm/daisy/graphql"
 	"github.com/saturn_xiv/palm/daisy/rbac"
 	"github.com/saturn_xiv/palm/daisy/s3"
 )
@@ -70,11 +72,21 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	if err != nil {
 		return err
 	}
+	graphql_hnd, err := graphql.Handler()
+	if err != nil {
+		return err
+	}
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", controllers.Html(ctx, controllers.Home)).Methods(http.MethodGet)
+	router.Handle("/graphql", graphql_hnd).Methods(http.MethodGet, http.MethodPost)
 	router.HandleFunc("/robots.txt", controllers.Text(ctx, controllers.NginxConf)).Methods(http.MethodGet)
 	router.HandleFunc("/service.txt", controllers.Text(ctx, controllers.ServiceConf)).Methods(http.MethodGet)
+	router.HandleFunc("/{lang}/rss.xml", controllers.Xml(ctx, controllers.Rss)).Methods(http.MethodGet)
+
+	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", controllers.Assets())).Methods(http.MethodGet)
+	router.PathPrefix("/3rd/").Handler(http.StripPrefix("/3rd/", http.FileServer(http.Dir("node_modules")))).Methods(http.MethodGet)
+
 	router.Use(
 		csrf.Protect(csrf_key, csrf.Path("/")),
 		handlers.ProxyHeaders,
@@ -84,7 +96,13 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 			handlers.AllowedHeaders([]string{controllers.ContentType, controllers.Authorization})),
 	)
 
-	addr := fmt.Sprintf(":%d", port)
+	addr := fmt.Sprintf("127.0.0.1:%d", port)
 	slog.Info("HTTP server listening at", "address", addr)
-	return http.ListenAndServe(addr, handlers.CombinedLoggingHandler(os.Stdout, router))
+	server := &http.Server{
+		Handler:      handlers.CombinedLoggingHandler(os.Stdout, router),
+		Addr:         addr,
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+	return server.ListenAndServe()
 }
