@@ -6,7 +6,7 @@ import (
 	"github.com/wneessen/go-mail"
 	"google.golang.org/protobuf/proto"
 
-	v2 "com.github/saturn_xiv/palm/daisy/email/v2"
+	v2 "github.com/saturn_xiv/palm/daisy/email/v2"
 )
 
 type Config struct {
@@ -24,6 +24,10 @@ func (p *Config) Open() (*mail.Client, error) {
 
 type EmailSendProtobufConsumer struct {
 	client *mail.Client
+}
+
+func NewEmailSendProtobufConsumer(client *mail.Client) *EmailSendProtobufConsumer {
+	return &EmailSendProtobufConsumer{client: client}
 }
 
 func (p *EmailSendProtobufConsumer) Name() string {

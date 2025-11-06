@@ -9,6 +9,7 @@ package v2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -21,29 +22,33 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type NewEnforcerRequest struct {
-	state                   protoimpl.MessageState `protogen:"open.v1"`
-	ModelText               string                 `protobuf:"bytes,1,opt,name=modelText,proto3" json:"modelText,omitempty"`
-	AdapterHandle           int32                  `protobuf:"varint,2,opt,name=adapterHandle,proto3" json:"adapterHandle,omitempty"`
-	EnableAcceptJsonRequest bool                   `protobuf:"varint,3,opt,name=enableAcceptJsonRequest,proto3" json:"enableAcceptJsonRequest,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+type Object struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Type  string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// Types that are valid to be assigned to By:
+	//
+	//	*Object_Id
+	//	*Object_Code
+	//	*Object_All
+	By            isObject_By `protobuf_oneof:"by"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NewEnforcerRequest) Reset() {
-	*x = NewEnforcerRequest{}
+func (x *Object) Reset() {
+	*x = Object{}
 	mi := &file_proto_rbac_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NewEnforcerRequest) String() string {
+func (x *Object) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewEnforcerRequest) ProtoMessage() {}
+func (*Object) ProtoMessage() {}
 
-func (x *NewEnforcerRequest) ProtoReflect() protoreflect.Message {
+func (x *Object) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_rbac_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,53 +60,99 @@ func (x *NewEnforcerRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewEnforcerRequest.ProtoReflect.Descriptor instead.
-func (*NewEnforcerRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Object.ProtoReflect.Descriptor instead.
+func (*Object) Descriptor() ([]byte, []int) {
 	return file_proto_rbac_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *NewEnforcerRequest) GetModelText() string {
+func (x *Object) GetType() string {
 	if x != nil {
-		return x.ModelText
+		return x.Type
 	}
 	return ""
 }
 
-func (x *NewEnforcerRequest) GetAdapterHandle() int32 {
+func (x *Object) GetBy() isObject_By {
 	if x != nil {
-		return x.AdapterHandle
+		return x.By
+	}
+	return nil
+}
+
+func (x *Object) GetId() uint32 {
+	if x != nil {
+		if x, ok := x.By.(*Object_Id); ok {
+			return x.Id
+		}
 	}
 	return 0
 }
 
-func (x *NewEnforcerRequest) GetEnableAcceptJsonRequest() bool {
+func (x *Object) GetCode() string {
 	if x != nil {
-		return x.EnableAcceptJsonRequest
+		if x, ok := x.By.(*Object_Code); ok {
+			return x.Code
+		}
 	}
-	return false
+	return ""
 }
 
-type NewEnforcerReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Handler       int32                  `protobuf:"varint,1,opt,name=handler,proto3" json:"handler,omitempty"`
+func (x *Object) GetAll() *emptypb.Empty {
+	if x != nil {
+		if x, ok := x.By.(*Object_All); ok {
+			return x.All
+		}
+	}
+	return nil
+}
+
+type isObject_By interface {
+	isObject_By()
+}
+
+type Object_Id struct {
+	Id uint32 `protobuf:"varint,11,opt,name=id,proto3,oneof"`
+}
+
+type Object_Code struct {
+	Code string `protobuf:"bytes,12,opt,name=code,proto3,oneof"`
+}
+
+type Object_All struct {
+	All *emptypb.Empty `protobuf:"bytes,19,opt,name=all,proto3,oneof"`
+}
+
+func (*Object_Id) isObject_By() {}
+
+func (*Object_Code) isObject_By() {}
+
+func (*Object_All) isObject_By() {}
+
+type Subject struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to By:
+	//
+	//	*Subject_User_
+	//	*Subject_Role_
+	By            isSubject_By `protobuf_oneof:"by"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NewEnforcerReply) Reset() {
-	*x = NewEnforcerReply{}
+func (x *Subject) Reset() {
+	*x = Subject{}
 	mi := &file_proto_rbac_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NewEnforcerReply) String() string {
+func (x *Subject) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewEnforcerReply) ProtoMessage() {}
+func (*Subject) ProtoMessage() {}
 
-func (x *NewEnforcerReply) ProtoReflect() protoreflect.Message {
+func (x *Subject) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_rbac_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -113,42 +164,83 @@ func (x *NewEnforcerReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewEnforcerReply.ProtoReflect.Descriptor instead.
-func (*NewEnforcerReply) Descriptor() ([]byte, []int) {
+// Deprecated: Use Subject.ProtoReflect.Descriptor instead.
+func (*Subject) Descriptor() ([]byte, []int) {
 	return file_proto_rbac_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *NewEnforcerReply) GetHandler() int32 {
+func (x *Subject) GetBy() isSubject_By {
 	if x != nil {
-		return x.Handler
+		return x.By
 	}
-	return 0
+	return nil
 }
 
-type NewAdapterRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AdapterName   string                 `protobuf:"bytes,1,opt,name=adapterName,proto3" json:"adapterName,omitempty"`
-	DriverName    string                 `protobuf:"bytes,2,opt,name=driverName,proto3" json:"driverName,omitempty"`
-	ConnectString string                 `protobuf:"bytes,3,opt,name=connectString,proto3" json:"connectString,omitempty"`
-	DbSpecified   bool                   `protobuf:"varint,4,opt,name=dbSpecified,proto3" json:"dbSpecified,omitempty"`
+func (x *Subject) GetUser() *Subject_User {
+	if x != nil {
+		if x, ok := x.By.(*Subject_User_); ok {
+			return x.User
+		}
+	}
+	return nil
+}
+
+func (x *Subject) GetRole() *Subject_Role {
+	if x != nil {
+		if x, ok := x.By.(*Subject_Role_); ok {
+			return x.Role
+		}
+	}
+	return nil
+}
+
+type isSubject_By interface {
+	isSubject_By()
+}
+
+type Subject_User_ struct {
+	User *Subject_User `protobuf:"bytes,1,opt,name=user,proto3,oneof"`
+}
+
+type Subject_Role_ struct {
+	Role *Subject_Role `protobuf:"bytes,2,opt,name=role,proto3,oneof"`
+}
+
+func (*Subject_User_) isSubject_By() {}
+
+func (*Subject_Role_) isSubject_By() {}
+
+type Action struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to By:
+	//
+	//	*Action_Read_
+	//	*Action_Write_
+	//	*Action_Append_
+	//	*Action_Execute_
+	//	*Action_Credit_
+	//	*Action_Debit_
+	//	*Action_Inquiry_
+	//	*Action_Code
+	By            isAction_By `protobuf_oneof:"by"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NewAdapterRequest) Reset() {
-	*x = NewAdapterRequest{}
+func (x *Action) Reset() {
+	*x = Action{}
 	mi := &file_proto_rbac_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NewAdapterRequest) String() string {
+func (x *Action) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewAdapterRequest) ProtoMessage() {}
+func (*Action) ProtoMessage() {}
 
-func (x *NewAdapterRequest) ProtoReflect() protoreflect.Message {
+func (x *Action) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_rbac_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -160,60 +252,165 @@ func (x *NewAdapterRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewAdapterRequest.ProtoReflect.Descriptor instead.
-func (*NewAdapterRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Action.ProtoReflect.Descriptor instead.
+func (*Action) Descriptor() ([]byte, []int) {
 	return file_proto_rbac_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *NewAdapterRequest) GetAdapterName() string {
+func (x *Action) GetBy() isAction_By {
 	if x != nil {
-		return x.AdapterName
+		return x.By
+	}
+	return nil
+}
+
+func (x *Action) GetRead() *Action_Read {
+	if x != nil {
+		if x, ok := x.By.(*Action_Read_); ok {
+			return x.Read
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWrite() *Action_Write {
+	if x != nil {
+		if x, ok := x.By.(*Action_Write_); ok {
+			return x.Write
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetAppend() *Action_Append {
+	if x != nil {
+		if x, ok := x.By.(*Action_Append_); ok {
+			return x.Append
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetExecute() *Action_Execute {
+	if x != nil {
+		if x, ok := x.By.(*Action_Execute_); ok {
+			return x.Execute
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetCredit() *Action_Credit {
+	if x != nil {
+		if x, ok := x.By.(*Action_Credit_); ok {
+			return x.Credit
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetDebit() *Action_Debit {
+	if x != nil {
+		if x, ok := x.By.(*Action_Debit_); ok {
+			return x.Debit
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetInquiry() *Action_Inquiry {
+	if x != nil {
+		if x, ok := x.By.(*Action_Inquiry_); ok {
+			return x.Inquiry
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetCode() string {
+	if x != nil {
+		if x, ok := x.By.(*Action_Code); ok {
+			return x.Code
+		}
 	}
 	return ""
 }
 
-func (x *NewAdapterRequest) GetDriverName() string {
-	if x != nil {
-		return x.DriverName
-	}
-	return ""
+type isAction_By interface {
+	isAction_By()
 }
 
-func (x *NewAdapterRequest) GetConnectString() string {
-	if x != nil {
-		return x.ConnectString
-	}
-	return ""
+type Action_Read_ struct {
+	Read *Action_Read `protobuf:"bytes,1,opt,name=read,proto3,oneof"`
 }
 
-func (x *NewAdapterRequest) GetDbSpecified() bool {
-	if x != nil {
-		return x.DbSpecified
-	}
-	return false
+type Action_Write_ struct {
+	Write *Action_Write `protobuf:"bytes,2,opt,name=write,proto3,oneof"`
 }
 
-type NewAdapterReply struct {
+type Action_Append_ struct {
+	Append *Action_Append `protobuf:"bytes,3,opt,name=append,proto3,oneof"`
+}
+
+type Action_Execute_ struct {
+	Execute *Action_Execute `protobuf:"bytes,4,opt,name=execute,proto3,oneof"`
+}
+
+type Action_Credit_ struct {
+	Credit *Action_Credit `protobuf:"bytes,5,opt,name=credit,proto3,oneof"`
+}
+
+type Action_Debit_ struct {
+	Debit *Action_Debit `protobuf:"bytes,6,opt,name=debit,proto3,oneof"`
+}
+
+type Action_Inquiry_ struct {
+	Inquiry *Action_Inquiry `protobuf:"bytes,7,opt,name=inquiry,proto3,oneof"`
+}
+
+type Action_Code struct {
+	Code string `protobuf:"bytes,9,opt,name=code,proto3,oneof"`
+}
+
+func (*Action_Read_) isAction_By() {}
+
+func (*Action_Write_) isAction_By() {}
+
+func (*Action_Append_) isAction_By() {}
+
+func (*Action_Execute_) isAction_By() {}
+
+func (*Action_Credit_) isAction_By() {}
+
+func (*Action_Debit_) isAction_By() {}
+
+func (*Action_Inquiry_) isAction_By() {}
+
+func (*Action_Code) isAction_By() {}
+
+type Permission struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Handler       int32                  `protobuf:"varint,1,opt,name=handler,proto3" json:"handler,omitempty"`
+	Subject       *Subject               `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	Object        *Object                `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	Action        *Action                `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NewAdapterReply) Reset() {
-	*x = NewAdapterReply{}
+func (x *Permission) Reset() {
+	*x = Permission{}
 	mi := &file_proto_rbac_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NewAdapterReply) String() string {
+func (x *Permission) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewAdapterReply) ProtoMessage() {}
+func (*Permission) ProtoMessage() {}
 
-func (x *NewAdapterReply) ProtoReflect() protoreflect.Message {
+func (x *Permission) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_rbac_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -225,431 +422,43 @@ func (x *NewAdapterReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewAdapterReply.ProtoReflect.Descriptor instead.
-func (*NewAdapterReply) Descriptor() ([]byte, []int) {
+// Deprecated: Use Permission.ProtoReflect.Descriptor instead.
+func (*Permission) Descriptor() ([]byte, []int) {
 	return file_proto_rbac_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *NewAdapterReply) GetHandler() int32 {
+func (x *Permission) GetSubject() *Subject {
 	if x != nil {
-		return x.Handler
-	}
-	return 0
-}
-
-type EnforceRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	Params          []string               `protobuf:"bytes,2,rep,name=params,proto3" json:"params,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *EnforceRequest) Reset() {
-	*x = EnforceRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EnforceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EnforceRequest) ProtoMessage() {}
-
-func (x *EnforceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EnforceRequest.ProtoReflect.Descriptor instead.
-func (*EnforceRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *EnforceRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *EnforceRequest) GetParams() []string {
-	if x != nil {
-		return x.Params
+		return x.Subject
 	}
 	return nil
 }
 
-type BoolReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Res           bool                   `protobuf:"varint,1,opt,name=res,proto3" json:"res,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BoolReply) Reset() {
-	*x = BoolReply{}
-	mi := &file_proto_rbac_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BoolReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BoolReply) ProtoMessage() {}
-
-func (x *BoolReply) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[5]
+func (x *Permission) GetObject() *Object {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BoolReply.ProtoReflect.Descriptor instead.
-func (*BoolReply) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *BoolReply) GetRes() bool {
-	if x != nil {
-		return x.Res
-	}
-	return false
-}
-
-type EmptyRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Handler       int32                  `protobuf:"varint,1,opt,name=handler,proto3" json:"handler,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmptyRequest) Reset() {
-	*x = EmptyRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmptyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmptyRequest) ProtoMessage() {}
-
-func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
-func (*EmptyRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *EmptyRequest) GetHandler() int32 {
-	if x != nil {
-		return x.Handler
-	}
-	return 0
-}
-
-type EmptyReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmptyReply) Reset() {
-	*x = EmptyReply{}
-	mi := &file_proto_rbac_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmptyReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmptyReply) ProtoMessage() {}
-
-func (x *EmptyReply) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmptyReply.ProtoReflect.Descriptor instead.
-func (*EmptyReply) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{7}
-}
-
-type PolicyRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	PType           string                 `protobuf:"bytes,2,opt,name=pType,proto3" json:"pType,omitempty"`
-	Params          []string               `protobuf:"bytes,3,rep,name=params,proto3" json:"params,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *PolicyRequest) Reset() {
-	*x = PolicyRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PolicyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PolicyRequest) ProtoMessage() {}
-
-func (x *PolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PolicyRequest.ProtoReflect.Descriptor instead.
-func (*PolicyRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *PolicyRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *PolicyRequest) GetPType() string {
-	if x != nil {
-		return x.PType
-	}
-	return ""
-}
-
-func (x *PolicyRequest) GetParams() []string {
-	if x != nil {
-		return x.Params
+		return x.Object
 	}
 	return nil
 }
 
-type SimpleGetRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	PType           string                 `protobuf:"bytes,2,opt,name=pType,proto3" json:"pType,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *SimpleGetRequest) Reset() {
-	*x = SimpleGetRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SimpleGetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SimpleGetRequest) ProtoMessage() {}
-
-func (x *SimpleGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[9]
+func (x *Permission) GetAction() *Action {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SimpleGetRequest.ProtoReflect.Descriptor instead.
-func (*SimpleGetRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *SimpleGetRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *SimpleGetRequest) GetPType() string {
-	if x != nil {
-		return x.PType
-	}
-	return ""
-}
-
-type ArrayReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Array         []string               `protobuf:"bytes,1,rep,name=array,proto3" json:"array,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ArrayReply) Reset() {
-	*x = ArrayReply{}
-	mi := &file_proto_rbac_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ArrayReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ArrayReply) ProtoMessage() {}
-
-func (x *ArrayReply) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ArrayReply.ProtoReflect.Descriptor instead.
-func (*ArrayReply) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *ArrayReply) GetArray() []string {
-	if x != nil {
-		return x.Array
-	}
-	return nil
-}
-
-type FilteredPolicyRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	PType           string                 `protobuf:"bytes,2,opt,name=pType,proto3" json:"pType,omitempty"`
-	FieldIndex      int32                  `protobuf:"varint,3,opt,name=fieldIndex,proto3" json:"fieldIndex,omitempty"`
-	FieldValues     []string               `protobuf:"bytes,4,rep,name=fieldValues,proto3" json:"fieldValues,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *FilteredPolicyRequest) Reset() {
-	*x = FilteredPolicyRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FilteredPolicyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FilteredPolicyRequest) ProtoMessage() {}
-
-func (x *FilteredPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FilteredPolicyRequest.ProtoReflect.Descriptor instead.
-func (*FilteredPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *FilteredPolicyRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *FilteredPolicyRequest) GetPType() string {
-	if x != nil {
-		return x.PType
-	}
-	return ""
-}
-
-func (x *FilteredPolicyRequest) GetFieldIndex() int32 {
-	if x != nil {
-		return x.FieldIndex
-	}
-	return 0
-}
-
-func (x *FilteredPolicyRequest) GetFieldValues() []string {
-	if x != nil {
-		return x.FieldValues
+		return x.Action
 	}
 	return nil
 }
 
 type UserRoleRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	User            string                 `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
-	Role            string                 `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
-	Domain          []string               `protobuf:"bytes,4,rep,name=domain,proto3" json:"domain,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *Subject_User          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Role          *Subject_Role          `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserRoleRequest) Reset() {
 	*x = UserRoleRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[12]
+	mi := &file_proto_rbac_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -661,7 +470,7 @@ func (x *UserRoleRequest) String() string {
 func (*UserRoleRequest) ProtoMessage() {}
 
 func (x *UserRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[12]
+	mi := &file_proto_rbac_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,62 +483,45 @@ func (x *UserRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserRoleRequest.ProtoReflect.Descriptor instead.
 func (*UserRoleRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{12}
+	return file_proto_rbac_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *UserRoleRequest) GetEnforcerHandler() int32 {
-	if x != nil {
-		return x.EnforcerHandler
-	}
-	return 0
-}
-
-func (x *UserRoleRequest) GetUser() string {
+func (x *UserRoleRequest) GetUser() *Subject_User {
 	if x != nil {
 		return x.User
 	}
-	return ""
+	return nil
 }
 
-func (x *UserRoleRequest) GetRole() string {
+func (x *UserRoleRequest) GetRole() *Subject_Role {
 	if x != nil {
 		return x.Role
 	}
-	return ""
-}
-
-func (x *UserRoleRequest) GetDomain() []string {
-	if x != nil {
-		return x.Domain
-	}
 	return nil
 }
 
-type PermissionRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	EnforcerHandler int32                  `protobuf:"varint,1,opt,name=enforcerHandler,proto3" json:"enforcerHandler,omitempty"`
-	User            string                 `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
-	Permissions     []string               `protobuf:"bytes,3,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	Domain          []string               `protobuf:"bytes,4,rep,name=domain,proto3" json:"domain,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+type RolesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Subject_Role        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PermissionRequest) Reset() {
-	*x = PermissionRequest{}
-	mi := &file_proto_rbac_proto_msgTypes[13]
+func (x *RolesResponse) Reset() {
+	*x = RolesResponse{}
+	mi := &file_proto_rbac_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PermissionRequest) String() string {
+func (x *RolesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PermissionRequest) ProtoMessage() {}
+func (*RolesResponse) ProtoMessage() {}
 
-func (x *PermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rbac_proto_msgTypes[13]
+func (x *RolesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -740,60 +532,460 @@ func (x *PermissionRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PermissionRequest.ProtoReflect.Descriptor instead.
-func (*PermissionRequest) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{13}
+// Deprecated: Use RolesResponse.ProtoReflect.Descriptor instead.
+func (*RolesResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *PermissionRequest) GetEnforcerHandler() int32 {
+func (x *RolesResponse) GetItems() []*Subject_Role {
 	if x != nil {
-		return x.EnforcerHandler
+		return x.Items
+	}
+	return nil
+}
+
+type UsersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Subject_User        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UsersResponse) Reset() {
+	*x = UsersResponse{}
+	mi := &file_proto_rbac_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UsersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UsersResponse) ProtoMessage() {}
+
+func (x *UsersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UsersResponse.ProtoReflect.Descriptor instead.
+func (*UsersResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UsersResponse) GetItems() []*Subject_User {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type SubjectsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Subject             `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SubjectsResponse) Reset() {
+	*x = SubjectsResponse{}
+	mi := &file_proto_rbac_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SubjectsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubjectsResponse) ProtoMessage() {}
+
+func (x *SubjectsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubjectsResponse.ProtoReflect.Descriptor instead.
+func (*SubjectsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SubjectsResponse) GetItems() []*Subject {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type ObjectsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Object              `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ObjectsResponse) Reset() {
+	*x = ObjectsResponse{}
+	mi := &file_proto_rbac_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjectsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjectsResponse) ProtoMessage() {}
+
+func (x *ObjectsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ObjectsResponse.ProtoReflect.Descriptor instead.
+func (*ObjectsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ObjectsResponse) GetItems() []*Object {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type ActionsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Action              `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ActionsResponse) Reset() {
+	*x = ActionsResponse{}
+	mi := &file_proto_rbac_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ActionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionsResponse) ProtoMessage() {}
+
+func (x *ActionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionsResponse.ProtoReflect.Descriptor instead.
+func (*ActionsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ActionsResponse) GetItems() []*Action {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type PermissionsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Permission          `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PermissionsResponse) Reset() {
+	*x = PermissionsResponse{}
+	mi := &file_proto_rbac_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PermissionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PermissionsResponse) ProtoMessage() {}
+
+func (x *PermissionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PermissionsResponse.ProtoReflect.Descriptor instead.
+func (*PermissionsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PermissionsResponse) GetItems() []*Permission {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type Subject_Role struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to By:
+	//
+	//	*Subject_Role_Root_
+	//	*Subject_Role_Administrator_
+	//	*Subject_Role_Id
+	//	*Subject_Role_Code
+	By            isSubject_Role_By `protobuf_oneof:"by"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Subject_Role) Reset() {
+	*x = Subject_Role{}
+	mi := &file_proto_rbac_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Subject_Role) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Subject_Role) ProtoMessage() {}
+
+func (x *Subject_Role) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Subject_Role.ProtoReflect.Descriptor instead.
+func (*Subject_Role) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{1, 0}
+}
+
+func (x *Subject_Role) GetBy() isSubject_Role_By {
+	if x != nil {
+		return x.By
+	}
+	return nil
+}
+
+func (x *Subject_Role) GetRoot() *Subject_Role_Root {
+	if x != nil {
+		if x, ok := x.By.(*Subject_Role_Root_); ok {
+			return x.Root
+		}
+	}
+	return nil
+}
+
+func (x *Subject_Role) GetAdministrator() *Subject_Role_Administrator {
+	if x != nil {
+		if x, ok := x.By.(*Subject_Role_Administrator_); ok {
+			return x.Administrator
+		}
+	}
+	return nil
+}
+
+func (x *Subject_Role) GetId() uint32 {
+	if x != nil {
+		if x, ok := x.By.(*Subject_Role_Id); ok {
+			return x.Id
+		}
 	}
 	return 0
 }
 
-func (x *PermissionRequest) GetUser() string {
+func (x *Subject_Role) GetCode() string {
 	if x != nil {
-		return x.User
+		if x, ok := x.By.(*Subject_Role_Code); ok {
+			return x.Code
+		}
 	}
 	return ""
 }
 
-func (x *PermissionRequest) GetPermissions() []string {
-	if x != nil {
-		return x.Permissions
-	}
-	return nil
+type isSubject_Role_By interface {
+	isSubject_Role_By()
 }
 
-func (x *PermissionRequest) GetDomain() []string {
-	if x != nil {
-		return x.Domain
-	}
-	return nil
+type Subject_Role_Root_ struct {
+	Root *Subject_Role_Root `protobuf:"bytes,1,opt,name=root,proto3,oneof"`
 }
 
-type Array2DReply struct {
+type Subject_Role_Administrator_ struct {
+	Administrator *Subject_Role_Administrator `protobuf:"bytes,2,opt,name=administrator,proto3,oneof"`
+}
+
+type Subject_Role_Id struct {
+	Id uint32 `protobuf:"varint,8,opt,name=id,proto3,oneof"`
+}
+
+type Subject_Role_Code struct {
+	Code string `protobuf:"bytes,9,opt,name=code,proto3,oneof"`
+}
+
+func (*Subject_Role_Root_) isSubject_Role_By() {}
+
+func (*Subject_Role_Administrator_) isSubject_Role_By() {}
+
+func (*Subject_Role_Id) isSubject_Role_By() {}
+
+func (*Subject_Role_Code) isSubject_Role_By() {}
+
+type Subject_User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	D2            []*Array2DReplyD       `protobuf:"bytes,1,rep,name=d2,proto3" json:"d2,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Array2DReply) Reset() {
-	*x = Array2DReply{}
+func (x *Subject_User) Reset() {
+	*x = Subject_User{}
+	mi := &file_proto_rbac_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Subject_User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Subject_User) ProtoMessage() {}
+
+func (x *Subject_User) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Subject_User.ProtoReflect.Descriptor instead.
+func (*Subject_User) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{1, 1}
+}
+
+func (x *Subject_User) GetId() uint32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Subject_User) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+type Subject_Role_Root struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Subject_Role_Root) Reset() {
+	*x = Subject_Role_Root{}
+	mi := &file_proto_rbac_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Subject_Role_Root) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Subject_Role_Root) ProtoMessage() {}
+
+func (x *Subject_Role_Root) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Subject_Role_Root.ProtoReflect.Descriptor instead.
+func (*Subject_Role_Root) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{1, 0, 0}
+}
+
+type Subject_Role_Administrator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Subject_Role_Administrator) Reset() {
+	*x = Subject_Role_Administrator{}
 	mi := &file_proto_rbac_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Array2DReply) String() string {
+func (x *Subject_Role_Administrator) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Array2DReply) ProtoMessage() {}
+func (*Subject_Role_Administrator) ProtoMessage() {}
 
-func (x *Array2DReply) ProtoReflect() protoreflect.Message {
+func (x *Subject_Role_Administrator) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_rbac_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -805,39 +997,31 @@ func (x *Array2DReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Array2DReply.ProtoReflect.Descriptor instead.
-func (*Array2DReply) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{14}
+// Deprecated: Use Subject_Role_Administrator.ProtoReflect.Descriptor instead.
+func (*Subject_Role_Administrator) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{1, 0, 1}
 }
 
-func (x *Array2DReply) GetD2() []*Array2DReplyD {
-	if x != nil {
-		return x.D2
-	}
-	return nil
-}
-
-type Array2DReplyD struct {
+type Action_Read struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	D1            []string               `protobuf:"bytes,1,rep,name=d1,proto3" json:"d1,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Array2DReplyD) Reset() {
-	*x = Array2DReplyD{}
+func (x *Action_Read) Reset() {
+	*x = Action_Read{}
 	mi := &file_proto_rbac_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Array2DReplyD) String() string {
+func (x *Action_Read) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Array2DReplyD) ProtoMessage() {}
+func (*Action_Read) ProtoMessage() {}
 
-func (x *Array2DReplyD) ProtoReflect() protoreflect.Message {
+func (x *Action_Read) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_rbac_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -849,135 +1033,312 @@ func (x *Array2DReplyD) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Array2DReplyD.ProtoReflect.Descriptor instead.
-func (*Array2DReplyD) Descriptor() ([]byte, []int) {
-	return file_proto_rbac_proto_rawDescGZIP(), []int{14, 0}
+// Deprecated: Use Action_Read.ProtoReflect.Descriptor instead.
+func (*Action_Read) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 0}
 }
 
-func (x *Array2DReplyD) GetD1() []string {
+type Action_Write struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Action_Write) Reset() {
+	*x = Action_Write{}
+	mi := &file_proto_rbac_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Action_Write) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Action_Write) ProtoMessage() {}
+
+func (x *Action_Write) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[16]
 	if x != nil {
-		return x.D1
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
 	}
-	return nil
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Action_Write.ProtoReflect.Descriptor instead.
+func (*Action_Write) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 1}
+}
+
+type Action_Append struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Action_Append) Reset() {
+	*x = Action_Append{}
+	mi := &file_proto_rbac_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Action_Append) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Action_Append) ProtoMessage() {}
+
+func (x *Action_Append) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Action_Append.ProtoReflect.Descriptor instead.
+func (*Action_Append) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 2}
+}
+
+type Action_Execute struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Action_Execute) Reset() {
+	*x = Action_Execute{}
+	mi := &file_proto_rbac_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Action_Execute) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Action_Execute) ProtoMessage() {}
+
+func (x *Action_Execute) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Action_Execute.ProtoReflect.Descriptor instead.
+func (*Action_Execute) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 3}
+}
+
+type Action_Credit struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Action_Credit) Reset() {
+	*x = Action_Credit{}
+	mi := &file_proto_rbac_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Action_Credit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Action_Credit) ProtoMessage() {}
+
+func (x *Action_Credit) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Action_Credit.ProtoReflect.Descriptor instead.
+func (*Action_Credit) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 4}
+}
+
+type Action_Debit struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Action_Debit) Reset() {
+	*x = Action_Debit{}
+	mi := &file_proto_rbac_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Action_Debit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Action_Debit) ProtoMessage() {}
+
+func (x *Action_Debit) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Action_Debit.ProtoReflect.Descriptor instead.
+func (*Action_Debit) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 5}
+}
+
+type Action_Inquiry struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Action_Inquiry) Reset() {
+	*x = Action_Inquiry{}
+	mi := &file_proto_rbac_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Action_Inquiry) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Action_Inquiry) ProtoMessage() {}
+
+func (x *Action_Inquiry) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rbac_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Action_Inquiry.ProtoReflect.Descriptor instead.
+func (*Action_Inquiry) Descriptor() ([]byte, []int) {
+	return file_proto_rbac_proto_rawDescGZIP(), []int{2, 6}
 }
 
 var File_proto_rbac_proto protoreflect.FileDescriptor
 
 const file_proto_rbac_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/rbac.proto\x12\fpalm.rbac.v1\"\x92\x01\n" +
-	"\x12NewEnforcerRequest\x12\x1c\n" +
-	"\tmodelText\x18\x01 \x01(\tR\tmodelText\x12$\n" +
-	"\radapterHandle\x18\x02 \x01(\x05R\radapterHandle\x128\n" +
-	"\x17enableAcceptJsonRequest\x18\x03 \x01(\bR\x17enableAcceptJsonRequest\",\n" +
-	"\x10NewEnforcerReply\x12\x18\n" +
-	"\ahandler\x18\x01 \x01(\x05R\ahandler\"\x9d\x01\n" +
-	"\x11NewAdapterRequest\x12 \n" +
-	"\vadapterName\x18\x01 \x01(\tR\vadapterName\x12\x1e\n" +
+	"\x10proto/rbac.proto\x12\fpalm.rbac.v1\x1a\x1bgoogle/protobuf/empty.proto\"v\n" +
+	"\x06Object\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\x12\x10\n" +
+	"\x02id\x18\v \x01(\rH\x00R\x02id\x12\x14\n" +
+	"\x04code\x18\f \x01(\tH\x00R\x04code\x12*\n" +
+	"\x03all\x18\x13 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x03allB\x04\n" +
+	"\x02by\"\xf8\x02\n" +
+	"\aSubject\x120\n" +
+	"\x04user\x18\x01 \x01(\v2\x1a.palm.rbac.v1.Subject.UserH\x00R\x04user\x120\n" +
+	"\x04role\x18\x02 \x01(\v2\x1a.palm.rbac.v1.Subject.RoleH\x00R\x04role\x1a\xd6\x01\n" +
+	"\x04Role\x125\n" +
+	"\x04root\x18\x01 \x01(\v2\x1f.palm.rbac.v1.Subject.Role.RootH\x00R\x04root\x12P\n" +
+	"\radministrator\x18\x02 \x01(\v2(.palm.rbac.v1.Subject.Role.AdministratorH\x00R\radministrator\x12\x10\n" +
+	"\x02id\x18\b \x01(\rH\x00R\x02id\x12\x14\n" +
+	"\x04code\x18\t \x01(\tH\x00R\x04code\x1a\x06\n" +
+	"\x04Root\x1a\x0f\n" +
+	"\rAdministratorB\x04\n" +
+	"\x02by\x1a*\n" +
+	"\x04User\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04codeB\x04\n" +
+	"\x02by\"\xe3\x03\n" +
+	"\x06Action\x12/\n" +
+	"\x04read\x18\x01 \x01(\v2\x19.palm.rbac.v1.Action.ReadH\x00R\x04read\x122\n" +
+	"\x05write\x18\x02 \x01(\v2\x1a.palm.rbac.v1.Action.WriteH\x00R\x05write\x125\n" +
+	"\x06append\x18\x03 \x01(\v2\x1b.palm.rbac.v1.Action.AppendH\x00R\x06append\x128\n" +
+	"\aexecute\x18\x04 \x01(\v2\x1c.palm.rbac.v1.Action.ExecuteH\x00R\aexecute\x125\n" +
+	"\x06credit\x18\x05 \x01(\v2\x1b.palm.rbac.v1.Action.CreditH\x00R\x06credit\x122\n" +
+	"\x05debit\x18\x06 \x01(\v2\x1a.palm.rbac.v1.Action.DebitH\x00R\x05debit\x128\n" +
+	"\ainquiry\x18\a \x01(\v2\x1c.palm.rbac.v1.Action.InquiryH\x00R\ainquiry\x12\x14\n" +
+	"\x04code\x18\t \x01(\tH\x00R\x04code\x1a\x06\n" +
+	"\x04Read\x1a\a\n" +
+	"\x05Write\x1a\b\n" +
+	"\x06Append\x1a\t\n" +
+	"\aExecute\x1a\b\n" +
+	"\x06Credit\x1a\a\n" +
+	"\x05Debit\x1a\t\n" +
+	"\aInquiryB\x04\n" +
+	"\x02by\"\x99\x01\n" +
 	"\n" +
-	"driverName\x18\x02 \x01(\tR\n" +
-	"driverName\x12$\n" +
-	"\rconnectString\x18\x03 \x01(\tR\rconnectString\x12 \n" +
-	"\vdbSpecified\x18\x04 \x01(\bR\vdbSpecified\"+\n" +
-	"\x0fNewAdapterReply\x12\x18\n" +
-	"\ahandler\x18\x01 \x01(\x05R\ahandler\"R\n" +
-	"\x0eEnforceRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x16\n" +
-	"\x06params\x18\x02 \x03(\tR\x06params\"\x1d\n" +
-	"\tBoolReply\x12\x10\n" +
-	"\x03res\x18\x01 \x01(\bR\x03res\"(\n" +
-	"\fEmptyRequest\x12\x18\n" +
-	"\ahandler\x18\x01 \x01(\x05R\ahandler\"\f\n" +
+	"Permission\x12/\n" +
+	"\asubject\x18\x01 \x01(\v2\x15.palm.rbac.v1.SubjectR\asubject\x12,\n" +
+	"\x06object\x18\x02 \x01(\v2\x14.palm.rbac.v1.ObjectR\x06object\x12,\n" +
+	"\x06action\x18\x03 \x01(\v2\x14.palm.rbac.v1.ActionR\x06action\"q\n" +
+	"\x0fUserRoleRequest\x12.\n" +
+	"\x04user\x18\x01 \x01(\v2\x1a.palm.rbac.v1.Subject.UserR\x04user\x12.\n" +
+	"\x04role\x18\x02 \x01(\v2\x1a.palm.rbac.v1.Subject.RoleR\x04role\"A\n" +
+	"\rRolesResponse\x120\n" +
+	"\x05items\x18\x01 \x03(\v2\x1a.palm.rbac.v1.Subject.RoleR\x05items\"A\n" +
+	"\rUsersResponse\x120\n" +
+	"\x05items\x18\x01 \x03(\v2\x1a.palm.rbac.v1.Subject.UserR\x05items\"?\n" +
+	"\x10SubjectsResponse\x12+\n" +
+	"\x05items\x18\x01 \x03(\v2\x15.palm.rbac.v1.SubjectR\x05items\"=\n" +
+	"\x0fObjectsResponse\x12*\n" +
+	"\x05items\x18\x01 \x03(\v2\x14.palm.rbac.v1.ObjectR\x05items\"=\n" +
+	"\x0fActionsResponse\x12*\n" +
+	"\x05items\x18\x01 \x03(\v2\x14.palm.rbac.v1.ActionR\x05items\"E\n" +
+	"\x13PermissionsResponse\x12.\n" +
+	"\x05items\x18\x01 \x03(\v2\x18.palm.rbac.v1.PermissionR\x05items2\xf6\n" +
 	"\n" +
-	"EmptyReply\"g\n" +
-	"\rPolicyRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x14\n" +
-	"\x05pType\x18\x02 \x01(\tR\x05pType\x12\x16\n" +
-	"\x06params\x18\x03 \x03(\tR\x06params\"R\n" +
-	"\x10SimpleGetRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x14\n" +
-	"\x05pType\x18\x02 \x01(\tR\x05pType\"\"\n" +
+	"\bEnforcer\x12J\n" +
+	"\x0eGetAllSubjects\x12\x16.google.protobuf.Empty\x1a\x1e.palm.rbac.v1.SubjectsResponse\"\x00\x12H\n" +
+	"\rGetAllObjects\x12\x16.google.protobuf.Empty\x1a\x1d.palm.rbac.v1.ObjectsResponse\"\x00\x12H\n" +
+	"\rGetAllActions\x12\x16.google.protobuf.Empty\x1a\x1d.palm.rbac.v1.ActionsResponse\"\x00\x12D\n" +
+	"\vGetAllRoles\x12\x16.google.protobuf.Empty\x1a\x1b.palm.rbac.v1.RolesResponse\"\x00\x12L\n" +
+	"\x0fGetRolesForUser\x12\x1a.palm.rbac.v1.Subject.User\x1a\x1b.palm.rbac.v1.RolesResponse\"\x00\x12T\n" +
+	"\x17GetImplicitRolesForUser\x12\x1a.palm.rbac.v1.Subject.User\x1a\x1b.palm.rbac.v1.RolesResponse\"\x00\x12L\n" +
+	"\x0fGetUsersForRole\x12\x1a.palm.rbac.v1.Subject.Role\x1a\x1b.palm.rbac.v1.UsersResponse\"\x00\x12I\n" +
+	"\x0eHasRoleForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x16.google.protobuf.Empty\"\x00\x12I\n" +
+	"\x0eAddRoleForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x16.google.protobuf.Empty\"\x00\x12L\n" +
+	"\x11DeleteRoleForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x16.google.protobuf.Empty\"\x00\x12B\n" +
 	"\n" +
-	"ArrayReply\x12\x14\n" +
-	"\x05array\x18\x01 \x03(\tR\x05array\"\x99\x01\n" +
-	"\x15FilteredPolicyRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x14\n" +
-	"\x05pType\x18\x02 \x01(\tR\x05pType\x12\x1e\n" +
+	"DeleteUser\x12\x1a.palm.rbac.v1.Subject.User\x1a\x16.google.protobuf.Empty\"\x00\x12B\n" +
 	"\n" +
-	"fieldIndex\x18\x03 \x01(\x05R\n" +
-	"fieldIndex\x12 \n" +
-	"\vfieldValues\x18\x04 \x03(\tR\vfieldValues\"{\n" +
-	"\x0fUserRoleRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x12\n" +
-	"\x04user\x18\x02 \x01(\tR\x04user\x12\x12\n" +
-	"\x04role\x18\x03 \x01(\tR\x04role\x12\x16\n" +
-	"\x06domain\x18\x04 \x03(\tR\x06domain\"\x8b\x01\n" +
-	"\x11PermissionRequest\x12(\n" +
-	"\x0fenforcerHandler\x18\x01 \x01(\x05R\x0fenforcerHandler\x12\x12\n" +
-	"\x04user\x18\x02 \x01(\tR\x04user\x12 \n" +
-	"\vpermissions\x18\x03 \x03(\tR\vpermissions\x12\x16\n" +
-	"\x06domain\x18\x04 \x03(\tR\x06domain\"Q\n" +
-	"\fArray2DReply\x12,\n" +
-	"\x02d2\x18\x01 \x03(\v2\x1c.palm.rbac.v1.Array2DReply.dR\x02d2\x1a\x13\n" +
-	"\x01d\x12\x0e\n" +
-	"\x02d1\x18\x01 \x03(\tR\x02d12\xa4 \n" +
-	"\bEnforcer\x12D\n" +
-	"\n" +
-	"LoadPolicy\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x18.palm.rbac.v1.EmptyReply\"\x00\x12D\n" +
-	"\n" +
-	"SavePolicy\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x18.palm.rbac.v1.EmptyReply\"\x00\x12C\n" +
-	"\tAddPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12H\n" +
-	"\x0eAddNamedPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12F\n" +
-	"\fRemovePolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12K\n" +
-	"\x11RemoveNamedPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12V\n" +
-	"\x14RemoveFilteredPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12[\n" +
-	"\x19RemoveFilteredNamedPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12E\n" +
-	"\tGetPolicy\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12K\n" +
-	"\x0eGetNamedPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12V\n" +
-	"\x11GetFilteredPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12[\n" +
-	"\x16GetFilteredNamedPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12K\n" +
-	"\x11AddGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12P\n" +
-	"\x16AddNamedGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12N\n" +
-	"\x14RemoveGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12S\n" +
-	"\x19RemoveNamedGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12^\n" +
-	"\x1cRemoveFilteredGroupingPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12c\n" +
-	"!RemoveFilteredNamedGroupingPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12M\n" +
-	"\x11GetGroupingPolicy\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12S\n" +
-	"\x16GetNamedGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12^\n" +
-	"\x19GetFilteredGroupingPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12c\n" +
-	"\x1eGetFilteredNamedGroupingPolicy\x12#.palm.rbac.v1.FilteredPolicyRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12H\n" +
-	"\x0eGetAllSubjects\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12Q\n" +
-	"\x13GetAllNamedSubjects\x12\x1e.palm.rbac.v1.SimpleGetRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12G\n" +
-	"\rGetAllObjects\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12P\n" +
-	"\x12GetAllNamedObjects\x12\x1e.palm.rbac.v1.SimpleGetRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12G\n" +
-	"\rGetAllActions\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12P\n" +
-	"\x12GetAllNamedActions\x12\x1e.palm.rbac.v1.SimpleGetRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12E\n" +
-	"\vGetAllRoles\x12\x1a.palm.rbac.v1.EmptyRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12N\n" +
-	"\x10GetAllNamedRoles\x12\x1e.palm.rbac.v1.SimpleGetRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12C\n" +
-	"\tHasPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12H\n" +
-	"\x0eHasNamedPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12K\n" +
-	"\x11HasGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12P\n" +
-	"\x16HasNamedGroupingPolicy\x12\x1b.palm.rbac.v1.PolicyRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12G\n" +
-	"\n" +
-	"GetDomains\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12L\n" +
-	"\x0fGetRolesForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12T\n" +
-	"\x17GetImplicitRolesForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12L\n" +
-	"\x0fGetUsersForRole\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x18.palm.rbac.v1.ArrayReply\"\x00\x12J\n" +
-	"\x0eHasRoleForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12J\n" +
-	"\x0eAddRoleForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12M\n" +
-	"\x11DeleteRoleForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12N\n" +
-	"\x12DeleteRolesForUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12F\n" +
-	"\n" +
-	"DeleteUser\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12G\n" +
-	"\n" +
-	"DeleteRole\x12\x1d.palm.rbac.v1.UserRoleRequest\x1a\x18.palm.rbac.v1.EmptyReply\"\x00\x12V\n" +
-	"\x15GetPermissionsForUser\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12^\n" +
-	"\x1dGetImplicitPermissionsForUser\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x1a.palm.rbac.v1.Array2DReply\"\x00\x12N\n" +
-	"\x10DeletePermission\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12R\n" +
-	"\x14AddPermissionForUser\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12U\n" +
-	"\x17DeletePermissionForUser\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12V\n" +
-	"\x18DeletePermissionsForUser\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00\x12R\n" +
-	"\x14HasPermissionForUser\x12\x1f.palm.rbac.v1.PermissionRequest\x1a\x17.palm.rbac.v1.BoolReply\"\x00BY\n" +
+	"DeleteRole\x12\x1a.palm.rbac.v1.Subject.Role\x1a\x16.google.protobuf.Empty\"\x00\x12X\n" +
+	"\x15GetPermissionsForUser\x12\x1a.palm.rbac.v1.Subject.User\x1a!.palm.rbac.v1.PermissionsResponse\"\x00\x12`\n" +
+	"\x1dGetImplicitPermissionsForUser\x12\x1a.palm.rbac.v1.Subject.User\x1a!.palm.rbac.v1.PermissionsResponse\"\x00\x12X\n" +
+	"\x15GetPermissionsForRole\x12\x1a.palm.rbac.v1.Subject.Role\x1a!.palm.rbac.v1.PermissionsResponse\"\x00\x12F\n" +
+	"\x10DeletePermission\x12\x18.palm.rbac.v1.Permission\x1a\x16.google.protobuf.Empty\"\x00\x12C\n" +
+	"\rAddPermission\x12\x18.palm.rbac.v1.Permission\x1a\x16.google.protobuf.Empty\"\x00\x12C\n" +
+	"\rHasPermission\x12\x18.palm.rbac.v1.Permission\x1a\x16.google.protobuf.Empty\"\x00BY\n" +
 	"*com.github.saturn_xiv.palm.plugins.rbac.v1B\tRbacProtoP\x01Z\x05./;v2\xaa\x02\x16Palm.Plugins.Rbac.Grpcb\x06proto3"
 
 var (
@@ -992,134 +1353,97 @@ func file_proto_rbac_proto_rawDescGZIP() []byte {
 	return file_proto_rbac_proto_rawDescData
 }
 
-var file_proto_rbac_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_proto_rbac_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_proto_rbac_proto_goTypes = []any{
-	(*NewEnforcerRequest)(nil),    // 0: palm.rbac.v1.NewEnforcerRequest
-	(*NewEnforcerReply)(nil),      // 1: palm.rbac.v1.NewEnforcerReply
-	(*NewAdapterRequest)(nil),     // 2: palm.rbac.v1.NewAdapterRequest
-	(*NewAdapterReply)(nil),       // 3: palm.rbac.v1.NewAdapterReply
-	(*EnforceRequest)(nil),        // 4: palm.rbac.v1.EnforceRequest
-	(*BoolReply)(nil),             // 5: palm.rbac.v1.BoolReply
-	(*EmptyRequest)(nil),          // 6: palm.rbac.v1.EmptyRequest
-	(*EmptyReply)(nil),            // 7: palm.rbac.v1.EmptyReply
-	(*PolicyRequest)(nil),         // 8: palm.rbac.v1.PolicyRequest
-	(*SimpleGetRequest)(nil),      // 9: palm.rbac.v1.SimpleGetRequest
-	(*ArrayReply)(nil),            // 10: palm.rbac.v1.ArrayReply
-	(*FilteredPolicyRequest)(nil), // 11: palm.rbac.v1.FilteredPolicyRequest
-	(*UserRoleRequest)(nil),       // 12: palm.rbac.v1.UserRoleRequest
-	(*PermissionRequest)(nil),     // 13: palm.rbac.v1.PermissionRequest
-	(*Array2DReply)(nil),          // 14: palm.rbac.v1.Array2DReply
-	(*Array2DReplyD)(nil),         // 15: palm.rbac.v1.Array2DReply.d
+	(*Object)(nil),                     // 0: palm.rbac.v1.Object
+	(*Subject)(nil),                    // 1: palm.rbac.v1.Subject
+	(*Action)(nil),                     // 2: palm.rbac.v1.Action
+	(*Permission)(nil),                 // 3: palm.rbac.v1.Permission
+	(*UserRoleRequest)(nil),            // 4: palm.rbac.v1.UserRoleRequest
+	(*RolesResponse)(nil),              // 5: palm.rbac.v1.RolesResponse
+	(*UsersResponse)(nil),              // 6: palm.rbac.v1.UsersResponse
+	(*SubjectsResponse)(nil),           // 7: palm.rbac.v1.SubjectsResponse
+	(*ObjectsResponse)(nil),            // 8: palm.rbac.v1.ObjectsResponse
+	(*ActionsResponse)(nil),            // 9: palm.rbac.v1.ActionsResponse
+	(*PermissionsResponse)(nil),        // 10: palm.rbac.v1.PermissionsResponse
+	(*Subject_Role)(nil),               // 11: palm.rbac.v1.Subject.Role
+	(*Subject_User)(nil),               // 12: palm.rbac.v1.Subject.User
+	(*Subject_Role_Root)(nil),          // 13: palm.rbac.v1.Subject.Role.Root
+	(*Subject_Role_Administrator)(nil), // 14: palm.rbac.v1.Subject.Role.Administrator
+	(*Action_Read)(nil),                // 15: palm.rbac.v1.Action.Read
+	(*Action_Write)(nil),               // 16: palm.rbac.v1.Action.Write
+	(*Action_Append)(nil),              // 17: palm.rbac.v1.Action.Append
+	(*Action_Execute)(nil),             // 18: palm.rbac.v1.Action.Execute
+	(*Action_Credit)(nil),              // 19: palm.rbac.v1.Action.Credit
+	(*Action_Debit)(nil),               // 20: palm.rbac.v1.Action.Debit
+	(*Action_Inquiry)(nil),             // 21: palm.rbac.v1.Action.Inquiry
+	(*emptypb.Empty)(nil),              // 22: google.protobuf.Empty
 }
 var file_proto_rbac_proto_depIdxs = []int32{
-	15, // 0: palm.rbac.v1.Array2DReply.d2:type_name -> palm.rbac.v1.Array2DReply.d
-	6,  // 1: palm.rbac.v1.Enforcer.LoadPolicy:input_type -> palm.rbac.v1.EmptyRequest
-	6,  // 2: palm.rbac.v1.Enforcer.SavePolicy:input_type -> palm.rbac.v1.EmptyRequest
-	8,  // 3: palm.rbac.v1.Enforcer.AddPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 4: palm.rbac.v1.Enforcer.AddNamedPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 5: palm.rbac.v1.Enforcer.RemovePolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 6: palm.rbac.v1.Enforcer.RemoveNamedPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	11, // 7: palm.rbac.v1.Enforcer.RemoveFilteredPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	11, // 8: palm.rbac.v1.Enforcer.RemoveFilteredNamedPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	6,  // 9: palm.rbac.v1.Enforcer.GetPolicy:input_type -> palm.rbac.v1.EmptyRequest
-	8,  // 10: palm.rbac.v1.Enforcer.GetNamedPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	11, // 11: palm.rbac.v1.Enforcer.GetFilteredPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	11, // 12: palm.rbac.v1.Enforcer.GetFilteredNamedPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	8,  // 13: palm.rbac.v1.Enforcer.AddGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 14: palm.rbac.v1.Enforcer.AddNamedGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 15: palm.rbac.v1.Enforcer.RemoveGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 16: palm.rbac.v1.Enforcer.RemoveNamedGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	11, // 17: palm.rbac.v1.Enforcer.RemoveFilteredGroupingPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	11, // 18: palm.rbac.v1.Enforcer.RemoveFilteredNamedGroupingPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	6,  // 19: palm.rbac.v1.Enforcer.GetGroupingPolicy:input_type -> palm.rbac.v1.EmptyRequest
-	8,  // 20: palm.rbac.v1.Enforcer.GetNamedGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	11, // 21: palm.rbac.v1.Enforcer.GetFilteredGroupingPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	11, // 22: palm.rbac.v1.Enforcer.GetFilteredNamedGroupingPolicy:input_type -> palm.rbac.v1.FilteredPolicyRequest
-	6,  // 23: palm.rbac.v1.Enforcer.GetAllSubjects:input_type -> palm.rbac.v1.EmptyRequest
-	9,  // 24: palm.rbac.v1.Enforcer.GetAllNamedSubjects:input_type -> palm.rbac.v1.SimpleGetRequest
-	6,  // 25: palm.rbac.v1.Enforcer.GetAllObjects:input_type -> palm.rbac.v1.EmptyRequest
-	9,  // 26: palm.rbac.v1.Enforcer.GetAllNamedObjects:input_type -> palm.rbac.v1.SimpleGetRequest
-	6,  // 27: palm.rbac.v1.Enforcer.GetAllActions:input_type -> palm.rbac.v1.EmptyRequest
-	9,  // 28: palm.rbac.v1.Enforcer.GetAllNamedActions:input_type -> palm.rbac.v1.SimpleGetRequest
-	6,  // 29: palm.rbac.v1.Enforcer.GetAllRoles:input_type -> palm.rbac.v1.EmptyRequest
-	9,  // 30: palm.rbac.v1.Enforcer.GetAllNamedRoles:input_type -> palm.rbac.v1.SimpleGetRequest
-	8,  // 31: palm.rbac.v1.Enforcer.HasPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 32: palm.rbac.v1.Enforcer.HasNamedPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 33: palm.rbac.v1.Enforcer.HasGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	8,  // 34: palm.rbac.v1.Enforcer.HasNamedGroupingPolicy:input_type -> palm.rbac.v1.PolicyRequest
-	12, // 35: palm.rbac.v1.Enforcer.GetDomains:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 36: palm.rbac.v1.Enforcer.GetRolesForUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 37: palm.rbac.v1.Enforcer.GetImplicitRolesForUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 38: palm.rbac.v1.Enforcer.GetUsersForRole:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 39: palm.rbac.v1.Enforcer.HasRoleForUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 40: palm.rbac.v1.Enforcer.AddRoleForUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 41: palm.rbac.v1.Enforcer.DeleteRoleForUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 42: palm.rbac.v1.Enforcer.DeleteRolesForUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 43: palm.rbac.v1.Enforcer.DeleteUser:input_type -> palm.rbac.v1.UserRoleRequest
-	12, // 44: palm.rbac.v1.Enforcer.DeleteRole:input_type -> palm.rbac.v1.UserRoleRequest
-	13, // 45: palm.rbac.v1.Enforcer.GetPermissionsForUser:input_type -> palm.rbac.v1.PermissionRequest
-	13, // 46: palm.rbac.v1.Enforcer.GetImplicitPermissionsForUser:input_type -> palm.rbac.v1.PermissionRequest
-	13, // 47: palm.rbac.v1.Enforcer.DeletePermission:input_type -> palm.rbac.v1.PermissionRequest
-	13, // 48: palm.rbac.v1.Enforcer.AddPermissionForUser:input_type -> palm.rbac.v1.PermissionRequest
-	13, // 49: palm.rbac.v1.Enforcer.DeletePermissionForUser:input_type -> palm.rbac.v1.PermissionRequest
-	13, // 50: palm.rbac.v1.Enforcer.DeletePermissionsForUser:input_type -> palm.rbac.v1.PermissionRequest
-	13, // 51: palm.rbac.v1.Enforcer.HasPermissionForUser:input_type -> palm.rbac.v1.PermissionRequest
-	7,  // 52: palm.rbac.v1.Enforcer.LoadPolicy:output_type -> palm.rbac.v1.EmptyReply
-	7,  // 53: palm.rbac.v1.Enforcer.SavePolicy:output_type -> palm.rbac.v1.EmptyReply
-	5,  // 54: palm.rbac.v1.Enforcer.AddPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 55: palm.rbac.v1.Enforcer.AddNamedPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 56: palm.rbac.v1.Enforcer.RemovePolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 57: palm.rbac.v1.Enforcer.RemoveNamedPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 58: palm.rbac.v1.Enforcer.RemoveFilteredPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 59: palm.rbac.v1.Enforcer.RemoveFilteredNamedPolicy:output_type -> palm.rbac.v1.BoolReply
-	14, // 60: palm.rbac.v1.Enforcer.GetPolicy:output_type -> palm.rbac.v1.Array2DReply
-	14, // 61: palm.rbac.v1.Enforcer.GetNamedPolicy:output_type -> palm.rbac.v1.Array2DReply
-	14, // 62: palm.rbac.v1.Enforcer.GetFilteredPolicy:output_type -> palm.rbac.v1.Array2DReply
-	14, // 63: palm.rbac.v1.Enforcer.GetFilteredNamedPolicy:output_type -> palm.rbac.v1.Array2DReply
-	5,  // 64: palm.rbac.v1.Enforcer.AddGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 65: palm.rbac.v1.Enforcer.AddNamedGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 66: palm.rbac.v1.Enforcer.RemoveGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 67: palm.rbac.v1.Enforcer.RemoveNamedGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 68: palm.rbac.v1.Enforcer.RemoveFilteredGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 69: palm.rbac.v1.Enforcer.RemoveFilteredNamedGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	14, // 70: palm.rbac.v1.Enforcer.GetGroupingPolicy:output_type -> palm.rbac.v1.Array2DReply
-	14, // 71: palm.rbac.v1.Enforcer.GetNamedGroupingPolicy:output_type -> palm.rbac.v1.Array2DReply
-	14, // 72: palm.rbac.v1.Enforcer.GetFilteredGroupingPolicy:output_type -> palm.rbac.v1.Array2DReply
-	14, // 73: palm.rbac.v1.Enforcer.GetFilteredNamedGroupingPolicy:output_type -> palm.rbac.v1.Array2DReply
-	10, // 74: palm.rbac.v1.Enforcer.GetAllSubjects:output_type -> palm.rbac.v1.ArrayReply
-	10, // 75: palm.rbac.v1.Enforcer.GetAllNamedSubjects:output_type -> palm.rbac.v1.ArrayReply
-	10, // 76: palm.rbac.v1.Enforcer.GetAllObjects:output_type -> palm.rbac.v1.ArrayReply
-	10, // 77: palm.rbac.v1.Enforcer.GetAllNamedObjects:output_type -> palm.rbac.v1.ArrayReply
-	10, // 78: palm.rbac.v1.Enforcer.GetAllActions:output_type -> palm.rbac.v1.ArrayReply
-	10, // 79: palm.rbac.v1.Enforcer.GetAllNamedActions:output_type -> palm.rbac.v1.ArrayReply
-	10, // 80: palm.rbac.v1.Enforcer.GetAllRoles:output_type -> palm.rbac.v1.ArrayReply
-	10, // 81: palm.rbac.v1.Enforcer.GetAllNamedRoles:output_type -> palm.rbac.v1.ArrayReply
-	5,  // 82: palm.rbac.v1.Enforcer.HasPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 83: palm.rbac.v1.Enforcer.HasNamedPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 84: palm.rbac.v1.Enforcer.HasGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	5,  // 85: palm.rbac.v1.Enforcer.HasNamedGroupingPolicy:output_type -> palm.rbac.v1.BoolReply
-	10, // 86: palm.rbac.v1.Enforcer.GetDomains:output_type -> palm.rbac.v1.ArrayReply
-	10, // 87: palm.rbac.v1.Enforcer.GetRolesForUser:output_type -> palm.rbac.v1.ArrayReply
-	10, // 88: palm.rbac.v1.Enforcer.GetImplicitRolesForUser:output_type -> palm.rbac.v1.ArrayReply
-	10, // 89: palm.rbac.v1.Enforcer.GetUsersForRole:output_type -> palm.rbac.v1.ArrayReply
-	5,  // 90: palm.rbac.v1.Enforcer.HasRoleForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 91: palm.rbac.v1.Enforcer.AddRoleForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 92: palm.rbac.v1.Enforcer.DeleteRoleForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 93: palm.rbac.v1.Enforcer.DeleteRolesForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 94: palm.rbac.v1.Enforcer.DeleteUser:output_type -> palm.rbac.v1.BoolReply
-	7,  // 95: palm.rbac.v1.Enforcer.DeleteRole:output_type -> palm.rbac.v1.EmptyReply
-	14, // 96: palm.rbac.v1.Enforcer.GetPermissionsForUser:output_type -> palm.rbac.v1.Array2DReply
-	14, // 97: palm.rbac.v1.Enforcer.GetImplicitPermissionsForUser:output_type -> palm.rbac.v1.Array2DReply
-	5,  // 98: palm.rbac.v1.Enforcer.DeletePermission:output_type -> palm.rbac.v1.BoolReply
-	5,  // 99: palm.rbac.v1.Enforcer.AddPermissionForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 100: palm.rbac.v1.Enforcer.DeletePermissionForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 101: palm.rbac.v1.Enforcer.DeletePermissionsForUser:output_type -> palm.rbac.v1.BoolReply
-	5,  // 102: palm.rbac.v1.Enforcer.HasPermissionForUser:output_type -> palm.rbac.v1.BoolReply
-	52, // [52:103] is the sub-list for method output_type
-	1,  // [1:52] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	22, // 0: palm.rbac.v1.Object.all:type_name -> google.protobuf.Empty
+	12, // 1: palm.rbac.v1.Subject.user:type_name -> palm.rbac.v1.Subject.User
+	11, // 2: palm.rbac.v1.Subject.role:type_name -> palm.rbac.v1.Subject.Role
+	15, // 3: palm.rbac.v1.Action.read:type_name -> palm.rbac.v1.Action.Read
+	16, // 4: palm.rbac.v1.Action.write:type_name -> palm.rbac.v1.Action.Write
+	17, // 5: palm.rbac.v1.Action.append:type_name -> palm.rbac.v1.Action.Append
+	18, // 6: palm.rbac.v1.Action.execute:type_name -> palm.rbac.v1.Action.Execute
+	19, // 7: palm.rbac.v1.Action.credit:type_name -> palm.rbac.v1.Action.Credit
+	20, // 8: palm.rbac.v1.Action.debit:type_name -> palm.rbac.v1.Action.Debit
+	21, // 9: palm.rbac.v1.Action.inquiry:type_name -> palm.rbac.v1.Action.Inquiry
+	1,  // 10: palm.rbac.v1.Permission.subject:type_name -> palm.rbac.v1.Subject
+	0,  // 11: palm.rbac.v1.Permission.object:type_name -> palm.rbac.v1.Object
+	2,  // 12: palm.rbac.v1.Permission.action:type_name -> palm.rbac.v1.Action
+	12, // 13: palm.rbac.v1.UserRoleRequest.user:type_name -> palm.rbac.v1.Subject.User
+	11, // 14: palm.rbac.v1.UserRoleRequest.role:type_name -> palm.rbac.v1.Subject.Role
+	11, // 15: palm.rbac.v1.RolesResponse.items:type_name -> palm.rbac.v1.Subject.Role
+	12, // 16: palm.rbac.v1.UsersResponse.items:type_name -> palm.rbac.v1.Subject.User
+	1,  // 17: palm.rbac.v1.SubjectsResponse.items:type_name -> palm.rbac.v1.Subject
+	0,  // 18: palm.rbac.v1.ObjectsResponse.items:type_name -> palm.rbac.v1.Object
+	2,  // 19: palm.rbac.v1.ActionsResponse.items:type_name -> palm.rbac.v1.Action
+	3,  // 20: palm.rbac.v1.PermissionsResponse.items:type_name -> palm.rbac.v1.Permission
+	13, // 21: palm.rbac.v1.Subject.Role.root:type_name -> palm.rbac.v1.Subject.Role.Root
+	14, // 22: palm.rbac.v1.Subject.Role.administrator:type_name -> palm.rbac.v1.Subject.Role.Administrator
+	22, // 23: palm.rbac.v1.Enforcer.GetAllSubjects:input_type -> google.protobuf.Empty
+	22, // 24: palm.rbac.v1.Enforcer.GetAllObjects:input_type -> google.protobuf.Empty
+	22, // 25: palm.rbac.v1.Enforcer.GetAllActions:input_type -> google.protobuf.Empty
+	22, // 26: palm.rbac.v1.Enforcer.GetAllRoles:input_type -> google.protobuf.Empty
+	12, // 27: palm.rbac.v1.Enforcer.GetRolesForUser:input_type -> palm.rbac.v1.Subject.User
+	12, // 28: palm.rbac.v1.Enforcer.GetImplicitRolesForUser:input_type -> palm.rbac.v1.Subject.User
+	11, // 29: palm.rbac.v1.Enforcer.GetUsersForRole:input_type -> palm.rbac.v1.Subject.Role
+	4,  // 30: palm.rbac.v1.Enforcer.HasRoleForUser:input_type -> palm.rbac.v1.UserRoleRequest
+	4,  // 31: palm.rbac.v1.Enforcer.AddRoleForUser:input_type -> palm.rbac.v1.UserRoleRequest
+	4,  // 32: palm.rbac.v1.Enforcer.DeleteRoleForUser:input_type -> palm.rbac.v1.UserRoleRequest
+	12, // 33: palm.rbac.v1.Enforcer.DeleteUser:input_type -> palm.rbac.v1.Subject.User
+	11, // 34: palm.rbac.v1.Enforcer.DeleteRole:input_type -> palm.rbac.v1.Subject.Role
+	12, // 35: palm.rbac.v1.Enforcer.GetPermissionsForUser:input_type -> palm.rbac.v1.Subject.User
+	12, // 36: palm.rbac.v1.Enforcer.GetImplicitPermissionsForUser:input_type -> palm.rbac.v1.Subject.User
+	11, // 37: palm.rbac.v1.Enforcer.GetPermissionsForRole:input_type -> palm.rbac.v1.Subject.Role
+	3,  // 38: palm.rbac.v1.Enforcer.DeletePermission:input_type -> palm.rbac.v1.Permission
+	3,  // 39: palm.rbac.v1.Enforcer.AddPermission:input_type -> palm.rbac.v1.Permission
+	3,  // 40: palm.rbac.v1.Enforcer.HasPermission:input_type -> palm.rbac.v1.Permission
+	7,  // 41: palm.rbac.v1.Enforcer.GetAllSubjects:output_type -> palm.rbac.v1.SubjectsResponse
+	8,  // 42: palm.rbac.v1.Enforcer.GetAllObjects:output_type -> palm.rbac.v1.ObjectsResponse
+	9,  // 43: palm.rbac.v1.Enforcer.GetAllActions:output_type -> palm.rbac.v1.ActionsResponse
+	5,  // 44: palm.rbac.v1.Enforcer.GetAllRoles:output_type -> palm.rbac.v1.RolesResponse
+	5,  // 45: palm.rbac.v1.Enforcer.GetRolesForUser:output_type -> palm.rbac.v1.RolesResponse
+	5,  // 46: palm.rbac.v1.Enforcer.GetImplicitRolesForUser:output_type -> palm.rbac.v1.RolesResponse
+	6,  // 47: palm.rbac.v1.Enforcer.GetUsersForRole:output_type -> palm.rbac.v1.UsersResponse
+	22, // 48: palm.rbac.v1.Enforcer.HasRoleForUser:output_type -> google.protobuf.Empty
+	22, // 49: palm.rbac.v1.Enforcer.AddRoleForUser:output_type -> google.protobuf.Empty
+	22, // 50: palm.rbac.v1.Enforcer.DeleteRoleForUser:output_type -> google.protobuf.Empty
+	22, // 51: palm.rbac.v1.Enforcer.DeleteUser:output_type -> google.protobuf.Empty
+	22, // 52: palm.rbac.v1.Enforcer.DeleteRole:output_type -> google.protobuf.Empty
+	10, // 53: palm.rbac.v1.Enforcer.GetPermissionsForUser:output_type -> palm.rbac.v1.PermissionsResponse
+	10, // 54: palm.rbac.v1.Enforcer.GetImplicitPermissionsForUser:output_type -> palm.rbac.v1.PermissionsResponse
+	10, // 55: palm.rbac.v1.Enforcer.GetPermissionsForRole:output_type -> palm.rbac.v1.PermissionsResponse
+	22, // 56: palm.rbac.v1.Enforcer.DeletePermission:output_type -> google.protobuf.Empty
+	22, // 57: palm.rbac.v1.Enforcer.AddPermission:output_type -> google.protobuf.Empty
+	22, // 58: palm.rbac.v1.Enforcer.HasPermission:output_type -> google.protobuf.Empty
+	41, // [41:59] is the sub-list for method output_type
+	23, // [23:41] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_proto_rbac_proto_init() }
@@ -1127,13 +1451,38 @@ func file_proto_rbac_proto_init() {
 	if File_proto_rbac_proto != nil {
 		return
 	}
+	file_proto_rbac_proto_msgTypes[0].OneofWrappers = []any{
+		(*Object_Id)(nil),
+		(*Object_Code)(nil),
+		(*Object_All)(nil),
+	}
+	file_proto_rbac_proto_msgTypes[1].OneofWrappers = []any{
+		(*Subject_User_)(nil),
+		(*Subject_Role_)(nil),
+	}
+	file_proto_rbac_proto_msgTypes[2].OneofWrappers = []any{
+		(*Action_Read_)(nil),
+		(*Action_Write_)(nil),
+		(*Action_Append_)(nil),
+		(*Action_Execute_)(nil),
+		(*Action_Credit_)(nil),
+		(*Action_Debit_)(nil),
+		(*Action_Inquiry_)(nil),
+		(*Action_Code)(nil),
+	}
+	file_proto_rbac_proto_msgTypes[11].OneofWrappers = []any{
+		(*Subject_Role_Root_)(nil),
+		(*Subject_Role_Administrator_)(nil),
+		(*Subject_Role_Id)(nil),
+		(*Subject_Role_Code)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_rbac_proto_rawDesc), len(file_proto_rbac_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

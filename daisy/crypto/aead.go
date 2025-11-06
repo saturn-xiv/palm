@@ -6,7 +6,7 @@ import (
 	"github.com/tink-crypto/tink-go/v2/aead"
 	"github.com/tink-crypto/tink-go/v2/tink"
 
-	v2 "com.github/saturn_xiv/palm/daisy/crypto/v2"
+	v2 "github.com/saturn_xiv/palm/daisy/crypto/v2"
 )
 
 type Aead struct {

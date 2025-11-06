@@ -7,7 +7,7 @@ import (
 	"github.com/tink-crypto/tink-go/v2/tink"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	v2 "com.github/saturn_xiv/palm/daisy/crypto/v2"
+	v2 "github.com/saturn_xiv/palm/daisy/crypto/v2"
 )
 
 type Hmac struct {

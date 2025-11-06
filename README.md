@@ -16,7 +16,7 @@ git submodule update --init --recursive
 
 - [Apache Thrift](https://thrift.apache.org/docs/BuildingFromSource)
 - [gRPC for Web Clients](https://github.com/grpc/grpc-web)
-- [RBAC96](https://profsandhu.com/cs6393_s12/lecture-rbac96.pdf)
+- [The RBAC96 Model](https://profsandhu.com/cs6393_s12/lecture-rbac96.pdf)
 - [AppImage Building Tool](https://github.com/linuxdeploy/linuxdeploy/releases/)
 - [OpenSearch Data types](https://docs.opensearch.org/latest/search-plugins/sql/datatypes/)
 - [gRPC Status Codes](https://grpc.io/docs/guides/status-codes/)

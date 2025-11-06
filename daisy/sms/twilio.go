@@ -8,7 +8,7 @@ import (
 	twilio_api "github.com/twilio/twilio-go/rest/api/v2010"
 	"google.golang.org/protobuf/proto"
 
-	v2 "com.github/saturn_xiv/palm/daisy/sms/v2"
+	v2 "github.com/saturn_xiv/palm/daisy/sms/v2"
 )
 
 type Twilio struct {
@@ -16,7 +16,7 @@ type Twilio struct {
 	AuthToken  string `toml:"auth-token"`
 }
 
-func (p *Twilio) Open(from string, to string, body string) *twilio.RestClient {
+func (p *Twilio) Open() *twilio.RestClient {
 	return twilio.NewRestClientWithParams(twilio.ClientParams{
 		Username: p.AccountSid,
 		Password: p.AuthToken,

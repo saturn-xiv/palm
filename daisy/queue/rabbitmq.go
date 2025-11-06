@@ -126,8 +126,9 @@ func receive(channel *amqp.Channel, queue string, consumer Consumer) error {
 	if err != nil {
 		return err
 	}
-
-	msgs, err := channel.Consume(queue, fmt.Sprintf("%s@%s.%d", consumer.Name(), host, os.Getpid()), true, false, false, false, nil)
+	name := fmt.Sprintf("%s@%s.%d", consumer.Name(), host, os.Getpid())
+	slog.Info("start consumer", "queue", queue, "name", name)
+	msgs, err := channel.Consume(queue, name, true, false, false, false, nil)
 	if err != nil {
 		return err
 	}

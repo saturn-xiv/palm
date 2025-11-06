@@ -20,7 +20,7 @@ func updateCallback(msg string) {
 	slog.Debug(msg)
 }
 
-func NewEnforcer(namespace string, db *gorm.DB, redis_addresses []string) (*casbin.Enforcer, error) {
+func NewEnforcer(db *gorm.DB, redis_addresses []string, redis_namespace string) (*casbin.Enforcer, error) {
 	gormadapter.TurnOffAutoMigrate(db)
 	adapter, err := gormadapter.NewAdapterByDB(db)
 	if err != nil {
@@ -33,7 +33,7 @@ func NewEnforcer(namespace string, db *gorm.DB, redis_addresses []string) (*casb
 	watcher, err := rediswatcher.NewWatcherWithCluster(
 		strings.Join(redis_addresses, ","),
 		rediswatcher.WatcherOptions{
-			Channel:    fmt.Sprintf("%s://casbin", namespace),
+			Channel:    fmt.Sprintf("%s://casbin", redis_namespace),
 			IgnoreSelf: true,
 		})
 	if err != nil {

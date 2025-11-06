@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,114 +20,48 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Enforcer_LoadPolicy_FullMethodName                        = "/palm.rbac.v1.Enforcer/LoadPolicy"
-	Enforcer_SavePolicy_FullMethodName                        = "/palm.rbac.v1.Enforcer/SavePolicy"
-	Enforcer_AddPolicy_FullMethodName                         = "/palm.rbac.v1.Enforcer/AddPolicy"
-	Enforcer_AddNamedPolicy_FullMethodName                    = "/palm.rbac.v1.Enforcer/AddNamedPolicy"
-	Enforcer_RemovePolicy_FullMethodName                      = "/palm.rbac.v1.Enforcer/RemovePolicy"
-	Enforcer_RemoveNamedPolicy_FullMethodName                 = "/palm.rbac.v1.Enforcer/RemoveNamedPolicy"
-	Enforcer_RemoveFilteredPolicy_FullMethodName              = "/palm.rbac.v1.Enforcer/RemoveFilteredPolicy"
-	Enforcer_RemoveFilteredNamedPolicy_FullMethodName         = "/palm.rbac.v1.Enforcer/RemoveFilteredNamedPolicy"
-	Enforcer_GetPolicy_FullMethodName                         = "/palm.rbac.v1.Enforcer/GetPolicy"
-	Enforcer_GetNamedPolicy_FullMethodName                    = "/palm.rbac.v1.Enforcer/GetNamedPolicy"
-	Enforcer_GetFilteredPolicy_FullMethodName                 = "/palm.rbac.v1.Enforcer/GetFilteredPolicy"
-	Enforcer_GetFilteredNamedPolicy_FullMethodName            = "/palm.rbac.v1.Enforcer/GetFilteredNamedPolicy"
-	Enforcer_AddGroupingPolicy_FullMethodName                 = "/palm.rbac.v1.Enforcer/AddGroupingPolicy"
-	Enforcer_AddNamedGroupingPolicy_FullMethodName            = "/palm.rbac.v1.Enforcer/AddNamedGroupingPolicy"
-	Enforcer_RemoveGroupingPolicy_FullMethodName              = "/palm.rbac.v1.Enforcer/RemoveGroupingPolicy"
-	Enforcer_RemoveNamedGroupingPolicy_FullMethodName         = "/palm.rbac.v1.Enforcer/RemoveNamedGroupingPolicy"
-	Enforcer_RemoveFilteredGroupingPolicy_FullMethodName      = "/palm.rbac.v1.Enforcer/RemoveFilteredGroupingPolicy"
-	Enforcer_RemoveFilteredNamedGroupingPolicy_FullMethodName = "/palm.rbac.v1.Enforcer/RemoveFilteredNamedGroupingPolicy"
-	Enforcer_GetGroupingPolicy_FullMethodName                 = "/palm.rbac.v1.Enforcer/GetGroupingPolicy"
-	Enforcer_GetNamedGroupingPolicy_FullMethodName            = "/palm.rbac.v1.Enforcer/GetNamedGroupingPolicy"
-	Enforcer_GetFilteredGroupingPolicy_FullMethodName         = "/palm.rbac.v1.Enforcer/GetFilteredGroupingPolicy"
-	Enforcer_GetFilteredNamedGroupingPolicy_FullMethodName    = "/palm.rbac.v1.Enforcer/GetFilteredNamedGroupingPolicy"
-	Enforcer_GetAllSubjects_FullMethodName                    = "/palm.rbac.v1.Enforcer/GetAllSubjects"
-	Enforcer_GetAllNamedSubjects_FullMethodName               = "/palm.rbac.v1.Enforcer/GetAllNamedSubjects"
-	Enforcer_GetAllObjects_FullMethodName                     = "/palm.rbac.v1.Enforcer/GetAllObjects"
-	Enforcer_GetAllNamedObjects_FullMethodName                = "/palm.rbac.v1.Enforcer/GetAllNamedObjects"
-	Enforcer_GetAllActions_FullMethodName                     = "/palm.rbac.v1.Enforcer/GetAllActions"
-	Enforcer_GetAllNamedActions_FullMethodName                = "/palm.rbac.v1.Enforcer/GetAllNamedActions"
-	Enforcer_GetAllRoles_FullMethodName                       = "/palm.rbac.v1.Enforcer/GetAllRoles"
-	Enforcer_GetAllNamedRoles_FullMethodName                  = "/palm.rbac.v1.Enforcer/GetAllNamedRoles"
-	Enforcer_HasPolicy_FullMethodName                         = "/palm.rbac.v1.Enforcer/HasPolicy"
-	Enforcer_HasNamedPolicy_FullMethodName                    = "/palm.rbac.v1.Enforcer/HasNamedPolicy"
-	Enforcer_HasGroupingPolicy_FullMethodName                 = "/palm.rbac.v1.Enforcer/HasGroupingPolicy"
-	Enforcer_HasNamedGroupingPolicy_FullMethodName            = "/palm.rbac.v1.Enforcer/HasNamedGroupingPolicy"
-	Enforcer_GetDomains_FullMethodName                        = "/palm.rbac.v1.Enforcer/GetDomains"
-	Enforcer_GetRolesForUser_FullMethodName                   = "/palm.rbac.v1.Enforcer/GetRolesForUser"
-	Enforcer_GetImplicitRolesForUser_FullMethodName           = "/palm.rbac.v1.Enforcer/GetImplicitRolesForUser"
-	Enforcer_GetUsersForRole_FullMethodName                   = "/palm.rbac.v1.Enforcer/GetUsersForRole"
-	Enforcer_HasRoleForUser_FullMethodName                    = "/palm.rbac.v1.Enforcer/HasRoleForUser"
-	Enforcer_AddRoleForUser_FullMethodName                    = "/palm.rbac.v1.Enforcer/AddRoleForUser"
-	Enforcer_DeleteRoleForUser_FullMethodName                 = "/palm.rbac.v1.Enforcer/DeleteRoleForUser"
-	Enforcer_DeleteRolesForUser_FullMethodName                = "/palm.rbac.v1.Enforcer/DeleteRolesForUser"
-	Enforcer_DeleteUser_FullMethodName                        = "/palm.rbac.v1.Enforcer/DeleteUser"
-	Enforcer_DeleteRole_FullMethodName                        = "/palm.rbac.v1.Enforcer/DeleteRole"
-	Enforcer_GetPermissionsForUser_FullMethodName             = "/palm.rbac.v1.Enforcer/GetPermissionsForUser"
-	Enforcer_GetImplicitPermissionsForUser_FullMethodName     = "/palm.rbac.v1.Enforcer/GetImplicitPermissionsForUser"
-	Enforcer_DeletePermission_FullMethodName                  = "/palm.rbac.v1.Enforcer/DeletePermission"
-	Enforcer_AddPermissionForUser_FullMethodName              = "/palm.rbac.v1.Enforcer/AddPermissionForUser"
-	Enforcer_DeletePermissionForUser_FullMethodName           = "/palm.rbac.v1.Enforcer/DeletePermissionForUser"
-	Enforcer_DeletePermissionsForUser_FullMethodName          = "/palm.rbac.v1.Enforcer/DeletePermissionsForUser"
-	Enforcer_HasPermissionForUser_FullMethodName              = "/palm.rbac.v1.Enforcer/HasPermissionForUser"
+	Enforcer_GetAllSubjects_FullMethodName                = "/palm.rbac.v1.Enforcer/GetAllSubjects"
+	Enforcer_GetAllObjects_FullMethodName                 = "/palm.rbac.v1.Enforcer/GetAllObjects"
+	Enforcer_GetAllActions_FullMethodName                 = "/palm.rbac.v1.Enforcer/GetAllActions"
+	Enforcer_GetAllRoles_FullMethodName                   = "/palm.rbac.v1.Enforcer/GetAllRoles"
+	Enforcer_GetRolesForUser_FullMethodName               = "/palm.rbac.v1.Enforcer/GetRolesForUser"
+	Enforcer_GetImplicitRolesForUser_FullMethodName       = "/palm.rbac.v1.Enforcer/GetImplicitRolesForUser"
+	Enforcer_GetUsersForRole_FullMethodName               = "/palm.rbac.v1.Enforcer/GetUsersForRole"
+	Enforcer_HasRoleForUser_FullMethodName                = "/palm.rbac.v1.Enforcer/HasRoleForUser"
+	Enforcer_AddRoleForUser_FullMethodName                = "/palm.rbac.v1.Enforcer/AddRoleForUser"
+	Enforcer_DeleteRoleForUser_FullMethodName             = "/palm.rbac.v1.Enforcer/DeleteRoleForUser"
+	Enforcer_DeleteUser_FullMethodName                    = "/palm.rbac.v1.Enforcer/DeleteUser"
+	Enforcer_DeleteRole_FullMethodName                    = "/palm.rbac.v1.Enforcer/DeleteRole"
+	Enforcer_GetPermissionsForUser_FullMethodName         = "/palm.rbac.v1.Enforcer/GetPermissionsForUser"
+	Enforcer_GetImplicitPermissionsForUser_FullMethodName = "/palm.rbac.v1.Enforcer/GetImplicitPermissionsForUser"
+	Enforcer_GetPermissionsForRole_FullMethodName         = "/palm.rbac.v1.Enforcer/GetPermissionsForRole"
+	Enforcer_DeletePermission_FullMethodName              = "/palm.rbac.v1.Enforcer/DeletePermission"
+	Enforcer_AddPermission_FullMethodName                 = "/palm.rbac.v1.Enforcer/AddPermission"
+	Enforcer_HasPermission_FullMethodName                 = "/palm.rbac.v1.Enforcer/HasPermission"
 )
 
 // EnforcerClient is the client API for Enforcer service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnforcerClient interface {
-	LoadPolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyReply, error)
-	SavePolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyReply, error)
-	AddPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	AddNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemovePolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	GetPolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	AddGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	AddNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	RemoveFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	GetGroupingPolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetAllSubjects(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllNamedSubjects(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllObjects(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllNamedObjects(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllActions(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllNamedActions(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllRoles(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetAllNamedRoles(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	HasPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	HasNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	HasGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	HasNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	GetDomains(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetImplicitRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	GetUsersForRole(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error)
-	HasRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	AddRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	DeleteRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	DeleteUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	DeleteRole(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*EmptyReply, error)
-	GetPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	GetImplicitPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*Array2DReply, error)
-	DeletePermission(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	AddPermissionForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	DeletePermissionForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	DeletePermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error)
-	HasPermissionForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error)
+	GetAllSubjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SubjectsResponse, error)
+	GetAllObjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ObjectsResponse, error)
+	GetAllActions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ActionsResponse, error)
+	GetAllRoles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error)
+	GetRolesForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*RolesResponse, error)
+	GetImplicitRolesForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*RolesResponse, error)
+	GetUsersForRole(ctx context.Context, in *Subject_Role, opts ...grpc.CallOption) (*UsersResponse, error)
+	HasRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteRole(ctx context.Context, in *Subject_Role, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetPermissionsForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*PermissionsResponse, error)
+	GetImplicitPermissionsForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*PermissionsResponse, error)
+	GetPermissionsForRole(ctx context.Context, in *Subject_Role, opts ...grpc.CallOption) (*PermissionsResponse, error)
+	DeletePermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddPermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	HasPermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type enforcerClient struct {
@@ -137,229 +72,9 @@ func NewEnforcerClient(cc grpc.ClientConnInterface) EnforcerClient {
 	return &enforcerClient{cc}
 }
 
-func (c *enforcerClient) LoadPolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyReply, error) {
+func (c *enforcerClient) GetAllSubjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SubjectsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EmptyReply)
-	err := c.cc.Invoke(ctx, Enforcer_LoadPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) SavePolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EmptyReply)
-	err := c.cc.Invoke(ctx, Enforcer_SavePolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) AddPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_AddPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) AddNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_AddNamedPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemovePolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemovePolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveNamedPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveFilteredPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveFilteredNamedPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetPolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetNamedPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetFilteredPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetFilteredNamedPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) AddGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_AddGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) AddNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_AddNamedGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveNamedGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveFilteredGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) RemoveFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_RemoveFilteredNamedGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetGroupingPolicy(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetNamedGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetFilteredGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetFilteredNamedGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetAllSubjects(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(SubjectsResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetAllSubjects_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -367,19 +82,9 @@ func (c *enforcerClient) GetAllSubjects(ctx context.Context, in *EmptyRequest, o
 	return out, nil
 }
 
-func (c *enforcerClient) GetAllNamedSubjects(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
+func (c *enforcerClient) GetAllObjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ObjectsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetAllNamedSubjects_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetAllObjects(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(ObjectsResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetAllObjects_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -387,19 +92,9 @@ func (c *enforcerClient) GetAllObjects(ctx context.Context, in *EmptyRequest, op
 	return out, nil
 }
 
-func (c *enforcerClient) GetAllNamedObjects(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
+func (c *enforcerClient) GetAllActions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ActionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetAllNamedObjects_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetAllActions(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(ActionsResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetAllActions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -407,19 +102,9 @@ func (c *enforcerClient) GetAllActions(ctx context.Context, in *EmptyRequest, op
 	return out, nil
 }
 
-func (c *enforcerClient) GetAllNamedActions(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
+func (c *enforcerClient) GetAllRoles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RolesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetAllNamedActions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetAllRoles(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(RolesResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetAllRoles_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -427,69 +112,9 @@ func (c *enforcerClient) GetAllRoles(ctx context.Context, in *EmptyRequest, opts
 	return out, nil
 }
 
-func (c *enforcerClient) GetAllNamedRoles(ctx context.Context, in *SimpleGetRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
+func (c *enforcerClient) GetRolesForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*RolesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetAllNamedRoles_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) HasPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_HasPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) HasNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_HasNamedPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) HasGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_HasGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) HasNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_HasNamedGroupingPolicy_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetDomains(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
-	err := c.cc.Invoke(ctx, Enforcer_GetDomains_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) GetRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(RolesResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetRolesForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -497,9 +122,9 @@ func (c *enforcerClient) GetRolesForUser(ctx context.Context, in *UserRoleReques
 	return out, nil
 }
 
-func (c *enforcerClient) GetImplicitRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
+func (c *enforcerClient) GetImplicitRolesForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*RolesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(RolesResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetImplicitRolesForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -507,9 +132,9 @@ func (c *enforcerClient) GetImplicitRolesForUser(ctx context.Context, in *UserRo
 	return out, nil
 }
 
-func (c *enforcerClient) GetUsersForRole(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*ArrayReply, error) {
+func (c *enforcerClient) GetUsersForRole(ctx context.Context, in *Subject_Role, opts ...grpc.CallOption) (*UsersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ArrayReply)
+	out := new(UsersResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetUsersForRole_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -517,9 +142,9 @@ func (c *enforcerClient) GetUsersForRole(ctx context.Context, in *UserRoleReques
 	return out, nil
 }
 
-func (c *enforcerClient) HasRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) HasRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Enforcer_HasRoleForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -527,9 +152,9 @@ func (c *enforcerClient) HasRoleForUser(ctx context.Context, in *UserRoleRequest
 	return out, nil
 }
 
-func (c *enforcerClient) AddRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) AddRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Enforcer_AddRoleForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -537,9 +162,9 @@ func (c *enforcerClient) AddRoleForUser(ctx context.Context, in *UserRoleRequest
 	return out, nil
 }
 
-func (c *enforcerClient) DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Enforcer_DeleteRoleForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -547,19 +172,9 @@ func (c *enforcerClient) DeleteRoleForUser(ctx context.Context, in *UserRoleRequ
 	return out, nil
 }
 
-func (c *enforcerClient) DeleteRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) DeleteUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_DeleteRolesForUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) DeleteUser(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Enforcer_DeleteUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -567,9 +182,9 @@ func (c *enforcerClient) DeleteUser(ctx context.Context, in *UserRoleRequest, op
 	return out, nil
 }
 
-func (c *enforcerClient) DeleteRole(ctx context.Context, in *UserRoleRequest, opts ...grpc.CallOption) (*EmptyReply, error) {
+func (c *enforcerClient) DeleteRole(ctx context.Context, in *Subject_Role, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EmptyReply)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Enforcer_DeleteRole_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -577,9 +192,9 @@ func (c *enforcerClient) DeleteRole(ctx context.Context, in *UserRoleRequest, op
 	return out, nil
 }
 
-func (c *enforcerClient) GetPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
+func (c *enforcerClient) GetPermissionsForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*PermissionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
+	out := new(PermissionsResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetPermissionsForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -587,9 +202,9 @@ func (c *enforcerClient) GetPermissionsForUser(ctx context.Context, in *Permissi
 	return out, nil
 }
 
-func (c *enforcerClient) GetImplicitPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*Array2DReply, error) {
+func (c *enforcerClient) GetImplicitPermissionsForUser(ctx context.Context, in *Subject_User, opts ...grpc.CallOption) (*PermissionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Array2DReply)
+	out := new(PermissionsResponse)
 	err := c.cc.Invoke(ctx, Enforcer_GetImplicitPermissionsForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -597,9 +212,19 @@ func (c *enforcerClient) GetImplicitPermissionsForUser(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *enforcerClient) DeletePermission(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) GetPermissionsForRole(ctx context.Context, in *Subject_Role, opts ...grpc.CallOption) (*PermissionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
+	out := new(PermissionsResponse)
+	err := c.cc.Invoke(ctx, Enforcer_GetPermissionsForRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *enforcerClient) DeletePermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Enforcer_DeletePermission_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -607,40 +232,20 @@ func (c *enforcerClient) DeletePermission(ctx context.Context, in *PermissionReq
 	return out, nil
 }
 
-func (c *enforcerClient) AddPermissionForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) AddPermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_AddPermissionForUser_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Enforcer_AddPermission_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *enforcerClient) DeletePermissionForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error) {
+func (c *enforcerClient) HasPermission(ctx context.Context, in *Permission, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_DeletePermissionForUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) DeletePermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_DeletePermissionsForUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enforcerClient) HasPermissionForUser(ctx context.Context, in *PermissionRequest, opts ...grpc.CallOption) (*BoolReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BoolReply)
-	err := c.cc.Invoke(ctx, Enforcer_HasPermissionForUser_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Enforcer_HasPermission_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -651,57 +256,24 @@ func (c *enforcerClient) HasPermissionForUser(ctx context.Context, in *Permissio
 // All implementations must embed UnimplementedEnforcerServer
 // for forward compatibility.
 type EnforcerServer interface {
-	LoadPolicy(context.Context, *EmptyRequest) (*EmptyReply, error)
-	SavePolicy(context.Context, *EmptyRequest) (*EmptyReply, error)
-	AddPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	AddNamedPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	RemovePolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	RemoveNamedPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	RemoveFilteredPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error)
-	RemoveFilteredNamedPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error)
-	GetPolicy(context.Context, *EmptyRequest) (*Array2DReply, error)
-	GetNamedPolicy(context.Context, *PolicyRequest) (*Array2DReply, error)
-	GetFilteredPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error)
-	GetFilteredNamedPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error)
-	AddGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	AddNamedGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	RemoveGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	RemoveNamedGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	RemoveFilteredGroupingPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error)
-	RemoveFilteredNamedGroupingPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error)
-	GetGroupingPolicy(context.Context, *EmptyRequest) (*Array2DReply, error)
-	GetNamedGroupingPolicy(context.Context, *PolicyRequest) (*Array2DReply, error)
-	GetFilteredGroupingPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error)
-	GetFilteredNamedGroupingPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error)
-	GetAllSubjects(context.Context, *EmptyRequest) (*ArrayReply, error)
-	GetAllNamedSubjects(context.Context, *SimpleGetRequest) (*ArrayReply, error)
-	GetAllObjects(context.Context, *EmptyRequest) (*ArrayReply, error)
-	GetAllNamedObjects(context.Context, *SimpleGetRequest) (*ArrayReply, error)
-	GetAllActions(context.Context, *EmptyRequest) (*ArrayReply, error)
-	GetAllNamedActions(context.Context, *SimpleGetRequest) (*ArrayReply, error)
-	GetAllRoles(context.Context, *EmptyRequest) (*ArrayReply, error)
-	GetAllNamedRoles(context.Context, *SimpleGetRequest) (*ArrayReply, error)
-	HasPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	HasNamedPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	HasGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	HasNamedGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error)
-	GetDomains(context.Context, *UserRoleRequest) (*ArrayReply, error)
-	GetRolesForUser(context.Context, *UserRoleRequest) (*ArrayReply, error)
-	GetImplicitRolesForUser(context.Context, *UserRoleRequest) (*ArrayReply, error)
-	GetUsersForRole(context.Context, *UserRoleRequest) (*ArrayReply, error)
-	HasRoleForUser(context.Context, *UserRoleRequest) (*BoolReply, error)
-	AddRoleForUser(context.Context, *UserRoleRequest) (*BoolReply, error)
-	DeleteRoleForUser(context.Context, *UserRoleRequest) (*BoolReply, error)
-	DeleteRolesForUser(context.Context, *UserRoleRequest) (*BoolReply, error)
-	DeleteUser(context.Context, *UserRoleRequest) (*BoolReply, error)
-	DeleteRole(context.Context, *UserRoleRequest) (*EmptyReply, error)
-	GetPermissionsForUser(context.Context, *PermissionRequest) (*Array2DReply, error)
-	GetImplicitPermissionsForUser(context.Context, *PermissionRequest) (*Array2DReply, error)
-	DeletePermission(context.Context, *PermissionRequest) (*BoolReply, error)
-	AddPermissionForUser(context.Context, *PermissionRequest) (*BoolReply, error)
-	DeletePermissionForUser(context.Context, *PermissionRequest) (*BoolReply, error)
-	DeletePermissionsForUser(context.Context, *PermissionRequest) (*BoolReply, error)
-	HasPermissionForUser(context.Context, *PermissionRequest) (*BoolReply, error)
+	GetAllSubjects(context.Context, *emptypb.Empty) (*SubjectsResponse, error)
+	GetAllObjects(context.Context, *emptypb.Empty) (*ObjectsResponse, error)
+	GetAllActions(context.Context, *emptypb.Empty) (*ActionsResponse, error)
+	GetAllRoles(context.Context, *emptypb.Empty) (*RolesResponse, error)
+	GetRolesForUser(context.Context, *Subject_User) (*RolesResponse, error)
+	GetImplicitRolesForUser(context.Context, *Subject_User) (*RolesResponse, error)
+	GetUsersForRole(context.Context, *Subject_Role) (*UsersResponse, error)
+	HasRoleForUser(context.Context, *UserRoleRequest) (*emptypb.Empty, error)
+	AddRoleForUser(context.Context, *UserRoleRequest) (*emptypb.Empty, error)
+	DeleteRoleForUser(context.Context, *UserRoleRequest) (*emptypb.Empty, error)
+	DeleteUser(context.Context, *Subject_User) (*emptypb.Empty, error)
+	DeleteRole(context.Context, *Subject_Role) (*emptypb.Empty, error)
+	GetPermissionsForUser(context.Context, *Subject_User) (*PermissionsResponse, error)
+	GetImplicitPermissionsForUser(context.Context, *Subject_User) (*PermissionsResponse, error)
+	GetPermissionsForRole(context.Context, *Subject_Role) (*PermissionsResponse, error)
+	DeletePermission(context.Context, *Permission) (*emptypb.Empty, error)
+	AddPermission(context.Context, *Permission) (*emptypb.Empty, error)
+	HasPermission(context.Context, *Permission) (*emptypb.Empty, error)
 	mustEmbedUnimplementedEnforcerServer()
 }
 
@@ -712,158 +284,59 @@ type EnforcerServer interface {
 // pointer dereference when methods are called.
 type UnimplementedEnforcerServer struct{}
 
-func (UnimplementedEnforcerServer) LoadPolicy(context.Context, *EmptyRequest) (*EmptyReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LoadPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) SavePolicy(context.Context, *EmptyRequest) (*EmptyReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SavePolicy not implemented")
-}
-func (UnimplementedEnforcerServer) AddPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) AddNamedPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddNamedPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemovePolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemovePolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveNamedPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveNamedPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveFilteredPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveFilteredPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveFilteredNamedPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveFilteredNamedPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetPolicy(context.Context, *EmptyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetNamedPolicy(context.Context, *PolicyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamedPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetFilteredPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFilteredPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetFilteredNamedPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFilteredNamedPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) AddGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) AddNamedGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddNamedGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveNamedGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveNamedGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveFilteredGroupingPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveFilteredGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) RemoveFilteredNamedGroupingPolicy(context.Context, *FilteredPolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveFilteredNamedGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetGroupingPolicy(context.Context, *EmptyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetNamedGroupingPolicy(context.Context, *PolicyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNamedGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetFilteredGroupingPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFilteredGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetFilteredNamedGroupingPolicy(context.Context, *FilteredPolicyRequest) (*Array2DReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFilteredNamedGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetAllSubjects(context.Context, *EmptyRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetAllSubjects(context.Context, *emptypb.Empty) (*SubjectsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllSubjects not implemented")
 }
-func (UnimplementedEnforcerServer) GetAllNamedSubjects(context.Context, *SimpleGetRequest) (*ArrayReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllNamedSubjects not implemented")
-}
-func (UnimplementedEnforcerServer) GetAllObjects(context.Context, *EmptyRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetAllObjects(context.Context, *emptypb.Empty) (*ObjectsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllObjects not implemented")
 }
-func (UnimplementedEnforcerServer) GetAllNamedObjects(context.Context, *SimpleGetRequest) (*ArrayReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllNamedObjects not implemented")
-}
-func (UnimplementedEnforcerServer) GetAllActions(context.Context, *EmptyRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetAllActions(context.Context, *emptypb.Empty) (*ActionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllActions not implemented")
 }
-func (UnimplementedEnforcerServer) GetAllNamedActions(context.Context, *SimpleGetRequest) (*ArrayReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllNamedActions not implemented")
-}
-func (UnimplementedEnforcerServer) GetAllRoles(context.Context, *EmptyRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetAllRoles(context.Context, *emptypb.Empty) (*RolesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllRoles not implemented")
 }
-func (UnimplementedEnforcerServer) GetAllNamedRoles(context.Context, *SimpleGetRequest) (*ArrayReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllNamedRoles not implemented")
-}
-func (UnimplementedEnforcerServer) HasPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HasPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) HasNamedPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HasNamedPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) HasGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HasGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) HasNamedGroupingPolicy(context.Context, *PolicyRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HasNamedGroupingPolicy not implemented")
-}
-func (UnimplementedEnforcerServer) GetDomains(context.Context, *UserRoleRequest) (*ArrayReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDomains not implemented")
-}
-func (UnimplementedEnforcerServer) GetRolesForUser(context.Context, *UserRoleRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetRolesForUser(context.Context, *Subject_User) (*RolesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRolesForUser not implemented")
 }
-func (UnimplementedEnforcerServer) GetImplicitRolesForUser(context.Context, *UserRoleRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetImplicitRolesForUser(context.Context, *Subject_User) (*RolesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetImplicitRolesForUser not implemented")
 }
-func (UnimplementedEnforcerServer) GetUsersForRole(context.Context, *UserRoleRequest) (*ArrayReply, error) {
+func (UnimplementedEnforcerServer) GetUsersForRole(context.Context, *Subject_Role) (*UsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsersForRole not implemented")
 }
-func (UnimplementedEnforcerServer) HasRoleForUser(context.Context, *UserRoleRequest) (*BoolReply, error) {
+func (UnimplementedEnforcerServer) HasRoleForUser(context.Context, *UserRoleRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HasRoleForUser not implemented")
 }
-func (UnimplementedEnforcerServer) AddRoleForUser(context.Context, *UserRoleRequest) (*BoolReply, error) {
+func (UnimplementedEnforcerServer) AddRoleForUser(context.Context, *UserRoleRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRoleForUser not implemented")
 }
-func (UnimplementedEnforcerServer) DeleteRoleForUser(context.Context, *UserRoleRequest) (*BoolReply, error) {
+func (UnimplementedEnforcerServer) DeleteRoleForUser(context.Context, *UserRoleRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoleForUser not implemented")
 }
-func (UnimplementedEnforcerServer) DeleteRolesForUser(context.Context, *UserRoleRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRolesForUser not implemented")
-}
-func (UnimplementedEnforcerServer) DeleteUser(context.Context, *UserRoleRequest) (*BoolReply, error) {
+func (UnimplementedEnforcerServer) DeleteUser(context.Context, *Subject_User) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedEnforcerServer) DeleteRole(context.Context, *UserRoleRequest) (*EmptyReply, error) {
+func (UnimplementedEnforcerServer) DeleteRole(context.Context, *Subject_Role) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRole not implemented")
 }
-func (UnimplementedEnforcerServer) GetPermissionsForUser(context.Context, *PermissionRequest) (*Array2DReply, error) {
+func (UnimplementedEnforcerServer) GetPermissionsForUser(context.Context, *Subject_User) (*PermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPermissionsForUser not implemented")
 }
-func (UnimplementedEnforcerServer) GetImplicitPermissionsForUser(context.Context, *PermissionRequest) (*Array2DReply, error) {
+func (UnimplementedEnforcerServer) GetImplicitPermissionsForUser(context.Context, *Subject_User) (*PermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetImplicitPermissionsForUser not implemented")
 }
-func (UnimplementedEnforcerServer) DeletePermission(context.Context, *PermissionRequest) (*BoolReply, error) {
+func (UnimplementedEnforcerServer) GetPermissionsForRole(context.Context, *Subject_Role) (*PermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPermissionsForRole not implemented")
+}
+func (UnimplementedEnforcerServer) DeletePermission(context.Context, *Permission) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePermission not implemented")
 }
-func (UnimplementedEnforcerServer) AddPermissionForUser(context.Context, *PermissionRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddPermissionForUser not implemented")
+func (UnimplementedEnforcerServer) AddPermission(context.Context, *Permission) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddPermission not implemented")
 }
-func (UnimplementedEnforcerServer) DeletePermissionForUser(context.Context, *PermissionRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePermissionForUser not implemented")
-}
-func (UnimplementedEnforcerServer) DeletePermissionsForUser(context.Context, *PermissionRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePermissionsForUser not implemented")
-}
-func (UnimplementedEnforcerServer) HasPermissionForUser(context.Context, *PermissionRequest) (*BoolReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HasPermissionForUser not implemented")
+func (UnimplementedEnforcerServer) HasPermission(context.Context, *Permission) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HasPermission not implemented")
 }
 func (UnimplementedEnforcerServer) mustEmbedUnimplementedEnforcerServer() {}
 func (UnimplementedEnforcerServer) testEmbeddedByValue()                  {}
@@ -886,404 +359,8 @@ func RegisterEnforcerServer(s grpc.ServiceRegistrar, srv EnforcerServer) {
 	s.RegisterService(&Enforcer_ServiceDesc, srv)
 }
 
-func _Enforcer_LoadPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).LoadPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_LoadPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).LoadPolicy(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_SavePolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).SavePolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_SavePolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).SavePolicy(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_AddPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).AddPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_AddPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).AddPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_AddNamedPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).AddNamedPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_AddNamedPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).AddNamedPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemovePolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemovePolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemovePolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemovePolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveNamedPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveNamedPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveNamedPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveNamedPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveFilteredPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveFilteredPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveFilteredPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveFilteredPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveFilteredNamedPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveFilteredNamedPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveFilteredNamedPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveFilteredNamedPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetPolicy(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetNamedPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetNamedPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetNamedPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetNamedPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetFilteredPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetFilteredPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetFilteredPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetFilteredPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetFilteredNamedPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetFilteredNamedPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetFilteredNamedPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetFilteredNamedPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_AddGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).AddGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_AddGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).AddGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_AddNamedGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).AddNamedGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_AddNamedGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).AddNamedGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveNamedGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveNamedGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveNamedGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveNamedGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveFilteredGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveFilteredGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveFilteredGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveFilteredGroupingPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_RemoveFilteredNamedGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).RemoveFilteredNamedGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_RemoveFilteredNamedGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).RemoveFilteredNamedGroupingPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetGroupingPolicy(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetNamedGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetNamedGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetNamedGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetNamedGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetFilteredGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetFilteredGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetFilteredGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetFilteredGroupingPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetFilteredNamedGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FilteredPolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetFilteredNamedGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetFilteredNamedGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetFilteredNamedGroupingPolicy(ctx, req.(*FilteredPolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Enforcer_GetAllSubjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1295,31 +372,13 @@ func _Enforcer_GetAllSubjects_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Enforcer_GetAllSubjects_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllSubjects(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetAllNamedSubjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimpleGetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetAllNamedSubjects(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetAllNamedSubjects_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllNamedSubjects(ctx, req.(*SimpleGetRequest))
+		return srv.(EnforcerServer).GetAllSubjects(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetAllObjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1331,31 +390,13 @@ func _Enforcer_GetAllObjects_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Enforcer_GetAllObjects_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllObjects(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetAllNamedObjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimpleGetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetAllNamedObjects(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetAllNamedObjects_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllNamedObjects(ctx, req.(*SimpleGetRequest))
+		return srv.(EnforcerServer).GetAllObjects(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetAllActions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1367,31 +408,13 @@ func _Enforcer_GetAllActions_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Enforcer_GetAllActions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllActions(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetAllNamedActions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimpleGetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetAllNamedActions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetAllNamedActions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllNamedActions(ctx, req.(*SimpleGetRequest))
+		return srv.(EnforcerServer).GetAllActions(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetAllRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1403,121 +426,13 @@ func _Enforcer_GetAllRoles_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Enforcer_GetAllRoles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllRoles(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetAllNamedRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimpleGetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetAllNamedRoles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetAllNamedRoles_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetAllNamedRoles(ctx, req.(*SimpleGetRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_HasPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).HasPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_HasPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).HasPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_HasNamedPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).HasNamedPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_HasNamedPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).HasNamedPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_HasGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).HasGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_HasGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).HasGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_HasNamedGroupingPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).HasNamedGroupingPolicy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_HasNamedGroupingPolicy_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).HasNamedGroupingPolicy(ctx, req.(*PolicyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_GetDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).GetDomains(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_GetDomains_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetDomains(ctx, req.(*UserRoleRequest))
+		return srv.(EnforcerServer).GetAllRoles(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetRolesForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
+	in := new(Subject_User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1529,13 +444,13 @@ func _Enforcer_GetRolesForUser_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: Enforcer_GetRolesForUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetRolesForUser(ctx, req.(*UserRoleRequest))
+		return srv.(EnforcerServer).GetRolesForUser(ctx, req.(*Subject_User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetImplicitRolesForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
+	in := new(Subject_User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1547,13 +462,13 @@ func _Enforcer_GetImplicitRolesForUser_Handler(srv interface{}, ctx context.Cont
 		FullMethod: Enforcer_GetImplicitRolesForUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetImplicitRolesForUser(ctx, req.(*UserRoleRequest))
+		return srv.(EnforcerServer).GetImplicitRolesForUser(ctx, req.(*Subject_User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetUsersForRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
+	in := new(Subject_Role)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1565,7 +480,7 @@ func _Enforcer_GetUsersForRole_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: Enforcer_GetUsersForRole_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetUsersForRole(ctx, req.(*UserRoleRequest))
+		return srv.(EnforcerServer).GetUsersForRole(ctx, req.(*Subject_Role))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1624,26 +539,8 @@ func _Enforcer_DeleteRoleForUser_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Enforcer_DeleteRolesForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).DeleteRolesForUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_DeleteRolesForUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).DeleteRolesForUser(ctx, req.(*UserRoleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Enforcer_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
+	in := new(Subject_User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1655,13 +552,13 @@ func _Enforcer_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Enforcer_DeleteUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).DeleteUser(ctx, req.(*UserRoleRequest))
+		return srv.(EnforcerServer).DeleteUser(ctx, req.(*Subject_User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_DeleteRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRoleRequest)
+	in := new(Subject_Role)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1673,13 +570,13 @@ func _Enforcer_DeleteRole_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Enforcer_DeleteRole_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).DeleteRole(ctx, req.(*UserRoleRequest))
+		return srv.(EnforcerServer).DeleteRole(ctx, req.(*Subject_Role))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetPermissionsForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
+	in := new(Subject_User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1691,13 +588,13 @@ func _Enforcer_GetPermissionsForUser_Handler(srv interface{}, ctx context.Contex
 		FullMethod: Enforcer_GetPermissionsForUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetPermissionsForUser(ctx, req.(*PermissionRequest))
+		return srv.(EnforcerServer).GetPermissionsForUser(ctx, req.(*Subject_User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_GetImplicitPermissionsForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
+	in := new(Subject_User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1709,13 +606,31 @@ func _Enforcer_GetImplicitPermissionsForUser_Handler(srv interface{}, ctx contex
 		FullMethod: Enforcer_GetImplicitPermissionsForUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).GetImplicitPermissionsForUser(ctx, req.(*PermissionRequest))
+		return srv.(EnforcerServer).GetImplicitPermissionsForUser(ctx, req.(*Subject_User))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Enforcer_GetPermissionsForRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Subject_Role)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnforcerServer).GetPermissionsForRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Enforcer_GetPermissionsForRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnforcerServer).GetPermissionsForRole(ctx, req.(*Subject_Role))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Enforcer_DeletePermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
+	in := new(Permission)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1727,79 +642,43 @@ func _Enforcer_DeletePermission_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: Enforcer_DeletePermission_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).DeletePermission(ctx, req.(*PermissionRequest))
+		return srv.(EnforcerServer).DeletePermission(ctx, req.(*Permission))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Enforcer_AddPermissionForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
+func _Enforcer_AddPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Permission)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnforcerServer).AddPermissionForUser(ctx, in)
+		return srv.(EnforcerServer).AddPermission(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Enforcer_AddPermissionForUser_FullMethodName,
+		FullMethod: Enforcer_AddPermission_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).AddPermissionForUser(ctx, req.(*PermissionRequest))
+		return srv.(EnforcerServer).AddPermission(ctx, req.(*Permission))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Enforcer_DeletePermissionForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
+func _Enforcer_HasPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Permission)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnforcerServer).DeletePermissionForUser(ctx, in)
+		return srv.(EnforcerServer).HasPermission(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Enforcer_DeletePermissionForUser_FullMethodName,
+		FullMethod: Enforcer_HasPermission_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).DeletePermissionForUser(ctx, req.(*PermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_DeletePermissionsForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).DeletePermissionsForUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_DeletePermissionsForUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).DeletePermissionsForUser(ctx, req.(*PermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Enforcer_HasPermissionForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnforcerServer).HasPermissionForUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Enforcer_HasPermissionForUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnforcerServer).HasPermissionForUser(ctx, req.(*PermissionRequest))
+		return srv.(EnforcerServer).HasPermission(ctx, req.(*Permission))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1812,144 +691,20 @@ var Enforcer_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*EnforcerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "LoadPolicy",
-			Handler:    _Enforcer_LoadPolicy_Handler,
-		},
-		{
-			MethodName: "SavePolicy",
-			Handler:    _Enforcer_SavePolicy_Handler,
-		},
-		{
-			MethodName: "AddPolicy",
-			Handler:    _Enforcer_AddPolicy_Handler,
-		},
-		{
-			MethodName: "AddNamedPolicy",
-			Handler:    _Enforcer_AddNamedPolicy_Handler,
-		},
-		{
-			MethodName: "RemovePolicy",
-			Handler:    _Enforcer_RemovePolicy_Handler,
-		},
-		{
-			MethodName: "RemoveNamedPolicy",
-			Handler:    _Enforcer_RemoveNamedPolicy_Handler,
-		},
-		{
-			MethodName: "RemoveFilteredPolicy",
-			Handler:    _Enforcer_RemoveFilteredPolicy_Handler,
-		},
-		{
-			MethodName: "RemoveFilteredNamedPolicy",
-			Handler:    _Enforcer_RemoveFilteredNamedPolicy_Handler,
-		},
-		{
-			MethodName: "GetPolicy",
-			Handler:    _Enforcer_GetPolicy_Handler,
-		},
-		{
-			MethodName: "GetNamedPolicy",
-			Handler:    _Enforcer_GetNamedPolicy_Handler,
-		},
-		{
-			MethodName: "GetFilteredPolicy",
-			Handler:    _Enforcer_GetFilteredPolicy_Handler,
-		},
-		{
-			MethodName: "GetFilteredNamedPolicy",
-			Handler:    _Enforcer_GetFilteredNamedPolicy_Handler,
-		},
-		{
-			MethodName: "AddGroupingPolicy",
-			Handler:    _Enforcer_AddGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "AddNamedGroupingPolicy",
-			Handler:    _Enforcer_AddNamedGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "RemoveGroupingPolicy",
-			Handler:    _Enforcer_RemoveGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "RemoveNamedGroupingPolicy",
-			Handler:    _Enforcer_RemoveNamedGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "RemoveFilteredGroupingPolicy",
-			Handler:    _Enforcer_RemoveFilteredGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "RemoveFilteredNamedGroupingPolicy",
-			Handler:    _Enforcer_RemoveFilteredNamedGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "GetGroupingPolicy",
-			Handler:    _Enforcer_GetGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "GetNamedGroupingPolicy",
-			Handler:    _Enforcer_GetNamedGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "GetFilteredGroupingPolicy",
-			Handler:    _Enforcer_GetFilteredGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "GetFilteredNamedGroupingPolicy",
-			Handler:    _Enforcer_GetFilteredNamedGroupingPolicy_Handler,
-		},
-		{
 			MethodName: "GetAllSubjects",
 			Handler:    _Enforcer_GetAllSubjects_Handler,
-		},
-		{
-			MethodName: "GetAllNamedSubjects",
-			Handler:    _Enforcer_GetAllNamedSubjects_Handler,
 		},
 		{
 			MethodName: "GetAllObjects",
 			Handler:    _Enforcer_GetAllObjects_Handler,
 		},
 		{
-			MethodName: "GetAllNamedObjects",
-			Handler:    _Enforcer_GetAllNamedObjects_Handler,
-		},
-		{
 			MethodName: "GetAllActions",
 			Handler:    _Enforcer_GetAllActions_Handler,
 		},
 		{
-			MethodName: "GetAllNamedActions",
-			Handler:    _Enforcer_GetAllNamedActions_Handler,
-		},
-		{
 			MethodName: "GetAllRoles",
 			Handler:    _Enforcer_GetAllRoles_Handler,
-		},
-		{
-			MethodName: "GetAllNamedRoles",
-			Handler:    _Enforcer_GetAllNamedRoles_Handler,
-		},
-		{
-			MethodName: "HasPolicy",
-			Handler:    _Enforcer_HasPolicy_Handler,
-		},
-		{
-			MethodName: "HasNamedPolicy",
-			Handler:    _Enforcer_HasNamedPolicy_Handler,
-		},
-		{
-			MethodName: "HasGroupingPolicy",
-			Handler:    _Enforcer_HasGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "HasNamedGroupingPolicy",
-			Handler:    _Enforcer_HasNamedGroupingPolicy_Handler,
-		},
-		{
-			MethodName: "GetDomains",
-			Handler:    _Enforcer_GetDomains_Handler,
 		},
 		{
 			MethodName: "GetRolesForUser",
@@ -1976,10 +731,6 @@ var Enforcer_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Enforcer_DeleteRoleForUser_Handler,
 		},
 		{
-			MethodName: "DeleteRolesForUser",
-			Handler:    _Enforcer_DeleteRolesForUser_Handler,
-		},
-		{
 			MethodName: "DeleteUser",
 			Handler:    _Enforcer_DeleteUser_Handler,
 		},
@@ -1996,24 +747,20 @@ var Enforcer_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Enforcer_GetImplicitPermissionsForUser_Handler,
 		},
 		{
+			MethodName: "GetPermissionsForRole",
+			Handler:    _Enforcer_GetPermissionsForRole_Handler,
+		},
+		{
 			MethodName: "DeletePermission",
 			Handler:    _Enforcer_DeletePermission_Handler,
 		},
 		{
-			MethodName: "AddPermissionForUser",
-			Handler:    _Enforcer_AddPermissionForUser_Handler,
+			MethodName: "AddPermission",
+			Handler:    _Enforcer_AddPermission_Handler,
 		},
 		{
-			MethodName: "DeletePermissionForUser",
-			Handler:    _Enforcer_DeletePermissionForUser_Handler,
-		},
-		{
-			MethodName: "DeletePermissionsForUser",
-			Handler:    _Enforcer_DeletePermissionsForUser_Handler,
-		},
-		{
-			MethodName: "HasPermissionForUser",
-			Handler:    _Enforcer_HasPermissionForUser_Handler,
+			MethodName: "HasPermission",
+			Handler:    _Enforcer_HasPermission_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

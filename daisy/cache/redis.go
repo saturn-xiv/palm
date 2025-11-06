@@ -3,13 +3,16 @@ package cache
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 )
 
 type RedisCluster struct {
-	Nodes []RedisNode `toml:"nodes"`
+	Nodes     []RedisNode `toml:"nodes"`
+	PoolSize  uint        `toml:"pool-size"`
+	Namespace string      `toml:"namespace"`
 }
 
 func (p *RedisCluster) Addresses() []string {
@@ -20,9 +23,11 @@ func (p *RedisCluster) Addresses() []string {
 	return items
 }
 
-func (p *RedisCluster) Open(ctx context.Context) (*redis.ClusterClient, error) {
+func (p *RedisCluster) Open(ctx context.Context) (*RedisClient, error) {
+	addrs := p.Addresses()
+	slog.Info("open redis", "address", addrs)
 	db := redis.NewClusterClient(&redis.ClusterOptions{
-		Addrs:         p.Addresses(),
+		Addrs:         addrs,
 		RouteRandomly: true,
 	})
 
@@ -31,7 +36,10 @@ func (p *RedisCluster) Open(ctx context.Context) (*redis.ClusterClient, error) {
 	}); err != nil {
 		return nil, err
 	}
-	return db, nil
+	return &RedisClient{
+		db:        db,
+		namespace: p.Namespace,
+	}, nil
 }
 
 type RedisNode struct {
@@ -42,10 +50,6 @@ type RedisNode struct {
 type RedisClient struct {
 	namespace string
 	db        *redis.ClusterClient
-}
-
-func (p *RedisClient) NewRedisClient(namespace string, db *redis.ClusterClient) *RedisClient {
-	return &RedisClient{namespace: namespace, db: db}
 }
 
 func (p *RedisClient) Set(ctx context.Context, key string, value []byte, ttl time.Duration) error {
