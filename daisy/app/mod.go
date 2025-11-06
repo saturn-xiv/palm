@@ -34,7 +34,7 @@ var (
 		Use:   "http",
 		Short: "Start a HTTP server",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return LaunchHttpServer(gl_config_file, gl_rpc_port, gl_debug)
+			return LaunchHttpServer(gl_config_file, gl_http_port, gl_debug)
 		},
 	}
 	gl_sms_send_cmd = &cobra.Command{

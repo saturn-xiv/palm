@@ -1,9 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
+
+	"github.com/saturn-xiv/palm/loquat/app"
 )
 
 func main() {
-	fmt.Println("Hello, Loquat")
+	if err := app.Execute(); err != nil {
+		log.Fatal(err)
+	}
 }

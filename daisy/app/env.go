@@ -9,6 +9,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 type Database struct {
@@ -19,14 +20,15 @@ type Database struct {
 }
 
 func (p *Database) Open() (*gorm.DB, error) {
+	config := gorm.Config{Logger: logger.Default.LogMode(logger.Info)}
 	if p.PostgreSql != nil {
-		return p.PostgreSql.Open()
+		return p.PostgreSql.Open(&config)
 	}
 	if p.MySql != nil {
-		return p.MySql.Open()
+		return p.MySql.Open(&config)
 	}
 	if p.SqlServer != nil {
-		return p.SqlServer.Open()
+		return p.SqlServer.Open(&config)
 	}
 	return nil, errors.New("couldn't open a database")
 }
@@ -39,12 +41,12 @@ type PostgreSql struct {
 	Password string `toml:"password"`
 }
 
-func (p *PostgreSql) Open() (*gorm.DB, error) {
+func (p *PostgreSql) Open(config *gorm.Config) (*gorm.DB, error) {
 	slog.Info("open postgresql", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
 	return gorm.Open(postgres.New(postgres.Config{
 		DSN:                  fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%d sslmode=disable TimeZone=UTC", p.User, p.Password, p.DbName, p.Host, p.Port),
 		PreferSimpleProtocol: true,
-	}), &gorm.Config{})
+	}), config)
 }
 
 type MySql struct {
@@ -55,12 +57,12 @@ type MySql struct {
 	Password string `toml:"password"`
 }
 
-func (p *MySql) Open() (*gorm.DB, error) {
+func (p *MySql) Open(config *gorm.Config) (*gorm.DB, error) {
 	// https://github.com/go-sql-driver/mysql#dsn-data-source-name
 	slog.Info("open mysql", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
 	return gorm.Open(
 		mysql.Open(fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", p.User, p.Password, p.Host, p.Port, p.DbName)),
-		&gorm.Config{})
+		config)
 }
 
 type SqlServer struct {
@@ -71,9 +73,9 @@ type SqlServer struct {
 	Password string `toml:"password"`
 }
 
-func (p *SqlServer) Open() (*gorm.DB, error) {
+func (p *SqlServer) Open(config *gorm.Config) (*gorm.DB, error) {
 	slog.Info("open sqlserver", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
 	return gorm.Open(
 		sqlserver.Open(fmt.Sprintf("sqlserver://%s:%s@%s:%d?database=%s", p.User, p.Password, p.Host, p.Port, p.DbName)),
-		&gorm.Config{})
+		config)
 }
