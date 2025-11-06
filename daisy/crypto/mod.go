@@ -18,10 +18,10 @@ func create_keyset_file(name string, template *tink_go_proto.KeyTemplate) error 
 	}
 
 	file, err := os.Create(name)
-	defer file.Close()
 	if err != nil {
 		return err
 	}
+	defer file.Close()
 	if insecurecleartextkeyset.Write(handle, keyset.NewBinaryWriter(file)); err != nil {
 		return err
 	}

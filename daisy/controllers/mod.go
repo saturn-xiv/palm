@@ -12,7 +12,7 @@ import (
 	"github.com/minio/minio-go/v7"
 	"gorm.io/gorm"
 
-	"github.com/saturn_xiv/palm/daisy/cache"
+	"github.com/saturn-xiv/palm/daisy/cache"
 )
 
 type Context struct {

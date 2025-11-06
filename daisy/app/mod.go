@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	git_version = "2025.11.6"
-	build_time  = ""
+	git_version string
+	build_time  string
 
 	gl_config_file      string
 	gl_debug            bool
@@ -27,32 +27,28 @@ var (
 		Use:   "rpc",
 		Short: "Start a gRPC server",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			// TODO
-			return nil
+			return LaunchRpcServer(gl_config_file, gl_rpc_port, gl_debug)
 		},
 	}
 	gl_http_cmd = &cobra.Command{
 		Use:   "http",
 		Short: "Start a HTTP server",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			// TODO
-			return nil
+			return LaunchHttpServer(gl_config_file, gl_rpc_port, gl_debug)
 		},
 	}
 	gl_sms_send_cmd = &cobra.Command{
 		Use:   "sms-send-worker",
 		Short: "Start a sms-send worker",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			// TODO
-			return nil
+			return LaunchSmsSendWorker(gl_config_file, gl_sms_send_queue, gl_debug)
 		},
 	}
 	gl_email_send_cmd = &cobra.Command{
 		Use:   "email-send",
 		Short: "Start a email-send worker",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			// TODO
-			return nil
+			return LaunchEmailSendWorker(gl_config_file, gl_email_send_queue, gl_debug)
 		},
 	}
 )

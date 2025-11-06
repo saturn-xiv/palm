@@ -4,8 +4,9 @@ import (
 	"log/slog"
 
 	"github.com/BurntSushi/toml"
-	"github.com/saturn_xiv/palm/daisy/email"
-	"github.com/saturn_xiv/palm/daisy/queue"
+
+	"github.com/saturn-xiv/palm/daisy/email"
+	"github.com/saturn-xiv/palm/daisy/queue"
 )
 
 type EmailSendWorkerConfig struct {

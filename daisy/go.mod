@@ -1,4 +1,4 @@
-module github.com/saturn_xiv/palm/daisy
+module github.com/saturn-xiv/palm/daisy
 
 go 1.25.3
 

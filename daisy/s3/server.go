@@ -6,7 +6,7 @@ import (
 	"github.com/minio/minio-go/v7"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	v2 "github.com/saturn_xiv/palm/daisy/s3/v2"
+	v2 "github.com/saturn-xiv/palm/daisy/s3/v2"
 )
 
 type Server struct {

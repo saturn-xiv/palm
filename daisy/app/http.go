@@ -14,11 +14,11 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
-	"github.com/saturn_xiv/palm/daisy/cache"
-	"github.com/saturn_xiv/palm/daisy/controllers"
-	"github.com/saturn_xiv/palm/daisy/graphql"
-	"github.com/saturn_xiv/palm/daisy/rbac"
-	"github.com/saturn_xiv/palm/daisy/s3"
+	"github.com/saturn-xiv/palm/daisy/cache"
+	"github.com/saturn-xiv/palm/daisy/controllers"
+	"github.com/saturn-xiv/palm/daisy/graphql"
+	"github.com/saturn-xiv/palm/daisy/rbac"
+	"github.com/saturn-xiv/palm/daisy/s3"
 )
 
 type HttpServerConfig struct {

@@ -6,7 +6,7 @@ import (
 	"github.com/wneessen/go-mail"
 	"google.golang.org/protobuf/proto"
 
-	v2 "github.com/saturn_xiv/palm/daisy/email/v2"
+	v2 "github.com/saturn-xiv/palm/daisy/email/v2"
 )
 
 type Config struct {

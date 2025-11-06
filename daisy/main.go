@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/saturn_xiv/palm/daisy/app"
+	"github.com/saturn-xiv/palm/daisy/app"
 )
 
 func main() {

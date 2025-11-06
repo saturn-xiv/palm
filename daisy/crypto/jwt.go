@@ -7,7 +7,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/tink-crypto/tink-go/v2/jwt"
 
-	v2 "github.com/saturn_xiv/palm/daisy/crypto/v2"
+	v2 "github.com/saturn-xiv/palm/daisy/crypto/v2"
 )
 
 type Jwt struct {

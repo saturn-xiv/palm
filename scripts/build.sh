@@ -41,7 +41,7 @@ function build_go() {
 
     local pkg="github.com/saturn-xiv/palm/$1/app"
     # ldflags="-extldflags=-static" -tags sqlite_omit_load_extension
-    local ldflags="-s -w -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
+    local ldflags="-s -w -X '$pkg.build_time=$(date -u -R)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1.$2 on $3"
     mkdir -p $TARGET/bin/$3
@@ -56,7 +56,22 @@ mkdir $TARGET
 
 build_camellia
 build_dashboard bamboo
-build_go daisy amd64 x86_64
-build_go daisy arm64 aarch64
-build_go daisy riscv64 riscv64
-# build_go daisy loong64
+
+declare -a go_projects=("daisy" "loquat")
+for p in "${go_projects[@]}"
+do
+    build_go $p amd64 x86_64
+    build_go $p arm64 aarch64
+    build_go $p riscv64 riscv64
+    # build_go $p loong64
+done
+
+cd $WORKSPACE/
+if [ -f $PACKAGE.tar.xz ]
+then
+    rm $PACKAGE.tar.xz
+fi
+XZ_OPT='-9' tar -cJf $PACKAGE.tar.xz -C $(dirname $TARGET) $PACKAGE
+
+echo "done($PACKAGE.tar.xz)."
+exit 0

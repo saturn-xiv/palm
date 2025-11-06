@@ -1,4 +1,4 @@
-module github.com/saturn_xiv/palm/loquat
+module github.com/saturn-xiv/palm/loquat
 
 go 1.25.3
 

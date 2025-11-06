@@ -8,7 +8,7 @@ import (
 	"github.com/casbin/casbin/v2"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	v2 "github.com/saturn_xiv/palm/daisy/rbac/v2"
+	v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
 )
 
 type Server struct {

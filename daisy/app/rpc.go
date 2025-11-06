@@ -10,14 +10,14 @@ import (
 	"google.golang.org/grpc/health"
 	healthgrpc "google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/saturn_xiv/palm/daisy/cache"
-	"github.com/saturn_xiv/palm/daisy/crypto"
-	crypto_v2 "github.com/saturn_xiv/palm/daisy/crypto/v2"
-	"github.com/saturn_xiv/palm/daisy/queue"
-	"github.com/saturn_xiv/palm/daisy/rbac"
-	rbac_v2 "github.com/saturn_xiv/palm/daisy/rbac/v2"
-	"github.com/saturn_xiv/palm/daisy/s3"
-	s3_v2 "github.com/saturn_xiv/palm/daisy/s3/v2"
+	"github.com/saturn-xiv/palm/daisy/cache"
+	"github.com/saturn-xiv/palm/daisy/crypto"
+	crypto_v2 "github.com/saturn-xiv/palm/daisy/crypto/v2"
+	"github.com/saturn-xiv/palm/daisy/queue"
+	"github.com/saturn-xiv/palm/daisy/rbac"
+	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
+	"github.com/saturn-xiv/palm/daisy/s3"
+	s3_v2 "github.com/saturn-xiv/palm/daisy/s3/v2"
 )
 
 type RpcServerConfig struct {
