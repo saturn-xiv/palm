@@ -1,10 +1,15 @@
 package app
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
 var (
+	git_version = "2025.11.6"
+	build_time  = ""
+
 	gl_config_file      string
 	gl_debug            bool
 	gl_rpc_port         uint16
@@ -14,8 +19,8 @@ var (
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "daisy",
-		Short:   "A total free education &amp; translation solution",
-		Version: "2025.11.6",
+		Short:   "A total free education & translation solution",
+		Version: fmt.Sprintf("%s(%s)", git_version, build_time),
 	}
 
 	gl_rpc_cmd = &cobra.Command{

@@ -22,7 +22,7 @@ func NewAction(s string) (*Action, error) {
 	return &it, nil
 }
 
-func (p *Action) String() (string, error) {
+func (p *Action) ToString() (string, error) {
 	var buf bytes.Buffer
 	{
 		enc := gob.NewEncoder(&buf)
@@ -47,7 +47,7 @@ func NewObject(s string) (*Object, error) {
 	return &it, nil
 }
 
-func (p *Object) String() (string, error) {
+func (p *Object) ToString() (string, error) {
 	var buf bytes.Buffer
 	{
 		enc := gob.NewEncoder(&buf)
@@ -72,7 +72,7 @@ func NewSubject(s string) (*Subject, error) {
 	return &it, nil
 }
 
-func (p *Subject) String() (string, error) {
+func (p *Subject) ToString() (string, error) {
 	var buf bytes.Buffer
 	{
 		enc := gob.NewEncoder(&buf)
@@ -196,15 +196,15 @@ func NewPermission(rules []string) (*Permission, error) {
 }
 
 func (p *Permission) Rules() ([]string, error) {
-	sub, err := p.Subject.String()
+	sub, err := p.Subject.ToString()
 	if err != nil {
 		return nil, err
 	}
-	obj, err := p.Object.String()
+	obj, err := p.Object.ToString()
 	if err != nil {
 		return nil, err
 	}
-	act, err := p.Action.String()
+	act, err := p.Action.ToString()
 	if err != nil {
 		return nil, err
 	}

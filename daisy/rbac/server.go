@@ -92,7 +92,7 @@ func (p *Server) GetAllRoles(ctx context.Context, req *emptypb.Empty) (*v2.Roles
 func (p *Server) GetRolesForUser(ctx context.Context, req *v2.Subject_User) (*v2.RolesResponse, error) {
 	var res v2.RolesResponse
 	user := v2.Subject{By: &v2.Subject_User_{User: req}}
-	sub, err := user.String()
+	sub, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func (p *Server) GetRolesForUser(ctx context.Context, req *v2.Subject_User) (*v2
 func (p *Server) GetImplicitRolesForUser(ctx context.Context, req *v2.Subject_User) (*v2.RolesResponse, error) {
 	var res v2.RolesResponse
 	user := v2.Subject{By: &v2.Subject_User_{User: req}}
-	sub, err := user.String()
+	sub, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -144,7 +144,7 @@ func (p *Server) GetImplicitRolesForUser(ctx context.Context, req *v2.Subject_Us
 func (p *Server) GetUsersForRole(ctx context.Context, req *v2.Subject_Role) (*v2.UsersResponse, error) {
 	var res v2.UsersResponse
 	role := v2.Subject{By: &v2.Subject_Role_{Role: req}}
-	sub, err := role.String()
+	sub, err := role.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -169,12 +169,12 @@ func (p *Server) GetUsersForRole(ctx context.Context, req *v2.Subject_Role) (*v2
 }
 func (p *Server) HasRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*emptypb.Empty, error) {
 	role := v2.Subject{By: &v2.Subject_Role_{Role: req.Role}}
-	role_s, err := role.String()
+	role_s, err := role.ToString()
 	if err != nil {
 		return nil, err
 	}
 	user := v2.Subject{By: &v2.Subject_User_{User: req.User}}
-	user_s, err := user.String()
+	user_s, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -199,12 +199,12 @@ func (p *Server) HasRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*
 }
 func (p *Server) AddRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*emptypb.Empty, error) {
 	role := v2.Subject{By: &v2.Subject_Role_{Role: req.Role}}
-	role_s, err := role.String()
+	role_s, err := role.ToString()
 	if err != nil {
 		return nil, err
 	}
 	user := v2.Subject{By: &v2.Subject_User_{User: req.User}}
-	user_s, err := user.String()
+	user_s, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -216,12 +216,12 @@ func (p *Server) AddRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*
 }
 func (p *Server) DeleteRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*emptypb.Empty, error) {
 	role := v2.Subject{By: &v2.Subject_Role_{Role: req.Role}}
-	role_s, err := role.String()
+	role_s, err := role.ToString()
 	if err != nil {
 		return nil, err
 	}
 	user := v2.Subject{By: &v2.Subject_User_{User: req.User}}
-	user_s, err := user.String()
+	user_s, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -233,7 +233,7 @@ func (p *Server) DeleteRoleForUser(ctx context.Context, req *v2.UserRoleRequest)
 }
 func (p *Server) DeleteUser(ctx context.Context, req *v2.Subject_User) (*emptypb.Empty, error) {
 	user := v2.Subject{By: &v2.Subject_User_{User: req}}
-	user_s, err := user.String()
+	user_s, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -245,7 +245,7 @@ func (p *Server) DeleteUser(ctx context.Context, req *v2.Subject_User) (*emptypb
 }
 func (p *Server) DeleteRole(ctx context.Context, req *v2.Subject_Role) (*emptypb.Empty, error) {
 	role := v2.Subject{By: &v2.Subject_Role_{Role: req}}
-	role_s, err := role.String()
+	role_s, err := role.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -258,7 +258,7 @@ func (p *Server) DeleteRole(ctx context.Context, req *v2.Subject_Role) (*emptypb
 
 func (p *Server) GetPermissionsForUser(ctx context.Context, req *v2.Subject_User) (*v2.PermissionsResponse, error) {
 	user := v2.Subject{By: &v2.Subject_User_{User: req}}
-	user_s, err := user.String()
+	user_s, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -278,7 +278,7 @@ func (p *Server) GetPermissionsForUser(ctx context.Context, req *v2.Subject_User
 }
 func (p *Server) GetImplicitPermissionsForUser(ctx context.Context, req *v2.Subject_User) (*v2.PermissionsResponse, error) {
 	user := v2.Subject{By: &v2.Subject_User_{User: req}}
-	user_s, err := user.String()
+	user_s, err := user.ToString()
 	if err != nil {
 		return nil, err
 	}
@@ -298,7 +298,7 @@ func (p *Server) GetImplicitPermissionsForUser(ctx context.Context, req *v2.Subj
 }
 func (p *Server) GetPermissionsForRole(ctx context.Context, req *v2.Subject_Role) (*v2.PermissionsResponse, error) {
 	role := v2.Subject{By: &v2.Subject_Role_{Role: req}}
-	role_s, err := role.String()
+	role_s, err := role.ToString()
 	if err != nil {
 		return nil, err
 	}
