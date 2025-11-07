@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/gorilla/csrf"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
@@ -34,11 +33,11 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	if err != nil {
 		return err
 	}
-	csrf_key, err := base64.StdEncoding.DecodeString(config.SecretKey)
+	secret_key, err := base64.StdEncoding.DecodeString(config.SecretKey)
 	if err != nil {
 		return err
 	}
-	graphql_hnd, err := graphql.Handler(db)
+	graphql_hnd, err := graphql.Handler(db, secret_key)
 	if err != nil {
 		return err
 	}
@@ -46,7 +45,7 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	router.Handle("/graphql", graphql_hnd).Methods(http.MethodGet, http.MethodPost)
 
 	router.Use(
-		csrf.Protect(csrf_key, csrf.Path("/")),
+		// csrf.Protect(secret_key, csrf.Path("/")),
 		handlers.ProxyHeaders,
 		handlers.CORS(
 			handlers.AllowCredentials(),

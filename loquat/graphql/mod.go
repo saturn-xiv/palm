@@ -2,6 +2,7 @@ package graphql
 
 import (
 	_ "embed"
+	"fmt"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -9,6 +10,15 @@ import (
 	"github.com/graph-gophers/graphql-go/relay"
 	"gorm.io/gorm"
 )
+
+var (
+	git_version string
+	build_time  string
+)
+
+func Version() string {
+	return fmt.Sprintf("%s(%s)", git_version, build_time)
+}
 
 var (
 	ContentType   = "Content-Type"
@@ -21,7 +31,7 @@ var gl_validate = validator.New()
 //go:embed schema.txt
 var gl_schema_txt string
 
-func Handler(db *gorm.DB) (http.Handler, error) {
+func Handler(db *gorm.DB, secret_key []byte) (http.Handler, error) {
 	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db: db})
 	if err != nil {
 		return nil, err
@@ -37,7 +47,9 @@ type Query struct {
 	db *gorm.DB
 }
 
-func (p *Query) Version() string { return "2025.11.6" }
+func (p *Query) Version() string {
+	return Version()
+}
 
 type Root struct {
 	db *gorm.DB

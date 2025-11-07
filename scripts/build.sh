@@ -39,7 +39,7 @@ function build_api() {
 function build_go() {
     cd $WORKSPACE/$1/
 
-    local pkg="github.com/saturn-xiv/palm/$1/app"
+    local pkg="github.com/saturn-xiv/palm/$1/graphql"
     # ldflags="-extldflags=-static" -tags sqlite_omit_load_extension
     local ldflags="-s -w -X '$pkg.build_time=$(date -u -R)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 

@@ -1,17 +1,15 @@
 package app
 
 import (
-	"fmt"
 	"log"
 	"log/slog"
 
 	"github.com/spf13/cobra"
+
+	"github.com/saturn-xiv/palm/daisy/graphql"
 )
 
 var (
-	git_version string
-	build_time  string
-
 	gl_config_file      string
 	gl_debug            bool
 	gl_rpc_port         uint16
@@ -22,7 +20,7 @@ var (
 	gl_root_cmd = &cobra.Command{
 		Use:     "daisy",
 		Short:   "A total free education & translation solution",
-		Version: fmt.Sprintf("%s(%s)", git_version, build_time),
+		Version: graphql.Version(),
 	}
 
 	gl_rpc_cmd = &cobra.Command{

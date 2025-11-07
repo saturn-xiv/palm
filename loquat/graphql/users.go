@@ -11,6 +11,10 @@ import (
 	"github.com/saturn-xiv/palm/loquat/models"
 )
 
+func (p *Mutation) SignIn() string {
+	return "aaa"
+}
+
 type Administrator struct {
 	Username string `validate:"required,gte=2,lte=15"`
 	Password string `validate:"required,gte=6,lte=31"`

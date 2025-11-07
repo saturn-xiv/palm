@@ -2,6 +2,7 @@ package graphql
 
 import (
 	_ "embed"
+	"fmt"
 	"net/http"
 
 	graphql "github.com/graph-gophers/graphql-go"
@@ -17,4 +18,13 @@ func Handler() (http.Handler, error) {
 		return nil, err
 	}
 	return &relay.Handler{Schema: schema}, nil
+}
+
+var (
+	git_version string
+	build_time  string
+)
+
+func Version() string {
+	return fmt.Sprintf("%s(%s)", git_version, build_time)
 }
