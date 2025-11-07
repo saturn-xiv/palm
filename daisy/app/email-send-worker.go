@@ -15,11 +15,7 @@ type EmailSendWorkerConfig struct {
 }
 
 func LaunchEmailSendWorker(config_file string, queue string, debug bool) error {
-	if debug {
-		slog.SetLogLoggerLevel(slog.LevelDebug)
-	} else {
-		slog.SetLogLoggerLevel(slog.LevelInfo)
-	}
+	init_logger(debug)
 
 	slog.Debug("load configuration from", "file", config_file)
 	var config EmailSendWorkerConfig

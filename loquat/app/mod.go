@@ -2,6 +2,8 @@ package app
 
 import (
 	"fmt"
+	"log"
+	"log/slog"
 
 	"github.com/spf13/cobra"
 )
@@ -23,15 +25,19 @@ var (
 	gl_http_cmd = &cobra.Command{
 		Use:   "http",
 		Short: "Start a HTTP server",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return LaunchHttpServer(gl_config_file, gl_http_port, gl_debug)
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := LaunchHttpServer(gl_config_file, gl_http_port, gl_debug); err != nil {
+				log.Fatal(err)
+			}
 		},
 	}
 	gl_net_scan_cmd = &cobra.Command{
 		Use:   "net-scan",
 		Short: "Scan network devices",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return NetScan(gl_config_file, gl_debug)
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := NetScan(gl_config_file, gl_debug); err != nil {
+				log.Fatal(err)
+			}
 		},
 	}
 )
@@ -43,9 +49,18 @@ func Execute() error {
 func init() {
 
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_config_file, "config", "c", "config.toml", "configuration file")
-	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", true, "run on debug mode")
+	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
 
 	gl_http_cmd.PersistentFlags().Uint16VarP(&gl_http_port, "port", "p", 8080, "listening port")
 
 	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd)
+}
+
+func init_logger(debug bool) {
+	if debug {
+		slog.SetLogLoggerLevel(slog.LevelDebug)
+	} else {
+		slog.SetLogLoggerLevel(slog.LevelInfo)
+	}
+	slog.Debug("run on debug mode")
 }

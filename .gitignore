@@ -1,5 +1,6 @@
 /tmp/
 /*.tar.xz
+/*.toml
 
 /target/
 /Cargo.lock

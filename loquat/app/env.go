@@ -19,12 +19,19 @@ type PostgreSql struct {
 	Password string `toml:"password"`
 }
 
-func (p *PostgreSql) Open() (*gorm.DB, error) {
+func (p *PostgreSql) Open(debug bool) (*gorm.DB, error) {
+	config := gorm.Config{}
+	if debug {
+		config.Logger = logger.Default.LogMode(logger.Info)
+	} else {
+		config.Logger = logger.Default.LogMode(logger.Warn)
+	}
+
 	slog.Info("open postgresql", "host", p.Host, "port", p.Port, "db-name", p.DbName, "user", p.User)
 	db, err := gorm.Open(postgres.New(postgres.Config{
 		DSN:                  fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%d sslmode=disable TimeZone=UTC", p.User, p.Password, p.DbName, p.Host, p.Port),
 		PreferSimpleProtocol: true,
-	}), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
+	}), &config)
 	if err != nil {
 		return nil, err
 	}

@@ -1,9 +1,12 @@
 package app
 
 import (
+	"errors"
 	"log/slog"
 
 	"github.com/BurntSushi/toml"
+	"github.com/saturn-xiv/palm/loquat/models"
+	"gorm.io/gorm"
 )
 
 type NetScanConfig struct {
@@ -11,11 +14,7 @@ type NetScanConfig struct {
 }
 
 func NetScan(config_file string, debug bool) error {
-	if debug {
-		slog.SetLogLoggerLevel(slog.LevelDebug)
-	} else {
-		slog.SetLogLoggerLevel(slog.LevelInfo)
-	}
+	init_logger(debug)
 
 	slog.Debug("load configuration from", "file", config_file)
 	var config NetScanConfig
@@ -24,9 +23,53 @@ func NetScan(config_file string, debug bool) error {
 		return err
 	}
 
-	_, err := config.PostgreSql.Open()
+	db, err := config.PostgreSql.Open(debug)
 	if err != nil {
 		return err
 	}
+
+	if err = nmap_scan(db); err != nil {
+		return err
+	}
+	return nil
+}
+
+func nmap_scan(db *gorm.DB) error {
+	// TODO should load from db
+	network := []string{"192.168.12.0/24", "192.168.11.0/24"}
+	hosts, err := models.ScanHosts(network...)
+	if err != nil {
+		return err
+	}
+	inserted := 0
+	updated := 0
+	if err = db.Transaction(func(tx *gorm.DB) error {
+		for _, host := range hosts {
+			var it models.Host
+			err := db.Where(&host, "mac", "network").Take(&it).Error
+			if err == nil {
+				if err = db.Model(&it).Updates(map[string]interface{}{
+					"name":    host.Name,
+					"ip":      host.Ip,
+					"vendor":  host.Vendor,
+					"version": it.Version + 1,
+				}).Error; err != nil {
+					return err
+				}
+				updated += 1
+			} else if errors.Is(err, gorm.ErrRecordNotFound) {
+				if err = db.Create(&host).Error; err != nil {
+					return err
+				}
+				inserted += 1
+			} else {
+				return err
+			}
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	slog.Info("succeed", "inserted", inserted, "updated", updated)
 	return nil
 }

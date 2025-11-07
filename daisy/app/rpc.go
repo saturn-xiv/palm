@@ -28,11 +28,7 @@ type RpcServerConfig struct {
 }
 
 func LaunchRpcServer(config_file string, port uint16, debug bool) error {
-	if debug {
-		slog.SetLogLoggerLevel(slog.LevelDebug)
-	} else {
-		slog.SetLogLoggerLevel(slog.LevelInfo)
-	}
+	init_logger(debug)
 
 	slog.Debug("load configuration from", "file", config_file)
 	var config RpcServerConfig
@@ -52,7 +48,7 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	if err != nil {
 		return err
 	}
-	db, err := config.Database.Open()
+	db, err := config.Database.Open(debug)
 	if err != nil {
 		return err
 	}

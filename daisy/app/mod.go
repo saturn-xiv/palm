@@ -2,6 +2,8 @@ package app
 
 import (
 	"fmt"
+	"log"
+	"log/slog"
 
 	"github.com/spf13/cobra"
 )
@@ -26,29 +28,37 @@ var (
 	gl_rpc_cmd = &cobra.Command{
 		Use:   "rpc",
 		Short: "Start a gRPC server",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return LaunchRpcServer(gl_config_file, gl_rpc_port, gl_debug)
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := LaunchRpcServer(gl_config_file, gl_rpc_port, gl_debug); err != nil {
+				log.Fatal(err)
+			}
 		},
 	}
 	gl_http_cmd = &cobra.Command{
 		Use:   "http",
 		Short: "Start a HTTP server",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return LaunchHttpServer(gl_config_file, gl_http_port, gl_debug)
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := LaunchHttpServer(gl_config_file, gl_http_port, gl_debug); err != nil {
+				log.Fatal(err)
+			}
 		},
 	}
 	gl_sms_send_cmd = &cobra.Command{
 		Use:   "sms-send-worker",
 		Short: "Start a sms-send worker",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return LaunchSmsSendWorker(gl_config_file, gl_sms_send_queue, gl_debug)
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := LaunchSmsSendWorker(gl_config_file, gl_sms_send_queue, gl_debug); err != nil {
+				log.Fatal(err)
+			}
 		},
 	}
 	gl_email_send_cmd = &cobra.Command{
 		Use:   "email-send",
 		Short: "Start a email-send worker",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return LaunchEmailSendWorker(gl_config_file, gl_email_send_queue, gl_debug)
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := LaunchEmailSendWorker(gl_config_file, gl_email_send_queue, gl_debug); err != nil {
+				log.Fatal(err)
+			}
 		},
 	}
 )
@@ -68,4 +78,13 @@ func init() {
 	gl_sms_send_cmd.PersistentFlags().StringVarP(&gl_sms_send_queue, "queue", "q", "sms", "queue name")
 
 	gl_root_cmd.AddCommand(gl_http_cmd, gl_rpc_cmd, gl_email_send_cmd, gl_sms_send_cmd)
+}
+
+func init_logger(debug bool) {
+	if debug {
+		slog.SetLogLoggerLevel(slog.LevelDebug)
+	} else {
+		slog.SetLogLoggerLevel(slog.LevelInfo)
+	}
+	slog.Debug("run on debug mode")
 }

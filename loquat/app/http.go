@@ -22,11 +22,7 @@ type HttpServerConfig struct {
 }
 
 func LaunchHttpServer(config_file string, port uint16, debug bool) error {
-	if debug {
-		slog.SetLogLoggerLevel(slog.LevelDebug)
-	} else {
-		slog.SetLogLoggerLevel(slog.LevelInfo)
-	}
+	init_logger(debug)
 
 	slog.Debug("load configuration from", "file", config_file)
 	var config HttpServerConfig
@@ -34,7 +30,7 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 		return err
 	}
 
-	db, err := config.PostgreSql.Open()
+	db, err := config.PostgreSql.Open(debug)
 	if err != nil {
 		return err
 	}

@@ -19,8 +19,13 @@ type Database struct {
 	PoolSize   uint        `toml:"pool-size"`
 }
 
-func (p *Database) Open() (*gorm.DB, error) {
-	config := gorm.Config{Logger: logger.Default.LogMode(logger.Info)}
+func (p *Database) Open(debug bool) (*gorm.DB, error) {
+	config := gorm.Config{}
+	if debug {
+		config.Logger = logger.Default.LogMode(logger.Info)
+	} else {
+		config.Logger = logger.Default.LogMode(logger.Warn)
+	}
 	if p.PostgreSql != nil {
 		return p.PostgreSql.Open(&config)
 	}
