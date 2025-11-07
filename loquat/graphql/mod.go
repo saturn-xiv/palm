@@ -2,23 +2,15 @@ package graphql
 
 import (
 	_ "embed"
-	"fmt"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
 	"gorm.io/gorm"
-)
 
-var (
-	git_version string
-	build_time  string
+	"github.com/saturn-xiv/palm/loquat/env"
 )
-
-func Version() string {
-	return fmt.Sprintf("%s(%s)", git_version, build_time)
-}
 
 var (
 	ContentType   = "Content-Type"
@@ -48,7 +40,7 @@ type Query struct {
 }
 
 func (p *Query) Version() string {
-	return Version()
+	return env.Version()
 }
 
 type Root struct {

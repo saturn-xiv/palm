@@ -15,8 +15,6 @@ type EmailSendWorkerConfig struct {
 }
 
 func LaunchEmailSendWorker(config_file string, queue string, debug bool) error {
-	init_logger(debug)
-
 	slog.Debug("load configuration from", "file", config_file)
 	var config EmailSendWorkerConfig
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {

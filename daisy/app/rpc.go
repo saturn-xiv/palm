@@ -28,8 +28,6 @@ type RpcServerConfig struct {
 }
 
 func LaunchRpcServer(config_file string, port uint16, debug bool) error {
-	init_logger(debug)
-
 	slog.Debug("load configuration from", "file", config_file)
 	var config RpcServerConfig
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {

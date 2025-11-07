@@ -15,8 +15,6 @@ type SetAdministratorConfig struct {
 }
 
 func SetAdministrator(config_file string, username string, password string, debug bool) error {
-	init_logger(debug)
-
 	slog.Debug("load configuration from", "file", config_file)
 	var config SetAdministratorConfig
 

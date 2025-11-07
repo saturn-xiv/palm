@@ -14,8 +14,6 @@ type NetScanConfig struct {
 }
 
 func NetScan(config_file string, debug bool) error {
-	init_logger(debug)
-
 	slog.Debug("load configuration from", "file", config_file)
 	var config NetScanConfig
 

@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/saturn-xiv/palm/daisy/graphql"
+	"github.com/saturn-xiv/palm/daisy/env"
 )
 
 var (
@@ -20,7 +20,7 @@ var (
 	gl_root_cmd = &cobra.Command{
 		Use:     "daisy",
 		Short:   "A total free education & translation solution",
-		Version: graphql.Version(),
+		Version: env.Version(),
 	}
 
 	gl_rpc_cmd = &cobra.Command{
@@ -66,6 +66,7 @@ func Execute() error {
 }
 
 func init() {
+	cobra.OnInitialize(init_logger)
 
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_config_file, "config", "c", "config.toml", "configuration file")
 	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", true, "run on debug mode")
@@ -78,8 +79,8 @@ func init() {
 	gl_root_cmd.AddCommand(gl_http_cmd, gl_rpc_cmd, gl_email_send_cmd, gl_sms_send_cmd)
 }
 
-func init_logger(debug bool) {
-	if debug {
+func init_logger() {
+	if gl_debug {
 		slog.SetLogLoggerLevel(slog.LevelDebug)
 	} else {
 		slog.SetLogLoggerLevel(slog.LevelInfo)

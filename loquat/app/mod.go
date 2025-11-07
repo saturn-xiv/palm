@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/saturn-xiv/palm/loquat/graphql"
+	"github.com/saturn-xiv/palm/loquat/env"
 )
 
 var (
@@ -19,7 +19,7 @@ var (
 	gl_root_cmd = &cobra.Command{
 		Use:     "loquat",
 		Short:   "A smart router based on Debian linux",
-		Version: graphql.Version(),
+		Version: env.Version(),
 	}
 
 	gl_http_cmd = &cobra.Command{
@@ -56,6 +56,7 @@ func Execute() error {
 }
 
 func init() {
+	cobra.OnInitialize(init_logger)
 
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_config_file, "config", "c", "config.toml", "configuration file")
 	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
@@ -68,8 +69,8 @@ func init() {
 	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd, gl_set_administrator_cmd)
 }
 
-func init_logger(debug bool) {
-	if debug {
+func init_logger() {
+	if gl_debug {
 		slog.SetLogLoggerLevel(slog.LevelDebug)
 	} else {
 		slog.SetLogLoggerLevel(slog.LevelInfo)

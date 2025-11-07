@@ -39,7 +39,7 @@ function build_api() {
 function build_go() {
     cd $WORKSPACE/$1/
 
-    local pkg="github.com/saturn-xiv/palm/$1/graphql"
+    local pkg="github.com/saturn-xiv/palm/$1/env"
     # ldflags="-extldflags=-static" -tags sqlite_omit_load_extension
     local ldflags="-s -w -X '$pkg.build_time=$(date -u -R)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
@@ -57,7 +57,7 @@ mkdir $TARGET
 build_camellia
 build_dashboard bamboo
 
-declare -a go_projects=("daisy" "loquat")
+declare -a go_projects=("daisy" "loquat" "pansy")
 for p in "${go_projects[@]}"
 do
     build_go $p amd64 x86_64

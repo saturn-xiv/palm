@@ -21,8 +21,6 @@ type HttpServerConfig struct {
 }
 
 func LaunchHttpServer(config_file string, port uint16, debug bool) error {
-	init_logger(debug)
-
 	slog.Debug("load configuration from", "file", config_file)
 	var config HttpServerConfig
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
