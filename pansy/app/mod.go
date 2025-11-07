@@ -4,12 +4,12 @@ import (
 	"log"
 	"log/slog"
 	"os"
+	"os/user"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
 	"github.com/saturn-xiv/palm/pansy/env"
-	"github.com/saturn-xiv/palm/pansy/proxy"
 )
 
 var (
@@ -27,13 +27,13 @@ var (
 		Short:   "launch a HTTP proxy over SSH",
 		Version: env.Version(),
 		Run: func(cmd *cobra.Command, args []string) {
-			server := proxy.Ssh{
+			ssh := Ssh{
 				Host:    gl_ssh_host,
 				Port:    gl_ssh_port,
 				User:    gl_ssh_user,
 				KeyFile: gl_ssh_key_file,
 			}
-			if err := server.StartHttpProxyServer(gl_http_host, gl_http_port); err != nil {
+			if err := ssh.StartHttpProxyServer(gl_http_host, gl_http_port); err != nil {
 				log.Fatal(err)
 			}
 		},
@@ -47,13 +47,17 @@ func Execute() error {
 func init() {
 	cobra.OnInitialize(init_logger, init_config)
 
+	user, err := user.Current()
+	if err != nil {
+		log.Fatalln(err)
+	}
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_config_file, "config", "c", "config.toml", "configuration file")
 	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
 	gl_root_cmd.PersistentFlags().StringVar(&gl_http_host, "host", "0.0.0.0", "ip address for local http proxy server listen to")
 	gl_root_cmd.PersistentFlags().Uint16VarP(&gl_http_port, "port", "p", 8080, "port for local http proxy server listen to")
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_host, "ssh-host", "H", "127.0.0.1", "ssh host")
 	gl_root_cmd.PersistentFlags().Uint16VarP(&gl_ssh_port, "ssh-port", "P", 22, "ssh port")
-	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_user, "ssh-user", "U", "proxy", "ssh user")
+	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_user, "ssh-user", "U", user.Username, "ssh user")
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_key_file, "ssh-key-file", "K", "config.toml", "ssh private key file")
 }
 
