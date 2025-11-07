@@ -12,9 +12,11 @@ var (
 	git_version string
 	build_time  string
 
-	gl_config_file string
-	gl_debug       bool
-	gl_http_port   uint16
+	gl_config_file                string
+	gl_debug                      bool
+	gl_http_port                  uint16
+	gl_set_administrator_username string
+	gl_set_administrator_password string
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "loquat",
@@ -40,6 +42,15 @@ var (
 			}
 		},
 	}
+	gl_set_administrator_cmd = &cobra.Command{
+		Use:   "set-administrator",
+		Short: "Setup an administrator account",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := SetAdministrator(gl_config_file, gl_set_administrator_username, gl_set_administrator_password, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
 )
 
 func Execute() error {
@@ -53,7 +64,10 @@ func init() {
 
 	gl_http_cmd.PersistentFlags().Uint16VarP(&gl_http_port, "port", "p", 8080, "listening port")
 
-	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd)
+	gl_set_administrator_cmd.PersistentFlags().StringVarP(&gl_set_administrator_username, "username", "u", "", "username")
+	gl_set_administrator_cmd.PersistentFlags().StringVarP(&gl_set_administrator_password, "password", "p", "", "password")
+
+	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd, gl_set_administrator_cmd)
 }
 
 func init_logger(debug bool) {

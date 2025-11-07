@@ -1,9 +1,10 @@
-package controllers
+package graphql
 
 import (
 	_ "embed"
 	"net/http"
 
+	"github.com/go-playground/validator/v10"
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
 	"gorm.io/gorm"
@@ -14,6 +15,8 @@ var (
 	Authorization = "Authorization"
 	Bearer        = "Bearer "
 )
+
+var gl_validate = validator.New()
 
 //go:embed schema.txt
 var gl_schema_txt string
