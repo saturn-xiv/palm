@@ -22,5 +22,10 @@ func (p *Ssh) StartHttpProxyServer(host string, port uint16) error {
 	}
 	addr := fmt.Sprintf("%s:%d", host, port)
 	slog.Info("start a proxy server at", "address", addr)
+	slog.Debug("or launch an socks5 server", "command", p.socks5(addr))
 	return http.ListenAndServe(addr, server)
+}
+
+func (p *Ssh) socks5(addr string) string {
+	return fmt.Sprintf("ssh -f -p %d -i %s -D %s -CqTnN %s@%s", p.Port, p.KeyFile, addr, p.User, p.Host)
 }

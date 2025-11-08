@@ -54,7 +54,7 @@ func (p *Direct) ServeHTTP(wrt http.ResponseWriter, req *http.Request) error {
 		return err
 	}
 
-	slog.Debug("response", "host", req.URL.Host, "status", res.Status, "duration", beautify_duration(time.Since(start)), "size", beautify_size(cnt))
+	slog.Debug("response", "url", req.URL.String(), "status", res.Status, "duration", beautify_duration(time.Since(start)), "size", beautify_size(cnt))
 	return nil
 }
 
@@ -123,7 +123,7 @@ func (p *Direct) Connect(ctx context.Context, wrt http.ResponseWriter, req *http
 		}
 	}
 
-	slog.Debug("close", "host", req.URL.Host, "after", beautify_duration(time.Since(start)), "up", beautify_size(client_to_remote_count), "down", beautify_size(remote_to_client_count))
+	slog.Debug("close", "url", req.URL.String(), "after", beautify_duration(time.Since(start)), "up", beautify_size(client_to_remote_count), "down", beautify_size(remote_to_client_count))
 	return nil
 }
 

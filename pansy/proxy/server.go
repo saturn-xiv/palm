@@ -54,7 +54,7 @@ func NewServer(host string, port uint16, user string, key_file string) (*Server,
 }
 
 func (p *Server) ServeHTTP(wrt http.ResponseWriter, req *http.Request) {
-	slog.Debug("serve", "proto", req.Proto, "method", req.Method, "uri", req.RequestURI)
+	slog.Debug("serve", "proto", req.Proto, "method", req.Method, "url", req.URL.String())
 	if req.Method == "CONNECT" {
 		p.direct.Connect(context.Background(), wrt, req)
 	} else if req.URL.IsAbs() {
@@ -63,6 +63,6 @@ func (p *Server) ServeHTTP(wrt http.ResponseWriter, req *http.Request) {
 		clear(req.Header)
 		p.direct.ServeHTTP(wrt, req)
 	} else {
-		slog.Error("not a full URL path", "uri", req.RequestURI)
+		slog.Error("not a full URL path", "url", req.URL.String())
 	}
 }

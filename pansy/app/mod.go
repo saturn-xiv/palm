@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"os"
 	"os/user"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -24,7 +25,7 @@ var (
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "pansy",
-		Short:   "launch a HTTP proxy over SSH",
+		Short:   "launch a HTTP proxy server over SSH",
 		Version: env.Version(),
 		Run: func(cmd *cobra.Command, args []string) {
 			ssh := Ssh{
@@ -51,6 +52,10 @@ func init() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatalln(err)
+	}
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_config_file, "config", "c", "config.toml", "configuration file")
 	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
 	gl_root_cmd.PersistentFlags().StringVar(&gl_http_host, "host", "0.0.0.0", "ip address for local http proxy server listen to")
@@ -58,7 +63,7 @@ func init() {
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_host, "ssh-host", "H", "127.0.0.1", "ssh host")
 	gl_root_cmd.PersistentFlags().Uint16VarP(&gl_ssh_port, "ssh-port", "P", 22, "ssh port")
 	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_user, "ssh-user", "U", user.Username, "ssh user")
-	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_key_file, "ssh-key-file", "K", "config.toml", "ssh private key file")
+	gl_root_cmd.PersistentFlags().StringVarP(&gl_ssh_key_file, "ssh-key-file", "K", filepath.Join(home, ".ssh", "id_ed25519"), "ssh private key file")
 }
 
 func init_logger() {
