@@ -1,0 +1,21 @@
+# https://netplan.readthedocs.io/en/stable/netplan-tutorial/
+
+echo "setup netplan"
+if [ -d /etc/netplan ]
+then
+    rm -r /etc/netplan
+fi
+mkdir /etc/netplan
+
+{{ range .items }}
+cat >/etc/netplan/100-{{ .device }} <<EOF
+{{ .profile }}
+EOF
+{{ end }}
+
+netplan apply
+
+systemctl daemon-reload
+systemctl restart systemd-networkd
+systemctl restart systemd-resolved
+systemctl restart systemd-timesyncd

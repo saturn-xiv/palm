@@ -1,0 +1,57 @@
+# https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html
+
+systemctl stop dnsmasq
+systemctl disable dnsmasq
+rm -fv /etc/systemd/system/dnsmasq-*.service
+
+{{ range $d, $v := range items }}
+cat >/etc/systemd/system/dnsmasq-{{ .device }}.service <<EOF
+[Unit]
+Description=dnsmasq - A lightweight DHCP and caching DNS server({{ $d }}, {{ $v.network }})
+Documentation=man:dnsmasq(8)
+After=network.target
+Before=network-online.target nss-lookup.target
+Wants=nss-lookup.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ $d }}.conf
+ExecStart=/usr/bin/dnsmasq -k --user=dnsmasq -C /etc/dnsmasq-{{ $d }}.conf -x /tmp/dnsmasq.{{ $d }}.pid
+Restart=on-failure
+PrivateDevices=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat >/etc/dnsmasq-{{ $d }}.conf <<EOF
+interface={{ $d }}
+except-interface=lo
+bind-interfaces
+listen-address={{ $v.gateway }}
+
+no-resolv
+{{ range $v.dns }}
+server={{ . }}
+{{ end }}
+clear-on-reload
+
+dhcp-range={{ $v.begin }},{{ $v.end }},1w
+dhcp-option=option:dns-server,{{ $v.gateway }}
+dhcp-option=option:ntp-server,{{ $v.gateway }}
+dhcp-option=option:router,{{ $v.gateway }}
+dhcp-authoritative
+
+{{ range $v.hosts }}
+dhcp-host={{ .mac }},{{.name}},{{.ip}}
+{{ end }}
+EOF
+
+/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ $d }}.conf
+{{ end }}
+
+systemctl daemon-reload
+{{ range $d, $_ := items }}
+systemctl enable dnsmasq-{{ $d }}.service
+{{ end }}

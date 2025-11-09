@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.router.v1";
+option java_outer_classname = "RouterProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Router.Grpc";
+package palm.router.v1;
+
+message Router {
+  map<string, Ethernet> ethernet = 1;
+  repeated Firewall rules = 2;
+}
+
+message Ethernet {
+  message Dhcp {}
+  message Static {
+    string address = 1;
+    string netmask = 2;
+    string gateway = 3;
+    repeated string dns = 4;
+  }
+  message Pppoe {
+    string account = 1;
+    string password = 2;
+  }
+  message Lan {
+    message Google {}
+    message Ali {}
+    message Other {
+      repeated string hosts = 1;
+    }
+    message Host {
+      string mac = 1;
+      string ip = 2;
+      string name = 3;
+    }
+    string address = 1;
+    oneof dns {
+      Ali ali = 2;
+      Google google = 3;
+      Other other = 4;
+    }
+    repeated Host hosts = 99;
+  }
+  string label = 1;
+  oneof ip {
+    Dhcp dhcp = 11;
+    Static static = 12;
+    Pppoe pppoe = 13;
+    Lan lan = 19;
+  }
+  uint32 priority = 21;
+  uint32 weight = 22;
+}
+
+message Firewall {
+  message Ping {
+    string device = 1;
+    bool enable = 2;
+  }
+  enum Protocol {
+    Tcp = 0;
+    Udp = 1;
+  }
+  enum Week {
+    Sun = 0;
+    Mon = 1;
+    Tue = 2;
+    Wed = 3;
+    Thu = 4;
+    Fri = 5;
+    Sat = 6;
+  }
+  message Time {
+    uint32 hour = 1;
+    uint32 minute = 2;
+  }
+  message Period {
+    repeated Week days = 1;
+    Time begin = 2;
+    Time end = 3;
+  }
+  message Nat {
+    message Destination {
+      string ip = 1;
+      uint32 port = 2;
+    }
+    uint32 port = 1;
+    Destination destination = 2;
+  }
+  message Output {
+    Period period = 1;
+    oneof by {
+      string host = 11;
+    }
+  }
+  oneof rule {
+    Ping ping = 1;
+    Nat nat = 2;
+  }
+}
