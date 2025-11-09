@@ -1,15 +1,15 @@
 # https://netplan.readthedocs.io/en/stable/netplan-tutorial/
 
-echo "setup netplan"
 if [ -d /etc/netplan ]
 then
     rm -r /etc/netplan
 fi
 mkdir /etc/netplan
 
-{{ range .items }}
-cat >/etc/netplan/100-{{ .device }} <<EOF
-{{ .profile }}
+{{ range $n, $p := range items }}
+# {{ $p.label }}
+cat >/etc/netplan/100-{{ $n }} <<EOF
+{{ $p.content }}
 EOF
 {{ end }}
 

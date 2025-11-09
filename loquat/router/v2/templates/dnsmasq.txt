@@ -7,7 +7,7 @@ rm -fv /etc/systemd/system/dnsmasq-*.service
 {{ range $d, $v := range items }}
 cat >/etc/systemd/system/dnsmasq-{{ .device }}.service <<EOF
 [Unit]
-Description=dnsmasq - A lightweight DHCP and caching DNS server({{ $d }}, {{ $v.network }})
+Description=dnsmasq - A lightweight DHCP and caching DNS server({{ $v.label }})
 Documentation=man:dnsmasq(8)
 After=network.target
 Before=network-online.target nss-lookup.target
@@ -26,6 +26,7 @@ WantedBy=multi-user.target
 EOF
 
 cat >/etc/dnsmasq-{{ $d }}.conf <<EOF
+# {{ $v.label }}
 interface={{ $d }}
 except-interface=lo
 bind-interfaces

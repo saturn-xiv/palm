@@ -3,6 +3,7 @@ package v2
 import (
 	_ "embed"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"io"
 	"log/slog"
@@ -12,6 +13,8 @@ import (
 	"path/filepath"
 	"text/template"
 	"time"
+
+	"github.com/goccy/go-yaml"
 )
 
 //go:embed templates/firewalld.txt
@@ -45,10 +48,52 @@ func (p *Router) Render(wrt io.Writer) error {
 	_, err := fmt.Fprintf(wrt, "%s", gl_footer_txt)
 	return err
 }
+
+// https://netplan.readthedocs.io/en/stable/examples/#
 func (p *Router) setup_netplan(wrt io.Writer) error {
 	slog.Debug("setup netplan")
-	// TODO
+
+	data := make(map[string]interface{})
+	{
+		items := make(map[string]interface{})
+		for dev, it := range p.Ethernet {
+			args, err := it.netplan()
+			if err != nil {
+				return err
+			}
+			buf, err := p.to_netplan_yaml("ethernets", dev, args)
+			if err != nil {
+				return err
+			}
+			items[dev] = map[string]string{"label": it.Label, "content": string(buf)}
+		}
+		for dev, it := range p.Bonds {
+			args, err := it.netplan()
+			if err != nil {
+				return err
+			}
+			buf, err := p.to_netplan_yaml("bonds", dev, args)
+			if err != nil {
+				return err
+			}
+			items[dev] = map[string]string{"label": it.Label, "content": string(buf)}
+		}
+		data["items"] = items
+	}
+
 	return nil
+}
+
+func (p *Router) to_netplan_yaml(category string, dev string, args map[string]interface{}) ([]byte, error) {
+	var data = map[string]interface{}{
+		"network": map[string]interface{}{
+			"version":  2,
+			"renderer": "networkd",
+		},
+	}
+	data[category] = map[string]interface{}{dev: args}
+	return yaml.Marshal(data)
+
 }
 func (p *Router) setup_dnsmasq(wrt io.Writer) error {
 	slog.Debug("setup dnsmasq")
@@ -73,6 +118,7 @@ func (p *Router) setup_dnsmasq(wrt io.Writer) error {
 				return err
 			}
 			it := map[string]interface{}{
+				"label":   eth.Label,
 				"network": network,
 				"gateway": gateway,
 				"dns":     eth.GetLan().DnsServers(),
@@ -112,6 +158,49 @@ func (p *Router) render_to_file(name string) error {
 	}
 	defer file.Close()
 	return p.Render(file)
+}
+
+// https://netplan.readthedocs.io/en/stable/examples/#how-to-configure-multiple-bonds
+// https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-bonds
+func (p *Bond) netplan() (map[string]interface{}, error) {
+
+	data := map[string]interface{}{
+		"interfaces": p.Interfaces,
+	}
+	params := map[string]interface{}{
+		"mode":                 p.Mode.ToString(),
+		"mii-monitor-interval": p.MiiMonitorInterval,
+	}
+	switch p.Mode {
+	case Bond_ActiveBackup:
+		data["addresses"] = []string{p.Address}
+		data["nameservers"] = map[string]interface{}{
+			"addresses": p.Dns,
+		}
+		params["gratuitous-arp"] = p.GratuitousArp
+	}
+	data["parameters"] = params
+	return data, nil
+}
+
+// https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-ethernets
+func (p *Ethernet) netplan() (map[string]interface{}, error) {
+	args := make(map[string]interface{})
+	switch p.Ip.(type) {
+	case *Ethernet_Dhcp_:
+		args["dhcp4"] = true
+	case *Ethernet_Static_:
+		args["addresses"] = []string{p.GetStatic().Address}
+		args["nameservers"] = map[string]interface{}{
+			"addresses": p.GetStatic().Dns,
+		}
+	case *Ethernet_Pppoe_:
+		// https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-modems
+		return nil, errors.New("does not support modems yet")
+	case *Ethernet_Lan_:
+		args["addresses"] = []string{p.GetLan().Address}
+	}
+	return args, nil
 }
 
 func (p *Ethernet_Lan) DnsServers() []string {
@@ -180,4 +269,26 @@ func uint32_to_ipv4(i uint32) string {
 	ip := make(net.IP, 4)
 	binary.BigEndian.PutUint32(ip, i)
 	return ip.String()
+}
+
+// https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
+func (p *Bond_Mode) ToString() string {
+	switch *p {
+	case Bond_BalanceRr:
+		return "balance-rr"
+	case Bond_BalanceXor:
+		return "balance-xor"
+	case Bond_BalanceTlb:
+		return "balance-tlb"
+	case Bond_BalanceAlb:
+		return "balance-alb"
+	case Bond_AD802_3:
+		return "802.3ad"
+	case Bond_Broadcast:
+		return "broadcast"
+	case Bond_ActiveBackup:
+		return "active-backup"
+	default:
+		return ""
+	}
 }
