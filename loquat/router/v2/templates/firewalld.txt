@@ -4,3 +4,15 @@ net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1
 EOF
 systemctl restart systemd-sysctl
+
+
+# https://firewalld.org/documentation/howto/enable-and-disable-firewalld.html
+systemctl disable --now iptables.service
+systemctl disable --now ip6tables.service
+systemctl disable --now etables.service
+systemctl disable --now ipset.service
+systemctl unmask --now firewalld.service
+systemctl enable --now firewalld.service
+
+
+firewall-cmd --reload
