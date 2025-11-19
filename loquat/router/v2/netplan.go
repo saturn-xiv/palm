@@ -6,6 +6,8 @@ import (
 	"net"
 )
 
+// ----------------------------------------------------------------------------
+
 // https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-ethernets
 func (p *Ethernet) netplan() (map[string]interface{}, error) {
 	args := make(map[string]interface{})
@@ -86,10 +88,4 @@ func (p *Ethernet_Lan) ipv4_addresses() (uint32, uint32, error) {
 	first := binary.BigEndian.Uint32(net4.IP)
 	last := (first & mask) | (mask ^ 0xffffffff)
 	return first, last, nil
-}
-
-func uint32_to_ipv4(i uint32) string {
-	ip := make(net.IP, 4)
-	binary.BigEndian.PutUint32(ip, i)
-	return ip.String()
 }

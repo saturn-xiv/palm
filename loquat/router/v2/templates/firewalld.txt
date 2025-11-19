@@ -14,5 +14,22 @@ systemctl disable --now ipset.service
 systemctl unmask --now firewalld.service
 systemctl enable --now firewalld.service
 
+firewall-cmd --query-interface=b-wan
+firewall-cmd --query-interface=b-lan
+firewall-cmd --query-interface=b-dmz
+		
+firewall-cmd --get-active-zone
+firewall-cmd --add-interface=b-wan --zone=external
+firewall-cmd --add-interface=b-lan --zone=internal
+firewall-cmd --zone=external --add-masquerade --permanent
+firewall-cmd --reload
+firewall-cmd --zone=external --query-masquerade
+firewall-cmd --zone=internal --add-masquerade --permanent
+firewall-cmd --reload
+
+firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -o eth0 -j MASQUERADE
+firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i eth0 -o eth1 -j ACCEPT
+firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+firewall-cmd --reload
 
 firewall-cmd --reload

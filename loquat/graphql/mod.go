@@ -20,7 +20,7 @@ var (
 
 var gl_validate = validator.New()
 
-//go:embed schema.txt
+//go:embed schema.gql
 var gl_schema_txt string
 
 func Handler(db *gorm.DB, secret_key []byte) (http.Handler, error) {

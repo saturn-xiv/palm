@@ -2,6 +2,8 @@ package v2
 
 import (
 	_ "embed"
+	"encoding/binary"
+	"net"
 )
 
 //go:embed templates/firewalld.txt
@@ -18,3 +20,9 @@ var gl_header_txt string
 
 //go:embed templates/footer.txt
 var gl_footer_txt string
+
+func uint32_to_ipv4(i uint32) string {
+	ip := make(net.IP, 4)
+	binary.BigEndian.PutUint32(ip, i)
+	return ip.String()
+}

@@ -10,6 +10,7 @@
     "jakebecker.elixir-ls",
     "phoenixframework.phoenix",
     "ms-python.autopep8",
+    "graphql.vscode-graphql-syntax",
     "redhat.ansible",
     "redhat.vscode-xml",
     "redhat.vscode-yaml",
