@@ -1,6 +1,7 @@
 package graphql
 
 import (
+	"context"
 	"crypto/hmac"
 	"crypto/sha512"
 	"encoding/base64"
@@ -11,8 +12,17 @@ import (
 	"github.com/saturn-xiv/palm/loquat/models"
 )
 
-func (p *Mutation) SignIn() string {
-	return "aaa"
+func (p *Mutation) SignOut(ctx context.Context) (*Ok, error) {
+	user, ip, err := current_user(ctx, p.db, p.jwt_key)
+	if err != nil {
+		return nil, err
+	}
+	if err = p.db.Transaction(func(tx *gorm.DB) error {
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: "Sign out"}).Error
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
 }
 
 type Administrator struct {
@@ -25,27 +35,28 @@ func (p *Administrator) Save(db *gorm.DB, key []byte) error {
 		return err
 	}
 	password := compute_password(p.Password, key)
+	ip := "127.0.0.1"
 
 	if err := db.Transaction(func(tx *gorm.DB) error {
 		var user models.User
-		err := db.Where(&models.User{Name: p.Username}, "name").Take(&user).Error
+		err := tx.Where(&models.User{Name: p.Username}, "name").Take(&user).Error
 		if err == nil {
-			if err = db.Model(&user).Updates(map[string]interface{}{
+			if err = tx.Model(&user).Updates(map[string]interface{}{
 				"password": password,
 				"version":  user.Version + 1,
 			}).Error; err != nil {
 				return err
 			}
-			if err = db.Create(&models.Log{UserID: user.ID, Message: "reset password"}).Error; err != nil {
+			if err = tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: "reset password"}).Error; err != nil {
 				return err
 			}
 		} else if errors.Is(err, gorm.ErrRecordNotFound) {
 			user.Name = p.Username
 			user.Password = password
-			if err = db.Create(&user).Error; err != nil {
+			if err = tx.Create(&user).Error; err != nil {
 				return err
 			}
-			if err = db.Create(&models.Log{UserID: user.ID, Message: "create account"}).Error; err != nil {
+			if err = tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: "create account"}).Error; err != nil {
 				return err
 			}
 		} else {

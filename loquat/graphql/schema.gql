@@ -1,4 +1,4 @@
-scalar Date
+scalar Time
 
 schema {
   query: Query
@@ -8,47 +8,47 @@ schema {
 type Query {
   version: String!
 
-  indexLog(page: Page!): IndexLogResponse
+  indexLog(page: Page!): IndexLogResponse!
 
-  indexHost: [Host!]
-  showHost: Host
+  # indexHost: [Host!]!
+  # showHost: Host!
 
-  indexMember: [Member!]
-  showMember(id: ID!): Member
+  # indexMember: [Member!]!
+  # showMember(id: ID!): Member!
 
-  indexNetworkInterface: [NetworkInterface!]
-  showNetworkInterface(name: String!): NetworkInterface!
+  # indexNetworkInterface: [NetworkInterface!]!
+  # showNetworkInterface(name: String!): NetworkInterface!
 }
 
 type Mutation {
-  updateAdministrator(current: Account!, new: Account!): Ok!
-  signIn(account: Account!): SignInResponse!
+  # updateAdministrator(current: Account!, new: Account!): Ok!
+  # signIn(account: Account!): SignInResponse!
   signOut: Ok!
 
-  associateHostWithMember(host: ID!, member: ID!): Ok!
-  dissociateHostFromMember(host: ID!, member: ID!): Ok!
-  setHostName(host: ID!, name: String!): Ok!
-  blockHost(host: ID!): Ok!
-  releaseHost(host: ID!): Ok!
-  setHostFixedIp(host: ID!, yes: Boolean!): Ok!
+  # associateHostWithMember(host: ID!, member: ID!): Ok!
+  # dissociateHostFromMember(host: ID!, member: ID!): Ok!
+  # setHostName(host: ID!, name: String!): Ok!
+  # blockHost(host: ID!): Ok!
+  # releaseHost(host: ID!): Ok!
+  # setHostFixedIp(host: ID!, yes: Boolean!): Ok!
 
-  setNetworkInterfaceMemo(name: String!, memo: String!): Ok!
-  setNetworkInterfacePublicDhcp(name: String!): Ok!
-  setNetworkInterfacePublicStaticIp(
-    name: String!
-    address: String!
-    netmask: String!
-    gateway: String!
-    dns1: String!
-    dns2: String
-  ): Ok!
-  setNetworkInterfaceLocal(name: String!, address: String!): Ok!
-  bondWan(interfaces: [String!]): Ok!
-  bondLan(interfaces: [String!]): Ok!
-  bondDmz(interfaces: [String!]): Ok!
+  # setNetworkInterfaceMemo(name: String!, memo: String!): Ok!
+  # setNetworkInterfacePublicDhcp(name: String!): Ok!
+  # setNetworkInterfacePublicStaticIp(
+  #   name: String!
+  #   address: String!
+  #   netmask: String!
+  #   gateway: String!
+  #   dns1: String!
+  #   dns2: String
+  # ): Ok!
+  # setNetworkInterfaceLocal(name: String!, address: String!): Ok!
+  # bondWan(interfaces: [String!]): Ok!
+  # bondLan(interfaces: [String!]): Ok!
+  # bondDmz(interfaces: [String!]): Ok!
 
-  apply(run: Boolean!): Ok!
-  reboot: Ok!
+  # apply(run: Boolean!): Ok!
+  # reboot: Ok!
 }
 
 type NetworkInterface {
@@ -59,7 +59,7 @@ type NetworkInterface {
 }
 
 type Ok {
-  createdAt: Date!
+  createdAt: Time!
 }
 
 type Member {
@@ -78,13 +78,6 @@ type Host {
   member: Member
 }
 
-enum LogLevel {
-  DEBUG
-  INFO
-  WARN
-  ERROR
-}
-
 type SignInResponse {
   username: String!
   token: String!
@@ -92,29 +85,29 @@ type SignInResponse {
 
 type Log {
   id: ID!
-  level: LogLevel!
   message: String!
   ip: String!
-  createdAt: Date!
+  createdAt: Time!
 }
 
 type IndexLogResponse {
-  items: [Log!]
+  items: [Log!]!
   pagination: Pagination!
 }
 type Account {
   name: String!
   password: String!
 }
-type Page {
-  first: ID!
-  offset: Int!
+input Page {
+  index: Int!
+  size: Int!
 }
 
 type Pagination {
-  start: ID!
-  end: ID!
+  index: Int!
+  size: Int!
   hasPrevious: Boolean!
   hasNext: Boolean!
-  totalCount: Int!
+  pages: Int!
+  total: Int!
 }
