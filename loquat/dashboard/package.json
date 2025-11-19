@@ -1,7 +1,7 @@
 {
-  "name": "bamboo",
+  "name": "loquat",
   "private": true,
-  "version": "2025.10.12",
+  "version": "2025.11.19",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,18 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.9.2",
+    "@graphiql/react": "^0.37.2",
+    "@reduxjs/toolkit": "^2.10.1",
     "@types/js-cookie": "^3.0.6",
     "bulma": "^1.0.4",
-    "dayjs": "^1.11.18",
-    "formik": "^2.4.6",
-    "jose": "^6.1.0",
+    "dayjs": "^1.11.19",
+    "formik": "^2.4.9",
+    "jose": "^6.1.2",
     "js-cookie": "^3.0.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-intl": "^7.1.14",
     "react-redux": "^9.2.0",
-    "react-router": "^7.9.4",
+    "react-router": "^7.9.6",
     "yup": "^1.7.1"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ set -e
 npm install --save \
     bulma \
     react-router react-intl \
+    @graphiql/react \
     formik yup \
     jose dayjs \
     @reduxjs/toolkit react-redux \
