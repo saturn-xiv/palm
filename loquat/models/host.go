@@ -13,7 +13,7 @@ type Host struct {
 	gorm.Model
 
 	MemberID *uint
-	Name     string  `gorm:"index;not null;size:63"`
+	Name     *string `gorm:"index;size:63"`
 	Mac      string  `gorm:"index;not null;size:17"`
 	Vendor   *string `gorm:"size:63"`
 	Network  string  `gorm:"index;not null;size:39"`
@@ -68,7 +68,7 @@ func ScanHosts(network ...string) ([]Host, error) {
 			continue
 		}
 		if len(host.Hostname) > 0 {
-			it.Name = host.Hostname[0]
+			it.Name = &host.Hostname[0]
 		}
 		items = append(items, it)
 	}

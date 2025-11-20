@@ -9,6 +9,24 @@ import (
 	"github.com/saturn-xiv/palm/loquat/models"
 )
 
+func (p *Query) IndexLog(ctx context.Context, args struct {
+	Page Page
+}) (*IndexLogResponse, error) {
+	if _, _, err := current_user(ctx, p.db, p.jwt_key); err != nil {
+		return nil, err
+	}
+	var total int64
+	if err := p.db.Model(&models.Log{}).Count(&total).Error; err != nil {
+		return nil, err
+	}
+	pagination := NewPagination(&args.Page, uint(total))
+	var items []models.Log
+	if err := p.db.Order("created_at DESC").Offset(int(pagination.current.Offset())).Limit(int(pagination.current.Size)).Find(&items).Error; err != nil {
+		return nil, err
+	}
+	return &IndexLogResponse{items: items, pagination: pagination}, nil
+}
+
 type Log struct {
 	item *models.Log
 }
@@ -43,23 +61,4 @@ func (p *IndexLogResponse) Items() ([]*Log, error) {
 		items = append(items, &Log{item: &it})
 	}
 	return items, nil
-}
-
-func (p *Query) IndexLog(ctx context.Context, args struct {
-	Page Page
-}) (*IndexLogResponse, error) {
-	_, _, err := current_user(ctx, p.db, p.jwt_key)
-	if err != nil {
-		return nil, err
-	}
-	var total int64
-	if err = p.db.Model(&models.Log{}).Count(&total).Error; err != nil {
-		return nil, err
-	}
-	pagination := NewPagination(&args.Page, uint(total))
-	var items []models.Log
-	if err = p.db.Offset(int(pagination.current.Offset())).Limit(int(pagination.current.Size)).Find(&items).Error; err != nil {
-		return nil, err
-	}
-	return &IndexLogResponse{items: items, pagination: pagination}, nil
 }

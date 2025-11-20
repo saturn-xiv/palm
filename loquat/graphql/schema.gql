@@ -10,11 +10,11 @@ type Query {
 
   indexLog(page: Page!): IndexLogResponse!
 
-  # indexHost: [Host!]!
-  # showHost: Host!
+  indexHost: [Host!]!
+  showHost(id: ID!): Host!
 
-  # indexMember: [Member!]!
-  # showMember(id: ID!): Member!
+  indexMember: [Member!]!
+  showMember(id: ID!): Member!
 
   # indexNetworkInterface: [NetworkInterface!]!
   # showNetworkInterface(name: String!): NetworkInterface!
@@ -63,19 +63,23 @@ type Ok {
 }
 
 type Member {
+  id: ID!
   sn: String!
   name: String!
-  wikiPassword: String!
   memo: String!
+  updatedAt: Time!
 }
 
 type Host {
+  id: ID!
   name: String
+  vendor: String
   mac: String!
   ip: String!
   network: String!
   fixed: Boolean!
   member: Member
+  updatedAt: Time!
 }
 
 type SignInResponse {
