@@ -35,10 +35,8 @@ type headerKey string
 
 func Handler(db *gorm.DB, secret_key []byte) (http.HandlerFunc, error) {
 	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{
-		db: db,
-		jwt_key: func(token *jwt.Token) (any, error) {
-			return secret_key, nil
-		},
+		db:      db,
+		secrets: secret_key,
 	})
 	if err != nil {
 		return nil, err
@@ -60,12 +58,12 @@ func Handler(db *gorm.DB, secret_key []byte) (http.HandlerFunc, error) {
 
 type Mutation struct {
 	db      *gorm.DB
-	jwt_key jwt.Keyfunc
+	secrets []byte
 }
 
 type Query struct {
 	db      *gorm.DB
-	jwt_key jwt.Keyfunc
+	secrets []byte
 }
 
 func (p *Query) Version() string {
@@ -74,15 +72,15 @@ func (p *Query) Version() string {
 
 type Root struct {
 	db      *gorm.DB
-	jwt_key jwt.Keyfunc
+	secrets []byte
 }
 
 func (p *Root) Query() *Query {
-	return &Query{db: p.db, jwt_key: p.jwt_key}
+	return &Query{db: p.db, secrets: p.secrets}
 }
 
 func (p *Root) Mutation() *Mutation {
-	return &Mutation{db: p.db, jwt_key: p.jwt_key}
+	return &Mutation{db: p.db, secrets: p.secrets}
 }
 
 type Page struct {
@@ -162,24 +160,32 @@ func (p *Ok) CreatedAt() graphql.Time {
 func ToId(id uint) graphql.ID {
 	return graphql.ID(strconv.FormatUint(uint64(id), 36))
 }
-func FromId(id string) (uint, error) {
-	it, err := strconv.ParseUint(id, 36, 32)
+func FromId(id graphql.ID) (uint, error) {
+	it, err := strconv.ParseUint(string(id), 36, 32)
 	if err != nil {
 		return 0, err
 	}
 	return uint(it), nil
 }
 
-func current_user(ctx context.Context, db *gorm.DB, jwt_key jwt.Keyfunc) (*models.User, string, error) {
-	client_ip, ok := ctx.Value(headerKey(XForwardedFor)).(string)
-	if !ok {
-		client_ip = "n/a"
+func client_ip(ctx context.Context) string {
+	it, ok := ctx.Value(headerKey(XForwardedFor)).(string)
+	if ok {
+		return it
+
 	}
+	return "n/a"
+}
+
+func current_user(ctx context.Context, db *gorm.DB, jwt_key []byte) (*models.User, string, error) {
+	client_ip := client_ip(ctx)
 	auth, ok := ctx.Value(headerKey(Authorization)).(string)
 	if !ok {
 		return nil, "", errors.New("no token")
 	}
-	token, err := jwt.Parse(auth, jwt_key, jwt.WithValidMethods([]string{jwt.SigningMethodHS512.Alg()}))
+	token, err := jwt.Parse(auth, func(token *jwt.Token) (any, error) {
+		return jwt_key, nil
+	}, jwt.WithValidMethods([]string{jwt.SigningMethodHS512.Alg()}))
 	if err != nil {
 		return nil, "", err
 	}

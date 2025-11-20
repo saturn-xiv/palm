@@ -18,19 +18,23 @@ type Query {
 
   indexNetworkInterface: [NetworkInterface!]!
   showNetworkInterface(name: String!): NetworkInterface!
+
+  bondWan: PublicBond!
+  bondLan: PrivateBond!
+  bondDmz: PrivateBond!
 }
 
 type Mutation {
-  # updateAdministrator(current: Account!, new: Account!): Ok!
-  # signIn(account: Account!): SignInResponse!
+  updateAdministrator(current: Account!, new: Account!): Ok!
+  signIn(account: Account!, ttl: Int!): SignInResponse!
   signOut: Ok!
 
-  # associateHostWithMember(host: ID!, member: ID!): Ok!
+  associateHostWithMember(host: ID!, member: ID!): Ok!
   # dissociateHostFromMember(host: ID!, member: ID!): Ok!
-  # setHostName(host: ID!, name: String!): Ok!
-  # blockHost(host: ID!): Ok!
-  # releaseHost(host: ID!): Ok!
-  # setHostFixedIp(host: ID!, yes: Boolean!): Ok!
+  setHostName(id: ID!, name: String!): Ok!
+  blockHost(id: ID!): Ok!
+  releaseHost(id: ID!): Ok!
+  setHostFixedIp(id: ID!, ip: String): Ok!
 
   # setNetworkInterfaceMemo(name: String!, memo: String!): Ok!
   # setNetworkInterfacePublicDhcp(name: String!): Ok!
@@ -42,13 +46,21 @@ type Mutation {
   #   dns1: String!
   #   dns2: String
   # ): Ok!
-  # setNetworkInterfaceLocal(name: String!, address: String!): Ok!
-  # bondWan(interfaces: [String!]): Ok!
-  # bondLan(interfaces: [String!]): Ok!
-  # bondDmz(interfaces: [String!]): Ok!
 
-  # apply(run: Boolean!): Ok!
-  # reboot: Ok!
+  bondWan(interfaces: [String!]!): Ok!
+  bondLan(interfaces: [String!]!, address: String!): Ok!
+  bondDmz(interfaces: [String!]!, address: String!): Ok!
+
+  apply(run: Boolean!): Ok!
+  reboot: Ok!
+}
+
+type PrivateBond {
+  interfaces: [String!]!
+  address: String!
+}
+type PublicBond {
+  interfaces: [String!]!
 }
 
 type NetworkInterface {
@@ -82,6 +94,7 @@ type Host {
   fixed: Boolean!
   member: Member
   updatedAt: Time!
+  deletedAt: Time
 }
 
 type SignInResponse {
@@ -100,7 +113,7 @@ type IndexLogResponse {
   items: [Log!]!
   pagination: Pagination!
 }
-type Account {
+input Account {
   name: String!
   password: String!
 }

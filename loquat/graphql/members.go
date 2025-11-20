@@ -9,7 +9,7 @@ import (
 )
 
 func (p *Query) IndexMember(ctx context.Context) ([]*Member, error) {
-	if _, _, err := current_user(ctx, p.db, p.jwt_key); err != nil {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
 	var members []models.Member
@@ -23,10 +23,10 @@ func (p *Query) IndexMember(ctx context.Context) ([]*Member, error) {
 	return items, nil
 }
 func (p *Query) ShowMember(ctx context.Context, args struct{ Id graphql.ID }) (*Member, error) {
-	if _, _, err := current_user(ctx, p.db, p.jwt_key); err != nil {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
-	id, err := FromId(string(args.Id))
+	id, err := FromId(args.Id)
 	if err != nil {
 		return nil, err
 	}

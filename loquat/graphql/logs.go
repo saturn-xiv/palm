@@ -12,7 +12,7 @@ import (
 func (p *Query) IndexLog(ctx context.Context, args struct {
 	Page Page
 }) (*IndexLogResponse, error) {
-	if _, _, err := current_user(ctx, p.db, p.jwt_key); err != nil {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
 	var total int64

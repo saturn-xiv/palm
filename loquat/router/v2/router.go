@@ -126,13 +126,16 @@ func (p *Router) setup_firewalld(wrt io.Writer) error {
 	return nil
 }
 
-func (p *Router) Apply() error {
+func (p *Router) Apply(run bool) error {
 	tmp := filepath.Join(os.TempDir(), fmt.Sprintf("%s.sh", time.Now().Format("20060102150405")))
 	if err := p.render_to_file(tmp); err != nil {
 		return err
 	}
-	cmd := exec.Command("bash", tmp)
-	return cmd.Run()
+	if run {
+		cmd := exec.Command("bash", tmp)
+		return cmd.Run()
+	}
+	return nil
 }
 
 func (p *Router) render_to_file(name string) error {

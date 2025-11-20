@@ -3,17 +3,43 @@ package graphql
 import (
 	"context"
 	"errors"
-	"fmt"
+	"log/slog"
 	"net"
+	"syscall"
 
 	"gorm.io/gorm"
 
-	"github.com/saturn-xiv/palm/loquat/models"
-	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
+	"github.com/saturn-xiv/palm/loquat/router"
 )
 
+func (p *Mutation) Apply(ctx context.Context, args struct{ Run bool }) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	item, err := router.Export(p.db)
+	if err != nil {
+		return nil, err
+	}
+	if err = item.Apply(args.Run); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) Reboot(ctx context.Context) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	go func() {
+		if err := syscall.Reboot(syscall.LINUX_REBOOT_CMD_RESTART); err != nil {
+			slog.Error(err.Error())
+		}
+	}()
+	return &Ok{}, nil
+}
+
 func (p *Query) IndexNetworkInterface(ctx context.Context) ([]*NetworkInterface, error) {
-	if _, _, err := current_user(ctx, p.db, p.jwt_key); err != nil {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
 	ifaces, err := net.Interfaces()
@@ -35,7 +61,7 @@ func (p *Query) IndexNetworkInterface(ctx context.Context) ([]*NetworkInterface,
 	return items, nil
 }
 func (p *Query) ShowNetworkInterface(ctx context.Context, args struct{ Name string }) (*NetworkInterface, error) {
-	if _, _, err := current_user(ctx, p.db, p.jwt_key); err != nil {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
 	iface, err := net.InterfaceByName(args.Name)
@@ -98,20 +124,4 @@ func (p *NetworkInterface) MulticastAddresses() ([]string, error) {
 		items = append(items, addr.String())
 	}
 	return items, nil
-}
-
-func networkInterfaceKey(it *net.Interface) string {
-	return fmt.Sprintf("net.%s", it.Name)
-}
-
-func setNetworkInterface(db *gorm.DB, it *net.Interface, profile *v2.Ethernet) error {
-	return models.SetProtobuf(db, networkInterfaceKey(it), profile)
-}
-
-func getNetworkInterface(db *gorm.DB, it *net.Interface) (*v2.Ethernet, error) {
-	var profile v2.Ethernet
-	if err := models.GetProtobuf(db, networkInterfaceKey(it), &profile); err != nil {
-		return nil, err
-	}
-	return &profile, nil
 }

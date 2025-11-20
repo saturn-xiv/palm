@@ -30,7 +30,7 @@ func SetAdministrator(config_file string, username string, password string, debu
 		return err
 	}
 	form := graphql.Administrator{Username: username, Password: password}
-	if err = form.Save(db, key); err != nil {
+	if err = form.Save(db, key, "127.0.0.1"); err != nil {
 		return err
 	}
 	slog.Info("done.")
