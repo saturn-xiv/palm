@@ -353,6 +353,7 @@ type Ethernet struct {
 	Ip            isEthernet_Ip `protobuf_oneof:"ip"`
 	Priority      uint32        `protobuf:"varint,21,opt,name=priority,proto3" json:"priority,omitempty"`
 	Weight        uint32        `protobuf:"varint,22,opt,name=weight,proto3" json:"weight,omitempty"`
+	Memo          string        `protobuf:"bytes,99,opt,name=memo,proto3" json:"memo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -449,6 +450,13 @@ func (x *Ethernet) GetWeight() uint32 {
 		return x.Weight
 	}
 	return 0
+}
+
+func (x *Ethernet) GetMemo() string {
+	if x != nil {
+		return x.Memo
+	}
+	return ""
 }
 
 type isEthernet_Ip interface {
@@ -1369,7 +1377,7 @@ const file_proto_router_proto_rawDesc = "" +
 	"\n" +
 	"BalanceTlb\x10\x05\x12\x0e\n" +
 	"\n" +
-	"BalanceAlb\x10\x06\"\xb2\x06\n" +
+	"BalanceAlb\x10\x06\"\xc6\x06\n" +
 	"\bEthernet\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x123\n" +
 	"\x04dhcp\x18\v \x01(\v2\x1d.palm.router.v1.Ethernet.DhcpH\x00R\x04dhcp\x129\n" +
@@ -1377,7 +1385,8 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x05pppoe\x18\r \x01(\v2\x1e.palm.router.v1.Ethernet.PppoeH\x00R\x05pppoe\x120\n" +
 	"\x03lan\x18\x13 \x01(\v2\x1c.palm.router.v1.Ethernet.LanH\x00R\x03lan\x12\x1a\n" +
 	"\bpriority\x18\x15 \x01(\rR\bpriority\x12\x16\n" +
-	"\x06weight\x18\x16 \x01(\rR\x06weight\x1a\x06\n" +
+	"\x06weight\x18\x16 \x01(\rR\x06weight\x12\x12\n" +
+	"\x04memo\x18c \x01(\tR\x04memo\x1a\x06\n" +
 	"\x04Dhcp\x1a4\n" +
 	"\x06Static\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x10\n" +

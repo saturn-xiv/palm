@@ -71,6 +71,7 @@ message Ethernet {
   }
   uint32 priority = 21;
   uint32 weight = 22;
+  string memo = 99;
 }
 
 message Firewall {

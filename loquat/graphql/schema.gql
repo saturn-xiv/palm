@@ -16,8 +16,8 @@ type Query {
   indexMember: [Member!]!
   showMember(id: ID!): Member!
 
-  # indexNetworkInterface: [NetworkInterface!]!
-  # showNetworkInterface(name: String!): NetworkInterface!
+  indexNetworkInterface: [NetworkInterface!]!
+  showNetworkInterface(name: String!): NetworkInterface!
 }
 
 type Mutation {
@@ -53,9 +53,11 @@ type Mutation {
 
 type NetworkInterface {
   name: String!
-  address: String!
-  netmask: String!
-  memo: String!
+  hardwareAddress: String!
+  addresses: [String!]!
+  multicastAddresses: [String!]!
+  mtu: Int!
+  memo: String
 }
 
 type Ok {
