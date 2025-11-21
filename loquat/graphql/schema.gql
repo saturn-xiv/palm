@@ -18,10 +18,11 @@ type Query {
 
   indexNetworkInterface: [NetworkInterface!]!
   showNetworkInterface(name: String!): NetworkInterface!
+  getNetworkInterface(name: String!): NetworkInterfaceProfile!
 
-  bondWan: PublicBond!
-  bondLan: PrivateBond!
-  bondDmz: PrivateBond!
+  bondWan: InternetBond!
+  bondLan: IntranetBond!
+  bondDmz: IntranetBond!
 }
 
 type Mutation {
@@ -34,18 +35,26 @@ type Mutation {
   setHostName(id: ID!, name: String!): Ok!
   blockHost(id: ID!): Ok!
   releaseHost(id: ID!): Ok!
-  setHostFixedIp(id: ID!, ip: String): Ok!
+  setHostStaticIp(id: ID!, ip: String!): Ok!
+  setHostDynamicIp(id: ID!): Ok!
 
-  # setNetworkInterfaceMemo(name: String!, memo: String!): Ok!
-  # setNetworkInterfacePublicDhcp(name: String!): Ok!
-  # setNetworkInterfacePublicStaticIp(
-  #   name: String!
-  #   address: String!
-  #   netmask: String!
-  #   gateway: String!
-  #   dns1: String!
-  #   dns2: String
-  # ): Ok!
+  setNetworkInterfacePublicDhcp(
+    name: String!
+    label: String!
+    isp: Isp!
+    memo: String!
+  ): Ok!
+  setNetworkInterfacePublicStaticIp(
+    name: String!
+    label: String!
+    isp: Isp!
+    address: String!
+    netmask: String!
+    gateway: String!
+    isp: Isp!
+    dns: [String!]!
+    memo: String!
+  ): Ok!
 
   bondWan(interfaces: [String!]!): Ok!
   bondLan(interfaces: [String!]!, address: String!): Ok!
@@ -55,21 +64,46 @@ type Mutation {
   reboot: Ok!
 }
 
-type PrivateBond {
-  interfaces: [String!]!
-  address: String!
-}
-type PublicBond {
-  interfaces: [String!]!
-}
-
 type NetworkInterface {
   name: String!
   hardwareAddress: String!
   addresses: [String!]!
   multicastAddresses: [String!]!
   mtu: Int!
-  memo: String
+  memo: String!
+}
+
+type StaticIp {
+  label: String!
+  memo: String!
+  isp: Isp!
+  address: String!
+  netmask: String!
+  gateway: String!
+  dns: [String!]!
+}
+type DynamicIp {
+  label: String!
+  memo: String!
+  isp: Isp!
+}
+union NetworkInterfaceProfile = StaticIp | DynamicIp
+
+enum Isp {
+  Unknown
+  ChinaMobile
+  ChinaTelecom
+}
+
+type InternetBond {
+  interfaces: [String!]!
+  enable: Boolean!
+}
+
+type IntranetBond {
+  interfaces: [String!]!
+  address: String!
+  enable: Boolean!
 }
 
 type Ok {

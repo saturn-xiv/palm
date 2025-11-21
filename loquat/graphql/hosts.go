@@ -147,9 +147,9 @@ func (p *Mutation) BlockHost(ctx context.Context, args struct{ Id graphql.ID }) 
 	}
 	return &Ok{}, nil
 }
-func (p *Mutation) SetHostFixedIp(ctx context.Context, args struct {
+func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
 	Id graphql.ID
-	Ip *string
+	Ip string
 }) (*Ok, error) {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
@@ -163,44 +163,63 @@ func (p *Mutation) SetHostFixedIp(ctx context.Context, args struct {
 		if err := tx.Where(map[string]interface{}{"id": id}).Take(&host).Error; err != nil {
 			return err
 		}
-		if args.Ip == nil {
-			if err = tx.Model(&host).Updates(map[string]interface{}{
-				"fixed":   false,
-				"version": host.Version + 1,
-			}).Error; err != nil {
+
+		{
+			_, net4, err := net.ParseCIDR(host.Network)
+			if err != nil {
 				return err
 			}
-		} else {
-			{
-				_, net4, err := net.ParseCIDR(host.Network)
-				if err != nil {
-					return err
-				}
-				ip := net.ParseIP(*args.Ip)
-				if ip == nil {
-					return fmt.Errorf("%s is not a valid ip address", *args.Ip)
-				}
-				if !net4.Contains(ip) {
-					return fmt.Errorf("%s is not a valid ip address", *args.Ip)
-				}
+			ip := net.ParseIP(args.Ip)
+			if ip == nil {
+				return fmt.Errorf("%s is not a valid ip address", args.Ip)
 			}
-			{
-				var items []models.Host
-				if err := tx.Where(map[string]interface{}{"ip": *args.Ip}).Take(&items).Error; err == nil {
-					for _, it := range items {
-						if it.ID != host.ID {
-							return fmt.Errorf("ip %s is in used", *args.Ip)
-						}
+			if !net4.Contains(ip) {
+				return fmt.Errorf("%s is not a valid ip address", args.Ip)
+			}
+		}
+		{
+			var items []models.Host
+			if err := tx.Where(map[string]interface{}{"ip": args.Ip}).Take(&items).Error; err == nil {
+				for _, it := range items {
+					if it.ID != host.ID {
+						return fmt.Errorf("ip %s is in used", args.Ip)
 					}
 				}
 			}
-			if err = tx.Model(&host).Updates(map[string]interface{}{
-				"ip":      args.Ip,
-				"fixed":   true,
-				"version": host.Version + 1,
-			}).Error; err != nil {
-				return err
-			}
+		}
+		if err = tx.Model(&host).Updates(map[string]interface{}{
+			"ip":      args.Ip,
+			"fixed":   true,
+			"version": host.Version + 1,
+		}).Error; err != nil {
+			return err
+		}
+
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) SetHostDynamicIp(ctx context.Context, args struct{ Id graphql.ID }) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	id, err := FromId(args.Id)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var host models.Host
+		if err := tx.Where(map[string]interface{}{"id": id}).Take(&host).Error; err != nil {
+			return err
+		}
+		if err = tx.Model(&host).Updates(map[string]interface{}{
+			"fixed":   false,
+			"version": host.Version + 1,
+		}).Error; err != nil {
+			return err
 		}
 		return nil
 	}); err != nil {

@@ -55,7 +55,7 @@ fi
 mkdir $TARGET
 
 build_camellia
-build_dashboard bamboo
+build_dashboard loquat
 
 declare -a go_projects=("daisy" "loquat" "pansy")
 for p in "${go_projects[@]}"

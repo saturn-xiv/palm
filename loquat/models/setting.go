@@ -1,6 +1,8 @@
 package models
 
 import (
+	"bytes"
+	"encoding/gob"
 	"errors"
 
 	"google.golang.org/protobuf/proto"
@@ -59,4 +61,23 @@ func GetProtobuf(db *gorm.DB, key string, val proto.Message) error {
 		return err
 	}
 	return proto.Unmarshal(buf, val)
+}
+
+func SetB(db *gorm.DB, key string, val interface{}) error {
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	if err := enc.Encode(val); err != nil {
+		return err
+	}
+	return Set(db, key, buf.Bytes())
+}
+
+func GetB(db *gorm.DB, key string, val interface{}) error {
+	tmp, err := Get(db, key)
+	if err != nil {
+		return err
+	}
+	buf := bytes.NewBuffer(tmp)
+	dec := gob.NewDecoder(buf)
+	return dec.Decode(&val)
 }

@@ -1,6 +1,12 @@
 package v2
 
-import "fmt"
+import (
+	_ "embed"
+	"fmt"
+)
+
+//go:embed templates/firewalld.txt
+var gl_firewalld_txt string
 
 // ----------------------------------------------------------------------------
 func (p *Firewall_Protocol) ToString() string {
@@ -27,26 +33,4 @@ func firewall_reset(zone string) string {
 func firewall_snat(wan string, lan string) []string {
 	return []string{}
 
-}
-
-// https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
-func (p *Bond_Mode) ToString() string {
-	switch *p {
-	case Bond_BalanceRr:
-		return "balance-rr"
-	case Bond_BalanceXor:
-		return "balance-xor"
-	case Bond_BalanceTlb:
-		return "balance-tlb"
-	case Bond_BalanceAlb:
-		return "balance-alb"
-	case Bond_AD802_3:
-		return "802.3ad"
-	case Bond_Broadcast:
-		return "broadcast"
-	case Bond_ActiveBackup:
-		return "active-backup"
-	default:
-		return ""
-	}
 }

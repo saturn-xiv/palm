@@ -8,70 +8,67 @@ option csharp_namespace = "Palm.Plugins.Router.Grpc";
 package palm.router.v1;
 
 message Router {
-  map<string, Ethernet> ethernet = 1;
-  map<string, Bond> bonds = 2;
+  optional InternetBond wan = 1;
+  optional IntranetBond lan = 2;
+  optional IntranetBond dmz = 3;
   repeated Firewall rules = 9;
 }
 
-message Bond {
-  enum Mode {
-    BalanceRr = 0;
-    ActiveBackup = 1;
-    BalanceXor = 2;
-    Broadcast = 3;
-    AD802_3 = 4;
-    BalanceTlb = 5;
-    BalanceAlb = 6;
-  }
-
-  string label = 1;
-  repeated string interfaces = 2;
-  Mode mode = 3;
-  uint32 mii_monitor_interval = 4;
-  string address = 11;
-  repeated string dns = 12;
-  uint32 gratuitous_arp = 13;
+message InternetBond {
+  map<string, Internet> interfaces = 1;
+  uint32 mii_monitor_interval = 2;
 }
 
-message Ethernet {
+message IntranetBond {
+  repeated string interfaces = 1;
+  Intranet network = 2;
+  uint32 mii_monitor_interval = 3;
+  uint32 gratuitous_arp = 4;
+}
+
+message Internet {
   message Dhcp {}
   message Static {
     string address = 1;
-    repeated string dns = 2;
+    string netmask = 2;
+    string gateway = 3;
+    repeated string dns = 9;
   }
   message Pppoe {
     string account = 1;
     string password = 2;
   }
-  message Lan {
-    message Google {}
-    message Ali {}
-    message Other {
-      repeated string hosts = 1;
-    }
-    message Host {
-      string mac = 1;
-      string ip = 2;
-      string name = 3;
-    }
-    string address = 1;
-    oneof dns {
-      Ali ali = 2;
-      Google google = 3;
-      Other other = 4;
-    }
-    repeated Host hosts = 99;
-  }
+
   string label = 1;
+  string isp = 2;
   oneof ip {
     Dhcp dhcp = 11;
     Static static = 12;
     Pppoe pppoe = 13;
-    Lan lan = 19;
   }
   uint32 priority = 21;
   uint32 weight = 22;
   string memo = 99;
+}
+
+message Intranet {
+  message Google {}
+  message Ali {}
+  message Other {
+    repeated string addresses = 1;
+  }
+  message Host {
+    string mac = 1;
+    string ip = 2;
+    string name = 3;
+  }
+  string address = 1;
+  oneof dns {
+    Ali ali = 2;
+    Google google = 3;
+    Other other = 4;
+  }
+  repeated Host hosts = 99;
 }
 
 message Firewall {

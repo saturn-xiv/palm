@@ -9,7 +9,9 @@ import (
 
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/loquat/models"
 	"github.com/saturn-xiv/palm/loquat/router"
+	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
 func (p *Mutation) Apply(ctx context.Context, args struct{ Run bool }) (*Ok, error) {
@@ -73,26 +75,24 @@ func (p *Query) ShowNetworkInterface(ctx context.Context, args struct{ Name stri
 
 type NetworkInterface struct {
 	item *net.Interface
-	memo *string
+	memo string
 }
 
 func NewNetworkInterface(db *gorm.DB, iface *net.Interface) (*NetworkInterface, error) {
-	profile, err := getNetworkInterface(db, iface)
-	if err == nil {
-		return &NetworkInterface{item: iface, memo: &profile.Label}, nil
+	var profile v2.Internet
+	err := models.GetProtobuf(db, networkInterfaceKey(iface.Name), &profile)
+	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, err
 	}
+	return &NetworkInterface{item: iface, memo: profile.Memo}, nil
 
-	if errors.Is(err, gorm.ErrRecordNotFound) {
-		return &NetworkInterface{item: iface}, nil
-	}
-	return nil, err
 }
 
 func (p *NetworkInterface) Name() string {
 	return p.item.Name
 }
 
-func (p *NetworkInterface) Memo() *string {
+func (p *NetworkInterface) Memo() string {
 	return p.memo
 }
 

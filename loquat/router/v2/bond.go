@@ -1,24 +1,53 @@
 package v2
 
+import (
+	_ "embed"
+)
+
 // https://netplan.readthedocs.io/en/stable/examples/#how-to-configure-multiple-bonds
 // https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-bonds
-func (p *Bond) netplan() (map[string]interface{}, error) {
+// https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
 
-	data := map[string]interface{}{
+//go:embed templates/dnsmasq.txt
+var gl_dnsmasq_txt string
+
+//go:embed templates/dnsmasq-header.txt
+var gl_dnsmasq_header_txt string
+
+var (
+	DMZ = "dmz"
+	LAN = "lan"
+	WAN = "wan"
+)
+
+func (p *IntranetBond) netplan(dev string) (string, error) {
+
+	items := map[string]interface{}{
 		"interfaces": p.Interfaces,
+		"addresses":  []string{p.Network.Address},
+		"parameters": map[string]interface{}{
+			"mode":                 "balance-rr",
+			"mii-monitor-interval": p.MiiMonitorInterval,
+			"gratuitous-arp":       p.GratuitousArp,
+		},
 	}
-	params := map[string]interface{}{
-		"mode":                 p.Mode.ToString(),
-		"mii-monitor-interval": p.MiiMonitorInterval,
+
+	return render_netplan_yaml("bonds", dev, items)
+}
+
+func (p *InternetBond) netplan(dev string) (string, error) {
+	var interfaces []string
+	for dev, _ := range p.Interfaces {
+		interfaces = append(interfaces, dev)
 	}
-	switch p.Mode {
-	case Bond_ActiveBackup:
-		data["addresses"] = []string{p.Address}
-		data["nameservers"] = map[string]interface{}{
-			"addresses": p.Dns,
-		}
-		params["gratuitous-arp"] = p.GratuitousArp
+
+	items := map[string]interface{}{
+		"interfaces": interfaces,
+		"parameters": map[string]interface{}{
+			"mode":                 "balance-alb",
+			"mii-monitor-interval": p.MiiMonitorInterval,
+		},
 	}
-	data["parameters"] = params
-	return data, nil
+
+	return render_netplan_yaml("bonds", dev, items)
 }
