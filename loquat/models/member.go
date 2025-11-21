@@ -11,6 +11,7 @@ type Member struct {
 	Memo         string `gorm:"not null;type:text"`
 	Version      uint   `gorm:"not null;default:0"`
 	Hosts        []Host
+	Rules        []Rule `gorm:"many2many:members_rules;"`
 }
 
 func (Member) TableName() string {

@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 
+	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
@@ -62,7 +63,7 @@ func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struc
 	profile.Label = args.Label
 	profile.Memo = args.Memo
 	profile.Isp = args.Isp
-	profile.Ip = &v2.Internet_Dhcp_{Dhcp: &v2.Internet_Dhcp{}}
+	profile.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
 	if err = models.SetProtobuf(p.db, networkInterfaceKey(args.Name), &profile); err != nil {
 		return nil, err
 	}
@@ -160,7 +161,7 @@ func (p *NetworkInterfaceProfile) ToStaticIp() (*StaticIp, error) {
 }
 func (p *NetworkInterfaceProfile) ToDynamicIp() (*DynamicIp, error) {
 	switch p.item.Ip.(type) {
-	case *v2.Internet_Dhcp_:
+	case *v2.Internet_Dhcp:
 		return &DynamicIp{
 			isp:   p.item.Isp,
 			label: p.item.Label,
@@ -170,30 +171,3 @@ func (p *NetworkInterfaceProfile) ToDynamicIp() (*DynamicIp, error) {
 		return nil, errors.New("not a dynamic ip")
 	}
 }
-
-// func setNetworkInterface(db *gorm.DB, it *net.Interface, profile *v2.Ethernet) error {
-// 	return models.SetProtobuf(db, networkInterfaceKey(it), profile)
-// }
-
-// func getNetworkInterface(db *gorm.DB, it *net.Interface) (*v2.Ethernet, error) {
-// 	var profile v2.Ethernet
-// 	if err := models.GetProtobuf(db, networkInterfaceKey(it), &profile); err != nil {
-// 		return nil, err
-// 	}
-// 	return &profile, nil
-// }
-
-// func fetchNetworkInterface(db *gorm.DB, name string) (*net.Interface, *v2.Ethernet, error) {
-// 	eth, err := net.InterfaceByName(name)
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	it, err := getNetworkInterface(db, eth)
-// 	if err == nil {
-// 		return eth, it, nil
-// 	}
-// 	if errors.Is(err, gorm.ErrRecordNotFound) {
-// 		return eth, &v2.Ethernet{}, nil
-// 	}
-// 	return nil, nil, err
-// }

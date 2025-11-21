@@ -20,6 +20,8 @@ type Query {
   showNetworkInterface(name: String!): NetworkInterface!
   getNetworkInterface(name: String!): NetworkInterfaceProfile!
 
+  indexFirewallRule: [FirewallRule!]!
+
   bondWan: InternetBond!
   bondLan: IntranetBond!
   bondDmz: IntranetBond!
@@ -31,7 +33,6 @@ type Mutation {
   signOut: Ok!
 
   associateHostWithMember(host: ID!, member: ID!): Ok!
-  # dissociateHostFromMember(host: ID!, member: ID!): Ok!
   setHostName(id: ID!, name: String!): Ok!
   blockHost(id: ID!): Ok!
   releaseHost(id: ID!): Ok!
@@ -59,6 +60,44 @@ type Mutation {
   bondWan(interfaces: [String!]!): Ok!
   bondLan(interfaces: [String!]!, address: String!): Ok!
   bondDmz(interfaces: [String!]!, address: String!): Ok!
+
+  allowPing(device: String!, sortOrder: Int!, memo: String!): Ok!
+  allowInput(
+    device: String!
+    tcp: Boolean!
+    port: Int!
+    sortOrder: Int!
+    memo: String!
+  ): Ok!
+  allowNat(
+    device: String!
+    tcp: Boolean!
+    sourcePort: Int!
+    destinationIp: String!
+    destinationPort: Int!
+    sortOrder: Int!
+    memo: String!
+  ): Ok!
+  denyOutput(
+    address: String!
+    port: Int
+    weekdays: [Week!]!
+    beginTime: String!
+    endTime: String!
+    sortOrder: Int!
+    memo: String!
+  ): Ok!
+  limitSpeed(
+    speed: Int!
+    weekdays: [Week!]!
+    beginTime: String!
+    endTime: String!
+    sortOrder: Int!
+    memo: String!
+  ): Ok!
+  destroyFirewallRule(id: ID!): Ok!
+  associateRuleWithMember(rule: ID!, member: ID!): Ok!
+  dissociateRuleFromMember(rule: ID!, member: ID!): Ok!
 
   apply(run: Boolean!): Ok!
   reboot: Ok!
@@ -94,6 +133,60 @@ enum Isp {
   ChinaMobile
   ChinaTelecom
 }
+enum Week {
+  Sun
+  Mon
+  Tue
+  Wed
+  Thu
+  Fri
+  Sat
+}
+type Input {
+  id: ID!
+  device: String!
+  tcp: Boolean!
+  port: Int!
+  sortOrder: Int!
+  memo: String!
+  updatedAt: Time!
+}
+type Nat {
+  id: ID!
+  device: String!
+  port: Int!
+  tcp: Boolean!
+  destinationIp: String!
+  destinationPort: Int!
+  sortOrder: Int!
+  memo: String!
+  updatedAt: Time!
+}
+type Ping {
+  id: ID!
+  device: String!
+  sortOrder: Int!
+  memo: String!
+  updatedAt: Time!
+}
+type Output {
+  address: String!
+  port: Int!
+  weekdays: [Week!]!
+  beginTime: String!
+  endTime: String!
+  members: [Member!]!
+  updatedAt: Time!
+}
+type SpeedLimit {
+  value: Int!
+  weekdays: [Week!]!
+  beginTime: String!
+  endTime: String!
+  members: [Member!]!
+  updatedAt: Time!
+}
+union FirewallRule = Input | Output | Nat | Ping | SpeedLimit
 
 type InternetBond {
   interfaces: [String!]!

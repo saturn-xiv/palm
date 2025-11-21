@@ -9,11 +9,11 @@ import (
 var gl_firewalld_txt string
 
 // ----------------------------------------------------------------------------
-func (p *Firewall_Protocol) ToString() string {
+func (p *FirewallRule_Protocol) ToString() string {
 	switch *p {
-	case Firewall_Tcp:
+	case FirewallRule_Tcp:
 		return "tcp"
-	case Firewall_Udp:
+	case FirewallRule_Udp:
 		return "udp"
 	default:
 		return ""

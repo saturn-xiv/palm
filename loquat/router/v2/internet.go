@@ -8,7 +8,7 @@ import (
 func (p *Internet) netplan(dev string) (string, error) {
 	args := make(map[string]interface{})
 	switch p.Ip.(type) {
-	case *Internet_Dhcp_:
+	case *Internet_Dhcp:
 		args["dhcp4"] = true
 	case *Internet_Static_:
 		args["addresses"] = []string{p.GetStatic().Address}

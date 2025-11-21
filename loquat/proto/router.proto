@@ -7,11 +7,14 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Router.Grpc";
 package palm.router.v1;
 
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
 message Router {
   optional InternetBond wan = 1;
   optional IntranetBond lan = 2;
   optional IntranetBond dmz = 3;
-  repeated Firewall rules = 9;
+  repeated FirewallRule rules = 9;
 }
 
 message InternetBond {
@@ -27,7 +30,6 @@ message IntranetBond {
 }
 
 message Internet {
-  message Dhcp {}
   message Static {
     string address = 1;
     string netmask = 2;
@@ -42,7 +44,7 @@ message Internet {
   string label = 1;
   string isp = 2;
   oneof ip {
-    Dhcp dhcp = 11;
+    google.protobuf.Empty dhcp = 11;
     Static static = 12;
     Pppoe pppoe = 13;
   }
@@ -61,6 +63,7 @@ message Intranet {
     string mac = 1;
     string ip = 2;
     string name = 3;
+    google.protobuf.Timestamp updated_at = 99;
   }
   string address = 1;
   oneof dns {
@@ -71,7 +74,7 @@ message Intranet {
   repeated Host hosts = 99;
 }
 
-message Firewall {
+message FirewallRule {
   message Ping {
     string device = 1;
     bool enable = 2;
@@ -103,17 +106,36 @@ message Firewall {
       string ip = 1;
       uint32 port = 2;
     }
-    uint32 port = 1;
-    Destination destination = 2;
+    string device = 1;
+    Protocol protocol = 2;
+    uint32 port = 3;
+    Destination destination = 4;
+  }
+  message Input {
+    string device = 1;
+    Protocol protocol = 2;
+    uint32 port = 3;
   }
   message Output {
-    Period period = 1;
-    oneof by {
-      string host = 11;
-    }
+    string address = 1;
+    Protocol protocol = 2;
+    optional uint32 port = 3;
+    Period period = 8;
+    repeated string hosts = 9;
   }
-  oneof rule {
+  message SpeedLimit {
+    uint32 value = 1;
+    Period period = 8;
+    repeated string hosts = 9;
+  }
+  oneof by {
     Ping ping = 1;
-    Nat nat = 2;
+    Input input = 2;
+    Nat nat = 3;
+    Output output = 4;
+    SpeedLimit speed_limit = 5;
   }
+  int32 sort_order = 97;
+  string memo = 98;
+  google.protobuf.Timestamp updated_at = 99;
 }
