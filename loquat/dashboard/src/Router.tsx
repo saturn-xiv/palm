@@ -11,6 +11,7 @@ const UsersIndex = lazy(() => import("./pages/users"));
 const RulesIndex = lazy(() => import("./pages/rules"));
 const HostsIndex = lazy(() => import("./pages/hosts"));
 const DashboardIndex = lazy(() => import("./pages/dashboard"));
+const Graphiql = lazy(() => import("./pages/graphiql"));
 const RootLayout = lazy(() => import("./layouts/Root"));
 const AnonymousLayout = lazy(() => import("./layouts/Anonymous"));
 const DashboardLayout = lazy(() => import("./layouts/Dashboard"));
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       Component: RootLayout,
       children: [
         { index: true, Component: Home },
+        { path: "graphiql", Component: Graphiql },
         {
           path: "anonymous",
           Component: AnonymousLayout,
