@@ -7,6 +7,7 @@ schema {
 
 type Query {
   version: String!
+  refresh: RefreshResponse!
 
   indexLog(page: Page!): IndexLogResponse!
 
@@ -258,4 +259,10 @@ type Pagination {
   hasNext: Boolean!
   pages: Int!
   total: Int!
+}
+
+type RefreshResponse {
+  version: String!
+  hostname: String!
+  createdAt: Time!
 }
