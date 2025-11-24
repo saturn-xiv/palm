@@ -3,6 +3,9 @@ import * as jose from "jose";
 
 import type { RootState } from "../store";
 
+export const SIGN_IN = "/anonymous/sign-in";
+export const LOGS = "/dashboard/account/logs";
+
 const KEY = "token";
 export const get = (): string | null => {
   return sessionStorage.getItem(KEY);
@@ -51,6 +54,6 @@ export const sessionSlice = createSlice({
 
 export const { signIn, signOut } = sessionSlice.actions;
 
-export const selectName = (state: RootState) => state.session.name;
+export const currentUser = (state: RootState) => state.session.name;
 
 export default sessionSlice.reducer;

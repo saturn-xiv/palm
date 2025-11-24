@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { type ILogsResponse, get_logs } from "../../api/administrator";
+import { type ILogsResponse, get_logs } from "../../api/members";
 import PaginationBar from "../../components/PaginationBar";
 import Timestamp from "../../components/Timestamp";
 import type { IPage } from "../../api";
@@ -20,7 +20,7 @@ const Widget = () => {
   return (
     <>
       <div className="is-size-2">
-        <FormattedMessage id="pages.administrator.logs.title" />
+        <FormattedMessage id="pages.users.logs.title" />
       </div>
       <table className="table is-hoverable is-fullwidth">
         <thead>

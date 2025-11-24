@@ -1,11 +1,12 @@
 export default {
-  "pages.administrator.sign-in.title": "Sign in",
-  "pages.administrator.logs.title": "Logs",
-  "pages.administrator.profile.title": "Profile",
+  "pages.users.sign-in.title": "Sign in",
+  "pages.users.logs.title": "Logs",
+  "pages.users.change-password.title": "Change password",
   "pages.hosts.index.title": "Hosts",
-  "pages.users.index.title": "Users",
   "pages.rules.index.title": "Rules",
+  "pages.members.index.title": "Members",
   "pages.dashboard.index.title": "Dashboard",
+  "pages.dashboard.account.title": "Account",
 
   "layouts.dashboard.nav-bar.home": "Home",
   "layouts.dashboard.nav-bar.settings": "Settings",

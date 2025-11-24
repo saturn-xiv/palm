@@ -1,10 +1,24 @@
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { selectNotification, close } from "../reducers/notification";
+
 const Widget = () => {
-  // TODO
-  return (
-    <div className="notification is-primary">
-      This container is <strong>centered</strong> on desktop and larger
-      viewports.
+  const { action, messages } = useAppSelector(selectNotification);
+  const dispatch = useAppDispatch();
+  return action ? (
+    <div
+      className={`notification is-${action}`}
+      onClick={(e) => {
+        e.preventDefault();
+        dispatch(close());
+      }}
+    >
+      <button className="delete"></button>
+      {messages.map((it, id) => (
+        <div key={id}>{it}</div>
+      ))}
     </div>
+  ) : (
+    <></>
   );
 };
 

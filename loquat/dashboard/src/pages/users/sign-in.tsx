@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { withFormik, type FormikProps, Form, Field } from "formik";
 
-import { selectName, signIn, signOut } from "../../reducers/session";
-import { type ISignInFormValues } from "../../api/administrator";
+import { currentUser, signIn, signOut } from "../../reducers/session";
+import { type ISignInFormValues } from "../../api/members";
 
 const InnerForm = (
   props: { title: string } & FormikProps<ISignInFormValues>
@@ -77,20 +77,18 @@ const IForm = withFormik<{ title: string }, ISignInFormValues>({
 const Widget = () => {
   const intl = useIntl();
   return (
-    <IForm
-      title={intl.formatMessage({ id: "pages.administrator.sign-in.title" })}
-    />
+    <IForm title={intl.formatMessage({ id: "pages.users.sign-in.title" })} />
   );
 };
 
 export const Widget1 = () => {
   // TODO remove
-  const name = useSelector(selectName);
+  const user = useSelector(currentUser);
   const dispatch = useDispatch();
   return (
     <>
       <div className="is-size-2">
-        <FormattedMessage id="pages.administrator.sign-in.title" />
+        <FormattedMessage id="pages.users.sign-in.title" />
       </div>
       <div className="field">
         <label className="label">
@@ -122,7 +120,7 @@ export const Widget1 = () => {
       </div>
 
       <div>
-        <div>#{name || "n/a"}#</div>
+        <div>#{user || "n/a"}#</div>
         <br />
         <button onClick={() => dispatch(signIn({ token: "change-me" }))}>
           sign in

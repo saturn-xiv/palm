@@ -1,9 +1,8 @@
 const Widget = () => {
-  // TODO
   return (
-    <>
-      <h1>Loading</h1>
-    </>
+    <span className="icon">
+      <i className="fas fa-spinner"></i>
+    </span>
   );
 };
 

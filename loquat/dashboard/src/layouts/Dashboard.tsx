@@ -1,6 +1,8 @@
 import { Link, Outlet } from "react-router";
 import { FormattedMessage } from "react-intl";
 
+import { LOGS as USER_LOGS } from "../reducers/session";
+
 import logo_svg from "../assets/bamboo.svg";
 
 const NavBar = () => {
@@ -45,8 +47,8 @@ const NavBar = () => {
           <Link className="navbar-item" to="/dashboard/hosts">
             <FormattedMessage id="pages.hosts.index.title" />
           </Link>
-          <Link className="navbar-item" to="/dashboard/users">
-            <FormattedMessage id="pages.users.index.title" />
+          <Link className="navbar-item" to="/dashboard/members">
+            <FormattedMessage id="pages.members.index.title" />
           </Link>
           <Link className="navbar-item" to="/dashboard/rules">
             <FormattedMessage id="pages.rules.index.title" />
@@ -58,14 +60,14 @@ const NavBar = () => {
             </a>
 
             <div className="navbar-dropdown">
-              <Link className="navbar-item" to="/dashboard/administrator/logs">
-                <FormattedMessage id="pages.administrator.logs.title" />
+              <Link className="navbar-item" to={USER_LOGS}>
+                <FormattedMessage id="pages.users.logs.title" />
               </Link>
               <Link
                 className="navbar-item"
-                to="/dashboard/administrator/profile"
+                to="/dashboard/account/change-password"
               >
-                <FormattedMessage id="pages.administrator.profile.title" />
+                <FormattedMessage id="pages.users.change-password.title" />
               </Link>
               <hr className="navbar-divider" />
               <a className="navbar-item" onClick={handleSignOut}>

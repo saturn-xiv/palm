@@ -2,12 +2,10 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
-const AdministratorSignIn = lazy(() => import("./pages/administrator/sign-in"));
-const AdministratorLogs = lazy(() => import("./pages/administrator/logs"));
-const AdministratorProfile = lazy(
-  () => import("./pages/administrator/profile")
-);
-const UsersIndex = lazy(() => import("./pages/users"));
+const UsersSignIn = lazy(() => import("./pages/users/sign-in"));
+const UsersLogs = lazy(() => import("./pages/users/logs"));
+const UsersChangePassword = lazy(() => import("./pages/users/change-password"));
+const MembersIndex = lazy(() => import("./pages/members"));
 const RulesIndex = lazy(() => import("./pages/rules"));
 const HostsIndex = lazy(() => import("./pages/hosts"));
 const DashboardIndex = lazy(() => import("./pages/dashboard"));
@@ -28,12 +26,7 @@ const router = createBrowserRouter(
         {
           path: "anonymous",
           Component: AnonymousLayout,
-          children: [
-            {
-              path: "administrator",
-              children: [{ path: "sign-in", Component: AdministratorSignIn }],
-            },
-          ],
+          children: [{ path: "sign-in", Component: UsersSignIn }],
         },
         {
           path: "dashboard",
@@ -41,16 +34,13 @@ const router = createBrowserRouter(
           children: [
             { index: true, Component: DashboardIndex },
             { path: "hosts", Component: HostsIndex },
-            { path: "users", Component: UsersIndex },
+            { path: "members", Component: MembersIndex },
             { path: "rules", Component: RulesIndex },
             {
-              path: "administrator",
+              path: "account",
               children: [
-                {
-                  path: "profile",
-                  Component: AdministratorProfile,
-                },
-                { path: "logs", Component: AdministratorLogs },
+                { path: "logs", Component: UsersLogs },
+                { path: "change-password", Component: UsersChangePassword },
               ],
             },
           ],

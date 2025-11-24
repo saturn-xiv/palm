@@ -1,7 +1,7 @@
 const Widget = () => {
   return (
     <>
-      <h1>User profile</h1>
+      <h1>members index</h1>
     </>
   );
 };

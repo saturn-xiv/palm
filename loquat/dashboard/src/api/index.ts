@@ -12,15 +12,13 @@ export interface IPagination {
 }
 
 export interface IRefreshResponse {
-  createdAt: Date;
-  version: string;
-  hostname: string;
+  refresh: { createdAt: Date; version: string; hostname: string };
 }
 
 export const refresh = async (): Promise<
-  IGraphqlResponse<{ refresh: IRefreshResponse }>
+  IGraphqlResponse<IRefreshResponse>
 > => {
-  const res: IGraphqlResponse<{ refresh: IRefreshResponse }> = await graphql(
+  const res: IGraphqlResponse<IRefreshResponse> = await graphql(
     `
       {
         refresh {
