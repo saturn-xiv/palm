@@ -3,53 +3,261 @@ package graphql
 import (
 	"context"
 	"errors"
+	"fmt"
 	"reflect"
+	"slices"
 	"time"
 
 	graphql "github.com/graph-gophers/graphql-go"
 	"google.golang.org/protobuf/proto"
+	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
 	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
-// allowPing(device: String!, sortOrder: Int!, memo: String!): Ok!
-//   allowInput(
-//     device: String!
-//     tcp: Boolean!
-//     port: Int!
-//     sortOrder: Int!
-//     memo: String!
-//   ): Ok!
-//   allowNat(
-//     device: String!
-//     tcp: Boolean!
-//     sourcePort: Int!
-//     destinationIp: String!
-//     destinationPort: Int!
-//     sortOrder: Int!
-//     memo: String!
-//   ): Ok!
-//   denyOutput(
-//     address: String!
-//     port: Int
-//     weekdays: [Week!]!
-//     beginTime: String!
-//     endTime: String!
-//     sortOrder: Int!
-//     memo: String!
-//   ): Ok!
-//   limitSpeed(
-//     speed: Int!
-//     weekdays: [Week!]!
-//     beginTime: String!
-//     endTime: String!
-//     sortOrder: Int!
-//     memo: String!
-//   ): Ok!
-//   destroyFirewallRule(id: ID!): Ok!
-//   associateRuleWithMember(rule: ID!, member: ID!): Ok!
-//   dissociateRuleFromMember(rule: ID!, member: ID!): Ok!
+func (p *Mutation) AllowPing(ctx context.Context, args struct {
+	Id        *graphql.ID
+	Device    string
+	SortOrder int32
+	Memo      string
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Ping{
+		Device: args.Device,
+	}, int(args.SortOrder), args.Memo); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) AllowInput(ctx context.Context, args struct {
+	Id        *graphql.ID
+	Device    string
+	Tcp       bool
+	Port      int32
+	SortOrder int32
+	Memo      string
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	protocol := v2.FirewallRule_Tcp
+	if !args.Tcp {
+		protocol = v2.FirewallRule_Udp
+	}
+	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Input{
+		Device:   args.Device,
+		Protocol: protocol,
+		Port:     uint32(args.Port),
+	}, int(args.SortOrder), args.Memo); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) AllowNat(ctx context.Context, args struct {
+	Id              *graphql.ID
+	Device          string
+	Tcp             bool
+	Port            int32
+	DestinationIp   string
+	DestinationPort int32
+	SortOrder       int32
+	Memo            string
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	protocol := v2.FirewallRule_Tcp
+	if !args.Tcp {
+		protocol = v2.FirewallRule_Udp
+	}
+	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Nat{
+		Device:   args.Device,
+		Protocol: protocol,
+		Port:     uint32(args.Port),
+		Destination: &v2.FirewallRule_Nat_Destination{
+			Ip:   args.DestinationIp,
+			Port: uint32(args.DestinationPort),
+		},
+	}, int(args.SortOrder), args.Memo); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) DenyOutput(ctx context.Context, args struct {
+	Id        *graphql.ID
+	Address   string
+	Weekdays  []string
+	BeginTime string
+	EndTime   string
+	SortOrder int32
+	Memo      string
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	begin, err := v2.NewFirewallRuleTime(args.BeginTime)
+	if err != nil {
+		return nil, err
+	}
+	end, err := v2.NewFirewallRuleTime(args.EndTime)
+	if err != nil {
+		return nil, err
+	}
+	var days []v2.FirewallRule_Week
+	for _, it := range args.Weekdays {
+		days = append(days, v2.FirewallRule_Week(v2.FirewallRule_Week_value[it]))
+
+	}
+	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Output{
+		Address: args.Address,
+		Period: &v2.FirewallRule_Period{
+			Begin: begin,
+			End:   end,
+			Days:  days,
+		},
+	}, int(args.SortOrder), args.Memo); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) LimitSpeed(ctx context.Context, args struct {
+	Id        *graphql.ID
+	Value     int32
+	Weekdays  []string
+	BeginTime string
+	EndTime   string
+	SortOrder int32
+	Memo      string
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	begin, err := v2.NewFirewallRuleTime(args.BeginTime)
+	if err != nil {
+		return nil, err
+	}
+	end, err := v2.NewFirewallRuleTime(args.EndTime)
+	if err != nil {
+		return nil, err
+	}
+	var days []v2.FirewallRule_Week
+	for _, it := range args.Weekdays {
+		days = append(days, v2.FirewallRule_Week(v2.FirewallRule_Week_value[it]))
+
+	}
+	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_SpeedLimit{
+		Value: uint32(args.Value),
+		Period: &v2.FirewallRule_Period{
+			Begin: begin,
+			End:   end,
+			Days:  days,
+		},
+	}, int(args.SortOrder), args.Memo); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) DestroyFirewallRule(ctx context.Context, args struct {
+	Id graphql.ID
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	id, err := FromId(args.Id)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.Rule
+		if err := tx.First(&it, id).Error; err != nil {
+			return err
+		}
+		if err := tx.Delete(&it).Error; err != nil {
+			return err
+		}
+		if err := tx.Model(&it).Association("Members").Clear(); err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) AssociateRuleWithMember(ctx context.Context, args struct {
+	Member graphql.ID
+	Rule   graphql.ID
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	mid, err := FromId(args.Member)
+	if err != nil {
+		return nil, err
+	}
+	rid, err := FromId(args.Rule)
+	if err != nil {
+		return nil, err
+	}
+	var member models.Member
+	if err = p.db.Where(map[string]interface{}{"id": mid}).Take(&member).Error; err != nil {
+		return nil, err
+	}
+	var rule models.Rule
+	if err = p.db.Where(map[string]interface{}{"id": rid}).Take(&rule).Error; err != nil {
+		return nil, err
+	}
+	{
+		if !slices.Contains([]string{
+			reflect.TypeOf((*v2.FirewallRule_Output)(nil)).Name(),
+			reflect.TypeOf((*v2.FirewallRule_SpeedLimit)(nil)).Name(),
+		}, rule.Type) {
+			return nil, fmt.Errorf("deny for %s", rule.Type)
+		}
+	}
+	if err = p.db.Model(&member).Association("Rules").Append(&rule); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) DissociateRuleFromMember(ctx context.Context, args struct {
+	Member graphql.ID
+	Rule   graphql.ID
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	mid, err := FromId(args.Member)
+	if err != nil {
+		return nil, err
+	}
+	rid, err := FromId(args.Rule)
+	if err != nil {
+		return nil, err
+	}
+	var member models.Member
+	if err = p.db.Where(map[string]interface{}{"id": mid}).Take(&member).Error; err != nil {
+		return nil, err
+	}
+	var rule models.Rule
+	if err = p.db.Where(map[string]interface{}{"id": rid}).Take(&rule).Error; err != nil {
+		return nil, err
+	}
+	if err = p.db.Model(&member).Association("Rules").Delete(&rule); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
 
 func (p *Query) IndexFirewallRule(ctx context.Context) ([]*FirewallRule, error) {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
@@ -226,9 +434,7 @@ func (p *Output) UpdatedAt() graphql.Time {
 func (p *Output) Address() string {
 	return p.item.Address
 }
-func (p *Output) Port() int32 {
-	return int32(*p.item.Port)
-}
+
 func (p *Output) Weekdays() []string {
 	var items []string
 	for _, it := range p.item.Period.Days {
@@ -346,4 +552,37 @@ func (p *FirewallRule) ToSpeedLimit() (*SpeedLimit, error) {
 	default:
 		return nil, errors.New("not a speed-limit rule")
 	}
+}
+
+func save_firewall_rule(db *gorm.DB, id *graphql.ID, rule proto.Message, sort_order int, memo string) error {
+	type_ := reflect.TypeOf(rule).Name()
+	content, err := proto.Marshal(rule)
+	if err != nil {
+		return err
+	}
+	if id == nil {
+		return db.Create(&models.Rule{
+			Content:   content,
+			Type:      type_,
+			SortOrder: sort_order,
+			Memo:      memo,
+		}).Error
+	}
+	rid, err := FromId(*id)
+	if err != nil {
+		return err
+	}
+	var it models.Rule
+	if err = db.First(&it, rid).Error; err != nil {
+		return err
+	}
+	if type_ != it.Type {
+		return fmt.Errorf("couldn't change type %s=>%s", it.Type, type_)
+	}
+	return db.Model(&it).Updates(map[string]interface{}{
+		"content":    content,
+		"sort_order": sort_order,
+		"memo":       memo,
+		"version":    it.Version + 1,
+	}).Error
 }

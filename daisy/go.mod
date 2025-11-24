@@ -5,7 +5,7 @@ go 1.25.4
 require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/casbin/casbin/v2 v2.134.0
-	github.com/casbin/gorm-adapter/v3 v3.37.0
+	github.com/casbin/gorm-adapter/v3 v3.38.0
 	github.com/casbin/redis-watcher/v2 v2.5.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/csrf v1.7.3
@@ -15,12 +15,12 @@ require (
 	github.com/graph-gophers/graphql-go v1.8.0
 	github.com/minio/minio-go/v7 v7.0.97
 	github.com/rabbitmq/amqp091-go v1.10.0
-	github.com/redis/go-redis/v9 v9.16.0
+	github.com/redis/go-redis/v9 v9.17.0
 	github.com/spf13/cobra v1.10.1
 	github.com/tink-crypto/tink-go/v2 v2.5.0
-	github.com/twilio/twilio-go v1.28.6
+	github.com/twilio/twilio-go v1.28.7
 	github.com/wneessen/go-mail v0.7.2
-	google.golang.org/grpc v1.76.0
+	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	gorm.io/driver/mysql v1.6.0
 	gorm.io/driver/postgres v1.6.0
@@ -66,7 +66,7 @@ require (
 	github.com/rs/xid v1.6.0 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/tinylib/msgp v1.5.0 // indirect
-	golang.org/x/crypto v0.44.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/exp v0.0.0-20251113190631-e25ba8c21ef6 // indirect
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/sync v0.18.0 // indirect
@@ -75,8 +75,8 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251111163417-95abcf5c77ba // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/plugin/dbresolver v1.6.2 // indirect
-	modernc.org/libc v1.67.0 // indirect
+	modernc.org/libc v1.67.1 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.40.0 // indirect
+	modernc.org/sqlite v1.40.1 // indirect
 )

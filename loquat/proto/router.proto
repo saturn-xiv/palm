@@ -118,8 +118,6 @@ message FirewallRule {
   }
   message Output {
     string address = 1;
-    Protocol protocol = 2;
-    optional uint32 port = 3;
     Period period = 8;
     repeated string hosts = 9;
   }

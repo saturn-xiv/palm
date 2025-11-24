@@ -61,8 +61,9 @@ type Mutation {
   bondLan(interfaces: [String!]!, address: String!): Ok!
   bondDmz(interfaces: [String!]!, address: String!): Ok!
 
-  allowPing(device: String!, sortOrder: Int!, memo: String!): Ok!
+  allowPing(id: ID, device: String!, sortOrder: Int!, memo: String!): Ok!
   allowInput(
+    id: ID
     device: String!
     tcp: Boolean!
     port: Int!
@@ -70,17 +71,18 @@ type Mutation {
     memo: String!
   ): Ok!
   allowNat(
+    id: ID
     device: String!
     tcp: Boolean!
-    sourcePort: Int!
+    port: Int!
     destinationIp: String!
     destinationPort: Int!
     sortOrder: Int!
     memo: String!
   ): Ok!
   denyOutput(
+    id: ID
     address: String!
-    port: Int
     weekdays: [Week!]!
     beginTime: String!
     endTime: String!
@@ -88,7 +90,8 @@ type Mutation {
     memo: String!
   ): Ok!
   limitSpeed(
-    speed: Int!
+    id: ID
+    value: Int!
     weekdays: [Week!]!
     beginTime: String!
     endTime: String!
@@ -171,7 +174,6 @@ type Ping {
 }
 type Output {
   address: String!
-  port: Int!
   weekdays: [Week!]!
   beginTime: String!
   endTime: String!

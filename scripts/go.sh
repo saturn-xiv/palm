@@ -3,7 +3,7 @@
 set -e
 
 export GO_HOME=$HOME/local/go
-export GO_VERSION="1.25.3"
+export GO_VERSION="1.25.4"
 
 if [ ! -d $GO_HOME ]
 then

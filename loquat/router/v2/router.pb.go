@@ -1323,8 +1323,6 @@ func (x *FirewallRule_Input) GetPort() uint32 {
 type FirewallRule_Output struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Protocol      FirewallRule_Protocol  `protobuf:"varint,2,opt,name=protocol,proto3,enum=palm.router.v1.FirewallRule_Protocol" json:"protocol,omitempty"`
-	Port          *uint32                `protobuf:"varint,3,opt,name=port,proto3,oneof" json:"port,omitempty"`
 	Period        *FirewallRule_Period   `protobuf:"bytes,8,opt,name=period,proto3" json:"period,omitempty"`
 	Hosts         []string               `protobuf:"bytes,9,rep,name=hosts,proto3" json:"hosts,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1366,20 +1364,6 @@ func (x *FirewallRule_Output) GetAddress() string {
 		return x.Address
 	}
 	return ""
-}
-
-func (x *FirewallRule_Output) GetProtocol() FirewallRule_Protocol {
-	if x != nil {
-		return x.Protocol
-	}
-	return FirewallRule_Tcp
-}
-
-func (x *FirewallRule_Output) GetPort() uint32 {
-	if x != nil && x.Port != nil {
-		return *x.Port
-	}
-	return 0
 }
 
 func (x *FirewallRule_Output) GetPeriod() *FirewallRule_Period {
@@ -1570,7 +1554,7 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"updated_at\x18c \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x05\n" +
-	"\x03dns\"\xff\v\n" +
+	"\x03dns\"\x99\v\n" +
 	"\fFirewallRule\x127\n" +
 	"\x04ping\x18\x01 \x01(\v2!.palm.router.v1.FirewallRule.PingH\x00R\x04ping\x12:\n" +
 	"\x05input\x18\x02 \x01(\v2\".palm.router.v1.FirewallRule.InputH\x00R\x05input\x124\n" +
@@ -1604,14 +1588,11 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x05Input\x12\x16\n" +
 	"\x06device\x18\x01 \x01(\tR\x06device\x12A\n" +
 	"\bprotocol\x18\x02 \x01(\x0e2%.palm.router.v1.FirewallRule.ProtocolR\bprotocol\x12\x12\n" +
-	"\x04port\x18\x03 \x01(\rR\x04port\x1a\xda\x01\n" +
+	"\x04port\x18\x03 \x01(\rR\x04port\x1au\n" +
 	"\x06Output\x12\x18\n" +
-	"\aaddress\x18\x01 \x01(\tR\aaddress\x12A\n" +
-	"\bprotocol\x18\x02 \x01(\x0e2%.palm.router.v1.FirewallRule.ProtocolR\bprotocol\x12\x17\n" +
-	"\x04port\x18\x03 \x01(\rH\x00R\x04port\x88\x01\x01\x12;\n" +
+	"\aaddress\x18\x01 \x01(\tR\aaddress\x12;\n" +
 	"\x06period\x18\b \x01(\v2#.palm.router.v1.FirewallRule.PeriodR\x06period\x12\x14\n" +
-	"\x05hosts\x18\t \x03(\tR\x05hostsB\a\n" +
-	"\x05_port\x1au\n" +
+	"\x05hosts\x18\t \x03(\tR\x05hosts\x1au\n" +
 	"\n" +
 	"SpeedLimit\x12\x14\n" +
 	"\x05value\x18\x01 \x01(\rR\x05value\x12;\n" +
@@ -1700,14 +1681,13 @@ var file_proto_router_proto_depIdxs = []int32{
 	0,  // 24: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
 	22, // 25: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
 	0,  // 26: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	0,  // 27: palm.router.v1.FirewallRule.Output.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	17, // 28: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
-	17, // 29: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
-	30, // [30:30] is the sub-list for method output_type
-	30, // [30:30] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	17, // 27: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
+	17, // 28: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_proto_router_proto_init() }
@@ -1733,7 +1713,6 @@ func file_proto_router_proto_init() {
 		(*FirewallRule_Output_)(nil),
 		(*FirewallRule_SpeedLimit_)(nil),
 	}
-	file_proto_router_proto_msgTypes[18].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
