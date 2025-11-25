@@ -1,10 +1,5 @@
 import type { IPage, IPagination } from ".";
 
-export interface ISignInFormValues {
-  username: string;
-  password: string;
-}
-
 export interface ILogsTableItem {
   id: number;
   ip: string;

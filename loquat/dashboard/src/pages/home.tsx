@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { useAppSelector } from "../hooks";
 import {
   SIGN_IN as USERS_SIGN_IN,
   LOGS as USER_LOGS,
-  currentUser,
+  get as get_token,
 } from "../reducers/session";
 
 const Widget = () => {
   const navigate = useNavigate();
-  const user = useAppSelector(currentUser);
+  const token = get_token();
   useEffect(() => {
-    navigate(user ? USER_LOGS : USERS_SIGN_IN);
-  }, [user, navigate]);
+    navigate(token ? USER_LOGS : USERS_SIGN_IN);
+  }, [token, navigate]);
 
   return <></>;
 };

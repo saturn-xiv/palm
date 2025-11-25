@@ -12,12 +12,7 @@ const Widget = () => {
       const handle_refresh = async () => {
         const res = await refresh_layout();
         if (res.data) {
-          dispatch(
-            refresh({
-              hostname: res.data.refresh.hostname,
-              version: res.data.refresh.version,
-            })
-          );
+          dispatch(refresh(res.data.refresh));
         }
       };
       handle_refresh();
@@ -25,11 +20,14 @@ const Widget = () => {
   }, [layout, dispatch]);
   return (
     <div className="content has-text-centered">
-      <strong>{layout.hostname}</strong>&nbsp;
+      <span>
+        <strong>{layout.hostname}</strong> - {layout.description}
+      </span>
+      <br />
       <span>
         &copy;{new Date().getFullYear()}&nbsp;{layout.version}.
       </span>
-      &nbsp;
+      <br />
       <span>
         The source code is licensed &nbsp;
         <a target="_blank" href="https://opensource.org/license/mit">

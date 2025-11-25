@@ -1,14 +1,22 @@
-import { Link, Outlet } from "react-router";
-import { FormattedMessage } from "react-intl";
+import { Link, Outlet, useNavigate } from "react-router";
+import { FormattedMessage, useIntl } from "react-intl";
 
-import { LOGS as USER_LOGS } from "../reducers/session";
-
-import logo_svg from "../assets/bamboo.svg";
+import {
+  SIGN_IN as USER_SIGN_IN,
+  LOGS as USER_LOGS,
+  signOut,
+} from "../reducers/session";
+import { useAppDispatch } from "../hooks";
+import { success as show_success } from "../reducers/notification";
 
 const NavBar = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const intl = useIntl();
   const handleSignOut = () => {
-    // TODO
-    console.log("sign out");
+    dispatch(signOut());
+    navigate(USER_SIGN_IN);
+    dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
   };
   const handleApply = () => {
     // TODO
@@ -21,9 +29,7 @@ const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item">
-          <img src={logo_svg} />
-        </a>
+        <a className="navbar-item"></a>
 
         <a
           role="button"

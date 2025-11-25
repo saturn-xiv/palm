@@ -21,6 +21,8 @@ export default {
   "buttons.previous": "Previous",
   "buttons.next": "Next",
 
+  "flashes.succeed": "Succeed.",
+
   "forms.fields.label.username": "Username",
   "forms.fields.label.password": "Password",
 

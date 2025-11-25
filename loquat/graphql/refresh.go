@@ -19,6 +19,9 @@ type RefreshResponse struct {
 func (p *RefreshResponse) Version() string {
 	return env.Version()
 }
+func (p *RefreshResponse) Description() string {
+	return env.Description()
+}
 
 func (p *RefreshResponse) Hostname() (string, error) {
 	return os.Hostname()

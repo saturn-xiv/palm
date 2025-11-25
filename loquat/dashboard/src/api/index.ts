@@ -1,5 +1,9 @@
 import { graphql, type IGraphqlResponse } from "../request";
 
+export interface IOk {
+  createdAt: Date;
+}
+
 export interface IPage {
   size: number;
   index: number;
@@ -12,7 +16,12 @@ export interface IPagination {
 }
 
 export interface IRefreshResponse {
-  refresh: { createdAt: Date; version: string; hostname: string };
+  refresh: {
+    createdAt: Date;
+    version: string;
+    hostname: string;
+    description: string;
+  };
 }
 
 export const refresh = async (): Promise<
@@ -23,6 +32,7 @@ export const refresh = async (): Promise<
       {
         refresh {
           hostname
+          description
           version
         }
       }

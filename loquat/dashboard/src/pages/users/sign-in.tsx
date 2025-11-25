@@ -1,13 +1,21 @@
 import { FormattedMessage, useIntl } from "react-intl";
-import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import { withFormik, type FormikProps, Form, Field } from "formik";
 
-import { currentUser, signIn, signOut } from "../../reducers/session";
-import { type ISignInFormValues } from "../../api/members";
+import { LOGS, signIn } from "../../reducers/session";
+import {
+  danger as show_danger,
+  success as show_success,
+} from "../../reducers/notification";
+import { sign_in, type ISignInFormValues } from "../../api/users";
+import { useAppDispatch } from "../../hooks";
 
 const InnerForm = (
-  props: { title: string } & FormikProps<ISignInFormValues>
+  props: {
+    title: string;
+    onSubmit: (value: ISignInFormValues) => Promise<void>;
+  } & FormikProps<ISignInFormValues>
 ) => {
   const { touched, errors, isSubmitting, title } = props;
   return (
@@ -18,10 +26,10 @@ const InnerForm = (
           <FormattedMessage id="forms.fields.label.username" />
         </label>
         <div className="control">
-          <Field className="input" type="text" name="username" />
+          <Field className="input" type="text" name="name" />
         </div>
-        {touched.username && errors.username && (
-          <p className="help is-danger">{errors.username}</p>
+        {touched.name && errors.name && (
+          <p className="help is-danger">{errors.name}</p>
         )}
       </div>
 
@@ -57,78 +65,45 @@ const InnerForm = (
   );
 };
 
-const IForm = withFormik<{ title: string }, ISignInFormValues>({
+const IForm = withFormik<
+  { title: string; onSubmit: (value: ISignInFormValues) => Promise<void> },
+  ISignInFormValues
+>({
   mapPropsToValues: () => {
     return {
-      username: "",
+      name: "",
       password: "",
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().min(2).max(31).required(),
+    name: Yup.string().min(2).max(31).required(),
     password: Yup.string().min(6).max(31).required(),
   }),
-  handleSubmit: (values) => {
-    // TODO
-    console.log(values);
+  handleSubmit: async (values, { props }) => {
+    props.onSubmit(values);
   },
 })(InnerForm);
 
 const Widget = () => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   return (
-    <IForm title={intl.formatMessage({ id: "pages.users.sign-in.title" })} />
-  );
-};
-
-export const Widget1 = () => {
-  // TODO remove
-  const user = useSelector(currentUser);
-  const dispatch = useDispatch();
-  return (
-    <>
-      <div className="is-size-2">
-        <FormattedMessage id="pages.users.sign-in.title" />
-      </div>
-      <div className="field">
-        <label className="label">
-          <FormattedMessage id="forms.fields.label.username" />
-        </label>
-        <div className="control">
-          <input className="input" type="text" />
-        </div>
-      </div>
-      <div className="field">
-        <label className="label">
-          <FormattedMessage id="forms.fields.label.password" />
-        </label>
-        <div className="control">
-          <input className="input" type="password" />
-        </div>
-      </div>
-      <div className="field is-grouped">
-        <div className="control">
-          <button className="button is-link">
-            <FormattedMessage id="buttons.submit" />
-          </button>
-        </div>
-        <div className="control">
-          <button className="button is-link is-light">
-            <FormattedMessage id="buttons.reset" />
-          </button>
-        </div>
-      </div>
-
-      <div>
-        <div>#{user || "n/a"}#</div>
-        <br />
-        <button onClick={() => dispatch(signIn({ token: "change-me" }))}>
-          sign in
-        </button>
-        &nbsp;
-        <button onClick={() => dispatch(signOut())}>sign out</button>
-      </div>
-    </>
+    <IForm
+      title={intl.formatMessage({ id: "pages.users.sign-in.title" })}
+      onSubmit={async (values) => {
+        const res = await sign_in(values);
+        if (res.data) {
+          dispatch(signIn(res.data.signIn.token));
+          navigate(LOGS);
+          dispatch(
+            show_success([intl.formatMessage({ id: "flashes.succeed" })])
+          );
+        } else if (res.errors) {
+          dispatch(show_danger(res.errors.map((it) => it.message)));
+        }
+      }}
+    />
   );
 };
 

@@ -18,7 +18,7 @@ var (
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "loquat",
-		Short:   "A smart router based on Debian linux",
+		Short:   env.Description(),
 		Version: env.Version(),
 	}
 

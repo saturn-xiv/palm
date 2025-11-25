@@ -264,5 +264,6 @@ type Pagination {
 type RefreshResponse {
   version: String!
   hostname: String!
+  description: String!
   createdAt: Time!
 }

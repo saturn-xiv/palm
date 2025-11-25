@@ -10,3 +10,7 @@ var (
 func Version() string {
 	return fmt.Sprintf("%s(%s)", git_version, build_time)
 }
+
+func Description() string {
+	return "A smart router based on Debian GNU/Linux."
+}
