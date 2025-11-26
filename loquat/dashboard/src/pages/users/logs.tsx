@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { type ILogsResponse, get_logs } from "../../api/members";
+import { type IIndexLogResponse, index_log } from "../../api/users";
 import PaginationBar from "../../components/PaginationBar";
 import Timestamp from "../../components/Timestamp";
 import type { IPage } from "../../api";
 
 const Widget = () => {
-  const [item, setItem] = useState<ILogsResponse>({
+  const [item, setItem] = useState<IIndexLogResponse>({
     items: [],
-    pagination: { total: 0, index: 1, size: 12 },
+    pagination: { total: 0, index: 1, size: 12, has },
   });
   useEffect(() => {
     (async () => {
-      const tmp = await get_logs({ index: 1, size: 12 });
+      const tmp = await index_log({ index: 1, size: 12 });
       setItem(tmp);
     })();
   }, []);

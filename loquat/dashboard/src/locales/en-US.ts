@@ -14,6 +14,7 @@ export default {
   "layouts.dashboard.nav-bar.sign-out": "Sign out",
   "layouts.dashboard.nav-bar.apply": "Apply",
   "layouts.dashboard.nav-bar.reboot": "Reboot",
+  "layouts.dashboard.nav-bar.last-run-at": "Last run at",
 
   "buttons.submit": "Submit",
   "buttons.reset": "Reset",

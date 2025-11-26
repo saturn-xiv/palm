@@ -2,12 +2,15 @@ package v2
 
 import (
 	_ "embed"
+	"errors"
 	"fmt"
 	"io"
 	"log/slog"
+	"net"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"slices"
 	"time"
 )
 
@@ -63,4 +66,36 @@ func (p *Router) render_to_file(name string) error {
 	}
 	defer file.Close()
 	return p.Render(file)
+}
+
+func (p *Router) VerifyInterface() error {
+	var items []string
+	if p.Wan != nil {
+		for k := range p.Wan.Interfaces {
+			items = append(items, k)
+		}
+	}
+	if p.Lan != nil {
+		items = append(items, p.Lan.Interfaces...)
+	}
+	if p.Dmz != nil {
+		items = append(items, p.Dmz.Interfaces...)
+	}
+
+	{
+		l := len(items)
+		{
+			slices.Sort(items)
+			if len(slices.Compact(items)) != l {
+				return errors.New("duplicate using of network interfaces")
+			}
+		}
+	}
+
+	for _, it := range items {
+		if _, err := net.InterfaceByName(it); err != nil {
+			return err
+		}
+	}
+	return nil
 }

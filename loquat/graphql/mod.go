@@ -26,7 +26,7 @@ var (
 	XForwardedFor = "X-Forwarded-For"
 )
 
-var gl_validate = validator.New()
+var gl_validate = validator.New(validator.WithRequiredStructEnabled())
 
 //go:embed schema.gql
 var gl_schema_txt string

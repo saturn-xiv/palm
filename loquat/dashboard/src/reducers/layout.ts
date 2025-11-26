@@ -6,12 +6,14 @@ export interface IPage {
   hostname: string;
   version: string;
   description: string;
+  lastRunAt?: Date;
 }
 
 interface LayoutState {
   version?: string;
   hostname?: string;
   description?: string;
+  lastRunAt?: Date;
 }
 
 const initialState: LayoutState = {};
@@ -24,6 +26,7 @@ export const layoutSlice = createSlice({
       state.version = action.payload.version;
       state.hostname = action.payload.hostname;
       state.description = action.payload.description;
+      state.lastRunAt = action.payload.lastRunAt;
     },
   },
 });

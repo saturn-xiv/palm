@@ -6,10 +6,14 @@ import {
   LOGS as USER_LOGS,
   signOut,
 } from "../reducers/session";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { success as show_success } from "../reducers/notification";
+import Timestamp from "../components/Timestamp";
+
+import logo_svg from "../assets/router.svg";
 
 const NavBar = () => {
+  const layout = useAppSelector((state) => state.layout);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const intl = useIntl();
@@ -29,7 +33,9 @@ const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item"></a>
+        <a className="navbar-item">
+          <img src={logo_svg} />
+        </a>
 
         <a
           role="button"
@@ -84,6 +90,15 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end">
+          <div className="navbar-item">
+            <FormattedMessage id="layouts.dashboard.nav-bar.last-run-at" />
+            :&nbsp;
+            {layout.lastRunAt ? (
+              <Timestamp value={layout.lastRunAt} />
+            ) : (
+              <>n/a</>
+            )}
+          </div>
           <div className="navbar-item">
             <div className="buttons">
               <a

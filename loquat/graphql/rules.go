@@ -22,10 +22,7 @@ func (p *Mutation) AllowPing(ctx context.Context, args struct {
 	SortOrder int32
 	Memo      string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
-		return nil, err
-	}
-	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Ping{
+	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Ping{
 		Device: args.Device,
 	}, int(args.SortOrder), args.Memo); err != nil {
 		return nil, err
@@ -41,14 +38,11 @@ func (p *Mutation) AllowInput(ctx context.Context, args struct {
 	SortOrder int32
 	Memo      string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
-		return nil, err
-	}
 	protocol := v2.FirewallRule_Tcp
 	if !args.Tcp {
 		protocol = v2.FirewallRule_Udp
 	}
-	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Input{
+	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Input{
 		Device:   args.Device,
 		Protocol: protocol,
 		Port:     uint32(args.Port),
@@ -68,14 +62,11 @@ func (p *Mutation) AllowNat(ctx context.Context, args struct {
 	SortOrder       int32
 	Memo            string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
-		return nil, err
-	}
 	protocol := v2.FirewallRule_Tcp
 	if !args.Tcp {
 		protocol = v2.FirewallRule_Udp
 	}
-	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Nat{
+	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Nat{
 		Device:   args.Device,
 		Protocol: protocol,
 		Port:     uint32(args.Port),
@@ -98,9 +89,6 @@ func (p *Mutation) DenyOutput(ctx context.Context, args struct {
 	SortOrder int32
 	Memo      string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
-		return nil, err
-	}
 	begin, err := v2.NewFirewallRuleTime(args.BeginTime)
 	if err != nil {
 		return nil, err
@@ -114,7 +102,7 @@ func (p *Mutation) DenyOutput(ctx context.Context, args struct {
 		days = append(days, v2.FirewallRule_Week(v2.FirewallRule_Week_value[it]))
 
 	}
-	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_Output{
+	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Output{
 		Address: args.Address,
 		Period: &v2.FirewallRule_Period{
 			Begin: begin,
@@ -136,9 +124,6 @@ func (p *Mutation) LimitSpeed(ctx context.Context, args struct {
 	SortOrder int32
 	Memo      string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
-		return nil, err
-	}
 	begin, err := v2.NewFirewallRuleTime(args.BeginTime)
 	if err != nil {
 		return nil, err
@@ -152,7 +137,7 @@ func (p *Mutation) LimitSpeed(ctx context.Context, args struct {
 		days = append(days, v2.FirewallRule_Week(v2.FirewallRule_Week_value[it]))
 
 	}
-	if err := save_firewall_rule(p.db, args.Id, &v2.FirewallRule_SpeedLimit{
+	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_SpeedLimit{
 		Value: uint32(args.Value),
 		Period: &v2.FirewallRule_Period{
 			Begin: begin,
@@ -554,35 +539,60 @@ func (p *FirewallRule) ToSpeedLimit() (*SpeedLimit, error) {
 	}
 }
 
-func save_firewall_rule(db *gorm.DB, id *graphql.ID, rule proto.Message, sort_order int, memo string) error {
+func (p *Mutation) save_firewall_rule(ctx context.Context, id *graphql.ID, rule proto.Message, sort_order int, memo string) error {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
+		return err
+	}
 	type_ := reflect.TypeOf(rule).Name()
 	content, err := proto.Marshal(rule)
 	if err != nil {
 		return err
 	}
-	if id == nil {
-		return db.Create(&models.Rule{
-			Content:   content,
-			Type:      type_,
-			SortOrder: sort_order,
-			Memo:      memo,
-		}).Error
-	}
-	rid, err := FromId(*id)
-	if err != nil {
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+
+		if id == nil {
+			if err := tx.Create(&models.Rule{
+				Content:   content,
+				Type:      type_,
+				SortOrder: sort_order,
+				Memo:      memo,
+			}).Error; err != nil {
+				return err
+			}
+			if err := tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("create rule %s(%s)", type_, memo)}).Error; err != nil {
+				return err
+			}
+		} else {
+			rid, err := FromId(*id)
+			if err != nil {
+				return err
+			}
+			var it models.Rule
+			if err = tx.First(&it, rid).Error; err != nil {
+				return err
+			}
+			if type_ != it.Type {
+				return fmt.Errorf("couldn't change type %s=>%s", it.Type, type_)
+			}
+			if err = tx.Model(&it).Updates(map[string]interface{}{
+				"content":    content,
+				"sort_order": sort_order,
+				"memo":       memo,
+				"version":    it.Version + 1,
+			}).Error; err != nil {
+				return err
+			}
+			if err := tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("update rule %s(%s)", type_, memo)}).Error; err != nil {
+				return err
+			}
+		}
+		if _, err = Export(tx); err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
 		return err
 	}
-	var it models.Rule
-	if err = db.First(&it, rid).Error; err != nil {
-		return err
-	}
-	if type_ != it.Type {
-		return fmt.Errorf("couldn't change type %s=>%s", it.Type, type_)
-	}
-	return db.Model(&it).Updates(map[string]interface{}{
-		"content":    content,
-		"sort_order": sort_order,
-		"memo":       memo,
-		"version":    it.Version + 1,
-	}).Error
+	return nil
 }

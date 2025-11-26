@@ -1031,7 +1031,6 @@ func (x *Intranet_Host) GetUpdatedAt() *timestamppb.Timestamp {
 type FirewallRule_Ping struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Device        string                 `protobuf:"bytes,1,opt,name=device,proto3" json:"device,omitempty"`
-	Enable        bool                   `protobuf:"varint,2,opt,name=enable,proto3" json:"enable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1071,13 +1070,6 @@ func (x *FirewallRule_Ping) GetDevice() string {
 		return x.Device
 	}
 	return ""
-}
-
-func (x *FirewallRule_Ping) GetEnable() bool {
-	if x != nil {
-		return x.Enable
-	}
-	return false
 }
 
 type FirewallRule_Time struct {
@@ -1554,7 +1546,7 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"updated_at\x18c \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x05\n" +
-	"\x03dns\"\x99\v\n" +
+	"\x03dns\"\x81\v\n" +
 	"\fFirewallRule\x127\n" +
 	"\x04ping\x18\x01 \x01(\v2!.palm.router.v1.FirewallRule.PingH\x00R\x04ping\x12:\n" +
 	"\x05input\x18\x02 \x01(\v2\".palm.router.v1.FirewallRule.InputH\x00R\x05input\x124\n" +
@@ -1566,10 +1558,9 @@ const file_proto_router_proto_rawDesc = "" +
 	"sort_order\x18a \x01(\x05R\tsortOrder\x12\x12\n" +
 	"\x04memo\x18b \x01(\tR\x04memo\x129\n" +
 	"\n" +
-	"updated_at\x18c \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x1a6\n" +
+	"updated_at\x18c \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x1a\x1e\n" +
 	"\x04Ping\x12\x16\n" +
-	"\x06device\x18\x01 \x01(\tR\x06device\x12\x16\n" +
-	"\x06enable\x18\x02 \x01(\bR\x06enable\x1a2\n" +
+	"\x06device\x18\x01 \x01(\tR\x06device\x1a2\n" +
 	"\x04Time\x12\x12\n" +
 	"\x04hour\x18\x01 \x01(\rR\x04hour\x12\x16\n" +
 	"\x06minute\x18\x02 \x01(\rR\x06minute\x1a\xad\x01\n" +

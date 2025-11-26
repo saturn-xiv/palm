@@ -37,7 +37,7 @@ type Mutation {
   setHostName(id: ID!, name: String!): Ok!
   blockHost(id: ID!): Ok!
   releaseHost(id: ID!): Ok!
-  setHostStaticIp(id: ID!, ip: String!): Ok!
+  setHostStaticIp(id: ID!, name: String!, ip: String!): Ok!
   setHostDynamicIp(id: ID!): Ok!
 
   setNetworkInterfacePublicDhcp(
@@ -58,9 +58,19 @@ type Mutation {
     memo: String!
   ): Ok!
 
-  bondWan(interfaces: [String!]!): Ok!
-  bondLan(interfaces: [String!]!, address: String!): Ok!
-  bondDmz(interfaces: [String!]!, address: String!): Ok!
+  bondWan(interfaces: [String!]!, enable: Boolean!): Ok!
+  bondLan(
+    interfaces: [String!]!
+    address: String!
+    dns: Dns!
+    enable: Boolean!
+  ): Ok!
+  bondDmz(
+    interfaces: [String!]!
+    address: String!
+    dns: Dns!
+    enable: Boolean!
+  ): Ok!
 
   allowPing(id: ID, device: String!, sortOrder: Int!, memo: String!): Ok!
   allowInput(
@@ -196,10 +206,16 @@ type InternetBond {
   enable: Boolean!
 }
 
+enum Dns {
+  Google
+  Ali
+}
+
 type IntranetBond {
   interfaces: [String!]!
   address: String!
   enable: Boolean!
+  dns: Dns!
 }
 
 type Ok {
@@ -266,4 +282,5 @@ type RefreshResponse {
   hostname: String!
   description: String!
   createdAt: Time!
+  lastRunAt: Time
 }

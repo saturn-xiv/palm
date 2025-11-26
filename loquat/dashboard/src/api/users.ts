@@ -1,4 +1,33 @@
 import { graphql, type IGraphqlResponse } from "../request";
+import type { IPage, IPagination } from ".";
+
+export interface ILog {
+  id: string;
+  ip: string;
+  message: string;
+  createdAt: Date;
+}
+
+export interface IIndexLogResponse {
+  indexLog: { items: ILog[]; pagination: IPagination };
+}
+
+export const index_log = async (
+  page: IPage
+): Promise<IGraphqlResponse<IIndexLogResponse>> => {
+  const res: IGraphqlResponse<IIndexLogResponse> = await graphql(
+    `
+      call($page: Page!) {
+        indexLog(page: $page) {
+          items {id, ip, message, createdAt}
+          pagination {index, size, total, hasPrevious, hasNext}
+        }
+      }
+    `,
+    { page }
+  );
+  return res;
+};
 
 export interface ISignInFormValues {
   name: string;

@@ -148,15 +148,23 @@ func (p *Mutation) BlockHost(ctx context.Context, args struct{ Id graphql.ID }) 
 	return &Ok{}, nil
 }
 func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
-	Id graphql.ID
-	Ip string
+	Id   graphql.ID
+	Name string
+	Ip   string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
 		return nil, err
 	}
 	id, err := FromId(args.Id)
 	if err != nil {
 		return nil, err
+	}
+	{
+		it := Hostname{Value: args.Name}
+		if err := gl_validate.Struct(&it); err != nil {
+			return nil, err
+		}
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		var host models.Host
@@ -195,7 +203,12 @@ func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
 			return err
 		}
 
-		return nil
+		if _, err = Export(tx); err != nil {
+			return err
+		}
+
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("bind %s to %s", host.Mac, args.Ip)}).Error
+
 	}); err != nil {
 		return nil, err
 	}
@@ -203,7 +216,8 @@ func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
 }
 
 func (p *Mutation) SetHostDynamicIp(ctx context.Context, args struct{ Id graphql.ID }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
 		return nil, err
 	}
 	id, err := FromId(args.Id)
@@ -221,7 +235,11 @@ func (p *Mutation) SetHostDynamicIp(ctx context.Context, args struct{ Id graphql
 		}).Error; err != nil {
 			return err
 		}
-		return nil
+		if _, err = Export(tx); err != nil {
+			return err
+		}
+
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to using dynamic ip", host.Mac)}).Error
 	}); err != nil {
 		return nil, err
 	}

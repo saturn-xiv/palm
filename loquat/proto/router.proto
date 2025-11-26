@@ -77,7 +77,6 @@ message Intranet {
 message FirewallRule {
   message Ping {
     string device = 1;
-    bool enable = 2;
   }
   enum Protocol {
     Tcp = 0;

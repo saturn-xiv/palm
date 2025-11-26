@@ -13,6 +13,9 @@ export interface IPagination {
   size: number;
   index: number;
   total: number;
+  pages: number;
+  hasPrevious: boolean;
+  hasNext: boolean;
 }
 
 export interface IRefreshResponse {

@@ -22,27 +22,40 @@ func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args s
 	Isp     string
 	Dns     []string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
-		return nil, err
-	}
-	var profile v2.Internet
-	err := models.GetProtobuf(p.db, networkInterfaceKey(args.Name), &profile)
-	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
 		return nil, err
 	}
 
-	profile.Label = args.Label
-	profile.Memo = args.Memo
-	profile.Isp = args.Isp
-	profile.Ip = &v2.Internet_Static_{Static: &v2.Internet_Static{
-		Dns:     args.Dns,
-		Address: args.Address,
-		Netmask: args.Netmask,
-		Gateway: args.Gateway,
-	}}
-	if err = models.SetProtobuf(p.db, networkInterfaceKey(args.Name), &profile); err != nil {
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var profile v2.Internet
+		err := models.GetProtobuf(tx, networkInterfaceKey(args.Name), &profile)
+		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+			return err
+		}
+
+		profile.Label = args.Label
+		profile.Memo = args.Memo
+		profile.Isp = args.Isp
+		profile.Ip = &v2.Internet_Static_{Static: &v2.Internet_Static{
+			Dns:     args.Dns,
+			Address: args.Address,
+			Netmask: args.Netmask,
+			Gateway: args.Gateway,
+		}}
+		if err = models.SetProtobuf(tx, networkInterfaceKey(args.Name), &profile); err != nil {
+			return err
+		}
+
+		if _, err = Export(tx); err != nil {
+			return err
+		}
+
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to %s", args.Name, args.Address)}).Error
+	}); err != nil {
 		return nil, err
 	}
+
 	return &Ok{}, nil
 }
 func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struct {
@@ -51,22 +64,34 @@ func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struc
 	Isp   string
 	Memo  string
 }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
 		return nil, err
 	}
-	var profile v2.Internet
-	err := models.GetProtobuf(p.db, networkInterfaceKey(args.Name), &profile)
-	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var profile v2.Internet
+		err := models.GetProtobuf(tx, networkInterfaceKey(args.Name), &profile)
+		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+			return err
+		}
+
+		profile.Label = args.Label
+		profile.Memo = args.Memo
+		profile.Isp = args.Isp
+		profile.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
+		if err = models.SetProtobuf(tx, networkInterfaceKey(args.Name), &profile); err != nil {
+			return err
+		}
+
+		if _, err = Export(tx); err != nil {
+			return err
+		}
+
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to dhcp", args.Name)}).Error
+	}); err != nil {
 		return nil, err
 	}
 
-	profile.Label = args.Label
-	profile.Memo = args.Memo
-	profile.Isp = args.Isp
-	profile.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
-	if err = models.SetProtobuf(p.db, networkInterfaceKey(args.Name), &profile); err != nil {
-		return nil, err
-	}
 	return &Ok{}, nil
 }
 

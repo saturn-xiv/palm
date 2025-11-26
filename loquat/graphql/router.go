@@ -10,7 +10,6 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
-	"github.com/saturn-xiv/palm/loquat/router"
 	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
@@ -18,7 +17,7 @@ func (p *Mutation) Apply(ctx context.Context, args struct{ Run bool }) (*Ok, err
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
-	item, err := router.Export(p.db)
+	item, err := Export(p.db)
 	if err != nil {
 		return nil, err
 	}
