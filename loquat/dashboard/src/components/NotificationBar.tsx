@@ -1,3 +1,5 @@
+import { useTimeout } from "usehooks-ts";
+
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { selectNotification, close } from "../reducers/notification";
 import Timestamp from "../components/Timestamp";
@@ -5,8 +7,11 @@ import Timestamp from "../components/Timestamp";
 const Widget = () => {
   const { action, messages } = useAppSelector(selectNotification);
   const dispatch = useAppDispatch();
+  useTimeout(() => {
+    dispatch(close());
+  }, 6000);
   return action ? (
-    <article className={`message is-${action} loquat-hide-me`}>
+    <article className={`message is-${action}`}>
       <div className="message-header">
         <p>
           <Timestamp value={new Date()} />

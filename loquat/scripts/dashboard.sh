@@ -7,7 +7,7 @@ npm install --save \
     bulma \
     react-router react-intl \
     @graphiql/react \
-    formik yup \
+    formik yup usehooks-ts \
     jose dayjs \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie 

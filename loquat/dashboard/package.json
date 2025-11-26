@@ -23,6 +23,7 @@
     "react-intl": "^7.1.14",
     "react-redux": "^9.2.0",
     "react-router": "^7.9.6",
+    "usehooks-ts": "^3.1.1",
     "yup": "^1.7.1"
   },
   "devDependencies": {
