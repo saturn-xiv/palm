@@ -3,9 +3,12 @@ import { FormattedMessage } from "react-intl";
 import { type IPagination, type IPage } from "../api";
 import { useState } from "react";
 
+export const DEFAULT_PAGE_SIZE = 60;
+export const DEFAULT_PAGE_INDEX = 1;
+
 interface IProps {
   pagination: IPagination;
-  handleSelect: (page: IPage) => Promise<undefined>;
+  handleSelect: (page: IPage) => Promise<void>;
 }
 
 const cal_size = (i: number): number => {
@@ -21,7 +24,7 @@ const cal_size = (i: number): number => {
 interface IButtonItemProps {
   index: number;
   page: IPage;
-  handleSelect: (page: IPage) => Promise<undefined>;
+  handleSelect: (page: IPage) => Promise<void>;
 }
 
 const ButtonItem = ({ index, page, handleSelect }: IButtonItemProps) => {

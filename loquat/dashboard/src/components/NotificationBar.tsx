@@ -6,7 +6,7 @@ const Widget = () => {
   const { action, messages } = useAppSelector(selectNotification);
   const dispatch = useAppDispatch();
   return action ? (
-    <article className={`message is-${action}`}>
+    <article className={`message is-${action} loquat-hide-me`}>
       <div className="message-header">
         <p>
           <Timestamp value={new Date()} />

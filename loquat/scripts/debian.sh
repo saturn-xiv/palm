@@ -55,12 +55,14 @@ systemctl enable firewall
 
 # https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/checking-resource-limits-for-oracle-software-installation-users.html
 
-
 echo "root:$(pwgen 32 1)" | chpasswd
 
 # /etc/default/grub
 # GRUB_CMDLINE_LINUX_DEFAULT="quiet splash libata.noacpi=1"
-
+# GRUB_TERMINAL="console serial"
+# GRUB_SERIAL_COMMAND="serial --unit=0 --speed=115200"
+# systemctl enable serial-getty@ttyACM0.service
+# grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'done.'
 exit 0

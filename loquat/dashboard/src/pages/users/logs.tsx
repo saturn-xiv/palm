@@ -1,22 +1,41 @@
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { type IIndexLogResponse, index_log } from "../../api/users";
-import PaginationBar from "../../components/PaginationBar";
+import { type ILog, index_log } from "../../api/users";
+import PaginationBar, {
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from "../../components/PaginationBar";
 import Timestamp from "../../components/Timestamp";
-import type { IPage } from "../../api";
+import type { IPage, IPagination } from "../../api";
+import { useAppDispatch } from "../../hooks";
+import { danger as show_danger } from "../../reducers/notification";
 
 const Widget = () => {
-  const [item, setItem] = useState<IIndexLogResponse>({
+  const dispatch = useAppDispatch();
+  const [item, setItem] = useState<{ items: ILog[]; pagination: IPagination }>({
     items: [],
-    pagination: { total: 0, index: 1, size: 12, has },
+    pagination: {
+      total: 0,
+      index: DEFAULT_PAGE_INDEX,
+      size: DEFAULT_PAGE_SIZE,
+      hasNext: false,
+      hasPrevious: false,
+    } as IPagination,
   });
+  const onSelect = async (page: IPage) => {
+    const res = await index_log(page);
+    if (res.data) {
+      setItem(res.data.indexLog);
+    } else if (res.errors) {
+      dispatch(show_danger(res.errors.map((it) => it.message)));
+    }
+  };
   useEffect(() => {
     (async () => {
-      const tmp = await index_log({ index: 1, size: 12 });
-      setItem(tmp);
+      await onSelect({ index: DEFAULT_PAGE_INDEX, size: DEFAULT_PAGE_SIZE });
     })();
-  }, []);
+  });
   return (
     <>
       <div className="is-size-2">
@@ -44,10 +63,7 @@ const Widget = () => {
             <th colSpan={4}>
               <PaginationBar
                 pagination={item.pagination}
-                handleSelect={async (page: IPage) => {
-                  const tmp = await get_logs(page);
-                  setItem(tmp);
-                }}
+                handleSelect={onSelect}
               />
             </th>
           </tr>
