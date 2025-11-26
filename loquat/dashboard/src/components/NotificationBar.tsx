@@ -9,7 +9,7 @@ const Widget = () => {
   const dispatch = useAppDispatch();
   useTimeout(() => {
     dispatch(close());
-  }, 6000);
+  }, 8000);
   return action ? (
     <article className={`message is-${action}`}>
       <div className="message-header">

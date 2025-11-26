@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { refresh } from "../reducers/layout";
 import { refresh as refresh_layout } from "../api";
+import { currentUser, get as get_token, signIn } from "../reducers/session";
 
 const Widget = () => {
   const layout = useAppSelector((state) => state.layout);
+  const user = useAppSelector(currentUser);
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (layout.version === undefined) {
@@ -17,7 +19,13 @@ const Widget = () => {
       };
       handle_refresh();
     }
-  }, [layout, dispatch]);
+    if (user === undefined) {
+      const token = get_token();
+      if (token) {
+        dispatch(signIn(token));
+      }
+    }
+  }, [layout, user, dispatch]);
   return (
     <div className="content has-text-centered">
       <span>

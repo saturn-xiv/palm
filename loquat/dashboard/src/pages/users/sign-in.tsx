@@ -8,14 +8,14 @@ import {
   danger as show_danger,
   success as show_success,
 } from "../../reducers/notification";
-import { sign_in, type ISignInFormValues } from "../../api/users";
+import { sign_in, type IAccount } from "../../api/users";
 import { useAppDispatch } from "../../hooks";
 
 const InnerForm = (
   props: {
     title: string;
-    onSubmit: (value: ISignInFormValues) => Promise<void>;
-  } & FormikProps<ISignInFormValues>
+    onSubmit: (value: IAccount) => Promise<void>;
+  } & FormikProps<IAccount>
 ) => {
   const { touched, errors, isSubmitting, title } = props;
   return (
@@ -66,8 +66,8 @@ const InnerForm = (
 };
 
 const IForm = withFormik<
-  { title: string; onSubmit: (value: ISignInFormValues) => Promise<void> },
-  ISignInFormValues
+  { title: string; onSubmit: (value: IAccount) => Promise<void> },
+  IAccount
 >({
   mapPropsToValues: () => {
     return {
@@ -79,8 +79,9 @@ const IForm = withFormik<
     name: Yup.string().min(2).max(31).required(),
     password: Yup.string().min(6).max(31).required(),
   }),
-  handleSubmit: async (values, { props }) => {
+  handleSubmit: async (values, { props, resetForm }) => {
     props.onSubmit(values);
+    resetForm();
   },
 })(InnerForm);
 
@@ -93,14 +94,14 @@ const Widget = () => {
       title={intl.formatMessage({ id: "pages.users.sign-in.title" })}
       onSubmit={async (values) => {
         const res = await sign_in(values);
-        if (res.data) {
+        if (res.data?.signIn) {
           dispatch(signIn(res.data.signIn.token));
           navigate(LOGS);
           dispatch(
             show_success([intl.formatMessage({ id: "flashes.succeed" })])
           );
         } else if (res.errors) {
-          dispatch(show_danger(res.errors.map((it) => it.message)));
+          dispatch(show_danger(res.errors));
         }
       }}
     />

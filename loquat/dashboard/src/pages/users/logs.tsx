@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { type ILog, index_log } from "../../api/users";
@@ -23,19 +23,22 @@ const Widget = () => {
       hasPrevious: false,
     } as IPagination,
   });
-  const onSelect = async (page: IPage) => {
-    const res = await index_log(page);
-    if (res.data) {
-      setItem(res.data.indexLog);
-    } else if (res.errors) {
-      dispatch(show_danger(res.errors.map((it) => it.message)));
-    }
-  };
+  const onSelect = useCallback(
+    async (page: IPage) => {
+      const res = await index_log(page);
+      if (res.data?.indexLog) {
+        setItem(res.data.indexLog);
+      } else if (res.errors) {
+        dispatch(show_danger(res.errors));
+      }
+    },
+    [dispatch]
+  );
   useEffect(() => {
     (async () => {
       await onSelect({ index: DEFAULT_PAGE_INDEX, size: DEFAULT_PAGE_SIZE });
     })();
-  });
+  }, [onSelect]);
   return (
     <>
       <div className="is-size-2">

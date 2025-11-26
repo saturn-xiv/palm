@@ -29,7 +29,7 @@ type Query {
 }
 
 type Mutation {
-  updateAdministrator(current: Account!, new: Account!): Ok!
+  updateProfile(current: Account!, new: Account!): Ok!
   signIn(account: Account!, ttl: Int!): SignInResponse!
   signOut: Ok!
 

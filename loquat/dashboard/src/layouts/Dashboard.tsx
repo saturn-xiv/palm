@@ -7,28 +7,47 @@ import {
   signOut,
 } from "../reducers/session";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { success as show_success } from "../reducers/notification";
+import {
+  success as show_success,
+  danger as show_danger,
+} from "../reducers/notification";
 import Timestamp from "../components/Timestamp";
 
 import logo_svg from "../assets/router.svg";
+import { sign_out } from "../api/users";
+import { apply, reboot } from "../api/router";
 
 const NavBar = () => {
   const layout = useAppSelector((state) => state.layout);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const intl = useIntl();
-  const handleSignOut = () => {
-    dispatch(signOut());
-    navigate(USER_SIGN_IN);
-    dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
+  const handleSignOut = async () => {
+    const res = await sign_out();
+    if (res.data?.signOut) {
+      dispatch(signOut());
+      navigate(USER_SIGN_IN);
+      dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
+    } else if (res.errors) {
+      dispatch(show_danger(res.errors));
+    }
   };
-  const handleApply = () => {
-    // TODO
-    console.log("apply");
+  const handleApply = async () => {
+    const res = await apply(false);
+    if (res.data?.apply) {
+      dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
+    } else if (res.errors) {
+      dispatch(show_danger(res.errors));
+    }
   };
-  const handleReboot = () => {
-    // TODO
-    console.log("reboot");
+  const handleReboot = async () => {
+    const res = await reboot();
+    if (res.data?.reboot) {
+      navigate(USER_SIGN_IN);
+      dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
+    } else if (res.errors) {
+      dispatch(show_danger(res.errors));
+    }
   };
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -75,11 +94,8 @@ const NavBar = () => {
               <Link className="navbar-item" to={USER_LOGS}>
                 <FormattedMessage id="pages.users.logs.title" />
               </Link>
-              <Link
-                className="navbar-item"
-                to="/dashboard/account/change-password"
-              >
-                <FormattedMessage id="pages.users.change-password.title" />
+              <Link className="navbar-item" to="/dashboard/account/profile">
+                <FormattedMessage id="pages.users.profile.title" />
               </Link>
               <hr className="navbar-divider" />
               <a className="navbar-item" onClick={handleSignOut}>

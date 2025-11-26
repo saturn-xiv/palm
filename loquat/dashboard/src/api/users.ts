@@ -1,5 +1,44 @@
 import { graphql, type IGraphqlResponse } from "../request";
-import type { IPage, IPagination } from ".";
+import type { IOk, IPage, IPagination } from ".";
+
+interface IChangePasswordResponse {
+  updateProfile: IOk;
+}
+export const updateProfile = async (
+  current: IAccount,
+  new_: IAccount
+): Promise<IGraphqlResponse<IChangePasswordResponse>> => {
+  const res: IGraphqlResponse<IChangePasswordResponse> = await graphql(
+    `
+      mutation call($current: Account!, $new: Account!) {
+        updateProfile(current: $current, new: $new) {
+          createdAt
+        }
+      }
+    `,
+    { current, new: new_ }
+  );
+  return res;
+};
+
+interface ISignOutResponse {
+  signOut: IOk;
+}
+export const sign_out = async (): Promise<
+  IGraphqlResponse<ISignOutResponse>
+> => {
+  const res: IGraphqlResponse<ISignOutResponse> = await graphql(
+    `
+      mutation call {
+        signOut {
+          createdAt
+        }
+      }
+    `,
+    {}
+  );
+  return res;
+};
 
 export interface ILog {
   id: string;
@@ -17,10 +56,21 @@ export const index_log = async (
 ): Promise<IGraphqlResponse<IIndexLogResponse>> => {
   const res: IGraphqlResponse<IIndexLogResponse> = await graphql(
     `
-      call($page: Page!) {
+      query call($page: Page!) {
         indexLog(page: $page) {
-          items {id, ip, message, createdAt}
-          pagination {index, size, total, hasPrevious, hasNext}
+          items {
+            id
+            ip
+            message
+            createdAt
+          }
+          pagination {
+            index
+            size
+            total
+            hasPrevious
+            hasNext
+          }
         }
       }
     `,
@@ -29,16 +79,15 @@ export const index_log = async (
   return res;
 };
 
-export interface ISignInFormValues {
+export interface IAccount {
   name: string;
   password: string;
 }
 interface ISignInResponse {
   signIn: { username: string; token: string };
 }
-
 export const sign_in = async (
-  account: ISignInFormValues
+  account: IAccount
 ): Promise<IGraphqlResponse<ISignInResponse>> => {
   const res: IGraphqlResponse<ISignInResponse> = await graphql(
     `

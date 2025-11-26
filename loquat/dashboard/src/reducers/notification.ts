@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { GraphQLError } from "graphql";
 
 import type { RootState } from "../store";
 
@@ -33,9 +34,9 @@ export const layoutSlice = createSlice({
       state.action = "warning";
       state.messages = action.payload;
     },
-    danger: (state, action: PayloadAction<string[]>) => {
+    danger: (state, action: PayloadAction<GraphQLError[]>) => {
       state.action = "danger";
-      state.messages = action.payload;
+      state.messages = action.payload.map((it) => it.message);
     },
     close: (state) => {
       state.action = undefined;

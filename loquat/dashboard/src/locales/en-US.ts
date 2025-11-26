@@ -2,11 +2,13 @@ export default {
   "pages.users.sign-in.title": "Sign in",
   "pages.users.logs.title": "Logs",
   "pages.users.change-password.title": "Change password",
+  "pages.users.profile.title": "Profile",
   "pages.hosts.index.title": "Hosts",
   "pages.rules.index.title": "Rules",
   "pages.members.index.title": "Members",
   "pages.dashboard.index.title": "Dashboard",
   "pages.dashboard.account.title": "Account",
+  "pages.reboot.waiting": "Please wait for one minute to re-login",
 
   "layouts.dashboard.nav-bar.home": "Home",
   "layouts.dashboard.nav-bar.settings": "Settings",
@@ -26,6 +28,11 @@ export default {
 
   "forms.fields.label.username": "Username",
   "forms.fields.label.password": "Password",
+  "forms.fields.label.current-username": "Current username",
+  "forms.fields.label.current-password": "Current password",
+  "forms.fields.label.new-username": "New username",
+  "forms.fields.label.new-password": "New password",
+  "forms.fields.label.password-confirmation": "Password confirmation",
 
   "tables.column.label.id": "ID",
   "tables.column.label.ip": "IP",

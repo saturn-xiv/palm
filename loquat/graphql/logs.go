@@ -2,7 +2,6 @@ package graphql
 
 import (
 	"context"
-	"time"
 
 	graphql "github.com/graph-gophers/graphql-go"
 
@@ -10,7 +9,10 @@ import (
 )
 
 func (p *Query) IndexLog(ctx context.Context, args struct {
-	Page Page
+	Page struct {
+		Index int32
+		Size  int32
+	}
 }) (*IndexLogResponse, error) {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
@@ -19,12 +21,13 @@ func (p *Query) IndexLog(ctx context.Context, args struct {
 	if err := p.db.Model(&models.Log{}).Count(&total).Error; err != nil {
 		return nil, err
 	}
-	pagination := NewPagination(&args.Page, uint(total))
+	pagination := NewPagination(&Page{Index: uint(args.Page.Index), Size: uint(args.Page.Size)}, uint(total))
 	var items []models.Log
 	if err := p.db.Order("created_at DESC").Offset(int(pagination.current.Offset())).Limit(int(pagination.current.Size)).Find(&items).Error; err != nil {
 		return nil, err
 	}
 	return &IndexLogResponse{items: items, pagination: pagination}, nil
+
 }
 
 type Log struct {
@@ -42,8 +45,7 @@ func (p *Log) Ip() string {
 	return p.item.Ip
 }
 func (p *Log) CreatedAt() graphql.Time {
-	now := time.Now()
-	return graphql.Time{Time: now}
+	return graphql.Time{Time: p.item.CreatedAt}
 }
 
 type IndexLogResponse struct {

@@ -41,7 +41,7 @@ func (p *Mutation) SignIn(ctx context.Context, args struct {
 	now := time.Now()
 	claims := &jwt.RegisteredClaims{
 		ExpiresAt: &jwt.NumericDate{Time: now.Add(time.Second * time.Duration(args.Ttl))},
-		NotBefore: &jwt.NumericDate{Time: now},
+		NotBefore: &jwt.NumericDate{Time: now.Add(time.Second * -1)},
 		IssuedAt:  &jwt.NumericDate{Time: now},
 		Issuer:    "loquat",
 		Subject:   user.Name,
@@ -55,7 +55,7 @@ func (p *Mutation) SignIn(ctx context.Context, args struct {
 
 	return &SignInResponse{name: user.Name, token: token}, nil
 }
-func (p *Mutation) UpdateAdministrator(ctx context.Context, args struct {
+func (p *Mutation) UpdateProfile(ctx context.Context, args struct {
 	Current struct {
 		Name     string
 		Password string
@@ -75,7 +75,7 @@ func (p *Mutation) UpdateAdministrator(ctx context.Context, args struct {
 			return nil, errors.New("invalid account")
 		}
 	}
-	form := Administrator{Username: cur.Name, Password: cur.Password}
+	form := Administrator{Username: args.New.Name, Password: args.New.Password}
 	if err = form.Save(p.db, p.secrets, ip); err != nil {
 		return nil, err
 	}
@@ -129,7 +129,7 @@ func (p *Administrator) Save(db *gorm.DB, key []byte, ip string) error {
 			}).Error; err != nil {
 				return err
 			}
-			if err = tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: "reset password"}).Error; err != nil {
+			if err = tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: "change password"}).Error; err != nil {
 				return err
 			}
 		} else if errors.Is(err, gorm.ErrRecordNotFound) {

@@ -87,6 +87,8 @@ func load_intranet_bond(db *gorm.DB, name string, bond *v2.IntranetBond) (bool, 
 	if !it.enable {
 		return false, nil
 	}
+	bond.MiiMonitorInterval = 1
+	bond.GratuitousArp = 5
 
 	_, net4, err := net.ParseCIDR(it.address)
 	if err != nil {

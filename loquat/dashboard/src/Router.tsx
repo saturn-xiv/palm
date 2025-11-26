@@ -4,7 +4,7 @@ import { RouterProvider } from "react-router/dom";
 
 const UsersSignIn = lazy(() => import("./pages/users/sign-in"));
 const UsersLogs = lazy(() => import("./pages/users/logs"));
-const UsersChangePassword = lazy(() => import("./pages/users/change-password"));
+const UsersProfile = lazy(() => import("./pages/users/profile"));
 const MembersIndex = lazy(() => import("./pages/members"));
 const RulesIndex = lazy(() => import("./pages/rules"));
 const HostsIndex = lazy(() => import("./pages/hosts"));
@@ -40,7 +40,7 @@ const router = createBrowserRouter(
               path: "account",
               children: [
                 { path: "logs", Component: UsersLogs },
-                { path: "change-password", Component: UsersChangePassword },
+                { path: "profile", Component: UsersProfile },
               ],
             },
           ],
