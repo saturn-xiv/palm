@@ -32,10 +32,6 @@ func (p *Mutation) BondWan(ctx context.Context, args struct {
 			return err
 		}
 
-		if _, err = Export(tx); err != nil {
-			return err
-		}
-
 		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set wan to %v", args.Interfaces)}).Error
 	}); err != nil {
 		return nil, err
@@ -74,10 +70,6 @@ func (p *Mutation) bond_intranet_bond(ctx context.Context, args struct {
 		bond.enable = args.Enable
 		bond.dns = args.Dns
 		if err = models.SetB(tx, bondKey(id), &bond); err != nil {
-			return err
-		}
-
-		if _, err = Export(tx); err != nil {
 			return err
 		}
 

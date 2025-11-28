@@ -12,6 +12,25 @@ import (
 	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
+func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
+	Name string
+}) (*Ok, error) {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Unscoped().Where("key = ?", networkInterfaceKey(args.Name)).Delete(&models.Setting{}).Error; err != nil {
+			return err
+		}
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("disable %s", args.Name)}).Error
+	}); err != nil {
+		return nil, err
+	}
+
+	return &Ok{}, nil
+}
 func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args struct {
 	Name    string
 	Label   string
@@ -47,10 +66,6 @@ func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args s
 			return err
 		}
 
-		if _, err = Export(tx); err != nil {
-			return err
-		}
-
 		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to %s", args.Name, args.Address)}).Error
 	}); err != nil {
 		return nil, err
@@ -80,10 +95,6 @@ func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struc
 		profile.Isp = args.Isp
 		profile.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
 		if err = models.SetProtobuf(tx, networkInterfaceKey(args.Name), &profile); err != nil {
-			return err
-		}
-
-		if _, err = Export(tx); err != nil {
 			return err
 		}
 

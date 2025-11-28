@@ -587,9 +587,7 @@ func (p *Mutation) save_firewall_rule(ctx context.Context, id *graphql.ID, rule 
 				return err
 			}
 		}
-		if _, err = Export(tx); err != nil {
-			return err
-		}
+
 		return nil
 	}); err != nil {
 		return err

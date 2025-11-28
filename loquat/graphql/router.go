@@ -10,6 +10,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
+	"github.com/saturn-xiv/palm/loquat/router"
 	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
@@ -70,6 +71,13 @@ func (p *Query) ShowNetworkInterface(ctx context.Context, args struct{ Name stri
 		return nil, err
 	}
 	return NewNetworkInterface(p.db, iface)
+}
+
+func (p *Query) Status(ctx context.Context) (*router.SystemStatus, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	return &router.SystemStatus{}, nil
 }
 
 type NetworkInterface struct {

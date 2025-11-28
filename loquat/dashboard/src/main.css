@@ -8,3 +8,8 @@ body {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}

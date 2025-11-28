@@ -8,6 +8,16 @@ export default {
   "pages.members.index.title": "Members",
   "pages.dashboard.index.title": "Dashboard",
   "pages.dashboard.account.title": "Account",
+  "pages.dashboard.home.interfaces": "Interfaces",
+  "pages.dashboard.home.system-status": "System status",
+  "pages.dashboard.home.system-status.cpu": "CPU",
+  "pages.dashboard.home.system-status.memory": "Memory",
+  "pages.dashboard.home.system-status.disk-space": "Disk space",
+  "pages.dashboard.home.system-status.disk-index-nodes": "Disk index nodes",
+  "pages.dashboard.home.system-status.network": "Network",
+  "pages.dashboard.home.system-status.hardware": "Hardware",
+  "pages.dashboard.home.system-status.top": "Top",
+  "pages.dashboard.home.system-status.sar": "Sar",
   "pages.reboot.waiting": "Please wait for one minute to re-login",
 
   "layouts.dashboard.nav-bar.home": "Home",
@@ -23,6 +33,9 @@ export default {
   "buttons.save": "Save",
   "buttons.previous": "Previous",
   "buttons.next": "Next",
+  "buttons.edit": "Edit",
+  "buttons.disable": "Disable",
+  "buttons.enable": "Enable",
 
   "flashes.succeed": "Succeed.",
 

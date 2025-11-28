@@ -4,9 +4,10 @@ import (
 	"errors"
 	"net"
 
+	"gorm.io/gorm"
+
 	"github.com/saturn-xiv/palm/loquat/models"
 	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
-	"gorm.io/gorm"
 )
 
 func Export(db *gorm.DB) (*v2.Router, error) {

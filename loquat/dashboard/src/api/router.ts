@@ -1,6 +1,133 @@
 import type { IOk } from ".";
 import { graphql, type IGraphqlResponse } from "../request";
 
+export interface IInternetBond {
+  interfaces: string[];
+  enable: boolean;
+}
+
+export interface IIntranetBond {
+  interfaces: string[];
+  address: string;
+  enable: string;
+  dns: string;
+}
+
+interface IGetBondWanResponse {
+  bondDmz: IInternetBond;
+}
+export const getBondWan = async (): Promise<
+  IGraphqlResponse<IGetBondWanResponse>
+> => {
+  const res: IGraphqlResponse<IGetBondWanResponse> = await graphql(
+    `
+      query call {
+        bondWan {
+          interfaces
+          enable
+        }
+      }
+    `,
+    {}
+  );
+  return res;
+};
+interface IGetBondDmzResponse {
+  bondDmz: IIntranetBond;
+}
+export const getBondDmz = async (): Promise<
+  IGraphqlResponse<IGetBondDmzResponse>
+> => {
+  const res: IGraphqlResponse<IGetBondDmzResponse> = await graphql(
+    `
+      query call {
+        bondDmz {
+          interfaces
+          address
+          enable
+          dns
+        }
+      }
+    `,
+    {}
+  );
+  return res;
+};
+
+interface IGetBondLanResponse {
+  bondLan: IIntranetBond;
+}
+export const getBondLan = async (): Promise<
+  IGraphqlResponse<IGetBondLanResponse>
+> => {
+  const res: IGraphqlResponse<IGetBondLanResponse> = await graphql(
+    `
+      query call {
+        bondLan {
+          interfaces
+          address
+          enable
+          dns
+        }
+      }
+    `,
+    {}
+  );
+  return res;
+};
+
+export interface INetworkInterface {
+  name: string;
+  hardwareAddress: string;
+  addresses: string[];
+  multicastAddresses: string[];
+  mtu: number;
+  memo: string;
+}
+
+interface ISystemStatus {
+  diskSpace: string;
+  diskIndexNodes: string;
+  cpu: string;
+  memory: string;
+  top: string;
+  sar: string;
+  network: string;
+  hardware: string;
+}
+
+export interface IStatusResponse {
+  indexNetworkInterface: INetworkInterface[];
+  status: ISystemStatus;
+}
+export const status = async (): Promise<IGraphqlResponse<IStatusResponse>> => {
+  const res: IGraphqlResponse<IStatusResponse> = await graphql(
+    `
+      query call {
+        indexNetworkInterface {
+          name
+          hardwareAddress
+          addresses
+          multicastAddresses
+          mtu
+          memo
+        }
+        status {
+          cpu
+          memory
+          top
+          network
+          sar
+          diskSpace
+          diskIndexNodes
+          hardware
+        }
+      }
+    `,
+    {}
+  );
+  return res;
+};
 interface IRebootResponse {
   reboot: IOk;
 }

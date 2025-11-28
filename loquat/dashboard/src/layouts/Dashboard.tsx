@@ -25,12 +25,12 @@ const NavBar = () => {
   const handleSignOut = async () => {
     const res = await sign_out();
     if (res.data?.signOut) {
-      dispatch(signOut());
-      navigate(USER_SIGN_IN);
       dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
     } else if (res.errors) {
       dispatch(show_danger(res.errors));
     }
+    dispatch(signOut());
+    navigate(USER_SIGN_IN);
   };
   const handleApply = async () => {
     const res = await apply(false);

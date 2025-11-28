@@ -203,10 +203,6 @@ func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
 			return err
 		}
 
-		if _, err = Export(tx); err != nil {
-			return err
-		}
-
 		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("bind %s to %s", host.Mac, args.Ip)}).Error
 
 	}); err != nil {
@@ -233,9 +229,6 @@ func (p *Mutation) SetHostDynamicIp(ctx context.Context, args struct{ Id graphql
 			"fixed":   false,
 			"version": host.Version + 1,
 		}).Error; err != nil {
-			return err
-		}
-		if _, err = Export(tx); err != nil {
 			return err
 		}
 
