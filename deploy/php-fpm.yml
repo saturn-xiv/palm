@@ -1,0 +1,4 @@
+- name: Php-fpm
+  hosts: all
+  roles:
+    - php-fpm

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export JAVA_HOME=$HOME/local/jdk-{{ app_kylin_jdk_lts_version }}
+export NODE_HOME=$HOME/local/node-v{{ app_kylin_nodejs_iron_version }}-linux-x64
+export M2_HOME=$HOME/local/apache-maven-{{ app_kylin_maven_version }}
+export GRADLE_HOME=$HOME/local/gradle-{{ app_kylin_gradle_lts_version }}
+
+export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$NODE_HOME/bin:$PATH

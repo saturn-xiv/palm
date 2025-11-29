@@ -1,0 +1,7 @@
+- name: Testing ssh connections
+  hosts:
+    - all
+  roles:
+    - os
+    - ubuntu
+    - random-passwords

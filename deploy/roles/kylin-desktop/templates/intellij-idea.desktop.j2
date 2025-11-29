@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Community Edition
+Comment=Develop with pleasure!
+Exec={{ ansible_env.HOME }}/local/idea-IC-{{ app_kylin_intellij_idea_version_code }}/bin/idea.sh %f
+Icon={{ ansible_env.HOME }}/local/idea-IC-{{ app_kylin_intellij_idea_version_code }}/bin/idea.png
+Terminal=false
+StartupNotify=true
+StartupWMClass=jetbrains-idea-ce
+Categories=Development;IDE;Java;
