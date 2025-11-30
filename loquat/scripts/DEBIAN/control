@@ -1,5 +1,8 @@
 Package: loquat
 Version: 2025.11.30
 Maintainer: Jeremy Zheng
+Section: net
+Priority: optional
+Homepage: https://github.com/saturn-xiv/palm/tree/main/loquat
 Architecture: all
-Description: hello world
+Description: A smart router solution inspired by OpenWrt.

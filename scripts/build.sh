@@ -3,7 +3,8 @@
 set -e
 
 export WORKSPACE=$PWD
-export PACKAGE="palm-$(git describe --tags --always --dirty --first-parent)"
+export VERSION="$(git describe --tags --always --dirty --first-parent)"
+export PACKAGE="palm-$VERSION"
 export TARGET=$WORKSPACE/tmp/$PACKAGE
 
 function build_camellia() {
@@ -48,21 +49,33 @@ function build_go() {
     CC=$3-linux-gnu-gcc CGO_ENABLED=1 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $TARGET/bin/$3/$1
 }
 
+# https://www.debian.org/doc/debian-policy/ch-controlfields.html#debian-source-package-template-control-files-debian-control
 function build_deb() {
-    local target=$WORKSPACE/tmp/$1-$2-$(date +"%Y.%m.%d-p%H%M")/$1
+    local package="${1}_${VERSION}_${2}.deb"
+    echo "build $package"
+    local target=$WORKSPACE/tmp/$1-$2-$VERSION/$1
+    if [ -d $target ]
+    then
+        rm -r $(dirname $target)
+    fi
     
     mkdir -p $target/usr/bin
-    cp $TARGET/bin/$2/$1 $target/usr/bin/
+    cp $TARGET/bin/$3/$1 $target/usr/bin/
 
-    mkdir -p $target/usr/share/$1
     cd $WORKSPACE/$1/
+
+    mkdir -p $target/etc
+    cp -r etc $target/etc/$1
+
+    mkdir -p $target/usr/share/$1    
     cp -r README.md $target/usr/share/$1/
     cp -r dashboard/dist $target/usr/share/$1/dashboard
     cp -r scripts/$1 $target/usr/share/$1/scripts
     cp -r scripts/DEBIAN $target/
 
-    cd $target/
-    dpkg-deb --build $1
+    cd $(dirname $target/)
+    sed -i "7s/all/$2/g" $1/DEBIAN/control
+    dpkg-deb --build $1 $package
 }
 
 if [ -d $TARGET ]
@@ -83,7 +96,8 @@ do
     # build_go $p loong64
 done
 
-build_deb loquat x86_64
+build_deb loquat amd64 x86_64
+build_deb loquat arm64 aarch64
 
 cd $WORKSPACE/tmp/
 if [ -f $PACKAGE.tar.xz ]
