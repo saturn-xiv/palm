@@ -57,12 +57,18 @@ systemctl enable firewall
 
 echo "root:$(pwgen 32 1)" | chpasswd
 
-# /etc/default/grub
-# GRUB_CMDLINE_LINUX_DEFAULT="quiet splash libata.noacpi=1"
-# GRUB_TERMINAL="console serial"
-# GRUB_SERIAL_COMMAND="serial --unit=0 --speed=115200"
-# systemctl enable serial-getty@ttyACM0.service
-# grub-mkconfig -o /boot/grub/grub.cfg
+# https://www.gnu.org/software/grub/manual/grub/html_node/Serial-terminal.html
+# sudo dmesg | grep tty
+
+if [ ! -f /etc/default/grub.d/loquat.cfg ]
+then
+    echo 'GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"' >> /etc/default/grub.d/loquat.cfg
+    echo 'GRUB_TERMINAL="console serial"' >> /etc/default/grub.d/loquat.cfg
+    echo 'GRUB_SERIAL_COMMAND="serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1"' >> /etc/default/grub.d/loquat.cfg
+    update-grub
+
+    systemctl enable serial-getty@ttyS0.service
+fi
 
 echo 'done.'
 exit 0

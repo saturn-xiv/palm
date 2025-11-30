@@ -67,7 +67,7 @@ function build_deb() {
     mkdir -p $target/etc/nginx/sites-available
     cp etc/nginx.conf $target/etc/nginx/sites-available/loquat.conf
     mkdir -p $target/etc/systemd/system/
-    cp etc/loquat-*.conf etc/loquat-*.timer $target/etc/systemd/system/
+    cp etc/systemd/* $target/etc/systemd/system/
 
     mkdir -p $target/usr/share/$1    
     cp -r README.md $target/usr/share/$1/
