@@ -49,6 +49,16 @@ var (
 			}
 		},
 	}
+
+	gl_apply_cmd = &cobra.Command{
+		Use:   "apply",
+		Short: "Generate an apply script file",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := Apply(gl_config_file, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
 )
 
 func Execute() error {
@@ -66,7 +76,7 @@ func init() {
 	gl_set_administrator_cmd.PersistentFlags().StringVarP(&gl_set_administrator_username, "username", "u", "", "username")
 	gl_set_administrator_cmd.PersistentFlags().StringVarP(&gl_set_administrator_password, "password", "p", "", "password")
 
-	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd, gl_set_administrator_cmd)
+	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd, gl_apply_cmd, gl_set_administrator_cmd)
 }
 
 func init_logger() {
