@@ -48,6 +48,23 @@ function build_go() {
     CC=$3-linux-gnu-gcc CGO_ENABLED=1 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $TARGET/bin/$3/$1
 }
 
+function build_deb() {
+    local target=$WORKSPACE/tmp/$1-$2-$(date +"%Y.%m.%d-p%H%M")/$1
+    
+    mkdir -p $target/usr/bin
+    cp $TARGET/bin/$2/$1 $target/usr/bin/
+
+    mkdir -p $target/usr/share/$1
+    cd $WORKSPACE/$1/
+    cp -r README.md $target/usr/share/$1/
+    cp -r dashboard/dist $target/usr/share/$1/dashboard
+    cp -r scripts/$1 $target/usr/share/$1/scripts
+    cp -r scripts/DEBIAN $target/
+
+    cd $target/
+    dpkg-deb --build $1
+}
+
 if [ -d $TARGET ]
 then
     rm -r $TARGET
@@ -66,7 +83,9 @@ do
     # build_go $p loong64
 done
 
-cd $WORKSPACE/
+build_deb loquat x86_64
+
+cd $WORKSPACE/tmp/
 if [ -f $PACKAGE.tar.xz ]
 then
     rm $PACKAGE.tar.xz
