@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net"
+	"strings"
 
 	graphql "github.com/graph-gophers/graphql-go"
 	"gorm.io/gorm"
@@ -56,8 +57,9 @@ func (p *Mutation) SetHostName(ctx context.Context, args struct {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
+	name := strings.TrimSpace(args.Name)
 	{
-		form := Hostname{Value: args.Name}
+		form := Hostname{Value: name}
 		if err := gl_validate.Struct(form); err != nil {
 			return nil, err
 		}
@@ -72,7 +74,7 @@ func (p *Mutation) SetHostName(ctx context.Context, args struct {
 			return err
 		}
 		if err = tx.Model(&host).Updates(map[string]interface{}{
-			"name":    args.Name,
+			"name":    name,
 			"version": host.Version + 1,
 		}).Error; err != nil {
 			return err

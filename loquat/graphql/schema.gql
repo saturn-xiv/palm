@@ -34,6 +34,12 @@ type Mutation {
   signIn(account: Account!, ttl: Int!): SignInResponse!
   signOut: Ok!
 
+  createMember(sn: String!, name: String!, memo: String!): Ok!
+  updateMember(id: ID!, name: ID!, memo: String!): Ok!
+  setMemberWifiPassword(id: ID!, password: ID!): Ok!
+  disableMember(id: ID!): Ok!
+  enableMember(id: ID!): Ok!
+
   associateHostWithMember(host: ID!, member: ID!): Ok!
   setHostName(id: ID!, name: String!): Ok!
   blockHost(id: ID!): Ok!
@@ -240,6 +246,7 @@ type Member {
   name: String!
   memo: String!
   updatedAt: Time!
+  deletedAt: Time
 }
 
 type Host {

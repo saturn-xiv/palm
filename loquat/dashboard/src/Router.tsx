@@ -34,7 +34,10 @@ const router = createBrowserRouter(
           children: [
             { index: true, Component: DashboardIndex },
             { path: "hosts", Component: HostsIndex },
-            { path: "members", Component: MembersIndex },
+            {
+              path: "members",
+              Component: MembersIndex,
+            },
             { path: "rules", Component: RulesIndex },
             {
               path: "account",
