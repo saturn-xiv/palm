@@ -64,14 +64,19 @@ function build_deb() {
 
     cd $WORKSPACE/$1/
 
-    mkdir -p $target/etc
-    cp -r etc $target/etc/$1
+    mkdir -p $target/etc/nginx/sites-available
+    cp etc/nginx.conf $target/etc/nginx/sites-available/loquat.conf
+    mkdir -p $target/etc/systemd/system/
+    cp etc/loquat-*.conf etc/loquat-*.timer $target/etc/systemd/system/
 
     mkdir -p $target/usr/share/$1    
     cp -r README.md $target/usr/share/$1/
     cp -r dashboard/dist $target/usr/share/$1/dashboard
     cp -r scripts/$1 $target/usr/share/$1/scripts
     cp -r scripts/DEBIAN $target/
+
+    mkdir -p $target/var/lib/$1
+    chmod 400 $target/var/lib/$1
 
     cd $(dirname $target/)
     sed -i "7s/all/$2/g" $1/DEBIAN/control
