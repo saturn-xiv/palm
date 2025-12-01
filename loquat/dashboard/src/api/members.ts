@@ -95,9 +95,8 @@ export const disable = async (
   const res: IGraphqlResponse<IDisableResponse> = await graphql(
     `
       mutation call($id: ID!) {
-        disableMember(id: $ID) {
-          username
-          token
+        disableMember(id: $id) {
+          createdAt
         }
       }
     `,

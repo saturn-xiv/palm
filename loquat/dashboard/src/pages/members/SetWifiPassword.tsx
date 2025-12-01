@@ -1,15 +1,13 @@
 import { FormattedMessage, useIntl } from "react-intl";
 import * as Yup from "yup";
 import { withFormik, type FormikProps, Form, Field } from "formik";
-import { useNavigate } from "react-router";
 
-import {
-  danger as show_danger,
-  success as show_success,
-} from "../../reducers/notification";
-import { useAppDispatch } from "../../hooks";
 import { set_wifi_password, type IMember } from "../../api/members";
-import { INDEX as INDEX_MEMBER } from ".";
+import {
+  NotificationBar,
+  type INotificationBarState,
+} from "../../components/NotificationBar";
+import { useState } from "react";
 
 interface IProps {
   item: IMember;
@@ -22,15 +20,12 @@ interface IFormValues {
 
 const InnerForm = (
   props: {
-    title: string;
     onSubmit: (value: IFormValues) => Promise<void>;
   } & FormikProps<IFormValues>
 ) => {
-  const { touched, errors, isSubmitting, title } = props;
+  const { touched, errors, isSubmitting } = props;
   return (
     <Form>
-      <div className="is-size-3">{title}</div>
-
       <div className="field">
         <label className="label">
           <FormattedMessage id="forms.fields.label.password" />
@@ -80,7 +75,6 @@ const InnerForm = (
 
 const IForm = withFormik<
   {
-    title: string;
     onSubmit: (value: IFormValues) => Promise<void>;
   },
   IFormValues
@@ -106,28 +100,34 @@ const IForm = withFormik<
 
 const Widget = ({ item }: IProps) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const [notification, setNotification] = useState<INotificationBarState>();
   return (
-    <IForm
-      title={intl.formatMessage(
-        {
-          id: "pages.members.set-wifi-password.title",
-        },
-        { sn: item.sn }
+    <>
+      {notification && (
+        <NotificationBar
+          hidden={async () => {
+            setNotification(undefined);
+          }}
+          state={notification}
+        />
       )}
-      onSubmit={async (values) => {
-        const res = await set_wifi_password(item.id, values.password);
-        if (res.data?.setMemberWifiPassword) {
-          navigate(INDEX_MEMBER);
-          dispatch(
-            show_success([intl.formatMessage({ id: "flashes.succeed" })])
-          );
-        } else if (res.errors) {
-          dispatch(show_danger(res.errors));
-        }
-      }}
-    />
+      <IForm
+        onSubmit={async (values) => {
+          const res = await set_wifi_password(item.id, values.password);
+          if (res.data?.setMemberWifiPassword) {
+            setNotification({
+              action: "success",
+              messages: [intl.formatMessage({ id: "flashes.succeed" })],
+            });
+          } else if (res.errors) {
+            setNotification({
+              action: "danger",
+              messages: res.errors.map((it) => it.message),
+            });
+          }
+        }}
+      />
+    </>
   );
 };
 

@@ -1,15 +1,13 @@
 import { FormattedMessage, useIntl } from "react-intl";
 import * as Yup from "yup";
 import { withFormik, type FormikProps, Form, Field } from "formik";
-import { useNavigate } from "react-router";
+import { useState } from "react";
 
-import {
-  danger as show_danger,
-  success as show_success,
-} from "../../reducers/notification";
-import { useAppDispatch } from "../../hooks";
 import { update as update_member, type IMember } from "../../api/members";
-import { INDEX as INDEX_MEMBER } from ".";
+import {
+  NotificationBar,
+  type INotificationBarState,
+} from "../../components/NotificationBar";
 
 interface IProps {
   item: IMember;
@@ -22,15 +20,12 @@ interface IFormValues {
 
 const InnerForm = (
   props: {
-    title: string;
     onSubmit: (value: IFormValues) => Promise<void>;
   } & FormikProps<IFormValues>
 ) => {
-  const { touched, errors, isSubmitting, title } = props;
+  const { touched, errors, isSubmitting } = props;
   return (
     <Form>
-      <div className="is-size-3">{title}</div>
-
       <div className="field">
         <label className="label">
           <FormattedMessage id="forms.fields.label.name" />
@@ -76,7 +71,6 @@ const InnerForm = (
 
 const IForm = withFormik<
   {
-    title: string;
     member: IMember;
     onSubmit: (value: IFormValues) => Promise<void>;
   },
@@ -93,35 +87,42 @@ const IForm = withFormik<
     name: Yup.string().min(2).max(63).required(),
     memo: Yup.string().min(1).max(2047).required(),
   }),
-  handleSubmit: async (values, { props, resetForm }) => {
+  handleSubmit: async (values, { props }) => {
     props.onSubmit(values);
-    resetForm();
   },
 })(InnerForm);
 
 const Widget = ({ item }: IProps) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const [notification, setNotification] = useState<INotificationBarState>();
   return (
-    <IForm
-      title={intl.formatMessage(
-        { id: "pages.members.update.title" },
-        { sn: item.sn }
+    <>
+      {notification && (
+        <NotificationBar
+          hidden={async () => {
+            setNotification(undefined);
+          }}
+          state={notification}
+        />
       )}
-      member={item}
-      onSubmit={async (values) => {
-        const res = await update_member(item.id, values.name, values.memo);
-        if (res.data?.updateMember) {
-          navigate(INDEX_MEMBER);
-          dispatch(
-            show_success([intl.formatMessage({ id: "flashes.succeed" })])
-          );
-        } else if (res.errors) {
-          dispatch(show_danger(res.errors));
-        }
-      }}
-    />
+      <IForm
+        member={item}
+        onSubmit={async (values) => {
+          const res = await update_member(item.id, values.name, values.memo);
+          if (res.data?.updateMember) {
+            setNotification({
+              action: "success",
+              messages: [intl.formatMessage({ id: "flashes.succeed" })],
+            });
+          } else if (res.errors) {
+            setNotification({
+              action: "danger",
+              messages: res.errors.map((it) => it.message),
+            });
+          }
+        }}
+      />
+    </>
   );
 };
 

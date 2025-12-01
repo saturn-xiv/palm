@@ -35,8 +35,8 @@ type Mutation {
   signOut: Ok!
 
   createMember(sn: String!, name: String!, memo: String!): Ok!
-  updateMember(id: ID!, name: ID!, memo: String!): Ok!
-  setMemberWifiPassword(id: ID!, password: ID!): Ok!
+  updateMember(id: ID!, name: String!, memo: String!): Ok!
+  setMemberWifiPassword(id: ID!, password: String!): Ok!
   disableMember(id: ID!): Ok!
   enableMember(id: ID!): Ok!
 

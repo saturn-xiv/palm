@@ -58,8 +58,8 @@ systemctl enable firewall
 echo "root:$(pwgen 32 1)" | chpasswd
 
 # https://www.gnu.org/software/grub/manual/grub/html_node/Serial-terminal.html
-# sudo dmesg | grep tty
-
+# dmesg | grep tty
+# cat /proc/tty/driver/serial
 if [ ! -f /etc/default/grub.d/loquat.cfg ]
 then
     echo 'GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"' >> /etc/default/grub.d/loquat.cfg

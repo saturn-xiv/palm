@@ -6,6 +6,9 @@ export default {
   "pages.hosts.index.title": "Hosts",
   "pages.rules.index.title": "Rules",
   "pages.members.index.title": "Members",
+  "pages.members.index.set-wifi-password": "Set wifi password",
+  "pages.members.index.enable.content": "You will enable member {sn}",
+  "pages.members.index.disable.content": "You will disable member {sn}",
   "pages.members.new.title": "Create a new member",
   "pages.members.edit.title": "Update profile[{ sn }]",
   "pages.members.set-wifi-password.title": "Set Wifi password[{ sn }]",
@@ -40,8 +43,11 @@ export default {
   "buttons.edit": "Edit",
   "buttons.disable": "Disable",
   "buttons.enable": "Enable",
+  "buttons.cancel": "Cancel",
 
   "flashes.succeed": "Succeed.",
+
+  "are-you-sure": "Are you sure?",
 
   "forms.fields.label.username": "Username",
   "forms.fields.label.password": "Password",
@@ -50,6 +56,9 @@ export default {
   "forms.fields.label.new-username": "New username",
   "forms.fields.label.new-password": "New password",
   "forms.fields.label.password-confirmation": "Password confirmation",
+  "forms.fields.label.memo": "Memo",
+  "forms.fields.label.name": "Name",
+  "forms.fields.label.sn": "SN",
 
   "tables.column.label.id": "ID",
   "tables.column.label.ip": "IP",
@@ -60,4 +69,5 @@ export default {
   "tables.column.label.name": "Name",
   "tables.column.label.sn": "SN",
   "tables.column.label.memo": "Memo",
+  "tables.column.label.manage": "Manage",
 };

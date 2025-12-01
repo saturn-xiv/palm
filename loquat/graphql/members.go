@@ -26,7 +26,7 @@ func (p *Mutation) CreateMember(ctx context.Context, args struct {
 	}
 	sn := strings.ToLower(strings.TrimSpace(args.Sn))
 	{
-		form := &MemberCreateForm{Sn: sn, Name: args.Name, Memo: args.Memo}
+		form := MemberCreateForm{Sn: sn, Name: args.Name, Memo: args.Memo}
 		if err = gl_validate.Struct(&form); err != nil {
 			return nil, err
 		}
@@ -70,7 +70,7 @@ func (p *Mutation) UpdateMember(ctx context.Context, args struct {
 		return nil, err
 	}
 	{
-		form := &MemberUpdateForm{Name: args.Name, Memo: args.Memo}
+		form := MemberUpdateForm{Name: args.Name, Memo: args.Memo}
 		if err = gl_validate.Struct(&form); err != nil {
 			return nil, err
 		}
@@ -92,7 +92,7 @@ func (p *Mutation) UpdateMember(ctx context.Context, args struct {
 			return err
 		}
 
-		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("enable member %s", member.Sn)}).Error
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("update member %s profile", member.Sn)}).Error
 	}); err != nil {
 		return nil, err
 	}
@@ -107,7 +107,7 @@ func (p *Mutation) SetMemberWifiPassword(ctx context.Context, args struct {
 		return nil, err
 	}
 	{
-		form := &MemberWifiPasswordForm{Password: args.Password}
+		form := MemberWifiPasswordForm{Password: args.Password}
 		if err = gl_validate.Struct(&form); err != nil {
 			return nil, err
 		}
@@ -128,7 +128,7 @@ func (p *Mutation) SetMemberWifiPassword(ctx context.Context, args struct {
 			return err
 		}
 
-		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("enable member %s", member.Sn)}).Error
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("reset wifi-password for member %s", member.Sn)}).Error
 	}); err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (p *Mutation) EnableMember(ctx context.Context, args struct {
 		if err := tx.Unscoped().Where(map[string]interface{}{"id": id}).Take(&member).Error; err != nil {
 			return err
 		}
-		if err = tx.Model(&member).Updates(map[string]interface{}{
+		if err = tx.Unscoped().Model(&member).Updates(map[string]interface{}{
 			"deleted_at": nil,
 			"version":    member.Version + 1,
 		}).Error; err != nil {
@@ -194,7 +194,7 @@ func (p *Query) IndexMember(ctx context.Context) ([]*Member, error) {
 		return nil, err
 	}
 	var members []models.Member
-	if err := p.db.Order("updated_at DESC").Find(&members).Error; err != nil {
+	if err := p.db.Unscoped().Order("updated_at DESC").Find(&members).Error; err != nil {
 		return nil, err
 	}
 	var items []*Member

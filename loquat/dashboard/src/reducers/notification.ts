@@ -3,12 +3,12 @@ import type { GraphQLError } from "graphql";
 
 import type { RootState } from "../store";
 
-interface NotificationState {
+interface INotificationState {
   action?: string;
   messages: string[];
 }
 
-const initialState: NotificationState = { messages: [] };
+const initialState: INotificationState = { messages: [] };
 
 export const layoutSlice = createSlice({
   name: "layout",
