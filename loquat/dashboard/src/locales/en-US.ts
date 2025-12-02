@@ -4,6 +4,12 @@ export default {
   "pages.users.change-password.title": "Change password",
   "pages.users.profile.title": "Profile",
   "pages.hosts.index.title": "Hosts",
+  "pages.hosts.index.set-ip-address": "Set ip address",
+  "pages.hosts.index.set-owner": "Set owner",
+  "pages.hosts.index.block.content": "You will block host {ip}",
+  "pages.hosts.index.release.content": "You will release host {ip}",
+  "pages.hosts.set-ip-address.title": "Set ip address of host({ip})",
+  "pages.hosts.set-owner.title": "Set owner of host({ip})",
   "pages.rules.index.title": "Rules",
   "pages.members.index.title": "Members",
   "pages.members.index.set-wifi-password": "Set wifi password",
@@ -30,8 +36,12 @@ export default {
   "layouts.dashboard.nav-bar.settings": "Settings",
   "layouts.dashboard.nav-bar.account": "Account",
   "layouts.dashboard.nav-bar.sign-out": "Sign out",
+  "layouts.dashboard.nav-bar.sign-out.content":
+    "You will logout from this system",
   "layouts.dashboard.nav-bar.apply": "Apply",
+  "layouts.dashboard.nav-bar.apply.content": "You will apply all the changes",
   "layouts.dashboard.nav-bar.reboot": "Reboot",
+  "layouts.dashboard.nav-bar.reboot.content": "You will reboot the router host",
   "layouts.dashboard.nav-bar.last-run-at": "Last run at",
 
   "buttons.submit": "Submit",
@@ -44,6 +54,8 @@ export default {
   "buttons.disable": "Disable",
   "buttons.enable": "Enable",
   "buttons.cancel": "Cancel",
+  "buttons.block": "Block",
+  "buttons.release": "Release",
 
   "flashes.succeed": "Succeed.",
 
@@ -70,4 +82,7 @@ export default {
   "tables.column.label.sn": "SN",
   "tables.column.label.memo": "Memo",
   "tables.column.label.manage": "Manage",
+  "tables.column.label.vendor": "Vendor",
+  "tables.column.label.network": "Network",
+  "tables.column.label.owner": "Owner",
 };

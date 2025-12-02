@@ -74,7 +74,7 @@ const Widget = () => {
                 <ModalForm
                   title={intl.formatMessage({ id: "pages.members.new.title" })}
                   button={{
-                    action: "link",
+                    action: "primary",
                     label: intl.formatMessage({ id: "buttons.new" }),
                   }}
                   handleRefresh={handleRefresh}

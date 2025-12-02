@@ -12,10 +12,11 @@ import {
   danger as show_danger,
 } from "../reducers/notification";
 import Timestamp from "../components/Timestamp";
-
-import logo_svg from "../assets/router.svg";
 import { sign_out } from "../api/users";
 import { apply, reboot } from "../api/router";
+import ConfirmDialog from "../components/ConfirmDialog";
+
+import logo_svg from "../assets/router.svg";
 
 const NavBar = () => {
   const layout = useAppSelector((state) => state.layout);
@@ -116,32 +117,43 @@ const NavBar = () => {
             )}
           </div>
           <div className="navbar-item">
-            <div className="buttons">
-              <a
-                className="button is-info is-small"
-                onClick={handleApply}
-                href="#"
+            <div className="buttons are-small">
+              <ConfirmDialog
+                button={{
+                  action: "info",
+                  label: intl.formatMessage({
+                    id: "layouts.dashboard.nav-bar.apply",
+                  }),
+                }}
+                title={intl.formatMessage({ id: "are-you-sure" })}
+                onSubmit={handleApply}
               >
-                <strong>
-                  <FormattedMessage id="layouts.dashboard.nav-bar.apply" />
-                </strong>
-              </a>
-              <a
-                className="button is-warning is-small"
-                onClick={handleReboot}
-                href="#"
+                <FormattedMessage id="layouts.dashboard.nav-bar.apply.content" />
+              </ConfirmDialog>
+              <ConfirmDialog
+                button={{
+                  action: "warning",
+                  label: intl.formatMessage({
+                    id: "layouts.dashboard.nav-bar.reboot",
+                  }),
+                }}
+                title={intl.formatMessage({ id: "are-you-sure" })}
+                onSubmit={handleReboot}
               >
-                <strong>
-                  <FormattedMessage id="layouts.dashboard.nav-bar.reboot" />
-                </strong>
-              </a>
-              <a
-                className="button is-light is-small"
-                onClick={handleSignOut}
-                href="#"
+                <FormattedMessage id="layouts.dashboard.nav-bar.reboot.content" />
+              </ConfirmDialog>
+              <ConfirmDialog
+                button={{
+                  action: "light",
+                  label: intl.formatMessage({
+                    id: "layouts.dashboard.nav-bar.sign-out",
+                  }),
+                }}
+                title={intl.formatMessage({ id: "are-you-sure" })}
+                onSubmit={handleSignOut}
               >
-                <FormattedMessage id="layouts.dashboard.nav-bar.sign-out" />
-              </a>
+                <FormattedMessage id="layouts.dashboard.nav-bar.sign-out.content" />
+              </ConfirmDialog>
             </div>
           </div>
         </div>

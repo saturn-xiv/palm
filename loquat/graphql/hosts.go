@@ -104,7 +104,7 @@ func (p *Mutation) ReleaseHost(ctx context.Context, args struct{ Id graphql.ID }
 	}
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		if err = tx.Model(&host).Updates(map[string]interface{}{
+		if err = tx.Unscoped().Model(&host).Updates(map[string]interface{}{
 			"deleted_at": nil,
 			"version":    host.Version + 1,
 		}).Error; err != nil {
