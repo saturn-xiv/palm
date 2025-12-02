@@ -14,6 +14,7 @@ type Query {
 
   indexHost: [Host!]!
   showHost(id: ID!): Host!
+  addresses(ip: String!): [String!]!
 
   indexMember: [Member!]!
   showMember(id: ID!): Member!

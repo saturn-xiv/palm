@@ -71,6 +71,9 @@ export default {
   "forms.fields.label.memo": "Memo",
   "forms.fields.label.name": "Name",
   "forms.fields.label.sn": "SN",
+  "forms.fields.label.owner": "Owner",
+  "forms.fields.label.host": "Host",
+  "forms.fields.label.ip": "IP",
 
   "tables.column.label.id": "ID",
   "tables.column.label.ip": "IP",

@@ -89,7 +89,7 @@ const Widget = () => {
               <td>
                 {it.member ? (
                   <span>
-                    {it.member.sn}({it.member.name})
+                    {it.member.name}({it.member.sn})
                   </span>
                 ) : (
                   <>n/a</>

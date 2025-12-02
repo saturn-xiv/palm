@@ -162,8 +162,9 @@ func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
 	if err != nil {
 		return nil, err
 	}
+	name := strings.TrimSpace(args.Name)
 	{
-		it := Hostname{Value: args.Name}
+		it := Hostname{Value: name}
 		if err := gl_validate.Struct(&it); err != nil {
 			return nil, err
 		}
@@ -198,6 +199,7 @@ func (p *Mutation) SetHostStaticIp(ctx context.Context, args struct {
 			}
 		}
 		if err = tx.Model(&host).Updates(map[string]interface{}{
+			"name":    name,
 			"ip":      args.Ip,
 			"fixed":   true,
 			"version": host.Version + 1,

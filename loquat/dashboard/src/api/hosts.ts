@@ -2,6 +2,23 @@ import { graphql, type IGraphqlResponse } from "../request";
 import type { IOk } from ".";
 import type { IMember } from "./members";
 
+interface IAddressesResponse {
+  addresses: string[];
+}
+export const addresses = async (
+  ip: string
+): Promise<IGraphqlResponse<IAddressesResponse>> => {
+  const res: IGraphqlResponse<IAddressesResponse> = await graphql(
+    `
+      query call($ip: String!) {
+        addresses(ip: $ip)
+      }
+    `,
+    { ip }
+  );
+  return res;
+};
+
 interface ISetStaticIpResponse {
   setHostStaticIp: IOk;
 }
@@ -25,20 +42,25 @@ export const set_static_ip = async (
 };
 interface ISetDynamicIpResponse {
   setHostDynamicIp: IOk;
+  setHostName: IOk;
 }
 
 export const set_dynamic_ip = async (
-  id: string
+  id: string,
+  name: string
 ): Promise<IGraphqlResponse<ISetDynamicIpResponse>> => {
   const res: IGraphqlResponse<ISetDynamicIpResponse> = await graphql(
     `
-      mutation call($id: ID!) {
+      mutation call($id: ID!, $name: String!) {
         setHostDynamicIp(id: $id) {
+          createdAt
+        }
+        setHostName(id: $id, name: $name) {
           createdAt
         }
       }
     `,
-    { id }
+    { id, name }
   );
   return res;
 };
@@ -105,14 +127,14 @@ interface IAssociateHostWithMemberResponse {
   associateHostWithMember: IOk;
 }
 
-export const associate_host_with_member = async (
+export const associate_with_member = async (
   host: string,
   member: string
 ): Promise<IGraphqlResponse<IAssociateHostWithMemberResponse>> => {
   const res: IGraphqlResponse<IAssociateHostWithMemberResponse> = await graphql(
     `
       mutation call($host: ID!, $member: ID!) {
-        associateHostWithMember(id: $id, member: $member) {
+        associateHostWithMember(host: $host, member: $member) {
           createdAt
         }
       }

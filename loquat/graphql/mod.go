@@ -17,6 +17,7 @@ import (
 
 	"github.com/saturn-xiv/palm/loquat/env"
 	"github.com/saturn-xiv/palm/loquat/models"
+	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
 var (
@@ -68,6 +69,11 @@ type Query struct {
 
 func (p *Query) Version() string {
 	return env.Version()
+}
+
+func (p *Query) Addresses(ctx context.Context, args struct{ Ip string }) ([]string, error) {
+	it := v2.Intranet{Address: args.Ip}
+	return it.Addresses()
 }
 
 type Root struct {
