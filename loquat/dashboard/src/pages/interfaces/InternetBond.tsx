@@ -1,12 +1,9 @@
-import { FormattedMessage } from "react-intl";
-
-import type { IInternetBond } from "../../api/router";
-
 interface IProps {
   name: string;
-  item: IInternetBond;
+  devices: string[];
 }
-const Widget = ({ name, item }: IProps) => {
+
+const Widget = ({ name }: IProps) => {
   return (
     <div className="card">
       <header className="card-header">
@@ -19,18 +16,8 @@ const Widget = ({ name, item }: IProps) => {
       </header>
       <div className="card-content">
         <div className="content">
-          <div>Interfaces: {item.interfaces.join(",")}</div>
-          <div>
-            {item.enable ? (
-              <button className="button is-success">
-                <FormattedMessage id="buttons.enable" />
-              </button>
-            ) : (
-              <button className="button is-danger" disabled>
-                <FormattedMessage id="buttons.disable" />
-              </button>
-            )}
-          </div>
+          <div>Interfaces: </div>
+          <div></div>
         </div>
       </div>
       <footer className="card-footer"></footer>

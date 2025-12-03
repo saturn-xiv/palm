@@ -90,7 +90,7 @@ const IForm = withFormik<
   mapPropsToValues: (props) => {
     return {
       host: `${props.host.ip}(${props.host.mac})`,
-      member: props.host.member?.id || "",
+      member: props.host.member?.id || props.members[0]?.id || "",
     };
   },
   enableReinitialize: true,

@@ -1,13 +1,28 @@
-import { FormattedMessage } from "react-intl";
-
-import type { IIntranetBond } from "../../api/router";
-
 interface IProps {
   name: string;
-  item: IIntranetBond;
+  devices: string[];
 }
 
-const Widget = ({ name, item }: IProps) => {
+// https://www.speedtest.cn/tools/ipCalculator
+// 192.168.0~254.1/24~26
+// 172.16~31.0~254.0/16~24
+
+/*
+A: 10.0.0.0～10.255.255.255 
+B: 172.16.0.0～172.31.255.255 
+C: 192.168.0.0～192.168.255.255 
+*/
+
+interface IFormValues {
+  ip1: number;
+  ip2: number;
+  ip3: number;
+  ip4: number;
+  cidr: number;
+  dns: string;
+  enable: boolean;
+}
+const Widget = ({ name }: IProps) => {
   return (
     <div className="card">
       <header className="card-header">
@@ -20,20 +35,7 @@ const Widget = ({ name, item }: IProps) => {
       </header>
       <div className="card-content">
         <div className="content">
-          <div>Interfaces: {item.interfaces.join(",")}</div>
-          <div>Address: {item.address}</div>
-          <div>Dns: {item.dns}</div>
-          <div>
-            {item.enable ? (
-              <button className="button is-success">
-                <FormattedMessage id="buttons.enable" />
-              </button>
-            ) : (
-              <button className="button is-danger" disabled>
-                <FormattedMessage id="buttons.disable" />
-              </button>
-            )}
-          </div>
+          <div></div>
         </div>
       </div>
       <footer className="card-footer"></footer>

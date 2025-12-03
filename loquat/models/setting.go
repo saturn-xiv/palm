@@ -79,5 +79,5 @@ func GetB(db *gorm.DB, key string, val interface{}) error {
 	}
 	buf := bytes.NewBuffer(tmp)
 	dec := gob.NewDecoder(buf)
-	return dec.Decode(&val)
+	return dec.Decode(val)
 }

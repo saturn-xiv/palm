@@ -14,7 +14,9 @@ type Query {
 
   indexHost: [Host!]!
   showHost(id: ID!): Host!
+
   addresses(ip: String!): [String!]!
+  interfaces: [String!]!
 
   indexMember: [Member!]!
   showMember(id: ID!): Member!
@@ -25,9 +27,8 @@ type Query {
 
   indexFirewallRule: [FirewallRule!]!
 
-  bondWan: InternetBond!
-  bondLan: IntranetBond!
-  bondDmz: IntranetBond!
+  internetBond(name: String!): InternetBond!
+  intranetBond(name: String!): IntranetBond!
 }
 
 type Mutation {
@@ -61,20 +62,14 @@ type Mutation {
     address: String!
     netmask: String!
     gateway: String!
-    isp: Isp!
     dns: [String!]!
     memo: String!
   ): Ok!
   disableNetworkInterface(name: String!): Ok!
 
-  bondWan(interfaces: [String!]!, enable: Boolean!): Ok!
-  bondLan(
-    interfaces: [String!]!
-    address: String!
-    dns: Dns!
-    enable: Boolean!
-  ): Ok!
-  bondDmz(
+  internetBond(name: String!, interfaces: [String!]!, enable: Boolean!): Ok!
+  intranetBond(
+    name: String!
     interfaces: [String!]!
     address: String!
     dns: Dns!
@@ -148,16 +143,18 @@ type NetworkInterface {
 type StaticIp {
   label: String!
   memo: String!
-  isp: Isp!
+  isp: String!
   address: String!
   netmask: String!
   gateway: String!
   dns: [String!]!
+  enable: Boolean!
 }
 type DynamicIp {
   label: String!
   memo: String!
-  isp: Isp!
+  isp: String!
+  enable: Boolean!
 }
 union NetworkInterfaceProfile = StaticIp | DynamicIp
 

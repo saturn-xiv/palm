@@ -2,14 +2,13 @@ package graphql
 
 import (
 	"context"
-	"errors"
+	"encoding/gob"
 	"fmt"
+	"log/slog"
 
-	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
-	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
 func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
@@ -21,7 +20,13 @@ func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
 	}
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Unscoped().Where("key = ?", networkInterfaceKey(args.Name)).Delete(&models.Setting{}).Error; err != nil {
+		key := networkInterfaceKey(args.Name)
+		var it ethernetProfile
+		if err := models.GetB(tx, key, &it); err != nil {
+			slog.Error(err.Error())
+		}
+		it.Enable = false
+		if err := models.SetB(tx, key, &it); err != nil {
 			return err
 		}
 		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("disable %s", args.Name)}).Error
@@ -47,22 +52,17 @@ func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args s
 	}
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		var profile v2.Internet
-		err := models.GetProtobuf(tx, networkInterfaceKey(args.Name), &profile)
-		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
-			return err
-		}
-
+		var profile ethernetProfile
 		profile.Label = args.Label
 		profile.Memo = args.Memo
 		profile.Isp = args.Isp
-		profile.Ip = &v2.Internet_Static_{Static: &v2.Internet_Static{
-			Dns:     args.Dns,
-			Address: args.Address,
-			Netmask: args.Netmask,
-			Gateway: args.Gateway,
-		}}
-		if err = models.SetProtobuf(tx, networkInterfaceKey(args.Name), &profile); err != nil {
+		profile.Address = args.Address
+		profile.Netmask = args.Netmask
+		profile.Gateway = args.Gateway
+		profile.Dns = args.Dns
+		profile.Dhcp = false
+		profile.Enable = true
+		if err = models.SetB(tx, networkInterfaceKey(args.Name), &profile); err != nil {
 			return err
 		}
 
@@ -84,17 +84,13 @@ func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struc
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		var profile v2.Internet
-		err := models.GetProtobuf(tx, networkInterfaceKey(args.Name), &profile)
-		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
-			return err
-		}
-
+		var profile ethernetProfile
 		profile.Label = args.Label
 		profile.Memo = args.Memo
 		profile.Isp = args.Isp
-		profile.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
-		if err = models.SetProtobuf(tx, networkInterfaceKey(args.Name), &profile); err != nil {
+		profile.Dhcp = true
+		profile.Enable = true
+		if err = models.SetB(tx, networkInterfaceKey(args.Name), &profile); err != nil {
 			return err
 		}
 
@@ -112,11 +108,12 @@ func (p *Query) GetNetworkInterface(ctx context.Context, args struct {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
-	var it NetworkInterfaceProfile
-	if err := models.GetB(p.db, networkInterfaceKey(args.Name), it); err != nil {
-		return nil, err
+	var it ethernetProfile
+	if err := models.GetB(p.db, networkInterfaceKey(args.Name), &it); err != nil {
+		slog.Error(err.Error())
 	}
-	return &it, nil
+
+	return &NetworkInterfaceProfile{item: &it}, nil
 }
 func networkInterfaceKey(name string) string {
 	return fmt.Sprintf("net.%s", name)
@@ -130,6 +127,7 @@ type StaticIp struct {
 	netmask string
 	gateway string
 	dns     []string
+	enable  bool
 }
 
 func (p *StaticIp) Label() string {
@@ -155,11 +153,15 @@ func (p *StaticIp) Isp() string {
 func (p *StaticIp) Memo() string {
 	return p.memo
 }
+func (p *StaticIp) Enable() bool {
+	return p.enable
+}
 
 type DynamicIp struct {
-	label string
-	memo  string
-	isp   string
+	label  string
+	memo   string
+	isp    string
+	enable bool
 }
 
 func (p *DynamicIp) Label() string {
@@ -174,36 +176,55 @@ func (p *DynamicIp) Memo() string {
 	return p.memo
 }
 
+func (p *DynamicIp) Enable() bool {
+	return p.enable
+}
+
+type ethernetProfile struct {
+	Dhcp    bool
+	Address string
+	Netmask string
+	Gateway string
+	Dns     []string
+	Isp     string
+	Label   string
+	Memo    string
+	Enable  bool
+}
+
 type NetworkInterfaceProfile struct {
-	item *v2.Internet
+	item *ethernetProfile
 }
 
-func (p *NetworkInterfaceProfile) ToStaticIp() (*StaticIp, error) {
-	switch p.item.Ip.(type) {
-	case *v2.Internet_Static_:
-		return &StaticIp{
-			isp:     p.item.Isp,
-			label:   p.item.Label,
-			memo:    p.item.Memo,
-			address: p.item.GetStatic().Address,
-			netmask: p.item.GetStatic().Netmask,
-			gateway: p.item.GetStatic().Gateway,
-			dns:     p.item.GetStatic().Dns,
-		}, nil
-	default:
-		return nil, errors.New("not a static ip")
+func (p *NetworkInterfaceProfile) ToStaticIp() (*StaticIp, bool) {
+	if p.item.Dhcp {
+		return nil, false
 	}
+	return &StaticIp{
+		isp:     p.item.Isp,
+		label:   p.item.Label,
+		memo:    p.item.Memo,
+		address: p.item.Address,
+		netmask: p.item.Netmask,
+		gateway: p.item.Gateway,
+		dns:     p.item.Dns,
+		enable:  p.item.Enable,
+	}, true
 
 }
-func (p *NetworkInterfaceProfile) ToDynamicIp() (*DynamicIp, error) {
-	switch p.item.Ip.(type) {
-	case *v2.Internet_Dhcp:
-		return &DynamicIp{
-			isp:   p.item.Isp,
-			label: p.item.Label,
-			memo:  p.item.Memo,
-		}, nil
-	default:
-		return nil, errors.New("not a dynamic ip")
+func (p *NetworkInterfaceProfile) ToDynamicIp() (*DynamicIp, bool) {
+	if !p.item.Dhcp {
+		return nil, false
 	}
+	return &DynamicIp{
+		isp:    p.item.Isp,
+		label:  p.item.Label,
+		memo:   p.item.Memo,
+		enable: p.item.Enable,
+	}, true
+
+}
+
+func init() {
+	gob.Register(ethernetProfile{})
 }

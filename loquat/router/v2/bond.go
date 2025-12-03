@@ -15,9 +15,9 @@ var gl_dnsmasq_txt string
 var gl_dnsmasq_header_txt string
 
 var (
-	DMZ = "dmz"
-	LAN = "lan"
-	WAN = "wan"
+	DMZ = "bond-dmz"
+	LAN = "bond-lan"
+	WAN = "bond-wan"
 )
 
 func (p *IntranetBond) netplan(dev string) (string, error) {

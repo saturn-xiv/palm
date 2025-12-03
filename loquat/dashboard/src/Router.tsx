@@ -6,6 +6,7 @@ const UsersSignIn = lazy(() => import("./pages/users/sign-in"));
 const UsersLogs = lazy(() => import("./pages/users/logs"));
 const UsersProfile = lazy(() => import("./pages/users/profile"));
 const MembersIndex = lazy(() => import("./pages/members"));
+const InterfacesIndex = lazy(() => import("./pages/interfaces"));
 const RulesIndex = lazy(() => import("./pages/rules"));
 const HostsIndex = lazy(() => import("./pages/hosts"));
 const DashboardIndex = lazy(() => import("./pages/dashboard"));
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
           Component: DashboardLayout,
           children: [
             { index: true, Component: DashboardIndex },
+            { path: "interfaces", Component: InterfacesIndex },
             { path: "hosts", Component: HostsIndex },
             {
               path: "members",

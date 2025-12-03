@@ -53,7 +53,7 @@ func (p *Intranet) Addresses() ([]string, error) {
 		return nil, err
 	}
 	var items []string
-	for i := first + 2; i <= last; i += 1 {
+	for i := first + 2; i < last; i += 1 {
 		items = append(items, uint32_to_ipv4(i))
 	}
 	return items, nil

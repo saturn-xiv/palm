@@ -76,6 +76,9 @@ const NavBar = () => {
           <Link className="navbar-item" to="/dashboard">
             <FormattedMessage id="layouts.dashboard.nav-bar.home" />
           </Link>
+          <Link className="navbar-item" to="/dashboard/interfaces">
+            <FormattedMessage id="pages.interfaces.index.title" />
+          </Link>
           <Link className="navbar-item" to="/dashboard/hosts">
             <FormattedMessage id="pages.hosts.index.title" />
           </Link>

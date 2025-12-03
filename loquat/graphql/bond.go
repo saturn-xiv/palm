@@ -8,10 +8,10 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
-	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
-func (p *Mutation) BondWan(ctx context.Context, args struct {
+func (p *Mutation) InternetBond(ctx context.Context, args struct {
+	Name       string
 	Interfaces []string
 	Enable     bool
 }) (*Ok, error) {
@@ -22,17 +22,17 @@ func (p *Mutation) BondWan(ctx context.Context, args struct {
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		var bond InternetBond
-		err := models.GetB(tx, bondKey(v2.WAN), &bond)
+		err := models.GetB(tx, bondKey(args.Name), &bond)
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			return err
 		}
 		bond.interfaces = args.Interfaces
 		bond.enable = args.Enable
-		if err = models.SetB(tx, bondKey(v2.WAN), &bond); err != nil {
+		if err = models.SetB(tx, bondKey(args.Name), &bond); err != nil {
 			return err
 		}
 
-		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set wan to %v", args.Interfaces)}).Error
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to %v", args.Name, args.Interfaces)}).Error
 	}); err != nil {
 		return nil, err
 	}
@@ -40,28 +40,20 @@ func (p *Mutation) BondWan(ctx context.Context, args struct {
 	return &Ok{}, nil
 }
 
-func (p *Mutation) BondLan(ctx context.Context, args struct {
+func (p *Mutation) IntranetBond(ctx context.Context, args struct {
+	Name       string
 	Interfaces []string
 	Address    string
 	Dns        string
 	Enable     bool
 }) (*Ok, error) {
-	return p.bond_intranet_bond(ctx, args, v2.LAN)
-}
-
-func (p *Mutation) bond_intranet_bond(ctx context.Context, args struct {
-	Interfaces []string
-	Address    string
-	Dns        string
-	Enable     bool
-}, id string) (*Ok, error) {
 	user, ip, err := current_user(ctx, p.db, p.secrets)
 	if err != nil {
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		var bond IntranetBond
-		err := models.GetB(tx, bondKey(id), &bond)
+		err := models.GetB(tx, bondKey(args.Name), &bond)
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			return err
 		}
@@ -69,11 +61,11 @@ func (p *Mutation) bond_intranet_bond(ctx context.Context, args struct {
 		bond.address = args.Address
 		bond.enable = args.Enable
 		bond.dns = args.Dns
-		if err = models.SetB(tx, bondKey(id), &bond); err != nil {
+		if err = models.SetB(tx, bondKey(args.Name), &bond); err != nil {
 			return err
 		}
 
-		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to %v(%s)", id, args.Interfaces, args.Address)}).Error
+		return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: fmt.Sprintf("set %s to %v(%s)", args.Name, args.Interfaces, args.Address)}).Error
 	}); err != nil {
 		return nil, err
 	}
@@ -81,30 +73,13 @@ func (p *Mutation) bond_intranet_bond(ctx context.Context, args struct {
 	return &Ok{}, nil
 }
 
-func (p *Mutation) BondDmz(ctx context.Context, args struct {
-	Interfaces []string
-	Address    string
-	Dns        string
-	Enable     bool
-}) (*Ok, error) {
-	return p.bond_intranet_bond(ctx, args, v2.DMZ)
-}
-
-func (p *Query) BondDmz(ctx context.Context) (*IntranetBond, error) {
-	return p.bond_intranet(ctx, v2.DMZ)
-}
-
-func (p *Query) BondLan(ctx context.Context) (*IntranetBond, error) {
-	return p.bond_intranet(ctx, v2.LAN)
-}
-
-func (p *Query) BondWan(ctx context.Context) (*InternetBond, error) {
+func (p *Query) InternetBond(ctx context.Context, args struct{ Name string }) (*InternetBond, error) {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
 
 	var bond InternetBond
-	err := models.GetB(p.db, bondKey(v2.WAN), &bond)
+	err := models.GetB(p.db, bondKey(args.Name), &bond)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
@@ -112,13 +87,13 @@ func (p *Query) BondWan(ctx context.Context) (*InternetBond, error) {
 	return &bond, nil
 }
 
-func (p *Query) bond_intranet(ctx context.Context, id string) (*IntranetBond, error) {
+func (p *Query) IntranetBond(ctx context.Context, args struct{ Name string }) (*IntranetBond, error) {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
 		return nil, err
 	}
 
 	var bond IntranetBond
-	err := models.GetB(p.db, bondKey(id), &bond)
+	err := models.GetB(p.db, bondKey(args.Name), &bond)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}

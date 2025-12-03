@@ -1,17 +1,82 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useAppDispatch } from "../../hooks";
+import { DMZ, interfaces, LAN, WAN } from "../../api/interface";
+import { danger as show_danger } from "../../reducers/notification";
+import ModalForm from "../../components/ModalForm";
+import InternetBondForm from "./InternetBond";
+import IntranetBondForm from "./IntranetBond";
+import InterfaceForm from "./Interface";
 
 const Widget = () => {
   const dispatch = useAppDispatch();
+  const [devices, setDevices] = useState<string[]>([]);
 
+  const handleRefresh = async () => {
+    const res = await interfaces();
+    if (res.data?.interfaces) {
+      setDevices(res.data.interfaces.filter((it) => it.startsWith("en")));
+    } else if (res.errors) {
+      dispatch(show_danger(res.errors));
+    }
+  };
+
+  const loadDevices = useCallback(handleRefresh, [dispatch]);
   useEffect(() => {
     (async () => {
-      // TODO
+      await loadDevices();
     })();
-  }, [dispatch]);
+  }, [loadDevices]);
 
-  return <div className="grid"></div>;
+  return (
+    <div className="grid is-col-min-12">
+      <div className="buttons are-small">
+        <ModalForm
+          title={WAN}
+          button={{
+            action: "info",
+            label: WAN,
+          }}
+          handleRefresh={handleRefresh}
+        >
+          <InternetBondForm devices={devices} name={WAN} />
+        </ModalForm>
+        <ModalForm
+          title={DMZ}
+          button={{
+            action: "info",
+            label: DMZ,
+          }}
+          handleRefresh={handleRefresh}
+        >
+          <IntranetBondForm devices={devices} name={DMZ} />
+        </ModalForm>
+        <ModalForm
+          title={LAN}
+          button={{
+            action: "info",
+            label: LAN,
+          }}
+          handleRefresh={handleRefresh}
+        >
+          <IntranetBondForm devices={devices} name={LAN} />
+        </ModalForm>
+        {devices.map((it, id) => (
+          <ModalForm
+            key={id}
+            title={it}
+            button={{
+              action: "info",
+              label: it,
+            }}
+            handleRefresh={handleRefresh}
+          >
+            <InterfaceForm name={it} />
+          </ModalForm>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Widget;

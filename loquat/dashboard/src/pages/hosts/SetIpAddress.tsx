@@ -30,7 +30,7 @@ const InnerForm = (
     addresses: string[];
   } & FormikProps<IFormValues>
 ) => {
-  const { touched, errors, addresses, isSubmitting } = props;
+  const { touched, errors, addresses, isSubmitting, values } = props;
   return (
     <Form>
       <div className="field">
@@ -44,31 +44,33 @@ const InnerForm = (
           <p className="help is-danger">{errors.name}</p>
         )}
       </div>
-      <div className="field">
-        <label className="label">
-          <FormattedMessage id="forms.fields.label.ip" />
-        </label>
-        <div className="control">
-          <div className="select">
-            <Field name="ip" component="select">
-              {addresses.map((it, id) => (
-                <option key={id} value={it}>
-                  {it}
-                </option>
-              ))}
-            </Field>
+      {values.dhcp || (
+        <div className="field">
+          <label className="label">
+            <FormattedMessage id="forms.fields.label.ip" />
+          </label>
+          <div className="control">
+            <div className="select">
+              <Field name="ip" component="select">
+                {addresses.map((it, id) => (
+                  <option key={id} value={it}>
+                    {it}
+                  </option>
+                ))}
+              </Field>
+            </div>
           </div>
+          {touched.ip && errors.ip && (
+            <p className="help is-danger">{errors.ip}</p>
+          )}
         </div>
-        {touched.ip && errors.ip && (
-          <p className="help is-danger">{errors.ip}</p>
-        )}
-      </div>
+      )}
 
       <div className="field">
         <div className="control">
           <label className="checkbox">
             <Field type="checkbox" name="dhcp" />
-            DHCP
+            &nbsp;DHCP
           </label>
         </div>
       </div>
