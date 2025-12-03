@@ -231,7 +231,7 @@ type IntranetBond {
   interfaces: [String!]!
   address: String!
   enable: Boolean!
-  dns: Dns!
+  dns: String!
 }
 
 type Ok {

@@ -1,3 +1,24 @@
+import { FormattedMessage, useIntl } from "react-intl";
+import * as Yup from "yup";
+import { withFormik, type FormikProps, Form, Field } from "formik";
+import { useCallback, useEffect, useState } from "react";
+
+import {
+  get_intranet_bond,
+  set_intranet_bond,
+  type IIntranetBond,
+} from "../../api/interface";
+import {
+  NotificationBar,
+  type INotificationBarState,
+} from "../../components/NotificationBar";
+import { useAppDispatch } from "../../hooks";
+import { danger as show_danger } from "../../reducers/notification";
+
+const DEFAULT_ADDRESS = "192.168.0.1/24";
+const DNS_GOOGLE = "Google";
+const DNS_ALI = "Ali";
+
 interface IProps {
   name: string;
   devices: string[];
@@ -13,33 +34,192 @@ B: 172.16.0.0～172.31.255.255
 C: 192.168.0.0～192.168.255.255 
 */
 
+const addresses_range = (): string[] => {
+  const items = [""];
+  for (let i = 0; i < 255; i++) {
+    items.push(`192.168.${i}.1/24`);
+  }
+  for (let i = 16; i < 32; i++) {
+    items.push(`172.${i}.0.1/16`);
+  }
+  return items;
+};
+
 interface IFormValues {
-  ip1: number;
-  ip2: number;
-  ip3: number;
-  ip4: number;
-  cidr: number;
+  // ip1: number;
+  // ip2: number;
+  // ip3: number;
+  // ip4: number;
+  // cidr: number;
+  address: string;
+  interfaces: string[];
   dns: string;
   enable: boolean;
 }
-const Widget = ({ name }: IProps) => {
+
+const InnerForm = (
+  props: {
+    devices: string[];
+    onSubmit: (value: IFormValues) => Promise<void>;
+  } & FormikProps<IFormValues>
+) => {
+  const { devices, values, isSubmitting } = props;
   return (
-    <div className="card">
-      <header className="card-header">
-        <p className="card-header-title">{name}</p>
-        <button className="card-header-icon" aria-label="more options">
-          <span className="icon">
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </header>
-      <div className="card-content">
-        <div className="content">
-          <div></div>
+    <Form>
+      <div className="field">
+        <div className="control">
+          <label className="checkbox">
+            <Field type="checkbox" name="enable" />
+            <FormattedMessage id="buttons.enable" />
+          </label>
         </div>
       </div>
-      <footer className="card-footer"></footer>
-    </div>
+      {values.enable && (
+        <div className="field">
+          <div className="control">
+            <div className="checkboxes">
+              {devices.map((it, id) => (
+                <label key={id} className="checkbox">
+                  <Field type="checkbox" name="interfaces" value={it} />
+                  {it}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {values.enable && (
+        <div className="field">
+          <label className="label">
+            <FormattedMessage id="forms.fields.label.owner" />
+          </label>
+          <div className="control">
+            <div className="select">
+              <Field name="address" component="select">
+                {addresses_range().map((it, id) => (
+                  <option key={id} value={it}>
+                    {it}
+                  </option>
+                ))}
+              </Field>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {values.enable && (
+        <div className="field">
+          <div className="control">
+            <div className="radios">
+              {[DNS_ALI, DNS_GOOGLE].map((it, id) => (
+                <label className="radio" key={id}>
+                  <Field type="radio" name="dns" value={it} />
+                  {it}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="field is-grouped">
+        <div className="control">
+          <button
+            className="button is-link"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            <FormattedMessage id="buttons.submit" />
+          </button>
+        </div>
+        <div className="control">
+          <button type="reset" className="button is-link is-light">
+            <FormattedMessage id="buttons.reset" />
+          </button>
+        </div>
+      </div>
+    </Form>
   );
 };
+
+const IForm = withFormik<
+  {
+    devices: string[];
+    bond?: IIntranetBond;
+    onSubmit: (value: IFormValues) => Promise<void>;
+  },
+  IFormValues
+>({
+  mapPropsToValues: (props) => {
+    return {
+      enable: props.bond?.enable || false,
+      interfaces: props.bond?.interfaces || [],
+      address: props.bond?.address || DEFAULT_ADDRESS,
+      dns: props.bond?.dns || DNS_ALI,
+    };
+  },
+  enableReinitialize: true,
+  validationSchema: Yup.object().shape({}),
+  handleSubmit: async (values, { props }) => {
+    props.onSubmit(values);
+  },
+})(InnerForm);
+
+const Widget = ({ name, devices }: IProps) => {
+  const intl = useIntl();
+  const [item, setItem] = useState<IIntranetBond>();
+  const [notification, setNotification] = useState<INotificationBarState>();
+  const dispatch = useAppDispatch();
+  const loadBond = useCallback(async () => {
+    const res = await get_intranet_bond(name);
+    if (res.data?.intranetBond) {
+      setItem(res.data.intranetBond);
+    } else if (res.errors) {
+      dispatch(show_danger(res.errors));
+    }
+  }, [name, dispatch]);
+  useEffect(() => {
+    (async () => {
+      await loadBond();
+    })();
+  }, [loadBond]);
+  return (
+    <>
+      {notification && (
+        <NotificationBar
+          hidden={async () => {
+            setNotification(undefined);
+          }}
+          state={notification}
+        />
+      )}
+      <IForm
+        devices={devices}
+        bond={item}
+        onSubmit={async (values) => {
+          const res = await set_intranet_bond(
+            name,
+            values.interfaces,
+            values.address,
+            values.dns,
+            values.enable
+          );
+          if (res.data?.intranetBond) {
+            setNotification({
+              action: "success",
+              messages: [intl.formatMessage({ id: "flashes.succeed" })],
+            });
+          } else if (res.errors) {
+            setNotification({
+              action: "danger",
+              messages: res.errors.map((it) => it.message),
+            });
+          }
+        }}
+      />
+    </>
+  );
+};
+
 export default Widget;
