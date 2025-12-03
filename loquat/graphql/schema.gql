@@ -113,7 +113,8 @@ type Mutation {
     sortOrder: Int!
     memo: String!
   ): Ok!
-  destroyFirewallRule(id: ID!): Ok!
+  disableFirewallRule(id: ID!): Ok!
+  enableFirewallRule(id: ID!): Ok!
   associateRuleWithMember(rule: ID!, member: ID!): Ok!
   dissociateRuleFromMember(rule: ID!, member: ID!): Ok!
 
@@ -180,6 +181,7 @@ type Input {
   sortOrder: Int!
   memo: String!
   updatedAt: Time!
+  deletedAt: Time
 }
 type Nat {
   id: ID!
@@ -191,6 +193,7 @@ type Nat {
   sortOrder: Int!
   memo: String!
   updatedAt: Time!
+  deletedAt: Time
 }
 type Ping {
   id: ID!
@@ -198,22 +201,25 @@ type Ping {
   sortOrder: Int!
   memo: String!
   updatedAt: Time!
+  deletedAt: Time
 }
 type Output {
   address: String!
-  weekdays: [Week!]!
+  weekdays: [String!]!
   beginTime: String!
   endTime: String!
   members: [Member!]!
   updatedAt: Time!
+  deletedAt: Time
 }
 type SpeedLimit {
   value: Int!
-  weekdays: [Week!]!
+  weekdays: [String!]!
   beginTime: String!
   endTime: String!
   members: [Member!]!
   updatedAt: Time!
+  deletedAt: Time
 }
 union FirewallRule = Input | Output | Nat | Ping | SpeedLimit
 

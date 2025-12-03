@@ -2,11 +2,9 @@ package graphql
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"reflect"
 	"slices"
-	"time"
 
 	graphql "github.com/graph-gophers/graphql-go"
 	"google.golang.org/protobuf/proto"
@@ -150,7 +148,7 @@ func (p *Mutation) LimitSpeed(ctx context.Context, args struct {
 	return &Ok{}, nil
 }
 
-func (p *Mutation) DestroyFirewallRule(ctx context.Context, args struct {
+func (p *Mutation) DisableFirewallRule(ctx context.Context, args struct {
 	Id graphql.ID
 }) (*Ok, error) {
 	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
@@ -168,9 +166,6 @@ func (p *Mutation) DestroyFirewallRule(ctx context.Context, args struct {
 		if err := tx.Delete(&it).Error; err != nil {
 			return err
 		}
-		if err := tx.Model(&it).Association("Members").Clear(); err != nil {
-			return err
-		}
 		return nil
 	}); err != nil {
 		return nil, err
@@ -178,6 +173,34 @@ func (p *Mutation) DestroyFirewallRule(ctx context.Context, args struct {
 	return &Ok{}, nil
 }
 
+func (p *Mutation) EnableFirewallRule(ctx context.Context, args struct {
+	Id graphql.ID
+}) (*Ok, error) {
+	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+		return nil, err
+	}
+	id, err := FromId(args.Id)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.Rule
+		if err := tx.Unscoped().First(&it, id).Error; err != nil {
+			return err
+		}
+		if err = tx.Unscoped().Model(&it).Updates(map[string]interface{}{
+			"deleted_at": nil,
+			"version":    it.Version + 1,
+		}).Error; err != nil {
+			return err
+		}
+
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
 func (p *Mutation) AssociateRuleWithMember(ctx context.Context, args struct {
 	Member graphql.ID
 	Rule   graphql.ID
@@ -265,176 +288,195 @@ func (p *Query) IndexFirewallRule(ctx context.Context) ([]*FirewallRule, error) 
 }
 
 type Ping struct {
-	item       *v2.FirewallRule_Ping
-	id         uint
-	sort_order int
-	memo       string
-	updated_at *time.Time
+	rule *v2.FirewallRule_Ping
+	item *models.Rule
 }
 
 func (p *Ping) Id() graphql.ID {
-	return ToId(p.id)
+	return ToId(p.item.ID)
 }
 func (p *Ping) SortOrder() int32 {
-	return int32(p.sort_order)
+	return int32(p.item.SortOrder)
 }
 func (p *Ping) Memo() string {
-	return p.memo
+	return p.item.Memo
 }
 func (p *Ping) UpdatedAt() graphql.Time {
-	return graphql.Time{Time: *p.updated_at}
+	return graphql.Time{Time: p.item.UpdatedAt}
 }
 func (p *Ping) Device() string {
-	return p.item.Device
+	return p.rule.Device
+}
+func (p *Ping) DeletedAt() *graphql.Time {
+	if !p.item.DeletedAt.Valid {
+		return nil
+	}
+	return &graphql.Time{Time: p.item.DeletedAt.Time}
 }
 
 type SpeedLimit struct {
-	item       *v2.FirewallRule_SpeedLimit
-	id         uint
-	sort_order int
-	memo       string
-	updated_at *time.Time
-	members    []*Member
+	rule    *v2.FirewallRule_SpeedLimit
+	item    *models.Rule
+	members []*Member
 }
 
 func (p *SpeedLimit) Id() graphql.ID {
-	return ToId(p.id)
+	return ToId(p.item.ID)
 }
 func (p *SpeedLimit) SortOrder() int32 {
-	return int32(p.sort_order)
+	return int32(p.item.SortOrder)
 }
 func (p *SpeedLimit) Memo() string {
-	return p.memo
+	return p.item.Memo
 }
 func (p *SpeedLimit) UpdatedAt() graphql.Time {
-	return graphql.Time{Time: *p.updated_at}
+	return graphql.Time{Time: p.item.UpdatedAt}
 }
 func (p *SpeedLimit) Value() int32 {
-	return int32(p.item.Value)
+	return int32(p.rule.Value)
 }
 func (p *SpeedLimit) Weekdays() []string {
 	var items []string
-	for _, it := range p.item.Period.Days {
+	for _, it := range p.rule.Period.Days {
 		items = append(items, it.String())
 	}
 	return items
 }
 func (p *SpeedLimit) BeginTime() string {
-	return p.item.Period.Begin.ToString()
+	return p.rule.Period.Begin.ToString()
 }
 func (p *SpeedLimit) EndTime() string {
-	return p.item.Period.End.ToString()
+	return p.rule.Period.End.ToString()
 }
 func (p *SpeedLimit) Members() []*Member {
 	return p.members
 }
 
+func (p *SpeedLimit) DeletedAt() *graphql.Time {
+	if !p.item.DeletedAt.Valid {
+		return nil
+	}
+	return &graphql.Time{Time: p.item.DeletedAt.Time}
+}
+
 type Nat struct {
-	item       *v2.FirewallRule_Nat
-	id         uint
-	sort_order int
-	memo       string
-	updated_at *time.Time
+	rule *v2.FirewallRule_Nat
+	item *models.Rule
 }
 
 func (p *Nat) Id() graphql.ID {
-	return ToId(p.id)
+	return ToId(p.item.ID)
 }
 func (p *Nat) SortOrder() int32 {
-	return int32(p.sort_order)
+	return int32(p.item.SortOrder)
 }
 func (p *Nat) Memo() string {
-	return p.memo
+	return p.item.Memo
 }
 func (p *Nat) UpdatedAt() graphql.Time {
-	return graphql.Time{Time: *p.updated_at}
+	return graphql.Time{Time: p.item.UpdatedAt}
 }
 func (p *Nat) Device() string {
-	return p.item.Device
+	return p.rule.Device
 }
 func (p *Nat) Tcp() bool {
-	return p.item.Protocol == v2.FirewallRule_Tcp
+	return p.rule.Protocol == v2.FirewallRule_Tcp
 }
 func (p *Nat) DestinationPort() int32 {
-	return int32(p.item.Destination.Port)
+	return int32(p.rule.Destination.Port)
 }
 func (p *Nat) DestinationIp() string {
-	return p.item.Destination.Ip
+	return p.rule.Destination.Ip
 }
 func (p *Nat) Port() int32 {
-	return int32(p.item.Port)
+	return int32(p.rule.Port)
+}
+
+func (p *Nat) DeletedAt() *graphql.Time {
+	if !p.item.DeletedAt.Valid {
+		return nil
+	}
+	return &graphql.Time{Time: p.item.DeletedAt.Time}
 }
 
 type Input struct {
-	item       *v2.FirewallRule_Input
-	id         uint
-	sort_order int
-	memo       string
-	updated_at *time.Time
+	rule *v2.FirewallRule_Input
+	item *models.Rule
 }
 
 func (p *Input) Id() graphql.ID {
-	return ToId(p.id)
+	return ToId(p.item.ID)
 }
 func (p *Input) SortOrder() int32 {
-	return int32(p.sort_order)
+	return int32(p.item.SortOrder)
 }
 func (p *Input) Memo() string {
-	return p.memo
+	return p.item.Memo
 }
 func (p *Input) UpdatedAt() graphql.Time {
-	return graphql.Time{Time: *p.updated_at}
+	return graphql.Time{Time: p.item.UpdatedAt}
 }
 func (p *Input) Device() string {
-	return p.item.Device
+	return p.rule.Device
 }
 func (p *Input) Tcp() bool {
-	return p.item.Protocol == v2.FirewallRule_Tcp
+	return p.rule.Protocol == v2.FirewallRule_Tcp
 }
 func (p *Input) Port() int32 {
-	return int32(p.item.Port)
+	return int32(p.rule.Port)
+}
+
+func (p *Input) DeletedAt() *graphql.Time {
+	if !p.item.DeletedAt.Valid {
+		return nil
+	}
+	return &graphql.Time{Time: p.item.DeletedAt.Time}
 }
 
 type Output struct {
-	item       *v2.FirewallRule_Output
-	id         uint
-	sort_order int
-	memo       string
-	updated_at *time.Time
-	members    []*Member
+	rule    *v2.FirewallRule_Output
+	item    *models.Rule
+	members []*Member
 }
 
 func (p *Output) Id() graphql.ID {
-	return ToId(p.id)
+	return ToId(p.item.ID)
 }
 func (p *Output) SortOrder() int32 {
-	return int32(p.sort_order)
+	return int32(p.item.SortOrder)
 }
 func (p *Output) Memo() string {
-	return p.memo
+	return p.item.Memo
 }
 func (p *Output) UpdatedAt() graphql.Time {
-	return graphql.Time{Time: *p.updated_at}
+	return graphql.Time{Time: p.item.UpdatedAt}
 }
 func (p *Output) Address() string {
-	return p.item.Address
+	return p.rule.Address
 }
 
 func (p *Output) Weekdays() []string {
 	var items []string
-	for _, it := range p.item.Period.Days {
+	for _, it := range p.rule.Period.Days {
 		items = append(items, it.String())
 	}
 	return items
 }
 func (p *Output) BeginTime() string {
-	return p.item.Period.Begin.ToString()
+	return p.rule.Period.Begin.ToString()
 }
 func (p *Output) EndTime() string {
-	return p.item.Period.End.ToString()
+	return p.rule.Period.End.ToString()
 }
 func (p *Output) Members() []*Member {
 	return p.members
+}
+
+func (p *Output) DeletedAt() *graphql.Time {
+	if !p.item.DeletedAt.Valid {
+		return nil
+	}
+	return &graphql.Time{Time: p.item.DeletedAt.Time}
 }
 
 type FirewallRule struct {
@@ -442,100 +484,86 @@ type FirewallRule struct {
 	members []*Member
 }
 
-func (p *FirewallRule) ToOutput() (*Output, error) {
+func (p *FirewallRule) ToOutput() (*Output, bool) {
 	switch p.item.Type {
 	case reflect.TypeOf((*v2.FirewallRule_Output)(nil)).Name():
 		var it v2.FirewallRule_Output
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
-			return nil, err
+			return nil, false
 		}
 		return &Output{
-			item:       &it,
-			id:         p.item.ID,
-			sort_order: p.item.SortOrder,
-			memo:       p.item.Memo,
-			updated_at: &p.item.UpdatedAt,
-			members:    p.members,
-		}, nil
+			rule: &it,
+			item: p.item,
+
+			members: p.members,
+		}, true
 	default:
-		return nil, errors.New("not a output rule")
+		return nil, false
 	}
 }
 
-func (p *FirewallRule) ToInput() (*Input, error) {
+func (p *FirewallRule) ToInput() (*Input, bool) {
 	switch p.item.Type {
 	case reflect.TypeOf((*v2.FirewallRule_Input)(nil)).Name():
 		var it v2.FirewallRule_Input
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
-			return nil, err
+			return nil, false
 		}
 		return &Input{
-			item:       &it,
-			id:         p.item.ID,
-			sort_order: p.item.SortOrder,
-			memo:       p.item.Memo,
-			updated_at: &p.item.UpdatedAt,
-		}, nil
+			rule: &it,
+			item: p.item,
+		}, true
 	default:
-		return nil, errors.New("not a input rule")
+		return nil, false
 	}
 }
 
-func (p *FirewallRule) ToNat() (*Nat, error) {
+func (p *FirewallRule) ToNat() (*Nat, bool) {
 	switch p.item.Type {
 	case reflect.TypeOf((*v2.FirewallRule_Nat)(nil)).Name():
 		var it v2.FirewallRule_Nat
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
-			return nil, err
+			return nil, false
 		}
 		return &Nat{
-			item:       &it,
-			id:         p.item.ID,
-			sort_order: p.item.SortOrder,
-			memo:       p.item.Memo,
-			updated_at: &p.item.UpdatedAt,
-		}, nil
+			rule: &it,
+			item: p.item,
+		}, true
 	default:
-		return nil, errors.New("not a nat rule")
+		return nil, false
 	}
 }
 
-func (p *FirewallRule) ToPing() (*Ping, error) {
+func (p *FirewallRule) ToPing() (*Ping, bool) {
 	switch p.item.Type {
 	case reflect.TypeOf((*v2.FirewallRule_Ping)(nil)).Name():
 		var it v2.FirewallRule_Ping
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
-			return nil, err
+			return nil, false
 		}
 		return &Ping{
-			item:       &it,
-			id:         p.item.ID,
-			sort_order: p.item.SortOrder,
-			memo:       p.item.Memo,
-			updated_at: &p.item.UpdatedAt,
-		}, nil
+			rule: &it,
+			item: p.item,
+		}, true
 	default:
-		return nil, errors.New("not a ping rule")
+		return nil, false
 	}
 }
 
-func (p *FirewallRule) ToSpeedLimit() (*SpeedLimit, error) {
+func (p *FirewallRule) ToSpeedLimit() (*SpeedLimit, bool) {
 	switch p.item.Type {
 	case reflect.TypeOf((*v2.FirewallRule_SpeedLimit)(nil)).Name():
 		var it v2.FirewallRule_SpeedLimit
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
-			return nil, err
+			return nil, false
 		}
 		return &SpeedLimit{
-			item:       &it,
-			id:         p.item.ID,
-			sort_order: p.item.SortOrder,
-			memo:       p.item.Memo,
-			updated_at: &p.item.UpdatedAt,
-			members:    p.members,
-		}, nil
+			rule:    &it,
+			item:    p.item,
+			members: p.members,
+		}, true
 	default:
-		return nil, errors.New("not a speed-limit rule")
+		return nil, false
 	}
 }
 
