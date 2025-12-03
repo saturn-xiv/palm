@@ -80,6 +80,8 @@ export default {
   "forms.fields.label.sn": "SN",
   "forms.fields.label.ip": "IP",
   "forms.fields.label.owner": "Owner",
+  "forms.fields.label.sort-order": "Sort order",
+  "forms.fields.label.device": "Device",
   "forms.fields.label.host": "Host",
   "forms.fields.label.address": "Address",
   "forms.fields.label.netmask": "Netmask",

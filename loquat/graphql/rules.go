@@ -20,9 +20,10 @@ func (p *Mutation) AllowPing(ctx context.Context, args struct {
 	SortOrder int32
 	Memo      string
 }) (*Ok, error) {
-	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Ping{
-		Device: args.Device,
-	}, int(args.SortOrder), args.Memo); err != nil {
+	if err := p.save_firewall_rule(ctx, args.Id,
+		&v2.FirewallRule_Ping{
+			Device: args.Device,
+		}, int(args.SortOrder), args.Memo); err != nil {
 		return nil, err
 	}
 	return &Ok{}, nil
@@ -100,14 +101,15 @@ func (p *Mutation) DenyOutput(ctx context.Context, args struct {
 		days = append(days, v2.FirewallRule_Week(v2.FirewallRule_Week_value[it]))
 
 	}
-	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Output{
-		Address: args.Address,
-		Period: &v2.FirewallRule_Period{
-			Begin: begin,
-			End:   end,
-			Days:  days,
-		},
-	}, int(args.SortOrder), args.Memo); err != nil {
+	if err := p.save_firewall_rule(ctx, args.Id,
+		&v2.FirewallRule_Output{
+			Address: args.Address,
+			Period: &v2.FirewallRule_Period{
+				Begin: begin,
+				End:   end,
+				Days:  days,
+			},
+		}, int(args.SortOrder), args.Memo); err != nil {
 		return nil, err
 	}
 	return &Ok{}, nil
@@ -272,7 +274,7 @@ func (p *Query) IndexFirewallRule(ctx context.Context) ([]*FirewallRule, error) 
 		return nil, err
 	}
 	var rules []models.Rule
-	if err := p.db.Order("updated_at DESC").Preload("Members").Find(&rules).Error; err != nil {
+	if err := p.db.Unscoped().Order("updated_at DESC").Preload("Members").Find(&rules).Error; err != nil {
 		return nil, err
 	}
 	var res []*FirewallRule
@@ -486,15 +488,14 @@ type FirewallRule struct {
 
 func (p *FirewallRule) ToOutput() (*Output, bool) {
 	switch p.item.Type {
-	case reflect.TypeOf((*v2.FirewallRule_Output)(nil)).Name():
+	case reflect.TypeOf((*v2.FirewallRule_Output)(nil)).Elem().Name():
 		var it v2.FirewallRule_Output
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
 			return nil, false
 		}
 		return &Output{
-			rule: &it,
-			item: p.item,
-
+			rule:    &it,
+			item:    p.item,
 			members: p.members,
 		}, true
 	default:
@@ -504,7 +505,7 @@ func (p *FirewallRule) ToOutput() (*Output, bool) {
 
 func (p *FirewallRule) ToInput() (*Input, bool) {
 	switch p.item.Type {
-	case reflect.TypeOf((*v2.FirewallRule_Input)(nil)).Name():
+	case reflect.TypeOf((*v2.FirewallRule_Input)(nil)).Elem().Name():
 		var it v2.FirewallRule_Input
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
 			return nil, false
@@ -520,7 +521,7 @@ func (p *FirewallRule) ToInput() (*Input, bool) {
 
 func (p *FirewallRule) ToNat() (*Nat, bool) {
 	switch p.item.Type {
-	case reflect.TypeOf((*v2.FirewallRule_Nat)(nil)).Name():
+	case reflect.TypeOf((*v2.FirewallRule_Nat)(nil)).Elem().Name():
 		var it v2.FirewallRule_Nat
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
 			return nil, false
@@ -536,11 +537,12 @@ func (p *FirewallRule) ToNat() (*Nat, bool) {
 
 func (p *FirewallRule) ToPing() (*Ping, bool) {
 	switch p.item.Type {
-	case reflect.TypeOf((*v2.FirewallRule_Ping)(nil)).Name():
+	case reflect.TypeOf((*v2.FirewallRule_Ping)(nil)).Elem().Name():
 		var it v2.FirewallRule_Ping
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
 			return nil, false
 		}
+
 		return &Ping{
 			rule: &it,
 			item: p.item,
@@ -552,7 +554,7 @@ func (p *FirewallRule) ToPing() (*Ping, bool) {
 
 func (p *FirewallRule) ToSpeedLimit() (*SpeedLimit, bool) {
 	switch p.item.Type {
-	case reflect.TypeOf((*v2.FirewallRule_SpeedLimit)(nil)).Name():
+	case reflect.TypeOf((*v2.FirewallRule_SpeedLimit)(nil)).Elem().Name():
 		var it v2.FirewallRule_SpeedLimit
 		if err := proto.Unmarshal(p.item.Content, &it); err != nil {
 			return nil, false
@@ -568,17 +570,17 @@ func (p *FirewallRule) ToSpeedLimit() (*SpeedLimit, bool) {
 }
 
 func (p *Mutation) save_firewall_rule(ctx context.Context, id *graphql.ID, rule proto.Message, sort_order int, memo string) error {
+
 	user, ip, err := current_user(ctx, p.db, p.secrets)
 	if err != nil {
 		return err
 	}
-	type_ := reflect.TypeOf(rule).Name()
 	content, err := proto.Marshal(rule)
 	if err != nil {
 		return err
 	}
+	type_ := reflect.TypeOf(rule).Elem().Name()
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-
 		if id == nil {
 			if err := tx.Create(&models.Rule{
 				Content:   content,

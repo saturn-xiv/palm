@@ -31,7 +31,7 @@ const Widget = () => {
     {
       const res = await interfaces();
       if (res.data?.interfaces) {
-        setDevices(res.data.interfaces);
+        setDevices(res.data.interfaces.filter((it) => it.startsWith("en")));
       } else if (res.errors) {
         dispatch(show_danger(res.errors));
       }
@@ -145,23 +145,6 @@ const Widget = () => {
                 <div className="buttons are-small">
                   {it.deletedAt ? (
                     <>
-                      <ModalForm
-                        title={intl.formatMessage(
-                          {
-                            id: "pages.rules.edit.title",
-                          },
-                          { id: it.id }
-                        )}
-                        button={{
-                          action: "info",
-                          label: intl.formatMessage({
-                            id: "buttons.edit",
-                          }),
-                        }}
-                        handleRefresh={handleRefresh}
-                      >
-                        <Edit item={it} devices={devices} />
-                      </ModalForm>
                       <ConfirmDialog
                         button={{
                           action: "danger",
@@ -190,6 +173,23 @@ const Widget = () => {
                     </>
                   ) : (
                     <>
+                      <ModalForm
+                        title={intl.formatMessage(
+                          {
+                            id: "pages.rules.edit.title",
+                          },
+                          { id: it.id }
+                        )}
+                        button={{
+                          action: "info",
+                          label: intl.formatMessage({
+                            id: "buttons.edit",
+                          }),
+                        }}
+                        handleRefresh={handleRefresh}
+                      >
+                        <Edit item={it} devices={devices} />
+                      </ModalForm>
                       <ConfirmDialog
                         button={{
                           action: "danger",

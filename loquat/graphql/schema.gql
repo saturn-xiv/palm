@@ -221,7 +221,7 @@ type SpeedLimit {
   updatedAt: Time!
   deletedAt: Time
 }
-union FirewallRule = Input | Output | Nat | Ping | SpeedLimit
+union FirewallRule = Input | Nat | Ping | Output | SpeedLimit
 
 type InternetBond {
   interfaces: [String!]!

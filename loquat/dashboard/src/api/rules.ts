@@ -1,6 +1,122 @@
 import type { IOk } from ".";
 import { graphql, type IGraphqlResponse } from "../request";
 
+interface IAllowOutputResponse {
+  allowOutput: IOk;
+}
+
+export const allow_output = async (
+  id: string | undefined,
+  device: string,
+  tcp: boolean,
+  port: number,
+  destinationIp: string,
+  destinationPort: number,
+  sortOrder: number,
+  memo: string
+): Promise<IGraphqlResponse<IAllowOutputResponse>> => {
+  const res: IGraphqlResponse<IAllowOutputResponse> = await graphql(
+    `
+      mutation call(
+        $id: ID
+        $device: String!
+        $tcp: Boolean!
+        $port: Int!
+        $destinationIp: String!
+        $destinationPort: Int!
+        $sortOrder: Int!
+        $memo: String!
+      ) {
+        allowPing(
+          id: $id
+          device: $device
+          tcp: $tcp
+          port: $port
+          destinationIp: $destinationIp
+          destinationPort: $destinationPort
+          sortOrder: $sortOrder
+          memo: $memo
+        ) {
+          createdAt
+        }
+      }
+    `,
+    { id, device, tcp, port, destinationIp, destinationPort, sortOrder, memo }
+  );
+  return res;
+};
+
+interface IAllowPingResponse {
+  allowPing: IOk;
+}
+
+export const allow_ping = async (
+  id: string | undefined,
+  device: string,
+  sortOrder: number,
+  memo: string
+): Promise<IGraphqlResponse<IAllowPingResponse>> => {
+  const res: IGraphqlResponse<IAllowPingResponse> = await graphql(
+    `
+      mutation call(
+        $id: ID
+        $device: String!
+        $sortOrder: Int!
+        $memo: String!
+      ) {
+        allowPing(
+          id: $id
+          device: $device
+          sortOrder: $sortOrder
+          memo: $memo
+        ) {
+          createdAt
+        }
+      }
+    `,
+    { id, device, sortOrder, memo }
+  );
+  return res;
+};
+
+interface IAllowInputResponse {
+  allowInput: IOk;
+}
+
+export const allow_input = async (
+  id: string | undefined,
+  device: string,
+  tcp: boolean,
+  port: number,
+  sortOrder: number,
+  memo: string
+): Promise<IGraphqlResponse<IAllowInputResponse>> => {
+  const res: IGraphqlResponse<IAllowInputResponse> = await graphql(
+    `
+      mutation call(
+        $id: ID
+        $device: String!
+        $tcp: Boolean!
+        $port: Int!
+        $sortOrder: Int!
+        $memo: String!
+      ) {
+        allowInput(
+          id: $id
+          device: $device
+          tcp: $tcp
+          port: $port
+          sortOrder: $sortOrder
+          memo: $memo
+        ) {
+          createdAt
+        }
+      }
+    `,
+    { id, device, tcp, port, sortOrder, memo }
+  );
+  return res;
+};
 interface IDisableResponse {
   disableFirewallRule: IOk;
 }
