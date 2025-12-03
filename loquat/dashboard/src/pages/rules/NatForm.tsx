@@ -9,7 +9,7 @@ import {
 } from "../../components/NotificationBar";
 import { allow_nat, protocol, TCP, UDP, type INatRule } from "../../api/rules";
 
-const SORT_ORDER_SINCE = 2000;
+const SORT_ORDER_SINCE = 3000;
 
 const sort_orders = (): number[] => {
   return [...Array(100).keys()].map((i) => i + SORT_ORDER_SINCE);
@@ -162,7 +162,7 @@ const IForm = withFormik<
 >({
   mapPropsToValues: (props) => {
     return {
-      protocol: protocol(props.rule?.tcp || true),
+      protocol: protocol(props.rule?.tcp),
       port: props.rule?.port || 8080,
       destinationIp: props.rule?.destinationIp || "",
       destinationPort: props.rule?.destinationPort || 80,

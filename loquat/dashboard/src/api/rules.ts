@@ -6,7 +6,7 @@ export const INPUT_RULE = "Input";
 export const PING_RULE = "Ping";
 export const TCP = "TCP";
 export const UDP = "UDP";
-export const protocol = (tcp: boolean): string => {
+export const protocol = (tcp?: boolean): string => {
   return tcp ? TCP : UDP;
 };
 
