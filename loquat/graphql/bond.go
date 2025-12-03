@@ -21,13 +21,13 @@ func (p *Mutation) InternetBond(ctx context.Context, args struct {
 	}
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		var bond InternetBond
+		var bond bondProfile
 		err := models.GetB(tx, bondKey(args.Name), &bond)
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			return err
 		}
-		bond.interfaces = args.Interfaces
-		bond.enable = args.Enable
+		bond.Interfaces = args.Interfaces
+		bond.Enable = args.Enable
 		if err = models.SetB(tx, bondKey(args.Name), &bond); err != nil {
 			return err
 		}
@@ -52,15 +52,15 @@ func (p *Mutation) IntranetBond(ctx context.Context, args struct {
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		var bond IntranetBond
+		var bond bondProfile
 		err := models.GetB(tx, bondKey(args.Name), &bond)
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			return err
 		}
-		bond.interfaces = args.Interfaces
-		bond.address = args.Address
-		bond.enable = args.Enable
-		bond.dns = args.Dns
+		bond.Interfaces = args.Interfaces
+		bond.Address = args.Address
+		bond.Enable = args.Enable
+		bond.Dns = args.Dns
 		if err = models.SetB(tx, bondKey(args.Name), &bond); err != nil {
 			return err
 		}
@@ -78,13 +78,13 @@ func (p *Query) InternetBond(ctx context.Context, args struct{ Name string }) (*
 		return nil, err
 	}
 
-	var bond InternetBond
+	var bond bondProfile
 	err := models.GetB(p.db, bondKey(args.Name), &bond)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
 
-	return &bond, nil
+	return &InternetBond{item: &bond}, nil
 }
 
 func (p *Query) IntranetBond(ctx context.Context, args struct{ Name string }) (*IntranetBond, error) {
@@ -92,49 +92,52 @@ func (p *Query) IntranetBond(ctx context.Context, args struct{ Name string }) (*
 		return nil, err
 	}
 
-	var bond IntranetBond
+	var bond bondProfile
 	err := models.GetB(p.db, bondKey(args.Name), &bond)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
 
-	return &bond, nil
+	return &IntranetBond{item: &bond}, nil
 }
 func bondKey(label string) string {
 	return fmt.Sprintf("bond.%s", label)
 }
 
 type InternetBond struct {
-	interfaces []string
-	enable     bool
+	item *bondProfile
 }
 
 func (p *InternetBond) Interfaces() []string {
-	return p.interfaces
+	return p.item.Interfaces
 }
 
 func (p *InternetBond) Enable() bool {
-	return p.enable
+	return p.item.Enable
 }
 
 type IntranetBond struct {
-	interfaces []string
-	address    string
-	enable     bool
-	dns        string
+	item *bondProfile
 }
 
 func (p *IntranetBond) Interfaces() []string {
-	return p.interfaces
+	return p.item.Interfaces
 }
 func (p *IntranetBond) Address() string {
-	return p.address
+	return p.item.Address
 }
 
 func (p *IntranetBond) Enable() bool {
-	return p.enable
+	return p.item.Enable
 }
 
 func (p *IntranetBond) Dns() string {
-	return p.dns
+	return p.item.Dns
+}
+
+type bondProfile struct {
+	Interfaces []string
+	Address    string
+	Enable     bool
+	Dns        string
 }

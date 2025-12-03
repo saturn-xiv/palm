@@ -31,7 +31,7 @@ export interface IIntranetBond {
 interface IGetIntranetBondResponse {
   intranetBond: IIntranetBond;
 }
-export const intranet_bond = async (
+export const get_intranet_bond = async (
   name: string
 ): Promise<IGraphqlResponse<IGetIntranetBondResponse>> => {
   const res: IGraphqlResponse<IGetIntranetBondResponse> = await graphql(
@@ -90,7 +90,7 @@ export const set_intranet_bond = async (
         $interfaces: [String!]!
         $address: String!
         $dns: Dns!
-        $enable: Bool!
+        $enable: Boolean!
       ) {
         intranetBond(
           name: $name
@@ -117,7 +117,11 @@ export const set_internet_bond = async (
 ): Promise<IGraphqlResponse<ISetInternetBondResponse>> => {
   const res: IGraphqlResponse<ISetInternetBondResponse> = await graphql(
     `
-      mutation call($name: String!, $interfaces: [String!]!, $enable: Bool!) {
+      mutation call(
+        $name: String!
+        $interfaces: [String!]!
+        $enable: Boolean!
+      ) {
         internetBond(name: $name, interfaces: $interfaces, enable: $enable) {
           createdAt
         }

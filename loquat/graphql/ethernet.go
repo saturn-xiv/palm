@@ -2,9 +2,8 @@ package graphql
 
 import (
 	"context"
-	"encoding/gob"
+	"errors"
 	"fmt"
-	"log/slog"
 
 	"gorm.io/gorm"
 
@@ -22,8 +21,9 @@ func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		key := networkInterfaceKey(args.Name)
 		var it ethernetProfile
-		if err := models.GetB(tx, key, &it); err != nil {
-			slog.Error(err.Error())
+		err := models.GetB(tx, key, &it)
+		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+			return err
 		}
 		it.Enable = false
 		if err := models.SetB(tx, key, &it); err != nil {
@@ -109,8 +109,9 @@ func (p *Query) GetNetworkInterface(ctx context.Context, args struct {
 		return nil, err
 	}
 	var it ethernetProfile
-	if err := models.GetB(p.db, networkInterfaceKey(args.Name), &it); err != nil {
-		slog.Error(err.Error())
+	err := models.GetB(p.db, networkInterfaceKey(args.Name), &it)
+	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, err
 	}
 
 	return &NetworkInterfaceProfile{item: &it}, nil
@@ -223,8 +224,4 @@ func (p *NetworkInterfaceProfile) ToDynamicIp() (*DynamicIp, bool) {
 		enable: p.item.Enable,
 	}, true
 
-}
-
-func init() {
-	gob.Register(ethernetProfile{})
 }

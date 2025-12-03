@@ -37,23 +37,6 @@ interface IFormValues {
   enable: boolean;
 }
 
-/*
-<div className="field">
-        <div className="control">
-          <div className="radios">
-            <label className="radio">
-              <Field type="radio" name="enable" value={YES} />
-              <FormattedMessage id="buttons.enable" />
-            </label>
-            <label className="radio">
-              <Field type="radio" name="enable" value={NO} />
-              <FormattedMessage id="buttons.disable" />
-            </label>
-          </div>
-        </div>
-      </div>
-*/
-
 const InnerForm = (
   props: {
     onSubmit: (value: IFormValues) => Promise<void>;

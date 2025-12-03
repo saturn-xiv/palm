@@ -3,6 +3,7 @@ package graphql
 import (
 	"context"
 	_ "embed"
+	"encoding/gob"
 	"errors"
 	"net"
 	"net/http"
@@ -220,4 +221,9 @@ func current_user(ctx context.Context, db *gorm.DB, jwt_key []byte) (*models.Use
 		return nil, "", err
 	}
 	return &user, client_ip, nil
+}
+
+func init() {
+	gob.Register(ethernetProfile{})
+	gob.Register(bondProfile{})
 }

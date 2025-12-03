@@ -50,7 +50,7 @@ func Export(db *gorm.DB) (*v2.Router, error) {
 }
 
 func load_internet_bond(db *gorm.DB, bond *v2.InternetBond) (bool, error) {
-	var it InternetBond
+	var it bondProfile
 	err := models.GetB(db, bondKey(v2.WAN), &bond)
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return false, nil
@@ -58,14 +58,14 @@ func load_internet_bond(db *gorm.DB, bond *v2.InternetBond) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if !it.enable {
+	if !it.Enable {
 		return false, nil
 	}
 
 	bond.MiiMonitorInterval = 1
 	bond.Interfaces = make(map[string]*v2.Internet)
 
-	for _, name := range it.interfaces {
+	for _, name := range it.Interfaces {
 		var profile v2.Internet
 		if err = models.GetProtobuf(db, networkInterfaceKey(name), &profile); err != nil {
 			return false, err
@@ -77,7 +77,7 @@ func load_internet_bond(db *gorm.DB, bond *v2.InternetBond) (bool, error) {
 }
 
 func load_intranet_bond(db *gorm.DB, name string, bond *v2.IntranetBond) (bool, error) {
-	var it IntranetBond
+	var it bondProfile
 	err := models.GetB(db, bondKey(name), &it)
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return false, nil
@@ -85,20 +85,20 @@ func load_intranet_bond(db *gorm.DB, name string, bond *v2.IntranetBond) (bool, 
 	if err != nil {
 		return false, err
 	}
-	if !it.enable {
+	if !it.Enable {
 		return false, nil
 	}
 	bond.MiiMonitorInterval = 1
 	bond.GratuitousArp = 5
 
-	_, net4, err := net.ParseCIDR(it.address)
+	_, net4, err := net.ParseCIDR(it.Address)
 	if err != nil {
 		return false, err
 	}
 
-	bond.Interfaces = it.interfaces
+	bond.Interfaces = it.Interfaces
 	bond.Network = &v2.Intranet{
-		Address: it.address,
+		Address: it.Address,
 	}
 	{
 		var hosts []models.Host
@@ -113,7 +113,7 @@ func load_intranet_bond(db *gorm.DB, name string, bond *v2.IntranetBond) (bool, 
 			})
 		}
 	}
-	switch it.dns {
+	switch it.Dns {
 	case "Google":
 		bond.Network.Dns = &v2.Intranet_Google_{Google: &v2.Intranet_Google{}}
 	default:
