@@ -1,11 +1,20 @@
 import type { IOk } from ".";
 import { graphql, type IGraphqlResponse } from "../request";
 
-interface IAllowOutputResponse {
-  allowOutput: IOk;
+export const NAT_RULE = "Nat";
+export const INPUT_RULE = "Input";
+export const PING_RULE = "Ping";
+export const TCP = "TCP";
+export const UDP = "UDP";
+export const protocol = (tcp: boolean): string => {
+  return tcp ? TCP : UDP;
+};
+
+interface IAllowNatResponse {
+  allowNat: IOk;
 }
 
-export const allow_output = async (
+export const allow_nat = async (
   id: string | undefined,
   device: string,
   tcp: boolean,
@@ -14,8 +23,8 @@ export const allow_output = async (
   destinationPort: number,
   sortOrder: number,
   memo: string
-): Promise<IGraphqlResponse<IAllowOutputResponse>> => {
-  const res: IGraphqlResponse<IAllowOutputResponse> = await graphql(
+): Promise<IGraphqlResponse<IAllowNatResponse>> => {
+  const res: IGraphqlResponse<IAllowNatResponse> = await graphql(
     `
       mutation call(
         $id: ID
@@ -27,7 +36,7 @@ export const allow_output = async (
         $sortOrder: Int!
         $memo: String!
       ) {
-        allowPing(
+        allowNat(
           id: $id
           device: $device
           tcp: $tcp

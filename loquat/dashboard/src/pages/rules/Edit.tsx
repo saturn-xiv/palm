@@ -1,8 +1,15 @@
-import type { IInputRule, INatRule, IPingRule, IRule } from "../../api/rules";
+import {
+  INPUT_RULE,
+  NAT_RULE,
+  PING_RULE,
+  type IInputRule,
+  type INatRule,
+  type IPingRule,
+  type IRule,
+} from "../../api/rules";
 import NatForm from "./NatForm";
 import InputForm from "./InputForm";
 import PingForm from "./PingForm";
-import { INPUT_RULE, NAT_RULE, PING_RULE } from "./Show";
 
 interface IProps {
   item: IRule;

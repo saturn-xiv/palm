@@ -1,11 +1,15 @@
-import type { IInputRule, INatRule, IPingRule, IRule } from "../../api/rules";
+import {
+  INPUT_RULE,
+  NAT_RULE,
+  PING_RULE,
+  type IInputRule,
+  type INatRule,
+  type IPingRule,
+  type IRule,
+} from "../../api/rules";
 import ShowNat from "./ShowNat";
 import ShowInput from "./ShowInput";
 import ShowPing from "./ShowPing";
-
-export const NAT_RULE = "Nat";
-export const INPUT_RULE = "Input";
-export const PING_RULE = "Ping";
 
 interface IProps {
   item: IRule;

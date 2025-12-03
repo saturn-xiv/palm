@@ -88,6 +88,9 @@ export default {
   "forms.fields.label.dns1": "DNS 1",
   "forms.fields.label.dns2": "DNS 2",
   "forms.fields.label.gateway": "Gateway",
+  "forms.fields.label.destination-ip": "Destination ip",
+  "forms.fields.label.destination-port": "Destination port",
+  "forms.fields.label.port": "Port",
 
   "tables.column.label.id": "ID",
   "tables.column.label.ip": "IP",

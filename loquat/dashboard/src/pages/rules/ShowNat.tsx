@@ -1,5 +1,4 @@
-import type { INatRule } from "../../api/rules";
-import { protocol } from "../../components";
+import { protocol, type INatRule } from "../../api/rules";
 
 interface IProps {
   item: INatRule;

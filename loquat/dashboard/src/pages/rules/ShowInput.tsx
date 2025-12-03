@@ -1,5 +1,4 @@
-import type { IInputRule } from "../../api/rules";
-import { protocol } from "../../components";
+import { protocol, type IInputRule } from "../../api/rules";
 
 interface IProps {
   item: IInputRule;
