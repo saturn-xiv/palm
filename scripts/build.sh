@@ -82,7 +82,7 @@ function build_deb() {
 
     cd $(dirname $target/)
     sed -i "7s/all/$2/g" $1/DEBIAN/control
-    dpkg-deb --build $1 $package
+    dpkg-deb --root-owner-group --build $1 $package
 }
 
 if [ -d $TARGET ]

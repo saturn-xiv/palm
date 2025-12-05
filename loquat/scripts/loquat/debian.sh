@@ -70,5 +70,8 @@ then
     systemctl enable serial-getty@ttyS0.service
 fi
 
+sed -i 's/^ENABLED=.*$/ENABLED="true"/' /etc/default/sysstat
+systemctl restart sysstat.service
+
 echo 'done.'
 exit 0
