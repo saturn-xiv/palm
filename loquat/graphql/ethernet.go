@@ -19,7 +19,7 @@ func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
 	}
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		key := networkInterfaceKey(args.Name)
+		key := ethernetKey(args.Name)
 		var it ethernetProfile
 		err := models.GetB(tx, key, &it)
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
@@ -62,7 +62,7 @@ func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args s
 		profile.Dns = args.Dns
 		profile.Dhcp = false
 		profile.Enable = true
-		if err = models.SetB(tx, networkInterfaceKey(args.Name), &profile); err != nil {
+		if err = models.SetB(tx, ethernetKey(args.Name), &profile); err != nil {
 			return err
 		}
 
@@ -90,7 +90,7 @@ func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struc
 		profile.Isp = args.Isp
 		profile.Dhcp = true
 		profile.Enable = true
-		if err = models.SetB(tx, networkInterfaceKey(args.Name), &profile); err != nil {
+		if err = models.SetB(tx, ethernetKey(args.Name), &profile); err != nil {
 			return err
 		}
 
@@ -109,14 +109,14 @@ func (p *Query) GetNetworkInterface(ctx context.Context, args struct {
 		return nil, err
 	}
 	var it ethernetProfile
-	err := models.GetB(p.db, networkInterfaceKey(args.Name), &it)
+	err := models.GetB(p.db, ethernetKey(args.Name), &it)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
 
 	return &NetworkInterfaceProfile{item: &it}, nil
 }
-func networkInterfaceKey(name string) string {
+func ethernetKey(name string) string {
 	return fmt.Sprintf("net.%s", name)
 }
 

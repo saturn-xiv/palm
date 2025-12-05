@@ -35,7 +35,11 @@ const Widget = ({ item }: IProps) => {
                 ))}
               </ul>
             </div>
-            <div>{item.memo}</div>
+            <div>
+              {item.label}
+              <br />
+              {item.memo}
+            </div>
           </div>
         </div>
         <footer className="card-footer"></footer>

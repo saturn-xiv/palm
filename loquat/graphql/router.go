@@ -11,7 +11,6 @@ import (
 
 	"github.com/saturn-xiv/palm/loquat/models"
 	"github.com/saturn-xiv/palm/loquat/router"
-	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
 
 func (p *Mutation) Apply(ctx context.Context, args struct{ Run bool }) (*Ok, error) {
@@ -55,7 +54,8 @@ func (p *Query) IndexNetworkInterface(ctx context.Context) ([]*NetworkInterface,
 		}
 		it, err := NewNetworkInterface(p.db, &iface)
 		if err != nil {
-			return nil, err
+			slog.Error("failed to detect interface", "name", iface.Name)
+			continue
 		}
 		items = append(items, it)
 	}
@@ -81,17 +81,18 @@ func (p *Query) Status(ctx context.Context) (*router.SystemStatus, error) {
 }
 
 type NetworkInterface struct {
-	item *net.Interface
-	memo string
+	item  *net.Interface
+	label string
+	memo  string
 }
 
 func NewNetworkInterface(db *gorm.DB, iface *net.Interface) (*NetworkInterface, error) {
-	var profile v2.Internet
-	err := models.GetProtobuf(db, networkInterfaceKey(iface.Name), &profile)
+	var profile ethernetProfile
+	err := models.GetB(db, ethernetKey(iface.Name), &profile)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
-	return &NetworkInterface{item: iface, memo: profile.Memo}, nil
+	return &NetworkInterface{item: iface, label: profile.Label, memo: profile.Memo}, nil
 
 }
 
@@ -101,6 +102,10 @@ func (p *NetworkInterface) Name() string {
 
 func (p *NetworkInterface) Memo() string {
 	return p.memo
+}
+
+func (p *NetworkInterface) Label() string {
+	return p.label
 }
 
 func (p *NetworkInterface) Mtu() int32 {

@@ -2,8 +2,10 @@ package graphql
 
 import (
 	"errors"
+	"log/slog"
 	"net"
 
+	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
@@ -13,112 +15,127 @@ import (
 func Export(db *gorm.DB) (*v2.Router, error) {
 	var rt v2.Router
 	{
-		var bond v2.InternetBond
-		ok, err := load_internet_bond(db, &bond)
+		slog.Debug("load wan profile")
+		bond, err := load_internet_bond(db, v2.WAN)
 		if err != nil {
 			return nil, err
 		}
-		if ok {
-			rt.Wan = &bond
-		}
+		rt.Wan = bond
 	}
 	{
-		var bond v2.IntranetBond
-		ok, err := load_intranet_bond(db, v2.DMZ, &bond)
+		slog.Debug("load dmz profile")
+		bond, err := load_intranet_bond(db, v2.DMZ)
 		if err != nil {
 			return nil, err
 		}
-		if ok {
-			rt.Dmz = &bond
-		}
+		rt.Dmz = bond
 	}
 	{
-		var bond v2.IntranetBond
-		ok, err := load_intranet_bond(db, v2.LAN, &bond)
+		slog.Debug("load lan profile")
+		bond, err := load_intranet_bond(db, v2.LAN)
 		if err != nil {
 			return nil, err
 		}
-		if ok {
-			rt.Lan = &bond
-		}
+		rt.Lan = bond
 	}
 
-	if err := rt.VerifyInterface(); err != nil {
-		return nil, err
+	{
+		slog.Debug("verify network interfaces")
+		if err := rt.VerifyInterface(); err != nil {
+			return nil, err
+		}
 	}
 	return &rt, nil
 }
 
-func load_internet_bond(db *gorm.DB, bond *v2.InternetBond) (bool, error) {
-	var it bondProfile
-	err := models.GetB(db, bondKey(v2.WAN), &bond)
-	if errors.Is(err, gorm.ErrRecordNotFound) {
-		return false, nil
-	}
-	if err != nil {
-		return false, err
-	}
-	if !it.Enable {
-		return false, nil
-	}
-
-	bond.MiiMonitorInterval = 1
-	bond.Interfaces = make(map[string]*v2.Internet)
-
-	for _, name := range it.Interfaces {
-		var profile v2.Internet
-		if err = models.GetProtobuf(db, networkInterfaceKey(name), &profile); err != nil {
-			return false, err
-		}
-		bond.Interfaces[name] = &profile
-	}
-
-	return true, nil
-}
-
-func load_intranet_bond(db *gorm.DB, name string, bond *v2.IntranetBond) (bool, error) {
+func load_bond(db *gorm.DB, name string) (*bondProfile, error) {
 	var it bondProfile
 	err := models.GetB(db, bondKey(name), &it)
+	if err == nil {
+		return &it, nil
+	}
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		return false, nil
+		return nil, nil
 	}
-	if err != nil {
-		return false, err
-	}
-	if !it.Enable {
-		return false, nil
-	}
-	bond.MiiMonitorInterval = 1
-	bond.GratuitousArp = 5
+	return nil, err
+}
 
-	_, net4, err := net.ParseCIDR(it.Address)
+func load_internet_bond(db *gorm.DB, name string) (*v2.InternetBond, error) {
+	bond, err := load_bond(db, name)
 	if err != nil {
-		return false, err
+		return nil, err
+	}
+	if bond == nil || !bond.Enable {
+		return nil, nil
 	}
 
-	bond.Interfaces = it.Interfaces
-	bond.Network = &v2.Intranet{
-		Address: it.Address,
+	res := v2.InternetBond{
+		MiiMonitorInterval: 1,
+		Interfaces:         make(map[string]*v2.Internet),
 	}
+	for _, name := range bond.Interfaces {
+		var profile ethernetProfile
+		if err = models.GetB(db, ethernetKey(name), &profile); err != nil {
+			return nil, err
+		}
+		it := v2.Internet{
+			Label: profile.Label,
+			Memo:  profile.Memo,
+		}
+		if profile.Dhcp {
+			it.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
+		} else {
+			it.Ip = &v2.Internet_Static_{Static: &v2.Internet_Static{
+				Address: profile.Address,
+				Netmask: profile.Netmask,
+				Gateway: profile.Gateway,
+				Dns:     profile.Dns,
+			}}
+		}
+		res.Interfaces[name] = &it
+	}
+	return &res, nil
+}
+
+func load_intranet_bond(db *gorm.DB, name string) (*v2.IntranetBond, error) {
+	bond, err := load_bond(db, name)
+	if err != nil {
+		return nil, err
+	}
+	if bond == nil || !bond.Enable {
+		return nil, nil
+	}
+	res := v2.IntranetBond{
+		Interfaces:         bond.Interfaces,
+		MiiMonitorInterval: 1,
+		GratuitousArp:      5,
+		Network: &v2.Intranet{
+			Address: bond.Address,
+		},
+	}
+	switch bond.Dns {
+	case "Google":
+		res.Network.Dns = &v2.Intranet_Google_{Google: &v2.Intranet_Google{}}
+	default:
+		res.Network.Dns = &v2.Intranet_Ali_{Ali: &v2.Intranet_Ali{}}
+	}
+
 	{
+		_, net4, err := net.ParseCIDR(bond.Address)
+		if err != nil {
+			return nil, err
+		}
 		var hosts []models.Host
 		if err = db.Where(map[string]interface{}{"network": net4.String(), "fixed": true}).Find(&hosts).Error; err != nil {
-			return false, err
+			return nil, err
 		}
 		for _, host := range hosts {
-			bond.Network.Hosts = append(bond.Network.Hosts, &v2.Intranet_Host{
+			res.Network.Hosts = append(res.Network.Hosts, &v2.Intranet_Host{
 				Mac:  host.Mac,
 				Ip:   host.Ip,
 				Name: *host.Name,
 			})
 		}
 	}
-	switch it.Dns {
-	case "Google":
-		bond.Network.Dns = &v2.Intranet_Google_{Google: &v2.Intranet_Google{}}
-	default:
-		bond.Network.Dns = &v2.Intranet_Ali_{Ali: &v2.Intranet_Ali{}}
-	}
-
-	return true, nil
+	return &res, nil
 }

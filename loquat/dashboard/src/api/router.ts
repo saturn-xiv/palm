@@ -82,6 +82,7 @@ export interface INetworkInterface {
   addresses: string[];
   multicastAddresses: string[];
   mtu: number;
+  label: string;
   memo: string;
 }
 
@@ -110,6 +111,7 @@ export const status = async (): Promise<IGraphqlResponse<IStatusResponse>> => {
           addresses
           multicastAddresses
           mtu
+          label
           memo
         }
         status {

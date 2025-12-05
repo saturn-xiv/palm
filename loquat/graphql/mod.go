@@ -27,6 +27,7 @@ var (
 	Authorization = "Authorization"
 	Bearer        = "Bearer "
 	XForwardedFor = "X-Forwarded-For"
+	XRealIp       = "X-Real-IP"
 )
 
 var gl_validate = validator.New(validator.WithRequiredStructEnabled())
@@ -188,7 +189,7 @@ func FromId(id graphql.ID) (uint, error) {
 }
 
 func client_ip(ctx context.Context) string {
-	it, ok := ctx.Value(headerKey(XForwardedFor)).(string)
+	it, ok := ctx.Value(headerKey(XRealIp)).(string)
 	if ok {
 		return it
 

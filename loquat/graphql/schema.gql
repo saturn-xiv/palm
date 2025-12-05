@@ -138,6 +138,7 @@ type NetworkInterface {
   addresses: [String!]!
   multicastAddresses: [String!]!
   mtu: Int!
+  label: String!
   memo: String!
 }
 
