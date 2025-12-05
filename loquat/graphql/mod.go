@@ -56,6 +56,8 @@ func Handler(db *gorm.DB, secret_key []byte) (http.HandlerFunc, error) {
 			}
 		}
 		ctx = context.WithValue(ctx, headerKey(XForwardedFor), req.Header.Get(XForwardedFor))
+		ctx = context.WithValue(ctx, headerKey(XRealIp), req.Header.Get(XRealIp))
+		// slog.Debug("header", XForwardedFor, req.Header.Get(XForwardedFor), XRealIp, req.Header.Get(XRealIp))
 		handler.ServeHTTP(wrt, req.WithContext(ctx))
 	}), nil
 }
@@ -192,7 +194,6 @@ func client_ip(ctx context.Context) string {
 	it, ok := ctx.Value(headerKey(XRealIp)).(string)
 	if ok {
 		return it
-
 	}
 	return "n/a"
 }
