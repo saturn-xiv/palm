@@ -5,6 +5,7 @@ interface IProps {
   button: { action: string; label: string };
   children: ReactNode;
   handleRefresh: () => Promise<void>;
+  footer?: ReactNode;
 }
 
 const Widget = (props: IProps) => {
@@ -35,7 +36,9 @@ const Widget = (props: IProps) => {
             />
           </header>
           <section className="modal-card-body">{props.children}</section>
-          <footer className="modal-card-foot" />
+          <footer className="modal-card-foot">
+            {props.footer && props.footer}
+          </footer>
         </div>
       </div>
     </>

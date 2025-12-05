@@ -75,6 +75,8 @@ function build_deb() {
     cp -r scripts/$1 $target/usr/share/$1/scripts
     cp -r scripts/DEBIAN $target/
 
+    mkdir -p $target/etc/$1    
+
     mkdir -p $target/var/lib/$1
     chmod 400 $target/var/lib/$1
 

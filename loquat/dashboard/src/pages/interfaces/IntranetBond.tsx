@@ -19,6 +19,17 @@ const DEFAULT_ADDRESS = "192.168.0.1/24";
 const DNS_GOOGLE = "Google";
 const DNS_ALI = "Ali";
 
+export const Description = () => (
+  <>
+    <div className="block">
+      <strong>mode 2 (balance-xor)</strong>
+      <br />
+      Transmits based on the selected transmit hash policy, which can be altered
+      via the <em>xmit_hash_policy</em> option. This mode provides load
+      balancing and fault tolerance.
+    </div>
+  </>
+);
 interface IProps {
   name: string;
   devices: string[];
