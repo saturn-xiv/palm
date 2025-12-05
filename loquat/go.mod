@@ -1,17 +1,17 @@
 module github.com/saturn-xiv/palm/loquat
 
-go 1.25.4
+go 1.25.5
 
 require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/go-playground/validator/v10 v10.28.0
-	github.com/goccy/go-yaml v1.18.0
+	github.com/goccy/go-yaml v1.19.0
 	github.com/golang-jwt/jwt/v5 v5.3.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/handlers v1.5.2
 	github.com/gorilla/mux v1.8.1
 	github.com/graph-gophers/graphql-go v1.8.0
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 	google.golang.org/protobuf v1.36.10
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.31.1

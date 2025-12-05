@@ -1,6 +1,6 @@
 module github.com/saturn-xiv/palm/daisy
 
-go 1.25.4
+go 1.25.5
 
 require (
 	github.com/BurntSushi/toml v1.5.0
@@ -15,10 +15,10 @@ require (
 	github.com/graph-gophers/graphql-go v1.8.0
 	github.com/minio/minio-go/v7 v7.0.97
 	github.com/rabbitmq/amqp091-go v1.10.0
-	github.com/redis/go-redis/v9 v9.17.0
-	github.com/spf13/cobra v1.10.1
+	github.com/redis/go-redis/v9 v9.17.2
+	github.com/spf13/cobra v1.10.2
 	github.com/tink-crypto/tink-go/v2 v2.5.0
-	github.com/twilio/twilio-go v1.28.7
+	github.com/twilio/twilio-go v1.28.8
 	github.com/wneessen/go-mail v0.7.2
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
@@ -52,11 +52,11 @@ require (
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/klauspost/compress v1.18.1 // indirect
+	github.com/klauspost/compress v1.18.2 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/klauspost/crc32 v1.3.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/microsoft/go-mssqldb v1.9.4 // indirect
+	github.com/microsoft/go-mssqldb v1.9.5 // indirect
 	github.com/minio/crc64nvme v1.1.1 // indirect
 	github.com/minio/md5-simd v1.1.2 // indirect
 	github.com/ncruces/go-strftime v1.0.0 // indirect
@@ -64,15 +64,16 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/rs/xid v1.6.0 // indirect
+	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
-	github.com/tinylib/msgp v1.5.0 // indirect
+	github.com/tinylib/msgp v1.6.1 // indirect
 	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/exp v0.0.0-20251113190631-e25ba8c21ef6 // indirect
+	golang.org/x/exp v0.0.0-20251125195548-87e1e737ad39 // indirect
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/sync v0.18.0 // indirect
 	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/text v0.31.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20251111163417-95abcf5c77ba // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/plugin/dbresolver v1.6.2 // indirect
 	modernc.org/libc v1.67.1 // indirect
