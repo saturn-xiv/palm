@@ -19,3 +19,4 @@ systemctl daemon-reload
 systemctl restart systemd-networkd
 systemctl restart systemd-resolved
 systemctl restart systemd-timesyncd
+

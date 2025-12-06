@@ -40,11 +40,8 @@ func (p *Router) Render(wrt io.Writer) error {
 	if err := p.setup_netplan(wrt); err != nil {
 		return err
 	}
-	if p.Dmz != nil {
-		p.Dmz.Network.dnsmasq(wrt, DMZ)
-	}
-	if p.Lan != nil {
-		p.Lan.Network.dnsmasq(wrt, LAN)
+	if err := p.setup_dnsmasq(wrt); err != nil {
+		return err
 	}
 	if err := p.setup_firewalld(wrt); err != nil {
 		return err
@@ -53,9 +50,20 @@ func (p *Router) Render(wrt io.Writer) error {
 	return err
 }
 
-func (p *Router) setup_firewalld(wrt io.Writer) error {
-	slog.Debug("setup nftables")
-	// TODO
+func (p *Router) setup_dnsmasq(wrt io.Writer) error {
+	if _, err := fmt.Fprintf(wrt, "%s", gl_dnsmasq_header_txt); err != nil {
+		return err
+	}
+	if p.Dmz != nil {
+		if err := p.Dmz.Network.dnsmasq(wrt, DMZ); err != nil {
+			return err
+		}
+	}
+	if p.Lan != nil {
+		if err := p.Lan.Network.dnsmasq(wrt, LAN); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 

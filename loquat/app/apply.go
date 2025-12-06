@@ -29,5 +29,10 @@ func Apply(config_file string, debug bool) error {
 	if err != nil {
 		return err
 	}
-	return rt.Apply(false)
+	if err = rt.Apply(false); err != nil {
+		return err
+	}
+
+	slog.Info("done.")
+	return nil
 }

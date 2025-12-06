@@ -1,12 +1,20 @@
 package v2
 
 import (
+	_ "embed"
 	"encoding/binary"
+	"errors"
 	"io"
 	"log/slog"
 	"net"
 	"text/template"
 )
+
+//go:embed templates/dnsmasq.txt
+var gl_dnsmasq_txt string
+
+//go:embed templates/dnsmasq-header.txt
+var gl_dnsmasq_header_txt string
 
 func (p *Intranet) DnsServers() []string {
 	switch p.Dns.(type) {
@@ -89,16 +97,25 @@ func (p *Intranet) dnsmasq(wrt io.Writer, dev string) error {
 	if err != nil {
 		return err
 	}
-
+	addresses, err := p.Addresses()
+	if err != nil {
+		return err
+	}
+	if len(addresses) < 4 {
+		return errors.New("no enough address range")
+	}
 	tpl, err := template.New("").Parse(gl_dnsmasq_txt)
 	if err != nil {
 		return err
 	}
+
 	return tpl.Execute(wrt, map[string]interface{}{
 		"device":  dev,
 		"network": network,
 		"gateway": gateway,
 		"dns":     p.DnsServers(),
 		"hosts":   hosts,
+		"begin":   addresses[0],
+		"end":     addresses[len(addresses)-1],
 	})
 }

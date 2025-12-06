@@ -2,4 +2,4 @@
 
 systemctl stop dnsmasq
 systemctl disable dnsmasq
-rm -fv /etc/systemd/system/dnsmasq-*.service
+rm -f /etc/systemd/system/dnsmasq-*.service

@@ -1,7 +1,7 @@
 
-cat >/etc/systemd/system/dnsmasq-{{ device }}.service <<EOF
+cat >/etc/systemd/system/dnsmasq-{{ .device }}.service <<EOF
 [Unit]
-Description=dnsmasq - A lightweight DHCP and caching DNS server({{ device }})
+Description=dnsmasq - A lightweight DHCP and caching DNS server({{ .device }})
 Documentation=man:dnsmasq(8)
 After=network.target
 Before=network-online.target nss-lookup.target
@@ -9,8 +9,8 @@ Wants=nss-lookup.target
 
 [Service]
 Type=simple
-ExecStartPre=/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ device }}.conf
-ExecStart=/usr/bin/dnsmasq -k --user=dnsmasq -C /etc/dnsmasq-{{ device }}.conf -x /tmp/dnsmasq.{{ device }}.pid
+ExecStartPre=/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ .device }}.conf
+ExecStart=/usr/bin/dnsmasq -k --user=dnsmasq -C /etc/dnsmasq-{{ .device }}.conf -x /tmp/dnsmasq.{{ .device }}.pid
 Restart=on-failure
 PrivateDevices=true
 ProtectSystem=full
@@ -19,32 +19,32 @@ ProtectSystem=full
 WantedBy=multi-user.target
 EOF
 
-cat >/etc/dnsmasq-{{ device }}.conf <<EOF
-interface={{ device }}
+cat >/etc/dnsmasq-{{ .device }}.conf <<EOF
+interface={{ .device }}
 except-interface=lo
 bind-interfaces
-listen-address={{ gateway }}
+listen-address={{ .gateway }}
 
 no-resolv
-{{ range dns }}
+{{ range .dns }}
 server={{ . }}
 {{ end }}
 clear-on-reload
 
-dhcp-range={{ begin }},{{ end }},1w
-dhcp-option=option:dns-server,{{ gateway }}
-dhcp-option=option:ntp-server,{{ gateway }}
-dhcp-option=option:router,{{ gateway }}
+dhcp-range={{ .begin }},{{ .end }},1w
+dhcp-option=option:dns-server,{{ .gateway }}
+dhcp-option=option:ntp-server,{{ .gateway }}
+dhcp-option=option:router,{{ .gateway }}
 dhcp-authoritative
 
-{{ range hosts }}
+{{ range .hosts }}
 dhcp-host={{ .mac }},{{.name}},{{.ip}}
 {{ end }}
 EOF
 
-/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ device }}.conf
-
+/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ .device }}.conf
 
 systemctl daemon-reload
-systemctl enable dnsmasq-{{ device }}.service
+systemctl enable dnsmasq-{{ .device }}.service
+systemctl restart dnsmasq-{{ .device }}.service
 

@@ -3,10 +3,40 @@ package v2
 import (
 	_ "embed"
 	"fmt"
+	"io"
+	"log/slog"
 )
 
-//go:embed templates/firewalld.txt
-var gl_firewalld_txt string
+//go:embed templates/firewalld-header.txt
+var gl_firewalld_header_txt string
+
+func (p *Router) setup_firewalld(wrt io.Writer) error {
+	slog.Debug("setup firewalld")
+	if _, err := fmt.Fprintf(wrt, "%s", gl_firewalld_header_txt); err != nil {
+		return err
+	}
+	if p.Wan == nil {
+		return nil
+	}
+	if err := p.Wan.firewalld(wrt, WAN); err != nil {
+		return err
+	}
+	if p.Dmz != nil {
+		if err := p.Dmz.firewalld(wrt, "dmz", DMZ); err != nil {
+			return err
+		}
+	}
+	if p.Lan != nil {
+		if err := p.Lan.firewalld(wrt, "internal", LAN); err != nil {
+			return err
+		}
+	}
+	if _, err := fmt.Fprintf(wrt, "firewall-cmd --reload\n"); err != nil {
+		return err
+	}
+
+	return nil
+}
 
 // ----------------------------------------------------------------------------
 func (p *FirewallRule_Protocol) ToString() string {
@@ -18,19 +48,4 @@ func (p *FirewallRule_Protocol) ToString() string {
 	default:
 		return ""
 	}
-}
-
-func firewall_add_port(zone string, protocol string, port uint32) string {
-	return fmt.Sprintf("firewall-cmd --permanent --zone=%s --add-port=%d/%s", zone, port, protocol)
-}
-func firewall_add_service(zone string, service string) string {
-	return fmt.Sprintf("firewall-cmd --permanent --zone=%s --add-service=%s", zone, service)
-}
-func firewall_reset(zone string) string {
-	return fmt.Sprintf("firewall-cmd --permanent --load-zone-defaults=%s", zone)
-}
-
-func firewall_snat(wan string, lan string) []string {
-	return []string{}
-
 }

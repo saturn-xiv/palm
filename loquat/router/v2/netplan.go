@@ -29,7 +29,7 @@ func (p *Router) setup_netplan(wrt io.Writer) error {
 			if err != nil {
 				return err
 			}
-			items[WAN] = map[string]string{"label": "", "content": buf}
+			items[WAN] = map[string]string{"label": WAN, "content": buf}
 		}
 	}
 	if p.Dmz != nil {
@@ -37,14 +37,14 @@ func (p *Router) setup_netplan(wrt io.Writer) error {
 		if err != nil {
 			return err
 		}
-		items[DMZ] = map[string]string{"label": "", "content": buf}
+		items[DMZ] = map[string]string{"label": DMZ, "content": buf}
 	}
 	if p.Lan != nil {
 		buf, err := p.Lan.netplan(LAN)
 		if err != nil {
 			return err
 		}
-		items[LAN] = map[string]string{"label": "", "content": buf}
+		items[LAN] = map[string]string{"label": LAN, "content": buf}
 	}
 
 	tpl, err := template.New("").Parse(gl_netplan_txt)

@@ -7,3 +7,4 @@ then
   echo 'please run this script as root.'
   exit 1
 fi
+

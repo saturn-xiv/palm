@@ -1,24 +1,60 @@
 package v2
 
 import (
-	_ "embed"
+	"fmt"
+	"io"
 )
-
-// https://netplan.readthedocs.io/en/stable/examples/#how-to-configure-multiple-bonds
-// https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-bonds
-// https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
-
-//go:embed templates/dnsmasq.txt
-var gl_dnsmasq_txt string
-
-//go:embed templates/dnsmasq-header.txt
-var gl_dnsmasq_header_txt string
 
 var (
 	DMZ = "bond-dmz"
 	LAN = "bond-lan"
 	WAN = "bond-wan"
 )
+
+func (p *InternetBond) firewalld(wrt io.Writer, device string) error {
+	{
+		zone := "public"
+		for name, profile := range p.Interfaces {
+			if _, ok := profile.Ip.(*Internet_Static_); ok {
+				if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --add-interface=%s\n", zone, name); err != nil {
+					return err
+				}
+			}
+		}
+		if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --add-service=ssh --add-service=http --add-service=https --add-service=ftp --add-service=ftps\n", zone); err != nil {
+			return err
+		}
+	}
+
+	{
+		zone := "external"
+		if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --change-interface=%s\n", zone, device); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --add-masquerade\n", zone); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (p *IntranetBond) firewalld(wrt io.Writer, zone string, device string) error {
+	if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --change-interface=%s\n", zone, device); err != nil {
+		return err
+	}
+	if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --add-service=ssh --add-service=http --add-service=dhcp --add-service=dns\n", zone); err != nil {
+		return err
+	}
+	// if _, err := fmt.Fprintf(wrt, "firewall-cmd --add-service=imap --zone=%s --timeout=5m\n", zone); err != nil {
+	// 	return err
+	// }
+
+	return nil
+}
+
+// https://netplan.readthedocs.io/en/stable/examples/#how-to-configure-multiple-bonds
+// https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-bonds
+// https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
 
 func (p *IntranetBond) netplan(dev string) (string, error) {
 

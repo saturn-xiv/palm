@@ -38,21 +38,12 @@ update-alternatives --set editor /usr/bin/vim.basic
 # timedatectl list-timezones
 timedatectl set-timezone UTC
 
+if [ ! -d /etc/firewalld.orig ]
+then
+    cp -r /etc/firewalld /etc/firewalld.orig
+fi
+
 # https://wiki.debian.org/DebianFirewall
-cat > /etc/systemd/system/firewall.service <<EOF
-[Unit]
-Description=Apply firewall rules
-
-[Service]
-Type=oneshot
-ExecStart=/etc/firewall/apply.sh
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl enable firewall
-
 # https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/checking-resource-limits-for-oracle-software-installation-users.html
 
 echo "root:$(pwgen 32 1)" | chpasswd
