@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   get_internet_bond,
   set_internet_bond,
+  type IEthernet,
   type IInternetBond,
 } from "../../api/interface";
 import {
@@ -33,7 +34,7 @@ export const Description = () => (
 
 interface IProps {
   name: string;
-  devices: string[];
+  devices: IEthernet[];
 }
 
 interface IFormValues {
@@ -43,7 +44,7 @@ interface IFormValues {
 
 const InnerForm = (
   props: {
-    devices: string[];
+    devices: IEthernet[];
     onSubmit: (value: IFormValues) => Promise<void>;
   } & FormikProps<IFormValues>
 ) => {
@@ -64,8 +65,8 @@ const InnerForm = (
             <div className="checkboxes">
               {devices.map((it, id) => (
                 <label key={id} className="checkbox">
-                  <Field type="checkbox" name="interfaces" value={it} />
-                  {it}
+                  <Field type="checkbox" name="interfaces" value={it.name} />
+                  {it.name}-{it.profile?.label}
                 </label>
               ))}
             </div>
@@ -95,7 +96,7 @@ const InnerForm = (
 
 const IForm = withFormik<
   {
-    devices: string[];
+    devices: IEthernet[];
     bond?: IInternetBond;
     onSubmit: (value: IFormValues) => Promise<void>;
   },

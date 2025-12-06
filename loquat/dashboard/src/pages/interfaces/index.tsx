@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useAppDispatch } from "../../hooks";
-import { DMZ, interfaces, LAN, WAN } from "../../api/interface";
+import { DMZ, interfaces, LAN, WAN, type IEthernet } from "../../api/interface";
 import { danger as show_danger } from "../../reducers/notification";
 import ModalForm from "../../components/ModalForm";
 import InternetBondForm, {
@@ -14,12 +14,12 @@ import InterfaceForm from "./Interface";
 
 const Widget = () => {
   const dispatch = useAppDispatch();
-  const [devices, setDevices] = useState<string[]>([]);
+  const [devices, setDevices] = useState<IEthernet[]>([]);
 
   const handleRefresh = async () => {
     const res = await interfaces();
     if (res.data?.interfaces) {
-      setDevices(res.data.interfaces.filter((it) => it.startsWith("en")));
+      setDevices(res.data.interfaces.ethernets);
     } else if (res.errors) {
       dispatch(show_danger(res.errors));
     }
@@ -71,14 +71,14 @@ const Widget = () => {
         {devices.map((it, id) => (
           <ModalForm
             key={id}
-            title={it}
+            title={it.name}
             button={{
               action: "info",
-              label: it,
+              label: `${it.name}-${it.profile?.label}`,
             }}
             handleRefresh={handleRefresh}
           >
-            <InterfaceForm name={it} />
+            <InterfaceForm name={it.name} />
           </ModalForm>
         ))}
       </div>

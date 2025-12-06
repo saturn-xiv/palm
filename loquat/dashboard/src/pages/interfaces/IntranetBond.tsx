@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   get_intranet_bond,
   set_intranet_bond,
+  type IEthernet,
   type IIntranetBond,
 } from "../../api/interface";
 import {
@@ -32,7 +33,7 @@ export const Description = () => (
 );
 interface IProps {
   name: string;
-  devices: string[];
+  devices: IEthernet[];
 }
 
 // https://www.speedtest.cn/tools/ipCalculator
@@ -70,7 +71,7 @@ interface IFormValues {
 
 const InnerForm = (
   props: {
-    devices: string[];
+    devices: IEthernet[];
     onSubmit: (value: IFormValues) => Promise<void>;
   } & FormikProps<IFormValues>
 ) => {
@@ -91,8 +92,8 @@ const InnerForm = (
             <div className="checkboxes">
               {devices.map((it, id) => (
                 <label key={id} className="checkbox">
-                  <Field type="checkbox" name="interfaces" value={it} />
-                  {it}
+                  <Field type="checkbox" name="interfaces" value={it.name} />
+                  {it.name}-{it.profile?.label}
                 </label>
               ))}
             </div>
@@ -156,7 +157,7 @@ const InnerForm = (
 
 const IForm = withFormik<
   {
-    devices: string[];
+    devices: IEthernet[];
     bond?: IIntranetBond;
     onSubmit: (value: IFormValues) => Promise<void>;
   },

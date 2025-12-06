@@ -5,7 +5,6 @@ import (
 	_ "embed"
 	"encoding/gob"
 	"errors"
-	"net"
 	"net/http"
 	"strconv"
 	"strings"
@@ -79,17 +78,6 @@ func (p *Query) Version() string {
 func (p *Query) Addresses(ctx context.Context, args struct{ Ip string }) ([]string, error) {
 	it := v2.Intranet{Address: args.Ip}
 	return it.Addresses()
-}
-func (p *Query) Interfaces(ctx context.Context) ([]string, error) {
-	ifaces, err := net.Interfaces()
-	if err != nil {
-		return nil, err
-	}
-	var items []string
-	for _, iface := range ifaces {
-		items = append(items, iface.Name)
-	}
-	return items, nil
 }
 
 type Root struct {

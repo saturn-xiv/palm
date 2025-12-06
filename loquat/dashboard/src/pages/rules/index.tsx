@@ -20,18 +20,18 @@ import NatForm from "./NatForm";
 import InputForm from "./InputForm";
 import PingForm from "./PingForm";
 import Edit from "./Edit";
-import { interfaces } from "../../api/interface";
+import { interfaces, type IEthernet } from "../../api/interface";
 
 const Widget = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [items, setItems] = useState<IRule[]>([]);
-  const [devices, setDevices] = useState<string[]>([]);
+  const [devices, setDevices] = useState<IEthernet[]>([]);
   const handleRefresh = async () => {
     {
       const res = await interfaces();
       if (res.data?.interfaces) {
-        setDevices(res.data.interfaces.filter((it) => it.startsWith("en")));
+        setDevices(res.data.interfaces.ethernets);
       } else if (res.errors) {
         dispatch(show_danger(res.errors));
       }

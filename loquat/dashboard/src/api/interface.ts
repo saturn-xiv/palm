@@ -5,8 +5,31 @@ export const WAN = "bond-wan";
 export const LAN = "bond-lan";
 export const DMZ = "bond-dmz";
 
+// export const wan_ethernets = (o: IInterfaces): IEthernet[] => {
+//   const items = [];
+//   if (o.wan && o.wan.enable) {
+//     for (const it in o.wan.interfaces) {
+//       for (const jt in o.ethernets) {
+//         if (o.wan.interfaces[it] === o.ethernets[jt].name) {
+//           items.push(o.ethernets[jt]);
+//         }
+//       }
+//     }
+//   }
+//   return items;
+// };
+
+interface IInterfaces {
+  wan?: IInternetBond;
+  dmz?: IInternetBond;
+  ethernets: IEthernet[];
+}
+export interface IEthernet {
+  name: string;
+  profile?: IEthernetProfile;
+}
 interface IInterfacesResponse {
-  interfaces: string[];
+  interfaces: IInterfaces;
 }
 export const interfaces = async (): Promise<
   IGraphqlResponse<IInterfacesResponse>
@@ -14,7 +37,46 @@ export const interfaces = async (): Promise<
   const res: IGraphqlResponse<IInterfacesResponse> = await graphql(
     `
       query call {
-        interfaces
+        interfaces {
+          wan {
+            interfaces
+            enable
+          }
+          dmz {
+            interfaces
+            address
+            dns
+            enable
+          }
+          lan {
+            interfaces
+            address
+            dns
+            enable
+          }
+          ethernets {
+            name
+            profile {
+              __typename
+              ... on StaticIp {
+                label
+                isp
+                address
+                netmask
+                gateway
+                dns
+                memo
+                enable
+              }
+              ... on DynamicIp {
+                label
+                isp
+                memo
+                enable
+              }
+            }
+          }
+        }
       }
     `,
     {}
@@ -248,8 +310,10 @@ export interface IStaticIp {
   enable: boolean;
 }
 
+type IEthernetProfile = IStaticIp | IDhcp;
+
 interface IGetNetworkInterfaceResponse {
-  getNetworkInterface: IStaticIp | IDhcp;
+  getNetworkInterface: IEthernetProfile;
 }
 
 export const get_interface = async (

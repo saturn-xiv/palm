@@ -10,10 +10,11 @@ import {
 import NatForm from "./NatForm";
 import InputForm from "./InputForm";
 import PingForm from "./PingForm";
+import type { IEthernet } from "../../api/interface";
 
 interface IProps {
   item: IRule;
-  devices: string[];
+  devices: IEthernet[];
 }
 
 const Widget = ({ item, devices }: IProps) => {

@@ -16,7 +16,7 @@ type Query {
   showHost(id: ID!): Host!
 
   addresses(ip: String!): [String!]!
-  interfaces: [String!]!
+  interfaces: InterfacesResponse!
 
   indexMember: [Member!]!
   showMember(id: ID!): Member!
@@ -159,6 +159,17 @@ type DynamicIp {
   enable: Boolean!
 }
 union NetworkInterfaceProfile = StaticIp | DynamicIp
+
+type Ethernet {
+  name: String!
+  profile: NetworkInterfaceProfile
+}
+type InterfacesResponse {
+  wan: InternetBond
+  dmz: IntranetBond
+  lan: IntranetBond
+  ethernets: [Ethernet!]!
+}
 
 enum Isp {
   Unknown

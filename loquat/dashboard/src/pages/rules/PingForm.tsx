@@ -8,6 +8,7 @@ import {
   type INotificationBarState,
 } from "../../components/NotificationBar";
 import { allow_ping, type IPingRule } from "../../api/rules";
+import type { IEthernet } from "../../api/interface";
 
 const SORT_ORDER_SINCE = 1000;
 
@@ -16,7 +17,7 @@ const sort_orders = (): number[] => {
 };
 
 interface IProps {
-  devices: string[];
+  devices: IEthernet[];
   item?: IPingRule;
 }
 
@@ -28,7 +29,7 @@ interface IFormValues {
 
 const InnerForm = (
   props: {
-    devices: string[];
+    devices: IEthernet[];
     onSubmit: (value: IFormValues) => Promise<void>;
   } & FormikProps<IFormValues>
 ) => {
@@ -43,8 +44,8 @@ const InnerForm = (
           <div className="select">
             <Field name="device" component="select">
               {devices.map((it, id) => (
-                <option key={id} value={it}>
-                  {it}
+                <option key={id} value={it.name}>
+                  {it.name}-{it.profile?.label}
                 </option>
               ))}
             </Field>
@@ -102,14 +103,14 @@ const InnerForm = (
 const IForm = withFormik<
   {
     rule?: IPingRule;
-    devices: string[];
+    devices: IEthernet[];
     onSubmit: (value: IFormValues) => Promise<void>;
   },
   IFormValues
 >({
   mapPropsToValues: (props) => {
     return {
-      device: props.rule?.device || props.devices[0] || "",
+      device: props.rule?.device || "",
       sortOrder: `${props.rule?.sortOrder || SORT_ORDER_SINCE}`,
       memo: props.rule?.memo || "",
     };
