@@ -23,15 +23,35 @@ func (p *Query) IndexLog(ctx context.Context, args struct {
 	}
 	pagination := NewPagination(&Page{Index: uint(args.Page.Index), Size: uint(args.Page.Size)}, uint(total))
 	var items []models.Log
-	if err := p.db.Order("created_at DESC").Offset(int(pagination.current.Offset())).Limit(int(pagination.current.Size)).Find(&items).Error; err != nil {
+	if err := p.db.Order("created_at DESC").
+		Offset(int(pagination.current.Offset())).
+		Limit(int(pagination.current.Size)).
+		Preload("User").
+		Find(&items).Error; err != nil {
 		return nil, err
 	}
 	return &IndexLogResponse{items: items, pagination: pagination}, nil
 
 }
 
+type User struct {
+	item *models.User
+}
+
+func (p *User) Id() graphql.ID {
+	return ToId(p.item.ID)
+}
+
+func (p *User) Name() string {
+	return p.item.Name
+}
+
 type Log struct {
 	item *models.Log
+}
+
+func (p *Log) User() *User {
+	return &User{item: &p.item.User}
 }
 
 func (p *Log) Id() graphql.ID {

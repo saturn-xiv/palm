@@ -45,7 +45,7 @@ const Widget = () => {
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="tables.column.label.id" />
+              <FormattedMessage id="tables.column.label.ip" />
             </th>
             <th>
               <FormattedMessage id="tables.column.label.name" />
@@ -55,9 +55,6 @@ const Widget = () => {
             </th>
             <th>
               <FormattedMessage id="tables.column.label.network" />
-            </th>
-            <th>
-              <FormattedMessage id="tables.column.label.ip" />
             </th>
             <th>
               <FormattedMessage id="tables.column.label.owner" />
@@ -73,10 +70,6 @@ const Widget = () => {
         <tbody>
           {items.map((it, id) => (
             <tr key={id}>
-              <th>{it.id}</th>
-              <td>{it.name}</td>
-              <td>{it.vendor}</td>
-              <td>{it.network}</td>
               <td>
                 {it.fixed ? (
                   <button className="button is-small is-primary is-dark">
@@ -86,6 +79,9 @@ const Widget = () => {
                   <button className="button is-small is-text">{it.ip}</button>
                 )}
               </td>
+              <td>{it.name}</td>
+              <td>{it.vendor}</td>
+              <td>{it.network}</td>
               <td>
                 {it.member ? (
                   <span>

@@ -39,11 +39,15 @@ export const sign_out = async (): Promise<
   );
   return res;
 };
-
+interface IUser {
+  id: string;
+  name: string;
+}
 export interface ILog {
   id: string;
   ip: string;
   message: string;
+  user: IUser;
   createdAt: Date;
 }
 
@@ -63,6 +67,10 @@ export const index_log = async (
             ip
             message
             createdAt
+            user {
+              id
+              name
+            }
           }
           pagination {
             index

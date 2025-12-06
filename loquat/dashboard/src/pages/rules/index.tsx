@@ -60,9 +60,6 @@ const Widget = () => {
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="tables.column.label.id" />
-            </th>
-            <th>
               <FormattedMessage id="tables.column.label.sort-order" />
             </th>
             <th>
@@ -81,7 +78,7 @@ const Widget = () => {
         </thead>
         <tfoot>
           <tr>
-            <td colSpan={6}>
+            <td colSpan={5}>
               <div className="buttons are-small">
                 <ModalForm
                   title={intl.formatMessage({
@@ -132,7 +129,6 @@ const Widget = () => {
         <tbody>
           {items.map((it, id) => (
             <tr key={id}>
-              <th>{it.id}</th>
               <td>{it.sortOrder}</td>
               <td>
                 <ShowRule item={it} />

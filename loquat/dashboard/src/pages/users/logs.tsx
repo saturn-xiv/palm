@@ -48,16 +48,16 @@ const Widget = () => {
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="tables.column.label.id" />
+              <FormattedMessage id="tables.column.label.created-at" />
+            </th>
+            <th>
+              <FormattedMessage id="tables.column.label.username" />
             </th>
             <th>
               <FormattedMessage id="tables.column.label.ip" />
             </th>
             <th>
               <FormattedMessage id="tables.column.label.message" />
-            </th>
-            <th>
-              <FormattedMessage id="tables.column.label.created-at" />
             </th>
           </tr>
         </thead>
@@ -74,12 +74,12 @@ const Widget = () => {
         <tbody>
           {item.items.map((it, id) => (
             <tr key={id}>
-              <th>{it.id}</th>
-              <td>{it.ip}</td>
-              <td>{it.message}</td>
               <td>
                 <Timestamp value={it.createdAt} />
               </td>
+              <td>{it.user.name}</td>
+              <td>{it.ip}</td>
+              <td>{it.message}</td>
             </tr>
           ))}
         </tbody>

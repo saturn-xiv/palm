@@ -104,6 +104,7 @@ export default {
   "tables.column.label.memo": "Memo",
   "tables.column.label.manage": "Manage",
   "tables.column.label.sort-order": "Sort order",
+  "tables.column.label.username": "Username",
   "tables.column.label.vendor": "Vendor",
   "tables.column.label.network": "Network",
   "tables.column.label.owner": "Owner",

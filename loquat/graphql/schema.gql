@@ -282,9 +282,13 @@ type SignInResponse {
   username: String!
   token: String!
 }
-
+type User {
+  id: ID!
+  name: String!
+}
 type Log {
   id: ID!
+  user: User!
   message: String!
   ip: String!
   createdAt: Time!

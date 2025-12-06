@@ -48,9 +48,6 @@ const Widget = () => {
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="tables.column.label.id" />
-            </th>
-            <th>
               <FormattedMessage id="tables.column.label.sn" />
             </th>
             <th>
@@ -69,7 +66,7 @@ const Widget = () => {
         </thead>
         <tfoot>
           <tr>
-            <td colSpan={6}>
+            <td colSpan={5}>
               <div className="buttons are-small">
                 <ModalForm
                   title={intl.formatMessage({ id: "pages.members.new.title" })}
@@ -88,7 +85,6 @@ const Widget = () => {
         <tbody>
           {items.map((it, id) => (
             <tr key={id}>
-              <th>{it.id}</th>
               <td>{it.sn}</td>
               <td>{it.name}</td>
               <td>{it.memo}</td>
