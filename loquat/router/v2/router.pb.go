@@ -255,7 +255,6 @@ type IntranetBond struct {
 	Interfaces         []string               `protobuf:"bytes,1,rep,name=interfaces,proto3" json:"interfaces,omitempty"`
 	Network            *Intranet              `protobuf:"bytes,2,opt,name=network,proto3" json:"network,omitempty"`
 	MiiMonitorInterval uint32                 `protobuf:"varint,3,opt,name=mii_monitor_interval,json=miiMonitorInterval,proto3" json:"mii_monitor_interval,omitempty"`
-	GratuitousArp      uint32                 `protobuf:"varint,4,opt,name=gratuitous_arp,json=gratuitousArp,proto3" json:"gratuitous_arp,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -307,13 +306,6 @@ func (x *IntranetBond) GetNetwork() *Intranet {
 func (x *IntranetBond) GetMiiMonitorInterval() uint32 {
 	if x != nil {
 		return x.MiiMonitorInterval
-	}
-	return 0
-}
-
-func (x *IntranetBond) GetGratuitousArp() uint32 {
-	if x != nil {
-		return x.GratuitousArp
 	}
 	return 0
 }
@@ -1504,14 +1496,13 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x14mii_monitor_interval\x18\x02 \x01(\rR\x12miiMonitorInterval\x1aW\n" +
 	"\x0fInterfacesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\v2\x18.palm.router.v1.InternetR\x05value:\x028\x01\"\xbb\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\x18.palm.router.v1.InternetR\x05value:\x028\x01\"\x94\x01\n" +
 	"\fIntranetBond\x12\x1e\n" +
 	"\n" +
 	"interfaces\x18\x01 \x03(\tR\n" +
 	"interfaces\x122\n" +
 	"\anetwork\x18\x02 \x01(\v2\x18.palm.router.v1.IntranetR\anetwork\x120\n" +
-	"\x14mii_monitor_interval\x18\x03 \x01(\rR\x12miiMonitorInterval\x12%\n" +
-	"\x0egratuitous_arp\x18\x04 \x01(\rR\rgratuitousArp\"\xca\x03\n" +
+	"\x14mii_monitor_interval\x18\x03 \x01(\rR\x12miiMonitorInterval\"\xca\x03\n" +
 	"\bInternet\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12\x10\n" +
 	"\x03isp\x18\x02 \x01(\tR\x03isp\x12,\n" +

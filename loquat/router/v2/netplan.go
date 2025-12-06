@@ -3,6 +3,7 @@ package v2
 import (
 	_ "embed"
 	"io"
+	"log/slog"
 	"text/template"
 
 	"github.com/goccy/go-yaml"
@@ -11,8 +12,8 @@ import (
 //go:embed templates/netplan.txt
 var gl_netplan_txt string
 
-// https://netplan.readthedocs.io/en/stable/examples/#
 func (p *Router) setup_netplan(wrt io.Writer) error {
+	slog.Debug("generate netplan scripts")
 	items := make(map[string]interface{})
 	if p.Wan != nil {
 		for dev, it := range p.Wan.Interfaces {
@@ -54,14 +55,13 @@ func (p *Router) setup_netplan(wrt io.Writer) error {
 }
 
 func render_netplan_yaml(category string, dev string, args map[string]interface{}) (string, error) {
-	var data = map[string]interface{}{
+	buf, err := yaml.Marshal(map[string]interface{}{
 		"network": map[string]interface{}{
 			"version":  2,
 			"renderer": "networkd",
+			category:   map[string]interface{}{dev: args},
 		},
-	}
-	data[category] = map[string]interface{}{dev: args}
-	buf, err := yaml.Marshal(data)
+	})
 	if err != nil {
 		return "", err
 	}

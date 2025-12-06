@@ -24,7 +24,9 @@ func (p *Router) Apply(run bool) error {
 	if err := p.render_to_file(tmp); err != nil {
 		return err
 	}
+
 	if run {
+		slog.Warn("try to apply script", "name", tmp)
 		cmd := exec.Command("bash", tmp)
 		return cmd.Run()
 	}

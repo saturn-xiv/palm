@@ -26,9 +26,10 @@ func (p *IntranetBond) netplan(dev string) (string, error) {
 		"interfaces": p.Interfaces,
 		"addresses":  []string{p.Network.Address},
 		"parameters": map[string]interface{}{
-			"mode":                 "balance-rr",
+			"mode":                 "balance-xor",
 			"mii-monitor-interval": p.MiiMonitorInterval,
-			"gratuitous-arp":       p.GratuitousArp,
+			// layer2, layer3+4, layer2+3, encap2+3 and encap3+4.
+			"transmit-hash-policy": "layer3+4",
 		},
 	}
 
@@ -37,7 +38,7 @@ func (p *IntranetBond) netplan(dev string) (string, error) {
 
 func (p *InternetBond) netplan(dev string) (string, error) {
 	var interfaces []string
-	for dev, _ := range p.Interfaces {
+	for dev := range p.Interfaces {
 		interfaces = append(interfaces, dev)
 	}
 

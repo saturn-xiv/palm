@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// https://netplan.readthedocs.io/en/stable/examples/#
 // https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-ethernets
 func (p *Internet) netplan(dev string) (string, error) {
 	args := make(map[string]interface{})
@@ -11,9 +12,19 @@ func (p *Internet) netplan(dev string) (string, error) {
 	case *Internet_Dhcp:
 		args["dhcp4"] = true
 	case *Internet_Static_:
-		args["addresses"] = []string{p.GetStatic().Address}
+		cidr, err := netmask_to_cidr(p.GetStatic().Netmask)
+		if err != nil {
+			return "", err
+		}
+		args["addresses"] = []string{fmt.Sprintf("%s/%d", p.GetStatic().Address, cidr)}
 		args["nameservers"] = map[string]interface{}{
 			"addresses": p.GetStatic().Dns,
+		}
+		args["routes"] = []map[string]interface{}{
+			map[string]interface{}{
+				"to":  "default",
+				"via": p.GetStatic().Gateway,
+			},
 		}
 	default:
 		// https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-modems

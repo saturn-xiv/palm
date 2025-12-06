@@ -70,7 +70,7 @@ func load_internet_bond(db *gorm.DB, name string) (*v2.InternetBond, error) {
 	}
 
 	res := v2.InternetBond{
-		MiiMonitorInterval: 1,
+		MiiMonitorInterval: 100,
 		Interfaces:         make(map[string]*v2.Internet),
 	}
 	for _, name := range bond.Interfaces {
@@ -107,8 +107,7 @@ func load_intranet_bond(db *gorm.DB, name string) (*v2.IntranetBond, error) {
 	}
 	res := v2.IntranetBond{
 		Interfaces:         bond.Interfaces,
-		MiiMonitorInterval: 1,
-		GratuitousArp:      5,
+		MiiMonitorInterval: 100,
 		Network: &v2.Intranet{
 			Address: bond.Address,
 		},

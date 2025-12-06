@@ -26,7 +26,6 @@ message IntranetBond {
   repeated string interfaces = 1;
   Intranet network = 2;
   uint32 mii_monitor_interval = 3;
-  uint32 gratuitous_arp = 4;
 }
 
 message Internet {

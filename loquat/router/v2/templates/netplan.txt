@@ -6,7 +6,7 @@ then
 fi
 mkdir /etc/netplan
 
-{{ range $n, $p := range items }}
+{{ range $n, $p := .items }}
 # {{ $p.label }}
 cat >/etc/netplan/100-{{ $n }} <<EOF
 {{ $p.content }}
