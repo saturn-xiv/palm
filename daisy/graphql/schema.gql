@@ -1,0 +1,230 @@
+scalar Time
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  version: String!
+
+  forgotEmailUserPassword(email: String!): Ok!
+  confirmUserByEmail(email: String!): Ok!
+  confirmUserByPhone(phone: String!): Ok!
+  unlockUserByEmail(email: String!): Ok!
+  unlockUserByPhone(email: String!): Ok!
+
+  getGoogleOauth2Url(home: String!, sessionId: String!): String!
+
+  indexUser(page: Page!): IndexUserResponse!
+  indexLog(page: Page!): IndexLogResponse!
+  refresh: RefreshResponse!
+
+  indexAttachments(page: Page!): IndexAttachmentResponse!
+  showAttachment(id: ID): Attachment!
+}
+
+type Mutation {
+  signInByEmail(email: String!, password: String!, ttl: Int!): String!
+  signInByPhone(phone: String!, password: String!, ttl: Int!): SignInResponse!
+  signInByGoogleOauth2(
+    home: String!
+    sessionId: String!
+    code: String!
+    state: String!
+  ): SignInResponse!
+  signInByWechatOauth2(token: String!): SignInResponse!
+  signInByWechatMiniProgram(token: String!): SignInResponse!
+  changeAccountPassword(currentPassword: String!, newPassword: String!): Ok!
+  resetAccountPassword(token: String!, password: String!): Ok!
+
+  signOut: Ok!
+  setAccountProfile(name: String!, avatar: String!, memo: String): Ok!
+  setAccountLocation(lang: String!, timezone: String!): Ok!
+  confirmAccount(token: String!): Ok!
+  unlockAccount(token: String!): Ok!
+
+  lockUser(id: ID!, reason: String!): Ok!
+  unlockUser(id: ID!, reason: String!): Ok!
+  setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
+  setPhoneUserPassword(id: ID!, password: String!, reason: String!): Ok!
+
+  createAttachment(
+    title: String!
+    bucket: String!
+    object: String!
+    contentType: String!
+    size: String!
+  ): Ok!
+  updateAttachment(id: ID!, title: String!): Ok!
+  associateAttachment(
+    attachmentId: ID!
+    resourceType: String!
+    resourceId: ID
+  ): Ok!
+  dissociateAttachment(
+    attachmentId: ID!
+    resourceType: String!
+    resourceId: ID
+  ): Ok!
+  destroyAttachment(id: ID!): Ok!
+
+  siteSetFavicon(url: String!): Ok!
+  siteSetMaintenanceMode(ok: Boolean!, reason: String!): Ok!
+  siteSetDetails(lang: String!, form: SiteDetailsForm!): Ok!
+  siteSetReCaptcha(siteKey: String!, enable: Boolean!): Ok!
+  siteSetGoogleSiteVerify(siteId: String!, enable: Boolean!): Ok!
+  siteSetBaiduSiteVerify(siteId: String, enable: Boolean!): Ok!
+  siteSetIndexNow(key: String, enable: Boolean): Ok!
+}
+
+type Member {
+  sn: String!
+  name: String!
+}
+
+type Attachment {
+  id: ID!
+  title: String!
+  bucket: String!
+  object: String!
+  contentType: String!
+  public: Boolean!
+  size: Int!
+  uploadedAt: Time!
+  deletedAt: Time
+  updatedAt: Time!
+  owner: Member!
+  resources: [Resource!]!
+}
+type IndexAttachmentResponse {
+  items: [Attachment!]!
+  pagination: Pagination!
+}
+input SiteDetailsForm {
+  title: String!
+  subhead: String!
+  keywords: [String!]!
+  description: String!
+  copyright: String!
+}
+
+type IndexUserResponse {
+  items: [Account!]!
+  pagination: Pagination!
+}
+
+type Log {
+  id: ID!
+  ip: String!
+  level: String!
+  message: String
+  createdAt: Time!
+}
+type IndexLogResponse {
+  items: [Log!]!
+  pagination: Pagination!
+}
+
+type Ok {
+  createdAt: Time!
+}
+input Page {
+  index: Int!
+  size: Int!
+}
+
+type Pagination {
+  index: Int!
+  size: Int!
+  hasPrevious: Boolean!
+  hasNext: Boolean!
+  pages: Int!
+  total: Int!
+}
+type Resource {
+  type: String!
+  id: ID
+}
+type Permission {
+  resource: Resource!
+  operation: String!
+}
+
+type Site {
+  favicon: String!
+  title: String!
+  subhead: String!
+  keywords: [String!]!
+  description: String!
+  copyright: String!
+}
+type RefreshResponse {
+  lang: String!
+  timezone: String!
+  username: String!
+  site: Site!
+  roles: [String!]!
+  permissions: [Permission!]!
+}
+type SignInResponse {
+  token: String!
+  layout: RefreshResponse!
+}
+type User {
+  id: ID!
+  sn: String!
+  lang: String!
+  timezone: String!
+  lockedAt: Time
+  deletedAt: Time
+  updatedAt: Time!
+  createdAt: Time!
+}
+type EmailUser {
+  id: ID!
+  user: User!
+  name: String!
+  email: String!
+  confirmedAt: Time
+  deletedAt: Time
+  updatedAt: Time!
+  createdAt: Time!
+}
+type SmsUser {
+  id: ID!
+  user: User!
+  name: String!
+  phone: String!
+  confirmedAt: Time
+  deletedAt: Time
+  updatedAt: Time!
+  createdAt: Time!
+}
+type GoogleOauth2User {
+  id: ID!
+  user: User!
+  deletedAt: Time
+  updatedAt: Time!
+  createdAt: Time!
+}
+type WechatOauth2User {
+  id: ID!
+  user: User!
+  deletedAt: Time
+  updatedAt: Time!
+  createdAt: Time!
+}
+type WechatMiniProgramUser {
+  id: ID!
+  user: User!
+  deletedAt: Time
+  updatedAt: Time!
+  createdAt: Time!
+}
+union Account =
+    EmailUser
+  | SmsUser
+  | GoogleOauth2User
+  | WechatOauth2User
+  | WechatMiniProgramUser

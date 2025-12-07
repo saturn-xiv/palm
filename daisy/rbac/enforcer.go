@@ -21,7 +21,7 @@ func updateCallback(msg string) {
 }
 
 func NewEnforcer(db *gorm.DB, redis_addresses []string, redis_namespace string) (*casbin.Enforcer, error) {
-	gormadapter.TurnOffAutoMigrate(db)
+	// gormadapter.TurnOffAutoMigrate(db)
 	adapter, err := gormadapter.NewAdapterByDB(db)
 	if err != nil {
 		return nil, err

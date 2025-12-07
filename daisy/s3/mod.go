@@ -1,7 +1,9 @@
 package s3
 
 import (
+	"context"
 	"encoding/json"
+	"log/slog"
 	"os"
 
 	"github.com/minio/minio-go/v7"
@@ -27,8 +29,21 @@ func (p *Config) New(file string) (*Config, error) {
 }
 
 func (p *Config) Open() (*minio.Client, error) {
-	return minio.New(p.Endpoint, &minio.Options{
+	slog.Info("open minio", "endpoint", p.Endpoint)
+	cli, err := minio.New(p.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(p.AccessId, p.SecretKey, ""),
 		Secure: true,
 	})
+	if err != nil {
+		return nil, err
+	}
+	{
+		ctx := context.Background()
+		res, err := cli.ListBuckets(ctx)
+		if err != nil {
+			return nil, err
+		}
+		slog.Debug("list buckets", "count", len(res))
+	}
+	return cli, nil
 }

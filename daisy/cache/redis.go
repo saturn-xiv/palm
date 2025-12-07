@@ -1,12 +1,15 @@
 package cache
 
 import (
+	"bytes"
 	"context"
+	"encoding/gob"
 	"fmt"
 	"log/slog"
 	"time"
 
 	"github.com/redis/go-redis/v9"
+	"google.golang.org/protobuf/proto"
 )
 
 type RedisCluster struct {
@@ -18,7 +21,7 @@ type RedisCluster struct {
 func (p *RedisCluster) Addresses() []string {
 	var items []string
 	for _, it := range p.Nodes {
-		items = append(items, fmt.Sprintf("redis://%s:%d", it.Host, it.Port))
+		items = append(items, fmt.Sprintf("%s:%d", it.Host, it.Port))
 	}
 	return items
 }
@@ -52,6 +55,37 @@ type RedisClient struct {
 	db        *redis.ClusterClient
 }
 
+func (p *RedisClient) SetProtobuf(ctx context.Context, key string, value proto.Message, ttl time.Duration) error {
+	buf, err := proto.Marshal(value)
+	if err != nil {
+		return err
+	}
+	return p.Set(ctx, key, buf, ttl)
+}
+func (p *RedisClient) GetProtobuf(ctx context.Context, key string, value proto.Message) error {
+	tmp, err := p.Get(ctx, key)
+	if err != nil {
+		return err
+	}
+	return proto.Unmarshal(tmp, value)
+}
+func (p *RedisClient) GetB(ctx context.Context, key string, value interface{}) error {
+	tmp, err := p.Get(ctx, key)
+	if err != nil {
+		return err
+	}
+	buf := bytes.NewBuffer(tmp)
+	dec := gob.NewDecoder(buf)
+	return dec.Decode(value)
+}
+func (p *RedisClient) SetB(ctx context.Context, key string, value interface{}, ttl time.Duration) error {
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	if err := enc.Encode(value); err != nil {
+		return err
+	}
+	return p.Set(ctx, key, buf.Bytes(), ttl)
+}
 func (p *RedisClient) Set(ctx context.Context, key string, value []byte, ttl time.Duration) error {
 	return p.db.SetEx(ctx, p.key(key), value, ttl).Err()
 }

@@ -17,17 +17,20 @@ import (
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/controllers"
 	"github.com/saturn-xiv/palm/daisy/graphql"
+	"github.com/saturn-xiv/palm/daisy/queue"
 	"github.com/saturn-xiv/palm/daisy/rbac"
 	"github.com/saturn-xiv/palm/daisy/s3"
 )
 
 type HttpServerConfig struct {
-	Theme     string              `toml:"theme"`
-	CsrfKey   string              `toml:"csrf-key"` // openssl rand -base64 32
-	CookieKey string              `toml:"cookie-key"`
-	Minio     *s3.Config          `toml:"minio"`
-	Database  *Database           `toml:"database"`
-	Redis     *cache.RedisCluster `toml:"redis"`
+	Theme        string              `toml:"theme"`
+	CsrfKey      string              `toml:"csrf-key"` // openssl rand -base64 32
+	CookieKey    string              `toml:"cookie-key"`
+	Minio        *s3.Config          `toml:"minio"`
+	Database     *Database           `toml:"database"`
+	Redis        *cache.RedisCluster `toml:"redis"`
+	RabbitMQ     *queue.RabbitMQ     `toml:"rabbitmq"`
+	GoogleOauth2 *GoogleOauth2       `toml:"google-oauth2"`
 }
 
 func LaunchHttpServer(config_file string, port uint16, debug bool) error {
@@ -66,7 +69,7 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	if err != nil {
 		return err
 	}
-	graphql_hnd, err := graphql.Handler()
+	graphql_hnd, err := graphql.Handler(db, config.GoogleOauth2)
 	if err != nil {
 		return err
 	}
