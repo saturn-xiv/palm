@@ -28,7 +28,7 @@ func (User) TableName() string {
 	return "users"
 }
 
-func createUser(db *gorm.DB) (*User, error) {
+func CreateUser(db *gorm.DB) (*User, error) {
 	sn := uuid.New().String()
 	if err := db.Create(&User{Sn: sn}).Error; err != nil {
 		return nil, err

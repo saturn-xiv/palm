@@ -12,8 +12,8 @@ type GoogleOauth2User struct {
 	gorm.Model
 
 	UserID        uint   `gorm:"not null"`
-	Code          string `gorm:"uniqueIndex;not null;size:36"`
-	Sn            string `gorm:"uniqueIndex;not null;size:127"`
+	Sn            string `gorm:"uniqueIndex;not null;size:36"`
+	Code          string `gorm:"uniqueIndex;not null;size:127"`
 	Name          string `gorm:"not null;size:63"`
 	Email         string `gorm:"not null;size:63"`
 	EmailVerified *bool
@@ -56,7 +56,7 @@ func UserSignInByGoogleOauth2(db *gorm.DB, info *google_oauth2.Userinfo) (*User,
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
-	user, err := createUser(db)
+	user, err := CreateUser(db)
 	if err != nil {
 		return nil, err
 	}

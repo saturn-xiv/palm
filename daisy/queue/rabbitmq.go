@@ -8,6 +8,12 @@ import (
 
 	"github.com/google/uuid"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"google.golang.org/protobuf/proto"
+)
+
+var (
+	// https://developers.cloudflare.com/speed/optimization/content/compression/
+	ContentType_ApplicationXProtobuf = "application/x-protobuf"
 )
 
 type RabbitMQ struct {
@@ -63,6 +69,13 @@ func (p *RabbitMQ) Subscribe(exchange string, consumer Consumer) error {
 	}
 }
 
+func (p *RabbitMQ) ProduceProtobuf(ctx context.Context, queue string, task proto.Message) error {
+	body, err := proto.Marshal(task)
+	if err != nil {
+		return err
+	}
+	return p.Produce(ctx, queue, ContentType_ApplicationXProtobuf, body)
+}
 func (p *RabbitMQ) Produce(ctx context.Context, queue string, content_type string, body []byte) error {
 	con, err := amqp.Dial(p.url())
 	if err != nil {

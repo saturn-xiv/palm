@@ -8,11 +8,11 @@ schema {
 type Query {
   version: String!
 
-  forgotEmailUserPassword(email: String!): Ok!
-  confirmUserByEmail(email: String!): Ok!
+  forgotEmailUserPassword(home: String!, email: String!): Ok!
+  confirmUserByEmail(home: String!, email: String!): Ok!
   confirmUserByPhone(phone: String!): Ok!
-  unlockUserByEmail(email: String!): Ok!
-  unlockUserByPhone(email: String!): Ok!
+  unlockUserByEmail(home: String!, email: String!): Ok!
+  unlockUserByPhone(home: String!, email: String!): Ok!
 
   getGoogleOauth2Url(home: String!, sessionId: String!): String!
 

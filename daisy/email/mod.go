@@ -11,23 +11,29 @@ import (
 
 type Config struct {
 	Host     string `toml:"host"`
-	Username string `toml:"username"`
+	User     *User  `toml:"user"`
 	Password string `toml:"password"`
+}
+
+type User struct {
+	Name  string `toml:"name"`
+	Email string `toml:"email"`
 }
 
 func (p *Config) Open() (*mail.Client, error) {
 
 	return mail.NewClient(p.Host, mail.WithSMTPAuth(mail.SMTPAuthAutoDiscover),
-		mail.WithUsername(p.Username), mail.WithPassword(p.Password))
+		mail.WithUsername(p.User.Email), mail.WithPassword(p.Password))
 
 }
 
 type EmailSendProtobufConsumer struct {
 	client *mail.Client
+	from   *v2.Task_Address
 }
 
-func NewEmailSendProtobufConsumer(client *mail.Client) *EmailSendProtobufConsumer {
-	return &EmailSendProtobufConsumer{client: client}
+func NewEmailSendProtobufConsumer(client *mail.Client, from *v2.Task_Address) *EmailSendProtobufConsumer {
+	return &EmailSendProtobufConsumer{client, from}
 }
 
 func (p *EmailSendProtobufConsumer) Name() string {
@@ -38,8 +44,8 @@ func (p *EmailSendProtobufConsumer) Execute(id string, content_type string, body
 	if err := proto.Unmarshal(body, &task); err != nil {
 		return err
 	}
-	slog.Info("send email", "from", task.From.Email, "to", task.To.Email, "subject", task.Subject)
-	msg, err := task.Build()
+	slog.Info("send email", "from", p.from.Email, "to", task.To.Email, "subject", task.Subject)
+	msg, err := task.Build(p.from)
 	if err != nil {
 		return err
 	}

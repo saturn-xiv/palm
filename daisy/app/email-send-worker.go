@@ -6,6 +6,7 @@ import (
 	"github.com/BurntSushi/toml"
 
 	"github.com/saturn-xiv/palm/daisy/email"
+	v2 "github.com/saturn-xiv/palm/daisy/email/v2"
 	"github.com/saturn-xiv/palm/daisy/queue"
 )
 
@@ -24,6 +25,6 @@ func LaunchEmailSendWorker(config_file string, queue string, debug bool) error {
 	if err != nil {
 		return err
 	}
-	consumer := email.NewEmailSendProtobufConsumer(smtp)
+	consumer := email.NewEmailSendProtobufConsumer(smtp, &v2.Task_Address{Name: config.Smtp.User.Name, Email: config.Smtp.User.Email})
 	return config.RabbitMQ.Consume(queue, consumer)
 }

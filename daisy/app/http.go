@@ -69,7 +69,11 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	if err != nil {
 		return err
 	}
-	graphql_hnd, err := graphql.Handler(db, redis_client, config.GoogleOauth2)
+	aead, hmac, jwt, err := open_secrets()
+	if err != nil {
+		return err
+	}
+	graphql_hnd, err := graphql.Handler(db, redis_client, config.RabbitMQ, aead, hmac, jwt, config.GoogleOauth2)
 	if err != nil {
 		return err
 	}

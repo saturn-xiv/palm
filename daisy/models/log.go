@@ -9,7 +9,7 @@ import (
 )
 
 type Log struct {
-	ID        uint
+	ID        uint   `gorm:"primarykey"`
 	UserID    uint   `gorm:"not null"`
 	Plugin    string `gorm:"index;not null;size:15"`
 	Ip        string `gorm:"index;not null;size:45"`

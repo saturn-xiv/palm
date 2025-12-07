@@ -7,9 +7,9 @@ import (
 	go_mail "github.com/wneessen/go-mail"
 )
 
-func (p *Task) Build() (*go_mail.Msg, error) {
+func (p *Task) Build(from *Task_Address) (*go_mail.Msg, error) {
 	msg := go_mail.NewMsg()
-	msg.FromMailAddress(&mail.Address{Name: p.From.Name, Address: p.From.Email})
+	msg.FromMailAddress(&mail.Address{Name: from.Name, Address: from.Email})
 	msg.ToMailAddress(&mail.Address{Name: p.To.Name, Address: p.To.Email})
 	for _, it := range p.Cc {
 		msg.AddCcMailAddress(&mail.Address{Name: it.Name, Address: it.Email})

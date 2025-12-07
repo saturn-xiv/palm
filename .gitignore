@@ -1,5 +1,6 @@
 /tmp/
 /*.toml
+/*.bin
 
 /target/
 /Cargo.lock

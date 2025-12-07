@@ -21,10 +21,9 @@ message Task {
     bytes content = 2;
     bool inline = 3;
   }
-  Address from = 1;
-  Address to = 2;
-  repeated Address cc = 3;
-  repeated Address bcc = 4;
+  Address to = 1;
+  repeated Address cc = 2;
+  repeated Address bcc = 3;
   string subject = 11;
   Body body = 12;
   repeated Attachment attachments = 13;

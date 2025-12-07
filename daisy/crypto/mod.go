@@ -22,7 +22,7 @@ func create_keyset_file(name string, template *tink_go_proto.KeyTemplate) error 
 		return err
 	}
 	defer file.Close()
-	if insecurecleartextkeyset.Write(handle, keyset.NewBinaryWriter(file)); err != nil {
+	if err = insecurecleartextkeyset.Write(handle, keyset.NewBinaryWriter(file)); err != nil {
 		return err
 	}
 	return nil

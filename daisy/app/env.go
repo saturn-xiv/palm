@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/saturn-xiv/palm/daisy/models"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"gorm.io/driver/mysql"
@@ -13,6 +12,10 @@ import (
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+
+	"github.com/saturn-xiv/palm/daisy/crypto"
+	"github.com/saturn-xiv/palm/daisy/env"
+	"github.com/saturn-xiv/palm/daisy/models"
 )
 
 type databaseVersion struct {
@@ -145,4 +148,21 @@ func (p *GoogleOauth2) Open(home string) *oauth2.Config {
 		},
 		Endpoint: google.Endpoint,
 	}
+}
+
+func open_secrets() (*crypto.Aead, *crypto.Hmac, *crypto.Jwt, error) {
+	plugin := env.Plugin()
+	aead, err := crypto.NewAead(fmt.Sprintf("%s.aead.bin", plugin))
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	hmac, err := crypto.NewHmac(fmt.Sprintf("%s.hmac.bin", plugin))
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	jwt, err := crypto.NewJwt(fmt.Sprintf("%s.jwt.bin", plugin))
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	return aead, hmac, jwt, nil
 }

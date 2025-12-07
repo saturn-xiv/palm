@@ -43,11 +43,11 @@ func current_user(db *gorm.DB, ss *v2.Session) (*models.User, error) {
 	switch ss.Type {
 	case v2.User_GoogleOauth2:
 		var it models.GoogleOauth2User
-		if err := db.Where("sn = ?", ss.Sn).First(&it).Error; err != nil {
+		if err := db.Where("sn = ?", ss.Sn).Preload("User").First(&it).Error; err != nil {
 			return nil, err
 		}
-		if err := db.Where("id = ?", it.UserID).First(&user).Error; err != nil {
-			return nil, err
+		if it.User.LockedAt != nil {
+			return nil, fmt.Errorf("user %s is locked", it.Name)
 		}
 	default:
 		return nil, fmt.Errorf("unsupported %s yet", ss.Type.String())

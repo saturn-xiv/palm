@@ -16,6 +16,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/daisy/cache"
+	"github.com/saturn-xiv/palm/daisy/crypto"
+	"github.com/saturn-xiv/palm/daisy/queue"
 )
 
 var (
@@ -33,8 +35,8 @@ var gl_schema_txt string
 
 type headerKey string
 
-func Handler(db *gorm.DB, redis *cache.RedisClient, google_oauth2 GoogleOauth2Config) (http.Handler, error) {
-	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db, redis, google_oauth2})
+func Handler(db *gorm.DB, redis *cache.RedisClient, rabbitmq *queue.RabbitMQ, aead *crypto.Aead, hmac *crypto.Hmac, jwt *crypto.Jwt, google_oauth2 GoogleOauth2Config) (http.Handler, error) {
+	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db, redis, rabbitmq, aead, hmac, jwt, google_oauth2})
 	if err != nil {
 		return nil, err
 	}
