@@ -21,7 +21,8 @@ type User struct {
 	LockedAt          *time.Time
 	Version           uint `gorm:"not null;default:0"`
 
-	Logs []Log
+	Logs        []*Log
+	Attachments []*Attachment
 }
 
 func (User) TableName() string {

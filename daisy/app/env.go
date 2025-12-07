@@ -37,7 +37,10 @@ func (p *Database) Open(debug bool) (*gorm.DB, error) {
 	slog.Debug(ver)
 	if err = db.AutoMigrate(
 		&models.User{}, &models.GoogleOauth2User{}, &models.EmailUser{}, &models.Log{},
-		&models.Locale{},
+		&models.Locale{}, &models.Setting{},
+		&models.Attachment{}, &models.AttachmentResource{},
+		&models.Tag{}, &models.TagResource{},
+		&models.Category{}, &models.CategoryResource{},
 	); err != nil {
 		return nil, err
 	}
