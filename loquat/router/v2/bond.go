@@ -3,6 +3,7 @@ package v2
 import (
 	"fmt"
 	"io"
+	"net"
 )
 
 var (
@@ -57,6 +58,15 @@ func (p *IntranetBond) firewalld(wrt io.Writer, zone string, device string) erro
 // https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
 
 func (p *IntranetBond) netplan(dev string) (string, error) {
+	{
+		ip4, _, err := net.ParseCIDR(p.Network.Address)
+		if err != nil {
+			return "", err
+		}
+		if !ip4.IsPrivate() {
+			return "", fmt.Errorf("%s isn't a private address", ip4.String())
+		}
+	}
 
 	items := map[string]interface{}{
 		"interfaces": p.Interfaces,

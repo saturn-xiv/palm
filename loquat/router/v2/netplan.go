@@ -13,7 +13,7 @@ import (
 var gl_netplan_txt string
 
 func (p *Router) setup_netplan(wrt io.Writer) error {
-	slog.Debug("generate netplan scripts")
+	slog.Debug("setup netplan")
 	items := make(map[string]interface{})
 	if p.Wan != nil {
 		for dev, it := range p.Wan.Interfaces {
