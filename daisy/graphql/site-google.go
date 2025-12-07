@@ -7,11 +7,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/saturn-xiv/palm/daisy/models"
 	"golang.org/x/oauth2"
 	google_oauth2 "google.golang.org/api/oauth2/v2"
 	"google.golang.org/api/option"
 	"gorm.io/gorm"
+
+	v2 "github.com/saturn-xiv/palm/daisy/auth/v2"
+	"github.com/saturn-xiv/palm/daisy/env"
+	"github.com/saturn-xiv/palm/daisy/models"
 )
 
 func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
@@ -20,6 +23,7 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	SessionId string
 	State     string
 }) (*SignInResponse, error) {
+	ip := ClientIp(ctx)
 	home := strings.TrimSpace(strings.ToLower(args.Home))
 	{
 		if err := gl_validate.Struct(&googleOauth2HomeForm{Url: home}); err != nil {
@@ -53,14 +57,21 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	}
 
 	if err = p.db.Transaction(func(tx *gorm.DB) error {
-		if err := models.SaveGoogleOauth2User(tx, user_info); err != nil {
+		user, err := models.UserSignInByGoogleOauth2(tx, user_info)
+		if err != nil {
+			return err
+		}
+		if err = models.SignInUser(tx, user, ip); err != nil {
+			return err
+		}
+		if err = models.CreateLog(tx, user.ID, env.Plugin(), ip, v2.Log_Info, "sign in by google oauth2"); err != nil {
 			return err
 		}
 		return nil
 	}); err != nil {
 		return nil, err
 	}
-
+	return newSignInResponse(p.db, v2.User_GoogleOauth2, user_info.Id)
 }
 
 func (p *Query) GetGoogleOauth2Url(ctx context.Context, args struct {

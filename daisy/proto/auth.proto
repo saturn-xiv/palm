@@ -15,3 +15,18 @@ message Log {
     Error = 3;
   }
 }
+
+message User {
+  enum ProviderType {
+    Email = 0;
+    Phone = 1;
+    GoogleOauth2 = 2;
+    WechatOauth2 = 3;
+    WechatMiniProgram = 4;
+  }
+}
+
+message Session {
+  User.ProviderType type = 1;
+  string sn = 2;
+}

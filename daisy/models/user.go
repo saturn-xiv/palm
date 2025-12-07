@@ -10,11 +10,16 @@ import (
 type User struct {
 	gorm.Model
 
-	Sn       string `gorm:"uniqueIndex;not null;size:36"`
-	Lang     string `gorm:"index;not null;size:15;default:'en-US'"`
-	Timezone string `gorm:"index;not null;size:31;default:'UTC'"`
-	LockedAt *time.Time
-	Version  uint `gorm:"not null;default:0"`
+	Sn                string `gorm:"uniqueIndex;not null;size:36"`
+	Lang              string `gorm:"index;not null;size:15;default:'en-US'"`
+	Timezone          string `gorm:"index;not null;size:31;default:'UTC'"`
+	SignedInTotal     uint   `gorm:"not null;default:0"`
+	CurrentSignedInAt *time.Time
+	CurrentSignedInIp *string `gorm:"size:45"`
+	LastSignedInAt    *time.Time
+	LastSignedInIp    *string `gorm:"size:45"`
+	LockedAt          *time.Time
+	Version           uint `gorm:"not null;default:0"`
 
 	Logs []Log
 }
@@ -33,4 +38,20 @@ func createUser(db *gorm.DB) (*User, error) {
 		return nil, err
 	}
 	return &it, nil
+}
+
+func SignInUser(db *gorm.DB, user *User, ip string) error {
+	now := time.Now()
+
+	if err := db.Model(&user).Updates(map[string]interface{}{
+		"current_signed_in_at": &now,
+		"current_signed_in_ip": ip,
+		"last_signed_in_at":    user.CurrentSignedInAt,
+		"last_signed_in_ip":    user.CurrentSignedInIp,
+		"signed_in_total":      user.SignedInTotal + 1,
+		"version":              user.Version + 1,
+	}).Error; err != nil {
+		return err
+	}
+	return nil
 }

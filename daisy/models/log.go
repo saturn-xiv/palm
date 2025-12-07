@@ -4,6 +4,8 @@ import (
 	"time"
 
 	"gorm.io/gorm"
+
+	v2 "github.com/saturn-xiv/palm/daisy/auth/v2"
 )
 
 type Log struct {
@@ -22,5 +24,12 @@ func (Log) TableName() string {
 	return "logs"
 }
 
-func CreateLog(db *gorm.DB, user uint, plugin string, ip string, level string, message string) error {
+func CreateLog(db *gorm.DB, user uint, plugin string, ip string, level v2.Log_Level, message string) error {
+	return db.Create(&Log{
+		UserID:  user,
+		Plugin:  plugin,
+		Ip:      ip,
+		Level:   level.String(),
+		Message: message,
+	}).Error
 }
