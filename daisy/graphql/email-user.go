@@ -64,8 +64,9 @@ func send_email(ctx context.Context, db *gorm.DB, queue *queue.RabbitMQ, jwt *cr
 		"home":  home,
 		"token": token,
 	}
-	subject := models.T(db, user.User.Lang, fmt.Sprintf("%s.emails.%s.subject", env.Plugin(), audience), args)
-	body := models.T(db, user.User.Lang, fmt.Sprintf("%s.emails.%s.body", env.Plugin(), audience), args)
+	plugin := env.Plugin()
+	subject := models.T(db, user.User.Lang, fmt.Sprintf("%s.mailer.%s.subject", plugin, audience), args)
+	body := models.T(db, user.User.Lang, fmt.Sprintf("%s.mailer.%s.body", plugin, audience), args)
 
 	if err = queue.ProduceProtobuf(ctx, reflect.TypeOf((*email_v2.Task)(nil)).Elem().Name(), &email_v2.Task{
 		To:      &email_v2.Task_Address{Name: user.Name, Email: user.Email},

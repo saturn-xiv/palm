@@ -1,0 +1,5 @@
+mailer:
+  email-user:
+    reset-password:
+      subject: "Reset password"
+      body: "Hello {{ .name }},<br />"

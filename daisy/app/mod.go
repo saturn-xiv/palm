@@ -10,12 +10,13 @@ import (
 )
 
 var (
-	gl_config_file      string
-	gl_debug            bool
-	gl_rpc_port         uint16
-	gl_http_port        uint16
-	gl_sms_send_queue   string
-	gl_email_send_queue string
+	gl_config_file       string
+	gl_debug             bool
+	gl_rpc_port          uint16
+	gl_http_port         uint16
+	gl_sms_send_queue    string
+	gl_email_send_queue  string
+	gl_i18n_sync_folders []string
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "daisy",
@@ -59,6 +60,15 @@ var (
 			}
 		},
 	}
+	gl_i18n_sync_cmd = &cobra.Command{
+		Use:   "i18n-sync",
+		Short: "Load locales from folders to database",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := I18nSync(gl_config_file, gl_i18n_sync_folders, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
 )
 
 func Execute() error {
@@ -75,8 +85,9 @@ func init() {
 	gl_rpc_cmd.PersistentFlags().Uint16VarP(&gl_rpc_port, "port", "p", 8080, "listening port")
 	gl_email_send_cmd.PersistentFlags().StringVarP(&gl_email_send_queue, "queue", "q", "emails", "queue name")
 	gl_sms_send_cmd.PersistentFlags().StringVarP(&gl_sms_send_queue, "queue", "q", "sms", "queue name")
+	gl_i18n_sync_cmd.PersistentFlags().StringSliceVarP(&gl_i18n_sync_folders, "folders", "f", []string{}, "folder path")
 
-	gl_root_cmd.AddCommand(gl_http_cmd, gl_rpc_cmd, gl_email_send_cmd, gl_sms_send_cmd)
+	gl_root_cmd.AddCommand(gl_http_cmd, gl_rpc_cmd, gl_email_send_cmd, gl_sms_send_cmd, gl_i18n_sync_cmd)
 }
 
 func init_logger() {
