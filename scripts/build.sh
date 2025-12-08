@@ -93,8 +93,7 @@ function build_cpp_x64() {
     echo "build cpp projects for $1"
     local build_root=$WORKSPACE/build/$VERSION_CODENAME-$1   
 
-    # https://github.com/protocolbuffers/protobuf/issues/12185
-    # -DgRPC_INSTALL=ON -DgRPC_PROTOBUF_PROVIDER=module -DgRPC_ZLIB_PROVIDER=package -DgRPC_CARES_PROVIDER=package -DgRPC_SSL_PROVIDER=package
+    # https://github.com/protocolbuffers/protobuf/issues/12185    
     cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
         -DABSL_ENABLE_INSTALL=ON \
         -DgRPC_BUILD_TESTS=OFF \
@@ -119,9 +118,8 @@ then
 fi
 mkdir $TARGET
 
-build_cpp_x64 x86_64
-build_cpp_x64 aarch64
-# build_cpp_x64 riscv64
+build_cpp_x64 $(uname -m)
+
 build_camellia
 build_dashboard loquat
 

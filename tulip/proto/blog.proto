@@ -26,8 +26,8 @@ message Settings {
   palm.auth.v1.Attachment favicon = 4;
 
   oneof theme {
-    Bootstrap5Theme bootstrap5 = 1;
-    BulmaTheme bulma = 2;
+    Bootstrap5Theme bootstrap5 = 91;
+    BulmaTheme bulma = 92;
   }
 }
 // ----------------------------------------------------------------------------

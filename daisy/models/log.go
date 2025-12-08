@@ -5,7 +5,7 @@ import (
 
 	"gorm.io/gorm"
 
-	v2 "github.com/saturn-xiv/palm/daisy/auth/v2"
+	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 )
 
 type Log struct {

@@ -7,10 +7,10 @@ import (
 
 	"gorm.io/gorm"
 
-	v2 "github.com/saturn-xiv/palm/daisy/auth/v2"
 	"github.com/saturn-xiv/palm/daisy/crypto"
 	"github.com/saturn-xiv/palm/daisy/env"
 	"github.com/saturn-xiv/palm/daisy/models"
+	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 )
 
 const (

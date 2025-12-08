@@ -13,9 +13,9 @@ import (
 	"google.golang.org/api/option"
 	"gorm.io/gorm"
 
-	v2 "github.com/saturn-xiv/palm/daisy/auth/v2"
 	"github.com/saturn-xiv/palm/daisy/env"
 	"github.com/saturn-xiv/palm/daisy/models"
+	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 )
 
 func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {

@@ -9,11 +9,11 @@ import (
 	"github.com/casbin/casbin/v2"
 	"gorm.io/gorm"
 
-	auth_v2 "github.com/saturn-xiv/palm/daisy/auth/v2"
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/env"
 	"github.com/saturn-xiv/palm/daisy/graphql"
 	"github.com/saturn-xiv/palm/daisy/models"
+	auth_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/rbac"
 )
 
