@@ -7,6 +7,73 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Blog.Grpc";
 package palm.blog.v1;
 
-service Post {}
+import "google/protobuf/timestamp.proto";
+import "auth.proto";
 
-service Page {}
+enum ReaderComments {
+  Allow = 0;
+  Show = 1;
+  Hide = 2;
+}
+
+message Bootstrap5Theme {}
+message BulmaTheme {}
+
+message Settings {
+  string title = 1;
+  string description = 2;
+  string language = 3;
+  palm.auth.v1.Attachment favicon = 4;
+
+  oneof theme {
+    Bootstrap5Theme bootstrap5 = 1;
+    BulmaTheme bulma = 2;
+  }
+}
+// ----------------------------------------------------------------------------
+
+service Post {
+  rpc Index(palm.auth.v1.Page) returns (IndexPostResponse) {}
+}
+
+message IndexPostResponse {
+  message Item {
+    message Options {
+      ReaderComments reader_comments = 1;
+    }
+
+    uint64 id = 1;
+    string title = 2;
+    palm.auth.v1.RichText body = 3;
+    repeated string labels = 11;
+    google.protobuf.Timestamp published_at = 12;
+    string permalink = 13;
+    optional palm.auth.v1.Location location = 14;
+    Options options = 19;
+  }
+
+  palm.auth.v1.Pagination pagination = 1;
+  repeated Item items = 2;
+}
+
+// ----------------------------------------------------------------------------
+service Page {
+  rpc Index(palm.auth.v1.Page) returns (IndexPageResponse) {}
+}
+
+message IndexPageResponse {
+  message Item {
+    message Options {
+      ReaderComments reader_comments = 1;
+    }
+
+    uint64 id = 1;
+    string title = 2;
+    palm.auth.v1.RichText body = 3;
+    string permalink = 11;
+    Options options = 19;
+  }
+
+  palm.auth.v1.Pagination pagination = 1;
+  repeated Item items = 2;
+}

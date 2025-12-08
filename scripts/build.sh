@@ -6,7 +6,7 @@ source /etc/os-release
 
 export WORKSPACE=$PWD
 export VERSION="$(git describe --tags --always --dirty --first-parent)"
-export PACKAGE="palm-$VERSION"
+export PACKAGE="palm-$VERSION_CODENAME-$VERSION"
 export TARGET=$WORKSPACE/tmp/$PACKAGE
 
 # -----------------------------------------------------------------------------
@@ -60,7 +60,7 @@ function build_deb() {
     local target=$WORKSPACE/tmp/$1-$2-$VERSION/$1
     if [ -d $target ]
     then
-        rm -r $(dirname $target)
+        rm -rf $(dirname $target)
     fi
     
     mkdir -p $target/usr/bin
@@ -98,9 +98,11 @@ function build_cpp_x64() {
     cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
         -DABSL_ENABLE_INSTALL=ON \
         -DgRPC_BUILD_TESTS=OFF \
-        -B $build_root -S $WORKSPACE
+        -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/toolchains/$1.cmake -B $build_root -S $WORKSPACE
     cmake --build $build_root
     cd $build_root/
+
+    mkdir -p $TARGET/bin/$1
     cp tulip/tulip $TARGET/bin/$1/
 }
 
@@ -118,7 +120,7 @@ fi
 mkdir $TARGET
 
 build_cpp_x64 x86_64
-# build_cpp_x64 aarch64
+build_cpp_x64 aarch64
 # build_cpp_x64 riscv64
 build_camellia
 build_dashboard loquat
