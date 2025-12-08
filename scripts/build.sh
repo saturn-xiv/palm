@@ -93,7 +93,12 @@ function build_cpp_x64() {
     echo "build cpp projects for $1"
     local build_root=$WORKSPACE/build/$VERSION_CODENAME-$1   
 
-    cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -B $build_root -S $WORKSPACE
+    # https://github.com/protocolbuffers/protobuf/issues/12185
+    # -DgRPC_INSTALL=ON -DgRPC_PROTOBUF_PROVIDER=module -DgRPC_ZLIB_PROVIDER=package -DgRPC_CARES_PROVIDER=package -DgRPC_SSL_PROVIDER=package
+    cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
+        -DABSL_ENABLE_INSTALL=ON \
+        -DgRPC_BUILD_TESTS=OFF \
+        -B $build_root -S $WORKSPACE
     cmake --build $build_root
     cd $build_root/
     cp tulip/tulip $TARGET/bin/$1/
@@ -113,7 +118,7 @@ fi
 mkdir $TARGET
 
 build_cpp_x64 x86_64
-build_cpp_x64 aarch64
+# build_cpp_x64 aarch64
 # build_cpp_x64 riscv64
 build_camellia
 build_dashboard loquat
