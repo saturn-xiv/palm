@@ -6,3 +6,5 @@
 /Cargo.lock
 
 /go.work.sum
+
+/begonia/include/palm/version.hpp

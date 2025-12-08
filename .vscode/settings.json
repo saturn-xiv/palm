@@ -68,6 +68,9 @@
   "[ini]": {
     "editor.defaultFormatter": "lkrms.inifmt"
   },
+  "[cmake]": {
+    "editor.defaultFormatter": "ms-vscode.cmake-tools"
+  },
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic",
   "ansible.python.interpreterPath": "/bin/python3",
