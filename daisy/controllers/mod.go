@@ -34,6 +34,7 @@ func NewSession(req *http.Request) *Session {
 
 type H map[string]interface{}
 
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types/Common_types
 const (
 	ContentTypeBinary = "application/octet-stream"
 	ContentTypeForm   = "application/x-www-form-urlencoded"

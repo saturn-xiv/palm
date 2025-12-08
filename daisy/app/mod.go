@@ -16,8 +16,9 @@ var (
 	gl_debug                                  bool
 	gl_rpc_port                               uint16
 	gl_http_port                              uint16
-	gl_sms_send_queue                         string
-	gl_email_send_queue                       string
+	gl_sms_send_worker_queue                  string
+	gl_email_send_worker_queue                string
+	gl_tex_worker_queue                       string
 	gl_i18n_sync_folders                      []string
 	gl_create_user_by_email_email             string
 	gl_create_user_by_email_name              string
@@ -53,20 +54,29 @@ var (
 			}
 		},
 	}
-	gl_sms_send_cmd = &cobra.Command{
+	gl_sms_send_worker_cmd = &cobra.Command{
 		Use:   "sms-send-worker",
 		Short: "Start a sms-send worker",
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := LaunchSmsSendWorker(gl_config_file, gl_sms_send_queue, gl_debug); err != nil {
+			if err := LaunchSmsSendWorker(gl_config_file, gl_sms_send_worker_queue, gl_debug); err != nil {
 				log.Fatal(err)
 			}
 		},
 	}
-	gl_email_send_cmd = &cobra.Command{
+	gl_tex_worker_cmd = &cobra.Command{
+		Use:   "tex-worker",
+		Short: "Start a TexLive worker",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := TexWorker(gl_config_file, gl_tex_worker_queue, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
+	gl_email_send_worker_cmd = &cobra.Command{
 		Use:   "email-send",
 		Short: "Start a email-send worker",
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := LaunchEmailSendWorker(gl_config_file, gl_email_send_queue, gl_debug); err != nil {
+			if err := LaunchEmailSendWorker(gl_config_file, gl_email_send_worker_queue, gl_debug); err != nil {
 				log.Fatal(err)
 			}
 		},
@@ -141,9 +151,11 @@ func init() {
 
 	gl_rpc_cmd.PersistentFlags().Uint16VarP(&gl_rpc_port, "port", "p", 8080, "listening port")
 
-	gl_email_send_cmd.PersistentFlags().StringVarP(&gl_email_send_queue, "queue", "q", "emails", "queue name")
+	gl_email_send_worker_cmd.PersistentFlags().StringVarP(&gl_email_send_worker_queue, "queue", "q", "emails", "queue name")
 
-	gl_sms_send_cmd.PersistentFlags().StringVarP(&gl_sms_send_queue, "queue", "q", "sms", "queue name")
+	gl_sms_send_worker_cmd.PersistentFlags().StringVarP(&gl_sms_send_worker_queue, "queue", "q", "sms", "queue name")
+
+	gl_tex_worker_cmd.PersistentFlags().StringVarP(&gl_tex_worker_queue, "queue", "q", "sms", "queue name")
 
 	gl_i18n_sync_cmd.PersistentFlags().StringSliceVarP(&gl_i18n_sync_folders, "folders", "f", []string{}, "folder path")
 
@@ -162,7 +174,7 @@ func init() {
 
 	gl_root_cmd.AddCommand(
 		gl_http_cmd, gl_rpc_cmd,
-		gl_email_send_cmd, gl_sms_send_cmd,
+		gl_email_send_worker_cmd, gl_sms_send_worker_cmd, gl_tex_worker_cmd,
 		gl_i18n_sync_cmd,
 		gl_list_users_cmd, gl_create_user_by_email_cmd, gl_reset_password_for_email_user_cmd, gl_grant_role_to_user_cmd, gl_revoke_role_from_user_cmd,
 	)

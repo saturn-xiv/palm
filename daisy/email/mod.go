@@ -1,6 +1,7 @@
 package email
 
 import (
+	"context"
 	"log/slog"
 
 	"github.com/wneessen/go-mail"
@@ -39,7 +40,7 @@ func NewEmailSendProtobufConsumer(client *mail.Client, from *v2.Task_Address) *E
 func (p *EmailSendProtobufConsumer) Name() string {
 	return "email-send.protobuf"
 }
-func (p *EmailSendProtobufConsumer) Execute(id string, content_type string, body []byte) error {
+func (p *EmailSendProtobufConsumer) Execute(ctx context.Context, id string, content_type string, body []byte) error {
 	var task v2.Task
 	if err := proto.Unmarshal(body, &task); err != nil {
 		return err

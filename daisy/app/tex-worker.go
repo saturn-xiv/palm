@@ -7,21 +7,26 @@ import (
 	"github.com/BurntSushi/toml"
 
 	"github.com/saturn-xiv/palm/daisy/queue"
-	"github.com/saturn-xiv/palm/daisy/sms"
+	"github.com/saturn-xiv/palm/daisy/s3"
+	"github.com/saturn-xiv/palm/daisy/tex"
 )
 
-type EmailSmsWorkerConfig struct {
+type TexWorkerConfig struct {
 	RabbitMQ *queue.RabbitMQ `toml:"rabbitmq"`
-	Twilio   *sms.Twilio     `toml:"twilio"`
+	Minio    *s3.Config      `toml:"minio"`
 }
 
-func LaunchSmsSendWorker(config_file string, queue string, debug bool) error {
+func TexWorker(config_file string, queue string, debug bool) error {
 	slog.Debug("load configuration from", "file", config_file)
-	var config EmailSmsWorkerConfig
+	var config TexWorkerConfig
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}
-	consumer := sms.NewTwilioSmsSendProtobufConsumer(config.Twilio.Open())
+	s3, err := config.Minio.Open()
+	if err != nil {
+		return err
+	}
+	consumer := tex.NewTexProtobufConsumer(s3)
 	ctx := context.Background()
 	return config.RabbitMQ.Consume(ctx, queue, consumer)
 }

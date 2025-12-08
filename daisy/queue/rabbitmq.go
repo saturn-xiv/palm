@@ -43,7 +43,7 @@ func (p *RabbitMQ) Publish(ctx context.Context, exchange string, content_type st
 	return send(ctx, ch, exchange, "", content_type, body)
 }
 
-func (p *RabbitMQ) Subscribe(exchange string, consumer Consumer) error {
+func (p *RabbitMQ) Subscribe(ctx context.Context, exchange string, consumer Consumer) error {
 	con, err := amqp.Dial(p.url())
 	if err != nil {
 		return err
@@ -63,7 +63,7 @@ func (p *RabbitMQ) Subscribe(exchange string, consumer Consumer) error {
 		return err
 	}
 	for {
-		if err = receive(ch, queue.Name, consumer); err != nil {
+		if err = receive(ctx, ch, queue.Name, consumer); err != nil {
 			return err
 		}
 	}
@@ -94,7 +94,7 @@ func (p *RabbitMQ) Produce(ctx context.Context, queue string, content_type strin
 	return send(ctx, ch, "", queue, content_type, body)
 }
 
-func (p *RabbitMQ) Consume(queue string, consumer Consumer) error {
+func (p *RabbitMQ) Consume(ctx context.Context, queue string, consumer Consumer) error {
 	con, err := amqp.Dial(p.url())
 	if err != nil {
 		return err
@@ -107,7 +107,7 @@ func (p *RabbitMQ) Consume(queue string, consumer Consumer) error {
 	defer ch.Close()
 
 	for {
-		if err := receive(ch, queue, consumer); err != nil {
+		if err := receive(ctx, ch, queue, consumer); err != nil {
 			return err
 		}
 	}
@@ -134,7 +134,7 @@ func send(ctx context.Context, channel *amqp.Channel, exchange string, routing_k
 
 }
 
-func receive(channel *amqp.Channel, queue string, consumer Consumer) error {
+func receive(ctx context.Context, channel *amqp.Channel, queue string, consumer Consumer) error {
 	host, err := os.Hostname()
 	if err != nil {
 		return err
@@ -147,7 +147,7 @@ func receive(channel *amqp.Channel, queue string, consumer Consumer) error {
 	}
 	for it := range msgs {
 		slog.Info("received message", "id", it.MessageId, "content-type", it.ContentType)
-		if err = consumer.Execute(it.MessageId, it.ContentType, it.Body); err != nil {
+		if err = consumer.Execute(ctx, it.MessageId, it.ContentType, it.Body); err != nil {
 			return err
 		}
 	}

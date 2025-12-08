@@ -11,7 +11,7 @@ import (
 // https://www.tug.org/levels.html
 // https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
 // https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Document_classes
-func (p *Task) Build(uploader func(bucket string, object string) error) error {
+func (p *Task) Execute(uploader func(f string, b string, o string) error) error {
 	tmp, err := os.MkdirTemp("", "tex")
 	if err != nil {
 		return err
@@ -40,8 +40,7 @@ func (p *Task) Build(uploader func(bucket string, object string) error) error {
 	}
 
 	pdf := filepath.Join(tmp, fmt.Sprintf("%s.pdf", entry))
-	slog.Debug("upload", "file", pdf)
-	if err = uploader(p.Target.Bucket, p.Target.Object); err != nil {
+	if err = uploader(pdf, p.Target.Bucket, p.Target.Object); err != nil {
 		return err
 	}
 	return nil

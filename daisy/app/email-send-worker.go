@@ -1,6 +1,7 @@
 package app
 
 import (
+	"context"
 	"log/slog"
 
 	"github.com/BurntSushi/toml"
@@ -26,5 +27,6 @@ func LaunchEmailSendWorker(config_file string, queue string, debug bool) error {
 		return err
 	}
 	consumer := email.NewEmailSendProtobufConsumer(smtp, &v2.Task_Address{Name: config.Smtp.User.Name, Email: config.Smtp.User.Email})
-	return config.RabbitMQ.Consume(queue, consumer)
+	ctx := context.Background()
+	return config.RabbitMQ.Consume(ctx, queue, consumer)
 }

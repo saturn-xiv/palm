@@ -1,6 +1,7 @@
 package sms
 
 import (
+	"context"
 	"encoding/json"
 	"log/slog"
 
@@ -54,7 +55,7 @@ func NewTwilioSmsSendProtobufConsumer(client *twilio.RestClient) *TwilioSmsSendP
 func (p *TwilioSmsSendProtobufConsumer) Name() string {
 	return "twilio-sms-send.protobuf"
 }
-func (p *TwilioSmsSendProtobufConsumer) Execute(id string, content_type string, body []byte) error {
+func (p *TwilioSmsSendProtobufConsumer) Execute(ctx context.Context, id string, content_type string, body []byte) error {
 	var task v2.Task
 	if err := proto.Unmarshal(body, &task); err != nil {
 		return err
