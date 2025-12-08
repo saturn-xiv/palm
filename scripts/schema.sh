@@ -20,7 +20,7 @@ function generate_grpc_for_go() {
 function generate_daisy() {
     cd $WORKSPACE/daisy/
 
-    declare -a items=("auth" "crypto" "email" "rbac" "s3" "sms")
+    declare -a items=("portal" "crypto" "email" "rbac" "s3" "sms" "tex")
     for i in "${items[@]}"
     do
         generate_grpc_for_go daisy $i

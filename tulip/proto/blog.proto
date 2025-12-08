@@ -8,7 +8,7 @@ option csharp_namespace = "Palm.Plugins.Blog.Grpc";
 package palm.blog.v1;
 
 import "google/protobuf/timestamp.proto";
-import "auth.proto";
+import "portal.proto";
 
 enum ReaderComments {
   Allow = 0;
@@ -23,7 +23,7 @@ message Settings {
   string title = 1;
   string description = 2;
   string language = 3;
-  palm.auth.v1.Attachment favicon = 4;
+  palm.portal.v1.Attachment favicon = 4;
 
   oneof theme {
     Bootstrap5Theme bootstrap5 = 91;
@@ -33,7 +33,7 @@ message Settings {
 // ----------------------------------------------------------------------------
 
 service Post {
-  rpc Index(palm.auth.v1.Page) returns (IndexPostResponse) {}
+  rpc Index(palm.portal.v1.Page) returns (IndexPostResponse) {}
 }
 
 message IndexPostResponse {
@@ -44,21 +44,21 @@ message IndexPostResponse {
 
     uint64 id = 1;
     string title = 2;
-    palm.auth.v1.RichText body = 3;
+    palm.portal.v1.RichText body = 3;
     repeated string labels = 11;
     google.protobuf.Timestamp published_at = 12;
     string permalink = 13;
-    optional palm.auth.v1.Location location = 14;
+    optional palm.portal.v1.Location location = 14;
     Options options = 19;
   }
 
-  palm.auth.v1.Pagination pagination = 1;
+  palm.portal.v1.Pagination pagination = 1;
   repeated Item items = 2;
 }
 
 // ----------------------------------------------------------------------------
 service Page {
-  rpc Index(palm.auth.v1.Page) returns (IndexPageResponse) {}
+  rpc Index(palm.portal.v1.Page) returns (IndexPageResponse) {}
 }
 
 message IndexPageResponse {
@@ -69,11 +69,11 @@ message IndexPageResponse {
 
     uint64 id = 1;
     string title = 2;
-    palm.auth.v1.RichText body = 3;
+    palm.portal.v1.RichText body = 3;
     string permalink = 11;
     Options options = 19;
   }
 
-  palm.auth.v1.Pagination pagination = 1;
+  palm.portal.v1.Pagination pagination = 1;
   repeated Item items = 2;
 }

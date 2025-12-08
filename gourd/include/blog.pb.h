@@ -32,7 +32,7 @@
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/timestamp.pb.h"
-#include "auth.pb.h"
+#include "portal.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -1028,19 +1028,19 @@ class Settings final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // .palm.auth.v1.Attachment favicon = 4;
+  // .palm.portal.v1.Attachment favicon = 4;
   bool has_favicon() const;
   void clear_favicon() ;
-  const ::palm::auth::v1::Attachment& favicon() const;
-  [[nodiscard]] ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE release_favicon();
-  ::palm::auth::v1::Attachment* PROTOBUF_NONNULL mutable_favicon();
-  void set_allocated_favicon(::palm::auth::v1::Attachment* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_favicon(::palm::auth::v1::Attachment* PROTOBUF_NULLABLE value);
-  ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE unsafe_arena_release_favicon();
+  const ::palm::portal::v1::Attachment& favicon() const;
+  [[nodiscard]] ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE release_favicon();
+  ::palm::portal::v1::Attachment* PROTOBUF_NONNULL mutable_favicon();
+  void set_allocated_favicon(::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_favicon(::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE unsafe_arena_release_favicon();
 
   private:
-  const ::palm::auth::v1::Attachment& _internal_favicon() const;
-  ::palm::auth::v1::Attachment* PROTOBUF_NONNULL _internal_mutable_favicon();
+  const ::palm::portal::v1::Attachment& _internal_favicon() const;
+  ::palm::portal::v1::Attachment* PROTOBUF_NONNULL _internal_mutable_favicon();
 
   public:
   // .palm.blog.v1.Bootstrap5Theme bootstrap5 = 91;
@@ -1116,7 +1116,7 @@ class Settings final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr title_;
     ::google::protobuf::internal::ArenaStringPtr description_;
     ::google::protobuf::internal::ArenaStringPtr language_;
-    ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE favicon_;
+    ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE favicon_;
     union ThemeUnion {
       constexpr ThemeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -1338,19 +1338,19 @@ class IndexPostResponse_Item final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_permalink();
 
   public:
-  // .palm.auth.v1.RichText body = 3;
+  // .palm.portal.v1.RichText body = 3;
   bool has_body() const;
   void clear_body() ;
-  const ::palm::auth::v1::RichText& body() const;
-  [[nodiscard]] ::palm::auth::v1::RichText* PROTOBUF_NULLABLE release_body();
-  ::palm::auth::v1::RichText* PROTOBUF_NONNULL mutable_body();
-  void set_allocated_body(::palm::auth::v1::RichText* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_body(::palm::auth::v1::RichText* PROTOBUF_NULLABLE value);
-  ::palm::auth::v1::RichText* PROTOBUF_NULLABLE unsafe_arena_release_body();
+  const ::palm::portal::v1::RichText& body() const;
+  [[nodiscard]] ::palm::portal::v1::RichText* PROTOBUF_NULLABLE release_body();
+  ::palm::portal::v1::RichText* PROTOBUF_NONNULL mutable_body();
+  void set_allocated_body(::palm::portal::v1::RichText* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_body(::palm::portal::v1::RichText* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::RichText* PROTOBUF_NULLABLE unsafe_arena_release_body();
 
   private:
-  const ::palm::auth::v1::RichText& _internal_body() const;
-  ::palm::auth::v1::RichText* PROTOBUF_NONNULL _internal_mutable_body();
+  const ::palm::portal::v1::RichText& _internal_body() const;
+  ::palm::portal::v1::RichText* PROTOBUF_NONNULL _internal_mutable_body();
 
   public:
   // .google.protobuf.Timestamp published_at = 12;
@@ -1368,19 +1368,19 @@ class IndexPostResponse_Item final : public ::google::protobuf::Message
   ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_published_at();
 
   public:
-  // optional .palm.auth.v1.Location location = 14;
+  // optional .palm.portal.v1.Location location = 14;
   bool has_location() const;
   void clear_location() ;
-  const ::palm::auth::v1::Location& location() const;
-  [[nodiscard]] ::palm::auth::v1::Location* PROTOBUF_NULLABLE release_location();
-  ::palm::auth::v1::Location* PROTOBUF_NONNULL mutable_location();
-  void set_allocated_location(::palm::auth::v1::Location* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_location(::palm::auth::v1::Location* PROTOBUF_NULLABLE value);
-  ::palm::auth::v1::Location* PROTOBUF_NULLABLE unsafe_arena_release_location();
+  const ::palm::portal::v1::Location& location() const;
+  [[nodiscard]] ::palm::portal::v1::Location* PROTOBUF_NULLABLE release_location();
+  ::palm::portal::v1::Location* PROTOBUF_NONNULL mutable_location();
+  void set_allocated_location(::palm::portal::v1::Location* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_location(::palm::portal::v1::Location* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Location* PROTOBUF_NULLABLE unsafe_arena_release_location();
 
   private:
-  const ::palm::auth::v1::Location& _internal_location() const;
-  ::palm::auth::v1::Location* PROTOBUF_NONNULL _internal_mutable_location();
+  const ::palm::portal::v1::Location& _internal_location() const;
+  ::palm::portal::v1::Location* PROTOBUF_NONNULL _internal_mutable_location();
 
   public:
   // .palm.blog.v1.IndexPostResponse.Item.Options options = 19;
@@ -1437,9 +1437,9 @@ class IndexPostResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField<::std::string> labels_;
     ::google::protobuf::internal::ArenaStringPtr title_;
     ::google::protobuf::internal::ArenaStringPtr permalink_;
-    ::palm::auth::v1::RichText* PROTOBUF_NULLABLE body_;
+    ::palm::portal::v1::RichText* PROTOBUF_NULLABLE body_;
     ::google::protobuf::Timestamp* PROTOBUF_NULLABLE published_at_;
-    ::palm::auth::v1::Location* PROTOBUF_NULLABLE location_;
+    ::palm::portal::v1::Location* PROTOBUF_NULLABLE location_;
     ::palm::blog::v1::IndexPostResponse_Item_Options* PROTOBUF_NULLABLE options_;
     ::uint64_t id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1631,19 +1631,19 @@ class IndexPageResponse_Item final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_permalink();
 
   public:
-  // .palm.auth.v1.RichText body = 3;
+  // .palm.portal.v1.RichText body = 3;
   bool has_body() const;
   void clear_body() ;
-  const ::palm::auth::v1::RichText& body() const;
-  [[nodiscard]] ::palm::auth::v1::RichText* PROTOBUF_NULLABLE release_body();
-  ::palm::auth::v1::RichText* PROTOBUF_NONNULL mutable_body();
-  void set_allocated_body(::palm::auth::v1::RichText* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_body(::palm::auth::v1::RichText* PROTOBUF_NULLABLE value);
-  ::palm::auth::v1::RichText* PROTOBUF_NULLABLE unsafe_arena_release_body();
+  const ::palm::portal::v1::RichText& body() const;
+  [[nodiscard]] ::palm::portal::v1::RichText* PROTOBUF_NULLABLE release_body();
+  ::palm::portal::v1::RichText* PROTOBUF_NONNULL mutable_body();
+  void set_allocated_body(::palm::portal::v1::RichText* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_body(::palm::portal::v1::RichText* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::RichText* PROTOBUF_NULLABLE unsafe_arena_release_body();
 
   private:
-  const ::palm::auth::v1::RichText& _internal_body() const;
-  ::palm::auth::v1::RichText* PROTOBUF_NONNULL _internal_mutable_body();
+  const ::palm::portal::v1::RichText& _internal_body() const;
+  ::palm::portal::v1::RichText* PROTOBUF_NONNULL _internal_mutable_body();
 
   public:
   // .palm.blog.v1.IndexPageResponse.Item.Options options = 19;
@@ -1699,7 +1699,7 @@ class IndexPageResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr title_;
     ::google::protobuf::internal::ArenaStringPtr permalink_;
-    ::palm::auth::v1::RichText* PROTOBUF_NULLABLE body_;
+    ::palm::portal::v1::RichText* PROTOBUF_NULLABLE body_;
     ::palm::blog::v1::IndexPageResponse_Item_Options* PROTOBUF_NULLABLE options_;
     ::uint64_t id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1875,19 +1875,19 @@ class IndexPostResponse final : public ::google::protobuf::Message
   const ::palm::blog::v1::IndexPostResponse_Item& items(int index) const;
   ::palm::blog::v1::IndexPostResponse_Item* PROTOBUF_NONNULL add_items();
   const ::google::protobuf::RepeatedPtrField<::palm::blog::v1::IndexPostResponse_Item>& items() const;
-  // .palm.auth.v1.Pagination pagination = 1;
+  // .palm.portal.v1.Pagination pagination = 1;
   bool has_pagination() const;
   void clear_pagination() ;
-  const ::palm::auth::v1::Pagination& pagination() const;
-  [[nodiscard]] ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
-  ::palm::auth::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
-  void set_allocated_pagination(::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_pagination(::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value);
-  ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
+  const ::palm::portal::v1::Pagination& pagination() const;
+  [[nodiscard]] ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
 
   private:
-  const ::palm::auth::v1::Pagination& _internal_pagination() const;
-  ::palm::auth::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
 
   public:
   // @@protoc_insertion_point(class_scope:palm.blog.v1.IndexPostResponse)
@@ -1917,7 +1917,7 @@ class IndexPostResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::palm::blog::v1::IndexPostResponse_Item > items_;
-    ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE pagination_;
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE pagination_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2091,19 +2091,19 @@ class IndexPageResponse final : public ::google::protobuf::Message
   const ::palm::blog::v1::IndexPageResponse_Item& items(int index) const;
   ::palm::blog::v1::IndexPageResponse_Item* PROTOBUF_NONNULL add_items();
   const ::google::protobuf::RepeatedPtrField<::palm::blog::v1::IndexPageResponse_Item>& items() const;
-  // .palm.auth.v1.Pagination pagination = 1;
+  // .palm.portal.v1.Pagination pagination = 1;
   bool has_pagination() const;
   void clear_pagination() ;
-  const ::palm::auth::v1::Pagination& pagination() const;
-  [[nodiscard]] ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
-  ::palm::auth::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
-  void set_allocated_pagination(::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_pagination(::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value);
-  ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
+  const ::palm::portal::v1::Pagination& pagination() const;
+  [[nodiscard]] ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
 
   private:
-  const ::palm::auth::v1::Pagination& _internal_pagination() const;
-  ::palm::auth::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
 
   public:
   // @@protoc_insertion_point(class_scope:palm.blog.v1.IndexPageResponse)
@@ -2133,7 +2133,7 @@ class IndexPageResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::palm::blog::v1::IndexPageResponse_Item > items_;
-    ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE pagination_;
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE pagination_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2361,28 +2361,28 @@ inline void Settings::set_allocated_language(::std::string* PROTOBUF_NULLABLE va
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.Settings.language)
 }
 
-// .palm.auth.v1.Attachment favicon = 4;
+// .palm.portal.v1.Attachment favicon = 4;
 inline bool Settings::has_favicon() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.favicon_ != nullptr);
   return value;
 }
-inline const ::palm::auth::v1::Attachment& Settings::_internal_favicon() const {
+inline const ::palm::portal::v1::Attachment& Settings::_internal_favicon() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::auth::v1::Attachment* p = _impl_.favicon_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::auth::v1::Attachment&>(::palm::auth::v1::_Attachment_default_instance_);
+  const ::palm::portal::v1::Attachment* p = _impl_.favicon_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Attachment&>(::palm::portal::v1::_Attachment_default_instance_);
 }
-inline const ::palm::auth::v1::Attachment& Settings::favicon() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::Attachment& Settings::favicon() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.Settings.favicon)
   return _internal_favicon();
 }
 inline void Settings::unsafe_arena_set_allocated_favicon(
-    ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.favicon_);
   }
-  _impl_.favicon_ = reinterpret_cast<::palm::auth::v1::Attachment*>(value);
+  _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::Attachment*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000008u;
   } else {
@@ -2390,11 +2390,11 @@ inline void Settings::unsafe_arena_set_allocated_favicon(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.Settings.favicon)
 }
-inline ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE Settings::release_favicon() {
+inline ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE Settings::release_favicon() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000008u;
-  ::palm::auth::v1::Attachment* released = _impl_.favicon_;
+  ::palm::portal::v1::Attachment* released = _impl_.favicon_;
   _impl_.favicon_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -2409,31 +2409,31 @@ inline ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE Settings::release_favicon
   }
   return released;
 }
-inline ::palm::auth::v1::Attachment* PROTOBUF_NULLABLE Settings::unsafe_arena_release_favicon() {
+inline ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE Settings::unsafe_arena_release_favicon() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.Settings.favicon)
 
   _impl_._has_bits_[0] &= ~0x00000008u;
-  ::palm::auth::v1::Attachment* temp = _impl_.favicon_;
+  ::palm::portal::v1::Attachment* temp = _impl_.favicon_;
   _impl_.favicon_ = nullptr;
   return temp;
 }
-inline ::palm::auth::v1::Attachment* PROTOBUF_NONNULL Settings::_internal_mutable_favicon() {
+inline ::palm::portal::v1::Attachment* PROTOBUF_NONNULL Settings::_internal_mutable_favicon() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.favicon_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::auth::v1::Attachment>(GetArena());
-    _impl_.favicon_ = reinterpret_cast<::palm::auth::v1::Attachment*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Attachment>(GetArena());
+    _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::Attachment*>(p);
   }
   return _impl_.favicon_;
 }
-inline ::palm::auth::v1::Attachment* PROTOBUF_NONNULL Settings::mutable_favicon()
+inline ::palm::portal::v1::Attachment* PROTOBUF_NONNULL Settings::mutable_favicon()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000008u;
-  ::palm::auth::v1::Attachment* _msg = _internal_mutable_favicon();
+  ::palm::portal::v1::Attachment* _msg = _internal_mutable_favicon();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.Settings.favicon)
   return _msg;
 }
-inline void Settings::set_allocated_favicon(::palm::auth::v1::Attachment* PROTOBUF_NULLABLE value) {
+inline void Settings::set_allocated_favicon(::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -2450,7 +2450,7 @@ inline void Settings::set_allocated_favicon(::palm::auth::v1::Attachment* PROTOB
     _impl_._has_bits_[0] &= ~0x00000008u;
   }
 
-  _impl_.favicon_ = reinterpret_cast<::palm::auth::v1::Attachment*>(value);
+  _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::Attachment*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.Settings.favicon)
 }
 
@@ -2746,28 +2746,28 @@ inline void IndexPostResponse_Item::set_allocated_title(::std::string* PROTOBUF_
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPostResponse.Item.title)
 }
 
-// .palm.auth.v1.RichText body = 3;
+// .palm.portal.v1.RichText body = 3;
 inline bool IndexPostResponse_Item::has_body() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.body_ != nullptr);
   return value;
 }
-inline const ::palm::auth::v1::RichText& IndexPostResponse_Item::_internal_body() const {
+inline const ::palm::portal::v1::RichText& IndexPostResponse_Item::_internal_body() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::auth::v1::RichText* p = _impl_.body_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::auth::v1::RichText&>(::palm::auth::v1::_RichText_default_instance_);
+  const ::palm::portal::v1::RichText* p = _impl_.body_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::RichText&>(::palm::portal::v1::_RichText_default_instance_);
 }
-inline const ::palm::auth::v1::RichText& IndexPostResponse_Item::body() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::RichText& IndexPostResponse_Item::body() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.IndexPostResponse.Item.body)
   return _internal_body();
 }
 inline void IndexPostResponse_Item::unsafe_arena_set_allocated_body(
-    ::palm::auth::v1::RichText* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::RichText* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.body_);
   }
-  _impl_.body_ = reinterpret_cast<::palm::auth::v1::RichText*>(value);
+  _impl_.body_ = reinterpret_cast<::palm::portal::v1::RichText*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000004u;
   } else {
@@ -2775,11 +2775,11 @@ inline void IndexPostResponse_Item::unsafe_arena_set_allocated_body(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.IndexPostResponse.Item.body)
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NULLABLE IndexPostResponse_Item::release_body() {
+inline ::palm::portal::v1::RichText* PROTOBUF_NULLABLE IndexPostResponse_Item::release_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::palm::auth::v1::RichText* released = _impl_.body_;
+  ::palm::portal::v1::RichText* released = _impl_.body_;
   _impl_.body_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -2794,31 +2794,31 @@ inline ::palm::auth::v1::RichText* PROTOBUF_NULLABLE IndexPostResponse_Item::rel
   }
   return released;
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NULLABLE IndexPostResponse_Item::unsafe_arena_release_body() {
+inline ::palm::portal::v1::RichText* PROTOBUF_NULLABLE IndexPostResponse_Item::unsafe_arena_release_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.IndexPostResponse.Item.body)
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::palm::auth::v1::RichText* temp = _impl_.body_;
+  ::palm::portal::v1::RichText* temp = _impl_.body_;
   _impl_.body_ = nullptr;
   return temp;
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NONNULL IndexPostResponse_Item::_internal_mutable_body() {
+inline ::palm::portal::v1::RichText* PROTOBUF_NONNULL IndexPostResponse_Item::_internal_mutable_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.body_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::auth::v1::RichText>(GetArena());
-    _impl_.body_ = reinterpret_cast<::palm::auth::v1::RichText*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::RichText>(GetArena());
+    _impl_.body_ = reinterpret_cast<::palm::portal::v1::RichText*>(p);
   }
   return _impl_.body_;
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NONNULL IndexPostResponse_Item::mutable_body()
+inline ::palm::portal::v1::RichText* PROTOBUF_NONNULL IndexPostResponse_Item::mutable_body()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000004u;
-  ::palm::auth::v1::RichText* _msg = _internal_mutable_body();
+  ::palm::portal::v1::RichText* _msg = _internal_mutable_body();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.IndexPostResponse.Item.body)
   return _msg;
 }
-inline void IndexPostResponse_Item::set_allocated_body(::palm::auth::v1::RichText* PROTOBUF_NULLABLE value) {
+inline void IndexPostResponse_Item::set_allocated_body(::palm::portal::v1::RichText* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -2835,7 +2835,7 @@ inline void IndexPostResponse_Item::set_allocated_body(::palm::auth::v1::RichTex
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
-  _impl_.body_ = reinterpret_cast<::palm::auth::v1::RichText*>(value);
+  _impl_.body_ = reinterpret_cast<::palm::portal::v1::RichText*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPostResponse.Item.body)
 }
 
@@ -3061,28 +3061,28 @@ inline void IndexPostResponse_Item::set_allocated_permalink(::std::string* PROTO
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPostResponse.Item.permalink)
 }
 
-// optional .palm.auth.v1.Location location = 14;
+// optional .palm.portal.v1.Location location = 14;
 inline bool IndexPostResponse_Item::has_location() const {
   bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.location_ != nullptr);
   return value;
 }
-inline const ::palm::auth::v1::Location& IndexPostResponse_Item::_internal_location() const {
+inline const ::palm::portal::v1::Location& IndexPostResponse_Item::_internal_location() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::auth::v1::Location* p = _impl_.location_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::auth::v1::Location&>(::palm::auth::v1::_Location_default_instance_);
+  const ::palm::portal::v1::Location* p = _impl_.location_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Location&>(::palm::portal::v1::_Location_default_instance_);
 }
-inline const ::palm::auth::v1::Location& IndexPostResponse_Item::location() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::Location& IndexPostResponse_Item::location() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.IndexPostResponse.Item.location)
   return _internal_location();
 }
 inline void IndexPostResponse_Item::unsafe_arena_set_allocated_location(
-    ::palm::auth::v1::Location* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::Location* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.location_);
   }
-  _impl_.location_ = reinterpret_cast<::palm::auth::v1::Location*>(value);
+  _impl_.location_ = reinterpret_cast<::palm::portal::v1::Location*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000010u;
   } else {
@@ -3090,11 +3090,11 @@ inline void IndexPostResponse_Item::unsafe_arena_set_allocated_location(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.IndexPostResponse.Item.location)
 }
-inline ::palm::auth::v1::Location* PROTOBUF_NULLABLE IndexPostResponse_Item::release_location() {
+inline ::palm::portal::v1::Location* PROTOBUF_NULLABLE IndexPostResponse_Item::release_location() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000010u;
-  ::palm::auth::v1::Location* released = _impl_.location_;
+  ::palm::portal::v1::Location* released = _impl_.location_;
   _impl_.location_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -3109,31 +3109,31 @@ inline ::palm::auth::v1::Location* PROTOBUF_NULLABLE IndexPostResponse_Item::rel
   }
   return released;
 }
-inline ::palm::auth::v1::Location* PROTOBUF_NULLABLE IndexPostResponse_Item::unsafe_arena_release_location() {
+inline ::palm::portal::v1::Location* PROTOBUF_NULLABLE IndexPostResponse_Item::unsafe_arena_release_location() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.IndexPostResponse.Item.location)
 
   _impl_._has_bits_[0] &= ~0x00000010u;
-  ::palm::auth::v1::Location* temp = _impl_.location_;
+  ::palm::portal::v1::Location* temp = _impl_.location_;
   _impl_.location_ = nullptr;
   return temp;
 }
-inline ::palm::auth::v1::Location* PROTOBUF_NONNULL IndexPostResponse_Item::_internal_mutable_location() {
+inline ::palm::portal::v1::Location* PROTOBUF_NONNULL IndexPostResponse_Item::_internal_mutable_location() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.location_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::auth::v1::Location>(GetArena());
-    _impl_.location_ = reinterpret_cast<::palm::auth::v1::Location*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Location>(GetArena());
+    _impl_.location_ = reinterpret_cast<::palm::portal::v1::Location*>(p);
   }
   return _impl_.location_;
 }
-inline ::palm::auth::v1::Location* PROTOBUF_NONNULL IndexPostResponse_Item::mutable_location()
+inline ::palm::portal::v1::Location* PROTOBUF_NONNULL IndexPostResponse_Item::mutable_location()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000010u;
-  ::palm::auth::v1::Location* _msg = _internal_mutable_location();
+  ::palm::portal::v1::Location* _msg = _internal_mutable_location();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.IndexPostResponse.Item.location)
   return _msg;
 }
-inline void IndexPostResponse_Item::set_allocated_location(::palm::auth::v1::Location* PROTOBUF_NULLABLE value) {
+inline void IndexPostResponse_Item::set_allocated_location(::palm::portal::v1::Location* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -3150,7 +3150,7 @@ inline void IndexPostResponse_Item::set_allocated_location(::palm::auth::v1::Loc
     _impl_._has_bits_[0] &= ~0x00000010u;
   }
 
-  _impl_.location_ = reinterpret_cast<::palm::auth::v1::Location*>(value);
+  _impl_.location_ = reinterpret_cast<::palm::portal::v1::Location*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPostResponse.Item.location)
 }
 
@@ -3256,28 +3256,28 @@ inline void IndexPostResponse_Item::set_allocated_options(::palm::blog::v1::Inde
 
 // IndexPostResponse
 
-// .palm.auth.v1.Pagination pagination = 1;
+// .palm.portal.v1.Pagination pagination = 1;
 inline bool IndexPostResponse::has_pagination() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.pagination_ != nullptr);
   return value;
 }
-inline const ::palm::auth::v1::Pagination& IndexPostResponse::_internal_pagination() const {
+inline const ::palm::portal::v1::Pagination& IndexPostResponse::_internal_pagination() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::auth::v1::Pagination* p = _impl_.pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::auth::v1::Pagination&>(::palm::auth::v1::_Pagination_default_instance_);
+  const ::palm::portal::v1::Pagination* p = _impl_.pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Pagination&>(::palm::portal::v1::_Pagination_default_instance_);
 }
-inline const ::palm::auth::v1::Pagination& IndexPostResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::Pagination& IndexPostResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.IndexPostResponse.pagination)
   return _internal_pagination();
 }
 inline void IndexPostResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
   }
-  _impl_.pagination_ = reinterpret_cast<::palm::auth::v1::Pagination*>(value);
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -3285,11 +3285,11 @@ inline void IndexPostResponse::unsafe_arena_set_allocated_pagination(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.IndexPostResponse.pagination)
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE IndexPostResponse::release_pagination() {
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE IndexPostResponse::release_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::auth::v1::Pagination* released = _impl_.pagination_;
+  ::palm::portal::v1::Pagination* released = _impl_.pagination_;
   _impl_.pagination_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -3304,31 +3304,31 @@ inline ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE IndexPostResponse::releas
   }
   return released;
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE IndexPostResponse::unsafe_arena_release_pagination() {
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE IndexPostResponse::unsafe_arena_release_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.IndexPostResponse.pagination)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::auth::v1::Pagination* temp = _impl_.pagination_;
+  ::palm::portal::v1::Pagination* temp = _impl_.pagination_;
   _impl_.pagination_ = nullptr;
   return temp;
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NONNULL IndexPostResponse::_internal_mutable_pagination() {
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL IndexPostResponse::_internal_mutable_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.pagination_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::auth::v1::Pagination>(GetArena());
-    _impl_.pagination_ = reinterpret_cast<::palm::auth::v1::Pagination*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Pagination>(GetArena());
+    _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(p);
   }
   return _impl_.pagination_;
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NONNULL IndexPostResponse::mutable_pagination()
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL IndexPostResponse::mutable_pagination()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::palm::auth::v1::Pagination* _msg = _internal_mutable_pagination();
+  ::palm::portal::v1::Pagination* _msg = _internal_mutable_pagination();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.IndexPostResponse.pagination)
   return _msg;
 }
-inline void IndexPostResponse::set_allocated_pagination(::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value) {
+inline void IndexPostResponse::set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -3345,7 +3345,7 @@ inline void IndexPostResponse::set_allocated_pagination(::palm::auth::v1::Pagina
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.pagination_ = reinterpret_cast<::palm::auth::v1::Pagination*>(value);
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPostResponse.pagination)
 }
 
@@ -3520,28 +3520,28 @@ inline void IndexPageResponse_Item::set_allocated_title(::std::string* PROTOBUF_
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPageResponse.Item.title)
 }
 
-// .palm.auth.v1.RichText body = 3;
+// .palm.portal.v1.RichText body = 3;
 inline bool IndexPageResponse_Item::has_body() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.body_ != nullptr);
   return value;
 }
-inline const ::palm::auth::v1::RichText& IndexPageResponse_Item::_internal_body() const {
+inline const ::palm::portal::v1::RichText& IndexPageResponse_Item::_internal_body() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::auth::v1::RichText* p = _impl_.body_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::auth::v1::RichText&>(::palm::auth::v1::_RichText_default_instance_);
+  const ::palm::portal::v1::RichText* p = _impl_.body_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::RichText&>(::palm::portal::v1::_RichText_default_instance_);
 }
-inline const ::palm::auth::v1::RichText& IndexPageResponse_Item::body() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::RichText& IndexPageResponse_Item::body() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.IndexPageResponse.Item.body)
   return _internal_body();
 }
 inline void IndexPageResponse_Item::unsafe_arena_set_allocated_body(
-    ::palm::auth::v1::RichText* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::RichText* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.body_);
   }
-  _impl_.body_ = reinterpret_cast<::palm::auth::v1::RichText*>(value);
+  _impl_.body_ = reinterpret_cast<::palm::portal::v1::RichText*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000004u;
   } else {
@@ -3549,11 +3549,11 @@ inline void IndexPageResponse_Item::unsafe_arena_set_allocated_body(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.IndexPageResponse.Item.body)
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NULLABLE IndexPageResponse_Item::release_body() {
+inline ::palm::portal::v1::RichText* PROTOBUF_NULLABLE IndexPageResponse_Item::release_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::palm::auth::v1::RichText* released = _impl_.body_;
+  ::palm::portal::v1::RichText* released = _impl_.body_;
   _impl_.body_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -3568,31 +3568,31 @@ inline ::palm::auth::v1::RichText* PROTOBUF_NULLABLE IndexPageResponse_Item::rel
   }
   return released;
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NULLABLE IndexPageResponse_Item::unsafe_arena_release_body() {
+inline ::palm::portal::v1::RichText* PROTOBUF_NULLABLE IndexPageResponse_Item::unsafe_arena_release_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.IndexPageResponse.Item.body)
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::palm::auth::v1::RichText* temp = _impl_.body_;
+  ::palm::portal::v1::RichText* temp = _impl_.body_;
   _impl_.body_ = nullptr;
   return temp;
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NONNULL IndexPageResponse_Item::_internal_mutable_body() {
+inline ::palm::portal::v1::RichText* PROTOBUF_NONNULL IndexPageResponse_Item::_internal_mutable_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.body_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::auth::v1::RichText>(GetArena());
-    _impl_.body_ = reinterpret_cast<::palm::auth::v1::RichText*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::RichText>(GetArena());
+    _impl_.body_ = reinterpret_cast<::palm::portal::v1::RichText*>(p);
   }
   return _impl_.body_;
 }
-inline ::palm::auth::v1::RichText* PROTOBUF_NONNULL IndexPageResponse_Item::mutable_body()
+inline ::palm::portal::v1::RichText* PROTOBUF_NONNULL IndexPageResponse_Item::mutable_body()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000004u;
-  ::palm::auth::v1::RichText* _msg = _internal_mutable_body();
+  ::palm::portal::v1::RichText* _msg = _internal_mutable_body();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.IndexPageResponse.Item.body)
   return _msg;
 }
-inline void IndexPageResponse_Item::set_allocated_body(::palm::auth::v1::RichText* PROTOBUF_NULLABLE value) {
+inline void IndexPageResponse_Item::set_allocated_body(::palm::portal::v1::RichText* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -3609,7 +3609,7 @@ inline void IndexPageResponse_Item::set_allocated_body(::palm::auth::v1::RichTex
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
-  _impl_.body_ = reinterpret_cast<::palm::auth::v1::RichText*>(value);
+  _impl_.body_ = reinterpret_cast<::palm::portal::v1::RichText*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPageResponse.Item.body)
 }
 
@@ -3780,28 +3780,28 @@ inline void IndexPageResponse_Item::set_allocated_options(::palm::blog::v1::Inde
 
 // IndexPageResponse
 
-// .palm.auth.v1.Pagination pagination = 1;
+// .palm.portal.v1.Pagination pagination = 1;
 inline bool IndexPageResponse::has_pagination() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.pagination_ != nullptr);
   return value;
 }
-inline const ::palm::auth::v1::Pagination& IndexPageResponse::_internal_pagination() const {
+inline const ::palm::portal::v1::Pagination& IndexPageResponse::_internal_pagination() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::auth::v1::Pagination* p = _impl_.pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::auth::v1::Pagination&>(::palm::auth::v1::_Pagination_default_instance_);
+  const ::palm::portal::v1::Pagination* p = _impl_.pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Pagination&>(::palm::portal::v1::_Pagination_default_instance_);
 }
-inline const ::palm::auth::v1::Pagination& IndexPageResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::Pagination& IndexPageResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.IndexPageResponse.pagination)
   return _internal_pagination();
 }
 inline void IndexPageResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
   }
-  _impl_.pagination_ = reinterpret_cast<::palm::auth::v1::Pagination*>(value);
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -3809,11 +3809,11 @@ inline void IndexPageResponse::unsafe_arena_set_allocated_pagination(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.IndexPageResponse.pagination)
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE IndexPageResponse::release_pagination() {
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE IndexPageResponse::release_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::auth::v1::Pagination* released = _impl_.pagination_;
+  ::palm::portal::v1::Pagination* released = _impl_.pagination_;
   _impl_.pagination_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -3828,31 +3828,31 @@ inline ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE IndexPageResponse::releas
   }
   return released;
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NULLABLE IndexPageResponse::unsafe_arena_release_pagination() {
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE IndexPageResponse::unsafe_arena_release_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.IndexPageResponse.pagination)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::auth::v1::Pagination* temp = _impl_.pagination_;
+  ::palm::portal::v1::Pagination* temp = _impl_.pagination_;
   _impl_.pagination_ = nullptr;
   return temp;
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NONNULL IndexPageResponse::_internal_mutable_pagination() {
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL IndexPageResponse::_internal_mutable_pagination() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.pagination_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::auth::v1::Pagination>(GetArena());
-    _impl_.pagination_ = reinterpret_cast<::palm::auth::v1::Pagination*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Pagination>(GetArena());
+    _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(p);
   }
   return _impl_.pagination_;
 }
-inline ::palm::auth::v1::Pagination* PROTOBUF_NONNULL IndexPageResponse::mutable_pagination()
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL IndexPageResponse::mutable_pagination()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::palm::auth::v1::Pagination* _msg = _internal_mutable_pagination();
+  ::palm::portal::v1::Pagination* _msg = _internal_mutable_pagination();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.IndexPageResponse.pagination)
   return _msg;
 }
-inline void IndexPageResponse::set_allocated_pagination(::palm::auth::v1::Pagination* PROTOBUF_NULLABLE value) {
+inline void IndexPageResponse::set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -3869,7 +3869,7 @@ inline void IndexPageResponse::set_allocated_pagination(::palm::auth::v1::Pagina
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.pagination_ = reinterpret_cast<::palm::auth::v1::Pagination*>(value);
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.IndexPageResponse.pagination)
 }
 

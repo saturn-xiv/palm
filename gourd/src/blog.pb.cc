@@ -383,52 +383,53 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 const char descriptor_table_protodef_blog_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\nblog.proto\022\014palm.blog.v1\032\037google/proto"
-    "buf/timestamp.proto\032\nauth.proto\"\021\n\017Boots"
-    "trap5Theme\"\014\n\nBulmaTheme\"\324\001\n\010Settings\022\r\n"
-    "\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\020\n\010lan"
-    "guage\030\003 \001(\t\022)\n\007favicon\030\004 \001(\0132\030.palm.auth"
-    ".v1.Attachment\0223\n\nbootstrap5\030[ \001(\0132\035.pal"
-    "m.blog.v1.Bootstrap5ThemeH\000\022)\n\005bulma\030\\ \001"
-    "(\0132\030.palm.blog.v1.BulmaThemeH\000B\007\n\005theme\""
-    "\322\003\n\021IndexPostResponse\022,\n\npagination\030\001 \001("
-    "\0132\030.palm.auth.v1.Pagination\0223\n\005items\030\002 \003"
-    "(\0132$.palm.blog.v1.IndexPostResponse.Item"
-    "\032\331\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\022$\n\004"
-    "body\030\003 \001(\0132\026.palm.auth.v1.RichText\022\016\n\006la"
-    "bels\030\013 \003(\t\0220\n\014published_at\030\014 \001(\0132\032.googl"
-    "e.protobuf.Timestamp\022\021\n\tpermalink\030\r \001(\t\022"
-    "-\n\010location\030\016 \001(\0132\026.palm.auth.v1.Locatio"
-    "nH\000\210\001\001\022=\n\007options\030\023 \001(\0132,.palm.blog.v1.I"
-    "ndexPostResponse.Item.Options\032@\n\007Options"
-    "\0225\n\017reader_comments\030\001 \001(\0162\034.palm.blog.v1"
-    ".ReaderCommentsB\013\n\t_location\"\324\002\n\021IndexPa"
-    "geResponse\022,\n\npagination\030\001 \001(\0132\030.palm.au"
-    "th.v1.Pagination\0223\n\005items\030\002 \003(\0132$.palm.b"
-    "log.v1.IndexPageResponse.Item\032\333\001\n\004Item\022\n"
-    "\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\022$\n\004body\030\003 \001(\0132"
-    "\026.palm.auth.v1.RichText\022\021\n\tpermalink\030\013 \001"
-    "(\t\022=\n\007options\030\023 \001(\0132,.palm.blog.v1.Index"
-    "PageResponse.Item.Options\032@\n\007Options\0225\n\017"
-    "reader_comments\030\001 \001(\0162\034.palm.blog.v1.Rea"
-    "derComments*/\n\016ReaderComments\022\t\n\005Allow\020\000"
-    "\022\010\n\004Show\020\001\022\010\n\004Hide\020\0022F\n\004Post\022>\n\005Index\022\022."
-    "palm.auth.v1.Page\032\037.palm.blog.v1.IndexPo"
-    "stResponse\"\0002F\n\004Page\022>\n\005Index\022\022.palm.aut"
-    "h.v1.Page\032\037.palm.blog.v1.IndexPageRespon"
-    "se\"\000BY\n*com.github.saturn_xiv.palm.plugi"
-    "ns.blog.v1B\tBlogProtoP\001Z\005./;v2\252\002\026Palm.Pl"
-    "ugins.Blog.Grpcb\006proto3"
+    "buf/timestamp.proto\032\014portal.proto\"\021\n\017Boo"
+    "tstrap5Theme\"\014\n\nBulmaTheme\"\326\001\n\010Settings\022"
+    "\r\n\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\020\n\010l"
+    "anguage\030\003 \001(\t\022+\n\007favicon\030\004 \001(\0132\032.palm.po"
+    "rtal.v1.Attachment\0223\n\nbootstrap5\030[ \001(\0132\035"
+    ".palm.blog.v1.Bootstrap5ThemeH\000\022)\n\005bulma"
+    "\030\\ \001(\0132\030.palm.blog.v1.BulmaThemeH\000B\007\n\005th"
+    "eme\"\330\003\n\021IndexPostResponse\022.\n\npagination\030"
+    "\001 \001(\0132\032.palm.portal.v1.Pagination\0223\n\005ite"
+    "ms\030\002 \003(\0132$.palm.blog.v1.IndexPostRespons"
+    "e.Item\032\335\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001"
+    "(\t\022&\n\004body\030\003 \001(\0132\030.palm.portal.v1.RichTe"
+    "xt\022\016\n\006labels\030\013 \003(\t\0220\n\014published_at\030\014 \001(\013"
+    "2\032.google.protobuf.Timestamp\022\021\n\tpermalin"
+    "k\030\r \001(\t\022/\n\010location\030\016 \001(\0132\030.palm.portal."
+    "v1.LocationH\000\210\001\001\022=\n\007options\030\023 \001(\0132,.palm"
+    ".blog.v1.IndexPostResponse.Item.Options\032"
+    "@\n\007Options\0225\n\017reader_comments\030\001 \001(\0162\034.pa"
+    "lm.blog.v1.ReaderCommentsB\013\n\t_location\"\330"
+    "\002\n\021IndexPageResponse\022.\n\npagination\030\001 \001(\013"
+    "2\032.palm.portal.v1.Pagination\0223\n\005items\030\002 "
+    "\003(\0132$.palm.blog.v1.IndexPageResponse.Ite"
+    "m\032\335\001\n\004Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\022&\n"
+    "\004body\030\003 \001(\0132\030.palm.portal.v1.RichText\022\021\n"
+    "\tpermalink\030\013 \001(\t\022=\n\007options\030\023 \001(\0132,.palm"
+    ".blog.v1.IndexPageResponse.Item.Options\032"
+    "@\n\007Options\0225\n\017reader_comments\030\001 \001(\0162\034.pa"
+    "lm.blog.v1.ReaderComments*/\n\016ReaderComme"
+    "nts\022\t\n\005Allow\020\000\022\010\n\004Show\020\001\022\010\n\004Hide\020\0022H\n\004Po"
+    "st\022@\n\005Index\022\024.palm.portal.v1.Page\032\037.palm"
+    ".blog.v1.IndexPostResponse\"\0002H\n\004Page\022@\n\005"
+    "Index\022\024.palm.portal.v1.Page\032\037.palm.blog."
+    "v1.IndexPageResponse\"\000BY\n*com.github.sat"
+    "urn_xiv.palm.plugins.blog.v1B\tBlogProtoP"
+    "\001Z\005./;v2\252\002\026Palm.Plugins.Blog.Grpcb\006proto"
+    "3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_blog_2eproto_deps[2] = {
-        &::descriptor_table_auth_2eproto,
         &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+        &::descriptor_table_portal_2eproto,
 };
 static ::absl::once_flag descriptor_table_blog_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_blog_2eproto = {
     false,
     false,
-    1423,
+    1441,
     descriptor_table_protodef_blog_2eproto,
     "blog.proto",
     &descriptor_table_blog_2eproto_once,
@@ -884,7 +885,7 @@ Settings::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::blog::v1::Settings>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.auth.v1.Attachment favicon = 4;
+    // .palm.portal.v1.Attachment favicon = 4;
     {::_pbi::TcParser::FastMtS1,
      {34, 3, 0, PROTOBUF_FIELD_OFFSET(Settings, _impl_.favicon_)}},
     // string title = 1;
@@ -910,7 +911,7 @@ Settings::_table_ = {
     // string language = 3;
     {PROTOBUF_FIELD_OFFSET(Settings, _impl_.language_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.auth.v1.Attachment favicon = 4;
+    // .palm.portal.v1.Attachment favicon = 4;
     {PROTOBUF_FIELD_OFFSET(Settings, _impl_.favicon_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .palm.blog.v1.Bootstrap5Theme bootstrap5 = 91;
@@ -921,7 +922,7 @@ Settings::_table_ = {
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::auth::v1::Attachment>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Attachment>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::Bootstrap5Theme>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::BulmaTheme>()},
   }},
@@ -1007,7 +1008,7 @@ PROTOBUF_NOINLINE void Settings::Clear() {
   }
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.auth.v1.Attachment favicon = 4;
+  // .palm.portal.v1.Attachment favicon = 4;
   if ((cached_has_bits & 0x00000008u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         4, *this_._impl_.favicon_, this_._impl_.favicon_->GetCachedSize(), target,
@@ -1077,7 +1078,7 @@ PROTOBUF_NOINLINE void Settings::Clear() {
                                         this_._internal_language());
       }
     }
-    // .palm.auth.v1.Attachment favicon = 4;
+    // .palm.portal.v1.Attachment favicon = 4;
     if ((cached_has_bits & 0x00000008u) != 0) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.favicon_);
@@ -1635,7 +1636,7 @@ IndexPostResponse_Item::_table_ = {
     // string title = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 0, 0, PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.title_)}},
-    // .palm.auth.v1.RichText body = 3;
+    // .palm.portal.v1.RichText body = 3;
     {::_pbi::TcParser::FastMtS1,
      {26, 2, 0, PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.body_)}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1654,7 +1655,7 @@ IndexPostResponse_Item::_table_ = {
     // string permalink = 13;
     {::_pbi::TcParser::FastUS1,
      {106, 1, 0, PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.permalink_)}},
-    // optional .palm.auth.v1.Location location = 14;
+    // optional .palm.portal.v1.Location location = 14;
     {::_pbi::TcParser::FastMtS1,
      {114, 4, 2, PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.location_)}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1667,7 +1668,7 @@ IndexPostResponse_Item::_table_ = {
     // string title = 2;
     {PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.title_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.auth.v1.RichText body = 3;
+    // .palm.portal.v1.RichText body = 3;
     {PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.body_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated string labels = 11;
@@ -1679,7 +1680,7 @@ IndexPostResponse_Item::_table_ = {
     // string permalink = 13;
     {PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.permalink_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // optional .palm.auth.v1.Location location = 14;
+    // optional .palm.portal.v1.Location location = 14;
     {PROTOBUF_FIELD_OFFSET(IndexPostResponse_Item, _impl_.location_), _Internal::kHasBitsOffset + 4, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .palm.blog.v1.IndexPostResponse.Item.Options options = 19;
@@ -1687,9 +1688,9 @@ IndexPostResponse_Item::_table_ = {
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::auth::v1::RichText>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::RichText>()},
       {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
-      {::_pbi::TcParser::GetTable<::palm::auth::v1::Location>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Location>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::IndexPostResponse_Item_Options>()},
   }},
   {{
@@ -1773,7 +1774,7 @@ PROTOBUF_NOINLINE void IndexPostResponse_Item::Clear() {
   }
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.auth.v1.RichText body = 3;
+  // .palm.portal.v1.RichText body = 3;
   if ((cached_has_bits & 0x00000004u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         3, *this_._impl_.body_, this_._impl_.body_->GetCachedSize(), target,
@@ -1805,7 +1806,7 @@ PROTOBUF_NOINLINE void IndexPostResponse_Item::Clear() {
     }
   }
 
-  // optional .palm.auth.v1.Location location = 14;
+  // optional .palm.portal.v1.Location location = 14;
   if ((cached_has_bits & 0x00000010u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         14, *this_._impl_.location_, this_._impl_.location_->GetCachedSize(), target,
@@ -1870,7 +1871,7 @@ PROTOBUF_NOINLINE void IndexPostResponse_Item::Clear() {
                                         this_._internal_permalink());
       }
     }
-    // .palm.auth.v1.RichText body = 3;
+    // .palm.portal.v1.RichText body = 3;
     if ((cached_has_bits & 0x00000004u) != 0) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.body_);
@@ -1880,7 +1881,7 @@ PROTOBUF_NOINLINE void IndexPostResponse_Item::Clear() {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.published_at_);
     }
-    // optional .palm.auth.v1.Location location = 14;
+    // optional .palm.portal.v1.Location location = 14;
     if ((cached_has_bits & 0x00000010u) != 0) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.location_);
@@ -2153,13 +2154,13 @@ IndexPostResponse::_table_ = {
     // repeated .palm.blog.v1.IndexPostResponse.Item items = 2;
     {::_pbi::TcParser::FastMtR1,
      {18, 63, 1, PROTOBUF_FIELD_OFFSET(IndexPostResponse, _impl_.items_)}},
-    // .palm.auth.v1.Pagination pagination = 1;
+    // .palm.portal.v1.Pagination pagination = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(IndexPostResponse, _impl_.pagination_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .palm.auth.v1.Pagination pagination = 1;
+    // .palm.portal.v1.Pagination pagination = 1;
     {PROTOBUF_FIELD_OFFSET(IndexPostResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated .palm.blog.v1.IndexPostResponse.Item items = 2;
@@ -2167,7 +2168,7 @@ IndexPostResponse::_table_ = {
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::auth::v1::Pagination>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::IndexPostResponse_Item>()},
   }},
   {{
@@ -2206,7 +2207,7 @@ PROTOBUF_NOINLINE void IndexPostResponse::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.auth.v1.Pagination pagination = 1;
+  // .palm.portal.v1.Pagination pagination = 1;
   if ((cached_has_bits & 0x00000001u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
@@ -2258,7 +2259,7 @@ PROTOBUF_NOINLINE void IndexPostResponse::Clear() {
     }
   }
    {
-    // .palm.auth.v1.Pagination pagination = 1;
+    // .palm.portal.v1.Pagination pagination = 1;
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
       total_size += 1 +
@@ -2704,7 +2705,7 @@ IndexPageResponse_Item::_table_ = {
     // string title = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 0, 0, PROTOBUF_FIELD_OFFSET(IndexPageResponse_Item, _impl_.title_)}},
-    // .palm.auth.v1.RichText body = 3;
+    // .palm.portal.v1.RichText body = 3;
     {::_pbi::TcParser::FastMtS1,
      {26, 2, 0, PROTOBUF_FIELD_OFFSET(IndexPageResponse_Item, _impl_.body_)}},
   }}, {{
@@ -2716,7 +2717,7 @@ IndexPageResponse_Item::_table_ = {
     // string title = 2;
     {PROTOBUF_FIELD_OFFSET(IndexPageResponse_Item, _impl_.title_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.auth.v1.RichText body = 3;
+    // .palm.portal.v1.RichText body = 3;
     {PROTOBUF_FIELD_OFFSET(IndexPageResponse_Item, _impl_.body_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string permalink = 11;
@@ -2727,7 +2728,7 @@ IndexPageResponse_Item::_table_ = {
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::auth::v1::RichText>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::RichText>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::IndexPageResponse_Item_Options>()},
   }},
   {{
@@ -2801,7 +2802,7 @@ PROTOBUF_NOINLINE void IndexPageResponse_Item::Clear() {
   }
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.auth.v1.RichText body = 3;
+  // .palm.portal.v1.RichText body = 3;
   if ((cached_has_bits & 0x00000004u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         3, *this_._impl_.body_, this_._impl_.body_->GetCachedSize(), target,
@@ -2865,7 +2866,7 @@ PROTOBUF_NOINLINE void IndexPageResponse_Item::Clear() {
                                         this_._internal_permalink());
       }
     }
-    // .palm.auth.v1.RichText body = 3;
+    // .palm.portal.v1.RichText body = 3;
     if ((cached_has_bits & 0x00000004u) != 0) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.body_);
@@ -3120,13 +3121,13 @@ IndexPageResponse::_table_ = {
     // repeated .palm.blog.v1.IndexPageResponse.Item items = 2;
     {::_pbi::TcParser::FastMtR1,
      {18, 63, 1, PROTOBUF_FIELD_OFFSET(IndexPageResponse, _impl_.items_)}},
-    // .palm.auth.v1.Pagination pagination = 1;
+    // .palm.portal.v1.Pagination pagination = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(IndexPageResponse, _impl_.pagination_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .palm.auth.v1.Pagination pagination = 1;
+    // .palm.portal.v1.Pagination pagination = 1;
     {PROTOBUF_FIELD_OFFSET(IndexPageResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated .palm.blog.v1.IndexPageResponse.Item items = 2;
@@ -3134,7 +3135,7 @@ IndexPageResponse::_table_ = {
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::auth::v1::Pagination>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::IndexPageResponse_Item>()},
   }},
   {{
@@ -3173,7 +3174,7 @@ PROTOBUF_NOINLINE void IndexPageResponse::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.auth.v1.Pagination pagination = 1;
+  // .palm.portal.v1.Pagination pagination = 1;
   if ((cached_has_bits & 0x00000001u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
@@ -3225,7 +3226,7 @@ PROTOBUF_NOINLINE void IndexPageResponse::Clear() {
     }
   }
    {
-    // .palm.auth.v1.Pagination pagination = 1;
+    // .palm.portal.v1.Pagination pagination = 1;
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
       total_size += 1 +

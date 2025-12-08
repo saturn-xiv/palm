@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.tex.v1";
+option java_outer_classname = "TexProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Tex.Grpc";
+package palm.tex.v1;
+
+// apt install texlive-full
+message Task {
+  enum Document {
+    Book = 0;
+    Article = 1;
+    Report = 2;
+    Letter = 3;
+    Beamer = 4;
+  }
+  message Target {
+    string bucket = 1;
+    string object = 2;
+  }
+  Document document = 1;
+  string entry = 2;
+  map<string, bytes> files = 3;
+  Target target = 9;
+}

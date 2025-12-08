@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v6.31.1
-// source: proto/auth.proto
+// source: proto/portal.proto
 
 package v2
 
@@ -48,11 +48,11 @@ func (x RichText_Editor) String() string {
 }
 
 func (RichText_Editor) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_auth_proto_enumTypes[0].Descriptor()
+	return file_proto_portal_proto_enumTypes[0].Descriptor()
 }
 
 func (RichText_Editor) Type() protoreflect.EnumType {
-	return &file_proto_auth_proto_enumTypes[0]
+	return &file_proto_portal_proto_enumTypes[0]
 }
 
 func (x RichText_Editor) Number() protoreflect.EnumNumber {
@@ -61,7 +61,7 @@ func (x RichText_Editor) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RichText_Editor.Descriptor instead.
 func (RichText_Editor) EnumDescriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{3, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{4, 0}
 }
 
 type Location_Map int32
@@ -91,11 +91,11 @@ func (x Location_Map) String() string {
 }
 
 func (Location_Map) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_auth_proto_enumTypes[1].Descriptor()
+	return file_proto_portal_proto_enumTypes[1].Descriptor()
 }
 
 func (Location_Map) Type() protoreflect.EnumType {
-	return &file_proto_auth_proto_enumTypes[1]
+	return &file_proto_portal_proto_enumTypes[1]
 }
 
 func (x Location_Map) Number() protoreflect.EnumNumber {
@@ -104,7 +104,7 @@ func (x Location_Map) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Location_Map.Descriptor instead.
 func (Location_Map) EnumDescriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{4, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{5, 0}
 }
 
 type Log_Level int32
@@ -143,11 +143,11 @@ func (x Log_Level) String() string {
 }
 
 func (Log_Level) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_auth_proto_enumTypes[2].Descriptor()
+	return file_proto_portal_proto_enumTypes[2].Descriptor()
 }
 
 func (Log_Level) Type() protoreflect.EnumType {
-	return &file_proto_auth_proto_enumTypes[2]
+	return &file_proto_portal_proto_enumTypes[2]
 }
 
 func (x Log_Level) Number() protoreflect.EnumNumber {
@@ -156,7 +156,7 @@ func (x Log_Level) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Log_Level.Descriptor instead.
 func (Log_Level) EnumDescriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{5, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{6, 0}
 }
 
 type User_ProviderType int32
@@ -198,11 +198,11 @@ func (x User_ProviderType) String() string {
 }
 
 func (User_ProviderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_auth_proto_enumTypes[3].Descriptor()
+	return file_proto_portal_proto_enumTypes[3].Descriptor()
 }
 
 func (User_ProviderType) Type() protoreflect.EnumType {
-	return &file_proto_auth_proto_enumTypes[3]
+	return &file_proto_portal_proto_enumTypes[3]
 }
 
 func (x User_ProviderType) Number() protoreflect.EnumNumber {
@@ -211,7 +211,51 @@ func (x User_ProviderType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use User_ProviderType.Descriptor instead.
 func (User_ProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{6, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{7, 0}
+}
+
+type IdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IdRequest) Reset() {
+	*x = IdRequest{}
+	mi := &file_proto_portal_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IdRequest) ProtoMessage() {}
+
+func (x *IdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IdRequest.ProtoReflect.Descriptor instead.
+func (*IdRequest) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *IdRequest) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
 }
 
 type Page struct {
@@ -224,7 +268,7 @@ type Page struct {
 
 func (x *Page) Reset() {
 	*x = Page{}
-	mi := &file_proto_auth_proto_msgTypes[0]
+	mi := &file_proto_portal_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -236,7 +280,7 @@ func (x *Page) String() string {
 func (*Page) ProtoMessage() {}
 
 func (x *Page) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[0]
+	mi := &file_proto_portal_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -249,7 +293,7 @@ func (x *Page) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Page.ProtoReflect.Descriptor instead.
 func (*Page) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Page) GetIndex() uint64 {
@@ -279,7 +323,7 @@ type Pagination struct {
 
 func (x *Pagination) Reset() {
 	*x = Pagination{}
-	mi := &file_proto_auth_proto_msgTypes[1]
+	mi := &file_proto_portal_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -291,7 +335,7 @@ func (x *Pagination) String() string {
 func (*Pagination) ProtoMessage() {}
 
 func (x *Pagination) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[1]
+	mi := &file_proto_portal_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -304,7 +348,7 @@ func (x *Pagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pagination.ProtoReflect.Descriptor instead.
 func (*Pagination) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{1}
+	return file_proto_portal_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Pagination) GetCurrent() *Page {
@@ -352,7 +396,7 @@ type Attachment struct {
 
 func (x *Attachment) Reset() {
 	*x = Attachment{}
-	mi := &file_proto_auth_proto_msgTypes[2]
+	mi := &file_proto_portal_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -364,7 +408,7 @@ func (x *Attachment) String() string {
 func (*Attachment) ProtoMessage() {}
 
 func (x *Attachment) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[2]
+	mi := &file_proto_portal_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -377,7 +421,7 @@ func (x *Attachment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Attachment.ProtoReflect.Descriptor instead.
 func (*Attachment) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{2}
+	return file_proto_portal_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Attachment) GetBucket() string {
@@ -396,7 +440,7 @@ func (x *Attachment) GetObject() string {
 
 type RichText struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Editor        RichText_Editor        `protobuf:"varint,1,opt,name=editor,proto3,enum=palm.auth.v1.RichText_Editor" json:"editor,omitempty"`
+	Editor        RichText_Editor        `protobuf:"varint,1,opt,name=editor,proto3,enum=palm.portal.v1.RichText_Editor" json:"editor,omitempty"`
 	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
 	Attachments   []*Attachment          `protobuf:"bytes,3,rep,name=attachments,proto3" json:"attachments,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -405,7 +449,7 @@ type RichText struct {
 
 func (x *RichText) Reset() {
 	*x = RichText{}
-	mi := &file_proto_auth_proto_msgTypes[3]
+	mi := &file_proto_portal_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -417,7 +461,7 @@ func (x *RichText) String() string {
 func (*RichText) ProtoMessage() {}
 
 func (x *RichText) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[3]
+	mi := &file_proto_portal_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -430,7 +474,7 @@ func (x *RichText) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichText.ProtoReflect.Descriptor instead.
 func (*RichText) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{3}
+	return file_proto_portal_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RichText) GetEditor() RichText_Editor {
@@ -456,7 +500,7 @@ func (x *RichText) GetAttachments() []*Attachment {
 
 type Location struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Map           Location_Map           `protobuf:"varint,1,opt,name=map,proto3,enum=palm.auth.v1.Location_Map" json:"map,omitempty"`
+	Map           Location_Map           `protobuf:"varint,1,opt,name=map,proto3,enum=palm.portal.v1.Location_Map" json:"map,omitempty"`
 	Address       string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -464,7 +508,7 @@ type Location struct {
 
 func (x *Location) Reset() {
 	*x = Location{}
-	mi := &file_proto_auth_proto_msgTypes[4]
+	mi := &file_proto_portal_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -476,7 +520,7 @@ func (x *Location) String() string {
 func (*Location) ProtoMessage() {}
 
 func (x *Location) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[4]
+	mi := &file_proto_portal_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -489,7 +533,7 @@ func (x *Location) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Location.ProtoReflect.Descriptor instead.
 func (*Location) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{4}
+	return file_proto_portal_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Location) GetMap() Location_Map {
@@ -514,7 +558,7 @@ type Log struct {
 
 func (x *Log) Reset() {
 	*x = Log{}
-	mi := &file_proto_auth_proto_msgTypes[5]
+	mi := &file_proto_portal_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -526,7 +570,7 @@ func (x *Log) String() string {
 func (*Log) ProtoMessage() {}
 
 func (x *Log) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[5]
+	mi := &file_proto_portal_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -539,7 +583,7 @@ func (x *Log) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Log.ProtoReflect.Descriptor instead.
 func (*Log) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{5}
+	return file_proto_portal_proto_rawDescGZIP(), []int{6}
 }
 
 type User struct {
@@ -550,7 +594,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_proto_auth_proto_msgTypes[6]
+	mi := &file_proto_portal_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -562,7 +606,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[6]
+	mi := &file_proto_portal_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,12 +619,12 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{6}
+	return file_proto_portal_proto_rawDescGZIP(), []int{7}
 }
 
 type Session struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          User_ProviderType      `protobuf:"varint,1,opt,name=type,proto3,enum=palm.auth.v1.User_ProviderType" json:"type,omitempty"`
+	Type          User_ProviderType      `protobuf:"varint,1,opt,name=type,proto3,enum=palm.portal.v1.User_ProviderType" json:"type,omitempty"`
 	Sn            string                 `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -588,7 +632,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_proto_auth_proto_msgTypes[7]
+	mi := &file_proto_portal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -600,7 +644,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_proto_msgTypes[7]
+	mi := &file_proto_portal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -613,7 +657,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_proto_auth_proto_rawDescGZIP(), []int{7}
+	return file_proto_portal_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Session) GetType() User_ProviderType {
@@ -630,17 +674,19 @@ func (x *Session) GetSn() string {
 	return ""
 }
 
-var File_proto_auth_proto protoreflect.FileDescriptor
+var File_proto_portal_proto protoreflect.FileDescriptor
 
-const file_proto_auth_proto_rawDesc = "" +
+const file_proto_portal_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/auth.proto\x12\fpalm.auth.v1\"0\n" +
+	"\x12proto/portal.proto\x12\x0epalm.portal.v1\"\x1b\n" +
+	"\tIdRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"0\n" +
 	"\x04Page\x12\x14\n" +
 	"\x05index\x18\x01 \x01(\x04R\x05index\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\x04R\x04size\"\xa4\x01\n" +
+	"\x04size\x18\x02 \x01(\x04R\x04size\"\xa6\x01\n" +
 	"\n" +
-	"Pagination\x12,\n" +
-	"\acurrent\x18\x01 \x01(\v2\x12.palm.auth.v1.PageR\acurrent\x12!\n" +
+	"Pagination\x12.\n" +
+	"\acurrent\x18\x01 \x01(\v2\x14.palm.portal.v1.PageR\acurrent\x12!\n" +
 	"\fhas_previous\x18\x02 \x01(\bR\vhasPrevious\x12\x19\n" +
 	"\bhas_next\x18\x03 \x01(\bR\ahasNext\x12\x14\n" +
 	"\x05pages\x18\x04 \x01(\x04R\x05pages\x12\x14\n" +
@@ -648,15 +694,15 @@ const file_proto_auth_proto_rawDesc = "" +
 	"\n" +
 	"Attachment\x12\x16\n" +
 	"\x06bucket\x18\x01 \x01(\tR\x06bucket\x12\x16\n" +
-	"\x06object\x18\x02 \x01(\tR\x06object\"\xa9\x01\n" +
-	"\bRichText\x125\n" +
-	"\x06editor\x18\x01 \x01(\x0e2\x1d.palm.auth.v1.RichText.EditorR\x06editor\x12\x12\n" +
-	"\x04body\x18\x02 \x01(\tR\x04body\x12:\n" +
-	"\vattachments\x18\x03 \x03(\v2\x18.palm.auth.v1.AttachmentR\vattachments\"\x16\n" +
+	"\x06object\x18\x02 \x01(\tR\x06object\"\xad\x01\n" +
+	"\bRichText\x127\n" +
+	"\x06editor\x18\x01 \x01(\x0e2\x1f.palm.portal.v1.RichText.EditorR\x06editor\x12\x12\n" +
+	"\x04body\x18\x02 \x01(\tR\x04body\x12<\n" +
+	"\vattachments\x18\x03 \x03(\v2\x1a.palm.portal.v1.AttachmentR\vattachments\"\x16\n" +
 	"\x06Editor\x12\f\n" +
-	"\bCKEditor\x10\x00\"e\n" +
-	"\bLocation\x12,\n" +
-	"\x03map\x18\x01 \x01(\x0e2\x1a.palm.auth.v1.Location.MapR\x03map\x12\x18\n" +
+	"\bCKEditor\x10\x00\"g\n" +
+	"\bLocation\x12.\n" +
+	"\x03map\x18\x01 \x01(\x0e2\x1c.palm.portal.v1.Location.MapR\x03map\x12\x18\n" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\"\x11\n" +
 	"\x03Map\x12\n" +
 	"\n" +
@@ -673,46 +719,47 @@ const file_proto_auth_proto_rawDesc = "" +
 	"\x05Phone\x10\x01\x12\x10\n" +
 	"\fGoogleOauth2\x10\x02\x12\x10\n" +
 	"\fWechatOauth2\x10\x03\x12\x15\n" +
-	"\x11WechatMiniProgram\x10\x04\"N\n" +
-	"\aSession\x123\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1f.palm.auth.v1.User.ProviderTypeR\x04type\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\tR\x02snBY\n" +
-	"*com.github.saturn_xiv.palm.plugins.auth.v1B\tAuthProtoP\x01Z\x05./;v2\xaa\x02\x16Palm.Plugins.Auth.Grpcb\x06proto3"
+	"\x11WechatMiniProgram\x10\x04\"P\n" +
+	"\aSession\x125\n" +
+	"\x04type\x18\x01 \x01(\x0e2!.palm.portal.v1.User.ProviderTypeR\x04type\x12\x0e\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02snB_\n" +
+	",com.github.saturn_xiv.palm.plugins.portal.v1B\vPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3"
 
 var (
-	file_proto_auth_proto_rawDescOnce sync.Once
-	file_proto_auth_proto_rawDescData []byte
+	file_proto_portal_proto_rawDescOnce sync.Once
+	file_proto_portal_proto_rawDescData []byte
 )
 
-func file_proto_auth_proto_rawDescGZIP() []byte {
-	file_proto_auth_proto_rawDescOnce.Do(func() {
-		file_proto_auth_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_auth_proto_rawDesc), len(file_proto_auth_proto_rawDesc)))
+func file_proto_portal_proto_rawDescGZIP() []byte {
+	file_proto_portal_proto_rawDescOnce.Do(func() {
+		file_proto_portal_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)))
 	})
-	return file_proto_auth_proto_rawDescData
+	return file_proto_portal_proto_rawDescData
 }
 
-var file_proto_auth_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_proto_auth_proto_goTypes = []any{
-	(RichText_Editor)(0),   // 0: palm.auth.v1.RichText.Editor
-	(Location_Map)(0),      // 1: palm.auth.v1.Location.Map
-	(Log_Level)(0),         // 2: palm.auth.v1.Log.Level
-	(User_ProviderType)(0), // 3: palm.auth.v1.User.ProviderType
-	(*Page)(nil),           // 4: palm.auth.v1.Page
-	(*Pagination)(nil),     // 5: palm.auth.v1.Pagination
-	(*Attachment)(nil),     // 6: palm.auth.v1.Attachment
-	(*RichText)(nil),       // 7: palm.auth.v1.RichText
-	(*Location)(nil),       // 8: palm.auth.v1.Location
-	(*Log)(nil),            // 9: palm.auth.v1.Log
-	(*User)(nil),           // 10: palm.auth.v1.User
-	(*Session)(nil),        // 11: palm.auth.v1.Session
+var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_proto_portal_proto_goTypes = []any{
+	(RichText_Editor)(0),   // 0: palm.portal.v1.RichText.Editor
+	(Location_Map)(0),      // 1: palm.portal.v1.Location.Map
+	(Log_Level)(0),         // 2: palm.portal.v1.Log.Level
+	(User_ProviderType)(0), // 3: palm.portal.v1.User.ProviderType
+	(*IdRequest)(nil),      // 4: palm.portal.v1.IdRequest
+	(*Page)(nil),           // 5: palm.portal.v1.Page
+	(*Pagination)(nil),     // 6: palm.portal.v1.Pagination
+	(*Attachment)(nil),     // 7: palm.portal.v1.Attachment
+	(*RichText)(nil),       // 8: palm.portal.v1.RichText
+	(*Location)(nil),       // 9: palm.portal.v1.Location
+	(*Log)(nil),            // 10: palm.portal.v1.Log
+	(*User)(nil),           // 11: palm.portal.v1.User
+	(*Session)(nil),        // 12: palm.portal.v1.Session
 }
-var file_proto_auth_proto_depIdxs = []int32{
-	4, // 0: palm.auth.v1.Pagination.current:type_name -> palm.auth.v1.Page
-	0, // 1: palm.auth.v1.RichText.editor:type_name -> palm.auth.v1.RichText.Editor
-	6, // 2: palm.auth.v1.RichText.attachments:type_name -> palm.auth.v1.Attachment
-	1, // 3: palm.auth.v1.Location.map:type_name -> palm.auth.v1.Location.Map
-	3, // 4: palm.auth.v1.Session.type:type_name -> palm.auth.v1.User.ProviderType
+var file_proto_portal_proto_depIdxs = []int32{
+	5, // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
+	0, // 1: palm.portal.v1.RichText.editor:type_name -> palm.portal.v1.RichText.Editor
+	7, // 2: palm.portal.v1.RichText.attachments:type_name -> palm.portal.v1.Attachment
+	1, // 3: palm.portal.v1.Location.map:type_name -> palm.portal.v1.Location.Map
+	3, // 4: palm.portal.v1.Session.type:type_name -> palm.portal.v1.User.ProviderType
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name
@@ -720,27 +767,27 @@ var file_proto_auth_proto_depIdxs = []int32{
 	0, // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_proto_auth_proto_init() }
-func file_proto_auth_proto_init() {
-	if File_proto_auth_proto != nil {
+func init() { file_proto_portal_proto_init() }
+func file_proto_portal_proto_init() {
+	if File_proto_portal_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_auth_proto_rawDesc), len(file_proto_auth_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_proto_auth_proto_goTypes,
-		DependencyIndexes: file_proto_auth_proto_depIdxs,
-		EnumInfos:         file_proto_auth_proto_enumTypes,
-		MessageInfos:      file_proto_auth_proto_msgTypes,
+		GoTypes:           file_proto_portal_proto_goTypes,
+		DependencyIndexes: file_proto_portal_proto_depIdxs,
+		EnumInfos:         file_proto_portal_proto_enumTypes,
+		MessageInfos:      file_proto_portal_proto_msgTypes,
 	}.Build()
-	File_proto_auth_proto = out.File
-	file_proto_auth_proto_goTypes = nil
-	file_proto_auth_proto_depIdxs = nil
+	File_proto_portal_proto = out.File
+	file_proto_portal_proto_goTypes = nil
+	file_proto_portal_proto_depIdxs = nil
 }

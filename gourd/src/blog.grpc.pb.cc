@@ -38,23 +38,23 @@ Post::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, cons
   : channel_(channel), rpcmethod_Index_(Post_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Post::Stub::Index(::grpc::ClientContext* context, const ::palm::auth::v1::Page& request, ::palm::blog::v1::IndexPostResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::auth::v1::Page, ::palm::blog::v1::IndexPostResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+::grpc::Status Post::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::blog::v1::IndexPostResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::IndexPostResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
 }
 
-void Post::Stub::async::Index(::grpc::ClientContext* context, const ::palm::auth::v1::Page* request, ::palm::blog::v1::IndexPostResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::auth::v1::Page, ::palm::blog::v1::IndexPostResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+void Post::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::IndexPostResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::IndexPostResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
 }
 
-void Post::Stub::async::Index(::grpc::ClientContext* context, const ::palm::auth::v1::Page* request, ::palm::blog::v1::IndexPostResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Post::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::IndexPostResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPostResponse>* Post::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::auth::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::IndexPostResponse, ::palm::auth::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPostResponse>* Post::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::IndexPostResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPostResponse>* Post::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::auth::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPostResponse>* Post::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncIndexRaw(context, request, cq);
   result->StartCall();
@@ -65,10 +65,10 @@ Post::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Post_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Post::Service, ::palm::auth::v1::Page, ::palm::blog::v1::IndexPostResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Post::Service, ::palm::portal::v1::Page, ::palm::blog::v1::IndexPostResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Post::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::auth::v1::Page* req,
+             const ::palm::portal::v1::Page* req,
              ::palm::blog::v1::IndexPostResponse* resp) {
                return service->Index(ctx, req, resp);
              }, this)));
@@ -77,7 +77,7 @@ Post::Service::Service() {
 Post::Service::~Service() {
 }
 
-::grpc::Status Post::Service::Index(::grpc::ServerContext* context, const ::palm::auth::v1::Page* request, ::palm::blog::v1::IndexPostResponse* response) {
+::grpc::Status Post::Service::Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::IndexPostResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -99,23 +99,23 @@ Page::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, cons
   : channel_(channel), rpcmethod_Index_(Page_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Page::Stub::Index(::grpc::ClientContext* context, const ::palm::auth::v1::Page& request, ::palm::blog::v1::IndexPageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::auth::v1::Page, ::palm::blog::v1::IndexPageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+::grpc::Status Page::Stub::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::blog::v1::IndexPageResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::IndexPageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
 }
 
-void Page::Stub::async::Index(::grpc::ClientContext* context, const ::palm::auth::v1::Page* request, ::palm::blog::v1::IndexPageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::auth::v1::Page, ::palm::blog::v1::IndexPageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+void Page::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::IndexPageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::portal::v1::Page, ::palm::blog::v1::IndexPageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
 }
 
-void Page::Stub::async::Index(::grpc::ClientContext* context, const ::palm::auth::v1::Page* request, ::palm::blog::v1::IndexPageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Page::Stub::async::Index(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::IndexPageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPageResponse>* Page::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::auth::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::IndexPageResponse, ::palm::auth::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPageResponse>* Page::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::blog::v1::IndexPageResponse, ::palm::portal::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPageResponse>* Page::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::auth::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::blog::v1::IndexPageResponse>* Page::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncIndexRaw(context, request, cq);
   result->StartCall();
@@ -126,10 +126,10 @@ Page::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Page_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::auth::v1::Page, ::palm::blog::v1::IndexPageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Page::Service, ::palm::portal::v1::Page, ::palm::blog::v1::IndexPageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Page::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::auth::v1::Page* req,
+             const ::palm::portal::v1::Page* req,
              ::palm::blog::v1::IndexPageResponse* resp) {
                return service->Index(ctx, req, resp);
              }, this)));
@@ -138,7 +138,7 @@ Page::Service::Service() {
 Page::Service::~Service() {
 }
 
-::grpc::Status Page::Service::Index(::grpc::ServerContext* context, const ::palm::auth::v1::Page* request, ::palm::blog::v1::IndexPageResponse* response) {
+::grpc::Status Page::Service::Index(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::blog::v1::IndexPageResponse* response) {
   (void) context;
   (void) request;
   (void) response;
