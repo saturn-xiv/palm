@@ -11,17 +11,25 @@ export TARGET=$WORKSPACE/tmp/$PACKAGE
 
 # -----------------------------------------------------------------------------
 
-function build_camellia() {    
-    cd $WORKSPACE/camellia/
+function build_camellia() {
+     cd $WORKSPACE/camellia/
     mvn clean
     mvn package -Dmaven.test.skip=true
-    mkdir -p $TARGET/camellia/libs
-    cp logback.xml README.md config-orig.toml $TARGET/camellia/
+    mkdir -p $TARGET/camellia
+    cp application-pgsql.yml README.md target/camellia-*.jar $TARGET/camellia/
+}
+
+function build_hyacinth() {    
+    cd $WORKSPACE/hyacinth/
+    mvn clean
+    mvn package -Dmaven.test.skip=true
+    mkdir -p $TARGET/hyacinth/libs
+    cp target/hyacinth-*.jar logback.xml README.md config-orig.toml $TARGET/hyacinth/
 
     cd $WORKSPACE/crocus/
     mvn clean
     mvn package -Dmaven.test.skip=true
-    cp target/crocus-*.jar $TARGET/camellia/libs/
+    cp target/crocus-*.jar $TARGET/hyacinth/libs/
 }
 
 function build_dashboard() {
@@ -126,6 +134,8 @@ mkdir $TARGET
 build_cpp_x64 $(uname -m)
 
 build_camellia
+build_hyacinth
+
 build_dashboard loquat
 
 declare -a go_projects=("daisy" "loquat" "pansy")

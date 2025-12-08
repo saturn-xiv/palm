@@ -43,11 +43,11 @@ function generate_gourd() {
     mkdir -p $target/include $target/src
 
     $PROTOBUF_HOME/bin/protoc \
-        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto \
+        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto -I $WORKSPACE/camellia/src/main/proto \
         -I $PROTOBUF_HOME/include/google/protobuf \
         --cpp_out=$target --grpc_out=$target \
         --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_cpp_plugin \
-        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto
+        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
     mv $target/*.h $target/include/
     mv $target/*.cc $target/src/
 }
@@ -62,11 +62,11 @@ function generate_crocus() {
     fi
     mkdir -p $target
     $PROTOBUF_HOME/bin/protoc \
-        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto \
+        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto -I $WORKSPACE/camellia/src/main/proto \
         -I $PROTOBUF_HOME/include/google/protobuf \
         --java_out=$target --grpc_out=$target \
         --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_java_plugin \
-        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto
+        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
 }
 
 # -----------------------------------------------------------------------------

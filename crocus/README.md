@@ -5,7 +5,7 @@
 ```bash
 mvn clean
 mvn package -Dmaven.test.skip=true
-cp target/crocus-*.jar ../camellia/libs/
+cp target/crocus-*.jar ../hyacinth/libs/
 ```
 
 - Start backends
