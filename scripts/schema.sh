@@ -35,9 +35,13 @@ function generate_loquat() {
 }
 
 function generate_gourd() {
-    echo "generate protocols for gourd..."
-    cd $WORKSPACE/gourd/    
+    echo "generate protocols for gourd..."    
     local target=$WORKSPACE/gourd
+    if [ -d $target ]
+    then
+        rm -r $target
+    fi
+    mkdir -p $target/include $target/src
 
     $PROTOBUF_HOME/bin/protoc \
         -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto \
@@ -51,6 +55,7 @@ function generate_gourd() {
 
 generate_daisy
 generate_loquat
+generate_gourd
 
 echo 'done.'
 exit 0
