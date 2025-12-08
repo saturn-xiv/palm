@@ -11,8 +11,8 @@ cp target/crocus-*.jar ../camellia/libs/
 - Start backends
 
 ```bash
-daisy -d -c daisy.toml rpc -p 10080
-tulip -d -c tulip.toml rpc -p 18081
+daisy -d -c daisy.toml rpc -p 18001
+tulip -d -c tulip.toml rpc -p 18002
 ```
 
 - Test clients: `./*-test.sh`

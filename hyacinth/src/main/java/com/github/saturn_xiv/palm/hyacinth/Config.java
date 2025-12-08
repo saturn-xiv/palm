@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.camellia;
+package com.github.saturn_xiv.palm.hyacinth;
 
 import java.io.Serializable;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-# Camellia
+# HYACINTH
 
 ## Usage
 
@@ -6,7 +6,7 @@
 mvn clean
 mvn package -Dmaven.test.skip=true
 
-java --enable-native-access=ALL-UNNAMED -cp 'target/camellia-2025.12.8.jar:libs/*' com.github.saturn_xiv.palm.camellia.App -c config.toml -p 8180
+java --enable-native-access=ALL-UNNAMED -cp 'target/hyacinth-2025.12.8.jar:libs/*' com.github.saturn_xiv.palm.hyacinth.App -c config.toml -p 8180
 ```
 
 ## Testing

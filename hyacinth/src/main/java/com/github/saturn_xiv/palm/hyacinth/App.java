@@ -1,7 +1,8 @@
-package com.github.saturn_xiv.palm.camellia;
+package com.github.saturn_xiv.palm.hyacinth;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -32,22 +33,28 @@ public class App {
         HelpFormatter formatter = HelpFormatter.builder().get();
         CommandLine cmd = null;
 
+        var props = new Properties();
+        try (var pom = ClassLoader
+                .getSystemResourceAsStream("META-INF/maven/com.github.saturn_xiv.palm/hyacinth/pom.properties")) {
+            props.load(pom);
+        }
+        final var version = props.getProperty("version");
+        final var artifact_id = props.getProperty("artifactId");
+        final var header = "A gRPC-HTTP services converter";
+        final var footer = "https://github.com/saturn-xiv/palm/tree/main/hyacinth";
         try {
             cmd = parser.parse(options, args);
         } catch (ParseException e) {
-            System.out.println(e.getMessage());
-            // TODO parse pom.properties
-            formatter.printHelp("camellia", "header", options, "footer", true);
+            logger.error("parse command line args", e);
+            formatter.printHelp(artifact_id, header, options, footer, true);
             System.exit(1);
         }
         if (cmd.hasOption("help")) {
-            // TODO
-            formatter.printHelp("camellia", "header", options, "footer", true);
+            formatter.printHelp(artifact_id, header, options, footer, true);
             return;
         }
         if (cmd.hasOption("version")) {
-            // TODO
-            System.out.println("xxx");
+            System.out.println(version);
             return;
         }
 

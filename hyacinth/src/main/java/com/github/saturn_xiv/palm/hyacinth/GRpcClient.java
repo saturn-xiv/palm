@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.camellia;
+package com.github.saturn_xiv.palm.hyacinth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
