@@ -11,7 +11,7 @@ public class GRpcClient {
     }
 
     public void open() {
-        logger.debug("open gRPC client http://%s:%s for %s", this.host, this.port, this.name);
+        logger.debug("open gRPC-{} service http://{}:{}", this.name, this.host, this.port);
         // TODO
     }
 
