@@ -879,9 +879,12 @@ func (*Subject_Role_Id) isSubject_Role_By() {}
 func (*Subject_Role_Code) isSubject_Role_By() {}
 
 type Subject_User struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to By:
+	//
+	//	*Subject_User_Id
+	//	*Subject_User_Code
+	By            isSubject_User_By `protobuf_oneof:"by"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -916,19 +919,46 @@ func (*Subject_User) Descriptor() ([]byte, []int) {
 	return file_proto_rbac_proto_rawDescGZIP(), []int{1, 1}
 }
 
+func (x *Subject_User) GetBy() isSubject_User_By {
+	if x != nil {
+		return x.By
+	}
+	return nil
+}
+
 func (x *Subject_User) GetId() uint32 {
 	if x != nil {
-		return x.Id
+		if x, ok := x.By.(*Subject_User_Id); ok {
+			return x.Id
+		}
 	}
 	return 0
 }
 
 func (x *Subject_User) GetCode() string {
 	if x != nil {
-		return x.Code
+		if x, ok := x.By.(*Subject_User_Code); ok {
+			return x.Code
+		}
 	}
 	return ""
 }
+
+type isSubject_User_By interface {
+	isSubject_User_By()
+}
+
+type Subject_User_Id struct {
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3,oneof"`
+}
+
+type Subject_User_Code struct {
+	Code string `protobuf:"bytes,2,opt,name=code,proto3,oneof"`
+}
+
+func (*Subject_User_Id) isSubject_User_By() {}
+
+func (*Subject_User_Code) isSubject_User_By() {}
 
 type Subject_Role_Root struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1264,7 +1294,7 @@ const file_proto_rbac_proto_rawDesc = "" +
 	"\x02id\x18\v \x01(\rH\x00R\x02id\x12\x14\n" +
 	"\x04code\x18\f \x01(\tH\x00R\x04code\x12*\n" +
 	"\x03all\x18\x13 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x03allB\x04\n" +
-	"\x02by\"\xf8\x02\n" +
+	"\x02by\"\x82\x03\n" +
 	"\aSubject\x120\n" +
 	"\x04user\x18\x01 \x01(\v2\x1a.palm.rbac.v1.Subject.UserH\x00R\x04user\x120\n" +
 	"\x04role\x18\x02 \x01(\v2\x1a.palm.rbac.v1.Subject.RoleH\x00R\x04role\x1a\xd6\x01\n" +
@@ -1275,10 +1305,11 @@ const file_proto_rbac_proto_rawDesc = "" +
 	"\x04code\x18\t \x01(\tH\x00R\x04code\x1a\x06\n" +
 	"\x04Root\x1a\x0f\n" +
 	"\rAdministratorB\x04\n" +
-	"\x02by\x1a*\n" +
-	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\tR\x04codeB\x04\n" +
+	"\x02by\x1a4\n" +
+	"\x04User\x12\x10\n" +
+	"\x02id\x18\x01 \x01(\rH\x00R\x02id\x12\x14\n" +
+	"\x04code\x18\x02 \x01(\tH\x00R\x04codeB\x04\n" +
+	"\x02byB\x04\n" +
 	"\x02by\"\xe3\x03\n" +
 	"\x06Action\x12/\n" +
 	"\x04read\x18\x01 \x01(\v2\x19.palm.rbac.v1.Action.ReadH\x00R\x04read\x122\n" +
@@ -1475,6 +1506,10 @@ func file_proto_rbac_proto_init() {
 		(*Subject_Role_Administrator_)(nil),
 		(*Subject_Role_Id)(nil),
 		(*Subject_Role_Code)(nil),
+	}
+	file_proto_rbac_proto_msgTypes[12].OneofWrappers = []any{
+		(*Subject_User_Id)(nil),
+		(*Subject_User_Code)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

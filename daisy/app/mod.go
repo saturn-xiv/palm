@@ -10,13 +10,24 @@ import (
 )
 
 var (
-	gl_config_file       string
-	gl_debug             bool
-	gl_rpc_port          uint16
-	gl_http_port         uint16
-	gl_sms_send_queue    string
-	gl_email_send_queue  string
-	gl_i18n_sync_folders []string
+	gl_localhost = "127.0.0.1"
+
+	gl_config_file                            string
+	gl_debug                                  bool
+	gl_rpc_port                               uint16
+	gl_http_port                              uint16
+	gl_sms_send_queue                         string
+	gl_email_send_queue                       string
+	gl_i18n_sync_folders                      []string
+	gl_create_user_by_email_email             string
+	gl_create_user_by_email_name              string
+	gl_create_user_by_email_password          string
+	gl_reset_password_for_email_user_email    string
+	gl_reset_password_for_email_user_password string
+	gl_grant_role_to_user_user                string
+	gl_grant_role_to_user_role                string
+	gl_revoke_role_from_user_user             string
+	gl_revoke_role_from_user_role             string
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "daisy",
@@ -69,6 +80,51 @@ var (
 			}
 		},
 	}
+	gl_list_users_cmd = &cobra.Command{
+		Use:   "list-users",
+		Short: "List all users",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := ListUsers(gl_config_file, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
+	gl_create_user_by_email_cmd = &cobra.Command{
+		Use:   "create-user-by-email",
+		Short: "Create an email account",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := CreateUserByEmail(gl_config_file, gl_create_user_by_email_name, gl_create_user_by_email_email, gl_create_user_by_email_password, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
+	gl_reset_password_for_email_user_cmd = &cobra.Command{
+		Use:   "reset-password-for-email-user",
+		Short: "Reset password for email user",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := ResetPasswordForEmailUser(gl_config_file, gl_reset_password_for_email_user_email, gl_reset_password_for_email_user_password, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
+	gl_grant_role_to_user_cmd = &cobra.Command{
+		Use:   "grant-role-to-user",
+		Short: "Grant role to user",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := GrantRoleToUser(gl_config_file, gl_grant_role_to_user_user, gl_grant_role_to_user_role, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
+	gl_revoke_role_from_user_cmd = &cobra.Command{
+		Use:   "revoke-role-from-user",
+		Short: "Revoke role from user",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := RevokeRoleFromUser(gl_config_file, gl_revoke_role_from_user_user, gl_revoke_role_from_user_role, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
 )
 
 func Execute() error {
@@ -82,12 +138,34 @@ func init() {
 	gl_root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", true, "run on debug mode")
 
 	gl_http_cmd.PersistentFlags().Uint16VarP(&gl_http_port, "port", "p", 8080, "listening port")
+
 	gl_rpc_cmd.PersistentFlags().Uint16VarP(&gl_rpc_port, "port", "p", 8080, "listening port")
+
 	gl_email_send_cmd.PersistentFlags().StringVarP(&gl_email_send_queue, "queue", "q", "emails", "queue name")
+
 	gl_sms_send_cmd.PersistentFlags().StringVarP(&gl_sms_send_queue, "queue", "q", "sms", "queue name")
+
 	gl_i18n_sync_cmd.PersistentFlags().StringSliceVarP(&gl_i18n_sync_folders, "folders", "f", []string{}, "folder path")
 
-	gl_root_cmd.AddCommand(gl_http_cmd, gl_rpc_cmd, gl_email_send_cmd, gl_sms_send_cmd, gl_i18n_sync_cmd)
+	gl_create_user_by_email_cmd.PersistentFlags().StringVarP(&gl_create_user_by_email_email, "email", "e", "", "email address")
+	gl_create_user_by_email_cmd.PersistentFlags().StringVarP(&gl_create_user_by_email_name, "name", "n", "", "username")
+	gl_create_user_by_email_cmd.PersistentFlags().StringVarP(&gl_create_user_by_email_password, "password", "p", "", "login password")
+
+	gl_reset_password_for_email_user_cmd.PersistentFlags().StringVarP(&gl_reset_password_for_email_user_email, "email", "e", "", "email address")
+	gl_reset_password_for_email_user_cmd.PersistentFlags().StringVarP(&gl_reset_password_for_email_user_password, "password", "p", "", "login password")
+
+	gl_grant_role_to_user_cmd.PersistentFlags().StringVarP(&gl_grant_role_to_user_user, "user", "u", "", "user's sn")
+	gl_grant_role_to_user_cmd.PersistentFlags().StringVarP(&gl_grant_role_to_user_role, "role", "r", "", "role's code")
+
+	gl_revoke_role_from_user_cmd.PersistentFlags().StringVarP(&gl_revoke_role_from_user_user, "user", "u", "", "user's sn")
+	gl_revoke_role_from_user_cmd.PersistentFlags().StringVarP(&gl_revoke_role_from_user_role, "role", "r", "", "role's code")
+
+	gl_root_cmd.AddCommand(
+		gl_http_cmd, gl_rpc_cmd,
+		gl_email_send_cmd, gl_sms_send_cmd,
+		gl_i18n_sync_cmd,
+		gl_list_users_cmd, gl_create_user_by_email_cmd, gl_reset_password_for_email_user_cmd, gl_grant_role_to_user_cmd, gl_revoke_role_from_user_cmd,
+	)
 }
 
 func init_logger() {

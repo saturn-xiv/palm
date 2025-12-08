@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"golang.org/x/oauth2"
+	"golang.org/x/text/language"
 	google_oauth2 "google.golang.org/api/oauth2/v2"
 	"google.golang.org/api/option"
 	"gorm.io/gorm"
@@ -22,8 +23,18 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	Code      string
 	SessionId string
 	State     string
+	Lang      string
+	Timezone  string
 }) (*SignInResponse, error) {
 	ip := ClientIp(ctx)
+	timezone, err := time.LoadLocation(args.Timezone)
+	if err != nil {
+		return nil, err
+	}
+	lang, err := language.Parse(args.Lang)
+	if err != nil {
+		return nil, err
+	}
 	home := strings.TrimSpace(strings.ToLower(args.Home))
 	{
 		if err := gl_validate.Struct(&googleOauth2HomeForm{Url: home}); err != nil {
@@ -57,14 +68,21 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	}
 
 	if err = p.db.Transaction(func(tx *gorm.DB) error {
-		user, err := models.UserSignInByGoogleOauth2(tx, user_info)
+		err := models.UserSignInByGoogleOauth2(tx, user_info, &lang, timezone)
 		if err != nil {
 			return err
 		}
-		if err = models.SignInUser(tx, user, ip); err != nil {
+		var it models.GoogleOauth2User
+		if err := tx.Where("code = ?", user_info.Id).Preload("User").First(&it).Error; err != nil {
 			return err
 		}
-		if err = models.CreateLog(tx, user.ID, env.Plugin(), ip, v2.Log_Info, "sign in by google oauth2"); err != nil {
+		if it.User.LockedAt != nil {
+			return fmt.Errorf("user %s is locked", user_info.Name)
+		}
+		if err = models.SignInUser(tx, it.User, ip); err != nil {
+			return err
+		}
+		if err = models.CreateLog(tx, it.UserID, env.Plugin(), ip, v2.Log_Info, "sign in by google oauth2"); err != nil {
 			return err
 		}
 		return nil

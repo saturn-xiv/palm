@@ -157,5 +157,5 @@ func random_alphanumeric(l int) (string, error) {
 	if _, err := rand.Read(buf); err != nil {
 		return "", err
 	}
-	return base64.URLEncoding.EncodeToString(buf), nil
+	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }

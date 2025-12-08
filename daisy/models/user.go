@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"golang.org/x/text/language"
 	"gorm.io/gorm"
 )
 
@@ -29,9 +30,9 @@ func (User) TableName() string {
 	return "users"
 }
 
-func CreateUser(db *gorm.DB) (*User, error) {
+func CreateUser(db *gorm.DB, lang *language.Tag, timezone *time.Location) (*User, error) {
 	sn := uuid.New().String()
-	if err := db.Create(&User{Sn: sn}).Error; err != nil {
+	if err := db.Create(&User{Sn: sn, Lang: lang.String(), Timezone: timezone.String()}).Error; err != nil {
 		return nil, err
 	}
 	var it User

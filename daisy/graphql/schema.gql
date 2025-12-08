@@ -32,6 +32,8 @@ type Mutation {
     sessionId: String!
     code: String!
     state: String!
+    time: String!
+    timezone: String!
   ): SignInResponse!
   signInByWechatOauth2(token: String!): SignInResponse!
   signInByWechatMiniProgram(token: String!): SignInResponse!

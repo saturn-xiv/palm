@@ -30,8 +30,10 @@ message Subject {
     }
   }
   message User {
-    uint32 id = 1;
-    string code = 2;
+    oneof by {
+      uint32 id = 1;
+      string code = 2;
+    }
   }
   oneof by {
     User user = 1;

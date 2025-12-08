@@ -1,36 +1,96 @@
 package v2
 
 import (
-	"bytes"
 	"encoding/base64"
-	"encoding/gob"
 	"fmt"
 	"strings"
+
+	"google.golang.org/protobuf/proto"
 )
+
+var (
+	ROLE_ADMINISTRATOR = "administrator"
+	ROLE_ROOT          = "root"
+)
+
+func UserByCode(code string) *Subject {
+	return &Subject{
+		By: &Subject_User_{
+			User: &Subject_User{
+				By: &Subject_User_Code{
+					Code: code,
+				},
+			},
+		},
+	}
+}
+
+func UserById(id uint32) *Subject {
+	return &Subject{
+		By: &Subject_User_{
+			User: &Subject_User{
+				By: &Subject_User_Id{
+					Id: id,
+				},
+			},
+		},
+	}
+}
+func RoleAdministrator() *Subject {
+	return &Subject{
+		By: &Subject_Role_{
+			Role: &Subject_Role{
+				By: &Subject_Role_Administrator_{
+					Administrator: &Subject_Role_Administrator{},
+				},
+			},
+		},
+	}
+}
+
+func RoleByCode(code string) *Subject {
+	return &Subject{
+		By: &Subject_Role_{
+			Role: &Subject_Role{
+				By: &Subject_Role_Code{
+					Code: code,
+				},
+			},
+		},
+	}
+}
+
+func RoleRoot() *Subject {
+	return &Subject{
+		By: &Subject_Role_{
+			Role: &Subject_Role{
+				By: &Subject_Role_Root_{
+					Root: &Subject_Role_Root{},
+				},
+			},
+		},
+	}
+}
 
 func NewAction(s string) (*Action, error) {
 	tmp, err := base64.URLEncoding.WithPadding(base64.NoPadding).DecodeString(s)
 	if err != nil {
 		return nil, err
 	}
-	buf := bytes.NewBuffer(tmp)
-	dec := gob.NewDecoder(buf)
+
 	var it Action
-	if err = dec.Decode(&it); err != nil {
+	if err = proto.Unmarshal(tmp, &it); err != nil {
 		return nil, err
 	}
 	return &it, nil
 }
 
 func (p *Action) ToString() (string, error) {
-	var buf bytes.Buffer
-	{
-		enc := gob.NewEncoder(&buf)
-		if err := enc.Encode(p); err != nil {
-			return "", err
-		}
+	buf, err := proto.Marshal(p)
+	if err != nil {
+		return "", err
 	}
-	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf.Bytes()), nil
+	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 
 func NewObject(s string) (*Object, error) {
@@ -38,24 +98,19 @@ func NewObject(s string) (*Object, error) {
 	if err != nil {
 		return nil, err
 	}
-	buf := bytes.NewBuffer(tmp)
-	dec := gob.NewDecoder(buf)
 	var it Object
-	if err = dec.Decode(&it); err != nil {
+	if err = proto.Unmarshal(tmp, &it); err != nil {
 		return nil, err
 	}
 	return &it, nil
 }
 
 func (p *Object) ToString() (string, error) {
-	var buf bytes.Buffer
-	{
-		enc := gob.NewEncoder(&buf)
-		if err := enc.Encode(p); err != nil {
-			return "", err
-		}
+	buf, err := proto.Marshal(p)
+	if err != nil {
+		return "", err
 	}
-	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf.Bytes()), nil
+	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 
 func NewSubject(s string) (*Subject, error) {
@@ -63,24 +118,19 @@ func NewSubject(s string) (*Subject, error) {
 	if err != nil {
 		return nil, err
 	}
-	buf := bytes.NewBuffer(tmp)
-	dec := gob.NewDecoder(buf)
 	var it Subject
-	if err = dec.Decode(&it); err != nil {
+	if err = proto.Unmarshal(tmp, &it); err != nil {
 		return nil, err
 	}
 	return &it, nil
 }
 
 func (p *Subject) ToString() (string, error) {
-	var buf bytes.Buffer
-	{
-		enc := gob.NewEncoder(&buf)
-		if err := enc.Encode(p); err != nil {
-			return "", err
-		}
+	buf, err := proto.Marshal(p)
+	if err != nil {
+		return "", err
 	}
-	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf.Bytes()), nil
+	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 
 func (p *Subject_Role) Root() bool {
