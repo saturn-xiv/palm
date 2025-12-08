@@ -15,13 +15,13 @@ function build_camellia() {
     cd $WORKSPACE/camellia/
     mvn clean
     mvn package -Dmaven.test.skip=true
-    mkdir -p $TARGET/camellia
+    mkdir -p $TARGET/camellia/libs
     cp logback.xml README.md config-orig.toml $TARGET/camellia/
 
     cd $WORKSPACE/crocus/
     mvn clean
     mvn package -Dmaven.test.skip=true
-    cp target crocus-*.jar $TARGET/camellia/libs/
+    cp target/crocus-*.jar $TARGET/camellia/libs/
 }
 
 function build_dashboard() {

@@ -27,7 +27,6 @@ function generate_daisy() {
     done    
 }
 
-
 function generate_loquat() {
     cd $WORKSPACE/loquat/
 
@@ -35,7 +34,7 @@ function generate_loquat() {
 }
 
 function generate_gourd() {
-    echo "generate protocols for gourd..."    
+    echo "generate protocols(cpp) for gourd..."    
     local target=$WORKSPACE/gourd
     if [ -d $target ]
     then
@@ -53,9 +52,29 @@ function generate_gourd() {
     mv $target/*.cc $target/src/
 }
 
+
+function generate_crocus() {
+    echo "generate grpc protocols(java) for crocus..."
+    local target=$WORKSPACE/crocus/src/main/java/
+    if [ -d $target/com/github/saturn_xiv/palm/plugins ]
+    then
+        rm -r $target/com/github/saturn_xiv/palm/plugins
+    fi
+    mkdir -p $target
+    $PROTOBUF_HOME/bin/protoc \
+        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto \
+        -I $PROTOBUF_HOME/include/google/protobuf \
+        --java_out=$target --grpc_out=$target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_java_plugin \
+        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto
+}
+
+# -----------------------------------------------------------------------------
+
 generate_daisy
 generate_loquat
 generate_gourd
+generate_crocus
 
 echo 'done.'
 exit 0
