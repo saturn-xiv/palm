@@ -8,6 +8,7 @@ require (
 	github.com/casbin/gorm-adapter/v3 v3.38.0
 	github.com/casbin/redis-watcher/v2 v2.5.0
 	github.com/go-playground/validator/v10 v10.28.0
+	github.com/goccy/go-yaml v1.19.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/csrf v1.7.3
 	github.com/gorilla/feeds v1.2.0
@@ -22,6 +23,7 @@ require (
 	github.com/twilio/twilio-go v1.28.8
 	github.com/wneessen/go-mail v0.7.2
 	golang.org/x/oauth2 v0.33.0
+	golang.org/x/text v0.31.0
 	google.golang.org/api v0.257.0
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
@@ -92,7 +94,6 @@ require (
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/sync v0.18.0 // indirect
 	golang.org/x/sys v0.38.0 // indirect
-	golang.org/x/text v0.31.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/plugin/dbresolver v1.6.2 // indirect

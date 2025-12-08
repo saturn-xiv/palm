@@ -6,4 +6,4 @@ strip = true
 
 resolver = "2"
 
-members = ["phlox", "bamboo", "marigold"]
+members = ["phlox", "marigold"]
