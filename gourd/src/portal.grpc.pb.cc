@@ -24,6 +24,22 @@ namespace palm {
 namespace portal {
 namespace v1 {
 
+std::unique_ptr< Portal::Stub> Portal::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Portal::Stub> stub(new Portal::Stub(channel, options));
+  return stub;
+}
+
+Portal::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel){}
+
+Portal::Service::Service() {
+}
+
+Portal::Service::~Service() {
+}
+
+
 }  // namespace palm
 }  // namespace portal
 }  // namespace v1

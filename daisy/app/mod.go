@@ -19,7 +19,7 @@ var (
 	gl_sms_send_worker_queue                  string
 	gl_email_send_worker_queue                string
 	gl_tex_worker_queue                       string
-	gl_i18n_sync_folders                      []string
+	gl_db_seeds_locales                       []string
 	gl_create_user_by_email_email             string
 	gl_create_user_by_email_name              string
 	gl_create_user_by_email_password          string
@@ -81,11 +81,11 @@ var (
 			}
 		},
 	}
-	gl_i18n_sync_cmd = &cobra.Command{
-		Use:   "i18n-sync",
-		Short: "Load locales from folders to database",
+	gl_db_seeds_cmd = &cobra.Command{
+		Use:   "db-seeds",
+		Short: "Load seeds data into database",
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := I18nSync(gl_config_file, gl_i18n_sync_folders, gl_debug); err != nil {
+			if err := DbSeeds(gl_config_file, gl_db_seeds_locales, gl_debug); err != nil {
 				log.Fatal(err)
 			}
 		},
@@ -157,7 +157,7 @@ func init() {
 
 	gl_tex_worker_cmd.PersistentFlags().StringVarP(&gl_tex_worker_queue, "queue", "q", "sms", "queue name")
 
-	gl_i18n_sync_cmd.PersistentFlags().StringSliceVarP(&gl_i18n_sync_folders, "folders", "f", []string{}, "folder path")
+	gl_db_seeds_cmd.PersistentFlags().StringSliceVarP(&gl_db_seeds_locales, "locales", "l", []string{}, "locales folder path")
 
 	gl_create_user_by_email_cmd.PersistentFlags().StringVarP(&gl_create_user_by_email_email, "email", "e", "", "email address")
 	gl_create_user_by_email_cmd.PersistentFlags().StringVarP(&gl_create_user_by_email_name, "name", "n", "", "username")
@@ -175,7 +175,7 @@ func init() {
 	gl_root_cmd.AddCommand(
 		gl_http_cmd, gl_rpc_cmd,
 		gl_email_send_worker_cmd, gl_sms_send_worker_cmd, gl_tex_worker_cmd,
-		gl_i18n_sync_cmd,
+		gl_db_seeds_cmd,
 		gl_list_users_cmd, gl_create_user_by_email_cmd, gl_reset_password_for_email_user_cmd, gl_grant_role_to_user_cmd, gl_revoke_role_from_user_cmd,
 	)
 }

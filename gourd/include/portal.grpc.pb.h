@@ -30,6 +30,58 @@ namespace palm {
 namespace portal {
 namespace v1 {
 
+// ----------------------------------------------------------------------------
+//
+class Portal final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.portal.v1.Portal";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    class async final :
+      public StubInterface::async_interface {
+     public:
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+  };
+  typedef Service AsyncService;
+  typedef Service CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  typedef Service StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef Service StreamedService;
+};
+
 }  // namespace v1
 }  // namespace portal
 }  // namespace palm

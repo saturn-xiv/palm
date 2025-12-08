@@ -156,7 +156,7 @@ func (x Log_Level) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Log_Level.Descriptor instead.
 func (Log_Level) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{6, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{7, 0}
 }
 
 type User_ProviderType int32
@@ -211,7 +211,7 @@ func (x User_ProviderType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use User_ProviderType.Descriptor instead.
 func (User_ProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{7, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{8, 0}
 }
 
 type IdRequest struct {
@@ -550,6 +550,90 @@ func (x *Location) GetAddress() string {
 	return ""
 }
 
+type Currency struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
+	Number        uint32                 `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	Units         *uint32                `protobuf:"varint,5,opt,name=units,proto3,oneof" json:"units,omitempty"`
+	IsFund        *bool                  `protobuf:"varint,6,opt,name=is_fund,json=isFund,proto3,oneof" json:"is_fund,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Currency) Reset() {
+	*x = Currency{}
+	mi := &file_proto_portal_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Currency) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Currency) ProtoMessage() {}
+
+func (x *Currency) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Currency.ProtoReflect.Descriptor instead.
+func (*Currency) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Currency) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *Currency) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Currency) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *Currency) GetNumber() uint32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *Currency) GetUnits() uint32 {
+	if x != nil && x.Units != nil {
+		return *x.Units
+	}
+	return 0
+}
+
+func (x *Currency) GetIsFund() bool {
+	if x != nil && x.IsFund != nil {
+		return *x.IsFund
+	}
+	return false
+}
+
 type Log struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -558,7 +642,7 @@ type Log struct {
 
 func (x *Log) Reset() {
 	*x = Log{}
-	mi := &file_proto_portal_proto_msgTypes[6]
+	mi := &file_proto_portal_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -570,7 +654,7 @@ func (x *Log) String() string {
 func (*Log) ProtoMessage() {}
 
 func (x *Log) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[6]
+	mi := &file_proto_portal_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -583,7 +667,7 @@ func (x *Log) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Log.ProtoReflect.Descriptor instead.
 func (*Log) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{6}
+	return file_proto_portal_proto_rawDescGZIP(), []int{7}
 }
 
 type User struct {
@@ -594,7 +678,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_proto_portal_proto_msgTypes[7]
+	mi := &file_proto_portal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -606,7 +690,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[7]
+	mi := &file_proto_portal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -619,7 +703,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{7}
+	return file_proto_portal_proto_rawDescGZIP(), []int{8}
 }
 
 type Session struct {
@@ -632,7 +716,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_proto_portal_proto_msgTypes[8]
+	mi := &file_proto_portal_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -644,7 +728,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[8]
+	mi := &file_proto_portal_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -657,7 +741,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{8}
+	return file_proto_portal_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Session) GetType() User_ProviderType {
@@ -706,7 +790,17 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\"\x11\n" +
 	"\x03Map\x12\n" +
 	"\n" +
-	"\x06Google\x10\x00\";\n" +
+	"\x06Google\x10\x00\"\xb3\x01\n" +
+	"\bCurrency\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\acountry\x18\x03 \x01(\tR\acountry\x12\x16\n" +
+	"\x06number\x18\x04 \x01(\rR\x06number\x12\x19\n" +
+	"\x05units\x18\x05 \x01(\rH\x00R\x05units\x88\x01\x01\x12\x1c\n" +
+	"\ais_fund\x18\x06 \x01(\bH\x01R\x06isFund\x88\x01\x01B\b\n" +
+	"\x06_unitsB\n" +
+	"\n" +
+	"\b_is_fund\";\n" +
 	"\x03Log\"4\n" +
 	"\x05Level\x12\t\n" +
 	"\x05Debug\x10\x00\x12\b\n" +
@@ -722,7 +816,8 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x11WechatMiniProgram\x10\x04\"P\n" +
 	"\aSession\x125\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.palm.portal.v1.User.ProviderTypeR\x04type\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\tR\x02snB_\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn2\b\n" +
+	"\x06PortalB_\n" +
 	",com.github.saturn_xiv.palm.plugins.portal.v1B\vPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3"
 
 var (
@@ -738,7 +833,7 @@ func file_proto_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_proto_portal_proto_goTypes = []any{
 	(RichText_Editor)(0),   // 0: palm.portal.v1.RichText.Editor
 	(Location_Map)(0),      // 1: palm.portal.v1.Location.Map
@@ -750,9 +845,10 @@ var file_proto_portal_proto_goTypes = []any{
 	(*Attachment)(nil),     // 7: palm.portal.v1.Attachment
 	(*RichText)(nil),       // 8: palm.portal.v1.RichText
 	(*Location)(nil),       // 9: palm.portal.v1.Location
-	(*Log)(nil),            // 10: palm.portal.v1.Log
-	(*User)(nil),           // 11: palm.portal.v1.User
-	(*Session)(nil),        // 12: palm.portal.v1.Session
+	(*Currency)(nil),       // 10: palm.portal.v1.Currency
+	(*Log)(nil),            // 11: palm.portal.v1.Log
+	(*User)(nil),           // 12: palm.portal.v1.User
+	(*Session)(nil),        // 13: palm.portal.v1.Session
 }
 var file_proto_portal_proto_depIdxs = []int32{
 	5, // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
@@ -772,15 +868,16 @@ func file_proto_portal_proto_init() {
 	if File_proto_portal_proto != nil {
 		return
 	}
+	file_proto_portal_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_proto_portal_proto_goTypes,
 		DependencyIndexes: file_proto_portal_proto_depIdxs,

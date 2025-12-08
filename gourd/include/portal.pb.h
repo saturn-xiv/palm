@@ -69,6 +69,10 @@ class Attachment;
 struct AttachmentDefaultTypeInternal;
 extern AttachmentDefaultTypeInternal _Attachment_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Attachment_class_data_;
+class Currency;
+struct CurrencyDefaultTypeInternal;
+extern CurrencyDefaultTypeInternal _Currency_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Currency_class_data_;
 class IdRequest;
 struct IdRequestDefaultTypeInternal;
 extern IdRequestDefaultTypeInternal _IdRequest_default_instance_;
@@ -331,7 +335,7 @@ class User final : public ::google::protobuf::internal::ZeroFieldsBase
     return *reinterpret_cast<const User*>(
         &_User_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(User& a, User& b) { a.Swap(&b); }
   inline void Swap(User* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -501,7 +505,7 @@ class Session final : public ::google::protobuf::Message
     return *reinterpret_cast<const Session*>(
         &_Session_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(Session& a, Session& b) { a.Swap(&b); }
   inline void Swap(Session* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -911,7 +915,7 @@ class Log final : public ::google::protobuf::internal::ZeroFieldsBase
     return *reinterpret_cast<const Log*>(
         &_Log_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(Log& a, Log& b) { a.Swap(&b); }
   inline void Swap(Log* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1441,6 +1445,274 @@ class IdRequest final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull IdRequest_class_data_;
+// -------------------------------------------------------------------
+
+class Currency final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Currency) */ {
+ public:
+  inline Currency() : Currency(nullptr) {}
+  ~Currency() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Currency* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Currency));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Currency(::google::protobuf::internal::ConstantInitialized);
+
+  inline Currency(const Currency& from) : Currency(nullptr, from) {}
+  inline Currency(Currency&& from) noexcept
+      : Currency(nullptr, ::std::move(from)) {}
+  inline Currency& operator=(const Currency& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Currency& operator=(Currency&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Currency& default_instance() {
+    return *reinterpret_cast<const Currency*>(
+        &_Currency_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(Currency& a, Currency& b) { a.Swap(&b); }
+  inline void Swap(Currency* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Currency* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Currency* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Currency>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Currency& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Currency& from) { Currency::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Currency* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Currency"; }
+
+ protected:
+  explicit Currency(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Currency(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Currency& from);
+  Currency(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Currency&& from) noexcept
+      : Currency(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCodeFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kCountryFieldNumber = 3,
+    kNumberFieldNumber = 4,
+    kUnitsFieldNumber = 5,
+    kIsFundFieldNumber = 6,
+  };
+  // string code = 1;
+  void clear_code() ;
+  const ::std::string& code() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_code(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_code();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_code();
+  void set_allocated_code(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_code() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_code(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_code();
+
+  public:
+  // string name = 2;
+  void clear_name() ;
+  const ::std::string& name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_name();
+  void set_allocated_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
+
+  public:
+  // string country = 3;
+  void clear_country() ;
+  const ::std::string& country() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_country(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_country();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_country();
+  void set_allocated_country(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_country() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_country(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_country();
+
+  public:
+  // uint32 number = 4;
+  void clear_number() ;
+  ::uint32_t number() const;
+  void set_number(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_number() const;
+  void _internal_set_number(::uint32_t value);
+
+  public:
+  // optional uint32 units = 5;
+  bool has_units() const;
+  void clear_units() ;
+  ::uint32_t units() const;
+  void set_units(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_units() const;
+  void _internal_set_units(::uint32_t value);
+
+  public:
+  // optional bool is_fund = 6;
+  bool has_is_fund() const;
+  void clear_is_fund() ;
+  bool is_fund() const;
+  void set_is_fund(bool value);
+
+  private:
+  bool _internal_is_fund() const;
+  void _internal_set_is_fund(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Currency)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 6,
+                                   0, 47,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const Currency& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr code_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr country_;
+    ::uint32_t number_;
+    ::uint32_t units_;
+    bool is_fund_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull Currency_class_data_;
 // -------------------------------------------------------------------
 
 class Attachment final : public ::google::protobuf::Message
@@ -2803,6 +3075,285 @@ inline void Location::set_allocated_address(::std::string* PROTOBUF_NULLABLE val
     _impl_.address_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Location.address)
+}
+
+// -------------------------------------------------------------------
+
+// Currency
+
+// string code = 1;
+inline void Currency::clear_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.code_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& Currency::code() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Currency.code)
+  return _internal_code();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Currency::set_code(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.code_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Currency.code)
+}
+inline ::std::string* PROTOBUF_NONNULL Currency::mutable_code()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_code();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Currency.code)
+  return _s;
+}
+inline const ::std::string& Currency::_internal_code() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.code_.Get();
+}
+inline void Currency::_internal_set_code(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.code_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Currency::_internal_mutable_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.code_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Currency::release_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Currency.code)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.code_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.code_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Currency::set_allocated_code(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.code_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.code_.IsDefault()) {
+    _impl_.code_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Currency.code)
+}
+
+// string name = 2;
+inline void Currency::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& Currency::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Currency.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Currency::set_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Currency.name)
+}
+inline ::std::string* PROTOBUF_NONNULL Currency::mutable_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Currency.name)
+  return _s;
+}
+inline const ::std::string& Currency::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void Currency::_internal_set_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Currency::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Currency::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Currency.name)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Currency::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Currency.name)
+}
+
+// string country = 3;
+inline void Currency::clear_country() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.country_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& Currency::country() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Currency.country)
+  return _internal_country();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Currency::set_country(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.country_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Currency.country)
+}
+inline ::std::string* PROTOBUF_NONNULL Currency::mutable_country()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_country();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Currency.country)
+  return _s;
+}
+inline const ::std::string& Currency::_internal_country() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.country_.Get();
+}
+inline void Currency::_internal_set_country(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.country_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Currency::_internal_mutable_country() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.country_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Currency::release_country() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Currency.country)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.country_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.country_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Currency::set_allocated_country(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.country_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.country_.IsDefault()) {
+    _impl_.country_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Currency.country)
+}
+
+// uint32 number = 4;
+inline void Currency::clear_number() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.number_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::uint32_t Currency::number() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Currency.number)
+  return _internal_number();
+}
+inline void Currency::set_number(::uint32_t value) {
+  _internal_set_number(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Currency.number)
+}
+inline ::uint32_t Currency::_internal_number() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.number_;
+}
+inline void Currency::_internal_set_number(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.number_ = value;
+}
+
+// optional uint32 units = 5;
+inline bool Currency::has_units() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline void Currency::clear_units() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.units_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::uint32_t Currency::units() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Currency.units)
+  return _internal_units();
+}
+inline void Currency::set_units(::uint32_t value) {
+  _internal_set_units(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Currency.units)
+}
+inline ::uint32_t Currency::_internal_units() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.units_;
+}
+inline void Currency::_internal_set_units(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.units_ = value;
+}
+
+// optional bool is_fund = 6;
+inline bool Currency::has_is_fund() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline void Currency::clear_is_fund() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.is_fund_ = false;
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline bool Currency::is_fund() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Currency.is_fund)
+  return _internal_is_fund();
+}
+inline void Currency::set_is_fund(bool value) {
+  _internal_set_is_fund(value);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Currency.is_fund)
+}
+inline bool Currency::_internal_is_fund() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.is_fund_;
+}
+inline void Currency::_internal_set_is_fund(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.is_fund_ = value;
 }
 
 // -------------------------------------------------------------------

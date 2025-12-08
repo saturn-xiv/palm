@@ -171,6 +171,42 @@ struct IdRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IdRequestDefaultTypeInternal _IdRequest_default_instance_;
 
+inline constexpr Currency::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        code_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        country_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        number_{0u},
+        units_{0u},
+        is_fund_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Currency::Currency(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(Currency_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct CurrencyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CurrencyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CurrencyDefaultTypeInternal() {}
+  union {
+    Currency _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CurrencyDefaultTypeInternal _Currency_default_instance_;
+
 inline constexpr Attachment::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -316,6 +352,21 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Location, _impl_.address_),
         1,
         0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_._has_bits_),
+        9, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_.country_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_.number_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_.units_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Currency, _impl_.is_fund_),
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
         0x000, // bitmap
         0x000, // bitmap
         0x081, // bitmap
@@ -335,9 +386,10 @@ static const ::_pbi::MigrationSchema
         {25, sizeof(::palm::portal::v1::Attachment)},
         {32, sizeof(::palm::portal::v1::RichText)},
         {41, sizeof(::palm::portal::v1::Location)},
-        {48, sizeof(::palm::portal::v1::Log)},
-        {49, sizeof(::palm::portal::v1::User)},
-        {50, sizeof(::palm::portal::v1::Session)},
+        {48, sizeof(::palm::portal::v1::Currency)},
+        {63, sizeof(::palm::portal::v1::Log)},
+        {64, sizeof(::palm::portal::v1::User)},
+        {65, sizeof(::palm::portal::v1::Session)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_IdRequest_default_instance_._instance,
@@ -346,6 +398,7 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_Attachment_default_instance_._instance,
     &::palm::portal::v1::_RichText_default_instance_._instance,
     &::palm::portal::v1::_Location_default_instance_._instance,
+    &::palm::portal::v1::_Currency_default_instance_._instance,
     &::palm::portal::v1::_Log_default_instance_._instance,
     &::palm::portal::v1::_User_default_instance_._instance,
     &::palm::portal::v1::_Session_default_instance_._instance,
@@ -364,28 +417,31 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     ".palm.portal.v1.Attachment\"\026\n\006Editor\022\014\n\010"
     "CKEditor\020\000\"Y\n\010Location\022)\n\003map\030\001 \001(\0162\034.pa"
     "lm.portal.v1.Location.Map\022\017\n\007address\030\002 \001"
-    "(\t\"\021\n\003Map\022\n\n\006Google\020\000\";\n\003Log\"4\n\005Level\022\t\n"
-    "\005Debug\020\000\022\010\n\004Info\020\001\022\013\n\007Warning\020\002\022\t\n\005Error"
-    "\020\003\"g\n\004User\"_\n\014ProviderType\022\t\n\005Email\020\000\022\t\n"
-    "\005Phone\020\001\022\020\n\014GoogleOauth2\020\002\022\020\n\014WechatOaut"
-    "h2\020\003\022\025\n\021WechatMiniProgram\020\004\"F\n\007Session\022/"
-    "\n\004type\030\001 \001(\0162!.palm.portal.v1.User.Provi"
-    "derType\022\n\n\002sn\030\002 \001(\tB_\n,com.github.saturn"
-    "_xiv.palm.plugins.portal.v1B\013PortalProto"
-    "P\001Z\005./;v2\252\002\030Palm.Plugins.Portal.Grpcb\006pr"
-    "oto3"
+    "(\t\"\021\n\003Map\022\n\n\006Google\020\000\"\207\001\n\010Currency\022\014\n\004co"
+    "de\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022"
+    "\016\n\006number\030\004 \001(\r\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007i"
+    "s_fund\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\n\n\010_is_fund\""
+    ";\n\003Log\"4\n\005Level\022\t\n\005Debug\020\000\022\010\n\004Info\020\001\022\013\n\007"
+    "Warning\020\002\022\t\n\005Error\020\003\"g\n\004User\"_\n\014Provider"
+    "Type\022\t\n\005Email\020\000\022\t\n\005Phone\020\001\022\020\n\014GoogleOaut"
+    "h2\020\002\022\020\n\014WechatOauth2\020\003\022\025\n\021WechatMiniProg"
+    "ram\020\004\"F\n\007Session\022/\n\004type\030\001 \001(\0162!.palm.po"
+    "rtal.v1.User.ProviderType\022\n\n\002sn\030\002 \001(\t2\010\n"
+    "\006PortalB_\n,com.github.saturn_xiv.palm.pl"
+    "ugins.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030"
+    "Palm.Plugins.Portal.Grpcb\006proto3"
 };
 static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    844,
+    992,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
     nullptr,
     0,
-    9,
+    10,
     schemas,
     file_default_instances,
     TableStruct_portal_2eproto::offsets,
@@ -2271,6 +2327,445 @@ void Location::InternalSwap(Location* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) 
 }
 
 ::google::protobuf::Metadata Location::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Currency::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<Currency>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Currency, _impl_._has_bits_);
+};
+
+Currency::Currency(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Currency_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Currency)
+}
+PROTOBUF_NDEBUG_INLINE Currency::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::Currency& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        code_(arena, from.code_),
+        name_(arena, from.name_),
+        country_(arena, from.country_) {}
+
+Currency::Currency(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const Currency& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Currency_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Currency* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, number_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, number_),
+           offsetof(Impl_, is_fund_) -
+               offsetof(Impl_, number_) +
+               sizeof(Impl_::is_fund_));
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Currency)
+}
+PROTOBUF_NDEBUG_INLINE Currency::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        code_(arena),
+        name_(arena),
+        country_(arena) {}
+
+inline void Currency::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, number_),
+           0,
+           offsetof(Impl_, is_fund_) -
+               offsetof(Impl_, number_) +
+               sizeof(Impl_::is_fund_));
+}
+Currency::~Currency() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.Currency)
+  SharedDtor(*this);
+}
+inline void Currency::SharedDtor(MessageLite& self) {
+  Currency& this_ = static_cast<Currency&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.code_.Destroy();
+  this_._impl_.name_.Destroy();
+  this_._impl_.country_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL Currency::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) Currency(arena);
+}
+constexpr auto Currency::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Currency),
+                                            alignof(Currency));
+}
+constexpr auto Currency::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_Currency_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &Currency::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Currency>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &Currency::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Currency>(), &Currency::ByteSizeLong,
+              &Currency::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(Currency, _impl_._cached_size_),
+          false,
+      },
+      &Currency::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull Currency_class_data_ =
+        Currency::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Currency::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Currency_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Currency_class_data_.tc_table);
+  return Currency_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 47, 2>
+Currency::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Currency, _impl_._has_bits_),
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    Currency_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Currency>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string code = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Currency, _impl_.code_)}},
+    // string name = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Currency, _impl_.name_)}},
+    // string country = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 2, 0, PROTOBUF_FIELD_OFFSET(Currency, _impl_.country_)}},
+    // uint32 number = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Currency, _impl_.number_), 3>(),
+     {32, 3, 0, PROTOBUF_FIELD_OFFSET(Currency, _impl_.number_)}},
+    // optional uint32 units = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Currency, _impl_.units_), 4>(),
+     {40, 4, 0, PROTOBUF_FIELD_OFFSET(Currency, _impl_.units_)}},
+    // optional bool is_fund = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Currency, _impl_.is_fund_), 5>(),
+     {48, 5, 0, PROTOBUF_FIELD_OFFSET(Currency, _impl_.is_fund_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string code = 1;
+    {PROTOBUF_FIELD_OFFSET(Currency, _impl_.code_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string name = 2;
+    {PROTOBUF_FIELD_OFFSET(Currency, _impl_.name_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string country = 3;
+    {PROTOBUF_FIELD_OFFSET(Currency, _impl_.country_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 number = 4;
+    {PROTOBUF_FIELD_OFFSET(Currency, _impl_.number_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // optional uint32 units = 5;
+    {PROTOBUF_FIELD_OFFSET(Currency, _impl_.units_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // optional bool is_fund = 6;
+    {PROTOBUF_FIELD_OFFSET(Currency, _impl_.is_fund_), _Internal::kHasBitsOffset + 5, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\27\4\4\7\0\0\0\0"
+    "palm.portal.v1.Currency"
+    "code"
+    "name"
+    "country"
+  }},
+};
+PROTOBUF_NOINLINE void Currency::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.Currency)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.code_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      _impl_.name_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      _impl_.country_.ClearNonDefaultToEmpty();
+    }
+  }
+  if ((cached_has_bits & 0x00000038u) != 0) {
+    ::memset(&_impl_.number_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.is_fund_) -
+        reinterpret_cast<char*>(&_impl_.number_)) + sizeof(_impl_.is_fund_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL Currency::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const Currency& this_ = static_cast<const Currency&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL Currency::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const Currency& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.Currency)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string code = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_code().empty()) {
+      const ::std::string& _s = this_._internal_code();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Currency.code");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string name = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (!this_._internal_name().empty()) {
+      const ::std::string& _s = this_._internal_name();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Currency.name");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // string country = 3;
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+    if (!this_._internal_country().empty()) {
+      const ::std::string& _s = this_._internal_country();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Currency.country");
+      target = stream->WriteStringMaybeAliased(3, _s, target);
+    }
+  }
+
+  // uint32 number = 4;
+  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
+    if (this_._internal_number() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+          4, this_._internal_number(), target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // optional uint32 units = 5;
+  if ((cached_has_bits & 0x00000010u) != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        5, this_._internal_units(), target);
+  }
+
+  // optional bool is_fund = 6;
+  if ((cached_has_bits & 0x00000020u) != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        6, this_._internal_is_fund(), target);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.Currency)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t Currency::ByteSizeLong(const MessageLite& base) {
+  const Currency& this_ = static_cast<const Currency&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t Currency::ByteSizeLong() const {
+  const Currency& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.Currency)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  total_size += static_cast<bool>(0x00000020u & cached_has_bits) * 2;
+  if ((cached_has_bits & 0x0000001fu) != 0) {
+    // string code = 1;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_code().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_code());
+      }
+    }
+    // string name = 2;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!this_._internal_name().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_name());
+      }
+    }
+    // string country = 3;
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!this_._internal_country().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_country());
+      }
+    }
+    // uint32 number = 4;
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (this_._internal_number() != 0) {
+        total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+            this_._internal_number());
+      }
+    }
+    // optional uint32 units = 5;
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this_._internal_units());
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void Currency::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Currency*>(&to_msg);
+  auto& from = static_cast<const Currency&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.Currency)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000003fu) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_code().empty()) {
+        _this->_internal_set_code(from._internal_code());
+      } else {
+        if (_this->_impl_.code_.IsDefault()) {
+          _this->_internal_set_code("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!from._internal_name().empty()) {
+        _this->_internal_set_name(from._internal_name());
+      } else {
+        if (_this->_impl_.name_.IsDefault()) {
+          _this->_internal_set_name("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!from._internal_country().empty()) {
+        _this->_internal_set_country(from._internal_country());
+      } else {
+        if (_this->_impl_.country_.IsDefault()) {
+          _this->_internal_set_country("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (from._internal_number() != 0) {
+        _this->_impl_.number_ = from._impl_.number_;
+      }
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      _this->_impl_.units_ = from._impl_.units_;
+    }
+    if ((cached_has_bits & 0x00000020u) != 0) {
+      _this->_impl_.is_fund_ = from._impl_.is_fund_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Currency::CopyFrom(const Currency& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.Currency)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Currency::InternalSwap(Currency* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.code_, &other->_impl_.code_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.country_, &other->_impl_.country_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Currency, _impl_.is_fund_)
+      + sizeof(Currency::_impl_.is_fund_)
+      - PROTOBUF_FIELD_OFFSET(Currency, _impl_.number_)>(
+          reinterpret_cast<char*>(&_impl_.number_),
+          reinterpret_cast<char*>(&other->_impl_.number_));
+}
+
+::google::protobuf::Metadata Currency::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

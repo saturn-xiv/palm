@@ -11,18 +11,23 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/goccy/go-yaml"
-	"github.com/saturn-xiv/palm/daisy/models"
 	"gorm.io/gorm"
+
+	"github.com/saturn-xiv/palm/daisy/iso4217"
+	"github.com/saturn-xiv/palm/daisy/models"
 )
 
 type I18nSyncConfig struct {
 	Database *Database `toml:"database"`
 }
 
-func I18nSync(config_file string, folders []string, debug bool) error {
+func DbSeeds(config_file string, folders []string, debug bool) error {
 	slog.Debug("load configuration from", "file", config_file)
 	var config I18nSyncConfig
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+	if _, err := iso4217.Iso4217(); err != nil {
 		return err
 	}
 	db, err := config.Database.Open(debug)
@@ -30,7 +35,7 @@ func I18nSync(config_file string, folders []string, debug bool) error {
 		return err
 	}
 	if err = db.Transaction(func(tx *gorm.DB) error {
-		if err := load_from_embed(tx); err != nil {
+		if err := load_locale_from_embed(tx); err != nil {
 			return err
 		}
 		for _, it := range folders {
@@ -158,7 +163,7 @@ func create_locale(db *gorm.DB, lang string, code string, message string) error 
 //go:embed locales/* locales/*/*
 var gl_locales_files embed.FS
 
-func load_from_embed(db *gorm.DB) error {
+func load_locale_from_embed(db *gorm.DB) error {
 	root := "locales"
 	entries, err := gl_locales_files.ReadDir(root)
 	if err != nil {
