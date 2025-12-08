@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.blog.v1";
+option java_outer_classname = "BlogProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Blog.Grpc";
+package palm.blog.v1;
+
+service Post {}
+
+service Page {}

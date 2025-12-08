@@ -2,10 +2,14 @@
 
 set -e
 
+source /etc/os-release
+
 export WORKSPACE=$PWD
 export VERSION="$(git describe --tags --always --dirty --first-parent)"
 export PACKAGE="palm-$VERSION"
 export TARGET=$WORKSPACE/tmp/$PACKAGE
+
+# -----------------------------------------------------------------------------
 
 function build_camellia() {
     cd $WORKSPACE/camellia/
@@ -85,12 +89,32 @@ function build_deb() {
     dpkg-deb --root-owner-group --build $1 $package
 }
 
+function build_cpp_x64() {
+    echo "build cpp projects for $1"
+    local build_root=$WORKSPACE/build/$VERSION_CODENAME-$1   
+
+    cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -B $build_root -S $WORKSPACE
+    cmake --build $build_root
+    cd $build_root/
+    cp tulip/tulip $TARGET/bin/$1/
+}
+
+# -----------------------------------------------------------------------------
+if [ "$ID" != "ubuntu" ]
+then
+    echo "unsupported system $ID"
+    exit 1
+fi
+
 if [ -d $TARGET ]
 then
     rm -r $TARGET
 fi
 mkdir $TARGET
 
+build_cpp_x64 x86_64
+build_cpp_x64 aarch64
+# build_cpp_x64 riscv64
 build_camellia
 build_dashboard loquat
 
