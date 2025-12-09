@@ -1,6 +1,6 @@
 #pragma once
 
 #include "blog.grpc.pb.h"
-#include "tulip/portal.hpp"
+#include "palm/portal.hpp"
 
 namespace tulip {}
