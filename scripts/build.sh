@@ -137,6 +137,7 @@ build_camellia
 build_hyacinth
 
 build_dashboard loquat
+build_dashboard tulip
 
 declare -a go_projects=("daisy" "loquat" "pansy")
 for p in "${go_projects[@]}"
