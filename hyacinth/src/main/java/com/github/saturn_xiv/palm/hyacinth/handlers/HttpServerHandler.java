@@ -1,30 +1,21 @@
 package com.github.saturn_xiv.palm.hyacinth.handlers;
 
 import java.net.URI;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
 import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.util.CharsetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.grpc.ManagedChannel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.http.DefaultHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpHeaderNames;
-import io.netty.handler.codec.http.HttpHeaderValues;
 import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
-import io.netty.handler.codec.http.HttpUtil;
 import io.netty.util.CharsetUtil;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.json.JsonMapper;
@@ -73,7 +64,8 @@ public final class HttpServerHandler extends SimpleChannelInboundHandler<FullHtt
                             reply.right);
                 } else {
                     logger.error("{} {}", reply.left, reply.right);
-                    HttpHeaders.render(ctx, httpVersion, HttpResponseStatus.valueOf(reply.left), HttpHeaders.TEXT_PLAIN,
+                    HttpHeaders.render(ctx, httpVersion, HttpResponseStatus.valueOf(reply.left),
+                            HttpHeaders.TEXT_PLAIN_UTF8,
                             reply.right);
                 }
                 return;
