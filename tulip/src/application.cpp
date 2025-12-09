@@ -1,1 +1,5 @@
 #include "tulip/application.hpp"
+#include "tulip/accounting.hpp"
+#include "tulip/blog.hpp"
+#include "tulip/cms.hpp"
+#include "tulip/forum.hpp"
