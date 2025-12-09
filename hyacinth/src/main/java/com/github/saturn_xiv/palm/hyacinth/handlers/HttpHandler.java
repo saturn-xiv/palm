@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.hyacinth;
+package com.github.saturn_xiv.palm.hyacinth.handlers;
 
 import java.util.Map;
 
@@ -8,10 +8,13 @@ import org.eclipse.jetty.server.Response;
 import org.eclipse.jetty.util.Callback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import io.grpc.ManagedChannel;
+
+import com.github.saturn_xiv.palm.hyacinth.services.GRpcService;
 
 public class HttpHandler extends Handler.Abstract {
-    public HttpHandler(Map<String, Config.Node> nodes) {
-        this.nodes = nodes;
+    public HttpHandler(Map<String, ManagedChannel> channels) {
+        this.rpcService = new GRpcService(channels);
     }
 
     @Override
@@ -20,15 +23,6 @@ public class HttpHandler extends Handler.Abstract {
         return true;
     }
 
-    private void healthCheck() {
-        for (var entry : this.nodes.entrySet()) {
-            var client = new GRpcClient(entry.getKey(), entry.getValue().host,
-                    entry.getValue().port);
-            client.open();
-            // to health check
-        }
-    }
-
-    private final Map<String, Config.Node> nodes;
+    private final GRpcService rpcService;
     private final static Logger logger = LoggerFactory.getLogger(HttpHandler.class);
 }

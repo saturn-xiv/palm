@@ -49,6 +49,7 @@ public class App {
             logger.error("parse command line args", e);
             formatter.printHelp(artifact_id, header, options, footer, true);
             System.exit(1);
+            return;
         }
         if (cmd.hasOption("help")) {
             formatter.printHelp(artifact_id, header, options, footer, true);
