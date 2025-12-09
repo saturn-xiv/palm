@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import tools.jackson.dataformat.toml.TomlMapper;
 
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         Option config_option = Option.builder("c").longOpt("config").hasArg().since("now")
                 .desc("configuration file(toml)").get();
@@ -66,6 +66,7 @@ public class App {
         TomlMapper mapper = new TomlMapper();
         final var config = mapper.readValue(new File(config_file), Config.class);
 
+        // var server = new JettyHttpServer(config);
         var server = new HttpServer(config);
         server.start(artifact_id, Integer.parseInt(port), version);
     }
