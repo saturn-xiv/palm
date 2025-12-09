@@ -34,16 +34,16 @@ public final class ApiServlet extends HttpServlet {
         logger.info("{} {}", method, path);
 
         if (HttpMethod.POST.is(method)) {
-            // /api/{host}/{package}/{service}/{method}?q=
+            // /api/{host}/{package}/{service}/{method}?q=com.google.protobuf.Empty
             final var items = path.split("/");
-            if (items == null || items.length != 5) {
+            if (items == null || items.length != 6) {
                 HttpHeaders.text(response, HttpStatus.SC_BAD_REQUEST);
                 return;
             }
 
-            final var req = new HttpRequest(x_real_ip, authorization, items[2], items[3], items[4], requestType,
+            final var req = new HttpRequest(x_real_ip, authorization, items[3], items[4], items[5], requestType,
                     requestBody);
-            final var reply = rpcService.call(items[1], req);
+            final var reply = rpcService.call(items[2], req);
             if (reply.left == HttpStatus.SC_OK) {
                 HttpHeaders.json(response, reply.right);
                 return;

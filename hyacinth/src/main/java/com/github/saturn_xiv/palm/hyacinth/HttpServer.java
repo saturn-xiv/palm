@@ -24,7 +24,7 @@ public class HttpServer {
     }
 
     // https://jetty.org/docs/jetty/12.1/programming-guide/server/http.html
-    public void start(String name, int port) {
+    public void start(String name, int port, String version) {
         var channels = this.config.open();
 
         var threadPool = new QueuedThreadPool();
@@ -47,7 +47,7 @@ public class HttpServer {
 
         context.addFilter(LoggingFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
         {
-            var servlet = new HealthCheckServlet(channels);
+            var servlet = new HealthCheckServlet(channels, version);
             context.addServlet(servlet, "/health-check");
         }
         {
