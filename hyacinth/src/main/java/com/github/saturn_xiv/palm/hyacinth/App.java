@@ -39,6 +39,7 @@ public class App {
             props.load(pom);
         }
         final var version = props.getProperty("version");
+        final var group_id = props.getProperty("groupId");
         final var artifact_id = props.getProperty("artifactId");
         final var header = "A gRPC-HTTP services converter";
         final var footer = "https://github.com/saturn-xiv/palm/tree/main/hyacinth";
@@ -65,8 +66,8 @@ public class App {
         TomlMapper mapper = new TomlMapper();
         final var config = mapper.readValue(new File(config_file), Config.class);
 
-        var server = new Server(config);
-        server.start(Integer.parseInt(port));
+        var server = new HttpServer(config);
+        server.start(String.format("%s.%s.%s", group_id, artifact_id, version), Integer.parseInt(port));
     }
 
     private final static Logger logger = LoggerFactory.getLogger(App.class);

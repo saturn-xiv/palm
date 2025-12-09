@@ -6,13 +6,14 @@
 mvn clean
 mvn package -Dmaven.test.skip=true
 
-java --enable-native-access=ALL-UNNAMED -cp 'target/hyacinth-2025.12.8.jar:libs/*' com.github.saturn_xiv.palm.hyacinth.App -c config.toml -p 8180
+# --enable-native-access=ALL-UNNAMED
+java -Dlogback.configurationFile=logback.xml -cp 'target/hyacinth-2025.12.8.jar:libs/*' com.github.saturn_xiv.palm.hyacinth.App -c config.toml -p 8180
 ```
 
 ## Testing
 
 ```bash
-curl -v -X GET "http://127.0.0.1:8180/health-check"
+curl -v "http://127.0.0.1:8180/health-check"
 ```
 
 ## Documents
