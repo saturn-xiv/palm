@@ -9,6 +9,7 @@ package v2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -550,32 +551,27 @@ func (x *Location) GetAddress() string {
 	return ""
 }
 
-type Currency struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
-	Number        uint32                 `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
-	Units         *uint32                `protobuf:"varint,5,opt,name=units,proto3,oneof" json:"units,omitempty"`
-	IsFund        *bool                  `protobuf:"varint,6,opt,name=is_fund,json=isFund,proto3,oneof" json:"is_fund,omitempty"`
+type CurrenciesResponse struct {
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Items         []*CurrenciesResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Currency) Reset() {
-	*x = Currency{}
+func (x *CurrenciesResponse) Reset() {
+	*x = CurrenciesResponse{}
 	mi := &file_proto_portal_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Currency) String() string {
+func (x *CurrenciesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Currency) ProtoMessage() {}
+func (*CurrenciesResponse) ProtoMessage() {}
 
-func (x *Currency) ProtoReflect() protoreflect.Message {
+func (x *CurrenciesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_portal_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -587,51 +583,16 @@ func (x *Currency) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Currency.ProtoReflect.Descriptor instead.
-func (*Currency) Descriptor() ([]byte, []int) {
+// Deprecated: Use CurrenciesResponse.ProtoReflect.Descriptor instead.
+func (*CurrenciesResponse) Descriptor() ([]byte, []int) {
 	return file_proto_portal_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *Currency) GetCode() string {
+func (x *CurrenciesResponse) GetItems() []*CurrenciesResponse_Item {
 	if x != nil {
-		return x.Code
+		return x.Items
 	}
-	return ""
-}
-
-func (x *Currency) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *Currency) GetCountry() string {
-	if x != nil {
-		return x.Country
-	}
-	return ""
-}
-
-func (x *Currency) GetNumber() uint32 {
-	if x != nil {
-		return x.Number
-	}
-	return 0
-}
-
-func (x *Currency) GetUnits() uint32 {
-	if x != nil && x.Units != nil {
-		return *x.Units
-	}
-	return 0
-}
-
-func (x *Currency) GetIsFund() bool {
-	if x != nil && x.IsFund != nil {
-		return *x.IsFund
-	}
-	return false
+	return nil
 }
 
 type Log struct {
@@ -758,11 +719,95 @@ func (x *Session) GetSn() string {
 	return ""
 }
 
+type CurrenciesResponse_Item struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
+	Number        uint32                 `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	Units         *uint32                `protobuf:"varint,5,opt,name=units,proto3,oneof" json:"units,omitempty"`
+	IsFund        *bool                  `protobuf:"varint,6,opt,name=is_fund,json=isFund,proto3,oneof" json:"is_fund,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CurrenciesResponse_Item) Reset() {
+	*x = CurrenciesResponse_Item{}
+	mi := &file_proto_portal_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CurrenciesResponse_Item) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CurrenciesResponse_Item) ProtoMessage() {}
+
+func (x *CurrenciesResponse_Item) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CurrenciesResponse_Item.ProtoReflect.Descriptor instead.
+func (*CurrenciesResponse_Item) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{6, 0}
+}
+
+func (x *CurrenciesResponse_Item) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *CurrenciesResponse_Item) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CurrenciesResponse_Item) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *CurrenciesResponse_Item) GetNumber() uint32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *CurrenciesResponse_Item) GetUnits() uint32 {
+	if x != nil && x.Units != nil {
+		return *x.Units
+	}
+	return 0
+}
+
+func (x *CurrenciesResponse_Item) GetIsFund() bool {
+	if x != nil && x.IsFund != nil {
+		return *x.IsFund
+	}
+	return false
+}
+
 var File_proto_portal_proto protoreflect.FileDescriptor
 
 const file_proto_portal_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/portal.proto\x12\x0epalm.portal.v1\"\x1b\n" +
+	"\x12proto/portal.proto\x12\x0epalm.portal.v1\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"0\n" +
 	"\x04Page\x12\x14\n" +
@@ -790,8 +835,10 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\"\x11\n" +
 	"\x03Map\x12\n" +
 	"\n" +
-	"\x06Google\x10\x00\"\xb3\x01\n" +
-	"\bCurrency\x12\x12\n" +
+	"\x06Google\x10\x00\"\x85\x02\n" +
+	"\x12CurrenciesResponse\x12=\n" +
+	"\x05items\x18\x01 \x03(\v2'.palm.portal.v1.CurrenciesResponse.ItemR\x05items\x1a\xaf\x01\n" +
+	"\x04Item\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
 	"\acountry\x18\x03 \x01(\tR\acountry\x12\x16\n" +
@@ -816,8 +863,10 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x11WechatMiniProgram\x10\x04\"P\n" +
 	"\aSession\x125\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.palm.portal.v1.User.ProviderTypeR\x04type\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\tR\x02sn2\b\n" +
-	"\x06PortalB_\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn2R\n" +
+	"\x04Site\x12J\n" +
+	"\n" +
+	"Currencies\x12\x16.google.protobuf.Empty\x1a\".palm.portal.v1.CurrenciesResponse\"\x00B_\n" +
 	",com.github.saturn_xiv.palm.plugins.portal.v1B\vPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3"
 
 var (
@@ -833,34 +882,39 @@ func file_proto_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_proto_portal_proto_goTypes = []any{
-	(RichText_Editor)(0),   // 0: palm.portal.v1.RichText.Editor
-	(Location_Map)(0),      // 1: palm.portal.v1.Location.Map
-	(Log_Level)(0),         // 2: palm.portal.v1.Log.Level
-	(User_ProviderType)(0), // 3: palm.portal.v1.User.ProviderType
-	(*IdRequest)(nil),      // 4: palm.portal.v1.IdRequest
-	(*Page)(nil),           // 5: palm.portal.v1.Page
-	(*Pagination)(nil),     // 6: palm.portal.v1.Pagination
-	(*Attachment)(nil),     // 7: palm.portal.v1.Attachment
-	(*RichText)(nil),       // 8: palm.portal.v1.RichText
-	(*Location)(nil),       // 9: palm.portal.v1.Location
-	(*Currency)(nil),       // 10: palm.portal.v1.Currency
-	(*Log)(nil),            // 11: palm.portal.v1.Log
-	(*User)(nil),           // 12: palm.portal.v1.User
-	(*Session)(nil),        // 13: palm.portal.v1.Session
+	(RichText_Editor)(0),            // 0: palm.portal.v1.RichText.Editor
+	(Location_Map)(0),               // 1: palm.portal.v1.Location.Map
+	(Log_Level)(0),                  // 2: palm.portal.v1.Log.Level
+	(User_ProviderType)(0),          // 3: palm.portal.v1.User.ProviderType
+	(*IdRequest)(nil),               // 4: palm.portal.v1.IdRequest
+	(*Page)(nil),                    // 5: palm.portal.v1.Page
+	(*Pagination)(nil),              // 6: palm.portal.v1.Pagination
+	(*Attachment)(nil),              // 7: palm.portal.v1.Attachment
+	(*RichText)(nil),                // 8: palm.portal.v1.RichText
+	(*Location)(nil),                // 9: palm.portal.v1.Location
+	(*CurrenciesResponse)(nil),      // 10: palm.portal.v1.CurrenciesResponse
+	(*Log)(nil),                     // 11: palm.portal.v1.Log
+	(*User)(nil),                    // 12: palm.portal.v1.User
+	(*Session)(nil),                 // 13: palm.portal.v1.Session
+	(*CurrenciesResponse_Item)(nil), // 14: palm.portal.v1.CurrenciesResponse.Item
+	(*emptypb.Empty)(nil),           // 15: google.protobuf.Empty
 }
 var file_proto_portal_proto_depIdxs = []int32{
-	5, // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
-	0, // 1: palm.portal.v1.RichText.editor:type_name -> palm.portal.v1.RichText.Editor
-	7, // 2: palm.portal.v1.RichText.attachments:type_name -> palm.portal.v1.Attachment
-	1, // 3: palm.portal.v1.Location.map:type_name -> palm.portal.v1.Location.Map
-	3, // 4: palm.portal.v1.Session.type:type_name -> palm.portal.v1.User.ProviderType
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5,  // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
+	0,  // 1: palm.portal.v1.RichText.editor:type_name -> palm.portal.v1.RichText.Editor
+	7,  // 2: palm.portal.v1.RichText.attachments:type_name -> palm.portal.v1.Attachment
+	1,  // 3: palm.portal.v1.Location.map:type_name -> palm.portal.v1.Location.Map
+	14, // 4: palm.portal.v1.CurrenciesResponse.items:type_name -> palm.portal.v1.CurrenciesResponse.Item
+	3,  // 5: palm.portal.v1.Session.type:type_name -> palm.portal.v1.User.ProviderType
+	15, // 6: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
+	10, // 7: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
+	7,  // [7:8] is the sub-list for method output_type
+	6,  // [6:7] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_proto_portal_proto_init() }
@@ -868,14 +922,14 @@ func file_proto_portal_proto_init() {
 	if File_proto_portal_proto != nil {
 		return
 	}
-	file_proto_portal_proto_msgTypes[6].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[10].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

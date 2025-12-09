@@ -32,29 +32,49 @@ namespace v1 {
 
 // ----------------------------------------------------------------------------
 //
-class Portal final {
+class Site final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.portal.v1.Portal";
+    return "palm.portal.v1.Site";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
+    virtual ::grpc::Status Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::CurrenciesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::CurrenciesResponse>> AsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::CurrenciesResponse>>(AsyncCurrenciesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::CurrenciesResponse>> PrepareAsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::CurrenciesResponse>>(PrepareAsyncCurrenciesRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
+      virtual void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::CurrenciesResponse>* AsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::CurrenciesResponse>* PrepareAsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::CurrenciesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>> AsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>>(AsyncCurrenciesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>> PrepareAsyncCurrencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>>(PrepareAsyncCurrenciesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
+      void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response, std::function<void(::grpc::Status)>) override;
+      void Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -66,6 +86,9 @@ class Portal final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>* AsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>* PrepareAsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Currencies_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -73,13 +96,147 @@ class Portal final {
    public:
     Service();
     virtual ~Service();
+    virtual ::grpc::Status Currencies(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response);
   };
-  typedef Service AsyncService;
-  typedef Service CallbackService;
+  template <class BaseClass>
+  class WithAsyncMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Currencies() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCurrencies(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::CurrenciesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Currencies<Service > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Currencies() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response) { return this->Currencies(context, request, response); }));}
+    void SetMessageAllocatorFor_Currencies(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Currencies(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Currencies<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class WithGenericMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Currencies() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Currencies() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCurrencies(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Currencies() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Currencies(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Currencies(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Currencies : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Currencies() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse>* streamer) {
+                       return this->StreamedCurrencies(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Currencies() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Currencies(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::CurrenciesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCurrencies(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::portal::v1::CurrenciesResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Currencies<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef Service StreamedService;
+  typedef WithStreamedUnaryMethod_Currencies<Service > StreamedService;
 };
 
 }  // namespace v1

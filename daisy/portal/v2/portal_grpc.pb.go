@@ -7,7 +7,11 @@
 package v2
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,62 +19,104 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
-// PortalClient is the client API for Portal service.
+const (
+	Site_Currencies_FullMethodName = "/palm.portal.v1.Site/Currencies"
+)
+
+// SiteClient is the client API for Site service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PortalClient interface {
+type SiteClient interface {
+	Currencies(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CurrenciesResponse, error)
 }
 
-type portalClient struct {
+type siteClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPortalClient(cc grpc.ClientConnInterface) PortalClient {
-	return &portalClient{cc}
+func NewSiteClient(cc grpc.ClientConnInterface) SiteClient {
+	return &siteClient{cc}
 }
 
-// PortalServer is the server API for Portal service.
-// All implementations must embed UnimplementedPortalServer
+func (c *siteClient) Currencies(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CurrenciesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CurrenciesResponse)
+	err := c.cc.Invoke(ctx, Site_Currencies_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SiteServer is the server API for Site service.
+// All implementations must embed UnimplementedSiteServer
 // for forward compatibility.
-type PortalServer interface {
-	mustEmbedUnimplementedPortalServer()
+type SiteServer interface {
+	Currencies(context.Context, *emptypb.Empty) (*CurrenciesResponse, error)
+	mustEmbedUnimplementedSiteServer()
 }
 
-// UnimplementedPortalServer must be embedded to have
+// UnimplementedSiteServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedPortalServer struct{}
+type UnimplementedSiteServer struct{}
 
-func (UnimplementedPortalServer) mustEmbedUnimplementedPortalServer() {}
-func (UnimplementedPortalServer) testEmbeddedByValue()                {}
+func (UnimplementedSiteServer) Currencies(context.Context, *emptypb.Empty) (*CurrenciesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Currencies not implemented")
+}
+func (UnimplementedSiteServer) mustEmbedUnimplementedSiteServer() {}
+func (UnimplementedSiteServer) testEmbeddedByValue()              {}
 
-// UnsafePortalServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PortalServer will
+// UnsafeSiteServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SiteServer will
 // result in compilation errors.
-type UnsafePortalServer interface {
-	mustEmbedUnimplementedPortalServer()
+type UnsafeSiteServer interface {
+	mustEmbedUnimplementedSiteServer()
 }
 
-func RegisterPortalServer(s grpc.ServiceRegistrar, srv PortalServer) {
-	// If the following call panics, it indicates UnimplementedPortalServer was
+func RegisterSiteServer(s grpc.ServiceRegistrar, srv SiteServer) {
+	// If the following call panics, it indicates UnimplementedSiteServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Portal_ServiceDesc, srv)
+	s.RegisterService(&Site_ServiceDesc, srv)
 }
 
-// Portal_ServiceDesc is the grpc.ServiceDesc for Portal service.
+func _Site_Currencies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).Currencies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_Currencies_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).Currencies(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Site_ServiceDesc is the grpc.ServiceDesc for Site service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Portal_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.portal.v1.Portal",
-	HandlerType: (*PortalServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "proto/portal.proto",
+var Site_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.Site",
+	HandlerType: (*SiteServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Currencies",
+			Handler:    _Site_Currencies_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/portal.proto",
 }

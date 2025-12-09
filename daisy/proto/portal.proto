@@ -7,6 +7,8 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Portal.Grpc";
 package palm.portal.v1;
 
+import "google/protobuf/empty.proto";
+
 message IdRequest {
   uint64 id = 1;
 }
@@ -45,15 +47,20 @@ message Location {
 
 // ----------------------------------------------------------------------------
 
-service Portal {}
+service Site {
+  rpc Currencies(google.protobuf.Empty) returns (CurrenciesResponse) {}
+}
 
-message Currency {
-  string code = 1;
-  string name = 2;
-  string country = 3;
-  uint32 number = 4;
-  optional uint32 units = 5;
-  optional bool is_fund = 6;
+message CurrenciesResponse {
+  message Item {
+    string code = 1;
+    string name = 2;
+    string country = 3;
+    uint32 number = 4;
+    optional uint32 units = 5;
+    optional bool is_fund = 6;
+  }
+  repeated Item items = 1;
 }
 
 message Log {
@@ -79,3 +86,5 @@ message Session {
   User.ProviderType type = 1;
   string sn = 2;
 }
+
+// ----------------------------------------------------------------------------

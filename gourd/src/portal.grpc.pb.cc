@@ -24,19 +24,64 @@ namespace palm {
 namespace portal {
 namespace v1 {
 
-std::unique_ptr< Portal::Stub> Portal::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+static const char* Site_method_names[] = {
+  "/palm.portal.v1.Site/Currencies",
+};
+
+std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Portal::Stub> stub(new Portal::Stub(channel, options));
+  std::unique_ptr< Site::Stub> stub(new Site::Stub(channel, options));
   return stub;
 }
 
-Portal::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel){}
+Site::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Currencies_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
 
-Portal::Service::Service() {
+::grpc::Status Site::Stub::Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::CurrenciesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Currencies_, context, request, response);
 }
 
-Portal::Service::~Service() {
+void Site::Stub::async::Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Currencies_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::Currencies(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Currencies_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>* Site::Stub::PrepareAsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::CurrenciesResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Currencies_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::CurrenciesResponse>* Site::Stub::AsyncCurrenciesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCurrenciesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Site::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::CurrenciesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::CurrenciesResponse* resp) {
+               return service->Currencies(ctx, req, resp);
+             }, this)));
+}
+
+Site::Service::~Service() {
+}
+
+::grpc::Status Site::Service::Currencies(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::CurrenciesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 

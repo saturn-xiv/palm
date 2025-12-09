@@ -13,6 +13,8 @@ import (
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/crypto"
 	crypto_v2 "github.com/saturn-xiv/palm/daisy/crypto/v2"
+	"github.com/saturn-xiv/palm/daisy/portal"
+	portal_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/queue"
 	"github.com/saturn-xiv/palm/daisy/rbac"
 	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
@@ -66,6 +68,7 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	server := grpc.NewServer()
 	health_server := health.NewServer()
 	healthgrpc.RegisterHealthServer(server, health_server)
+	portal_v2.RegisterSiteServer(server, portal.NewSiteServer())
 	crypto_v2.RegisterAeadServer(server, crypto.NewAeadServer(aead))
 	crypto_v2.RegisterHMacServer(server, crypto.NewHmacServer(hmac))
 	crypto_v2.RegisterJwtServer(server, crypto.NewJwtServer(jwt))
