@@ -108,8 +108,9 @@ function build_cpp_x64() {
 
     # https://github.com/protocolbuffers/protobuf/issues/12185    
     cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
-        -DABSL_ENABLE_INSTALL=ON \
         -DgRPC_BUILD_TESTS=OFF \
+        -DREDIS_PLUS_PLUS_BUILD_TEST=OFF \
+        -DBUILD_SHARED_LIBS=OFF -DCPR_BUILD_TESTS=OFF \
         -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/toolchains/$1.cmake -B $build_root -S $WORKSPACE
     cmake --build $build_root
     cd $build_root/
@@ -124,6 +125,7 @@ then
     echo "unsupported system $ID"
     exit 1
 fi
+sudo apt install -y libcurl4-openssl-dev libpq-dev libhiredis-dev librabbitmq-dev libsystemd-dev libboost-all-dev
 
 if [ -d $TARGET ]
 then
