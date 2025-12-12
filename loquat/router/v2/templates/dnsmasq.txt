@@ -9,8 +9,8 @@ Wants=nss-lookup.target
 
 [Service]
 Type=simple
-ExecStartPre=/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ .device }}.conf
-ExecStart=/usr/bin/dnsmasq -k --user=dnsmasq -C /etc/dnsmasq-{{ .device }}.conf -x /tmp/dnsmasq.{{ .device }}.pid
+ExecStartPre=/usr/sbin/dnsmasq --test -C /etc/dnsmasq-{{ .device }}.conf
+ExecStart=/usr/sbin/dnsmasq -k --user=dnsmasq -C /etc/dnsmasq-{{ .device }}.conf -x /tmp/dnsmasq.{{ .device }}.pid
 Restart=on-failure
 PrivateDevices=true
 ProtectSystem=full
@@ -42,7 +42,7 @@ dhcp-host={{ .mac }},{{.name}},{{.ip}}
 {{ end }}
 EOF
 
-/usr/bin/dnsmasq --test -C /etc/dnsmasq-{{ .device }}.conf
+/usr/sbin/dnsmasq --test -C /etc/dnsmasq-{{ .device }}.conf
 
 systemctl daemon-reload
 systemctl enable dnsmasq-{{ .device }}.service

@@ -8,11 +8,12 @@ mkdir /etc/netplan
 
 {{ range $n, $p := .items }}
 # {{ $p.label }}
-cat >/etc/netplan/100-{{ $n }} <<EOF
+cat >/etc/netplan/100-{{ $n }}.yaml <<EOF
 {{ $p.content }}
 EOF
 {{ end }}
 
+chmod 600 /etc/netplan/*.yaml
 netplan apply
 
 systemctl daemon-reload
