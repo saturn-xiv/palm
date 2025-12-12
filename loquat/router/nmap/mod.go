@@ -100,5 +100,8 @@ func Scan(network ...string) (*NmapRun, error) {
 	if err = xml.Unmarshal(buf, &res); err != nil {
 		return nil, err
 	}
+	if err = os.Remove(tmp); err != nil {
+		return nil, err
+	}
 	return &res, nil
 }

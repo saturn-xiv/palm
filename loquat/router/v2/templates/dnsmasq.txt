@@ -31,7 +31,7 @@ server={{ . }}
 {{ end }}
 clear-on-reload
 
-dhcp-range={{ .begin }},{{ .end }},1w
+dhcp-range={{ .begin }},{{ .end }},1d
 dhcp-option=option:dns-server,{{ .gateway }}
 dhcp-option=option:ntp-server,{{ .gateway }}
 dhcp-option=option:router,{{ .gateway }}
@@ -47,4 +47,3 @@ EOF
 systemctl daemon-reload
 systemctl enable dnsmasq-{{ .device }}.service
 systemctl restart dnsmasq-{{ .device }}.service
-
