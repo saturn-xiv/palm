@@ -119,6 +119,17 @@ function build_cpp_x64() {
     cp tulip/tulip $TARGET/bin/$1/
 }
 
+build_musl() {
+    echo "build $1 for $2"
+    local src_root=$WORKSPACE/$1
+    local build_root=$WORKSPACE/build/$1-$2
+    CC=$1-unknown-linux-musl-gcc CXX=$2-unknown-linux-musl-g++ -DCMAKE_BUILD_TYPE=Release -G Ninja -B $build_root -S $src_root
+    cmake --build $build_root
+
+    mkdir -p $TARGET/bin/$2
+    cp $build_root/$1 $TARGET/bin/$2/
+}
+
 # -----------------------------------------------------------------------------
 if [ "$ID" != "ubuntu" ]
 then
@@ -134,6 +145,8 @@ fi
 mkdir $TARGET
 
 build_cpp_x64 $(uname -m)
+
+build_musl iris x86_64
 
 build_camellia
 build_hyacinth
