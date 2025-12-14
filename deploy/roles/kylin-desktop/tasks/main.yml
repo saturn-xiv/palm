@@ -11,7 +11,7 @@
       - chromium-browser
       - microsoft-edge-stable
       - wechat-devtools
-      - wechat-beta
+      - wechat
       - linuxqq
       - kylin-tencentmeeting
       - wps-office
