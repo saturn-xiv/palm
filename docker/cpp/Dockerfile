@@ -53,6 +53,7 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
     && echo 'set-option -g default-shell "/bin/zsh"' >> $HOME/.tmux.conf
 
 # https://github.com/cross-tools/musl-cross
+RUN git clone https://github.com/cross-tools/musl-cross.git $HOME/build/musl-cross
 ENV MUSL_TOOLCHAIN_VERSION=20250929
 RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/x86_64-unknown-linux-musl.tar.xz \
     && tar xf $HOME/downloads/x86_64-unknown-linux-musl.tar.xz -C $HOME/local \
@@ -61,43 +62,11 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
     && tar xf $HOME/downloads/aarch64-unknown-linux-musl.tar.xz -C $HOME/local \
     && echo 'export PATH=$HOME/local/aarch64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/riscv64-unknown-linux-musl.tar.xz \
-    && tar xf $HOME/downloads/riscv64-unknown-linux-musl -C $HOME/local \
+    && tar xf $HOME/downloads/riscv64-unknown-linux-musl.tar.xz -C $HOME/local \
     && echo 'export PATH=$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/loongarch64-unknown-linux-musl.tar.xz \
-    && tar xf $HOME/downloads/loongarch64-unknown-linux-musl -C $HOME/local \
+    && tar xf $HOME/downloads/loongarch64-unknown-linux-musl.tar.xz -C $HOME/local \
     && echo 'export PATH=$HOME/local/loongarch64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
-
-# https://github.com/richfelker/musl-cross-make
-# RUN git clone https://github.com/richfelker/musl-cross-make.git $HOME/build/musl-cross-make
-# RUN cd $HOME/build/musl-cross-make \
-#     && echo "TARGET=x86_64-linux-musl" > config.mak \
-#     && echo "OUTPUT=/opt/aarch64-linux-musl" >> config.mak \
-#     && make \
-#     && make install
-# RUN cd $HOME/build/musl-cross-make \
-#     && echo "TARGET=aarch64-linux-musl" > config.mak \
-#     && echo "OUTPUT=/opt/aarch64-linux-musl" >> config.mak \
-#     && make \
-#     && make install
-# RUN cd $HOME/build/musl-cross-make \
-#     && echo "TARGET=riscv64-linux-musl" > config.mak \
-#     && echo "OUTPUT=/opt/aarch64-linux-musl" >> config.mak \
-#     && make \
-#     && make install
-
-# https://musl.cc/
-# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \
-#     && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz -C $HOME/local \
-#     && echo 'export PATH=$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
-# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz \
-#     && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz -C $HOME/local \
-#     && echo 'export PATH=$HOME/local/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
-# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/aarch64-linux-musl-cross.tgz \
-#     && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz -C $HOME/local \
-#     && echo 'export PATH=$HOME/local/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
-# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-linux-musl-cross.tgz \
-#     && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz -C $HOME/local \
-#     && echo 'export PATH=$HOME/local/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 
 # https://releases.llvm.org/
 ENV LLVM_VERSION="21.1.0"
