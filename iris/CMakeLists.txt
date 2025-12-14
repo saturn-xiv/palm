@@ -54,27 +54,17 @@ FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec inja)
 file(GLOB IRIS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(iris ${IRIS_SOURCES})
-target_link_options(iris PRIVATE -static-libgcc -static-libstdc++ -Wl,--build-id=sha1)
+target_link_options(iris PRIVATE -static -Wl,--build-id=sha1)
 set_target_properties(iris PROPERTIES LINK_FLAGS_RELEASE -s)
-target_link_libraries(iris PRIVATE m dl anl
+target_link_libraries(iris PRIVATE m dl
   argparse tomlplusplus::tomlplusplus
 )   
 
 target_include_directories(iris PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
 
-
-
-
-target_include_directories(begonia PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
-  ${PROJECT_SOURCE_DIR}/gourd/include
-
-  ${cpphttplib_SOURCE_DIR}
   ${cppcodec_SOURCE_DIR}
   ${spdlog_SOURCE_DIR}/include
-  ${cpr_SOURCE_DIR}/include
   ${tomlplusplus_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/single_include
   ${inja_SOURCE_DIR}/third_party/include
