@@ -1,13 +1,13 @@
 FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt   update
 RUN apt install -y lsb-release apt-utils \
     debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
 
-ENV GCC_VERSION 14
+ENV GCC_VERSION=14
 RUN apt -y upgrade
 RUN apt -y install zsh git locales locales-all \
     vim tzdata zip unzip tree tmux \
@@ -19,7 +19,6 @@ RUN apt -y install zsh git locales locales-all \
     python3-full python3-dev
 RUN apt -y autoremove
 RUN apt -y clean
-
 
 RUN update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-${GCC_VERSION} 100 \
     && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-${GCC_VERSION} 100 \
@@ -53,31 +52,61 @@ RUN git config --global core.quotepath false \
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
     && echo 'set-option -g default-shell "/bin/zsh"' >> $HOME/.tmux.conf
 
-# https://musl.cc/
-RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \
-    && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz -C $HOME/local \
+# https://github.com/cross-tools/musl-cross
+ENV MUSL_TOOLCHAIN_VERSION=20250929
+RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/x86_64-unknown-linux-musl.tar.xz \
+    && tar xf $HOME/downloads/x86_64-unknown-linux-musl.tar.xz -C $HOME/local \
+    && echo 'export PATH=$HOME/local/x86_64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
+RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/aarch64-unknown-linux-musl.tar.xz \
+    && tar xf $HOME/downloads/aarch64-unknown-linux-musl.tar.xz -C $HOME/local \
+    && echo 'export PATH=$HOME/local/aarch64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
+RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/riscv64-unknown-linux-musl.tar.xz \
+    && tar xf $HOME/downloads/riscv64-unknown-linux-musl -C $HOME/local \
     && echo 'export PATH=$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
-RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz \
-    && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz -C $HOME/local \
-    && echo 'export PATH=$HOME/local/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
-RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/aarch64-linux-musl-cross.tgz \
-    && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz -C $HOME/local \
-    && echo 'export PATH=$HOME/local/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
-RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-linux-musl-cross.tgz \
-    && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz -C $HOME/local \
-    && echo 'export PATH=$HOME/local/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/loongarch64-unknown-linux-musl.tar.xz \
+    && tar xf $HOME/downloads/loongarch64-unknown-linux-musl -C $HOME/local \
+    && echo 'export PATH=$HOME/local/loongarch64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
 
-# https://releases.llvm.org/download.html
-ENV LLVM_VERSION "19.1.7"
+# https://github.com/richfelker/musl-cross-make
+# RUN git clone https://github.com/richfelker/musl-cross-make.git $HOME/build/musl-cross-make
+# RUN cd $HOME/build/musl-cross-make \
+#     && echo "TARGET=x86_64-linux-musl" > config.mak \
+#     && echo "OUTPUT=/opt/aarch64-linux-musl" >> config.mak \
+#     && make \
+#     && make install
+# RUN cd $HOME/build/musl-cross-make \
+#     && echo "TARGET=aarch64-linux-musl" > config.mak \
+#     && echo "OUTPUT=/opt/aarch64-linux-musl" >> config.mak \
+#     && make \
+#     && make install
+# RUN cd $HOME/build/musl-cross-make \
+#     && echo "TARGET=riscv64-linux-musl" > config.mak \
+#     && echo "OUTPUT=/opt/aarch64-linux-musl" >> config.mak \
+#     && make \
+#     && make install
+
+# https://musl.cc/
+# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \
+#     && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz -C $HOME/local \
+#     && echo 'export PATH=$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz \
+#     && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz -C $HOME/local \
+#     && echo 'export PATH=$HOME/local/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
+# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/aarch64-linux-musl-cross.tgz \
+#     && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz -C $HOME/local \
+#     && echo 'export PATH=$HOME/local/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+# RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-linux-musl-cross.tgz \
+#     && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz -C $HOME/local \
+#     && echo 'export PATH=$HOME/local/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+
+# https://releases.llvm.org/
+ENV LLVM_VERSION="21.1.0"
 RUN wget -q -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/LLVM-${LLVM_VERSION}-Linux-X64.tar.xz \
     && tar xf $HOME/downloads/LLVM-${LLVM_VERSION}-Linux-X64.tar.xz -C $HOME/local \
     && echo "export PATH=\$HOME/local/LLVM-${LLVM_VERSION}-Linux-X64/bin:\$PATH" >> $HOME/.zshrc
-# RUN wget -q -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04.tar.xz \
-#     && tar xf $HOME/downloads/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04.tar.xz -C $HOME/local --no-same-owner \
-#     && echo 'export PATH=$HOME/local/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH' >> $HOME/.zshrc
 
 # https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
-ENV ARM_GNU_TOOLCHAIN_VERSION "14.2.rel1"
+ENV ARM_GNU_TOOLCHAIN_VERSION="14.3.rel1"
 # RUN wget -q -P $HOME/downloads/ https://developer.arm.com/-/media/Files/downloads/gnu/${ARM_GNU_TOOLCHAIN_VERSION}/srcrel/arm-gnu-toolchain-src-snapshot-${ARM_GNU_TOOLCHAIN_VERSION}-manifest.txt
 RUN wget -q -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu/${ARM_GNU_TOOLCHAIN_VERSION}/binrel/arm-gnu-toolchain-${ARM_GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz \
     && tar xf $HOME/downloads/arm-gnu-toolchain-${ARM_GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local \
@@ -88,6 +117,7 @@ RUN wget -q -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads
 
 # https://github.com/microsoft/vcpkg
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
+RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
 
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
