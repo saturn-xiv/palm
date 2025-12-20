@@ -174,6 +174,14 @@ void iris::Application::dump(const std::string& input,
     iris::md5(tar);
     keep_files(input + "-", ".tar", keep);
   }
+
+  const std::string output_config = std::format("{}.toml", output_);
+  if (std::filesystem::exists(output_config)) {
+    spdlog::info("load destination configuration from {}", output_config);
+    const toml::table config = toml::parse_file(output_config);
+    iris::Filesystem it(config);
+    it.upload(output);
+  }
 }
 int iris::Application::launch(int argc, char** argv) const {
   const std::string version =

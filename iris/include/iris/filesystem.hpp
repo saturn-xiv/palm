@@ -12,8 +12,9 @@ class Filesystem : public Storage {
         _key_file(config["key-file"].value<std::string>()),
         _folder(config["folder"].value<std::string>().value()) {}
 
-  void dump(const std::filesystem::path& file) const override;
+  void dump(const std::filesystem::path& folder) const override;
   void restore(const std::filesystem::path& file) const override;
+  void upload(const std::filesystem::path& file) const;
 
  private:
   std::string _host;

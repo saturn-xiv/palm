@@ -10,7 +10,17 @@ static inline bool is_local(const std::string& ip) {
   spdlog::debug("!!!!!!! 1.1");
   return std::find(items.begin(), items.end(), ip) != items.end();
 }
-
+void iris::Filesystem::upload(const std::filesystem::path& folder) const {
+  spdlog::info("upload {} to {}@{}:{}:{}", folder.string(), this->_user,
+               this->_host, this->_port, this->_folder);
+  const auto key = this->key_file();
+  const auto res = iris::execute(
+      {"rsync", "-az", "-e",
+       std::format("'ssh -p {}  -i {}'", this->_port, key.string()),
+       folder.string(),
+       std::format("{}@{}:{}/", this->_user, this->_host, this->_folder)});
+  iris::check(res);
+}
 // https://linux.die.net/man/1/rsync
 void iris::Filesystem::dump(const std::filesystem::path& output_) const {
   spdlog::info("backup {}@{}:{}:{} to {}", this->_user, this->_host,
