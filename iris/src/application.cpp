@@ -51,6 +51,61 @@ static inline void keep_files(const std::string& prefix,
   }
 }
 
+static inline void render_template(const std::string& file,
+                                   const std::string& tpl,
+                                   const nlohmann::json& data) {
+  spdlog::info("generate file {}", file);
+  if (std::filesystem::exists(file)) {
+    const std::string msg = std::format("file {} already exists", file);
+    throw std::invalid_argument(msg);
+  }
+  std::ofstream out(file);
+  inja::render_to(out, tpl, data);
+}
+
+void iris::Application::generate_timer(const std::string& name_) const {
+  if (!iris::is_alphanumeric(name_)) {
+    const std::string msg = std::format("incorrect timer name: {}", name_);
+    throw std::invalid_argument(msg);
+  }
+  const std::string name = std::format("{}-{}", iris::PROJECT_NAME, name_);
+  nlohmann::json data;
+  data["name"] = name;
+
+  render_template(std::format("{}.service", name), R"TPL(
+[Unit]
+Description=iris-{{ name }}.
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/local/bin/iris dump -i input -o output -k 30 -z
+WorkingDirectory=/var/lib/iris
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+)TPL",
+                  data);
+
+  render_template(std::format("{}.timer", name), R"TPL(
+[Unit]
+Description=iris-{{ name }}.
+
+[Timer]
+# OnBootSec=1hours
+# OnUnitActiveSec=1day
+OnCalendar=*-*-* 02:00:00
+
+[Install]
+WantedBy=timers.target
+)TPL",
+                  data);
+}
+
 void iris::Application::dump(const std::string& input,
                              const std::string& output_, bool compress,
                              size_t keep) const {
@@ -79,6 +134,8 @@ void iris::Application::dump(const std::string& input,
     std::shared_ptr<iris::Storage> it;
     if (type == std::nullopt) {
       throw std::invalid_argument("empty type item");
+    } else if (type.value() == "sync") {
+      it = std::make_shared<iris::Filesystem>(config);
     } else if (type.value() == "dm8") {
       it = std::make_shared<iris::Dm8>(config);
     } else {
@@ -98,22 +155,18 @@ void iris::Application::dump(const std::string& input,
   const std::string tar = std::format("{}.tar", package);
   {
     spdlog::debug("compressing {}", tar);
-    const auto [out, err, code] =
-        iris::execute({"tar", "--remove-files", "-cvf", tar, package});
-    if (code != EXIT_SUCCESS) {
-      throw std::runtime_error(err);
-    }
+    const auto res =
+        iris::execute({"tar", "--remove-files", "-cf", tar, package});
+    iris::check(res);
   }
 
   if (compress) {
     const std::string zip = std::format("{}.xz", tar);
     {
       spdlog::debug("compressing {}", zip);
-      const auto& [out, err, code] = iris::execute(
+      const auto res = iris::execute(
           {"xz", "-z", "-F", "xz", "-C", "sha256", "--best", tar});
-      if (code != EXIT_SUCCESS) {
-        throw std::runtime_error(err);
-      }
+      iris::check(res);
     }
     iris::md5(zip);
     keep_files(input + "-", ".tar.xz", keep);
@@ -156,8 +209,14 @@ int iris::Application::launch(int argc, char** argv) const {
   restore_command.add_argument("-o", "--output")
       .help("output configuration file(toml)")
       .required();
-
   program.add_subparser(restore_command);
+
+  argparse::ArgumentParser generate_timer_command("generate-timer");
+  generate_timer_command.add_description("Dump to file");
+  generate_timer_command.add_argument("-n", "--name")
+      .help("timer name(alphanumeric)")
+      .required();
+  program.add_subparser(generate_timer_command);
 
   try {
     program.parse_args(argc, argv);
@@ -186,6 +245,13 @@ int iris::Application::launch(int argc, char** argv) const {
     return EXIT_SUCCESS;
   }
   if (program.is_subcommand_used(restore_command)) {
+    // TODO
+    spdlog::info(done);
+    return EXIT_SUCCESS;
+  }
+  if (program.is_subcommand_used(generate_timer_command)) {
+    const std::string name = generate_timer_command.get<std::string>("--name");
+    this->generate_timer(name);
     spdlog::info(done);
     return EXIT_SUCCESS;
   }

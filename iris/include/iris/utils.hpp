@@ -17,11 +17,13 @@ void compress(const std::filesystem::path &folder);
 int md5(const std::filesystem::path &file);
 std::tuple<std::string, std::string, int> execute(
     const std::initializer_list<std::string> args);
-inline std::tuple<std::string, std::string, int> execute(
-    const std::string &args...) {
-  // FIXME
-  return execute(args);
-}
+// inline std::tuple<std::string, std::string, int> execute(
+//     const std::string &args...) {
+//   // FIXME
+//   return execute(args);
+// }
+void check(const std::tuple<std::string, std::string, int> res);
 std::string uuid();
 std::filesystem::path home();
+bool is_alphanumeric(const std::string &s);
 }  // namespace iris

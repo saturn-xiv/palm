@@ -1,6 +1,7 @@
 #include "iris/utils.hpp"
 
 #include <array>
+#include <cctype>
 #include <chrono>
 #include <ctime>
 #include <format>
@@ -112,4 +113,15 @@ int iris::md5(const std::filesystem::path &file_) {
   const auto file = file_.string();
   const std::string cmd = std::format("md5sum {} >{}.md5", file, file);
   return std::system(cmd.c_str());
+}
+
+void iris::check(const std::tuple<std::string, std::string, int> res) {
+  if (std::get<2>(res) != EXIT_SUCCESS) {
+    throw std::runtime_error(std::get<1>(res));
+  }
+}
+
+bool iris::is_alphanumeric(const std::string &s) {
+  return std::find_if(s.begin(), s.end(),
+                      [](char c) { return !std::isalnum(c); }) == s.end();
 }

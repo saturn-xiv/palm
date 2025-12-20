@@ -1,19 +1,34 @@
 #include "iris/filesystem.hpp"
 #include "iris/utils.hpp"
 
+#include <algorithm>
+
 #include <spdlog/spdlog.h>
 
-void iris::Filesystem::dump(const std::filesystem::path& output) const {
-  const auto key = this->key_file();
+static inline bool is_local(const std::string& ip) {
+  const static std::vector<std::string> items = {"127.0.0.1", "localhost"};
+  spdlog::debug("!!!!!!! 1.1");
+  return std::find(items.begin(), items.end(), ip) != items.end();
+}
 
-  const auto& [out, err, code] = iris::execute(
-      "rsync", "-avz", "-e",
-      std::format("'ssh -p {}  -i {}'", this->_port, key.string()),
-      std::format("{}@{}:{}", this->_user, this->_host, this->_folder),
-      output.string());
-  if (code != EXIT_SUCCESS) {
-    throw std::runtime_error(err);
+// https://linux.die.net/man/1/rsync
+void iris::Filesystem::dump(const std::filesystem::path& output_) const {
+  spdlog::info("backup {}@{}:{}:{} to {}", this->_user, this->_host,
+               this->_port, this->_folder, output_.string());
+  const std::string output = std::format("{}/", output_.string());
+  const std::string folder = std::format("{}/", this->_folder);
+  if (is_local(this->_host)) {
+    const auto res = iris::execute({"rsync", "-az", folder, output});
+    iris::check(res);
+    return;
   }
+
+  const auto key = this->key_file();
+  const auto res = iris::execute(
+      {"rsync", "-az", "-e",
+       std::format("'ssh -p {}  -i {}'", this->_port, key.string()),
+       std::format("{}@{}:{}", this->_user, this->_host, folder), output});
+  iris::check(res);
 }
 void iris::Filesystem::restore(const std::filesystem::path& file) const {
   // TODO
