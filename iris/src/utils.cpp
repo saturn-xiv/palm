@@ -76,7 +76,8 @@ void iris::compress(const std::filesystem::path &folder) {
 
 // }
 
-static std::string read_file_to_string(const std::filesystem::path &file) {
+static inline std::string read_file_to_string(
+    const std::filesystem::path &file) {
   std::ifstream it(file);
   std::string str((std::istreambuf_iterator<char>(it)),
                   std::istreambuf_iterator<char>());
@@ -103,6 +104,12 @@ std::tuple<std::string, std::string, int> iris::execute(
   const auto out_s = read_file_to_string(out);
   const auto err_s = read_file_to_string(err);
 
-  spdlog::debug("exited: {}\n{}\n{}", WEXITSTATUS(code), out_s, err_s);
+  spdlog::debug("exited: {} ({}, {})", WEXITSTATUS(code), out_s, err_s);
   return {out_s, err_s, code};
+}
+
+int iris::md5(const std::filesystem::path &file_) {
+  const auto file = file_.string();
+  const std::string cmd = std::format("md5sum {} >{}.md5", file, file);
+  return std::system(cmd.c_str());
 }

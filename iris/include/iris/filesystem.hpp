@@ -21,6 +21,8 @@ class Filesystem : public Storage {
   std::string _user;
   std::optional<std::string> _key_file;
   std::string _folder;
+
+  std::filesystem::path key_file() const;
 };
 
 }  // namespace iris

@@ -14,6 +14,7 @@ void keep(const std::filesystem::path &folder, const std::string &prefix,
 void uncompress(const std::filesystem::path &folder,
                 const std::filesystem::path &tar);
 void compress(const std::filesystem::path &folder);
+int md5(const std::filesystem::path &file);
 std::tuple<std::string, std::string, int> execute(
     const std::initializer_list<std::string> args);
 inline std::tuple<std::string, std::string, int> execute(
@@ -22,4 +23,5 @@ inline std::tuple<std::string, std::string, int> execute(
   return execute(args);
 }
 std::string uuid();
+std::filesystem::path home();
 }  // namespace iris

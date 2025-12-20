@@ -9,7 +9,7 @@ class Application {
   int launch(int argc, char** argv) const;
 
  private:
-  void dump(const std::string& input, const std::string& output,
+  void dump(const std::string& input, const std::string& output, bool compress,
             size_t keep) const;
 };
 

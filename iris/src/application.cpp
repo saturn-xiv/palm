@@ -4,18 +4,62 @@
 #include "iris/utils.hpp"
 #include "iris/version.hpp"
 
+#include <algorithm>
 #include <cstdlib>
 
 #include <spdlog/spdlog.h>
 #include <argparse/argparse.hpp>
 
+static inline void keep_files(const std::string& prefix,
+                              const std::string& suffix, size_t count) {
+  std::vector<std::string> items;
+  for (const auto& entry :
+       std::filesystem::directory_iterator(std::filesystem::current_path())) {
+    const auto path = entry.path();
+    if (!std::filesystem::is_regular_file(path)) {
+      continue;
+    }
+    {
+      const auto name = path.filename().string();
+      if (!name.starts_with(prefix)) {
+        continue;
+      }
+      if (!name.ends_with(suffix)) {
+        continue;
+      }
+    }
+    const auto file = path.string();
+    spdlog::debug("found file {}", file);
+    items.push_back(file);
+  }
+  spdlog::info("found {} backups, will be keep {} records", items.size(),
+               count);
+  if (items.size() <= count) {
+    return;
+  }
+  std::sort(items.begin(), items.end(), std::greater<std::string>());
+  items.erase(items.begin(), items.begin() + count);
+
+  for (const auto& it : items) {
+    spdlog::warn("delete file {}", it);
+    std::filesystem::remove(it);
+    const std::string md5 = std::format("{}.md5", it);
+    if (std::filesystem::exists(md5)) {
+      spdlog::warn("delete file {}", md5);
+      std::filesystem::remove(md5);
+    }
+  }
+}
+
 void iris::Application::dump(const std::string& input,
-                             const std::string& output, size_t keep) const {
+                             const std::string& output_, bool compress,
+                             size_t keep) const {
   if (keep < 1) {
     throw std::invalid_argument("keep count should be more than one");
   }
+  const auto output = std::filesystem::absolute(output_);
   const auto package = iris::timestamp(input);
-  const std::filesystem::path root = std::filesystem::path(output) / package;
+  const std::filesystem::path root = output / package;
   if (std::filesystem::exists(root)) {
     const std::string err =
         std::format("folder {} already exists", root.string());
@@ -26,6 +70,23 @@ void iris::Application::dump(const std::string& input,
   {
     spdlog::debug("create folder {}", root.string());
     std::filesystem::create_directories(root);
+
+    const std::string config_file = std::format("{}.toml", input);
+    spdlog::info("load source configuration from {}", config_file);
+    const toml::table config = toml::parse_file(config_file);
+    std::optional<std::string_view> type =
+        config["type"].value<std::string_view>();
+    std::shared_ptr<iris::Storage> it;
+    if (type == std::nullopt) {
+      throw std::invalid_argument("empty type item");
+    } else if (type.value() == "dm8") {
+      it = std::make_shared<iris::Dm8>(config);
+    } else {
+      const std::string msg =
+          std::format("unsupported storage {}", type.value());
+      throw std::invalid_argument(msg);
+    }
+    it->dump(root);
   }
 
   {
@@ -40,21 +101,26 @@ void iris::Application::dump(const std::string& input,
     const auto [out, err, code] =
         iris::execute({"tar", "--remove-files", "-cvf", tar, package});
     if (code != EXIT_SUCCESS) {
-      throw std::runtime_error(out);
-    }
-  }
-  const std::string zip = std::format("{}.xz", tar);
-  {
-    spdlog::debug("compressing {}", zip);
-    const auto& [out, err, code] =
-        iris::execute({"xz", "-z", "-F", "xz", "-C", "sha256", "--best", tar});
-    if (code != EXIT_SUCCESS) {
-      throw std::runtime_error(out);
+      throw std::runtime_error(err);
     }
   }
 
-  // TODO xz
-  // TODO check keeps
+  if (compress) {
+    const std::string zip = std::format("{}.xz", tar);
+    {
+      spdlog::debug("compressing {}", zip);
+      const auto& [out, err, code] = iris::execute(
+          {"xz", "-z", "-F", "xz", "-C", "sha256", "--best", tar});
+      if (code != EXIT_SUCCESS) {
+        throw std::runtime_error(err);
+      }
+    }
+    iris::md5(zip);
+    keep_files(input + "-", ".tar.xz", keep);
+  } else {
+    iris::md5(tar);
+    keep_files(input + "-", ".tar", keep);
+  }
 }
 int iris::Application::launch(int argc, char** argv) const {
   const std::string version =
@@ -79,6 +145,7 @@ int iris::Application::launch(int argc, char** argv) const {
       .default_value(7)
       .scan<'i', int>()
       .required();
+  dump_command.add_argument("-z", "--compress").help("compress").flag();
   program.add_subparser(dump_command);
 
   argparse::ArgumentParser restore_command("restore");
@@ -113,7 +180,8 @@ int iris::Application::launch(int argc, char** argv) const {
     const std::string input = dump_command.get<std::string>("--input");
     const std::string output = dump_command.get<std::string>("--output");
     const int keep = dump_command.get<int>("--keep");
-    this->dump(input, output, keep);
+    const bool compress = dump_command.get<bool>("--compress");
+    this->dump(input, output, compress, keep);
     spdlog::info(done);
     return EXIT_SUCCESS;
   }
