@@ -20,12 +20,15 @@ std::tuple<std::string, std::string, int> execute(
 inline std::tuple<std::string, std::string, int> execute(
     const std::initializer_list<std::string> args) {
   std::vector<std::string> items(args);
-  return execute(args);
+  return execute(items);
 }
 // inline std::tuple<std::string, std::string, int> execute(
 //     const std::string &args...) {
-//   // FIXME
-//   return execute(args);
+//   std::vector<std::string> items;
+//   // items.reserve(sizeof...(args));
+//   (items.push_back(std::forward<std::string>(args)...));
+//   // std::vector<std::string> items({args...});
+//   return execute(items);
 // }
 void check(const std::tuple<std::string, std::string, int> res);
 std::string uuid();

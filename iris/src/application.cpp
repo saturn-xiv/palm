@@ -1,6 +1,7 @@
 #include "iris/application.hpp"
 #include "iris/database.hpp"
 #include "iris/filesystem.hpp"
+#include "iris/minio.hpp"
 #include "iris/utils.hpp"
 #include "iris/version.hpp"
 
@@ -138,6 +139,8 @@ void iris::Application::dump(const std::string& input,
       it = std::make_shared<iris::Filesystem>(config);
     } else if (type.value() == "dm8") {
       it = std::make_shared<iris::Dm8>(config);
+    } else if (type.value() == "minio") {
+      it = std::make_shared<iris::Minio>(config);
     } else {
       const std::string msg =
           std::format("unsupported storage {}", type.value());
