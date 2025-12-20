@@ -62,5 +62,9 @@ WantedBy=timers.target
 )TPL",
                   data);
 
-  spdlog::info("please put them into /etc/systemd/system/");
+  spdlog::info(
+      R"(please put them into /etc/systemd/system/ and then:
+      sudo systemctl enable {}.timer
+      sudo systemctl list-timers --all)",
+      name);
 }
