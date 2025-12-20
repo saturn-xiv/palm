@@ -1,0 +1,26 @@
+#pragma once
+
+#include "iris/env.hpp"
+
+namespace iris {
+class Filesystem : public Storage {
+ public:
+  Filesystem(const toml::table& config)
+      : _host(config["host"].value_or<std::string>("127.0.0.1")),
+        _port(config["port"].value_or<uint16_t>(22)),
+        _user(config["user"].value_or<std::string>("root")),
+        _key_file(config["key-file"].value<std::string>()),
+        _folder(config["folder"].value<std::string>().value()) {}
+
+  void dump(const std::filesystem::path& file) const override;
+  void restore(const std::filesystem::path& file) const override;
+
+ private:
+  std::string _host;
+  uint16_t _port;
+  std::string _user;
+  std::optional<std::string> _key_file;
+  std::string _folder;
+};
+
+}  // namespace iris

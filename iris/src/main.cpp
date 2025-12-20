@@ -1,5 +1,6 @@
 #include "iris/application.hpp"
 
-#include <cstdlib>
-
-int main(int argc, char** argv) { return EXIT_SUCCESS; }
+int main(int argc, char** argv) {
+  iris::Application app;
+  return app.launch(argc, argv);
+}

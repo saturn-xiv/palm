@@ -14,7 +14,7 @@ EOF
 {{ end }}
 
 chmod 600 /etc/netplan/*.yaml
-netplan apply
+netplan apply --debug
 
 systemctl daemon-reload
 systemctl restart systemd-networkd

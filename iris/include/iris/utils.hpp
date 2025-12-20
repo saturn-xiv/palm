@@ -1,0 +1,25 @@
+#pragma once
+
+#include <filesystem>
+#include <initializer_list>
+#include <tuple>
+
+#include <inja/inja.hpp>
+#include <nlohmann/json.hpp>
+
+namespace iris {
+std::string timestamp(const std::string &prefix);
+void keep(const std::filesystem::path &folder, const std::string &prefix,
+          size_t count);
+void uncompress(const std::filesystem::path &folder,
+                const std::filesystem::path &tar);
+void compress(const std::filesystem::path &folder);
+std::tuple<std::string, std::string, int> execute(
+    const std::initializer_list<std::string> args);
+inline std::tuple<std::string, std::string, int> execute(
+    const std::string &args...) {
+  // FIXME
+  return execute(args);
+}
+std::string uuid();
+}  // namespace iris

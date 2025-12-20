@@ -1,2 +1,127 @@
 #include "iris/application.hpp"
+#include "iris/database.hpp"
+#include "iris/filesystem.hpp"
+#include "iris/utils.hpp"
 #include "iris/version.hpp"
+
+#include <cstdlib>
+
+#include <spdlog/spdlog.h>
+#include <argparse/argparse.hpp>
+
+void iris::Application::dump(const std::string& input,
+                             const std::string& output, size_t keep) const {
+  if (keep < 1) {
+    throw std::invalid_argument("keep count should be more than one");
+  }
+  const auto package = iris::timestamp(input);
+  const std::filesystem::path root = std::filesystem::path(output) / package;
+  if (std::filesystem::exists(root)) {
+    const std::string err =
+        std::format("folder {} already exists", root.string());
+    throw std::invalid_argument(err);
+  }
+  spdlog::info("backup {} into {} and keep recent {} files", input,
+               root.string(), keep);
+  {
+    spdlog::debug("create folder {}", root.string());
+    std::filesystem::create_directories(root);
+  }
+
+  {
+    std::filesystem::current_path(output);
+    spdlog::debug("changed working directory to {}",
+                  std::filesystem::current_path().string());
+  }
+
+  const std::string tar = std::format("{}.tar", package);
+  {
+    spdlog::debug("compressing {}", tar);
+    const auto [out, err, code] =
+        iris::execute({"tar", "--remove-files", "-cvf", tar, package});
+    if (code != EXIT_SUCCESS) {
+      throw std::runtime_error(out);
+    }
+  }
+  const std::string zip = std::format("{}.xz", tar);
+  {
+    spdlog::debug("compressing {}", zip);
+    const auto& [out, err, code] =
+        iris::execute({"xz", "-z", "-F", "xz", "-C", "sha256", "--best", tar});
+    if (code != EXIT_SUCCESS) {
+      throw std::runtime_error(out);
+    }
+  }
+
+  // TODO xz
+  // TODO check keeps
+}
+int iris::Application::launch(int argc, char** argv) const {
+  const std::string version =
+      fmt::format("{}({})", iris::GIT_VERSION, iris::BUILD_TIME);
+  argparse::ArgumentParser program(iris::PROJECT_NAME, version,
+                                   argparse::default_arguments::help);
+
+  program.add_description(iris::PROJECT_DESCRIPTION);
+  program.add_epilog(iris::PROJECT_HOME);
+
+  program.add_argument("-v", "--verbose").help("show version").flag();
+  program.add_argument("-d", "--debug").help("run on debug mode").flag();
+
+  argparse::ArgumentParser dump_command("dump");
+  dump_command.add_description("Dump to file");
+  dump_command.add_argument("-i", "--input")
+      .help("input configuration file(toml)")
+      .required();
+  dump_command.add_argument("-o", "--output").help("output folder").required();
+  dump_command.add_argument("-k", "--keep")
+      .help("number of recent files to keep")
+      .default_value(7)
+      .scan<'i', int>()
+      .required();
+  program.add_subparser(dump_command);
+
+  argparse::ArgumentParser restore_command("restore");
+  restore_command.add_description("Restore from file");
+  restore_command.add_argument("-i", "--input")
+      .help("input file(xz)")
+      .required();
+  restore_command.add_argument("-o", "--output")
+      .help("output configuration file(toml)")
+      .required();
+
+  program.add_subparser(restore_command);
+
+  try {
+    program.parse_args(argc, argv);
+  } catch (const std::exception& err) {
+    spdlog::error("{}", err.what());
+    return EXIT_FAILURE;
+  }
+
+  if (program.get<bool>("--verbose") == true) {
+    std::cout << version << std::endl;
+    return EXIT_SUCCESS;
+  }
+
+  spdlog::set_level(program.get<bool>("--debug") == true ? spdlog::level::debug
+                                                         : spdlog::level::info);
+  spdlog::debug("run on debug mode");
+
+  const std::string done = "done.";
+  if (program.is_subcommand_used(dump_command)) {
+    const std::string input = dump_command.get<std::string>("--input");
+    const std::string output = dump_command.get<std::string>("--output");
+    const int keep = dump_command.get<int>("--keep");
+    this->dump(input, output, keep);
+    spdlog::info(done);
+    return EXIT_SUCCESS;
+  }
+  if (program.is_subcommand_used(restore_command)) {
+    spdlog::info(done);
+    return EXIT_SUCCESS;
+  }
+
+  std::cout << program.help().str() << std::endl;
+  return EXIT_SUCCESS;
+}

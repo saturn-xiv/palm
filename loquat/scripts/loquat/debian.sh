@@ -17,7 +17,7 @@ apt update
 apt upgrade -y
 apt install -y sudo vim tmux pwgen curl bc \
     dnsmasq geoip-bin geoip-database inotify-tools watchman \
-    net-tools inetutils-tools sysstat iftop nload nethogs nmap netplan.io firewalld \
+    bridge-utils net-tools inetutils-tools sysstat iftop nload nethogs nmap iputils-tracepath netplan.io firewalld systemd-resolved \
     cmake ninja-build git build-essential distcc crossbuild-essential-arm64 crossbuild-essential-riscv64 \
     firmware-misc-nonfree firmware-linux-nonfree \
     crun podman buildah fuse-overlayfs \
@@ -30,7 +30,14 @@ if [ ! -f /etc/ssh/sshd_config.orig ]; then
 # AllowUsers deploy
 PermitRootLogin no
 PasswordAuthentication no
+ListenAddress 0.0.0.0
 EOF
+fi
+
+if [ ! -f  /etc/avahi/avahi-daemon.conf.orig ]; then
+    cp /etc/avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf.orig
+    sed -i '/^PATTERN/d' /etc/avahi/avahi-daemon.conf
+    sed -i 's/use-ipv6=yes/use-ipv6=no/g' /etc/avahi/avahi-daemon.conf
 fi
 
 systemctl disable dnsmasq

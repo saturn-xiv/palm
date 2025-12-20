@@ -4,7 +4,7 @@ include(FetchContent)
 project(
   iris
   VERSION 2025.12.15
-  DESCRIPTION "An auto-backup tools."
+  DESCRIPTION "A collection of OPS tools."
   LANGUAGES CXX
 )
 
@@ -34,6 +34,7 @@ FetchContent_Declare(spdlog
   GIT_REPOSITORY "https://github.com/gabime/spdlog.git"
   GIT_TAG        "v1.16.0"
 )
+
 FetchContent_Declare(tomlplusplus
   GIT_REPOSITORY "https://github.com/marzer/tomlplusplus.git"
   GIT_TAG        "v3.4.0"
@@ -44,12 +45,18 @@ FetchContent_Declare(cppcodec
   GIT_TAG        "8019b8b"
 )
 
+
+FetchContent_Declare(stduuid
+  GIT_REPOSITORY "https://github.com/mariusbancila/stduuid.git"
+  GIT_TAG        "3afe719"
+)
+
 FetchContent_Declare(inja
   GIT_REPOSITORY "https://github.com/pantor/inja.git"
   GIT_TAG        "v3.5.0"
 )
 
-FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec inja)
+FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec stduuid inja)
 # ---------------------------------------------------------
 file(GLOB IRIS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
@@ -66,6 +73,7 @@ target_include_directories(iris PUBLIC
   ${cppcodec_SOURCE_DIR}
   ${spdlog_SOURCE_DIR}/include
   ${tomlplusplus_SOURCE_DIR}/include
+  ${stduuid_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/single_include
   ${inja_SOURCE_DIR}/third_party/include
 )
