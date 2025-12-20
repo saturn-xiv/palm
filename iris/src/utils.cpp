@@ -85,7 +85,7 @@ static inline std::string read_file_to_string(
   return str;
 }
 std::tuple<std::string, std::string, int> iris::execute(
-    const std::initializer_list<std::string> args) {
+    const std::vector<std::string> args) {
   std::stringstream ss;
 
   for (const auto &it : args) {

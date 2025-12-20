@@ -192,7 +192,7 @@ int iris::Application::launch(int argc, char** argv) const {
   program.add_description(iris::PROJECT_DESCRIPTION);
   program.add_epilog(iris::PROJECT_HOME);
 
-  program.add_argument("-v", "--verbose").help("show version").flag();
+  program.add_argument("-v", "--version").help("show version").flag();
   program.add_argument("-d", "--debug").help("run on debug mode").flag();
 
   argparse::ArgumentParser dump_command("dump");
@@ -233,14 +233,17 @@ int iris::Application::launch(int argc, char** argv) const {
     return EXIT_FAILURE;
   }
 
-  if (program.get<bool>("--verbose") == true) {
+  if (program.get<bool>("--version") == true) {
     std::cout << version << std::endl;
     return EXIT_SUCCESS;
   }
 
-  spdlog::set_level(program.get<bool>("--debug") == true ? spdlog::level::debug
-                                                         : spdlog::level::info);
-  spdlog::debug("run on debug mode");
+  {
+    spdlog::set_level(program.get<bool>("--debug") == true
+                          ? spdlog::level::debug
+                          : spdlog::level::info);
+    spdlog::debug("run on debug mode");
+  }
 
   const std::string done = "done.";
   if (program.is_subcommand_used(dump_command)) {

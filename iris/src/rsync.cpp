@@ -7,7 +7,6 @@
 
 static inline bool is_local(const std::string& ip) {
   const static std::vector<std::string> items = {"127.0.0.1", "localhost"};
-  spdlog::debug("!!!!!!! 1.1");
   return std::find(items.begin(), items.end(), ip) != items.end();
 }
 void iris::Filesystem::upload(const std::filesystem::path& folder) const {
@@ -28,16 +27,29 @@ void iris::Filesystem::dump(const std::filesystem::path& output_) const {
   const std::string output = std::format("{}/", output_.string());
   const std::string folder = std::format("{}/", this->_folder);
   if (is_local(this->_host)) {
-    const auto res = iris::execute({"rsync", "-az", folder, output});
+    std::vector<std::string> args = {"rsync", "-az", folder};
+    for (const auto it : this->_excludes) {
+      args.push_back("--exclude");
+      args.push_back(it);
+    }
+    args.push_back(output);
+    const auto res = iris::execute(args);
     iris::check(res);
     return;
   }
 
   const auto key = this->key_file();
-  const auto res = iris::execute(
-      {"rsync", "-az", "-e",
-       std::format("'ssh -p {}  -i {}'", this->_port, key.string()),
-       std::format("{}@{}:{}", this->_user, this->_host, folder), output});
+
+  std::vector<std::string> args = {
+      "rsync", "-az", "-e",
+      std::format("'ssh -p {}  -i {}'", this->_port, key.string()),
+      std::format("{}@{}:{}", this->_user, this->_host, folder)};
+  for (const auto it : this->_excludes) {
+    args.push_back("--exclude");
+    args.push_back(it);
+  }
+  args.push_back(output);
+  const auto res = iris::execute(args);
   iris::check(res);
 }
 void iris::Filesystem::restore(const std::filesystem::path& file) const {

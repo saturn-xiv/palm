@@ -16,7 +16,12 @@ void uncompress(const std::filesystem::path &folder,
 void compress(const std::filesystem::path &folder);
 int md5(const std::filesystem::path &file);
 std::tuple<std::string, std::string, int> execute(
-    const std::initializer_list<std::string> args);
+    const std::vector<std::string> args);
+inline std::tuple<std::string, std::string, int> execute(
+    const std::initializer_list<std::string> args) {
+  std::vector<std::string> items(args);
+  return execute(args);
+}
 // inline std::tuple<std::string, std::string, int> execute(
 //     const std::string &args...) {
 //   // FIXME
