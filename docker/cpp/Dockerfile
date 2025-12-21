@@ -3,14 +3,13 @@ LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-RUN apt   update
+RUN apt update
+RUN apt -y upgrade
 RUN apt install -y lsb-release apt-utils \
     debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
 
 ENV GCC_VERSION=14
-RUN apt -y upgrade
-RUN apt -y install zsh git locales locales-all \
-    vim tzdata zip unzip tree tmux \
+RUN apt -y install zsh git locales locales-all vim tzdata zip unzip tree screen \
     build-essential g++-${GCC_VERSION} \
     crossbuild-essential-arm64 g++-${GCC_VERSION}-aarch64-linux-gnu \
     crossbuild-essential-armhf g++-${GCC_VERSION}-arm-linux-gnueabihf \
@@ -49,8 +48,6 @@ RUN git config --global core.quotepath false \
     && git config --global http.version HTTP/1.1 \
     && git config --global pull.rebase false \
     && git config --global url."https://".insteadOf git://
-RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
-    && echo 'set-option -g default-shell "/bin/zsh"' >> $HOME/.tmux.conf
 
 # https://github.com/cross-tools/musl-cross
 RUN git clone https://github.com/cross-tools/musl-cross.git $HOME/build/musl-cross
