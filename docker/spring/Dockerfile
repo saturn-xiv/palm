@@ -210,7 +210,8 @@ RUN zsh -c "source $HOME/.cargo/env \
 RUN zsh -c "source $HOME/.zshrc \
     && cargo install --locked cargo-outdated \
     && cargo install diesel_cli \
-    && cargo install mdbook"
+    && cargo install mdbook \
+    && cargo install cross"
 
 # https://www.swift.org/download/#releases
 # ENV SWIFT_VERSION="6.0.3"

@@ -17,6 +17,7 @@ tonic-types = "0.14"
 hyper = "1"
 clap = "4"
 
+
 [dependencies.reqwest]
 version = "0.12"
 features = ["json"]
@@ -32,10 +33,27 @@ features = ["full"]
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["postgres", "extras", "huge-tables"]
+features = ["postgres", "sqlite", "extras", "huge-tables"] # "mysql",
+
+[dependencies.libsqlite3-sys]
+version = "*"
+features = ["bundled"]
+
+# [dependencies.mysqlclient-sys]
+# version = "*"
+# features = ["bundled"]
+
+[dependencies.openssl-sys]
+version = "*"
+features = ["vendored"]
+
+[dependencies.pq-sys]
+version = "*"
+features = ["bundled"]
 
 [dependencies.phlox]
 path = "../phlox"
+
 
 [build-dependencies]
 tonic-prost-build = "0.14"

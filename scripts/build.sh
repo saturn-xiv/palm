@@ -130,7 +130,17 @@ build_musl() {
     cp $build_root/$1 $TARGET/bin/$2/
 }
 
+build_rust() {
+    cd $WORKSPACE/
+    cargo build --target $1-unknown-linux-gnu --release
+
+    cd $WORKSPACE/target/$1-unknown-linux-gnu/release/
+    mkdir -p $TARGET/bin/$2
+    cp marigold $TARGET/bin/$2/
+}
+
 # -----------------------------------------------------------------------------
+
 if [ "$ID" != "ubuntu" ]
 then
     echo "unsupported system $ID"
@@ -143,6 +153,9 @@ then
     rm -r $TARGET
 fi
 mkdir $TARGET
+
+build_rust x86_64
+build_rust aarch64
 
 build_cpp_x64 $(uname -m)
 
