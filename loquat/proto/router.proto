@@ -23,9 +23,17 @@ message InternetBond {
 }
 
 message IntranetBond {
+  // https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
+  enum Mode{
+    // 6 Requires autonomous ports
+    BalanceAlb = 0;
+    // 2 Requires static Etherchannel enabled (not LACP-negotiated)
+    BalanceXor = 1;
+  }
   repeated string interfaces = 1;
   Intranet network = 2;
   uint32 mii_monitor_interval = 3;
+  Mode mode = 4;
 }
 
 message Internet {

@@ -23,6 +23,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
+type IntranetBond_Mode int32
+
+const (
+	// 6 Requires autonomous ports
+	IntranetBond_BalanceAlb IntranetBond_Mode = 0
+	// 2 Requires static Etherchannel enabled (not LACP-negotiated)
+	IntranetBond_BalanceXor IntranetBond_Mode = 1
+)
+
+// Enum value maps for IntranetBond_Mode.
+var (
+	IntranetBond_Mode_name = map[int32]string{
+		0: "BalanceAlb",
+		1: "BalanceXor",
+	}
+	IntranetBond_Mode_value = map[string]int32{
+		"BalanceAlb": 0,
+		"BalanceXor": 1,
+	}
+)
+
+func (x IntranetBond_Mode) Enum() *IntranetBond_Mode {
+	p := new(IntranetBond_Mode)
+	*p = x
+	return p
+}
+
+func (x IntranetBond_Mode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (IntranetBond_Mode) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_router_proto_enumTypes[0].Descriptor()
+}
+
+func (IntranetBond_Mode) Type() protoreflect.EnumType {
+	return &file_proto_router_proto_enumTypes[0]
+}
+
+func (x IntranetBond_Mode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use IntranetBond_Mode.Descriptor instead.
+func (IntranetBond_Mode) EnumDescriptor() ([]byte, []int) {
+	return file_proto_router_proto_rawDescGZIP(), []int{2, 0}
+}
+
 type FirewallRule_Protocol int32
 
 const (
@@ -53,11 +102,11 @@ func (x FirewallRule_Protocol) String() string {
 }
 
 func (FirewallRule_Protocol) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_router_proto_enumTypes[0].Descriptor()
+	return file_proto_router_proto_enumTypes[1].Descriptor()
 }
 
 func (FirewallRule_Protocol) Type() protoreflect.EnumType {
-	return &file_proto_router_proto_enumTypes[0]
+	return &file_proto_router_proto_enumTypes[1]
 }
 
 func (x FirewallRule_Protocol) Number() protoreflect.EnumNumber {
@@ -114,11 +163,11 @@ func (x FirewallRule_Week) String() string {
 }
 
 func (FirewallRule_Week) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_router_proto_enumTypes[1].Descriptor()
+	return file_proto_router_proto_enumTypes[2].Descriptor()
 }
 
 func (FirewallRule_Week) Type() protoreflect.EnumType {
-	return &file_proto_router_proto_enumTypes[1]
+	return &file_proto_router_proto_enumTypes[2]
 }
 
 func (x FirewallRule_Week) Number() protoreflect.EnumNumber {
@@ -255,6 +304,7 @@ type IntranetBond struct {
 	Interfaces         []string               `protobuf:"bytes,1,rep,name=interfaces,proto3" json:"interfaces,omitempty"`
 	Network            *Intranet              `protobuf:"bytes,2,opt,name=network,proto3" json:"network,omitempty"`
 	MiiMonitorInterval uint32                 `protobuf:"varint,3,opt,name=mii_monitor_interval,json=miiMonitorInterval,proto3" json:"mii_monitor_interval,omitempty"`
+	Mode               IntranetBond_Mode      `protobuf:"varint,4,opt,name=mode,proto3,enum=palm.router.v1.IntranetBond_Mode" json:"mode,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -308,6 +358,13 @@ func (x *IntranetBond) GetMiiMonitorInterval() uint32 {
 		return x.MiiMonitorInterval
 	}
 	return 0
+}
+
+func (x *IntranetBond) GetMode() IntranetBond_Mode {
+	if x != nil {
+		return x.Mode
+	}
+	return IntranetBond_BalanceAlb
 }
 
 type Internet struct {
@@ -1496,13 +1553,19 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x14mii_monitor_interval\x18\x02 \x01(\rR\x12miiMonitorInterval\x1aW\n" +
 	"\x0fInterfacesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\v2\x18.palm.router.v1.InternetR\x05value:\x028\x01\"\x94\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\x18.palm.router.v1.InternetR\x05value:\x028\x01\"\xf3\x01\n" +
 	"\fIntranetBond\x12\x1e\n" +
 	"\n" +
 	"interfaces\x18\x01 \x03(\tR\n" +
 	"interfaces\x122\n" +
 	"\anetwork\x18\x02 \x01(\v2\x18.palm.router.v1.IntranetR\anetwork\x120\n" +
-	"\x14mii_monitor_interval\x18\x03 \x01(\rR\x12miiMonitorInterval\"\xca\x03\n" +
+	"\x14mii_monitor_interval\x18\x03 \x01(\rR\x12miiMonitorInterval\x125\n" +
+	"\x04mode\x18\x04 \x01(\x0e2!.palm.router.v1.IntranetBond.ModeR\x04mode\"&\n" +
+	"\x04Mode\x12\x0e\n" +
+	"\n" +
+	"BalanceAlb\x10\x00\x12\x0e\n" +
+	"\n" +
+	"BalanceXor\x10\x01\"\xca\x03\n" +
 	"\bInternet\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12\x10\n" +
 	"\x03isp\x18\x02 \x01(\tR\x03isp\x12,\n" +
@@ -1606,70 +1669,72 @@ func file_proto_router_proto_rawDescGZIP() []byte {
 	return file_proto_router_proto_rawDescData
 }
 
-var file_proto_router_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_proto_router_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_proto_router_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_proto_router_proto_goTypes = []any{
-	(FirewallRule_Protocol)(0),           // 0: palm.router.v1.FirewallRule.Protocol
-	(FirewallRule_Week)(0),               // 1: palm.router.v1.FirewallRule.Week
-	(*Router)(nil),                       // 2: palm.router.v1.Router
-	(*InternetBond)(nil),                 // 3: palm.router.v1.InternetBond
-	(*IntranetBond)(nil),                 // 4: palm.router.v1.IntranetBond
-	(*Internet)(nil),                     // 5: palm.router.v1.Internet
-	(*Intranet)(nil),                     // 6: palm.router.v1.Intranet
-	(*FirewallRule)(nil),                 // 7: palm.router.v1.FirewallRule
-	nil,                                  // 8: palm.router.v1.InternetBond.InterfacesEntry
-	(*Internet_Static)(nil),              // 9: palm.router.v1.Internet.Static
-	(*Internet_Pppoe)(nil),               // 10: palm.router.v1.Internet.Pppoe
-	(*Intranet_Google)(nil),              // 11: palm.router.v1.Intranet.Google
-	(*Intranet_Ali)(nil),                 // 12: palm.router.v1.Intranet.Ali
-	(*Intranet_Other)(nil),               // 13: palm.router.v1.Intranet.Other
-	(*Intranet_Host)(nil),                // 14: palm.router.v1.Intranet.Host
-	(*FirewallRule_Ping)(nil),            // 15: palm.router.v1.FirewallRule.Ping
-	(*FirewallRule_Time)(nil),            // 16: palm.router.v1.FirewallRule.Time
-	(*FirewallRule_Period)(nil),          // 17: palm.router.v1.FirewallRule.Period
-	(*FirewallRule_Nat)(nil),             // 18: palm.router.v1.FirewallRule.Nat
-	(*FirewallRule_Input)(nil),           // 19: palm.router.v1.FirewallRule.Input
-	(*FirewallRule_Output)(nil),          // 20: palm.router.v1.FirewallRule.Output
-	(*FirewallRule_SpeedLimit)(nil),      // 21: palm.router.v1.FirewallRule.SpeedLimit
-	(*FirewallRule_Nat_Destination)(nil), // 22: palm.router.v1.FirewallRule.Nat.Destination
-	(*emptypb.Empty)(nil),                // 23: google.protobuf.Empty
-	(*timestamppb.Timestamp)(nil),        // 24: google.protobuf.Timestamp
+	(IntranetBond_Mode)(0),               // 0: palm.router.v1.IntranetBond.Mode
+	(FirewallRule_Protocol)(0),           // 1: palm.router.v1.FirewallRule.Protocol
+	(FirewallRule_Week)(0),               // 2: palm.router.v1.FirewallRule.Week
+	(*Router)(nil),                       // 3: palm.router.v1.Router
+	(*InternetBond)(nil),                 // 4: palm.router.v1.InternetBond
+	(*IntranetBond)(nil),                 // 5: palm.router.v1.IntranetBond
+	(*Internet)(nil),                     // 6: palm.router.v1.Internet
+	(*Intranet)(nil),                     // 7: palm.router.v1.Intranet
+	(*FirewallRule)(nil),                 // 8: palm.router.v1.FirewallRule
+	nil,                                  // 9: palm.router.v1.InternetBond.InterfacesEntry
+	(*Internet_Static)(nil),              // 10: palm.router.v1.Internet.Static
+	(*Internet_Pppoe)(nil),               // 11: palm.router.v1.Internet.Pppoe
+	(*Intranet_Google)(nil),              // 12: palm.router.v1.Intranet.Google
+	(*Intranet_Ali)(nil),                 // 13: palm.router.v1.Intranet.Ali
+	(*Intranet_Other)(nil),               // 14: palm.router.v1.Intranet.Other
+	(*Intranet_Host)(nil),                // 15: palm.router.v1.Intranet.Host
+	(*FirewallRule_Ping)(nil),            // 16: palm.router.v1.FirewallRule.Ping
+	(*FirewallRule_Time)(nil),            // 17: palm.router.v1.FirewallRule.Time
+	(*FirewallRule_Period)(nil),          // 18: palm.router.v1.FirewallRule.Period
+	(*FirewallRule_Nat)(nil),             // 19: palm.router.v1.FirewallRule.Nat
+	(*FirewallRule_Input)(nil),           // 20: palm.router.v1.FirewallRule.Input
+	(*FirewallRule_Output)(nil),          // 21: palm.router.v1.FirewallRule.Output
+	(*FirewallRule_SpeedLimit)(nil),      // 22: palm.router.v1.FirewallRule.SpeedLimit
+	(*FirewallRule_Nat_Destination)(nil), // 23: palm.router.v1.FirewallRule.Nat.Destination
+	(*emptypb.Empty)(nil),                // 24: google.protobuf.Empty
+	(*timestamppb.Timestamp)(nil),        // 25: google.protobuf.Timestamp
 }
 var file_proto_router_proto_depIdxs = []int32{
-	3,  // 0: palm.router.v1.Router.wan:type_name -> palm.router.v1.InternetBond
-	4,  // 1: palm.router.v1.Router.lan:type_name -> palm.router.v1.IntranetBond
-	4,  // 2: palm.router.v1.Router.dmz:type_name -> palm.router.v1.IntranetBond
-	7,  // 3: palm.router.v1.Router.rules:type_name -> palm.router.v1.FirewallRule
-	8,  // 4: palm.router.v1.InternetBond.interfaces:type_name -> palm.router.v1.InternetBond.InterfacesEntry
-	6,  // 5: palm.router.v1.IntranetBond.network:type_name -> palm.router.v1.Intranet
-	23, // 6: palm.router.v1.Internet.dhcp:type_name -> google.protobuf.Empty
-	9,  // 7: palm.router.v1.Internet.static:type_name -> palm.router.v1.Internet.Static
-	10, // 8: palm.router.v1.Internet.pppoe:type_name -> palm.router.v1.Internet.Pppoe
-	12, // 9: palm.router.v1.Intranet.ali:type_name -> palm.router.v1.Intranet.Ali
-	11, // 10: palm.router.v1.Intranet.google:type_name -> palm.router.v1.Intranet.Google
-	13, // 11: palm.router.v1.Intranet.other:type_name -> palm.router.v1.Intranet.Other
-	14, // 12: palm.router.v1.Intranet.hosts:type_name -> palm.router.v1.Intranet.Host
-	15, // 13: palm.router.v1.FirewallRule.ping:type_name -> palm.router.v1.FirewallRule.Ping
-	19, // 14: palm.router.v1.FirewallRule.input:type_name -> palm.router.v1.FirewallRule.Input
-	18, // 15: palm.router.v1.FirewallRule.nat:type_name -> palm.router.v1.FirewallRule.Nat
-	20, // 16: palm.router.v1.FirewallRule.output:type_name -> palm.router.v1.FirewallRule.Output
-	21, // 17: palm.router.v1.FirewallRule.speed_limit:type_name -> palm.router.v1.FirewallRule.SpeedLimit
-	24, // 18: palm.router.v1.FirewallRule.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 19: palm.router.v1.InternetBond.InterfacesEntry.value:type_name -> palm.router.v1.Internet
-	24, // 20: palm.router.v1.Intranet.Host.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 21: palm.router.v1.FirewallRule.Period.days:type_name -> palm.router.v1.FirewallRule.Week
-	16, // 22: palm.router.v1.FirewallRule.Period.begin:type_name -> palm.router.v1.FirewallRule.Time
-	16, // 23: palm.router.v1.FirewallRule.Period.end:type_name -> palm.router.v1.FirewallRule.Time
-	0,  // 24: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	22, // 25: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
-	0,  // 26: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	17, // 27: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
-	17, // 28: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
-	29, // [29:29] is the sub-list for method output_type
-	29, // [29:29] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	4,  // 0: palm.router.v1.Router.wan:type_name -> palm.router.v1.InternetBond
+	5,  // 1: palm.router.v1.Router.lan:type_name -> palm.router.v1.IntranetBond
+	5,  // 2: palm.router.v1.Router.dmz:type_name -> palm.router.v1.IntranetBond
+	8,  // 3: palm.router.v1.Router.rules:type_name -> palm.router.v1.FirewallRule
+	9,  // 4: palm.router.v1.InternetBond.interfaces:type_name -> palm.router.v1.InternetBond.InterfacesEntry
+	7,  // 5: palm.router.v1.IntranetBond.network:type_name -> palm.router.v1.Intranet
+	0,  // 6: palm.router.v1.IntranetBond.mode:type_name -> palm.router.v1.IntranetBond.Mode
+	24, // 7: palm.router.v1.Internet.dhcp:type_name -> google.protobuf.Empty
+	10, // 8: palm.router.v1.Internet.static:type_name -> palm.router.v1.Internet.Static
+	11, // 9: palm.router.v1.Internet.pppoe:type_name -> palm.router.v1.Internet.Pppoe
+	13, // 10: palm.router.v1.Intranet.ali:type_name -> palm.router.v1.Intranet.Ali
+	12, // 11: palm.router.v1.Intranet.google:type_name -> palm.router.v1.Intranet.Google
+	14, // 12: palm.router.v1.Intranet.other:type_name -> palm.router.v1.Intranet.Other
+	15, // 13: palm.router.v1.Intranet.hosts:type_name -> palm.router.v1.Intranet.Host
+	16, // 14: palm.router.v1.FirewallRule.ping:type_name -> palm.router.v1.FirewallRule.Ping
+	20, // 15: palm.router.v1.FirewallRule.input:type_name -> palm.router.v1.FirewallRule.Input
+	19, // 16: palm.router.v1.FirewallRule.nat:type_name -> palm.router.v1.FirewallRule.Nat
+	21, // 17: palm.router.v1.FirewallRule.output:type_name -> palm.router.v1.FirewallRule.Output
+	22, // 18: palm.router.v1.FirewallRule.speed_limit:type_name -> palm.router.v1.FirewallRule.SpeedLimit
+	25, // 19: palm.router.v1.FirewallRule.updated_at:type_name -> google.protobuf.Timestamp
+	6,  // 20: palm.router.v1.InternetBond.InterfacesEntry.value:type_name -> palm.router.v1.Internet
+	25, // 21: palm.router.v1.Intranet.Host.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 22: palm.router.v1.FirewallRule.Period.days:type_name -> palm.router.v1.FirewallRule.Week
+	17, // 23: palm.router.v1.FirewallRule.Period.begin:type_name -> palm.router.v1.FirewallRule.Time
+	17, // 24: palm.router.v1.FirewallRule.Period.end:type_name -> palm.router.v1.FirewallRule.Time
+	1,  // 25: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
+	23, // 26: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
+	1,  // 27: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
+	18, // 28: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
+	18, // 29: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
+	30, // [30:30] is the sub-list for method output_type
+	30, // [30:30] is the sub-list for method input_type
+	30, // [30:30] is the sub-list for extension type_name
+	30, // [30:30] is the sub-list for extension extendee
+	0,  // [0:30] is the sub-list for field type_name
 }
 
 func init() { file_proto_router_proto_init() }
@@ -1700,7 +1765,7 @@ func file_proto_router_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_router_proto_rawDesc), len(file_proto_router_proto_rawDesc)),
-			NumEnums:      2,
+			NumEnums:      3,
 			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   0,
