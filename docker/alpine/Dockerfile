@@ -35,6 +35,7 @@ RUN sh -c ". $HOME/.profile \
     && pip install --upgrade pip \
     && pip install ansible paramiko \
     && pip install bypy"
+RUN sh -c ". $HOME/.profile && ansible-galaxy collection install ansible.posix"
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.profile
 RUN echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.profile
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc

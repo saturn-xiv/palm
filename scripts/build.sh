@@ -135,8 +135,8 @@ build_rust() {
     cargo build --target $1-unknown-linux-gnu --release
 
     cd $WORKSPACE/target/$1-unknown-linux-gnu/release/
-    mkdir -p $TARGET/bin/$2
-    cp marigold $TARGET/bin/$2/
+    mkdir -p $TARGET/bin/$1
+    cp marigold $TARGET/bin/$1/
 }
 
 # -----------------------------------------------------------------------------
