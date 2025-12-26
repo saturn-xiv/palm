@@ -4,11 +4,10 @@ import { useAppDispatch } from "../../hooks";
 import { DMZ, interfaces, LAN, WAN, type IEthernet } from "../../api/interface";
 import { danger as show_danger } from "../../reducers/notification";
 import ModalForm from "../../components/ModalForm";
-import InternetBondForm, {
-  Description as InternetBondDescription,
-} from "./InternetBond";
+import InternetBondForm from "./InternetBond";
 import IntranetBondForm, {
-  Description as IntranetBondDescription,
+  BalanceAlb as IntranetBond6Description,
+  BalanceXor as IntranetBond3Description,
 } from "./IntranetBond";
 import InterfaceForm from "./Interface";
 
@@ -42,7 +41,6 @@ const Widget = () => {
             label: WAN,
           }}
           handleRefresh={handleRefresh}
-          footer={<InternetBondDescription />}
         >
           <InternetBondForm devices={devices} name={WAN} />
         </ModalForm>
@@ -53,7 +51,12 @@ const Widget = () => {
             label: DMZ,
           }}
           handleRefresh={handleRefresh}
-          footer={<IntranetBondDescription />}
+          footer={
+            <>
+              <IntranetBond3Description />
+              <IntranetBond6Description />
+            </>
+          }
         >
           <IntranetBondForm devices={devices} name={DMZ} />
         </ModalForm>
@@ -64,7 +67,12 @@ const Widget = () => {
             label: LAN,
           }}
           handleRefresh={handleRefresh}
-          footer={<IntranetBondDescription />}
+          footer={
+            <>
+              <IntranetBond3Description />
+              <IntranetBond6Description />
+            </>
+          }
         >
           <IntranetBondForm devices={devices} name={LAN} />
         </ModalForm>

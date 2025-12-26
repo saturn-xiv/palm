@@ -16,22 +16,6 @@ import {
 import { useAppDispatch } from "../../hooks";
 import { danger as show_danger } from "../../reducers/notification";
 
-export const Description = () => (
-  <>
-    <div className="block">
-      <strong>mode 6 (balance-alb)</strong>
-      <br />
-      Adaptive load balancing. Includes balance-transmit load balancing plus
-      receive-load balancing for IPv4 traffic, and does not require any special
-      switch support. The receive-load balancing is achieved by ARP negotiation.
-      The bonding driver intercepts the ARP replies sent by the local system on
-      their way out and overwrites the source hardware address with the unique
-      hardware address of one of the slaves in the bond. Thus, different peers
-      use different hardware addresses for the server.
-    </div>
-  </>
-);
-
 interface IProps {
   name: string;
   devices: IEthernet[];
