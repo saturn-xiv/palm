@@ -1,32 +1,47 @@
 FROM archlinux:latest
 LABEL maintainer="Jeremy Zheng"
 
-RUN pacman-key --init
-RUN pacman -Sy --noconfirm archlinux-keyring
-RUN pacman-key --populate
-RUN pacman -Syu --noconfirm
-RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
-    bzip2 bzip3 p7zip unarchiver \
-    vim git cmake thrift capnproto wget zsh man-db man-pages \
-    pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio net-tools bind-tools \
-    clang llvm lld lldb mold bison flex ninja bazel \
-    imagemagick ffmpeg xorg-font-util \
-    ansible ansible-lint \
-    wqy-bitmapfont wqy-microhei wqy-zenhei \
-    ttf-fira-code woff-fira-code woff2-fira-code \
-    adobe-source-code-pro-fonts adobe-source-serif-fonts adobe-source-sans-fonts \
-    adobe-source-han-serif-cn-fonts adobe-source-han-serif-hk-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-tw-fonts \
-    adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-tw-fonts \
-    ttf-dejavu nerd-fonts ttf-ubuntu-font-family \
-    ttf-arphic-ukai ttf-arphic-uming \
-    texlive texlive-lang graphviz pandoc \
-    hspell nuspell libvoikko hunspell hunspell-en_us \
-    xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc \
-    dart haxe lua \
-    erlang elixir \
-    jdk-openjdk libxcrypt-compat \
-    nginx mariadb postgresql rabbitmq redis supervisor
-RUN pacman -Scc --noconfirm
+RUN pacman-key --init \
+    && pacman -Sy --noconfirm archlinux-keyring \
+    && pacman-key --populate \
+    && pacman -Syu --noconfirm
+
+RUN pacman bzip2 bzip3 p7zip unarchiver \
+        git subversion screen vim wget zsh man-db man-pages \
+        pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio net-tools bind-tools \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman imagemagick ffmpeg xorg-font-util \
+        pandoc graphviz \
+        hspell nuspell libvoikko hunspell hunspell-en_us \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman base-devel clang llvm lld lldb mold bison flex ninja bazel \
+        cmake thrift capnproto grpc flatbuffers \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman aarch64-linux-gnu-gcc risc-v \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc \
+        libxcrypt-compat \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman dart haxe lua erlang elixir jdk-openjdk \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman nginx mariadb postgresql rabbitmq redis supervisor \
+        ansible ansible-lint \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman wqy-bitmapfont wqy-microhei wqy-zenhei \
+        ttf-arphic-ukai ttf-arphic-uming \
+        ttf-fira-code woff-fira-code woff2-fira-code \
+        ttf-dejavu ttf-ubuntu-font-family \
+        adobe-source-code-pro-fonts adobe-source-serif-fonts adobe-source-sans-fonts \
+        adobe-source-han-serif-cn-fonts adobe-source-han-serif-hk-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-tw-fonts \
+        adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-tw-fonts \
+     -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman texlive -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman texlive-lang -S --needed --noconfirm && pacman -Scc --noconfirm
+RUN pacman nerd-fonts -S --needed --noconfirm && pacman -Scc --noconfirm
+
+
+# RUN pacman -S --needed --noconfirm && pacman -Scc --noconfirm
+
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 RUN useradd -s /bin/zsh -m deploy
@@ -242,21 +257,20 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
 
 # https://github.com/grpc/grpc
 ENV GRPC_VERSION="v1.76.0"
-RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
+RUN git clone -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
+RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 # ENV PROTOBUF_VERSION "v3.21.8"
 # RUN cd $HOME/downloads/grpc/third_party/protobuf \
 #     && git checkout ${PROTOBUF_VERSION} \
 #     && git submodule update --init --recursive
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc \
-    && cd $HOME/build/grpc \
-    && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release \
-    -DgRPC_INSTALL=ON \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
-    && make -j $(nproc --ignore=2) \
-    && make install"
+    && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
+        -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
+        -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/grpc -S $HOME/downloads/grpc \
+    && cmake --build $HOME/build/grpc \
+    && cmake --install $HOME/build/grpc \
+    && rm -r $HOME/build/grpc"
 
 # https://github.com/grpc/grpc-web#code-generator-plugin
 ENV GRPC_WEB_PLUGIN_VERSION="2.0.2"
@@ -297,12 +311,12 @@ ENV FLATBUFFERS_VERSION="v25.12.19"
 RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git $HOME/downloads/flatbuffers
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
-    && cd $HOME/build/flatbuffers \
-    && CC=clang CXX=clang++ cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/flatbuffers \
-    && make -j $(nproc --ignore=2) \
-    && make install"
-
+    && CC=clang CXX=clang++ cmake -G Ninja -DCMAKE_BUILD_TYPE=Release \
+        -DFLATBUFFERS_BUILD_TESTS=OFF \
+        -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/flatbuffers -S $HOME/downloads/flatbuffers \
+    && cmake --build $HOME/build/flatbuffers \
+    && cmake --install $HOME/build/flatbuffers \
+    && rm -r $HOME/build/flatbuffers"
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \

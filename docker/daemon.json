@@ -1,0 +1,4 @@
+{
+  "max-concurrent-uploads": 1,
+  "data-root": "/mnt/docker"
+}

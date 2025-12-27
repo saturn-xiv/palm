@@ -13,7 +13,7 @@ sudo pacman -S crun podman buildah fuse-overlayfs
 cat palm-spring-TIMESTAMP.tar.0? > palm-spring-TIMESTAMP.tar
 ```
 
-- Podman commands
+## Podman
 
 ```bash
 $ podman image prune -a # removes all dangling images
@@ -44,3 +44,7 @@ env=[
     "HTTPS_PROXY=socks5://127.0.0.1:8008"
 ]
 ```
+
+## Docker
+
+- Merge file `/etc/docker/daemon.json`
