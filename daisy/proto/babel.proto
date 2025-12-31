@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.babel.v1";
+option java_outer_classname = "BabelProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Babel.Grpc";
+package palm.babel.v1;
+
+service Examination {
+     
+}
+
+service Listening {
+
+}
+
+service Writing {
+
+}
+
+service Reading {
+
+}
+
+service Speaking {
+
+}
+
+service Vocabulary {
+
+}
+
+service Grammar {
+
+}
+
+service Syllabus {
+
+}
+
+service Flashcard {
+
+}
+
+service Workbook {
+
+}
+
+service Quiz {
+    
+}
