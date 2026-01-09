@@ -12,7 +12,7 @@ export TARGET=$WORKSPACE/tmp/$PACKAGE
 # -----------------------------------------------------------------------------
 
 function build_camellia() {
-     cd $WORKSPACE/camellia/
+    cd $WORKSPACE/camellia/
     mvn clean
     mvn package -Dmaven.test.skip=true
     mkdir -p $TARGET/camellia

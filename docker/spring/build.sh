@@ -17,7 +17,7 @@ export CODE="palm-spring"
 
 
 docker pull archlinux:latest
-docker build -t $CODE .
+docker build --platform=linux/amd64 --provenance false -t $CODE .
 docker save -o $CODE-$VERSION.tar $CODE
 md5sum $CODE-$VERSION.tar* >>$CODE-$VERSION.md5
 
