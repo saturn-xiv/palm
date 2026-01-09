@@ -61,18 +61,17 @@ FetchContent_Declare(mailio
   GIT_TAG        "af96e87"
 )
 
-
 FetchContent_Declare(librabbitmq
   GIT_REPOSITORY "https://github.com/alanxz/rabbitmq-c.git"
   GIT_TAG        "8b7471e"
 )
 
-FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec stduuid inja mailio)
+FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec stduuid inja mailio librabbitmq)
 # ---------------------------------------------------------
 file(GLOB BRYONY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(bryony ${BRYONY_SOURCES})
-target_link_options(bryony PRIVATE -static -Wl,--build-id=sha1)
+target_link_options(bryony PRIVATE -Wl,--build-id=sha1)
 set_target_properties(bryony PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(bryony PRIVATE m dl cups
   argparse tomlplusplus::tomlplusplus mailio::mailio rabbitmq-static
