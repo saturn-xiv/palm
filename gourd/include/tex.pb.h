@@ -89,11 +89,11 @@ namespace palm {
 namespace tex {
 namespace v1 {
 enum Task_Document : int {
-  Task_Document_Book = 0,
-  Task_Document_Article = 1,
-  Task_Document_Report = 2,
-  Task_Document_Letter = 3,
-  Task_Document_Beamer = 4,
+  Task_Document_BOOK = 0,
+  Task_Document_ARTICLE = 1,
+  Task_Document_REPORT = 2,
+  Task_Document_LETTER = 3,
+  Task_Document_BEAMER = 4,
   Task_Document_Task_Document_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   Task_Document_Task_Document_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -527,11 +527,11 @@ class Task final : public ::google::protobuf::Message
   // nested types ----------------------------------------------------
   using Target = Task_Target;
   using Document = Task_Document;
-  static constexpr Document Book = Task_Document_Book;
-  static constexpr Document Article = Task_Document_Article;
-  static constexpr Document Report = Task_Document_Report;
-  static constexpr Document Letter = Task_Document_Letter;
-  static constexpr Document Beamer = Task_Document_Beamer;
+  static constexpr Document BOOK = Task_Document_BOOK;
+  static constexpr Document ARTICLE = Task_Document_ARTICLE;
+  static constexpr Document REPORT = Task_Document_REPORT;
+  static constexpr Document LETTER = Task_Document_LETTER;
+  static constexpr Document BEAMER = Task_Document_BEAMER;
   static inline bool Document_IsValid(int value) {
     return Task_Document_IsValid(value);
   }

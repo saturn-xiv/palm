@@ -49,21 +49,21 @@ private static final long serialVersionUID = 0L;
   public enum Level
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>Debug = 0;</code>
+     * <code>DEBUG = 0;</code>
      */
-    Debug(0),
+    DEBUG(0),
     /**
-     * <code>Info = 1;</code>
+     * <code>INFO = 1;</code>
      */
-    Info(1),
+    INFO(1),
     /**
-     * <code>Warning = 2;</code>
+     * <code>WARNING = 2;</code>
      */
-    Warning(2),
+    WARNING(2),
     /**
-     * <code>Error = 3;</code>
+     * <code>ERROR = 3;</code>
      */
-    Error(3),
+    ERROR(3),
     UNRECOGNIZED(-1),
     ;
 
@@ -77,21 +77,21 @@ private static final long serialVersionUID = 0L;
         Level.class.getName());
     }
     /**
-     * <code>Debug = 0;</code>
+     * <code>DEBUG = 0;</code>
      */
-    public static final int Debug_VALUE = 0;
+    public static final int DEBUG_VALUE = 0;
     /**
-     * <code>Info = 1;</code>
+     * <code>INFO = 1;</code>
      */
-    public static final int Info_VALUE = 1;
+    public static final int INFO_VALUE = 1;
     /**
-     * <code>Warning = 2;</code>
+     * <code>WARNING = 2;</code>
      */
-    public static final int Warning_VALUE = 2;
+    public static final int WARNING_VALUE = 2;
     /**
-     * <code>Error = 3;</code>
+     * <code>ERROR = 3;</code>
      */
-    public static final int Error_VALUE = 3;
+    public static final int ERROR_VALUE = 3;
 
 
     public final int getNumber() {
@@ -118,10 +118,10 @@ private static final long serialVersionUID = 0L;
      */
     public static Level forNumber(int value) {
       switch (value) {
-        case 0: return Debug;
-        case 1: return Info;
-        case 2: return Warning;
-        case 3: return Error;
+        case 0: return DEBUG;
+        case 1: return INFO;
+        case 2: return WARNING;
+        case 3: return ERROR;
         default: return null;
       }
     }

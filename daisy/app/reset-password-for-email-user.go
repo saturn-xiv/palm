@@ -47,7 +47,7 @@ func ResetPasswordForEmailUser(config_file string, email string, password string
 		if err := tx.Where("email = ?", form.Email).First(&user).Error; err != nil {
 			return err
 		}
-		if err := models.CreateLog(tx, user.UserID, plugin, gl_localhost, v2.Log_Debug, fmt.Sprintf("reset password by %s", cur_usr.Username)); err != nil {
+		if err := models.CreateLog(tx, user.UserID, plugin, gl_localhost, v2.Log_DEBUG, fmt.Sprintf("reset password by %s", cur_usr.Username)); err != nil {
 			return err
 		}
 		return nil

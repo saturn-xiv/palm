@@ -134,7 +134,7 @@ namespace palm {
 namespace portal {
 namespace v1 {
 enum RichText_Editor : int {
-  RichText_Editor_CKEditor = 0,
+  RichText_Editor_CK_EDITOR = 0,
   RichText_Editor_RichText_Editor_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   RichText_Editor_RichText_Editor_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -169,7 +169,7 @@ inline bool RichText_Editor_Parse(
                                            value);
 }
 enum Location_Map : int {
-  Location_Map_Google = 0,
+  Location_Map_GOOGLE = 0,
   Location_Map_Location_Map_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   Location_Map_Location_Map_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -204,10 +204,10 @@ inline bool Location_Map_Parse(
                                            value);
 }
 enum Log_Level : int {
-  Log_Level_Debug = 0,
-  Log_Level_Info = 1,
-  Log_Level_Warning = 2,
-  Log_Level_Error = 3,
+  Log_Level_DEBUG = 0,
+  Log_Level_INFO = 1,
+  Log_Level_WARNING = 2,
+  Log_Level_ERROR = 3,
   Log_Level_Log_Level_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   Log_Level_Log_Level_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -242,11 +242,11 @@ inline bool Log_Level_Parse(
                                            value);
 }
 enum User_ProviderType : int {
-  User_ProviderType_Email = 0,
-  User_ProviderType_Phone = 1,
-  User_ProviderType_GoogleOauth2 = 2,
-  User_ProviderType_WechatOauth2 = 3,
-  User_ProviderType_WechatMiniProgram = 4,
+  User_ProviderType_EMAIL = 0,
+  User_ProviderType_PHONE = 1,
+  User_ProviderType_GOOGLE_OAUTH2 = 2,
+  User_ProviderType_WECHAT_OAUTH2 = 3,
+  User_ProviderType_WECHAT_MINI_PROGRAM = 4,
   User_ProviderType_User_ProviderType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   User_ProviderType_User_ProviderType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -399,11 +399,11 @@ class User final : public ::google::protobuf::internal::ZeroFieldsBase
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using ProviderType = User_ProviderType;
-  static constexpr ProviderType Email = User_ProviderType_Email;
-  static constexpr ProviderType Phone = User_ProviderType_Phone;
-  static constexpr ProviderType GoogleOauth2 = User_ProviderType_GoogleOauth2;
-  static constexpr ProviderType WechatOauth2 = User_ProviderType_WechatOauth2;
-  static constexpr ProviderType WechatMiniProgram = User_ProviderType_WechatMiniProgram;
+  static constexpr ProviderType EMAIL = User_ProviderType_EMAIL;
+  static constexpr ProviderType PHONE = User_ProviderType_PHONE;
+  static constexpr ProviderType GOOGLE_OAUTH2 = User_ProviderType_GOOGLE_OAUTH2;
+  static constexpr ProviderType WECHAT_OAUTH2 = User_ProviderType_WECHAT_OAUTH2;
+  static constexpr ProviderType WECHAT_MINI_PROGRAM = User_ProviderType_WECHAT_MINI_PROGRAM;
   static inline bool ProviderType_IsValid(int value) {
     return User_ProviderType_IsValid(value);
   }
@@ -979,10 +979,10 @@ class Log final : public ::google::protobuf::internal::ZeroFieldsBase
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Level = Log_Level;
-  static constexpr Level Debug = Log_Level_Debug;
-  static constexpr Level Info = Log_Level_Info;
-  static constexpr Level Warning = Log_Level_Warning;
-  static constexpr Level Error = Log_Level_Error;
+  static constexpr Level DEBUG = Log_Level_DEBUG;
+  static constexpr Level INFO = Log_Level_INFO;
+  static constexpr Level WARNING = Log_Level_WARNING;
+  static constexpr Level ERROR = Log_Level_ERROR;
   static inline bool Level_IsValid(int value) {
     return Log_Level_IsValid(value);
   }
@@ -1175,7 +1175,7 @@ class Location final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Map = Location_Map;
-  static constexpr Map Google = Location_Map_Google;
+  static constexpr Map GOOGLE = Location_Map_GOOGLE;
   static inline bool Map_IsValid(int value) {
     return Location_Map_IsValid(value);
   }
@@ -2074,7 +2074,7 @@ class RichText final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Editor = RichText_Editor;
-  static constexpr Editor CKEditor = RichText_Editor_CKEditor;
+  static constexpr Editor CK_EDITOR = RichText_Editor_CK_EDITOR;
   static inline bool Editor_IsValid(int value) {
     return RichText_Editor_IsValid(value);
   }

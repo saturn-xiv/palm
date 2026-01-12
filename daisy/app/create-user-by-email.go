@@ -52,7 +52,7 @@ func CreateUserByEmail(config_file string, name string, email string, password s
 		if err := models.ConfirmEmailUser(tx, user.ID); err != nil {
 			return err
 		}
-		if err := models.CreateLog(tx, user.UserID, plugin, gl_localhost, v2.Log_Debug, fmt.Sprintf("created by %s", cur_usr.Username)); err != nil {
+		if err := models.CreateLog(tx, user.UserID, plugin, gl_localhost, v2.Log_DEBUG, fmt.Sprintf("created by %s", cur_usr.Username)); err != nil {
 			return err
 		}
 		return nil

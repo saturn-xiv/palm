@@ -51,9 +51,9 @@ private static final long serialVersionUID = 0L;
   public enum Map
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>Google = 0;</code>
+     * <code>GOOGLE = 0;</code>
      */
-    Google(0),
+    GOOGLE(0),
     UNRECOGNIZED(-1),
     ;
 
@@ -67,9 +67,9 @@ private static final long serialVersionUID = 0L;
         Map.class.getName());
     }
     /**
-     * <code>Google = 0;</code>
+     * <code>GOOGLE = 0;</code>
      */
-    public static final int Google_VALUE = 0;
+    public static final int GOOGLE_VALUE = 0;
 
 
     public final int getNumber() {
@@ -96,7 +96,7 @@ private static final long serialVersionUID = 0L;
      */
     public static Map forNumber(int value) {
       switch (value) {
-        case 0: return Google;
+        case 0: return GOOGLE;
         default: return null;
       }
     }
@@ -224,7 +224,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (map_ != com.github.saturn_xiv.palm.plugins.portal.v1.Location.Map.Google.getNumber()) {
+    if (map_ != com.github.saturn_xiv.palm.plugins.portal.v1.Location.Map.GOOGLE.getNumber()) {
       output.writeEnum(1, map_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(address_)) {
@@ -239,7 +239,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (map_ != com.github.saturn_xiv.palm.plugins.portal.v1.Location.Map.Google.getNumber()) {
+    if (map_ != com.github.saturn_xiv.palm.plugins.portal.v1.Location.Map.GOOGLE.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, map_);
     }

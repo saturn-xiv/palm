@@ -441,29 +441,29 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "portal.v1.Page\022\024\n\014has_previous\030\002 \001(\010\022\020\n\010"
     "has_next\030\003 \001(\010\022\r\n\005pages\030\004 \001(\004\022\r\n\005total\030\005"
     " \001(\004\",\n\nAttachment\022\016\n\006bucket\030\001 \001(\t\022\016\n\006ob"
-    "ject\030\002 \001(\t\"\222\001\n\010RichText\022/\n\006editor\030\001 \001(\0162"
+    "ject\030\002 \001(\t\"\223\001\n\010RichText\022/\n\006editor\030\001 \001(\0162"
     "\037.palm.portal.v1.RichText.Editor\022\014\n\004body"
     "\030\002 \001(\t\022/\n\013attachments\030\003 \003(\0132\032.palm.porta"
-    "l.v1.Attachment\"\026\n\006Editor\022\014\n\010CKEditor\020\000\""
-    "Y\n\010Location\022)\n\003map\030\001 \001(\0162\034.palm.portal.v"
-    "1.Location.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022\n"
-    "\n\006Google\020\000\"\322\001\n\022CurrenciesResponse\0226\n\005ite"
-    "ms\030\001 \003(\0132\'.palm.portal.v1.CurrenciesResp"
-    "onse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004name"
-    "\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006number\030\004 \001(\r\022"
-    "\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fund\030\006 \001(\010H\001\210\001"
-    "\001B\010\n\006_unitsB\n\n\010_is_fund\";\n\003Log\"4\n\005Level\022"
-    "\t\n\005Debug\020\000\022\010\n\004Info\020\001\022\013\n\007Warning\020\002\022\t\n\005Err"
-    "or\020\003\"g\n\004User\"_\n\014ProviderType\022\t\n\005Email\020\000\022"
-    "\t\n\005Phone\020\001\022\020\n\014GoogleOauth2\020\002\022\020\n\014WechatOa"
-    "uth2\020\003\022\025\n\021WechatMiniProgram\020\004\"F\n\007Session"
-    "\022/\n\004type\030\001 \001(\0162!.palm.portal.v1.User.Pro"
-    "viderType\022\n\n\002sn\030\002 \001(\t2R\n\004Site\022J\n\nCurrenc"
-    "ies\022\026.google.protobuf.Empty\032\".palm.porta"
-    "l.v1.CurrenciesResponse\"\000B_\n,com.github."
-    "saturn_xiv.palm.plugins.portal.v1B\013Porta"
-    "lProtoP\001Z\005./;v2\252\002\030Palm.Plugins.Portal.Gr"
-    "pcb\006proto3"
+    "l.v1.Attachment\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000"
+    "\"Y\n\010Location\022)\n\003map\030\001 \001(\0162\034.palm.portal."
+    "v1.Location.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022"
+    "\n\n\006GOOGLE\020\000\"\322\001\n\022CurrenciesResponse\0226\n\005it"
+    "ems\030\001 \003(\0132\'.palm.portal.v1.CurrenciesRes"
+    "ponse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004nam"
+    "e\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006number\030\004 \001(\r"
+    "\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fund\030\006 \001(\010H\001\210"
+    "\001\001B\010\n\006_unitsB\n\n\010_is_fund\";\n\003Log\"4\n\005Level"
+    "\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNING\020\002\022\t\n\005ER"
+    "ROR\020\003\"k\n\004User\"c\n\014ProviderType\022\t\n\005EMAIL\020\000"
+    "\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\rWECHAT"
+    "_OAUTH2\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004\"F\n\007Se"
+    "ssion\022/\n\004type\030\001 \001(\0162!.palm.portal.v1.Use"
+    "r.ProviderType\022\n\n\002sn\030\002 \001(\t2R\n\004Site\022J\n\nCu"
+    "rrencies\022\026.google.protobuf.Empty\032\".palm."
+    "portal.v1.CurrenciesResponse\"\000B_\n,com.gi"
+    "thub.saturn_xiv.palm.plugins.portal.v1B\013"
+    "PortalProtoP\001Z\005./;v2\252\002\030Palm.Plugins.Port"
+    "al.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_portal_2eproto_deps[1] = {
@@ -473,7 +473,7 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    1170,
+    1175,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,

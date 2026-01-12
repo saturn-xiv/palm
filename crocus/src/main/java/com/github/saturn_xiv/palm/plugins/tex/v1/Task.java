@@ -67,25 +67,25 @@ private static final long serialVersionUID = 0L;
   public enum Document
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>Book = 0;</code>
+     * <code>BOOK = 0;</code>
      */
-    Book(0),
+    BOOK(0),
     /**
-     * <code>Article = 1;</code>
+     * <code>ARTICLE = 1;</code>
      */
-    Article(1),
+    ARTICLE(1),
     /**
-     * <code>Report = 2;</code>
+     * <code>REPORT = 2;</code>
      */
-    Report(2),
+    REPORT(2),
     /**
-     * <code>Letter = 3;</code>
+     * <code>LETTER = 3;</code>
      */
-    Letter(3),
+    LETTER(3),
     /**
-     * <code>Beamer = 4;</code>
+     * <code>BEAMER = 4;</code>
      */
-    Beamer(4),
+    BEAMER(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -99,25 +99,25 @@ private static final long serialVersionUID = 0L;
         Document.class.getName());
     }
     /**
-     * <code>Book = 0;</code>
+     * <code>BOOK = 0;</code>
      */
-    public static final int Book_VALUE = 0;
+    public static final int BOOK_VALUE = 0;
     /**
-     * <code>Article = 1;</code>
+     * <code>ARTICLE = 1;</code>
      */
-    public static final int Article_VALUE = 1;
+    public static final int ARTICLE_VALUE = 1;
     /**
-     * <code>Report = 2;</code>
+     * <code>REPORT = 2;</code>
      */
-    public static final int Report_VALUE = 2;
+    public static final int REPORT_VALUE = 2;
     /**
-     * <code>Letter = 3;</code>
+     * <code>LETTER = 3;</code>
      */
-    public static final int Letter_VALUE = 3;
+    public static final int LETTER_VALUE = 3;
     /**
-     * <code>Beamer = 4;</code>
+     * <code>BEAMER = 4;</code>
      */
-    public static final int Beamer_VALUE = 4;
+    public static final int BEAMER_VALUE = 4;
 
 
     public final int getNumber() {
@@ -144,11 +144,11 @@ private static final long serialVersionUID = 0L;
      */
     public static Document forNumber(int value) {
       switch (value) {
-        case 0: return Book;
-        case 1: return Article;
-        case 2: return Report;
-        case 3: return Letter;
-        case 4: return Beamer;
+        case 0: return BOOK;
+        case 1: return ARTICLE;
+        case 2: return REPORT;
+        case 3: return LETTER;
+        case 4: return BEAMER;
         default: return null;
       }
     }
@@ -1040,7 +1040,7 @@ com.google.protobuf.ByteString defaultValue) {
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (document_ != com.github.saturn_xiv.palm.plugins.tex.v1.Task.Document.Book.getNumber()) {
+    if (document_ != com.github.saturn_xiv.palm.plugins.tex.v1.Task.Document.BOOK.getNumber()) {
       output.writeEnum(1, document_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(entry_)) {
@@ -1064,7 +1064,7 @@ com.google.protobuf.ByteString defaultValue) {
     if (size != -1) return size;
 
     size = 0;
-    if (document_ != com.github.saturn_xiv.palm.plugins.tex.v1.Task.Document.Book.getNumber()) {
+    if (document_ != com.github.saturn_xiv.palm.plugins.tex.v1.Task.Document.BOOK.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, document_);
     }

@@ -29,7 +29,7 @@ func RevokeRoleFromUser(config_file string, user_sn string, role_code string, de
 		if _, err = enforcer.DeleteRoleForUser(user_s, role_s); err != nil {
 			return err
 		}
-		if err := models.CreateLog(tx, user.ID, env.Plugin(), gl_localhost, auth_v2.Log_Debug, fmt.Sprintf("revoked role %s by %s", role_code, admin.Username)); err != nil {
+		if err := models.CreateLog(tx, user.ID, env.Plugin(), gl_localhost, auth_v2.Log_DEBUG, fmt.Sprintf("revoked role %s by %s", role_code, admin.Username)); err != nil {
 			return err
 		}
 		return nil

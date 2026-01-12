@@ -116,7 +116,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.User.ProviderType.Email.getNumber()) {
+    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.User.ProviderType.EMAIL.getNumber()) {
       output.writeEnum(1, type_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sn_)) {
@@ -131,7 +131,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.User.ProviderType.Email.getNumber()) {
+    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.User.ProviderType.EMAIL.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, type_);
     }

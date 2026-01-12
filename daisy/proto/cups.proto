@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.cups.v1";
+option java_outer_classname = "CupsProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Cups.Grpc";
+package palm.cups.v1;
+
+import "google/protobuf/empty.proto";
+
+message Task {
+  enum Paper{
+    A4     = 0;
+    LETTER = 1;
+  }
+  string printer  = 1;
+  Paper  paper    = 2;
+  bytes  document = 9;
+}
+
+service Cups {
+  rpc Printers(google.protobuf.Empty) returns (CupsPrintersResponse) {}
+}
+
+message CupsPrintersResponse{
+  message Item{
+    string name = 1;
+  }
+  repeated Item items = 2;
+}

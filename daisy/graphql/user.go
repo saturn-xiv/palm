@@ -41,7 +41,7 @@ func CurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*models.Use
 func current_user(db *gorm.DB, ss *v2.Session) (*models.User, error) {
 	var user models.User
 	switch ss.Type {
-	case v2.User_GoogleOauth2:
+	case v2.User_GOOGLE_OAUTH2:
 		var it models.GoogleOauth2User
 		if err := db.Where("sn = ?", ss.Sn).Preload("User").First(&it).Error; err != nil {
 			return nil, err

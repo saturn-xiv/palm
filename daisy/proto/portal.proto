@@ -15,33 +15,36 @@ message IdRequest {
 
 message Page {
   uint64 index = 1;
-  uint64 size = 2;
+  uint64 size  = 2;
 }
+
 message Pagination {
-  Page current = 1;
-  bool has_previous = 2;
-  bool has_next = 3;
-  uint64 pages = 4;
-  uint64 total = 5;
+  Page   current      = 1;
+  bool   has_previous = 2;
+  bool   has_next     = 3;
+  uint64 pages        = 4;
+  uint64 total        = 5;
 }
+
 message Attachment {
   string bucket = 1;
   string object = 2;
 }
+
 message RichText {
   enum Editor {
-    CKEditor = 0;
+    CK_EDITOR = 0;
   }
-  Editor editor = 1;
-  string body = 2;
+  Editor              editor      = 1;
+  string              body        = 2;
   repeated Attachment attachments = 3;
 }
 
 message Location {
   enum Map {
-    Google = 0;
+    GOOGLE = 0;
   }
-  Map map = 1;
+  Map    map     = 1;
   string address = 2;
 }
 
@@ -53,38 +56,38 @@ service Site {
 
 message CurrenciesResponse {
   message Item {
-    string code = 1;
-    string name = 2;
-    string country = 3;
-    uint32 number = 4;
-    optional uint32 units = 5;
-    optional bool is_fund = 6;
+    string          code    = 1;
+    string          name    = 2;
+    string          country = 3;
+    uint32          number  = 4;
+    optional uint32 units   = 5;
+    optional bool   is_fund = 6;
   }
   repeated Item items = 1;
 }
 
 message Log {
   enum Level {
-    Debug = 0;
-    Info = 1;
-    Warning = 2;
-    Error = 3;
+    DEBUG   = 0;
+    INFO    = 1;
+    WARNING = 2;
+    ERROR   = 3;
   }
 }
 
 message User {
   enum ProviderType {
-    Email = 0;
-    Phone = 1;
-    GoogleOauth2 = 2;
-    WechatOauth2 = 3;
-    WechatMiniProgram = 4;
+    EMAIL               = 0;
+    PHONE               = 1;
+    GOOGLE_OAUTH2       = 2;
+    WECHAT_OAUTH2       = 3;
+    WECHAT_MINI_PROGRAM = 4;
   }
 }
 
 message Session {
   User.ProviderType type = 1;
-  string sn = 2;
+  string            sn   = 2;
 }
 
 // ----------------------------------------------------------------------------

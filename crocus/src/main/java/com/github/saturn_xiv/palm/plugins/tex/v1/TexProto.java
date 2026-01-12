@@ -57,8 +57,8 @@ public final class TexProto {
       "lm.tex.v1.Task.Target\032(\n\006Target\022\016\n\006bucke" +
       "t\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\032,\n\nFilesEntry\022\013\n" +
       "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"E\n\010Documen" +
-      "t\022\010\n\004Book\020\000\022\013\n\007Article\020\001\022\n\n\006Report\020\002\022\n\n\006" +
-      "Letter\020\003\022\n\n\006Beamer\020\004BV\n)com.github.satur" +
+      "t\022\010\n\004BOOK\020\000\022\013\n\007ARTICLE\020\001\022\n\n\006REPORT\020\002\022\n\n\006" +
+      "LETTER\020\003\022\n\n\006BEAMER\020\004BV\n)com.github.satur" +
       "n_xiv.palm.plugins.tex.v1B\010TexProtoP\001Z\005." +
       "/;v2\252\002\025Palm.Plugins.Tex.Grpcb\006proto3"
     };

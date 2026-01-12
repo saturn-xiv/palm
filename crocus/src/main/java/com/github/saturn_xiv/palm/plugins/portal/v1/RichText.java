@@ -52,9 +52,9 @@ private static final long serialVersionUID = 0L;
   public enum Editor
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>CKEditor = 0;</code>
+     * <code>CK_EDITOR = 0;</code>
      */
-    CKEditor(0),
+    CK_EDITOR(0),
     UNRECOGNIZED(-1),
     ;
 
@@ -68,9 +68,9 @@ private static final long serialVersionUID = 0L;
         Editor.class.getName());
     }
     /**
-     * <code>CKEditor = 0;</code>
+     * <code>CK_EDITOR = 0;</code>
      */
-    public static final int CKEditor_VALUE = 0;
+    public static final int CK_EDITOR_VALUE = 0;
 
 
     public final int getNumber() {
@@ -97,7 +97,7 @@ private static final long serialVersionUID = 0L;
      */
     public static Editor forNumber(int value) {
       switch (value) {
-        case 0: return CKEditor;
+        case 0: return CK_EDITOR;
         default: return null;
       }
     }
@@ -266,7 +266,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (editor_ != com.github.saturn_xiv.palm.plugins.portal.v1.RichText.Editor.CKEditor.getNumber()) {
+    if (editor_ != com.github.saturn_xiv.palm.plugins.portal.v1.RichText.Editor.CK_EDITOR.getNumber()) {
       output.writeEnum(1, editor_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(body_)) {
@@ -284,7 +284,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (editor_ != com.github.saturn_xiv.palm.plugins.portal.v1.RichText.Editor.CKEditor.getNumber()) {
+    if (editor_ != com.github.saturn_xiv.palm.plugins.portal.v1.RichText.Editor.CK_EDITOR.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, editor_);
     }

@@ -49,25 +49,25 @@ private static final long serialVersionUID = 0L;
   public enum ProviderType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>Email = 0;</code>
+     * <code>EMAIL = 0;</code>
      */
-    Email(0),
+    EMAIL(0),
     /**
-     * <code>Phone = 1;</code>
+     * <code>PHONE = 1;</code>
      */
-    Phone(1),
+    PHONE(1),
     /**
-     * <code>GoogleOauth2 = 2;</code>
+     * <code>GOOGLE_OAUTH2 = 2;</code>
      */
-    GoogleOauth2(2),
+    GOOGLE_OAUTH2(2),
     /**
-     * <code>WechatOauth2 = 3;</code>
+     * <code>WECHAT_OAUTH2 = 3;</code>
      */
-    WechatOauth2(3),
+    WECHAT_OAUTH2(3),
     /**
-     * <code>WechatMiniProgram = 4;</code>
+     * <code>WECHAT_MINI_PROGRAM = 4;</code>
      */
-    WechatMiniProgram(4),
+    WECHAT_MINI_PROGRAM(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -81,25 +81,25 @@ private static final long serialVersionUID = 0L;
         ProviderType.class.getName());
     }
     /**
-     * <code>Email = 0;</code>
+     * <code>EMAIL = 0;</code>
      */
-    public static final int Email_VALUE = 0;
+    public static final int EMAIL_VALUE = 0;
     /**
-     * <code>Phone = 1;</code>
+     * <code>PHONE = 1;</code>
      */
-    public static final int Phone_VALUE = 1;
+    public static final int PHONE_VALUE = 1;
     /**
-     * <code>GoogleOauth2 = 2;</code>
+     * <code>GOOGLE_OAUTH2 = 2;</code>
      */
-    public static final int GoogleOauth2_VALUE = 2;
+    public static final int GOOGLE_OAUTH2_VALUE = 2;
     /**
-     * <code>WechatOauth2 = 3;</code>
+     * <code>WECHAT_OAUTH2 = 3;</code>
      */
-    public static final int WechatOauth2_VALUE = 3;
+    public static final int WECHAT_OAUTH2_VALUE = 3;
     /**
-     * <code>WechatMiniProgram = 4;</code>
+     * <code>WECHAT_MINI_PROGRAM = 4;</code>
      */
-    public static final int WechatMiniProgram_VALUE = 4;
+    public static final int WECHAT_MINI_PROGRAM_VALUE = 4;
 
 
     public final int getNumber() {
@@ -126,11 +126,11 @@ private static final long serialVersionUID = 0L;
      */
     public static ProviderType forNumber(int value) {
       switch (value) {
-        case 0: return Email;
-        case 1: return Phone;
-        case 2: return GoogleOauth2;
-        case 3: return WechatOauth2;
-        case 4: return WechatMiniProgram;
+        case 0: return EMAIL;
+        case 1: return PHONE;
+        case 2: return GOOGLE_OAUTH2;
+        case 3: return WECHAT_OAUTH2;
+        case 4: return WECHAT_MINI_PROGRAM;
         default: return null;
       }
     }

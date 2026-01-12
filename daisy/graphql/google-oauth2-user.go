@@ -82,14 +82,14 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 		if err = models.SignInUser(tx, it.User, ip); err != nil {
 			return err
 		}
-		if err = models.CreateLog(tx, it.UserID, env.Plugin(), ip, v2.Log_Info, "sign in by google oauth2"); err != nil {
+		if err = models.CreateLog(tx, it.UserID, env.Plugin(), ip, v2.Log_INFO, "sign in by google oauth2"); err != nil {
 			return err
 		}
 		return nil
 	}); err != nil {
 		return nil, err
 	}
-	return newSignInResponse(p.db, v2.User_GoogleOauth2, user_info.Id)
+	return newSignInResponse(p.db, v2.User_GOOGLE_OAUTH2, user_info.Id)
 }
 
 func (p *Query) GetGoogleOauth2Url(ctx context.Context, args struct {
