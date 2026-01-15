@@ -64,17 +64,23 @@ RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/release
     && sudo chmod +x /usr/local/bin/envoy
 
 # https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
-RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer
-RUN cd $HOME/downloads \
+RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
+    && cd $HOME/downloads \
     && php composer \
     && sudo cp composer.phar /usr/local/bin/composer
 
+# https://github.com/improbable-eng/grpc-web
+ENV GRPCWEBPROXY_VERSION="v0.15.0"
+RUN wget -q -P $HOME/downloads/ https://github.com/improbable-eng/grpc-web/releases/download/${GRPCWEBPROXY_VERSION}/grpcwebproxy-${GRPCWEBPROXY_VERSION}-linux-x86_64.zip \
+    && cd $HOME/downloads/ \
+    && unzip -q grpcwebproxy-${GRPCWEBPROXY_VERSION}-linux-x86_64.zip \
+    && sudo cp dist/grpcwebproxy-${GRPCWEBPROXY_VERSION}-linux-x86_64 /usr/local/bin/grpcwebproxy \
+    && rm -r dist
 
 # https://github.com/bazelbuild/bazelisk
 ENV BAZEL_VERSION="v1.27.0"
-RUN wget -q -O $HOME/downloads/bazel \
-    https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64
-RUN sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
+RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64 \
+    && sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
 
 
 # https://min.io/download#/linux
@@ -98,8 +104,9 @@ RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads
     && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
 
 # https://github.com/ohmyzsh/ohmyzsh
-RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
-RUN cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
+RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh \
+    && cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
+
 RUN echo 'export LANG=en_US.UTF-8' >> $HOME/.zshrc \
     && echo 'export LC_ALL=en_US.UTF-8' >> $HOME/.zshrc \
     && echo 'export EDITOR=vim' >> $HOME/.zshrc \
@@ -109,6 +116,7 @@ RUN git config --global core.quotepath false \
     && git config --global http.version HTTP/1.1 \
     && git config --global pull.rebase true \
     && git config --global url."https://".insteadOf git://
+
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
     && echo 'set-option -g default-shell "/bin/zsh"' >> $HOME/.tmux.conf
 
