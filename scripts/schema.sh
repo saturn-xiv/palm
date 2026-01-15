@@ -76,6 +76,7 @@ function generate_marigold() {
     then
         rm -rf $target
     fi
+    mkdir -p $target
     $PROTOBUF_HOME/bin/protoc \
         -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto -I $WORKSPACE/camellia/src/main/proto \
         -I $PROTOBUF_HOME/include/google/protobuf \
@@ -90,6 +91,7 @@ generate_daisy
 generate_loquat
 generate_gourd
 generate_crocus
+generate_marigold
 
 echo 'done.'
 exit 0

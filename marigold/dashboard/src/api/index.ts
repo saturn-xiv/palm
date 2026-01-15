@@ -1,0 +1,1 @@
+export const GRPC_HOST='http://localhost:8080';

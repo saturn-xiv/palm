@@ -10,6 +10,7 @@ npm install --save \
     formik yup usehooks-ts \
     jose dayjs \
     @reduxjs/toolkit react-redux \
-    js-cookie @types/js-cookie 
+    js-cookie @types/js-cookie \
+    grpc-web
 
 exit 0
