@@ -69,6 +69,21 @@ function generate_crocus() {
         $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
 }
 
+# https://github.com/grpc/grpc-web?tab=readme-ov-file#typescript-support
+function generate_marigold() {
+    local target=$WORKSPACE/marigold/dashboard/src/protocols
+    if [ -d $target ]
+    then
+        rm -rf $target
+    fi
+    $PROTOBUF_HOME/bin/protoc \
+        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto -I $WORKSPACE/camellia/src/main/proto \
+        -I $PROTOBUF_HOME/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$target \
+        --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
+        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
+}
+
 # -----------------------------------------------------------------------------
 
 generate_daisy
