@@ -17,9 +17,10 @@
 
 import * as grpcWeb from 'grpc-web';
 
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
 
 
-export class PageClient {
+export class PageServiceClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -36,6 +37,49 @@ export class PageClient {
     this.hostname_ = hostname.replace(/\/+$/, '');
     this.credentials_ = credentials;
     this.options_ = options;
+  }
+
+  methodDescriptorIndex = new grpcWeb.MethodDescriptor(
+    '/palm.cms.v1.PageService/Index',
+    grpcWeb.MethodType.UNARY,
+    google_protobuf_empty_pb.Empty,
+    google_protobuf_empty_pb.Empty,
+    (request: google_protobuf_empty_pb.Empty) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  index(
+    request: google_protobuf_empty_pb.Empty,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  index(
+    request: google_protobuf_empty_pb.Empty,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  index(
+    request: google_protobuf_empty_pb.Empty,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.cms.v1.PageService/Index',
+        request,
+        metadata || {},
+        this.methodDescriptorIndex,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.cms.v1.PageService/Index',
+    request,
+    metadata || {},
+    this.methodDescriptorIndex);
   }
 
 }

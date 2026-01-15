@@ -35,16 +35,20 @@ public final class CmsProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tcms.proto\022\013palm.cms.v12\006\n\004PageBV\n)com." +
-      "github.saturn_xiv.palm.plugins.cms.v1B\010C" +
-      "msProtoP\001Z\005./;v2\252\002\025Palm.Plugins.Cms.Grpc" +
-      "b\006proto3"
+      "\n\tcms.proto\022\013palm.cms.v1\032\033google/protobu" +
+      "f/empty.proto2H\n\013PageService\0229\n\005Index\022\026." +
+      "google.protobuf.Empty\032\026.google.protobuf." +
+      "Empty\"\000BV\n)com.github.saturn_xiv.palm.pl" +
+      "ugins.cms.v1B\010CmsProtoP\001Z\005./;v2\252\002\025Palm.P" +
+      "lugins.Cms.Grpcb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.EmptyProto.getDescriptor(),
         });
     descriptor.resolveAllFeaturesImmutable();
+    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

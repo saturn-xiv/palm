@@ -1,8 +1,19 @@
-import grpcWeb from 'grpc-web';
+import grpc from 'grpc-web';
+import {Empty} from 'google-protobuf/google/protobuf/empty_pb';
 
-import { PageServicePromiseClient } from "../protocols/CmsServiceClientPb";
+import { PageServiceClient } from "../protocols/CmsServiceClientPb";
 import {GRPC_HOST} from '.'
 
-function indexPage() {
-    const service = new PageServicePromiseClient(GRPC_HOST, null, null);
+export const index_page = () => {
+    const request = new Empty();
+
+    const service = new PageServiceClient(GRPC_HOST, null, null);
+    const call = service.index(request, {'custom-header-1': 'value1'}, (_err: grpc.RpcError, _response: Empty) => {
+        // TODO
+        console.log('done.');
+    });
+    call.on('status', (_status: grpc.Status) => {
+        // TODO
+    });
 }
+

@@ -9,6 +9,6 @@ package palm.cms.v1;
 
 import "google/protobuf/empty.proto";
 
-service Page {
+service PageService {
   rpc Index(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }

@@ -40,21 +40,27 @@ static constexpr ::_pb::Message* PROTOBUF_NONNULL const* PROTOBUF_NULLABLE
     file_default_instances = nullptr;
 const char descriptor_table_protodef_cms_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\tcms.proto\022\013palm.cms.v12\006\n\004PageBV\n)com."
-    "github.saturn_xiv.palm.plugins.cms.v1B\010C"
-    "msProtoP\001Z\005./;v2\252\002\025Palm.Plugins.Cms.Grpc"
-    "b\006proto3"
+    "\n\tcms.proto\022\013palm.cms.v1\032\033google/protobu"
+    "f/empty.proto2H\n\013PageService\0229\n\005Index\022\026."
+    "google.protobuf.Empty\032\026.google.protobuf."
+    "Empty\"\000BV\n)com.github.saturn_xiv.palm.pl"
+    "ugins.cms.v1B\010CmsProtoP\001Z\005./;v2\252\002\025Palm.P"
+    "lugins.Cms.Grpcb\006proto3"
+};
+static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
+    descriptor_table_cms_2eproto_deps[1] = {
+        &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
 };
 static ::absl::once_flag descriptor_table_cms_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_cms_2eproto = {
     false,
     false,
-    128,
+    223,
     descriptor_table_protodef_cms_2eproto,
     "cms.proto",
     &descriptor_table_cms_2eproto_once,
-    nullptr,
-    0,
+    descriptor_table_cms_2eproto_deps,
+    1,
     0,
     schemas,
     file_default_instances,

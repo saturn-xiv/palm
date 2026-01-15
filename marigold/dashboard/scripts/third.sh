@@ -11,6 +11,6 @@ npm install --save \
     jose dayjs \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie \
-    grpc-web
+    google-protobuf @types/google-protobuf grpc-web
 
 exit 0
