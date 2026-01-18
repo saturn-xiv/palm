@@ -1,5 +1,6 @@
 #[allow(clippy::match_single_binding)]
 pub mod palm;
+pub mod schema;
 
 pub const NAME: &str = env!("CARGO_PKG_NAME");
 pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");

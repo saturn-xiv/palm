@@ -9,9 +9,6 @@ pub type Result<T> = StdResult<T, Error>;
 
 #[derive(Debug)]
 pub struct HttpError(pub StatusCode, pub Option<String>);
-pub type HttpResult<T> = StdResult<T, HttpError>;
-pub type GrpcResult<T> = StdResult<tonic::Response<T>, tonic::Status>;
-
 impl StdError for HttpError {}
 
 impl fmt::Display for HttpError {
@@ -28,3 +25,6 @@ impl From<Error> for HttpError {
         Self(StatusCode::INTERNAL_SERVER_ERROR, Some(err.to_string()))
     }
 }
+
+pub type HttpResult<T> = StdResult<T, HttpError>;
+pub type GrpcResult<T> = StdResult<tonic::Response<T>, tonic::Status>;

@@ -54,7 +54,7 @@ function generate_gourd() {
 
 
 function generate_crocus() {
-    echo "generate grpc protocols(java) for crocus..."
+    echo "generate grpc protocols(java) for crocus"
     local target=$WORKSPACE/crocus/src/main/java/
     if [ -d $target/com/github/saturn_xiv/palm/plugins ]
     then
@@ -71,6 +71,7 @@ function generate_crocus() {
 
 # https://github.com/grpc/grpc-web?tab=readme-ov-file#typescript-support
 function generate_marigold() {
+    echo "generate marigold dashboard protocols"
     local target=$WORKSPACE/marigold/dashboard/src/protocols
     if [ -d $target ]
     then
@@ -83,7 +84,11 @@ function generate_marigold() {
         --js_out=import_style=commonjs,binary:$target \
         --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
         $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
+
+    echo "generate marigold db-schema"
+    diesel print-schema --database-url "postgres://www:change-me@127.0.0.1:5432/daisy_dev?sslmode=disable" > $WORKSPACE/marigold/src/schema.rs
 }
+
 
 # -----------------------------------------------------------------------------
 
@@ -92,6 +97,9 @@ generate_loquat
 generate_gourd
 generate_crocus
 generate_marigold
+
+cd $WORKSPACE/
+cargo fmt
 
 echo 'done.'
 exit 0
