@@ -131,6 +131,7 @@ build_musl() {
 }
 
 build_rust() {
+    echo "build cargo project for $1"
     cd $WORKSPACE/
     cargo build --target $1-unknown-linux-gnu --release
 
@@ -166,7 +167,7 @@ build_camellia
 build_hyacinth
 
 build_dashboard loquat
-build_dashboard tulip
+build_dashboard marigold
 
 declare -a go_projects=("daisy" "loquat" "pansy")
 for p in "${go_projects[@]}"

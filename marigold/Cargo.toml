@@ -1,6 +1,6 @@
 [package]
 name = "marigold"
-version = "2025.11.2"
+version = "2026.1.18"
 edition = "2024"
 description = "A total free online education solution."
 
@@ -19,7 +19,7 @@ clap = "4"
 
 
 [dependencies.reqwest]
-version = "0.12"
+version = "0.13"
 features = ["json"]
 
 [dependencies.nix]
@@ -43,13 +43,13 @@ features = ["bundled"]
 # version = "*"
 # features = ["bundled"]
 
-[dependencies.openssl-sys]
-version = "*"
-features = ["vendored"]
-
 [dependencies.pq-sys]
 version = "*"
 features = ["bundled"]
+
+[dependencies.openssl-sys]
+version = "*"
+features = ["vendored"]
 
 [dependencies.phlox]
 path = "../phlox"
