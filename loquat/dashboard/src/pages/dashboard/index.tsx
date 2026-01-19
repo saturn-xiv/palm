@@ -46,6 +46,16 @@ const Widget = () => {
         <Status title="top" content={item?.status.top || ""} />
         <Status title="sar" content={item?.status.sar || ""} />
         <Status title="hardware" content={item?.status.hardware || ""} />
+        <Status title="arp" content={item?.status.arp || ""} />
+        <Status title="routes" content={item?.status.routes || ""} />
+        <Status title="addresses" content={item?.status.addresses || ""} />
+        <Status title="tcp" content={item?.status.tcp || ""} />
+        <Status title="udp" content={item?.status.udp || ""} />
+        <Status
+          title="queueing-discipline"
+          content={item?.status.queueingDiscipline || ""}
+        />
+        <Status title="firewall" content={item?.status.firewall || ""} />
       </div>
     </>
   );

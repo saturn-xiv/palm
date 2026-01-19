@@ -37,6 +37,14 @@ export default {
   "pages.dashboard.home.system-status.hardware": "Hardware",
   "pages.dashboard.home.system-status.top": "Top",
   "pages.dashboard.home.system-status.sar": "Sar",
+  "pages.dashboard.home.system-status.arp": "Arp",
+  "pages.dashboard.home.system-status.routes": "Routes",
+  "pages.dashboard.home.system-status.addresses": "Addresses",
+  "pages.dashboard.home.system-status.tcp": "Tcp ports",
+  "pages.dashboard.home.system-status.udp": "Udp ports",
+  "pages.dashboard.home.system-status.queueingDiscipline":
+    "Queueing Discipline",
+  "pages.dashboard.home.system-status.firewall": "Firewall rules",
   "pages.reboot.waiting": "Please wait for one minute to re-login",
 
   "layouts.dashboard.nav-bar.home": "Home",

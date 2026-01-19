@@ -28,7 +28,7 @@ export const getBondWan = async (): Promise<
         }
       }
     `,
-    {}
+    {},
   );
   return res;
 };
@@ -49,7 +49,7 @@ export const getBondDmz = async (): Promise<
         }
       }
     `,
-    {}
+    {},
   );
   return res;
 };
@@ -71,7 +71,7 @@ export const getBondLan = async (): Promise<
         }
       }
     `,
-    {}
+    {},
   );
   return res;
 };
@@ -95,6 +95,13 @@ interface ISystemStatus {
   sar: string;
   network: string;
   hardware: string;
+  arp: string;
+  routes: string;
+  addresses: string;
+  tcp: string;
+  udp: string;
+  queueingDiscipline: string;
+  firewall: string;
 }
 
 export interface IStatusResponse {
@@ -123,10 +130,17 @@ export const status = async (): Promise<IGraphqlResponse<IStatusResponse>> => {
           diskSpace
           diskIndexNodes
           hardware
+          arp
+          routes
+          addresses
+          tcp
+          udp
+          queueingDiscipline
+          firewall
         }
       }
     `,
-    {}
+    {},
   );
   return res;
 };
@@ -142,7 +156,7 @@ export const reboot = async (): Promise<IGraphqlResponse<IRebootResponse>> => {
         }
       }
     `,
-    {}
+    {},
   );
   return res;
 };
@@ -151,7 +165,7 @@ interface IApplyResponse {
   apply: IOk;
 }
 export const apply = async (
-  run: boolean
+  run: boolean,
 ): Promise<IGraphqlResponse<IApplyResponse>> => {
   const res: IGraphqlResponse<IApplyResponse> = await graphql(
     `
@@ -161,7 +175,7 @@ export const apply = async (
         }
       }
     `,
-    { run }
+    { run },
   );
   return res;
 };

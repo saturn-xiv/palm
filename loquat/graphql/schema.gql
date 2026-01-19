@@ -131,6 +131,13 @@ type StatusResponse {
   sar: String!
   network: String!
   hardware: String!
+  arp: String!
+  routes: String!
+  addresses: String!
+  tcp: String!
+  udp: String!
+  queueingDiscipline: String!
+  firewall: String!
 }
 type NetworkInterface {
   name: String!
