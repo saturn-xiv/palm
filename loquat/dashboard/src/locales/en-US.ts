@@ -42,7 +42,7 @@ export default {
   "pages.dashboard.home.system-status.addresses": "Addresses",
   "pages.dashboard.home.system-status.tcp": "Tcp ports",
   "pages.dashboard.home.system-status.udp": "Udp ports",
-  "pages.dashboard.home.system-status.queueingDiscipline":
+  "pages.dashboard.home.system-status.queueing-discipline":
     "Queueing Discipline",
   "pages.dashboard.home.system-status.firewall": "Firewall rules",
   "pages.reboot.waiting": "Please wait for one minute to re-login",

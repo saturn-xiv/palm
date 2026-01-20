@@ -68,7 +68,7 @@ function build_go() {
 
 # https://www.debian.org/doc/debian-policy/ch-controlfields.html#debian-source-package-template-control-files-debian-control
 function build_deb() {
-    local package="${1}_${VERSION}_${2}.deb"
+    local package="${1}-${VERSION}_${2}.deb"
     echo "build $package"
     local target=$WORKSPACE/tmp/$1-$2-$VERSION/$1
     if [ -d $target ]

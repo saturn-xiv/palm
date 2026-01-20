@@ -30,7 +30,7 @@ const InnerForm = (
   props: {
     devices: IEthernet[];
     onSubmit: (value: IFormValues) => Promise<void>;
-  } & FormikProps<IFormValues>
+  } & FormikProps<IFormValues>,
 ) => {
   const { devices, values, isSubmitting } = props;
   return (
@@ -50,7 +50,7 @@ const InnerForm = (
               {devices.map((it, id) => (
                 <label key={id} className="checkbox">
                   <Field type="checkbox" name="interfaces" value={it.name} />
-                  {it.name}-{it.profile?.label}
+                  {it.name}-{it.profile?.label || ""}
                 </label>
               ))}
             </div>
@@ -134,7 +134,7 @@ const Widget = ({ name, devices }: IProps) => {
           const res = await set_internet_bond(
             name,
             values.interfaces,
-            values.enable
+            values.enable,
           );
           if (res.data?.internetBond) {
             setNotification({

@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/google/uuid"
 )
@@ -82,9 +83,10 @@ type RunStatsHosts struct {
 func Scan(network ...string) (*NmapRun, error) {
 	tmp := filepath.Join(os.TempDir(), fmt.Sprintf("%s.xml", uuid.New().String()))
 	{
-		args := []string{"-oX", tmp, "-sn"}
+		args := []string{"-T4", "--max-retries", "2", "--host-timeout", "5m", "-oX", tmp, "-sn"}
 		args = append(args, network...)
 		slog.Info("scan", "network", network, "file", tmp)
+		slog.Debug("running", "args", strings.Join(args, " "))
 		cmd := exec.Command("nmap", args...)
 		if err := cmd.Run(); err != nil {
 			return nil, err

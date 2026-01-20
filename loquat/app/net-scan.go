@@ -5,6 +5,7 @@ import (
 	"log/slog"
 
 	"github.com/BurntSushi/toml"
+	"github.com/saturn-xiv/palm/loquat/graphql"
 	"github.com/saturn-xiv/palm/loquat/models"
 	"gorm.io/gorm"
 )
@@ -33,8 +34,23 @@ func NetScan(config_file string, debug bool) error {
 }
 
 func nmap_scan(db *gorm.DB) error {
-	// TODO should load from db
-	network := []string{"192.168.12.0/24", "192.168.11.0/24"}
+	router, err := graphql.Export(db)
+	if err != nil {
+		return err
+	}
+
+	network := []string{}
+	if router.Dmz != nil {
+		network = append(network, router.Dmz.Network.Address)
+	}
+	if router.Lan != nil {
+		network = append(network, router.Lan.Network.Address)
+	}
+	if len(network) == 0 {
+		slog.Debug("empty local network")
+		return nil
+	}
+
 	hosts, err := models.ScanHosts(network...)
 	if err != nil {
 		return err

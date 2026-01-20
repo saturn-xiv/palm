@@ -82,7 +82,7 @@ const Widget = () => {
             title={it.name}
             button={{
               action: "info",
-              label: `${it.name}-${it.profile?.label}`,
+              label: `${it.name}-${it.profile?.label || ""}`,
             }}
             handleRefresh={handleRefresh}
           >
