@@ -15,23 +15,6 @@ var gl_netplan_txt string
 func (p *Router) setup_netplan(wrt io.Writer) error {
 	slog.Debug("setup netplan")
 	items := make(map[string]interface{})
-	if p.Wan != nil {
-		for dev, it := range p.Wan.Interfaces {
-			buf, err := it.netplan(dev)
-			if err != nil {
-				return err
-			}
-			items[dev] = map[string]string{"label": it.Label, "content": buf}
-		}
-
-		{
-			buf, err := p.Wan.netplan(WAN)
-			if err != nil {
-				return err
-			}
-			items[WAN] = map[string]string{"label": WAN, "content": buf}
-		}
-	}
 	if p.Dmz != nil {
 		buf, err := p.Dmz.netplan(DMZ)
 		if err != nil {

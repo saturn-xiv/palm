@@ -1,11 +1,6 @@
 import type { IOk } from ".";
 import { graphql, type IGraphqlResponse } from "../request";
 
-export interface IInternetBond {
-  interfaces: string[];
-  enable: boolean;
-}
-
 export interface IIntranetBond {
   interfaces: string[];
   address: string;
@@ -13,25 +8,6 @@ export interface IIntranetBond {
   dns: string;
 }
 
-interface IGetBondWanResponse {
-  bondDmz: IInternetBond;
-}
-export const getBondWan = async (): Promise<
-  IGraphqlResponse<IGetBondWanResponse>
-> => {
-  const res: IGraphqlResponse<IGetBondWanResponse> = await graphql(
-    `
-      query call {
-        bondWan {
-          interfaces
-          enable
-        }
-      }
-    `,
-    {},
-  );
-  return res;
-};
 interface IGetBondDmzResponse {
   bondDmz: IIntranetBond;
 }

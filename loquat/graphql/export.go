@@ -5,7 +5,6 @@ import (
 	"log/slog"
 	"net"
 
-	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/models"
@@ -14,14 +13,6 @@ import (
 
 func Export(db *gorm.DB) (*v2.Router, error) {
 	var rt v2.Router
-	{
-		slog.Debug("load wan profile")
-		bond, err := load_internet_bond(db, v2.WAN)
-		if err != nil {
-			return nil, err
-		}
-		rt.Wan = bond
-	}
 	{
 		slog.Debug("load dmz profile")
 		bond, err := load_intranet_bond(db, v2.DMZ)
@@ -58,43 +49,6 @@ func load_bond(db *gorm.DB, name string) (*bondProfile, error) {
 		return nil, nil
 	}
 	return nil, err
-}
-
-func load_internet_bond(db *gorm.DB, name string) (*v2.InternetBond, error) {
-	bond, err := load_bond(db, name)
-	if err != nil {
-		return nil, err
-	}
-	if bond == nil || !bond.Enable {
-		return nil, nil
-	}
-
-	res := v2.InternetBond{
-		MiiMonitorInterval: 100,
-		Interfaces:         make(map[string]*v2.Internet),
-	}
-	for _, name := range bond.Interfaces {
-		var profile ethernetProfile
-		if err = models.GetB(db, ethernetKey(name), &profile); err != nil {
-			return nil, err
-		}
-		it := v2.Internet{
-			Label: profile.Label,
-			Memo:  profile.Memo,
-		}
-		if profile.Dhcp {
-			it.Ip = &v2.Internet_Dhcp{Dhcp: &emptypb.Empty{}}
-		} else {
-			it.Ip = &v2.Internet_Static_{Static: &v2.Internet_Static{
-				Address: profile.Address,
-				Netmask: profile.Netmask,
-				Gateway: profile.Gateway,
-				Dns:     profile.Dns,
-			}}
-		}
-		res.Interfaces[name] = &it
-	}
-	return &res, nil
 }
 
 func load_intranet_bond(db *gorm.DB, name string) (*v2.IntranetBond, error) {

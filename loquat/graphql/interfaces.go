@@ -3,7 +3,6 @@ package graphql
 import (
 	"context"
 	"errors"
-	"log/slog"
 	"net"
 	"strings"
 
@@ -26,16 +25,6 @@ type InterfacesResponse struct {
 	db *gorm.DB
 }
 
-func (p *InterfacesResponse) Wan() (*InternetBond, error) {
-	item, err := load_bond(p.db, v2.WAN)
-	if err != nil {
-		return nil, err
-	}
-	if item == nil {
-		return nil, nil
-	}
-	return &InternetBond{item}, nil
-}
 func (p *InterfacesResponse) Dmz() (*IntranetBond, error) {
 	item, err := load_bond(p.db, v2.DMZ)
 	if err != nil {
@@ -64,7 +53,6 @@ func (p *InterfacesResponse) Ethernets() ([]*EthernetInterface, error) {
 
 	var items []*EthernetInterface
 	for _, iface := range ifaces {
-		slog.Debug("############# ", "name", iface.Name)
 		if !strings.HasPrefix(iface.Name, "en") {
 			continue
 		}

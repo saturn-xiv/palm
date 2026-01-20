@@ -27,7 +27,6 @@ type Query {
 
   indexFirewallRule: [FirewallRule!]!
 
-  internetBond(name: String!): InternetBond!
   intranetBond(name: String!): IntranetBond!
 }
 
@@ -67,7 +66,6 @@ type Mutation {
   ): Ok!
   disableNetworkInterface(name: String!): Ok!
 
-  internetBond(name: String!, interfaces: [String!]!, enable: Boolean!): Ok!
   intranetBond(
     name: String!
     interfaces: [String!]!
@@ -172,7 +170,6 @@ type Ethernet {
   profile: NetworkInterfaceProfile
 }
 type InterfacesResponse {
-  wan: InternetBond
   dmz: IntranetBond
   lan: IntranetBond
   ethernets: [Ethernet!]!
@@ -241,11 +238,6 @@ type SpeedLimit {
   deletedAt: Time
 }
 union FirewallRule = Input | Nat | Ping | Output | SpeedLimit
-
-type InternetBond {
-  interfaces: [String!]!
-  enable: Boolean!
-}
 
 enum Dns {
   Google

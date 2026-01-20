@@ -11,15 +11,9 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 message Router {
-  optional InternetBond wan = 1;
   optional IntranetBond lan = 2;
   optional IntranetBond dmz = 3;
   repeated FirewallRule rules = 9;
-}
-
-message InternetBond {
-  map<string, Internet> interfaces = 1;
-  uint32 mii_monitor_interval = 2;
 }
 
 message IntranetBond {

@@ -15,12 +15,6 @@ func (p *Router) setup_firewalld(wrt io.Writer) error {
 	if _, err := fmt.Fprintf(wrt, "%s", gl_firewalld_header_txt); err != nil {
 		return err
 	}
-	if p.Wan == nil {
-		return nil
-	}
-	if err := p.Wan.firewalld(wrt, WAN); err != nil {
-		return err
-	}
 	if p.Dmz != nil {
 		if err := p.Dmz.firewalld(wrt, "dmz", DMZ); err != nil {
 			return err

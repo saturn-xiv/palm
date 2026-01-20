@@ -34,7 +34,7 @@ function generate_loquat() {
 }
 
 function generate_gourd() {
-    echo "generate protocols(cpp) for gourd..."    
+    echo "generate protocols(cpp) for gourd"    
     local target=$WORKSPACE/gourd
     if [ -d $target ]
     then
@@ -98,6 +98,7 @@ generate_gourd
 generate_crocus
 generate_marigold
 
+echo "format cargo projects"
 cd $WORKSPACE/
 cargo fmt
 

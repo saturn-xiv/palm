@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useAppDispatch } from "../../hooks";
-import { DMZ, interfaces, LAN, WAN, type IEthernet } from "../../api/interface";
+import { DMZ, interfaces, LAN, type IEthernet } from "../../api/interface";
 import { danger as show_danger } from "../../reducers/notification";
 import ModalForm from "../../components/ModalForm";
-import InternetBondForm from "./InternetBond";
 import IntranetBondForm, {
   BalanceAlb as IntranetBond6Description,
   BalanceXor as IntranetBond3Description,
@@ -34,16 +33,6 @@ const Widget = () => {
   return (
     <div className="grid is-col-min-12">
       <div className="buttons are-small">
-        <ModalForm
-          title={WAN}
-          button={{
-            action: "info",
-            label: WAN,
-          }}
-          handleRefresh={handleRefresh}
-        >
-          <InternetBondForm devices={devices} name={WAN} />
-        </ModalForm>
         <ModalForm
           title={DMZ}
           button={{

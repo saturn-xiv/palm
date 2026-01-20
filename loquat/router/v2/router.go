@@ -78,9 +78,6 @@ func (p *Router) render_to_file(name string) error {
 }
 
 func (p *Router) VerifyInterface() error {
-	if err := p.check_wan(); err != nil {
-		return err
-	}
 	if err := p.check_dmz(); err != nil {
 		return err
 	}
@@ -90,37 +87,11 @@ func (p *Router) VerifyInterface() error {
 	return nil
 }
 
-func (p *Router) check_wan() error {
-	if p.Wan != nil {
-		for name := range p.Wan.Interfaces {
-			if _, err := net.InterfaceByName(name); err != nil {
-				return err
-			}
-			if p.Dmz != nil {
-				if slices.Contains(p.Dmz.Interfaces, name) {
-					return fmt.Errorf("%s is used in wan & dmz", name)
-				}
-			}
-			if p.Lan != nil {
-				if slices.Contains(p.Lan.Interfaces, name) {
-					return fmt.Errorf("%s is used in wan & lan", name)
-				}
-			}
-		}
-	}
-	return nil
-}
-
 func (p *Router) check_dmz() error {
 	if p.Dmz != nil {
 		for _, name := range p.Dmz.Interfaces {
 			if _, err := net.InterfaceByName(name); err != nil {
 				return err
-			}
-			if p.Wan != nil {
-				if _, ok := p.Wan.Interfaces[name]; ok {
-					return fmt.Errorf("%s is used in dmz & wan", name)
-				}
 			}
 			if p.Lan != nil {
 				if slices.Contains(p.Lan.Interfaces, name) {
@@ -137,11 +108,6 @@ func (p *Router) check_lan() error {
 		for _, name := range p.Lan.Interfaces {
 			if _, err := net.InterfaceByName(name); err != nil {
 				return err
-			}
-			if p.Wan != nil {
-				if _, ok := p.Wan.Interfaces[name]; ok {
-					return fmt.Errorf("%s is used in lan & wan", name)
-				}
 			}
 			if p.Dmz != nil {
 				if slices.Contains(p.Dmz.Interfaces, name) {
