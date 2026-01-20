@@ -11,7 +11,8 @@ import (
 )
 
 func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
-	Name string
+	Name  string
+	Label string
 }) (*Ok, error) {
 	user, ip, err := current_user(ctx, p.db, p.secrets)
 	if err != nil {
@@ -25,6 +26,7 @@ func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			return err
 		}
+		it.Label = args.Label
 		it.Enable = false
 		if err := models.SetB(tx, key, &it); err != nil {
 			return err

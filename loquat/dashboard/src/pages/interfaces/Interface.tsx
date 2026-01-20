@@ -40,7 +40,7 @@ interface IFormValues {
 const InnerForm = (
   props: {
     onSubmit: (value: IFormValues) => Promise<void>;
-  } & FormikProps<IFormValues>
+  } & FormikProps<IFormValues>,
 ) => {
   const { touched, errors, values, isSubmitting } = props;
   return (
@@ -54,19 +54,17 @@ const InnerForm = (
         </div>
       </div>
 
-      {values.enable && (
-        <div className="field">
-          <label className="label">
-            <FormattedMessage id="forms.fields.label.name" />
-          </label>
-          <div className="control">
-            <Field className="input" name="label" />
-          </div>
-          {touched.label && errors.label && (
-            <p className="help is-danger">{errors.label}</p>
-          )}
+      <div className="field">
+        <label className="label">
+          <FormattedMessage id="forms.fields.label.name" />
+        </label>
+        <div className="control">
+          <Field className="input" name="label" />
         </div>
-      )}
+        {touched.label && errors.label && (
+          <p className="help is-danger">{errors.label}</p>
+        )}
+      </div>
 
       {values.enable && (
         <div className="field">
@@ -263,7 +261,7 @@ const Widget = ({ name }: IProps) => {
                 name,
                 values.label,
                 ISP_OTHER,
-                values.memo
+                values.memo,
               );
               if (res.data?.setNetworkInterfacePublicDhcp) {
                 setNotification({
@@ -292,7 +290,7 @@ const Widget = ({ name }: IProps) => {
                 values.netmask,
                 values.gateway,
                 dns,
-                values.memo
+                values.memo,
               );
               if (res.data?.setNetworkInterfacePublicStaticIp) {
                 setNotification({
@@ -307,7 +305,7 @@ const Widget = ({ name }: IProps) => {
               }
             }
           } else {
-            const res = await disable_interface(name);
+            const res = await disable_interface(name, values.label);
             if (res.data?.disableNetworkInterface) {
               setNotification({
                 action: "success",

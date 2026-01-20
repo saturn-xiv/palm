@@ -210,16 +210,17 @@ interface IDisableInterfaceResponse {
 }
 export const disable_interface = async (
   name: string,
+  label: string,
 ): Promise<IGraphqlResponse<IDisableInterfaceResponse>> => {
   const res: IGraphqlResponse<IDisableInterfaceResponse> = await graphql(
     `
-      mutation call($name: String!) {
-        disableNetworkInterface(name: $name) {
+      mutation call($name: String!, $label: String!) {
+        disableNetworkInterface(name: $name, label: $label) {
           createdAt
         }
       }
     `,
-    { name },
+    { name, label },
   );
   return res;
 };

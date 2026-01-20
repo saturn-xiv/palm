@@ -64,7 +64,7 @@ type Mutation {
     dns: [String!]!
     memo: String!
   ): Ok!
-  disableNetworkInterface(name: String!): Ok!
+  disableNetworkInterface(name: String!, label: String!): Ok!
 
   intranetBond(
     name: String!
