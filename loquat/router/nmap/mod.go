@@ -80,12 +80,11 @@ type RunStatsHosts struct {
 	Total   uint     `xml:"total,attr"`
 }
 
-func Scan(network ...string) (*NmapRun, error) {
+func Scan(dev string, network string) (*NmapRun, error) {
 	tmp := filepath.Join(os.TempDir(), fmt.Sprintf("%s.xml", uuid.New().String()))
 	{
-		args := []string{"-T4", "--max-retries", "2", "--host-timeout", "5m", "-oX", tmp, "-sn"}
-		args = append(args, network...)
-		slog.Info("scan", "network", network, "file", tmp)
+		args := []string{"-e", dev, "-T4", "--max-retries", "2", "--host-timeout", "5m", "-oX", tmp, "-sn", network}
+		slog.Info("scan", "dev", dev, "network", network, "file", tmp)
 		slog.Debug("running", "args", strings.Join(args, " "))
 		cmd := exec.Command("nmap", args...)
 		if err := cmd.Run(); err != nil {

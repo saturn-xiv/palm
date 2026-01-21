@@ -28,8 +28,8 @@ func (Host) TableName() string {
 	return "hosts"
 }
 
-func ScanHosts(network ...string) ([]Host, error) {
-	res, err := nmap.Scan(network...)
+func ScanHosts(dev string, network string) ([]Host, error) {
+	res, err := nmap.Scan(dev, network)
 	if err != nil {
 		return nil, err
 	}
@@ -48,17 +48,12 @@ func ScanHosts(network ...string) ([]Host, error) {
 				if ip == nil {
 					slog.Error("not a valid ip address", "v4", addr.Addr)
 				} else {
-					for _, nw := range network {
-						_, net, err := net.ParseCIDR(nw)
-						if err != nil {
-							return nil, err
-						}
-						if net.Contains(ip) {
-							it.Ip = ip.String()
-							it.Network = net.String()
-							break
-						}
+					_, net, err := net.ParseCIDR(network)
+					if err != nil {
+						return nil, err
 					}
+					it.Ip = ip.String()
+					it.Network = net.String()
 				}
 				continue
 			}

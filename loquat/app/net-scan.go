@@ -7,6 +7,7 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/saturn-xiv/palm/loquat/graphql"
 	"github.com/saturn-xiv/palm/loquat/models"
+	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 	"gorm.io/gorm"
 )
 
@@ -39,22 +40,22 @@ func nmap_scan(db *gorm.DB) error {
 		return err
 	}
 
-	network := []string{}
+	var hosts []models.Host
 	if router.Dmz != nil {
-		network = append(network, router.Dmz.Network.Address)
+		items, err := models.ScanHosts(v2.DMZ, router.Dmz.Network.Address)
+		if err != nil {
+			return err
+		}
+		hosts = append(hosts, items...)
 	}
 	if router.Lan != nil {
-		network = append(network, router.Lan.Network.Address)
-	}
-	if len(network) == 0 {
-		slog.Debug("empty local network")
-		return nil
+		items, err := models.ScanHosts(v2.LAN, router.Lan.Network.Address)
+		if err != nil {
+			return err
+		}
+		hosts = append(hosts, items...)
 	}
 
-	hosts, err := models.ScanHosts(network...)
-	if err != nil {
-		return err
-	}
 	inserted := 0
 	updated := 0
 	if err = db.Transaction(func(tx *gorm.DB) error {
