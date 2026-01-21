@@ -11,6 +11,7 @@ func (p *Internet) netplan(dev string) (string, error) {
 	switch p.Ip.(type) {
 	case *Internet_Dhcp:
 		args["dhcp4"] = true
+		args["dhcp4-overrides"] = map[string]interface{}{"route-metric": p.metric()}
 	case *Internet_Static_:
 		cidr, err := netmask_to_cidr(p.GetStatic().Netmask)
 		if err != nil {
@@ -21,9 +22,10 @@ func (p *Internet) netplan(dev string) (string, error) {
 			"addresses": p.GetStatic().Dns,
 		}
 		args["routes"] = []map[string]interface{}{
-			map[string]interface{}{
-				"to":  "default",
-				"via": p.GetStatic().Gateway,
+			{
+				"to":     "default",
+				"via":    p.GetStatic().Gateway,
+				"metric": p.metric(),
 			},
 		}
 	default:
@@ -31,4 +33,8 @@ func (p *Internet) netplan(dev string) (string, error) {
 		return "", fmt.Errorf("does not support mod %v yet", p.Ip)
 	}
 	return render_netplan_yaml("ethernets", dev, args)
+}
+
+func (p *Internet) metric() uint32 {
+	return p.Priority + 100
 }
