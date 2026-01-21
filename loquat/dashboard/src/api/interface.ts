@@ -47,12 +47,14 @@ export const interfaces = async (): Promise<
                 gateway
                 dns
                 memo
+                priority
                 enable
               }
               ... on DynamicIp {
                 label
                 isp
                 memo
+                priority
                 enable
               }
             }
@@ -69,6 +71,7 @@ export interface IIntranetBond {
   interfaces: string[];
   address: string;
   dns: string;
+  mode: string;
   enable: boolean;
 }
 interface IGetIntranetBondResponse {
@@ -84,6 +87,7 @@ export const get_intranet_bond = async (
           interfaces
           address
           dns
+          mode
           enable
         }
       }
@@ -101,6 +105,7 @@ export const set_intranet_bond = async (
   interfaces: string[],
   address: string,
   dns: string,
+  mode: string,
   enable: boolean,
 ): Promise<IGraphqlResponse<ISetIntranetBondResponse>> => {
   const res: IGraphqlResponse<ISetIntranetBondResponse> = await graphql(
@@ -110,6 +115,7 @@ export const set_intranet_bond = async (
         $interfaces: [String!]!
         $address: String!
         $dns: Dns!
+        $mode: BondMode!
         $enable: Boolean!
       ) {
         intranetBond(
@@ -117,13 +123,14 @@ export const set_intranet_bond = async (
           interfaces: $interfaces
           address: $address
           dns: $dns
+          mode: $mode
           enable: $enable
         ) {
           createdAt
         }
       }
     `,
-    { name, interfaces, address, dns, enable },
+    { name, interfaces, address, dns, mode, enable },
   );
   return res;
 };
@@ -139,8 +146,8 @@ export const set_interface_static_ip = async (
   netmask: string,
   gateway: string,
   dns: string[],
-
   memo: string,
+  priority: number,
 ): Promise<IGraphqlResponse<ISetInterfaceStaticIpResponse>> => {
   const res: IGraphqlResponse<ISetInterfaceStaticIpResponse> = await graphql(
     `
@@ -153,6 +160,7 @@ export const set_interface_static_ip = async (
         $gateway: String!
         $dns: [String!]!
         $memo: String!
+        $priority: Int!
       ) {
         setNetworkInterfacePublicStaticIp(
           name: $name
@@ -163,12 +171,13 @@ export const set_interface_static_ip = async (
           gateway: $gateway
           dns: $dns
           memo: $memo
+          priority: $priority
         ) {
           createdAt
         }
       }
     `,
-    { name, label, isp, address, netmask, gateway, dns, memo },
+    { name, label, isp, address, netmask, gateway, dns, memo, priority },
   );
   return res;
 };
@@ -181,7 +190,9 @@ export const set_interface_dhcp = async (
   label: string,
   isp: string,
   memo: string,
+  priority: number,
 ): Promise<IGraphqlResponse<ISetInterfaceDhcpResponse>> => {
+  console.log("priority", priority);
   const res: IGraphqlResponse<ISetInterfaceDhcpResponse> = await graphql(
     `
       mutation call(
@@ -189,18 +200,20 @@ export const set_interface_dhcp = async (
         $label: String!
         $isp: Isp!
         $memo: String!
+        $priority: Int!
       ) {
         setNetworkInterfacePublicDhcp(
           name: $name
           label: $label
           isp: $isp
           memo: $memo
+          priority: $priority
         ) {
           createdAt
         }
       }
     `,
-    { name, label, isp, memo },
+    { name, label, isp, memo, priority },
   );
   return res;
 };
@@ -230,6 +243,7 @@ export interface IDhcp {
   label: string;
   isp: string;
   memo: string;
+  priority: number;
   enable: boolean;
 }
 
@@ -242,6 +256,7 @@ export interface IStaticIp {
   gateway: string;
   dns: string[];
   memo: string;
+  priority: number;
   enable: boolean;
 }
 

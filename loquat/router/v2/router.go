@@ -78,11 +78,35 @@ func (p *Router) render_to_file(name string) error {
 }
 
 func (p *Router) VerifyInterface() error {
+	if err := p.check_wan(); err != nil {
+		return err
+	}
 	if err := p.check_dmz(); err != nil {
 		return err
 	}
 	if err := p.check_lan(); err != nil {
 		return err
+	}
+	return nil
+}
+
+func (p *Router) check_wan() error {
+	if p.Wan != nil {
+		for name, _ := range p.Wan {
+			if _, err := net.InterfaceByName(name); err != nil {
+				return err
+			}
+			if p.Dmz != nil {
+				if slices.Contains(p.Dmz.Interfaces, name) {
+					return fmt.Errorf("%s is used in wan & dmz", name)
+				}
+			}
+			if p.Lan != nil {
+				if slices.Contains(p.Lan.Interfaces, name) {
+					return fmt.Errorf("%s is used in wan & lan", name)
+				}
+			}
+		}
 	}
 	return nil
 }

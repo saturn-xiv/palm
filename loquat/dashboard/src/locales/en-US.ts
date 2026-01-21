@@ -47,6 +47,9 @@ export default {
   "pages.dashboard.home.system-status.firewall": "Firewall rules",
   "pages.reboot.waiting": "Please wait for one minute to re-login",
 
+  "intranet-bond.dns": "DNS Provider",
+  "intranet-bond.mode": "Balance mode",
+
   "layouts.dashboard.nav-bar.home": "Home",
   "layouts.dashboard.nav-bar.settings": "Settings",
   "layouts.dashboard.nav-bar.account": "Account",
@@ -87,6 +90,7 @@ export default {
   "forms.fields.label.name": "Name",
   "forms.fields.label.sn": "SN",
   "forms.fields.label.ip": "IP",
+  "forms.fields.label.priority": "Priority",
   "forms.fields.label.owner": "Owner",
   "forms.fields.label.sort-order": "Sort order",
   "forms.fields.label.device": "Device",

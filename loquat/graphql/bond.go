@@ -15,6 +15,7 @@ func (p *Mutation) IntranetBond(ctx context.Context, args struct {
 	Interfaces []string
 	Address    string
 	Dns        string
+	Mode       string
 	Enable     bool
 }) (*Ok, error) {
 	user, ip, err := current_user(ctx, p.db, p.secrets)
@@ -31,6 +32,7 @@ func (p *Mutation) IntranetBond(ctx context.Context, args struct {
 		bond.Address = args.Address
 		bond.Enable = args.Enable
 		bond.Dns = args.Dns
+		bond.Mode = args.Mode
 		if err = models.SetB(tx, bondKey(args.Name), &bond); err != nil {
 			return err
 		}
@@ -78,10 +80,14 @@ func (p *IntranetBond) Enable() bool {
 func (p *IntranetBond) Dns() string {
 	return p.item.Dns
 }
+func (p *IntranetBond) Mode() string {
+	return p.item.Mode
+}
 
 type bondProfile struct {
 	Interfaces []string
 	Address    string
 	Enable     bool
 	Dns        string
+	Mode       string
 }

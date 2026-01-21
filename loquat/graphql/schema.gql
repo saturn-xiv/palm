@@ -53,6 +53,7 @@ type Mutation {
     label: String!
     isp: Isp!
     memo: String!
+    priority: Int!
   ): Ok!
   setNetworkInterfacePublicStaticIp(
     name: String!
@@ -63,6 +64,7 @@ type Mutation {
     gateway: String!
     dns: [String!]!
     memo: String!
+    priority: Int!
   ): Ok!
   disableNetworkInterface(name: String!, label: String!): Ok!
 
@@ -71,6 +73,7 @@ type Mutation {
     interfaces: [String!]!
     address: String!
     dns: Dns!
+    mode: BondMode!
     enable: Boolean!
   ): Ok!
 
@@ -155,12 +158,14 @@ type StaticIp {
   netmask: String!
   gateway: String!
   dns: [String!]!
+  priority: Int!
   enable: Boolean!
 }
 type DynamicIp {
   label: String!
   memo: String!
   isp: String!
+  priority: Int!
   enable: Boolean!
 }
 union NetworkInterfaceProfile = StaticIp | DynamicIp
@@ -243,12 +248,17 @@ enum Dns {
   Google
   Ali
 }
+enum BondMode {
+  BalanceXor
+  BalanceAlb
+}
 
 type IntranetBond {
   interfaces: [String!]!
   address: String!
   enable: Boolean!
   dns: String!
+  mode: String!
 }
 
 type Ok {

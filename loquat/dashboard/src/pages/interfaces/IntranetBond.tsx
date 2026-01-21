@@ -19,6 +19,8 @@ import { danger as show_danger } from "../../reducers/notification";
 const DEFAULT_ADDRESS = "192.168.0.1/24";
 const DNS_GOOGLE = "Google";
 const DNS_ALI = "Ali";
+const BALANCE_XOR = "BalanceXor";
+const BALANCE_ALB = "BalanceAlb";
 
 export const BalanceAlb = () => (
   <>
@@ -82,6 +84,7 @@ interface IFormValues {
   address: string;
   interfaces: string[];
   dns: string;
+  mode: string;
   enable: boolean;
 }
 
@@ -89,7 +92,7 @@ const InnerForm = (
   props: {
     devices: IEthernet[];
     onSubmit: (value: IFormValues) => Promise<void>;
-  } & FormikProps<IFormValues>
+  } & FormikProps<IFormValues>,
 ) => {
   const { devices, values, isSubmitting } = props;
   return (
@@ -109,7 +112,7 @@ const InnerForm = (
               {devices.map((it, id) => (
                 <label key={id} className="checkbox">
                   <Field type="checkbox" name="interfaces" value={it.name} />
-                  {it.name}-{it.profile?.label}
+                  {it.name}-{it.profile?.label || ""}
                 </label>
               ))}
             </div>
@@ -138,11 +141,32 @@ const InnerForm = (
 
       {values.enable && (
         <div className="field">
+          <label className="label">
+            <FormattedMessage id="intranet-bond.dns" />
+          </label>
           <div className="control">
             <div className="radios">
               {[DNS_ALI, DNS_GOOGLE].map((it, id) => (
                 <label className="radio" key={id}>
                   <Field type="radio" name="dns" value={it} />
+                  {it}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {values.enable && (
+        <div className="field">
+          <label className="label">
+            <FormattedMessage id="intranet-bond.mode" />
+          </label>
+          <div className="control">
+            <div className="radios">
+              {[BALANCE_XOR, BALANCE_ALB].map((it, id) => (
+                <label className="radio" key={id}>
+                  <Field type="radio" name="mode" value={it} />
                   {it}
                 </label>
               ))}
@@ -185,6 +209,7 @@ const IForm = withFormik<
       interfaces: props.bond?.interfaces || [],
       address: props.bond?.address || DEFAULT_ADDRESS,
       dns: props.bond?.dns || DNS_ALI,
+      mode: props.bond?.mode || BALANCE_ALB,
     };
   },
   enableReinitialize: true,
@@ -231,7 +256,8 @@ const Widget = ({ name, devices }: IProps) => {
             values.interfaces,
             values.address,
             values.dns,
-            values.enable
+            values.mode,
+            values.enable,
           );
           if (res.data?.intranetBond) {
             setNotification({

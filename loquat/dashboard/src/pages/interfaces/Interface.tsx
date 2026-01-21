@@ -34,6 +34,7 @@ interface IFormValues {
   dns2: string;
   dhcp: boolean;
   memo: string;
+  priority: string;
   enable: boolean;
 }
 
@@ -156,6 +157,25 @@ const InnerForm = (
         </div>
       )}
 
+      {values.enable && (
+        <div className="field">
+          <label className="label">
+            <FormattedMessage id="forms.fields.label.priority" />
+          </label>
+          <div className="control">
+            <div className="select">
+              <Field name="priority" component="select">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((it, id) => (
+                  <option key={id} value={it}>
+                    {it}
+                  </option>
+                ))}
+              </Field>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="field is-grouped">
         <div className="control">
           <button
@@ -213,6 +233,7 @@ const IForm = withFormik<
           : "",
       memo: props.profile?.memo || "",
       enable: props.profile?.enable || false,
+      priority: `${props.profile?.priority || 1}`,
       dhcp: !(props.profile && "netmask" in props.profile),
     };
   },
@@ -262,6 +283,7 @@ const Widget = ({ name }: IProps) => {
                 values.label,
                 ISP_OTHER,
                 values.memo,
+                parseInt(values.priority),
               );
               if (res.data?.setNetworkInterfacePublicDhcp) {
                 setNotification({
@@ -291,6 +313,7 @@ const Widget = ({ name }: IProps) => {
                 values.gateway,
                 dns,
                 values.memo,
+                parseInt(values.priority),
               );
               if (res.data?.setNetworkInterfacePublicStaticIp) {
                 setNotification({

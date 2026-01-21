@@ -25,6 +25,17 @@ func (p *IntranetBond) firewalld(wrt io.Writer, zone string, device string) erro
 	return nil
 }
 
+func (p *IntranetBond_Mode) ToString() string {
+	switch *p {
+	case IntranetBond_BALANCE_ALB:
+		return "balance-alb"
+	case IntranetBond_BALANCE_XOR:
+		return "balance-xor"
+	default:
+		return ""
+	}
+}
+
 // https://netplan.readthedocs.io/en/stable/examples/#how-to-configure-multiple-bonds
 // https://netplan.readthedocs.io/en/latest/netplan-yaml/#properties-for-device-type-bonds
 // https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
@@ -44,7 +55,7 @@ func (p *IntranetBond) netplan(dev string) (string, error) {
 		"interfaces": p.Interfaces,
 		"addresses":  []string{p.Network.Address},
 		"parameters": map[string]interface{}{
-			"mode":                 "balance-xor",
+			"mode":                 p.Mode.ToString(),
 			"mii-monitor-interval": p.MiiMonitorInterval,
 			// layer2, layer3+4, layer2+3, encap2+3 and encap3+4.
 			"transmit-hash-policy": "layer3+4",

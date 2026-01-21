@@ -28,20 +28,20 @@ type IntranetBond_Mode int32
 
 const (
 	// 6 Requires autonomous ports
-	IntranetBond_BalanceAlb IntranetBond_Mode = 0
+	IntranetBond_BALANCE_ALB IntranetBond_Mode = 0
 	// 2 Requires static Etherchannel enabled (not LACP-negotiated)
-	IntranetBond_BalanceXor IntranetBond_Mode = 1
+	IntranetBond_BALANCE_XOR IntranetBond_Mode = 1
 )
 
 // Enum value maps for IntranetBond_Mode.
 var (
 	IntranetBond_Mode_name = map[int32]string{
-		0: "BalanceAlb",
-		1: "BalanceXor",
+		0: "BALANCE_ALB",
+		1: "BALANCE_XOR",
 	}
 	IntranetBond_Mode_value = map[string]int32{
-		"BalanceAlb": 0,
-		"BalanceXor": 1,
+		"BALANCE_ALB": 0,
+		"BALANCE_XOR": 1,
 	}
 )
 
@@ -75,19 +75,19 @@ func (IntranetBond_Mode) EnumDescriptor() ([]byte, []int) {
 type FirewallRule_Protocol int32
 
 const (
-	FirewallRule_Tcp FirewallRule_Protocol = 0
-	FirewallRule_Udp FirewallRule_Protocol = 1
+	FirewallRule_TCP FirewallRule_Protocol = 0
+	FirewallRule_UDP FirewallRule_Protocol = 1
 )
 
 // Enum value maps for FirewallRule_Protocol.
 var (
 	FirewallRule_Protocol_name = map[int32]string{
-		0: "Tcp",
-		1: "Udp",
+		0: "TCP",
+		1: "UDP",
 	}
 	FirewallRule_Protocol_value = map[string]int32{
-		"Tcp": 0,
-		"Udp": 1,
+		"TCP": 0,
+		"UDP": 1,
 	}
 )
 
@@ -121,34 +121,34 @@ func (FirewallRule_Protocol) EnumDescriptor() ([]byte, []int) {
 type FirewallRule_Week int32
 
 const (
-	FirewallRule_Sun FirewallRule_Week = 0
-	FirewallRule_Mon FirewallRule_Week = 1
-	FirewallRule_Tue FirewallRule_Week = 2
-	FirewallRule_Wed FirewallRule_Week = 3
-	FirewallRule_Thu FirewallRule_Week = 4
-	FirewallRule_Fri FirewallRule_Week = 5
-	FirewallRule_Sat FirewallRule_Week = 6
+	FirewallRule_SUN FirewallRule_Week = 0
+	FirewallRule_MON FirewallRule_Week = 1
+	FirewallRule_TUE FirewallRule_Week = 2
+	FirewallRule_WED FirewallRule_Week = 3
+	FirewallRule_THU FirewallRule_Week = 4
+	FirewallRule_FRI FirewallRule_Week = 5
+	FirewallRule_SAT FirewallRule_Week = 6
 )
 
 // Enum value maps for FirewallRule_Week.
 var (
 	FirewallRule_Week_name = map[int32]string{
-		0: "Sun",
-		1: "Mon",
-		2: "Tue",
-		3: "Wed",
-		4: "Thu",
-		5: "Fri",
-		6: "Sat",
+		0: "SUN",
+		1: "MON",
+		2: "TUE",
+		3: "WED",
+		4: "THU",
+		5: "FRI",
+		6: "SAT",
 	}
 	FirewallRule_Week_value = map[string]int32{
-		"Sun": 0,
-		"Mon": 1,
-		"Tue": 2,
-		"Wed": 3,
-		"Thu": 4,
-		"Fri": 5,
-		"Sat": 6,
+		"SUN": 0,
+		"MON": 1,
+		"TUE": 2,
+		"WED": 3,
+		"THU": 4,
+		"FRI": 5,
+		"SAT": 6,
 	}
 )
 
@@ -181,6 +181,7 @@ func (FirewallRule_Week) EnumDescriptor() ([]byte, []int) {
 
 type Router struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Wan           map[string]*Internet   `protobuf:"bytes,1,rep,name=wan,proto3" json:"wan,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	Lan           *IntranetBond          `protobuf:"bytes,2,opt,name=lan,proto3,oneof" json:"lan,omitempty"`
 	Dmz           *IntranetBond          `protobuf:"bytes,3,opt,name=dmz,proto3,oneof" json:"dmz,omitempty"`
 	Rules         []*FirewallRule        `protobuf:"bytes,9,rep,name=rules,proto3" json:"rules,omitempty"`
@@ -216,6 +217,13 @@ func (x *Router) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Router.ProtoReflect.Descriptor instead.
 func (*Router) Descriptor() ([]byte, []int) {
 	return file_proto_router_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Router) GetWan() map[string]*Internet {
+	if x != nil {
+		return x.Wan
+	}
+	return nil
 }
 
 func (x *Router) GetLan() *IntranetBond {
@@ -304,7 +312,7 @@ func (x *IntranetBond) GetMode() IntranetBond_Mode {
 	if x != nil {
 		return x.Mode
 	}
-	return IntranetBond_BalanceAlb
+	return IntranetBond_BALANCE_ALB
 }
 
 type Internet struct {
@@ -725,7 +733,7 @@ type Internet_Static struct {
 
 func (x *Internet_Static) Reset() {
 	*x = Internet_Static{}
-	mi := &file_proto_router_proto_msgTypes[5]
+	mi := &file_proto_router_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -737,7 +745,7 @@ func (x *Internet_Static) String() string {
 func (*Internet_Static) ProtoMessage() {}
 
 func (x *Internet_Static) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[5]
+	mi := &file_proto_router_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -791,7 +799,7 @@ type Internet_Pppoe struct {
 
 func (x *Internet_Pppoe) Reset() {
 	*x = Internet_Pppoe{}
-	mi := &file_proto_router_proto_msgTypes[6]
+	mi := &file_proto_router_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -803,7 +811,7 @@ func (x *Internet_Pppoe) String() string {
 func (*Internet_Pppoe) ProtoMessage() {}
 
 func (x *Internet_Pppoe) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[6]
+	mi := &file_proto_router_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -841,7 +849,7 @@ type Intranet_Google struct {
 
 func (x *Intranet_Google) Reset() {
 	*x = Intranet_Google{}
-	mi := &file_proto_router_proto_msgTypes[7]
+	mi := &file_proto_router_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -853,7 +861,7 @@ func (x *Intranet_Google) String() string {
 func (*Intranet_Google) ProtoMessage() {}
 
 func (x *Intranet_Google) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[7]
+	mi := &file_proto_router_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -877,7 +885,7 @@ type Intranet_Ali struct {
 
 func (x *Intranet_Ali) Reset() {
 	*x = Intranet_Ali{}
-	mi := &file_proto_router_proto_msgTypes[8]
+	mi := &file_proto_router_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -889,7 +897,7 @@ func (x *Intranet_Ali) String() string {
 func (*Intranet_Ali) ProtoMessage() {}
 
 func (x *Intranet_Ali) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[8]
+	mi := &file_proto_router_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -914,7 +922,7 @@ type Intranet_Other struct {
 
 func (x *Intranet_Other) Reset() {
 	*x = Intranet_Other{}
-	mi := &file_proto_router_proto_msgTypes[9]
+	mi := &file_proto_router_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -926,7 +934,7 @@ func (x *Intranet_Other) String() string {
 func (*Intranet_Other) ProtoMessage() {}
 
 func (x *Intranet_Other) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[9]
+	mi := &file_proto_router_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -961,7 +969,7 @@ type Intranet_Host struct {
 
 func (x *Intranet_Host) Reset() {
 	*x = Intranet_Host{}
-	mi := &file_proto_router_proto_msgTypes[10]
+	mi := &file_proto_router_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -973,7 +981,7 @@ func (x *Intranet_Host) String() string {
 func (*Intranet_Host) ProtoMessage() {}
 
 func (x *Intranet_Host) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[10]
+	mi := &file_proto_router_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1026,7 +1034,7 @@ type FirewallRule_Ping struct {
 
 func (x *FirewallRule_Ping) Reset() {
 	*x = FirewallRule_Ping{}
-	mi := &file_proto_router_proto_msgTypes[11]
+	mi := &file_proto_router_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1038,7 +1046,7 @@ func (x *FirewallRule_Ping) String() string {
 func (*FirewallRule_Ping) ProtoMessage() {}
 
 func (x *FirewallRule_Ping) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[11]
+	mi := &file_proto_router_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1071,7 +1079,7 @@ type FirewallRule_Time struct {
 
 func (x *FirewallRule_Time) Reset() {
 	*x = FirewallRule_Time{}
-	mi := &file_proto_router_proto_msgTypes[12]
+	mi := &file_proto_router_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1083,7 +1091,7 @@ func (x *FirewallRule_Time) String() string {
 func (*FirewallRule_Time) ProtoMessage() {}
 
 func (x *FirewallRule_Time) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[12]
+	mi := &file_proto_router_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1124,7 +1132,7 @@ type FirewallRule_Period struct {
 
 func (x *FirewallRule_Period) Reset() {
 	*x = FirewallRule_Period{}
-	mi := &file_proto_router_proto_msgTypes[13]
+	mi := &file_proto_router_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1136,7 +1144,7 @@ func (x *FirewallRule_Period) String() string {
 func (*FirewallRule_Period) ProtoMessage() {}
 
 func (x *FirewallRule_Period) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[13]
+	mi := &file_proto_router_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1185,7 +1193,7 @@ type FirewallRule_Nat struct {
 
 func (x *FirewallRule_Nat) Reset() {
 	*x = FirewallRule_Nat{}
-	mi := &file_proto_router_proto_msgTypes[14]
+	mi := &file_proto_router_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1197,7 +1205,7 @@ func (x *FirewallRule_Nat) String() string {
 func (*FirewallRule_Nat) ProtoMessage() {}
 
 func (x *FirewallRule_Nat) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[14]
+	mi := &file_proto_router_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1224,7 +1232,7 @@ func (x *FirewallRule_Nat) GetProtocol() FirewallRule_Protocol {
 	if x != nil {
 		return x.Protocol
 	}
-	return FirewallRule_Tcp
+	return FirewallRule_TCP
 }
 
 func (x *FirewallRule_Nat) GetPort() uint32 {
@@ -1252,7 +1260,7 @@ type FirewallRule_Input struct {
 
 func (x *FirewallRule_Input) Reset() {
 	*x = FirewallRule_Input{}
-	mi := &file_proto_router_proto_msgTypes[15]
+	mi := &file_proto_router_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1264,7 +1272,7 @@ func (x *FirewallRule_Input) String() string {
 func (*FirewallRule_Input) ProtoMessage() {}
 
 func (x *FirewallRule_Input) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[15]
+	mi := &file_proto_router_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1291,7 +1299,7 @@ func (x *FirewallRule_Input) GetProtocol() FirewallRule_Protocol {
 	if x != nil {
 		return x.Protocol
 	}
-	return FirewallRule_Tcp
+	return FirewallRule_TCP
 }
 
 func (x *FirewallRule_Input) GetPort() uint32 {
@@ -1312,7 +1320,7 @@ type FirewallRule_Output struct {
 
 func (x *FirewallRule_Output) Reset() {
 	*x = FirewallRule_Output{}
-	mi := &file_proto_router_proto_msgTypes[16]
+	mi := &file_proto_router_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1324,7 +1332,7 @@ func (x *FirewallRule_Output) String() string {
 func (*FirewallRule_Output) ProtoMessage() {}
 
 func (x *FirewallRule_Output) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[16]
+	mi := &file_proto_router_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1372,7 +1380,7 @@ type FirewallRule_SpeedLimit struct {
 
 func (x *FirewallRule_SpeedLimit) Reset() {
 	*x = FirewallRule_SpeedLimit{}
-	mi := &file_proto_router_proto_msgTypes[17]
+	mi := &file_proto_router_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1384,7 +1392,7 @@ func (x *FirewallRule_SpeedLimit) String() string {
 func (*FirewallRule_SpeedLimit) ProtoMessage() {}
 
 func (x *FirewallRule_SpeedLimit) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[17]
+	mi := &file_proto_router_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1431,7 +1439,7 @@ type FirewallRule_Nat_Destination struct {
 
 func (x *FirewallRule_Nat_Destination) Reset() {
 	*x = FirewallRule_Nat_Destination{}
-	mi := &file_proto_router_proto_msgTypes[18]
+	mi := &file_proto_router_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1443,7 +1451,7 @@ func (x *FirewallRule_Nat_Destination) String() string {
 func (*FirewallRule_Nat_Destination) ProtoMessage() {}
 
 func (x *FirewallRule_Nat_Destination) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_router_proto_msgTypes[18]
+	mi := &file_proto_router_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1477,25 +1485,27 @@ var File_proto_router_proto protoreflect.FileDescriptor
 
 const file_proto_router_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/router.proto\x12\x0epalm.router.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xb6\x01\n" +
-	"\x06Router\x123\n" +
+	"\x12proto/router.proto\x12\x0epalm.router.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xbb\x02\n" +
+	"\x06Router\x121\n" +
+	"\x03wan\x18\x01 \x03(\v2\x1f.palm.router.v1.Router.WanEntryR\x03wan\x123\n" +
 	"\x03lan\x18\x02 \x01(\v2\x1c.palm.router.v1.IntranetBondH\x00R\x03lan\x88\x01\x01\x123\n" +
 	"\x03dmz\x18\x03 \x01(\v2\x1c.palm.router.v1.IntranetBondH\x01R\x03dmz\x88\x01\x01\x122\n" +
-	"\x05rules\x18\t \x03(\v2\x1c.palm.router.v1.FirewallRuleR\x05rulesB\x06\n" +
+	"\x05rules\x18\t \x03(\v2\x1c.palm.router.v1.FirewallRuleR\x05rules\x1aP\n" +
+	"\bWanEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
+	"\x05value\x18\x02 \x01(\v2\x18.palm.router.v1.InternetR\x05value:\x028\x01B\x06\n" +
 	"\x04_lanB\x06\n" +
-	"\x04_dmz\"\xf3\x01\n" +
+	"\x04_dmz\"\xf5\x01\n" +
 	"\fIntranetBond\x12\x1e\n" +
 	"\n" +
 	"interfaces\x18\x01 \x03(\tR\n" +
 	"interfaces\x122\n" +
 	"\anetwork\x18\x02 \x01(\v2\x18.palm.router.v1.IntranetR\anetwork\x120\n" +
 	"\x14mii_monitor_interval\x18\x03 \x01(\rR\x12miiMonitorInterval\x125\n" +
-	"\x04mode\x18\x04 \x01(\x0e2!.palm.router.v1.IntranetBond.ModeR\x04mode\"&\n" +
-	"\x04Mode\x12\x0e\n" +
-	"\n" +
-	"BalanceAlb\x10\x00\x12\x0e\n" +
-	"\n" +
-	"BalanceXor\x10\x01\"\xca\x03\n" +
+	"\x04mode\x18\x04 \x01(\x0e2!.palm.router.v1.IntranetBond.ModeR\x04mode\"(\n" +
+	"\x04Mode\x12\x0f\n" +
+	"\vBALANCE_ALB\x10\x00\x12\x0f\n" +
+	"\vBALANCE_XOR\x10\x01\"\xca\x03\n" +
 	"\bInternet\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12\x10\n" +
 	"\x03isp\x18\x02 \x01(\tR\x03isp\x12,\n" +
@@ -1574,16 +1584,16 @@ const file_proto_router_proto_rawDesc = "" +
 	"\x06period\x18\b \x01(\v2#.palm.router.v1.FirewallRule.PeriodR\x06period\x12\x14\n" +
 	"\x05hosts\x18\t \x03(\tR\x05hosts\"\x1c\n" +
 	"\bProtocol\x12\a\n" +
-	"\x03Tcp\x10\x00\x12\a\n" +
-	"\x03Udp\x10\x01\"E\n" +
+	"\x03TCP\x10\x00\x12\a\n" +
+	"\x03UDP\x10\x01\"E\n" +
 	"\x04Week\x12\a\n" +
-	"\x03Sun\x10\x00\x12\a\n" +
-	"\x03Mon\x10\x01\x12\a\n" +
-	"\x03Tue\x10\x02\x12\a\n" +
-	"\x03Wed\x10\x03\x12\a\n" +
-	"\x03Thu\x10\x04\x12\a\n" +
-	"\x03Fri\x10\x05\x12\a\n" +
-	"\x03Sat\x10\x06B\x04\n" +
+	"\x03SUN\x10\x00\x12\a\n" +
+	"\x03MON\x10\x01\x12\a\n" +
+	"\x03TUE\x10\x02\x12\a\n" +
+	"\x03WED\x10\x03\x12\a\n" +
+	"\x03THU\x10\x04\x12\a\n" +
+	"\x03FRI\x10\x05\x12\a\n" +
+	"\x03SAT\x10\x06B\x04\n" +
 	"\x02byB_\n" +
 	",com.github.saturn_xiv.palm.plugins.router.v1B\vRouterProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Router.Grpcb\x06proto3"
 
@@ -1600,7 +1610,7 @@ func file_proto_router_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_router_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_proto_router_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_proto_router_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_proto_router_proto_goTypes = []any{
 	(IntranetBond_Mode)(0),               // 0: palm.router.v1.IntranetBond.Mode
 	(FirewallRule_Protocol)(0),           // 1: palm.router.v1.FirewallRule.Protocol
@@ -1610,56 +1620,59 @@ var file_proto_router_proto_goTypes = []any{
 	(*Internet)(nil),                     // 5: palm.router.v1.Internet
 	(*Intranet)(nil),                     // 6: palm.router.v1.Intranet
 	(*FirewallRule)(nil),                 // 7: palm.router.v1.FirewallRule
-	(*Internet_Static)(nil),              // 8: palm.router.v1.Internet.Static
-	(*Internet_Pppoe)(nil),               // 9: palm.router.v1.Internet.Pppoe
-	(*Intranet_Google)(nil),              // 10: palm.router.v1.Intranet.Google
-	(*Intranet_Ali)(nil),                 // 11: palm.router.v1.Intranet.Ali
-	(*Intranet_Other)(nil),               // 12: palm.router.v1.Intranet.Other
-	(*Intranet_Host)(nil),                // 13: palm.router.v1.Intranet.Host
-	(*FirewallRule_Ping)(nil),            // 14: palm.router.v1.FirewallRule.Ping
-	(*FirewallRule_Time)(nil),            // 15: palm.router.v1.FirewallRule.Time
-	(*FirewallRule_Period)(nil),          // 16: palm.router.v1.FirewallRule.Period
-	(*FirewallRule_Nat)(nil),             // 17: palm.router.v1.FirewallRule.Nat
-	(*FirewallRule_Input)(nil),           // 18: palm.router.v1.FirewallRule.Input
-	(*FirewallRule_Output)(nil),          // 19: palm.router.v1.FirewallRule.Output
-	(*FirewallRule_SpeedLimit)(nil),      // 20: palm.router.v1.FirewallRule.SpeedLimit
-	(*FirewallRule_Nat_Destination)(nil), // 21: palm.router.v1.FirewallRule.Nat.Destination
-	(*emptypb.Empty)(nil),                // 22: google.protobuf.Empty
-	(*timestamppb.Timestamp)(nil),        // 23: google.protobuf.Timestamp
+	nil,                                  // 8: palm.router.v1.Router.WanEntry
+	(*Internet_Static)(nil),              // 9: palm.router.v1.Internet.Static
+	(*Internet_Pppoe)(nil),               // 10: palm.router.v1.Internet.Pppoe
+	(*Intranet_Google)(nil),              // 11: palm.router.v1.Intranet.Google
+	(*Intranet_Ali)(nil),                 // 12: palm.router.v1.Intranet.Ali
+	(*Intranet_Other)(nil),               // 13: palm.router.v1.Intranet.Other
+	(*Intranet_Host)(nil),                // 14: palm.router.v1.Intranet.Host
+	(*FirewallRule_Ping)(nil),            // 15: palm.router.v1.FirewallRule.Ping
+	(*FirewallRule_Time)(nil),            // 16: palm.router.v1.FirewallRule.Time
+	(*FirewallRule_Period)(nil),          // 17: palm.router.v1.FirewallRule.Period
+	(*FirewallRule_Nat)(nil),             // 18: palm.router.v1.FirewallRule.Nat
+	(*FirewallRule_Input)(nil),           // 19: palm.router.v1.FirewallRule.Input
+	(*FirewallRule_Output)(nil),          // 20: palm.router.v1.FirewallRule.Output
+	(*FirewallRule_SpeedLimit)(nil),      // 21: palm.router.v1.FirewallRule.SpeedLimit
+	(*FirewallRule_Nat_Destination)(nil), // 22: palm.router.v1.FirewallRule.Nat.Destination
+	(*emptypb.Empty)(nil),                // 23: google.protobuf.Empty
+	(*timestamppb.Timestamp)(nil),        // 24: google.protobuf.Timestamp
 }
 var file_proto_router_proto_depIdxs = []int32{
-	4,  // 0: palm.router.v1.Router.lan:type_name -> palm.router.v1.IntranetBond
-	4,  // 1: palm.router.v1.Router.dmz:type_name -> palm.router.v1.IntranetBond
-	7,  // 2: palm.router.v1.Router.rules:type_name -> palm.router.v1.FirewallRule
-	6,  // 3: palm.router.v1.IntranetBond.network:type_name -> palm.router.v1.Intranet
-	0,  // 4: palm.router.v1.IntranetBond.mode:type_name -> palm.router.v1.IntranetBond.Mode
-	22, // 5: palm.router.v1.Internet.dhcp:type_name -> google.protobuf.Empty
-	8,  // 6: palm.router.v1.Internet.static:type_name -> palm.router.v1.Internet.Static
-	9,  // 7: palm.router.v1.Internet.pppoe:type_name -> palm.router.v1.Internet.Pppoe
-	11, // 8: palm.router.v1.Intranet.ali:type_name -> palm.router.v1.Intranet.Ali
-	10, // 9: palm.router.v1.Intranet.google:type_name -> palm.router.v1.Intranet.Google
-	12, // 10: palm.router.v1.Intranet.other:type_name -> palm.router.v1.Intranet.Other
-	13, // 11: palm.router.v1.Intranet.hosts:type_name -> palm.router.v1.Intranet.Host
-	14, // 12: palm.router.v1.FirewallRule.ping:type_name -> palm.router.v1.FirewallRule.Ping
-	18, // 13: palm.router.v1.FirewallRule.input:type_name -> palm.router.v1.FirewallRule.Input
-	17, // 14: palm.router.v1.FirewallRule.nat:type_name -> palm.router.v1.FirewallRule.Nat
-	19, // 15: palm.router.v1.FirewallRule.output:type_name -> palm.router.v1.FirewallRule.Output
-	20, // 16: palm.router.v1.FirewallRule.speed_limit:type_name -> palm.router.v1.FirewallRule.SpeedLimit
-	23, // 17: palm.router.v1.FirewallRule.updated_at:type_name -> google.protobuf.Timestamp
-	23, // 18: palm.router.v1.Intranet.Host.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 19: palm.router.v1.FirewallRule.Period.days:type_name -> palm.router.v1.FirewallRule.Week
-	15, // 20: palm.router.v1.FirewallRule.Period.begin:type_name -> palm.router.v1.FirewallRule.Time
-	15, // 21: palm.router.v1.FirewallRule.Period.end:type_name -> palm.router.v1.FirewallRule.Time
-	1,  // 22: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	21, // 23: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
-	1,  // 24: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	16, // 25: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
-	16, // 26: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
-	27, // [27:27] is the sub-list for method output_type
-	27, // [27:27] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	8,  // 0: palm.router.v1.Router.wan:type_name -> palm.router.v1.Router.WanEntry
+	4,  // 1: palm.router.v1.Router.lan:type_name -> palm.router.v1.IntranetBond
+	4,  // 2: palm.router.v1.Router.dmz:type_name -> palm.router.v1.IntranetBond
+	7,  // 3: palm.router.v1.Router.rules:type_name -> palm.router.v1.FirewallRule
+	6,  // 4: palm.router.v1.IntranetBond.network:type_name -> palm.router.v1.Intranet
+	0,  // 5: palm.router.v1.IntranetBond.mode:type_name -> palm.router.v1.IntranetBond.Mode
+	23, // 6: palm.router.v1.Internet.dhcp:type_name -> google.protobuf.Empty
+	9,  // 7: palm.router.v1.Internet.static:type_name -> palm.router.v1.Internet.Static
+	10, // 8: palm.router.v1.Internet.pppoe:type_name -> palm.router.v1.Internet.Pppoe
+	12, // 9: palm.router.v1.Intranet.ali:type_name -> palm.router.v1.Intranet.Ali
+	11, // 10: palm.router.v1.Intranet.google:type_name -> palm.router.v1.Intranet.Google
+	13, // 11: palm.router.v1.Intranet.other:type_name -> palm.router.v1.Intranet.Other
+	14, // 12: palm.router.v1.Intranet.hosts:type_name -> palm.router.v1.Intranet.Host
+	15, // 13: palm.router.v1.FirewallRule.ping:type_name -> palm.router.v1.FirewallRule.Ping
+	19, // 14: palm.router.v1.FirewallRule.input:type_name -> palm.router.v1.FirewallRule.Input
+	18, // 15: palm.router.v1.FirewallRule.nat:type_name -> palm.router.v1.FirewallRule.Nat
+	20, // 16: palm.router.v1.FirewallRule.output:type_name -> palm.router.v1.FirewallRule.Output
+	21, // 17: palm.router.v1.FirewallRule.speed_limit:type_name -> palm.router.v1.FirewallRule.SpeedLimit
+	24, // 18: palm.router.v1.FirewallRule.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // 19: palm.router.v1.Router.WanEntry.value:type_name -> palm.router.v1.Internet
+	24, // 20: palm.router.v1.Intranet.Host.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 21: palm.router.v1.FirewallRule.Period.days:type_name -> palm.router.v1.FirewallRule.Week
+	16, // 22: palm.router.v1.FirewallRule.Period.begin:type_name -> palm.router.v1.FirewallRule.Time
+	16, // 23: palm.router.v1.FirewallRule.Period.end:type_name -> palm.router.v1.FirewallRule.Time
+	1,  // 24: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
+	22, // 25: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
+	1,  // 26: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
+	17, // 27: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
+	17, // 28: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_proto_router_proto_init() }
@@ -1691,7 +1704,7 @@ func file_proto_router_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_router_proto_rawDesc), len(file_proto_router_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   19,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

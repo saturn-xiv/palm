@@ -35,9 +35,9 @@ func (p *Router) setup_firewalld(wrt io.Writer) error {
 // ----------------------------------------------------------------------------
 func (p *FirewallRule_Protocol) ToString() string {
 	switch *p {
-	case FirewallRule_Tcp:
+	case FirewallRule_TCP:
 		return "tcp"
-	case FirewallRule_Udp:
+	case FirewallRule_UDP:
 		return "udp"
 	default:
 		return ""

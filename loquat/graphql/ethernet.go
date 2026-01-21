@@ -39,14 +39,15 @@ func (p *Mutation) DisableNetworkInterface(ctx context.Context, args struct {
 	return &Ok{}, nil
 }
 func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args struct {
-	Name    string
-	Label   string
-	Memo    string
-	Address string
-	Netmask string
-	Gateway string
-	Isp     string
-	Dns     []string
+	Name     string
+	Label    string
+	Memo     string
+	Address  string
+	Netmask  string
+	Gateway  string
+	Isp      string
+	Dns      []string
+	Priority int32
 }) (*Ok, error) {
 	user, ip, err := current_user(ctx, p.db, p.secrets)
 	if err != nil {
@@ -63,6 +64,7 @@ func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args s
 		profile.Gateway = args.Gateway
 		profile.Dns = args.Dns
 		profile.Dhcp = false
+		profile.Priority = uint32(args.Priority)
 		profile.Enable = true
 		if err = models.SetB(tx, ethernetKey(args.Name), &profile); err != nil {
 			return err
@@ -76,10 +78,11 @@ func (p *Mutation) SetNetworkInterfacePublicStaticIp(ctx context.Context, args s
 	return &Ok{}, nil
 }
 func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struct {
-	Name  string
-	Label string
-	Isp   string
-	Memo  string
+	Name     string
+	Label    string
+	Isp      string
+	Memo     string
+	Priority int32
 }) (*Ok, error) {
 	user, ip, err := current_user(ctx, p.db, p.secrets)
 	if err != nil {
@@ -91,6 +94,7 @@ func (p *Mutation) SetNetworkInterfacePublicDhcp(ctx context.Context, args struc
 		profile.Memo = args.Memo
 		profile.Isp = args.Isp
 		profile.Dhcp = true
+		profile.Priority = uint32(args.Priority)
 		profile.Enable = true
 		if err = models.SetB(tx, ethernetKey(args.Name), &profile); err != nil {
 			return err
@@ -123,14 +127,15 @@ func ethernetKey(name string) string {
 }
 
 type StaticIp struct {
-	label   string
-	memo    string
-	isp     string
-	address string
-	netmask string
-	gateway string
-	dns     []string
-	enable  bool
+	label    string
+	memo     string
+	isp      string
+	address  string
+	netmask  string
+	gateway  string
+	dns      []string
+	priority int32
+	enable   bool
 }
 
 func (p *StaticIp) Label() string {
@@ -152,7 +157,9 @@ func (p *StaticIp) Address() string {
 func (p *StaticIp) Isp() string {
 	return p.isp
 }
-
+func (p *StaticIp) Priority() int32 {
+	return p.priority
+}
 func (p *StaticIp) Memo() string {
 	return p.memo
 }
@@ -161,10 +168,11 @@ func (p *StaticIp) Enable() bool {
 }
 
 type DynamicIp struct {
-	label  string
-	memo   string
-	isp    string
-	enable bool
+	label    string
+	memo     string
+	isp      string
+	priority int32
+	enable   bool
 }
 
 func (p *DynamicIp) Label() string {
@@ -179,20 +187,24 @@ func (p *DynamicIp) Memo() string {
 	return p.memo
 }
 
+func (p *DynamicIp) Priority() int32 {
+	return p.priority
+}
 func (p *DynamicIp) Enable() bool {
 	return p.enable
 }
 
 type ethernetProfile struct {
-	Dhcp    bool
-	Address string
-	Netmask string
-	Gateway string
-	Dns     []string
-	Isp     string
-	Label   string
-	Memo    string
-	Enable  bool
+	Dhcp     bool
+	Address  string
+	Netmask  string
+	Gateway  string
+	Dns      []string
+	Isp      string
+	Label    string
+	Memo     string
+	Priority uint32
+	Enable   bool
 }
 
 type NetworkInterfaceProfile struct {
@@ -204,14 +216,15 @@ func (p *NetworkInterfaceProfile) ToStaticIp() (*StaticIp, bool) {
 		return nil, false
 	}
 	return &StaticIp{
-		isp:     p.item.Isp,
-		label:   p.item.Label,
-		memo:    p.item.Memo,
-		address: p.item.Address,
-		netmask: p.item.Netmask,
-		gateway: p.item.Gateway,
-		dns:     p.item.Dns,
-		enable:  p.item.Enable,
+		isp:      p.item.Isp,
+		label:    p.item.Label,
+		memo:     p.item.Memo,
+		address:  p.item.Address,
+		netmask:  p.item.Netmask,
+		gateway:  p.item.Gateway,
+		dns:      p.item.Dns,
+		priority: int32(p.item.Priority),
+		enable:   p.item.Enable,
 	}, true
 
 }
@@ -220,10 +233,11 @@ func (p *NetworkInterfaceProfile) ToDynamicIp() (*DynamicIp, bool) {
 		return nil, false
 	}
 	return &DynamicIp{
-		isp:    p.item.Isp,
-		label:  p.item.Label,
-		memo:   p.item.Memo,
-		enable: p.item.Enable,
+		isp:      p.item.Isp,
+		label:    p.item.Label,
+		memo:     p.item.Memo,
+		priority: int32(p.item.Priority),
+		enable:   p.item.Enable,
 	}, true
 
 }

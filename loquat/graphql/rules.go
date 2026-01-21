@@ -37,9 +37,9 @@ func (p *Mutation) AllowInput(ctx context.Context, args struct {
 	SortOrder int32
 	Memo      string
 }) (*Ok, error) {
-	protocol := v2.FirewallRule_Tcp
+	protocol := v2.FirewallRule_TCP
 	if !args.Tcp {
-		protocol = v2.FirewallRule_Udp
+		protocol = v2.FirewallRule_UDP
 	}
 	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Input{
 		Device:   args.Device,
@@ -61,9 +61,9 @@ func (p *Mutation) AllowNat(ctx context.Context, args struct {
 	SortOrder       int32
 	Memo            string
 }) (*Ok, error) {
-	protocol := v2.FirewallRule_Tcp
+	protocol := v2.FirewallRule_TCP
 	if !args.Tcp {
-		protocol = v2.FirewallRule_Udp
+		protocol = v2.FirewallRule_UDP
 	}
 	if err := p.save_firewall_rule(ctx, args.Id, &v2.FirewallRule_Nat{
 		Device:   args.Device,
@@ -382,7 +382,7 @@ func (p *Nat) Device() string {
 	return p.rule.Device
 }
 func (p *Nat) Tcp() bool {
-	return p.rule.Protocol == v2.FirewallRule_Tcp
+	return p.rule.Protocol == v2.FirewallRule_TCP
 }
 func (p *Nat) DestinationPort() int32 {
 	return int32(p.rule.Destination.Port)
@@ -422,7 +422,7 @@ func (p *Input) Device() string {
 	return p.rule.Device
 }
 func (p *Input) Tcp() bool {
-	return p.rule.Protocol == v2.FirewallRule_Tcp
+	return p.rule.Protocol == v2.FirewallRule_TCP
 }
 func (p *Input) Port() int32 {
 	return int32(p.rule.Port)

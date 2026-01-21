@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"net"
-	"strings"
 
 	"gorm.io/gorm"
 
@@ -53,7 +52,7 @@ func (p *InterfacesResponse) Ethernets() ([]*EthernetInterface, error) {
 
 	var items []*EthernetInterface
 	for _, iface := range ifaces {
-		if !strings.HasPrefix(iface.Name, "en") {
+		if !v2.IsEthernet(iface.Name) {
 			continue
 		}
 		it := EthernetInterface{iface: &iface}
