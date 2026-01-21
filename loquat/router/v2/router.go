@@ -10,7 +10,8 @@ import (
 	"os/exec"
 	"path/filepath"
 	"slices"
-	"time"
+
+	"google.golang.org/protobuf/proto"
 )
 
 //go:embed templates/header.txt
@@ -20,9 +21,21 @@ var gl_header_txt string
 var gl_footer_txt string
 
 func (p *Router) Apply(run bool) error {
-	tmp := filepath.Join(os.TempDir(), fmt.Sprintf("%s.sh", time.Now().Format("20060102150405")))
+	version := p.CreatedAt.AsTime().Format("20060102150405")
+	tmp := filepath.Join(os.TempDir(), fmt.Sprintf("%s.sh", version))
 	if err := p.render_to_file(tmp); err != nil {
 		return err
+	}
+	{
+		tmp := filepath.Join(os.TempDir(), fmt.Sprintf("%s.bin", version))
+		slog.Info("generate configuration backup", "file", tmp)
+		buf, err := proto.Marshal(p)
+		if err != nil {
+			return err
+		}
+		if err = os.WriteFile(tmp, buf, 0644); err != nil {
+			return err
+		}
 	}
 
 	if run {
@@ -34,7 +47,7 @@ func (p *Router) Apply(run bool) error {
 }
 
 func (p *Router) Render(wrt io.Writer) error {
-	if _, err := fmt.Fprintf(wrt, "%s", gl_header_txt); err != nil {
+	if _, err := io.WriteString(wrt, gl_header_txt); err != nil {
 		return err
 	}
 	if err := p.setup_netplan(wrt); err != nil {
@@ -46,12 +59,12 @@ func (p *Router) Render(wrt io.Writer) error {
 	if err := p.setup_firewalld(wrt); err != nil {
 		return err
 	}
-	_, err := fmt.Fprintf(wrt, "%s", gl_footer_txt)
+	_, err := io.WriteString(wrt, gl_footer_txt)
 	return err
 }
 
 func (p *Router) setup_dnsmasq(wrt io.Writer) error {
-	if _, err := fmt.Fprintf(wrt, "%s", gl_dnsmasq_header_txt); err != nil {
+	if _, err := io.WriteString(wrt, gl_dnsmasq_header_txt); err != nil {
 		return err
 	}
 	if p.Dmz != nil {

@@ -6,8 +6,10 @@ import (
 	"net"
 
 	"google.golang.org/protobuf/types/known/emptypb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/loquat/env"
 	"github.com/saturn-xiv/palm/loquat/models"
 	v2 "github.com/saturn-xiv/palm/loquat/router/v2"
 )
@@ -45,6 +47,9 @@ func Export(db *gorm.DB) (*v2.Router, error) {
 			return nil, err
 		}
 	}
+
+	rt.CreatedAt = timestamppb.Now()
+	rt.Version = env.Version()
 	return &rt, nil
 }
 

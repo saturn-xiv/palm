@@ -12,9 +12,21 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 EOF
 systemctl restart systemd-sysctl
 
+nft flush ruleset
 systemctl enable firewalld.service
 systemctl restart firewalld
-
-rm -r /etc/firewalld
+if [ -d /etc/firewalld/zones ]
+then
+    rm -r /etc/firewalld/zones
+fi
+mkdir -p /etc/firewalld/zones
+if [ -f /etc/firewalld/direct.xml ]
+then
+    rm /etc/firewalld/direct.xml
+fi
 firewall-cmd --complete-reload
 
+# firewall-cmd --get-active-zones
+# firewall-cmd --list-all-zones
+# firewall-cmd --zone=external --list-interfaces
+# firewall-cmd --zone=external --query-masquerade

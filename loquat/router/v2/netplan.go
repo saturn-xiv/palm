@@ -30,6 +30,13 @@ func (p *Router) setup_netplan(wrt io.Writer) error {
 			return err
 		}
 		items[DMZ] = map[string]string{"label": DMZ, "content": buf}
+		for _, it := range p.Dmz.Interfaces {
+			buf, err := intranet_ethernet_netplan(it)
+			if err != nil {
+				return err
+			}
+			items[it] = map[string]string{"label": it, "content": buf}
+		}
 	}
 	if p.Lan != nil {
 		buf, err := p.Lan.netplan(LAN)
@@ -37,6 +44,13 @@ func (p *Router) setup_netplan(wrt io.Writer) error {
 			return err
 		}
 		items[LAN] = map[string]string{"label": LAN, "content": buf}
+		for _, it := range p.Lan.Interfaces {
+			buf, err := intranet_ethernet_netplan(it)
+			if err != nil {
+				return err
+			}
+			items[it] = map[string]string{"label": it, "content": buf}
+		}
 	}
 
 	tpl, err := template.New("").Parse(gl_netplan_txt)

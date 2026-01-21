@@ -185,6 +185,8 @@ type Router struct {
 	Lan           *IntranetBond          `protobuf:"bytes,2,opt,name=lan,proto3,oneof" json:"lan,omitempty"`
 	Dmz           *IntranetBond          `protobuf:"bytes,3,opt,name=dmz,proto3,oneof" json:"dmz,omitempty"`
 	Rules         []*FirewallRule        `protobuf:"bytes,9,rep,name=rules,proto3" json:"rules,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,98,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Version       string                 `protobuf:"bytes,99,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -245,6 +247,20 @@ func (x *Router) GetRules() []*FirewallRule {
 		return x.Rules
 	}
 	return nil
+}
+
+func (x *Router) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Router) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
 }
 
 type IntranetBond struct {
@@ -1485,12 +1501,15 @@ var File_proto_router_proto protoreflect.FileDescriptor
 
 const file_proto_router_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/router.proto\x12\x0epalm.router.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xbb\x02\n" +
+	"\x12proto/router.proto\x12\x0epalm.router.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x90\x03\n" +
 	"\x06Router\x121\n" +
 	"\x03wan\x18\x01 \x03(\v2\x1f.palm.router.v1.Router.WanEntryR\x03wan\x123\n" +
 	"\x03lan\x18\x02 \x01(\v2\x1c.palm.router.v1.IntranetBondH\x00R\x03lan\x88\x01\x01\x123\n" +
 	"\x03dmz\x18\x03 \x01(\v2\x1c.palm.router.v1.IntranetBondH\x01R\x03dmz\x88\x01\x01\x122\n" +
-	"\x05rules\x18\t \x03(\v2\x1c.palm.router.v1.FirewallRuleR\x05rules\x1aP\n" +
+	"\x05rules\x18\t \x03(\v2\x1c.palm.router.v1.FirewallRuleR\x05rules\x129\n" +
+	"\n" +
+	"created_at\x18b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x18\n" +
+	"\aversion\x18c \x01(\tR\aversion\x1aP\n" +
 	"\bWanEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\v2\x18.palm.router.v1.InternetR\x05value:\x028\x01B\x06\n" +
@@ -1635,44 +1654,45 @@ var file_proto_router_proto_goTypes = []any{
 	(*FirewallRule_Output)(nil),          // 20: palm.router.v1.FirewallRule.Output
 	(*FirewallRule_SpeedLimit)(nil),      // 21: palm.router.v1.FirewallRule.SpeedLimit
 	(*FirewallRule_Nat_Destination)(nil), // 22: palm.router.v1.FirewallRule.Nat.Destination
-	(*emptypb.Empty)(nil),                // 23: google.protobuf.Empty
-	(*timestamppb.Timestamp)(nil),        // 24: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil),        // 23: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),                // 24: google.protobuf.Empty
 }
 var file_proto_router_proto_depIdxs = []int32{
 	8,  // 0: palm.router.v1.Router.wan:type_name -> palm.router.v1.Router.WanEntry
 	4,  // 1: palm.router.v1.Router.lan:type_name -> palm.router.v1.IntranetBond
 	4,  // 2: palm.router.v1.Router.dmz:type_name -> palm.router.v1.IntranetBond
 	7,  // 3: palm.router.v1.Router.rules:type_name -> palm.router.v1.FirewallRule
-	6,  // 4: palm.router.v1.IntranetBond.network:type_name -> palm.router.v1.Intranet
-	0,  // 5: palm.router.v1.IntranetBond.mode:type_name -> palm.router.v1.IntranetBond.Mode
-	23, // 6: palm.router.v1.Internet.dhcp:type_name -> google.protobuf.Empty
-	9,  // 7: palm.router.v1.Internet.static:type_name -> palm.router.v1.Internet.Static
-	10, // 8: palm.router.v1.Internet.pppoe:type_name -> palm.router.v1.Internet.Pppoe
-	12, // 9: palm.router.v1.Intranet.ali:type_name -> palm.router.v1.Intranet.Ali
-	11, // 10: palm.router.v1.Intranet.google:type_name -> palm.router.v1.Intranet.Google
-	13, // 11: palm.router.v1.Intranet.other:type_name -> palm.router.v1.Intranet.Other
-	14, // 12: palm.router.v1.Intranet.hosts:type_name -> palm.router.v1.Intranet.Host
-	15, // 13: palm.router.v1.FirewallRule.ping:type_name -> palm.router.v1.FirewallRule.Ping
-	19, // 14: palm.router.v1.FirewallRule.input:type_name -> palm.router.v1.FirewallRule.Input
-	18, // 15: palm.router.v1.FirewallRule.nat:type_name -> palm.router.v1.FirewallRule.Nat
-	20, // 16: palm.router.v1.FirewallRule.output:type_name -> palm.router.v1.FirewallRule.Output
-	21, // 17: palm.router.v1.FirewallRule.speed_limit:type_name -> palm.router.v1.FirewallRule.SpeedLimit
-	24, // 18: palm.router.v1.FirewallRule.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 19: palm.router.v1.Router.WanEntry.value:type_name -> palm.router.v1.Internet
-	24, // 20: palm.router.v1.Intranet.Host.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 21: palm.router.v1.FirewallRule.Period.days:type_name -> palm.router.v1.FirewallRule.Week
-	16, // 22: palm.router.v1.FirewallRule.Period.begin:type_name -> palm.router.v1.FirewallRule.Time
-	16, // 23: palm.router.v1.FirewallRule.Period.end:type_name -> palm.router.v1.FirewallRule.Time
-	1,  // 24: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	22, // 25: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
-	1,  // 26: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
-	17, // 27: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
-	17, // 28: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
-	29, // [29:29] is the sub-list for method output_type
-	29, // [29:29] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	23, // 4: palm.router.v1.Router.created_at:type_name -> google.protobuf.Timestamp
+	6,  // 5: palm.router.v1.IntranetBond.network:type_name -> palm.router.v1.Intranet
+	0,  // 6: palm.router.v1.IntranetBond.mode:type_name -> palm.router.v1.IntranetBond.Mode
+	24, // 7: palm.router.v1.Internet.dhcp:type_name -> google.protobuf.Empty
+	9,  // 8: palm.router.v1.Internet.static:type_name -> palm.router.v1.Internet.Static
+	10, // 9: palm.router.v1.Internet.pppoe:type_name -> palm.router.v1.Internet.Pppoe
+	12, // 10: palm.router.v1.Intranet.ali:type_name -> palm.router.v1.Intranet.Ali
+	11, // 11: palm.router.v1.Intranet.google:type_name -> palm.router.v1.Intranet.Google
+	13, // 12: palm.router.v1.Intranet.other:type_name -> palm.router.v1.Intranet.Other
+	14, // 13: palm.router.v1.Intranet.hosts:type_name -> palm.router.v1.Intranet.Host
+	15, // 14: palm.router.v1.FirewallRule.ping:type_name -> palm.router.v1.FirewallRule.Ping
+	19, // 15: palm.router.v1.FirewallRule.input:type_name -> palm.router.v1.FirewallRule.Input
+	18, // 16: palm.router.v1.FirewallRule.nat:type_name -> palm.router.v1.FirewallRule.Nat
+	20, // 17: palm.router.v1.FirewallRule.output:type_name -> palm.router.v1.FirewallRule.Output
+	21, // 18: palm.router.v1.FirewallRule.speed_limit:type_name -> palm.router.v1.FirewallRule.SpeedLimit
+	23, // 19: palm.router.v1.FirewallRule.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // 20: palm.router.v1.Router.WanEntry.value:type_name -> palm.router.v1.Internet
+	23, // 21: palm.router.v1.Intranet.Host.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 22: palm.router.v1.FirewallRule.Period.days:type_name -> palm.router.v1.FirewallRule.Week
+	16, // 23: palm.router.v1.FirewallRule.Period.begin:type_name -> palm.router.v1.FirewallRule.Time
+	16, // 24: palm.router.v1.FirewallRule.Period.end:type_name -> palm.router.v1.FirewallRule.Time
+	1,  // 25: palm.router.v1.FirewallRule.Nat.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
+	22, // 26: palm.router.v1.FirewallRule.Nat.destination:type_name -> palm.router.v1.FirewallRule.Nat.Destination
+	1,  // 27: palm.router.v1.FirewallRule.Input.protocol:type_name -> palm.router.v1.FirewallRule.Protocol
+	17, // 28: palm.router.v1.FirewallRule.Output.period:type_name -> palm.router.v1.FirewallRule.Period
+	17, // 29: palm.router.v1.FirewallRule.SpeedLimit.period:type_name -> palm.router.v1.FirewallRule.Period
+	30, // [30:30] is the sub-list for method output_type
+	30, // [30:30] is the sub-list for method input_type
+	30, // [30:30] is the sub-list for extension type_name
+	30, // [30:30] is the sub-list for extension extendee
+	0,  // [0:30] is the sub-list for field type_name
 }
 
 func init() { file_proto_router_proto_init() }

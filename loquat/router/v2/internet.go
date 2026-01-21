@@ -12,6 +12,7 @@ func (p *Internet) netplan(dev string) (string, error) {
 	case *Internet_Dhcp:
 		args["dhcp4"] = true
 		args["dhcp4-overrides"] = map[string]interface{}{"route-metric": p.metric()}
+		args["dhcp6"] = false
 	case *Internet_Static_:
 		cidr, err := netmask_to_cidr(p.GetStatic().Netmask)
 		if err != nil {

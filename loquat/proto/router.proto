@@ -11,10 +11,12 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 message Router {
-  map<string,Internet>  wan   = 1;
-  optional IntranetBond lan   = 2;
-  optional IntranetBond dmz   = 3;
-  repeated FirewallRule rules = 9;
+  map<string,Internet>      wan        = 1;
+  optional IntranetBond     lan        = 2;
+  optional IntranetBond     dmz        = 3;
+  repeated FirewallRule     rules      = 9;
+  google.protobuf.Timestamp created_at = 98;
+  string                    version    = 99;
 }
 
 message IntranetBond {

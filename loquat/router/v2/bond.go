@@ -64,3 +64,11 @@ func (p *IntranetBond) netplan(dev string) (string, error) {
 
 	return render_netplan_yaml("bonds", dev, items)
 }
+
+func intranet_ethernet_netplan(dev string) (string, error) {
+	return render_netplan_yaml("ethernets", dev, map[string]interface{}{
+		"dhcp4":     false,
+		"dhcp6":     false,
+		"addresses": []string{},
+	})
+}

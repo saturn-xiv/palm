@@ -11,8 +11,10 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"gorm.io/gorm"
 
 	graphql "github.com/saturn-xiv/palm/loquat/graphql"
+	"github.com/saturn-xiv/palm/loquat/models"
 )
 
 type HttpServerConfig struct {
@@ -33,6 +35,9 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	}
 	secret_key, err := base64.StdEncoding.DecodeString(config.SecretKey)
 	if err != nil {
+		return err
+	}
+	if err := init_db(db); err != nil {
 		return err
 	}
 	graphql_hnd, err := graphql.Handler(db, secret_key)
@@ -61,4 +66,24 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 	}
 	return server.ListenAndServe()
 
+}
+
+func init_db(db *gorm.DB) error {
+	return db.Transaction(func(tx *gorm.DB) error {
+		{
+			var c int64
+			if err := tx.Model(&models.Member{}).Count(&c).Error; err != nil {
+				return err
+			}
+			if c == 0 {
+				if err := tx.Create(&models.Member{
+					Sn:   "anonymous",
+					Name: "Anonymous",
+				}).Error; err != nil {
+					return err
+				}
+			}
+		}
+		return nil
+	})
 }
