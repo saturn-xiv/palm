@@ -15,7 +15,7 @@ func (p *IntranetBond) firewalld(wrt io.Writer, zone string, device string) erro
 	if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --change-interface=%s\n", zone, device); err != nil {
 		return err
 	}
-	if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --add-service=ssh --add-service=http --add-service=dhcp --add-service=dns\n", zone); err != nil {
+	if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=%s --add-service=http --add-service=dhcp --add-service=dns\n", zone); err != nil {
 		return err
 	}
 	// if _, err := fmt.Fprintf(wrt, "firewall-cmd --add-service=imap --zone=%s --timeout=5m\n", zone); err != nil {

@@ -8,7 +8,7 @@ mkdir /etc/netplan
 
 {{ range $n, $p := .items }}
 # {{ $p.label }}
-cat >/etc/netplan/100-{{ $n }}.yaml <<EOF
+cat >/etc/netplan/{{ $p.order }}-{{ $n }}.yaml <<EOF
 {{ $p.content }}
 EOF
 {{ end }}

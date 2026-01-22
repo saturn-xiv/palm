@@ -1,5 +1,3 @@
 {{ range .items }}
-firewall-cmd --zone=zone-name --change-interface={{ . }}
+firewall-cmd --permanent --zone=external --add-interface={{ . }}
 {{ end }}
-
-firewall-cmd --permanent --zone=external --add-masquerade
