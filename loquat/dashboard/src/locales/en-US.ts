@@ -105,6 +105,7 @@ export default {
   "forms.fields.label.port": "Port",
 
   "tables.column.label.id": "ID",
+  "tables.column.label.mac": "MAC",
   "tables.column.label.ip": "IP",
   "tables.column.label.message": "Message",
   "tables.column.label.updated-at": "Updated at",

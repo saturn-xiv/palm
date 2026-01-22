@@ -45,6 +45,9 @@ const Widget = () => {
         <thead>
           <tr>
             <th>
+              <FormattedMessage id="tables.column.label.mac" />
+            </th>
+            <th>
               <FormattedMessage id="tables.column.label.ip" />
             </th>
             <th>
@@ -70,6 +73,7 @@ const Widget = () => {
         <tbody>
           {items.map((it, id) => (
             <tr key={id}>
+              <td>{it.mac}</td>
               <td>
                 {it.fixed ? (
                   <button className="button is-small is-primary is-dark">
@@ -110,7 +114,7 @@ const Widget = () => {
                             dispatch(
                               show_success([
                                 intl.formatMessage({ id: "flashes.succeed" }),
-                              ])
+                              ]),
                             );
                             await handleRefresh();
                           } else if (res.errors) {
@@ -129,7 +133,7 @@ const Widget = () => {
                       <ModalForm
                         title={intl.formatMessage(
                           { id: "pages.hosts.set-ip-address.title" },
-                          { ip: it.ip }
+                          { ip: it.ip },
                         )}
                         button={{
                           action: "link",
@@ -144,7 +148,7 @@ const Widget = () => {
                       <ModalForm
                         title={intl.formatMessage(
                           { id: "pages.hosts.set-owner.title" },
-                          { ip: it.ip }
+                          { ip: it.ip },
                         )}
                         button={{
                           action: "info",
@@ -169,7 +173,7 @@ const Widget = () => {
                             dispatch(
                               show_success([
                                 intl.formatMessage({ id: "flashes.succeed" }),
-                              ])
+                              ]),
                             );
                             await handleRefresh();
                           } else if (res.errors) {
