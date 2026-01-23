@@ -144,6 +144,10 @@ func load_intranet_bond(db *gorm.DB, name string) (*v2.IntranetBond, error) {
 			return nil, err
 		}
 		for _, host := range hosts {
+			if host.Name == nil {
+				slog.Error("empty hostname", "mac", host.Mac, "ip", host.Ip)
+				continue
+			}
 			res.Network.Hosts = append(res.Network.Hosts, &v2.Intranet_Host{
 				Mac:  host.Mac,
 				Ip:   host.Ip,

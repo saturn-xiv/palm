@@ -64,7 +64,6 @@ func nmap_scan(db *gorm.DB) error {
 			err := db.Where(&host, "mac", "network").Take(&it).Error
 			if err == nil {
 				if err = db.Model(&it).Updates(map[string]interface{}{
-					"name":    host.Name,
 					"ip":      host.Ip,
 					"vendor":  host.Vendor,
 					"version": it.Version + 1,

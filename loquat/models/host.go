@@ -65,6 +65,7 @@ func ScanHosts(dev string, network string) ([]Host, error) {
 		if len(host.Hostname) > 0 {
 			it.Name = &host.Hostname[0]
 		}
+		slog.Debug("found host", "mac", it.Mac, "ip", it.Ip, "vendor", it.Vendor, "name", it.Name)
 		items = append(items, it)
 	}
 	return items, nil
