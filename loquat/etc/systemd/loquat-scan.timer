@@ -2,8 +2,8 @@
 Description=Run net-scan every 1 minute.
 
 [Timer]
-OnBootSec=5min
-OnUnitActiveSec=10min
+OnBootSec=5m
+OnUnitActiveSec=2h
 
 [Install]
 WantedBy=timers.target

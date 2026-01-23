@@ -31,7 +31,7 @@ server={{ . }}
 {{ end }}
 clear-on-reload
 
-dhcp-range={{ .begin }},{{ .end }},1d
+dhcp-range={{ .begin }},{{ .end }},1w
 dhcp-option=option:dns-server,{{ .gateway }}
 dhcp-option=option:ntp-server,{{ .gateway }}
 dhcp-option=option:router,{{ .gateway }}

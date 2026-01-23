@@ -3,7 +3,8 @@
 set -e
 
 export GO_HOME=$HOME/local/go
-export GO_VERSION="1.25.5"
+export GO_VERSION="1.25.6"
+export WORKSPACE=$PWD
 
 if [ ! -d $GO_HOME ]
 then
@@ -25,5 +26,14 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+
+
+declare -a projects=("daisy" "loquat" "pansy")
+for p in "${projects[@]}"
+do
+    cd $WORKSPACE/$p/
+    go get -u
+    go mod tidy
+done
 
 echo 'done.'
