@@ -1,0 +1,19 @@
+{
+  "name": "marigold",
+  "version": "2026.1.23",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "private": true,
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@material/web": "^2.4.1",
+    "@tabler/core": "^1.4.0",
+    "bootstrap": "^5.3.8",
+    "bulma": "^1.0.4",
+    "dayjs": "^1.11.19"
+  }
+}

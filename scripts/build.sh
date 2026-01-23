@@ -140,6 +140,32 @@ build_rust() {
     cp marigold $TARGET/bin/$1/
 }
 
+function build_marigold() {
+    local src=$WORKSPACE/marigold/node_modules
+    
+    local -a items=(
+        "@popperjs/core/dist/umd"
+        "bootstrap/dist"
+        "@tabler/core/dist"
+        "@material/web"
+        "bulma/css/bulma.min.css"
+        "dayjs/dayjs.min.js"
+        "dayjs/locale"
+        "dayjs/plugin"
+        "@fortawesome/fontawesome-free/css"
+        "@fortawesome/fontawesome-free/js"
+        "@fortawesome/fontawesome-free/sprites-full"
+        "@fortawesome/fontawesome-free/svgs-full"
+        "@fortawesome/fontawesome-free/webfonts"
+    )
+    for it in "${items[@]}"
+    do
+        local d=$(dirname $TARGET/marigold/node_modules/$it)
+        mkdir -p $d
+        cp -r $src/$it $d/
+    done
+}
+
 # -----------------------------------------------------------------------------
 
 if [ "$ID" != "ubuntu" ]
@@ -180,6 +206,8 @@ done
 
 build_deb loquat amd64 x86_64
 build_deb loquat arm64 aarch64
+
+build_marigold
 
 cd $WORKSPACE/tmp/
 if [ -f $PACKAGE.tar.xz ]
