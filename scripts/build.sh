@@ -57,13 +57,12 @@ function build_api() {
 function build_go() {
     cd $WORKSPACE/$1/
 
-    local pkg="github.com/saturn-xiv/palm/$1/env"
-    # ldflags="-extldflags=-static" -tags sqlite_omit_load_extension
-    local ldflags="-s -w -X '$pkg.build_time=$(date -u -R)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
+    local pkg="github.com/saturn-xiv/palm/$1/env"    
+    local ldflags="-a -extldflags '-static' -s -w -X '$pkg.build_time=$(date -u -R)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1.$2 on $3"
-    mkdir -p $TARGET/bin/$3
-    CC=$3-linux-gnu-gcc CGO_ENABLED=1 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $TARGET/bin/$3/$1
+    mkdir -p $TARGET/bin/$3    
+    CC=$3-linux-gnu-gcc CGO_ENABLED=0 GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $TARGET/bin/$3/$1
 }
 
 # https://www.debian.org/doc/debian-policy/ch-controlfields.html#debian-source-package-template-control-files-debian-control
