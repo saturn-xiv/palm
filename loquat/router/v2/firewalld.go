@@ -2,6 +2,7 @@ package v2
 
 import (
 	_ "embed"
+	"fmt"
 	"io"
 	"log/slog"
 	"maps"
@@ -40,6 +41,14 @@ func (p *Router) setup_firewalld(wrt io.Writer) error {
 			return err
 		}
 		if err := tpl.Execute(wrt, map[string]interface{}{"items": slices.Collect(maps.Keys(p.Wan))}); err != nil {
+			return err
+		}
+
+		// TODO nat rules
+		// firewall-cmd --zone=external --add-forward-port=port=22222:proto=tcp:toport=22:toaddr=172.16.231.161
+	}
+	if p.Lan != nil && p.Dmz != nil {
+		if _, err := fmt.Fprintf(wrt, "firewall-cmd --permanent --zone=dmz --add-source=%s\n", p.Lan.Network.Address); err != nil {
 			return err
 		}
 	}
