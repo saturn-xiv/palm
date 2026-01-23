@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useCopyToClipboard } from "usehooks-ts";
 
 import SetOwnerForm from "./SetOwner";
 import SetIpAddressForm from "./SetIpAddress";
@@ -20,6 +21,7 @@ import Timestamp from "../../components/Timestamp";
 
 const Widget = () => {
   const intl = useIntl();
+  const [, copy] = useCopyToClipboard();
   const dispatch = useAppDispatch();
   const [items, setItems] = useState<IHost[]>([]);
   const handleRefresh = async () => {
@@ -73,14 +75,26 @@ const Widget = () => {
         <tbody>
           {items.map((it, id) => (
             <tr key={id}>
-              <td>{it.mac}</td>
+              <td>
+                <span onClick={() => copy(it.mac)} className="tag">
+                  {it.mac}
+                </span>
+              </td>
               <td>
                 {it.fixed ? (
-                  <button className="button is-small is-primary is-dark">
+                  <button
+                    onClick={() => copy(it.ip)}
+                    className="button is-small is-primary is-dark"
+                  >
                     {it.ip}
                   </button>
                 ) : (
-                  <button className="button is-small is-text">{it.ip}</button>
+                  <button
+                    onClick={() => copy(it.ip)}
+                    className="button is-small is-text"
+                  >
+                    {it.ip}
+                  </button>
                 )}
               </td>
               <td>{it.name}</td>
