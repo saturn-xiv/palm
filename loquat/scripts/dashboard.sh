@@ -8,7 +8,7 @@ npm install --save \
     react-router react-intl \
     @graphiql/react \
     formik yup usehooks-ts \
-    jose dayjs \
+    jose dayjs ipaddr.js \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie 
 
