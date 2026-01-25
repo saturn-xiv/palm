@@ -2,7 +2,15 @@ file(GLOB BEGONIA_SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src
 file(GLOB GOURD_SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/gourd/src/*")
 
 # -----------------------------------------------------------------------------
+find_package(OpenSSL REQUIRED)
+find_package(SQLite3 REQUIRED)
+find_package(PostgreSQL REQUIRED)
+find_package(CURL REQUIRED)
 find_package(rabbitmq-c REQUIRED)
+find_package(Boost REQUIRED COMPONENTS date_time)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(MYSQLCLIENT REQUIRED IMPORTED_TARGET "mysqlclient")
 # -----------------------------------------------------------------------------
 FetchContent_Declare(argparse
   GIT_REPOSITORY "https://github.com/p-ranav/argparse.git"
@@ -34,14 +42,18 @@ FetchContent_Declare(cpphttplib
   GIT_TAG        "v0.28.0"
 )
 
-FetchContent_Declare(libpqxx
-  GIT_REPOSITORY "https://github.com/jtv/libpqxx.git"
-  GIT_TAG        "7.10.4"
-)
-
 FetchContent_Declare(redisplusplus
   GIT_REPOSITORY "https://github.com/sewenew/redis-plus-plus.git"
   GIT_TAG        "1.3.15"
+)
+
+set(WITH_POSTGRESQL ON)
+set(WITH_MYSQL ON)
+set(WITH_SQLITE3 ON)
+set(WITH_BOOST ON)
+FetchContent_Declare(soci
+  GIT_REPOSITORY "https://github.com/SOCI/soci.git"
+  GIT_TAG        "v4.1.2"
 )
 
 set(CPR_USE_SYSTEM_CURL ON)
@@ -62,15 +74,20 @@ FetchContent_Declare(gRPC
   GIT_TAG        "v1.76.0"
 )
 
-FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec inja cpphttplib libpqxx redisplusplus cpr absl gRPC)
+FetchContent_MakeAvailable(argparse spdlog tomlplusplus cppcodec inja cpphttplib soci redisplusplus cpr absl gRPC)
 # -----------------------------------------------------------------------------
 
-add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST})
+add_library(begonia STATIC ${BEGONIA_SOURCE_LIST} ${GOURD_SOURCE_LIST}) 
 
-target_link_libraries(begonia PUBLIC m dl anl
+target_link_libraries(begonia PUBLIC m dl anl pthread
+  ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES}
+  PostgreSQL::PostgreSQL PkgConfig::MYSQLCLIENT SQLite::SQLite3 
+  CURL::libcurl rabbitmq::rabbitmq
+
   argparse cpr::cpr tomlplusplus::tomlplusplus
-  grpc++
-  pqxx redis++ rabbitmq::rabbitmq
+  grpc++  
+  redis++  
+  soci_core soci_postgresql soci_mysql soci_sqlite3
 )
 
 target_include_directories(begonia PUBLIC
@@ -81,7 +98,8 @@ target_include_directories(begonia PUBLIC
   ${cppcodec_SOURCE_DIR}
   ${spdlog_SOURCE_DIR}/include
   ${cpr_SOURCE_DIR}/include
+  ${soci_SOURCE_DIR}/include
   ${tomlplusplus_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/single_include
-  ${inja_SOURCE_DIR}/third_party/include
+  ${inja_SOURCE_DIR}/third_party/include  
 )

@@ -172,7 +172,7 @@ then
     echo "unsupported system $ID"
     exit 1
 fi
-sudo apt install -y libcurl4-openssl-dev libpq-dev libhiredis-dev librabbitmq-dev libsystemd-dev libboost-all-dev
+sudo apt install -y libcurl4-openssl-dev libpq-dev libmysqlclient-dev libhiredis-dev librabbitmq-dev libsystemd-dev libboost-all-dev
 
 if [ -d $TARGET ]
 then
