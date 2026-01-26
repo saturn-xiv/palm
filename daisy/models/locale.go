@@ -32,6 +32,14 @@ func T(db *gorm.DB, lang string, code string, args map[string]interface{}) strin
 	return it
 }
 
+func CountLocale(db *gorm.DB) (int64, error) {
+	var c int64
+	if err := db.Model(&Locale{}).Count(&c).Error; err != nil {
+		return 0, err
+	}
+	return c, nil
+}
+
 func SetLocale(db *gorm.DB, lang string, code string, message string) error {
 	it, err := LocaleByLangAndCode(db, lang, code)
 	if err == nil {

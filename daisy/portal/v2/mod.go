@@ -25,3 +25,35 @@ func NewSession(s string) (*Session, error) {
 	}
 	return &it, nil
 }
+
+func (p *Page) Offset() int64 {
+	return (p.Index - 1) * p.Size
+}
+
+func NewPagination(page *Page, total int64) *Pagination {
+	size := page.Size
+	if size < 20 {
+		size = 20
+	}
+	if size > 1000 {
+		size = 1000
+	}
+	index := page.Index
+	if index < 1 {
+		index = 1
+	}
+	pages := total / size
+	if total%size > 0 {
+		pages = pages + 1
+	}
+	if index*size > total {
+		index = pages
+	}
+	return &Pagination{
+		Current:     &Page{Index: index, Size: size},
+		Total:       total,
+		Pages:       pages,
+		HasPrevious: index > 1,
+		HasNext:     index < pages,
+	}
+}

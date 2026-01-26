@@ -313,15 +313,15 @@ class Subject_User final : public ::google::protobuf::Message
     kIdFieldNumber = 1,
     kCodeFieldNumber = 2,
   };
-  // uint32 id = 1;
+  // int64 id = 1;
   bool has_id() const;
   void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
+  ::int64_t id() const;
+  void set_id(::int64_t value);
 
   private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
 
   public:
   // string code = 2;
@@ -373,7 +373,7 @@ class Subject_User final : public ::google::protobuf::Message
     union ByUnion {
       constexpr ByUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::uint32_t id_;
+      ::int64_t id_;
       ::google::protobuf::internal::ArenaStringPtr code_;
     } by_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -2093,15 +2093,15 @@ class Subject_Role final : public ::google::protobuf::Message
   ::palm::rbac::v1::Subject_Role_Administrator* PROTOBUF_NONNULL _internal_mutable_administrator();
 
   public:
-  // uint32 id = 8;
+  // int64 id = 8;
   bool has_id() const;
   void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
+  ::int64_t id() const;
+  void set_id(::int64_t value);
 
   private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
 
   public:
   // string code = 9;
@@ -2157,7 +2157,7 @@ class Subject_Role final : public ::google::protobuf::Message
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::palm::rbac::v1::Subject_Role_Root* PROTOBUF_NULLABLE root_;
       ::palm::rbac::v1::Subject_Role_Administrator* PROTOBUF_NULLABLE administrator_;
-      ::uint32_t id_;
+      ::int64_t id_;
       ::google::protobuf::internal::ArenaStringPtr code_;
     } by_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -2340,15 +2340,15 @@ class Object final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_type();
 
   public:
-  // uint32 id = 11;
+  // int64 id = 11;
   bool has_id() const;
   void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
+  ::int64_t id() const;
+  void set_id(::int64_t value);
 
   private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
 
   public:
   // string code = 12;
@@ -2423,7 +2423,7 @@ class Object final : public ::google::protobuf::Message
     union ByUnion {
       constexpr ByUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::uint32_t id_;
+      ::int64_t id_;
       ::google::protobuf::internal::ArenaStringPtr code_;
       ::google::protobuf::Empty* PROTOBUF_NULLABLE all_;
     } by_;
@@ -4561,7 +4561,7 @@ inline void Object::set_allocated_type(::std::string* PROTOBUF_NULLABLE value) {
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.Object.type)
 }
 
-// uint32 id = 11;
+// int64 id = 11;
 inline bool Object::has_id() const {
   return by_case() == kId;
 }
@@ -4571,15 +4571,15 @@ inline void Object::set_has_id() {
 inline void Object::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kId) {
-    _impl_.by_.id_ = 0u;
+    _impl_.by_.id_ = ::int64_t{0};
     clear_has_by();
   }
 }
-inline ::uint32_t Object::id() const {
+inline ::int64_t Object::id() const {
   // @@protoc_insertion_point(field_get:palm.rbac.v1.Object.id)
   return _internal_id();
 }
-inline void Object::set_id(::uint32_t value) {
+inline void Object::set_id(::int64_t value) {
   if (by_case() != kId) {
     clear_by();
     set_has_id();
@@ -4587,11 +4587,11 @@ inline void Object::set_id(::uint32_t value) {
   _impl_.by_.id_ = value;
   // @@protoc_insertion_point(field_set:palm.rbac.v1.Object.id)
 }
-inline ::uint32_t Object::_internal_id() const {
+inline ::int64_t Object::_internal_id() const {
   if (by_case() == kId) {
     return _impl_.by_.id_;
   }
-  return 0u;
+  return ::int64_t{0};
 }
 
 // string code = 12;
@@ -4932,7 +4932,7 @@ inline ::palm::rbac::v1::Subject_Role_Administrator* PROTOBUF_NONNULL Subject_Ro
   return _msg;
 }
 
-// uint32 id = 8;
+// int64 id = 8;
 inline bool Subject_Role::has_id() const {
   return by_case() == kId;
 }
@@ -4942,15 +4942,15 @@ inline void Subject_Role::set_has_id() {
 inline void Subject_Role::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kId) {
-    _impl_.by_.id_ = 0u;
+    _impl_.by_.id_ = ::int64_t{0};
     clear_has_by();
   }
 }
-inline ::uint32_t Subject_Role::id() const {
+inline ::int64_t Subject_Role::id() const {
   // @@protoc_insertion_point(field_get:palm.rbac.v1.Subject.Role.id)
   return _internal_id();
 }
-inline void Subject_Role::set_id(::uint32_t value) {
+inline void Subject_Role::set_id(::int64_t value) {
   if (by_case() != kId) {
     clear_by();
     set_has_id();
@@ -4958,11 +4958,11 @@ inline void Subject_Role::set_id(::uint32_t value) {
   _impl_.by_.id_ = value;
   // @@protoc_insertion_point(field_set:palm.rbac.v1.Subject.Role.id)
 }
-inline ::uint32_t Subject_Role::_internal_id() const {
+inline ::int64_t Subject_Role::_internal_id() const {
   if (by_case() == kId) {
     return _impl_.by_.id_;
   }
-  return 0u;
+  return ::int64_t{0};
 }
 
 // string code = 9;
@@ -5063,7 +5063,7 @@ inline Subject_Role::ByCase Subject_Role::by_case() const {
 
 // Subject_User
 
-// uint32 id = 1;
+// int64 id = 1;
 inline bool Subject_User::has_id() const {
   return by_case() == kId;
 }
@@ -5073,15 +5073,15 @@ inline void Subject_User::set_has_id() {
 inline void Subject_User::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (by_case() == kId) {
-    _impl_.by_.id_ = 0u;
+    _impl_.by_.id_ = ::int64_t{0};
     clear_has_by();
   }
 }
-inline ::uint32_t Subject_User::id() const {
+inline ::int64_t Subject_User::id() const {
   // @@protoc_insertion_point(field_get:palm.rbac.v1.Subject.User.id)
   return _internal_id();
 }
-inline void Subject_User::set_id(::uint32_t value) {
+inline void Subject_User::set_id(::int64_t value) {
   if (by_case() != kId) {
     clear_by();
     set_has_id();
@@ -5089,11 +5089,11 @@ inline void Subject_User::set_id(::uint32_t value) {
   _impl_.by_.id_ = value;
   // @@protoc_insertion_point(field_set:palm.rbac.v1.Subject.User.id)
 }
-inline ::uint32_t Subject_User::_internal_id() const {
+inline ::int64_t Subject_User::_internal_id() const {
   if (by_case() == kId) {
     return _impl_.by_.id_;
   }
-  return 0u;
+  return ::int64_t{0};
 }
 
 // string code = 2;

@@ -69,11 +69,12 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	health_server := health.NewServer()
 	healthgrpc.RegisterHealthServer(server, health_server)
 	portal_v2.RegisterSiteServer(server, portal.NewSiteServer())
+	portal_v2.RegisterLocaleServer(server, portal.NewLocaleServer(db, jwt, enforcer))
 	crypto_v2.RegisterAeadServer(server, crypto.NewAeadServer(aead))
 	crypto_v2.RegisterHMacServer(server, crypto.NewHmacServer(hmac))
 	crypto_v2.RegisterJwtServer(server, crypto.NewJwtServer(jwt))
 	s3_v2.RegisterS3Server(server, s3.NewServer(s3_client))
-	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(enforcer))
+	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(db, jwt, enforcer))
 
 	slog.Info("gRPC server listening at", "address", listen.Addr())
 	return server.Serve(listen)

@@ -23,15 +23,15 @@ public interface ObjectOrBuilder extends
       getTypeBytes();
 
   /**
-   * <code>uint32 id = 11;</code>
+   * <code>int64 id = 11;</code>
    * @return Whether the id field is set.
    */
   boolean hasId();
   /**
-   * <code>uint32 id = 11;</code>
+   * <code>int64 id = 11;</code>
    * @return The id.
    */
-  int getId();
+  long getId();
 
   /**
    * <code>string code = 12;</code>

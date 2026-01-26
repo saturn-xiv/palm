@@ -95,7 +95,7 @@ private static final long serialVersionUID = 0L;
   public static final int PAGES_FIELD_NUMBER = 4;
   private long pages_ = 0L;
   /**
-   * <code>uint64 pages = 4;</code>
+   * <code>int64 pages = 4;</code>
    * @return The pages.
    */
   @java.lang.Override
@@ -106,7 +106,7 @@ private static final long serialVersionUID = 0L;
   public static final int TOTAL_FIELD_NUMBER = 5;
   private long total_ = 0L;
   /**
-   * <code>uint64 total = 5;</code>
+   * <code>int64 total = 5;</code>
    * @return The total.
    */
   @java.lang.Override
@@ -138,10 +138,10 @@ private static final long serialVersionUID = 0L;
       output.writeBool(3, hasNext_);
     }
     if (pages_ != 0L) {
-      output.writeUInt64(4, pages_);
+      output.writeInt64(4, pages_);
     }
     if (total_ != 0L) {
-      output.writeUInt64(5, total_);
+      output.writeInt64(5, total_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -166,11 +166,11 @@ private static final long serialVersionUID = 0L;
     }
     if (pages_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(4, pages_);
+        .computeInt64Size(4, pages_);
     }
     if (total_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(5, total_);
+        .computeInt64Size(5, total_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -499,12 +499,12 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 24
             case 32: {
-              pages_ = input.readUInt64();
+              pages_ = input.readInt64();
               bitField0_ |= 0x00000008;
               break;
             } // case 32
             case 40: {
-              total_ = input.readUInt64();
+              total_ = input.readInt64();
               bitField0_ |= 0x00000010;
               break;
             } // case 40
@@ -712,7 +712,7 @@ private static final long serialVersionUID = 0L;
 
     private long pages_ ;
     /**
-     * <code>uint64 pages = 4;</code>
+     * <code>int64 pages = 4;</code>
      * @return The pages.
      */
     @java.lang.Override
@@ -720,7 +720,7 @@ private static final long serialVersionUID = 0L;
       return pages_;
     }
     /**
-     * <code>uint64 pages = 4;</code>
+     * <code>int64 pages = 4;</code>
      * @param value The pages to set.
      * @return This builder for chaining.
      */
@@ -732,7 +732,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>uint64 pages = 4;</code>
+     * <code>int64 pages = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearPages() {
@@ -744,7 +744,7 @@ private static final long serialVersionUID = 0L;
 
     private long total_ ;
     /**
-     * <code>uint64 total = 5;</code>
+     * <code>int64 total = 5;</code>
      * @return The total.
      */
     @java.lang.Override
@@ -752,7 +752,7 @@ private static final long serialVersionUID = 0L;
       return total_;
     }
     /**
-     * <code>uint64 total = 5;</code>
+     * <code>int64 total = 5;</code>
      * @param value The total to set.
      * @return This builder for chaining.
      */
@@ -764,7 +764,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>uint64 total = 5;</code>
+     * <code>int64 total = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearTotal() {

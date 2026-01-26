@@ -9,7 +9,7 @@
 #include <hiredis/hiredis.h>
 #include <httplib.h>
 #include <libpq-fe.h>
-#include <mysql.h>
+#include <mysql/mysql.h>
 #include <openssl/ssl.h>
 #include <soci/version.h>
 #include <sqlite3.h>

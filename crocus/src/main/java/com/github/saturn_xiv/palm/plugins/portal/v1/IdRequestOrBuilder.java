@@ -11,7 +11,7 @@ public interface IdRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>uint64 id = 1;</code>
+   * <code>int64 id = 1;</code>
    * @return The id.
    */
   long getId();

@@ -21,6 +21,156 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as portal_pb from './portal_pb'; // proto import: "portal.proto"
 
 
+export class LocaleClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'binary';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname.replace(/\/+$/, '');
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodDescriptorIndex = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Locale/Index',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.Page,
+    portal_pb.LocaleIndexResponse,
+    (request: portal_pb.Page) => {
+      return request.serializeBinary();
+    },
+    portal_pb.LocaleIndexResponse.deserializeBinary
+  );
+
+  index(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.LocaleIndexResponse>;
+
+  index(
+    request: portal_pb.Page,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.LocaleIndexResponse) => void): grpcWeb.ClientReadableStream<portal_pb.LocaleIndexResponse>;
+
+  index(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.LocaleIndexResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Locale/Index',
+        request,
+        metadata || {},
+        this.methodDescriptorIndex,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Locale/Index',
+    request,
+    metadata || {},
+    this.methodDescriptorIndex);
+  }
+
+  methodDescriptorSet = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Locale/Set',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.LocaleSetRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.LocaleSetRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  set(
+    request: portal_pb.LocaleSetRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  set(
+    request: portal_pb.LocaleSetRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  set(
+    request: portal_pb.LocaleSetRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Locale/Set',
+        request,
+        metadata || {},
+        this.methodDescriptorSet,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Locale/Set',
+    request,
+    metadata || {},
+    this.methodDescriptorSet);
+  }
+
+  methodDescriptorByLang = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.Locale/ByLang',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.LocaleByLangRequest,
+    portal_pb.LocaleByLangResponse,
+    (request: portal_pb.LocaleByLangRequest) => {
+      return request.serializeBinary();
+    },
+    portal_pb.LocaleByLangResponse.deserializeBinary
+  );
+
+  byLang(
+    request: portal_pb.LocaleByLangRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.LocaleByLangResponse>;
+
+  byLang(
+    request: portal_pb.LocaleByLangRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.LocaleByLangResponse) => void): grpcWeb.ClientReadableStream<portal_pb.LocaleByLangResponse>;
+
+  byLang(
+    request: portal_pb.LocaleByLangRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.LocaleByLangResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.Locale/ByLang',
+        request,
+        metadata || {},
+        this.methodDescriptorByLang,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.Locale/ByLang',
+    request,
+    metadata || {},
+    this.methodDescriptorByLang);
+  }
+
+}
+
 export class SiteClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;

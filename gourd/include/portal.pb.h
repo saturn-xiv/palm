@@ -32,6 +32,7 @@
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/empty.pb.h"
+#include "google/protobuf/timestamp.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -82,6 +83,26 @@ class IdRequest;
 struct IdRequestDefaultTypeInternal;
 extern IdRequestDefaultTypeInternal _IdRequest_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull IdRequest_class_data_;
+class LocaleByLangRequest;
+struct LocaleByLangRequestDefaultTypeInternal;
+extern LocaleByLangRequestDefaultTypeInternal _LocaleByLangRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LocaleByLangRequest_class_data_;
+class LocaleByLangResponse;
+struct LocaleByLangResponseDefaultTypeInternal;
+extern LocaleByLangResponseDefaultTypeInternal _LocaleByLangResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LocaleByLangResponse_class_data_;
+class LocaleIndexResponse;
+struct LocaleIndexResponseDefaultTypeInternal;
+extern LocaleIndexResponseDefaultTypeInternal _LocaleIndexResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_class_data_;
+class LocaleIndexResponse_Item;
+struct LocaleIndexResponse_ItemDefaultTypeInternal;
+extern LocaleIndexResponse_ItemDefaultTypeInternal _LocaleIndexResponse_Item_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_Item_class_data_;
+class LocaleSetRequest;
+struct LocaleSetRequestDefaultTypeInternal;
+extern LocaleSetRequestDefaultTypeInternal _LocaleSetRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LocaleSetRequest_class_data_;
 class Location;
 struct LocationDefaultTypeInternal;
 extern LocationDefaultTypeInternal _Location_default_instance_;
@@ -340,7 +361,7 @@ class User final : public ::google::protobuf::internal::ZeroFieldsBase
     return *reinterpret_cast<const User*>(
         &_User_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(User& a, User& b) { a.Swap(&b); }
   inline void Swap(User* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -510,7 +531,7 @@ class Session final : public ::google::protobuf::Message
     return *reinterpret_cast<const Session*>(
         &_Session_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(Session& a, Session& b) { a.Swap(&b); }
   inline void Swap(Session* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -809,24 +830,24 @@ class Page final : public ::google::protobuf::Message
     kIndexFieldNumber = 1,
     kSizeFieldNumber = 2,
   };
-  // uint64 index = 1;
+  // int64 index = 1;
   void clear_index() ;
-  ::uint64_t index() const;
-  void set_index(::uint64_t value);
+  ::int64_t index() const;
+  void set_index(::int64_t value);
 
   private:
-  ::uint64_t _internal_index() const;
-  void _internal_set_index(::uint64_t value);
+  ::int64_t _internal_index() const;
+  void _internal_set_index(::int64_t value);
 
   public:
-  // uint64 size = 2;
+  // int64 size = 2;
   void clear_size() ;
-  ::uint64_t size() const;
-  void set_size(::uint64_t value);
+  ::int64_t size() const;
+  void set_size(::int64_t value);
 
   private:
-  ::uint64_t _internal_size() const;
-  void _internal_set_size(::uint64_t value);
+  ::int64_t _internal_size() const;
+  void _internal_set_size(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:palm.portal.v1.Page)
@@ -855,8 +876,8 @@ class Page final : public ::google::protobuf::Message
         const Page& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint64_t index_;
-    ::uint64_t size_;
+    ::int64_t index_;
+    ::int64_t size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -920,7 +941,7 @@ class Log final : public ::google::protobuf::internal::ZeroFieldsBase
     return *reinterpret_cast<const Log*>(
         &_Log_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(Log& a, Log& b) { a.Swap(&b); }
   inline void Swap(Log* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1261,6 +1282,432 @@ class Location final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull Location_class_data_;
 // -------------------------------------------------------------------
 
+class LocaleSetRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.LocaleSetRequest) */ {
+ public:
+  inline LocaleSetRequest() : LocaleSetRequest(nullptr) {}
+  ~LocaleSetRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LocaleSetRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LocaleSetRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LocaleSetRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline LocaleSetRequest(const LocaleSetRequest& from) : LocaleSetRequest(nullptr, from) {}
+  inline LocaleSetRequest(LocaleSetRequest&& from) noexcept
+      : LocaleSetRequest(nullptr, ::std::move(from)) {}
+  inline LocaleSetRequest& operator=(const LocaleSetRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LocaleSetRequest& operator=(LocaleSetRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LocaleSetRequest& default_instance() {
+    return *reinterpret_cast<const LocaleSetRequest*>(
+        &_LocaleSetRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(LocaleSetRequest& a, LocaleSetRequest& b) { a.Swap(&b); }
+  inline void Swap(LocaleSetRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LocaleSetRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LocaleSetRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LocaleSetRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LocaleSetRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LocaleSetRequest& from) { LocaleSetRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LocaleSetRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.LocaleSetRequest"; }
+
+ protected:
+  explicit LocaleSetRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LocaleSetRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LocaleSetRequest& from);
+  LocaleSetRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LocaleSetRequest&& from) noexcept
+      : LocaleSetRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLangFieldNumber = 1,
+    kCodeFieldNumber = 2,
+    kMessageFieldNumber = 3,
+  };
+  // string lang = 1;
+  void clear_lang() ;
+  const ::std::string& lang() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_lang(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_lang();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_lang();
+  void set_allocated_lang(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_lang() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_lang();
+
+  public:
+  // string code = 2;
+  void clear_code() ;
+  const ::std::string& code() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_code(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_code();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_code();
+  void set_allocated_code(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_code() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_code(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_code();
+
+  public:
+  // string message = 3;
+  void clear_message() ;
+  const ::std::string& message() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_message();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_message();
+  void set_allocated_message(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_message() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_message(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_message();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.LocaleSetRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3,
+                                   0, 55,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LocaleSetRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr lang_;
+    ::google::protobuf::internal::ArenaStringPtr code_;
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LocaleSetRequest_class_data_;
+// -------------------------------------------------------------------
+
+class LocaleByLangRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.LocaleByLangRequest) */ {
+ public:
+  inline LocaleByLangRequest() : LocaleByLangRequest(nullptr) {}
+  ~LocaleByLangRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LocaleByLangRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LocaleByLangRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LocaleByLangRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline LocaleByLangRequest(const LocaleByLangRequest& from) : LocaleByLangRequest(nullptr, from) {}
+  inline LocaleByLangRequest(LocaleByLangRequest&& from) noexcept
+      : LocaleByLangRequest(nullptr, ::std::move(from)) {}
+  inline LocaleByLangRequest& operator=(const LocaleByLangRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LocaleByLangRequest& operator=(LocaleByLangRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LocaleByLangRequest& default_instance() {
+    return *reinterpret_cast<const LocaleByLangRequest*>(
+        &_LocaleByLangRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(LocaleByLangRequest& a, LocaleByLangRequest& b) { a.Swap(&b); }
+  inline void Swap(LocaleByLangRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LocaleByLangRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LocaleByLangRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LocaleByLangRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LocaleByLangRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LocaleByLangRequest& from) { LocaleByLangRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LocaleByLangRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.LocaleByLangRequest"; }
+
+ protected:
+  explicit LocaleByLangRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LocaleByLangRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LocaleByLangRequest& from);
+  LocaleByLangRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LocaleByLangRequest&& from) noexcept
+      : LocaleByLangRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLangFieldNumber = 1,
+  };
+  // string lang = 1;
+  void clear_lang() ;
+  const ::std::string& lang() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_lang(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_lang();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_lang();
+  void set_allocated_lang(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_lang() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_lang();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.LocaleByLangRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 47,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LocaleByLangRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr lang_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LocaleByLangRequest_class_data_;
+// -------------------------------------------------------------------
+
 class IdRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.IdRequest) */ {
  public:
@@ -1406,14 +1853,14 @@ class IdRequest final : public ::google::protobuf::Message
   enum : int {
     kIdFieldNumber = 1,
   };
-  // uint64 id = 1;
+  // int64 id = 1;
   void clear_id() ;
-  ::uint64_t id() const;
-  void set_id(::uint64_t value);
+  ::int64_t id() const;
+  void set_id(::int64_t value);
 
   private:
-  ::uint64_t _internal_id() const;
-  void _internal_set_id(::uint64_t value);
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:palm.portal.v1.IdRequest)
@@ -1442,7 +1889,7 @@ class IdRequest final : public ::google::protobuf::Message
         const IdRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint64_t id_;
+    ::int64_t id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1507,7 +1954,7 @@ class CurrenciesResponse_Item final : public ::google::protobuf::Message
     return *reinterpret_cast<const CurrenciesResponse_Item*>(
         &_CurrenciesResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(CurrenciesResponse_Item& a, CurrenciesResponse_Item& b) { a.Swap(&b); }
   inline void Swap(CurrenciesResponse_Item* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2343,24 +2790,24 @@ class Pagination final : public ::google::protobuf::Message
   ::palm::portal::v1::Page* PROTOBUF_NONNULL _internal_mutable_current();
 
   public:
-  // uint64 pages = 4;
+  // int64 pages = 4;
   void clear_pages() ;
-  ::uint64_t pages() const;
-  void set_pages(::uint64_t value);
+  ::int64_t pages() const;
+  void set_pages(::int64_t value);
 
   private:
-  ::uint64_t _internal_pages() const;
-  void _internal_set_pages(::uint64_t value);
+  ::int64_t _internal_pages() const;
+  void _internal_set_pages(::int64_t value);
 
   public:
-  // uint64 total = 5;
+  // int64 total = 5;
   void clear_total() ;
-  ::uint64_t total() const;
-  void set_total(::uint64_t value);
+  ::int64_t total() const;
+  void set_total(::int64_t value);
 
   private:
-  ::uint64_t _internal_total() const;
-  void _internal_set_total(::uint64_t value);
+  ::int64_t _internal_total() const;
+  void _internal_set_total(::int64_t value);
 
   public:
   // bool has_previous = 2;
@@ -2410,8 +2857,8 @@ class Pagination final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::palm::portal::v1::Page* PROTOBUF_NULLABLE current_;
-    ::uint64_t pages_;
-    ::uint64_t total_;
+    ::int64_t pages_;
+    ::int64_t total_;
     bool has_previous_;
     bool has_next_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -2421,6 +2868,265 @@ class Pagination final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull Pagination_class_data_;
+// -------------------------------------------------------------------
+
+class LocaleIndexResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.LocaleIndexResponse.Item) */ {
+ public:
+  inline LocaleIndexResponse_Item() : LocaleIndexResponse_Item(nullptr) {}
+  ~LocaleIndexResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LocaleIndexResponse_Item* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LocaleIndexResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LocaleIndexResponse_Item(::google::protobuf::internal::ConstantInitialized);
+
+  inline LocaleIndexResponse_Item(const LocaleIndexResponse_Item& from) : LocaleIndexResponse_Item(nullptr, from) {}
+  inline LocaleIndexResponse_Item(LocaleIndexResponse_Item&& from) noexcept
+      : LocaleIndexResponse_Item(nullptr, ::std::move(from)) {}
+  inline LocaleIndexResponse_Item& operator=(const LocaleIndexResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LocaleIndexResponse_Item& operator=(LocaleIndexResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LocaleIndexResponse_Item& default_instance() {
+    return *reinterpret_cast<const LocaleIndexResponse_Item*>(
+        &_LocaleIndexResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 9;
+  friend void swap(LocaleIndexResponse_Item& a, LocaleIndexResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(LocaleIndexResponse_Item* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LocaleIndexResponse_Item* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LocaleIndexResponse_Item* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LocaleIndexResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LocaleIndexResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LocaleIndexResponse_Item& from) { LocaleIndexResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LocaleIndexResponse_Item* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.LocaleIndexResponse.Item"; }
+
+ protected:
+  explicit LocaleIndexResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LocaleIndexResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LocaleIndexResponse_Item& from);
+  LocaleIndexResponse_Item(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LocaleIndexResponse_Item&& from) noexcept
+      : LocaleIndexResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLangFieldNumber = 2,
+    kCodeFieldNumber = 3,
+    kMessageFieldNumber = 4,
+    kUpdatedAtFieldNumber = 9,
+    kIdFieldNumber = 1,
+  };
+  // string lang = 2;
+  void clear_lang() ;
+  const ::std::string& lang() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_lang(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_lang();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_lang();
+  void set_allocated_lang(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_lang() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_lang();
+
+  public:
+  // string code = 3;
+  void clear_code() ;
+  const ::std::string& code() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_code(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_code();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_code();
+  void set_allocated_code(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_code() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_code(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_code();
+
+  public:
+  // string message = 4;
+  void clear_message() ;
+  const ::std::string& message() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_message();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_message();
+  void set_allocated_message(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_message() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_message(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_message();
+
+  public:
+  // .google.protobuf.Timestamp updated_at = 9;
+  bool has_updated_at() const;
+  void clear_updated_at() ;
+  const ::google::protobuf::Timestamp& updated_at() const;
+  [[nodiscard]] ::google::protobuf::Timestamp* PROTOBUF_NULLABLE release_updated_at();
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL mutable_updated_at();
+  void set_allocated_updated_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_updated_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  ::google::protobuf::Timestamp* PROTOBUF_NULLABLE unsafe_arena_release_updated_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_updated_at() const;
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_updated_at();
+
+  public:
+  // int64 id = 1;
+  void clear_id() ;
+  ::int64_t id() const;
+  void set_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.LocaleIndexResponse.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 5,
+                                   1, 63,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LocaleIndexResponse_Item& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr lang_;
+    ::google::protobuf::internal::ArenaStringPtr code_;
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE updated_at_;
+    ::int64_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_Item_class_data_;
 // -------------------------------------------------------------------
 
 class CurrenciesResponse final : public ::google::protobuf::Message
@@ -2478,7 +3184,7 @@ class CurrenciesResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const CurrenciesResponse*>(
         &_CurrenciesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(CurrenciesResponse& a, CurrenciesResponse& b) { a.Swap(&b); }
   inline void Swap(CurrenciesResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2619,6 +3325,419 @@ class CurrenciesResponse final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull CurrenciesResponse_class_data_;
+// -------------------------------------------------------------------
+
+class LocaleIndexResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.LocaleIndexResponse) */ {
+ public:
+  inline LocaleIndexResponse() : LocaleIndexResponse(nullptr) {}
+  ~LocaleIndexResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LocaleIndexResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LocaleIndexResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LocaleIndexResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline LocaleIndexResponse(const LocaleIndexResponse& from) : LocaleIndexResponse(nullptr, from) {}
+  inline LocaleIndexResponse(LocaleIndexResponse&& from) noexcept
+      : LocaleIndexResponse(nullptr, ::std::move(from)) {}
+  inline LocaleIndexResponse& operator=(const LocaleIndexResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LocaleIndexResponse& operator=(LocaleIndexResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LocaleIndexResponse& default_instance() {
+    return *reinterpret_cast<const LocaleIndexResponse*>(
+        &_LocaleIndexResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(LocaleIndexResponse& a, LocaleIndexResponse& b) { a.Swap(&b); }
+  inline void Swap(LocaleIndexResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LocaleIndexResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LocaleIndexResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LocaleIndexResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LocaleIndexResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LocaleIndexResponse& from) { LocaleIndexResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LocaleIndexResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.LocaleIndexResponse"; }
+
+ protected:
+  explicit LocaleIndexResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LocaleIndexResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LocaleIndexResponse& from);
+  LocaleIndexResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LocaleIndexResponse&& from) noexcept
+      : LocaleIndexResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = LocaleIndexResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 9,
+  };
+  // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL _internal_mutable_items();
+  public:
+  const ::palm::portal::v1::LocaleIndexResponse_Item& items(int index) const;
+  ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>& items() const;
+  // .palm.portal.v1.Pagination pagination = 9;
+  bool has_pagination() const;
+  void clear_pagination() ;
+  const ::palm::portal::v1::Pagination& pagination() const;
+  [[nodiscard]] ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
+
+  private:
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.LocaleIndexResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 2,
+                                   2, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LocaleIndexResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::LocaleIndexResponse_Item > items_;
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE pagination_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_class_data_;
+// -------------------------------------------------------------------
+
+class LocaleByLangResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.LocaleByLangResponse) */ {
+ public:
+  inline LocaleByLangResponse() : LocaleByLangResponse(nullptr) {}
+  ~LocaleByLangResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LocaleByLangResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LocaleByLangResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LocaleByLangResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline LocaleByLangResponse(const LocaleByLangResponse& from) : LocaleByLangResponse(nullptr, from) {}
+  inline LocaleByLangResponse(LocaleByLangResponse&& from) noexcept
+      : LocaleByLangResponse(nullptr, ::std::move(from)) {}
+  inline LocaleByLangResponse& operator=(const LocaleByLangResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LocaleByLangResponse& operator=(LocaleByLangResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LocaleByLangResponse& default_instance() {
+    return *reinterpret_cast<const LocaleByLangResponse*>(
+        &_LocaleByLangResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(LocaleByLangResponse& a, LocaleByLangResponse& b) { a.Swap(&b); }
+  inline void Swap(LocaleByLangResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LocaleByLangResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LocaleByLangResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LocaleByLangResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LocaleByLangResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LocaleByLangResponse& from) { LocaleByLangResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LocaleByLangResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.LocaleByLangResponse"; }
+
+ protected:
+  explicit LocaleByLangResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LocaleByLangResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LocaleByLangResponse& from);
+  LocaleByLangResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LocaleByLangResponse&& from) noexcept
+      : LocaleByLangResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL _internal_mutable_items();
+  public:
+  const ::palm::portal::v1::LocaleIndexResponse_Item& items(int index) const;
+  ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>& items() const;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.LocaleByLangResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   1, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LocaleByLangResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::LocaleIndexResponse_Item > items_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LocaleByLangResponse_class_data_;
 
 // ===================================================================
 
@@ -2636,26 +3755,26 @@ extern const ::google::protobuf::internal::ClassDataFull CurrenciesResponse_clas
 
 // IdRequest
 
-// uint64 id = 1;
+// int64 id = 1;
 inline void IdRequest::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = ::uint64_t{0u};
+  _impl_.id_ = ::int64_t{0};
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline ::uint64_t IdRequest::id() const {
+inline ::int64_t IdRequest::id() const {
   // @@protoc_insertion_point(field_get:palm.portal.v1.IdRequest.id)
   return _internal_id();
 }
-inline void IdRequest::set_id(::uint64_t value) {
+inline void IdRequest::set_id(::int64_t value) {
   _internal_set_id(value);
   _impl_._has_bits_[0] |= 0x00000001u;
   // @@protoc_insertion_point(field_set:palm.portal.v1.IdRequest.id)
 }
-inline ::uint64_t IdRequest::_internal_id() const {
+inline ::int64_t IdRequest::_internal_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.id_;
 }
-inline void IdRequest::_internal_set_id(::uint64_t value) {
+inline void IdRequest::_internal_set_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.id_ = value;
 }
@@ -2664,50 +3783,50 @@ inline void IdRequest::_internal_set_id(::uint64_t value) {
 
 // Page
 
-// uint64 index = 1;
+// int64 index = 1;
 inline void Page::clear_index() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.index_ = ::uint64_t{0u};
+  _impl_.index_ = ::int64_t{0};
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline ::uint64_t Page::index() const {
+inline ::int64_t Page::index() const {
   // @@protoc_insertion_point(field_get:palm.portal.v1.Page.index)
   return _internal_index();
 }
-inline void Page::set_index(::uint64_t value) {
+inline void Page::set_index(::int64_t value) {
   _internal_set_index(value);
   _impl_._has_bits_[0] |= 0x00000001u;
   // @@protoc_insertion_point(field_set:palm.portal.v1.Page.index)
 }
-inline ::uint64_t Page::_internal_index() const {
+inline ::int64_t Page::_internal_index() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.index_;
 }
-inline void Page::_internal_set_index(::uint64_t value) {
+inline void Page::_internal_set_index(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.index_ = value;
 }
 
-// uint64 size = 2;
+// int64 size = 2;
 inline void Page::clear_size() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.size_ = ::uint64_t{0u};
+  _impl_.size_ = ::int64_t{0};
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::uint64_t Page::size() const {
+inline ::int64_t Page::size() const {
   // @@protoc_insertion_point(field_get:palm.portal.v1.Page.size)
   return _internal_size();
 }
-inline void Page::set_size(::uint64_t value) {
+inline void Page::set_size(::int64_t value) {
   _internal_set_size(value);
   _impl_._has_bits_[0] |= 0x00000002u;
   // @@protoc_insertion_point(field_set:palm.portal.v1.Page.size)
 }
-inline ::uint64_t Page::_internal_size() const {
+inline ::int64_t Page::_internal_size() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.size_;
 }
-inline void Page::_internal_set_size(::uint64_t value) {
+inline void Page::_internal_set_size(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.size_ = value;
 }
@@ -2862,50 +3981,50 @@ inline void Pagination::_internal_set_has_next(bool value) {
   _impl_.has_next_ = value;
 }
 
-// uint64 pages = 4;
+// int64 pages = 4;
 inline void Pagination::clear_pages() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.pages_ = ::uint64_t{0u};
+  _impl_.pages_ = ::int64_t{0};
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::uint64_t Pagination::pages() const {
+inline ::int64_t Pagination::pages() const {
   // @@protoc_insertion_point(field_get:palm.portal.v1.Pagination.pages)
   return _internal_pages();
 }
-inline void Pagination::set_pages(::uint64_t value) {
+inline void Pagination::set_pages(::int64_t value) {
   _internal_set_pages(value);
   _impl_._has_bits_[0] |= 0x00000002u;
   // @@protoc_insertion_point(field_set:palm.portal.v1.Pagination.pages)
 }
-inline ::uint64_t Pagination::_internal_pages() const {
+inline ::int64_t Pagination::_internal_pages() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.pages_;
 }
-inline void Pagination::_internal_set_pages(::uint64_t value) {
+inline void Pagination::_internal_set_pages(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pages_ = value;
 }
 
-// uint64 total = 5;
+// int64 total = 5;
 inline void Pagination::clear_total() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.total_ = ::uint64_t{0u};
+  _impl_.total_ = ::int64_t{0};
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::uint64_t Pagination::total() const {
+inline ::int64_t Pagination::total() const {
   // @@protoc_insertion_point(field_get:palm.portal.v1.Pagination.total)
   return _internal_total();
 }
-inline void Pagination::set_total(::uint64_t value) {
+inline void Pagination::set_total(::int64_t value) {
   _internal_set_total(value);
   _impl_._has_bits_[0] |= 0x00000004u;
   // @@protoc_insertion_point(field_set:palm.portal.v1.Pagination.total)
 }
-inline ::uint64_t Pagination::_internal_total() const {
+inline ::int64_t Pagination::_internal_total() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.total_;
 }
-inline void Pagination::_internal_set_total(::uint64_t value) {
+inline void Pagination::_internal_set_total(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.total_ = value;
 }
@@ -3278,6 +4397,796 @@ inline void Location::set_allocated_address(::std::string* PROTOBUF_NULLABLE val
     _impl_.address_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Location.address)
+}
+
+// -------------------------------------------------------------------
+
+// LocaleSetRequest
+
+// string lang = 1;
+inline void LocaleSetRequest::clear_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& LocaleSetRequest::lang() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleSetRequest.lang)
+  return _internal_lang();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleSetRequest::set_lang(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleSetRequest.lang)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleSetRequest::mutable_lang()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleSetRequest.lang)
+  return _s;
+}
+inline const ::std::string& LocaleSetRequest::_internal_lang() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lang_.Get();
+}
+inline void LocaleSetRequest::_internal_set_lang(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleSetRequest::_internal_mutable_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.lang_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleSetRequest::release_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleSetRequest.lang)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.lang_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleSetRequest::set_allocated_lang(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.lang_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleSetRequest.lang)
+}
+
+// string code = 2;
+inline void LocaleSetRequest::clear_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.code_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& LocaleSetRequest::code() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleSetRequest.code)
+  return _internal_code();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleSetRequest::set_code(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.code_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleSetRequest.code)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleSetRequest::mutable_code()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_code();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleSetRequest.code)
+  return _s;
+}
+inline const ::std::string& LocaleSetRequest::_internal_code() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.code_.Get();
+}
+inline void LocaleSetRequest::_internal_set_code(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.code_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleSetRequest::_internal_mutable_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.code_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleSetRequest::release_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleSetRequest.code)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.code_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.code_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleSetRequest::set_allocated_code(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.code_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.code_.IsDefault()) {
+    _impl_.code_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleSetRequest.code)
+}
+
+// string message = 3;
+inline void LocaleSetRequest::clear_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& LocaleSetRequest::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleSetRequest.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleSetRequest::set_message(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleSetRequest.message)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleSetRequest::mutable_message()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleSetRequest.message)
+  return _s;
+}
+inline const ::std::string& LocaleSetRequest::_internal_message() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.message_.Get();
+}
+inline void LocaleSetRequest::_internal_set_message(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.message_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleSetRequest::_internal_mutable_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.message_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleSetRequest::release_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleSetRequest.message)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.message_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleSetRequest::set_allocated_message(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.message_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleSetRequest.message)
+}
+
+// -------------------------------------------------------------------
+
+// LocaleByLangRequest
+
+// string lang = 1;
+inline void LocaleByLangRequest::clear_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& LocaleByLangRequest::lang() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleByLangRequest.lang)
+  return _internal_lang();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleByLangRequest::set_lang(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleByLangRequest.lang)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleByLangRequest::mutable_lang()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleByLangRequest.lang)
+  return _s;
+}
+inline const ::std::string& LocaleByLangRequest::_internal_lang() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lang_.Get();
+}
+inline void LocaleByLangRequest::_internal_set_lang(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleByLangRequest::_internal_mutable_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.lang_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleByLangRequest::release_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleByLangRequest.lang)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.lang_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleByLangRequest::set_allocated_lang(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.lang_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleByLangRequest.lang)
+}
+
+// -------------------------------------------------------------------
+
+// LocaleByLangResponse
+
+// repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+inline int LocaleByLangResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int LocaleByLangResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void LocaleByLangResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL LocaleByLangResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleByLangResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL LocaleByLangResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.LocaleByLangResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::portal::v1::LocaleIndexResponse_Item& LocaleByLangResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleByLangResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL LocaleByLangResponse::add_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::portal::v1::LocaleIndexResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.portal.v1.LocaleByLangResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>& LocaleByLangResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.portal.v1.LocaleByLangResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>&
+LocaleByLangResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL
+LocaleByLangResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// -------------------------------------------------------------------
+
+// LocaleIndexResponse_Item
+
+// int64 id = 1;
+inline void LocaleIndexResponse_Item::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int64_t LocaleIndexResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.Item.id)
+  return _internal_id();
+}
+inline void LocaleIndexResponse_Item::set_id(::int64_t value) {
+  _internal_set_id(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleIndexResponse.Item.id)
+}
+inline ::int64_t LocaleIndexResponse_Item::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void LocaleIndexResponse_Item::_internal_set_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string lang = 2;
+inline void LocaleIndexResponse_Item::clear_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& LocaleIndexResponse_Item::lang() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.Item.lang)
+  return _internal_lang();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleIndexResponse_Item::set_lang(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleIndexResponse.Item.lang)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleIndexResponse_Item::mutable_lang()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleIndexResponse.Item.lang)
+  return _s;
+}
+inline const ::std::string& LocaleIndexResponse_Item::_internal_lang() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lang_.Get();
+}
+inline void LocaleIndexResponse_Item::_internal_set_lang(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleIndexResponse_Item::_internal_mutable_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.lang_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleIndexResponse_Item::release_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleIndexResponse.Item.lang)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.lang_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleIndexResponse_Item::set_allocated_lang(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.lang_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleIndexResponse.Item.lang)
+}
+
+// string code = 3;
+inline void LocaleIndexResponse_Item::clear_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.code_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& LocaleIndexResponse_Item::code() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.Item.code)
+  return _internal_code();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleIndexResponse_Item::set_code(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.code_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleIndexResponse.Item.code)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleIndexResponse_Item::mutable_code()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_code();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleIndexResponse.Item.code)
+  return _s;
+}
+inline const ::std::string& LocaleIndexResponse_Item::_internal_code() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.code_.Get();
+}
+inline void LocaleIndexResponse_Item::_internal_set_code(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.code_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleIndexResponse_Item::_internal_mutable_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.code_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleIndexResponse_Item::release_code() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleIndexResponse.Item.code)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.code_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.code_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleIndexResponse_Item::set_allocated_code(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.code_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.code_.IsDefault()) {
+    _impl_.code_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleIndexResponse.Item.code)
+}
+
+// string message = 4;
+inline void LocaleIndexResponse_Item::clear_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& LocaleIndexResponse_Item::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.Item.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void LocaleIndexResponse_Item::set_message(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.LocaleIndexResponse.Item.message)
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleIndexResponse_Item::mutable_message()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleIndexResponse.Item.message)
+  return _s;
+}
+inline const ::std::string& LocaleIndexResponse_Item::_internal_message() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.message_.Get();
+}
+inline void LocaleIndexResponse_Item::_internal_set_message(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.message_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL LocaleIndexResponse_Item::_internal_mutable_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.message_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE LocaleIndexResponse_Item::release_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleIndexResponse.Item.message)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.message_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  return released;
+}
+inline void LocaleIndexResponse_Item::set_allocated_message(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.message_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleIndexResponse.Item.message)
+}
+
+// .google.protobuf.Timestamp updated_at = 9;
+inline bool LocaleIndexResponse_Item::has_updated_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.updated_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& LocaleIndexResponse_Item::_internal_updated_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& LocaleIndexResponse_Item::updated_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void LocaleIndexResponse_Item::unsafe_arena_set_allocated_updated_at(
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_at_);
+  }
+  _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.LocaleIndexResponse.Item.updated_at)
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE LocaleIndexResponse_Item::release_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* released = _impl_.updated_at_;
+  _impl_.updated_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE LocaleIndexResponse_Item::unsafe_arena_release_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleIndexResponse.Item.updated_at)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* temp = _impl_.updated_at_;
+  _impl_.updated_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL LocaleIndexResponse_Item::_internal_mutable_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.updated_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.updated_at_;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL LocaleIndexResponse_Item::mutable_updated_at()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_updated_at();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleIndexResponse.Item.updated_at)
+  return _msg;
+}
+inline void LocaleIndexResponse_Item::set_allocated_updated_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleIndexResponse.Item.updated_at)
+}
+
+// -------------------------------------------------------------------
+
+// LocaleIndexResponse
+
+// repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+inline int LocaleIndexResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int LocaleIndexResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void LocaleIndexResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL LocaleIndexResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleIndexResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL LocaleIndexResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.LocaleIndexResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::portal::v1::LocaleIndexResponse_Item& LocaleIndexResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::portal::v1::LocaleIndexResponse_Item* PROTOBUF_NONNULL LocaleIndexResponse::add_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::portal::v1::LocaleIndexResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.portal.v1.LocaleIndexResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>& LocaleIndexResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.portal.v1.LocaleIndexResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>&
+LocaleIndexResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::LocaleIndexResponse_Item>* PROTOBUF_NONNULL
+LocaleIndexResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// .palm.portal.v1.Pagination pagination = 9;
+inline bool LocaleIndexResponse::has_pagination() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pagination_ != nullptr);
+  return value;
+}
+inline void LocaleIndexResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::portal::v1::Pagination& LocaleIndexResponse::_internal_pagination() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Pagination* p = _impl_.pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Pagination&>(::palm::portal::v1::_Pagination_default_instance_);
+}
+inline const ::palm::portal::v1::Pagination& LocaleIndexResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.LocaleIndexResponse.pagination)
+  return _internal_pagination();
+}
+inline void LocaleIndexResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.LocaleIndexResponse.pagination)
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE LocaleIndexResponse::release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* released = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE LocaleIndexResponse::unsafe_arena_release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.LocaleIndexResponse.pagination)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* temp = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL LocaleIndexResponse::_internal_mutable_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Pagination>(GetArena());
+    _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(p);
+  }
+  return _impl_.pagination_;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL LocaleIndexResponse::mutable_pagination()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::portal::v1::Pagination* _msg = _internal_mutable_pagination();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.LocaleIndexResponse.pagination)
+  return _msg;
+}
+inline void LocaleIndexResponse::set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.LocaleIndexResponse.pagination)
 }
 
 // -------------------------------------------------------------------

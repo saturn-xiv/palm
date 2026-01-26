@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
   public static final int ID_FIELD_NUMBER = 1;
   private long id_ = 0L;
   /**
-   * <code>uint64 id = 1;</code>
+   * <code>int64 id = 1;</code>
    * @return The id.
    */
   @java.lang.Override
@@ -69,7 +69,7 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (id_ != 0L) {
-      output.writeUInt64(1, id_);
+      output.writeInt64(1, id_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -82,7 +82,7 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (id_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(1, id_);
+        .computeInt64Size(1, id_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -327,7 +327,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              id_ = input.readUInt64();
+              id_ = input.readInt64();
               bitField0_ |= 0x00000001;
               break;
             } // case 8
@@ -350,7 +350,7 @@ private static final long serialVersionUID = 0L;
 
     private long id_ ;
     /**
-     * <code>uint64 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
     @java.lang.Override
@@ -358,7 +358,7 @@ private static final long serialVersionUID = 0L;
       return id_;
     }
     /**
-     * <code>uint64 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @param value The id to set.
      * @return This builder for chaining.
      */
@@ -370,7 +370,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>uint64 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearId() {

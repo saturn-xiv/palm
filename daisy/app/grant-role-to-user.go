@@ -15,6 +15,7 @@ import (
 	"github.com/saturn-xiv/palm/daisy/models"
 	auth_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/rbac"
+	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
 )
 
 type UserRoleConfig struct {
@@ -54,7 +55,20 @@ func GrantRoleToUser(config_file string, user_sn string, role_code string, debug
 		return err
 	}
 	if err = db.Transaction(func(tx *gorm.DB) error {
-		user, user_s, err := graphql.UserBySn(db, user_sn)
+		user, err := models.UserBySn(db, user_sn)
+		if err != nil {
+			return err
+		}
+		user_ := rbac_v2.Subject{
+			By: &rbac_v2.Subject_User_{
+				User: &rbac_v2.Subject_User{
+					By: &rbac_v2.Subject_User_Id{
+						Id: int64(user.ID),
+					},
+				},
+			},
+		}
+		user_s, err := user_.ToString()
 		if err != nil {
 			return err
 		}

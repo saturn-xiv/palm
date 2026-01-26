@@ -57,6 +57,31 @@ public final class PortalProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_Location_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_LocaleSetRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_LocaleSetRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_LocaleByLangRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_LocaleByLangRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_LocaleByLangResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_LocaleByLangResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_LocaleIndexResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_LocaleIndexResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_LocaleIndexResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_LocaleIndexResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_CurrenciesResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -91,40 +116,58 @@ public final class PortalProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\014portal.proto\022\016palm.portal.v1\032\033google/p" +
-      "rotobuf/empty.proto\"\027\n\tIdRequest\022\n\n\002id\030\001" +
-      " \001(\004\"#\n\004Page\022\r\n\005index\030\001 \001(\004\022\014\n\004size\030\002 \001(" +
-      "\004\"y\n\nPagination\022%\n\007current\030\001 \001(\0132\024.palm." +
-      "portal.v1.Page\022\024\n\014has_previous\030\002 \001(\010\022\020\n\010" +
-      "has_next\030\003 \001(\010\022\r\n\005pages\030\004 \001(\004\022\r\n\005total\030\005" +
-      " \001(\004\",\n\nAttachment\022\016\n\006bucket\030\001 \001(\t\022\016\n\006ob" +
-      "ject\030\002 \001(\t\"\223\001\n\010RichText\022/\n\006editor\030\001 \001(\0162" +
-      "\037.palm.portal.v1.RichText.Editor\022\014\n\004body" +
-      "\030\002 \001(\t\022/\n\013attachments\030\003 \003(\0132\032.palm.porta" +
-      "l.v1.Attachment\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000" +
-      "\"Y\n\010Location\022)\n\003map\030\001 \001(\0162\034.palm.portal." +
-      "v1.Location.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022" +
-      "\n\n\006GOOGLE\020\000\"\322\001\n\022CurrenciesResponse\0226\n\005it" +
-      "ems\030\001 \003(\0132\'.palm.portal.v1.CurrenciesRes" +
-      "ponse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004nam" +
-      "e\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006number\030\004 \001(\r" +
-      "\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fund\030\006 \001(\010H\001\210" +
-      "\001\001B\010\n\006_unitsB\n\n\010_is_fund\";\n\003Log\"4\n\005Level" +
-      "\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNING\020\002\022\t\n\005ER" +
-      "ROR\020\003\"k\n\004User\"c\n\014ProviderType\022\t\n\005EMAIL\020\000" +
-      "\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\rWECHAT" +
-      "_OAUTH2\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004\"F\n\007Se" +
-      "ssion\022/\n\004type\030\001 \001(\0162!.palm.portal.v1.Use" +
-      "r.ProviderType\022\n\n\002sn\030\002 \001(\t2R\n\004Site\022J\n\nCu" +
-      "rrencies\022\026.google.protobuf.Empty\032\".palm." +
-      "portal.v1.CurrenciesResponse\"\000B_\n,com.gi" +
-      "thub.saturn_xiv.palm.plugins.portal.v1B\013" +
-      "PortalProtoP\001Z\005./;v2\252\002\030Palm.Plugins.Port" +
-      "al.Grpcb\006proto3"
+      "rotobuf/empty.proto\032\037google/protobuf/tim" +
+      "estamp.proto\"\027\n\tIdRequest\022\n\n\002id\030\001 \001(\003\"#\n" +
+      "\004Page\022\r\n\005index\030\001 \001(\003\022\014\n\004size\030\002 \001(\003\"y\n\nPa" +
+      "gination\022%\n\007current\030\001 \001(\0132\024.palm.portal." +
+      "v1.Page\022\024\n\014has_previous\030\002 \001(\010\022\020\n\010has_nex" +
+      "t\030\003 \001(\010\022\r\n\005pages\030\004 \001(\003\022\r\n\005total\030\005 \001(\003\",\n" +
+      "\nAttachment\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 " +
+      "\001(\t\"\223\001\n\010RichText\022/\n\006editor\030\001 \001(\0162\037.palm." +
+      "portal.v1.RichText.Editor\022\014\n\004body\030\002 \001(\t\022" +
+      "/\n\013attachments\030\003 \003(\0132\032.palm.portal.v1.At" +
+      "tachment\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000\"Y\n\010Loc" +
+      "ation\022)\n\003map\030\001 \001(\0162\034.palm.portal.v1.Loca" +
+      "tion.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022\n\n\006GOOG" +
+      "LE\020\000\"?\n\020LocaleSetRequest\022\014\n\004lang\030\001 \001(\t\022\014" +
+      "\n\004code\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"#\n\023LocaleB" +
+      "yLangRequest\022\014\n\004lang\030\001 \001(\t\"O\n\024LocaleByLa" +
+      "ngResponse\0227\n\005items\030\001 \003(\0132(.palm.portal." +
+      "v1.LocaleIndexResponse.Item\"\357\001\n\023LocaleIn" +
+      "dexResponse\0227\n\005items\030\001 \003(\0132(.palm.portal" +
+      ".v1.LocaleIndexResponse.Item\022.\n\npaginati" +
+      "on\030\t \001(\0132\032.palm.portal.v1.Pagination\032o\n\004" +
+      "Item\022\n\n\002id\030\001 \001(\003\022\014\n\004lang\030\002 \001(\t\022\014\n\004code\030\003" +
+      " \001(\t\022\017\n\007message\030\004 \001(\t\022.\n\nupdated_at\030\t \001(" +
+      "\0132\032.google.protobuf.Timestamp\"\322\001\n\022Curren" +
+      "ciesResponse\0226\n\005items\030\001 \003(\0132\'.palm.porta" +
+      "l.v1.CurrenciesResponse.Item\032\203\001\n\004Item\022\014\n" +
+      "\004code\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007country\030\003 \001" +
+      "(\t\022\016\n\006number\030\004 \001(\r\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024" +
+      "\n\007is_fund\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\n\n\010_is_fu" +
+      "nd\";\n\003Log\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022" +
+      "\013\n\007WARNING\020\002\022\t\n\005ERROR\020\003\"k\n\004User\"c\n\014Provi" +
+      "derType\022\t\n\005EMAIL\020\000\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_" +
+      "OAUTH2\020\002\022\021\n\rWECHAT_OAUTH2\020\003\022\027\n\023WECHAT_MI" +
+      "NI_PROGRAM\020\004\"F\n\007Session\022/\n\004type\030\001 \001(\0162!." +
+      "palm.portal.v1.User.ProviderType\022\n\n\002sn\030\002" +
+      " \001(\t2\350\001\n\006Locale\022D\n\005Index\022\024.palm.portal.v" +
+      "1.Page\032#.palm.portal.v1.LocaleIndexRespo" +
+      "nse\"\000\022A\n\003Set\022 .palm.portal.v1.LocaleSetR" +
+      "equest\032\026.google.protobuf.Empty\"\000\022U\n\006ByLa" +
+      "ng\022#.palm.portal.v1.LocaleByLangRequest\032" +
+      "$.palm.portal.v1.LocaleByLangResponse\"\0002" +
+      "R\n\004Site\022J\n\nCurrencies\022\026.google.protobuf." +
+      "Empty\032\".palm.portal.v1.CurrenciesRespons" +
+      "e\"\000B_\n,com.github.saturn_xiv.palm.plugin" +
+      "s.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030Palm" +
+      ".Plugins.Portal.Grpcb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.EmptyProto.getDescriptor(),
+          com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_palm_portal_v1_IdRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -162,8 +205,38 @@ public final class PortalProto {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Location_descriptor,
         new java.lang.String[] { "Map", "Address", });
-    internal_static_palm_portal_v1_CurrenciesResponse_descriptor =
+    internal_static_palm_portal_v1_LocaleSetRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_palm_portal_v1_LocaleSetRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_LocaleSetRequest_descriptor,
+        new java.lang.String[] { "Lang", "Code", "Message", });
+    internal_static_palm_portal_v1_LocaleByLangRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_palm_portal_v1_LocaleByLangRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_LocaleByLangRequest_descriptor,
+        new java.lang.String[] { "Lang", });
+    internal_static_palm_portal_v1_LocaleByLangResponse_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_palm_portal_v1_LocaleByLangResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_LocaleByLangResponse_descriptor,
+        new java.lang.String[] { "Items", });
+    internal_static_palm_portal_v1_LocaleIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_palm_portal_v1_LocaleIndexResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_LocaleIndexResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_portal_v1_LocaleIndexResponse_Item_descriptor =
+      internal_static_palm_portal_v1_LocaleIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_LocaleIndexResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_LocaleIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Lang", "Code", "Message", "UpdatedAt", });
+    internal_static_palm_portal_v1_CurrenciesResponse_descriptor =
+      getDescriptor().getMessageTypes().get(10);
     internal_static_palm_portal_v1_CurrenciesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_CurrenciesResponse_descriptor,
@@ -175,25 +248,26 @@ public final class PortalProto {
         internal_static_palm_portal_v1_CurrenciesResponse_Item_descriptor,
         new java.lang.String[] { "Code", "Name", "Country", "Number", "Units", "IsFund", });
     internal_static_palm_portal_v1_Log_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_palm_portal_v1_Log_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Log_descriptor,
         new java.lang.String[] { });
     internal_static_palm_portal_v1_User_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_palm_portal_v1_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_User_descriptor,
         new java.lang.String[] { });
     internal_static_palm_portal_v1_Session_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_palm_portal_v1_Session_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Session_descriptor,
         new java.lang.String[] { "Type", "Sn", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();
+    com.google.protobuf.TimestampProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

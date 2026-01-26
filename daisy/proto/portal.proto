@@ -8,22 +8,23 @@ option csharp_namespace = "Palm.Plugins.Portal.Grpc";
 package palm.portal.v1;
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 message IdRequest {
-  uint64 id = 1;
+  int64 id = 1;
 }
 
 message Page {
-  uint64 index = 1;
-  uint64 size  = 2;
+  int64 index = 1;
+  int64 size  = 2;
 }
 
 message Pagination {
-  Page   current      = 1;
-  bool   has_previous = 2;
-  bool   has_next     = 3;
-  uint64 pages        = 4;
-  uint64 total        = 5;
+  Page  current      = 1;
+  bool  has_previous = 2;
+  bool  has_next     = 3;
+  int64 pages        = 4;
+  int64 total        = 5;
 }
 
 message Attachment {
@@ -48,6 +49,38 @@ message Location {
   string address = 2;
 }
 
+// ----------------------------------------------------------------------------
+service Locale{
+  rpc Index(Page) returns (LocaleIndexResponse){}
+  rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
+  rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
+}
+
+message LocaleSetRequest {
+  string lang    = 1;
+  string code    = 2;
+  string message = 3;
+}
+
+message LocaleByLangRequest {
+  string lang = 1;
+}
+
+message LocaleByLangResponse {
+  repeated LocaleIndexResponse.Item items = 1;
+}
+
+message LocaleIndexResponse{
+  message Item {
+    int64                     id         = 1;
+    string                    lang       = 2;
+    string                    code       = 3;
+    string                    message    = 4;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items      = 1;
+  Pagination    pagination = 9;
+}
 // ----------------------------------------------------------------------------
 
 service Site {

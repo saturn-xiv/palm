@@ -79,7 +79,7 @@ func (x *Object) GetBy() isObject_By {
 	return nil
 }
 
-func (x *Object) GetId() uint32 {
+func (x *Object) GetId() int64 {
 	if x != nil {
 		if x, ok := x.By.(*Object_Id); ok {
 			return x.Id
@@ -111,7 +111,7 @@ type isObject_By interface {
 }
 
 type Object_Id struct {
-	Id uint32 `protobuf:"varint,11,opt,name=id,proto3,oneof"`
+	Id int64 `protobuf:"varint,11,opt,name=id,proto3,oneof"`
 }
 
 type Object_Code struct {
@@ -832,7 +832,7 @@ func (x *Subject_Role) GetAdministrator() *Subject_Role_Administrator {
 	return nil
 }
 
-func (x *Subject_Role) GetId() uint32 {
+func (x *Subject_Role) GetId() int64 {
 	if x != nil {
 		if x, ok := x.By.(*Subject_Role_Id); ok {
 			return x.Id
@@ -863,7 +863,7 @@ type Subject_Role_Administrator_ struct {
 }
 
 type Subject_Role_Id struct {
-	Id uint32 `protobuf:"varint,8,opt,name=id,proto3,oneof"`
+	Id int64 `protobuf:"varint,8,opt,name=id,proto3,oneof"`
 }
 
 type Subject_Role_Code struct {
@@ -926,7 +926,7 @@ func (x *Subject_User) GetBy() isSubject_User_By {
 	return nil
 }
 
-func (x *Subject_User) GetId() uint32 {
+func (x *Subject_User) GetId() int64 {
 	if x != nil {
 		if x, ok := x.By.(*Subject_User_Id); ok {
 			return x.Id
@@ -949,7 +949,7 @@ type isSubject_User_By interface {
 }
 
 type Subject_User_Id struct {
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3,oneof"`
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3,oneof"`
 }
 
 type Subject_User_Code struct {
@@ -1291,7 +1291,7 @@ const file_proto_rbac_proto_rawDesc = "" +
 	"\x10proto/rbac.proto\x12\fpalm.rbac.v1\x1a\x1bgoogle/protobuf/empty.proto\"v\n" +
 	"\x06Object\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x10\n" +
-	"\x02id\x18\v \x01(\rH\x00R\x02id\x12\x14\n" +
+	"\x02id\x18\v \x01(\x03H\x00R\x02id\x12\x14\n" +
 	"\x04code\x18\f \x01(\tH\x00R\x04code\x12*\n" +
 	"\x03all\x18\x13 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x03allB\x04\n" +
 	"\x02by\"\x82\x03\n" +
@@ -1301,13 +1301,13 @@ const file_proto_rbac_proto_rawDesc = "" +
 	"\x04Role\x125\n" +
 	"\x04root\x18\x01 \x01(\v2\x1f.palm.rbac.v1.Subject.Role.RootH\x00R\x04root\x12P\n" +
 	"\radministrator\x18\x02 \x01(\v2(.palm.rbac.v1.Subject.Role.AdministratorH\x00R\radministrator\x12\x10\n" +
-	"\x02id\x18\b \x01(\rH\x00R\x02id\x12\x14\n" +
+	"\x02id\x18\b \x01(\x03H\x00R\x02id\x12\x14\n" +
 	"\x04code\x18\t \x01(\tH\x00R\x04code\x1a\x06\n" +
 	"\x04Root\x1a\x0f\n" +
 	"\rAdministratorB\x04\n" +
 	"\x02by\x1a4\n" +
 	"\x04User\x12\x10\n" +
-	"\x02id\x18\x01 \x01(\rH\x00R\x02id\x12\x14\n" +
+	"\x02id\x18\x01 \x01(\x03H\x00R\x02id\x12\x14\n" +
 	"\x04code\x18\x02 \x01(\tH\x00R\x04codeB\x04\n" +
 	"\x02byB\x04\n" +
 	"\x02by\"\xe3\x03\n" +

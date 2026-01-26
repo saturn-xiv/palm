@@ -1,6 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
+import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb'; // proto import: "google/protobuf/timestamp.proto"
 
 
 export class IdRequest extends jspb.Message {
@@ -157,6 +158,133 @@ export namespace Location {
   export enum Map {
     GOOGLE = 0,
   }
+}
+
+export class LocaleSetRequest extends jspb.Message {
+  getLang(): string;
+  setLang(value: string): LocaleSetRequest;
+
+  getCode(): string;
+  setCode(value: string): LocaleSetRequest;
+
+  getMessage(): string;
+  setMessage(value: string): LocaleSetRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LocaleSetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: LocaleSetRequest): LocaleSetRequest.AsObject;
+  static serializeBinaryToWriter(message: LocaleSetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LocaleSetRequest;
+  static deserializeBinaryFromReader(message: LocaleSetRequest, reader: jspb.BinaryReader): LocaleSetRequest;
+}
+
+export namespace LocaleSetRequest {
+  export type AsObject = {
+    lang: string;
+    code: string;
+    message: string;
+  };
+}
+
+export class LocaleByLangRequest extends jspb.Message {
+  getLang(): string;
+  setLang(value: string): LocaleByLangRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LocaleByLangRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: LocaleByLangRequest): LocaleByLangRequest.AsObject;
+  static serializeBinaryToWriter(message: LocaleByLangRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LocaleByLangRequest;
+  static deserializeBinaryFromReader(message: LocaleByLangRequest, reader: jspb.BinaryReader): LocaleByLangRequest;
+}
+
+export namespace LocaleByLangRequest {
+  export type AsObject = {
+    lang: string;
+  };
+}
+
+export class LocaleByLangResponse extends jspb.Message {
+  getItemsList(): Array<LocaleIndexResponse.Item>;
+  setItemsList(value: Array<LocaleIndexResponse.Item>): LocaleByLangResponse;
+  clearItemsList(): LocaleByLangResponse;
+  addItems(value?: LocaleIndexResponse.Item, index?: number): LocaleIndexResponse.Item;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LocaleByLangResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: LocaleByLangResponse): LocaleByLangResponse.AsObject;
+  static serializeBinaryToWriter(message: LocaleByLangResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LocaleByLangResponse;
+  static deserializeBinaryFromReader(message: LocaleByLangResponse, reader: jspb.BinaryReader): LocaleByLangResponse;
+}
+
+export namespace LocaleByLangResponse {
+  export type AsObject = {
+    itemsList: Array<LocaleIndexResponse.Item.AsObject>;
+  };
+}
+
+export class LocaleIndexResponse extends jspb.Message {
+  getItemsList(): Array<LocaleIndexResponse.Item>;
+  setItemsList(value: Array<LocaleIndexResponse.Item>): LocaleIndexResponse;
+  clearItemsList(): LocaleIndexResponse;
+  addItems(value?: LocaleIndexResponse.Item, index?: number): LocaleIndexResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): LocaleIndexResponse;
+  hasPagination(): boolean;
+  clearPagination(): LocaleIndexResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LocaleIndexResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: LocaleIndexResponse): LocaleIndexResponse.AsObject;
+  static serializeBinaryToWriter(message: LocaleIndexResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LocaleIndexResponse;
+  static deserializeBinaryFromReader(message: LocaleIndexResponse, reader: jspb.BinaryReader): LocaleIndexResponse;
+}
+
+export namespace LocaleIndexResponse {
+  export type AsObject = {
+    itemsList: Array<LocaleIndexResponse.Item.AsObject>;
+    pagination?: Pagination.AsObject;
+  };
+
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getLang(): string;
+    setLang(value: string): Item;
+
+    getCode(): string;
+    setCode(value: string): Item;
+
+    getMessage(): string;
+    setMessage(value: string): Item;
+
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number;
+      lang: string;
+      code: string;
+      message: string;
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+    };
+  }
+
 }
 
 export class CurrenciesResponse extends jspb.Message {

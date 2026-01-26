@@ -12,9 +12,9 @@ import "google/protobuf/empty.proto";
 message Object {
   string type = 1;
   oneof by {
-    uint32 id = 11;
-    string code = 12;
-    google.protobuf.Empty all = 19;
+    int64                 id   = 11;
+    string                code = 12;
+    google.protobuf.Empty all  = 19;
   }
 }
 
@@ -23,15 +23,15 @@ message Subject {
     message Root {}
     message Administrator {}
     oneof by {
-      Root root = 1;
+      Root          root          = 1;
       Administrator administrator = 2;
-      uint32 id = 8;
-      string code = 9;
+      int64         id            = 8;
+      string        code          = 9;
     }
   }
   message User {
     oneof by {
-      uint32 id = 1;
+      int64  id   = 1;
       string code = 2;
     }
   }
@@ -51,21 +51,21 @@ message Action {
   message Inquiry {}
 
   oneof by {
-    Read read = 1;
-    Write write = 2;
-    Append append = 3;
+    Read    read    = 1;
+    Write   write   = 2;
+    Append  append  = 3;
     Execute execute = 4;
-    Credit credit = 5;
-    Debit debit = 6;
+    Credit  credit  = 5;
+    Debit   debit   = 6;
     Inquiry inquiry = 7;
-    string code = 9;
+    string  code    = 9;
   }
 }
 
 message Permission {
   Subject subject = 1;
-  Object object = 2;
-  Action action = 3;
+  Object  object  = 2;
+  Action  action  = 3;
 }
 
 service Enforcer {
@@ -85,7 +85,7 @@ service Enforcer {
 
   rpc GetPermissionsForUser(Subject.User) returns (PermissionsResponse) {}
   rpc GetImplicitPermissionsForUser(Subject.User)
-      returns (PermissionsResponse) {}
+  returns (PermissionsResponse) {}
   rpc GetPermissionsForRole(Subject.Role) returns (PermissionsResponse) {}
   rpc DeletePermission(Permission) returns (google.protobuf.Empty) {}
   rpc AddPermission(Permission) returns (google.protobuf.Empty) {}
@@ -108,12 +108,15 @@ message UsersResponse {
 message SubjectsResponse {
   repeated Subject items = 1;
 }
+
 message ObjectsResponse {
   repeated Object items = 1;
 }
+
 message ActionsResponse {
   repeated Action items = 1;
 }
+
 message PermissionsResponse {
   repeated Permission items = 1;
 }

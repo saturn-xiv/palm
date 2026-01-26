@@ -20,6 +20,188 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Locale_Index_FullMethodName  = "/palm.portal.v1.Locale/Index"
+	Locale_Set_FullMethodName    = "/palm.portal.v1.Locale/Set"
+	Locale_ByLang_FullMethodName = "/palm.portal.v1.Locale/ByLang"
+)
+
+// LocaleClient is the client API for Locale service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type LocaleClient interface {
+	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
+	Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error)
+}
+
+type localeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewLocaleClient(cc grpc.ClientConnInterface) LocaleClient {
+	return &localeClient{cc}
+}
+
+func (c *localeClient) Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*LocaleIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LocaleIndexResponse)
+	err := c.cc.Invoke(ctx, Locale_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *localeClient) Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Locale_Set_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *localeClient) ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LocaleByLangResponse)
+	err := c.cc.Invoke(ctx, Locale_ByLang_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// LocaleServer is the server API for Locale service.
+// All implementations must embed UnimplementedLocaleServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type LocaleServer interface {
+	Index(context.Context, *Page) (*LocaleIndexResponse, error)
+	Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error)
+	ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error)
+	mustEmbedUnimplementedLocaleServer()
+}
+
+// UnimplementedLocaleServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedLocaleServer struct{}
+
+func (UnimplementedLocaleServer) Index(context.Context, *Page) (*LocaleIndexResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedLocaleServer) Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Set not implemented")
+}
+func (UnimplementedLocaleServer) ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ByLang not implemented")
+}
+func (UnimplementedLocaleServer) mustEmbedUnimplementedLocaleServer() {}
+func (UnimplementedLocaleServer) testEmbeddedByValue()                {}
+
+// UnsafeLocaleServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to LocaleServer will
+// result in compilation errors.
+type UnsafeLocaleServer interface {
+	mustEmbedUnimplementedLocaleServer()
+}
+
+func RegisterLocaleServer(s grpc.ServiceRegistrar, srv LocaleServer) {
+	// If the following call panics, it indicates UnimplementedLocaleServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Locale_ServiceDesc, srv)
+}
+
+func _Locale_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).Index(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Locale_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LocaleSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).Set(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_Set_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).Set(ctx, req.(*LocaleSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Locale_ByLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LocaleByLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).ByLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_ByLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).ByLang(ctx, req.(*LocaleByLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Locale_ServiceDesc is the grpc.ServiceDesc for Locale service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Locale_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.Locale",
+	HandlerType: (*LocaleServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Index",
+			Handler:    _Locale_Index_Handler,
+		},
+		{
+			MethodName: "Set",
+			Handler:    _Locale_Set_Handler,
+		},
+		{
+			MethodName: "ByLang",
+			Handler:    _Locale_ByLang_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/portal.proto",
+}
+
+const (
 	Site_Currencies_FullMethodName = "/palm.portal.v1.Site/Currencies"
 )
 

@@ -129,7 +129,7 @@ private static final long serialVersionUID = 0L;
 
   public static final int ID_FIELD_NUMBER = 11;
   /**
-   * <code>uint32 id = 11;</code>
+   * <code>int64 id = 11;</code>
    * @return Whether the id field is set.
    */
   @java.lang.Override
@@ -137,15 +137,15 @@ private static final long serialVersionUID = 0L;
     return byCase_ == 11;
   }
   /**
-   * <code>uint32 id = 11;</code>
+   * <code>int64 id = 11;</code>
    * @return The id.
    */
   @java.lang.Override
-  public int getId() {
+  public long getId() {
     if (byCase_ == 11) {
-      return (java.lang.Integer) by_;
+      return (java.lang.Long) by_;
     }
-    return 0;
+    return 0L;
   }
 
   public static final int CODE_FIELD_NUMBER = 12;
@@ -249,8 +249,8 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessage.writeString(output, 1, type_);
     }
     if (byCase_ == 11) {
-      output.writeUInt32(
-          11, (int)((java.lang.Integer) by_));
+      output.writeInt64(
+          11, (long)((java.lang.Long) by_));
     }
     if (byCase_ == 12) {
       com.google.protobuf.GeneratedMessage.writeString(output, 12, by_);
@@ -272,8 +272,8 @@ private static final long serialVersionUID = 0L;
     }
     if (byCase_ == 11) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(
-            11, (int)((java.lang.Integer) by_));
+        .computeInt64Size(
+            11, (long)((java.lang.Long) by_));
     }
     if (byCase_ == 12) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(12, by_);
@@ -332,7 +332,8 @@ private static final long serialVersionUID = 0L;
     switch (byCase_) {
       case 11:
         hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + getId();
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getId());
         break;
       case 12:
         hash = (37 * hash) + CODE_FIELD_NUMBER;
@@ -598,7 +599,7 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 10
             case 88: {
-              by_ = input.readUInt32();
+              by_ = input.readInt64();
               byCase_ = 11;
               break;
             } // case 88
@@ -720,28 +721,28 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>uint32 id = 11;</code>
+     * <code>int64 id = 11;</code>
      * @return Whether the id field is set.
      */
     public boolean hasId() {
       return byCase_ == 11;
     }
     /**
-     * <code>uint32 id = 11;</code>
+     * <code>int64 id = 11;</code>
      * @return The id.
      */
-    public int getId() {
+    public long getId() {
       if (byCase_ == 11) {
-        return (java.lang.Integer) by_;
+        return (java.lang.Long) by_;
       }
-      return 0;
+      return 0L;
     }
     /**
-     * <code>uint32 id = 11;</code>
+     * <code>int64 id = 11;</code>
      * @param value The id to set.
      * @return This builder for chaining.
      */
-    public Builder setId(int value) {
+    public Builder setId(long value) {
 
       byCase_ = 11;
       by_ = value;
@@ -749,7 +750,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>uint32 id = 11;</code>
+     * <code>int64 id = 11;</code>
      * @return This builder for chaining.
      */
     public Builder clearId() {

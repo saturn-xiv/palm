@@ -25,7 +25,7 @@ func UserByCode(code string) *Subject {
 	}
 }
 
-func UserById(id uint32) *Subject {
+func UserById(id int64) *Subject {
 	return &Subject{
 		By: &Subject_User_{
 			User: &Subject_User{

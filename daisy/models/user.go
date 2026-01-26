@@ -57,3 +57,21 @@ func SignInUser(db *gorm.DB, user *User, ip string) error {
 	}
 	return nil
 }
+
+func UserBySn(db *gorm.DB, sn string) (*User, error) {
+	var user User
+	if err := db.Where("sn = ?", sn).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}
+
+func UserById(db *gorm.DB, id uint) (*User, error) {
+	var user User
+	if err := db.Where("id = ?", id).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}

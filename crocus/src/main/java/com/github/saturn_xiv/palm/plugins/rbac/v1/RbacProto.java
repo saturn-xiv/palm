@@ -147,16 +147,16 @@ public final class RbacProto {
     java.lang.String[] descriptorData = {
       "\n\nrbac.proto\022\014palm.rbac.v1\032\033google/proto" +
       "buf/empty.proto\"a\n\006Object\022\014\n\004type\030\001 \001(\t\022" +
-      "\014\n\002id\030\013 \001(\rH\000\022\016\n\004code\030\014 \001(\tH\000\022%\n\003all\030\023 \001" +
+      "\014\n\002id\030\013 \001(\003H\000\022\016\n\004code\030\014 \001(\tH\000\022%\n\003all\030\023 \001" +
       "(\0132\026.google.protobuf.EmptyH\000B\004\n\002by\"\315\002\n\007S" +
       "ubject\022*\n\004user\030\001 \001(\0132\032.palm.rbac.v1.Subj" +
       "ect.UserH\000\022*\n\004role\030\002 \001(\0132\032.palm.rbac.v1." +
       "Subject.RoleH\000\032\267\001\n\004Role\022/\n\004root\030\001 \001(\0132\037." +
       "palm.rbac.v1.Subject.Role.RootH\000\022A\n\radmi" +
       "nistrator\030\002 \001(\0132(.palm.rbac.v1.Subject.R" +
-      "ole.AdministratorH\000\022\014\n\002id\030\010 \001(\rH\000\022\016\n\004cod" +
+      "ole.AdministratorH\000\022\014\n\002id\030\010 \001(\003H\000\022\016\n\004cod" +
       "e\030\t \001(\tH\000\032\006\n\004Root\032\017\n\rAdministratorB\004\n\002by" +
-      "\032*\n\004User\022\014\n\002id\030\001 \001(\rH\000\022\016\n\004code\030\002 \001(\tH\000B\004" +
+      "\032*\n\004User\022\014\n\002id\030\001 \001(\003H\000\022\016\n\004code\030\002 \001(\tH\000B\004" +
       "\n\002byB\004\n\002by\"\247\003\n\006Action\022)\n\004read\030\001 \001(\0132\031.pa" +
       "lm.rbac.v1.Action.ReadH\000\022+\n\005write\030\002 \001(\0132" +
       "\032.palm.rbac.v1.Action.WriteH\000\022-\n\006append\030" +

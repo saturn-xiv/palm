@@ -38,13 +38,13 @@ public interface PaginationOrBuilder extends
   boolean getHasNext();
 
   /**
-   * <code>uint64 pages = 4;</code>
+   * <code>int64 pages = 4;</code>
    * @return The pages.
    */
   long getPages();
 
   /**
-   * <code>uint64 total = 5;</code>
+   * <code>int64 total = 5;</code>
    * @return The total.
    */
   long getTotal();

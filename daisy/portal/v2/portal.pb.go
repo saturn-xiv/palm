@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -157,7 +158,7 @@ func (x Log_Level) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Log_Level.Descriptor instead.
 func (Log_Level) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{7, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{11, 0}
 }
 
 type User_ProviderType int32
@@ -212,12 +213,12 @@ func (x User_ProviderType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use User_ProviderType.Descriptor instead.
 func (User_ProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{8, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{12, 0}
 }
 
 type IdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -252,7 +253,7 @@ func (*IdRequest) Descriptor() ([]byte, []int) {
 	return file_proto_portal_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *IdRequest) GetId() uint64 {
+func (x *IdRequest) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
@@ -261,8 +262,8 @@ func (x *IdRequest) GetId() uint64 {
 
 type Page struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Index         uint64                 `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
-	Size          uint64                 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	Index         int64                  `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
+	Size          int64                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -297,14 +298,14 @@ func (*Page) Descriptor() ([]byte, []int) {
 	return file_proto_portal_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Page) GetIndex() uint64 {
+func (x *Page) GetIndex() int64 {
 	if x != nil {
 		return x.Index
 	}
 	return 0
 }
 
-func (x *Page) GetSize() uint64 {
+func (x *Page) GetSize() int64 {
 	if x != nil {
 		return x.Size
 	}
@@ -316,8 +317,8 @@ type Pagination struct {
 	Current       *Page                  `protobuf:"bytes,1,opt,name=current,proto3" json:"current,omitempty"`
 	HasPrevious   bool                   `protobuf:"varint,2,opt,name=has_previous,json=hasPrevious,proto3" json:"has_previous,omitempty"`
 	HasNext       bool                   `protobuf:"varint,3,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`
-	Pages         uint64                 `protobuf:"varint,4,opt,name=pages,proto3" json:"pages,omitempty"`
-	Total         uint64                 `protobuf:"varint,5,opt,name=total,proto3" json:"total,omitempty"`
+	Pages         int64                  `protobuf:"varint,4,opt,name=pages,proto3" json:"pages,omitempty"`
+	Total         int64                  `protobuf:"varint,5,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -373,14 +374,14 @@ func (x *Pagination) GetHasNext() bool {
 	return false
 }
 
-func (x *Pagination) GetPages() uint64 {
+func (x *Pagination) GetPages() int64 {
 	if x != nil {
 		return x.Pages
 	}
 	return 0
 }
 
-func (x *Pagination) GetTotal() uint64 {
+func (x *Pagination) GetTotal() int64 {
 	if x != nil {
 		return x.Total
 	}
@@ -551,6 +552,206 @@ func (x *Location) GetAddress() string {
 	return ""
 }
 
+type LocaleSetRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Lang          string                 `protobuf:"bytes,1,opt,name=lang,proto3" json:"lang,omitempty"`
+	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LocaleSetRequest) Reset() {
+	*x = LocaleSetRequest{}
+	mi := &file_proto_portal_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LocaleSetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LocaleSetRequest) ProtoMessage() {}
+
+func (x *LocaleSetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LocaleSetRequest.ProtoReflect.Descriptor instead.
+func (*LocaleSetRequest) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *LocaleSetRequest) GetLang() string {
+	if x != nil {
+		return x.Lang
+	}
+	return ""
+}
+
+func (x *LocaleSetRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *LocaleSetRequest) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type LocaleByLangRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Lang          string                 `protobuf:"bytes,1,opt,name=lang,proto3" json:"lang,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LocaleByLangRequest) Reset() {
+	*x = LocaleByLangRequest{}
+	mi := &file_proto_portal_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LocaleByLangRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LocaleByLangRequest) ProtoMessage() {}
+
+func (x *LocaleByLangRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LocaleByLangRequest.ProtoReflect.Descriptor instead.
+func (*LocaleByLangRequest) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *LocaleByLangRequest) GetLang() string {
+	if x != nil {
+		return x.Lang
+	}
+	return ""
+}
+
+type LocaleByLangResponse struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Items         []*LocaleIndexResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LocaleByLangResponse) Reset() {
+	*x = LocaleByLangResponse{}
+	mi := &file_proto_portal_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LocaleByLangResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LocaleByLangResponse) ProtoMessage() {}
+
+func (x *LocaleByLangResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LocaleByLangResponse.ProtoReflect.Descriptor instead.
+func (*LocaleByLangResponse) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *LocaleByLangResponse) GetItems() []*LocaleIndexResponse_Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type LocaleIndexResponse struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Items         []*LocaleIndexResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Pagination    *Pagination                 `protobuf:"bytes,9,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LocaleIndexResponse) Reset() {
+	*x = LocaleIndexResponse{}
+	mi := &file_proto_portal_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LocaleIndexResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LocaleIndexResponse) ProtoMessage() {}
+
+func (x *LocaleIndexResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LocaleIndexResponse.ProtoReflect.Descriptor instead.
+func (*LocaleIndexResponse) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *LocaleIndexResponse) GetItems() []*LocaleIndexResponse_Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *LocaleIndexResponse) GetPagination() *Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
 type CurrenciesResponse struct {
 	state         protoimpl.MessageState     `protogen:"open.v1"`
 	Items         []*CurrenciesResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
@@ -560,7 +761,7 @@ type CurrenciesResponse struct {
 
 func (x *CurrenciesResponse) Reset() {
 	*x = CurrenciesResponse{}
-	mi := &file_proto_portal_proto_msgTypes[6]
+	mi := &file_proto_portal_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -572,7 +773,7 @@ func (x *CurrenciesResponse) String() string {
 func (*CurrenciesResponse) ProtoMessage() {}
 
 func (x *CurrenciesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[6]
+	mi := &file_proto_portal_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -585,7 +786,7 @@ func (x *CurrenciesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CurrenciesResponse.ProtoReflect.Descriptor instead.
 func (*CurrenciesResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{6}
+	return file_proto_portal_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CurrenciesResponse) GetItems() []*CurrenciesResponse_Item {
@@ -603,7 +804,7 @@ type Log struct {
 
 func (x *Log) Reset() {
 	*x = Log{}
-	mi := &file_proto_portal_proto_msgTypes[7]
+	mi := &file_proto_portal_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -615,7 +816,7 @@ func (x *Log) String() string {
 func (*Log) ProtoMessage() {}
 
 func (x *Log) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[7]
+	mi := &file_proto_portal_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -628,7 +829,7 @@ func (x *Log) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Log.ProtoReflect.Descriptor instead.
 func (*Log) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{7}
+	return file_proto_portal_proto_rawDescGZIP(), []int{11}
 }
 
 type User struct {
@@ -639,7 +840,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_proto_portal_proto_msgTypes[8]
+	mi := &file_proto_portal_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -651,7 +852,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[8]
+	mi := &file_proto_portal_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -664,7 +865,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{8}
+	return file_proto_portal_proto_rawDescGZIP(), []int{12}
 }
 
 type Session struct {
@@ -677,7 +878,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_proto_portal_proto_msgTypes[9]
+	mi := &file_proto_portal_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -689,7 +890,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[9]
+	mi := &file_proto_portal_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -702,7 +903,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{9}
+	return file_proto_portal_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Session) GetType() User_ProviderType {
@@ -719,6 +920,82 @@ func (x *Session) GetSn() string {
 	return ""
 }
 
+type LocaleIndexResponse_Item struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Lang          string                 `protobuf:"bytes,2,opt,name=lang,proto3" json:"lang,omitempty"`
+	Code          string                 `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
+	Message       string                 `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LocaleIndexResponse_Item) Reset() {
+	*x = LocaleIndexResponse_Item{}
+	mi := &file_proto_portal_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LocaleIndexResponse_Item) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LocaleIndexResponse_Item) ProtoMessage() {}
+
+func (x *LocaleIndexResponse_Item) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LocaleIndexResponse_Item.ProtoReflect.Descriptor instead.
+func (*LocaleIndexResponse_Item) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{9, 0}
+}
+
+func (x *LocaleIndexResponse_Item) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *LocaleIndexResponse_Item) GetLang() string {
+	if x != nil {
+		return x.Lang
+	}
+	return ""
+}
+
+func (x *LocaleIndexResponse_Item) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *LocaleIndexResponse_Item) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *LocaleIndexResponse_Item) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 type CurrenciesResponse_Item struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
@@ -733,7 +1010,7 @@ type CurrenciesResponse_Item struct {
 
 func (x *CurrenciesResponse_Item) Reset() {
 	*x = CurrenciesResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[10]
+	mi := &file_proto_portal_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -745,7 +1022,7 @@ func (x *CurrenciesResponse_Item) String() string {
 func (*CurrenciesResponse_Item) ProtoMessage() {}
 
 func (x *CurrenciesResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[10]
+	mi := &file_proto_portal_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -758,7 +1035,7 @@ func (x *CurrenciesResponse_Item) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CurrenciesResponse_Item.ProtoReflect.Descriptor instead.
 func (*CurrenciesResponse_Item) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{6, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{10, 0}
 }
 
 func (x *CurrenciesResponse_Item) GetCode() string {
@@ -807,19 +1084,19 @@ var File_proto_portal_proto protoreflect.FileDescriptor
 
 const file_proto_portal_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/portal.proto\x12\x0epalm.portal.v1\x1a\x1bgoogle/protobuf/empty.proto\"\x1b\n" +
+	"\x12proto/portal.proto\x12\x0epalm.portal.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"0\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"0\n" +
 	"\x04Page\x12\x14\n" +
-	"\x05index\x18\x01 \x01(\x04R\x05index\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\x04R\x04size\"\xa6\x01\n" +
+	"\x05index\x18\x01 \x01(\x03R\x05index\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\x03R\x04size\"\xa6\x01\n" +
 	"\n" +
 	"Pagination\x12.\n" +
 	"\acurrent\x18\x01 \x01(\v2\x14.palm.portal.v1.PageR\acurrent\x12!\n" +
 	"\fhas_previous\x18\x02 \x01(\bR\vhasPrevious\x12\x19\n" +
 	"\bhas_next\x18\x03 \x01(\bR\ahasNext\x12\x14\n" +
-	"\x05pages\x18\x04 \x01(\x04R\x05pages\x12\x14\n" +
-	"\x05total\x18\x05 \x01(\x04R\x05total\"<\n" +
+	"\x05pages\x18\x04 \x01(\x03R\x05pages\x12\x14\n" +
+	"\x05total\x18\x05 \x01(\x03R\x05total\"<\n" +
 	"\n" +
 	"Attachment\x12\x16\n" +
 	"\x06bucket\x18\x01 \x01(\tR\x06bucket\x12\x16\n" +
@@ -835,7 +1112,27 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\"\x11\n" +
 	"\x03Map\x12\n" +
 	"\n" +
-	"\x06GOOGLE\x10\x00\"\x85\x02\n" +
+	"\x06GOOGLE\x10\x00\"T\n" +
+	"\x10LocaleSetRequest\x12\x12\n" +
+	"\x04lang\x18\x01 \x01(\tR\x04lang\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\")\n" +
+	"\x13LocaleByLangRequest\x12\x12\n" +
+	"\x04lang\x18\x01 \x01(\tR\x04lang\"V\n" +
+	"\x14LocaleByLangResponse\x12>\n" +
+	"\x05items\x18\x01 \x03(\v2(.palm.portal.v1.LocaleIndexResponse.ItemR\x05items\"\xa7\x02\n" +
+	"\x13LocaleIndexResponse\x12>\n" +
+	"\x05items\x18\x01 \x03(\v2(.palm.portal.v1.LocaleIndexResponse.ItemR\x05items\x12:\n" +
+	"\n" +
+	"pagination\x18\t \x01(\v2\x1a.palm.portal.v1.PaginationR\n" +
+	"pagination\x1a\x93\x01\n" +
+	"\x04Item\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04lang\x18\x02 \x01(\tR\x04lang\x12\x12\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\x12\x18\n" +
+	"\amessage\x18\x04 \x01(\tR\amessage\x129\n" +
+	"\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x85\x02\n" +
 	"\x12CurrenciesResponse\x12=\n" +
 	"\x05items\x18\x01 \x03(\v2'.palm.portal.v1.CurrenciesResponse.ItemR\x05items\x1a\xaf\x01\n" +
 	"\x04Item\x12\x12\n" +
@@ -863,7 +1160,11 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x13WECHAT_MINI_PROGRAM\x10\x04\"P\n" +
 	"\aSession\x125\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.palm.portal.v1.User.ProviderTypeR\x04type\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\tR\x02sn2R\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn2\xe8\x01\n" +
+	"\x06Locale\x12D\n" +
+	"\x05Index\x12\x14.palm.portal.v1.Page\x1a#.palm.portal.v1.LocaleIndexResponse\"\x00\x12A\n" +
+	"\x03Set\x12 .palm.portal.v1.LocaleSetRequest\x1a\x16.google.protobuf.Empty\"\x00\x12U\n" +
+	"\x06ByLang\x12#.palm.portal.v1.LocaleByLangRequest\x1a$.palm.portal.v1.LocaleByLangResponse\"\x002R\n" +
 	"\x04Site\x12J\n" +
 	"\n" +
 	"Currencies\x12\x16.google.protobuf.Empty\x1a\".palm.portal.v1.CurrenciesResponse\"\x00B_\n" +
@@ -882,39 +1183,55 @@ func file_proto_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_proto_portal_proto_goTypes = []any{
-	(RichText_Editor)(0),            // 0: palm.portal.v1.RichText.Editor
-	(Location_Map)(0),               // 1: palm.portal.v1.Location.Map
-	(Log_Level)(0),                  // 2: palm.portal.v1.Log.Level
-	(User_ProviderType)(0),          // 3: palm.portal.v1.User.ProviderType
-	(*IdRequest)(nil),               // 4: palm.portal.v1.IdRequest
-	(*Page)(nil),                    // 5: palm.portal.v1.Page
-	(*Pagination)(nil),              // 6: palm.portal.v1.Pagination
-	(*Attachment)(nil),              // 7: palm.portal.v1.Attachment
-	(*RichText)(nil),                // 8: palm.portal.v1.RichText
-	(*Location)(nil),                // 9: palm.portal.v1.Location
-	(*CurrenciesResponse)(nil),      // 10: palm.portal.v1.CurrenciesResponse
-	(*Log)(nil),                     // 11: palm.portal.v1.Log
-	(*User)(nil),                    // 12: palm.portal.v1.User
-	(*Session)(nil),                 // 13: palm.portal.v1.Session
-	(*CurrenciesResponse_Item)(nil), // 14: palm.portal.v1.CurrenciesResponse.Item
-	(*emptypb.Empty)(nil),           // 15: google.protobuf.Empty
+	(RichText_Editor)(0),             // 0: palm.portal.v1.RichText.Editor
+	(Location_Map)(0),                // 1: palm.portal.v1.Location.Map
+	(Log_Level)(0),                   // 2: palm.portal.v1.Log.Level
+	(User_ProviderType)(0),           // 3: palm.portal.v1.User.ProviderType
+	(*IdRequest)(nil),                // 4: palm.portal.v1.IdRequest
+	(*Page)(nil),                     // 5: palm.portal.v1.Page
+	(*Pagination)(nil),               // 6: palm.portal.v1.Pagination
+	(*Attachment)(nil),               // 7: palm.portal.v1.Attachment
+	(*RichText)(nil),                 // 8: palm.portal.v1.RichText
+	(*Location)(nil),                 // 9: palm.portal.v1.Location
+	(*LocaleSetRequest)(nil),         // 10: palm.portal.v1.LocaleSetRequest
+	(*LocaleByLangRequest)(nil),      // 11: palm.portal.v1.LocaleByLangRequest
+	(*LocaleByLangResponse)(nil),     // 12: palm.portal.v1.LocaleByLangResponse
+	(*LocaleIndexResponse)(nil),      // 13: palm.portal.v1.LocaleIndexResponse
+	(*CurrenciesResponse)(nil),       // 14: palm.portal.v1.CurrenciesResponse
+	(*Log)(nil),                      // 15: palm.portal.v1.Log
+	(*User)(nil),                     // 16: palm.portal.v1.User
+	(*Session)(nil),                  // 17: palm.portal.v1.Session
+	(*LocaleIndexResponse_Item)(nil), // 18: palm.portal.v1.LocaleIndexResponse.Item
+	(*CurrenciesResponse_Item)(nil),  // 19: palm.portal.v1.CurrenciesResponse.Item
+	(*timestamppb.Timestamp)(nil),    // 20: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),            // 21: google.protobuf.Empty
 }
 var file_proto_portal_proto_depIdxs = []int32{
 	5,  // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
 	0,  // 1: palm.portal.v1.RichText.editor:type_name -> palm.portal.v1.RichText.Editor
 	7,  // 2: palm.portal.v1.RichText.attachments:type_name -> palm.portal.v1.Attachment
 	1,  // 3: palm.portal.v1.Location.map:type_name -> palm.portal.v1.Location.Map
-	14, // 4: palm.portal.v1.CurrenciesResponse.items:type_name -> palm.portal.v1.CurrenciesResponse.Item
-	3,  // 5: palm.portal.v1.Session.type:type_name -> palm.portal.v1.User.ProviderType
-	15, // 6: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
-	10, // 7: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
-	7,  // [7:8] is the sub-list for method output_type
-	6,  // [6:7] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	18, // 4: palm.portal.v1.LocaleByLangResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
+	18, // 5: palm.portal.v1.LocaleIndexResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
+	6,  // 6: palm.portal.v1.LocaleIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
+	19, // 7: palm.portal.v1.CurrenciesResponse.items:type_name -> palm.portal.v1.CurrenciesResponse.Item
+	3,  // 8: palm.portal.v1.Session.type:type_name -> palm.portal.v1.User.ProviderType
+	20, // 9: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // 10: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
+	10, // 11: palm.portal.v1.Locale.Set:input_type -> palm.portal.v1.LocaleSetRequest
+	11, // 12: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
+	21, // 13: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
+	13, // 14: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
+	21, // 15: palm.portal.v1.Locale.Set:output_type -> google.protobuf.Empty
+	12, // 16: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
+	14, // 17: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
+	14, // [14:18] is the sub-list for method output_type
+	10, // [10:14] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_proto_portal_proto_init() }
@@ -922,16 +1239,16 @@ func file_proto_portal_proto_init() {
 	if File_proto_portal_proto != nil {
 		return
 	}
-	file_proto_portal_proto_msgTypes[10].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[15].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   11,
+			NumMessages:   16,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_proto_portal_proto_goTypes,
 		DependencyIndexes: file_proto_portal_proto_depIdxs,

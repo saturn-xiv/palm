@@ -77,8 +77,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Page::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        index_{::uint64_t{0u}},
-        size_{::uint64_t{0u}} {}
+        index_{::int64_t{0}},
+        size_{::int64_t{0}} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Page::Page(::_pbi::ConstantInitialized)
@@ -146,10 +146,70 @@ struct LocationDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocationDefaultTypeInternal _Location_default_instance_;
 
+inline constexpr LocaleSetRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        lang_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        code_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LocaleSetRequest::LocaleSetRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LocaleSetRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LocaleSetRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleSetRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleSetRequestDefaultTypeInternal() {}
+  union {
+    LocaleSetRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleSetRequestDefaultTypeInternal _LocaleSetRequest_default_instance_;
+
+inline constexpr LocaleByLangRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        lang_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LocaleByLangRequest::LocaleByLangRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LocaleByLangRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LocaleByLangRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleByLangRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleByLangRequestDefaultTypeInternal() {}
+  union {
+    LocaleByLangRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleByLangRequestDefaultTypeInternal _LocaleByLangRequest_default_instance_;
+
 inline constexpr IdRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        id_{::uint64_t{0u}} {}
+        id_{::int64_t{0}} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR IdRequest::IdRequest(::_pbi::ConstantInitialized)
@@ -270,8 +330,8 @@ inline constexpr Pagination::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         current_{nullptr},
-        pages_{::uint64_t{0u}},
-        total_{::uint64_t{0u}},
+        pages_{::int64_t{0}},
+        total_{::int64_t{0}},
         has_previous_{false},
         has_next_{false} {}
 
@@ -294,6 +354,41 @@ struct PaginationDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PaginationDefaultTypeInternal _Pagination_default_instance_;
+
+inline constexpr LocaleIndexResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        lang_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        code_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        updated_at_{nullptr},
+        id_{::int64_t{0}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LocaleIndexResponse_Item::LocaleIndexResponse_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LocaleIndexResponse_Item_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LocaleIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleIndexResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    LocaleIndexResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleIndexResponse_ItemDefaultTypeInternal _LocaleIndexResponse_Item_default_instance_;
 
 inline constexpr CurrenciesResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -319,6 +414,57 @@ struct CurrenciesResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CurrenciesResponseDefaultTypeInternal _CurrenciesResponse_default_instance_;
+
+inline constexpr LocaleIndexResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LocaleIndexResponse::LocaleIndexResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LocaleIndexResponse_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LocaleIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleIndexResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleIndexResponseDefaultTypeInternal() {}
+  union {
+    LocaleIndexResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleIndexResponseDefaultTypeInternal _LocaleIndexResponse_default_instance_;
+
+inline constexpr LocaleByLangResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LocaleByLangResponse::LocaleByLangResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LocaleByLangResponse_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LocaleByLangResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleByLangResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleByLangResponseDefaultTypeInternal() {}
+  union {
+    LocaleByLangResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleByLangResponseDefaultTypeInternal _LocaleByLangResponse_default_instance_;
 }  // namespace v1
 }  // namespace portal
 }  // namespace palm
@@ -378,6 +524,42 @@ const ::uint32_t
         1,
         0,
         0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleSetRequest, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleSetRequest, _impl_.lang_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleSetRequest, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleSetRequest, _impl_.message_),
+        0,
+        1,
+        2,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleByLangRequest, _impl_._has_bits_),
+        4, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleByLangRequest, _impl_.lang_),
+        0,
+        0x000, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleByLangResponse, _impl_.items_),
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse_Item, _impl_._has_bits_),
+        8, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse_Item, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse_Item, _impl_.lang_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse_Item, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse_Item, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse_Item, _impl_.updated_at_),
+        4,
+        0,
+        1,
+        2,
+        3,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::LocaleIndexResponse, _impl_.pagination_),
+        ~0u,
+        0,
+        0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::CurrenciesResponse_Item, _impl_._has_bits_),
         9, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::CurrenciesResponse_Item, _impl_.code_),
@@ -413,11 +595,16 @@ static const ::_pbi::MigrationSchema
         {25, sizeof(::palm::portal::v1::Attachment)},
         {32, sizeof(::palm::portal::v1::RichText)},
         {41, sizeof(::palm::portal::v1::Location)},
-        {48, sizeof(::palm::portal::v1::CurrenciesResponse_Item)},
-        {63, sizeof(::palm::portal::v1::CurrenciesResponse)},
-        {65, sizeof(::palm::portal::v1::Log)},
-        {66, sizeof(::palm::portal::v1::User)},
-        {67, sizeof(::palm::portal::v1::Session)},
+        {48, sizeof(::palm::portal::v1::LocaleSetRequest)},
+        {57, sizeof(::palm::portal::v1::LocaleByLangRequest)},
+        {62, sizeof(::palm::portal::v1::LocaleByLangResponse)},
+        {64, sizeof(::palm::portal::v1::LocaleIndexResponse_Item)},
+        {77, sizeof(::palm::portal::v1::LocaleIndexResponse)},
+        {84, sizeof(::palm::portal::v1::CurrenciesResponse_Item)},
+        {99, sizeof(::palm::portal::v1::CurrenciesResponse)},
+        {101, sizeof(::palm::portal::v1::Log)},
+        {102, sizeof(::palm::portal::v1::User)},
+        {103, sizeof(::palm::portal::v1::Session)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_IdRequest_default_instance_._instance,
@@ -426,6 +613,11 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_Attachment_default_instance_._instance,
     &::palm::portal::v1::_RichText_default_instance_._instance,
     &::palm::portal::v1::_Location_default_instance_._instance,
+    &::palm::portal::v1::_LocaleSetRequest_default_instance_._instance,
+    &::palm::portal::v1::_LocaleByLangRequest_default_instance_._instance,
+    &::palm::portal::v1::_LocaleByLangResponse_default_instance_._instance,
+    &::palm::portal::v1::_LocaleIndexResponse_Item_default_instance_._instance,
+    &::palm::portal::v1::_LocaleIndexResponse_default_instance_._instance,
     &::palm::portal::v1::_CurrenciesResponse_Item_default_instance_._instance,
     &::palm::portal::v1::_CurrenciesResponse_default_instance_._instance,
     &::palm::portal::v1::_Log_default_instance_._instance,
@@ -435,51 +627,69 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\014portal.proto\022\016palm.portal.v1\032\033google/p"
-    "rotobuf/empty.proto\"\027\n\tIdRequest\022\n\n\002id\030\001"
-    " \001(\004\"#\n\004Page\022\r\n\005index\030\001 \001(\004\022\014\n\004size\030\002 \001("
-    "\004\"y\n\nPagination\022%\n\007current\030\001 \001(\0132\024.palm."
-    "portal.v1.Page\022\024\n\014has_previous\030\002 \001(\010\022\020\n\010"
-    "has_next\030\003 \001(\010\022\r\n\005pages\030\004 \001(\004\022\r\n\005total\030\005"
-    " \001(\004\",\n\nAttachment\022\016\n\006bucket\030\001 \001(\t\022\016\n\006ob"
-    "ject\030\002 \001(\t\"\223\001\n\010RichText\022/\n\006editor\030\001 \001(\0162"
-    "\037.palm.portal.v1.RichText.Editor\022\014\n\004body"
-    "\030\002 \001(\t\022/\n\013attachments\030\003 \003(\0132\032.palm.porta"
-    "l.v1.Attachment\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000"
-    "\"Y\n\010Location\022)\n\003map\030\001 \001(\0162\034.palm.portal."
-    "v1.Location.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022"
-    "\n\n\006GOOGLE\020\000\"\322\001\n\022CurrenciesResponse\0226\n\005it"
-    "ems\030\001 \003(\0132\'.palm.portal.v1.CurrenciesRes"
-    "ponse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004nam"
-    "e\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006number\030\004 \001(\r"
-    "\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fund\030\006 \001(\010H\001\210"
-    "\001\001B\010\n\006_unitsB\n\n\010_is_fund\";\n\003Log\"4\n\005Level"
-    "\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNING\020\002\022\t\n\005ER"
-    "ROR\020\003\"k\n\004User\"c\n\014ProviderType\022\t\n\005EMAIL\020\000"
-    "\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\rWECHAT"
-    "_OAUTH2\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004\"F\n\007Se"
-    "ssion\022/\n\004type\030\001 \001(\0162!.palm.portal.v1.Use"
-    "r.ProviderType\022\n\n\002sn\030\002 \001(\t2R\n\004Site\022J\n\nCu"
-    "rrencies\022\026.google.protobuf.Empty\032\".palm."
-    "portal.v1.CurrenciesResponse\"\000B_\n,com.gi"
-    "thub.saturn_xiv.palm.plugins.portal.v1B\013"
-    "PortalProtoP\001Z\005./;v2\252\002\030Palm.Plugins.Port"
-    "al.Grpcb\006proto3"
+    "rotobuf/empty.proto\032\037google/protobuf/tim"
+    "estamp.proto\"\027\n\tIdRequest\022\n\n\002id\030\001 \001(\003\"#\n"
+    "\004Page\022\r\n\005index\030\001 \001(\003\022\014\n\004size\030\002 \001(\003\"y\n\nPa"
+    "gination\022%\n\007current\030\001 \001(\0132\024.palm.portal."
+    "v1.Page\022\024\n\014has_previous\030\002 \001(\010\022\020\n\010has_nex"
+    "t\030\003 \001(\010\022\r\n\005pages\030\004 \001(\003\022\r\n\005total\030\005 \001(\003\",\n"
+    "\nAttachment\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 "
+    "\001(\t\"\223\001\n\010RichText\022/\n\006editor\030\001 \001(\0162\037.palm."
+    "portal.v1.RichText.Editor\022\014\n\004body\030\002 \001(\t\022"
+    "/\n\013attachments\030\003 \003(\0132\032.palm.portal.v1.At"
+    "tachment\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000\"Y\n\010Loc"
+    "ation\022)\n\003map\030\001 \001(\0162\034.palm.portal.v1.Loca"
+    "tion.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022\n\n\006GOOG"
+    "LE\020\000\"\?\n\020LocaleSetRequest\022\014\n\004lang\030\001 \001(\t\022\014"
+    "\n\004code\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"#\n\023LocaleB"
+    "yLangRequest\022\014\n\004lang\030\001 \001(\t\"O\n\024LocaleByLa"
+    "ngResponse\0227\n\005items\030\001 \003(\0132(.palm.portal."
+    "v1.LocaleIndexResponse.Item\"\357\001\n\023LocaleIn"
+    "dexResponse\0227\n\005items\030\001 \003(\0132(.palm.portal"
+    ".v1.LocaleIndexResponse.Item\022.\n\npaginati"
+    "on\030\t \001(\0132\032.palm.portal.v1.Pagination\032o\n\004"
+    "Item\022\n\n\002id\030\001 \001(\003\022\014\n\004lang\030\002 \001(\t\022\014\n\004code\030\003"
+    " \001(\t\022\017\n\007message\030\004 \001(\t\022.\n\nupdated_at\030\t \001("
+    "\0132\032.google.protobuf.Timestamp\"\322\001\n\022Curren"
+    "ciesResponse\0226\n\005items\030\001 \003(\0132\'.palm.porta"
+    "l.v1.CurrenciesResponse.Item\032\203\001\n\004Item\022\014\n"
+    "\004code\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007country\030\003 \001"
+    "(\t\022\016\n\006number\030\004 \001(\r\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024"
+    "\n\007is_fund\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\n\n\010_is_fu"
+    "nd\";\n\003Log\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022"
+    "\013\n\007WARNING\020\002\022\t\n\005ERROR\020\003\"k\n\004User\"c\n\014Provi"
+    "derType\022\t\n\005EMAIL\020\000\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_"
+    "OAUTH2\020\002\022\021\n\rWECHAT_OAUTH2\020\003\022\027\n\023WECHAT_MI"
+    "NI_PROGRAM\020\004\"F\n\007Session\022/\n\004type\030\001 \001(\0162!."
+    "palm.portal.v1.User.ProviderType\022\n\n\002sn\030\002"
+    " \001(\t2\350\001\n\006Locale\022D\n\005Index\022\024.palm.portal.v"
+    "1.Page\032#.palm.portal.v1.LocaleIndexRespo"
+    "nse\"\000\022A\n\003Set\022 .palm.portal.v1.LocaleSetR"
+    "equest\032\026.google.protobuf.Empty\"\000\022U\n\006ByLa"
+    "ng\022#.palm.portal.v1.LocaleByLangRequest\032"
+    "$.palm.portal.v1.LocaleByLangResponse\"\0002"
+    "R\n\004Site\022J\n\nCurrencies\022\026.google.protobuf."
+    "Empty\032\".palm.portal.v1.CurrenciesRespons"
+    "e\"\000B_\n,com.github.saturn_xiv.palm.plugin"
+    "s.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030Palm"
+    ".Plugins.Portal.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
-    descriptor_table_portal_2eproto_deps[1] = {
+    descriptor_table_portal_2eproto_deps[2] = {
         &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
+        &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    1175,
+    1868,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
     descriptor_table_portal_2eproto_deps,
-    1,
-    11,
+    2,
+    16,
     schemas,
     file_default_instances,
     TableStruct_portal_2eproto::offsets,
@@ -625,15 +835,15 @@ IdRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::portal::v1::IdRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // uint64 id = 1;
+    // int64 id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(IdRequest, _impl_.id_), 0>(),
      {8, 0, 0, PROTOBUF_FIELD_OFFSET(IdRequest, _impl_.id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint64 id = 1;
+    // int64 id = 1;
     {PROTOBUF_FIELD_OFFSET(IdRequest, _impl_.id_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
   }},
   // no aux_entries
   {{
@@ -646,7 +856,7 @@ PROTOBUF_NOINLINE void IdRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.id_ = ::uint64_t{0u};
+  _impl_.id_ = ::int64_t{0};
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -666,12 +876,12 @@ PROTOBUF_NOINLINE void IdRequest::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint64 id = 1;
+  // int64 id = 1;
   if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
     if (this_._internal_id() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          1, this_._internal_id(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_id(), target);
     }
   }
 
@@ -699,11 +909,11 @@ PROTOBUF_NOINLINE void IdRequest::Clear() {
   (void)cached_has_bits;
 
    {
-    // uint64 id = 1;
+    // int64 id = 1;
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
       if (this_._internal_id() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_id());
       }
     }
@@ -865,21 +1075,21 @@ Page::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::portal::v1::Page>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // uint64 size = 2;
+    // int64 size = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Page, _impl_.size_), 1>(),
      {16, 1, 0, PROTOBUF_FIELD_OFFSET(Page, _impl_.size_)}},
-    // uint64 index = 1;
+    // int64 index = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Page, _impl_.index_), 0>(),
      {8, 0, 0, PROTOBUF_FIELD_OFFSET(Page, _impl_.index_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint64 index = 1;
+    // int64 index = 1;
     {PROTOBUF_FIELD_OFFSET(Page, _impl_.index_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // uint64 size = 2;
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // int64 size = 2;
     {PROTOBUF_FIELD_OFFSET(Page, _impl_.size_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
   }},
   // no aux_entries
   {{
@@ -917,21 +1127,21 @@ PROTOBUF_NOINLINE void Page::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint64 index = 1;
+  // int64 index = 1;
   if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
     if (this_._internal_index() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          1, this_._internal_index(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_index(), target);
     }
   }
 
-  // uint64 size = 2;
+  // int64 size = 2;
   if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
     if (this_._internal_size() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          2, this_._internal_size(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<2>(
+              stream, this_._internal_size(), target);
     }
   }
 
@@ -961,17 +1171,17 @@ PROTOBUF_NOINLINE void Page::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000003u) != 0) {
-    // uint64 index = 1;
+    // int64 index = 1;
     if ((cached_has_bits & 0x00000001u) != 0) {
       if (this_._internal_index() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_index());
       }
     }
-    // uint64 size = 2;
+    // int64 size = 2;
     if ((cached_has_bits & 0x00000002u) != 0) {
       if (this_._internal_size() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_size());
       }
     }
@@ -1179,10 +1389,10 @@ Pagination::_table_ = {
     // bool has_next = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Pagination, _impl_.has_next_), 4>(),
      {24, 4, 0, PROTOBUF_FIELD_OFFSET(Pagination, _impl_.has_next_)}},
-    // uint64 pages = 4;
+    // int64 pages = 4;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Pagination, _impl_.pages_), 1>(),
      {32, 1, 0, PROTOBUF_FIELD_OFFSET(Pagination, _impl_.pages_)}},
-    // uint64 total = 5;
+    // int64 total = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Pagination, _impl_.total_), 2>(),
      {40, 2, 0, PROTOBUF_FIELD_OFFSET(Pagination, _impl_.total_)}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1199,12 +1409,12 @@ Pagination::_table_ = {
     // bool has_next = 3;
     {PROTOBUF_FIELD_OFFSET(Pagination, _impl_.has_next_), _Internal::kHasBitsOffset + 4, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-    // uint64 pages = 4;
+    // int64 pages = 4;
     {PROTOBUF_FIELD_OFFSET(Pagination, _impl_.pages_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // uint64 total = 5;
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // int64 total = 5;
     {PROTOBUF_FIELD_OFFSET(Pagination, _impl_.total_), _Internal::kHasBitsOffset + 2, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::palm::portal::v1::Page>()},
@@ -1274,21 +1484,21 @@ PROTOBUF_NOINLINE void Pagination::Clear() {
     }
   }
 
-  // uint64 pages = 4;
+  // int64 pages = 4;
   if ((cached_has_bits & 0x00000002u) != 0) {
     if (this_._internal_pages() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          4, this_._internal_pages(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<4>(
+              stream, this_._internal_pages(), target);
     }
   }
 
-  // uint64 total = 5;
+  // int64 total = 5;
   if ((cached_has_bits & 0x00000004u) != 0) {
     if (this_._internal_total() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          5, this_._internal_total(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<5>(
+              stream, this_._internal_total(), target);
     }
   }
 
@@ -1323,17 +1533,17 @@ PROTOBUF_NOINLINE void Pagination::Clear() {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.current_);
     }
-    // uint64 pages = 4;
+    // int64 pages = 4;
     if ((cached_has_bits & 0x00000002u) != 0) {
       if (this_._internal_pages() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_pages());
       }
     }
-    // uint64 total = 5;
+    // int64 total = 5;
     if ((cached_has_bits & 0x00000004u) != 0) {
       if (this_._internal_total() != 0) {
-        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_total());
       }
     }
@@ -2365,6 +2575,1599 @@ void Location::InternalSwap(Location* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) 
 }
 
 ::google::protobuf::Metadata Location::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LocaleSetRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<LocaleSetRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_._has_bits_);
+};
+
+LocaleSetRequest::LocaleSetRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleSetRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.LocaleSetRequest)
+}
+PROTOBUF_NDEBUG_INLINE LocaleSetRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::LocaleSetRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        lang_(arena, from.lang_),
+        code_(arena, from.code_),
+        message_(arena, from.message_) {}
+
+LocaleSetRequest::LocaleSetRequest(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LocaleSetRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleSetRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LocaleSetRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.LocaleSetRequest)
+}
+PROTOBUF_NDEBUG_INLINE LocaleSetRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        lang_(arena),
+        code_(arena),
+        message_(arena) {}
+
+inline void LocaleSetRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+LocaleSetRequest::~LocaleSetRequest() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.LocaleSetRequest)
+  SharedDtor(*this);
+}
+inline void LocaleSetRequest::SharedDtor(MessageLite& self) {
+  LocaleSetRequest& this_ = static_cast<LocaleSetRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.lang_.Destroy();
+  this_._impl_.code_.Destroy();
+  this_._impl_.message_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LocaleSetRequest::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LocaleSetRequest(arena);
+}
+constexpr auto LocaleSetRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(LocaleSetRequest),
+                                            alignof(LocaleSetRequest));
+}
+constexpr auto LocaleSetRequest::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LocaleSetRequest_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LocaleSetRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LocaleSetRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LocaleSetRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LocaleSetRequest>(), &LocaleSetRequest::ByteSizeLong,
+              &LocaleSetRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_._cached_size_),
+          false,
+      },
+      &LocaleSetRequest::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LocaleSetRequest_class_data_ =
+        LocaleSetRequest::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LocaleSetRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LocaleSetRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LocaleSetRequest_class_data_.tc_table);
+  return LocaleSetRequest_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 55, 2>
+LocaleSetRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    LocaleSetRequest_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleSetRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string lang = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_.lang_)}},
+    // string code = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_.code_)}},
+    // string message = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 2, 0, PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_.message_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string lang = 1;
+    {PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_.lang_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string code = 2;
+    {PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_.code_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string message = 3;
+    {PROTOBUF_FIELD_OFFSET(LocaleSetRequest, _impl_.message_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\4\4\7\0\0\0\0"
+    "palm.portal.v1.LocaleSetRequest"
+    "lang"
+    "code"
+    "message"
+  }},
+};
+PROTOBUF_NOINLINE void LocaleSetRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.LocaleSetRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.lang_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      _impl_.code_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      _impl_.message_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LocaleSetRequest::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LocaleSetRequest& this_ = static_cast<const LocaleSetRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LocaleSetRequest::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LocaleSetRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.LocaleSetRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string lang = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_lang().empty()) {
+      const ::std::string& _s = this_._internal_lang();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleSetRequest.lang");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string code = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (!this_._internal_code().empty()) {
+      const ::std::string& _s = this_._internal_code();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleSetRequest.code");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // string message = 3;
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+    if (!this_._internal_message().empty()) {
+      const ::std::string& _s = this_._internal_message();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleSetRequest.message");
+      target = stream->WriteStringMaybeAliased(3, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.LocaleSetRequest)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LocaleSetRequest::ByteSizeLong(const MessageLite& base) {
+  const LocaleSetRequest& this_ = static_cast<const LocaleSetRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LocaleSetRequest::ByteSizeLong() const {
+  const LocaleSetRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.LocaleSetRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    // string lang = 1;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_lang().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_lang());
+      }
+    }
+    // string code = 2;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!this_._internal_code().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_code());
+      }
+    }
+    // string message = 3;
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!this_._internal_message().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_message());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LocaleSetRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<LocaleSetRequest*>(&to_msg);
+  auto& from = static_cast<const LocaleSetRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.LocaleSetRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_lang().empty()) {
+        _this->_internal_set_lang(from._internal_lang());
+      } else {
+        if (_this->_impl_.lang_.IsDefault()) {
+          _this->_internal_set_lang("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!from._internal_code().empty()) {
+        _this->_internal_set_code(from._internal_code());
+      } else {
+        if (_this->_impl_.code_.IsDefault()) {
+          _this->_internal_set_code("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!from._internal_message().empty()) {
+        _this->_internal_set_message(from._internal_message());
+      } else {
+        if (_this->_impl_.message_.IsDefault()) {
+          _this->_internal_set_message("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleSetRequest::CopyFrom(const LocaleSetRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.LocaleSetRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LocaleSetRequest::InternalSwap(LocaleSetRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.lang_, &other->_impl_.lang_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.code_, &other->_impl_.code_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+}
+
+::google::protobuf::Metadata LocaleSetRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LocaleByLangRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<LocaleByLangRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LocaleByLangRequest, _impl_._has_bits_);
+};
+
+LocaleByLangRequest::LocaleByLangRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleByLangRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.LocaleByLangRequest)
+}
+PROTOBUF_NDEBUG_INLINE LocaleByLangRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::LocaleByLangRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        lang_(arena, from.lang_) {}
+
+LocaleByLangRequest::LocaleByLangRequest(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LocaleByLangRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleByLangRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LocaleByLangRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.LocaleByLangRequest)
+}
+PROTOBUF_NDEBUG_INLINE LocaleByLangRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        lang_(arena) {}
+
+inline void LocaleByLangRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+LocaleByLangRequest::~LocaleByLangRequest() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.LocaleByLangRequest)
+  SharedDtor(*this);
+}
+inline void LocaleByLangRequest::SharedDtor(MessageLite& self) {
+  LocaleByLangRequest& this_ = static_cast<LocaleByLangRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.lang_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LocaleByLangRequest::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LocaleByLangRequest(arena);
+}
+constexpr auto LocaleByLangRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(LocaleByLangRequest),
+                                            alignof(LocaleByLangRequest));
+}
+constexpr auto LocaleByLangRequest::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LocaleByLangRequest_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LocaleByLangRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LocaleByLangRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LocaleByLangRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LocaleByLangRequest>(), &LocaleByLangRequest::ByteSizeLong,
+              &LocaleByLangRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LocaleByLangRequest, _impl_._cached_size_),
+          false,
+      },
+      &LocaleByLangRequest::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LocaleByLangRequest_class_data_ =
+        LocaleByLangRequest::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LocaleByLangRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LocaleByLangRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LocaleByLangRequest_class_data_.tc_table);
+  return LocaleByLangRequest_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 47, 2>
+LocaleByLangRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(LocaleByLangRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    LocaleByLangRequest_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleByLangRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string lang = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(LocaleByLangRequest, _impl_.lang_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string lang = 1;
+    {PROTOBUF_FIELD_OFFSET(LocaleByLangRequest, _impl_.lang_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\42\4\0\0\0\0\0\0"
+    "palm.portal.v1.LocaleByLangRequest"
+    "lang"
+  }},
+};
+PROTOBUF_NOINLINE void LocaleByLangRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.LocaleByLangRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    _impl_.lang_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LocaleByLangRequest::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LocaleByLangRequest& this_ = static_cast<const LocaleByLangRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LocaleByLangRequest::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LocaleByLangRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.LocaleByLangRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string lang = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_lang().empty()) {
+      const ::std::string& _s = this_._internal_lang();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleByLangRequest.lang");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.LocaleByLangRequest)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LocaleByLangRequest::ByteSizeLong(const MessageLite& base) {
+  const LocaleByLangRequest& this_ = static_cast<const LocaleByLangRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LocaleByLangRequest::ByteSizeLong() const {
+  const LocaleByLangRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.LocaleByLangRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+   {
+    // string lang = 1;
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_lang().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_lang());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LocaleByLangRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<LocaleByLangRequest*>(&to_msg);
+  auto& from = static_cast<const LocaleByLangRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.LocaleByLangRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    if (!from._internal_lang().empty()) {
+      _this->_internal_set_lang(from._internal_lang());
+    } else {
+      if (_this->_impl_.lang_.IsDefault()) {
+        _this->_internal_set_lang("");
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleByLangRequest::CopyFrom(const LocaleByLangRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.LocaleByLangRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LocaleByLangRequest::InternalSwap(LocaleByLangRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.lang_, &other->_impl_.lang_, arena);
+}
+
+::google::protobuf::Metadata LocaleByLangRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LocaleByLangResponse::_Internal {
+ public:
+};
+
+LocaleByLangResponse::LocaleByLangResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleByLangResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.LocaleByLangResponse)
+}
+PROTOBUF_NDEBUG_INLINE LocaleByLangResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::LocaleByLangResponse& from_msg)
+      : items_{visibility, arena, from.items_},
+        _cached_size_{0} {}
+
+LocaleByLangResponse::LocaleByLangResponse(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LocaleByLangResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleByLangResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LocaleByLangResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.LocaleByLangResponse)
+}
+PROTOBUF_NDEBUG_INLINE LocaleByLangResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : items_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void LocaleByLangResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+LocaleByLangResponse::~LocaleByLangResponse() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.LocaleByLangResponse)
+  SharedDtor(*this);
+}
+inline void LocaleByLangResponse::SharedDtor(MessageLite& self) {
+  LocaleByLangResponse& this_ = static_cast<LocaleByLangResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LocaleByLangResponse::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LocaleByLangResponse(arena);
+}
+constexpr auto LocaleByLangResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(LocaleByLangResponse, _impl_.items_) +
+          decltype(LocaleByLangResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(LocaleByLangResponse), alignof(LocaleByLangResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&LocaleByLangResponse::PlacementNew_,
+                                 sizeof(LocaleByLangResponse),
+                                 alignof(LocaleByLangResponse));
+  }
+}
+constexpr auto LocaleByLangResponse::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LocaleByLangResponse_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LocaleByLangResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LocaleByLangResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LocaleByLangResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LocaleByLangResponse>(), &LocaleByLangResponse::ByteSizeLong,
+              &LocaleByLangResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LocaleByLangResponse, _impl_._cached_size_),
+          false,
+      },
+      &LocaleByLangResponse::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LocaleByLangResponse_class_data_ =
+        LocaleByLangResponse::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LocaleByLangResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LocaleByLangResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LocaleByLangResponse_class_data_.tc_table);
+  return LocaleByLangResponse_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2>
+LocaleByLangResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    LocaleByLangResponse_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleByLangResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LocaleByLangResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(LocaleByLangResponse, _impl_.items_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleIndexResponse_Item>()},
+  }},
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void LocaleByLangResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.LocaleByLangResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LocaleByLangResponse::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LocaleByLangResponse& this_ = static_cast<const LocaleByLangResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LocaleByLangResponse::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LocaleByLangResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.LocaleByLangResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this_._internal_items_size());
+       i < n; i++) {
+    const auto& repfield = this_._internal_items().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.LocaleByLangResponse)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LocaleByLangResponse::ByteSizeLong(const MessageLite& base) {
+  const LocaleByLangResponse& this_ = static_cast<const LocaleByLangResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LocaleByLangResponse::ByteSizeLong() const {
+  const LocaleByLangResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.LocaleByLangResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+   {
+    // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+    {
+      total_size += 1UL * this_._internal_items_size();
+      for (const auto& msg : this_._internal_items()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LocaleByLangResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<LocaleByLangResponse*>(&to_msg);
+  auto& from = static_cast<const LocaleByLangResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.LocaleByLangResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleByLangResponse::CopyFrom(const LocaleByLangResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.LocaleByLangResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LocaleByLangResponse::InternalSwap(LocaleByLangResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+}
+
+::google::protobuf::Metadata LocaleByLangResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LocaleIndexResponse_Item::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<LocaleIndexResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_._has_bits_);
+};
+
+void LocaleIndexResponse_Item::clear_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.updated_at_ != nullptr) _impl_.updated_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+LocaleIndexResponse_Item::LocaleIndexResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleIndexResponse_Item_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.LocaleIndexResponse.Item)
+}
+PROTOBUF_NDEBUG_INLINE LocaleIndexResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::LocaleIndexResponse_Item& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        lang_(arena, from.lang_),
+        code_(arena, from.code_),
+        message_(arena, from.message_) {}
+
+LocaleIndexResponse_Item::LocaleIndexResponse_Item(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LocaleIndexResponse_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleIndexResponse_Item_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LocaleIndexResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.updated_at_ = ((cached_has_bits & 0x00000008u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.updated_at_)
+                : nullptr;
+  _impl_.id_ = from._impl_.id_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.LocaleIndexResponse.Item)
+}
+PROTOBUF_NDEBUG_INLINE LocaleIndexResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        lang_(arena),
+        code_(arena),
+        message_(arena) {}
+
+inline void LocaleIndexResponse_Item::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, updated_at_),
+           0,
+           offsetof(Impl_, id_) -
+               offsetof(Impl_, updated_at_) +
+               sizeof(Impl_::id_));
+}
+LocaleIndexResponse_Item::~LocaleIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.LocaleIndexResponse.Item)
+  SharedDtor(*this);
+}
+inline void LocaleIndexResponse_Item::SharedDtor(MessageLite& self) {
+  LocaleIndexResponse_Item& this_ = static_cast<LocaleIndexResponse_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.lang_.Destroy();
+  this_._impl_.code_.Destroy();
+  this_._impl_.message_.Destroy();
+  delete this_._impl_.updated_at_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LocaleIndexResponse_Item::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LocaleIndexResponse_Item(arena);
+}
+constexpr auto LocaleIndexResponse_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(LocaleIndexResponse_Item),
+                                            alignof(LocaleIndexResponse_Item));
+}
+constexpr auto LocaleIndexResponse_Item::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LocaleIndexResponse_Item_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LocaleIndexResponse_Item::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LocaleIndexResponse_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LocaleIndexResponse_Item::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LocaleIndexResponse_Item>(), &LocaleIndexResponse_Item::ByteSizeLong,
+              &LocaleIndexResponse_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_._cached_size_),
+          false,
+      },
+      &LocaleIndexResponse_Item::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_Item_class_data_ =
+        LocaleIndexResponse_Item::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LocaleIndexResponse_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LocaleIndexResponse_Item_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LocaleIndexResponse_Item_class_data_.tc_table);
+  return LocaleIndexResponse_Item_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 5, 1, 63, 2>
+LocaleIndexResponse_Item::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967024,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    LocaleIndexResponse_Item_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleIndexResponse_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string message = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 2, 0, PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.message_)}},
+    // int64 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(LocaleIndexResponse_Item, _impl_.id_), 4>(),
+     {8, 4, 0, PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.id_)}},
+    // string lang = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.lang_)}},
+    // string code = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 1, 0, PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int64 id = 1;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.id_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // string lang = 2;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.lang_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string code = 3;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.code_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string message = 4;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.message_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp updated_at = 9;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.updated_at_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }},
+  {{
+    "\47\0\4\4\7\0\0\0"
+    "palm.portal.v1.LocaleIndexResponse.Item"
+    "lang"
+    "code"
+    "message"
+  }},
+};
+PROTOBUF_NOINLINE void LocaleIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.LocaleIndexResponse.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000000fu) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.lang_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      _impl_.code_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      _impl_.message_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      ABSL_DCHECK(_impl_.updated_at_ != nullptr);
+      _impl_.updated_at_->Clear();
+    }
+  }
+  _impl_.id_ = ::int64_t{0};
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LocaleIndexResponse_Item::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LocaleIndexResponse_Item& this_ = static_cast<const LocaleIndexResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LocaleIndexResponse_Item::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LocaleIndexResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.LocaleIndexResponse.Item)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int64 id = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000010u) != 0) {
+    if (this_._internal_id() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_id(), target);
+    }
+  }
+
+  // string lang = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_lang().empty()) {
+      const ::std::string& _s = this_._internal_lang();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleIndexResponse.Item.lang");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // string code = 3;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (!this_._internal_code().empty()) {
+      const ::std::string& _s = this_._internal_code();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleIndexResponse.Item.code");
+      target = stream->WriteStringMaybeAliased(3, _s, target);
+    }
+  }
+
+  // string message = 4;
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+    if (!this_._internal_message().empty()) {
+      const ::std::string& _s = this_._internal_message();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.LocaleIndexResponse.Item.message");
+      target = stream->WriteStringMaybeAliased(4, _s, target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .google.protobuf.Timestamp updated_at = 9;
+  if ((cached_has_bits & 0x00000008u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, *this_._impl_.updated_at_, this_._impl_.updated_at_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.LocaleIndexResponse.Item)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LocaleIndexResponse_Item::ByteSizeLong(const MessageLite& base) {
+  const LocaleIndexResponse_Item& this_ = static_cast<const LocaleIndexResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LocaleIndexResponse_Item::ByteSizeLong() const {
+  const LocaleIndexResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.LocaleIndexResponse.Item)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000001fu) != 0) {
+    // string lang = 2;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_lang().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_lang());
+      }
+    }
+    // string code = 3;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!this_._internal_code().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_code());
+      }
+    }
+    // string message = 4;
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!this_._internal_message().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_message());
+      }
+    }
+    // .google.protobuf.Timestamp updated_at = 9;
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.updated_at_);
+    }
+    // int64 id = 1;
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      if (this_._internal_id() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+            this_._internal_id());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LocaleIndexResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<LocaleIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const LocaleIndexResponse_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.LocaleIndexResponse.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000001fu) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_lang().empty()) {
+        _this->_internal_set_lang(from._internal_lang());
+      } else {
+        if (_this->_impl_.lang_.IsDefault()) {
+          _this->_internal_set_lang("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!from._internal_code().empty()) {
+        _this->_internal_set_code(from._internal_code());
+      } else {
+        if (_this->_impl_.code_.IsDefault()) {
+          _this->_internal_set_code("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!from._internal_message().empty()) {
+        _this->_internal_set_message(from._internal_message());
+      } else {
+        if (_this->_impl_.message_.IsDefault()) {
+          _this->_internal_set_message("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      ABSL_DCHECK(from._impl_.updated_at_ != nullptr);
+      if (_this->_impl_.updated_at_ == nullptr) {
+        _this->_impl_.updated_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.updated_at_);
+      } else {
+        _this->_impl_.updated_at_->MergeFrom(*from._impl_.updated_at_);
+      }
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      if (from._internal_id() != 0) {
+        _this->_impl_.id_ = from._impl_.id_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleIndexResponse_Item::CopyFrom(const LocaleIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.LocaleIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LocaleIndexResponse_Item::InternalSwap(LocaleIndexResponse_Item* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.lang_, &other->_impl_.lang_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.code_, &other->_impl_.code_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.id_)
+      + sizeof(LocaleIndexResponse_Item::_impl_.id_)
+      - PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.updated_at_)>(
+          reinterpret_cast<char*>(&_impl_.updated_at_),
+          reinterpret_cast<char*>(&other->_impl_.updated_at_));
+}
+
+::google::protobuf::Metadata LocaleIndexResponse_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LocaleIndexResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<LocaleIndexResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_._has_bits_);
+};
+
+LocaleIndexResponse::LocaleIndexResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleIndexResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.LocaleIndexResponse)
+}
+PROTOBUF_NDEBUG_INLINE LocaleIndexResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::LocaleIndexResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+LocaleIndexResponse::LocaleIndexResponse(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LocaleIndexResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LocaleIndexResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LocaleIndexResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pagination_ = ((cached_has_bits & 0x00000001u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.pagination_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.LocaleIndexResponse)
+}
+PROTOBUF_NDEBUG_INLINE LocaleIndexResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void LocaleIndexResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.pagination_ = {};
+}
+LocaleIndexResponse::~LocaleIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.LocaleIndexResponse)
+  SharedDtor(*this);
+}
+inline void LocaleIndexResponse::SharedDtor(MessageLite& self) {
+  LocaleIndexResponse& this_ = static_cast<LocaleIndexResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.pagination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LocaleIndexResponse::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LocaleIndexResponse(arena);
+}
+constexpr auto LocaleIndexResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_.items_) +
+          decltype(LocaleIndexResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(LocaleIndexResponse), alignof(LocaleIndexResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&LocaleIndexResponse::PlacementNew_,
+                                 sizeof(LocaleIndexResponse),
+                                 alignof(LocaleIndexResponse));
+  }
+}
+constexpr auto LocaleIndexResponse::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LocaleIndexResponse_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LocaleIndexResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LocaleIndexResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LocaleIndexResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LocaleIndexResponse>(), &LocaleIndexResponse::ByteSizeLong,
+              &LocaleIndexResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_._cached_size_),
+          false,
+      },
+      &LocaleIndexResponse::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_class_data_ =
+        LocaleIndexResponse::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LocaleIndexResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LocaleIndexResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LocaleIndexResponse_class_data_.tc_table);
+  return LocaleIndexResponse_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2>
+LocaleIndexResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967038,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    LocaleIndexResponse_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleIndexResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_.items_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Pagination pagination = 9;
+    {PROTOBUF_FIELD_OFFSET(LocaleIndexResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::LocaleIndexResponse_Item>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
+  }},
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void LocaleIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.LocaleIndexResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    ABSL_DCHECK(_impl_.pagination_ != nullptr);
+    _impl_.pagination_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LocaleIndexResponse::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LocaleIndexResponse& this_ = static_cast<const LocaleIndexResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LocaleIndexResponse::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LocaleIndexResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.LocaleIndexResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this_._internal_items_size());
+       i < n; i++) {
+    const auto& repfield = this_._internal_items().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .palm.portal.v1.Pagination pagination = 9;
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.LocaleIndexResponse)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LocaleIndexResponse::ByteSizeLong(const MessageLite& base) {
+  const LocaleIndexResponse& this_ = static_cast<const LocaleIndexResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LocaleIndexResponse::ByteSizeLong() const {
+  const LocaleIndexResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.LocaleIndexResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+   {
+    // repeated .palm.portal.v1.LocaleIndexResponse.Item items = 1;
+    {
+      total_size += 1UL * this_._internal_items_size();
+      for (const auto& msg : this_._internal_items()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+  }
+   {
+    // .palm.portal.v1.Pagination pagination = 9;
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pagination_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LocaleIndexResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<LocaleIndexResponse*>(&to_msg);
+  auto& from = static_cast<const LocaleIndexResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.LocaleIndexResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    ABSL_DCHECK(from._impl_.pagination_ != nullptr);
+    if (_this->_impl_.pagination_ == nullptr) {
+      _this->_impl_.pagination_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.pagination_);
+    } else {
+      _this->_impl_.pagination_->MergeFrom(*from._impl_.pagination_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleIndexResponse::CopyFrom(const LocaleIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.LocaleIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LocaleIndexResponse::InternalSwap(LocaleIndexResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.pagination_, other->_impl_.pagination_);
+}
+
+::google::protobuf::Metadata LocaleIndexResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

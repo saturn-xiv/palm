@@ -616,7 +616,7 @@ proto.palm.rbac.v1.Object.deserializeBinaryFromReader = function(msg, reader) {
       msg.setType(value);
       break;
     case 11:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setId(value);
       break;
     case 12:
@@ -666,7 +666,7 @@ proto.palm.rbac.v1.Object.serializeBinaryToWriter = function(message, writer) {
   }
   f = /** @type {number} */ (jspb.Message.getField(message, 11));
   if (f != null) {
-    writer.writeUint32(
+    writer.writeInt64(
       11,
       f
     );
@@ -708,7 +708,7 @@ proto.palm.rbac.v1.Object.prototype.setType = function(value) {
 
 
 /**
- * optional uint32 id = 11;
+ * optional int64 id = 11;
  * @return {number}
  */
 proto.palm.rbac.v1.Object.prototype.getId = function() {
@@ -1081,7 +1081,7 @@ proto.palm.rbac.v1.Subject.Role.deserializeBinaryFromReader = function(msg, read
       msg.setAdministrator(value);
       break;
     case 8:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setId(value);
       break;
     case 9:
@@ -1135,7 +1135,7 @@ proto.palm.rbac.v1.Subject.Role.serializeBinaryToWriter = function(message, writ
   }
   f = /** @type {number} */ (jspb.Message.getField(message, 8));
   if (f != null) {
-    writer.writeUint32(
+    writer.writeInt64(
       8,
       f
     );
@@ -1427,7 +1427,7 @@ proto.palm.rbac.v1.Subject.Role.prototype.hasAdministrator = function() {
 
 
 /**
- * optional uint32 id = 8;
+ * optional int64 id = 8;
  * @return {number}
  */
 proto.palm.rbac.v1.Subject.Role.prototype.getId = function() {
@@ -1595,7 +1595,7 @@ proto.palm.rbac.v1.Subject.User.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setId(value);
       break;
     case 2:
@@ -1633,7 +1633,7 @@ proto.palm.rbac.v1.Subject.User.serializeBinaryToWriter = function(message, writ
   var f = undefined;
   f = /** @type {number} */ (jspb.Message.getField(message, 1));
   if (f != null) {
-    writer.writeUint32(
+    writer.writeInt64(
       1,
       f
     );
@@ -1649,7 +1649,7 @@ proto.palm.rbac.v1.Subject.User.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional uint32 id = 1;
+ * optional int64 id = 1;
  * @return {number}
  */
 proto.palm.rbac.v1.Subject.User.prototype.getId = function() {

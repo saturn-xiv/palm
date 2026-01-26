@@ -11,13 +11,13 @@ public interface PageOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>uint64 index = 1;</code>
+   * <code>int64 index = 1;</code>
    * @return The index.
    */
   long getIndex();
 
   /**
-   * <code>uint64 size = 2;</code>
+   * <code>int64 size = 2;</code>
    * @return The size.
    */
   long getSize();

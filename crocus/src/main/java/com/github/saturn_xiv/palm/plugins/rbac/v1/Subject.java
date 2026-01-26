@@ -78,15 +78,15 @@ private static final long serialVersionUID = 0L;
     com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.Role.AdministratorOrBuilder getAdministratorOrBuilder();
 
     /**
-     * <code>uint32 id = 8;</code>
+     * <code>int64 id = 8;</code>
      * @return Whether the id field is set.
      */
     boolean hasId();
     /**
-     * <code>uint32 id = 8;</code>
+     * <code>int64 id = 8;</code>
      * @return The id.
      */
-    int getId();
+    long getId();
 
     /**
      * <code>string code = 9;</code>
@@ -964,7 +964,7 @@ private static final long serialVersionUID = 0L;
 
     public static final int ID_FIELD_NUMBER = 8;
     /**
-     * <code>uint32 id = 8;</code>
+     * <code>int64 id = 8;</code>
      * @return Whether the id field is set.
      */
     @java.lang.Override
@@ -972,15 +972,15 @@ private static final long serialVersionUID = 0L;
       return byCase_ == 8;
     }
     /**
-     * <code>uint32 id = 8;</code>
+     * <code>int64 id = 8;</code>
      * @return The id.
      */
     @java.lang.Override
-    public int getId() {
+    public long getId() {
       if (byCase_ == 8) {
-        return (java.lang.Integer) by_;
+        return (java.lang.Long) by_;
       }
-      return 0;
+      return 0L;
     }
 
     public static final int CODE_FIELD_NUMBER = 9;
@@ -1056,8 +1056,8 @@ private static final long serialVersionUID = 0L;
         output.writeMessage(2, (com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.Role.Administrator) by_);
       }
       if (byCase_ == 8) {
-        output.writeUInt32(
-            8, (int)((java.lang.Integer) by_));
+        output.writeInt64(
+            8, (long)((java.lang.Long) by_));
       }
       if (byCase_ == 9) {
         com.google.protobuf.GeneratedMessage.writeString(output, 9, by_);
@@ -1081,8 +1081,8 @@ private static final long serialVersionUID = 0L;
       }
       if (byCase_ == 8) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(
-              8, (int)((java.lang.Integer) by_));
+          .computeInt64Size(
+              8, (long)((java.lang.Long) by_));
       }
       if (byCase_ == 9) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(9, by_);
@@ -1145,7 +1145,8 @@ private static final long serialVersionUID = 0L;
           break;
         case 8:
           hash = (37 * hash) + ID_FIELD_NUMBER;
-          hash = (53 * hash) + getId();
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getId());
           break;
         case 9:
           hash = (37 * hash) + CODE_FIELD_NUMBER;
@@ -1418,7 +1419,7 @@ private static final long serialVersionUID = 0L;
                 break;
               } // case 18
               case 64: {
-                by_ = input.readUInt32();
+                by_ = input.readInt64();
                 byCase_ = 8;
                 break;
               } // case 64
@@ -1745,28 +1746,28 @@ private static final long serialVersionUID = 0L;
       }
 
       /**
-       * <code>uint32 id = 8;</code>
+       * <code>int64 id = 8;</code>
        * @return Whether the id field is set.
        */
       public boolean hasId() {
         return byCase_ == 8;
       }
       /**
-       * <code>uint32 id = 8;</code>
+       * <code>int64 id = 8;</code>
        * @return The id.
        */
-      public int getId() {
+      public long getId() {
         if (byCase_ == 8) {
-          return (java.lang.Integer) by_;
+          return (java.lang.Long) by_;
         }
-        return 0;
+        return 0L;
       }
       /**
-       * <code>uint32 id = 8;</code>
+       * <code>int64 id = 8;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
-      public Builder setId(int value) {
+      public Builder setId(long value) {
 
         byCase_ = 8;
         by_ = value;
@@ -1774,7 +1775,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>uint32 id = 8;</code>
+       * <code>int64 id = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
@@ -1935,15 +1936,15 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return Whether the id field is set.
      */
     boolean hasId();
     /**
-     * <code>uint32 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
-    int getId();
+    long getId();
 
     /**
      * <code>string code = 2;</code>
@@ -2045,7 +2046,7 @@ private static final long serialVersionUID = 0L;
 
     public static final int ID_FIELD_NUMBER = 1;
     /**
-     * <code>uint32 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return Whether the id field is set.
      */
     @java.lang.Override
@@ -2053,15 +2054,15 @@ private static final long serialVersionUID = 0L;
       return byCase_ == 1;
     }
     /**
-     * <code>uint32 id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
     @java.lang.Override
-    public int getId() {
+    public long getId() {
       if (byCase_ == 1) {
-        return (java.lang.Integer) by_;
+        return (java.lang.Long) by_;
       }
-      return 0;
+      return 0L;
     }
 
     public static final int CODE_FIELD_NUMBER = 2;
@@ -2131,8 +2132,8 @@ private static final long serialVersionUID = 0L;
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (byCase_ == 1) {
-        output.writeUInt32(
-            1, (int)((java.lang.Integer) by_));
+        output.writeInt64(
+            1, (long)((java.lang.Long) by_));
       }
       if (byCase_ == 2) {
         com.google.protobuf.GeneratedMessage.writeString(output, 2, by_);
@@ -2148,8 +2149,8 @@ private static final long serialVersionUID = 0L;
       size = 0;
       if (byCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(
-              1, (int)((java.lang.Integer) by_));
+          .computeInt64Size(
+              1, (long)((java.lang.Long) by_));
       }
       if (byCase_ == 2) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(2, by_);
@@ -2196,7 +2197,8 @@ private static final long serialVersionUID = 0L;
       switch (byCase_) {
         case 1:
           hash = (37 * hash) + ID_FIELD_NUMBER;
-          hash = (53 * hash) + getId();
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getId());
           break;
         case 2:
           hash = (37 * hash) + CODE_FIELD_NUMBER;
@@ -2433,7 +2435,7 @@ private static final long serialVersionUID = 0L;
                 done = true;
                 break;
               case 8: {
-                by_ = input.readUInt32();
+                by_ = input.readInt64();
                 byCase_ = 1;
                 break;
               } // case 8
@@ -2476,28 +2478,28 @@ private static final long serialVersionUID = 0L;
       private int bitField0_;
 
       /**
-       * <code>uint32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return Whether the id field is set.
        */
       public boolean hasId() {
         return byCase_ == 1;
       }
       /**
-       * <code>uint32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return The id.
        */
-      public int getId() {
+      public long getId() {
         if (byCase_ == 1) {
-          return (java.lang.Integer) by_;
+          return (java.lang.Long) by_;
         }
-        return 0;
+        return 0L;
       }
       /**
-       * <code>uint32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
-      public Builder setId(int value) {
+      public Builder setId(long value) {
 
         byCase_ = 1;
         by_ = value;
@@ -2505,7 +2507,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>uint32 id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {

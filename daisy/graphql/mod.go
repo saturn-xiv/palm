@@ -7,7 +7,6 @@ import (
 	"encoding/base64"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/go-playground/validator/v10"
@@ -18,14 +17,7 @@ import (
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/crypto"
 	"github.com/saturn-xiv/palm/daisy/queue"
-)
-
-var (
-	ContentType   = "Content-Type"
-	Authorization = "Authorization"
-	Bearer        = "Bearer "
-	XForwardedFor = "X-Forwarded-For"
-	XRealIp       = "X-Real-IP"
+	"github.com/saturn-xiv/palm/daisy/rbac"
 )
 
 var gl_validate = validator.New(validator.WithRequiredStructEnabled())
@@ -44,15 +36,9 @@ func Handler(db *gorm.DB, redis *cache.RedisClient, rabbitmq *queue.RabbitMQ, ae
 	handler := &relay.Handler{Schema: schema}
 	return http.HandlerFunc(func(wrt http.ResponseWriter, req *http.Request) {
 		ctx := req.Context()
-		{
-			auth := req.Header.Get(Authorization)
-			if strings.HasPrefix(auth, Bearer) {
-				token := strings.TrimPrefix(auth, Bearer)
-				ctx = context.WithValue(ctx, headerKey(Authorization), token)
-			}
-		}
-		ctx = context.WithValue(ctx, headerKey(XForwardedFor), req.Header.Get(XForwardedFor))
-		ctx = context.WithValue(ctx, headerKey(XRealIp), req.Header.Get(XRealIp))
+		ctx = context.WithValue(ctx, headerKey(rbac.Authorization), req.Header.Get(rbac.Authorization))
+		ctx = context.WithValue(ctx, headerKey(rbac.XForwardedFor), req.Header.Get(rbac.XForwardedFor))
+		ctx = context.WithValue(ctx, headerKey(rbac.XRealIp), req.Header.Get(rbac.XRealIp))
 
 		handler.ServeHTTP(wrt, req.WithContext(ctx))
 	}), nil
@@ -145,7 +131,7 @@ func FromId(id graphql.ID) (uint, error) {
 }
 
 func ClientIp(ctx context.Context) string {
-	it, ok := ctx.Value(headerKey(XRealIp)).(string)
+	it, ok := ctx.Value(headerKey(rbac.XRealIp)).(string)
 	if ok {
 		return it
 	}

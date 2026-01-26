@@ -668,16 +668,16 @@ const char descriptor_table_protodef_rbac_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     protodesc_cold) = {
     "\n\nrbac.proto\022\014palm.rbac.v1\032\033google/proto"
     "buf/empty.proto\"a\n\006Object\022\014\n\004type\030\001 \001(\t\022"
-    "\014\n\002id\030\013 \001(\rH\000\022\016\n\004code\030\014 \001(\tH\000\022%\n\003all\030\023 \001"
+    "\014\n\002id\030\013 \001(\003H\000\022\016\n\004code\030\014 \001(\tH\000\022%\n\003all\030\023 \001"
     "(\0132\026.google.protobuf.EmptyH\000B\004\n\002by\"\315\002\n\007S"
     "ubject\022*\n\004user\030\001 \001(\0132\032.palm.rbac.v1.Subj"
     "ect.UserH\000\022*\n\004role\030\002 \001(\0132\032.palm.rbac.v1."
     "Subject.RoleH\000\032\267\001\n\004Role\022/\n\004root\030\001 \001(\0132\037."
     "palm.rbac.v1.Subject.Role.RootH\000\022A\n\radmi"
     "nistrator\030\002 \001(\0132(.palm.rbac.v1.Subject.R"
-    "ole.AdministratorH\000\022\014\n\002id\030\010 \001(\rH\000\022\016\n\004cod"
+    "ole.AdministratorH\000\022\014\n\002id\030\010 \001(\003H\000\022\016\n\004cod"
     "e\030\t \001(\tH\000\032\006\n\004Root\032\017\n\rAdministratorB\004\n\002by"
-    "\032*\n\004User\022\014\n\002id\030\001 \001(\rH\000\022\016\n\004code\030\002 \001(\tH\000B\004"
+    "\032*\n\004User\022\014\n\002id\030\001 \001(\003H\000\022\016\n\004code\030\002 \001(\tH\000B\004"
     "\n\002byB\004\n\002by\"\247\003\n\006Action\022)\n\004read\030\001 \001(\0132\031.pa"
     "lm.rbac.v1.Action.ReadH\000\022+\n\005write\030\002 \001(\0132"
     "\032.palm.rbac.v1.Action.WriteH\000\022-\n\006append\030"
@@ -976,9 +976,9 @@ Object::_table_ = {
     // string type = 1;
     {PROTOBUF_FIELD_OFFSET(Object, _impl_.type_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // uint32 id = 11;
+    // int64 id = 11;
     {PROTOBUF_FIELD_OFFSET(Object, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcOneof | ::_fl::kInt64)},
     // string code = 12;
     {PROTOBUF_FIELD_OFFSET(Object, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -1039,9 +1039,9 @@ PROTOBUF_NOINLINE void Object::Clear() {
 
   switch (this_.by_case()) {
     case kId: {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-          11, this_._internal_id(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<11>(
+              stream, this_._internal_id(), target);
       break;
     }
     case kCode: {
@@ -1094,9 +1094,9 @@ PROTOBUF_NOINLINE void Object::Clear() {
     }
   }
   switch (this_.by_case()) {
-    // uint32 id = 11;
+    // int64 id = 11;
     case kId: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
           this_._internal_id());
       break;
     }
@@ -1632,9 +1632,9 @@ Subject_Role::_table_ = {
     // .palm.rbac.v1.Subject.Role.Administrator administrator = 2;
     {PROTOBUF_FIELD_OFFSET(Subject_Role, _impl_.by_.administrator_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // uint32 id = 8;
+    // int64 id = 8;
     {PROTOBUF_FIELD_OFFSET(Subject_Role, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcOneof | ::_fl::kInt64)},
     // string code = 9;
     {PROTOBUF_FIELD_OFFSET(Subject_Role, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -1689,9 +1689,9 @@ PROTOBUF_NOINLINE void Subject_Role::Clear() {
       break;
     }
     case kId: {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-          8, this_._internal_id(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<8>(
+              stream, this_._internal_id(), target);
       break;
     }
     case kCode: {
@@ -1740,9 +1740,9 @@ PROTOBUF_NOINLINE void Subject_Role::Clear() {
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.by_.administrator_);
       break;
     }
-    // uint32 id = 8;
+    // int64 id = 8;
     case kId: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
           this_._internal_id());
       break;
     }
@@ -1993,9 +1993,9 @@ Subject_User::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 id = 1;
+    // int64 id = 1;
     {PROTOBUF_FIELD_OFFSET(Subject_User, _impl_.by_.id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcOneof | ::_fl::kInt64)},
     // string code = 2;
     {PROTOBUF_FIELD_OFFSET(Subject_User, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -2035,9 +2035,9 @@ PROTOBUF_NOINLINE void Subject_User::Clear() {
 
   switch (this_.by_case()) {
     case kId: {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-          1, this_._internal_id(), target);
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_id(), target);
       break;
     }
     case kCode: {
@@ -2074,9 +2074,9 @@ PROTOBUF_NOINLINE void Subject_User::Clear() {
   (void)cached_has_bits;
 
   switch (this_.by_case()) {
-    // uint32 id = 1;
+    // int64 id = 1;
     case kId: {
-      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
           this_._internal_id());
       break;
     }
