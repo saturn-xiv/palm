@@ -39,7 +39,7 @@ FetchContent_Declare(inja
 
 FetchContent_Declare(cpphttplib
   GIT_REPOSITORY "https://github.com/yhirose/cpp-httplib.git"
-  GIT_TAG        "v0.28.0"
+  GIT_TAG        "v0.30.1"
 )
 
 FetchContent_Declare(redisplusplus

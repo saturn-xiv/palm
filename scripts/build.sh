@@ -107,6 +107,7 @@ function build_cpp_x64() {
 
     # https://github.com/protocolbuffers/protobuf/issues/12185    
     cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
+        -DBoost_USE_STATIC_LIBS=ON \
         -DgRPC_BUILD_TESTS=OFF \
         -DREDIS_PLUS_PLUS_BUILD_TEST=OFF \
         -DBUILD_SHARED_LIBS=OFF -DCPR_BUILD_TESTS=OFF \
@@ -172,7 +173,9 @@ then
     echo "unsupported system $ID"
     exit 1
 fi
-sudo apt install -y libcurl4-openssl-dev libpq-dev libmysqlclient-dev libhiredis-dev librabbitmq-dev libsystemd-dev libboost-all-dev
+
+# libmysqlclient-dev
+sudo apt install -y libcurl4-openssl-dev libpq-dev libmariadb-dev libmariadb-dev-compat libhiredis-dev librabbitmq-dev libsystemd-dev libboost-all-dev
 
 if [ -d $TARGET ]
 then

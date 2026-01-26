@@ -9,4 +9,6 @@
 #include <inja/inja.hpp>
 #include <nlohmann/json.hpp>
 
-namespace palm {}
+namespace palm {
+void init(bool debug = false);
+}
