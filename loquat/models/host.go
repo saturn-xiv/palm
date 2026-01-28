@@ -14,9 +14,9 @@ type Host struct {
 
 	MemberID *uint
 	Name     *string `gorm:"index;size:63"`
-	Mac      string  `gorm:"index;not null;size:17"`
+	Mac      string  `gorm:"uniqueIndex:idx_hosts_mac_network;index;not null;size:17"`
 	Vendor   *string `gorm:"size:63"`
-	Network  string  `gorm:"index;not null;size:39"`
+	Network  string  `gorm:"uniqueIndex:idx_hosts_mac_network;index;not null;size:39"`
 	Ip       string  `gorm:"index;not null;size:39"`
 	Fixed    bool    `gorm:"not null;default:false"`
 	Version  uint    `gorm:"not null;default:0"`
@@ -27,6 +27,16 @@ type Host struct {
 func (Host) TableName() string {
 	return "hosts"
 }
+
+/*
+TODO use masscan
+
+sudo masscan --iflist
+
+--ports 0-65535,U:0-65535
+sudo masscan 192.168.6.1/24 --router-ip 192.168.6.1 --ping --output-format JSON --output-filename /tmp/dmz.json --rate 100000
+sudo masscan 172.16.0.1/16 --router-ip 172.16.0.1 --ping --output-format JSON --output-filename /tmp/lan.json --rate 100000
+*/
 
 func ScanHosts(dev string, network string) ([]Host, error) {
 	res, err := nmap.Scan(dev, network)
@@ -65,7 +75,14 @@ func ScanHosts(dev string, network string) ([]Host, error) {
 		if len(host.Hostname) > 0 {
 			it.Name = &host.Hostname[0]
 		}
-		slog.Debug("found host", "mac", it.Mac, "ip", it.Ip, "vendor", it.Vendor, "name", it.Name)
+		{
+			name := ""
+			if it.Name != nil {
+				name = *it.Name
+			}
+
+			slog.Debug("found host", "mac", it.Mac, "ip", it.Ip, "vendor", it.Vendor, "name", name)
+		}
 		items = append(items, it)
 	}
 	return items, nil
