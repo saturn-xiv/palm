@@ -12,6 +12,7 @@ import (
 var (
 	gl_config_file                string
 	gl_debug                      bool
+	gl_apply_run                  bool
 	gl_http_port                  uint16
 	gl_set_administrator_username string
 	gl_set_administrator_password string
@@ -54,7 +55,7 @@ var (
 		Use:   "apply",
 		Short: "Generate an apply script file",
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := Apply(gl_config_file, gl_debug); err != nil {
+			if err := Apply(gl_config_file, gl_apply_run, gl_debug); err != nil {
 				log.Fatal(err)
 			}
 		},
@@ -75,6 +76,8 @@ func init() {
 
 	gl_set_administrator_cmd.PersistentFlags().StringVarP(&gl_set_administrator_username, "username", "u", "", "username")
 	gl_set_administrator_cmd.PersistentFlags().StringVarP(&gl_set_administrator_password, "password", "p", "", "password")
+
+	gl_apply_cmd.PersistentFlags().BoolVarP(&gl_apply_run, "run", "r", false, "run it")
 
 	gl_root_cmd.AddCommand(gl_http_cmd, gl_net_scan_cmd, gl_apply_cmd, gl_set_administrator_cmd)
 }

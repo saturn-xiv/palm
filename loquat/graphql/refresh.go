@@ -5,16 +5,26 @@ import (
 	"time"
 
 	graphql "github.com/graph-gophers/graphql-go"
+	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/loquat/env"
 	"github.com/saturn-xiv/palm/loquat/models"
 )
 
+var (
+	gl_last_run_at = "last.run-at"
+)
+
+func SetLastRunAt(db *gorm.DB) error {
+	now := time.Now()
+	return models.SetB(db, gl_last_run_at, now)
+}
+
 func (p *Query) Refresh() *RefreshResponse {
 	var res RefreshResponse
 	{
 		var last_run_at time.Time
-		if err := models.GetB(p.db, "last.run-at", &last_run_at); err == nil {
+		if err := models.GetB(p.db, gl_last_run_at, &last_run_at); err == nil {
 			res.last_run_at = &last_run_at
 		}
 	}

@@ -14,7 +14,8 @@ import (
 )
 
 func (p *Mutation) Apply(ctx context.Context, args struct{ Run bool }) (*Ok, error) {
-	if _, _, err := current_user(ctx, p.db, p.secrets); err != nil {
+	user, ip, err := current_user(ctx, p.db, p.secrets)
+	if err != nil {
 		return nil, err
 	}
 	item, err := Export(p.db)
@@ -24,6 +25,18 @@ func (p *Mutation) Apply(ctx context.Context, args struct{ Run bool }) (*Ok, err
 	if err = item.Apply(args.Run); err != nil {
 		return nil, err
 	}
+
+	if args.Run {
+		if err := p.db.Transaction(func(tx *gorm.DB) error {
+			if err := SetLastRunAt(tx); err != nil {
+				return err
+			}
+			return tx.Create(&models.Log{UserID: user.ID, Ip: ip, Message: "Sign in"}).Error
+		}); err != nil {
+			return nil, err
+		}
+	}
+
 	return &Ok{}, nil
 }
 

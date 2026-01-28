@@ -34,7 +34,7 @@ const NavBar = () => {
     navigate(USER_SIGN_IN);
   };
   const handleApply = async () => {
-    const res = await apply(false);
+    const res = await apply(true);
     if (res.data?.apply) {
       dispatch(show_success([intl.formatMessage({ id: "flashes.succeed" })]));
     } else if (res.errors) {

@@ -12,7 +12,7 @@ type ApplyConfig struct {
 	PostgreSql PostgreSql `toml:"postgresql"`
 }
 
-func Apply(config_file string, debug bool) error {
+func Apply(config_file string, run bool, debug bool) error {
 	slog.Debug("load configuration from", "file", config_file)
 	var config NetScanConfig
 
@@ -29,8 +29,14 @@ func Apply(config_file string, debug bool) error {
 	if err != nil {
 		return err
 	}
-	if err = rt.Apply(false); err != nil {
+	if err = rt.Apply(run); err != nil {
 		return err
+	}
+
+	if run {
+		if err := graphql.SetLastRunAt(db); err != nil {
+			return err
+		}
 	}
 
 	slog.Info("done.")
