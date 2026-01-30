@@ -97,8 +97,7 @@ ENV ARPHIC_TTF_VERSION="20161212-1"
 RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
     && cd $HOME/downloads/ttf-arphic-tex-extra/ \
     && makepkg \
-    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst \
-    && makepkg --clean
+    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh \
@@ -255,13 +254,17 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 
 # https://opensearch.org/downloads.html#opensearch
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
-ENV OPENSEARCH_VERSION="3.2.0"
+# https://github.com/aparo/opensearch-analysis-stconvert?tab=readme-ov-file#installation
+# https://github.com/aparo/opensearch-analysis-pinyin?tab=readme-ov-file#installation
+ENV OPENSEARCH_VERSION="3.0.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
 RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C $HOME/tmp \
     && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch \
     && cd /opt/opensearch/ \
-    && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-ik/releases/download/${OPENSEARCH_VERSION}/opensearch-analisys-ik.zip
+    && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-ik/releases/download/${OPENSEARCH_VERSION}/opensearch-analisys-ik.zip \
+    && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-stconvert/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-stconvert.zip \
+    && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
 # https://github.com/grpc/grpc
 ENV GRPC_VERSION="v1.76.0"
