@@ -39,10 +39,6 @@ RUN pacman texlive -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman texlive-lang -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman nerd-fonts -S --needed --noconfirm && pacman -Scc --noconfirm
 
-
-# RUN pacman -S --needed --noconfirm && pacman -Scc --noconfirm
-
-
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 RUN useradd -s /bin/zsh -m deploy
 RUN passwd -l deploy
@@ -101,7 +97,8 @@ ENV ARPHIC_TTF_VERSION="20161212-1"
 RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
     && cd $HOME/downloads/ttf-arphic-tex-extra/ \
     && makepkg \
-    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
+    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst \
+    && makepkg --clean
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh \
@@ -141,7 +138,7 @@ RUN zsh -c ". $HOME/.zshrc \
     && python3 -m venv $HOME/local/python3 \
     && . $HOME/local/python3/bin/activate \
     && pip install --upgrade pip \
-    && pip install ansible paramiko conan \
+    && pip install ansible paramiko conan cmake \
     && pip install grpcio-tools grpcio-health-checking"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
 RUN zsh -c ". $HOME/.zshrc && ansible-galaxy collection install ansible.posix community.general"
@@ -151,7 +148,7 @@ RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION="4.0.0"
+ENV RUBY_VERSION="4.0.1"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
@@ -163,7 +160,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION="1.25.5"
+ENV GO_VERSION="1.25.6"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -179,7 +176,7 @@ RUN zsh -c "source $HOME/.zshrc \
 # https://docs.gradle.org/current/userguide/compatibility.html
 # https://thrift.apache.org/lib/java.html
 ENV JDK_VERSION="25.0.1-amzn"
-ENV GRADLE_VERSION="9.2.1"
+ENV GRADLE_VERSION="9.3.1"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN zsh -c "source $HOME/.zshrc \
@@ -194,8 +191,8 @@ RUN zsh -c "source $HOME/.zshrc \
 RUN zsh -c "source $HOME/.zshrc && go install github.com/asdf-vm/asdf/cmd/asdf@v0.18.0" \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
 # asdf list all XXX
-ENV ERLANG_VERSION="28.3"
-ENV ELIXIR_VERSION="1.19.4"
+ENV ERLANG_VERSION="28.3.1"
+ENV ELIXIR_VERSION="1.19.5"
 RUN zsh -c "source $HOME/.zshrc \
     && asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git \
     && asdf install erlang ${ERLANG_VERSION} \
@@ -205,7 +202,7 @@ RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc \
     && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 
 # https://github.com/nvm-sh/nvm
-ENV NVM_VERSION="v0.40.3"
+ENV NVM_VERSION="v0.40.4"
 RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.zshrc \
     && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.zshrc \
