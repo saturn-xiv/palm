@@ -254,11 +254,14 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://opensearch.org/downloads.html#opensearch
-ENV OPENSEARCH_VERSION="3.4.0"
+# https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
+ENV OPENSEARCH_VERSION="3.2.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
 RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C $HOME/tmp \
-    && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch
+    && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch \
+    && cd /opt/opensearch/ \
+    && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-ik/releases/download/${OPENSEARCH_VERSION}/opensearch-analisys-ik.zip
 
 # https://github.com/grpc/grpc
 ENV GRPC_VERSION="v1.76.0"
