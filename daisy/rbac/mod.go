@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v3"
 	"github.com/go-playground/validator/v10"
 	"google.golang.org/grpc/metadata"
 	"gorm.io/gorm"

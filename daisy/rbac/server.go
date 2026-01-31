@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v3"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 

@@ -6,7 +6,7 @@ import (
 	"os/user"
 
 	"github.com/BurntSushi/toml"
-	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v3"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/daisy/cache"

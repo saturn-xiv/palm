@@ -7,7 +7,7 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v3"
 	"github.com/gorilla/csrf"
 	"github.com/minio/minio-go/v7"
 	"gorm.io/gorm"
