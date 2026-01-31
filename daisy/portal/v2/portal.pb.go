@@ -9,6 +9,7 @@ package v2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
@@ -158,29 +159,29 @@ func (x Log_Level) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Log_Level.Descriptor instead.
 func (Log_Level) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{11, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{17, 0}
 }
 
-type User_ProviderType int32
+type UserDetail_ProviderType int32
 
 const (
-	User_EMAIL               User_ProviderType = 0
-	User_PHONE               User_ProviderType = 1
-	User_GOOGLE_OAUTH2       User_ProviderType = 2
-	User_WECHAT_OAUTH2       User_ProviderType = 3
-	User_WECHAT_MINI_PROGRAM User_ProviderType = 4
+	UserDetail_EMAIL               UserDetail_ProviderType = 0
+	UserDetail_PHONE               UserDetail_ProviderType = 1
+	UserDetail_GOOGLE_OAUTH2       UserDetail_ProviderType = 2
+	UserDetail_WECHAT_OAUTH2       UserDetail_ProviderType = 3
+	UserDetail_WECHAT_MINI_PROGRAM UserDetail_ProviderType = 4
 )
 
-// Enum value maps for User_ProviderType.
+// Enum value maps for UserDetail_ProviderType.
 var (
-	User_ProviderType_name = map[int32]string{
+	UserDetail_ProviderType_name = map[int32]string{
 		0: "EMAIL",
 		1: "PHONE",
 		2: "GOOGLE_OAUTH2",
 		3: "WECHAT_OAUTH2",
 		4: "WECHAT_MINI_PROGRAM",
 	}
-	User_ProviderType_value = map[string]int32{
+	UserDetail_ProviderType_value = map[string]int32{
 		"EMAIL":               0,
 		"PHONE":               1,
 		"GOOGLE_OAUTH2":       2,
@@ -189,31 +190,31 @@ var (
 	}
 )
 
-func (x User_ProviderType) Enum() *User_ProviderType {
-	p := new(User_ProviderType)
+func (x UserDetail_ProviderType) Enum() *UserDetail_ProviderType {
+	p := new(UserDetail_ProviderType)
 	*p = x
 	return p
 }
 
-func (x User_ProviderType) String() string {
+func (x UserDetail_ProviderType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (User_ProviderType) Descriptor() protoreflect.EnumDescriptor {
+func (UserDetail_ProviderType) Descriptor() protoreflect.EnumDescriptor {
 	return file_proto_portal_proto_enumTypes[3].Descriptor()
 }
 
-func (User_ProviderType) Type() protoreflect.EnumType {
+func (UserDetail_ProviderType) Type() protoreflect.EnumType {
 	return &file_proto_portal_proto_enumTypes[3]
 }
 
-func (x User_ProviderType) Number() protoreflect.EnumNumber {
+func (x UserDetail_ProviderType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use User_ProviderType.Descriptor instead.
-func (User_ProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{12, 0}
+// Deprecated: Use UserDetail_ProviderType.Descriptor instead.
+func (UserDetail_ProviderType) EnumDescriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{18, 0}
 }
 
 type IdRequest struct {
@@ -796,6 +797,350 @@ func (x *CurrenciesResponse) GetItems() []*CurrenciesResponse_Item {
 	return nil
 }
 
+type UserSetAttachmentTitleRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserSetAttachmentTitleRequest) Reset() {
+	*x = UserSetAttachmentTitleRequest{}
+	mi := &file_proto_portal_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserSetAttachmentTitleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserSetAttachmentTitleRequest) ProtoMessage() {}
+
+func (x *UserSetAttachmentTitleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserSetAttachmentTitleRequest.ProtoReflect.Descriptor instead.
+func (*UserSetAttachmentTitleRequest) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UserSetAttachmentTitleRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserSetAttachmentTitleRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+type UserShowAttachmentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Download      bool                   `protobuf:"varint,2,opt,name=download,proto3" json:"download,omitempty"`
+	Ttl           *durationpb.Duration   `protobuf:"bytes,9,opt,name=ttl,proto3,oneof" json:"ttl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserShowAttachmentRequest) Reset() {
+	*x = UserShowAttachmentRequest{}
+	mi := &file_proto_portal_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserShowAttachmentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserShowAttachmentRequest) ProtoMessage() {}
+
+func (x *UserShowAttachmentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserShowAttachmentRequest.ProtoReflect.Descriptor instead.
+func (*UserShowAttachmentRequest) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *UserShowAttachmentRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserShowAttachmentRequest) GetDownload() bool {
+	if x != nil {
+		return x.Download
+	}
+	return false
+}
+
+func (x *UserShowAttachmentRequest) GetTtl() *durationpb.Duration {
+	if x != nil {
+		return x.Ttl
+	}
+	return nil
+}
+
+type UserShowAttachmentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserShowAttachmentResponse) Reset() {
+	*x = UserShowAttachmentResponse{}
+	mi := &file_proto_portal_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserShowAttachmentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserShowAttachmentResponse) ProtoMessage() {}
+
+func (x *UserShowAttachmentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserShowAttachmentResponse.ProtoReflect.Descriptor instead.
+func (*UserShowAttachmentResponse) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *UserShowAttachmentResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+type UserCreateAttachmentRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Title           string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	ContentType     string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Size            uint64                 `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	ExpireAfterDays *uint32                `protobuf:"varint,4,opt,name=expire_after_days,json=expireAfterDays,proto3,oneof" json:"expire_after_days,omitempty"`
+	Public          bool                   `protobuf:"varint,5,opt,name=public,proto3" json:"public,omitempty"`
+	Ttl             *durationpb.Duration   `protobuf:"bytes,9,opt,name=ttl,proto3" json:"ttl,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *UserCreateAttachmentRequest) Reset() {
+	*x = UserCreateAttachmentRequest{}
+	mi := &file_proto_portal_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserCreateAttachmentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserCreateAttachmentRequest) ProtoMessage() {}
+
+func (x *UserCreateAttachmentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserCreateAttachmentRequest.ProtoReflect.Descriptor instead.
+func (*UserCreateAttachmentRequest) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UserCreateAttachmentRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UserCreateAttachmentRequest) GetContentType() string {
+	if x != nil {
+		return x.ContentType
+	}
+	return ""
+}
+
+func (x *UserCreateAttachmentRequest) GetSize() uint64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *UserCreateAttachmentRequest) GetExpireAfterDays() uint32 {
+	if x != nil && x.ExpireAfterDays != nil {
+		return *x.ExpireAfterDays
+	}
+	return 0
+}
+
+func (x *UserCreateAttachmentRequest) GetPublic() bool {
+	if x != nil {
+		return x.Public
+	}
+	return false
+}
+
+func (x *UserCreateAttachmentRequest) GetTtl() *durationpb.Duration {
+	if x != nil {
+		return x.Ttl
+	}
+	return nil
+}
+
+type UserCreateAttachmentUploadResponse struct {
+	state         protoimpl.MessageState            `protogen:"open.v1"`
+	Url           string                            `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	Item          *UserIndexAttachmentResponse_Item `protobuf:"bytes,2,opt,name=item,proto3" json:"item,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserCreateAttachmentUploadResponse) Reset() {
+	*x = UserCreateAttachmentUploadResponse{}
+	mi := &file_proto_portal_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserCreateAttachmentUploadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserCreateAttachmentUploadResponse) ProtoMessage() {}
+
+func (x *UserCreateAttachmentUploadResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserCreateAttachmentUploadResponse.ProtoReflect.Descriptor instead.
+func (*UserCreateAttachmentUploadResponse) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UserCreateAttachmentUploadResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *UserCreateAttachmentUploadResponse) GetItem() *UserIndexAttachmentResponse_Item {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
+type UserIndexAttachmentResponse struct {
+	state         protoimpl.MessageState              `protogen:"open.v1"`
+	Items         []*UserIndexAttachmentResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Pagination    *Pagination                         `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserIndexAttachmentResponse) Reset() {
+	*x = UserIndexAttachmentResponse{}
+	mi := &file_proto_portal_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserIndexAttachmentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserIndexAttachmentResponse) ProtoMessage() {}
+
+func (x *UserIndexAttachmentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserIndexAttachmentResponse.ProtoReflect.Descriptor instead.
+func (*UserIndexAttachmentResponse) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UserIndexAttachmentResponse) GetItems() []*UserIndexAttachmentResponse_Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *UserIndexAttachmentResponse) GetPagination() *Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
 type Log struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -804,7 +1149,7 @@ type Log struct {
 
 func (x *Log) Reset() {
 	*x = Log{}
-	mi := &file_proto_portal_proto_msgTypes[11]
+	mi := &file_proto_portal_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -816,7 +1161,7 @@ func (x *Log) String() string {
 func (*Log) ProtoMessage() {}
 
 func (x *Log) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[11]
+	mi := &file_proto_portal_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,30 +1174,30 @@ func (x *Log) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Log.ProtoReflect.Descriptor instead.
 func (*Log) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{11}
+	return file_proto_portal_proto_rawDescGZIP(), []int{17}
 }
 
-type User struct {
+type UserDetail struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *User) Reset() {
-	*x = User{}
-	mi := &file_proto_portal_proto_msgTypes[12]
+func (x *UserDetail) Reset() {
+	*x = UserDetail{}
+	mi := &file_proto_portal_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *User) String() string {
+func (x *UserDetail) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*User) ProtoMessage() {}
+func (*UserDetail) ProtoMessage() {}
 
-func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[12]
+func (x *UserDetail) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -863,22 +1208,22 @@ func (x *User) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use User.ProtoReflect.Descriptor instead.
-func (*User) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use UserDetail.ProtoReflect.Descriptor instead.
+func (*UserDetail) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{18}
 }
 
 type Session struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          User_ProviderType      `protobuf:"varint,1,opt,name=type,proto3,enum=palm.portal.v1.User_ProviderType" json:"type,omitempty"`
-	Sn            string                 `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Type          UserDetail_ProviderType `protobuf:"varint,1,opt,name=type,proto3,enum=palm.portal.v1.UserDetail_ProviderType" json:"type,omitempty"`
+	Sn            string                  `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_proto_portal_proto_msgTypes[13]
+	mi := &file_proto_portal_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -890,7 +1235,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[13]
+	mi := &file_proto_portal_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -903,14 +1248,14 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{13}
+	return file_proto_portal_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *Session) GetType() User_ProviderType {
+func (x *Session) GetType() UserDetail_ProviderType {
 	if x != nil {
 		return x.Type
 	}
-	return User_EMAIL
+	return UserDetail_EMAIL
 }
 
 func (x *Session) GetSn() string {
@@ -933,7 +1278,7 @@ type LocaleIndexResponse_Item struct {
 
 func (x *LocaleIndexResponse_Item) Reset() {
 	*x = LocaleIndexResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[14]
+	mi := &file_proto_portal_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -945,7 +1290,7 @@ func (x *LocaleIndexResponse_Item) String() string {
 func (*LocaleIndexResponse_Item) ProtoMessage() {}
 
 func (x *LocaleIndexResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[14]
+	mi := &file_proto_portal_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1010,7 +1355,7 @@ type CurrenciesResponse_Item struct {
 
 func (x *CurrenciesResponse_Item) Reset() {
 	*x = CurrenciesResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[15]
+	mi := &file_proto_portal_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1022,7 +1367,7 @@ func (x *CurrenciesResponse_Item) String() string {
 func (*CurrenciesResponse_Item) ProtoMessage() {}
 
 func (x *CurrenciesResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[15]
+	mi := &file_proto_portal_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1080,11 +1425,127 @@ func (x *CurrenciesResponse_Item) GetIsFund() bool {
 	return false
 }
 
+type UserIndexAttachmentResponse_Item struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Bucket          string                 `protobuf:"bytes,2,opt,name=bucket,proto3" json:"bucket,omitempty"`
+	Object          string                 `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`
+	Title           string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	ContentType     string                 `protobuf:"bytes,5,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Size            uint64                 `protobuf:"varint,6,opt,name=size,proto3" json:"size,omitempty"`
+	UploadedAt      *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=uploaded_at,json=uploadedAt,proto3,oneof" json:"uploaded_at,omitempty"`
+	ExpireAfterDays *uint32                `protobuf:"varint,8,opt,name=expire_after_days,json=expireAfterDays,proto3,oneof" json:"expire_after_days,omitempty"`
+	Public          bool                   `protobuf:"varint,9,opt,name=public,proto3" json:"public,omitempty"`
+	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *UserIndexAttachmentResponse_Item) Reset() {
+	*x = UserIndexAttachmentResponse_Item{}
+	mi := &file_proto_portal_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserIndexAttachmentResponse_Item) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserIndexAttachmentResponse_Item) ProtoMessage() {}
+
+func (x *UserIndexAttachmentResponse_Item) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserIndexAttachmentResponse_Item.ProtoReflect.Descriptor instead.
+func (*UserIndexAttachmentResponse_Item) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{16, 0}
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetBucket() string {
+	if x != nil {
+		return x.Bucket
+	}
+	return ""
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetObject() string {
+	if x != nil {
+		return x.Object
+	}
+	return ""
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetContentType() string {
+	if x != nil {
+		return x.ContentType
+	}
+	return ""
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetSize() uint64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetUploadedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UploadedAt
+	}
+	return nil
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetExpireAfterDays() uint32 {
+	if x != nil && x.ExpireAfterDays != nil {
+		return *x.ExpireAfterDays
+	}
+	return 0
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetPublic() bool {
+	if x != nil {
+		return x.Public
+	}
+	return false
+}
+
+func (x *UserIndexAttachmentResponse_Item) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 var File_proto_portal_proto protoreflect.FileDescriptor
 
 const file_proto_portal_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/portal.proto\x12\x0epalm.portal.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x1b\n" +
+	"\x12proto/portal.proto\x12\x0epalm.portal.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"0\n" +
 	"\x04Page\x12\x14\n" +
@@ -1144,22 +1605,64 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\ais_fund\x18\x06 \x01(\bH\x01R\x06isFund\x88\x01\x01B\b\n" +
 	"\x06_unitsB\n" +
 	"\n" +
-	"\b_is_fund\";\n" +
+	"\b_is_fund\"E\n" +
+	"\x1dUserSetAttachmentTitleRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\"\x81\x01\n" +
+	"\x19UserShowAttachmentRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
+	"\bdownload\x18\x02 \x01(\bR\bdownload\x120\n" +
+	"\x03ttl\x18\t \x01(\v2\x19.google.protobuf.DurationH\x00R\x03ttl\x88\x01\x01B\x06\n" +
+	"\x04_ttl\".\n" +
+	"\x1aUserShowAttachmentResponse\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"\xf6\x01\n" +
+	"\x1bUserCreateAttachmentRequest\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12!\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
+	"\x04size\x18\x03 \x01(\x04R\x04size\x12/\n" +
+	"\x11expire_after_days\x18\x04 \x01(\rH\x00R\x0fexpireAfterDays\x88\x01\x01\x12\x16\n" +
+	"\x06public\x18\x05 \x01(\bR\x06public\x12+\n" +
+	"\x03ttl\x18\t \x01(\v2\x19.google.protobuf.DurationR\x03ttlB\x14\n" +
+	"\x12_expire_after_days\"|\n" +
+	"\"UserCreateAttachmentUploadResponse\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\x12D\n" +
+	"\x04item\x18\x02 \x01(\v20.palm.portal.v1.UserIndexAttachmentResponse.ItemR\x04item\"\xa3\x04\n" +
+	"\x1bUserIndexAttachmentResponse\x12F\n" +
+	"\x05items\x18\x01 \x03(\v20.palm.portal.v1.UserIndexAttachmentResponse.ItemR\x05items\x12:\n" +
+	"\n" +
+	"pagination\x18\x02 \x01(\v2\x1a.palm.portal.v1.PaginationR\n" +
+	"pagination\x1a\xff\x02\n" +
+	"\x04Item\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06bucket\x18\x02 \x01(\tR\x06bucket\x12\x16\n" +
+	"\x06object\x18\x03 \x01(\tR\x06object\x12\x14\n" +
+	"\x05title\x18\x04 \x01(\tR\x05title\x12!\n" +
+	"\fcontent_type\x18\x05 \x01(\tR\vcontentType\x12\x12\n" +
+	"\x04size\x18\x06 \x01(\x04R\x04size\x12@\n" +
+	"\vuploaded_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
+	"uploadedAt\x88\x01\x01\x12/\n" +
+	"\x11expire_after_days\x18\b \x01(\rH\x01R\x0fexpireAfterDays\x88\x01\x01\x12\x16\n" +
+	"\x06public\x18\t \x01(\bR\x06public\x129\n" +
+	"\n" +
+	"updated_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x0e\n" +
+	"\f_uploaded_atB\x14\n" +
+	"\x12_expire_after_days\";\n" +
 	"\x03Log\"4\n" +
 	"\x05Level\x12\t\n" +
 	"\x05DEBUG\x10\x00\x12\b\n" +
 	"\x04INFO\x10\x01\x12\v\n" +
 	"\aWARNING\x10\x02\x12\t\n" +
-	"\x05ERROR\x10\x03\"k\n" +
-	"\x04User\"c\n" +
+	"\x05ERROR\x10\x03\"q\n" +
+	"\n" +
+	"UserDetail\"c\n" +
 	"\fProviderType\x12\t\n" +
 	"\x05EMAIL\x10\x00\x12\t\n" +
 	"\x05PHONE\x10\x01\x12\x11\n" +
 	"\rGOOGLE_OAUTH2\x10\x02\x12\x11\n" +
 	"\rWECHAT_OAUTH2\x10\x03\x12\x17\n" +
-	"\x13WECHAT_MINI_PROGRAM\x10\x04\"P\n" +
-	"\aSession\x125\n" +
-	"\x04type\x18\x01 \x01(\x0e2!.palm.portal.v1.User.ProviderTypeR\x04type\x12\x0e\n" +
+	"\x13WECHAT_MINI_PROGRAM\x10\x04\"V\n" +
+	"\aSession\x12;\n" +
+	"\x04type\x18\x01 \x01(\x0e2'.palm.portal.v1.UserDetail.ProviderTypeR\x04type\x12\x0e\n" +
 	"\x02sn\x18\x02 \x01(\tR\x02sn2\xe8\x01\n" +
 	"\x06Locale\x12D\n" +
 	"\x05Index\x12\x14.palm.portal.v1.Page\x1a#.palm.portal.v1.LocaleIndexResponse\"\x00\x12A\n" +
@@ -1167,7 +1670,14 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x06ByLang\x12#.palm.portal.v1.LocaleByLangRequest\x1a$.palm.portal.v1.LocaleByLangResponse\"\x002R\n" +
 	"\x04Site\x12J\n" +
 	"\n" +
-	"Currencies\x12\x16.google.protobuf.Empty\x1a\".palm.portal.v1.CurrenciesResponse\"\x00B_\n" +
+	"Currencies\x12\x16.google.protobuf.Empty\x1a\".palm.portal.v1.CurrenciesResponse\"\x002\xb7\x04\n" +
+	"\x04User\x12V\n" +
+	"\x0fIndexAttachment\x12\x14.palm.portal.v1.Page\x1a+.palm.portal.v1.UserIndexAttachmentResponse\"\x00\x12u\n" +
+	"\x10CreateAttachment\x12+.palm.portal.v1.UserCreateAttachmentRequest\x1a2.palm.portal.v1.UserCreateAttachmentUploadResponse\"\x00\x12i\n" +
+	"\x0eShowAttachment\x12).palm.portal.v1.UserShowAttachmentRequest\x1a*.palm.portal.v1.UserShowAttachmentResponse\"\x00\x12L\n" +
+	"\x15SetAttachmentUploaded\x12\x19.palm.portal.v1.IdRequest\x1a\x16.google.protobuf.Empty\"\x00\x12]\n" +
+	"\x12SetAttachmentTitle\x12-.palm.portal.v1.UserSetAttachmentTitleRequest\x1a\x16.google.protobuf.Empty\"\x00\x12H\n" +
+	"\x11DestroyAttachment\x12\x19.palm.portal.v1.IdRequest\x1a\x16.google.protobuf.Empty\"\x00B_\n" +
 	",com.github.saturn_xiv.palm.plugins.portal.v1B\vPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3"
 
 var (
@@ -1183,55 +1693,82 @@ func file_proto_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_proto_portal_proto_goTypes = []any{
-	(RichText_Editor)(0),             // 0: palm.portal.v1.RichText.Editor
-	(Location_Map)(0),                // 1: palm.portal.v1.Location.Map
-	(Log_Level)(0),                   // 2: palm.portal.v1.Log.Level
-	(User_ProviderType)(0),           // 3: palm.portal.v1.User.ProviderType
-	(*IdRequest)(nil),                // 4: palm.portal.v1.IdRequest
-	(*Page)(nil),                     // 5: palm.portal.v1.Page
-	(*Pagination)(nil),               // 6: palm.portal.v1.Pagination
-	(*Attachment)(nil),               // 7: palm.portal.v1.Attachment
-	(*RichText)(nil),                 // 8: palm.portal.v1.RichText
-	(*Location)(nil),                 // 9: palm.portal.v1.Location
-	(*LocaleSetRequest)(nil),         // 10: palm.portal.v1.LocaleSetRequest
-	(*LocaleByLangRequest)(nil),      // 11: palm.portal.v1.LocaleByLangRequest
-	(*LocaleByLangResponse)(nil),     // 12: palm.portal.v1.LocaleByLangResponse
-	(*LocaleIndexResponse)(nil),      // 13: palm.portal.v1.LocaleIndexResponse
-	(*CurrenciesResponse)(nil),       // 14: palm.portal.v1.CurrenciesResponse
-	(*Log)(nil),                      // 15: palm.portal.v1.Log
-	(*User)(nil),                     // 16: palm.portal.v1.User
-	(*Session)(nil),                  // 17: palm.portal.v1.Session
-	(*LocaleIndexResponse_Item)(nil), // 18: palm.portal.v1.LocaleIndexResponse.Item
-	(*CurrenciesResponse_Item)(nil),  // 19: palm.portal.v1.CurrenciesResponse.Item
-	(*timestamppb.Timestamp)(nil),    // 20: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),            // 21: google.protobuf.Empty
+	(RichText_Editor)(0),                       // 0: palm.portal.v1.RichText.Editor
+	(Location_Map)(0),                          // 1: palm.portal.v1.Location.Map
+	(Log_Level)(0),                             // 2: palm.portal.v1.Log.Level
+	(UserDetail_ProviderType)(0),               // 3: palm.portal.v1.UserDetail.ProviderType
+	(*IdRequest)(nil),                          // 4: palm.portal.v1.IdRequest
+	(*Page)(nil),                               // 5: palm.portal.v1.Page
+	(*Pagination)(nil),                         // 6: palm.portal.v1.Pagination
+	(*Attachment)(nil),                         // 7: palm.portal.v1.Attachment
+	(*RichText)(nil),                           // 8: palm.portal.v1.RichText
+	(*Location)(nil),                           // 9: palm.portal.v1.Location
+	(*LocaleSetRequest)(nil),                   // 10: palm.portal.v1.LocaleSetRequest
+	(*LocaleByLangRequest)(nil),                // 11: palm.portal.v1.LocaleByLangRequest
+	(*LocaleByLangResponse)(nil),               // 12: palm.portal.v1.LocaleByLangResponse
+	(*LocaleIndexResponse)(nil),                // 13: palm.portal.v1.LocaleIndexResponse
+	(*CurrenciesResponse)(nil),                 // 14: palm.portal.v1.CurrenciesResponse
+	(*UserSetAttachmentTitleRequest)(nil),      // 15: palm.portal.v1.UserSetAttachmentTitleRequest
+	(*UserShowAttachmentRequest)(nil),          // 16: palm.portal.v1.UserShowAttachmentRequest
+	(*UserShowAttachmentResponse)(nil),         // 17: palm.portal.v1.UserShowAttachmentResponse
+	(*UserCreateAttachmentRequest)(nil),        // 18: palm.portal.v1.UserCreateAttachmentRequest
+	(*UserCreateAttachmentUploadResponse)(nil), // 19: palm.portal.v1.UserCreateAttachmentUploadResponse
+	(*UserIndexAttachmentResponse)(nil),        // 20: palm.portal.v1.UserIndexAttachmentResponse
+	(*Log)(nil),                                // 21: palm.portal.v1.Log
+	(*UserDetail)(nil),                         // 22: palm.portal.v1.UserDetail
+	(*Session)(nil),                            // 23: palm.portal.v1.Session
+	(*LocaleIndexResponse_Item)(nil),           // 24: palm.portal.v1.LocaleIndexResponse.Item
+	(*CurrenciesResponse_Item)(nil),            // 25: palm.portal.v1.CurrenciesResponse.Item
+	(*UserIndexAttachmentResponse_Item)(nil),   // 26: palm.portal.v1.UserIndexAttachmentResponse.Item
+	(*durationpb.Duration)(nil),                // 27: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),              // 28: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),                      // 29: google.protobuf.Empty
 }
 var file_proto_portal_proto_depIdxs = []int32{
 	5,  // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
 	0,  // 1: palm.portal.v1.RichText.editor:type_name -> palm.portal.v1.RichText.Editor
 	7,  // 2: palm.portal.v1.RichText.attachments:type_name -> palm.portal.v1.Attachment
 	1,  // 3: palm.portal.v1.Location.map:type_name -> palm.portal.v1.Location.Map
-	18, // 4: palm.portal.v1.LocaleByLangResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
-	18, // 5: palm.portal.v1.LocaleIndexResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
+	24, // 4: palm.portal.v1.LocaleByLangResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
+	24, // 5: palm.portal.v1.LocaleIndexResponse.items:type_name -> palm.portal.v1.LocaleIndexResponse.Item
 	6,  // 6: palm.portal.v1.LocaleIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
-	19, // 7: palm.portal.v1.CurrenciesResponse.items:type_name -> palm.portal.v1.CurrenciesResponse.Item
-	3,  // 8: palm.portal.v1.Session.type:type_name -> palm.portal.v1.User.ProviderType
-	20, // 9: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 10: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
-	10, // 11: palm.portal.v1.Locale.Set:input_type -> palm.portal.v1.LocaleSetRequest
-	11, // 12: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
-	21, // 13: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
-	13, // 14: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
-	21, // 15: palm.portal.v1.Locale.Set:output_type -> google.protobuf.Empty
-	12, // 16: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
-	14, // 17: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
-	14, // [14:18] is the sub-list for method output_type
-	10, // [10:14] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	25, // 7: palm.portal.v1.CurrenciesResponse.items:type_name -> palm.portal.v1.CurrenciesResponse.Item
+	27, // 8: palm.portal.v1.UserShowAttachmentRequest.ttl:type_name -> google.protobuf.Duration
+	27, // 9: palm.portal.v1.UserCreateAttachmentRequest.ttl:type_name -> google.protobuf.Duration
+	26, // 10: palm.portal.v1.UserCreateAttachmentUploadResponse.item:type_name -> palm.portal.v1.UserIndexAttachmentResponse.Item
+	26, // 11: palm.portal.v1.UserIndexAttachmentResponse.items:type_name -> palm.portal.v1.UserIndexAttachmentResponse.Item
+	6,  // 12: palm.portal.v1.UserIndexAttachmentResponse.pagination:type_name -> palm.portal.v1.Pagination
+	3,  // 13: palm.portal.v1.Session.type:type_name -> palm.portal.v1.UserDetail.ProviderType
+	28, // 14: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	28, // 15: palm.portal.v1.UserIndexAttachmentResponse.Item.uploaded_at:type_name -> google.protobuf.Timestamp
+	28, // 16: palm.portal.v1.UserIndexAttachmentResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // 17: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
+	10, // 18: palm.portal.v1.Locale.Set:input_type -> palm.portal.v1.LocaleSetRequest
+	11, // 19: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
+	29, // 20: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
+	5,  // 21: palm.portal.v1.User.IndexAttachment:input_type -> palm.portal.v1.Page
+	18, // 22: palm.portal.v1.User.CreateAttachment:input_type -> palm.portal.v1.UserCreateAttachmentRequest
+	16, // 23: palm.portal.v1.User.ShowAttachment:input_type -> palm.portal.v1.UserShowAttachmentRequest
+	4,  // 24: palm.portal.v1.User.SetAttachmentUploaded:input_type -> palm.portal.v1.IdRequest
+	15, // 25: palm.portal.v1.User.SetAttachmentTitle:input_type -> palm.portal.v1.UserSetAttachmentTitleRequest
+	4,  // 26: palm.portal.v1.User.DestroyAttachment:input_type -> palm.portal.v1.IdRequest
+	13, // 27: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
+	29, // 28: palm.portal.v1.Locale.Set:output_type -> google.protobuf.Empty
+	12, // 29: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
+	14, // 30: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
+	20, // 31: palm.portal.v1.User.IndexAttachment:output_type -> palm.portal.v1.UserIndexAttachmentResponse
+	19, // 32: palm.portal.v1.User.CreateAttachment:output_type -> palm.portal.v1.UserCreateAttachmentUploadResponse
+	17, // 33: palm.portal.v1.User.ShowAttachment:output_type -> palm.portal.v1.UserShowAttachmentResponse
+	29, // 34: palm.portal.v1.User.SetAttachmentUploaded:output_type -> google.protobuf.Empty
+	29, // 35: palm.portal.v1.User.SetAttachmentTitle:output_type -> google.protobuf.Empty
+	29, // 36: palm.portal.v1.User.DestroyAttachment:output_type -> google.protobuf.Empty
+	27, // [27:37] is the sub-list for method output_type
+	17, // [17:27] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_proto_portal_proto_init() }
@@ -1239,16 +1776,19 @@ func file_proto_portal_proto_init() {
 	if File_proto_portal_proto != nil {
 		return
 	}
-	file_proto_portal_proto_msgTypes[15].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[12].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[14].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[21].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[22].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   16,
+			NumMessages:   23,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   3,
 		},
 		GoTypes:           file_proto_portal_proto_goTypes,
 		DependencyIndexes: file_proto_portal_proto_depIdxs,

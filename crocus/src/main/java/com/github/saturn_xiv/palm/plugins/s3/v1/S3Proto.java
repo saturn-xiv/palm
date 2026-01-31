@@ -27,6 +27,26 @@ public final class S3Proto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_s3_v1_GetObjectRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_s3_v1_GetObjectRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_s3_v1_GetObjectResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_s3_v1_GetObjectResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_s3_v1_PresignedGetObjectRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_s3_v1_PresignedGetObjectRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_s3_v1_PresignedGetObjectResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_s3_v1_PresignedGetObjectResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_s3_v1_RemoveObjectRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -77,28 +97,39 @@ public final class S3Proto {
     java.lang.String[] descriptorData = {
       "\n\010s3.proto\022\npalm.s3.v1\032\033google/protobuf/" +
       "empty.proto\032\036google/protobuf/duration.pr" +
-      "oto\"5\n\023RemoveObjectRequest\022\016\n\006bucket\030\001 \001" +
-      "(\t\022\016\n\006object\030\002 \001(\t\"g\n\021MakeBucketRequest\022" +
-      "\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001(\010\022\036\n\021expire_" +
-      "after_days\030\003 \001(\rH\000\210\001\001B\024\n\022_expire_after_d" +
-      "ays\"#\n\023BucketExistsRequest\022\014\n\004name\030\001 \001(\t" +
-      "\"&\n\024BucketExistsResponse\022\016\n\006exists\030\001 \001(\010" +
-      "\"Z\n\020PutObjectRequest\022\016\n\006bucket\030\001 \001(\t\022\016\n\006" +
-      "object\030\002 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google.proto" +
-      "buf.Duration\" \n\021PutObjectResponse\022\013\n\003url" +
-      "\030\001 \001(\t\"^\n\022ListBucketResponse\0222\n\005items\030\001 " +
-      "\003(\0132#.palm.s3.v1.ListBucketResponse.Item" +
-      "\032\024\n\004Item\022\014\n\004name\030\001 \001(\t2\377\002\n\002S3\022E\n\nMakeBuc" +
-      "ket\022\035.palm.s3.v1.MakeBucketRequest\032\026.goo" +
-      "gle.protobuf.Empty\"\000\022S\n\014BucketExists\022\037.p" +
-      "alm.s3.v1.BucketExistsRequest\032 .palm.s3." +
-      "v1.BucketExistsResponse\"\000\022F\n\nListBucket\022" +
-      "\026.google.protobuf.Empty\032\036.palm.s3.v1.Lis" +
-      "tBucketResponse\"\000\022J\n\tPutObject\022\034.palm.s3" +
-      ".v1.PutObjectRequest\032\035.palm.s3.v1.PutObj" +
-      "ectResponse\"\000\022I\n\014RemoveObject\022\037.palm.s3." +
-      "v1.RemoveObjectRequest\032\026.google.protobuf" +
-      ".Empty\"\000BS\n(com.github.saturn_xiv.palm.p" +
+      "oto\"2\n\020GetObjectRequest\022\016\n\006bucket\030\001 \001(\t\022" +
+      "\016\n\006object\030\002 \001(\t\" \n\021GetObjectResponse\022\013\n\003" +
+      "url\030\001 \001(\t\"\201\001\n\031PresignedGetObjectRequest\022" +
+      "\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\022\n\005title" +
+      "\030\003 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.google.protob" +
+      "uf.DurationB\010\n\006_title\")\n\032PresignedGetObj" +
+      "ectResponse\022\013\n\003url\030\001 \001(\t\"5\n\023RemoveObject" +
+      "Request\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\"" +
+      "g\n\021MakeBucketRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006pu" +
+      "blic\030\002 \001(\010\022\036\n\021expire_after_days\030\003 \001(\rH\000\210" +
+      "\001\001B\024\n\022_expire_after_days\"#\n\023BucketExists" +
+      "Request\022\014\n\004name\030\001 \001(\t\"&\n\024BucketExistsRes" +
+      "ponse\022\016\n\006exists\030\001 \001(\010\"Z\n\020PutObjectReques" +
+      "t\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\022&\n\003ttl" +
+      "\030\t \001(\0132\031.google.protobuf.Duration\" \n\021Put" +
+      "ObjectResponse\022\013\n\003url\030\001 \001(\t\"^\n\022ListBucke" +
+      "tResponse\0222\n\005items\030\001 \003(\0132#.palm.s3.v1.Li" +
+      "stBucketResponse.Item\032\024\n\004Item\022\014\n\004name\030\001 " +
+      "\001(\t2\262\004\n\002S3\022E\n\nMakeBucket\022\035.palm.s3.v1.Ma" +
+      "keBucketRequest\032\026.google.protobuf.Empty\"" +
+      "\000\022S\n\014BucketExists\022\037.palm.s3.v1.BucketExi" +
+      "stsRequest\032 .palm.s3.v1.BucketExistsResp" +
+      "onse\"\000\022F\n\nListBucket\022\026.google.protobuf.E" +
+      "mpty\032\036.palm.s3.v1.ListBucketResponse\"\000\022J" +
+      "\n\tPutObject\022\034.palm.s3.v1.PutObjectReques" +
+      "t\032\035.palm.s3.v1.PutObjectResponse\"\000\022I\n\014Re" +
+      "moveObject\022\037.palm.s3.v1.RemoveObjectRequ" +
+      "est\032\026.google.protobuf.Empty\"\000\022e\n\022Presign" +
+      "edGetObject\022%.palm.s3.v1.PresignedGetObj" +
+      "ectRequest\032&.palm.s3.v1.PresignedGetObje" +
+      "ctResponse\"\000\022J\n\tGetObject\022\034.palm.s3.v1.G" +
+      "etObjectRequest\032\035.palm.s3.v1.GetObjectRe" +
+      "sponse\"\000BS\n(com.github.saturn_xiv.palm.p" +
       "lugins.s3.v1B\007S3ProtoP\001Z\005./;v2\252\002\024Palm.Pl" +
       "ugins.S3.Grpcb\006proto3"
     };
@@ -108,44 +139,68 @@ public final class S3Proto {
           com.google.protobuf.EmptyProto.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
         });
-    internal_static_palm_s3_v1_RemoveObjectRequest_descriptor =
+    internal_static_palm_s3_v1_GetObjectRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_palm_s3_v1_GetObjectRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_s3_v1_GetObjectRequest_descriptor,
+        new java.lang.String[] { "Bucket", "Object", });
+    internal_static_palm_s3_v1_GetObjectResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_palm_s3_v1_GetObjectResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_s3_v1_GetObjectResponse_descriptor,
+        new java.lang.String[] { "Url", });
+    internal_static_palm_s3_v1_PresignedGetObjectRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_palm_s3_v1_PresignedGetObjectRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_s3_v1_PresignedGetObjectRequest_descriptor,
+        new java.lang.String[] { "Bucket", "Object", "Title", "Ttl", });
+    internal_static_palm_s3_v1_PresignedGetObjectResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_palm_s3_v1_PresignedGetObjectResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_s3_v1_PresignedGetObjectResponse_descriptor,
+        new java.lang.String[] { "Url", });
+    internal_static_palm_s3_v1_RemoveObjectRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_palm_s3_v1_RemoveObjectRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_RemoveObjectRequest_descriptor,
         new java.lang.String[] { "Bucket", "Object", });
     internal_static_palm_s3_v1_MakeBucketRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_palm_s3_v1_MakeBucketRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_MakeBucketRequest_descriptor,
         new java.lang.String[] { "Name", "Public", "ExpireAfterDays", });
     internal_static_palm_s3_v1_BucketExistsRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_palm_s3_v1_BucketExistsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_BucketExistsRequest_descriptor,
         new java.lang.String[] { "Name", });
     internal_static_palm_s3_v1_BucketExistsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_palm_s3_v1_BucketExistsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_BucketExistsResponse_descriptor,
         new java.lang.String[] { "Exists", });
     internal_static_palm_s3_v1_PutObjectRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_palm_s3_v1_PutObjectRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_PutObjectRequest_descriptor,
         new java.lang.String[] { "Bucket", "Object", "Ttl", });
     internal_static_palm_s3_v1_PutObjectResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_palm_s3_v1_PutObjectResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_PutObjectResponse_descriptor,
         new java.lang.String[] { "Url", });
     internal_static_palm_s3_v1_ListBucketResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_palm_s3_v1_ListBucketResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_s3_v1_ListBucketResponse_descriptor,

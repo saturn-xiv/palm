@@ -20,11 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	S3_MakeBucket_FullMethodName   = "/palm.s3.v1.S3/MakeBucket"
-	S3_BucketExists_FullMethodName = "/palm.s3.v1.S3/BucketExists"
-	S3_ListBucket_FullMethodName   = "/palm.s3.v1.S3/ListBucket"
-	S3_PutObject_FullMethodName    = "/palm.s3.v1.S3/PutObject"
-	S3_RemoveObject_FullMethodName = "/palm.s3.v1.S3/RemoveObject"
+	S3_MakeBucket_FullMethodName         = "/palm.s3.v1.S3/MakeBucket"
+	S3_BucketExists_FullMethodName       = "/palm.s3.v1.S3/BucketExists"
+	S3_ListBucket_FullMethodName         = "/palm.s3.v1.S3/ListBucket"
+	S3_PutObject_FullMethodName          = "/palm.s3.v1.S3/PutObject"
+	S3_RemoveObject_FullMethodName       = "/palm.s3.v1.S3/RemoveObject"
+	S3_PresignedGetObject_FullMethodName = "/palm.s3.v1.S3/PresignedGetObject"
+	S3_GetObject_FullMethodName          = "/palm.s3.v1.S3/GetObject"
 )
 
 // S3Client is the client API for S3 service.
@@ -36,6 +38,8 @@ type S3Client interface {
 	ListBucket(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListBucketResponse, error)
 	PutObject(ctx context.Context, in *PutObjectRequest, opts ...grpc.CallOption) (*PutObjectResponse, error)
 	RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PresignedGetObject(ctx context.Context, in *PresignedGetObjectRequest, opts ...grpc.CallOption) (*PresignedGetObjectResponse, error)
+	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
 }
 
 type s3Client struct {
@@ -96,6 +100,26 @@ func (c *s3Client) RemoveObject(ctx context.Context, in *RemoveObjectRequest, op
 	return out, nil
 }
 
+func (c *s3Client) PresignedGetObject(ctx context.Context, in *PresignedGetObjectRequest, opts ...grpc.CallOption) (*PresignedGetObjectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PresignedGetObjectResponse)
+	err := c.cc.Invoke(ctx, S3_PresignedGetObject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetObjectResponse)
+	err := c.cc.Invoke(ctx, S3_GetObject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // S3Server is the server API for S3 service.
 // All implementations must embed UnimplementedS3Server
 // for forward compatibility.
@@ -105,6 +129,8 @@ type S3Server interface {
 	ListBucket(context.Context, *emptypb.Empty) (*ListBucketResponse, error)
 	PutObject(context.Context, *PutObjectRequest) (*PutObjectResponse, error)
 	RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error)
+	PresignedGetObject(context.Context, *PresignedGetObjectRequest) (*PresignedGetObjectResponse, error)
+	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
 	mustEmbedUnimplementedS3Server()
 }
 
@@ -129,6 +155,12 @@ func (UnimplementedS3Server) PutObject(context.Context, *PutObjectRequest) (*Put
 }
 func (UnimplementedS3Server) RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method RemoveObject not implemented")
+}
+func (UnimplementedS3Server) PresignedGetObject(context.Context, *PresignedGetObjectRequest) (*PresignedGetObjectResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PresignedGetObject not implemented")
+}
+func (UnimplementedS3Server) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetObject not implemented")
 }
 func (UnimplementedS3Server) mustEmbedUnimplementedS3Server() {}
 func (UnimplementedS3Server) testEmbeddedByValue()            {}
@@ -241,6 +273,42 @@ func _S3_RemoveObject_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _S3_PresignedGetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PresignedGetObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).PresignedGetObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_PresignedGetObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).PresignedGetObject(ctx, req.(*PresignedGetObjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).GetObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_GetObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).GetObject(ctx, req.(*GetObjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // S3_ServiceDesc is the grpc.ServiceDesc for S3 service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -267,6 +335,14 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveObject",
 			Handler:    _S3_RemoveObject_Handler,
+		},
+		{
+			MethodName: "PresignedGetObject",
+			Handler:    _S3_PresignedGetObject_Handler,
+		},
+		{
+			MethodName: "GetObject",
+			Handler:    _S3_GetObject_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

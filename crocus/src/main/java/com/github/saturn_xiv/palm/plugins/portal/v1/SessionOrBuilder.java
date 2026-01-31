@@ -11,15 +11,15 @@ public interface SessionOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.palm.portal.v1.User.ProviderType type = 1;</code>
+   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
    * @return The enum numeric value on the wire for type.
    */
   int getTypeValue();
   /**
-   * <code>.palm.portal.v1.User.ProviderType type = 1;</code>
+   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
    * @return The type.
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.User.ProviderType getType();
+  com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType getType();
 
   /**
    * <code>string sn = 2;</code>

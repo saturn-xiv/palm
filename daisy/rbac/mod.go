@@ -71,7 +71,7 @@ func NewCurrentUserByAuthorization(auth string, db *gorm.DB, jwt *crypto.Jwt) (*
 
 func current_user(db *gorm.DB, ss *portal_v2.Session) (*models.User, error) {
 	switch ss.Type {
-	case portal_v2.User_GOOGLE_OAUTH2:
+	case portal_v2.UserDetail_GOOGLE_OAUTH2:
 		var it models.GoogleOauth2User
 		if err := db.Where("sn = ?", ss.Sn).Preload("User").First(&it).Error; err != nil {
 			return nil, err
@@ -80,7 +80,7 @@ func current_user(db *gorm.DB, ss *portal_v2.Session) (*models.User, error) {
 			return nil, fmt.Errorf("user %s is locked", it.Name)
 		}
 		return it.User, nil
-	case portal_v2.User_EMAIL:
+	case portal_v2.UserDetail_EMAIL:
 		var it models.EmailUser
 		if err := db.Where("email = ?", ss.Sn).Preload("User").First(&it).Error; err != nil {
 			return nil, err

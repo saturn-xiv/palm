@@ -2,6 +2,7 @@ import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb'; // proto import: "google/protobuf/timestamp.proto"
+import * as google_protobuf_duration_pb from 'google-protobuf/google/protobuf/duration_pb'; // proto import: "google/protobuf/duration.proto"
 
 
 export class IdRequest extends jspb.Message {
@@ -360,6 +361,247 @@ export namespace CurrenciesResponse {
 
 }
 
+export class UserSetAttachmentTitleRequest extends jspb.Message {
+  getId(): number;
+  setId(value: number): UserSetAttachmentTitleRequest;
+
+  getTitle(): string;
+  setTitle(value: string): UserSetAttachmentTitleRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserSetAttachmentTitleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserSetAttachmentTitleRequest): UserSetAttachmentTitleRequest.AsObject;
+  static serializeBinaryToWriter(message: UserSetAttachmentTitleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserSetAttachmentTitleRequest;
+  static deserializeBinaryFromReader(message: UserSetAttachmentTitleRequest, reader: jspb.BinaryReader): UserSetAttachmentTitleRequest;
+}
+
+export namespace UserSetAttachmentTitleRequest {
+  export type AsObject = {
+    id: number;
+    title: string;
+  };
+}
+
+export class UserShowAttachmentRequest extends jspb.Message {
+  getId(): number;
+  setId(value: number): UserShowAttachmentRequest;
+
+  getDownload(): boolean;
+  setDownload(value: boolean): UserShowAttachmentRequest;
+
+  getTtl(): google_protobuf_duration_pb.Duration | undefined;
+  setTtl(value?: google_protobuf_duration_pb.Duration): UserShowAttachmentRequest;
+  hasTtl(): boolean;
+  clearTtl(): UserShowAttachmentRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserShowAttachmentRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserShowAttachmentRequest): UserShowAttachmentRequest.AsObject;
+  static serializeBinaryToWriter(message: UserShowAttachmentRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserShowAttachmentRequest;
+  static deserializeBinaryFromReader(message: UserShowAttachmentRequest, reader: jspb.BinaryReader): UserShowAttachmentRequest;
+}
+
+export namespace UserShowAttachmentRequest {
+  export type AsObject = {
+    id: number;
+    download: boolean;
+    ttl?: google_protobuf_duration_pb.Duration.AsObject;
+  };
+
+  export enum TtlCase {
+    _TTL_NOT_SET = 0,
+    TTL = 9,
+  }
+}
+
+export class UserShowAttachmentResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): UserShowAttachmentResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserShowAttachmentResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserShowAttachmentResponse): UserShowAttachmentResponse.AsObject;
+  static serializeBinaryToWriter(message: UserShowAttachmentResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserShowAttachmentResponse;
+  static deserializeBinaryFromReader(message: UserShowAttachmentResponse, reader: jspb.BinaryReader): UserShowAttachmentResponse;
+}
+
+export namespace UserShowAttachmentResponse {
+  export type AsObject = {
+    url: string;
+  };
+}
+
+export class UserCreateAttachmentRequest extends jspb.Message {
+  getTitle(): string;
+  setTitle(value: string): UserCreateAttachmentRequest;
+
+  getContentType(): string;
+  setContentType(value: string): UserCreateAttachmentRequest;
+
+  getSize(): number;
+  setSize(value: number): UserCreateAttachmentRequest;
+
+  getExpireAfterDays(): number;
+  setExpireAfterDays(value: number): UserCreateAttachmentRequest;
+  hasExpireAfterDays(): boolean;
+  clearExpireAfterDays(): UserCreateAttachmentRequest;
+
+  getPublic(): boolean;
+  setPublic(value: boolean): UserCreateAttachmentRequest;
+
+  getTtl(): google_protobuf_duration_pb.Duration | undefined;
+  setTtl(value?: google_protobuf_duration_pb.Duration): UserCreateAttachmentRequest;
+  hasTtl(): boolean;
+  clearTtl(): UserCreateAttachmentRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserCreateAttachmentRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserCreateAttachmentRequest): UserCreateAttachmentRequest.AsObject;
+  static serializeBinaryToWriter(message: UserCreateAttachmentRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserCreateAttachmentRequest;
+  static deserializeBinaryFromReader(message: UserCreateAttachmentRequest, reader: jspb.BinaryReader): UserCreateAttachmentRequest;
+}
+
+export namespace UserCreateAttachmentRequest {
+  export type AsObject = {
+    title: string;
+    contentType: string;
+    size: number;
+    expireAfterDays?: number;
+    pb_public: boolean;
+    ttl?: google_protobuf_duration_pb.Duration.AsObject;
+  };
+
+  export enum ExpireAfterDaysCase {
+    _EXPIRE_AFTER_DAYS_NOT_SET = 0,
+    EXPIRE_AFTER_DAYS = 4,
+  }
+}
+
+export class UserCreateAttachmentUploadResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): UserCreateAttachmentUploadResponse;
+
+  getItem(): UserIndexAttachmentResponse.Item | undefined;
+  setItem(value?: UserIndexAttachmentResponse.Item): UserCreateAttachmentUploadResponse;
+  hasItem(): boolean;
+  clearItem(): UserCreateAttachmentUploadResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserCreateAttachmentUploadResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserCreateAttachmentUploadResponse): UserCreateAttachmentUploadResponse.AsObject;
+  static serializeBinaryToWriter(message: UserCreateAttachmentUploadResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserCreateAttachmentUploadResponse;
+  static deserializeBinaryFromReader(message: UserCreateAttachmentUploadResponse, reader: jspb.BinaryReader): UserCreateAttachmentUploadResponse;
+}
+
+export namespace UserCreateAttachmentUploadResponse {
+  export type AsObject = {
+    url: string;
+    item?: UserIndexAttachmentResponse.Item.AsObject;
+  };
+}
+
+export class UserIndexAttachmentResponse extends jspb.Message {
+  getItemsList(): Array<UserIndexAttachmentResponse.Item>;
+  setItemsList(value: Array<UserIndexAttachmentResponse.Item>): UserIndexAttachmentResponse;
+  clearItemsList(): UserIndexAttachmentResponse;
+  addItems(value?: UserIndexAttachmentResponse.Item, index?: number): UserIndexAttachmentResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): UserIndexAttachmentResponse;
+  hasPagination(): boolean;
+  clearPagination(): UserIndexAttachmentResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserIndexAttachmentResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserIndexAttachmentResponse): UserIndexAttachmentResponse.AsObject;
+  static serializeBinaryToWriter(message: UserIndexAttachmentResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserIndexAttachmentResponse;
+  static deserializeBinaryFromReader(message: UserIndexAttachmentResponse, reader: jspb.BinaryReader): UserIndexAttachmentResponse;
+}
+
+export namespace UserIndexAttachmentResponse {
+  export type AsObject = {
+    itemsList: Array<UserIndexAttachmentResponse.Item.AsObject>;
+    pagination?: Pagination.AsObject;
+  };
+
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getBucket(): string;
+    setBucket(value: string): Item;
+
+    getObject(): string;
+    setObject(value: string): Item;
+
+    getTitle(): string;
+    setTitle(value: string): Item;
+
+    getContentType(): string;
+    setContentType(value: string): Item;
+
+    getSize(): number;
+    setSize(value: number): Item;
+
+    getUploadedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUploadedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUploadedAt(): boolean;
+    clearUploadedAt(): Item;
+
+    getExpireAfterDays(): number;
+    setExpireAfterDays(value: number): Item;
+    hasExpireAfterDays(): boolean;
+    clearExpireAfterDays(): Item;
+
+    getPublic(): boolean;
+    setPublic(value: boolean): Item;
+
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number;
+      bucket: string;
+      object: string;
+      title: string;
+      contentType: string;
+      size: number;
+      uploadedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      expireAfterDays?: number;
+      pb_public: boolean;
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+    };
+
+    export enum UploadedAtCase {
+      _UPLOADED_AT_NOT_SET = 0,
+      UPLOADED_AT = 7,
+    }
+
+    export enum ExpireAfterDaysCase {
+      _EXPIRE_AFTER_DAYS_NOT_SET = 0,
+      EXPIRE_AFTER_DAYS = 8,
+    }
+  }
+
+}
+
 export class Log extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Log.AsObject;
@@ -381,16 +623,16 @@ export namespace Log {
   }
 }
 
-export class User extends jspb.Message {
+export class UserDetail extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): User.AsObject;
-  static toObject(includeInstance: boolean, msg: User): User.AsObject;
-  static serializeBinaryToWriter(message: User, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): User;
-  static deserializeBinaryFromReader(message: User, reader: jspb.BinaryReader): User;
+  toObject(includeInstance?: boolean): UserDetail.AsObject;
+  static toObject(includeInstance: boolean, msg: UserDetail): UserDetail.AsObject;
+  static serializeBinaryToWriter(message: UserDetail, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserDetail;
+  static deserializeBinaryFromReader(message: UserDetail, reader: jspb.BinaryReader): UserDetail;
 }
 
-export namespace User {
+export namespace UserDetail {
   export type AsObject = {
   };
 
@@ -404,8 +646,8 @@ export namespace User {
 }
 
 export class Session extends jspb.Message {
-  getType(): User.ProviderType;
-  setType(value: User.ProviderType): Session;
+  getType(): UserDetail.ProviderType;
+  setType(value: UserDetail.ProviderType): Session;
 
   getSn(): string;
   setSn(value: string): Session;
@@ -420,7 +662,7 @@ export class Session extends jspb.Message {
 
 export namespace Session {
   export type AsObject = {
-    type: User.ProviderType;
+    type: UserDetail.ProviderType;
     sn: string;
   };
 }

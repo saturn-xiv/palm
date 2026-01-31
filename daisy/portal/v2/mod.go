@@ -2,7 +2,10 @@ package v2
 
 import (
 	"encoding/base64"
+	"path/filepath"
+	"time"
 
+	"github.com/google/uuid"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -56,4 +59,11 @@ func NewPagination(page *Page, total int64) *Pagination {
 		HasPrevious: index > 1,
 		HasNext:     index < pages,
 	}
+}
+
+func (p *UserCreateAttachmentRequest) Bucket() string {
+	return "attachments-" + time.Now().Format(time.DateOnly)
+}
+func (p *UserCreateAttachmentRequest) Object() string {
+	return uuid.New().String() + filepath.Ext(p.Title)
 }

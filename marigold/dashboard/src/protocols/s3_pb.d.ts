@@ -4,6 +4,103 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as google_protobuf_duration_pb from 'google-protobuf/google/protobuf/duration_pb'; // proto import: "google/protobuf/duration.proto"
 
 
+export class GetObjectRequest extends jspb.Message {
+  getBucket(): string;
+  setBucket(value: string): GetObjectRequest;
+
+  getObject(): string;
+  setObject(value: string): GetObjectRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetObjectRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetObjectRequest): GetObjectRequest.AsObject;
+  static serializeBinaryToWriter(message: GetObjectRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetObjectRequest;
+  static deserializeBinaryFromReader(message: GetObjectRequest, reader: jspb.BinaryReader): GetObjectRequest;
+}
+
+export namespace GetObjectRequest {
+  export type AsObject = {
+    bucket: string;
+    object: string;
+  };
+}
+
+export class GetObjectResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): GetObjectResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetObjectResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetObjectResponse): GetObjectResponse.AsObject;
+  static serializeBinaryToWriter(message: GetObjectResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetObjectResponse;
+  static deserializeBinaryFromReader(message: GetObjectResponse, reader: jspb.BinaryReader): GetObjectResponse;
+}
+
+export namespace GetObjectResponse {
+  export type AsObject = {
+    url: string;
+  };
+}
+
+export class PresignedGetObjectRequest extends jspb.Message {
+  getBucket(): string;
+  setBucket(value: string): PresignedGetObjectRequest;
+
+  getObject(): string;
+  setObject(value: string): PresignedGetObjectRequest;
+
+  getTitle(): string;
+  setTitle(value: string): PresignedGetObjectRequest;
+  hasTitle(): boolean;
+  clearTitle(): PresignedGetObjectRequest;
+
+  getTtl(): google_protobuf_duration_pb.Duration | undefined;
+  setTtl(value?: google_protobuf_duration_pb.Duration): PresignedGetObjectRequest;
+  hasTtl(): boolean;
+  clearTtl(): PresignedGetObjectRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PresignedGetObjectRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: PresignedGetObjectRequest): PresignedGetObjectRequest.AsObject;
+  static serializeBinaryToWriter(message: PresignedGetObjectRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PresignedGetObjectRequest;
+  static deserializeBinaryFromReader(message: PresignedGetObjectRequest, reader: jspb.BinaryReader): PresignedGetObjectRequest;
+}
+
+export namespace PresignedGetObjectRequest {
+  export type AsObject = {
+    bucket: string;
+    object: string;
+    title?: string;
+    ttl?: google_protobuf_duration_pb.Duration.AsObject;
+  };
+
+  export enum TitleCase {
+    _TITLE_NOT_SET = 0,
+    TITLE = 3,
+  }
+}
+
+export class PresignedGetObjectResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): PresignedGetObjectResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PresignedGetObjectResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: PresignedGetObjectResponse): PresignedGetObjectResponse.AsObject;
+  static serializeBinaryToWriter(message: PresignedGetObjectResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PresignedGetObjectResponse;
+  static deserializeBinaryFromReader(message: PresignedGetObjectResponse, reader: jspb.BinaryReader): PresignedGetObjectResponse;
+}
+
+export namespace PresignedGetObjectResponse {
+  export type AsObject = {
+    url: string;
+  };
+}
+
 export class RemoveObjectRequest extends jspb.Message {
   getBucket(): string;
   setBucket(value: string): RemoveObjectRequest;

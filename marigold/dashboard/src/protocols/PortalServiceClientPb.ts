@@ -235,3 +235,282 @@ export class SiteClient {
 
 }
 
+export class UserClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'binary';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname.replace(/\/+$/, '');
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodDescriptorIndexAttachment = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/IndexAttachment',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.Page,
+    portal_pb.UserIndexAttachmentResponse,
+    (request: portal_pb.Page) => {
+      return request.serializeBinary();
+    },
+    portal_pb.UserIndexAttachmentResponse.deserializeBinary
+  );
+
+  indexAttachment(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.UserIndexAttachmentResponse>;
+
+  indexAttachment(
+    request: portal_pb.Page,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.UserIndexAttachmentResponse) => void): grpcWeb.ClientReadableStream<portal_pb.UserIndexAttachmentResponse>;
+
+  indexAttachment(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.UserIndexAttachmentResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/IndexAttachment',
+        request,
+        metadata || {},
+        this.methodDescriptorIndexAttachment,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/IndexAttachment',
+    request,
+    metadata || {},
+    this.methodDescriptorIndexAttachment);
+  }
+
+  methodDescriptorCreateAttachment = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/CreateAttachment',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.UserCreateAttachmentRequest,
+    portal_pb.UserCreateAttachmentUploadResponse,
+    (request: portal_pb.UserCreateAttachmentRequest) => {
+      return request.serializeBinary();
+    },
+    portal_pb.UserCreateAttachmentUploadResponse.deserializeBinary
+  );
+
+  createAttachment(
+    request: portal_pb.UserCreateAttachmentRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.UserCreateAttachmentUploadResponse>;
+
+  createAttachment(
+    request: portal_pb.UserCreateAttachmentRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.UserCreateAttachmentUploadResponse) => void): grpcWeb.ClientReadableStream<portal_pb.UserCreateAttachmentUploadResponse>;
+
+  createAttachment(
+    request: portal_pb.UserCreateAttachmentRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.UserCreateAttachmentUploadResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/CreateAttachment',
+        request,
+        metadata || {},
+        this.methodDescriptorCreateAttachment,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/CreateAttachment',
+    request,
+    metadata || {},
+    this.methodDescriptorCreateAttachment);
+  }
+
+  methodDescriptorShowAttachment = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/ShowAttachment',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.UserShowAttachmentRequest,
+    portal_pb.UserShowAttachmentResponse,
+    (request: portal_pb.UserShowAttachmentRequest) => {
+      return request.serializeBinary();
+    },
+    portal_pb.UserShowAttachmentResponse.deserializeBinary
+  );
+
+  showAttachment(
+    request: portal_pb.UserShowAttachmentRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.UserShowAttachmentResponse>;
+
+  showAttachment(
+    request: portal_pb.UserShowAttachmentRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.UserShowAttachmentResponse) => void): grpcWeb.ClientReadableStream<portal_pb.UserShowAttachmentResponse>;
+
+  showAttachment(
+    request: portal_pb.UserShowAttachmentRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.UserShowAttachmentResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/ShowAttachment',
+        request,
+        metadata || {},
+        this.methodDescriptorShowAttachment,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/ShowAttachment',
+    request,
+    metadata || {},
+    this.methodDescriptorShowAttachment);
+  }
+
+  methodDescriptorSetAttachmentUploaded = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/SetAttachmentUploaded',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.IdRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.IdRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setAttachmentUploaded(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setAttachmentUploaded(
+    request: portal_pb.IdRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setAttachmentUploaded(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/SetAttachmentUploaded',
+        request,
+        metadata || {},
+        this.methodDescriptorSetAttachmentUploaded,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/SetAttachmentUploaded',
+    request,
+    metadata || {},
+    this.methodDescriptorSetAttachmentUploaded);
+  }
+
+  methodDescriptorSetAttachmentTitle = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/SetAttachmentTitle',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.UserSetAttachmentTitleRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.UserSetAttachmentTitleRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setAttachmentTitle(
+    request: portal_pb.UserSetAttachmentTitleRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setAttachmentTitle(
+    request: portal_pb.UserSetAttachmentTitleRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setAttachmentTitle(
+    request: portal_pb.UserSetAttachmentTitleRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/SetAttachmentTitle',
+        request,
+        metadata || {},
+        this.methodDescriptorSetAttachmentTitle,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/SetAttachmentTitle',
+    request,
+    metadata || {},
+    this.methodDescriptorSetAttachmentTitle);
+  }
+
+  methodDescriptorDestroyAttachment = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/DestroyAttachment',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.IdRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.IdRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  destroyAttachment(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  destroyAttachment(
+    request: portal_pb.IdRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  destroyAttachment(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/DestroyAttachment',
+        request,
+        metadata || {},
+        this.methodDescriptorDestroyAttachment,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/DestroyAttachment',
+    request,
+    metadata || {},
+    this.methodDescriptorDestroyAttachment);
+  }
+
+}
+

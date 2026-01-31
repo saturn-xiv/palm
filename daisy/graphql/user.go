@@ -14,7 +14,7 @@ import (
 
 type SignInResponse struct{}
 
-func newSignInResponse(db *gorm.DB, provider_type v2.User_ProviderType, provider_sn string) (*SignInResponse, error) {
+func newSignInResponse(db *gorm.DB, provider_type v2.UserDetail_ProviderType, provider_sn string) (*SignInResponse, error) {
 	// TODO
 	return &SignInResponse{}, nil
 }

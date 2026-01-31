@@ -89,7 +89,7 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	}); err != nil {
 		return nil, err
 	}
-	return newSignInResponse(p.db, v2.User_GOOGLE_OAUTH2, user_info.Id)
+	return newSignInResponse(p.db, v2.UserDetail_GOOGLE_OAUTH2, user_info.Id)
 }
 
 func (p *Query) GetGoogleOauth2Url(ctx context.Context, args struct {

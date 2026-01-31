@@ -552,6 +552,8 @@ class Locale final {
   typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_ByLang<Service > > > StreamedService;
 };
 
+// ----------------------------------------------------------------------------
+//
 class Site final {
  public:
   static constexpr char const* service_full_name() {
@@ -757,6 +759,1000 @@ class Site final {
   typedef WithStreamedUnaryMethod_Currencies<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
   typedef WithStreamedUnaryMethod_Currencies<Service > StreamedService;
+};
+
+// ----------------------------------------------------------------------------
+//
+class User final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.portal.v1.User";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status IndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexAttachmentResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexAttachmentResponse>> AsyncIndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexAttachmentResponse>>(AsyncIndexAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexAttachmentResponse>> PrepareAsyncIndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexAttachmentResponse>>(PrepareAsyncIndexAttachmentRaw(context, request, cq));
+    }
+    virtual ::grpc::Status CreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserCreateAttachmentUploadResponse>> AsyncCreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserCreateAttachmentUploadResponse>>(AsyncCreateAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserCreateAttachmentUploadResponse>> PrepareAsyncCreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserCreateAttachmentUploadResponse>>(PrepareAsyncCreateAttachmentRaw(context, request, cq));
+    }
+    virtual ::grpc::Status ShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::palm::portal::v1::UserShowAttachmentResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserShowAttachmentResponse>> AsyncShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserShowAttachmentResponse>>(AsyncShowAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserShowAttachmentResponse>> PrepareAsyncShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserShowAttachmentResponse>>(PrepareAsyncShowAttachmentRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetAttachmentUploadedRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetAttachmentUploadedRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetAttachmentTitleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetAttachmentTitleRaw(context, request, cq));
+    }
+    virtual ::grpc::Status DestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDestroyAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDestroyAttachmentRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void IndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexAttachmentResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexAttachmentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest* request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest* request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest* request, ::palm::portal::v1::UserShowAttachmentResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest* request, ::palm::portal::v1::UserShowAttachmentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void DestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexAttachmentResponse>* AsyncIndexAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserIndexAttachmentResponse>* PrepareAsyncIndexAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserCreateAttachmentUploadResponse>* AsyncCreateAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserCreateAttachmentUploadResponse>* PrepareAsyncCreateAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserShowAttachmentResponse>* AsyncShowAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::UserShowAttachmentResponse>* PrepareAsyncShowAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetAttachmentUploadedRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetAttachmentUploadedRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetAttachmentTitleRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetAttachmentTitleRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestroyAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestroyAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status IndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::palm::portal::v1::UserIndexAttachmentResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexAttachmentResponse>> AsyncIndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexAttachmentResponse>>(AsyncIndexAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexAttachmentResponse>> PrepareAsyncIndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexAttachmentResponse>>(PrepareAsyncIndexAttachmentRaw(context, request, cq));
+    }
+    ::grpc::Status CreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserCreateAttachmentUploadResponse>> AsyncCreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserCreateAttachmentUploadResponse>>(AsyncCreateAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserCreateAttachmentUploadResponse>> PrepareAsyncCreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserCreateAttachmentUploadResponse>>(PrepareAsyncCreateAttachmentRaw(context, request, cq));
+    }
+    ::grpc::Status ShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::palm::portal::v1::UserShowAttachmentResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserShowAttachmentResponse>> AsyncShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserShowAttachmentResponse>>(AsyncShowAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserShowAttachmentResponse>> PrepareAsyncShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserShowAttachmentResponse>>(PrepareAsyncShowAttachmentRaw(context, request, cq));
+    }
+    ::grpc::Status SetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetAttachmentUploadedRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetAttachmentUploadedRaw(context, request, cq));
+    }
+    ::grpc::Status SetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetAttachmentTitleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetAttachmentTitleRaw(context, request, cq));
+    }
+    ::grpc::Status DestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDestroyAttachmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDestroyAttachmentRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void IndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexAttachmentResponse* response, std::function<void(::grpc::Status)>) override;
+      void IndexAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexAttachmentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest* request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response, std::function<void(::grpc::Status)>) override;
+      void CreateAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest* request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest* request, ::palm::portal::v1::UserShowAttachmentResponse* response, std::function<void(::grpc::Status)>) override;
+      void ShowAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest* request, ::palm::portal::v1::UserShowAttachmentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SetAttachmentUploaded(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SetAttachmentTitle(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void DestroyAttachment(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexAttachmentResponse>* AsyncIndexAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserIndexAttachmentResponse>* PrepareAsyncIndexAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::Page& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserCreateAttachmentUploadResponse>* AsyncCreateAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserCreateAttachmentUploadResponse>* PrepareAsyncCreateAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserShowAttachmentResponse>* AsyncShowAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::UserShowAttachmentResponse>* PrepareAsyncShowAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserShowAttachmentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetAttachmentUploadedRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetAttachmentUploadedRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetAttachmentTitleRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetAttachmentTitleRaw(::grpc::ClientContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestroyAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestroyAttachmentRaw(::grpc::ClientContext* context, const ::palm::portal::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_IndexAttachment_;
+    const ::grpc::internal::RpcMethod rpcmethod_CreateAttachment_;
+    const ::grpc::internal::RpcMethod rpcmethod_ShowAttachment_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetAttachmentUploaded_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetAttachmentTitle_;
+    const ::grpc::internal::RpcMethod rpcmethod_DestroyAttachment_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status IndexAttachment(::grpc::ServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexAttachmentResponse* response);
+    virtual ::grpc::Status CreateAttachment(::grpc::ServerContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest* request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response);
+    virtual ::grpc::Status ShowAttachment(::grpc::ServerContext* context, const ::palm::portal::v1::UserShowAttachmentRequest* request, ::palm::portal::v1::UserShowAttachmentResponse* response);
+    virtual ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status DestroyAttachment(::grpc::ServerContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_IndexAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_IndexAttachment() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_IndexAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndexAttachment(::grpc::ServerContext* context, ::palm::portal::v1::Page* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::UserIndexAttachmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CreateAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CreateAttachment() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_CreateAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateAttachment(::grpc::ServerContext* context, ::palm::portal::v1::UserCreateAttachmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::UserCreateAttachmentUploadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ShowAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ShowAttachment() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_ShowAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShowAttachment(::grpc::ServerContext* context, ::palm::portal::v1::UserShowAttachmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::UserShowAttachmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetAttachmentUploaded : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetAttachmentUploaded() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_SetAttachmentUploaded() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetAttachmentUploaded(::grpc::ServerContext* context, ::palm::portal::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetAttachmentTitle : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetAttachmentTitle() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_SetAttachmentTitle() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetAttachmentTitle(::grpc::ServerContext* context, ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DestroyAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DestroyAttachment() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_DestroyAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DestroyAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDestroyAttachment(::grpc::ServerContext* context, ::palm::portal::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_IndexAttachment<WithAsyncMethod_CreateAttachment<WithAsyncMethod_ShowAttachment<WithAsyncMethod_SetAttachmentUploaded<WithAsyncMethod_SetAttachmentTitle<WithAsyncMethod_DestroyAttachment<Service > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_IndexAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_IndexAttachment() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexAttachmentResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::Page* request, ::palm::portal::v1::UserIndexAttachmentResponse* response) { return this->IndexAttachment(context, request, response); }));}
+    void SetMessageAllocatorFor_IndexAttachment(
+        ::grpc::MessageAllocator< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexAttachmentResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexAttachmentResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_IndexAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IndexAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_CreateAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CreateAttachment() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::UserCreateAttachmentRequest, ::palm::portal::v1::UserCreateAttachmentUploadResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::UserCreateAttachmentRequest* request, ::palm::portal::v1::UserCreateAttachmentUploadResponse* response) { return this->CreateAttachment(context, request, response); }));}
+    void SetMessageAllocatorFor_CreateAttachment(
+        ::grpc::MessageAllocator< ::palm::portal::v1::UserCreateAttachmentRequest, ::palm::portal::v1::UserCreateAttachmentUploadResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::UserCreateAttachmentRequest, ::palm::portal::v1::UserCreateAttachmentUploadResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CreateAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ShowAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ShowAttachment() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::UserShowAttachmentRequest, ::palm::portal::v1::UserShowAttachmentResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::UserShowAttachmentRequest* request, ::palm::portal::v1::UserShowAttachmentResponse* response) { return this->ShowAttachment(context, request, response); }));}
+    void SetMessageAllocatorFor_ShowAttachment(
+        ::grpc::MessageAllocator< ::palm::portal::v1::UserShowAttachmentRequest, ::palm::portal::v1::UserShowAttachmentResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::UserShowAttachmentRequest, ::palm::portal::v1::UserShowAttachmentResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ShowAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ShowAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetAttachmentUploaded : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetAttachmentUploaded() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->SetAttachmentUploaded(context, request, response); }));}
+    void SetMessageAllocatorFor_SetAttachmentUploaded(
+        ::grpc::MessageAllocator< ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetAttachmentUploaded() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetAttachmentUploaded(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetAttachmentTitle : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetAttachmentTitle() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::UserSetAttachmentTitleRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::UserSetAttachmentTitleRequest* request, ::google::protobuf::Empty* response) { return this->SetAttachmentTitle(context, request, response); }));}
+    void SetMessageAllocatorFor_SetAttachmentTitle(
+        ::grpc::MessageAllocator< ::palm::portal::v1::UserSetAttachmentTitleRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::UserSetAttachmentTitleRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetAttachmentTitle() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetAttachmentTitle(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DestroyAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DestroyAttachment() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::portal::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->DestroyAttachment(context, request, response); }));}
+    void SetMessageAllocatorFor_DestroyAttachment(
+        ::grpc::MessageAllocator< ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DestroyAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DestroyAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DestroyAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_IndexAttachment<WithCallbackMethod_CreateAttachment<WithCallbackMethod_ShowAttachment<WithCallbackMethod_SetAttachmentUploaded<WithCallbackMethod_SetAttachmentTitle<WithCallbackMethod_DestroyAttachment<Service > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_IndexAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_IndexAttachment() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_IndexAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CreateAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CreateAttachment() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_CreateAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ShowAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ShowAttachment() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_ShowAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetAttachmentUploaded : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetAttachmentUploaded() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_SetAttachmentUploaded() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetAttachmentTitle : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetAttachmentTitle() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_SetAttachmentTitle() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DestroyAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DestroyAttachment() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_DestroyAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DestroyAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_IndexAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_IndexAttachment() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_IndexAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndexAttachment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CreateAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CreateAttachment() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_CreateAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateAttachment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ShowAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ShowAttachment() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_ShowAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShowAttachment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetAttachmentUploaded : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetAttachmentUploaded() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_SetAttachmentUploaded() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetAttachmentUploaded(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetAttachmentTitle : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetAttachmentTitle() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_SetAttachmentTitle() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetAttachmentTitle(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DestroyAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DestroyAttachment() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_DestroyAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DestroyAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDestroyAttachment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_IndexAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_IndexAttachment() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IndexAttachment(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_IndexAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IndexAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IndexAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CreateAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CreateAttachment() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateAttachment(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CreateAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ShowAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ShowAttachment() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ShowAttachment(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ShowAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ShowAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetAttachmentUploaded : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetAttachmentUploaded() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetAttachmentUploaded(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetAttachmentUploaded() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetAttachmentUploaded(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetAttachmentTitle : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetAttachmentTitle() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetAttachmentTitle(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetAttachmentTitle() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetAttachmentTitle(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DestroyAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DestroyAttachment() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DestroyAttachment(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DestroyAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DestroyAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DestroyAttachment(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_IndexAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_IndexAttachment() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexAttachmentResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::Page, ::palm::portal::v1::UserIndexAttachmentResponse>* streamer) {
+                       return this->StreamedIndexAttachment(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_IndexAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status IndexAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::Page* /*request*/, ::palm::portal::v1::UserIndexAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIndexAttachment(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::Page,::palm::portal::v1::UserIndexAttachmentResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CreateAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CreateAttachment() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::UserCreateAttachmentRequest, ::palm::portal::v1::UserCreateAttachmentUploadResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::UserCreateAttachmentRequest, ::palm::portal::v1::UserCreateAttachmentUploadResponse>* streamer) {
+                       return this->StreamedCreateAttachment(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CreateAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CreateAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserCreateAttachmentRequest* /*request*/, ::palm::portal::v1::UserCreateAttachmentUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreateAttachment(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::UserCreateAttachmentRequest,::palm::portal::v1::UserCreateAttachmentUploadResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ShowAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ShowAttachment() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::UserShowAttachmentRequest, ::palm::portal::v1::UserShowAttachmentResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::UserShowAttachmentRequest, ::palm::portal::v1::UserShowAttachmentResponse>* streamer) {
+                       return this->StreamedShowAttachment(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ShowAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ShowAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserShowAttachmentRequest* /*request*/, ::palm::portal::v1::UserShowAttachmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedShowAttachment(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::UserShowAttachmentRequest,::palm::portal::v1::UserShowAttachmentResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetAttachmentUploaded : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetAttachmentUploaded() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSetAttachmentUploaded(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetAttachmentUploaded() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetAttachmentUploaded(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetAttachmentUploaded(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetAttachmentTitle : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetAttachmentTitle() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::UserSetAttachmentTitleRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::UserSetAttachmentTitleRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSetAttachmentTitle(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetAttachmentTitle() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetAttachmentTitle(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::UserSetAttachmentTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetAttachmentTitle(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::UserSetAttachmentTitleRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DestroyAttachment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DestroyAttachment() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::portal::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedDestroyAttachment(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DestroyAttachment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DestroyAttachment(::grpc::ServerContext* /*context*/, const ::palm::portal::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDestroyAttachment(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::portal::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_IndexAttachment<WithStreamedUnaryMethod_CreateAttachment<WithStreamedUnaryMethod_ShowAttachment<WithStreamedUnaryMethod_SetAttachmentUploaded<WithStreamedUnaryMethod_SetAttachmentTitle<WithStreamedUnaryMethod_DestroyAttachment<Service > > > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_IndexAttachment<WithStreamedUnaryMethod_CreateAttachment<WithStreamedUnaryMethod_ShowAttachment<WithStreamedUnaryMethod_SetAttachmentUploaded<WithStreamedUnaryMethod_SetAttachmentTitle<WithStreamedUnaryMethod_DestroyAttachment<Service > > > > > > StreamedService;
 };
 
 }  // namespace v1

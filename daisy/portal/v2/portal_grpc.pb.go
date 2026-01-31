@@ -302,3 +302,295 @@ var Site_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/portal.proto",
 }
+
+const (
+	User_IndexAttachment_FullMethodName       = "/palm.portal.v1.User/IndexAttachment"
+	User_CreateAttachment_FullMethodName      = "/palm.portal.v1.User/CreateAttachment"
+	User_ShowAttachment_FullMethodName        = "/palm.portal.v1.User/ShowAttachment"
+	User_SetAttachmentUploaded_FullMethodName = "/palm.portal.v1.User/SetAttachmentUploaded"
+	User_SetAttachmentTitle_FullMethodName    = "/palm.portal.v1.User/SetAttachmentTitle"
+	User_DestroyAttachment_FullMethodName     = "/palm.portal.v1.User/DestroyAttachment"
+)
+
+// UserClient is the client API for User service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UserClient interface {
+	IndexAttachment(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexAttachmentResponse, error)
+	CreateAttachment(ctx context.Context, in *UserCreateAttachmentRequest, opts ...grpc.CallOption) (*UserCreateAttachmentUploadResponse, error)
+	ShowAttachment(ctx context.Context, in *UserShowAttachmentRequest, opts ...grpc.CallOption) (*UserShowAttachmentResponse, error)
+	SetAttachmentUploaded(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetAttachmentTitle(ctx context.Context, in *UserSetAttachmentTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DestroyAttachment(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type userClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUserClient(cc grpc.ClientConnInterface) UserClient {
+	return &userClient{cc}
+}
+
+func (c *userClient) IndexAttachment(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexAttachmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserIndexAttachmentResponse)
+	err := c.cc.Invoke(ctx, User_IndexAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) CreateAttachment(ctx context.Context, in *UserCreateAttachmentRequest, opts ...grpc.CallOption) (*UserCreateAttachmentUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserCreateAttachmentUploadResponse)
+	err := c.cc.Invoke(ctx, User_CreateAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ShowAttachment(ctx context.Context, in *UserShowAttachmentRequest, opts ...grpc.CallOption) (*UserShowAttachmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserShowAttachmentResponse)
+	err := c.cc.Invoke(ctx, User_ShowAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetAttachmentUploaded(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetAttachmentUploaded_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetAttachmentTitle(ctx context.Context, in *UserSetAttachmentTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetAttachmentTitle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) DestroyAttachment(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_DestroyAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserServer is the server API for User service.
+// All implementations must embed UnimplementedUserServer
+// for forward compatibility.
+type UserServer interface {
+	IndexAttachment(context.Context, *Page) (*UserIndexAttachmentResponse, error)
+	CreateAttachment(context.Context, *UserCreateAttachmentRequest) (*UserCreateAttachmentUploadResponse, error)
+	ShowAttachment(context.Context, *UserShowAttachmentRequest) (*UserShowAttachmentResponse, error)
+	SetAttachmentUploaded(context.Context, *IdRequest) (*emptypb.Empty, error)
+	SetAttachmentTitle(context.Context, *UserSetAttachmentTitleRequest) (*emptypb.Empty, error)
+	DestroyAttachment(context.Context, *IdRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedUserServer()
+}
+
+// UnimplementedUserServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedUserServer struct{}
+
+func (UnimplementedUserServer) IndexAttachment(context.Context, *Page) (*UserIndexAttachmentResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method IndexAttachment not implemented")
+}
+func (UnimplementedUserServer) CreateAttachment(context.Context, *UserCreateAttachmentRequest) (*UserCreateAttachmentUploadResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateAttachment not implemented")
+}
+func (UnimplementedUserServer) ShowAttachment(context.Context, *UserShowAttachmentRequest) (*UserShowAttachmentResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ShowAttachment not implemented")
+}
+func (UnimplementedUserServer) SetAttachmentUploaded(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAttachmentUploaded not implemented")
+}
+func (UnimplementedUserServer) SetAttachmentTitle(context.Context, *UserSetAttachmentTitleRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAttachmentTitle not implemented")
+}
+func (UnimplementedUserServer) DestroyAttachment(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method DestroyAttachment not implemented")
+}
+func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedUserServer) testEmbeddedByValue()              {}
+
+// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserServer will
+// result in compilation errors.
+type UnsafeUserServer interface {
+	mustEmbedUnimplementedUserServer()
+}
+
+func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
+	// If the following call panics, it indicates UnimplementedUserServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&User_ServiceDesc, srv)
+}
+
+func _User_IndexAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).IndexAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_IndexAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).IndexAttachment(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_CreateAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserCreateAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).CreateAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_CreateAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).CreateAttachment(ctx, req.(*UserCreateAttachmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ShowAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserShowAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ShowAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ShowAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ShowAttachment(ctx, req.(*UserShowAttachmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetAttachmentUploaded_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetAttachmentUploaded(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetAttachmentUploaded_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetAttachmentUploaded(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetAttachmentTitle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetAttachmentTitleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetAttachmentTitle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetAttachmentTitle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetAttachmentTitle(ctx, req.(*UserSetAttachmentTitleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_DestroyAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).DestroyAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_DestroyAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).DestroyAttachment(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var User_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.User",
+	HandlerType: (*UserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "IndexAttachment",
+			Handler:    _User_IndexAttachment_Handler,
+		},
+		{
+			MethodName: "CreateAttachment",
+			Handler:    _User_CreateAttachment_Handler,
+		},
+		{
+			MethodName: "ShowAttachment",
+			Handler:    _User_ShowAttachment_Handler,
+		},
+		{
+			MethodName: "SetAttachmentUploaded",
+			Handler:    _User_SetAttachmentUploaded_Handler,
+		},
+		{
+			MethodName: "SetAttachmentTitle",
+			Handler:    _User_SetAttachmentTitle_Handler,
+		},
+		{
+			MethodName: "DestroyAttachment",
+			Handler:    _User_DestroyAttachment_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/portal.proto",
+}

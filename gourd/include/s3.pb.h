@@ -65,6 +65,14 @@ class BucketExistsResponse;
 struct BucketExistsResponseDefaultTypeInternal;
 extern BucketExistsResponseDefaultTypeInternal _BucketExistsResponse_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull BucketExistsResponse_class_data_;
+class GetObjectRequest;
+struct GetObjectRequestDefaultTypeInternal;
+extern GetObjectRequestDefaultTypeInternal _GetObjectRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull GetObjectRequest_class_data_;
+class GetObjectResponse;
+struct GetObjectResponseDefaultTypeInternal;
+extern GetObjectResponseDefaultTypeInternal _GetObjectResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull GetObjectResponse_class_data_;
 class ListBucketResponse;
 struct ListBucketResponseDefaultTypeInternal;
 extern ListBucketResponseDefaultTypeInternal _ListBucketResponse_default_instance_;
@@ -77,6 +85,14 @@ class MakeBucketRequest;
 struct MakeBucketRequestDefaultTypeInternal;
 extern MakeBucketRequestDefaultTypeInternal _MakeBucketRequest_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull MakeBucketRequest_class_data_;
+class PresignedGetObjectRequest;
+struct PresignedGetObjectRequestDefaultTypeInternal;
+extern PresignedGetObjectRequestDefaultTypeInternal _PresignedGetObjectRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull PresignedGetObjectRequest_class_data_;
+class PresignedGetObjectResponse;
+struct PresignedGetObjectResponseDefaultTypeInternal;
+extern PresignedGetObjectResponseDefaultTypeInternal _PresignedGetObjectResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull PresignedGetObjectResponse_class_data_;
 class PutObjectRequest;
 struct PutObjectRequestDefaultTypeInternal;
 extern PutObjectRequestDefaultTypeInternal _PutObjectRequest_default_instance_;
@@ -161,7 +177,7 @@ class RemoveObjectRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const RemoveObjectRequest*>(
         &_RemoveObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(RemoveObjectRequest& a, RemoveObjectRequest& b) { a.Swap(&b); }
   inline void Swap(RemoveObjectRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -374,7 +390,7 @@ class PutObjectResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const PutObjectResponse*>(
         &_PutObjectResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(PutObjectResponse& a, PutObjectResponse& b) { a.Swap(&b); }
   inline void Swap(PutObjectResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -515,6 +531,202 @@ class PutObjectResponse final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull PutObjectResponse_class_data_;
 // -------------------------------------------------------------------
 
+class PresignedGetObjectResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.s3.v1.PresignedGetObjectResponse) */ {
+ public:
+  inline PresignedGetObjectResponse() : PresignedGetObjectResponse(nullptr) {}
+  ~PresignedGetObjectResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(PresignedGetObjectResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(PresignedGetObjectResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PresignedGetObjectResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline PresignedGetObjectResponse(const PresignedGetObjectResponse& from) : PresignedGetObjectResponse(nullptr, from) {}
+  inline PresignedGetObjectResponse(PresignedGetObjectResponse&& from) noexcept
+      : PresignedGetObjectResponse(nullptr, ::std::move(from)) {}
+  inline PresignedGetObjectResponse& operator=(const PresignedGetObjectResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PresignedGetObjectResponse& operator=(PresignedGetObjectResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PresignedGetObjectResponse& default_instance() {
+    return *reinterpret_cast<const PresignedGetObjectResponse*>(
+        &_PresignedGetObjectResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(PresignedGetObjectResponse& a, PresignedGetObjectResponse& b) { a.Swap(&b); }
+  inline void Swap(PresignedGetObjectResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PresignedGetObjectResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PresignedGetObjectResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<PresignedGetObjectResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PresignedGetObjectResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PresignedGetObjectResponse& from) { PresignedGetObjectResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(PresignedGetObjectResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.s3.v1.PresignedGetObjectResponse"; }
+
+ protected:
+  explicit PresignedGetObjectResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  PresignedGetObjectResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const PresignedGetObjectResponse& from);
+  PresignedGetObjectResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, PresignedGetObjectResponse&& from) noexcept
+      : PresignedGetObjectResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUrlFieldNumber = 1,
+  };
+  // string url = 1;
+  void clear_url() ;
+  const ::std::string& url() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_url(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_url();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_url();
+  void set_allocated_url(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_url() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_url(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_url();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.PresignedGetObjectResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 49,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const PresignedGetObjectResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr url_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_s3_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull PresignedGetObjectResponse_class_data_;
+// -------------------------------------------------------------------
+
 class MakeBucketRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.s3.v1.MakeBucketRequest) */ {
  public:
@@ -570,7 +782,7 @@ class MakeBucketRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const MakeBucketRequest*>(
         &_MakeBucketRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(MakeBucketRequest& a, MakeBucketRequest& b) { a.Swap(&b); }
   inline void Swap(MakeBucketRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -791,7 +1003,7 @@ class ListBucketResponse_Item final : public ::google::protobuf::Message
     return *reinterpret_cast<const ListBucketResponse_Item*>(
         &_ListBucketResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(ListBucketResponse_Item& a, ListBucketResponse_Item& b) { a.Swap(&b); }
   inline void Swap(ListBucketResponse_Item* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -932,6 +1144,415 @@ class ListBucketResponse_Item final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull ListBucketResponse_Item_class_data_;
 // -------------------------------------------------------------------
 
+class GetObjectResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.s3.v1.GetObjectResponse) */ {
+ public:
+  inline GetObjectResponse() : GetObjectResponse(nullptr) {}
+  ~GetObjectResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetObjectResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetObjectResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetObjectResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetObjectResponse(const GetObjectResponse& from) : GetObjectResponse(nullptr, from) {}
+  inline GetObjectResponse(GetObjectResponse&& from) noexcept
+      : GetObjectResponse(nullptr, ::std::move(from)) {}
+  inline GetObjectResponse& operator=(const GetObjectResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetObjectResponse& operator=(GetObjectResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetObjectResponse& default_instance() {
+    return *reinterpret_cast<const GetObjectResponse*>(
+        &_GetObjectResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(GetObjectResponse& a, GetObjectResponse& b) { a.Swap(&b); }
+  inline void Swap(GetObjectResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetObjectResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetObjectResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetObjectResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetObjectResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetObjectResponse& from) { GetObjectResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GetObjectResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.s3.v1.GetObjectResponse"; }
+
+ protected:
+  explicit GetObjectResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  GetObjectResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const GetObjectResponse& from);
+  GetObjectResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, GetObjectResponse&& from) noexcept
+      : GetObjectResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUrlFieldNumber = 1,
+  };
+  // string url = 1;
+  void clear_url() ;
+  const ::std::string& url() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_url(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_url();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_url();
+  void set_allocated_url(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_url() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_url(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_url();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.GetObjectResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 40,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const GetObjectResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr url_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_s3_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull GetObjectResponse_class_data_;
+// -------------------------------------------------------------------
+
+class GetObjectRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.s3.v1.GetObjectRequest) */ {
+ public:
+  inline GetObjectRequest() : GetObjectRequest(nullptr) {}
+  ~GetObjectRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetObjectRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetObjectRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetObjectRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline GetObjectRequest(const GetObjectRequest& from) : GetObjectRequest(nullptr, from) {}
+  inline GetObjectRequest(GetObjectRequest&& from) noexcept
+      : GetObjectRequest(nullptr, ::std::move(from)) {}
+  inline GetObjectRequest& operator=(const GetObjectRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetObjectRequest& operator=(GetObjectRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetObjectRequest& default_instance() {
+    return *reinterpret_cast<const GetObjectRequest*>(
+        &_GetObjectRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(GetObjectRequest& a, GetObjectRequest& b) { a.Swap(&b); }
+  inline void Swap(GetObjectRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetObjectRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetObjectRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetObjectRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetObjectRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetObjectRequest& from) { GetObjectRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GetObjectRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.s3.v1.GetObjectRequest"; }
+
+ protected:
+  explicit GetObjectRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  GetObjectRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const GetObjectRequest& from);
+  GetObjectRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, GetObjectRequest&& from) noexcept
+      : GetObjectRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBucketFieldNumber = 1,
+    kObjectFieldNumber = 2,
+  };
+  // string bucket = 1;
+  void clear_bucket() ;
+  const ::std::string& bucket() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_bucket(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_bucket();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_bucket();
+  void set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_bucket() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_bucket();
+
+  public:
+  // string object = 2;
+  void clear_object() ;
+  const ::std::string& object() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_object(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_object();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_object();
+  void set_allocated_object(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_object() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_object(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_object();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.GetObjectRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 48,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const GetObjectRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr bucket_;
+    ::google::protobuf::internal::ArenaStringPtr object_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_s3_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull GetObjectRequest_class_data_;
+// -------------------------------------------------------------------
+
 class BucketExistsResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.s3.v1.BucketExistsResponse) */ {
  public:
@@ -987,7 +1608,7 @@ class BucketExistsResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const BucketExistsResponse*>(
         &_BucketExistsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(BucketExistsResponse& a, BucketExistsResponse& b) { a.Swap(&b); }
   inline void Swap(BucketExistsResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1178,7 +1799,7 @@ class BucketExistsRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const BucketExistsRequest*>(
         &_BucketExistsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(BucketExistsRequest& a, BucketExistsRequest& b) { a.Swap(&b); }
   inline void Swap(BucketExistsRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1374,7 +1995,7 @@ class PutObjectRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const PutObjectRequest*>(
         &_PutObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(PutObjectRequest& a, PutObjectRequest& b) { a.Swap(&b); }
   inline void Swap(PutObjectRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1549,6 +2170,254 @@ class PutObjectRequest final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull PutObjectRequest_class_data_;
 // -------------------------------------------------------------------
 
+class PresignedGetObjectRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.s3.v1.PresignedGetObjectRequest) */ {
+ public:
+  inline PresignedGetObjectRequest() : PresignedGetObjectRequest(nullptr) {}
+  ~PresignedGetObjectRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(PresignedGetObjectRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(PresignedGetObjectRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PresignedGetObjectRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline PresignedGetObjectRequest(const PresignedGetObjectRequest& from) : PresignedGetObjectRequest(nullptr, from) {}
+  inline PresignedGetObjectRequest(PresignedGetObjectRequest&& from) noexcept
+      : PresignedGetObjectRequest(nullptr, ::std::move(from)) {}
+  inline PresignedGetObjectRequest& operator=(const PresignedGetObjectRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PresignedGetObjectRequest& operator=(PresignedGetObjectRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PresignedGetObjectRequest& default_instance() {
+    return *reinterpret_cast<const PresignedGetObjectRequest*>(
+        &_PresignedGetObjectRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(PresignedGetObjectRequest& a, PresignedGetObjectRequest& b) { a.Swap(&b); }
+  inline void Swap(PresignedGetObjectRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PresignedGetObjectRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PresignedGetObjectRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<PresignedGetObjectRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PresignedGetObjectRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PresignedGetObjectRequest& from) { PresignedGetObjectRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(PresignedGetObjectRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.s3.v1.PresignedGetObjectRequest"; }
+
+ protected:
+  explicit PresignedGetObjectRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  PresignedGetObjectRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const PresignedGetObjectRequest& from);
+  PresignedGetObjectRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, PresignedGetObjectRequest&& from) noexcept
+      : PresignedGetObjectRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBucketFieldNumber = 1,
+    kObjectFieldNumber = 2,
+    kTitleFieldNumber = 3,
+    kTtlFieldNumber = 9,
+  };
+  // string bucket = 1;
+  void clear_bucket() ;
+  const ::std::string& bucket() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_bucket(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_bucket();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_bucket();
+  void set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_bucket() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_bucket();
+
+  public:
+  // string object = 2;
+  void clear_object() ;
+  const ::std::string& object() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_object(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_object();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_object();
+  void set_allocated_object(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_object() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_object(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_object();
+
+  public:
+  // optional string title = 3;
+  bool has_title() const;
+  void clear_title() ;
+  const ::std::string& title() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_title(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_title();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_title();
+  void set_allocated_title(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_title() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_title(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_title();
+
+  public:
+  // .google.protobuf.Duration ttl = 9;
+  bool has_ttl() const;
+  void clear_ttl() ;
+  const ::google::protobuf::Duration& ttl() const;
+  [[nodiscard]] ::google::protobuf::Duration* PROTOBUF_NULLABLE release_ttl();
+  ::google::protobuf::Duration* PROTOBUF_NONNULL mutable_ttl();
+  void set_allocated_ttl(::google::protobuf::Duration* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* PROTOBUF_NULLABLE value);
+  ::google::protobuf::Duration* PROTOBUF_NULLABLE unsafe_arena_release_ttl();
+
+  private:
+  const ::google::protobuf::Duration& _internal_ttl() const;
+  ::google::protobuf::Duration* PROTOBUF_NONNULL _internal_mutable_ttl();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.PresignedGetObjectRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
+                                   1, 62,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const PresignedGetObjectRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr bucket_;
+    ::google::protobuf::internal::ArenaStringPtr object_;
+    ::google::protobuf::internal::ArenaStringPtr title_;
+    ::google::protobuf::Duration* PROTOBUF_NULLABLE ttl_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_s3_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull PresignedGetObjectRequest_class_data_;
+// -------------------------------------------------------------------
+
 class ListBucketResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.s3.v1.ListBucketResponse) */ {
  public:
@@ -1604,7 +2473,7 @@ class ListBucketResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const ListBucketResponse*>(
         &_ListBucketResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(ListBucketResponse& a, ListBucketResponse& b) { a.Swap(&b); }
   inline void Swap(ListBucketResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1758,6 +2627,574 @@ extern const ::google::protobuf::internal::ClassDataFull ListBucketResponse_clas
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// GetObjectRequest
+
+// string bucket = 1;
+inline void GetObjectRequest::clear_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& GetObjectRequest::bucket() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.GetObjectRequest.bucket)
+  return _internal_bucket();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void GetObjectRequest::set_bucket(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.GetObjectRequest.bucket)
+}
+inline ::std::string* PROTOBUF_NONNULL GetObjectRequest::mutable_bucket()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_bucket();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.GetObjectRequest.bucket)
+  return _s;
+}
+inline const ::std::string& GetObjectRequest::_internal_bucket() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bucket_.Get();
+}
+inline void GetObjectRequest::_internal_set_bucket(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.bucket_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL GetObjectRequest::_internal_mutable_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.bucket_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE GetObjectRequest::release_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.GetObjectRequest.bucket)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.bucket_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.bucket_.Set("", GetArena());
+  }
+  return released;
+}
+inline void GetObjectRequest::set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.bucket_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.bucket_.IsDefault()) {
+    _impl_.bucket_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.GetObjectRequest.bucket)
+}
+
+// string object = 2;
+inline void GetObjectRequest::clear_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& GetObjectRequest::object() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.GetObjectRequest.object)
+  return _internal_object();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void GetObjectRequest::set_object(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.GetObjectRequest.object)
+}
+inline ::std::string* PROTOBUF_NONNULL GetObjectRequest::mutable_object()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_object();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.GetObjectRequest.object)
+  return _s;
+}
+inline const ::std::string& GetObjectRequest::_internal_object() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.object_.Get();
+}
+inline void GetObjectRequest::_internal_set_object(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.object_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL GetObjectRequest::_internal_mutable_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.object_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE GetObjectRequest::release_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.GetObjectRequest.object)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.object_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.object_.Set("", GetArena());
+  }
+  return released;
+}
+inline void GetObjectRequest::set_allocated_object(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.object_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.object_.IsDefault()) {
+    _impl_.object_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.GetObjectRequest.object)
+}
+
+// -------------------------------------------------------------------
+
+// GetObjectResponse
+
+// string url = 1;
+inline void GetObjectResponse::clear_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.url_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& GetObjectResponse::url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.GetObjectResponse.url)
+  return _internal_url();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void GetObjectResponse::set_url(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.GetObjectResponse.url)
+}
+inline ::std::string* PROTOBUF_NONNULL GetObjectResponse::mutable_url()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.GetObjectResponse.url)
+  return _s;
+}
+inline const ::std::string& GetObjectResponse::_internal_url() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.url_.Get();
+}
+inline void GetObjectResponse::_internal_set_url(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.url_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL GetObjectResponse::_internal_mutable_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.url_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE GetObjectResponse::release_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.GetObjectResponse.url)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.url_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.url_.Set("", GetArena());
+  }
+  return released;
+}
+inline void GetObjectResponse::set_allocated_url(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.url_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.url_.IsDefault()) {
+    _impl_.url_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.GetObjectResponse.url)
+}
+
+// -------------------------------------------------------------------
+
+// PresignedGetObjectRequest
+
+// string bucket = 1;
+inline void PresignedGetObjectRequest::clear_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& PresignedGetObjectRequest::bucket() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedGetObjectRequest.bucket)
+  return _internal_bucket();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void PresignedGetObjectRequest::set_bucket(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedGetObjectRequest.bucket)
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectRequest::mutable_bucket()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_bucket();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedGetObjectRequest.bucket)
+  return _s;
+}
+inline const ::std::string& PresignedGetObjectRequest::_internal_bucket() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bucket_.Get();
+}
+inline void PresignedGetObjectRequest::_internal_set_bucket(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.bucket_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectRequest::_internal_mutable_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.bucket_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE PresignedGetObjectRequest::release_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedGetObjectRequest.bucket)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.bucket_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.bucket_.Set("", GetArena());
+  }
+  return released;
+}
+inline void PresignedGetObjectRequest::set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.bucket_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.bucket_.IsDefault()) {
+    _impl_.bucket_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedGetObjectRequest.bucket)
+}
+
+// string object = 2;
+inline void PresignedGetObjectRequest::clear_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& PresignedGetObjectRequest::object() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedGetObjectRequest.object)
+  return _internal_object();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void PresignedGetObjectRequest::set_object(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedGetObjectRequest.object)
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectRequest::mutable_object()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_object();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedGetObjectRequest.object)
+  return _s;
+}
+inline const ::std::string& PresignedGetObjectRequest::_internal_object() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.object_.Get();
+}
+inline void PresignedGetObjectRequest::_internal_set_object(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.object_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectRequest::_internal_mutable_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.object_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE PresignedGetObjectRequest::release_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedGetObjectRequest.object)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.object_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.object_.Set("", GetArena());
+  }
+  return released;
+}
+inline void PresignedGetObjectRequest::set_allocated_object(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.object_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.object_.IsDefault()) {
+    _impl_.object_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedGetObjectRequest.object)
+}
+
+// optional string title = 3;
+inline bool PresignedGetObjectRequest::has_title() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void PresignedGetObjectRequest::clear_title() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.title_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& PresignedGetObjectRequest::title() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedGetObjectRequest.title)
+  return _internal_title();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void PresignedGetObjectRequest::set_title(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.title_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedGetObjectRequest.title)
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectRequest::mutable_title()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_title();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedGetObjectRequest.title)
+  return _s;
+}
+inline const ::std::string& PresignedGetObjectRequest::_internal_title() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.title_.Get();
+}
+inline void PresignedGetObjectRequest::_internal_set_title(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.title_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectRequest::_internal_mutable_title() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.title_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE PresignedGetObjectRequest::release_title() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedGetObjectRequest.title)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.title_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.title_.Set("", GetArena());
+  }
+  return released;
+}
+inline void PresignedGetObjectRequest::set_allocated_title(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.title_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.title_.IsDefault()) {
+    _impl_.title_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedGetObjectRequest.title)
+}
+
+// .google.protobuf.Duration ttl = 9;
+inline bool PresignedGetObjectRequest::has_ttl() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Duration& PresignedGetObjectRequest::_internal_ttl() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Duration* p = _impl_.ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+}
+inline const ::google::protobuf::Duration& PresignedGetObjectRequest::ttl() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedGetObjectRequest.ttl)
+  return _internal_ttl();
+}
+inline void PresignedGetObjectRequest::unsafe_arena_set_allocated_ttl(
+    ::google::protobuf::Duration* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.PresignedGetObjectRequest.ttl)
+}
+inline ::google::protobuf::Duration* PROTOBUF_NULLABLE PresignedGetObjectRequest::release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Duration* released = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Duration* PROTOBUF_NULLABLE PresignedGetObjectRequest::unsafe_arena_release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedGetObjectRequest.ttl)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Duration* temp = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Duration* PROTOBUF_NONNULL PresignedGetObjectRequest::_internal_mutable_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ttl_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Duration>(GetArena());
+    _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  }
+  return _impl_.ttl_;
+}
+inline ::google::protobuf::Duration* PROTOBUF_NONNULL PresignedGetObjectRequest::mutable_ttl()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedGetObjectRequest.ttl)
+  return _msg;
+}
+inline void PresignedGetObjectRequest::set_allocated_ttl(::google::protobuf::Duration* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedGetObjectRequest.ttl)
+}
+
+// -------------------------------------------------------------------
+
+// PresignedGetObjectResponse
+
+// string url = 1;
+inline void PresignedGetObjectResponse::clear_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.url_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& PresignedGetObjectResponse::url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedGetObjectResponse.url)
+  return _internal_url();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void PresignedGetObjectResponse::set_url(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedGetObjectResponse.url)
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectResponse::mutable_url()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedGetObjectResponse.url)
+  return _s;
+}
+inline const ::std::string& PresignedGetObjectResponse::_internal_url() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.url_.Get();
+}
+inline void PresignedGetObjectResponse::_internal_set_url(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.url_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL PresignedGetObjectResponse::_internal_mutable_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.url_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE PresignedGetObjectResponse::release_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedGetObjectResponse.url)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.url_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.url_.Set("", GetArena());
+  }
+  return released;
+}
+inline void PresignedGetObjectResponse::set_allocated_url(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.url_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.url_.IsDefault()) {
+    _impl_.url_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedGetObjectResponse.url)
+}
+
 // -------------------------------------------------------------------
 
 // RemoveObjectRequest

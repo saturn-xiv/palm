@@ -16,6 +16,28 @@ service S3 {
   rpc ListBucket(google.protobuf.Empty) returns (ListBucketResponse) {}
   rpc PutObject(PutObjectRequest) returns (PutObjectResponse) {}
   rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
+  rpc PresignedGetObject(PresignedGetObjectRequest) returns (PresignedGetObjectResponse) {}
+  rpc GetObject(GetObjectRequest) returns (GetObjectResponse) {}
+}
+
+message GetObjectRequest{
+  string bucket = 1;
+  string object = 2;
+}
+
+message GetObjectResponse {
+  string url = 1;
+}
+
+message PresignedGetObjectRequest {
+  string                   bucket = 1;
+  string                   object = 2;
+  optional string          title  = 3;
+  google.protobuf.Duration ttl    = 9;
+}
+
+message PresignedGetObjectResponse{
+  string url = 1;
 }
 
 message RemoveObjectRequest {

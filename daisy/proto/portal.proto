@@ -9,6 +9,7 @@ package palm.portal.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 
 message IdRequest {
   int64 id = 1;
@@ -81,6 +82,7 @@ message LocaleIndexResponse{
   repeated Item items      = 1;
   Pagination    pagination = 9;
 }
+
 // ----------------------------------------------------------------------------
 
 service Site {
@@ -99,6 +101,63 @@ message CurrenciesResponse {
   repeated Item items = 1;
 }
 
+// ----------------------------------------------------------------------------
+
+service User {
+  rpc IndexAttachment(Page) returns (UserIndexAttachmentResponse){}
+  rpc CreateAttachment(UserCreateAttachmentRequest)returns (UserCreateAttachmentUploadResponse){}
+  rpc ShowAttachment(UserShowAttachmentRequest) returns (UserShowAttachmentResponse){}
+  rpc SetAttachmentUploaded(IdRequest) returns (google.protobuf.Empty){}
+  rpc SetAttachmentTitle(UserSetAttachmentTitleRequest) returns (google.protobuf.Empty){}
+  rpc DestroyAttachment(IdRequest) returns (google.protobuf.Empty){}
+}
+
+message UserSetAttachmentTitleRequest {
+  int64  id    = 1;
+  string title = 2;
+}
+
+message UserShowAttachmentRequest {
+  int64                             id       = 1;
+  bool                              download = 2;
+  optional google.protobuf.Duration ttl      = 9;
+}
+
+message UserShowAttachmentResponse{
+  string url = 1;
+}
+
+message UserCreateAttachmentRequest {
+  string                   title             = 1;
+  string                   content_type      = 2;
+  uint64                   size              = 3;
+  optional uint32          expire_after_days = 4;
+  bool                     public            = 5;
+  google.protobuf.Duration ttl               = 9;
+}
+
+message UserCreateAttachmentUploadResponse {
+  string                           url  = 1;
+  UserIndexAttachmentResponse.Item item = 2;
+}
+
+message UserIndexAttachmentResponse{
+  message Item{
+    int64                              id                = 1;
+    string                             bucket            = 2;
+    string                             object            = 3;
+    string                             title             = 4;
+    string                             content_type      = 5;
+    uint64                             size              = 6;
+    optional google.protobuf.Timestamp uploaded_at       = 7;
+    optional uint32                    expire_after_days = 8;
+    bool                               public            = 9;
+    google.protobuf.Timestamp          updated_at        = 19;
+  }
+  repeated Item items      = 1;
+  Pagination    pagination = 2;
+}
+
 message Log {
   enum Level {
     DEBUG   = 0;
@@ -108,7 +167,7 @@ message Log {
   }
 }
 
-message User {
+message UserDetail {
   enum ProviderType {
     EMAIL               = 0;
     PHONE               = 1;
@@ -119,8 +178,8 @@ message User {
 }
 
 message Session {
-  User.ProviderType type = 1;
-  string            sn   = 2;
+  UserDetail.ProviderType type = 1;
+  string                  sn   = 2;
 }
 
 // ----------------------------------------------------------------------------

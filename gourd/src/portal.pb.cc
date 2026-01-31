@@ -27,24 +27,79 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace portal {
 namespace v1 {
+
+inline constexpr UserShowAttachmentResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        url_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
 template <typename>
-PROTOBUF_CONSTEXPR User::User(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UserShowAttachmentResponse::UserShowAttachmentResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(User_class_data_.base()){}
+    : ::google::protobuf::Message(UserShowAttachmentResponse_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
-struct UserDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UserDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UserDefaultTypeInternal() {}
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserShowAttachmentResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserShowAttachmentResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserShowAttachmentResponseDefaultTypeInternal() {}
   union {
-    User _instance;
+    UserShowAttachmentResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDefaultTypeInternal _User_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserShowAttachmentResponseDefaultTypeInternal _UserShowAttachmentResponse_default_instance_;
+
+inline constexpr UserSetAttachmentTitleRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        id_{::int64_t{0}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserSetAttachmentTitleRequest::UserSetAttachmentTitleRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(UserSetAttachmentTitleRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserSetAttachmentTitleRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserSetAttachmentTitleRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserSetAttachmentTitleRequestDefaultTypeInternal() {}
+  union {
+    UserSetAttachmentTitleRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSetAttachmentTitleRequestDefaultTypeInternal _UserSetAttachmentTitleRequest_default_instance_;
+template <typename>
+PROTOBUF_CONSTEXPR UserDetail::UserDetail(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(UserDetail_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct UserDetailDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserDetailDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserDetailDefaultTypeInternal() {}
+  union {
+    UserDetail _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDetailDefaultTypeInternal _UserDetail_default_instance_;
 
 inline constexpr Session::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -52,7 +107,7 @@ inline constexpr Session::Impl_::Impl_(
         sn_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        type_{static_cast< ::palm::portal::v1::User_ProviderType >(0)} {}
+        type_{static_cast< ::palm::portal::v1::UserDetail_ProviderType >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Session::Session(::_pbi::ConstantInitialized)
@@ -297,6 +352,109 @@ struct AttachmentDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentDefaultTypeInternal _Attachment_default_instance_;
 
+inline constexpr UserShowAttachmentRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        ttl_{nullptr},
+        id_{::int64_t{0}},
+        download_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserShowAttachmentRequest::UserShowAttachmentRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(UserShowAttachmentRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserShowAttachmentRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserShowAttachmentRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserShowAttachmentRequestDefaultTypeInternal() {}
+  union {
+    UserShowAttachmentRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserShowAttachmentRequestDefaultTypeInternal _UserShowAttachmentRequest_default_instance_;
+
+inline constexpr UserIndexAttachmentResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        content_type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        uploaded_at_{nullptr},
+        updated_at_{nullptr},
+        id_{::int64_t{0}},
+        size_{::uint64_t{0u}},
+        expire_after_days_{0u},
+        public__{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserIndexAttachmentResponse_Item::UserIndexAttachmentResponse_Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(UserIndexAttachmentResponse_Item_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserIndexAttachmentResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserIndexAttachmentResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserIndexAttachmentResponse_ItemDefaultTypeInternal() {}
+  union {
+    UserIndexAttachmentResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexAttachmentResponse_ItemDefaultTypeInternal _UserIndexAttachmentResponse_Item_default_instance_;
+
+inline constexpr UserCreateAttachmentRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        content_type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        ttl_{nullptr},
+        size_{::uint64_t{0u}},
+        expire_after_days_{0u},
+        public__{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserCreateAttachmentRequest::UserCreateAttachmentRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(UserCreateAttachmentRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserCreateAttachmentRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserCreateAttachmentRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserCreateAttachmentRequestDefaultTypeInternal() {}
+  union {
+    UserCreateAttachmentRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserCreateAttachmentRequestDefaultTypeInternal _UserCreateAttachmentRequest_default_instance_;
+
 inline constexpr RichText::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -414,6 +572,60 @@ struct CurrenciesResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CurrenciesResponseDefaultTypeInternal _CurrenciesResponse_default_instance_;
+
+inline constexpr UserIndexAttachmentResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        pagination_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserIndexAttachmentResponse::UserIndexAttachmentResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(UserIndexAttachmentResponse_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserIndexAttachmentResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserIndexAttachmentResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserIndexAttachmentResponseDefaultTypeInternal() {}
+  union {
+    UserIndexAttachmentResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexAttachmentResponseDefaultTypeInternal _UserIndexAttachmentResponse_default_instance_;
+
+inline constexpr UserCreateAttachmentUploadResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        url_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        item_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UserCreateAttachmentUploadResponse::UserCreateAttachmentUploadResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(UserCreateAttachmentUploadResponse_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UserCreateAttachmentUploadResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserCreateAttachmentUploadResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserCreateAttachmentUploadResponseDefaultTypeInternal() {}
+  union {
+    UserCreateAttachmentUploadResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserCreateAttachmentUploadResponseDefaultTypeInternal _UserCreateAttachmentUploadResponse_default_instance_;
 
 inline constexpr LocaleIndexResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -576,6 +788,79 @@ const ::uint32_t
         5,
         0x000, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::CurrenciesResponse, _impl_.items_),
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserSetAttachmentTitleRequest, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserSetAttachmentTitleRequest, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserSetAttachmentTitleRequest, _impl_.title_),
+        1,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserShowAttachmentRequest, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserShowAttachmentRequest, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserShowAttachmentRequest, _impl_.download_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserShowAttachmentRequest, _impl_.ttl_),
+        1,
+        2,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserShowAttachmentResponse, _impl_._has_bits_),
+        4, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserShowAttachmentResponse, _impl_.url_),
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_._has_bits_),
+        9, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_.title_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_.content_type_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_.size_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_.expire_after_days_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_.public__),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentRequest, _impl_.ttl_),
+        0,
+        1,
+        3,
+        4,
+        5,
+        2,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentUploadResponse, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentUploadResponse, _impl_.url_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserCreateAttachmentUploadResponse, _impl_.item_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_._has_bits_),
+        13, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.bucket_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.object_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.title_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.content_type_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.size_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.uploaded_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.expire_after_days_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.public__),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse_Item, _impl_.updated_at_),
+        6,
+        0,
+        1,
+        2,
+        3,
+        7,
+        4,
+        8,
+        9,
+        5,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse, _impl_.items_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserIndexAttachmentResponse, _impl_.pagination_),
+        ~0u,
+        0,
         0x000, // bitmap
         0x000, // bitmap
         0x081, // bitmap
@@ -602,9 +887,16 @@ static const ::_pbi::MigrationSchema
         {77, sizeof(::palm::portal::v1::LocaleIndexResponse)},
         {84, sizeof(::palm::portal::v1::CurrenciesResponse_Item)},
         {99, sizeof(::palm::portal::v1::CurrenciesResponse)},
-        {101, sizeof(::palm::portal::v1::Log)},
-        {102, sizeof(::palm::portal::v1::User)},
-        {103, sizeof(::palm::portal::v1::Session)},
+        {101, sizeof(::palm::portal::v1::UserSetAttachmentTitleRequest)},
+        {108, sizeof(::palm::portal::v1::UserShowAttachmentRequest)},
+        {117, sizeof(::palm::portal::v1::UserShowAttachmentResponse)},
+        {122, sizeof(::palm::portal::v1::UserCreateAttachmentRequest)},
+        {137, sizeof(::palm::portal::v1::UserCreateAttachmentUploadResponse)},
+        {144, sizeof(::palm::portal::v1::UserIndexAttachmentResponse_Item)},
+        {167, sizeof(::palm::portal::v1::UserIndexAttachmentResponse)},
+        {174, sizeof(::palm::portal::v1::Log)},
+        {175, sizeof(::palm::portal::v1::UserDetail)},
+        {176, sizeof(::palm::portal::v1::Session)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_IdRequest_default_instance_._instance,
@@ -620,62 +912,110 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_LocaleIndexResponse_default_instance_._instance,
     &::palm::portal::v1::_CurrenciesResponse_Item_default_instance_._instance,
     &::palm::portal::v1::_CurrenciesResponse_default_instance_._instance,
+    &::palm::portal::v1::_UserSetAttachmentTitleRequest_default_instance_._instance,
+    &::palm::portal::v1::_UserShowAttachmentRequest_default_instance_._instance,
+    &::palm::portal::v1::_UserShowAttachmentResponse_default_instance_._instance,
+    &::palm::portal::v1::_UserCreateAttachmentRequest_default_instance_._instance,
+    &::palm::portal::v1::_UserCreateAttachmentUploadResponse_default_instance_._instance,
+    &::palm::portal::v1::_UserIndexAttachmentResponse_Item_default_instance_._instance,
+    &::palm::portal::v1::_UserIndexAttachmentResponse_default_instance_._instance,
     &::palm::portal::v1::_Log_default_instance_._instance,
-    &::palm::portal::v1::_User_default_instance_._instance,
+    &::palm::portal::v1::_UserDetail_default_instance_._instance,
     &::palm::portal::v1::_Session_default_instance_._instance,
 };
 const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\014portal.proto\022\016palm.portal.v1\032\033google/p"
     "rotobuf/empty.proto\032\037google/protobuf/tim"
-    "estamp.proto\"\027\n\tIdRequest\022\n\n\002id\030\001 \001(\003\"#\n"
-    "\004Page\022\r\n\005index\030\001 \001(\003\022\014\n\004size\030\002 \001(\003\"y\n\nPa"
-    "gination\022%\n\007current\030\001 \001(\0132\024.palm.portal."
-    "v1.Page\022\024\n\014has_previous\030\002 \001(\010\022\020\n\010has_nex"
-    "t\030\003 \001(\010\022\r\n\005pages\030\004 \001(\003\022\r\n\005total\030\005 \001(\003\",\n"
-    "\nAttachment\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 "
-    "\001(\t\"\223\001\n\010RichText\022/\n\006editor\030\001 \001(\0162\037.palm."
-    "portal.v1.RichText.Editor\022\014\n\004body\030\002 \001(\t\022"
-    "/\n\013attachments\030\003 \003(\0132\032.palm.portal.v1.At"
-    "tachment\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000\"Y\n\010Loc"
-    "ation\022)\n\003map\030\001 \001(\0162\034.palm.portal.v1.Loca"
-    "tion.Map\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022\n\n\006GOOG"
-    "LE\020\000\"\?\n\020LocaleSetRequest\022\014\n\004lang\030\001 \001(\t\022\014"
-    "\n\004code\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"#\n\023LocaleB"
-    "yLangRequest\022\014\n\004lang\030\001 \001(\t\"O\n\024LocaleByLa"
-    "ngResponse\0227\n\005items\030\001 \003(\0132(.palm.portal."
-    "v1.LocaleIndexResponse.Item\"\357\001\n\023LocaleIn"
-    "dexResponse\0227\n\005items\030\001 \003(\0132(.palm.portal"
-    ".v1.LocaleIndexResponse.Item\022.\n\npaginati"
-    "on\030\t \001(\0132\032.palm.portal.v1.Pagination\032o\n\004"
-    "Item\022\n\n\002id\030\001 \001(\003\022\014\n\004lang\030\002 \001(\t\022\014\n\004code\030\003"
-    " \001(\t\022\017\n\007message\030\004 \001(\t\022.\n\nupdated_at\030\t \001("
-    "\0132\032.google.protobuf.Timestamp\"\322\001\n\022Curren"
-    "ciesResponse\0226\n\005items\030\001 \003(\0132\'.palm.porta"
-    "l.v1.CurrenciesResponse.Item\032\203\001\n\004Item\022\014\n"
-    "\004code\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007country\030\003 \001"
-    "(\t\022\016\n\006number\030\004 \001(\r\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024"
-    "\n\007is_fund\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\n\n\010_is_fu"
-    "nd\";\n\003Log\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022"
-    "\013\n\007WARNING\020\002\022\t\n\005ERROR\020\003\"k\n\004User\"c\n\014Provi"
-    "derType\022\t\n\005EMAIL\020\000\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_"
-    "OAUTH2\020\002\022\021\n\rWECHAT_OAUTH2\020\003\022\027\n\023WECHAT_MI"
-    "NI_PROGRAM\020\004\"F\n\007Session\022/\n\004type\030\001 \001(\0162!."
-    "palm.portal.v1.User.ProviderType\022\n\n\002sn\030\002"
-    " \001(\t2\350\001\n\006Locale\022D\n\005Index\022\024.palm.portal.v"
-    "1.Page\032#.palm.portal.v1.LocaleIndexRespo"
-    "nse\"\000\022A\n\003Set\022 .palm.portal.v1.LocaleSetR"
-    "equest\032\026.google.protobuf.Empty\"\000\022U\n\006ByLa"
-    "ng\022#.palm.portal.v1.LocaleByLangRequest\032"
-    "$.palm.portal.v1.LocaleByLangResponse\"\0002"
-    "R\n\004Site\022J\n\nCurrencies\022\026.google.protobuf."
-    "Empty\032\".palm.portal.v1.CurrenciesRespons"
-    "e\"\000B_\n,com.github.saturn_xiv.palm.plugin"
-    "s.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030Palm"
-    ".Plugins.Portal.Grpcb\006proto3"
+    "estamp.proto\032\036google/protobuf/duration.p"
+    "roto\"\027\n\tIdRequest\022\n\n\002id\030\001 \001(\003\"#\n\004Page\022\r\n"
+    "\005index\030\001 \001(\003\022\014\n\004size\030\002 \001(\003\"y\n\nPagination"
+    "\022%\n\007current\030\001 \001(\0132\024.palm.portal.v1.Page\022"
+    "\024\n\014has_previous\030\002 \001(\010\022\020\n\010has_next\030\003 \001(\010\022"
+    "\r\n\005pages\030\004 \001(\003\022\r\n\005total\030\005 \001(\003\",\n\nAttachm"
+    "ent\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\"\223\001\n\010"
+    "RichText\022/\n\006editor\030\001 \001(\0162\037.palm.portal.v"
+    "1.RichText.Editor\022\014\n\004body\030\002 \001(\t\022/\n\013attac"
+    "hments\030\003 \003(\0132\032.palm.portal.v1.Attachment"
+    "\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000\"Y\n\010Location\022)\n"
+    "\003map\030\001 \001(\0162\034.palm.portal.v1.Location.Map"
+    "\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022\n\n\006GOOGLE\020\000\"\?\n\020"
+    "LocaleSetRequest\022\014\n\004lang\030\001 \001(\t\022\014\n\004code\030\002"
+    " \001(\t\022\017\n\007message\030\003 \001(\t\"#\n\023LocaleByLangReq"
+    "uest\022\014\n\004lang\030\001 \001(\t\"O\n\024LocaleByLangRespon"
+    "se\0227\n\005items\030\001 \003(\0132(.palm.portal.v1.Local"
+    "eIndexResponse.Item\"\357\001\n\023LocaleIndexRespo"
+    "nse\0227\n\005items\030\001 \003(\0132(.palm.portal.v1.Loca"
+    "leIndexResponse.Item\022.\n\npagination\030\t \001(\013"
+    "2\032.palm.portal.v1.Pagination\032o\n\004Item\022\n\n\002"
+    "id\030\001 \001(\003\022\014\n\004lang\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007"
+    "message\030\004 \001(\t\022.\n\nupdated_at\030\t \001(\0132\032.goog"
+    "le.protobuf.Timestamp\"\322\001\n\022CurrenciesResp"
+    "onse\0226\n\005items\030\001 \003(\0132\'.palm.portal.v1.Cur"
+    "renciesResponse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 "
+    "\001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006nu"
+    "mber\030\004 \001(\r\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fun"
+    "d\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\n\n\010_is_fund\":\n\035Us"
+    "erSetAttachmentTitleRequest\022\n\n\002id\030\001 \001(\003\022"
+    "\r\n\005title\030\002 \001(\t\"n\n\031UserShowAttachmentRequ"
+    "est\022\n\n\002id\030\001 \001(\003\022\020\n\010download\030\002 \001(\010\022+\n\003ttl"
+    "\030\t \001(\0132\031.google.protobuf.DurationH\000\210\001\001B\006"
+    "\n\004_ttl\")\n\032UserShowAttachmentResponse\022\013\n\003"
+    "url\030\001 \001(\t\"\276\001\n\033UserCreateAttachmentReques"
+    "t\022\r\n\005title\030\001 \001(\t\022\024\n\014content_type\030\002 \001(\t\022\014"
+    "\n\004size\030\003 \001(\004\022\036\n\021expire_after_days\030\004 \001(\rH"
+    "\000\210\001\001\022\016\n\006public\030\005 \001(\010\022&\n\003ttl\030\t \001(\0132\031.goog"
+    "le.protobuf.DurationB\024\n\022_expire_after_da"
+    "ys\"q\n\"UserCreateAttachmentUploadResponse"
+    "\022\013\n\003url\030\001 \001(\t\022>\n\004item\030\002 \001(\01320.palm.porta"
+    "l.v1.UserIndexAttachmentResponse.Item\"\262\003"
+    "\n\033UserIndexAttachmentResponse\022\?\n\005items\030\001"
+    " \003(\01320.palm.portal.v1.UserIndexAttachmen"
+    "tResponse.Item\022.\n\npagination\030\002 \001(\0132\032.pal"
+    "m.portal.v1.Pagination\032\241\002\n\004Item\022\n\n\002id\030\001 "
+    "\001(\003\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003 \001(\t\022\r\n\005t"
+    "itle\030\004 \001(\t\022\024\n\014content_type\030\005 \001(\t\022\014\n\004size"
+    "\030\006 \001(\004\0224\n\013uploaded_at\030\007 \001(\0132\032.google.pro"
+    "tobuf.TimestampH\000\210\001\001\022\036\n\021expire_after_day"
+    "s\030\010 \001(\rH\001\210\001\001\022\016\n\006public\030\t \001(\010\022.\n\nupdated_"
+    "at\030\023 \001(\0132\032.google.protobuf.TimestampB\016\n\014"
+    "_uploaded_atB\024\n\022_expire_after_days\";\n\003Lo"
+    "g\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNI"
+    "NG\020\002\022\t\n\005ERROR\020\003\"q\n\nUserDetail\"c\n\014Provide"
+    "rType\022\t\n\005EMAIL\020\000\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_OA"
+    "UTH2\020\002\022\021\n\rWECHAT_OAUTH2\020\003\022\027\n\023WECHAT_MINI"
+    "_PROGRAM\020\004\"L\n\007Session\0225\n\004type\030\001 \001(\0162\'.pa"
+    "lm.portal.v1.UserDetail.ProviderType\022\n\n\002"
+    "sn\030\002 \001(\t2\350\001\n\006Locale\022D\n\005Index\022\024.palm.port"
+    "al.v1.Page\032#.palm.portal.v1.LocaleIndexR"
+    "esponse\"\000\022A\n\003Set\022 .palm.portal.v1.Locale"
+    "SetRequest\032\026.google.protobuf.Empty\"\000\022U\n\006"
+    "ByLang\022#.palm.portal.v1.LocaleByLangRequ"
+    "est\032$.palm.portal.v1.LocaleByLangRespons"
+    "e\"\0002R\n\004Site\022J\n\nCurrencies\022\026.google.proto"
+    "buf.Empty\032\".palm.portal.v1.CurrenciesRes"
+    "ponse\"\0002\267\004\n\004User\022V\n\017IndexAttachment\022\024.pa"
+    "lm.portal.v1.Page\032+.palm.portal.v1.UserI"
+    "ndexAttachmentResponse\"\000\022u\n\020CreateAttach"
+    "ment\022+.palm.portal.v1.UserCreateAttachme"
+    "ntRequest\0322.palm.portal.v1.UserCreateAtt"
+    "achmentUploadResponse\"\000\022i\n\016ShowAttachmen"
+    "t\022).palm.portal.v1.UserShowAttachmentReq"
+    "uest\032*.palm.portal.v1.UserShowAttachment"
+    "Response\"\000\022L\n\025SetAttachmentUploaded\022\031.pa"
+    "lm.portal.v1.IdRequest\032\026.google.protobuf"
+    ".Empty\"\000\022]\n\022SetAttachmentTitle\022-.palm.po"
+    "rtal.v1.UserSetAttachmentTitleRequest\032\026."
+    "google.protobuf.Empty\"\000\022H\n\021DestroyAttach"
+    "ment\022\031.palm.portal.v1.IdRequest\032\026.google"
+    ".protobuf.Empty\"\000B_\n,com.github.saturn_x"
+    "iv.palm.plugins.portal.v1B\013PortalProtoP\001"
+    "Z\005./;v2\252\002\030Palm.Plugins.Portal.Grpcb\006prot"
+    "o3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
-    descriptor_table_portal_2eproto_deps[2] = {
+    descriptor_table_portal_2eproto_deps[3] = {
+        &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
         &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
         &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
@@ -683,13 +1023,13 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    1868,
+    3442,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
     descriptor_table_portal_2eproto_deps,
-    2,
-    16,
+    3,
+    23,
     schemas,
     file_default_instances,
     TableStruct_portal_2eproto::offsets,
@@ -717,11 +1057,11 @@ const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL Log_Level_descriptor(
 }
 PROTOBUF_CONSTINIT const uint32_t Log_Level_internal_data_[] = {
     262144u, 0u, };
-const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL User_ProviderType_descriptor() {
+const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL UserDetail_ProviderType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_portal_2eproto);
   return file_level_enum_descriptors_portal_2eproto[3];
 }
-PROTOBUF_CONSTINIT const uint32_t User_ProviderType_internal_data_[] = {
+PROTOBUF_CONSTINIT const uint32_t UserDetail_ProviderType_internal_data_[] = {
     327680u, 0u, };
 // ===================================================================
 
@@ -4863,6 +5203,2574 @@ void CurrenciesResponse::InternalSwap(CurrenciesResponse* PROTOBUF_RESTRICT PROT
 }
 // ===================================================================
 
+class UserSetAttachmentTitleRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserSetAttachmentTitleRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_._has_bits_);
+};
+
+UserSetAttachmentTitleRequest::UserSetAttachmentTitleRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserSetAttachmentTitleRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserSetAttachmentTitleRequest)
+}
+PROTOBUF_NDEBUG_INLINE UserSetAttachmentTitleRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserSetAttachmentTitleRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        title_(arena, from.title_) {}
+
+UserSetAttachmentTitleRequest::UserSetAttachmentTitleRequest(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserSetAttachmentTitleRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserSetAttachmentTitleRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserSetAttachmentTitleRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.id_ = from._impl_.id_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserSetAttachmentTitleRequest)
+}
+PROTOBUF_NDEBUG_INLINE UserSetAttachmentTitleRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        title_(arena) {}
+
+inline void UserSetAttachmentTitleRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.id_ = {};
+}
+UserSetAttachmentTitleRequest::~UserSetAttachmentTitleRequest() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserSetAttachmentTitleRequest)
+  SharedDtor(*this);
+}
+inline void UserSetAttachmentTitleRequest::SharedDtor(MessageLite& self) {
+  UserSetAttachmentTitleRequest& this_ = static_cast<UserSetAttachmentTitleRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.title_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserSetAttachmentTitleRequest::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserSetAttachmentTitleRequest(arena);
+}
+constexpr auto UserSetAttachmentTitleRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(UserSetAttachmentTitleRequest),
+                                            alignof(UserSetAttachmentTitleRequest));
+}
+constexpr auto UserSetAttachmentTitleRequest::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserSetAttachmentTitleRequest_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserSetAttachmentTitleRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserSetAttachmentTitleRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserSetAttachmentTitleRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserSetAttachmentTitleRequest>(), &UserSetAttachmentTitleRequest::ByteSizeLong,
+              &UserSetAttachmentTitleRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_._cached_size_),
+          false,
+      },
+      &UserSetAttachmentTitleRequest::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserSetAttachmentTitleRequest_class_data_ =
+        UserSetAttachmentTitleRequest::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserSetAttachmentTitleRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserSetAttachmentTitleRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserSetAttachmentTitleRequest_class_data_.tc_table);
+  return UserSetAttachmentTitleRequest_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 58, 2>
+UserSetAttachmentTitleRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    UserSetAttachmentTitleRequest_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserSetAttachmentTitleRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string title = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_.title_)}},
+    // int64 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(UserSetAttachmentTitleRequest, _impl_.id_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int64 id = 1;
+    {PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_.id_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // string title = 2;
+    {PROTOBUF_FIELD_OFFSET(UserSetAttachmentTitleRequest, _impl_.title_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\54\0\5\0\0\0\0\0"
+    "palm.portal.v1.UserSetAttachmentTitleRequest"
+    "title"
+  }},
+};
+PROTOBUF_NOINLINE void UserSetAttachmentTitleRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserSetAttachmentTitleRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    _impl_.title_.ClearNonDefaultToEmpty();
+  }
+  _impl_.id_ = ::int64_t{0};
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserSetAttachmentTitleRequest::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserSetAttachmentTitleRequest& this_ = static_cast<const UserSetAttachmentTitleRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserSetAttachmentTitleRequest::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserSetAttachmentTitleRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserSetAttachmentTitleRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int64 id = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (this_._internal_id() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_id(), target);
+    }
+  }
+
+  // string title = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_title().empty()) {
+      const ::std::string& _s = this_._internal_title();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserSetAttachmentTitleRequest.title");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserSetAttachmentTitleRequest)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserSetAttachmentTitleRequest::ByteSizeLong(const MessageLite& base) {
+  const UserSetAttachmentTitleRequest& this_ = static_cast<const UserSetAttachmentTitleRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserSetAttachmentTitleRequest::ByteSizeLong() const {
+  const UserSetAttachmentTitleRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserSetAttachmentTitleRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    // string title = 2;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_title().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_title());
+      }
+    }
+    // int64 id = 1;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (this_._internal_id() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+            this_._internal_id());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserSetAttachmentTitleRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserSetAttachmentTitleRequest*>(&to_msg);
+  auto& from = static_cast<const UserSetAttachmentTitleRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserSetAttachmentTitleRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_title().empty()) {
+        _this->_internal_set_title(from._internal_title());
+      } else {
+        if (_this->_impl_.title_.IsDefault()) {
+          _this->_internal_set_title("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (from._internal_id() != 0) {
+        _this->_impl_.id_ = from._impl_.id_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserSetAttachmentTitleRequest::CopyFrom(const UserSetAttachmentTitleRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserSetAttachmentTitleRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserSetAttachmentTitleRequest::InternalSwap(UserSetAttachmentTitleRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  swap(_impl_.id_, other->_impl_.id_);
+}
+
+::google::protobuf::Metadata UserSetAttachmentTitleRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class UserShowAttachmentRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserShowAttachmentRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_._has_bits_);
+};
+
+void UserShowAttachmentRequest::clear_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ttl_ != nullptr) _impl_.ttl_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+UserShowAttachmentRequest::UserShowAttachmentRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserShowAttachmentRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserShowAttachmentRequest)
+}
+PROTOBUF_NDEBUG_INLINE UserShowAttachmentRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserShowAttachmentRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+UserShowAttachmentRequest::UserShowAttachmentRequest(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserShowAttachmentRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserShowAttachmentRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserShowAttachmentRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.ttl_ = ((cached_has_bits & 0x00000001u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.ttl_)
+                : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, id_),
+           offsetof(Impl_, download_) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::download_));
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserShowAttachmentRequest)
+}
+PROTOBUF_NDEBUG_INLINE UserShowAttachmentRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0} {}
+
+inline void UserShowAttachmentRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, ttl_),
+           0,
+           offsetof(Impl_, download_) -
+               offsetof(Impl_, ttl_) +
+               sizeof(Impl_::download_));
+}
+UserShowAttachmentRequest::~UserShowAttachmentRequest() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserShowAttachmentRequest)
+  SharedDtor(*this);
+}
+inline void UserShowAttachmentRequest::SharedDtor(MessageLite& self) {
+  UserShowAttachmentRequest& this_ = static_cast<UserShowAttachmentRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.ttl_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserShowAttachmentRequest::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserShowAttachmentRequest(arena);
+}
+constexpr auto UserShowAttachmentRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(UserShowAttachmentRequest),
+                                            alignof(UserShowAttachmentRequest));
+}
+constexpr auto UserShowAttachmentRequest::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserShowAttachmentRequest_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserShowAttachmentRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserShowAttachmentRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserShowAttachmentRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserShowAttachmentRequest>(), &UserShowAttachmentRequest::ByteSizeLong,
+              &UserShowAttachmentRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_._cached_size_),
+          false,
+      },
+      &UserShowAttachmentRequest::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserShowAttachmentRequest_class_data_ =
+        UserShowAttachmentRequest::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserShowAttachmentRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserShowAttachmentRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserShowAttachmentRequest_class_data_.tc_table);
+  return UserShowAttachmentRequest_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 3, 1, 0, 2>
+UserShowAttachmentRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    UserShowAttachmentRequest_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserShowAttachmentRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bool download = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UserShowAttachmentRequest, _impl_.download_), 2>(),
+     {16, 2, 0, PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.download_)}},
+    // int64 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(UserShowAttachmentRequest, _impl_.id_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int64 id = 1;
+    {PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.id_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // bool download = 2;
+    {PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.download_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // optional .google.protobuf.Duration ttl = 9;
+    {PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.ttl_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::google::protobuf::Duration>()},
+  }},
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void UserShowAttachmentRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserShowAttachmentRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    ABSL_DCHECK(_impl_.ttl_ != nullptr);
+    _impl_.ttl_->Clear();
+  }
+  if ((cached_has_bits & 0x00000006u) != 0) {
+    ::memset(&_impl_.id_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.download_) -
+        reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.download_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserShowAttachmentRequest::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserShowAttachmentRequest& this_ = static_cast<const UserShowAttachmentRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserShowAttachmentRequest::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserShowAttachmentRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserShowAttachmentRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int64 id = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (this_._internal_id() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_id(), target);
+    }
+  }
+
+  // bool download = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+    if (this_._internal_download() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          2, this_._internal_download(), target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // optional .google.protobuf.Duration ttl = 9;
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, *this_._impl_.ttl_, this_._impl_.ttl_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserShowAttachmentRequest)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserShowAttachmentRequest::ByteSizeLong(const MessageLite& base) {
+  const UserShowAttachmentRequest& this_ = static_cast<const UserShowAttachmentRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserShowAttachmentRequest::ByteSizeLong() const {
+  const UserShowAttachmentRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserShowAttachmentRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    // optional .google.protobuf.Duration ttl = 9;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.ttl_);
+    }
+    // int64 id = 1;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (this_._internal_id() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+            this_._internal_id());
+      }
+    }
+    // bool download = 2;
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (this_._internal_download() != 0) {
+        total_size += 2;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserShowAttachmentRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserShowAttachmentRequest*>(&to_msg);
+  auto& from = static_cast<const UserShowAttachmentRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserShowAttachmentRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      ABSL_DCHECK(from._impl_.ttl_ != nullptr);
+      if (_this->_impl_.ttl_ == nullptr) {
+        _this->_impl_.ttl_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.ttl_);
+      } else {
+        _this->_impl_.ttl_->MergeFrom(*from._impl_.ttl_);
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (from._internal_id() != 0) {
+        _this->_impl_.id_ = from._impl_.id_;
+      }
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (from._internal_download() != 0) {
+        _this->_impl_.download_ = from._impl_.download_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserShowAttachmentRequest::CopyFrom(const UserShowAttachmentRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserShowAttachmentRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserShowAttachmentRequest::InternalSwap(UserShowAttachmentRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.download_)
+      + sizeof(UserShowAttachmentRequest::_impl_.download_)
+      - PROTOBUF_FIELD_OFFSET(UserShowAttachmentRequest, _impl_.ttl_)>(
+          reinterpret_cast<char*>(&_impl_.ttl_),
+          reinterpret_cast<char*>(&other->_impl_.ttl_));
+}
+
+::google::protobuf::Metadata UserShowAttachmentRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class UserShowAttachmentResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserShowAttachmentResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserShowAttachmentResponse, _impl_._has_bits_);
+};
+
+UserShowAttachmentResponse::UserShowAttachmentResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserShowAttachmentResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserShowAttachmentResponse)
+}
+PROTOBUF_NDEBUG_INLINE UserShowAttachmentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserShowAttachmentResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        url_(arena, from.url_) {}
+
+UserShowAttachmentResponse::UserShowAttachmentResponse(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserShowAttachmentResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserShowAttachmentResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserShowAttachmentResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserShowAttachmentResponse)
+}
+PROTOBUF_NDEBUG_INLINE UserShowAttachmentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        url_(arena) {}
+
+inline void UserShowAttachmentResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UserShowAttachmentResponse::~UserShowAttachmentResponse() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserShowAttachmentResponse)
+  SharedDtor(*this);
+}
+inline void UserShowAttachmentResponse::SharedDtor(MessageLite& self) {
+  UserShowAttachmentResponse& this_ = static_cast<UserShowAttachmentResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.url_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserShowAttachmentResponse::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserShowAttachmentResponse(arena);
+}
+constexpr auto UserShowAttachmentResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(UserShowAttachmentResponse),
+                                            alignof(UserShowAttachmentResponse));
+}
+constexpr auto UserShowAttachmentResponse::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserShowAttachmentResponse_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserShowAttachmentResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserShowAttachmentResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserShowAttachmentResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserShowAttachmentResponse>(), &UserShowAttachmentResponse::ByteSizeLong,
+              &UserShowAttachmentResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserShowAttachmentResponse, _impl_._cached_size_),
+          false,
+      },
+      &UserShowAttachmentResponse::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserShowAttachmentResponse_class_data_ =
+        UserShowAttachmentResponse::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserShowAttachmentResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserShowAttachmentResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserShowAttachmentResponse_class_data_.tc_table);
+  return UserShowAttachmentResponse_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 53, 2>
+UserShowAttachmentResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserShowAttachmentResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    UserShowAttachmentResponse_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserShowAttachmentResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string url = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(UserShowAttachmentResponse, _impl_.url_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string url = 1;
+    {PROTOBUF_FIELD_OFFSET(UserShowAttachmentResponse, _impl_.url_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\51\3\0\0\0\0\0\0"
+    "palm.portal.v1.UserShowAttachmentResponse"
+    "url"
+  }},
+};
+PROTOBUF_NOINLINE void UserShowAttachmentResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserShowAttachmentResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    _impl_.url_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserShowAttachmentResponse::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserShowAttachmentResponse& this_ = static_cast<const UserShowAttachmentResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserShowAttachmentResponse::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserShowAttachmentResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserShowAttachmentResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string url = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_url().empty()) {
+      const ::std::string& _s = this_._internal_url();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserShowAttachmentResponse.url");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserShowAttachmentResponse)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserShowAttachmentResponse::ByteSizeLong(const MessageLite& base) {
+  const UserShowAttachmentResponse& this_ = static_cast<const UserShowAttachmentResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserShowAttachmentResponse::ByteSizeLong() const {
+  const UserShowAttachmentResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserShowAttachmentResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+   {
+    // string url = 1;
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_url().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_url());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserShowAttachmentResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserShowAttachmentResponse*>(&to_msg);
+  auto& from = static_cast<const UserShowAttachmentResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserShowAttachmentResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    if (!from._internal_url().empty()) {
+      _this->_internal_set_url(from._internal_url());
+    } else {
+      if (_this->_impl_.url_.IsDefault()) {
+        _this->_internal_set_url("");
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserShowAttachmentResponse::CopyFrom(const UserShowAttachmentResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserShowAttachmentResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserShowAttachmentResponse::InternalSwap(UserShowAttachmentResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
+}
+
+::google::protobuf::Metadata UserShowAttachmentResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class UserCreateAttachmentRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserCreateAttachmentRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_._has_bits_);
+};
+
+void UserCreateAttachmentRequest::clear_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ttl_ != nullptr) _impl_.ttl_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+UserCreateAttachmentRequest::UserCreateAttachmentRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserCreateAttachmentRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserCreateAttachmentRequest)
+}
+PROTOBUF_NDEBUG_INLINE UserCreateAttachmentRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserCreateAttachmentRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        title_(arena, from.title_),
+        content_type_(arena, from.content_type_) {}
+
+UserCreateAttachmentRequest::UserCreateAttachmentRequest(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserCreateAttachmentRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserCreateAttachmentRequest_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserCreateAttachmentRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.ttl_ = ((cached_has_bits & 0x00000004u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.ttl_)
+                : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, size_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, size_),
+           offsetof(Impl_, public__) -
+               offsetof(Impl_, size_) +
+               sizeof(Impl_::public__));
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserCreateAttachmentRequest)
+}
+PROTOBUF_NDEBUG_INLINE UserCreateAttachmentRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        title_(arena),
+        content_type_(arena) {}
+
+inline void UserCreateAttachmentRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, ttl_),
+           0,
+           offsetof(Impl_, public__) -
+               offsetof(Impl_, ttl_) +
+               sizeof(Impl_::public__));
+}
+UserCreateAttachmentRequest::~UserCreateAttachmentRequest() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserCreateAttachmentRequest)
+  SharedDtor(*this);
+}
+inline void UserCreateAttachmentRequest::SharedDtor(MessageLite& self) {
+  UserCreateAttachmentRequest& this_ = static_cast<UserCreateAttachmentRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.title_.Destroy();
+  this_._impl_.content_type_.Destroy();
+  delete this_._impl_.ttl_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserCreateAttachmentRequest::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserCreateAttachmentRequest(arena);
+}
+constexpr auto UserCreateAttachmentRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(UserCreateAttachmentRequest),
+                                            alignof(UserCreateAttachmentRequest));
+}
+constexpr auto UserCreateAttachmentRequest::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserCreateAttachmentRequest_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserCreateAttachmentRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserCreateAttachmentRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserCreateAttachmentRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserCreateAttachmentRequest>(), &UserCreateAttachmentRequest::ByteSizeLong,
+              &UserCreateAttachmentRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_._cached_size_),
+          false,
+      },
+      &UserCreateAttachmentRequest::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserCreateAttachmentRequest_class_data_ =
+        UserCreateAttachmentRequest::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserCreateAttachmentRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserCreateAttachmentRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserCreateAttachmentRequest_class_data_.tc_table);
+  return UserCreateAttachmentRequest_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 1, 68, 2>
+UserCreateAttachmentRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967008,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    UserCreateAttachmentRequest_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserCreateAttachmentRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string title = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.title_)}},
+    // string content_type = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.content_type_)}},
+    // uint64 size = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(UserCreateAttachmentRequest, _impl_.size_), 3>(),
+     {24, 3, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.size_)}},
+    // optional uint32 expire_after_days = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UserCreateAttachmentRequest, _impl_.expire_after_days_), 4>(),
+     {32, 4, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.expire_after_days_)}},
+    // bool public = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UserCreateAttachmentRequest, _impl_.public__), 5>(),
+     {40, 5, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.public__)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string title = 1;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.title_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string content_type = 2;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.content_type_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint64 size = 3;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.size_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // optional uint32 expire_after_days = 4;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.expire_after_days_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // bool public = 5;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.public__), _Internal::kHasBitsOffset + 5, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // .google.protobuf.Duration ttl = 9;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.ttl_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::google::protobuf::Duration>()},
+  }},
+  {{
+    "\52\5\14\0\0\0\0\0"
+    "palm.portal.v1.UserCreateAttachmentRequest"
+    "title"
+    "content_type"
+  }},
+};
+PROTOBUF_NOINLINE void UserCreateAttachmentRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserCreateAttachmentRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.title_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      _impl_.content_type_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      ABSL_DCHECK(_impl_.ttl_ != nullptr);
+      _impl_.ttl_->Clear();
+    }
+  }
+  if ((cached_has_bits & 0x00000038u) != 0) {
+    ::memset(&_impl_.size_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.public__) -
+        reinterpret_cast<char*>(&_impl_.size_)) + sizeof(_impl_.public__));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserCreateAttachmentRequest::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserCreateAttachmentRequest& this_ = static_cast<const UserCreateAttachmentRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserCreateAttachmentRequest::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserCreateAttachmentRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserCreateAttachmentRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string title = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_title().empty()) {
+      const ::std::string& _s = this_._internal_title();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserCreateAttachmentRequest.title");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string content_type = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (!this_._internal_content_type().empty()) {
+      const ::std::string& _s = this_._internal_content_type();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserCreateAttachmentRequest.content_type");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // uint64 size = 3;
+  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
+    if (this_._internal_size() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+          3, this_._internal_size(), target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // optional uint32 expire_after_days = 4;
+  if ((cached_has_bits & 0x00000010u) != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this_._internal_expire_after_days(), target);
+  }
+
+  // bool public = 5;
+  if ((cached_has_bits & 0x00000020u) != 0) {
+    if (this_._internal_public_() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          5, this_._internal_public_(), target);
+    }
+  }
+
+  // .google.protobuf.Duration ttl = 9;
+  if ((cached_has_bits & 0x00000004u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, *this_._impl_.ttl_, this_._impl_.ttl_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserCreateAttachmentRequest)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserCreateAttachmentRequest::ByteSizeLong(const MessageLite& base) {
+  const UserCreateAttachmentRequest& this_ = static_cast<const UserCreateAttachmentRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserCreateAttachmentRequest::ByteSizeLong() const {
+  const UserCreateAttachmentRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserCreateAttachmentRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000003fu) != 0) {
+    // string title = 1;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_title().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_title());
+      }
+    }
+    // string content_type = 2;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!this_._internal_content_type().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_content_type());
+      }
+    }
+    // .google.protobuf.Duration ttl = 9;
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.ttl_);
+    }
+    // uint64 size = 3;
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (this_._internal_size() != 0) {
+        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+            this_._internal_size());
+      }
+    }
+    // optional uint32 expire_after_days = 4;
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this_._internal_expire_after_days());
+    }
+    // bool public = 5;
+    if ((cached_has_bits & 0x00000020u) != 0) {
+      if (this_._internal_public_() != 0) {
+        total_size += 2;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserCreateAttachmentRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserCreateAttachmentRequest*>(&to_msg);
+  auto& from = static_cast<const UserCreateAttachmentRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserCreateAttachmentRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000003fu) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_title().empty()) {
+        _this->_internal_set_title(from._internal_title());
+      } else {
+        if (_this->_impl_.title_.IsDefault()) {
+          _this->_internal_set_title("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!from._internal_content_type().empty()) {
+        _this->_internal_set_content_type(from._internal_content_type());
+      } else {
+        if (_this->_impl_.content_type_.IsDefault()) {
+          _this->_internal_set_content_type("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      ABSL_DCHECK(from._impl_.ttl_ != nullptr);
+      if (_this->_impl_.ttl_ == nullptr) {
+        _this->_impl_.ttl_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.ttl_);
+      } else {
+        _this->_impl_.ttl_->MergeFrom(*from._impl_.ttl_);
+      }
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (from._internal_size() != 0) {
+        _this->_impl_.size_ = from._impl_.size_;
+      }
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      _this->_impl_.expire_after_days_ = from._impl_.expire_after_days_;
+    }
+    if ((cached_has_bits & 0x00000020u) != 0) {
+      if (from._internal_public_() != 0) {
+        _this->_impl_.public__ = from._impl_.public__;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserCreateAttachmentRequest::CopyFrom(const UserCreateAttachmentRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserCreateAttachmentRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserCreateAttachmentRequest::InternalSwap(UserCreateAttachmentRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_type_, &other->_impl_.content_type_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.public__)
+      + sizeof(UserCreateAttachmentRequest::_impl_.public__)
+      - PROTOBUF_FIELD_OFFSET(UserCreateAttachmentRequest, _impl_.ttl_)>(
+          reinterpret_cast<char*>(&_impl_.ttl_),
+          reinterpret_cast<char*>(&other->_impl_.ttl_));
+}
+
+::google::protobuf::Metadata UserCreateAttachmentRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class UserCreateAttachmentUploadResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserCreateAttachmentUploadResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_._has_bits_);
+};
+
+UserCreateAttachmentUploadResponse::UserCreateAttachmentUploadResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserCreateAttachmentUploadResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserCreateAttachmentUploadResponse)
+}
+PROTOBUF_NDEBUG_INLINE UserCreateAttachmentUploadResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserCreateAttachmentUploadResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        url_(arena, from.url_) {}
+
+UserCreateAttachmentUploadResponse::UserCreateAttachmentUploadResponse(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserCreateAttachmentUploadResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserCreateAttachmentUploadResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserCreateAttachmentUploadResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.item_ = ((cached_has_bits & 0x00000002u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.item_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserCreateAttachmentUploadResponse)
+}
+PROTOBUF_NDEBUG_INLINE UserCreateAttachmentUploadResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        url_(arena) {}
+
+inline void UserCreateAttachmentUploadResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.item_ = {};
+}
+UserCreateAttachmentUploadResponse::~UserCreateAttachmentUploadResponse() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  SharedDtor(*this);
+}
+inline void UserCreateAttachmentUploadResponse::SharedDtor(MessageLite& self) {
+  UserCreateAttachmentUploadResponse& this_ = static_cast<UserCreateAttachmentUploadResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.url_.Destroy();
+  delete this_._impl_.item_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserCreateAttachmentUploadResponse::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserCreateAttachmentUploadResponse(arena);
+}
+constexpr auto UserCreateAttachmentUploadResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(UserCreateAttachmentUploadResponse),
+                                            alignof(UserCreateAttachmentUploadResponse));
+}
+constexpr auto UserCreateAttachmentUploadResponse::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserCreateAttachmentUploadResponse_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserCreateAttachmentUploadResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserCreateAttachmentUploadResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserCreateAttachmentUploadResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserCreateAttachmentUploadResponse>(), &UserCreateAttachmentUploadResponse::ByteSizeLong,
+              &UserCreateAttachmentUploadResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_._cached_size_),
+          false,
+      },
+      &UserCreateAttachmentUploadResponse::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserCreateAttachmentUploadResponse_class_data_ =
+        UserCreateAttachmentUploadResponse::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserCreateAttachmentUploadResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserCreateAttachmentUploadResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserCreateAttachmentUploadResponse_class_data_.tc_table);
+  return UserCreateAttachmentUploadResponse_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 61, 2>
+UserCreateAttachmentUploadResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    UserCreateAttachmentUploadResponse_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserCreateAttachmentUploadResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.UserIndexAttachmentResponse.Item item = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_.item_)}},
+    // string url = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_.url_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string url = 1;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_.url_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.portal.v1.UserIndexAttachmentResponse.Item item = 2;
+    {PROTOBUF_FIELD_OFFSET(UserCreateAttachmentUploadResponse, _impl_.item_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::UserIndexAttachmentResponse_Item>()},
+  }},
+  {{
+    "\61\3\0\0\0\0\0\0"
+    "palm.portal.v1.UserCreateAttachmentUploadResponse"
+    "url"
+  }},
+};
+PROTOBUF_NOINLINE void UserCreateAttachmentUploadResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.url_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(_impl_.item_ != nullptr);
+      _impl_.item_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserCreateAttachmentUploadResponse::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserCreateAttachmentUploadResponse& this_ = static_cast<const UserCreateAttachmentUploadResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserCreateAttachmentUploadResponse::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserCreateAttachmentUploadResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string url = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_url().empty()) {
+      const ::std::string& _s = this_._internal_url();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserCreateAttachmentUploadResponse.url");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .palm.portal.v1.UserIndexAttachmentResponse.Item item = 2;
+  if ((cached_has_bits & 0x00000002u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *this_._impl_.item_, this_._impl_.item_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserCreateAttachmentUploadResponse::ByteSizeLong(const MessageLite& base) {
+  const UserCreateAttachmentUploadResponse& this_ = static_cast<const UserCreateAttachmentUploadResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserCreateAttachmentUploadResponse::ByteSizeLong() const {
+  const UserCreateAttachmentUploadResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    // string url = 1;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_url().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_url());
+      }
+    }
+    // .palm.portal.v1.UserIndexAttachmentResponse.Item item = 2;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.item_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserCreateAttachmentUploadResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserCreateAttachmentUploadResponse*>(&to_msg);
+  auto& from = static_cast<const UserCreateAttachmentUploadResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_url().empty()) {
+        _this->_internal_set_url(from._internal_url());
+      } else {
+        if (_this->_impl_.url_.IsDefault()) {
+          _this->_internal_set_url("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(from._impl_.item_ != nullptr);
+      if (_this->_impl_.item_ == nullptr) {
+        _this->_impl_.item_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.item_);
+      } else {
+        _this->_impl_.item_->MergeFrom(*from._impl_.item_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserCreateAttachmentUploadResponse::CopyFrom(const UserCreateAttachmentUploadResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserCreateAttachmentUploadResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserCreateAttachmentUploadResponse::InternalSwap(UserCreateAttachmentUploadResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
+  swap(_impl_.item_, other->_impl_.item_);
+}
+
+::google::protobuf::Metadata UserCreateAttachmentUploadResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class UserIndexAttachmentResponse_Item::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserIndexAttachmentResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_._has_bits_);
+};
+
+void UserIndexAttachmentResponse_Item::clear_uploaded_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.uploaded_at_ != nullptr) _impl_.uploaded_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+void UserIndexAttachmentResponse_Item::clear_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.updated_at_ != nullptr) _impl_.updated_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+UserIndexAttachmentResponse_Item::UserIndexAttachmentResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserIndexAttachmentResponse_Item_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserIndexAttachmentResponse.Item)
+}
+PROTOBUF_NDEBUG_INLINE UserIndexAttachmentResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserIndexAttachmentResponse_Item& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        title_(arena, from.title_),
+        content_type_(arena, from.content_type_) {}
+
+UserIndexAttachmentResponse_Item::UserIndexAttachmentResponse_Item(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserIndexAttachmentResponse_Item& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserIndexAttachmentResponse_Item_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserIndexAttachmentResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.uploaded_at_ = ((cached_has_bits & 0x00000010u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.uploaded_at_)
+                : nullptr;
+  _impl_.updated_at_ = ((cached_has_bits & 0x00000020u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.updated_at_)
+                : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, id_),
+           offsetof(Impl_, public__) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::public__));
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserIndexAttachmentResponse.Item)
+}
+PROTOBUF_NDEBUG_INLINE UserIndexAttachmentResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        bucket_(arena),
+        object_(arena),
+        title_(arena),
+        content_type_(arena) {}
+
+inline void UserIndexAttachmentResponse_Item::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, uploaded_at_),
+           0,
+           offsetof(Impl_, public__) -
+               offsetof(Impl_, uploaded_at_) +
+               sizeof(Impl_::public__));
+}
+UserIndexAttachmentResponse_Item::~UserIndexAttachmentResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  SharedDtor(*this);
+}
+inline void UserIndexAttachmentResponse_Item::SharedDtor(MessageLite& self) {
+  UserIndexAttachmentResponse_Item& this_ = static_cast<UserIndexAttachmentResponse_Item&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.bucket_.Destroy();
+  this_._impl_.object_.Destroy();
+  this_._impl_.title_.Destroy();
+  this_._impl_.content_type_.Destroy();
+  delete this_._impl_.uploaded_at_;
+  delete this_._impl_.updated_at_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserIndexAttachmentResponse_Item::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserIndexAttachmentResponse_Item(arena);
+}
+constexpr auto UserIndexAttachmentResponse_Item::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(UserIndexAttachmentResponse_Item),
+                                            alignof(UserIndexAttachmentResponse_Item));
+}
+constexpr auto UserIndexAttachmentResponse_Item::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserIndexAttachmentResponse_Item_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserIndexAttachmentResponse_Item::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserIndexAttachmentResponse_Item>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserIndexAttachmentResponse_Item::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserIndexAttachmentResponse_Item>(), &UserIndexAttachmentResponse_Item::ByteSizeLong,
+              &UserIndexAttachmentResponse_Item::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_._cached_size_),
+          false,
+      },
+      &UserIndexAttachmentResponse_Item::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserIndexAttachmentResponse_Item_class_data_ =
+        UserIndexAttachmentResponse_Item::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserIndexAttachmentResponse_Item::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserIndexAttachmentResponse_Item_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserIndexAttachmentResponse_Item_class_data_.tc_table);
+  return UserIndexAttachmentResponse_Item_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 10, 2, 93, 2>
+UserIndexAttachmentResponse_Item::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_._has_bits_),
+    0, // no _extensions_
+    19, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294704640,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    10,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    UserIndexAttachmentResponse_Item_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserIndexAttachmentResponse_Item>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // int64 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(UserIndexAttachmentResponse_Item, _impl_.id_), 6>(),
+     {8, 6, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.id_)}},
+    // string bucket = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.bucket_)}},
+    // string object = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 1, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.object_)}},
+    // string title = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 2, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.title_)}},
+    // string content_type = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 3, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.content_type_)}},
+    // uint64 size = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(UserIndexAttachmentResponse_Item, _impl_.size_), 7>(),
+     {48, 7, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.size_)}},
+    // optional .google.protobuf.Timestamp uploaded_at = 7;
+    {::_pbi::TcParser::FastMtS1,
+     {58, 4, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.uploaded_at_)}},
+    // optional uint32 expire_after_days = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UserIndexAttachmentResponse_Item, _impl_.expire_after_days_), 8>(),
+     {64, 8, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.expire_after_days_)}},
+    // bool public = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UserIndexAttachmentResponse_Item, _impl_.public__), 9>(),
+     {72, 9, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.public__)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int64 id = 1;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.id_), _Internal::kHasBitsOffset + 6, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // string bucket = 2;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.bucket_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 3;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.object_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string title = 4;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.title_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string content_type = 5;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.content_type_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint64 size = 6;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.size_), _Internal::kHasBitsOffset + 7, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // optional .google.protobuf.Timestamp uploaded_at = 7;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.uploaded_at_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional uint32 expire_after_days = 8;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.expire_after_days_), _Internal::kHasBitsOffset + 8, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // bool public = 9;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.public__), _Internal::kHasBitsOffset + 9, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // .google.protobuf.Timestamp updated_at = 19;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.updated_at_), _Internal::kHasBitsOffset + 5, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+      {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }},
+  {{
+    "\57\0\6\6\5\14\0\0\0\0\0\0\0\0\0\0"
+    "palm.portal.v1.UserIndexAttachmentResponse.Item"
+    "bucket"
+    "object"
+    "title"
+    "content_type"
+  }},
+};
+PROTOBUF_NOINLINE void UserIndexAttachmentResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000003fu) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.bucket_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      _impl_.object_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      _impl_.title_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      _impl_.content_type_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      ABSL_DCHECK(_impl_.uploaded_at_ != nullptr);
+      _impl_.uploaded_at_->Clear();
+    }
+    if ((cached_has_bits & 0x00000020u) != 0) {
+      ABSL_DCHECK(_impl_.updated_at_ != nullptr);
+      _impl_.updated_at_->Clear();
+    }
+  }
+  if ((cached_has_bits & 0x000000c0u) != 0) {
+    ::memset(&_impl_.id_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.size_) -
+        reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.size_));
+  }
+  if ((cached_has_bits & 0x00000300u) != 0) {
+    ::memset(&_impl_.expire_after_days_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.public__) -
+        reinterpret_cast<char*>(&_impl_.expire_after_days_)) + sizeof(_impl_.public__));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserIndexAttachmentResponse_Item::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserIndexAttachmentResponse_Item& this_ = static_cast<const UserIndexAttachmentResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserIndexAttachmentResponse_Item::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserIndexAttachmentResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int64 id = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000040u) != 0) {
+    if (this_._internal_id() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
+              stream, this_._internal_id(), target);
+    }
+  }
+
+  // string bucket = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_bucket().empty()) {
+      const ::std::string& _s = this_._internal_bucket();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserIndexAttachmentResponse.Item.bucket");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // string object = 3;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (!this_._internal_object().empty()) {
+      const ::std::string& _s = this_._internal_object();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserIndexAttachmentResponse.Item.object");
+      target = stream->WriteStringMaybeAliased(3, _s, target);
+    }
+  }
+
+  // string title = 4;
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+    if (!this_._internal_title().empty()) {
+      const ::std::string& _s = this_._internal_title();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserIndexAttachmentResponse.Item.title");
+      target = stream->WriteStringMaybeAliased(4, _s, target);
+    }
+  }
+
+  // string content_type = 5;
+  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
+    if (!this_._internal_content_type().empty()) {
+      const ::std::string& _s = this_._internal_content_type();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.UserIndexAttachmentResponse.Item.content_type");
+      target = stream->WriteStringMaybeAliased(5, _s, target);
+    }
+  }
+
+  // uint64 size = 6;
+  if ((this_._impl_._has_bits_[0] & 0x00000080u) != 0) {
+    if (this_._internal_size() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+          6, this_._internal_size(), target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // optional .google.protobuf.Timestamp uploaded_at = 7;
+  if ((cached_has_bits & 0x00000010u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        7, *this_._impl_.uploaded_at_, this_._impl_.uploaded_at_->GetCachedSize(), target,
+        stream);
+  }
+
+  // optional uint32 expire_after_days = 8;
+  if ((cached_has_bits & 0x00000100u) != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        8, this_._internal_expire_after_days(), target);
+  }
+
+  // bool public = 9;
+  if ((cached_has_bits & 0x00000200u) != 0) {
+    if (this_._internal_public_() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          9, this_._internal_public_(), target);
+    }
+  }
+
+  // .google.protobuf.Timestamp updated_at = 19;
+  if ((cached_has_bits & 0x00000020u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        19, *this_._impl_.updated_at_, this_._impl_.updated_at_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserIndexAttachmentResponse_Item::ByteSizeLong(const MessageLite& base) {
+  const UserIndexAttachmentResponse_Item& this_ = static_cast<const UserIndexAttachmentResponse_Item&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserIndexAttachmentResponse_Item::ByteSizeLong() const {
+  const UserIndexAttachmentResponse_Item& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x000000ffu) != 0) {
+    // string bucket = 2;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_bucket().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_bucket());
+      }
+    }
+    // string object = 3;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!this_._internal_object().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_object());
+      }
+    }
+    // string title = 4;
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!this_._internal_title().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_title());
+      }
+    }
+    // string content_type = 5;
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (!this_._internal_content_type().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_content_type());
+      }
+    }
+    // optional .google.protobuf.Timestamp uploaded_at = 7;
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.uploaded_at_);
+    }
+    // .google.protobuf.Timestamp updated_at = 19;
+    if ((cached_has_bits & 0x00000020u) != 0) {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.updated_at_);
+    }
+    // int64 id = 1;
+    if ((cached_has_bits & 0x00000040u) != 0) {
+      if (this_._internal_id() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+            this_._internal_id());
+      }
+    }
+    // uint64 size = 6;
+    if ((cached_has_bits & 0x00000080u) != 0) {
+      if (this_._internal_size() != 0) {
+        total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+            this_._internal_size());
+      }
+    }
+  }
+  if ((cached_has_bits & 0x00000300u) != 0) {
+    // optional uint32 expire_after_days = 8;
+    if ((cached_has_bits & 0x00000100u) != 0) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this_._internal_expire_after_days());
+    }
+    // bool public = 9;
+    if ((cached_has_bits & 0x00000200u) != 0) {
+      if (this_._internal_public_() != 0) {
+        total_size += 2;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserIndexAttachmentResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserIndexAttachmentResponse_Item*>(&to_msg);
+  auto& from = static_cast<const UserIndexAttachmentResponse_Item&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x000000ffu) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_bucket().empty()) {
+        _this->_internal_set_bucket(from._internal_bucket());
+      } else {
+        if (_this->_impl_.bucket_.IsDefault()) {
+          _this->_internal_set_bucket("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!from._internal_object().empty()) {
+        _this->_internal_set_object(from._internal_object());
+      } else {
+        if (_this->_impl_.object_.IsDefault()) {
+          _this->_internal_set_object("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!from._internal_title().empty()) {
+        _this->_internal_set_title(from._internal_title());
+      } else {
+        if (_this->_impl_.title_.IsDefault()) {
+          _this->_internal_set_title("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (!from._internal_content_type().empty()) {
+        _this->_internal_set_content_type(from._internal_content_type());
+      } else {
+        if (_this->_impl_.content_type_.IsDefault()) {
+          _this->_internal_set_content_type("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
+      ABSL_DCHECK(from._impl_.uploaded_at_ != nullptr);
+      if (_this->_impl_.uploaded_at_ == nullptr) {
+        _this->_impl_.uploaded_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.uploaded_at_);
+      } else {
+        _this->_impl_.uploaded_at_->MergeFrom(*from._impl_.uploaded_at_);
+      }
+    }
+    if ((cached_has_bits & 0x00000020u) != 0) {
+      ABSL_DCHECK(from._impl_.updated_at_ != nullptr);
+      if (_this->_impl_.updated_at_ == nullptr) {
+        _this->_impl_.updated_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.updated_at_);
+      } else {
+        _this->_impl_.updated_at_->MergeFrom(*from._impl_.updated_at_);
+      }
+    }
+    if ((cached_has_bits & 0x00000040u) != 0) {
+      if (from._internal_id() != 0) {
+        _this->_impl_.id_ = from._impl_.id_;
+      }
+    }
+    if ((cached_has_bits & 0x00000080u) != 0) {
+      if (from._internal_size() != 0) {
+        _this->_impl_.size_ = from._impl_.size_;
+      }
+    }
+  }
+  if ((cached_has_bits & 0x00000300u) != 0) {
+    if ((cached_has_bits & 0x00000100u) != 0) {
+      _this->_impl_.expire_after_days_ = from._impl_.expire_after_days_;
+    }
+    if ((cached_has_bits & 0x00000200u) != 0) {
+      if (from._internal_public_() != 0) {
+        _this->_impl_.public__ = from._impl_.public__;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserIndexAttachmentResponse_Item::CopyFrom(const UserIndexAttachmentResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserIndexAttachmentResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserIndexAttachmentResponse_Item::InternalSwap(UserIndexAttachmentResponse_Item* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_type_, &other->_impl_.content_type_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.public__)
+      + sizeof(UserIndexAttachmentResponse_Item::_impl_.public__)
+      - PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse_Item, _impl_.uploaded_at_)>(
+          reinterpret_cast<char*>(&_impl_.uploaded_at_),
+          reinterpret_cast<char*>(&other->_impl_.uploaded_at_));
+}
+
+::google::protobuf::Metadata UserIndexAttachmentResponse_Item::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class UserIndexAttachmentResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<UserIndexAttachmentResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_._has_bits_);
+};
+
+UserIndexAttachmentResponse::UserIndexAttachmentResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserIndexAttachmentResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserIndexAttachmentResponse)
+}
+PROTOBUF_NDEBUG_INLINE UserIndexAttachmentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::UserIndexAttachmentResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+UserIndexAttachmentResponse::UserIndexAttachmentResponse(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const UserIndexAttachmentResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, UserIndexAttachmentResponse_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  UserIndexAttachmentResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pagination_ = ((cached_has_bits & 0x00000001u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.pagination_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserIndexAttachmentResponse)
+}
+PROTOBUF_NDEBUG_INLINE UserIndexAttachmentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void UserIndexAttachmentResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.pagination_ = {};
+}
+UserIndexAttachmentResponse::~UserIndexAttachmentResponse() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.UserIndexAttachmentResponse)
+  SharedDtor(*this);
+}
+inline void UserIndexAttachmentResponse::SharedDtor(MessageLite& self) {
+  UserIndexAttachmentResponse& this_ = static_cast<UserIndexAttachmentResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.pagination_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL UserIndexAttachmentResponse::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) UserIndexAttachmentResponse(arena);
+}
+constexpr auto UserIndexAttachmentResponse::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_.items_) +
+          decltype(UserIndexAttachmentResponse::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(UserIndexAttachmentResponse), alignof(UserIndexAttachmentResponse), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&UserIndexAttachmentResponse::PlacementNew_,
+                                 sizeof(UserIndexAttachmentResponse),
+                                 alignof(UserIndexAttachmentResponse));
+  }
+}
+constexpr auto UserIndexAttachmentResponse::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_UserIndexAttachmentResponse_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &UserIndexAttachmentResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<UserIndexAttachmentResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &UserIndexAttachmentResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<UserIndexAttachmentResponse>(), &UserIndexAttachmentResponse::ByteSizeLong,
+              &UserIndexAttachmentResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_._cached_size_),
+          false,
+      },
+      &UserIndexAttachmentResponse::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull UserIndexAttachmentResponse_class_data_ =
+        UserIndexAttachmentResponse::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+UserIndexAttachmentResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserIndexAttachmentResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserIndexAttachmentResponse_class_data_.tc_table);
+  return UserIndexAttachmentResponse_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2>
+UserIndexAttachmentResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    UserIndexAttachmentResponse_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserIndexAttachmentResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .palm.portal.v1.Pagination pagination = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 1, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_.pagination_)}},
+    // repeated .palm.portal.v1.UserIndexAttachmentResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.portal.v1.UserIndexAttachmentResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_.items_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.portal.v1.Pagination pagination = 2;
+    {PROTOBUF_FIELD_OFFSET(UserIndexAttachmentResponse, _impl_.pagination_), _Internal::kHasBitsOffset + 0, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::UserIndexAttachmentResponse_Item>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Pagination>()},
+  }},
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void UserIndexAttachmentResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.UserIndexAttachmentResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    ABSL_DCHECK(_impl_.pagination_ != nullptr);
+    _impl_.pagination_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL UserIndexAttachmentResponse::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const UserIndexAttachmentResponse& this_ = static_cast<const UserIndexAttachmentResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL UserIndexAttachmentResponse::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const UserIndexAttachmentResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.UserIndexAttachmentResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .palm.portal.v1.UserIndexAttachmentResponse.Item items = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this_._internal_items_size());
+       i < n; i++) {
+    const auto& repfield = this_._internal_items().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .palm.portal.v1.Pagination pagination = 2;
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *this_._impl_.pagination_, this_._impl_.pagination_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.UserIndexAttachmentResponse)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t UserIndexAttachmentResponse::ByteSizeLong(const MessageLite& base) {
+  const UserIndexAttachmentResponse& this_ = static_cast<const UserIndexAttachmentResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t UserIndexAttachmentResponse::ByteSizeLong() const {
+  const UserIndexAttachmentResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.UserIndexAttachmentResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+   {
+    // repeated .palm.portal.v1.UserIndexAttachmentResponse.Item items = 1;
+    {
+      total_size += 1UL * this_._internal_items_size();
+      for (const auto& msg : this_._internal_items()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+  }
+   {
+    // .palm.portal.v1.Pagination pagination = 2;
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pagination_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void UserIndexAttachmentResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UserIndexAttachmentResponse*>(&to_msg);
+  auto& from = static_cast<const UserIndexAttachmentResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.UserIndexAttachmentResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    ABSL_DCHECK(from._impl_.pagination_ != nullptr);
+    if (_this->_impl_.pagination_ == nullptr) {
+      _this->_impl_.pagination_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.pagination_);
+    } else {
+      _this->_impl_.pagination_->MergeFrom(*from._impl_.pagination_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserIndexAttachmentResponse::CopyFrom(const UserIndexAttachmentResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.UserIndexAttachmentResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void UserIndexAttachmentResponse::InternalSwap(UserIndexAttachmentResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.pagination_, other->_impl_.pagination_);
+}
+
+::google::protobuf::Metadata UserIndexAttachmentResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class Log::_Internal {
  public:
 };
@@ -4972,79 +7880,79 @@ Log::_table_ = {
 }
 // ===================================================================
 
-class User::_Internal {
+class UserDetail::_Internal {
  public:
 };
 
-User::User(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+UserDetail::UserDetail(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, User_class_data_.base()) {
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, UserDetail_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::internal::ZeroFieldsBase(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.User)
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.UserDetail)
 }
-User::User(
+UserDetail::UserDetail(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const User& from)
+    const UserDetail& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, User_class_data_.base()) {
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, UserDetail_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::internal::ZeroFieldsBase(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  User* const _this = this;
+  UserDetail* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
 
-  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.User)
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.UserDetail)
 }
 
-inline void* PROTOBUF_NONNULL User::PlacementNew_(
+inline void* PROTOBUF_NONNULL UserDetail::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) User(arena);
+  return ::new (mem) UserDetail(arena);
 }
-constexpr auto User::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(User),
-                                            alignof(User));
+constexpr auto UserDetail::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(UserDetail),
+                                            alignof(UserDetail));
 }
-constexpr auto User::InternalGenerateClassData_() {
+constexpr auto UserDetail::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_User_default_instance_._instance,
+          &_UserDetail_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &User::MergeImpl,
-          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<User>(),
+          &UserDetail::MergeImpl,
+          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<UserDetail>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &User::SharedDtor,
-          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<User>(), &User::ByteSizeLong,
-              &User::_InternalSerialize,
+          &UserDetail::SharedDtor,
+          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<UserDetail>(), &UserDetail::ByteSizeLong,
+              &UserDetail::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(User, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(UserDetail, _impl_._cached_size_),
           false,
       },
-      &User::kDescriptorMethods,
+      &UserDetail::kDescriptorMethods,
       &descriptor_table_portal_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull User_class_data_ =
-        User::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull UserDetail_class_data_ =
+        UserDetail::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-User::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&User_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(User_class_data_.tc_table);
-  return User_class_data_.base();
+UserDetail::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&UserDetail_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(UserDetail_class_data_.tc_table);
+  return UserDetail_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<0, 0, 0, 0, 2>
-User::_table_ = {
+UserDetail::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -5055,11 +7963,11 @@ User::_table_ = {
     0,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    User_class_data_.base(),
+    UserDetail_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::portal::v1::User>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::UserDetail>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
@@ -5076,7 +7984,7 @@ User::_table_ = {
 
 
 
-::google::protobuf::Metadata User::GetMetadata() const {
+::google::protobuf::Metadata UserDetail::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -5210,13 +8118,13 @@ Session::_table_ = {
     // string sn = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 0, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.sn_)}},
-    // .palm.portal.v1.User.ProviderType type = 1;
+    // .palm.portal.v1.UserDetail.ProviderType type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Session, _impl_.type_), 1>(),
      {8, 1, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .palm.portal.v1.User.ProviderType type = 1;
+    // .palm.portal.v1.UserDetail.ProviderType type = 1;
     {PROTOBUF_FIELD_OFFSET(Session, _impl_.type_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
     // string sn = 2;
@@ -5261,7 +8169,7 @@ PROTOBUF_NOINLINE void Session::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .palm.portal.v1.User.ProviderType type = 1;
+  // .palm.portal.v1.UserDetail.ProviderType type = 1;
   if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
     if (this_._internal_type() != 0) {
       target = stream->EnsureSpace(target);
@@ -5313,7 +8221,7 @@ PROTOBUF_NOINLINE void Session::Clear() {
                                         this_._internal_sn());
       }
     }
-    // .palm.portal.v1.User.ProviderType type = 1;
+    // .palm.portal.v1.UserDetail.ProviderType type = 1;
     if ((cached_has_bits & 0x00000002u) != 0) {
       if (this_._internal_type() != 0) {
         total_size += 1 +

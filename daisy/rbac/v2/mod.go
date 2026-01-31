@@ -229,6 +229,9 @@ func ActionExecute() *Action {
 	return &Action{By: &Action_Execute_{Execute: &Action_Execute{}}}
 }
 
+func ActionInquiry() *Action {
+	return &Action{By: &Action_Inquiry_{Inquiry: &Action_Inquiry{}}}
+}
 func ActionAppend() *Action {
 	return &Action{By: &Action_Append_{Append: &Action_Append{}}}
 }

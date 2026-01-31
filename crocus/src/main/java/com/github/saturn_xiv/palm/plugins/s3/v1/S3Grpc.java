@@ -167,6 +167,68 @@ public final class S3Grpc {
     return getRemoveObjectMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest,
+      com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse> getPresignedGetObjectMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "PresignedGetObject",
+      requestType = com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest,
+      com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse> getPresignedGetObjectMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest, com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse> getPresignedGetObjectMethod;
+    if ((getPresignedGetObjectMethod = S3Grpc.getPresignedGetObjectMethod) == null) {
+      synchronized (S3Grpc.class) {
+        if ((getPresignedGetObjectMethod = S3Grpc.getPresignedGetObjectMethod) == null) {
+          S3Grpc.getPresignedGetObjectMethod = getPresignedGetObjectMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest, com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PresignedGetObject"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new S3MethodDescriptorSupplier("PresignedGetObject"))
+              .build();
+        }
+      }
+    }
+    return getPresignedGetObjectMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest,
+      com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse> getGetObjectMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetObject",
+      requestType = com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest.class,
+      responseType = com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest,
+      com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse> getGetObjectMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest, com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse> getGetObjectMethod;
+    if ((getGetObjectMethod = S3Grpc.getGetObjectMethod) == null) {
+      synchronized (S3Grpc.class) {
+        if ((getGetObjectMethod = S3Grpc.getGetObjectMethod) == null) {
+          S3Grpc.getGetObjectMethod = getGetObjectMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest, com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetObject"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new S3MethodDescriptorSupplier("GetObject"))
+              .build();
+        }
+      }
+    }
+    return getGetObjectMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -264,6 +326,20 @@ public final class S3Grpc {
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveObjectMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void presignedGetObject(com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPresignedGetObjectMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void getObject(com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetObjectMethod(), responseObserver);
+    }
   }
 
   /**
@@ -332,6 +408,22 @@ public final class S3Grpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRemoveObjectMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void presignedGetObject(com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getPresignedGetObjectMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getObject(com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetObjectMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -384,6 +476,20 @@ public final class S3Grpc {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getRemoveObjectMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse presignedGetObject(com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getPresignedGetObjectMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse getObject(com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getGetObjectMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -435,6 +541,20 @@ public final class S3Grpc {
     public com.google.protobuf.Empty removeObject(com.github.saturn_xiv.palm.plugins.s3.v1.RemoveObjectRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRemoveObjectMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse presignedGetObject(com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getPresignedGetObjectMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse getObject(com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetObjectMethod(), getCallOptions(), request);
     }
   }
 
@@ -493,6 +613,22 @@ public final class S3Grpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getRemoveObjectMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse> presignedGetObject(
+        com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getPresignedGetObjectMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse> getObject(
+        com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetObjectMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_MAKE_BUCKET = 0;
@@ -500,6 +636,8 @@ public final class S3Grpc {
   private static final int METHODID_LIST_BUCKET = 2;
   private static final int METHODID_PUT_OBJECT = 3;
   private static final int METHODID_REMOVE_OBJECT = 4;
+  private static final int METHODID_PRESIGNED_GET_OBJECT = 5;
+  private static final int METHODID_GET_OBJECT = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -537,6 +675,14 @@ public final class S3Grpc {
         case METHODID_REMOVE_OBJECT:
           serviceImpl.removeObject((com.github.saturn_xiv.palm.plugins.s3.v1.RemoveObjectRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_PRESIGNED_GET_OBJECT:
+          serviceImpl.presignedGetObject((com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse>) responseObserver);
+          break;
+        case METHODID_GET_OBJECT:
+          serviceImpl.getObject((com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -591,6 +737,20 @@ public final class S3Grpc {
               com.github.saturn_xiv.palm.plugins.s3.v1.RemoveObjectRequest,
               com.google.protobuf.Empty>(
                 service, METHODID_REMOVE_OBJECT)))
+        .addMethod(
+          getPresignedGetObjectMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectRequest,
+              com.github.saturn_xiv.palm.plugins.s3.v1.PresignedGetObjectResponse>(
+                service, METHODID_PRESIGNED_GET_OBJECT)))
+        .addMethod(
+          getGetObjectMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectRequest,
+              com.github.saturn_xiv.palm.plugins.s3.v1.GetObjectResponse>(
+                service, METHODID_GET_OBJECT)))
         .build();
   }
 
@@ -644,6 +804,8 @@ public final class S3Grpc {
               .addMethod(getListBucketMethod())
               .addMethod(getPutObjectMethod())
               .addMethod(getRemoveObjectMethod())
+              .addMethod(getPresignedGetObjectMethod())
+              .addMethod(getGetObjectMethod())
               .build();
         }
       }

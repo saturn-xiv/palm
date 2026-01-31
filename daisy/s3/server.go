@@ -1,17 +1,12 @@
 package s3
 
 import (
-	"bytes"
 	"context"
-	_ "embed"
 	"fmt"
-	"log/slog"
 	"reflect"
-	"text/template"
 
 	"github.com/casbin/casbin/v3"
 	"github.com/minio/minio-go/v7"
-	"github.com/minio/minio-go/v7/pkg/lifecycle"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
@@ -21,9 +16,6 @@ import (
 	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
 	v2 "github.com/saturn-xiv/palm/daisy/s3/v2"
 )
-
-//go:embed anonymous-read.json
-var anonymous_read_json string
 
 type Server struct {
 	v2.UnimplementedS3Server
@@ -70,43 +62,10 @@ func (p *Server) MakeBucket(ctx context.Context, req *v2.MakeBucketRequest) (*em
 		}
 	}
 
-	slog.Info("create bucket", "name", req.Name)
-	err := p.client.MakeBucket(ctx, req.Name, minio.MakeBucketOptions{})
-	if err != nil {
+	if err := req.Execute(ctx, p.client); err != nil {
 		return nil, err
 	}
-	if req.Public {
-		slog.Info("set anonymous read access", "bucket", req.Name)
-		tpl, err := template.New("anonymous-read").Parse(anonymous_read_json)
-		if err != nil {
-			return nil, err
-		}
-		var buf bytes.Buffer
-		if err = tpl.Execute(&buf, map[string]interface{}{"bucket": req.Name}); err != nil {
-			return nil, err
-		}
-		policy := buf.String()
-		slog.Debug("set policy", "rule", policy)
-		if err = p.client.SetBucketPolicy(ctx, req.Name, policy); err != nil {
-			return nil, err
-		}
-	}
-	if req.ExpireAfterDays != nil {
-		config := lifecycle.NewConfiguration()
-		config.Rules = []lifecycle.Rule{
-			{
-				ID:     fmt.Sprintf("expire-after-%d-days", *req.ExpireAfterDays),
-				Status: "Enabled",
-				Expiration: lifecycle.Expiration{
-					Days: lifecycle.ExpirationDays(*req.ExpireAfterDays),
-				},
-			},
-		}
 
-		if err = p.client.SetBucketLifecycle(ctx, req.Name, config); err != nil {
-			return nil, err
-		}
-	}
 	return &emptypb.Empty{}, nil
 }
 
@@ -137,7 +96,7 @@ func (p *Server) RemoveObject(ctx context.Context, req *v2.RemoveObjectRequest) 
 	if err = can_remove_object(p.enforcer, user, req.Bucket, req.Object); err != nil {
 		return nil, err
 	}
-	if err = p.client.RemoveObject(ctx, req.Bucket, req.Object, minio.RemoveObjectOptions{ForceDelete: true}); err != nil {
+	if err = req.Execute(ctx, p.client); err != nil {
 		return nil, err
 	}
 
@@ -151,7 +110,7 @@ func (p *Server) PutObject(ctx context.Context, req *v2.PutObjectRequest) (*v2.P
 	if err = can_upload_object(p.enforcer, user, req.Bucket); err != nil {
 		return nil, err
 	}
-	url, err := p.client.PresignedPutObject(ctx, req.Bucket, req.Object, req.Ttl.AsDuration())
+	url, err := req.Execute(ctx, p.client)
 	if err != nil {
 		return nil, err
 	}
@@ -161,10 +120,39 @@ func (p *Server) PutObject(ctx context.Context, req *v2.PutObjectRequest) (*v2.P
 	}, nil
 }
 
+func (p *Server) PresignedGetObject(ctx context.Context, req *v2.PresignedGetObjectRequest) (*v2.PresignedGetObjectResponse, error) {
+	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = can_show_object(p.enforcer, user, req.Bucket, req.Object); err != nil {
+		return nil, err
+	}
+	url, err := req.Execute(ctx, p.client)
+	if err != nil {
+		return nil, err
+	}
+	return &v2.PresignedGetObjectResponse{Url: url.String()}, nil
+}
+
+func (p *Server) GetObject(ctx context.Context, req *v2.GetObjectRequest) (*v2.GetObjectResponse, error) {
+	url := req.Execute(p.client)
+	return &v2.GetObjectResponse{Url: url.String()}, nil
+}
+
 func can_remove_object(enforcer *casbin.Enforcer, user *models.User, bucket string, object string) error {
 	s3_o := s3_object{bucket: bucket, object: object}
 
 	if err := rbac.Can(enforcer, user, rbac_v2.ActionDelete(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_object)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: s3_o.code()}}); err == nil {
+		return nil
+	}
+	return rbac.Can(enforcer, user, rbac_v2.ActionManage(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
+}
+
+func can_show_object(enforcer *casbin.Enforcer, user *models.User, bucket string, object string) error {
+	s3_o := s3_object{bucket: bucket, object: object}
+
+	if err := rbac.Can(enforcer, user, rbac_v2.ActionInquiry(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_object)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: s3_o.code()}}); err == nil {
 		return nil
 	}
 	return rbac.Can(enforcer, user, rbac_v2.ActionManage(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})

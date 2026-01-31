@@ -255,5 +255,91 @@ export class S3Client {
     this.methodDescriptorRemoveObject);
   }
 
+  methodDescriptorPresignedGetObject = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/PresignedGetObject',
+    grpcWeb.MethodType.UNARY,
+    s3_pb.PresignedGetObjectRequest,
+    s3_pb.PresignedGetObjectResponse,
+    (request: s3_pb.PresignedGetObjectRequest) => {
+      return request.serializeBinary();
+    },
+    s3_pb.PresignedGetObjectResponse.deserializeBinary
+  );
+
+  presignedGetObject(
+    request: s3_pb.PresignedGetObjectRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<s3_pb.PresignedGetObjectResponse>;
+
+  presignedGetObject(
+    request: s3_pb.PresignedGetObjectRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: s3_pb.PresignedGetObjectResponse) => void): grpcWeb.ClientReadableStream<s3_pb.PresignedGetObjectResponse>;
+
+  presignedGetObject(
+    request: s3_pb.PresignedGetObjectRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: s3_pb.PresignedGetObjectResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.s3.v1.S3/PresignedGetObject',
+        request,
+        metadata || {},
+        this.methodDescriptorPresignedGetObject,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.s3.v1.S3/PresignedGetObject',
+    request,
+    metadata || {},
+    this.methodDescriptorPresignedGetObject);
+  }
+
+  methodDescriptorGetObject = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/GetObject',
+    grpcWeb.MethodType.UNARY,
+    s3_pb.GetObjectRequest,
+    s3_pb.GetObjectResponse,
+    (request: s3_pb.GetObjectRequest) => {
+      return request.serializeBinary();
+    },
+    s3_pb.GetObjectResponse.deserializeBinary
+  );
+
+  getObject(
+    request: s3_pb.GetObjectRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<s3_pb.GetObjectResponse>;
+
+  getObject(
+    request: s3_pb.GetObjectRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: s3_pb.GetObjectResponse) => void): grpcWeb.ClientReadableStream<s3_pb.GetObjectResponse>;
+
+  getObject(
+    request: s3_pb.GetObjectRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: s3_pb.GetObjectResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.s3.v1.S3/GetObject',
+        request,
+        metadata || {},
+        this.methodDescriptorGetObject,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.s3.v1.S3/GetObject',
+    request,
+    metadata || {},
+    this.methodDescriptorGetObject);
+  }
+
 }
 

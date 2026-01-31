@@ -9,14 +9,16 @@ import (
 type Attachment struct {
 	gorm.Model
 
-	UserID      uint   `gorm:"not null"`
-	Title       string `gorm:"index;not null;size:127"`
-	Bucket      string `gorm:"uniqueIndex:idx_bucket_object;not null;size:63"`
-	Object      string `gorm:"uniqueIndex:idx_bucket_object;not null;size:63"`
-	ContentType string `gorm:"index;not null;size:63"`
-	Size        uint   `gorm:"not null"`
-	Public      bool   `gorm:"not null;default:false"`
-	Version     uint   `gorm:"not null;default:0"`
+	UserID          uint   `gorm:"not null"`
+	Title           string `gorm:"index;not null;size:127"`
+	Bucket          string `gorm:"uniqueIndex:idx_bucket_object;not null;size:63"`
+	Object          string `gorm:"uniqueIndex:idx_bucket_object;not null;size:63"`
+	ContentType     string `gorm:"index;not null;size:63"`
+	Size            uint   `gorm:"not null"`
+	Public          bool   `gorm:"not null;default:false"`
+	UploadedAt      *time.Time
+	ExpireAfterDays *uint
+	Version         uint `gorm:"not null;default:0"`
 
 	Resources []*AttachmentResource
 	User      *User
@@ -24,6 +26,21 @@ type Attachment struct {
 
 func (Attachment) TableName() string {
 	return "attachments"
+}
+
+func (p *Attachment) Available() bool {
+	if p.DeletedAt.Valid {
+		return false
+	}
+	if p.UploadedAt == nil {
+		return false
+	}
+	if p.ExpireAfterDays != nil {
+		if time.Now().After(p.UpdatedAt.Add(time.Duration(*p.ExpireAfterDays) * 24 * time.Hour).Add(time.Minute * -1)) {
+			return false
+		}
+	}
+	return true
 }
 
 type AttachmentResource struct {

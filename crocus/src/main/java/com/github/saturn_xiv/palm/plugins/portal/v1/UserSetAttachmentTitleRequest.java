@@ -6,13 +6,13 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.Session}
+ * Protobuf type {@code palm.portal.v1.UserSetAttachmentTitleRequest}
  */
 @com.google.protobuf.Generated
-public final class Session extends
+public final class UserSetAttachmentTitleRequest extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.Session)
-    SessionOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.UserSetAttachmentTitleRequest)
+    UserSetAttachmentTitleRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -21,81 +21,73 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 31,
       /* patch= */ 1,
       /* suffix= */ "",
-      Session.class.getName());
+      UserSetAttachmentTitleRequest.class.getName());
   }
-  // Use Session.newBuilder() to construct.
-  private Session(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use UserSetAttachmentTitleRequest.newBuilder() to construct.
+  private UserSetAttachmentTitleRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private Session() {
-    type_ = 0;
-    sn_ = "";
+  private UserSetAttachmentTitleRequest() {
+    title_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Session_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Session_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.Session.class, com.github.saturn_xiv.palm.plugins.portal.v1.Session.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.Builder.class);
   }
 
-  public static final int TYPE_FIELD_NUMBER = 1;
-  private int type_ = 0;
+  public static final int ID_FIELD_NUMBER = 1;
+  private long id_ = 0L;
   /**
-   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
-   * @return The enum numeric value on the wire for type.
-   */
-  @java.lang.Override public int getTypeValue() {
-    return type_;
-  }
-  /**
-   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
-   * @return The type.
-   */
-  @java.lang.Override public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType getType() {
-    com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType result = com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.forNumber(type_);
-    return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.UNRECOGNIZED : result;
-  }
-
-  public static final int SN_FIELD_NUMBER = 2;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object sn_ = "";
-  /**
-   * <code>string sn = 2;</code>
-   * @return The sn.
+   * <code>int64 id = 1;</code>
+   * @return The id.
    */
   @java.lang.Override
-  public java.lang.String getSn() {
-    java.lang.Object ref = sn_;
+  public long getId() {
+    return id_;
+  }
+
+  public static final int TITLE_FIELD_NUMBER = 2;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object title_ = "";
+  /**
+   * <code>string title = 2;</code>
+   * @return The title.
+   */
+  @java.lang.Override
+  public java.lang.String getTitle() {
+    java.lang.Object ref = title_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      sn_ = s;
+      title_ = s;
       return s;
     }
   }
   /**
-   * <code>string sn = 2;</code>
-   * @return The bytes for sn.
+   * <code>string title = 2;</code>
+   * @return The bytes for title.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getSnBytes() {
-    java.lang.Object ref = sn_;
+      getTitleBytes() {
+    java.lang.Object ref = title_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      sn_ = b;
+      title_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -116,11 +108,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.EMAIL.getNumber()) {
-      output.writeEnum(1, type_);
+    if (id_ != 0L) {
+      output.writeInt64(1, id_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sn_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 2, sn_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(title_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 2, title_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -131,12 +123,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.EMAIL.getNumber()) {
+    if (id_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, type_);
+        .computeInt64Size(1, id_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sn_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, sn_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(title_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, title_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -148,14 +140,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Session)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.Session other = (com.github.saturn_xiv.palm.plugins.portal.v1.Session) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest) obj;
 
-    if (type_ != other.type_) return false;
-    if (!getSn()
-        .equals(other.getSn())) return false;
+    if (getId()
+        != other.getId()) return false;
+    if (!getTitle()
+        .equals(other.getTitle())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -167,53 +160,54 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + type_;
-    hash = (37 * hash) + SN_FIELD_NUMBER;
-    hash = (53 * hash) + getSn().hashCode();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getId());
+    hash = (37 * hash) + TITLE_FIELD_NUMBER;
+    hash = (53 * hash) + getTitle().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -221,26 +215,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -253,7 +247,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.Session prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -269,26 +263,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.Session}
+   * Protobuf type {@code palm.portal.v1.UserSetAttachmentTitleRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.Session)
-      com.github.saturn_xiv.palm.plugins.portal.v1.SessionOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserSetAttachmentTitleRequest)
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Session_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Session_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.Session.class, com.github.saturn_xiv.palm.plugins.portal.v1.Session.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Session.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.newBuilder()
     private Builder() {
 
     }
@@ -302,25 +296,25 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      type_ = 0;
-      sn_ = "";
+      id_ = 0L;
+      title_ = "";
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Session_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Session getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Session.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Session build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.Session result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -328,40 +322,40 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Session buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.Session result = new com.github.saturn_xiv.palm.plugins.portal.v1.Session(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.Session result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.type_ = type_;
+        result.id_ = id_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.sn_ = sn_;
+        result.title_ = title_;
       }
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Session) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.Session)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Session other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Session.getDefaultInstance()) return this;
-      if (other.type_ != 0) {
-        setTypeValue(other.getTypeValue());
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest.getDefaultInstance()) return this;
+      if (other.getId() != 0L) {
+        setId(other.getId());
       }
-      if (!other.getSn().isEmpty()) {
-        sn_ = other.sn_;
+      if (!other.getTitle().isEmpty()) {
+        title_ = other.title_;
         bitField0_ |= 0x00000002;
         onChanged();
       }
@@ -392,12 +386,12 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              type_ = input.readEnum();
+              id_ = input.readInt64();
               bitField0_ |= 0x00000001;
               break;
             } // case 8
             case 18: {
-              sn_ = input.readStringRequireUtf8();
+              title_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000002;
               break;
             } // case 18
@@ -418,146 +412,127 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private int type_ = 0;
+    private long id_ ;
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
-     * @return The enum numeric value on the wire for type.
-     */
-    @java.lang.Override public int getTypeValue() {
-      return type_;
-    }
-    /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
-     * @param value The enum numeric value on the wire for type to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTypeValue(int value) {
-      type_ = value;
-      bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
-     * @return The type.
+     * <code>int64 id = 1;</code>
+     * @return The id.
      */
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType getType() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType result = com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.forNumber(type_);
-      return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.UNRECOGNIZED : result;
+    public long getId() {
+      return id_;
     }
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
-     * @param value The type to set.
+     * <code>int64 id = 1;</code>
+     * @param value The id to set.
      * @return This builder for chaining.
      */
-    public Builder setType(com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType value) {
-      if (value == null) { throw new NullPointerException(); }
+    public Builder setId(long value) {
+
+      id_ = value;
       bitField0_ |= 0x00000001;
-      type_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearType() {
+    public Builder clearId() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      type_ = 0;
+      id_ = 0L;
       onChanged();
       return this;
     }
 
-    private java.lang.Object sn_ = "";
+    private java.lang.Object title_ = "";
     /**
-     * <code>string sn = 2;</code>
-     * @return The sn.
+     * <code>string title = 2;</code>
+     * @return The title.
      */
-    public java.lang.String getSn() {
-      java.lang.Object ref = sn_;
+    public java.lang.String getTitle() {
+      java.lang.Object ref = title_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        sn_ = s;
+        title_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string sn = 2;</code>
-     * @return The bytes for sn.
+     * <code>string title = 2;</code>
+     * @return The bytes for title.
      */
     public com.google.protobuf.ByteString
-        getSnBytes() {
-      java.lang.Object ref = sn_;
+        getTitleBytes() {
+      java.lang.Object ref = title_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        sn_ = b;
+        title_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string sn = 2;</code>
-     * @param value The sn to set.
+     * <code>string title = 2;</code>
+     * @param value The title to set.
      * @return This builder for chaining.
      */
-    public Builder setSn(
+    public Builder setTitle(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      sn_ = value;
+      title_ = value;
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>string sn = 2;</code>
+     * <code>string title = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearSn() {
-      sn_ = getDefaultInstance().getSn();
+    public Builder clearTitle() {
+      title_ = getDefaultInstance().getTitle();
       bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
     /**
-     * <code>string sn = 2;</code>
-     * @param value The bytes for sn to set.
+     * <code>string title = 2;</code>
+     * @param value The bytes for title to set.
      * @return This builder for chaining.
      */
-    public Builder setSnBytes(
+    public Builder setTitleBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      sn_ = value;
+      title_ = value;
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.Session)
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserSetAttachmentTitleRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Session)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.Session DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserSetAttachmentTitleRequest)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.Session();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Session getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Session>
-      PARSER = new com.google.protobuf.AbstractParser<Session>() {
+  private static final com.google.protobuf.Parser<UserSetAttachmentTitleRequest>
+      PARSER = new com.google.protobuf.AbstractParser<UserSetAttachmentTitleRequest>() {
     @java.lang.Override
-    public Session parsePartialFrom(
+    public UserSetAttachmentTitleRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -576,17 +551,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<Session> parser() {
+  public static com.google.protobuf.Parser<UserSetAttachmentTitleRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Session> getParserForType() {
+  public com.google.protobuf.Parser<UserSetAttachmentTitleRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.Session getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserSetAttachmentTitleRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

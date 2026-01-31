@@ -6,13 +6,13 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.User}
+ * Protobuf type {@code palm.portal.v1.UserDetail}
  */
 @com.google.protobuf.Generated
-public final class User extends
+public final class UserDetail extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.User)
-    UserOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.UserDetail)
+    UserDetailOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -21,30 +21,30 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 31,
       /* patch= */ 1,
       /* suffix= */ "",
-      User.class.getName());
+      UserDetail.class.getName());
   }
-  // Use User.newBuilder() to construct.
-  private User(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use UserDetail.newBuilder() to construct.
+  private UserDetail(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private User() {
+  private UserDetail() {
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_User_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserDetail_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_User_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserDetail_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.User.class, com.github.saturn_xiv.palm.plugins.portal.v1.User.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.Builder.class);
   }
 
   /**
-   * Protobuf enum {@code palm.portal.v1.User.ProviderType}
+   * Protobuf enum {@code palm.portal.v1.UserDetail.ProviderType}
    */
   public enum ProviderType
       implements com.google.protobuf.ProtocolMessageEnum {
@@ -161,7 +161,7 @@ private static final long serialVersionUID = 0L;
     }
     public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.User.getDescriptor().getEnumTypes().get(0);
+      return com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final ProviderType[] VALUES = values();
@@ -184,7 +184,7 @@ private static final long serialVersionUID = 0L;
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:palm.portal.v1.User.ProviderType)
+    // @@protoc_insertion_point(enum_scope:palm.portal.v1.UserDetail.ProviderType)
   }
 
   private byte memoizedIsInitialized = -1;
@@ -220,10 +220,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.User)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.User other = (com.github.saturn_xiv.palm.plugins.portal.v1.User) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail other = (com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail) obj;
 
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
@@ -241,44 +241,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -286,26 +286,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -318,7 +318,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.User prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -334,26 +334,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.User}
+   * Protobuf type {@code palm.portal.v1.UserDetail}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.User)
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.UserDetail)
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserDetailOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_User_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserDetail_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_User_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserDetail_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.User.class, com.github.saturn_xiv.palm.plugins.portal.v1.User.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.class, com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.User.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.newBuilder()
     private Builder() {
 
     }
@@ -372,17 +372,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_User_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_UserDetail_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.User getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.User.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.User build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.User result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -390,24 +390,24 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.User buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.User result = new com.github.saturn_xiv.palm.plugins.portal.v1.User(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail result = new com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail(this);
       onBuilt();
       return result;
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.User) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.User)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.User other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.User.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.getDefaultInstance()) return this;
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -450,23 +450,23 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.User)
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.UserDetail)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.User)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.User DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserDetail)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.User();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.User getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<User>
-      PARSER = new com.google.protobuf.AbstractParser<User>() {
+  private static final com.google.protobuf.Parser<UserDetail>
+      PARSER = new com.google.protobuf.AbstractParser<UserDetail>() {
     @java.lang.Override
-    public User parsePartialFrom(
+    public UserDetail parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -485,17 +485,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<User> parser() {
+  public static com.google.protobuf.Parser<UserDetail> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<User> getParserForType() {
+  public com.google.protobuf.Parser<UserDetail> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.User getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

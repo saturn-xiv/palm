@@ -6,7 +6,7 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 @com.google.protobuf.Generated
-public interface UserOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.portal.v1.User)
+public interface UserDetailOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.portal.v1.UserDetail)
     com.google.protobuf.MessageOrBuilder {
 }
