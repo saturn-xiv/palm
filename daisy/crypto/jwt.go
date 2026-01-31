@@ -1,13 +1,10 @@
 package crypto
 
 import (
-	"context"
 	"time"
 
 	"github.com/google/uuid"
 	"github.com/tink-crypto/tink-go/v2/jwt"
-
-	v2 "github.com/saturn-xiv/palm/daisy/crypto/v2"
 )
 
 type Jwt struct {
@@ -72,30 +69,4 @@ func NewJwt(name string) (*Jwt, error) {
 		return nil, err
 	}
 	return &Jwt{primitive: primitive}, nil
-}
-
-type JwtServer struct {
-	v2.UnimplementedJwtServer
-
-	jwt *Jwt
-}
-
-func NewJwtServer(jwt *Jwt) *JwtServer {
-	return &JwtServer{jwt: jwt}
-}
-
-func (p *JwtServer) Sign(ctx context.Context, req *v2.JwtSignRequest) (*v2.JwtSignResponse, error) {
-	token, err := p.jwt.Sign(req.Issuer, req.Subject, req.Audiences, req.Ttl.AsDuration())
-	if err != nil {
-		return nil, err
-	}
-	return &v2.JwtSignResponse{Token: token}, nil
-}
-
-func (p *JwtServer) Verify(ctx context.Context, req *v2.JwtVerifyRequest) (*v2.JwtVerifyResponse, error) {
-	jid, sub, err := p.jwt.Verify(req.Token, req.Issuer, req.Audience)
-	if err != nil {
-		return nil, err
-	}
-	return &v2.JwtVerifyResponse{Subject: sub, Id: jid}, nil
 }

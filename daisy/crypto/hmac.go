@@ -1,13 +1,8 @@
 package crypto
 
 import (
-	"context"
-
 	"github.com/tink-crypto/tink-go/v2/mac"
 	"github.com/tink-crypto/tink-go/v2/tink"
-	"google.golang.org/protobuf/types/known/emptypb"
-
-	v2 "github.com/saturn-xiv/palm/daisy/crypto/v2"
 )
 
 type Hmac struct {
@@ -32,30 +27,4 @@ func (p *Hmac) Compute(data []byte) ([]byte, error) {
 }
 func (p *Hmac) Verify(mac []byte, data []byte) error {
 	return p.primitive.VerifyMAC(mac, data)
-}
-
-type HmacServer struct {
-	v2.UnimplementedHMacServer
-
-	mac *Hmac
-}
-
-func NewHmacServer(mac *Hmac) *HmacServer {
-	return &HmacServer{mac: mac}
-}
-
-func (p *HmacServer) Compute(ctx context.Context, req *v2.HMacComputeRequest) (*v2.HMacComputeResponse, error) {
-	mac, err := p.mac.Compute(req.Data)
-	if err != nil {
-		return nil, err
-	}
-
-	return &v2.HMacComputeResponse{Mac: mac}, nil
-}
-func (p *HmacServer) Verify(ctx context.Context, req *v2.HMacVerifyRequest) (*emptypb.Empty, error) {
-	if err := p.mac.Verify(req.Mac, req.Data); err != nil {
-		return nil, err
-	}
-
-	return &emptypb.Empty{}, nil
 }

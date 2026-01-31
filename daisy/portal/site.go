@@ -6,17 +6,26 @@ import (
 	"strconv"
 
 	"google.golang.org/protobuf/types/known/emptypb"
+	"gorm.io/gorm"
 
+	"github.com/casbin/casbin/v3"
+	"github.com/saturn-xiv/palm/daisy/crypto"
 	"github.com/saturn-xiv/palm/daisy/iso4217"
 	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 )
 
 type SiteServer struct {
 	v2.UnimplementedSiteServer
+
+	db       *gorm.DB
+	enforcer *casbin.Enforcer
+	jwt      *crypto.Jwt
+	hmac     *crypto.Hmac
+	aead     *crypto.Aead
 }
 
-func NewSiteServer() *SiteServer {
-	return &SiteServer{}
+func NewSiteServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, hmac *crypto.Hmac, aead *crypto.Aead) *SiteServer {
+	return &SiteServer{db: db, enforcer: enforcer, jwt: jwt, hmac: hmac, aead: aead}
 }
 
 func (p *SiteServer) Currencies(ctx context.Context, req *emptypb.Empty) (*v2.CurrenciesResponse, error) {
