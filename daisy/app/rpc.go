@@ -2,8 +2,12 @@ package app
 
 import (
 	"fmt"
+	"log"
 	"log/slog"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/BurntSushi/toml"
 	"google.golang.org/grpc"
@@ -72,6 +76,20 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	s3_v2.RegisterS3Server(server, s3.NewServer(s3_client))
 	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(db, jwt, enforcer))
 
-	slog.Info("gRPC server listening at", "address", listen.Addr())
-	return server.Serve(listen)
+	signal_chan := make(chan os.Signal, 1)
+	signal.Notify(signal_chan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
+
+	go func() {
+		slog.Info("gRPC server listening at", "address", listen.Addr())
+		if err := server.Serve(listen); err != nil {
+			log.Fatalf("failed to serve: %v", err)
+		}
+	}()
+
+	sig := <-signal_chan
+	slog.Warn("received", "signal", sig)
+
+	server.GracefulStop()
+	slog.Info("gRPC server stopped")
+	return nil
 }
