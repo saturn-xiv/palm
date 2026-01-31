@@ -40,6 +40,92 @@ export class S3Client {
     this.options_ = options;
   }
 
+  methodDescriptorMakeBucket = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/MakeBucket',
+    grpcWeb.MethodType.UNARY,
+    s3_pb.MakeBucketRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: s3_pb.MakeBucketRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  makeBucket(
+    request: s3_pb.MakeBucketRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  makeBucket(
+    request: s3_pb.MakeBucketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  makeBucket(
+    request: s3_pb.MakeBucketRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.s3.v1.S3/MakeBucket',
+        request,
+        metadata || {},
+        this.methodDescriptorMakeBucket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.s3.v1.S3/MakeBucket',
+    request,
+    metadata || {},
+    this.methodDescriptorMakeBucket);
+  }
+
+  methodDescriptorBucketExists = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/BucketExists',
+    grpcWeb.MethodType.UNARY,
+    s3_pb.BucketExistsRequest,
+    s3_pb.BucketExistsResponse,
+    (request: s3_pb.BucketExistsRequest) => {
+      return request.serializeBinary();
+    },
+    s3_pb.BucketExistsResponse.deserializeBinary
+  );
+
+  bucketExists(
+    request: s3_pb.BucketExistsRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<s3_pb.BucketExistsResponse>;
+
+  bucketExists(
+    request: s3_pb.BucketExistsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: s3_pb.BucketExistsResponse) => void): grpcWeb.ClientReadableStream<s3_pb.BucketExistsResponse>;
+
+  bucketExists(
+    request: s3_pb.BucketExistsRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: s3_pb.BucketExistsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.s3.v1.S3/BucketExists',
+        request,
+        metadata || {},
+        this.methodDescriptorBucketExists,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.s3.v1.S3/BucketExists',
+    request,
+    metadata || {},
+    this.methodDescriptorBucketExists);
+  }
+
   methodDescriptorListBucket = new grpcWeb.MethodDescriptor(
     '/palm.s3.v1.S3/ListBucket',
     grpcWeb.MethodType.UNARY,
@@ -81,6 +167,92 @@ export class S3Client {
     request,
     metadata || {},
     this.methodDescriptorListBucket);
+  }
+
+  methodDescriptorPutObject = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/PutObject',
+    grpcWeb.MethodType.UNARY,
+    s3_pb.PutObjectRequest,
+    s3_pb.PutObjectResponse,
+    (request: s3_pb.PutObjectRequest) => {
+      return request.serializeBinary();
+    },
+    s3_pb.PutObjectResponse.deserializeBinary
+  );
+
+  putObject(
+    request: s3_pb.PutObjectRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<s3_pb.PutObjectResponse>;
+
+  putObject(
+    request: s3_pb.PutObjectRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: s3_pb.PutObjectResponse) => void): grpcWeb.ClientReadableStream<s3_pb.PutObjectResponse>;
+
+  putObject(
+    request: s3_pb.PutObjectRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: s3_pb.PutObjectResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.s3.v1.S3/PutObject',
+        request,
+        metadata || {},
+        this.methodDescriptorPutObject,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.s3.v1.S3/PutObject',
+    request,
+    metadata || {},
+    this.methodDescriptorPutObject);
+  }
+
+  methodDescriptorRemoveObject = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/RemoveObject',
+    grpcWeb.MethodType.UNARY,
+    s3_pb.RemoveObjectRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: s3_pb.RemoveObjectRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  removeObject(
+    request: s3_pb.RemoveObjectRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  removeObject(
+    request: s3_pb.RemoveObjectRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  removeObject(
+    request: s3_pb.RemoveObjectRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.s3.v1.S3/RemoveObject',
+        request,
+        metadata || {},
+        this.methodDescriptorRemoveObject,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.s3.v1.S3/RemoveObject',
+    request,
+    metadata || {},
+    this.methodDescriptorRemoveObject);
   }
 
 }

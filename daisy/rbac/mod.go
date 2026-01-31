@@ -153,3 +153,43 @@ func has_role(enforcer *casbin.Enforcer, user *v2.Subject_User, role *v2.Subject
 	}
 	return errors.New("deny")
 }
+
+func Can(enforcer *casbin.Enforcer, user *models.User, action *v2.Action, object *v2.Object) error {
+	return can(enforcer, &v2.Subject{By: &v2.Subject_User_{User: &v2.Subject_User{By: &v2.Subject_User_Id{Id: int64(user.ID)}}}}, action, object)
+}
+
+// func Can_(enforcer *casbin.Enforcer, user *models.User, action *v2.Action, resource_type string, resource_id uint) error {
+// 	subject := v2.Subject{By: &v2.Subject_User_{User: &v2.Subject_User{By: &v2.Subject_User_Id{Id: int64(user.ID)}}}}
+// 	object := v2.Object{Type: resource_type, By: &v2.Object_Id{Id: int64(resource_id)}}
+// 	if err := can(enforcer, &subject, action, &object); err == nil {
+// 		return nil
+// 	}
+// 	return Can(enforcer, user, action, resource_type)
+// }
+
+func can(enforcer *casbin.Enforcer, subject *v2.Subject, action *v2.Action, object *v2.Object) error {
+	subject_s, err := subject.ToString()
+	if err != nil {
+		return err
+	}
+	object_s, err := object.ToString()
+	if err != nil {
+		return err
+	}
+	action_s, err := action.ToString()
+	if err != nil {
+		return err
+	}
+	items, err := enforcer.GetImplicitPermissionsForUser(subject_s)
+	if err != nil {
+		return err
+	}
+	for _, it := range items {
+		if len(it) == 4 {
+			if it[0] == "p" && it[1] == subject_s && it[2] == object_s && it[3] == action_s {
+				return nil
+			}
+		}
+	}
+	return errors.New("deny")
+}

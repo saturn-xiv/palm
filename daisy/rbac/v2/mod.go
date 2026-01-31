@@ -225,6 +225,21 @@ func (p *Action) Is(code string) bool {
 	}
 }
 
+func ActionExecute() *Action {
+	return &Action{By: &Action_Execute_{Execute: &Action_Execute{}}}
+}
+
+func ActionAppend() *Action {
+	return &Action{By: &Action_Append_{Append: &Action_Append{}}}
+}
+func ActionDelete() *Action {
+	return &Action{By: &Action_Code{Code: "delete"}}
+}
+
+func ActionManage() *Action {
+	return &Action{By: &Action_Code{Code: "manage"}}
+}
+
 func NewPermission(rules []string) (*Permission, error) {
 	if len(rules) != 3 {
 		return nil, fmt.Errorf("unknows rules: %s", strings.Join(rules, ","))

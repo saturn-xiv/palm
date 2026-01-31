@@ -20,14 +20,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	S3_ListBucket_FullMethodName = "/palm.s3.v1.S3/ListBucket"
+	S3_MakeBucket_FullMethodName   = "/palm.s3.v1.S3/MakeBucket"
+	S3_BucketExists_FullMethodName = "/palm.s3.v1.S3/BucketExists"
+	S3_ListBucket_FullMethodName   = "/palm.s3.v1.S3/ListBucket"
+	S3_PutObject_FullMethodName    = "/palm.s3.v1.S3/PutObject"
+	S3_RemoveObject_FullMethodName = "/palm.s3.v1.S3/RemoveObject"
 )
 
 // S3Client is the client API for S3 service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type S3Client interface {
+	MakeBucket(ctx context.Context, in *MakeBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	BucketExists(ctx context.Context, in *BucketExistsRequest, opts ...grpc.CallOption) (*BucketExistsResponse, error)
 	ListBucket(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListBucketResponse, error)
+	PutObject(ctx context.Context, in *PutObjectRequest, opts ...grpc.CallOption) (*PutObjectResponse, error)
+	RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type s3Client struct {
@@ -36,6 +44,26 @@ type s3Client struct {
 
 func NewS3Client(cc grpc.ClientConnInterface) S3Client {
 	return &s3Client{cc}
+}
+
+func (c *s3Client) MakeBucket(ctx context.Context, in *MakeBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, S3_MakeBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) BucketExists(ctx context.Context, in *BucketExistsRequest, opts ...grpc.CallOption) (*BucketExistsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BucketExistsResponse)
+	err := c.cc.Invoke(ctx, S3_BucketExists_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *s3Client) ListBucket(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListBucketResponse, error) {
@@ -48,11 +76,35 @@ func (c *s3Client) ListBucket(ctx context.Context, in *emptypb.Empty, opts ...gr
 	return out, nil
 }
 
+func (c *s3Client) PutObject(ctx context.Context, in *PutObjectRequest, opts ...grpc.CallOption) (*PutObjectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectResponse)
+	err := c.cc.Invoke(ctx, S3_PutObject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, S3_RemoveObject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // S3Server is the server API for S3 service.
 // All implementations must embed UnimplementedS3Server
 // for forward compatibility.
 type S3Server interface {
+	MakeBucket(context.Context, *MakeBucketRequest) (*emptypb.Empty, error)
+	BucketExists(context.Context, *BucketExistsRequest) (*BucketExistsResponse, error)
 	ListBucket(context.Context, *emptypb.Empty) (*ListBucketResponse, error)
+	PutObject(context.Context, *PutObjectRequest) (*PutObjectResponse, error)
+	RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedS3Server()
 }
 
@@ -63,8 +115,20 @@ type S3Server interface {
 // pointer dereference when methods are called.
 type UnimplementedS3Server struct{}
 
+func (UnimplementedS3Server) MakeBucket(context.Context, *MakeBucketRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method MakeBucket not implemented")
+}
+func (UnimplementedS3Server) BucketExists(context.Context, *BucketExistsRequest) (*BucketExistsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method BucketExists not implemented")
+}
 func (UnimplementedS3Server) ListBucket(context.Context, *emptypb.Empty) (*ListBucketResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListBucket not implemented")
+}
+func (UnimplementedS3Server) PutObject(context.Context, *PutObjectRequest) (*PutObjectResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObject not implemented")
+}
+func (UnimplementedS3Server) RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method RemoveObject not implemented")
 }
 func (UnimplementedS3Server) mustEmbedUnimplementedS3Server() {}
 func (UnimplementedS3Server) testEmbeddedByValue()            {}
@@ -87,6 +151,42 @@ func RegisterS3Server(s grpc.ServiceRegistrar, srv S3Server) {
 	s.RegisterService(&S3_ServiceDesc, srv)
 }
 
+func _S3_MakeBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MakeBucketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).MakeBucket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_MakeBucket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).MakeBucket(ctx, req.(*MakeBucketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_BucketExists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BucketExistsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).BucketExists(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_BucketExists_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).BucketExists(ctx, req.(*BucketExistsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _S3_ListBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -105,6 +205,42 @@ func _S3_ListBucket_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _S3_PutObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).PutObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_PutObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).PutObject(ctx, req.(*PutObjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_RemoveObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).RemoveObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_RemoveObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).RemoveObject(ctx, req.(*RemoveObjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // S3_ServiceDesc is the grpc.ServiceDesc for S3 service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -113,8 +249,24 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*S3Server)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "MakeBucket",
+			Handler:    _S3_MakeBucket_Handler,
+		},
+		{
+			MethodName: "BucketExists",
+			Handler:    _S3_BucketExists_Handler,
+		},
+		{
 			MethodName: "ListBucket",
 			Handler:    _S3_ListBucket_Handler,
+		},
+		{
+			MethodName: "PutObject",
+			Handler:    _S3_PutObject_Handler,
+		},
+		{
+			MethodName: "RemoveObject",
+			Handler:    _S3_RemoveObject_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

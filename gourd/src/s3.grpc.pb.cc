@@ -25,7 +25,11 @@ namespace s3 {
 namespace v1 {
 
 static const char* S3_method_names[] = {
+  "/palm.s3.v1.S3/MakeBucket",
+  "/palm.s3.v1.S3/BucketExists",
   "/palm.s3.v1.S3/ListBucket",
+  "/palm.s3.v1.S3/PutObject",
+  "/palm.s3.v1.S3/RemoveObject",
 };
 
 std::unique_ptr< S3::Stub> S3::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,8 +39,58 @@ std::unique_ptr< S3::Stub> S3::NewStub(const std::shared_ptr< ::grpc::ChannelInt
 }
 
 S3::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_ListBucket_(S3_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_MakeBucket_(S3_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_BucketExists_(S3_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListBucket_(S3_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PutObject_(S3_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveObject_(S3_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status S3::Stub::MakeBucket(::grpc::ClientContext* context, const ::palm::s3::v1::MakeBucketRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::MakeBucketRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MakeBucket_, context, request, response);
+}
+
+void S3::Stub::async::MakeBucket(::grpc::ClientContext* context, const ::palm::s3::v1::MakeBucketRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::MakeBucketRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MakeBucket_, context, request, response, std::move(f));
+}
+
+void S3::Stub::async::MakeBucket(::grpc::ClientContext* context, const ::palm::s3::v1::MakeBucketRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MakeBucket_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* S3::Stub::PrepareAsyncMakeBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::MakeBucketRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::s3::v1::MakeBucketRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MakeBucket_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* S3::Stub::AsyncMakeBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::MakeBucketRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMakeBucketRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status S3::Stub::BucketExists(::grpc::ClientContext* context, const ::palm::s3::v1::BucketExistsRequest& request, ::palm::s3::v1::BucketExistsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::BucketExistsRequest, ::palm::s3::v1::BucketExistsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_BucketExists_, context, request, response);
+}
+
+void S3::Stub::async::BucketExists(::grpc::ClientContext* context, const ::palm::s3::v1::BucketExistsRequest* request, ::palm::s3::v1::BucketExistsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::BucketExistsRequest, ::palm::s3::v1::BucketExistsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_BucketExists_, context, request, response, std::move(f));
+}
+
+void S3::Stub::async::BucketExists(::grpc::ClientContext* context, const ::palm::s3::v1::BucketExistsRequest* request, ::palm::s3::v1::BucketExistsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_BucketExists_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::BucketExistsResponse>* S3::Stub::PrepareAsyncBucketExistsRaw(::grpc::ClientContext* context, const ::palm::s3::v1::BucketExistsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::BucketExistsResponse, ::palm::s3::v1::BucketExistsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_BucketExists_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::BucketExistsResponse>* S3::Stub::AsyncBucketExistsRaw(::grpc::ClientContext* context, const ::palm::s3::v1::BucketExistsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncBucketExistsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 ::grpc::Status S3::Stub::ListBucket(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::s3::v1::ListBucketResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::s3::v1::ListBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListBucket_, context, request, response);
@@ -61,9 +115,75 @@ void S3::Stub::async::ListBucket(::grpc::ClientContext* context, const ::google:
   return result;
 }
 
+::grpc::Status S3::Stub::PutObject(::grpc::ClientContext* context, const ::palm::s3::v1::PutObjectRequest& request, ::palm::s3::v1::PutObjectResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::PutObjectRequest, ::palm::s3::v1::PutObjectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PutObject_, context, request, response);
+}
+
+void S3::Stub::async::PutObject(::grpc::ClientContext* context, const ::palm::s3::v1::PutObjectRequest* request, ::palm::s3::v1::PutObjectResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::PutObjectRequest, ::palm::s3::v1::PutObjectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PutObject_, context, request, response, std::move(f));
+}
+
+void S3::Stub::async::PutObject(::grpc::ClientContext* context, const ::palm::s3::v1::PutObjectRequest* request, ::palm::s3::v1::PutObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PutObject_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::PutObjectResponse>* S3::Stub::PrepareAsyncPutObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PutObjectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::PutObjectResponse, ::palm::s3::v1::PutObjectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PutObject_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::PutObjectResponse>* S3::Stub::AsyncPutObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PutObjectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPutObjectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status S3::Stub::RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveObject_, context, request, response);
+}
+
+void S3::Stub::async::RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveObject_, context, request, response, std::move(f));
+}
+
+void S3::Stub::async::RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveObject_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* S3::Stub::PrepareAsyncRemoveObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::s3::v1::RemoveObjectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveObject_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* S3::Stub::AsyncRemoveObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRemoveObjectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 S3::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       S3_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::MakeBucketRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](S3::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::MakeBucketRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->MakeBucket(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      S3_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::BucketExistsRequest, ::palm::s3::v1::BucketExistsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](S3::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::BucketExistsRequest* req,
+             ::palm::s3::v1::BucketExistsResponse* resp) {
+               return service->BucketExists(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      S3_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< S3::Service, ::google::protobuf::Empty, ::palm::s3::v1::ListBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](S3::Service* service,
@@ -72,12 +192,60 @@ S3::Service::Service() {
              ::palm::s3::v1::ListBucketResponse* resp) {
                return service->ListBucket(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      S3_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::PutObjectRequest, ::palm::s3::v1::PutObjectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](S3::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::PutObjectRequest* req,
+             ::palm::s3::v1::PutObjectResponse* resp) {
+               return service->PutObject(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      S3_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](S3::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::RemoveObjectRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->RemoveObject(ctx, req, resp);
+             }, this)));
 }
 
 S3::Service::~Service() {
 }
 
+::grpc::Status S3::Service::MakeBucket(::grpc::ServerContext* context, const ::palm::s3::v1::MakeBucketRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status S3::Service::BucketExists(::grpc::ServerContext* context, const ::palm::s3::v1::BucketExistsRequest* request, ::palm::s3::v1::BucketExistsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status S3::Service::ListBucket(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::s3::v1::ListBucketResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status S3::Service::PutObject(::grpc::ServerContext* context, const ::palm::s3::v1::PutObjectRequest* request, ::palm::s3::v1::PutObjectResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status S3::Service::RemoveObject(::grpc::ServerContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

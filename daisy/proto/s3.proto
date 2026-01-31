@@ -8,9 +8,45 @@ option csharp_namespace = "Palm.Plugins.S3.Grpc";
 package palm.s3.v1;
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/duration.proto";
 
 service S3 {
+  rpc MakeBucket(MakeBucketRequest) returns (google.protobuf.Empty) {}
+  rpc BucketExists(BucketExistsRequest) returns (BucketExistsResponse) {}
   rpc ListBucket(google.protobuf.Empty) returns (ListBucketResponse) {}
+  rpc PutObject(PutObjectRequest) returns (PutObjectResponse) {}
+  rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
+}
+
+message RemoveObjectRequest {
+  string bucket = 1;
+  string object = 2;
+}
+
+message MakeBucketRequest {
+  string          name              = 1;
+  bool            public            = 2;
+  optional uint32 expire_after_days = 3;
+}
+
+message BucketExistsRequest {
+  string name = 1;
+}
+
+message BucketExistsResponse {
+  bool exists = 1;
+}
+
+message PutObjectRequest {
+  string bucket = 1;
+  string object = 2;
+  // string                   title        = 3;
+  // string                   content_type = 4;
+  google.protobuf.Duration ttl = 9;
+}
+
+message PutObjectResponse {
+  string url = 1;
 }
 
 message ListBucketResponse {
