@@ -26,11 +26,11 @@ func NewServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) *Server 
 
 func (p *Server) GetAllSubjects(ctx context.Context, req *emptypb.Empty) (*v2.SubjectsResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -51,11 +51,11 @@ func (p *Server) GetAllSubjects(ctx context.Context, req *emptypb.Empty) (*v2.Su
 
 func (p *Server) GetAllObjects(ctx context.Context, req *emptypb.Empty) (*v2.ObjectsResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -75,11 +75,11 @@ func (p *Server) GetAllObjects(ctx context.Context, req *emptypb.Empty) (*v2.Obj
 }
 func (p *Server) GetAllActions(ctx context.Context, req *emptypb.Empty) (*v2.ActionsResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -99,11 +99,11 @@ func (p *Server) GetAllActions(ctx context.Context, req *emptypb.Empty) (*v2.Act
 }
 func (p *Server) GetAllRoles(ctx context.Context, req *emptypb.Empty) (*v2.RolesResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -130,11 +130,11 @@ func (p *Server) GetAllRoles(ctx context.Context, req *emptypb.Empty) (*v2.Roles
 
 func (p *Server) GetRolesForUser(ctx context.Context, req *v2.Subject_User) (*v2.RolesResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -165,11 +165,11 @@ func (p *Server) GetRolesForUser(ctx context.Context, req *v2.Subject_User) (*v2
 }
 func (p *Server) GetImplicitRolesForUser(ctx context.Context, req *v2.Subject_User) (*v2.RolesResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -200,11 +200,11 @@ func (p *Server) GetImplicitRolesForUser(ctx context.Context, req *v2.Subject_Us
 }
 func (p *Server) GetUsersForRole(ctx context.Context, req *v2.Subject_Role) (*v2.UsersResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -234,27 +234,27 @@ func (p *Server) GetUsersForRole(ctx context.Context, req *v2.Subject_Role) (*v2
 	return &res, nil
 }
 func (p *Server) HasRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*emptypb.Empty, error) {
-	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
-		if err != nil {
-			return nil, err
-		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
-			return nil, err
-		}
+
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
 	}
-	if err := has_role(p.enforcer, req.User, req.Role); err != nil {
+	if err = ss.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+
+	if err := ss.Has(p.enforcer, req.Role); err != nil {
 		return nil, err
 	}
 	return &emptypb.Empty{}, nil
 }
 func (p *Server) AddRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -276,11 +276,11 @@ func (p *Server) AddRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*
 }
 func (p *Server) DeleteRoleForUser(ctx context.Context, req *v2.UserRoleRequest) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -302,11 +302,11 @@ func (p *Server) DeleteRoleForUser(ctx context.Context, req *v2.UserRoleRequest)
 }
 func (p *Server) DeleteUser(ctx context.Context, req *v2.Subject_User) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -323,11 +323,11 @@ func (p *Server) DeleteUser(ctx context.Context, req *v2.Subject_User) (*emptypb
 }
 func (p *Server) DeleteRole(ctx context.Context, req *v2.Subject_Role) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -345,11 +345,11 @@ func (p *Server) DeleteRole(ctx context.Context, req *v2.Subject_Role) (*emptypb
 
 func (p *Server) GetPermissionsForUser(ctx context.Context, req *v2.Subject_User) (*v2.PermissionsResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -374,11 +374,11 @@ func (p *Server) GetPermissionsForUser(ctx context.Context, req *v2.Subject_User
 }
 func (p *Server) GetImplicitPermissionsForUser(ctx context.Context, req *v2.Subject_User) (*v2.PermissionsResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -403,11 +403,11 @@ func (p *Server) GetImplicitPermissionsForUser(ctx context.Context, req *v2.Subj
 }
 func (p *Server) GetPermissionsForRole(ctx context.Context, req *v2.Subject_Role) (*v2.PermissionsResponse, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -432,11 +432,11 @@ func (p *Server) GetPermissionsForRole(ctx context.Context, req *v2.Subject_Role
 }
 func (p *Server) DeletePermission(ctx context.Context, req *v2.Permission) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -451,11 +451,11 @@ func (p *Server) DeletePermission(ctx context.Context, req *v2.Permission) (*emp
 }
 func (p *Server) AddPermission(ctx context.Context, req *v2.Permission) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -470,11 +470,11 @@ func (p *Server) AddPermission(ctx context.Context, req *v2.Permission) (*emptyp
 }
 func (p *Server) HasPermission(ctx context.Context, req *v2.Permission) (*emptypb.Empty, error) {
 	{
-		user, _, err := CurrentUser(ctx, p.db, p.jwt)
+		ss, err := CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}

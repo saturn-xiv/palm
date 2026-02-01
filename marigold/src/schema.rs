@@ -3,8 +3,8 @@
 diesel::table! {
     attachments (id) {
         id -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         user_id -> Int8,
         #[max_length = 127]
@@ -17,6 +17,8 @@ diesel::table! {
         content_type -> Varchar,
         size -> Int8,
         public -> Bool,
+        uploaded_at -> Nullable<Timestamptz>,
+        expire_after_days -> Nullable<Int8>,
         version -> Int8,
     }
 }
@@ -28,7 +30,7 @@ diesel::table! {
         #[max_length = 127]
         resource_type -> Varchar,
         resource_id -> Nullable<Int8>,
-        created_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
     }
 }
 
@@ -60,8 +62,8 @@ diesel::table! {
         left -> Int8,
         right -> Int8,
         version -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
     }
 }
 
@@ -72,15 +74,15 @@ diesel::table! {
         #[max_length = 127]
         resource_type -> Varchar,
         resource_id -> Nullable<Int8>,
-        created_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
     }
 }
 
 diesel::table! {
     email_users (id) {
         id -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         user_id -> Int8,
         #[max_length = 36]
@@ -101,14 +103,14 @@ diesel::table! {
 diesel::table! {
     google_oauth2_users (id) {
         id -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         user_id -> Int8,
-        #[max_length = 127]
-        code -> Varchar,
         #[max_length = 36]
         sn -> Varchar,
+        #[max_length = 127]
+        code -> Varchar,
         #[max_length = 63]
         name -> Varchar,
         #[max_length = 63]
@@ -135,8 +137,8 @@ diesel::table! {
         code -> Varchar,
         message -> Text,
         version -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
     }
 }
 
@@ -151,15 +153,15 @@ diesel::table! {
         #[max_length = 7]
         level -> Varchar,
         message -> Text,
-        created_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
     }
 }
 
 diesel::table! {
     settings (id) {
         id -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         #[max_length = 255]
         key -> Varchar,
@@ -172,8 +174,8 @@ diesel::table! {
 diesel::table! {
     tags (id) {
         id -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         #[max_length = 255]
         name -> Varchar,
@@ -188,15 +190,15 @@ diesel::table! {
         #[max_length = 127]
         resource_type -> Varchar,
         resource_id -> Nullable<Int8>,
-        created_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
     }
 }
 
 diesel::table! {
     users (id) {
         id -> Int8,
-        created_at -> Nullable<Timestamptz>,
-        updated_at -> Nullable<Timestamptz>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         #[max_length = 36]
         sn -> Varchar,

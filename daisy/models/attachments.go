@@ -2,12 +2,10 @@ package models
 
 import (
 	"time"
-
-	"gorm.io/gorm"
 )
 
 type Attachment struct {
-	gorm.Model
+	Model
 
 	UserID          uint   `gorm:"not null"`
 	Title           string `gorm:"index;not null;size:127"`
@@ -48,7 +46,7 @@ type AttachmentResource struct {
 	AttachmentID uint   `gorm:"not null"`
 	ResourceType string `gorm:"index;not null;size:127"`
 	ResourceId   uint
-	CreatedAt    time.Time
+	CreatedAt    time.Time `gorm:"not null"`
 
 	Attachment *Attachment
 }

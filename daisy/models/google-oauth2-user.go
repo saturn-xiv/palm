@@ -11,7 +11,7 @@ import (
 )
 
 type GoogleOauth2User struct {
-	gorm.Model
+	Model
 
 	UserID        uint   `gorm:"not null"`
 	Sn            string `gorm:"uniqueIndex;not null;size:36"`

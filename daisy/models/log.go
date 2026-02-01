@@ -9,13 +9,13 @@ import (
 )
 
 type Log struct {
-	ID        uint   `gorm:"primarykey"`
-	UserID    uint   `gorm:"not null"`
-	Plugin    string `gorm:"index;not null;size:15"`
-	Ip        string `gorm:"index;not null;size:45"`
-	Level     string `gorm:"index;not null;size:7"`
-	Message   string `gorm:"not null;type:text"`
-	CreatedAt time.Time
+	ID        uint      `gorm:"primarykey"`
+	UserID    uint      `gorm:"not null"`
+	Plugin    string    `gorm:"index;not null;size:15"`
+	Ip        string    `gorm:"index;not null;size:45"`
+	Level     string    `gorm:"index;not null;size:7"`
+	Message   string    `gorm:"not null;type:text"`
+	CreatedAt time.Time `gorm:"not null"`
 
 	User *User
 }

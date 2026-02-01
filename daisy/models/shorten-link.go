@@ -1,9 +1,7 @@
 package models
 
-import "gorm.io/gorm"
-
 type ShortenLink struct {
-	gorm.Model
+	Model
 
 	Url     string `gorm:"uniqueIndex;not null;size:127"`
 	Title   string `gorm:"index;not null;size:63"`

@@ -11,15 +11,15 @@ public interface SessionOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+   * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
    * @return The enum numeric value on the wire for type.
    */
   int getTypeValue();
   /**
-   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+   * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
    * @return The type.
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType getType();
+  com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType getType();
 
   /**
    * <code>string sn = 2;</code>
@@ -32,4 +32,43 @@ public interface SessionOrBuilder extends
    */
   com.google.protobuf.ByteString
       getSnBytes();
+
+  /**
+   * <code>string name = 3;</code>
+   * @return The name.
+   */
+  java.lang.String getName();
+  /**
+   * <code>string name = 3;</code>
+   * @return The bytes for name.
+   */
+  com.google.protobuf.ByteString
+      getNameBytes();
+
+  /**
+   * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+   * @return Whether the user field is set.
+   */
+  boolean hasUser();
+  /**
+   * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+   * @return The user.
+   */
+  com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getUser();
+  /**
+   * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+   */
+  com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder getUserOrBuilder();
+
+  /**
+   * <code>string client_ip = 9;</code>
+   * @return The clientIp.
+   */
+  java.lang.String getClientIp();
+  /**
+   * <code>string client_ip = 9;</code>
+   * @return The bytes for clientIp.
+   */
+  com.google.protobuf.ByteString
+      getClientIpBytes();
 }

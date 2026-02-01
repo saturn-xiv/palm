@@ -30,6 +30,8 @@ private static final long serialVersionUID = 0L;
   private Session() {
     type_ = 0;
     sn_ = "";
+    name_ = "";
+    clientIp_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -45,22 +47,167 @@ private static final long serialVersionUID = 0L;
             com.github.saturn_xiv.palm.plugins.portal.v1.Session.class, com.github.saturn_xiv.palm.plugins.portal.v1.Session.Builder.class);
   }
 
+  /**
+   * Protobuf enum {@code palm.portal.v1.Session.ProviderType}
+   */
+  public enum ProviderType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>EMAIL = 0;</code>
+     */
+    EMAIL(0),
+    /**
+     * <code>PHONE = 1;</code>
+     */
+    PHONE(1),
+    /**
+     * <code>GOOGLE_OAUTH2 = 2;</code>
+     */
+    GOOGLE_OAUTH2(2),
+    /**
+     * <code>WECHAT_OAUTH2 = 3;</code>
+     */
+    WECHAT_OAUTH2(3),
+    /**
+     * <code>WECHAT_MINI_PROGRAM = 4;</code>
+     */
+    WECHAT_MINI_PROGRAM(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 31,
+        /* patch= */ 1,
+        /* suffix= */ "",
+        ProviderType.class.getName());
+    }
+    /**
+     * <code>EMAIL = 0;</code>
+     */
+    public static final int EMAIL_VALUE = 0;
+    /**
+     * <code>PHONE = 1;</code>
+     */
+    public static final int PHONE_VALUE = 1;
+    /**
+     * <code>GOOGLE_OAUTH2 = 2;</code>
+     */
+    public static final int GOOGLE_OAUTH2_VALUE = 2;
+    /**
+     * <code>WECHAT_OAUTH2 = 3;</code>
+     */
+    public static final int WECHAT_OAUTH2_VALUE = 3;
+    /**
+     * <code>WECHAT_MINI_PROGRAM = 4;</code>
+     */
+    public static final int WECHAT_MINI_PROGRAM_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ProviderType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static ProviderType forNumber(int value) {
+      switch (value) {
+        case 0: return EMAIL;
+        case 1: return PHONE;
+        case 2: return GOOGLE_OAUTH2;
+        case 3: return WECHAT_OAUTH2;
+        case 4: return WECHAT_MINI_PROGRAM;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ProviderType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ProviderType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ProviderType>() {
+            public ProviderType findValueByNumber(int number) {
+              return ProviderType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.Session.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final ProviderType[] VALUES = values();
+
+    public static ProviderType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ProviderType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:palm.portal.v1.Session.ProviderType)
+  }
+
+  private int bitField0_;
   public static final int TYPE_FIELD_NUMBER = 1;
   private int type_ = 0;
   /**
-   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+   * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
    * @return The enum numeric value on the wire for type.
    */
   @java.lang.Override public int getTypeValue() {
     return type_;
   }
   /**
-   * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+   * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
    * @return The type.
    */
-  @java.lang.Override public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType getType() {
-    com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType result = com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.forNumber(type_);
-    return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.UNRECOGNIZED : result;
+  @java.lang.Override public com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType getType() {
+    com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType result = com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType.forNumber(type_);
+    return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType.UNRECOGNIZED : result;
   }
 
   public static final int SN_FIELD_NUMBER = 2;
@@ -102,6 +249,110 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int NAME_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object name_ = "";
+  /**
+   * <code>string name = 3;</code>
+   * @return The name.
+   */
+  @java.lang.Override
+  public java.lang.String getName() {
+    java.lang.Object ref = name_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      name_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string name = 3;</code>
+   * @return The bytes for name.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getNameBytes() {
+    java.lang.Object ref = name_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      name_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int USER_FIELD_NUMBER = 8;
+  private com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item user_;
+  /**
+   * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+   * @return Whether the user field is set.
+   */
+  @java.lang.Override
+  public boolean hasUser() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+   * @return The user.
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getUser() {
+    return user_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance() : user_;
+  }
+  /**
+   * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+   */
+  @java.lang.Override
+  public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder getUserOrBuilder() {
+    return user_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance() : user_;
+  }
+
+  public static final int CLIENT_IP_FIELD_NUMBER = 9;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object clientIp_ = "";
+  /**
+   * <code>string client_ip = 9;</code>
+   * @return The clientIp.
+   */
+  @java.lang.Override
+  public java.lang.String getClientIp() {
+    java.lang.Object ref = clientIp_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      clientIp_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string client_ip = 9;</code>
+   * @return The bytes for clientIp.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getClientIpBytes() {
+    java.lang.Object ref = clientIp_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      clientIp_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -116,11 +367,20 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.EMAIL.getNumber()) {
+    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType.EMAIL.getNumber()) {
       output.writeEnum(1, type_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sn_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 2, sn_);
+    }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 3, name_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(8, getUser());
+    }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientIp_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 9, clientIp_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -131,12 +391,22 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.EMAIL.getNumber()) {
+    if (type_ != com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType.EMAIL.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, type_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sn_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(2, sn_);
+    }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(3, name_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, getUser());
+    }
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientIp_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(9, clientIp_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -156,6 +426,15 @@ private static final long serialVersionUID = 0L;
     if (type_ != other.type_) return false;
     if (!getSn()
         .equals(other.getSn())) return false;
+    if (!getName()
+        .equals(other.getName())) return false;
+    if (hasUser() != other.hasUser()) return false;
+    if (hasUser()) {
+      if (!getUser()
+          .equals(other.getUser())) return false;
+    }
+    if (!getClientIp()
+        .equals(other.getClientIp())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -171,6 +450,14 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + type_;
     hash = (37 * hash) + SN_FIELD_NUMBER;
     hash = (53 * hash) + getSn().hashCode();
+    hash = (37 * hash) + NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getName().hashCode();
+    if (hasUser()) {
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
+    }
+    hash = (37 * hash) + CLIENT_IP_FIELD_NUMBER;
+    hash = (53 * hash) + getClientIp().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -290,13 +577,19 @@ private static final long serialVersionUID = 0L;
 
     // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Session.newBuilder()
     private Builder() {
-
+      maybeForceBuilderInitialization();
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-
+      maybeForceBuilderInitialization();
+    }
+    private void maybeForceBuilderInitialization() {
+      if (com.google.protobuf.GeneratedMessage
+              .alwaysUseFieldBuilders) {
+        internalGetUserFieldBuilder();
+      }
     }
     @java.lang.Override
     public Builder clear() {
@@ -304,6 +597,13 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       type_ = 0;
       sn_ = "";
+      name_ = "";
+      user_ = null;
+      if (userBuilder_ != null) {
+        userBuilder_.dispose();
+        userBuilder_ = null;
+      }
+      clientIp_ = "";
       return this;
     }
 
@@ -343,6 +643,20 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.sn_ = sn_;
       }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.name_ = name_;
+      }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.user_ = userBuilder_ == null
+            ? user_
+            : userBuilder_.build();
+        to_bitField0_ |= 0x00000001;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.clientIp_ = clientIp_;
+      }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -363,6 +677,19 @@ private static final long serialVersionUID = 0L;
       if (!other.getSn().isEmpty()) {
         sn_ = other.sn_;
         bitField0_ |= 0x00000002;
+        onChanged();
+      }
+      if (!other.getName().isEmpty()) {
+        name_ = other.name_;
+        bitField0_ |= 0x00000004;
+        onChanged();
+      }
+      if (other.hasUser()) {
+        mergeUser(other.getUser());
+      }
+      if (!other.getClientIp().isEmpty()) {
+        clientIp_ = other.clientIp_;
+        bitField0_ |= 0x00000010;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -401,6 +728,23 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 18
+            case 26: {
+              name_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
+            case 66: {
+              input.readMessage(
+                  internalGetUserFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 66
+            case 74: {
+              clientIp_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 74
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -420,14 +764,14 @@ private static final long serialVersionUID = 0L;
 
     private int type_ = 0;
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+     * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+     * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
      * @param value The enum numeric value on the wire for type to set.
      * @return This builder for chaining.
      */
@@ -438,20 +782,20 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+     * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
      * @return The type.
      */
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType getType() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType result = com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.forNumber(type_);
-      return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType.UNRECOGNIZED : result;
+    public com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType getType() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType result = com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType.forNumber(type_);
+      return result == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType.UNRECOGNIZED : result;
     }
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+     * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
      * @param value The type to set.
      * @return This builder for chaining.
      */
-    public Builder setType(com.github.saturn_xiv.palm.plugins.portal.v1.UserDetail.ProviderType value) {
+    public Builder setType(com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType value) {
       if (value == null) { throw new NullPointerException(); }
       bitField0_ |= 0x00000001;
       type_ = value.getNumber();
@@ -459,7 +803,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.palm.portal.v1.UserDetail.ProviderType type = 1;</code>
+     * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearType() {
@@ -537,6 +881,271 @@ private static final long serialVersionUID = 0L;
       checkByteStringIsUtf8(value);
       sn_ = value;
       bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object name_ = "";
+    /**
+     * <code>string name = 3;</code>
+     * @return The name.
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string name = 3;</code>
+     * @return The bytes for name.
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string name = 3;</code>
+     * @param value The name to set.
+     * @return This builder for chaining.
+     */
+    public Builder setName(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      name_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string name = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearName() {
+      name_ = getDefaultInstance().getName();
+      bitField0_ = (bitField0_ & ~0x00000004);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string name = 3;</code>
+     * @param value The bytes for name to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      name_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+
+    private com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item user_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder> userBuilder_;
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     * @return Whether the user field is set.
+     */
+    public boolean hasUser() {
+      return ((bitField0_ & 0x00000008) != 0);
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     * @return The user.
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item getUser() {
+      if (userBuilder_ == null) {
+        return user_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance() : user_;
+      } else {
+        return userBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    public Builder setUser(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item value) {
+      if (userBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        user_ = value;
+      } else {
+        userBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    public Builder setUser(
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder builderForValue) {
+      if (userBuilder_ == null) {
+        user_ = builderForValue.build();
+      } else {
+        userBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    public Builder mergeUser(com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item value) {
+      if (userBuilder_ == null) {
+        if (((bitField0_ & 0x00000008) != 0) &&
+          user_ != null &&
+          user_ != com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance()) {
+          getUserBuilder().mergeFrom(value);
+        } else {
+          user_ = value;
+        }
+      } else {
+        userBuilder_.mergeFrom(value);
+      }
+      if (user_ != null) {
+        bitField0_ |= 0x00000008;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    public Builder clearUser() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      user_ = null;
+      if (userBuilder_ != null) {
+        userBuilder_.dispose();
+        userBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder getUserBuilder() {
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return internalGetUserFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder getUserOrBuilder() {
+      if (userBuilder_ != null) {
+        return userBuilder_.getMessageOrBuilder();
+      } else {
+        return user_ == null ?
+            com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.getDefaultInstance() : user_;
+      }
+    }
+    /**
+     * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder> 
+        internalGetUserFieldBuilder() {
+      if (userBuilder_ == null) {
+        userBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.ItemOrBuilder>(
+                getUser(),
+                getParentForChildren(),
+                isClean());
+        user_ = null;
+      }
+      return userBuilder_;
+    }
+
+    private java.lang.Object clientIp_ = "";
+    /**
+     * <code>string client_ip = 9;</code>
+     * @return The clientIp.
+     */
+    public java.lang.String getClientIp() {
+      java.lang.Object ref = clientIp_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        clientIp_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string client_ip = 9;</code>
+     * @return The bytes for clientIp.
+     */
+    public com.google.protobuf.ByteString
+        getClientIpBytes() {
+      java.lang.Object ref = clientIp_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        clientIp_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string client_ip = 9;</code>
+     * @param value The clientIp to set.
+     * @return This builder for chaining.
+     */
+    public Builder setClientIp(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      clientIp_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string client_ip = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearClientIp() {
+      clientIp_ = getDefaultInstance().getClientIp();
+      bitField0_ = (bitField0_ & ~0x00000010);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string client_ip = 9;</code>
+     * @param value The bytes for clientIp to set.
+     * @return This builder for chaining.
+     */
+    public Builder setClientIpBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      clientIp_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }

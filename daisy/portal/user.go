@@ -2,6 +2,7 @@ package portal
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/casbin/casbin/v3"
@@ -35,17 +36,17 @@ func NewUserServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, s3 *
 }
 
 func (p *UserServer) IndexAttachment(ctx context.Context, req *v2.Page) (*v2.UserIndexAttachmentResponse, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
 	var total int64
-	if err := p.db.Model(&models.Attachment{}).Where("user_id = ?", user.ID).Count(&total).Error; err != nil {
+	if err := p.db.Model(&models.Attachment{}).Where("user_id = ?", ss.User.Id).Count(&total).Error; err != nil {
 		return nil, err
 	}
 	pagination := v2.NewPagination(req, total)
 	var items []models.Attachment
-	if err := p.db.Where("user_id = ?", user.ID).Order("updated_at DESC").Offset(int(pagination.Current.Offset())).Limit(int(pagination.Current.Size)).Find(&items).Error; err != nil {
+	if err := p.db.Where("user_id = ?", ss.User.Id).Order("updated_at DESC").Offset(int(pagination.Current.Offset())).Limit(int(pagination.Current.Size)).Find(&items).Error; err != nil {
 		return nil, err
 	}
 	res := v2.UserIndexAttachmentResponse{
@@ -58,7 +59,7 @@ func (p *UserServer) IndexAttachment(ctx context.Context, req *v2.Page) (*v2.Use
 	return &res, nil
 }
 func (p *UserServer) CreateAttachment(ctx context.Context, req *v2.UserCreateAttachmentRequest) (*v2.UserCreateAttachmentUploadResponse, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +72,7 @@ func (p *UserServer) CreateAttachment(ctx context.Context, req *v2.UserCreateAtt
 	}
 	{
 		it := models.Attachment{
-			UserID:      user.ID,
+			UserID:      uint(ss.User.Id),
 			Title:       req.Title,
 			ContentType: req.ContentType,
 			Bucket:      bucket,
@@ -97,7 +98,7 @@ func (p *UserServer) CreateAttachment(ctx context.Context, req *v2.UserCreateAtt
 	}, nil
 }
 func (p *UserServer) ShowAttachment(ctx context.Context, req *v2.UserShowAttachmentRequest) (*v2.UserShowAttachmentResponse, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +106,7 @@ func (p *UserServer) ShowAttachment(ctx context.Context, req *v2.UserShowAttachm
 	if err = p.db.First(&it, req.Id).Error; err != nil {
 		return nil, err
 	}
-	if it.UserID != user.ID {
+	if it.UserID != uint(ss.User.Id) {
 		return nil, status.Error(codes.PermissionDenied, "set attachment uploaded")
 	}
 	if !it.Available() {
@@ -126,7 +127,7 @@ func (p *UserServer) ShowAttachment(ctx context.Context, req *v2.UserShowAttachm
 	return &v2.UserShowAttachmentResponse{Url: url.String()}, nil
 }
 func (p *UserServer) SetAttachmentUploaded(ctx context.Context, req *v2.IdRequest) (*emptypb.Empty, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -134,7 +135,7 @@ func (p *UserServer) SetAttachmentUploaded(ctx context.Context, req *v2.IdReques
 	if err = p.db.First(&it, req.Id).Error; err != nil {
 		return nil, err
 	}
-	if it.UserID != user.ID {
+	if it.UserID != uint(ss.User.Id) {
 		return nil, status.Error(codes.PermissionDenied, "set attachment uploaded")
 	}
 	if it.UploadedAt != nil {
@@ -148,7 +149,7 @@ func (p *UserServer) SetAttachmentUploaded(ctx context.Context, req *v2.IdReques
 	return &emptypb.Empty{}, nil
 }
 func (p *UserServer) DestroyAttachment(ctx context.Context, req *v2.IdRequest) (*emptypb.Empty, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +157,7 @@ func (p *UserServer) DestroyAttachment(ctx context.Context, req *v2.IdRequest) (
 	if err = p.db.First(&it, req.Id).Error; err != nil {
 		return nil, err
 	}
-	if it.UserID != user.ID {
+	if it.UserID != uint(ss.User.Id) {
 		return nil, status.Error(codes.PermissionDenied, "destroy attachment")
 	}
 	if err = p.db.Delete(&it).Error; err != nil {
@@ -172,7 +173,7 @@ func (p *UserServer) DestroyAttachment(ctx context.Context, req *v2.IdRequest) (
 }
 
 func (p *UserServer) SetAttachmentTitle(ctx context.Context, req *v2.UserSetAttachmentTitleRequest) (*emptypb.Empty, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -180,7 +181,7 @@ func (p *UserServer) SetAttachmentTitle(ctx context.Context, req *v2.UserSetAtta
 	if err = p.db.First(&it, req.Id).Error; err != nil {
 		return nil, err
 	}
-	if it.UserID != user.ID {
+	if it.UserID != uint(ss.User.Id) {
 		return nil, status.Error(codes.PermissionDenied, "set attachment title")
 	}
 	if err = p.db.Model(&it).Updates(map[string]interface{}{"title": req.Title}).Error; err != nil {
@@ -191,6 +192,119 @@ func (p *UserServer) SetAttachmentTitle(ctx context.Context, req *v2.UserSetAtta
 		if err = req.Execute(ctx, p.s3); err != nil {
 			return nil, err
 		}
+	}
+	return &emptypb.Empty{}, nil
+}
+
+func (p *UserServer) Index(ctx context.Context, req *v2.Page) (*v2.UserIndexResponse, error) {
+	{
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		if err != nil {
+			return nil, err
+		}
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
+			return nil, err
+		}
+	}
+	var total int64
+	if err := p.db.Model(&models.User{}).Count(&total).Error; err != nil {
+		return nil, err
+	}
+	pagination := v2.NewPagination(req, total)
+	var items []models.User
+	if err := p.db.Order("updated_at DESC").Offset(int(pagination.Current.Offset())).Limit(int(pagination.Current.Size)).Find(&items).Error; err != nil {
+		return nil, err
+	}
+	res := v2.UserIndexResponse{
+		Items:      []*v2.UserIndexResponse_Item{},
+		Pagination: pagination,
+	}
+	for _, it := range items {
+		res.Items = append(res.Items, rbac.NewUser(&it))
+	}
+	return &res, nil
+}
+func (p *UserServer) Destroy(ctx context.Context, req *v2.IdRequest) (*emptypb.Empty, error) {
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = ss.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+
+	var it models.User
+	if err := p.db.First(&it, req.Id).Error; err != nil {
+		return nil, err
+	}
+	if err := ss.IsRoot(p.enforcer); err == nil {
+		return nil, status.Error(codes.PermissionDenied, "it is a root user")
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Delete(&it).Error; err != nil {
+			return err
+		}
+		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.Log_WARNING, fmt.Sprintf("deleted by %s", ss.Name))
+	}); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
+func (p *UserServer) Lock(ctx context.Context, req *v2.IdRequest) (*emptypb.Empty, error) {
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = ss.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+
+	var it models.User
+	if err := p.db.First(&it, req.Id).Error; err != nil {
+		return nil, err
+	}
+	if err := ss.IsRoot(p.enforcer); err == nil {
+		return nil, status.Error(codes.PermissionDenied, "it is a root user")
+	}
+	if it.LockedAt != nil {
+		return nil, status.Error(codes.InvalidArgument, "user is already locked")
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Model(&it).Updates(map[string]interface{}{"locked_at": nil}).Error; err != nil {
+			return err
+		}
+		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.Log_WARNING, fmt.Sprintf("lock by %s", ss.Name))
+	}); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
+func (p *UserServer) Unlock(ctx context.Context, req *v2.IdRequest) (*emptypb.Empty, error) {
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = ss.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+
+	var it models.User
+	if err := p.db.First(&it, req.Id).Error; err != nil {
+		return nil, err
+	}
+	if err := ss.IsRoot(p.enforcer); err == nil {
+		return nil, status.Error(codes.PermissionDenied, "it is a root user")
+	}
+	if it.LockedAt == nil {
+		return nil, status.Error(codes.InvalidArgument, "user isn't locked")
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Model(&it).Updates(map[string]interface{}{"locked_at": nil}).Error; err != nil {
+			return err
+		}
+		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.Log_WARNING, fmt.Sprintf("unlock by %s", ss.Name))
+	}); err != nil {
+		return nil, err
 	}
 	return &emptypb.Empty{}, nil
 }

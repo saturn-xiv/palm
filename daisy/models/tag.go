@@ -2,12 +2,10 @@ package models
 
 import (
 	"time"
-
-	"gorm.io/gorm"
 )
 
 type Tag struct {
-	gorm.Model
+	Model
 
 	Name    string `gorm:"uniqueIndex;not null;size:255"`
 	Version uint   `gorm:"not null;default:0"`
@@ -24,7 +22,7 @@ type TagResource struct {
 	TagID        uint   `gorm:"not null"`
 	ResourceType string `gorm:"index;not null;size:127"`
 	ResourceId   uint
-	CreatedAt    time.Time
+	CreatedAt    time.Time `gorm:"not null"`
 
 	Tag *Tag
 }

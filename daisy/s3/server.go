@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/daisy/crypto"
-	"github.com/saturn-xiv/palm/daisy/models"
+	portal_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/rbac"
 	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
 	v2 "github.com/saturn-xiv/palm/daisy/s3/v2"
@@ -32,11 +32,11 @@ func NewServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, client *
 
 func (p *Server) ListBucket(ctx context.Context, req *emptypb.Empty) (*v2.ListBucketResponse, error) {
 	{
-		user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = rbac.IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -53,11 +53,11 @@ func (p *Server) ListBucket(ctx context.Context, req *emptypb.Empty) (*v2.ListBu
 
 func (p *Server) MakeBucket(ctx context.Context, req *v2.MakeBucketRequest) (*emptypb.Empty, error) {
 	{
-		user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = rbac.IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -71,11 +71,11 @@ func (p *Server) MakeBucket(ctx context.Context, req *v2.MakeBucketRequest) (*em
 
 func (p *Server) BucketExists(ctx context.Context, req *v2.BucketExistsRequest) (*v2.BucketExistsResponse, error) {
 	{
-		user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = rbac.IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -89,11 +89,11 @@ func (p *Server) BucketExists(ctx context.Context, req *v2.BucketExistsRequest) 
 }
 
 func (p *Server) RemoveObject(ctx context.Context, req *v2.RemoveObjectRequest) (*emptypb.Empty, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
-	if err = can_remove_object(p.enforcer, user, req.Bucket, req.Object); err != nil {
+	if err = can_remove_object(p.enforcer, ss, req.Bucket, req.Object); err != nil {
 		return nil, err
 	}
 	if err = req.Execute(ctx, p.client); err != nil {
@@ -103,11 +103,11 @@ func (p *Server) RemoveObject(ctx context.Context, req *v2.RemoveObjectRequest) 
 	return &emptypb.Empty{}, nil
 }
 func (p *Server) PutObject(ctx context.Context, req *v2.PutObjectRequest) (*v2.PutObjectResponse, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
-	if err = can_upload_object(p.enforcer, user, req.Bucket); err != nil {
+	if err = can_upload_object(p.enforcer, ss, req.Bucket); err != nil {
 		return nil, err
 	}
 	url, err := req.Execute(ctx, p.client)
@@ -121,11 +121,11 @@ func (p *Server) PutObject(ctx context.Context, req *v2.PutObjectRequest) (*v2.P
 }
 
 func (p *Server) PresignedGetObject(ctx context.Context, req *v2.PresignedGetObjectRequest) (*v2.PresignedGetObjectResponse, error) {
-	user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
-	if err = can_show_object(p.enforcer, user, req.Bucket, req.Object); err != nil {
+	if err = can_show_object(p.enforcer, ss, req.Bucket, req.Object); err != nil {
 		return nil, err
 	}
 	url, err := req.Execute(ctx, p.client)
@@ -140,26 +140,26 @@ func (p *Server) GetObject(ctx context.Context, req *v2.GetObjectRequest) (*v2.G
 	return &v2.GetObjectResponse{Url: url.String()}, nil
 }
 
-func can_remove_object(enforcer *casbin.Enforcer, user *models.User, bucket string, object string) error {
+func can_remove_object(enforcer *casbin.Enforcer, ss *portal_v2.Session, bucket string, object string) error {
 	s3_o := s3_object{bucket: bucket, object: object}
 
-	if err := rbac.Can(enforcer, user, rbac_v2.ActionDelete(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_object)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: s3_o.code()}}); err == nil {
+	if err := ss.Can(enforcer, rbac_v2.ActionDelete(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_object)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: s3_o.code()}}); err == nil {
 		return nil
 	}
-	return rbac.Can(enforcer, user, rbac_v2.ActionManage(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
+	return ss.Can(enforcer, rbac_v2.ActionManage(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
 }
 
-func can_show_object(enforcer *casbin.Enforcer, user *models.User, bucket string, object string) error {
+func can_show_object(enforcer *casbin.Enforcer, ss *portal_v2.Session, bucket string, object string) error {
 	s3_o := s3_object{bucket: bucket, object: object}
 
-	if err := rbac.Can(enforcer, user, rbac_v2.ActionInquiry(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_object)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: s3_o.code()}}); err == nil {
+	if err := ss.Can(enforcer, rbac_v2.ActionInquiry(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_object)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: s3_o.code()}}); err == nil {
 		return nil
 	}
-	return rbac.Can(enforcer, user, rbac_v2.ActionManage(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
+	return ss.Can(enforcer, rbac_v2.ActionManage(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
 }
 
-func can_upload_object(enforcer *casbin.Enforcer, user *models.User, bucket string) error {
-	return rbac.Can(enforcer, user, rbac_v2.ActionAppend(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
+func can_upload_object(enforcer *casbin.Enforcer, ss *portal_v2.Session, bucket string) error {
+	return ss.Can(enforcer, rbac_v2.ActionAppend(), &rbac_v2.Object{Type: reflect.TypeOf((*s3_bucket)(nil)).Elem().Name(), By: &rbac_v2.Object_Code{Code: bucket}})
 }
 
 type s3_bucket struct{}

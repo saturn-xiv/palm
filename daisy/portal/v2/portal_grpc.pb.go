@@ -20,9 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Locale_Index_FullMethodName  = "/palm.portal.v1.Locale/Index"
-	Locale_Set_FullMethodName    = "/palm.portal.v1.Locale/Set"
-	Locale_ByLang_FullMethodName = "/palm.portal.v1.Locale/ByLang"
+	Locale_Index_FullMethodName   = "/palm.portal.v1.Locale/Index"
+	Locale_Set_FullMethodName     = "/palm.portal.v1.Locale/Set"
+	Locale_ByLang_FullMethodName  = "/palm.portal.v1.Locale/ByLang"
+	Locale_Destroy_FullMethodName = "/palm.portal.v1.Locale/Destroy"
 )
 
 // LocaleClient is the client API for Locale service.
@@ -34,6 +35,7 @@ type LocaleClient interface {
 	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
 	Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error)
+	Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type localeClient struct {
@@ -74,6 +76,16 @@ func (c *localeClient) ByLang(ctx context.Context, in *LocaleByLangRequest, opts
 	return out, nil
 }
 
+func (c *localeClient) Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Locale_Destroy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LocaleServer is the server API for Locale service.
 // All implementations must embed UnimplementedLocaleServer
 // for forward compatibility.
@@ -83,6 +95,7 @@ type LocaleServer interface {
 	Index(context.Context, *Page) (*LocaleIndexResponse, error)
 	Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error)
 	ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error)
+	Destroy(context.Context, *IdRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedLocaleServer()
 }
 
@@ -101,6 +114,9 @@ func (UnimplementedLocaleServer) Set(context.Context, *LocaleSetRequest) (*empty
 }
 func (UnimplementedLocaleServer) ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ByLang not implemented")
+}
+func (UnimplementedLocaleServer) Destroy(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Destroy not implemented")
 }
 func (UnimplementedLocaleServer) mustEmbedUnimplementedLocaleServer() {}
 func (UnimplementedLocaleServer) testEmbeddedByValue()                {}
@@ -177,6 +193,24 @@ func _Locale_ByLang_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Locale_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).Destroy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_Destroy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).Destroy(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Locale_ServiceDesc is the grpc.ServiceDesc for Locale service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -195,6 +229,10 @@ var Locale_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ByLang",
 			Handler:    _Locale_ByLang_Handler,
+		},
+		{
+			MethodName: "Destroy",
+			Handler:    _Locale_Destroy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -304,6 +342,10 @@ var Site_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	User_Index_FullMethodName                 = "/palm.portal.v1.User/Index"
+	User_Destroy_FullMethodName               = "/palm.portal.v1.User/Destroy"
+	User_Lock_FullMethodName                  = "/palm.portal.v1.User/Lock"
+	User_Unlock_FullMethodName                = "/palm.portal.v1.User/Unlock"
 	User_IndexAttachment_FullMethodName       = "/palm.portal.v1.User/IndexAttachment"
 	User_CreateAttachment_FullMethodName      = "/palm.portal.v1.User/CreateAttachment"
 	User_ShowAttachment_FullMethodName        = "/palm.portal.v1.User/ShowAttachment"
@@ -316,6 +358,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
+	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexResponse, error)
+	Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Lock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Unlock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	IndexAttachment(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexAttachmentResponse, error)
 	CreateAttachment(ctx context.Context, in *UserCreateAttachmentRequest, opts ...grpc.CallOption) (*UserCreateAttachmentUploadResponse, error)
 	ShowAttachment(ctx context.Context, in *UserShowAttachmentRequest, opts ...grpc.CallOption) (*UserShowAttachmentResponse, error)
@@ -330,6 +376,46 @@ type userClient struct {
 
 func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
+}
+
+func (c *userClient) Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserIndexResponse)
+	err := c.cc.Invoke(ctx, User_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Destroy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Lock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Lock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Unlock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Unlock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *userClient) IndexAttachment(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexAttachmentResponse, error) {
@@ -396,6 +482,10 @@ func (c *userClient) DestroyAttachment(ctx context.Context, in *IdRequest, opts 
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
 type UserServer interface {
+	Index(context.Context, *Page) (*UserIndexResponse, error)
+	Destroy(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Lock(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Unlock(context.Context, *IdRequest) (*emptypb.Empty, error)
 	IndexAttachment(context.Context, *Page) (*UserIndexAttachmentResponse, error)
 	CreateAttachment(context.Context, *UserCreateAttachmentRequest) (*UserCreateAttachmentUploadResponse, error)
 	ShowAttachment(context.Context, *UserShowAttachmentRequest) (*UserShowAttachmentResponse, error)
@@ -412,6 +502,18 @@ type UserServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServer struct{}
 
+func (UnimplementedUserServer) Index(context.Context, *Page) (*UserIndexResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedUserServer) Destroy(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Destroy not implemented")
+}
+func (UnimplementedUserServer) Lock(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Lock not implemented")
+}
+func (UnimplementedUserServer) Unlock(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Unlock not implemented")
+}
 func (UnimplementedUserServer) IndexAttachment(context.Context, *Page) (*UserIndexAttachmentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method IndexAttachment not implemented")
 }
@@ -449,6 +551,78 @@ func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&User_ServiceDesc, srv)
+}
+
+func _User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Index(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Destroy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Destroy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Destroy(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Lock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Lock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Lock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Lock(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Unlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Unlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Unlock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Unlock(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _User_IndexAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -566,6 +740,22 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "palm.portal.v1.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Index",
+			Handler:    _User_Index_Handler,
+		},
+		{
+			MethodName: "Destroy",
+			Handler:    _User_Destroy_Handler,
+		},
+		{
+			MethodName: "Lock",
+			Handler:    _User_Lock_Handler,
+		},
+		{
+			MethodName: "Unlock",
+			Handler:    _User_Unlock_Handler,
+		},
 		{
 			MethodName: "IndexAttachment",
 			Handler:    _User_IndexAttachment_Handler,

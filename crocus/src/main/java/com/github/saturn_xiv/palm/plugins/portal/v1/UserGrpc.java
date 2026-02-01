@@ -13,6 +13,130 @@ public final class UserGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse> getIndexMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Index",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
+      responseType = com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse> getIndexMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse> getIndexMethod;
+    if ((getIndexMethod = UserGrpc.getIndexMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getIndexMethod = UserGrpc.getIndexMethod) == null) {
+          UserGrpc.getIndexMethod = getIndexMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Index"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("Index"))
+              .build();
+        }
+      }
+    }
+    return getIndexMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getDestroyMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Destroy",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getDestroyMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty> getDestroyMethod;
+    if ((getDestroyMethod = UserGrpc.getDestroyMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getDestroyMethod = UserGrpc.getDestroyMethod) == null) {
+          UserGrpc.getDestroyMethod = getDestroyMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Destroy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("Destroy"))
+              .build();
+        }
+      }
+    }
+    return getDestroyMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getLockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Lock",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getLockMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty> getLockMethod;
+    if ((getLockMethod = UserGrpc.getLockMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getLockMethod = UserGrpc.getLockMethod) == null) {
+          UserGrpc.getLockMethod = getLockMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Lock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("Lock"))
+              .build();
+        }
+      }
+    }
+    return getLockMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getUnlockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Unlock",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getUnlockMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty> getUnlockMethod;
+    if ((getUnlockMethod = UserGrpc.getUnlockMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getUnlockMethod = UserGrpc.getUnlockMethod) == null) {
+          UserGrpc.getUnlockMethod = getUnlockMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Unlock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("Unlock"))
+              .build();
+        }
+      }
+    }
+    return getUnlockMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
       com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexAttachmentResponse> getIndexAttachmentMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -263,6 +387,34 @@ public final class UserGrpc {
 
     /**
      */
+    default void index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDestroyMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void lock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getLockMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void unlock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUnlockMethod(), responseObserver);
+    }
+
+    /**
+     */
     default void indexAttachment(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexAttachmentResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndexAttachmentMethod(), responseObserver);
@@ -333,6 +485,38 @@ public final class UserGrpc {
 
     /**
      */
+    public void index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDestroyMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void lock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getLockMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void unlock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUnlockMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void indexAttachment(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexAttachmentResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -398,6 +582,34 @@ public final class UserGrpc {
 
     /**
      */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getDestroyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty lock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getLockMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty unlock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getUnlockMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexAttachmentResponse indexAttachment(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getIndexAttachmentMethod(), getCallOptions(), request);
@@ -453,6 +665,34 @@ public final class UserGrpc {
     protected UserBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new UserBlockingStub(channel, callOptions);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse index(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDestroyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty lock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getLockMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty unlock(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUnlockMethod(), getCallOptions(), request);
     }
 
     /**
@@ -516,6 +756,38 @@ public final class UserGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse> index(
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> destroy(
+        com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDestroyMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> lock(
+        com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getLockMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> unlock(
+        com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUnlockMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexAttachmentResponse> indexAttachment(
         com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -563,12 +835,16 @@ public final class UserGrpc {
     }
   }
 
-  private static final int METHODID_INDEX_ATTACHMENT = 0;
-  private static final int METHODID_CREATE_ATTACHMENT = 1;
-  private static final int METHODID_SHOW_ATTACHMENT = 2;
-  private static final int METHODID_SET_ATTACHMENT_UPLOADED = 3;
-  private static final int METHODID_SET_ATTACHMENT_TITLE = 4;
-  private static final int METHODID_DESTROY_ATTACHMENT = 5;
+  private static final int METHODID_INDEX = 0;
+  private static final int METHODID_DESTROY = 1;
+  private static final int METHODID_LOCK = 2;
+  private static final int METHODID_UNLOCK = 3;
+  private static final int METHODID_INDEX_ATTACHMENT = 4;
+  private static final int METHODID_CREATE_ATTACHMENT = 5;
+  private static final int METHODID_SHOW_ATTACHMENT = 6;
+  private static final int METHODID_SET_ATTACHMENT_UPLOADED = 7;
+  private static final int METHODID_SET_ATTACHMENT_TITLE = 8;
+  private static final int METHODID_DESTROY_ATTACHMENT = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -587,6 +863,22 @@ public final class UserGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_INDEX:
+          serviceImpl.index((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse>) responseObserver);
+          break;
+        case METHODID_DESTROY:
+          serviceImpl.destroy((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_LOCK:
+          serviceImpl.lock((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_UNLOCK:
+          serviceImpl.unlock((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
         case METHODID_INDEX_ATTACHMENT:
           serviceImpl.indexAttachment((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexAttachmentResponse>) responseObserver);
@@ -629,6 +921,34 @@ public final class UserGrpc {
 
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getIndexMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse>(
+                service, METHODID_INDEX)))
+        .addMethod(
+          getDestroyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_DESTROY)))
+        .addMethod(
+          getLockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_LOCK)))
+        .addMethod(
+          getUnlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_UNLOCK)))
         .addMethod(
           getIndexAttachmentMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -719,6 +1039,10 @@ public final class UserGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UserFileDescriptorSupplier())
+              .addMethod(getIndexMethod())
+              .addMethod(getDestroyMethod())
+              .addMethod(getLockMethod())
+              .addMethod(getUnlockMethod())
               .addMethod(getIndexAttachmentMethod())
               .addMethod(getCreateAttachmentMethod())
               .addMethod(getShowAttachmentMethod())

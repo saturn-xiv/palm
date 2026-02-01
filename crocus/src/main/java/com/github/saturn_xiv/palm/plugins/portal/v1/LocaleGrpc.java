@@ -108,6 +108,37 @@ public final class LocaleGrpc {
     return getByLangMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getDestroyMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Destroy",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+      com.google.protobuf.Empty> getDestroyMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty> getDestroyMethod;
+    if ((getDestroyMethod = LocaleGrpc.getDestroyMethod) == null) {
+      synchronized (LocaleGrpc.class) {
+        if ((getDestroyMethod = LocaleGrpc.getDestroyMethod) == null) {
+          LocaleGrpc.getDestroyMethod = getDestroyMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Destroy"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new LocaleMethodDescriptorSupplier("Destroy"))
+              .build();
+        }
+      }
+    }
+    return getDestroyMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -194,6 +225,13 @@ public final class LocaleGrpc {
         io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getByLangMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDestroyMethod(), responseObserver);
+    }
   }
 
   /**
@@ -252,6 +290,14 @@ public final class LocaleGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getByLangMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDestroyMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -293,6 +339,13 @@ public final class LocaleGrpc {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getByLangMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getDestroyMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -333,6 +386,13 @@ public final class LocaleGrpc {
     public com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse byLang(com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getByLangMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty destroy(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDestroyMethod(), getCallOptions(), request);
     }
   }
 
@@ -378,11 +438,20 @@ public final class LocaleGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getByLangMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> destroy(
+        com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDestroyMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_INDEX = 0;
   private static final int METHODID_SET = 1;
   private static final int METHODID_BY_LANG = 2;
+  private static final int METHODID_DESTROY = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -412,6 +481,10 @@ public final class LocaleGrpc {
         case METHODID_BY_LANG:
           serviceImpl.byLang((com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangRequest) request,
               (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse>) responseObserver);
+          break;
+        case METHODID_DESTROY:
+          serviceImpl.destroy((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -452,6 +525,13 @@ public final class LocaleGrpc {
               com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangRequest,
               com.github.saturn_xiv.palm.plugins.portal.v1.LocaleByLangResponse>(
                 service, METHODID_BY_LANG)))
+        .addMethod(
+          getDestroyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_DESTROY)))
         .build();
   }
 
@@ -503,6 +583,7 @@ public final class LocaleGrpc {
               .addMethod(getIndexMethod())
               .addMethod(getSetMethod())
               .addMethod(getByLangMethod())
+              .addMethod(getDestroyMethod())
               .build();
         }
       }

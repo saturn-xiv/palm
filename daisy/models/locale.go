@@ -11,13 +11,13 @@ import (
 )
 
 type Locale struct {
-	ID        uint   `gorm:"primarykey"`
-	Lang      string `gorm:"uniqueIndex:idx_lang_code;index;not null;size:15"`
-	Code      string `gorm:"uniqueIndex:idx_lang_code;index;not null;size:255"`
-	Message   string `gorm:"not null;type:text"`
-	Version   uint   `gorm:"not null;default:0"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        uint      `gorm:"primarykey"`
+	Lang      string    `gorm:"uniqueIndex:idx_lang_code;index;not null;size:15"`
+	Code      string    `gorm:"uniqueIndex:idx_lang_code;index;not null;size:255"`
+	Message   string    `gorm:"not null;type:text"`
+	Version   uint      `gorm:"not null;default:0"`
+	CreatedAt time.Time `gorm:"not null"`
+	UpdatedAt time.Time `gorm:"not null"`
 }
 
 func (Locale) TableName() string {

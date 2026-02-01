@@ -28,11 +28,11 @@ func NewLocaleServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) *L
 
 func (p *LocaleServer) Index(ctx context.Context, req *v2.Page) (*v2.LocaleIndexResponse, error) {
 	{
-		user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = rbac.IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -63,11 +63,11 @@ func (p *LocaleServer) Index(ctx context.Context, req *v2.Page) (*v2.LocaleIndex
 }
 func (p *LocaleServer) Set(ctx context.Context, req *v2.LocaleSetRequest) (*emptypb.Empty, error) {
 	{
-		user, _, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 		if err != nil {
 			return nil, err
 		}
-		if err = rbac.IsAdministrator(p.enforcer, user); err != nil {
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
 			return nil, err
 		}
 	}
@@ -94,4 +94,20 @@ func (p *LocaleServer) ByLang(ctx context.Context, req *v2.LocaleByLangRequest) 
 		})
 	}
 	return &res, nil
+}
+
+func (p *LocaleServer) Destroy(ctx context.Context, req *v2.IdRequest) (*emptypb.Empty, error) {
+	{
+		ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+		if err != nil {
+			return nil, err
+		}
+		if err = ss.IsAdministrator(p.enforcer); err != nil {
+			return nil, err
+		}
+	}
+	if err := p.db.Delete(&models.Locale{}, req.Id).Error; err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
 }

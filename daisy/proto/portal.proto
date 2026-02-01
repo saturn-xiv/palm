@@ -55,6 +55,7 @@ service Locale{
   rpc Index(Page) returns (LocaleIndexResponse){}
   rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
   rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
+  rpc Destroy(IdRequest) returns (google.protobuf.Empty){}
 }
 
 message LocaleSetRequest {
@@ -104,12 +105,36 @@ message CurrenciesResponse {
 // ----------------------------------------------------------------------------
 
 service User {
+  rpc Index(Page) returns (UserIndexResponse){}
+  rpc Destroy(IdRequest) returns (google.protobuf.Empty){}
+  rpc Lock(IdRequest) returns (google.protobuf.Empty){}
+  rpc Unlock(IdRequest) returns (google.protobuf.Empty){}
+
   rpc IndexAttachment(Page) returns (UserIndexAttachmentResponse){}
   rpc CreateAttachment(UserCreateAttachmentRequest)returns (UserCreateAttachmentUploadResponse){}
   rpc ShowAttachment(UserShowAttachmentRequest) returns (UserShowAttachmentResponse){}
   rpc SetAttachmentUploaded(IdRequest) returns (google.protobuf.Empty){}
   rpc SetAttachmentTitle(UserSetAttachmentTitleRequest) returns (google.protobuf.Empty){}
   rpc DestroyAttachment(IdRequest) returns (google.protobuf.Empty){}
+}
+
+message UserIndexResponse {
+  message Item {
+    int64                              id                   = 1;
+    string                             sn                   = 2;
+    string                             lang                 = 3;
+    string                             timezone             = 4;
+    int64                              signed_in_total      = 11;
+    optional google.protobuf.Timestamp current_signed_in_at = 12;
+    optional string                    current_signed_in_ip = 13;
+    optional google.protobuf.Timestamp last_signed_in_at    = 14;
+    optional string                    last_signed_in_ip    = 15;
+    optional google.protobuf.Timestamp locked_at            = 17;
+    optional google.protobuf.Timestamp deleted_at           = 18;
+    google.protobuf.Timestamp          updated_at           = 19;
+  }
+  repeated Item items      = 1;
+  Pagination    pagination = 9;
 }
 
 message UserSetAttachmentTitleRequest {
@@ -167,7 +192,7 @@ message Log {
   }
 }
 
-message UserDetail {
+message Session {
   enum ProviderType {
     EMAIL               = 0;
     PHONE               = 1;
@@ -175,11 +200,11 @@ message UserDetail {
     WECHAT_OAUTH2       = 3;
     WECHAT_MINI_PROGRAM = 4;
   }
-}
-
-message Session {
-  UserDetail.ProviderType type = 1;
-  string                  sn   = 2;
+  ProviderType           type      = 1;
+  string                 sn        = 2;
+  string                 name      = 3;
+  UserIndexResponse.Item user      = 8;
+  string                 client_ip = 9;
 }
 
 // ----------------------------------------------------------------------------

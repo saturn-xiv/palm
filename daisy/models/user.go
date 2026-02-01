@@ -9,7 +9,7 @@ import (
 )
 
 type User struct {
-	gorm.Model
+	Model
 
 	Sn                string `gorm:"uniqueIndex;not null;size:36"`
 	Lang              string `gorm:"index;not null;size:15;default:'en-US'"`

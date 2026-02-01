@@ -13,7 +13,7 @@ import (
 )
 
 type Setting struct {
-	gorm.Model
+	Model
 
 	Key     string `gorm:"uniqueIndex;not null;size:255"`
 	Value   []byte `gorm:"not null;type:bytes"`

@@ -361,6 +361,139 @@ export namespace CurrenciesResponse {
 
 }
 
+export class UserIndexResponse extends jspb.Message {
+  getItemsList(): Array<UserIndexResponse.Item>;
+  setItemsList(value: Array<UserIndexResponse.Item>): UserIndexResponse;
+  clearItemsList(): UserIndexResponse;
+  addItems(value?: UserIndexResponse.Item, index?: number): UserIndexResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): UserIndexResponse;
+  hasPagination(): boolean;
+  clearPagination(): UserIndexResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserIndexResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserIndexResponse): UserIndexResponse.AsObject;
+  static serializeBinaryToWriter(message: UserIndexResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserIndexResponse;
+  static deserializeBinaryFromReader(message: UserIndexResponse, reader: jspb.BinaryReader): UserIndexResponse;
+}
+
+export namespace UserIndexResponse {
+  export type AsObject = {
+    itemsList: Array<UserIndexResponse.Item.AsObject>;
+    pagination?: Pagination.AsObject;
+  };
+
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getSn(): string;
+    setSn(value: string): Item;
+
+    getLang(): string;
+    setLang(value: string): Item;
+
+    getTimezone(): string;
+    setTimezone(value: string): Item;
+
+    getSignedInTotal(): number;
+    setSignedInTotal(value: number): Item;
+
+    getCurrentSignedInAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCurrentSignedInAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCurrentSignedInAt(): boolean;
+    clearCurrentSignedInAt(): Item;
+
+    getCurrentSignedInIp(): string;
+    setCurrentSignedInIp(value: string): Item;
+    hasCurrentSignedInIp(): boolean;
+    clearCurrentSignedInIp(): Item;
+
+    getLastSignedInAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setLastSignedInAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasLastSignedInAt(): boolean;
+    clearLastSignedInAt(): Item;
+
+    getLastSignedInIp(): string;
+    setLastSignedInIp(value: string): Item;
+    hasLastSignedInIp(): boolean;
+    clearLastSignedInIp(): Item;
+
+    getLockedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setLockedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasLockedAt(): boolean;
+    clearLockedAt(): Item;
+
+    getDeletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setDeletedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasDeletedAt(): boolean;
+    clearDeletedAt(): Item;
+
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number;
+      sn: string;
+      lang: string;
+      timezone: string;
+      signedInTotal: number;
+      currentSignedInAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      currentSignedInIp?: string;
+      lastSignedInAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      lastSignedInIp?: string;
+      lockedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      deletedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+    };
+
+    export enum CurrentSignedInAtCase {
+      _CURRENT_SIGNED_IN_AT_NOT_SET = 0,
+      CURRENT_SIGNED_IN_AT = 12,
+    }
+
+    export enum CurrentSignedInIpCase {
+      _CURRENT_SIGNED_IN_IP_NOT_SET = 0,
+      CURRENT_SIGNED_IN_IP = 13,
+    }
+
+    export enum LastSignedInAtCase {
+      _LAST_SIGNED_IN_AT_NOT_SET = 0,
+      LAST_SIGNED_IN_AT = 14,
+    }
+
+    export enum LastSignedInIpCase {
+      _LAST_SIGNED_IN_IP_NOT_SET = 0,
+      LAST_SIGNED_IN_IP = 15,
+    }
+
+    export enum LockedAtCase {
+      _LOCKED_AT_NOT_SET = 0,
+      LOCKED_AT = 17,
+    }
+
+    export enum DeletedAtCase {
+      _DELETED_AT_NOT_SET = 0,
+      DELETED_AT = 18,
+    }
+  }
+
+}
+
 export class UserSetAttachmentTitleRequest extends jspb.Message {
   getId(): number;
   setId(value: number): UserSetAttachmentTitleRequest;
@@ -623,34 +756,23 @@ export namespace Log {
   }
 }
 
-export class UserDetail extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UserDetail.AsObject;
-  static toObject(includeInstance: boolean, msg: UserDetail): UserDetail.AsObject;
-  static serializeBinaryToWriter(message: UserDetail, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UserDetail;
-  static deserializeBinaryFromReader(message: UserDetail, reader: jspb.BinaryReader): UserDetail;
-}
-
-export namespace UserDetail {
-  export type AsObject = {
-  };
-
-  export enum ProviderType {
-    EMAIL = 0,
-    PHONE = 1,
-    GOOGLE_OAUTH2 = 2,
-    WECHAT_OAUTH2 = 3,
-    WECHAT_MINI_PROGRAM = 4,
-  }
-}
-
 export class Session extends jspb.Message {
-  getType(): UserDetail.ProviderType;
-  setType(value: UserDetail.ProviderType): Session;
+  getType(): Session.ProviderType;
+  setType(value: Session.ProviderType): Session;
 
   getSn(): string;
   setSn(value: string): Session;
+
+  getName(): string;
+  setName(value: string): Session;
+
+  getUser(): UserIndexResponse.Item | undefined;
+  setUser(value?: UserIndexResponse.Item): Session;
+  hasUser(): boolean;
+  clearUser(): Session;
+
+  getClientIp(): string;
+  setClientIp(value: string): Session;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Session.AsObject;
@@ -662,8 +784,19 @@ export class Session extends jspb.Message {
 
 export namespace Session {
   export type AsObject = {
-    type: UserDetail.ProviderType;
+    type: Session.ProviderType;
     sn: string;
+    name: string;
+    user?: UserIndexResponse.Item.AsObject;
+    clientIp: string;
   };
+
+  export enum ProviderType {
+    EMAIL = 0,
+    PHONE = 1,
+    GOOGLE_OAUTH2 = 2,
+    WECHAT_OAUTH2 = 3,
+    WECHAT_MINI_PROGRAM = 4,
+  }
 }
 
